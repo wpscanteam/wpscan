@@ -8,7 +8,7 @@ WPSCAN_LIB_DIR = LIB_DIR + "/wpscan"
 WPSTOOLS_LIB_DIR = LIB_DIR + "/wpstools"
 UPDATER_LIB_DIR = LIB_DIR + "/updater"
 
-WPSCAN_VERSION = "1.1"
+WPSCAN_VERSION = "2.0"
 
 require "#{LIB_DIR}/environment"
 
