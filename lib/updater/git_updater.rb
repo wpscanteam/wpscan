@@ -21,15 +21,15 @@ require File.expand_path(File.dirname(__FILE__) + '/updater')
 class GitUpdater < Updater
 
   def is_installed?
-    %x[git #{repo_directory_arguments()} status 2>&1] =~ /On branch/ ? true : false
+    %x[git status "#{repo_directory_arguments()}" 2>&1] =~ /On branch/ ? true : false
   end
 
   def local_revision_number
-    # TODO
+    # TODO - not sure if git has revision numbers? maybe we don't have to check and just do a pull?
   end
 
   def update
-    %x[git #{repo_directory_arguments()} pull]
+    %x[git "#{repo_directory_arguments()}" pull]
   end
 
   protected
