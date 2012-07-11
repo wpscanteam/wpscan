@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Wpscan by wpscanteam</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Wpscan</h1>
+        <p>WPScan is a black box WordPress vulnerability scanner.</p>
+
+        <p class="view"><a href="https://github.com/wpscanteam/wpscan">View the Project on GitHub <small>wpscanteam/wpscan</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/wpscanteam/wpscan/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/wpscanteam/wpscan/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/wpscanteam/wpscan">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="http://dvwa.co.uk/images/wpscan_logo_407x80.png" alt="alt text" title="WPScan - WordPress Security Scanner"></p>
+
+<h4>LICENSE</h4>
+
+<p>WPScan - WordPress Security Scanner
+Copyright (C), 2011-2012  Ryan Dewhurst AKA ethicalhack3r</p>
+
+<p>This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.</p>
+
+<p>You should have received a copy of the GNU General Public License
+along with this program.  If not, see <a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+
+<p>ryandewhurst at gmail</p>
+
+<h4>INSTALL</h4>
+
+<p>WPScan comes pre-installed on the following Linux distributions:</p>
+
+<ul>
+<li>
+<a href="http://www.backtrack-linux.org/">BackTrack Linux</a> since version 5 R1 in the /pentest/web/wpscan/ directory. </li>
+<li><a href="http://samurai.inguardians.com/">SamuraiWTF</a></li>
+<li><a href="http://www.backbox.org/">BackBox Linux</a></li>
+</ul><p>WPScan only supports Ruby =&gt; 1.9.</p>
+
+<p><em>Installing on Debian/Ubuntu:</em></p>
+
+<p><code>sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby</code></p>
+
+<p><code>sudo gem install typhoeus nokogiri json</code></p>
+
+<p><em>Installing on other nix:</em> (not tested)</p>
+
+<p><code>sudo gem install typhoeus nokogiri json</code></p>
+
+<p><em>Installing on Mac OSX:</em></p>
+
+<p><code>sudo gem install typhoeus nokogiri json</code></p>
+
+<h4>KNOWN ISSUES</h4>
+
+<ul>
+<li><p>Typhoeus segmentation fault
+  Update curl to at least v7.21 (you may have to install it from sources)
+  See <a href="http://code.google.com/p/wpscan/issues/detail?id=81">http://code.google.com/p/wpscan/issues/detail?id=81</a></p></li>
+<li><p>If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
+  It happens whith enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'</p></li>
+</ul><h4>WPSCAN ARGUMENTS</h4>
+
+<pre><code>--url   | -u &lt;target url&gt;  The WordPress URL/domain to scan.
+
+--force | -f Forces WPScan to not check if the remote site is running WordPress.
+
+--enumerate | -e [option(s)]  Enumeration.
+ option :
+   u        usernames from id 1 to 10
+   u[10-20] usernames from id 10 to 20 (you must write [] chars)
+   p        plugins
+   p!       only vulnerable plugins
+   t        timthumbs
+ Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins
+ If no option is supplied, the default is 'upt'
+
+--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not
+
+--proxy  Supply a proxy in the format host:port (will override the one from conf/browser.conf.json)
+
+--wordlist | -w &lt;wordlist&gt;  Supply a wordlist for the password bruter and do the brute.
+
+--threads  | -t &lt;number of threads&gt;  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)
+
+--username | -U &lt;username&gt;  Only brute force the supplied username.
+
+--help     | -h This help screen.
+
+--verbose  | -v Verbose output.
+</code></pre>
+
+<h4>WPSCAN EXAMPLES</h4>
+
+<p>Do 'non-intrusive' checks...</p>
+
+<p><code>ruby wpscan.rb --url www.example.com</code></p>
+
+<p>Do wordlist password brute force on enumerated users using 50 threads...</p>
+
+<p><code>ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --threads 50</code></p>
+
+<p>Do wordlist password brute force on the 'admin' username only...</p>
+
+<p><code>ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --username admin</code></p>
+
+<p>Enumerate instaled plugins...</p>
+
+<p><code>ruby wpscan.rb --url www.example.com --enumerate p</code></p>
+
+<p>Run all enumeration tools...</p>
+
+<p><code>ruby wpscan.rb --url www.example.com --enumerate</code></p>
+
+<h4>WPSTOOLS ARGUMENTS</h4>
+
+<pre><code>--help    | -h   This help screen.
+--Verbose | -v   Verbose output.
+--update  | -u   Update to the latest revision.
+--generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
+--gpl  Alias for --generate_plugin_list
+</code></pre>
+
+<h4>WPSTOOLS EXAMPLES</h4>
+
+<p>Generate a new 'most popular' plugin list, up to 150 pages...</p>
+
+<p><code>ruby wpstools.rb --generate_plugin_list 150</code></p>
+
+<h4>PROJECT HOME</h4>
+
+<p><a href="http://www.wpscan.org">www.wpscan.org</a></p>
+
+<h4>GIT REPOSITORY</h4>
+
+<p><a href="https://github.com/wpscanteam/wpscan">https://github.com/wpscanteam/wpscan</a></p>
+
+<h4>ISSUES</h4>
+
+<p><a href="https://github.com/wpscanteam/wpscan/issues">https://github.com/wpscanteam/wpscan/issues</a></p>
+
+<h4>SPONSOR</h4>
+
+<p>WPScan is sponsored by the <a href="http://www.randomstorm.com">RandomStorm</a> Open Source Initiative.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/wpscanteam">wpscanteam</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
