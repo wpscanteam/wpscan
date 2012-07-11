@@ -21,20 +21,24 @@ require File.expand_path(File.dirname(__FILE__) + '/updater')
 class GitUpdater < Updater
 
   def is_installed?
-    %x[git status "#{repo_directory_arguments()}" 2>&1] =~ /On branch/ ? true : false
+    %x[git #{repo_directory_arguments()} status 2>&1] =~ /On branch/ ? true : false
   end
 
+  # Git has not a revsion number like SVN, so we will take the 7 first chars of the last commit hash
   def local_revision_number
-    # TODO - not sure if git has revision numbers? maybe we don't have to check and just do a pull?
+    git_log = %x[git #{repo_directory_arguments()} log -1 2>&1]
+    git_log[/commit ([0-9a-z]{7})/i, 1].to_s
   end
 
   def update
-    %x[git "#{repo_directory_arguments()}" pull]
+    puts %x[git #{repo_directory_arguments()} pull]
   end
 
   protected
   def repo_directory_arguments
-    '--git-dir="#{@repo_directory}.git" --work-tree="#{@repo_directory}"'
+    if @repo_directory
+      return "--git-dir=\"#{@repo_directory}/.git\" --work-tree=\"#{@repo_directory}\""
+    end
   end
 
 end

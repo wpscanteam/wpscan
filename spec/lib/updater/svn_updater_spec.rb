@@ -72,6 +72,9 @@ describe SvnUpdater do
         </info>'
       @expected = "362"
     end
+  end
+
+  describe "#update" do
 
   end
 
