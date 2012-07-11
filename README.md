@@ -125,11 +125,11 @@ www.wpscan.org
 
 #### GIT REPOSITORY
 
-https://github.com/wpscanteam/
+https://github.com/wpscanteam/wpscan
 
 #### ISSUES
 
-https://github.com/wpscanteam/testpage/issues
+https://github.com/wpscanteam/wpscan/issues
 
 #### SPONSOR
 
