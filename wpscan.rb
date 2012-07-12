@@ -81,7 +81,6 @@ begin
   end
 
   if wp_content_dir = wp_target.wp_content_dir()
-    # This one might be moved in wp_target. However we need to find a way to mock that in spec, otherwise there is a lot a problems xD
     Browser.instance.variables_to_replace_in_url = {"$wp-content$" => wp_content_dir, "$wp-plugins$" => wp_target.wp_plugins_dir()}
   else
     raise "The wp_content_dir has not been found, please supply it with --wp-content-dir"
