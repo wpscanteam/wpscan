@@ -77,9 +77,4 @@ def banner()
     puts "[WARNING] Ruby < 1.9 not officially supported, please upgrade."
     puts
   end
-  if @updater.is_a? SvnUpdater
-    # Uncomment the following lines when the git repo is up
-    #puts "[WARNING] The SVN repository is DEPRECATED, use the GIT one"
-    #puts
-  end
 end

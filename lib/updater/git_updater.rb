@@ -31,7 +31,7 @@ class GitUpdater < Updater
   end
 
   def update
-    puts %x[git #{repo_directory_arguments()} pull]
+    %x[git #{repo_directory_arguments()} pull]
   end
 
   protected

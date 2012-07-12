@@ -39,9 +39,9 @@ describe GitUpdater do
   end
 
   describe "#update" do
-    #it "should do nothing xD" do
-      #stub_system_command(@git_updater, /^git .* pull/, "Already up-to-date.")
-      #@git_updater.update
-    #end
+    it "should do nothing xD" do
+      stub_system_command(@git_updater, /^git .* pull/, "Already up-to-date.")
+      @git_updater.update().should === "Already up-to-date."
+    end
   end
 end

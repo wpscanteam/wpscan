@@ -33,7 +33,7 @@ class SvnUpdater < Updater
   end
 
   def update
-    puts %x[svn up "#{@repo_directory}"]
+    %x[svn up "#{@repo_directory}"]
   end
 
 end

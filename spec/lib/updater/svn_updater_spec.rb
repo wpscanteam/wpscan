@@ -75,7 +75,10 @@ describe SvnUpdater do
   end
 
   describe "#update" do
-
+    it "should do nothing xD" do
+      stub_system_command(@svn_updater, /^svn up/, "At revision 425.")
+      @svn_updater.update().should === "At revision 425."
+    end
   end
 
 end

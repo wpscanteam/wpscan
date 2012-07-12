@@ -40,7 +40,7 @@ begin
   # Check for updates
   if wpscan_options.update
     unless @updater.nil?
-      @updater.update()
+      puts @updater.update()
     else
       puts "Svn / Git not installed, or wpscan has not been installed with one of them."
       puts "Update aborted"
