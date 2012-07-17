@@ -21,7 +21,7 @@ require "#{WPSCAN_LIB_DIR}/vulnerable"
 class WpPlugin < Vulnerable
   @@location_url_pattern = %r{^(https?://.*/([^/]+)/)}i
 
-  attr_reader :name, :location_uri
+  attr_reader :name
 
   def initialize(location_url, options = {})
     @location_uri = WpPlugin.location_uri_from_url(location_url)
