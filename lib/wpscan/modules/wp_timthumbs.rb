@@ -28,23 +28,27 @@ module WpTimthumbs
   # Available options :
   #   :theme_name
   #   :timthumbs_file
+  #   :show_progress_bar - default false
   #
   # return array of string (url of timthumbs found), can be empty
   def timthumbs(options = {})
     if @wp_timthumbs.nil?
-      browser         = Browser.instance
-      hydra           = browser.hydra
-      found_timthumbs = []
-      request_count   = 0
-      queue_count     = 0
-      targets_url     = timthumbs_targets_url(options)
+      browser           = Browser.instance
+      hydra             = browser.hydra
+      found_timthumbs   = []
+      request_count     = 0
+      queue_count       = 0
+      targets_url       = timthumbs_targets_url(options)
+      show_progress_bar = options[:show_progress_bar] || false
 
       targets_url.each do |target_url|
         request       = browser.forge_request(target_url, :cache_timeout => 0)
         request_count += 1
 
         request.on_complete do |response|
-          print "\rChecking for " + targets_url.size.to_s + " total timthumb files... #{(request_count * 100) / targets_url.size}% complete." # progress indicator
+
+          print "\rChecking for " + targets_url.size.to_s + " total timthumb files... #{(request_count * 100) / targets_url.size}% complete." if show_progress_bar
+
           if response.body =~ /no image specified/i
             found_timthumbs << target_url
           end

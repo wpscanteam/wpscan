@@ -20,6 +20,7 @@ module WpPlugins
 
   # Enumerate installed plugins.
   # Available options : see #targets_url
+  #  :show_progress_bar - default false
   #
   # return array of WpPlugin
   def plugins_from_aggressive_detection(options = {})
@@ -31,13 +32,14 @@ module WpPlugins
     local_404_hash       = error_404_hash()
     valid_response_codes = WpPlugins.valid_response_codes()
     targets_url          = plugins_targets_url(options)
+    show_progress_bar    = options[:show_progress_bar] || false
 
     targets_url.each do |target_url|
       request       = browser.forge_request(target_url, :cache_timeout => 0, :follow_location => true)
       request_count += 1
 
       request.on_complete do |response|
-        print "\rChecking for " + targets_url.size.to_s + " total plugins... #{(request_count * 100) / targets_url.size}% complete." # progress indicator
+        print "\rChecking for " + targets_url.size.to_s + " total plugins... #{(request_count * 100) / targets_url.size}% complete." if show_progress_bar
 
         if valid_response_codes.include?(response.code)
           if Digest::MD5.hexdigest(response.body) != local_404_hash

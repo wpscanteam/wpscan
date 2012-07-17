@@ -183,7 +183,8 @@ begin
     puts
 
     plugins = wp_target.plugins_from_aggressive_detection(
-      :only_vulnerable_ones => wpscan_options.enumerate_only_vulnerable_plugins
+      :only_vulnerable_ones => wpscan_options.enumerate_only_vulnerable_plugins,
+      :show_progress_bar => true
     )
     unless plugins.empty?
       puts
@@ -230,7 +231,7 @@ begin
     puts "[+] Enumerating timthumb files ..."
     puts
 
-    if wp_target.has_timthumbs?(:theme_name => wp_theme ? wp_theme.name : nil)
+    if wp_target.has_timthumbs?(:theme_name => wp_theme ? wp_theme.name : nil, :show_progress_bar => true)
       timthumbs = wp_target.timthumbs
 
       puts
