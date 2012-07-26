@@ -80,7 +80,7 @@ class Browser
     end
   end
 
-  # return the user agent, accordting to the user_agent_mode
+  # return the user agent, according to the user_agent_mode
   def user_agent
     case @user_agent_mode
     when "semi-static"
