@@ -48,6 +48,11 @@ class WpPlugin < Vulnerable
     response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
   end
 
+  def to_s
+    version = version()
+    "#{@name}#{' v' + version if version}"
+  end
+
   # Discover any error_log files created by WordPress
   # These are created by the WordPress error_log() function
   # They are normally found in the /plugins/ directory,

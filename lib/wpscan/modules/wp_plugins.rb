@@ -39,7 +39,7 @@ module WpPlugins
       request_count += 1
 
       request.on_complete do |response|
-        print "\rChecking for " + targets_url.size.to_s + " total plugins... #{(request_count * 100) / targets_url.size}% complete." if show_progress_bar
+        print "\rChecking for #{targets_url.size} total plugins... #{(request_count * 100) / targets_url.size}% complete." if show_progress_bar
 
         if valid_response_codes.include?(response.code)
           if Digest::MD5.hexdigest(response.body) != local_404_hash

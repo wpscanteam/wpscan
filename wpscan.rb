@@ -193,7 +193,7 @@ begin
 
       plugins.each do |plugin|
         puts
-        puts " | Name: " + plugin.name
+        puts " | Name: " + plugin #this will also output the version number if detected
         puts " | Location: " + plugin.location_url
 
         puts " | Directory listing enabled? #{plugin.directory_listing? ? "Yes." : "No."}"

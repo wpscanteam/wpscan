@@ -143,6 +143,26 @@ describe WpPlugin do
     end
   end
 
+  describe "#to_s" do
+    after :each do
+      wp_plugin = WpPlugin.new(WpPlugin.create_location_url_from_name(@name, "http://example.localhost"))
+      wp_plugin.stub(:version => @version)
+      wp_plugin.to_s.should === @expected
+    end
+
+    it "should not include the version if it's not detected" do
+      @name = "a-plugin"
+      @version = nil
+      @expected = "a-plugin"
+    end
+
+    it "should show the version if it's detected" do
+      @name = "another-plugin"
+      @version = "3.2"
+      @expected = "another-plugin v3.2"
+    end
+  end
+
   describe "#vulnerabilities" do
     let(:location_url) { 'http://example.localhost/wp-content/plugins/spec-plugin/' }
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR + '/vulnerabilities' }
