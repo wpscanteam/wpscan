@@ -164,7 +164,7 @@ begin
     plugins.each do |plugin|
       puts
       puts " | Name: " + plugin.name
-      puts " | Location: " + plugin.location_url
+      puts " | Location: " + plugin.location_url.gsub("$wp-plugins$", wp_target.wp_plugins_dir()) #Hotfix
 
       plugin.vulnerabilities.each do |vulnerability|
         puts " |"
