@@ -105,4 +105,12 @@ class WpTarget
     @wp_plugins_dir
   end
 
+  def has_debug_log?
+    Browser.instance.get(debug_log_url()).body[%r{error}i] ? true : false
+  end
+
+  def debug_log_url
+    @uri.merge("#{wp_content_dir()}/debug.log").to_s
+  end
+
 end

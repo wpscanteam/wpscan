@@ -91,7 +91,6 @@ begin
   puts "| Started on #{Time.now.asctime}"
   puts
 
-  # Can we identify the theme name?
   if wp_theme = wp_target.theme
     theme_version = wp_theme.version
     puts "[!] The WordPress theme in use is #{wp_theme}"
@@ -108,22 +107,22 @@ begin
     end
   end
 
-  # Is the readme.html file there?
   if wp_target.has_readme?
     puts "[!] The WordPress '#{wp_target.readme_url}' file exists"
   end
 
-  # Full Path Disclosure (FPD)?
   if wp_target.has_full_path_disclosure?
     puts "[!] Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}'"
   end
 
-  # Is the wp-config.php file backed up?
+  if wp_target.has_debug_log?
+    puts "[!] Debug log file found : #{wp_target.debug_log_url}"
+  end
+
   wp_target.config_backup.each do |file_url|
     puts "[!] A wp-config.php backup file has been found '#{file_url}'"
   end
 
-  # Checking for malwares
   if wp_target.has_malwares?
     malwares = wp_target.malwares
     puts "[!] #{malwares.size} malware(s) found :"
@@ -135,11 +134,9 @@ begin
     puts
   end
 
-  # Checking the version...
   if wp_version = wp_target.version
     puts "[!] WordPress version #{wp_version.number} identified from #{wp_version.discovery_method}"
 
-    # Are there any vulnerabilities associated with this version?
     version_vulnerabilities = wp_version.vulnerabilities
 
     unless version_vulnerabilities.empty?
@@ -153,7 +150,6 @@ begin
     end
   end
 
-  # Plugins from passive detection
   puts
   print "[+] Enumerating plugins from passive detection ... "
 
@@ -225,7 +221,6 @@ begin
     end
   end
 
-  # try to find timthumb files
   if wpscan_options.enumerate_timthumbs
     puts
     puts "[+] Enumerating timthumb files ..."

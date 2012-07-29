@@ -109,8 +109,8 @@ describe WpTarget do
 
     it "should also check in src attributes" do
       @target_url = "http://lamp/wordpress-3.4.1"
-      @fixture = fixtures_dir + "/wordpress-3.4.1-in-src.htm"
-      @expected = "wp-content"
+      @fixture    = fixtures_dir + "/wordpress-3.4.1-in-src.htm"
+      @expected   = "wp-content"
     end
 
   end
@@ -130,6 +130,33 @@ describe WpTarget do
     it "should return 'wp-content/plugins'" do
       @stub_value = "wp-content"
       @expected   = "wp-content/plugins"
+    end
+  end
+
+  describe "#debug_log_url" do
+    it "should return 'http://example.localhost/wp-content/debug.log" do
+      @wp_target.stub(:wp_content_dir => "wp-content")
+      @wp_target.debug_log_url.should === "http://example.localhost/wp-content/debug.log"
+    end
+  end
+
+  describe "#has_debug_log?" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + "/debug_log" }
+
+    after :each do
+      @wp_target.stub(:wp_content_dir => "wp-content")
+      stub_request_to_fixture(:url => @wp_target.debug_log_url(), :fixture => @fixture)
+      @wp_target.has_debug_log?.should === @expected
+    end
+
+    it "should return false" do
+      @fixture  = SPEC_FIXTURES_DIR + "/empty-file"
+      @expected = false
+    end
+
+    it "should return true" do
+      @fixture  = fixtures_dir + "/debug.log"
+      @expected = true
     end
   end
 end
