@@ -51,7 +51,7 @@ WPScan only supports Ruby => 1.9.
       See http://code.google.com/p/wpscan/issues/detail?id=81
 
   - If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
-      It happens whith enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
+      It happens with enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
 
 #### WPSCAN ARGUMENTS
 
