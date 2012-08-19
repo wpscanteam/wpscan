@@ -22,6 +22,54 @@ ryandewhurst at gmail
   TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF"]
 -->
 <vulnerabilities>
+  <plugin name="quick-post-widget">
+    <vulnerability>
+      <title>Quick Post Widget 1.9.1 Multiple Cross-site scripting vulnerabilities</title>
+      <reference>http://seclists.org/bugtraq/2012/Aug/66</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="threewp-email-reflector">
+    <vulnerability>
+      <title>ThreeWP Email Reflector 1.13 Stored XSS</title>
+      <reference>http://www.exploit-db.com/exploits/20365/</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-simplemail">
+    <vulnerability>
+      <title>SimpleMail 1.0.6 Stored XSS</title>
+      <reference>http://www.exploit-db.com/exploits/20361/</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="postie">
+    <vulnerability>
+      <title>Postie 1.4.3 Stored XSS</title>
+      <reference>http://www.exploit-db.com/exploits/20360/</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="rsvpmaker">
+    <vulnerability>
+      <title>RSVPMaker v2.5.4 Persistent XSS</title>
+      <reference>http://www.exploit-db.com/exploits/20474/</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="mz-jajak">
+    <vulnerability>
+      <title>Mz-jajak &lt;= 2.1 SQL Injection Vulnerability</title>
+      <reference>http://www.exploit-db.com/exploits/20416/</reference>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
   <plugin name="resume-submissions-job-postings">
     <vulnerability>
       <title>Resume Submissions Job Posting v2.5.1 Unrestricted File Upload</title>
@@ -2037,6 +2085,11 @@ File Upload Vulnerability</title>
       <title>Mini Mail Dashboard Widget 1.36 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17868/</reference>
       <type>RFI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Mini Mail Dashboard Widget 1.42 Stored XSS</title>
+      <reference>http://www.exploit-db.com/exploits/20358/</reference>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
