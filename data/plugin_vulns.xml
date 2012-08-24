@@ -22,6 +22,22 @@ ryandewhurst at gmail
   TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF"]
 -->
 <vulnerabilities>
+  <plugin name="rich-widget">
+    <vulnerability>
+      <title>Rich Widget File Upload</title>
+      <reference>http://packetstormsecurity.org/files/115787/wprichwidget-shell.txt</reference>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="monsters-editor-10-for-wp-super-edit">
+    <vulnerability>
+      <title>Monsters Editor Shell Upload</title>
+      <reference>http://packetstormsecurity.org/files/115788/wpmonsters-shell.txt</reference>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
   <plugin name="quick-post-widget">
     <vulnerability>
       <title>Quick Post Widget 1.9.1 Multiple Cross-site scripting vulnerabilities</title>
