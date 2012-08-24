@@ -158,5 +158,10 @@ describe WpTarget do
       @fixture  = fixtures_dir + "/debug.log"
       @expected = true
     end
+
+    it "should also detect it if there are PHP notice" do
+      @fixture = fixtures_dir + "/debug-notice.log"
+      @expected = true
+    end
   end
 end

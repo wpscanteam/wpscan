@@ -106,7 +106,7 @@ class WpTarget
   end
 
   def has_debug_log?
-    Browser.instance.get(debug_log_url()).body[%r{\[[^\]]+\] PHP (?:Warning|Error):}] ? true : false
+    Browser.instance.get(debug_log_url()).body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
   end
 
   def debug_log_url
