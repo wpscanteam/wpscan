@@ -33,17 +33,12 @@ class WpTarget
   attr_reader :uri, :verbose
 
   def initialize(target_url, options = {})
-    raise "Empty URL" if !target_url
-
     @uri            = URI.parse(add_http_protocol(target_url))
     @verbose        = options[:verbose]
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
 
-    Browser.instance(#options.merge(:max_threads => options[:threads]))
-      :proxy       => options[:proxy],
-      :max_threads => options[:threads]
-    )
+    Browser.instance(options.merge(:max_threads => options[:threads]))
   end
 
   # Alias of @uri.to_s
