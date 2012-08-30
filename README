@@ -94,7 +94,7 @@ WPScan comes pre-installed on BackTrack5 R1 in the /pentest/web/wpscan directory
 
 --wp-plugins-dir <wp plugins dir>  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed
 
---proxy  Supply a proxy in the format host:port (will override the one from conf/browser.conf.json)
+--proxy  Supply a proxy in the format host:port or protocol://host:port (will override the one from conf/browser.conf.json). HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used
 
 --wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.
 
@@ -111,19 +111,19 @@ WPScan comes pre-installed on BackTrack5 R1 in the /pentest/web/wpscan directory
 
 Do 'non-intrusive' checks...
 
-ruby wpscan.rb --url www.example.com
+  ruby wpscan.rb --url www.example.com
 
 Do wordlist password brute force on enumerated users using 50 threads...
 
-ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --threads 50
+  ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --threads 50
 
 Do wordlist password brute force on the 'admin' username only...
 
-ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --username admin
+  ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --username admin
 
 Enumerate instaled plugins...
 
-ruby wpscan.rb --url www.example.com --enumerate p
+  ruby wpscan.rb --url www.example.com --enumerate p
 
 
 ==WPSTOOLS ARGUMENTS==

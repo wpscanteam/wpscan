@@ -77,7 +77,8 @@ WPScan only supports Ruby => 1.9.
 
     --wp-plugins-dir <wp plugins dir>  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed
 
-    --proxy  Supply a proxy in the format host:port (will override the one from conf/browser.conf.json)
+    --proxy  Supply a proxy in the format host:port or protocol://host:port (will override the one from conf/browser.conf.json).
+             HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used
 
     --wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.
 

@@ -21,8 +21,11 @@ def usage()
   puts "-Enumerate instaled plugins ..."
   puts "ruby #{script_name} --url www.example.com --enumerate p"
   puts
-  puts "-Use a proxy ..."
+  puts "-Use a HTTP proxy ..."
   puts "ruby #{script_name} --url www.example.com --proxy 127.0.0.1:8118"
+  puts
+  puts "-Use a SOCKS5 proxy ..."
+  puts "ruby #{script_name} --url www.example.com --proxy socks5://127.0.0.1:9000"
   puts
   puts "-Use custom content directory ..."
   puts "ruby #{script_name} -u www.example.com --wp-content-dir custom-content"
@@ -57,7 +60,8 @@ def help()
   puts "--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not"
   puts "--wp-content-dir <wp content dir>  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed"
   puts "--wp-plugins-dir <wp plugins dir>  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed"
-  puts "--proxy  Supply a proxy in the format host:port (will override the one from conf/browser.conf.json)"
+  puts "--proxy  Supply a proxy in the format host:port or protocol://host:port (will override the one from conf/browser.conf.json)."
+  puts "         HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used"
   puts "--wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute."
   puts "--threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)"
   puts "--username | -U <username>  Only brute force the supplied username."

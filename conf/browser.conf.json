@@ -6,11 +6,19 @@
     random : each request will choose a random user agent in available_user_agents
   */
   "user_agent_mode": "static",
-  // Uncomment the next line to use the proxy
+
+  /* Uncomment the "proxy" line to use the proxy
+    SOCKS proxies (4, 4A, 5) are supported, ie : "proxy": "socks5://127.0.0.1:9000"
+    If you do not specify the protocol, http will be used
+  */
   //"proxy": "127.0.0.1:3038",
+
   "cache_timeout": 600, // 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
+
   "request_timeout": 2000, // 2s
+
   "max_threads": 20,
+
   // Some user_agents can be found there http://techpatterns.com/downloads/firefox/useragentswitcher.xml (thx to Gianluca Brindisi)
   "available_user_agents":
   [
