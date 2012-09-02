@@ -59,7 +59,8 @@ class WpPlugin < Vulnerable
   # however can also be found in their specific plugin dir.
   # http://www.exploit-db.com/ghdb/3714/
   def error_log?
-    Browser.instance.get(error_log_url()).body[%r{PHP Fatal error}i] ? true : false
+    response_body = Browser.instance.get(error_log_url(), :headers => { "range" => "bytes=0-700"}).body
+    response_body[%r{PHP Fatal error}i] ? true : false
   end
 
   def error_log_url

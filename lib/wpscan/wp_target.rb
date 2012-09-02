@@ -101,7 +101,9 @@ class WpTarget
   end
 
   def has_debug_log?
-    Browser.instance.get(debug_log_url()).body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
+    # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
+    response_body = Browser.instance.get(debug_log_url(), :headers => { "range" => "bytes=0-700"}).body
+    response_body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
   end
 
   def debug_log_url
