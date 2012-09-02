@@ -117,10 +117,6 @@ Use custom content directory...
 
 ```ruby wpscan.rb -u www.example.com --wp-content-dir custom-content```
 
-Update...
-
-```ruby wpscan.rb --update```
-
 #### WPSTOOLS ARGUMENTS
 
     --help    | -h   This help screen.
@@ -134,6 +130,10 @@ Update...
 Generate a new 'most popular' plugin list, up to 150 pages...
 
 ```ruby wpstools.rb --generate_plugin_list 150```
+
+Update WPScan...
+
+```ruby wpstools.rb --update```
 
 #### PROJECT HOME
 
