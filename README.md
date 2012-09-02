@@ -27,6 +27,7 @@ WPScan comes pre-installed on the following Linux distributions:
 - [BackTrack Linux](http://www.backtrack-linux.org/) since version 5 R1 in the /pentest/web/wpscan/ directory.
 - [SamuraiWTF](http://samurai.inguardians.com/)
 - [BackBox Linux](http://www.backbox.org/)
+- [Pentoo](http://www.pentoo.ch/)
 
 WPScan only supports Ruby => 1.9.
 
