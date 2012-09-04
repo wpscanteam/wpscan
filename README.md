@@ -72,6 +72,8 @@ WPScan only supports Ruby => 1.9.
     Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins
     If no option is supplied, the default is 'tup!'
 
+    --config-file | -c <config file> Use the specified config file
+
     --follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not
 
     --wp-content-dir <wp content dir>  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed

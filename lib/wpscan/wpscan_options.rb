@@ -36,7 +36,8 @@ class WpscanOptions
     :follow_redirection,
     :wp_content_dir,
     :wp_plugins_dir,
-    :help
+    :help,
+    :config_file
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -176,7 +177,8 @@ class WpscanOptions
       ["--update", GetoptLong::NO_ARGUMENT],
       ["--follow-redirection", GetoptLong::NO_ARGUMENT],
       ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
-      ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT]
+      ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
+      ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

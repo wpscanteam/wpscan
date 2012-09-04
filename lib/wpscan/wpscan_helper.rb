@@ -57,6 +57,7 @@ def help()
   puts "  Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins"
   puts "  If no option is supplied, the default is 'tup!'"
   puts
+  puts "--config-file | -c <config file> Use the specified config file"
   puts "--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not"
   puts "--wp-content-dir <wp content dir>  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed"
   puts "--wp-plugins-dir <wp plugins dir>  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed"
