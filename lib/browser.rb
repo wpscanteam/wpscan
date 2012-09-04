@@ -197,7 +197,7 @@ class Browser
   # Override with the options if they are set
   def override_config_with_options(options)
     options.each do |option, value|
-      if ACCESSOR_OPTIONS.include?(option)
+      if value != nil and ACCESSOR_OPTIONS.include?(option)
         self.send(:"#{option}=", value)
       end
     end

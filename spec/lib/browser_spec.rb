@@ -94,7 +94,7 @@ describe Browser do
   end
 
   describe "#instance with :config_file = #{CONFIG_FILE_WITHOUT_PROXY}" do
-    it 'will check the instance vars' do
+    it "will check the instance vars" do
       Browser.reset
       check_instance_variables(
         Browser.instance(:config_file => CONFIG_FILE_WITHOUT_PROXY),
@@ -104,7 +104,7 @@ describe Browser do
   end
 
   describe "#instance with :config_file = #{CONFIG_FILE_WITH_PROXY}" do
-    it 'will check the instance vars' do
+    it "will check the instance vars" do
       Browser.reset
       check_instance_variables(
         Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY),
@@ -113,16 +113,27 @@ describe Browser do
     end
   end
 
-  # => @todo Write something to test all possible overriding
-  describe "override option : user_agent" do
+  # TODO Write something to test all possible overriding
+  describe "override option : user_agent & threads" do
     it "will check the instance vars, with an overriden one" do
       Browser.reset
       check_instance_variables(
         Browser.instance(
           :config_file => CONFIG_FILE_WITHOUT_PROXY,
-          :user_agent  => 'fake IE'
+          :user_agent  => "fake IE"
         ),
-        @json_config_without_proxy.merge('user_agent' => 'fake IE')
+        @json_config_without_proxy.merge("user_agent" => "fake IE")
+      )
+    end
+
+    it "should not override the max_threads if max_threads = nil" do
+      Browser.reset
+      check_instance_variables(
+        Browser.instance(
+          :config_file => CONFIG_FILE_WITHOUT_PROXY,
+          :max_threads => nil
+        ),
+        @json_config_without_proxy
       )
     end
   end
