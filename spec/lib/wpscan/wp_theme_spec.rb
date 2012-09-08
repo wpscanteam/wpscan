@@ -55,6 +55,14 @@ describe WpTheme do
       wp_theme.should be_a WpTheme
       wp_theme.name.should === "Copia di simplefolio"
     end
+
+    it "should parse the url correctly" do
+      stub_request_to_fixture(:url => @target_uri.to_s, :fixture => fixtures_dir + "/doctype.html")
+      wp_theme = WpTheme.find_from_css_link(@target_uri)
+      wp_theme.should be_a WpTheme
+      wp_theme.style_url.should === "https://sub.example.com/start/app/wp-content/themes/rspectheme/style.css"
+      wp_theme.name.should === "rspectheme"
+    end
   end
 
   describe "#find_from_wooframework" do
