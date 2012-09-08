@@ -64,7 +64,7 @@ class WpTheme < Vulnerable
   def self.find_from_css_link(target_uri)
     response = Browser.instance.get(target_uri.to_s, :follow_location => true, :max_redirects => 2)
 
-    if matches = %r{https?://.*/themes/(.*)/style.css}i.match(response.body)
+    if matches = %r{https?://[^"]*/themes/([^"]*)/style.css}i.match(response.body)
       style_url = matches[0]
       theme_name = matches[1]
 
