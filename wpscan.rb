@@ -150,26 +150,28 @@ begin
     end
   end
 
-  puts
-  print "[+] Enumerating plugins from passive detection ... "
+  if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
+    puts
+    print "[+] Enumerating plugins from passive detection ... "
 
-  plugins = wp_target.plugins_from_passive_detection
-  unless plugins.empty?
-    print "#{plugins.size} found :\n"
+    plugins = wp_target.plugins_from_passive_detection
+    unless plugins.empty?
+      print "#{plugins.size} found :\n"
 
-    plugins.each do |plugin|
-      puts
-      puts " | Name: " + plugin.name
-      puts " | Location: " + plugin.location_url.gsub("$wp-plugins$", wp_target.wp_plugins_dir()) #Hotfix
+      plugins.each do |plugin|
+        puts
+        puts " | Name: " + plugin.name
+        puts " | Location: " + plugin.location_url.gsub("$wp-plugins$", wp_target.wp_plugins_dir()) #Hotfix
 
-      plugin.vulnerabilities.each do |vulnerability|
-        puts " |"
-        puts " | [!] " + vulnerability.title
-        puts " | * Reference: " + vulnerability.reference
+        plugin.vulnerabilities.each do |vulnerability|
+          puts " |"
+          puts " | [!] " + vulnerability.title
+          puts " | * Reference: " + vulnerability.reference
+        end
       end
+    else
+      print "No plugins found :(\n"
     end
-  else
-    print "No plugins found :(\n"
   end
 
   # Enumerate the installed plugins
