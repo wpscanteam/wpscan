@@ -190,7 +190,7 @@ begin
       plugins.each do |plugin|
         puts
         puts " | Name: #{plugin}" #this will also output the version number if detected
-        puts " | Location: " + plugin.location_url
+        puts " | Location: " + plugin.location_url.gsub("$wp-plugins$", wp_target.wp_plugins_dir()) #Hotfix
 
         puts " | Directory listing enabled? #{plugin.directory_listing? ? "Yes." : "No."}"
 
