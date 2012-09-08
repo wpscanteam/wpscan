@@ -32,6 +32,16 @@ describe WpTheme do
   describe "#find_from_css_link" do
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_THEME_DIR + "/find/css_link" }
 
+    after :each do
+      if @expected_name
+        stub_request_to_fixture(:url => @target_uri.to_s, :fixture => @fixture)
+
+        wp_theme = WpTheme.find_from_css_link(@target_uri)
+        wp_theme.should be_a WpTheme
+        wp_theme.name.should === @expected_name
+      end
+    end
+
     it "should return nil if no theme is present" do
       stub_request(:get, @target_uri.to_s).to_return(:status => 200, :body => "")
 
@@ -39,21 +49,21 @@ describe WpTheme do
     end
 
     it "should return a WpTheme object with .name = twentyeleven" do
-      stub_request_to_fixture(:url => @target_uri.to_s, :fixture => fixtures_dir + "/wordpress-twentyeleven.htm")
-
-      wp_theme = WpTheme.find_from_css_link(@target_uri)
-      wp_theme.should be_a WpTheme
-      wp_theme.name.should === "twentyeleven"
+      @fixture       = fixtures_dir + "/wordpress-twentyeleven.htm"
+      @expected_name = "twentyeleven"
     end
 
     # http://code.google.com/p/wpscan/issues/detail?id=131
     # Theme name with spaces raises bad URI(is not URI?)
     it "should not raise an error if the theme name has spaces or special chars" do
-      stub_request_to_fixture(:url => @target_uri.to_s, :fixture => fixtures_dir + "/theme-name-with-spaces.html")
+      @fixture       = fixtures_dir + "/theme-name-with-spaces.html"
+      @expected_name = "Copia di simplefolio"
+    end
 
-      wp_theme = WpTheme.find_from_css_link(@target_uri)
-      wp_theme.should be_a WpTheme
-      wp_theme.name.should === "Copia di simplefolio"
+    # https://github.com/wpscanteam/wpscan/issues/18
+    it "should get the theme if the <link> is inline with some other tags" do
+      @fixture       = fixtures_dir + "/inline_link_tag.html"
+      @expected_name = "inline"
     end
   end
 
