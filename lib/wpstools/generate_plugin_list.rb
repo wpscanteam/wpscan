@@ -72,7 +72,6 @@ class Generate_Plugin_List
     
   def parse_full_plugins
     found_plugins = []
-    queue_count = 0
     index = @browser.get('http://plugins.svn.wordpress.org/').body
     index.scan(%r{<li><a href=".*">(.*)/</a></li>}i).each do |plugin|
       found_plugins << plugin[0]
