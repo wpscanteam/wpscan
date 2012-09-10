@@ -98,10 +98,10 @@ class Generate_Plugin_List
         puts "[+] Parsing plugin " + plugin  + " [" + response.code.to_s  + "]" if @verbose
         file = response.body[%r{<li><a href="(\d*?[a-zA-Z].*\..*)">.+</a></li>}i, 1]
         if file
+          # Only count Plugins with contents
           plugin += "/" + file
+          plugins_with_paths << plugin + "\n"
         end
-
-        plugins_with_paths << plugin + "\n"
       end
 
       queue_count += 1
