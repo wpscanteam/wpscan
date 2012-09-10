@@ -36,7 +36,7 @@ class Generate_Plugin_List
   # Send a HTTP request to the WordPress most popular plugins webpage
   # parse the response for the plugin names.
 
-  def parse_plugins
+  def parse_popular_plugins
 
     found_plugins = []
     page_count = 1
@@ -67,6 +67,16 @@ class Generate_Plugin_List
 
     @hydra.run
 
+    found_plugins.uniq
+  end
+    
+  def parse_full_plugins
+    found_plugins = []
+    queue_count = 0
+    index = @browser.get('http://plugins.svn.wordpress.org/').body
+    index.scan(%r{<li><a href=".*">(.*)/</a></li>}i).each do |plugin|
+      found_plugins << plugin[0]
+    end
     found_plugins.uniq
   end
 
@@ -113,9 +123,13 @@ class Generate_Plugin_List
 
   # Save the file
 
-  def save_file
+  def save_file(full=false)
     begin
-      plugins = parse_plugins
+      if (full)
+        plugins = parse_full_plugins
+      else
+        plugins = parse_popular_plugins
+      end
       puts "[*] We have parsed " + plugins.size.to_s
       plugins_with_paths = parse_plugin_files(plugins)
       File.open(DATA_DIR + '/plugins.txt', 'w') { |f| f.write(plugins_with_paths) }
