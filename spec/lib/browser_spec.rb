@@ -300,5 +300,13 @@ describe Browser do
     end
   end
 
-end
+    describe "testing UTF8" do
+      it "should not throw an encoding exception" do
+        url = SPEC_FIXTURES_DIR + "/utf8.html"
+        stub_request(:get, url).to_return(:status => 200, :body => File.read(url))
+        response1 = @browser.get(url)
+        response1.body
+      end
+    end
+  end
 
