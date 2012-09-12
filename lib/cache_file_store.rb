@@ -13,7 +13,7 @@ class CacheFileStore
   # The serializer must have the 2 methods .load and .dump (Marshal and YAML have them)
   # YAML is Human Readable, contrary to Marshal which store in a binary format
   # Marshal does not need any "require"
-  def initialize(storage_path, serializer = YAML)
+  def initialize(storage_path, serializer = Marshal)
     @storage_path = File.expand_path(storage_path)
     @serializer   = serializer
 

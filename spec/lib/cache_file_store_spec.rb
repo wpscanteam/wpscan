@@ -23,9 +23,9 @@ describe CacheFileStore do
   end
 
   describe "#serializer" do
-    it "should return the default serializer : YAML" do
-      @cache.serializer.should == YAML
-      @cache.serializer.should_not == Marshal
+    it "should return the default serializer : Marshal" do
+      @cache.serializer.should == Marshal
+      @cache.serializer.should_not == YAML
     end
   end
 
@@ -48,21 +48,27 @@ describe CacheFileStore do
     end
   end
 
-  describe "#write_entry, #read_entry (string)" do
-    it "should get the same entry" do
-      cache_timeout = 10
-      @cache.write_entry('some_key', 'Hello World !', cache_timeout)
-      @cache.read_entry('some_key').should == 'Hello World !'
-    end
-  end
+  describe "#write_entry, #read_entry" do
 
-  ## TODO write / read for an object
-
-  describe "#write_entry with cache_timeout = 0" do
-    it "the entry should not be written" do
-      cache_timeout = 0
-      @cache.write_entry('another_key', 'Another Hello World !', cache_timeout)
-      @cache.read_entry('another_key').should be_nil
+    after :each do
+      @cache.write_entry(@key, @data, @timeout)
+      @cache.read_entry(@key).should === @expected
     end
+
+    it "should get the correct entry (string)" do
+      @timeout  = 10
+      @key      = "some_key"
+      @data     = "Hello World !"
+      @expected = @data
+    end
+
+    it "should not write the entry" do
+      @timeout  = 0
+      @key      = "another_key"
+      @data     = "Another Hello World !"
+      @expected = nil
+    end
+
+    ## TODO write / read for an object
   end
 end
