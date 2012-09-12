@@ -121,6 +121,12 @@ describe WpTarget do
       @expected   = "wp-content"
     end
 
+    it "should find the location even if the src or href goes in the plugins dir" do
+      @target_url = "http://wordpress-3.4.1-in-plugins.htm"
+      @fixture    = fixtures_dir + "/wordpress-3.4.1-in-plugins.htm"
+      @expected   = "wp-content"
+    end
+
   end
 
   describe "#wp_plugins_dir" do

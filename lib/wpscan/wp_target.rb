@@ -84,10 +84,10 @@ class WpTarget
     unless @wp_content_dir
       index_body = Browser.instance.get(@uri.to_s).body
 
-      if index_body[%r{/wp-content/themes/}i]
+      if index_body[%r{/wp-content/(?:themes|plugins)/}i]
         @wp_content_dir = "wp-content"
       else
-        @wp_content_dir = index_body[%r{(?:href|src)=(?:"|')#{@uri}/?(.*)/themes/.*(?:"|')}i, 1]
+        @wp_content_dir = index_body[%r{(?:href|src)=(?:"|')#{@uri}/?([^"']+)/(?:themes|plugins)/.*(?:"|')}i, 1]
       end
     end
     @wp_content_dir
