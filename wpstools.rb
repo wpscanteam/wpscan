@@ -37,7 +37,9 @@ begin
     ["--help", "-h", GetoptLong::NO_ARGUMENT],
     ["--verbose", "-v", GetoptLong::NO_ARGUMENT],
     ["--generate_plugin_list", GetoptLong::OPTIONAL_ARGUMENT],
+    ["--generate_full_plugin_list", GetoptLong::NO_ARGUMENT],
     ["--gpl", GetoptLong::OPTIONAL_ARGUMENT],
+    ["--gfpl", GetoptLong::OPTIONAL_ARGUMENT],
     ["--update", "-u", GetoptLong::NO_ARGUMENT]
   )
 
@@ -59,13 +61,21 @@ begin
       @generate_plugin_list = true
     when "--update"
       @update = true
+    when "--generate_full_plugin_list", "--gfpl"
+      @generate_full_plugin_list = true
     end
   end
 
   if @generate_plugin_list
     puts "[+] Generating new most popular plugin list"
     puts
-    Generate_Plugin_List.new(@number_of_pages, @verbose).save_file
+    Generate_Plugin_List.new(@number_of_pages, @verbose).save_file(false)
+  end
+    
+  if @generate_full_plugin_list
+    puts "[+] Generating new full plugin list"
+    puts
+    Generate_Plugin_List.new(-1, @verbose).save_file(true)
   end
 
   if @update
