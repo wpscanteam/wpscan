@@ -30,7 +30,7 @@ class Svn_Parser
     @svn_hydra = @svn_browser.hydra
   end
   
-  def parse(dirs = nil)
+  def parse(dirs=nil)
     if dirs == nil
       dirs = get_root_directories
     end
@@ -43,11 +43,11 @@ class Svn_Parser
   def get_root_directories
     dirs = []
     rootindex = @svn_browser.get(@svn_root).body
-    rootindex.scan(%r{<li><a href=".*">(.*)/</a></li>}i).each do |dir|
+    rootindex.scan(%r{<li><a href=".+">(.+)/</a></li>}i).each do |dir|
       dirs << dir[0]
     end
-    dirs.uniq
-    dirs.sort
+    dirs.sort!
+    dirs.uniq!
     return dirs
   end
 
@@ -62,14 +62,14 @@ class Svn_Parser
         # trunk folder present
         if contains_trunk(response)
           puts "[+] Adding trunk on #{dir}" if @verbose
-          urls << (svnurl << "trunk/")
+          urls << { :name => dir, :folder => "trunk"}
         # no trunk folder. This is true on theme svn repos
         else
-          folders = response.body.scan(%r{^\s*<li><a href="(.*)/">.*/</a></li>$}i)
+          folders = response.body.scan(%r{^\s*<li><a href="(.+)/">.+/</a></li>$}i)
           if folders != nil and folders.length > 0
             last_version = folders.last[0]
             puts "[+] Adding #{last_version} on #{dir}" if @verbose
-            urls << (svnurl + last_version + "/")
+            urls << { :name => dir, :folder => last_version}
           else
             puts "[+] No content in #{dir}" if @verbose
           end
@@ -89,20 +89,24 @@ class Svn_Parser
   end
   
   # Get a file in each directory
-  def get_svn_file_entries(urls)
+  def get_svn_file_entries(dirs)
     entries = []
     queue_count = 0
-    urls.each do |url|
+    dirs.each do |dir|
+      url = @svn_root + dir[:name] + "/" + dir[:folder] + "/"
       request = @svn_browser.forge_request(url)
       request.on_complete do |response|
         puts "[+] Parsing url #{url} [#{response.code.to_s}]" if @verbose
-        file = response.body[%r{<li><a href="(.*\..*)">.*</a></li>}i, 1]
+        file = response.body[%r{<li><a href="(.+\.[^/]+)">.+</a></li>}i, 1]
         # TODO: recursive parsing of subdirectories if there is no file in the root directory
+        path = dir[:name] + "/"
         if file
-          url += "/" + file
-          entries << url
+          path += file
+          entries << path
+          puts "[+] Added #{path}" if @verbose
         elsif @keep_empty_dirs
-          entries << url
+          entries << path
+          puts "[+] Added #{path}" if @verbose
         end
       end
       queue_count += 1

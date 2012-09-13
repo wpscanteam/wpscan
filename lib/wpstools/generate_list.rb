@@ -63,7 +63,7 @@ class Generate_List
     page_count = 1
     queue_count = 0
 
-    (1...pages.to_i).each do |page|
+    (1...(pages.to_i+1)).each do |page|
       # First page has another URL
       url = (page == 1) ? @popular_url : @popular_url + 'page/' + page.to_s + '/'
       request = @browser.forge_request(url)
@@ -75,7 +75,7 @@ class Generate_List
         page_count += 1
         response.body.scan(@popular_regex).each do |item|
           puts "[+] Found popular #{@type}: #{item}" if @verbose
-          found_items << item
+          found_items << item[0]
         end
       end
 
@@ -90,15 +90,17 @@ class Generate_List
 
     @hydra.run
 
-    found_items.uniq
-    found_items.sort
+    found_items.sort!
+    found_items.uniq!
     return found_items
   end
 
   # Save the file
   def save(items)
-    puts "[*] We have parsed #{items} #{@type}s"
-    File.open(@file_name, 'w') { |f| f.write(items) }
+    items.sort!
+    items.uniq!
+    puts "[*] We have parsed #{items.length} #{@type}s"
+    File.open(@file_name, 'w') { |f| f.puts(items) }
     puts "New #{@file_name} file created"
   end
 

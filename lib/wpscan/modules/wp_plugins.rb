@@ -103,7 +103,7 @@ module WpPlugins
     targets_url.flatten!
     targets_url.uniq!
     # randomize the plugins array to *maybe* help in some crappy IDS/IPS/WAF detection
-    targets_url.sort_by { rand }
+    targets_url.sort_by! { rand }
   end
 
   # http://code.google.com/p/wpscan/issues/detail?id=42

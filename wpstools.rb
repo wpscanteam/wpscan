@@ -67,7 +67,7 @@ begin
       if argument == ''
         puts "Number of pages not supplied, defaulting to 150 pages ..."
         @number_of_pages = 150
-        else
+      else
         @number_of_pages = argument.to_i
       end
       
