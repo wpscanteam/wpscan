@@ -301,6 +301,7 @@ begin
   puts '[+] Finished at ' + Time.now.asctime
   exit() # must exit!
 rescue => e
-  puts "[ERROR] #{e}"
-  puts "Trace : #{e.backtrace}"
+  puts "[ERROR] #{e.message}"
+  puts "Trace :"
+  puts e.backtrace.join("\n")
 end

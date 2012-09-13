@@ -15,6 +15,12 @@ def usage()
   puts "- Generate a new full plugin list"
   puts "ruby " + script_name + " --generate_full_plugin_list"
   puts
+  puts "- Generate a new 'most popular' theme list, up to 150 pages ..."
+  puts "ruby " + script_name + " --generate_theme_list 150"
+  puts
+  puts "- Generate a new full theme list"
+  puts "ruby " + script_name + " --generate_full_theme_list"
+  puts
   puts "See README for further information."
   puts
 end
@@ -29,5 +35,10 @@ def help()
   puts "--gpl  Alias for --generate_plugin_list"
   puts "--generate_full_plugin_list  Generate a new full data/plugins.txt file"
   puts "--gfpl  Alias for --generate_full_plugin_list"
+  
+  puts "--generate_theme_list [number of pages]  Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 150)"
+  puts "--gtl  Alias for --generate_theme_list"
+  puts "--generate_full_theme_list  Generate a new full data/themes.txt file"
+  puts "--gftl  Alias for --generate_full_theme_list"
   puts
 end

@@ -23,7 +23,7 @@ rescue LoadError => e
   puts "[ERROR] #{e}"
 
   if missing_gem = e.to_s[%r{ -- ([^\s]+)}, 1]
-    puts "[TIP] Try to run 'gem install #{missing_gem}' or 'gem install --user-install #{missing_gem}'. If you still get an error, Please see README file or http://code.google.com/p/wpscan/"
+    puts "[TIP] Try to run 'gem install #{missing_gem}' or 'gem install --user-install #{missing_gem}'. If you still get an error, Please see README file or https://github.com/wpscanteam/wpscan"
   end
   exit(1)
 end

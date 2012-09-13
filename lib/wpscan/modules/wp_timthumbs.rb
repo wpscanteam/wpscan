@@ -82,7 +82,7 @@ module WpTimthumbs
 
     targets.uniq!
     # randomize the array to *maybe* help in some crappy IDS/IPS/WAF evasion
-    targets.sort_by { rand }
+    targets.sort_by! { rand }
   end
 
   def self.timthumbs_file(timthumbs_file_path = nil)
