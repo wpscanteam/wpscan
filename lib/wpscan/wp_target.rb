@@ -50,7 +50,7 @@ class WpTarget
     url = @uri.merge("wp-login.php").to_s
 
     # Let's check if the login url is redirected (to https url for example)
-    if redirection = redirection(url)
+    if redirection == redirection(url)
       url = redirection
     end
 
@@ -68,6 +68,11 @@ class WpTarget
     end
 
     @error_404_hash
+  end
+
+  # Valid HTTP return codes
+  def self.valid_response_codes
+    [200, 403, 301, 302]
   end
 
   # return WpTheme

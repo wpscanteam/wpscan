@@ -37,11 +37,8 @@ module WpLoginProtection
           plugin_name = symbol_to_call[@@login_protection_method_pattern, 1].gsub('_', '-')
 
           return @login_protection_plugin = WpPlugin.new(
-            WpPlugin::create_location_url_from_name(
-              plugin_name,
-              @uri.to_s
-            ),
-            :name => plugin_name
+              :name => plugin_name,
+              :base_url => @uri.to_s
           )
         end
       end

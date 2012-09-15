@@ -44,6 +44,11 @@ describe WpPlugin do
       @expected_uri_string = "http://example.com/wp-content/plugins/example/"
     end
 
+    it "should return the uri without the file" do
+      @url                 = "https://sub.example.com/path/to/dir/wp-content/plugins/example/readme.txt"
+      @expected_uri_string = "https://sub.example.com/path/to/dir/wp-content/plugins/example/"
+    end
+
     it "should return the same uri" do
       @url                 = "http://example.com/wp-content/plugins/hello-world/"
       @expected_uri_string = @url
@@ -64,6 +69,10 @@ describe WpPlugin do
   describe "#extract_name_from_location_url" do
     it "should return 'example-plugin'" do
       WpPlugin.extract_name_from_location_url('http://example.com/wp-content/plugins/example-plugin/').should === 'example-plugin'
+    end
+
+    it "should return 'example-plugin'" do
+      WpPlugin.extract_name_from_location_url('https://sub.example.com/path/to/a/wp-content/plugins/example-plugin/').should === 'example-plugin'
     end
   end
 

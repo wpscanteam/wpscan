@@ -19,38 +19,22 @@
 require "#{WPSCAN_LIB_DIR}/vulnerable"
 
 class WpPlugin < Vulnerable
-  @@location_url_pattern = %r{^(https?://.*/([^/]+)/)}i
+  include WpItem
 
-  attr_reader :name
+  def initialize(options = {})
+    @base_url       = options[:base_url]
+    @path           = options[:path]
+    @wp_content_dir = options[:wp_content_dir]
+    @name           = options[:name] || extract_name_from_url(get_url)
+    @vulns_xml      = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
+    @vulns_xpath    = "//plugin[@name='#@name']/vulnerability"
+    @version        = nil
 
-  def initialize(location_url, options = {})
-    @location_uri = WpPlugin.location_uri_from_url(location_url)
-    @name         = options[:name] || WpPlugin.extract_name_from_location_url(location_url)
-    @vulns_xml    = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
-    @vulns_xpath  = "//plugin[@name='#{@name}']/vulnerability"
-  end
-
-  def location_url
-    @location_uri.to_s
-  end
-
-  def ==(plugin)
-    plugin.name == @name
-  end
-
-  def <=>(plugin)
-    plugin.name <=> @name
-  end
-
-  # http://code.google.com/p/wpscan/issues/detail?id=97
-  def version
-    response = Browser.instance.get(@location_uri.merge("readme.txt").to_s)
-    response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
-  end
-
-  def to_s
-    version = version()
-    "#{@name}#{' v' + version if version}"
+    raise("base_url not set") unless @base_url
+    raise("path not set") unless @path
+    raise("wp_content_dir not set") unless @wp_content_dir
+    raise("name not set") unless @name
+    raise("vulns_xml not set") unless @vulns_xml
   end
 
   # Discover any error_log files created by WordPress
@@ -64,39 +48,7 @@ class WpPlugin < Vulnerable
   end
 
   def error_log_url
-    @location_uri.merge("error_log").to_s
+    get_url.merge("error_log").to_s
   end
 
-  # Is directory listing enabled?
-  # WordPress denies directory listing however,
-  # forgets about the plugin directory.
-  def directory_listing?
-    Browser.instance.get(location_url()).body[%r{<title>Index of}] ? true : false
-  end
-
-  def self.create_location_url_from_name(name, target_uri)
-    if target_uri.is_a?(String)
-      target_uri = URI.parse(target_uri)
-    end
-    target_uri.merge(URI.escape("$wp-plugins$/#{name}/")).to_s
-  end
-
-  def self.create_url_from_raw(raw, target_uri)
-    target_uri.merge(URI.escape("$wp-plugins$/#{raw}")).to_s
-  end
-
-  protected
-  def self.extract_name_from_location_url(location_url)
-    location_url[@@location_url_pattern, 2]
-  end
-
-  def self.location_uri_from_url(location_url)
-    valid_location_url = location_url[%r{^(https?://.*/)[^.]+\.[^/]+$}, 1]
-
-    unless valid_location_url
-      valid_location_url = add_trailing_slash(location_url)
-    end
-
-    URI.parse(valid_location_url)
-  end
 end
