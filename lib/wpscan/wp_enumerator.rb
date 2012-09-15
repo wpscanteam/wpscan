@@ -115,4 +115,5 @@ class WpEnumerator
     # randomize the plugins array to *maybe* help in some crappy IDS/IPS/WAF detection
     targets_url.sort_by! { rand }
   end
+
 end

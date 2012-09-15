@@ -54,4 +54,5 @@ class WpDetector
     end
     items
   end
+
 end
