@@ -176,6 +176,8 @@
         
           <li><a href="./WpTheme.html">WpTheme</a></li>
         
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
           <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
         
           <li><a href="./WpUsernames.html">WpUsernames</a></li>
@@ -240,7 +242,7 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-ivar">@base_url</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
+  <span class="ruby-ivar">@base_url</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
   <span class="ruby-ivar">@path</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>]
   <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
   <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">extract_name_from_url</span>(<span class="ruby-identifier">get_url</span>)

@@ -176,6 +176,8 @@
         
           <li><a href="./WpTheme.html">WpTheme</a></li>
         
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
           <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
         
           <li><a href="./WpUsernames.html">WpUsernames</a></li>
@@ -414,7 +416,7 @@
             
             <div class="method-source-code" id="help-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 59</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>()
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Help :&quot;</span>
   <span class="ruby-identifier">puts</span>
@@ -431,6 +433,8 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    p        plugins&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    p!       only vulnerable plugins&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    t        timthumbs&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    T        themes&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    T!       only vulnerable themes&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  If no option is supplied, the default is 'tup!'&quot;</span>
   <span class="ruby-identifier">puts</span>
@@ -529,8 +533,17 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Do wordlist password brute force on the 'admin' username only ...&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --wordlist darkc0de.lst --username admin&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate instaled plugins ...&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate installed plugins ...&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate p&quot;</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate installed themes ...&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate T&quot;</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate users ...&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate u&quot;</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate installed timthumbs ...&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate t&quot;</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Use a HTTP proxy ...&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --proxy 127.0.0.1:8118&quot;</span>

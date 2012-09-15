@@ -152,6 +152,8 @@
         
           <li><a href="./WpTheme.html">WpTheme</a></li>
         
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
           <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
         
           <li><a href="./WpUsernames.html">WpUsernames</a></li>
@@ -218,10 +220,11 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_plugins.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">plugins_from_aggressive_detection</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]        = <span class="ruby-node">&quot;#{DATA_DIR}/plugins.txt&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]  = <span class="ruby-node">&quot;#{DATA_DIR}/plugin_vulns.xml&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-node">&quot;//plugin[@name='#{@name}']/vulnerability&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]        = <span class="ruby-string">&quot;plugins&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]          = <span class="ruby-node">&quot;#{DATA_DIR}/plugins.txt&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]    = <span class="ruby-node">&quot;#{DATA_DIR}/plugin_vulns.xml&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]   = <span class="ruby-node">&quot;//plugin[@name='#{@name}']/vulnerability&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">&quot;//plugin&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]          = <span class="ruby-string">&quot;plugins&quot;</span>
   <span class="ruby-identifier">result</span> = <span class="ruby-constant">WpDetector</span>.<span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">result</span>
 <span class="ruby-keyword">end</span></pre>
