@@ -21,6 +21,8 @@ class WpscanOptions
   ACCESSOR_OPTIONS = [
     :enumerate_plugins,
     :enumerate_only_vulnerable_plugins,
+    :enumerate_themes,
+    :enumerate_only_vulnerable_themes,
     :enumerate_timthumbs,
     :enumerate_usernames,
     :enumerate_usernames_range,
@@ -88,6 +90,22 @@ class WpscanOptions
     end
   end
 
+  def enumerate_themes=(enumerate_themes)
+    if enumerate_themes === true and @enumerate_only_vulnerable_themes === true
+      raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+    else
+      @enumerate_themes = enumerate_themes
+    end
+  end
+
+  def enumerate_only_vulnerable_themes=(enumerate_only_vulnerable_themes)
+    if enumerate_only_vulnerable_themes === true and @enumerate_plugins === true
+      raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+    else
+      @enumerate_only_vulnerable_themes = enumerate_only_vulnerable_themes
+    end
+  end
+
   def has_options?
     !to_h.empty?
   end
@@ -131,7 +149,7 @@ class WpscanOptions
       )
     elsif cli_option === "--enumerate" # Special cases
       # Default value if no argument is given
-      cli_value = "tup!" if cli_value.length == 0
+      cli_value = "Ttup!" if cli_value.length == 0
 
       enumerate_options_from_string(cli_value)
     else
@@ -150,6 +168,10 @@ class WpscanOptions
     self.enumerate_plugins = true if value =~ /p(?!!)/
 
     @enumerate_timthumbs = true if value =~ /t/
+
+    self.enumerate_only_vulnerable_themes = true if value =~ /T!/
+
+    self.enumerate_themes = true if value =~ /T(?!!)/
 
     if value =~ /u/
       @enumerate_usernames = true

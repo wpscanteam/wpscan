@@ -36,8 +36,17 @@ def usage()
   puts "-Do wordlist password brute force on the 'admin' username only ..."
   puts "ruby #{script_name} --url www.example.com --wordlist darkc0de.lst --username admin"
   puts
-  puts "-Enumerate instaled plugins ..."
+  puts "-Enumerate installed plugins ..."
   puts "ruby #{script_name} --url www.example.com --enumerate p"
+  puts
+  puts "-Enumerate installed themes ..."
+  puts "ruby #{script_name} --url www.example.com --enumerate T"
+  puts
+  puts "-Enumerate users ..."
+  puts "ruby #{script_name} --url www.example.com --enumerate u"
+  puts
+  puts "-Enumerate installed timthumbs ..."
+  puts "ruby #{script_name} --url www.example.com --enumerate t"
   puts
   puts "-Use a HTTP proxy ..."
   puts "ruby #{script_name} --url www.example.com --proxy 127.0.0.1:8118"
@@ -72,6 +81,8 @@ def help()
   puts "    p        plugins"
   puts "    p!       only vulnerable plugins"
   puts "    t        timthumbs"
+  puts "    T        themes"
+  puts "    T!       only vulnerable themes"
   puts "  Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins"
   puts "  If no option is supplied, the default is 'tup!'"
   puts

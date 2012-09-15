@@ -1,0 +1,47 @@
+#--
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
+module WpThemes
+
+  def themes_from_aggressive_detection(options)
+    options[:file]        = "#{DATA_DIR}/themes.txt"
+    options[:vulns_file]  = "#{DATA_DIR}/theme_vulns.xml"
+    options[:vulns_xpath] = "//theme[@name='#{@name}']/vulnerability"
+    options[:type]        = "themes"
+    result = WpDetector.aggressive_detection(options)
+    result
+  end
+
+  private
+
+  def themes_from_passive_detection(wp_content_dir)
+    themes = []
+    temp = WpDetector.passive_detection(url(), "themes", wp_content_dir)
+
+    temp.each do |item|
+      themes << WpPlugin.new(
+          :base_url       => item[:base_url],
+          :name           => item[:name],
+          :path           => item[:path],
+          :wp_content_dir => wp_content_dir
+      )
+    end
+    themes
+  end
+
+end

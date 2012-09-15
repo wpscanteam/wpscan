@@ -26,6 +26,7 @@ class WpTarget
   include WpUsernames
   include WpTimthumbs
   include WpPlugins
+  include WpThemes
   include BruteForce
 
   @error_404_hash = nil
@@ -50,7 +51,8 @@ class WpTarget
     url = @uri.merge("wp-login.php").to_s
 
     # Let's check if the login url is redirected (to https url for example)
-    if redirection == redirection(url)
+    redirection = redirection(url)
+    if redirection
       url = redirection
     end
 

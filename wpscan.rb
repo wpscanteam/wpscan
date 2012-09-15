@@ -53,7 +53,8 @@ begin
     raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
   end
 
-  if redirection = wp_target.redirection
+  redirection = wp_target.redirection
+  if redirection
     if wpscan_options.follow_redirection
       puts "Following redirection #{redirection}"
       puts
@@ -87,7 +88,8 @@ begin
   puts "| Started on #{Time.now.asctime}"
   puts
 
-  if wp_theme == wp_target.theme
+  wp_theme = wp_target.theme
+  if wp_theme
     theme_version = wp_theme.version
     puts "[!] The WordPress theme in use is #{wp_theme}"
 
@@ -130,7 +132,8 @@ begin
     puts
   end
 
-  if wp_version == wp_target.version
+  wp_version = wp_target.version
+  if wp_version
     puts "[!] WordPress version #{wp_version.number} identified from #{wp_version.discovery_method}"
 
     version_vulnerabilities = wp_version.vulnerabilities
@@ -219,6 +222,11 @@ begin
       puts
       puts "No plugins found :("
     end
+  end
+
+  #TODO: Enumerate Themes
+  if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes
+    puts "Need to implement theme enumerating"
   end
 
   if wpscan_options.enumerate_timthumbs
