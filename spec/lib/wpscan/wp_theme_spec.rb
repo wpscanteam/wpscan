@@ -31,7 +31,7 @@ describe WpTheme do
 
   describe "#to_s" do
     it "should return the theme name and the version if there is one" do
-      wp_theme = WpTheme.new("bueno", :version => "1.2.3")
+      wp_theme = WpTheme.new(:name => "bueno", :version => "1.2.3")
 
       wp_theme.to_s.should === "bueno v1.2.3"
     end
@@ -41,7 +41,7 @@ describe WpTheme do
 
       stub_request(:get, style_url).to_return(:status => 200, :body => "")
 
-      wp_theme = WpTheme.new("hello-world", :style_url => style_url)
+      wp_theme = WpTheme.new(:name => "hello-world", :style_url => style_url)
 
       wp_theme.to_s.should === "hello-world"
     end

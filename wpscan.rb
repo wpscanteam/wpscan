@@ -225,9 +225,49 @@ begin
     end
   end
 
-  #TODO: Enumerate Themes
+  # Enumerate installed themes
   if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes
-    puts "Need to implement theme enumerating"
+    puts
+    puts "[+] Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
+    puts
+
+    options = WpOptions.get_empty_options
+    options[:url]                   = wp_target.uri
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes
+    options[:show_progress_bar]     = true
+    options[:wp_content_dir]        = wp_target.wp_content_dir
+    options[:error_404_hash]        = wp_target.error_404_hash
+
+    themes = wp_target.themes_from_aggressive_detection(options)
+    unless themes.empty?
+      puts
+      puts
+      puts "[+] We found #{themes.size.to_s} themes:"
+
+      themes.each do |theme|
+        puts
+        puts " | Name: #{theme}" #this will also output the version number if detected
+        puts " | Location: #{theme.get_url}"
+        puts " | Directory listing enabled? #{theme.directory_listing? ? "Yes." : "No."}"
+
+        theme.vulnerabilities.each do |vulnerability|
+          puts " |"
+          puts " | [!] #{vulnerability.title}"
+          puts " | * Reference: #{vulnerability.reference}"
+
+          # This has been commented out as MSF are moving from
+          # XML-RPC to MessagePack.
+          # I need to get to grips with the new way of communicating
+          # with MSF and implement new code.
+
+          # check if vuln is exploitable
+          #Exploit.new(url, type, uri, postdata.to_s, use_proxy, proxy_addr, proxy_port)
+        end
+      end
+    else
+      puts
+      puts "No themes found :("
+    end
   end
 
   if wpscan_options.enumerate_timthumbs
