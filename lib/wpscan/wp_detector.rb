@@ -28,7 +28,17 @@ class WpDetector
 
     enum_results = WpEnumerator.enumerate(options)
     enum_results.each do |enum_result|
-      result << enum_result
+      already_present = false
+      result.each do |r|
+        # Already found via passive detection
+        if r.name == enum_result.name
+          already_present = true
+          break
+        end
+      end
+      if not already_present
+        result << enum_result
+      end
     end
     result
   end

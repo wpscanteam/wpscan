@@ -21,6 +21,8 @@ require "#{WPSCAN_LIB_DIR}/vulnerable"
 class WpPlugin < Vulnerable
   include WpItem
 
+  attr_reader :name
+
   def initialize(options = {})
     @base_url       = options[:url]
     @path           = options[:path]

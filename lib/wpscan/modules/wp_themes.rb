@@ -25,7 +25,7 @@ module WpThemes
     options[:vulns_xpath_2] = "//theme"
     options[:type]          = "themes"
     result = WpDetector.aggressive_detection(options)
-    result
+    result.sort_by { |t| t.name }
   end
 
   private
@@ -42,7 +42,7 @@ module WpThemes
           :wp_content_dir => wp_content_dir
       )
     end
-    themes
+    themes.sort_by { |t| t.name }
   end
 
 end

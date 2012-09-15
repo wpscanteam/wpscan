@@ -137,7 +137,7 @@ shared_examples_for "WpPlugins" do
     end
 
     # testing response codes
-    WpPlugins.valid_response_codes.each do |valid_response_code|
+    WpTarget.valid_response_codes.each do |valid_response_code|
       it "should detect the plugin if the reponse.code is #{valid_response_code}" do
         @expected_plugins = []
 

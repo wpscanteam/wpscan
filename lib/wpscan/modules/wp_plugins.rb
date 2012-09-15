@@ -28,7 +28,7 @@ module WpPlugins
     options[:vulns_xpath_2] = "//plugin"
     options[:type]          = "plugins"
     result = WpDetector.aggressive_detection(options)
-    result
+    result.sort_by { |p| p.name }
   end
 
   private
@@ -51,7 +51,7 @@ module WpPlugins
           :wp_content_dir => wp_content_dir
       )
     end
-    plugins
+    plugins.sort_by { |p| p.name }
   end
 
 end

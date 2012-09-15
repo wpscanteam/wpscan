@@ -120,13 +120,18 @@ describe WpPlugin do
     end
 
     it "should initialize the object (no options given), :name should be 'example'" do
-      wp_plugin = WpPlugin.new(location_url)
+      options = WpOptions.get_empty_options
+      options[:url] = location_url
+      wp_plugin = WpPlugin.new(options)
       wp_plugin.name.should === 'example'
-      wp_plugin.location_url.should === location_url
+      wp_plugin.get_url.should === location_url
     end
 
     it "should initialize the object (options[:name] = 'example')" do
-      wp_plugin = WpPlugin.new(location_url, :name => 'example')
+      options = WpOptions.get_empty_options
+      options[:url] = location_url
+      options[:name] = "example"
+      wp_plugin = WpPlugin.new(options)
       wp_plugin.name.should === 'example'
       wp_plugin.location_url.should === location_url
     end
