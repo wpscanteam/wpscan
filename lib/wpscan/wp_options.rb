@@ -25,6 +25,7 @@
 # * +file+ - Filename with items to detect
 # * +vulns_file+ - XML file with vulnerabilities
 # * +vulns_xpath+ - XPath for vulnerability XML file
+# * +vulns_xpath_2+ - XPath for vulnerability XML file
 # * +wp_content_dir+ - Name of the wp-content directory
 # * +show_progress_bar+ - Show a progress bar during enumeration
 # * +error_404_hash+ - MD5 hash of a 404 page
@@ -37,6 +38,7 @@ class WpOptions
         :file                 => "",
         :vulns_file           => "",
         :vulns_xpath          => "",
+        :vulns_xpath_2        => "",
         :wp_content_dir       => "",
         :show_progress_bar    => true,
         :error_404_hash       => "",
@@ -51,6 +53,7 @@ class WpOptions
     raise("file must be set")                 unless options[:file] != nil and options[:file].length > 0
     raise("vulns_file must be set")           unless options[:vulns_file] != nil and options[:vulns_file].length > 0
     raise("vulns_xpath must be set")          unless options[:vulns_xpath] != nil and options[:vulns_xpath].length > 0
+    raise("vulns_xpath_2 must be set")        unless options[:vulns_xpath_2] != nil and options[:vulns_xpath_2].length > 0
     raise("wp_content_dir must be set")       unless options[:wp_content_dir] != nil and options[:wp_content_dir].length > 0
     raise("show_progress_bar must be set")    unless options[:show_progress_bar] != nil
     raise("error_404_hash must be set")       unless options[:error_404_hash] != nil and options[:error_404_hash].length > 0

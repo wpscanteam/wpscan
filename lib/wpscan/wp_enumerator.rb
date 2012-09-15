@@ -76,8 +76,8 @@ class WpEnumerator
 
   def self.generate_items(options = {})
     only_vulnerable   = options[:only_vulnerable_ones]
-    plugins_file      = options[:file] || "#{DATA_DIR}/plugins.txt"
-    plugin_vulns_file = options[:vulns_file] || "#{DATA_DIR}/plugin_vulns.xml"
+    file              = options[:file]
+    vulns_file        = options[:vulns_file]
     wp_content_dir    = options[:wp_content_dir]
     url               = options[:url]
     type              = options[:type]
@@ -85,27 +85,28 @@ class WpEnumerator
 
     if only_vulnerable == false
       # Open and parse the 'most popular' plugin list...
-      File.open(plugins_file, 'r') do |file|
-        file.readlines.collect do |line|
-          targets_url << WpPlugin.new(:url => url, :path => line.strip, :wp_content_dir => wp_content_dir)
+      File.open(file, 'r') do |f|
+        f.readlines.collect do |line|
+          targets_url << WpPlugin.new(:url => url, :path => "#{type}/#{line.strip}", :wp_content_dir => wp_content_dir)
         end
       end
     end
 
-    xml = Nokogiri::XML(File.open(plugin_vulns_file)) do |config|
+    xml = Nokogiri::XML(File.open(vulns_file)) do |config|
       config.noblanks
     end
 
     # We check if the plugin name from the plugin_vulns_file is already in targets, otherwise we add it
-    xml.xpath("//plugin").each do |node|
-      plugin_name = node.attribute('name').text
+    xml.xpath(options[:vulns_xpath_2]).each do |node|
+      item_name = node.attribute('name').text
 
-      if targets_url.grep(%r{/#{plugin_name}/}).empty?
+      if targets_url.grep(%r{/#{item_name}/}).empty?
+        # TODO: Generic
         targets_url << WpPlugin.new(
             :url            => url,
-            :path           => "#{type}/#{plugin_name}",
+            :path           => "#{type}/#{item_name}",
             :wp_content_dir => wp_content_dir,
-            :name           => plugin_name
+            :name           => item_name
         )
       end
     end

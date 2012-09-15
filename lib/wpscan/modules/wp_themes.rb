@@ -19,10 +19,11 @@
 module WpThemes
 
   def themes_from_aggressive_detection(options)
-    options[:file]        = "#{DATA_DIR}/themes.txt"
-    options[:vulns_file]  = "#{DATA_DIR}/theme_vulns.xml"
-    options[:vulns_xpath] = "//theme[@name='#{@name}']/vulnerability"
-    options[:type]        = "themes"
+    options[:file]          = "#{DATA_DIR}/themes.txt"
+    options[:vulns_file]    = "#{DATA_DIR}/wp_theme_vulns.xml"
+    options[:vulns_xpath]   = "//theme[@name='#{@name}']/vulnerability"
+    options[:vulns_xpath_2] = "//theme"
+    options[:type]          = "themes"
     result = WpDetector.aggressive_detection(options)
     result
   end
