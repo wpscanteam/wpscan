@@ -45,7 +45,12 @@ class WpscanOptions
   attr_accessor *ACCESSOR_OPTIONS
 
   def initialize
-
+    @enumerate_plugins = false
+    @enumerate_themes = false
+    @enumerate_only_vulnerable_plugins = false
+    @enumerate_only_vulnerable_themes = false
+    @enumerate_timthumbs = false
+    @enumerate_usernames = false
   end
 
   def url=(url)

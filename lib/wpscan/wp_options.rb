@@ -33,7 +33,7 @@ class WpOptions
   def self.get_empty_options
     options = {
         :url                  => "",
-        :only_vulnerable_ones => true,
+        :only_vulnerable_ones => false,
         :file                 => "",
         :vulns_file           => "",
         :vulns_xpath          => "",
@@ -46,15 +46,15 @@ class WpOptions
   end
 
   def self.check_options(options)
-    raise("url must be set")                  unless options[:url]
-    raise("only_vulnerable_ones must be set") unless options[:only_vulnerable_ones]
-    raise("file must be set")                 unless options[:file]
-    raise("vulns_file must be set")           unless options[:vulns_file]
-    raise("vulns_xpath must be set")          unless options[:vulns_xpath]
-    raise("wp_content_dir must be set")       unless options[:wp_content_dir]
-    raise("show_progress_bar must be set")    unless options[:show_progress_bar]
-    raise("error_404_hash must be set")       unless options[:error_404_hash]
-    raise("type must be set")                 unless options[:type]
+    raise("url must be set")                  unless options[:url] != nil and options[:url].to_s.length > 0
+    raise("only_vulnerable_ones must be set") unless options[:only_vulnerable_ones] != nil
+    raise("file must be set")                 unless options[:file] != nil and options[:file].length > 0
+    raise("vulns_file must be set")           unless options[:vulns_file] != nil and options[:vulns_file].length > 0
+    raise("vulns_xpath must be set")          unless options[:vulns_xpath] != nil and options[:vulns_xpath].length > 0
+    raise("wp_content_dir must be set")       unless options[:wp_content_dir] != nil and options[:wp_content_dir].length > 0
+    raise("show_progress_bar must be set")    unless options[:show_progress_bar] != nil
+    raise("error_404_hash must be set")       unless options[:error_404_hash] != nil and options[:error_404_hash].length > 0
+    raise("type must be set")                 unless options[:type] != nil and options[:type].length > 0
 
     unless options[:type] =~ /plugins/i or options[:type] =~ /themes/i
       raise("Unknown type #{options[:type]}")

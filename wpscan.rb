@@ -91,7 +91,7 @@ begin
   wp_theme = wp_target.theme
   if wp_theme
     theme_version = wp_theme.version
-    puts "[!] The WordPress theme in use is #{wp_theme}"
+    puts "[!] The WordPress theme in use is #{wp_theme}#{' v' + theme_version if theme_version}"
 
     theme_vulnerabilities = wp_theme.vulnerabilities
     unless theme_vulnerabilities.empty?
@@ -180,10 +180,11 @@ begin
     puts
 
     options = WpOptions.get_empty_options
-    options[:base_url]              = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins,
-    options[:show_progress_bar]     = true,
+    options[:url]                   = wp_target.uri
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins
+    options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
+    options[:error_404_hash]        = wp_target.error_404_hash
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
@@ -278,6 +279,7 @@ begin
   end
 
   # Start the brute forcer
+  bruteforce = false
   if wpscan_options.wordlist
     if wp_target.has_login_protection?
 

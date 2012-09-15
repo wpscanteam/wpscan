@@ -22,7 +22,7 @@ class WpPlugin < Vulnerable
   include WpItem
 
   def initialize(options = {})
-    @base_url       = options[:base_url]
+    @base_url       = options[:url]
     @path           = options[:path]
     @wp_content_dir = options[:wp_content_dir]
     @name           = options[:name] || extract_name_from_url(get_url)

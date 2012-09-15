@@ -79,7 +79,7 @@ class WpEnumerator
     plugins_file      = options[:file] || "#{DATA_DIR}/plugins.txt"
     plugin_vulns_file = options[:vulns_file] || "#{DATA_DIR}/plugin_vulns.xml"
     wp_content_dir    = options[:wp_content_dir]
-    url               = options[:base_url]
+    url               = options[:url]
     type              = options[:type]
     targets_url       = []
 
@@ -87,7 +87,7 @@ class WpEnumerator
       # Open and parse the 'most popular' plugin list...
       File.open(plugins_file, 'r') do |file|
         file.readlines.collect do |line|
-          targets_url << WpPlugin.new(:base_url => url, :path => line.strip, :wp_content_dir => wp_content_dir)
+          targets_url << WpPlugin.new(:url => url, :path => line.strip, :wp_content_dir => wp_content_dir)
         end
       end
     end
@@ -102,7 +102,7 @@ class WpEnumerator
 
       if targets_url.grep(%r{/#{plugin_name}/}).empty?
         targets_url << WpPlugin.new(
-            :base_url       => url,
+            :url            => url,
             :path           => "#{type}/#{plugin_name}",
             :wp_content_dir => wp_content_dir,
             :name           => plugin_name
