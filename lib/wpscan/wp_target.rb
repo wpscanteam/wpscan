@@ -74,7 +74,7 @@ class WpTarget
 
   # Valid HTTP return codes
   def self.valid_response_codes
-    [200, 403, 301, 302]
+    [200, 403, 301, 302, 500]
   end
 
   # return WpTheme

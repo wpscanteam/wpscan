@@ -93,6 +93,7 @@ class Svn_Parser
   end
   
   # Get a file in each directory
+  # TODO: exclude files like Thumbs.db (Example: wordpress-23-related-posts-plugin/)
   def get_svn_file_entries(dirs)
     entries = []
     queue_count = 0
