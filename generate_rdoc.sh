@@ -1,2 +1,2 @@
 #!/bin/bash
-rdoc -x cache/ -x spec/ -x data/
+rdoc -x cache/ -x spec/ -x data/ -x coverage/ -x doc/
