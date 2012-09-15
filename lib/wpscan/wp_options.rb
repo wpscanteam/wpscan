@@ -16,6 +16,19 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
+# Options Hash
+#
+# ==== Options
+#
+# * +url+ - The base URL of the WordPress site
+# * +only_vulnerable_ones+ - Only detect vulnerable items
+# * +file+ - Filename with items to detect
+# * +vulns_file+ - XML file with vulnerabilities
+# * +vulns_xpath+ - XPath for vulnerability XML file
+# * +wp_content_dir+ - Name of the wp-content directory
+# * +show_progress_bar+ - Show a progress bar during enumeration
+# * +error_404_hash+ - MD5 hash of a 404 page
+# * +type+ - Type: plugins, themes
 class WpOptions
   def self.get_empty_options
     options = {
@@ -33,15 +46,16 @@ class WpOptions
   end
 
   def self.check_options(options)
-    raise("url must be set") unless options[:url]
+    raise("url must be set")                  unless options[:url]
     raise("only_vulnerable_ones must be set") unless options[:only_vulnerable_ones]
-    raise("file must be set") unless options[:file]
-    raise("vulns_file must be set") unless options[:vulns_file]
-    raise("vulns_xpath must be set") unless options[:vulns_xpath]
-    raise("wp_content_dir must be set") unless options[:wp_content_dir]
-    raise("show_progress_bar must be set") unless options[:show_progress_bar]
-    raise("error_404_hash must be set") unless options[:error_404_hash]
-    raise("type must be set") unless options[:type]
+    raise("file must be set")                 unless options[:file]
+    raise("vulns_file must be set")           unless options[:vulns_file]
+    raise("vulns_xpath must be set")          unless options[:vulns_xpath]
+    raise("wp_content_dir must be set")       unless options[:wp_content_dir]
+    raise("show_progress_bar must be set")    unless options[:show_progress_bar]
+    raise("error_404_hash must be set")       unless options[:error_404_hash]
+    raise("type must be set")                 unless options[:type]
+
     unless options[:type] =~ /plugins/i or options[:type] =~ /themes/i
       raise("Unknown type #{options[:type]}")
     end
