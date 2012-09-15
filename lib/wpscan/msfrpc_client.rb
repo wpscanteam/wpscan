@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# ryandewhurst at gmail
-#
+#++
 
 # This library should contain all methods to communicate with msfrpc.
 # See framework/documentation/msfrpc.txt for further information.

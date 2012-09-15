@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-#
+#--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012
 #
@@ -16,6 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
 
 # This Class Parses SVN Repositories via HTTP
 class Svn_Parser
@@ -38,6 +39,9 @@ class Svn_Parser
     entries = get_svn_file_entries(urls)
     return entries
   end
+
+  #Private methods start here
+  private
 
   # Gets all directories in the SVN root
   def get_root_directories
