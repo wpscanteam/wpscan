@@ -57,15 +57,11 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-c-timthumbs_file">::timthumbs_file</a></li>
-          
           <li><a href="#method-i-has_timthumbs-3F">#has_timthumbs?</a></li>
           
           <li><a href="#method-i-targets_url_from_theme">#targets_url_from_theme</a></li>
           
           <li><a href="#method-i-timthumbs">#timthumbs</a></li>
-          
-          <li><a href="#method-i-timthumbs_targets_url">#timthumbs_targets_url</a></li>
           
         </ul>
       </div>
@@ -201,45 +197,6 @@
 
       <!-- Methods -->
       
-      <div id="public-class-method-details" class="method-section section">
-        <h3 class="section-header">Public Class Methods</h3>
-
-      
-        <div id="timthumbs_file-method" class="method-detail ">
-          <a name="method-c-timthumbs_file"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">timthumbs_file</span><span
-              class="method-args">(timthumbs_file_path = nil)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="timthumbs_file-source">
-<pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 88</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">timthumbs_file</span>(<span class="ruby-identifier">timthumbs_file_path</span> = <span class="ruby-keyword">nil</span>)
-  <span class="ruby-identifier">timthumbs_file_path</span> <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/timthumbs.txt&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- timthumbs_file-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- timthumbs_file-method -->
-
-      
-      </div><!-- public-class-method-details -->
-    
       <div id="public-instance-method-details" class="method-section section">
         <h3 class="section-header">Public Instance Methods</h3>
 
@@ -250,7 +207,7 @@
           
           <div class="method-heading">
             <span class="method-name">has_timthumbs?</span><span
-              class="method-args">(options = {})</span>
+              class="method-args">(theme_name, options = {})</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -264,8 +221,8 @@
             <div class="method-source-code" id="has_timthumbs-3F-source">
 <pre>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_timthumbs?</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-operator">!</span><span class="ruby-identifier">timthumbs</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">empty?</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_timthumbs?</span>(<span class="ruby-identifier">theme_name</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-operator">!</span><span class="ruby-identifier">timthumbs</span>(<span class="ruby-identifier">theme_name</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- has_timthumbs-3F-source -->
             
@@ -283,61 +240,36 @@
           
           <div class="method-heading">
             <span class="method-name">timthumbs</span><span
-              class="method-args">(options = {})</span>
+              class="method-args">(theme_name = nil, options = {})</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            <p>Available options :</p>
-
-<pre>:theme_name
-:timthumbs_file
-:show_progress_bar - default false</pre>
-
-<p>return array of string (url of timthumbs found), can be empty</p>
+            
             
 
             
             <div class="method-source-code" id="timthumbs-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">timthumbs</span>(<span class="ruby-identifier">options</span> = {})
+<span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">timthumbs</span>(<span class="ruby-identifier">theme_name</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@wp_timthumbs</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">browser</span>           = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
-    <span class="ruby-identifier">hydra</span>             = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">hydra</span>
-    <span class="ruby-identifier">found_timthumbs</span>   = []
-    <span class="ruby-identifier">request_count</span>     = <span class="ruby-value">0</span>
-    <span class="ruby-identifier">queue_count</span>       = <span class="ruby-value">0</span>
-    <span class="ruby-identifier">targets_url</span>       = <span class="ruby-identifier">timthumbs_targets_url</span>(<span class="ruby-identifier">options</span>)
-    <span class="ruby-identifier">show_progress_bar</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progress_bar</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>] = <span class="ruby-string">&quot;timthumbs&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>] = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/timthumbs.txt&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] = <span class="ruby-string">&quot;xxx&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-string">&quot;xxx&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">&quot;xxx&quot;</span>
 
-    <span class="ruby-identifier">targets_url</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target_url</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">request</span>       = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">target_url</span>, <span class="ruby-value">:cache_timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
-      <span class="ruby-identifier">request_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-
-      <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
-
-        <span class="ruby-identifier">print</span> <span class="ruby-string">&quot;\rChecking for &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">targets_url</span>.<span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-node">&quot; total timthumb files... #{(request_count * 100) / targets_url.size}% complete.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">show_progress_bar</span>
-
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/no image specified/</span>
-          <span class="ruby-identifier">found_timthumbs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target_url</span>
-        <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">end</span>
-
-      <span class="ruby-identifier">hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
-      <span class="ruby-identifier">queue_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">queue_count</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">max_threads</span>
-        <span class="ruby-identifier">hydra</span>.<span class="ruby-identifier">run</span>
-        <span class="ruby-identifier">queue_count</span> = <span class="ruby-value">0</span>
-      <span class="ruby-keyword">end</span>
+    <span class="ruby-constant">WpOptions</span>.<span class="ruby-identifier">check_options</span>(<span class="ruby-identifier">options</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">theme_name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">custom_items</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">custom_items</span> = <span class="ruby-identifier">targets_url_from_theme</span>(<span class="ruby-identifier">theme_name</span>, <span class="ruby-identifier">options</span>)
     <span class="ruby-keyword">end</span>
-
-    <span class="ruby-identifier">hydra</span>.<span class="ruby-identifier">run</span>
-
-    <span class="ruby-ivar">@wp_timthumbs</span> = <span class="ruby-identifier">found_timthumbs</span>
+    <span class="ruby-ivar">@wp_timthumbs</span> = <span class="ruby-constant">WpEnumerator</span>.<span class="ruby-identifier">enumerate</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">custom_items</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@wp_timthumbs</span>
 <span class="ruby-keyword">end</span></pre>
@@ -349,50 +281,6 @@
 
           
         </div><!-- timthumbs-method -->
-
-      
-        <div id="timthumbs_targets_url-method" class="method-detail ">
-          <a name="method-i-timthumbs_targets_url"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">timthumbs_targets_url</span><span
-              class="method-args">(options = {})</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            <p>Available options :</p>
-
-<pre>:theme_name
-:timthumbs_file</pre>
-
-<p>retrun array of string</p>
-            
-
-            
-            <div class="method-source-code" id="timthumbs_targets_url-source">
-<pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">timthumbs_targets_url</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">targets</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:theme_name</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">targets_url_from_theme</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:theme_name</span>]) <span class="ruby-operator">:</span> []
-  <span class="ruby-identifier">timthumbs_file</span> = <span class="ruby-constant">WpTimthumbs</span>.<span class="ruby-identifier">timthumbs_file</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:timthumbs_file</span>])
-  <span class="ruby-identifier">targets</span>        <span class="ruby-operator">+=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">timthumbs_file</span>, <span class="ruby-string">'r'</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">readlines</span>.<span class="ruby-identifier">collect</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">chomp</span>).<span class="ruby-identifier">to_s</span>}}
-
-  <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">uniq!</span>
-  <span class="ruby-comment"># randomize the array to *maybe* help in some crappy IDS/IPS/WAF evasion</span>
-  <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">sort_by!</span> { <span class="ruby-identifier">rand</span> }
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- timthumbs_targets_url-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- timthumbs_targets_url-method -->
 
       
       </div><!-- public-instance-method-details -->
@@ -407,7 +295,7 @@
           
           <div class="method-heading">
             <span class="method-name">targets_url_from_theme</span><span
-              class="method-args">(theme_name)</span>
+              class="method-args">(theme_name, options)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -420,8 +308,8 @@
             
             <div class="method-source-code" id="targets_url_from_theme-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 93</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_url_from_theme</span>(<span class="ruby-identifier">theme_name</span>)
+<span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_url_from_theme</span>(<span class="ruby-identifier">theme_name</span>, <span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">targets</span>    = []
   <span class="ruby-identifier">theme_name</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">theme_name</span>)
 
@@ -429,7 +317,12 @@
     <span class="ruby-string">'timthumb.php'</span>, <span class="ruby-string">'lib/timthumb.php'</span>, <span class="ruby-string">'inc/timthumb.php'</span>, <span class="ruby-string">'includes/timthumb.php'</span>,
     <span class="ruby-string">'scripts/timthumb.php'</span>, <span class="ruby-string">'tools/timthumb.php'</span>, <span class="ruby-string">'functions/timthumb.php'</span>
   ].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;wp-content/themes/#{theme_name}/#{file}&quot;</span>).<span class="ruby-identifier">to_s</span>
+    <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> {
+        <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>],
+        <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;themes/#{theme_name}/#{file}&quot;</span>,
+        <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>],
+        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>]
+    }
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">targets</span>
 <span class="ruby-keyword">end</span></pre>

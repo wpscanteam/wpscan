@@ -61,6 +61,8 @@
           
           <li><a href="#method-i-3D-3D">#==</a></li>
           
+          <li><a href="#method-i-changelog_url">#changelog_url</a></li>
+          
           <li><a href="#method-i-directory_listing-3F">#directory_listing?</a></li>
           
           <li><a href="#method-i-extract_name_from_url">#extract_name_from_url</a></li>
@@ -69,7 +71,13 @@
           
           <li><a href="#method-i-get_url_without_filename">#get_url_without_filename</a></li>
           
+          <li><a href="#method-i-has_changelog-3F">#has_changelog?</a></li>
+          
+          <li><a href="#method-i-has_readme-3F">#has_readme?</a></li>
+          
           <li><a href="#method-i-location_uri_from_file_url">#location_uri_from_file_url</a></li>
+          
+          <li><a href="#method-i-readme_url">#readme_url</a></li>
           
           <li><a href="#method-i-to_s">#to_s</a></li>
           
@@ -290,7 +298,7 @@
             
             <div class="method-source-code" id="3C-3D-3E-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 59</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">item</span>)
   <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -323,7 +331,7 @@
             
             <div class="method-source-code" id="3D-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 55</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">item</span>)
   <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -335,6 +343,39 @@
 
           
         </div><!-- 3D-3D-method -->
+
+      
+        <div id="changelog_url-method" class="method-detail ">
+          <a name="method-i-changelog_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">changelog_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="changelog_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 80</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">changelog_url</span>
+  <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;changelog.txt&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- changelog_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- changelog_url-method -->
 
       
         <div id="directory_listing-3F-method" class="method-detail ">
@@ -356,7 +397,7 @@
             
             <div class="method-source-code" id="directory_listing-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 41</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">directory_listing?</span>
   <span class="ruby-comment"># Need to remove to file part from the url</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">location_uri_from_file_url</span>(<span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">to_s</span>)).<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;title&gt;Index of}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
@@ -390,7 +431,7 @@
             
             <div class="method-source-code" id="extract_name_from_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 46</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_name_from_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">url</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-regexp">%{^(https?://.*/([^/]+)/)}</span>, <span class="ruby-value">2</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -458,8 +499,13 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_url_without_filename</span>
-  <span class="ruby-identifier">uri</span> = <span class="ruby-identifier">get_url</span>
-  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{uri.scheme}://#{uri.host}#{File.dirname(uri.path)}&quot;</span>)
+  <span class="ruby-identifier">matches</span> = <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%{^(.*/).*$}</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
+    <span class="ruby-identifier">dirname</span> = <span class="ruby-ivar">@path</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">dirname</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{@url.to_s}#@wp_content_dir/#{dirname}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- get_url_without_filename-source -->
             
@@ -469,6 +515,80 @@
 
           
         </div><!-- get_url_without_filename-method -->
+
+      
+        <div id="has_changelog-3F-method" class="method-detail ">
+          <a name="method-i-has_changelog-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_changelog?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="has_changelog-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_changelog?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@changelog</span>
+    <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">changelog_url</span>).<span class="ruby-identifier">code</span>
+    <span class="ruby-ivar">@changelog</span> = <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@changelog</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- has_changelog-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- has_changelog-3F-method -->
+
+      
+        <div id="has_readme-3F-method" class="method-detail ">
+          <a name="method-i-has_readme-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_readme?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="has_readme-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 84</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_readme?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@readme</span>
+    <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">readme_url</span>).<span class="ruby-identifier">code</span>
+    <span class="ruby-ivar">@readme</span> = <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@readme</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- has_readme-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- has_readme-3F-method -->
 
       
         <div id="location_uri_from_file_url-method" class="method-detail ">
@@ -490,7 +610,7 @@
             
             <div class="method-source-code" id="location_uri_from_file_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 63</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">location_uri_from_file_url</span>(<span class="ruby-identifier">location_url</span>)
   <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">location_url</span>[<span class="ruby-regexp">%{^(https?://.*/)[^.]+\.[^/]+$}</span>, <span class="ruby-value">1</span>]
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_location_url</span>
@@ -506,6 +626,39 @@
 
           
         </div><!-- location_uri_from_file_url-method -->
+
+      
+        <div id="readme_url-method" class="method-detail ">
+          <a name="method-i-readme_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">readme_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="readme_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">readme_url</span>
+  <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- readme_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- readme_url-method -->
 
       
         <div id="to_s-method" class="method-detail ">
@@ -527,10 +680,10 @@
             
             <div class="method-source-code" id="to_s-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 50</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">item_version</span> = <span class="ruby-identifier">version</span>
-  <span class="ruby-node">&quot;#@name#{' v' + item_version if item_version}&quot;</span>
+  <span class="ruby-node">&quot;#@name#{' v' + item_version.strip if item_version}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- to_s-source -->
             
@@ -561,7 +714,7 @@
             
             <div class="method-source-code" id="version-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 32</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_item.rb, line 37</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@version</span>
     <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>).<span class="ruby-identifier">to_s</span>)
