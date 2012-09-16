@@ -24,7 +24,7 @@ class WpTheme < Vulnerable
   attr_reader :name, :style_url, :version
 
   def initialize(options = {})
-    @base_url       = options[:url]
+    @url            = options[:url]
     @name           = options[:name] || extract_name_from_url(get_url)
     @path           = options[:path]
     @wp_content_dir = options[:wp_content_dir]
@@ -34,7 +34,7 @@ class WpTheme < Vulnerable
     @version        = options[:version]
     @style_url      = options[:style_url]
 
-    raise("base_url not set") unless @base_url
+    raise("url not set") unless @url
     raise("path not set") unless @path
     raise("wp_content_dir not set") unless @wp_content_dir
     raise("name not set") unless @name

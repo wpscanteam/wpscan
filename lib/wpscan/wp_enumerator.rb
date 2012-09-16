@@ -24,7 +24,7 @@ class WpEnumerator
   # ==== Attributes
   #
   # * +targets+ - targets to enumerate
-  # * * +:base_url+ - Base URL
+  # * * +:url+ - Base URL
   # * * +:wp_content+ - wp-content directory
   # * * +:path+ - Path to plugin
   # * +type+ - "plugins" or "themes", item to enumerate

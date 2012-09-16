@@ -43,7 +43,7 @@ module WpPlugins
 
     temp.each do |item|
       plugins << WpPlugin.new(
-          :base_url       => item[:base_url],
+          :url            => item[:url],
           :name           => item[:name],
           :path           => item[:path],
           :wp_content_dir => wp_content_dir

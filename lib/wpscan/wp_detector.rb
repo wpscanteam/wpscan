@@ -60,7 +60,7 @@ class WpDetector
     names.uniq!
 
     names.each do |item|
-      items << { :base_url =>  url, :name => item, :path => "#{type}/#{item}" }
+      items << { :url =>  url, :name => item, :path => "#{type}/#{item}" }
     end
     items
   end

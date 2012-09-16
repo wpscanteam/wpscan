@@ -24,7 +24,7 @@ class WpPlugin < Vulnerable
   attr_reader :name
 
   def initialize(options = {})
-    @base_url       = options[:url]
+    @url            = options[:url]
     @path           = options[:path]
     @wp_content_dir = options[:wp_content_dir]
     @name           = options[:name] || extract_name_from_url(get_url)
@@ -32,7 +32,7 @@ class WpPlugin < Vulnerable
     @vulns_xpath    = "//plugin[@name='#@name']/vulnerability"
     @version        = nil
 
-    raise("base_url not set") unless @base_url
+    raise("url not set") unless @url
     raise("path not set") unless @path
     raise("wp_content_dir not set") unless @wp_content_dir
     raise("name not set") unless @name

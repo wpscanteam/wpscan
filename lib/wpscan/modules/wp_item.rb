@@ -17,11 +17,11 @@
 #++
 
 module WpItem
-  attr_accessor :path, :base_url, :wp_content_dir
+  attr_accessor :path, :url, :wp_content_dir
   @version = nil
 
   def get_url
-    URI.parse("#{@base_url.to_s}#@wp_content_dir/#@path")
+    URI.parse("#{@url.to_s}#@wp_content_dir/#@path")
   end
 
   def get_url_without_filename

@@ -237,7 +237,17 @@
 
   <span class="ruby-identifier">enum_results</span> = <span class="ruby-constant">WpEnumerator</span>.<span class="ruby-identifier">enumerate</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">enum_results</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">enum_result</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">enum_result</span>
+    <span class="ruby-identifier">already_present</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
+      <span class="ruby-comment"># Already found via passive detection</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">enum_result</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-identifier">already_present</span> = <span class="ruby-keyword">true</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">already_present</span>
+      <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">enum_result</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">result</span>
 <span class="ruby-keyword">end</span></pre>
@@ -274,7 +284,7 @@
             
             <div class="method-source-code" id="passive_detection-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_detector.rb, line 40</span>
+<span class="ruby-comment"># File lib/wpscan/wp_detector.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">wp_content_dir</span>)
   <span class="ruby-identifier">items</span>         = []
   <span class="ruby-identifier">response</span>      = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
@@ -288,7 +298,7 @@
   <span class="ruby-identifier">names</span>.<span class="ruby-identifier">uniq!</span>
 
   <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">items</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:base_url</span> =<span class="ruby-operator">&gt;</span>  <span class="ruby-identifier">url</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>, <span class="ruby-value">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{type}/#{item}&quot;</span> }
+    <span class="ruby-identifier">items</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:url</span> =<span class="ruby-operator">&gt;</span>  <span class="ruby-identifier">url</span>, <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>, <span class="ruby-value">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{type}/#{item}&quot;</span> }
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">items</span>
 <span class="ruby-keyword">end</span></pre>

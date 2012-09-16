@@ -214,6 +214,28 @@
       
 
       
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="name-attribute-method" class="method-detail">
+          <a name="name"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">name</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
 
       <!-- Methods -->
       
@@ -240,9 +262,9 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 24</span>
+<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-ivar">@base_url</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-ivar">@url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
   <span class="ruby-ivar">@path</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>]
   <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
   <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">extract_name_from_url</span>(<span class="ruby-identifier">get_url</span>)
@@ -250,7 +272,7 @@
   <span class="ruby-ivar">@vulns_xpath</span>    = <span class="ruby-node">&quot;//plugin[@name='#@name']/vulnerability&quot;</span>
   <span class="ruby-ivar">@version</span>        = <span class="ruby-keyword">nil</span>
 
-  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;base_url not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@base_url</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;url not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@url</span>
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;path not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@path</span>
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;wp_content_dir not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;name not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@name</span>
@@ -294,7 +316,7 @@ href="http://www.exploit-db.com/ghdb/3714/">www.exploit-db.com/ghdb/3714/</a></p
             
             <div class="method-source-code" id="error_log-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 45</span>
+<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">error_log?</span>
   <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">error_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">response_body</span>[<span class="ruby-regexp">%{PHP Fatal error}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
@@ -328,7 +350,7 @@ href="http://www.exploit-db.com/ghdb/3714/">www.exploit-db.com/ghdb/3714/</a></p
             
             <div class="method-source-code" id="error_log_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 50</span>
+<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">error_log_url</span>
   <span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;error_log&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

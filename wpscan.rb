@@ -153,7 +153,7 @@ begin
     puts
     puts "[+] Enumerating plugins from passive detection ... "
 
-    plugins = wp_target.plugins_from_passive_detection
+    plugins = wp_target.plugins_from_passive_detection(wp_target.wp_content_dir)
     unless plugins.empty?
       puts "#{plugins.size} found :"
 

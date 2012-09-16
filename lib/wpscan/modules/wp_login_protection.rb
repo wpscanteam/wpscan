@@ -38,7 +38,7 @@ module WpLoginProtection
 
           return @login_protection_plugin = WpPlugin.new(
               :name => plugin_name,
-              :base_url => @uri.to_s
+              :url => @uri.to_s
           )
         end
       end
