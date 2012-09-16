@@ -54,7 +54,7 @@ module WpItem
 
   def to_s
     item_version = version
-    "#@name#{' v' + item_version if item_version}"
+    "#@name#{' v' + item_version.strip if item_version}"
   end
 
   def ==(item)

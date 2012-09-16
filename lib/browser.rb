@@ -27,8 +27,7 @@ class Browser
     :proxy,
     :max_threads,
     :cache_timeout,
-    :request_timeout,
-    :variables_to_replace_in_url
+    :request_timeout
   ]
 
   attr_reader   :hydra, :config_file
