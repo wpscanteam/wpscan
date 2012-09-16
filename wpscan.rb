@@ -195,7 +195,7 @@ begin
       plugins.each do |plugin|
         puts
         puts " | Name: #{plugin}" #this will also output the version number if detected
-        puts " | Location: #{plugin.get_url}"
+        puts " | Location: #{plugin.get_url_without_filename}"
         puts " | Directory listing enabled? #{plugin.directory_listing? ? "Yes." : "No."}"
 
         plugin.vulnerabilities.each do |vulnerability|
@@ -247,7 +247,7 @@ begin
       themes.each do |theme|
         puts
         puts " | Name: #{theme}" #this will also output the version number if detected
-        puts " | Location: #{theme.get_url}"
+        puts " | Location: #{theme.get_url_without_filename}"
         puts " | Directory listing enabled? #{theme.directory_listing? ? "Yes." : "No."}"
 
         theme.vulnerabilities.each do |vulnerability|

@@ -24,6 +24,11 @@ module WpItem
     URI.parse("#{@base_url.to_s}#@wp_content_dir/#@path")
   end
 
+  def get_url_without_filename
+    uri = get_url
+    URI.parse("#{uri.scheme}://#{uri.host}#{File.dirname(uri.path)}")
+  end
+
   def version
     unless @version
       response = Browser.instance.get(get_url.merge("readme.txt").to_s)
