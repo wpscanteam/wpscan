@@ -140,21 +140,10 @@ class Browser
 
   def forge_request(url, params = {})
     Typhoeus::Request.new(
-      replace_variables_in_url(url),
+      url.to_s,
       merge_request_params(params)
     )
   end
-
-  # return string
-  def replace_variables_in_url(url)
-    @variables_to_replace_in_url ||= {}
-
-    @variables_to_replace_in_url.each do |subject, replacement|
-      url.gsub!(subject, replacement)
-    end
-    url
-  end
-  protected :replace_variables_in_url
 
   def merge_request_params(params = {})
     if @proxy
