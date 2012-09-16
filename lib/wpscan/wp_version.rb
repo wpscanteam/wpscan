@@ -36,9 +36,13 @@ class WpVersion < Vulnerable
   #
   # The order in which the find_from_* methods are is important, they will be called in the same order
   # (find_from_meta_generator, find_from_rss_generator etc)
-  def self.find(target_uri)
+  def self.find(target_uri, wp_content_dir)
+    options = {
+        :url            => target_uri,
+        :wp_content_dir => wp_content_dir
+    }
     self.methods.grep(/find_from_/).each do |method_to_call|
-      version = self.send(method_to_call, target_uri)
+      version = self.send(method_to_call, options)
 
       if version
         return new(version, :discovery_method => method_to_call[%r{find_from_(.*)}, 1].gsub('_', ' '))
@@ -54,13 +58,15 @@ class WpVersion < Vulnerable
   #
   # The meta tag can be removed however it seems,
   # that it is reinstated on upgrade.
-  def self.find_from_meta_generator(target_uri)
+  def self.find_from_meta_generator(options)
+    target_uri = options[:url]
     response = Browser.instance.get(target_uri.to_s, :follow_location => true, :max_redirects => 2)
 
     response.body[%r{name="generator" content="wordpress ([^"]+)"}i, 1]
   end
 
-  def self.find_from_rss_generator(target_uri)
+  def self.find_from_rss_generator(options)
+    target_uri = options[:url]
     response = Browser.instance.get(target_uri.merge("feed/").to_s, :follow_location => true, :max_redirects => 2)
 
     response.body[%r{<generator>http://wordpress.org/\?v=([^<]+)</generator>}i, 1]
@@ -85,13 +91,17 @@ class WpVersion < Vulnerable
   #
   #  /!\ Warning : this method might return false positive if the file used for fingerprinting is part of a theme (they can be updated)
   #
-  def self.find_from_advanced_fingerprinting(target_uri)
+  def self.find_from_advanced_fingerprinting(options)
+    target_uri = options[:url]
     xml = Nokogiri::XML(File.open(DATA_DIR + '/wp_versions.xml')) do |config|
       config.noblanks
     end
 
     xml.xpath("//file").each do |node|
+      wp_content = options[:wp_content_dir]
+      wp_plugins = "#{wp_content}/plugins"
       file_url = target_uri.merge(node.attribute('src').text).to_s
+      file_url = file_url.gsub(/\$wp-plugins\$/i, wp_plugins).gsub(/\$wp-content\$/i, wp_content)
       response = Browser.instance.get(file_url)
       md5sum   = Digest::MD5.hexdigest(response.body)
 
@@ -104,12 +114,14 @@ class WpVersion < Vulnerable
     nil # Otherwise the data['file'] is returned (issue #107)
   end
 
-  def self.find_from_readme(target_uri)
+  def self.find_from_readme(options)
+    target_uri = options[:url]
     Browser.instance.get(target_uri.merge("readme.html").to_s).body[%r{<br />\sversion #{WpVersion.version_pattern}}i, 1]
   end
 
   # http://code.google.com/p/wpscan/issues/detail?id=109
-  def self.find_from_sitemap_generator(target_uri)
+  def self.find_from_sitemap_generator(options)
+    target_uri = options[:url]
     Browser.instance.get(target_uri.merge("sitemap.xml").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}, 1]
   end
 

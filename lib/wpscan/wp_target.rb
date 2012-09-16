@@ -84,7 +84,7 @@ class WpTarget
 
   # return WpVersion
   def version
-    WpVersion.find(@uri)
+    WpVersion.find(@uri, wp_content_dir)
   end
 
   def wp_content_dir
