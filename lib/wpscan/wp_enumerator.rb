@@ -30,11 +30,17 @@ class WpEnumerator
   # * +type+ - "plugins" or "themes", item to enumerate
   # * +filename+ - filename in the data directory with paths
   # * +show_progress_bar+ - Show a progress bar during enumeration
-  def self.enumerate(options = {})
+  def self.enumerate(options = {}, items = nil)
 
     WpOptions.check_options(options)
 
     targets = self.generate_items(options)
+
+    unless items == nil
+      items.each do |i|
+        targets << i
+      end
+    end
 
     found = []
     queue_count = 0
@@ -44,7 +50,11 @@ class WpEnumerator
     enumerate_size = targets.size
 
     targets.each do |target|
-      url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
+      if options[:type] =~ /timthumbs/i
+        url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
+      else
+        url = "#{target[:url]}#{target[:wp_content_dir]}/#{options[:type]}/#{target[:path]}"
+      end
       request = enum_browser.forge_request(url, :cache_timeout => 0, :follow_location => true)
       request_count += 1
 
@@ -89,7 +99,7 @@ class WpEnumerator
         f.readlines.collect do |line|
           targets_url << {
               :url            => url,
-              :path           => "#{type}/#{line.strip}",
+              :path           => line.strip,
               :wp_content_dir => wp_content_dir,
               :name           => File.dirname(line.strip)
           }
@@ -97,21 +107,24 @@ class WpEnumerator
       end
     end
 
-    xml = Nokogiri::XML(File.open(vulns_file)) do |config|
-      config.noblanks
-    end
+    # Timthumbs have no XML file
+    unless type =~ /timthumbs/i
+      xml = Nokogiri::XML(File.open(vulns_file)) do |config|
+        config.noblanks
+      end
 
-    # We check if the plugin name from the plugin_vulns_file is already in targets, otherwise we add it
-    xml.xpath(options[:vulns_xpath_2]).each do |node|
-      item_name = node.attribute('name').text
+      # We check if the plugin name from the plugin_vulns_file is already in targets, otherwise we add it
+      xml.xpath(options[:vulns_xpath_2]).each do |node|
+        item_name = node.attribute('name').text
 
-      if targets_url.grep(%r{/#{item_name}/}).empty?
-        targets_url << {
-            :url            => url,
-            :path           => "#{type}/#{item_name}",
-            :wp_content_dir => wp_content_dir,
-            :name           => item_name
-        }
+        if targets_url.grep(%r{/#{item_name}/}).empty?
+          targets_url << {
+              :url            => url,
+              :path           => "#{type}/#{item_name}",
+              :wp_content_dir => wp_content_dir,
+              :name           => item_name
+          }
+        end
       end
     end
 

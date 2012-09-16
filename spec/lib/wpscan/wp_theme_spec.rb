@@ -31,7 +31,7 @@ describe WpTheme do
 
   describe "#to_s" do
     it "should return the theme name and the version if there is one" do
-      wp_theme = WpTheme.new(:name => "bueno", :version => "1.2.3")
+      wp_theme = WpTheme.new(:name => "bueno", :version => "1.2.3", :url => "", :path => "", :wp_content_dir => "")
 
       wp_theme.to_s.should === "bueno v1.2.3"
     end
@@ -41,7 +41,7 @@ describe WpTheme do
 
       stub_request(:get, style_url).to_return(:status => 200, :body => "")
 
-      wp_theme = WpTheme.new(:name => "hello-world", :style_url => style_url)
+      wp_theme = WpTheme.new(:name => "hello-world", :style_url => style_url, :url => "", :path => "", :wp_content_dir => "")
 
       wp_theme.to_s.should === "hello-world"
     end
@@ -99,12 +99,12 @@ describe WpTheme do
 
     it "should return a WpTheme object with .name 'Editorial' and .version '1.3.5'" do
       @fixture = fixtures_dir + "/editorial-1.3.5.html"
-      @expected_theme = WpTheme.new("Editorial", :version => "1.3.5")
+      @expected_theme = WpTheme.new(:name => "Editorial", :version => "1.3.5", :url => "", :path => "", :wp_content_dir => "")
     end
 
     it "should return a WpTheme object with .name 'Merchant'" do
       @fixture = fixtures_dir + "/merchant-no-version.html"
-      @expected_theme = WpTheme.new("Merchant")
+      @expected_theme = WpTheme.new(:name => "Merchant", :url => "", :path => "", :wp_content_dir => "")
     end
   end
 
@@ -148,7 +148,7 @@ describe WpTheme do
       if @fixture
         stub_request_to_fixture(:url => theme_style_url, :fixture => @fixture)
 
-        wp_theme = WpTheme.new('spec-theme', :style_url => theme_style_url)
+        wp_theme = WpTheme.new(:name => 'spec-theme', :style_url => theme_style_url, :url => "", :path => "", :wp_content_dir => "")
 
         wp_theme.version.should === @expected
       end
@@ -160,7 +160,7 @@ describe WpTheme do
     end
 
     it "should return nil if the style_url is nil" do
-      WpTheme.new("hello-world").version.should be_nil
+      WpTheme.new(:name => "hello-world", :url => "", :path => "", :wp_content_dir => "").version.should be_nil
     end
 
     it "should return 1.3" do

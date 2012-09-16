@@ -216,36 +216,6 @@ describe Browser do
     end
   end
 
-  describe "#replace_variables_in_url" do
-    after :each do
-      @browser.variables_to_replace_in_url = @variables if @variables
-      @browser.send(:replace_variables_in_url, @url).should === @expected
-    end
-
-    it "should not replace anything (empty variables_to_replace_in_url)" do
-      @url      = "http://target.tld/wp-content/file.txt"
-      @expected = @url
-    end
-
-    it "should not replace anything (not match found)" do
-      @variables = {"%nothing%" => "hello"}
-      @url       = "http://target.tld/nothing/file.txt"
-      @expected  = @url
-    end
-
-    it "should replace %wp-content% by 'custom-content'" do
-      @variables = {"%wp-content%" => "custom-content"}
-      @url       = "http://target.tld/%wp-content%/some-file.txt"
-      @expected  = "http://target.tld/custom-content/some-file.txt"
-    end
-
-    it "should replace %wp-content% by 'custom-content' and %plugins% by 'wp_plugins'" do
-      @variables = {"%wp-content%" => "custom-content", "%plugins%" => "wp_plugins"}
-      @url       = "http://target.tld/%wp-content%/hello/%plugins%"
-      @expected  = "http://target.tld/custom-content/hello/wp_plugins"
-    end
-  end
-
   # TODO
   describe "#forge_request" do
 

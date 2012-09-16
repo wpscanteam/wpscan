@@ -59,7 +59,7 @@ class WpOptions
     raise("error_404_hash must be set")       unless options[:error_404_hash] != nil and options[:error_404_hash].length > 0
     raise("type must be set")                 unless options[:type] != nil and options[:type].length > 0
 
-    unless options[:type] =~ /plugins/i or options[:type] =~ /themes/i
+    unless options[:type] =~ /plugins/i or options[:type] =~ /themes/i or options[:type] =~ /timthumbs/i
       raise("Unknown type #{options[:type]}")
     end
   end

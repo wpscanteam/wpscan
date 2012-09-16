@@ -279,15 +279,22 @@ begin
     puts "[+] Enumerating timthumb files ..."
     puts
 
-    if wp_target.has_timthumbs?(:theme_name => wp_theme ? wp_theme.name : nil, :show_progress_bar => true)
+    options                     = WpOptions.get_empty_options
+    options[:url]               = wp_target.uri
+    options[:show_progress_bar] = true
+    options[:wp_content_dir]    = wp_target.wp_content_dir
+    options[:error_404_hash]    = wp_target.error_404_hash
+
+    theme_name = wp_theme ? wp_theme.name : nil
+    if wp_target.has_timthumbs?(theme_name, options)
       timthumbs = wp_target.timthumbs
 
       puts
       puts "[+] We found #{timthumbs.size.to_s} timthumb file/s :"
       puts
 
-      timthumbs.each do |file_url|
-        puts " | [!] #{file_url}"
+      timthumbs.each do |t|
+        puts " | [!] #{t[:url]}#{t[:wp_content_dir]}/#{t[:path]}"
       end
       puts
       puts " * Reference: http://www.exploit-db.com/exploits/17602/"
