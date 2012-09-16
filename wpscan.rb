@@ -197,6 +197,8 @@ begin
         puts " | Name: #{plugin}" #this will also output the version number if detected
         puts " | Location: #{plugin.get_url_without_filename}"
         puts " | Directory listing enabled? #{plugin.directory_listing? ? "Yes." : "No."}"
+        puts " | Readme: #{plugin.readme_url}" if plugin.has_readme?
+        puts " | Changelog: #{plugin.changelog_url}" if plugin.has_changelog?
 
         plugin.vulnerabilities.each do |vulnerability|
           #vulnerability['vulnerability'][0]['uri'] == nil ? "" : uri = vulnerability['vulnerability'][0]['uri'] # uri
@@ -249,6 +251,8 @@ begin
         puts " | Name: #{theme}" #this will also output the version number if detected
         puts " | Location: #{theme.get_url_without_filename}"
         puts " | Directory listing enabled? #{theme.directory_listing? ? "Yes." : "No."}"
+        puts " | Readme: #{theme.readme_url}" if theme.has_readme?
+        puts " | Changelog: #{theme.changelog_url}" if theme.has_changelog?
 
         theme.vulnerabilities.each do |vulnerability|
           puts " |"

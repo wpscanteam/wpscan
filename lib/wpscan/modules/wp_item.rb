@@ -25,8 +25,13 @@ module WpItem
   end
 
   def get_url_without_filename
-    uri = get_url
-    URI.parse("#{uri.scheme}://#{uri.host}#{File.dirname(uri.path)}/")
+    matches = @path.match(%r{^(.*/).*$})
+    if matches == nil or matches.length < 2
+      dirname = @path
+    else
+      dirname = matches[1]
+    end
+    URI.parse("#{@url.to_s}#@wp_content_dir/#{dirname}")
   end
 
   def version
@@ -66,6 +71,30 @@ module WpItem
       valid_location_url = add_trailing_slash(location_url)
     end
     URI.parse(valid_location_url)
+  end
+
+  def readme_url
+    get_url_without_filename.merge("readme.txt")
+  end
+
+  def changelog_url
+    get_url_without_filename.merge("changelog.txt")
+  end
+
+  def has_readme?
+    unless @readme
+      status = Browser.instance.get(readme_url).code
+      @readme = status == 200 ? true : false
+    end
+    @readme
+  end
+
+  def has_changelog?
+    unless @changelog
+      status = Browser.instance.get(changelog_url).code
+      @changelog = status == 200 ? true : false
+    end
+    @changelog
   end
 
 end

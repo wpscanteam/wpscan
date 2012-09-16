@@ -63,7 +63,7 @@ class WpDetector
       items << {
           :url            =>  url,
           :name           => item,
-          :path           => "#{type}/#{item}",
+          :path           => "#{type}/#{item}/",
           :wp_content_dir => wp_content_dir
       }
     end
