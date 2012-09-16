@@ -31,8 +31,6 @@ module WpPlugins
     result.sort_by { |p| p.name }
   end
 
-  private
-
   # http://code.google.com/p/wpscan/issues/detail?id=42
   # plugins can be found in the source code :
   #   <script src='http://example.com/wp-content/plugins/s2member/...' />

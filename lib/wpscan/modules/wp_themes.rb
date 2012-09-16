@@ -28,8 +28,6 @@ module WpThemes
     result.sort_by { |t| t.name }
   end
 
-  private
-
   def themes_from_passive_detection(wp_content_dir)
     themes = []
     temp = WpDetector.passive_detection(url(), "themes", wp_content_dir)
