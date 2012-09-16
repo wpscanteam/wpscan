@@ -181,7 +181,7 @@ begin
 
     options = WpOptions.get_empty_options
     options[:url]                   = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
     options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
     options[:error_404_hash]        = wp_target.error_404_hash
@@ -233,7 +233,7 @@ begin
 
     options = WpOptions.get_empty_options
     options[:url]                   = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
     options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
     options[:error_404_hash]        = wp_target.error_404_hash
