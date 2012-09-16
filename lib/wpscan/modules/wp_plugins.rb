@@ -27,8 +27,17 @@ module WpPlugins
     options[:vulns_xpath]   = "//plugin[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
     options[:type]          = "plugins"
-    result = WpDetector.aggressive_detection(options)
-    result.sort_by { |p| p.name }
+    result                  = WpDetector.aggressive_detection(options)
+    plugins = []
+    result.each do |r|
+      plugins << WpPlugin.new(
+          :url            => r[:url],
+          :path           => r[:path],
+          :wp_content_dir => r[:wp_content_dir],
+          :name           => r[:name]
+      )
+    end
+    plugins.sort_by { |p| p.name }
   end
 
   # http://code.google.com/p/wpscan/issues/detail?id=42

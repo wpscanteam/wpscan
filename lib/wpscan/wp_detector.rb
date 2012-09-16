@@ -22,7 +22,7 @@ class WpDetector
     WpOptions.check_options(options)
 
     result = items
-    unless items == nil or items.length == 0
+    if items == nil or items.length == 0
       result = passive_detection(options[:url], options[:type], options[:wp_content_dir])
     end
 
@@ -31,7 +31,7 @@ class WpDetector
       already_present = false
       result.each do |r|
         # Already found via passive detection
-        if r.name == enum_result.name
+        if r[:name] == enum_result[:name]
           already_present = true
           break
         end
@@ -60,7 +60,12 @@ class WpDetector
     names.uniq!
 
     names.each do |item|
-      items << { :url =>  url, :name => item, :path => "#{type}/#{item}" }
+      items << {
+          :url            =>  url,
+          :name           => item,
+          :path           => "#{type}/#{item}",
+          :wp_content_dir => wp_content_dir
+      }
     end
     items
   end

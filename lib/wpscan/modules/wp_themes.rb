@@ -24,8 +24,17 @@ module WpThemes
     options[:vulns_xpath]   = "//theme[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//theme"
     options[:type]          = "themes"
-    result = WpDetector.aggressive_detection(options)
-    result.sort_by { |t| t.name }
+    result                  = WpDetector.aggressive_detection(options)
+    themes = []
+    result.each do |r|
+      themes << WpTheme.new(
+          :url            => r[:url],
+          :path           => r[:path],
+          :wp_content_dir => r[:wp_content_dir],
+          :name           => r[:name]
+      )
+    end
+    themes.sort_by { |t| t.name }
   end
 
   def themes_from_passive_detection(wp_content_dir)
@@ -33,7 +42,7 @@ module WpThemes
     temp = WpDetector.passive_detection(url(), "themes", wp_content_dir)
 
     temp.each do |item|
-      themes << WpPlugin.new(
+      themes << WpTheme.new(
           :url            => item[:url],
           :name           => item[:name],
           :path           => item[:path],

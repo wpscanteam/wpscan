@@ -26,7 +26,7 @@ module WpItem
 
   def get_url_without_filename
     uri = get_url
-    URI.parse("#{uri.scheme}://#{uri.host}#{File.dirname(uri.path)}")
+    URI.parse("#{uri.scheme}://#{uri.host}#{File.dirname(uri.path)}/")
   end
 
   def version

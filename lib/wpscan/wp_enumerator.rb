@@ -44,7 +44,7 @@ class WpEnumerator
     enumerate_size = targets.size
 
     targets.each do |target|
-      url = target.get_url
+      url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
       request = enum_browser.forge_request(url, :cache_timeout => 0, :follow_location => true)
       request_count += 1
 
@@ -87,7 +87,12 @@ class WpEnumerator
       # Open and parse the 'most popular' plugin list...
       File.open(file, 'r') do |f|
         f.readlines.collect do |line|
-          targets_url << WpPlugin.new(:url => url, :path => "#{type}/#{line.strip}", :wp_content_dir => wp_content_dir)
+          targets_url << {
+              :url            => url,
+              :path           => "#{type}/#{line.strip}",
+              :wp_content_dir => wp_content_dir,
+              :name           => File.dirname(line.strip)
+          }
         end
       end
     end
@@ -101,13 +106,12 @@ class WpEnumerator
       item_name = node.attribute('name').text
 
       if targets_url.grep(%r{/#{item_name}/}).empty?
-        # TODO: Generic
-        targets_url << WpPlugin.new(
+        targets_url << {
             :url            => url,
             :path           => "#{type}/#{item_name}",
             :wp_content_dir => wp_content_dir,
             :name           => item_name
-        )
+        }
       end
     end
 
