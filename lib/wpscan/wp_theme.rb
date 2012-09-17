@@ -18,8 +18,7 @@
 
 require "#{WPSCAN_LIB_DIR}/vulnerable"
 
-class WpTheme < Vulnerable
-  include WpItem
+class WpTheme < WpItem
 
   attr_reader :name, :style_url, :version
 

@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-module WpItem
+class WpItem < Vulnerable
   attr_accessor :path, :url, :wp_content_dir
   @version = nil
 

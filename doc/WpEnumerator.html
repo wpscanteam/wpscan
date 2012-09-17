@@ -267,11 +267,12 @@
   <span class="ruby-identifier">enumerate_size</span> = <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">size</span>
 
   <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/timthumbs/</span>
-      <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}&quot;</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{target[:url]}#{target[:wp_content_dir]}/#{options[:type]}/#{target[:path]}&quot;</span>
+    <span class="ruby-comment"># Timthumb files have no /timthumbs/ directory</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/timthumbs/</span>
+      <span class="ruby-identifier">target</span>[<span class="ruby-value">:path</span>] = <span class="ruby-node">&quot;#{options[:type]}/#{target[:path]}&quot;</span>
     <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}&quot;</span>
+
     <span class="ruby-identifier">request</span> = <span class="ruby-identifier">enum_browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-value">:cache_timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>, <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>)
     <span class="ruby-identifier">request_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 
