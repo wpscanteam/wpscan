@@ -75,8 +75,6 @@
           
           <li><a href="#method-i-3D-3D-3D">#===</a></li>
           
-          <li><a href="#method-i-to_s">#to_s</a></li>
-          
         </ul>
       </div>
       
@@ -286,7 +284,7 @@
             
             <div class="method-source-code" id="find-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 53</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/find_from_/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method_to_call</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">theme</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method_to_call</span>, <span class="ruby-identifier">target_uri</span>)
@@ -326,21 +324,11 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-ivar">@url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
-  <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">extract_name_from_url</span>(<span class="ruby-identifier">get_url</span>)
-  <span class="ruby-ivar">@path</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>]
-  <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
-  <span class="ruby-ivar">@vulns_xml</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/wp_theme_vulns.xml'</span>
-  <span class="ruby-ivar">@vulns_xpath</span>    = <span class="ruby-node">&quot;//theme[@name='#{@name}']/vulnerability&quot;</span>
-
-  <span class="ruby-ivar">@version</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>]
-  <span class="ruby-ivar">@style_url</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-value">:style_url</span>]
-
-  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;url not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@url</span>
-  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;path not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@path</span>
-  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;wp_content_dir not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
-  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;name not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@name</span>
-  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;vulns_xml not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@vulns_xml</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>]   = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/wp_theme_vulns.xml'</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-node">&quot;//theme[@name='#{@name}']/vulnerability&quot;</span>
+  <span class="ruby-ivar">@version</span>              = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>]
+  <span class="ruby-ivar">@style_url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:style_url</span>]
+  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">options</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -377,7 +365,7 @@
             
             <div class="method-source-code" id="find_from_css_link-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 74</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_css_link</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
 
@@ -423,7 +411,7 @@ href="http://code.google.com/p/wpscan/issues/detail?id=141">code.google.com/p/wp
             
             <div class="method-source-code" id="find_from_wooframework-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 91</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_wooframework</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">regexp</span> = <span class="ruby-regexp">%{&lt;meta name=&quot;generator&quot; content=&quot;([^\s&quot;]+)\s?([^&quot;]+)?&quot; /&gt;\s+&lt;meta name=&quot;generator&quot; content=&quot;WooFramework\s?([^&quot;]+)?&quot; /&gt;}</span>
@@ -476,7 +464,7 @@ href="http://code.google.com/p/wpscan/issues/detail?id=141">code.google.com/p/wp
             
             <div class="method-source-code" id="3D-3D-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 67</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">wp_theme</span>)
   <span class="ruby-identifier">wp_theme</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">wp_theme</span>.<span class="ruby-identifier">version</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@version</span>
 <span class="ruby-keyword">end</span></pre>
@@ -488,40 +476,6 @@ href="http://code.google.com/p/wpscan/issues/detail?id=141">code.google.com/p/wp
 
           
         </div><!-- 3D-3D-3D-method -->
-
-      
-        <div id="to_s-method" class="method-detail ">
-          <a name="method-i-to_s"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">to_s</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="to_s-source">
-<pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 62</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
-  <span class="ruby-identifier">version</span> = <span class="ruby-identifier">version</span>()
-  <span class="ruby-node">&quot;#{@name}#{' v' + version if version}&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- to_s-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- to_s-method -->
 
       
       </div><!-- public-instance-method-details -->

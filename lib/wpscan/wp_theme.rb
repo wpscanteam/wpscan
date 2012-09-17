@@ -23,22 +23,11 @@ class WpTheme < WpItem
   attr_reader :name, :style_url, :version
 
   def initialize(options = {})
-    @url            = options[:url]
-    @path           = options[:path]
-    @wp_content_dir = options[:wp_content_dir]
-    @vulns_xml      = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
-    @vulns_xpath    = "//theme[@name='#{@name}']/vulnerability"
-
-    @version        = options[:version]
-    @style_url      = options[:style_url]
-
-    raise("url not set") unless @url
-    raise("path not set") unless @path
-    raise("wp_content_dir not set") unless @wp_content_dir
-    raise("name not set") unless @name
-    raise("vulns_xml not set") unless @vulns_xml
-
-    super(:wp_content_dir => @wp_content_dir, :url => @url, :path => @path)
+    options[:vulns_xml]   = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
+    options[:vulns_xpath] = "//theme[@name='#{@name}']/vulnerability"
+    @version              = options[:version]
+    @style_url            = options[:style_url]
+    super(options)
   end
 
   def version
@@ -57,11 +46,6 @@ class WpTheme < WpItem
       return theme if theme
     end
     nil
-  end
-
-  def to_s
-    version = version()
-    "#{@name}#{' v' + version if version}"
   end
 
   def ===(wp_theme)
@@ -105,5 +89,4 @@ class WpTheme < WpItem
       )
     end
   end
-
 end

@@ -65,7 +65,7 @@
         <h3 class="section-header">Methods</h3>
         <ul class="link-list">
           
-          <li><a href="#method-i-3C-3D-3E">#<=></a></li>
+          <li><a href="#method-c-new">::new</a></li>
           
           <li><a href="#method-i-3D-3D">#==</a></li>
           
@@ -82,8 +82,6 @@
           <li><a href="#method-i-has_changelog-3F">#has_changelog?</a></li>
           
           <li><a href="#method-i-has_readme-3F">#has_readme?</a></li>
-          
-          <li><a href="#method-i-location_uri_from_file_url">#location_uri_from_file_url</a></li>
           
           <li><a href="#method-i-readme_url">#readme_url</a></li>
           
@@ -227,6 +225,23 @@
         <h3 class="section-header">Attributes</h3>
 
         
+        <div id="name-attribute-method" class="method-detail">
+          <a name="name"></a>
+          
+          <a name="name="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">name</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
         <div id="path-attribute-method" class="method-detail">
           <a name="path"></a>
           
@@ -261,6 +276,40 @@
           </div>
         </div>
         
+        <div id="vulns_xml-attribute-method" class="method-detail">
+          <a name="vulns_xml"></a>
+          
+          <a name="vulns_xml="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">vulns_xml</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="vulns_xpath-attribute-method" class="method-detail">
+          <a name="vulns_xpath"></a>
+          
+          <a name="vulns_xpath="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">vulns_xpath</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
         <div id="wp_content_dir-attribute-method" class="method-detail">
           <a name="wp_content_dir"></a>
           
@@ -283,17 +332,17 @@
 
       <!-- Methods -->
       
-      <div id="public-instance-method-details" class="method-section section">
-        <h3 class="section-header">Public Instance Methods</h3>
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
 
       
-        <div id="3C-3D-3E-method" class="method-detail ">
-          <a name="method-i-3C-3D-3E"></a>
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">&lt;=&gt;</span><span
-              class="method-args">(item)</span>
+            <span class="method-name">new</span><span
+              class="method-args">(options = {})</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -304,20 +353,37 @@
             
 
             
-            <div class="method-source-code" id="3C-3D-3E-source">
+            <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 64</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@name</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
+  <span class="ruby-ivar">@url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-ivar">@path</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>]
+  <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">extract_name_from_url</span>
+  <span class="ruby-ivar">@vulns_xml</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>]
+  <span class="ruby-ivar">@vulns_xpath</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]
+
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;url not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@url</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;path not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@path</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;wp_content_dir not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;name not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@name</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;vulns_xml not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@vulns_xml</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- 3C-3D-3E-source -->
+            </div><!-- new-source -->
             
           </div>
 
           
 
           
-        </div><!-- 3C-3D-3E-method -->
+        </div><!-- new-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
 
       
         <div id="3D-3D-method" class="method-detail ">
@@ -333,13 +399,13 @@
 
           <div class="method-description">
             
-            
+            <p><a href="Object.html">Object</a> comparer</p>
             
 
             
             <div class="method-source-code" id="3D-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 60</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">item</span>)
   <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -366,13 +432,13 @@
 
           <div class="method-description">
             
-            
+            <p>Url for changelog.txt</p>
             
 
             
             <div class="method-source-code" id="changelog_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 80</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">changelog_url</span>
   <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;changelog.txt&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -405,10 +471,10 @@
             
             <div class="method-source-code" id="directory_listing-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 46</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">directory_listing?</span>
   <span class="ruby-comment"># Need to remove to file part from the url</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">location_uri_from_file_url</span>(<span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">to_s</span>)).<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;title&gt;Index of}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">get_url_without_filename</span>).<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;title&gt;Index of}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- directory_listing-3F-source -->
             
@@ -426,22 +492,22 @@
           
           <div class="method-heading">
             <span class="method-name">extract_name_from_url</span><span
-              class="method-args">(url)</span>
+              class="method-args">()</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            
+            <p>Extract item name from a url</p>
             
 
             
             <div class="method-source-code" id="extract_name_from_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 51</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_name_from_url</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">url</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-regexp">%{^(https?://.*/([^/]+)/)}</span>, <span class="ruby-value">2</span>]
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_name_from_url</span>
+  <span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-regexp">%{^(https?://.*/([^/]+)/)}</span>, <span class="ruby-value">2</span>]
 <span class="ruby-keyword">end</span></pre>
             </div><!-- extract_name_from_url-source -->
             
@@ -466,15 +532,20 @@
 
           <div class="method-description">
             
-            
+            <p>Get the full url for this item</p>
             
 
             
             <div class="method-source-code" id="get_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 23</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 41</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_url</span>
-  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{@url.to_s}#@wp_content_dir/#@path&quot;</span>)
+  <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;/&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@url</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#@url/&quot;</span>
+  <span class="ruby-comment"># remove first and last /</span>
+  <span class="ruby-identifier">wp_content_dir</span> = <span class="ruby-ivar">@wp_content_dir</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\/$/</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-comment"># remove first /</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{url}#{wp_content_dir}/#{path}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- get_url-source -->
             
@@ -499,21 +570,20 @@
 
           <div class="method-description">
             
-            
+            <p>Gets the full url for this item without filenames</p>
             
 
             
             <div class="method-source-code" id="get_url_without_filename-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 27</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_url_without_filename</span>
-  <span class="ruby-identifier">matches</span> = <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp">%{^(.*/).*$}</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">2</span>
-    <span class="ruby-identifier">dirname</span> = <span class="ruby-ivar">@path</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">dirname</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>]
+  <span class="ruby-identifier">location_url</span> = <span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">location_url</span>[<span class="ruby-regexp">%{^(https?://.*/)[^.]+\.[^/]+$}</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_location_url</span>
+    <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">location_url</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{@url.to_s}#@wp_content_dir/#{dirname}&quot;</span>)
+  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">valid_location_url</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- get_url_without_filename-source -->
             
@@ -538,13 +608,13 @@
 
           <div class="method-description">
             
-            
+            <p>changelog.txt present?</p>
             
 
             
             <div class="method-source-code" id="has_changelog-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 92</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_changelog?</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@changelog</span>
     <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">changelog_url</span>).<span class="ruby-identifier">code</span>
@@ -575,13 +645,13 @@
 
           <div class="method-description">
             
-            
+            <p>readme.txt present?</p>
             
 
             
             <div class="method-source-code" id="has_readme-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 84</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_readme?</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@readme</span>
     <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">readme_url</span>).<span class="ruby-identifier">code</span>
@@ -599,43 +669,6 @@
         </div><!-- has_readme-3F-method -->
 
       
-        <div id="location_uri_from_file_url-method" class="method-detail ">
-          <a name="method-i-location_uri_from_file_url"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">location_uri_from_file_url</span><span
-              class="method-args">(location_url)</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="location_uri_from_file_url-source">
-<pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 68</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">location_uri_from_file_url</span>(<span class="ruby-identifier">location_url</span>)
-  <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">location_url</span>[<span class="ruby-regexp">%{^(https?://.*/)[^.]+\.[^/]+$}</span>, <span class="ruby-value">1</span>]
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_location_url</span>
-    <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">location_url</span>)
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">valid_location_url</span>)
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- location_uri_from_file_url-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- location_uri_from_file_url-method -->
-
-      
         <div id="readme_url-method" class="method-detail ">
           <a name="method-i-readme_url"></a>
 
@@ -649,13 +682,13 @@
 
           <div class="method-description">
             
-            
+            <p>Url for readme.txt</p>
             
 
             
             <div class="method-source-code" id="readme_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 76</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">readme_url</span>
   <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -682,13 +715,13 @@
 
           <div class="method-description">
             
-            
+            <p>To string. Adds a version number if detected</p>
             
 
             
             <div class="method-source-code" id="to_s-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 55</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">item_version</span> = <span class="ruby-identifier">version</span>
   <span class="ruby-node">&quot;#@name#{' v' + item_version.strip if item_version}&quot;</span>
@@ -716,13 +749,13 @@
 
           <div class="method-description">
             
-            
+            <p>Returns version number from readme.txt if it exists</p>
             
 
             
             <div class="method-source-code" id="version-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 37</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@version</span>
     <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">get_url</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>).<span class="ruby-identifier">to_s</span>)

@@ -16,27 +16,11 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require "#{WPSCAN_LIB_DIR}/vulnerable"
-
 class WpPlugin < WpItem
-
-  attr_reader :name
-
   def initialize(options = {})
-    @url            = options[:url]
-    @path           = options[:path]
-    @wp_content_dir = options[:wp_content_dir]
-    @vulns_xml      = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
-    @vulns_xpath    = "//plugin[@name='#@name']/vulnerability"
-    @version        = nil
-
-    raise("url not set") unless @url
-    raise("path not set") unless @path
-    raise("wp_content_dir not set") unless @wp_content_dir
-    raise("name not set") unless @name
-    raise("vulns_xml not set") unless @vulns_xml
-
-    super(:wp_content_dir => @wp_content_dir, :url => @url, :path => @path)
+    options[:vulns_xml]   = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
+    options[:vulns_xpath] = "//plugin[@name='#@name']/vulnerability"
+    super(options)
   end
 
   # Discover any error_log files created by WordPress

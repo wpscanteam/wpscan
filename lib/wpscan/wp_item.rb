@@ -16,8 +16,10 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
+require "#{WPSCAN_LIB_DIR}/vulnerable"
+
 class WpItem < Vulnerable
-  attr_accessor :path, :url, :wp_content_dir, :name
+  attr_accessor :path, :url, :wp_content_dir, :name, :vulns_xml, :vulns_xpath
   @version = nil
 
   def initialize(options = {})
@@ -25,6 +27,14 @@ class WpItem < Vulnerable
     @url            = options[:url]
     @path           = options[:path]
     @name           = options[:name] || extract_name_from_url
+    @vulns_xml      = options[:vulns_xml]
+    @vulns_xpath    = options[:vulns_xpath]
+
+    raise("url not set") unless @url
+    raise("path not set") unless @path
+    raise("wp_content_dir not set") unless @wp_content_dir
+    raise("name not set") unless @name
+    raise("vulns_xml not set") unless @vulns_xml
   end
 
   # Get the full url for this item

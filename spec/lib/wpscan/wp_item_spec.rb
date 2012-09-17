@@ -19,14 +19,12 @@
 require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpPlugin do
-  before :all do
-    @browser = Browser.instance(:config_file => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json')
-  end
-
   before :each do
     @instance = WpItem.new(:wp_content_dir  => "wp-content",
                            :url             => "http://sub.example.com/path/to/wordpress/",
-                           :path            => "plugins/test/asdf.php")
+                           :path            => "plugins/test/asdf.php",
+                           :vulns_xml       => "XXX.xml"
+    )
   end
 
   describe "#initialize" do
@@ -76,9 +74,20 @@ describe WpPlugin do
       @instance.path = "plugins/test/"
       @instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
     end
+
+    it "should return the correct url (https)" do
+      @instance.url = "https://sub.example.com/path/to/wordpress/"
+      @instance.get_url_without_filename.to_s.should == "https://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
+    end
+
+    it "should add the last slash if it's not present" do
+      @instance.path = "plugins/test-one"
+      @instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test-one/"
+    end
   end
 
   describe "#version" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR + '/version' }
     it "should return a version number" do
       stub_request(:get, @instance.readme_url.to_s).to_return(:status => 200, :body => "Stable tag: 1.2.4.3.2.1")
       @instance.version.should == "1.2.4.3.2.1"
@@ -88,17 +97,37 @@ describe WpPlugin do
       stub_request(:get, @instance.readme_url.to_s).to_return(:status => 200, :body => "Stable tag: trunk")
       @instance.version.should be nil
     end
+
+    it "should return nil if the version is invalid (IE : trunk etc)" do
+      stub_request(:get, @instance.readme_url.to_s).to_return(:status => 200,
+                                                              :body => File.new(fixtures_dir + '/trunk-version.txt'))
+      @instance.version.should be_nil
+    end
+
+    it "should return the version 0.4" do
+      stub_request(:get, @instance.readme_url.to_s).to_return(:status => 200,
+                                                              :body => File.new(fixtures_dir + '/simple-login-lockdown-0.4.txt'))
+
+      @instance.version.should === "0.4"
+    end
   end
 
   describe "#directory_listing?" do
     it "should return true" do
-      stub_request(:get, @instance.get_url_without_filename.to_s).to_return(:status => 200, :body => "<html><head><title>Index of asdf</title></head></html>")
+      stub_request(:get, @instance.get_url_without_filename.to_s).to_return(:status => 200,
+                                                                            :body => "<html><head><title>Index of asdf</title></head></html>")
       @instance.directory_listing?.should == true
     end
 
     it "should return false" do
-      stub_request(:get, @instance.get_url_without_filename.to_s).to_return(:status => 200, :body => "<html><head><title>My Wordpress Site</title></head></html>")
+      stub_request(:get, @instance.get_url_without_filename.to_s).to_return(:status => 200,
+                                                                            :body => "<html><head><title>My Wordpress Site</title></head></html>")
       @instance.directory_listing?.should == false
+    end
+
+    it "should return false on a 404" do
+      stub_request(:get, @instance.get_url_without_filename.to_s.to_s).to_return(:status => 404)
+      @instance.directory_listing?.should be_false
     end
   end
 
@@ -146,14 +175,18 @@ describe WpPlugin do
     it "should return false" do
       instance2 = WpItem.new(:wp_content_dir  => "wp-content",
                              :url             => "http://sub.example.com/path/to/wordpress/",
-                             :path            => "plugins/newname/asdf.php")
+                             :path            => "plugins/newname/asdf.php",
+                             :vulns_xml       => "XXX.xml"
+      )
       (@instance==instance2).should == false
     end
 
     it "should return true" do
       instance2 = WpItem.new(:wp_content_dir  => "wp-content",
                              :url             => "http://sub.example.com/path/to/wordpress/",
-                             :path            => "plugins/test/asdf.php")
+                             :path            => "plugins/test/asdf.php",
+                             :vulns_xml       => "XXX.xml"
+      )
       (@instance==instance2).should == true
     end
   end
