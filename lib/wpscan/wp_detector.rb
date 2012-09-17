@@ -61,7 +61,7 @@ class WpDetector
 
     names.each do |item|
       items << {
-          :url            =>  url,
+          :url            => url,
           :name           => item,
           :path           => "#{type}/#{item}/",
           :wp_content_dir => wp_content_dir

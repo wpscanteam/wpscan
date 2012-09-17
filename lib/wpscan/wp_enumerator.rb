@@ -50,11 +50,12 @@ class WpEnumerator
     enumerate_size = targets.size
 
     targets.each do |target|
-      if options[:type] =~ /timthumbs/i
-        url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
-      else
-        url = "#{target[:url]}#{target[:wp_content_dir]}/#{options[:type]}/#{target[:path]}"
+      # Timthumb files have no /timthumbs/ directory
+      unless options[:type] =~ /timthumbs/i
+        target[:path] = "#{options[:type]}/#{target[:path]}"
       end
+      url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
+
       request = enum_browser.forge_request(url, :cache_timeout => 0, :follow_location => true)
       request_count += 1
 
@@ -120,7 +121,7 @@ class WpEnumerator
         if targets_url.grep(%r{/#{item_name}/}).empty?
           targets_url << {
               :url            => url,
-              :path           => "#{type}/#{item_name}",
+              :path           => item_name,
               :wp_content_dir => wp_content_dir,
               :name           => item_name
           }

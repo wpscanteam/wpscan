@@ -90,8 +90,8 @@ begin
 
   wp_theme = wp_target.theme
   if wp_theme
-    theme_version = wp_theme.version
-    puts "[!] The WordPress theme in use is #{wp_theme}#{' v' + theme_version if theme_version}"
+    # Theme version is handled in wp_item.to_s
+    puts "[!] The WordPress theme in use is #{wp_theme}"
 
     theme_vulnerabilities = wp_theme.vulnerabilities
     unless theme_vulnerabilities.empty?
