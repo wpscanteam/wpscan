@@ -17,23 +17,37 @@
 #++
 
 class WpItem < Vulnerable
-  attr_accessor :path, :url, :wp_content_dir
+  attr_accessor :path, :url, :wp_content_dir, :name
   @version = nil
 
+  def initialize(options = {})
+    @wp_content_dir = options[:wp_content_dir]
+    @url            = options[:url]
+    @path           = options[:path]
+    @name           = options[:name] || extract_name_from_url
+  end
+
+  # Get the full url for this item
   def get_url
-    URI.parse("#{@url.to_s}#@wp_content_dir/#@path")
+    url = @url.to_s.end_with?("/") ? @url.to_s : "#@url/"
+    # remove first and last /
+    wp_content_dir = @wp_content_dir.sub(/^\//, "").sub(/\/$/, "")
+    # remove first /
+    path = @path.sub(/^\//, "")
+    URI.parse("#{url}#{wp_content_dir}/#{path}")
   end
 
+  # Gets the full url for this item without filenames
   def get_url_without_filename
-    matches = @path.match(%r{^(.*/).*$})
-    if matches == nil or matches.length < 2
-      dirname = @path
-    else
-      dirname = matches[1]
+    location_url = get_url.to_s
+    valid_location_url = location_url[%r{^(https?://.*/)[^.]+\.[^/]+$}, 1]
+    unless valid_location_url
+      valid_location_url = add_trailing_slash(location_url)
     end
-    URI.parse("#{@url.to_s}#@wp_content_dir/#{dirname}")
+    URI.parse(valid_location_url)
   end
 
+  # Returns version number from readme.txt if it exists
   def version
     unless @version
       response = Browser.instance.get(get_url.merge("readme.txt").to_s)
@@ -45,42 +59,36 @@ class WpItem < Vulnerable
   # Is directory listing enabled?
   def directory_listing?
     # Need to remove to file part from the url
-    Browser.instance.get(location_uri_from_file_url(get_url.to_s)).body[%r{<title>Index of}] ? true : false
+    Browser.instance.get(get_url_without_filename).body[%r{<title>Index of}] ? true : false
   end
 
-  def extract_name_from_url(url)
-    url.to_s[%r{^(https?://.*/([^/]+)/)}i, 2]
+  # Extract item name from a url
+  def extract_name_from_url
+    get_url.to_s[%r{^(https?://.*/([^/]+)/)}i, 2]
   end
 
+  # To string. Adds a version number if detected
   def to_s
     item_version = version
     "#@name#{' v' + item_version.strip if item_version}"
   end
 
+  # Object comparer
   def ==(item)
     item.name == @name
   end
 
-  def <=>(item)
-    item.name <=> @name
-  end
-
-  def location_uri_from_file_url(location_url)
-    valid_location_url = location_url[%r{^(https?://.*/)[^.]+\.[^/]+$}, 1]
-    unless valid_location_url
-      valid_location_url = add_trailing_slash(location_url)
-    end
-    URI.parse(valid_location_url)
-  end
-
+  # Url for readme.txt
   def readme_url
     get_url_without_filename.merge("readme.txt")
   end
 
+  # Url for changelog.txt
   def changelog_url
     get_url_without_filename.merge("changelog.txt")
   end
 
+  # readme.txt present?
   def has_readme?
     unless @readme
       status = Browser.instance.get(readme_url).code
@@ -89,6 +97,7 @@ class WpItem < Vulnerable
     @readme
   end
 
+  # changelog.txt present?
   def has_changelog?
     unless @changelog
       status = Browser.instance.get(changelog_url).code

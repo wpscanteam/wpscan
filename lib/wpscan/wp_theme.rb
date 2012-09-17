@@ -24,7 +24,6 @@ class WpTheme < WpItem
 
   def initialize(options = {})
     @url            = options[:url]
-    @name           = options[:name] || extract_name_from_url(get_url)
     @path           = options[:path]
     @wp_content_dir = options[:wp_content_dir]
     @vulns_xml      = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
@@ -38,6 +37,8 @@ class WpTheme < WpItem
     raise("wp_content_dir not set") unless @wp_content_dir
     raise("name not set") unless @name
     raise("vulns_xml not set") unless @vulns_xml
+
+    super(:wp_content_dir => @wp_content_dir, :url => @url, :path => @path)
   end
 
   def version
@@ -48,7 +49,6 @@ class WpTheme < WpItem
     end
     @version
   end
-
 
   def self.find(target_uri)
     self.methods.grep(/find_from_/).each do |method_to_call|
