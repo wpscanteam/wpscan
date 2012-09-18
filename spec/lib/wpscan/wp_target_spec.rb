@@ -34,6 +34,7 @@ describe WpTarget do
   it_should_behave_like "WpReadme"
   it_should_behave_like "WpConfigBackup"
   it_should_behave_like "WpFullPathDisclosure"
+  it_should_behave_like "WpLoginProtection"
   it_should_behave_like "Malwares"
   it_should_behave_like "WpUsernames"
   it_should_behave_like "WpTimthumbs"

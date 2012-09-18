@@ -149,7 +149,7 @@ class WpscanOptions
       )
     elsif cli_option === "--enumerate" # Special cases
       # Default value if no argument is given
-      cli_value = "Ttup" if cli_value.length == 0
+      cli_value = "T!tup!" if cli_value.length == 0
 
       enumerate_options_from_string(cli_value)
     else

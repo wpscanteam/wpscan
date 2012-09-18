@@ -21,6 +21,7 @@ class WpTarget
   include WpReadme
   include WpFullPathDisclosure
   include WpConfigBackup
+  include WpLoginProtection
   include Malwares
   include WpUsernames
   include WpTimthumbs
