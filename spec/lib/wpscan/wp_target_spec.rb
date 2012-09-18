@@ -28,7 +28,7 @@ describe WpTarget do
       :config_file   => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
       :cache_timeout => 0,
       :wp_content_dir => @wp_content_dir,
-      :wp_plugins_dir => "wp-content/plugins/"
+      :wp_plugins_dir => "wp-content/plugins"
     }
     @wp_target = WpTarget.new("http://example.localhost/", @options)
   end

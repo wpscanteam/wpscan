@@ -29,6 +29,13 @@ shared_examples_for "WpPlugins" do
     @module = WpScanModuleSpec.new(@wp_url)
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
     @module.extend(WpPlugins)
+
+    @options = { :url => @wp_url,
+                 :only_vulnerable_ones => true,
+                 :wp_content_dir => "wp-content",
+                 :show_progress_bar => false,
+                 :error_404_hash => @module.error_404_hash
+    }
   end
 
   describe "#plugins_from_passive_detection" do
@@ -37,7 +44,7 @@ shared_examples_for "WpPlugins" do
     it "should return an empty array" do
       stub_request_to_fixture(:url => @module.url, :fixture => File.new(passive_detection_fixtures + '/no_plugins.htm'))
 
-      plugins = @module.plugins_from_passive_detection
+      plugins = @module.plugins_from_passive_detection(@options)
       plugins.should be_empty
     end
 
@@ -61,58 +68,31 @@ shared_examples_for "WpPlugins" do
                                          :name => plugin_name)
       end
 
-      plugins = @module.plugins_from_passive_detection
+      plugins = @module.plugins_from_passive_detection(@options)
       plugins.should_not be_empty
       plugins.sort.should === expected_plugins.sort
-    end
-  end
-
-  describe "#plugins_targets_url" do
-    let(:expected_for_only_vulnerable) {
-      [WpPlugin.new(:wp_content_dir => "wp-content",
-                   :url => @module.url,
-                   :path => "/plugins/media-library/",
-                   :name => plugin_name).get_url.to_s,
-      WpPlugin.new(:wp_content_dir => "wp-content",
-                   :url => @module.url,
-                   :path => "/plugins/deans/",
-                   :name => plugin_name).get_url.to_s]
-    }
-    let(:expected_for_all) {
-      expected_for_only_vulnerable + File.open(@plugins_file, 'r') {|file| file.readlines.collect{|line| WpPlugin.create_url_from_raw(line.chomp, @module.uri)}}.uniq!
-    }
-
-    it "should only return url from plugin_vulns_file if :only_vulnerable_ones is true" do
-      targets_url = @module.plugins_targets_url(
-        :only_vulnerable_ones => true,
-        :plugin_vulns_file => @plugin_vulns_file
-      )
-
-      targets_url.should_not be_empty
-      targets_url.sort.should === expected_for_only_vulnerable.sort
-    end
-
-    it "should return both url from plugins_file and plugin_vulns_file" do
-      targets_url = @module.plugins_targets_url(
-        :plugin_vulns_file => @plugin_vulns_file,
-        :plugins_file => @plugins_file
-      )
-
-      targets_url.should_not be_empty
-      targets_url.sort.should === expected_for_all.sort
     end
   end
 
   describe "#plugins_from_aggressive_detection" do
 
     before :each do
-      @targets_url = @module.plugins_targets_url(
-        :plugin_vulns_file => @plugin_vulns_file,
-        :plugins_file => @plugins_file
-      )
+      @wp_url = "http://example.localhost"
+      @module = WpScanModuleSpec.new(@wp_url)
+      @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
+      @module.extend(WpPlugins)
+      @options = { :url => @wp_url,
+                 :only_vulnerable_ones => true,
+                 :wp_content_dir => "wp-content",
+                 :show_progress_bar => false,
+                 :error_404_hash => @module.error_404_hash,
+                 :vulns_file => @plugin_vulns_file,
+                 :file => @plugins_file
+      }
+      @targets_url = WpEnumerator.generate_items(@options)
       # Point all targets to a 404
-      @targets_url.each do |target_url|
-        stub_request(:get, target_url).to_return(:status => 404)
+      @targets_url.each do |target|
+        stub_request(:get, "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}").to_return(:status => 404)
       end
     end
 

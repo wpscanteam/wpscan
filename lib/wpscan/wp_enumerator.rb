@@ -83,7 +83,7 @@ class WpEnumerator
     found
   end
 
-  private
+  protected
 
   def self.generate_items(options = {})
     only_vulnerable   = options[:only_vulnerable_ones]
