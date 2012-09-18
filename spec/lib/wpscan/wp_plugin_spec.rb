@@ -24,16 +24,16 @@ describe WpPlugin do
       expect { WpPlugin.new(:url => "url", :path => "path", :wp_content_dir => "dir", :name => "name") }.to_not raise_error
     end
 
+    it "should not raise an exception (wp_content_dir not set)" do
+      expect { WpPlugin.new(:url => "url", :path => "path", :name => "name") }.to_not raise_error
+    end
+
     it "should raise an exception (url not set)" do
       expect { WpPlugin.new(:path => "path", :wp_content_dir => "dir", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (path not set)" do
       expect { WpPlugin.new(:url => "url", :wp_content_dir => "dir", :name => "name") }.to raise_error
-    end
-
-    it "should raise an exception (wp_content_dir not set)" do
-      expect { WpPlugin.new(:url => "url", :path => "path", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (name not set)" do
@@ -44,8 +44,7 @@ describe WpPlugin do
   describe "#error_log_url" do
     it "should return a correct url" do
       temp = WpPlugin.new(:url            => "http://wordpress.com",
-                          :path           => "plugins/test/asdf.php",
-                          :wp_content_dir => "wp-content")
+                          :path           => "plugins/test/asdf.php")
       temp.error_log_url.to_s.should == "http://wordpress.com/wp-content/plugins/test/error_log"
     end
   end
@@ -53,8 +52,7 @@ describe WpPlugin do
   describe "#error_log?" do
     before :each do
       @temp = WpPlugin.new(:url           => "http://wordpress.com",
-                          :path           => "plugins/test/asdf.php",
-                          :wp_content_dir => "wp-content")
+                          :path           => "plugins/test/asdf.php")
     end
 
     it "should return true" do

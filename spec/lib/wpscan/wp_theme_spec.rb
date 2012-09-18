@@ -33,16 +33,16 @@ describe WpTheme do
       expect { WpTheme.new(:url => "url", :path => "path", :wp_content_dir => "dir", :name => "name") }.to_not raise_error
     end
 
+    it "should not raise an exception (wp_content_dir not set)" do
+      expect { WpTheme.new(:url => "url", :path => "path", :name => "name") }.to_not raise_error
+    end
+
     it "should raise an exception (url not set)" do
       expect { WpTheme.new(:path => "path", :wp_content_dir => "dir", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (path not set)" do
       expect { WpTheme.new(:url => "url", :wp_content_dir => "dir", :name => "name") }.to raise_error
-    end
-
-    it "should raise an exception (wp_content_dir not set)" do
-      expect { WpTheme.new(:url => "url", :path => "path", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (name not set)" do
@@ -179,14 +179,12 @@ describe WpTheme do
 
   describe "#===" do
     it "should return false (name not equal)" do
-      instance = WpTheme.new(:wp_content_dir  => "wp-content",
-                             :url             => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "themes/name/asdf.php",
                              :vulns_xml       => "XXX.xml",
                              :version         => "1.0"
       )
-      instance2 = WpTheme.new(:wp_content_dir  => "wp-content",
-                              :url             => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                               :path            => "themes/newname/asdf.php",
                               :vulns_xml       => "XXX.xml",
                               :version         => "1.0"
@@ -195,14 +193,12 @@ describe WpTheme do
     end
 
     it "should return false (version not equal)" do
-      instance = WpTheme.new(:wp_content_dir  => "wp-content",
-                             :url             => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "themes/name/asdf.php",
                              :vulns_xml       => "XXX.xml",
                              :version         => "1.0"
       )
-      instance2 = WpTheme.new(:wp_content_dir  => "wp-content",
-                              :url             => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                               :path            => "themes/name/asdf.php",
                               :vulns_xml       => "XXX.xml",
                               :version         => "2.0"
@@ -211,14 +207,12 @@ describe WpTheme do
     end
 
     it "should return false (version and name not equal)" do
-      instance = WpTheme.new(:wp_content_dir  => "wp-content",
-                             :url             => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "themes/name/asdf.php",
                              :vulns_xml       => "XXX.xml",
                              :version         => "1.0"
       )
-      instance2 = WpTheme.new(:wp_content_dir  => "wp-content",
-                              :url             => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                               :path            => "themes/newname/asdf.php",
                               :vulns_xml       => "XXX.xml",
                               :version         => "2.0"
@@ -227,14 +221,12 @@ describe WpTheme do
     end
 
     it "should return true" do
-      instance = WpTheme.new(:wp_content_dir  => "wp-content",
-                             :url             => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "themes/test/asdf.php",
                              :vulns_xml       => "XXX.xml",
                              :version         => "1.0"
       )
-      instance2 = WpTheme.new(:wp_content_dir  => "wp-content",
-                              :url             => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
                               :path            => "themes/test/asdf.php",
                               :vulns_xml       => "XXX.xml",
                               :version         => "1.0"

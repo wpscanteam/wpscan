@@ -23,7 +23,7 @@ class WpItem < Vulnerable
   @version = nil
 
   def initialize(options = {})
-    @wp_content_dir = options[:wp_content_dir]
+    @wp_content_dir = options[:wp_content_dir] || "wp-content"
     @url            = options[:url]
     @path           = options[:path]
     @name           = options[:name] || extract_name_from_url

@@ -32,7 +32,6 @@ shared_examples_for "WpPlugins" do
 
     @options = { :url => @wp_url,
                  :only_vulnerable_ones => true,
-                 :wp_content_dir => "wp-content",
                  :show_progress_bar => false,
                  :error_404_hash => @module.error_404_hash
     }
@@ -62,8 +61,7 @@ shared_examples_for "WpPlugins" do
       }
       expected_plugins = []
       expected_plugin_names.each do |plugin_name|
-        expected_plugins << WpPlugin.new(:wp_content_dir => "wp-content",
-                                         :url => @module.url,
+        expected_plugins << WpPlugin.new(:url => @module.url,
                                          :path => "/plugins/#{plugin_name}/",
                                          :name => plugin_name)
       end
@@ -83,7 +81,6 @@ shared_examples_for "WpPlugins" do
       @module.extend(WpPlugins)
       @options = { :url => @wp_url,
                  :only_vulnerable_ones => true,
-                 :wp_content_dir => "wp-content",
                  :show_progress_bar => false,
                  :error_404_hash => @module.error_404_hash,
                  :vulns_file => @plugin_vulns_file,

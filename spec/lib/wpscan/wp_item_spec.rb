@@ -20,8 +20,7 @@ require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpPlugin do
   before :each do
-    @instance = WpItem.new(:wp_content_dir  => "wp-content",
-                           :url             => "http://sub.example.com/path/to/wordpress/",
+    @instance = WpItem.new(:url             => "http://sub.example.com/path/to/wordpress/",
                            :path            => "plugins/test/asdf.php",
                            :vulns_xml       => "XXX.xml"
     )
@@ -173,8 +172,7 @@ describe WpPlugin do
 
   describe "#==" do
     it "should return false" do
-      instance2 = WpItem.new(:wp_content_dir  => "wp-content",
-                             :url             => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpItem.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "plugins/newname/asdf.php",
                              :vulns_xml       => "XXX.xml"
       )
@@ -182,8 +180,7 @@ describe WpPlugin do
     end
 
     it "should return true" do
-      instance2 = WpItem.new(:wp_content_dir  => "wp-content",
-                             :url             => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpItem.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "plugins/test/asdf.php",
                              :vulns_xml       => "XXX.xml"
       )

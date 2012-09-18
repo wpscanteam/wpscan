@@ -100,8 +100,7 @@ shared_examples_for "WpLoginProtection" do
 
     it "should return a login-lockdown WpPlugin object" do
       @fixture = @fixtures_dir + "/wp-login-login_lockdown.php"
-      @plugin_expected = WpPlugin.new(:wp_content_dir => "wp-content",
-                                      :url => @module.url,
+      @plugin_expected = WpPlugin.new(:url => @module.url,
                                       :path => "/plugins/login-lockdown/",
                                       :name => "login-lockdown"
       )
@@ -110,8 +109,7 @@ shared_examples_for "WpLoginProtection" do
 
     it "should return a login-lock WpPlugin object" do
       @fixture = @fixtures_dir + "/wp-login-login_lock.php"
-      @plugin_expected = WpPlugin.new(:wp_content_dir => "wp-content",
-                                      :url => @module.url,
+      @plugin_expected = WpPlugin.new(:url => @module.url,
                                       :path => "/plugins/login-lock/",
                                       :name => "login-lock"
       )
