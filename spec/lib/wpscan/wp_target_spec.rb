@@ -22,12 +22,15 @@ describe WpTarget do
 
   before :each do
     Browser.reset
-    @browser_options =
+    @wp_content_dir = "wp-content"
+    @options =
     {
       :config_file   => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
-      :cache_timeout => 0
+      :cache_timeout => 0,
+      :wp_content_dir => @wp_content_dir,
+      :wp_plugins_dir => "wp-content/plugins/"
     }
-    @wp_target = WpTarget.new("http://example.localhost/", @browser_options)
+    @wp_target = WpTarget.new("http://example.localhost/", @options)
   end
 
   it_should_behave_like "WebSite"
@@ -47,11 +50,11 @@ describe WpTarget do
     end
 
     it "should add the http protocol if missing" do
-      WpTarget.new("example.localhost/", @browser_options).url.should === "http://example.localhost/"
+      WpTarget.new("example.localhost/", @options).url.should === "http://example.localhost/"
     end
 
     it "should add the trailing slash to the url if missing" do
-      WpTarget.new("lamp/wordpress", @browser_options).url.should === "http://lamp/wordpress/"
+      WpTarget.new("lamp/wordpress", @options).url.should === "http://lamp/wordpress/"
     end
   end
 

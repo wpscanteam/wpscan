@@ -38,7 +38,9 @@ module WpLoginProtection
 
           return @login_protection_plugin = WpPlugin.new(
               :name => plugin_name,
-              :url => @uri.to_s
+              :url => @uri,
+              :path => "/plugins/#{plugin_name}/",
+              :wp_content_dir => @wp_content_dir
           )
         end
       end
@@ -65,7 +67,11 @@ module WpLoginProtection
   end
 
   def better_wp_security_url
-    WpPlugin.create_location_url_from_name("better-wp-security", @uri)
+    WpPlugin.new(:wp_content_dir => @wp_content_dir,
+                 :url => @uri,
+                 :path => "/plugins/better-wp-security/",
+                 :name => "better-wp-security"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/simple-login-lockdown/
@@ -74,7 +80,11 @@ module WpLoginProtection
   end
 
   def simple_login_lockdown_url
-    WpPlugin.create_location_url_from_name("simple-login-lockdown", @uri)
+    WpPlugin.new(:wp_content_dir => @wp_content_dir,
+                 :url => @uri,
+                 :path => "/plugins/simple-login-lockdown/",
+                 :name => "simple-login-lockdown"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/login-security-solution/
@@ -83,7 +93,11 @@ module WpLoginProtection
   end
 
   def login_security_solution_url
-    WpPlugin.create_location_url_from_name("login-security-solution", @uri)
+    WpPlugin.new(:wp_content_dir => @wp_content_dir,
+                 :url => @uri,
+                 :path => "/plugins/login-security-solution/",
+                 :name => "login-security-solution"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/limit-login-attempts/
@@ -92,7 +106,11 @@ module WpLoginProtection
   end
 
   def limit_login_attempts_url
-    WpPlugin.create_location_url_from_name("limit-login-attempts", @uri)
+    WpPlugin.new(:wp_content_dir => @wp_content_dir,
+                 :url => @uri,
+                 :path => "/plugins/limit-login-attempts/",
+                 :name => "limit-login-attempts"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/bluetrait-event-viewer/
@@ -101,6 +119,10 @@ module WpLoginProtection
   end
 
   def bluetrait_event_viewer_url
-    WpPlugin.create_location_url_from_name("bluetrait-event-viewer", @uri)
+    WpPlugin.new(:wp_content_dir => @wp_content_dir,
+                 :url => @uri,
+                 :path => "/plugins/bluetrait-event-viewer/",
+                 :name => "bluetrait-event-viewer"
+    ).get_url_without_filename
   end
 end

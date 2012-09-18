@@ -44,21 +44,21 @@ shared_examples_for "WpPlugins" do
     it "should return the expected plugins" do
       stub_request_to_fixture(:url => @module.url, :fixture => File.new(passive_detection_fixtures + '/various_plugins.htm'))
 
-      expected_plugin_names = [
-        'wp-minify',
-        'comment-info-tip',
-        'tweet-blender',
-        'optinpop',
-        's2member',
-        'wp-polls',
-        'commentluv'
-      ]
+      expected_plugin_names = %w{
+        wp-minify
+        comment-info-tip
+        tweet-blender
+        optinpop
+        s2member
+        wp-polls
+        commentluv
+      }
       expected_plugins = []
       expected_plugin_names.each do |plugin_name|
-        expected_plugins << WpPlugin.new(
-          WpPlugin.create_location_url_from_name(plugin_name, @module.url),
-          :name => plugin_name
-        )
+        expected_plugins << WpPlugin.new(:wp_content_dir => "wp-content",
+                                         :url => @module.url,
+                                         :path => "/plugins/#{plugin_name}/",
+                                         :name => plugin_name)
       end
 
       plugins = @module.plugins_from_passive_detection
@@ -69,7 +69,14 @@ shared_examples_for "WpPlugins" do
 
   describe "#plugins_targets_url" do
     let(:expected_for_only_vulnerable) {
-      [WpPlugin.create_location_url_from_name("media-library", @module.url), WpPlugin.create_location_url_from_name("deans", @module.url)]
+      [WpPlugin.new(:wp_content_dir => "wp-content",
+                   :url => @module.url,
+                   :path => "/plugins/media-library/",
+                   :name => plugin_name).get_url.to_s,
+      WpPlugin.new(:wp_content_dir => "wp-content",
+                   :url => @module.url,
+                   :path => "/plugins/deans/",
+                   :name => plugin_name).get_url.to_s]
     }
     let(:expected_for_all) {
       expected_for_only_vulnerable + File.open(@plugins_file, 'r') {|file| file.readlines.collect{|line| WpPlugin.create_url_from_raw(line.chomp, @module.uri)}}.uniq!
