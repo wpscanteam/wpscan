@@ -29,7 +29,7 @@ module WpTimthumbs
     if @wp_timthumbs.nil?
       options[:type] = "timthumbs"
       options[:only_vulnerable_ones] = false
-      options[:file] = DATA_DIR + "/timthumbs.txt"
+      options[:file] = options[:file] || DATA_DIR + "/timthumbs.txt"
       options[:vulns_file] = "xxx"
       options[:vulns_xpath] = "xxx"
       options[:vulns_xpath_2] = "xxx"
@@ -50,10 +50,10 @@ module WpTimthumbs
     targets    = []
     theme_name = URI.escape(theme_name)
 
-    [
-      'timthumb.php', 'lib/timthumb.php', 'inc/timthumb.php', 'includes/timthumb.php',
-      'scripts/timthumb.php', 'tools/timthumb.php', 'functions/timthumb.php'
-    ].each do |file|
+    %w{
+      timthumb.php lib/timthumb.php inc/timthumb.php includes/timthumb.php
+      scripts/timthumb.php tools/timthumb.php functions/timthumb.php
+    }.each do |file|
       targets << {
           :url            => options[:url],
           :path           => "themes/#{theme_name}/#{file}",
