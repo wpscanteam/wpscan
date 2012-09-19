@@ -28,7 +28,7 @@ class WpItem < Vulnerable
     @path           = options[:path]
     @name           = options[:name] || extract_name_from_url
     @vulns_xml      = options[:vulns_xml]
-    @vulns_xpath    = options[:vulns_xpath]
+    @vulns_xpath    = options[:vulns_xpath].sub(/\$name\$/, @name)
 
     raise("url not set") unless @url
     raise("path not set") unless @path

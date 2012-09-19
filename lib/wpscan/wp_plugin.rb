@@ -19,7 +19,7 @@
 class WpPlugin < WpItem
   def initialize(options = {})
     options[:vulns_xml]     = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
-    options[:vulns_xpath]   = "//plugin[@name='#@name']/vulnerability"
+    options[:vulns_xpath]   = "//plugin[@name='$name$']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
     options[:type]          = "plugins"
     super(options)

@@ -24,7 +24,7 @@ class WpTheme < WpItem
 
   def initialize(options = {})
     options[:vulns_xml]   = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
-    options[:vulns_xpath] = "//theme[@name='#@name']/vulnerability"
+    options[:vulns_xpath] = "//theme[@name='$name$']/vulnerability"
     @version              = options[:version]
     @style_url            = options[:style_url]
     super(options)

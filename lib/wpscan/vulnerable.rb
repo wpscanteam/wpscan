@@ -30,9 +30,9 @@ class Vulnerable
 
     xml.xpath(@vulns_xpath).each do |node|
       vulnerabilities << WpVulnerability.new(
-        node.search('title').text,
-        node.search('reference').text,
-        node.search('type').text
+        node.search("title").text,
+        node.search("reference").text,
+        node.search("type").text
       )
     end
     vulnerabilities

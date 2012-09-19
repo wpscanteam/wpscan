@@ -22,7 +22,9 @@ describe WpPlugin do
   before :each do
     @instance = WpItem.new(:url             => "http://sub.example.com/path/to/wordpress/",
                            :path            => "plugins/test/asdf.php",
-                           :vulns_xml       => "XXX.xml"
+                           :vulns_xml       => "XXX.xml",
+                           :name            => "test",
+                           :vulns_xpath     => "XX"
     )
   end
 
@@ -174,7 +176,8 @@ describe WpPlugin do
     it "should return false" do
       instance2 = WpItem.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "plugins/newname/asdf.php",
-                             :vulns_xml       => "XXX.xml"
+                             :vulns_xml       => "XXX.xml",
+                             :vulns_xpath     => "XX"
       )
       (@instance==instance2).should == false
     end
@@ -182,7 +185,8 @@ describe WpPlugin do
     it "should return true" do
       instance2 = WpItem.new(:url             => "http://sub.example.com/path/to/wordpress/",
                              :path            => "plugins/test/asdf.php",
-                             :vulns_xml       => "XXX.xml"
+                             :vulns_xml       => "XXX.xml",
+                             :vulns_xpath     => "XX"
       )
       (@instance==instance2).should == true
     end
