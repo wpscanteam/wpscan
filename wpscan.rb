@@ -153,7 +153,7 @@ begin
     puts
     puts "[+] Enumerating plugins from passive detection ... "
 
-    plugins = wp_target.plugins_from_passive_detection(wp_target.wp_content_dir)
+    plugins = wp_target.plugins_from_passive_detection(:url => wp_target.uri, :wp_content_dir => wp_target.wp_content_dir)
     unless plugins.empty?
       puts "#{plugins.size} found :"
 
@@ -179,7 +179,7 @@ begin
     puts "[+] Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
     puts
 
-    options = WpOptions.get_empty_options
+    options = {}
     options[:url]                   = wp_target.uri
     options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
     options[:show_progress_bar]     = true
@@ -233,7 +233,7 @@ begin
     puts "[+] Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
     puts
 
-    options = WpOptions.get_empty_options
+    options = {}
     options[:url]                   = wp_target.uri
     options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
     options[:show_progress_bar]     = true
@@ -279,7 +279,7 @@ begin
     puts "[+] Enumerating timthumb files ..."
     puts
 
-    options                     = WpOptions.get_empty_options
+    options                     = {}
     options[:url]               = wp_target.uri
     options[:show_progress_bar] = true
     options[:wp_content_dir]    = wp_target.wp_content_dir

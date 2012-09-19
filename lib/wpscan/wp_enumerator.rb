@@ -56,7 +56,7 @@ class WpEnumerator
       end
       url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
 
-      request = enum_browser.forge_request(url, :cache_timeout => 0, :follow_location => true)
+      request = enum_browser.forge_request(url, { :cache_timeout => 0, :follow_location => true })
       request_count += 1
 
       request.on_complete do |response|
@@ -116,17 +116,14 @@ class WpEnumerator
 
       # We check if the plugin name from the plugin_vulns_file is already in targets, otherwise we add it
       xml.xpath(options[:vulns_xpath_2]).each do |node|
-        item_name = node.attribute('name').text
-
-        if targets_url.grep(%r{/#{item_name}/}).empty?
-          targets_url << {
-              :url            => url,
-              :path           => item_name,
-              :wp_content_dir => wp_content_dir,
-              :name           => item_name
-          }
+        name = node.attribute("name").text
+        targets_url << {
+            :url            => url,
+            :path           => name,
+            :wp_content_dir => wp_content_dir,
+            :name           => name
+        }
         end
-      end
     end
 
     targets_url.flatten!
@@ -134,5 +131,4 @@ class WpEnumerator
     # randomize the plugins array to *maybe* help in some crappy IDS/IPS/WAF detection
     targets_url.sort_by! { rand }
   end
-
 end

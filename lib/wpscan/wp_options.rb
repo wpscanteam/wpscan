@@ -31,22 +31,6 @@
 # * +error_404_hash+ - MD5 hash of a 404 page
 # * +type+ - Type: plugins, themes
 class WpOptions
-  def self.get_empty_options
-    options = {
-        :url                  => "",
-        :only_vulnerable_ones => false,
-        :file                 => "",
-        :vulns_file           => "",
-        :vulns_xpath          => "",
-        :vulns_xpath_2        => "",
-        :wp_content_dir       => "",
-        :show_progress_bar    => true,
-        :error_404_hash       => "",
-        :type                 => ""
-    }
-    options
-  end
-
   def self.check_options(options)
     raise("url must be set")                  unless options[:url] != nil and options[:url].to_s.length > 0
     raise("only_vulnerable_ones must be set") unless options[:only_vulnerable_ones] != nil

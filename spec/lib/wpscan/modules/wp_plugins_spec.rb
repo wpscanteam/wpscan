@@ -22,19 +22,38 @@ shared_examples_for "WpPlugins" do
     @fixtures_dir      = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_plugins'
     @plugins_file      = @fixtures_dir + "/plugins.txt"
     @plugin_vulns_file = @fixtures_dir + "/plugin_vulns.xml"
+
+    @wp_url = "http://example.localhost/"
   end
 
   before :each do
-    @wp_url = "http://example.localhost"
     @module = WpScanModuleSpec.new(@wp_url)
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
     @module.extend(WpPlugins)
 
     @options = { :url => @wp_url,
-                 :only_vulnerable_ones => true,
+                 :only_vulnerable_ones => false,
                  :show_progress_bar => false,
-                 :error_404_hash => @module.error_404_hash
+                 :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
+                 :vulns_file => @plugin_vulns_file,
+                 :file => @plugins_file,
+                 :type => "plugins",
+                 :wp_content_dir => "wp-content",
+                 :vulns_xpath_2 => "//plugin"
     }
+    File.exist?(@plugin_vulns_file).should == true
+    File.exist?(@plugins_file).should == true
+    target_hashes = WpEnumerator.generate_items(@options)
+    target_hashes.length.should > 0
+    @targets = []
+    target_hashes.each do |t|
+      @targets << WpPlugin.new(
+          :url            => t[:url],
+          :path           => "/plugins/#{t[:path]}",
+          :wp_content_dir => t[:wp_content_dir],
+          :name           => t[:name])
+    end
+    @targets.length.should > 0
   end
 
   describe "#plugins_from_passive_detection" do
@@ -42,8 +61,7 @@ shared_examples_for "WpPlugins" do
 
     it "should return an empty array" do
       stub_request_to_fixture(:url => @module.url, :fixture => File.new(passive_detection_fixtures + '/no_plugins.htm'))
-
-      plugins = @module.plugins_from_passive_detection(@options)
+      plugins = @module.plugins_from_passive_detection(:url => @module.url, :wp_content_dir => "wp-content")
       plugins.should be_empty
     end
 
@@ -66,42 +84,31 @@ shared_examples_for "WpPlugins" do
                                          :name => plugin_name)
       end
 
-      plugins = @module.plugins_from_passive_detection(@options)
+      plugins = @module.plugins_from_passive_detection(:url => @module.url, :wp_content_dir => "wp-content")
       plugins.should_not be_empty
-      plugins.sort.should === expected_plugins.sort
+      plugins.length.should == expected_plugins.length
+      plugins.sort.should == expected_plugins.sort
     end
   end
 
   describe "#plugins_from_aggressive_detection" do
 
     before :each do
-      @wp_url = "http://example.localhost"
-      @module = WpScanModuleSpec.new(@wp_url)
-      @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
-      @module.extend(WpPlugins)
-      @options = { :url => @wp_url,
-                 :only_vulnerable_ones => true,
-                 :show_progress_bar => false,
-                 :error_404_hash => @module.error_404_hash,
-                 :vulns_file => @plugin_vulns_file,
-                 :file => @plugins_file
-      }
-      @targets_url = WpEnumerator.generate_items(@options)
+      stub_request(:get, @module.uri.to_s).to_return(:status => 200)
       # Point all targets to a 404
-      @targets_url.each do |target|
-        stub_request(:get, "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}").to_return(:status => 404)
+      @targets.each do |target|
+        stub_request(:get, target.get_url.to_s).to_return(:status => 404)
+        # to_s calls readme_url
+        stub_request(:get, target.readme_url.to_s).to_return(:status => 404)
       end
     end
 
     after :each do
       @passive_detection_fixture = SPEC_FIXTURES_DIR + "/empty-file" unless @passive_detection_fixture
-
-      stub_request_to_fixture(:url => @wp_url, :fixture => @passive_detection_fixture)
-
-      @module.plugins_from_aggressive_detection(
-        :plugins_file => @plugins_file,
-        :plugin_vulns_file => @plugin_vulns_file
-      ).sort.should === @expected_plugins.sort
+      stub_request_to_fixture(:url => "#{@module.uri}/".sub(/\/\/$/, "/") + "wp-content/plugins/", :fixture => @passive_detection_fixture)
+      detected = @module.plugins_from_aggressive_detection(@options)
+      detected.length.should == @expected_plugins.length
+      detected.sort.should == @expected_plugins.sort
     end
 
     it "should return an empty array" do
@@ -109,25 +116,24 @@ shared_examples_for "WpPlugins" do
     end
 
     it "should return an array with 3 WpPlugin (1 detected from passive method)" do
-      @expected_plugins = []
-
-      @targets_url.sample(2).each do |target_url|
-        @expected_plugins << WpPlugin.new(target_url)
-        stub_request(:get, target_url).to_return(:status => 200)
-      end
-
       @passive_detection_fixture = @fixtures_dir + "/passive_detection/one_plugin.htm"
-      @expected_plugins << WpPlugin.new("http://example.localhost/wp-content/plugins/comment-info-tip/")
+      @expected_plugins = @targets.sample(2)
+      new_plugin = WpPlugin.new(:url => "http://example.localhost/",
+                                :path => "/plugins/comment-info-tip/",
+                                :name => "comment-info-tip")
+      stub_request(:get, new_plugin.readme_url.to_s).to_return(:status => 200)
+      @expected_plugins << new_plugin
     end
 
     # testing response codes
     WpTarget.valid_response_codes.each do |valid_response_code|
       it "should detect the plugin if the reponse.code is #{valid_response_code}" do
         @expected_plugins = []
-
-        plugin_url = @targets_url.sample
-        @expected_plugins << WpPlugin.new(plugin_url)
-        stub_request(:get, plugin_url).to_return(:status => valid_response_code)
+        plugin_url = [@targets.sample(1)[0]]
+        plugin_url.should_not be_nil
+        plugin_url.length.should == 1
+        @expected_plugins = plugin_url
+        stub_request(:get, plugin_url[0].get_url.to_s).to_return(:status => valid_response_code)
       end
     end
   end

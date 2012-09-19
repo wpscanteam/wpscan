@@ -45,9 +45,11 @@ module BruteForce
 
         # the request object
         request = Browser.instance.forge_request(login_url,
-          :method => :post,
-          :params => {:log => username, :pwd => password},
-          :cache_timeout => 0
+          {
+            :method => :post,
+            :params => {:log => username, :pwd => password},
+            :cache_timeout => 0
+          }
         )
 
         # tell hydra what to do when the request completes

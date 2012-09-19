@@ -19,17 +19,19 @@
 shared_examples_for "WpTimthumbs" do
 
   before :each do
-    @options                  = WpOptions.get_empty_options
-    @url                      = "http://example.localhost/"
-    @theme_name               = "bueno"
-    @options[:url]            = @url
-    @options[:wp_content_dir] = "wp-content"
-    @options[:name]           = @theme_name
-    @options[:error_404_hash] = "xx"
-    @module                   = WpScanModuleSpec.new(@url)
-    @fixtures_dir             = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
-    @timthumbs_file           = @fixtures_dir + "/timthumbs.txt"
-    @targets_from_file        =
+    @options                        = {}
+    @url                            = "http://example.localhost/"
+    @theme_name                     = "bueno"
+    @options[:url]                  = @url
+    @options[:wp_content_dir]       = "wp-content"
+    @options[:name]                 = @theme_name
+    @options[:error_404_hash]       = "xx"
+    @options[:show_progress_bar]    = false
+    @options[:only_vulnerable_ones] = false
+    @module                         = WpScanModuleSpec.new(@url)
+    @fixtures_dir                   = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
+    @timthumbs_file                 = @fixtures_dir + "/timthumbs.txt"
+    @targets_from_file              =
     %w{
       http://example.localhost/wp-content/plugins/fotoslide/timthumb.php
       http://example.localhost/wp-content/plugins/feature-slideshow/timthumb.php

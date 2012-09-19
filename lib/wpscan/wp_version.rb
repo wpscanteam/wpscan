@@ -60,14 +60,14 @@ class WpVersion < Vulnerable
   # that it is reinstated on upgrade.
   def self.find_from_meta_generator(options)
     target_uri = options[:url]
-    response = Browser.instance.get(target_uri.to_s, :follow_location => true, :max_redirects => 2)
+    response = Browser.instance.get(target_uri.to_s, { :follow_location => true, :max_redirects => 2 })
 
     response.body[%r{name="generator" content="wordpress ([^"]+)"}i, 1]
   end
 
   def self.find_from_rss_generator(options)
     target_uri = options[:url]
-    response = Browser.instance.get(target_uri.merge("feed/").to_s, :follow_location => true, :max_redirects => 2)
+    response = Browser.instance.get(target_uri.merge("feed/").to_s, { :follow_location => true, :max_redirects => 2 })
 
     response.body[%r{<generator>http://wordpress.org/\?v=([^<]+)</generator>}i, 1]
   end

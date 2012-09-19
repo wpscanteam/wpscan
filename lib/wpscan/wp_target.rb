@@ -117,4 +117,13 @@ class WpTarget
     @uri.merge("#{wp_content_dir()}/debug.log").to_s
   end
 
+  # Should check wp-login.php if registration is enabled or not
+  def registration_enabled?
+    # TODO
+  end
+
+  def registration_url
+    # TODO
+  end
+
 end

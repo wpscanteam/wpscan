@@ -39,7 +39,7 @@ module WpUsernames
       if response.code == 301 # username in location?
         username = response.headers_hash['location'][%r{/author/([^/]+)/}i, 1]
         # Get the real name from the redirect site
-        real_name = get_real_name_from_url(response.headers_hash['location'])
+        real_name = get_real_name_from_url(url)
       elsif response.code == 200 # username in body?
         username = response.body[%r{posts by (.*) feed}i, 1]
         real_name = get_real_name_from_response(response)
@@ -62,7 +62,7 @@ module WpUsernames
   end
 
   def get_real_name_from_url(url)
-    resp = Browser.instance.get(url, :follow_location => true, :max_redirects => 2)
+    resp = Browser.instance.get(url, { :follow_location => true, :max_redirects => 2 })
     real_name = nil
     if resp.code == 200
       real_name = extract_real_name_from_body(resp.body)

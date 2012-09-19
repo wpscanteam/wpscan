@@ -24,16 +24,14 @@ module WebSite
     wordpress = false
 
     response = Browser.instance.get(login_url(),
-      :follow_location => true,
-      :max_redirects => 2
+      { :follow_location => true, :max_redirects => 2 }
     )
 
     if response.body =~ %r{WordPress}i
       wordpress = true
     else
       response = Browser.instance.get(xmlrpc_url(),
-        :follow_location => true,
-        :max_redirects => 2
+        { :follow_location => true, :max_redirects => 2 }
       )
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i

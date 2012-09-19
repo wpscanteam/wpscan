@@ -19,25 +19,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpOptions do
-  describe "#get_empty_options" do
-    it "should initialize an empty options hash" do
-      options = WpOptions.get_empty_options
-      options[:url].should == ""
-      options[:only_vulnerable_ones].should == false
-      options[:file].should == ""
-      options[:vulns_file].should == ""
-      options[:vulns_xpath].should == ""
-      options[:vulns_xpath_2].should == ""
-      options[:wp_content_dir].should == ""
-      options[:show_progress_bar].should == true
-      options[:error_404_hash].should == ""
-      options[:type].should == ""
-    end
-  end
-
   describe "#check_options" do
     before :each do
-      @options = WpOptions.get_empty_options
+      @options = {}
       @options[:url]                   = "url"
       @options[:only_vulnerable_ones]  = false
       @options[:file]                  = "file"

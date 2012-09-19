@@ -22,8 +22,8 @@ module WpPlugins
   #
   # return array of WpPlugin
   def plugins_from_aggressive_detection(options)
-    options[:file]          = "#{DATA_DIR}/plugins.txt"
-    options[:vulns_file]    = "#{DATA_DIR}/plugin_vulns.xml"
+    options[:file]          = options[:file] || "#{DATA_DIR}/plugins.txt"
+    options[:vulns_file]    = options[:vulns_file] || "#{DATA_DIR}/plugin_vulns.xml"
     options[:vulns_xpath]   = "//plugin[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
     options[:type]          = "plugins"
@@ -46,16 +46,16 @@ module WpPlugins
   #   <link rel='stylesheet' href='http://example.com/wp-content/plugins/wp-minify/..' type='text/css' media='screen'/>
   #   ...
   # return array of WpPlugin
-  def plugins_from_passive_detection(wp_content_dir)
+  def plugins_from_passive_detection(options)
     plugins = []
-    temp = WpDetector.passive_detection(url(), "plugins", wp_content_dir)
+    temp = WpDetector.passive_detection(options[:url], "plugins", options[:wp_content_dir])
 
     temp.each do |item|
       plugins << WpPlugin.new(
           :url            => item[:url],
           :name           => item[:name],
           :path           => item[:path],
-          :wp_content_dir => wp_content_dir
+          :wp_content_dir => options[:wp_content_dir]
       )
     end
     plugins.sort_by { |p| p.name }

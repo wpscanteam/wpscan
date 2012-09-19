@@ -83,9 +83,19 @@ class WpItem < Vulnerable
     "#@name#{' v' + item_version.strip if item_version}"
   end
 
-  # Object comparer
-  def ==(item)
-    item.name == @name
+  # Compare
+  def ==(other)
+    other.name == self.name
+  end
+
+  # Compare
+  def ===(other)
+    other.name == self.name
+  end
+
+  # Compare
+  def <=>(other)
+    other.name <=> self.name
   end
 
   # Url for readme.txt

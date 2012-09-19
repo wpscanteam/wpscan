@@ -24,7 +24,7 @@ class WpTheme < WpItem
 
   def initialize(options = {})
     options[:vulns_xml]   = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
-    options[:vulns_xpath] = "//theme[@name='#{@name}']/vulnerability"
+    options[:vulns_xpath] = "//theme[@name='#@name']/vulnerability"
     @version              = options[:version]
     @style_url            = options[:style_url]
     super(options)
@@ -56,7 +56,7 @@ class WpTheme < WpItem
 
   # Discover the wordpress theme name by parsing the css link rel
   def self.find_from_css_link(target_uri)
-    response = Browser.instance.get(target_uri.to_s, :follow_location => true, :max_redirects => 2)
+    response = Browser.instance.get(target_uri.to_s, { :follow_location => true, :max_redirects => 2 })
 
     if matches = %r{https?://[^"']+/themes/([^"']+)/style.css}i.match(response.body)
       style_url = matches[0]

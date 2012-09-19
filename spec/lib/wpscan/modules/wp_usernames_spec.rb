@@ -28,7 +28,7 @@ shared_examples_for "WpUsernames" do
 
   describe "#author_url" do
     it "should return the auhor url according to his id" do
-      @module.author_url(1).should === "#{@target_url}?author=1"
+      @module.author_url(1).should === "#@target_url?author=1"
     end
   end
 
@@ -49,7 +49,8 @@ shared_examples_for "WpUsernames" do
 
       usernames = @module.usernames
       usernames.should_not be_empty
-      usernames.should === ["Youhou"]
+      usernames.length.should == 1
+      usernames[0].should == "id: 3, name: Youhou"
     end
 
     it "should return an array with 1 username (from in the body response)" do
@@ -58,7 +59,7 @@ shared_examples_for "WpUsernames" do
 
       usernames = @module.usernames(:range => (1..2))
       usernames.should_not be_empty
-      usernames.should === ["admin"]
+      usernames.should === ["id: 2, name: admin, real name: admin | Wordpress 3.3.2"]
     end
 
     it "should return an array with 1 username (testing duplicates)" do
