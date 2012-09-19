@@ -77,6 +77,10 @@
           
           <li><a href="#method-i-login_url">#login_url</a></li>
           
+          <li><a href="#method-i-registration_enabled-3F">#registration_enabled?</a></li>
+          
+          <li><a href="#method-i-registration_url">#registration_url</a></li>
+          
           <li><a href="#method-i-theme">#theme</a></li>
           
           <li><a href="#method-i-url">#url</a></li>
@@ -111,6 +115,10 @@
         
         
           <li><a class="include" href="WpConfigBackup.html">WpConfigBackup</a></li>
+        
+        
+        
+          <li><a class="include" href="WpLoginProtection.html">WpLoginProtection</a></li>
         
         
         
@@ -213,6 +221,8 @@
           <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
         
           <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
         
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
@@ -327,7 +337,7 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 35</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 36</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">target_url</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-ivar">@uri</span>            = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">target_url</span>)))
   <span class="ruby-ivar">@verbose</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:verbose</span>]
@@ -365,7 +375,7 @@
             
             <div class="method-source-code" id="valid_response_codes-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 75</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_response_codes</span>
   [<span class="ruby-value">200</span>, <span class="ruby-value">403</span>, <span class="ruby-value">301</span>, <span class="ruby-value">302</span>, <span class="ruby-value">500</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -404,7 +414,7 @@
             
             <div class="method-source-code" id="debug_log_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 115</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">debug_log_url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;#{wp_content_dir()}/debug.log&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -437,7 +447,7 @@
             
             <div class="method-source-code" id="error_404_hash-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 62</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">error_404_hash</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@error_404_hash</span>
     <span class="ruby-identifier">non_existant_page</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">9999999999</span>).<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.html&quot;</span>
@@ -478,7 +488,7 @@
             
             <div class="method-source-code" id="has_debug_log-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 109</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 110</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_debug_log?</span>
   <span class="ruby-comment"># We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)</span>
   <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
@@ -513,7 +523,7 @@
             
             <div class="method-source-code" id="login_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 49</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_url</span>
   <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php&quot;</span>).<span class="ruby-identifier">to_s</span>
 
@@ -535,6 +545,72 @@
         </div><!-- login_url-method -->
 
       
+        <div id="registration_enabled-3F-method" class="method-detail ">
+          <a name="method-i-registration_enabled-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">registration_enabled?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Should check wp-login.php if registration is enabled or not</p>
+            
+
+            
+            <div class="method-source-code" id="registration_enabled-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_enabled?</span>
+  <span class="ruby-comment"># TODO</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- registration_enabled-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- registration_enabled-3F-method -->
+
+      
+        <div id="registration_url-method" class="method-detail ">
+          <a name="method-i-registration_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">registration_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="registration_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_url</span>
+  <span class="ruby-comment"># TODO</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- registration_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- registration_url-method -->
+
+      
         <div id="theme-method" class="method-detail ">
           <a name="method-i-theme"></a>
 
@@ -554,7 +630,7 @@
             
             <div class="method-source-code" id="theme-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 80</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">theme</span>
   <span class="ruby-constant">WpTheme</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@uri</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -587,7 +663,7 @@
             
             <div class="method-source-code" id="url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 45</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -620,7 +696,7 @@
             
             <div class="method-source-code" id="version-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 85</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>
   <span class="ruby-constant">WpVersion</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@uri</span>, <span class="ruby-identifier">wp_content_dir</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -653,7 +729,7 @@
             
             <div class="method-source-code" id="wp_content_dir-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 89</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 90</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_content_dir</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
     <span class="ruby-identifier">index_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
@@ -695,7 +771,7 @@
             
             <div class="method-source-code" id="wp_plugins_dir-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 102</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_plugins_dir</span>
     <span class="ruby-ivar">@wp_plugins_dir</span> = <span class="ruby-identifier">wp_content_dir</span>() <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/plugins&quot;</span>

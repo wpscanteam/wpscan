@@ -67,8 +67,6 @@
           
           <li><a href="#method-c-check_options">::check_options</a></li>
           
-          <li><a href="#method-c-get_empty_options">::get_empty_options</a></li>
-          
         </ul>
       </div>
       
@@ -147,6 +145,8 @@
           <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
         
           <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
         
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
@@ -249,7 +249,7 @@
             
             <div class="method-source-code" id="check_options-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_options.rb, line 50</span>
+<span class="ruby-comment"># File lib/wpscan/wp_options.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">check_options</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;url must be set&quot;</span>)                  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;only_vulnerable_ones must be set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
@@ -274,51 +274,6 @@
 
           
         </div><!-- check_options-method -->
-
-      
-        <div id="get_empty_options-method" class="method-detail ">
-          <a name="method-c-get_empty_options"></a>
-
-          
-          <div class="method-heading">
-            <span class="method-name">get_empty_options</span><span
-              class="method-args">()</span>
-            <span class="method-click-advice">click to toggle source</span>
-          </div>
-          
-
-          <div class="method-description">
-            
-            
-            
-
-            
-            <div class="method-source-code" id="get_empty_options-source">
-<pre>
-<span class="ruby-comment"># File lib/wpscan/wp_options.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_empty_options</span>
-  <span class="ruby-identifier">options</span> = {
-      <span class="ruby-value">:url</span>                  =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:only_vulnerable_ones</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>,
-      <span class="ruby-value">:file</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:vulns_file</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:vulns_xpath</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:vulns_xpath_2</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:wp_content_dir</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:show_progress_bar</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-      <span class="ruby-value">:error_404_hash</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>,
-      <span class="ruby-value">:type</span>                 =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>
-  }
-  <span class="ruby-identifier">options</span>
-<span class="ruby-keyword">end</span></pre>
-            </div><!-- get_empty_options-source -->
-            
-          </div>
-
-          
-
-          
-        </div><!-- get_empty_options-method -->
 
       
       </div><!-- public-class-method-details -->

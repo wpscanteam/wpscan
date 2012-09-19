@@ -140,6 +140,8 @@
         
           <li><a href="./WpItem.html">WpItem</a></li>
         
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
           <li><a href="./WpPlugin.html">WpPlugin</a></li>
@@ -217,7 +219,7 @@ on large wordlists, although bareable.</p>
             
             <div class="method-source-code" id="lines_in_file-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/brute_force.rb, line 109</span>
+<span class="ruby-comment"># File lib/wpscan/modules/brute_force.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lines_in_file</span>(<span class="ruby-identifier">file_path</span>)
   <span class="ruby-identifier">lines</span> = <span class="ruby-value">0</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_path</span>, <span class="ruby-string">'r'</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
@@ -284,9 +286,11 @@ on large wordlists, although bareable.</p>
 
       <span class="ruby-comment"># the request object</span>
       <span class="ruby-identifier">request</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">login_url</span>,
-        <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:post</span>,
-        <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:log</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>, <span class="ruby-value">:pwd</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">password</span>},
-        <span class="ruby-value">:cache_timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        {
+          <span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:post</span>,
+          <span class="ruby-value">:params</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-value">:log</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>, <span class="ruby-value">:pwd</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">password</span>},
+          <span class="ruby-value">:cache_timeout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        }
       )
 
       <span class="ruby-comment"># tell hydra what to do when the request completes</span>

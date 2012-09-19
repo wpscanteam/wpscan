@@ -144,6 +144,8 @@
         
           <li><a href="./WpItem.html">WpItem</a></li>
         
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
           <li><a href="./WpPlugin.html">WpPlugin</a></li>
@@ -220,7 +222,7 @@
             
             <div class="method-source-code" id="is_online-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 52</span>
+<span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_online?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
@@ -258,16 +260,14 @@
   <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">false</span>
 
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">login_url</span>(),
-    <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-    <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+    { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> }
   )
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%{WordPress}</span>
     <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">xmlrpc_url</span>(),
-      <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>,
-      <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>
+      { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> }
     )
 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%{XML-RPC server accepts POST requests only}</span>
@@ -307,7 +307,7 @@ redirection or nil</p>
             
             <div class="method-source-code" id="redirection-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 58</span>
+<span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">redirection</span>(<span class="ruby-identifier">url</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">url</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
@@ -347,7 +347,7 @@ redirection or nil</p>
             
             <div class="method-source-code" id="xmlrpc_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 47</span>
+<span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">xmlrpc_url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;xmlrpc.php&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>

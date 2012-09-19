@@ -160,6 +160,8 @@
         
           <li><a href="./WpItem.html">WpItem</a></li>
         
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
           <li><a href="./WpPlugin.html">WpPlugin</a></li>
@@ -444,7 +446,7 @@ upgrade.</p>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_meta_generator</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> })
 
   <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{name=&quot;generator&quot; content=&quot;wordpress ([^&quot;]+)&quot;}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -514,7 +516,7 @@ upgrade.</p>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_rss_generator</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;feed/&quot;</span>).<span class="ruby-identifier">to_s</span>, <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;feed/&quot;</span>).<span class="ruby-identifier">to_s</span>, { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> })
 
   <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;generator&gt;http://wordpress.org/\?v=([^&lt;]+)&lt;/generator&gt;}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>

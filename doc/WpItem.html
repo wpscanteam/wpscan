@@ -67,7 +67,11 @@
           
           <li><a href="#method-c-new">::new</a></li>
           
+          <li><a href="#method-i-3C-3D-3E">#<=></a></li>
+          
           <li><a href="#method-i-3D-3D">#==</a></li>
+          
+          <li><a href="#method-i-3D-3D-3D">#===</a></li>
           
           <li><a href="#method-i-changelog_url">#changelog_url</a></li>
           
@@ -167,6 +171,8 @@
           <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
         
           <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
         
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
@@ -355,12 +361,12 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
+  <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>] <span class="ruby-operator">||</span> <span class="ruby-string">&quot;wp-content&quot;</span>
   <span class="ruby-ivar">@url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
   <span class="ruby-ivar">@path</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>]
   <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">extract_name_from_url</span>
   <span class="ruby-ivar">@vulns_xml</span>      = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>]
-  <span class="ruby-ivar">@vulns_xpath</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]
+  <span class="ruby-ivar">@vulns_xpath</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\$name\$/</span>, <span class="ruby-ivar">@name</span>)
 
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;url not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@url</span>
   <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;path not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@path</span>
@@ -384,28 +390,61 @@
         <h3 class="section-header">Public Instance Methods</h3>
 
       
-        <div id="3D-3D-method" class="method-detail ">
-          <a name="method-i-3D-3D"></a>
+        <div id="3C-3D-3E-method" class="method-detail ">
+          <a name="method-i-3C-3D-3E"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">==</span><span
-              class="method-args">(item)</span>
+            <span class="method-name">&lt;=&gt;</span><span
+              class="method-args">(other)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            <p><a href="Object.html">Object</a> comparer</p>
+            <p>Compare</p>
+            
+
+            
+            <div class="method-source-code" id="3C-3D-3E-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 97</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- 3C-3D-3E-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- 3C-3D-3E-method -->
+
+      
+        <div id="3D-3D-method" class="method-detail ">
+          <a name="method-i-3D-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">==</span><span
+              class="method-args">(other)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Compare</p>
             
 
             
             <div class="method-source-code" id="3D-3D-source">
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 87</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@name</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- 3D-3D-source -->
             
@@ -415,6 +454,39 @@
 
           
         </div><!-- 3D-3D-method -->
+
+      
+        <div id="3D-3D-3D-method" class="method-detail ">
+          <a name="method-i-3D-3D-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">===</span><span
+              class="method-args">(other)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Compare</p>
+            
+
+            
+            <div class="method-source-code" id="3D-3D-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- 3D-3D-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- 3D-3D-3D-method -->
 
       
         <div id="changelog_url-method" class="method-detail ">
@@ -436,7 +508,7 @@
             
             <div class="method-source-code" id="changelog_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 97</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 107</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">changelog_url</span>
   <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;changelog.txt&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -612,7 +684,7 @@
             
             <div class="method-source-code" id="has_changelog-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 111</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_changelog?</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@changelog</span>
     <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">changelog_url</span>).<span class="ruby-identifier">code</span>
@@ -649,7 +721,7 @@
             
             <div class="method-source-code" id="has_readme-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 102</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_readme?</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@readme</span>
     <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">readme_url</span>).<span class="ruby-identifier">code</span>
@@ -686,7 +758,7 @@
             
             <div class="method-source-code" id="readme_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 92</span>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">readme_url</span>
   <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>)
 <span class="ruby-keyword">end</span></pre>

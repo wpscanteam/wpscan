@@ -154,6 +154,8 @@
         
           <li><a href="./WpItem.html">WpItem</a></li>
         
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
           <li><a href="./WpOptions.html">WpOptions</a></li>
         
           <li><a href="./WpPlugin.html">WpPlugin</a></li>
@@ -323,7 +325,7 @@
 <span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>]   = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/wp_theme_vulns.xml'</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-node">&quot;//theme[@name='#{@name}']/vulnerability&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-string">&quot;//theme[@name='$name$']/vulnerability&quot;</span>
   <span class="ruby-ivar">@version</span>              = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>]
   <span class="ruby-ivar">@style_url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:style_url</span>]
   <span class="ruby-keyword">super</span>(<span class="ruby-identifier">options</span>)
@@ -365,7 +367,7 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_css_link</span>(<span class="ruby-identifier">target_uri</span>)
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>)
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> })
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span> = <span class="ruby-regexp">%{https?://[^&quot;']+/themes/([^&quot;']+)/style.css}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
     <span class="ruby-identifier">style_url</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">0</span>]
