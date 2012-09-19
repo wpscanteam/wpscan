@@ -45,13 +45,10 @@ module WpUsernames
         real_name = get_real_name_from_response(response)
       end
 
-      if username == nil and real_name != nil
-        username = real_name
-        real_name = nil
-      end
-
-      unless username == nil
-        usernames << "id: #{author_id}, name: #{username}#{', real name: ' + real_name if real_name}"
+      unless username == nil and real_name == nil
+        usernames << { :id => author_id,
+                       :name => username ? username : "empty",
+                       :real_name => real_name ? real_name : "empty"}
       end
     end
 

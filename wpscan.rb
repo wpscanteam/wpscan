@@ -322,7 +322,9 @@ begin
       puts "We found the following #{usernames.length.to_s} username/s :"
       puts
 
-      usernames.each {|username| puts "  #{username}"}
+      usernames.each do |u|
+        puts "  id: #{u[:id]}, name: #{u[:name]}#{', real name: ' + u[:real_name] if u[:real_name]}"
+      end
     end
 
   else
