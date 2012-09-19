@@ -43,17 +43,30 @@ shared_examples_for "WpPlugins" do
     }
     File.exist?(@plugin_vulns_file).should == true
     File.exist?(@plugins_file).should == true
-    target_hashes = WpEnumerator.generate_items(@options)
-    target_hashes.length.should > 0
-    @targets = []
-    target_hashes.each do |t|
-      @targets << WpPlugin.new(
-          :url            => t[:url],
-          :path           => "/plugins/#{t[:path]}",
-          :wp_content_dir => t[:wp_content_dir],
-          :name           => t[:name])
-    end
-    @targets.length.should > 0
+    @targets = [WpPlugin.new({:url=>"http://example.localhost/",
+                              :path=>"plugins/exclude-pages/exclude_pages.php",
+                              :wp_content_dir=>"wp-content",
+                              :name=>"exclude-pages"}),
+                WpPlugin.new({:url=>"http://example.localhost/",
+                              :path=>"plugins/display-widgets/display-widgets.php",
+                              :wp_content_dir=>"wp-content",
+                              :name=>"display-widgets"}),
+                WpPlugin.new({:url=>"http://example.localhost/",
+                              :path=>"plugins/media-library",
+                              :wp_content_dir=>"wp-content",
+                              :name=>"media-library"}),
+                WpPlugin.new({:url=>"http://example.localhost/",
+                              :path=>"plugins/deans",
+                              :wp_content_dir=>"wp-content",
+                              :name=>"deans"}),
+                WpPlugin.new({:url=>"http://example.localhost/",
+                              :path=>"plugins/formidable/formidable.php",
+                              :wp_content_dir=>"wp-content",
+                              :name=>"formidable"}),
+                WpPlugin.new({:url=>"http://example.localhost/",
+                              :path=>"plugins/regenerate-thumbnails/readme.txt",
+                              :wp_content_dir=>"wp-content",
+                              :name=>"regenerate-thumbnails"})]
   end
 
   describe "#plugins_from_passive_detection" do
@@ -105,7 +118,7 @@ shared_examples_for "WpPlugins" do
 
     after :each do
       @passive_detection_fixture = SPEC_FIXTURES_DIR + "/empty-file" unless @passive_detection_fixture
-      stub_request_to_fixture(:url => "#{@module.uri}/".sub(/\/\/$/, "/") + "wp-content/plugins/", :fixture => @passive_detection_fixture)
+      stub_request_to_fixture(:url => "#{@module.uri}/".sub(/\/\/$/, "/"), :fixture => @passive_detection_fixture)
       detected = @module.plugins_from_aggressive_detection(@options)
       detected.length.should == @expected_plugins.length
       detected.sort.should == @expected_plugins.sort
@@ -118,6 +131,9 @@ shared_examples_for "WpPlugins" do
     it "should return an array with 3 WpPlugin (1 detected from passive method)" do
       @passive_detection_fixture = @fixtures_dir + "/passive_detection/one_plugin.htm"
       @expected_plugins = @targets.sample(2)
+      @expected_plugins.each do |p|
+        stub_request(:get, p.get_url.to_s).to_return(:status => 200)
+      end
       new_plugin = WpPlugin.new(:url => "http://example.localhost/",
                                 :path => "/plugins/comment-info-tip/",
                                 :name => "comment-info-tip")
