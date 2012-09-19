@@ -31,12 +31,27 @@ module WpUsernames
     usernames   = []
 
     range.each do |author_id|
-      response = browser.get(author_url(author_id))
+      url = author_url(author_id)
+      response = browser.get(url)
 
+      username = nil
+      real_name = nil
       if response.code == 301 # username in location?
-        usernames << response.headers_hash['location'][%r{/author/([^/]+)/}i, 1]
+        username = response.headers_hash['location'][%r{/author/([^/]+)/}i, 1]
+        # Get the real name from the redirect site
+        real_name = get_real_name_from_url(response.headers_hash['location'])
       elsif response.code == 200 # username in body?
-        usernames << response.body[%r{posts by (.*) feed}i, 1]
+        username = response.body[%r{posts by (.*) feed}i, 1]
+        real_name = get_real_name_from_response(response)
+      end
+
+      if username == nil and real_name != nil
+        username = real_name
+        real_name = nil
+      end
+
+      unless username == nil
+        usernames << "id: #{author_id}, name: #{username}#{', real name: ' + real_name if real_name}"
       end
     end
 
@@ -44,6 +59,27 @@ module WpUsernames
     usernames.flatten!
     usernames.compact!
     usernames.uniq
+  end
+
+  def get_real_name_from_url(url)
+    resp = Browser.instance.get(url, :follow_location => true, :max_redirects => 2)
+    real_name = nil
+    if resp.code == 200
+      real_name = extract_real_name_from_body(resp.body)
+    end
+    real_name
+  end
+
+  def get_real_name_from_response(resp)
+    real_name = nil
+    if resp.code == 200
+      real_name = extract_real_name_from_body(resp.body)
+    end
+    real_name
+  end
+
+  def extract_real_name_from_body(body)
+    body[%r{<title>([^<]*)</title>}i, 1]
   end
 
   def author_url(author_id)
