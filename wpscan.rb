@@ -84,8 +84,9 @@ begin
   end
 
   # Output runtime data
+  start_time = Time.now
   puts "| URL: #{wp_target.url}"
-  puts "| Started on #{Time.now.asctime}"
+  puts "| Started on #{start_time.asctime}"
   puts
 
   wp_theme = wp_target.theme
@@ -366,8 +367,11 @@ begin
     end
   end
 
+  stop_time = Time.now
   puts
-  puts "[+] Finished at #{Time.now.asctime}"
+  puts "[+] Finished at #{stop_time.asctime}"
+  elapsed = stop_time - start_time
+  puts("[+] Elapsed time: #{Time.at(elapsed).utc.strftime("%H:%M:%S")}")
   exit() # must exit!
 rescue => e
   puts "[ERROR] #{e.message}"
