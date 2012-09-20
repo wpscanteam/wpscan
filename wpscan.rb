@@ -322,8 +322,16 @@ begin
       puts "We found the following #{usernames.length.to_s} username/s :"
       puts
 
+      max_id_length = usernames.sort{|a,b| a[:id] <=> b[:id]}.last[:id].to_s.length
+      max_name_length = usernames.sort{|a,b| a[:name] <=> b[:name]}.last[:name].length
+      max_real_name_length = usernames.sort{|a,b| a[:real_name] <=> b[:real_name]}.last[:real_name].length
+
+      space = 1
       usernames.each do |u|
-        puts "  id: #{u[:id]}, name: #{u[:name]}#{', real name: ' + u[:real_name] if u[:real_name]}"
+        id_string = "id: #{u[:id].to_s.ljust(max_id_length + space)}"
+        name_string = "name: #{u[:name].ljust(max_name_length + space)}"
+        real_name_string = "real_name: #{u[:real_name].ljust(max_real_name_length + space)}"
+        puts " | #{id_string}| #{name_string}| #{real_name_string}"
       end
     end
 
