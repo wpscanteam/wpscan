@@ -35,23 +35,23 @@ module WpUsernames
       response = browser.get(url)
 
       username = nil
-      real_name = nil
+      nickname = nil
       if response.code == 301 # username in location?
         username = response.headers_hash['location'][%r{/author/([^/]+)/}i, 1]
         # Get the real name from the redirect site
-        real_name = get_real_name_from_url(url)
+        nickname = get_nickname_from_url(url)
       elsif response.code == 200 # username in body?
         username = response.body[%r{posts by (.*) feed}i, 1]
-        real_name = get_real_name_from_response(response)
+        nickname = get_nickname_from_response(response)
       end
 
-      unless username == nil and real_name == nil
+      unless username == nil and nickname == nil
         usernames << { :id => author_id,
                        :name => username ? username : "empty",
-                       :real_name => real_name ? real_name : "empty"}
+                       :nickname => nickname ? nickname : "empty"}
       end
     end
-    usernames = remove_junk_from_real_name(usernames)
+    usernames = remove_junk_from_nickname(usernames)
 
     # clean the array, remove nils and possible duplicates
     usernames.flatten!
@@ -59,38 +59,38 @@ module WpUsernames
     usernames.uniq
   end
 
-  def get_real_name_from_url(url)
+  def get_nickname_from_url(url)
     resp = Browser.instance.get(url, { :follow_location => true, :max_redirects => 2 })
-    real_name = nil
+    nickname = nil
     if resp.code == 200
-      real_name = extract_real_name_from_body(resp.body)
+      nickname = extract_nickname_from_body(resp.body)
     end
-    real_name
+    nickname
   end
 
-  def get_real_name_from_response(resp)
-    real_name = nil
+  def get_nickname_from_response(resp)
+    nickname = nil
     if resp.code == 200
-      real_name = extract_real_name_from_body(resp.body)
+      nickname = extract_nickname_from_body(resp.body)
     end
-    real_name
+    nickname
   end
 
-  def extract_real_name_from_body(body)
+  def extract_nickname_from_body(body)
     body[%r{<title>([^<]*)</title>}i, 1]
   end
 
-  def remove_junk_from_real_name(usernames)
-    real_names = []
+  def remove_junk_from_nickname(usernames)
+    nicknames = []
     usernames.each do |u|
-      real_name = u[:real_name]
-      unless real_name == "empty"
-        real_names << real_name
+      nickname = u[:nickname]
+      unless nickname == "empty"
+        nicknames << nickname
       end
     end
-    junk = get_equal_string_end(real_names)
+    junk = get_equal_string_end(nicknames)
     usernames.each do |u|
-      u[:real_name] = u[:real_name].sub(/#{Regexp.escape(junk)}$/, "")
+      u[:nickname] = u[:nickname].sub(/#{Regexp.escape(junk)}$/, "")
     end
     usernames
   end

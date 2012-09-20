@@ -52,7 +52,7 @@ shared_examples_for "WpUsernames" do
       usernames.length.should == 1
       usernames[0][:id].should == 3
       usernames[0][:name].should == "Youhou"
-      usernames[0][:real_name].should == "empty"
+      usernames[0][:nickname].should == "empty"
     end
 
     it "should return an array with 1 username (from in the body response)" do
@@ -61,7 +61,7 @@ shared_examples_for "WpUsernames" do
 
       usernames = @module.usernames(:range => (1..2))
       usernames.should_not be_empty
-      usernames.should === [{ :id => 2, :name => "admin", :real_name => "admin | Wordpress 3.3.2"}]
+      usernames.should === [{ :id => 2, :name => "admin", :nickname => "admin | Wordpress 3.3.2"}]
     end
 
     it "should return an array with 2 usernames (one is a duplicate and should not be present twice)" do
@@ -73,8 +73,8 @@ shared_examples_for "WpUsernames" do
 
       usernames = @module.usernames(:range => (1..5))
       usernames.should_not be_empty
-      expected = [{:id => 2, :name =>"admin", :real_name => "admin | Wordpress 3.3.2"},
-                  {:id => 4, :name => "Youhou", :real_name => "empty"}]
+      expected = [{:id => 2, :name =>"admin", :nickname => "admin | Wordpress 3.3.2"},
+                  {:id => 4, :name => "Youhou", :nickname => "empty"}]
       usernames.sort_by { |u| u[:name]}.should === expected.sort_by { |u| u[:name]}
     end
   end

@@ -59,11 +59,13 @@
           
           <li><a href="#method-i-author_url">#author_url</a></li>
           
-          <li><a href="#method-i-extract_real_name_from_body">#extract_real_name_from_body</a></li>
+          <li><a href="#method-i-extract_nickname_from_body">#extract_nickname_from_body</a></li>
           
-          <li><a href="#method-i-get_real_name_from_response">#get_real_name_from_response</a></li>
+          <li><a href="#method-i-get_nickname_from_response">#get_nickname_from_response</a></li>
           
-          <li><a href="#method-i-get_real_name_from_url">#get_real_name_from_url</a></li>
+          <li><a href="#method-i-get_nickname_from_url">#get_nickname_from_url</a></li>
+          
+          <li><a href="#method-i-remove_junk_from_nickname">#remove_junk_from_nickname</a></li>
           
           <li><a href="#method-i-usernames">#usernames</a></li>
           
@@ -224,7 +226,7 @@
             
             <div class="method-source-code" id="author_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 82</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">author_url</span>(<span class="ruby-identifier">author_id</span>)
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;?author=#{author_id}&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -238,12 +240,12 @@
         </div><!-- author_url-method -->
 
       
-        <div id="extract_real_name_from_body-method" class="method-detail ">
-          <a name="method-i-extract_real_name_from_body"></a>
+        <div id="extract_nickname_from_body-method" class="method-detail ">
+          <a name="method-i-extract_nickname_from_body"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">extract_real_name_from_body</span><span
+            <span class="method-name">extract_nickname_from_body</span><span
               class="method-args">(body)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -255,28 +257,28 @@
             
 
             
-            <div class="method-source-code" id="extract_real_name_from_body-source">
+            <div class="method-source-code" id="extract_nickname_from_body-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 78</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_real_name_from_body</span>(<span class="ruby-identifier">body</span>)
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_nickname_from_body</span>(<span class="ruby-identifier">body</span>)
   <span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;title&gt;([^&lt;]*)&lt;/title&gt;}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- extract_real_name_from_body-source -->
+            </div><!-- extract_nickname_from_body-source -->
             
           </div>
 
           
 
           
-        </div><!-- extract_real_name_from_body-method -->
+        </div><!-- extract_nickname_from_body-method -->
 
       
-        <div id="get_real_name_from_response-method" class="method-detail ">
-          <a name="method-i-get_real_name_from_response"></a>
+        <div id="get_nickname_from_response-method" class="method-detail ">
+          <a name="method-i-get_nickname_from_response"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">get_real_name_from_response</span><span
+            <span class="method-name">get_nickname_from_response</span><span
               class="method-args">(resp)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -288,32 +290,32 @@
             
 
             
-            <div class="method-source-code" id="get_real_name_from_response-source">
+            <div class="method-source-code" id="get_nickname_from_response-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 70</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_real_name_from_response</span>(<span class="ruby-identifier">resp</span>)
-  <span class="ruby-identifier">real_name</span> = <span class="ruby-keyword">nil</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_nickname_from_response</span>(<span class="ruby-identifier">resp</span>)
+  <span class="ruby-identifier">nickname</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
-    <span class="ruby-identifier">real_name</span> = <span class="ruby-identifier">extract_real_name_from_body</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>)
+    <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">extract_nickname_from_body</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">real_name</span>
+  <span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- get_real_name_from_response-source -->
+            </div><!-- get_nickname_from_response-source -->
             
           </div>
 
           
 
           
-        </div><!-- get_real_name_from_response-method -->
+        </div><!-- get_nickname_from_response-method -->
 
       
-        <div id="get_real_name_from_url-method" class="method-detail ">
-          <a name="method-i-get_real_name_from_url"></a>
+        <div id="get_nickname_from_url-method" class="method-detail ">
+          <a name="method-i-get_nickname_from_url"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">get_real_name_from_url</span><span
+            <span class="method-name">get_nickname_from_url</span><span
               class="method-args">(url)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -325,25 +327,69 @@
             
 
             
-            <div class="method-source-code" id="get_real_name_from_url-source">
+            <div class="method-source-code" id="get_nickname_from_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_real_name_from_url</span>(<span class="ruby-identifier">url</span>)
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 62</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_nickname_from_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>, { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> })
-  <span class="ruby-identifier">real_name</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">nickname</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
-    <span class="ruby-identifier">real_name</span> = <span class="ruby-identifier">extract_real_name_from_body</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>)
+    <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">extract_nickname_from_body</span>(<span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>)
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">real_name</span>
+  <span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- get_real_name_from_url-source -->
+            </div><!-- get_nickname_from_url-source -->
             
           </div>
 
           
 
           
-        </div><!-- get_real_name_from_url-method -->
+        </div><!-- get_nickname_from_url-method -->
+
+      
+        <div id="remove_junk_from_nickname-method" class="method-detail ">
+          <a name="method-i-remove_junk_from_nickname"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">remove_junk_from_nickname</span><span
+              class="method-args">(usernames)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="remove_junk_from_nickname-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_junk_from_nickname</span>(<span class="ruby-identifier">usernames</span>)
+  <span class="ruby-identifier">nicknames</span> = []
+  <span class="ruby-identifier">usernames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">u</span>[<span class="ruby-value">:nickname</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;empty&quot;</span>
+      <span class="ruby-identifier">nicknames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nickname</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">junk</span> = <span class="ruby-identifier">get_equal_string_end</span>(<span class="ruby-identifier">nicknames</span>)
+  <span class="ruby-identifier">usernames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">u</span>[<span class="ruby-value">:nickname</span>] = <span class="ruby-identifier">u</span>[<span class="ruby-value">:nickname</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-node">/#{Regexp.escape(junk)}$/</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">usernames</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- remove_junk_from_nickname-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- remove_junk_from_nickname-method -->
 
       
         <div id="usernames-method" class="method-detail ">
@@ -383,22 +429,23 @@ href="http://seclists.org/fulldisclosure/2011/May/493">seclists.org/fulldisclosu
     <span class="ruby-identifier">response</span> = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
 
     <span class="ruby-identifier">username</span> = <span class="ruby-keyword">nil</span>
-    <span class="ruby-identifier">real_name</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">nickname</span> = <span class="ruby-keyword">nil</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">301</span> <span class="ruby-comment"># username in location?</span>
       <span class="ruby-identifier">username</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>][<span class="ruby-regexp">%{/author/([^/]+)/}</span>, <span class="ruby-value">1</span>]
       <span class="ruby-comment"># Get the real name from the redirect site</span>
-      <span class="ruby-identifier">real_name</span> = <span class="ruby-identifier">get_real_name_from_url</span>(<span class="ruby-identifier">url</span>)
+      <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">get_nickname_from_url</span>(<span class="ruby-identifier">url</span>)
     <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-comment"># username in body?</span>
       <span class="ruby-identifier">username</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{posts by (.*) feed}</span>, <span class="ruby-value">1</span>]
-      <span class="ruby-identifier">real_name</span> = <span class="ruby-identifier">get_real_name_from_response</span>(<span class="ruby-identifier">response</span>)
+      <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">get_nickname_from_response</span>(<span class="ruby-identifier">response</span>)
     <span class="ruby-keyword">end</span>
 
-    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">real_name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
       <span class="ruby-identifier">usernames</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">author_id</span>,
                      <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>,
-                     <span class="ruby-value">:real_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">real_name</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">real_name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>}
+                     <span class="ruby-value">:nickname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>}
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">usernames</span> = <span class="ruby-identifier">remove_junk_from_nickname</span>(<span class="ruby-identifier">usernames</span>)
 
   <span class="ruby-comment"># clean the array, remove nils and possible duplicates</span>
   <span class="ruby-identifier">usernames</span>.<span class="ruby-identifier">flatten!</span>

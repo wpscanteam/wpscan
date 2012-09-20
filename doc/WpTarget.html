@@ -414,7 +414,7 @@
             
             <div class="method-source-code" id="debug_log_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 116</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 118</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">debug_log_url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;#{wp_content_dir()}/debug.log&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -488,7 +488,7 @@
             
             <div class="method-source-code" id="has_debug_log-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 110</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_debug_log?</span>
   <span class="ruby-comment"># We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)</span>
   <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> { <span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
@@ -564,7 +564,7 @@
             
             <div class="method-source-code" id="registration_enabled-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 121</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_enabled?</span>
   <span class="ruby-comment"># TODO</span>
 <span class="ruby-keyword">end</span></pre>
@@ -597,7 +597,7 @@
             
             <div class="method-source-code" id="registration_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 125</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 127</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_url</span>
   <span class="ruby-comment"># TODO</span>
 <span class="ruby-keyword">end</span></pre>
@@ -733,11 +733,13 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_content_dir</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
     <span class="ruby-identifier">index_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
+    <span class="ruby-comment"># Only use the path because domain can be text or an ip</span>
+    <span class="ruby-identifier">uri_path</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">path</span>
 
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">index_body</span>[<span class="ruby-regexp">%{/wp-content/(?:themes|plugins)/}</span>]
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">index_body</span>[<span class="ruby-node">/#{Regexp.escape(uri_path)}\/wp-content\/(?:themes|plugins)\//</span>]
       <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-string">&quot;wp-content&quot;</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">index_body</span>[<span class="ruby-node">%{(?:href|src)=(?:&quot;|')#{@uri}/?([^&quot;']+)/(?:themes|plugins)/.*(?:&quot;|')}</span>, <span class="ruby-value">1</span>]
+      <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">index_body</span>[<span class="ruby-node">/(?:href|src)\s*=\s*(?:&quot;|').+#{Regexp.escape(uri_path)}([^&quot;']+)\/(?:themes|plugins)\/.*(?:&quot;|')/</span>, <span class="ruby-value">1</span>]
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@wp_content_dir</span>
@@ -771,7 +773,7 @@
             
             <div class="method-source-code" id="wp_plugins_dir-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 103</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 105</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_plugins_dir</span>
     <span class="ruby-ivar">@wp_plugins_dir</span> = <span class="ruby-identifier">wp_content_dir</span>() <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/plugins&quot;</span>
