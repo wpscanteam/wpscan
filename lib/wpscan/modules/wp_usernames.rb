@@ -51,6 +51,7 @@ module WpUsernames
                        :real_name => real_name ? real_name : "empty"}
       end
     end
+    usernames = remove_junk_from_real_name(usernames)
 
     # clean the array, remove nils and possible duplicates
     usernames.flatten!
@@ -77,6 +78,21 @@ module WpUsernames
 
   def extract_real_name_from_body(body)
     body[%r{<title>([^<]*)</title>}i, 1]
+  end
+
+  def remove_junk_from_real_name(usernames)
+    real_names = []
+    usernames.each do |u|
+      real_name = u[:real_name]
+      unless real_name == "empty"
+        real_names << real_name
+      end
+    end
+    junk = get_equal_string_end(real_names)
+    usernames.each do |u|
+      u[:real_name] = u[:real_name].sub(/#{junk}$/, "")
+    end
+    usernames
   end
 
   def author_url(author_id)

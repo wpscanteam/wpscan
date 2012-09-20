@@ -51,6 +51,31 @@ def add_trailing_slash(url)
   url
 end
 
+# Gets the string all elements in stringarray ends with
+def get_equal_string_end(stringarray = [""])
+  already_found = ""
+  looping = true
+  counter = -1
+  if stringarray.kind_of? Array and stringarray.length > 1
+    base = stringarray[0]
+    while looping
+      character = base[counter, 1]
+      stringarray.each do |s|
+        if s[counter, 1] != character
+          looping = false
+          break
+        end
+      end
+      if looping == false or (counter * -1 ) >= base.length
+        break
+      end
+      already_found = "#{character if character}#{already_found}"
+      counter -= 1
+    end
+  end
+  already_found
+end
+
 if RUBY_VERSION < "1.9"
   class Array
     # Fix for grep with symbols in ruby <= 1.8.7
