@@ -54,7 +54,7 @@ class WpDetector
     regex2        = %r{\\?/}
     regex3        = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
     # Custom wp-content dir is now used in this regex
-    names = response.body.scan(/#{regex1}#{wp_content_dir}#{regex2}#{type}#{regex3}/i)
+    names = response.body.scan(/#{regex1}#{Regexp.escape(wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/i)
 
     names.flatten!
     names.uniq!

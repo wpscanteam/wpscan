@@ -72,7 +72,7 @@ describe Browser do
   end
 
   describe "#user_agent" do
-    available_user_agents = [ "ua-1", "ua-2", "ua-3", "ua-4", "ua-6", "ua-7", "ua-8", "ua-9", "ua-10" ]
+    available_user_agents = %w{ ua-1 ua-2 ua-3 ua-4 ua-6 ua-7 ua-8 ua-9 ua-10 ua-11 ua-12 ua-13 ua-14 ua-15 ua-16 ua-17}
 
     it "should always return the same user agent in static mode" do
       @browser.user_agent = "fake UA"

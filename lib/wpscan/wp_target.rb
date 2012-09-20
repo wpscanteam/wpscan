@@ -93,10 +93,10 @@ class WpTarget
       # Only use the path because domain can be text or an ip
       uri_path = @uri.path
 
-      if index_body[/#{uri_path}\/wp-content\/(?:themes|plugins)\//i]
+      if index_body[/#{Regexp.escape(uri_path)}\/wp-content\/(?:themes|plugins)\//i]
         @wp_content_dir = "wp-content"
       else
-        @wp_content_dir = index_body[/(?:href|src)\s*=\s*(?:"|').+#{uri_path}([^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
+        @wp_content_dir = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}([^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
       end
     end
     @wp_content_dir
