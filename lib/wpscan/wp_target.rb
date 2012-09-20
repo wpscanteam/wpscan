@@ -90,15 +90,13 @@ class WpTarget
   def wp_content_dir
     unless @wp_content_dir
       index_body = Browser.instance.get(@uri.to_s).body
+      # Only use the path because domain can be text or an ip
+      uri_path = @uri.path
 
-      if index_body[%r{#@uri/?wp-content/(?:themes|plugins)/}i]
+      if index_body[/#{uri_path}\/wp-content\/(?:themes|plugins)\//i]
         @wp_content_dir = "wp-content"
       else
-        @wp_content_dir = index_body[%r{(?:href|src)=(?:"|')#@uri/?([^"']+)/(?:themes|plugins)/.*(?:"|')}i, 1]
-        # Bug: Some themes and plugins render incorrect with custom wp-content dir, so only take the first folder
-        # Exmaple:
-        # /wordpress/wp-custom/plugins/usr/share/wordpress/wp-content/plugins/contact-form-7/includes/js/jquery.form.js?
-        @wp_content_dir = @wp_content_dir[%r{([^/]+).*}i, 1]
+        @wp_content_dir = index_body[/(?:href|src)\s*=\s*(?:"|').+#{uri_path}([^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
       end
     end
     @wp_content_dir
