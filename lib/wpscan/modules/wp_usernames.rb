@@ -90,7 +90,7 @@ module WpUsernames
     end
     junk = get_equal_string_end(real_names)
     usernames.each do |u|
-      u[:real_name] = u[:real_name].sub(/#{junk}$/, "")
+      u[:real_name] = u[:real_name].sub(/#{Regexp.escape(junk)}$/, "")
     end
     usernames
   end

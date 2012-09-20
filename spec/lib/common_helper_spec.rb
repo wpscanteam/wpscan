@@ -65,5 +65,10 @@ describe "common_helper" do
       @input = %w{ user1 }
       @expected = ""
     end
+
+    it "sould return | test" do
+      @input = ["admin | test", "test | test"]
+      @expected = " | test"
+    end
   end
 end
