@@ -337,11 +337,11 @@ begin
     end
 
   else
-    usernames = [wpscan_options.username]
+    usernames = [WpUser.new(wpscan_options.username, -1, "empty")]
   end
 
   # Start the brute forcer
-  bruteforce = false
+  bruteforce = true
   if wpscan_options.wordlist
     if wp_target.has_login_protection?
 
