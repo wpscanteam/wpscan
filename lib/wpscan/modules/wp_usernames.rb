@@ -24,7 +24,7 @@ module WpUsernames
   # Available options :
   #  :range - default : 1..10
   #
-  # returns an array of usernames (can be empty)
+  # returns an array of WpUser (can be empty)
   def usernames(options = {})
     range       = options[:range] || (1..10)
     browser     = Browser.instance
@@ -46,9 +46,7 @@ module WpUsernames
       end
 
       unless username == nil and nickname == nil
-        usernames << { :id => author_id,
-                       :name => username ? username : "empty",
-                       :nickname => nickname ? nickname : "empty"}
+        usernames << WpUser.new(username, author_id, nickname)
       end
     end
     usernames = remove_junk_from_nickname(usernames)
@@ -83,14 +81,14 @@ module WpUsernames
   def remove_junk_from_nickname(usernames)
     nicknames = []
     usernames.each do |u|
-      nickname = u[:nickname]
+      nickname = u.nickname
       unless nickname == "empty"
         nicknames << nickname
       end
     end
     junk = get_equal_string_end(nicknames)
     usernames.each do |u|
-      u[:nickname] = u[:nickname].sub(/#{Regexp.escape(junk)}$/, "")
+      u.nickname = u.nickname.sub(/#{Regexp.escape(junk)}$/, "")
     end
     usernames
   end

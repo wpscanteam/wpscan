@@ -323,15 +323,15 @@ begin
       puts "We found the following #{usernames.length.to_s} username/s :"
       puts
 
-      max_id_length = usernames.sort{|a,b| a[:id] <=> b[:id]}.last[:id].to_s.length
-      max_name_length = usernames.sort{|a,b| a[:name] <=> b[:name]}.last[:name].length
-      max_nickname_length = usernames.sort{|a,b| a[:nickname] <=> b[:nickname]}.last[:nickname].length
+      max_id_length = usernames.sort{|a,b| a.id <=> b.id}.last.id.to_s.length
+      max_name_length = usernames.sort{|a,b| a.name <=> b.name}.last.name.length
+      max_nickname_length = usernames.sort{|a,b| a.nickname <=> b.nickname}.last.nickname.length
 
       space = 1
       usernames.each do |u|
-        id_string = "id: #{u[:id].to_s.ljust(max_id_length + space)}"
-        name_string = "name: #{u[:name].ljust(max_name_length + space)}"
-        nickname_string = "nickname: #{u[:nickname].ljust(max_nickname_length + space)}"
+        id_string = "id: #{u.id.to_s.ljust(max_id_length + space)}"
+        name_string = "name: #{u.name.ljust(max_name_length + space)}"
+        nickname_string = "nickname: #{u.nickname.ljust(max_nickname_length + space)}"
         puts " | #{id_string}| #{name_string}| #{nickname_string}"
       end
     end

@@ -40,7 +40,7 @@ module BruteForce
         queue_count   += 1
 
         # create local vars for on_complete call back, Issue 51.
-        username = login
+        username = login.name
         password = password
 
         # the request object
