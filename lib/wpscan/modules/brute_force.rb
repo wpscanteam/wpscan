@@ -24,16 +24,17 @@ module BruteForce
     hydra               = Browser.instance.hydra
     number_of_passwords = BruteForce.lines_in_file(wordlist_path)
     login_url           = login_url()
+    found               = []
 
     logins.each do |login|
       queue_count    = 0
       request_count  = 0
       password_found = false
 
-      File.open(wordlist_path, 'r').each do |password|
+      File.open(wordlist_path, "r").each do |password|
 
         # ignore file comments, but will miss passwords if they start with a hash...
-        next if password[0,1] == '#'
+        next if password[0,1] == "#"
 
         # keep a count of the amount of requests to be sent
         request_count += 1
@@ -61,18 +62,20 @@ module BruteForce
             puts "\nIncorrect username and/or password." if @verbose
           elsif response.code == 302
             puts "\n  [SUCCESS] Username : #{username} Password : #{password}\n"
+            found << { :name => username, :password => password }
             password_found = true
           elsif response.timed_out?
             puts "ERROR: Request timed out."
           elsif response.code == 0
             puts "ERROR: No response from remote server. WAF/IPS?"
-          elsif response.code =~ /^50/
+          # code is a fixnum, needs a string for regex
+          elsif response.code.to_s =~ /^50/
             puts "ERROR: Server error, try reducing the number of threads."
           else
             puts "\nERROR: We recieved an unknown response for #{password}..."
             if @verbose
-              puts 'Code: ' + response.code.to_s
-              puts 'Body: ' + response.body
+              puts "Code: #{response.code.to_s}"
+              puts "Body: #{response.body}"
               puts
             end
           end
@@ -102,7 +105,7 @@ module BruteForce
       # run all of the remaining requests
       hydra.run
     end
-
+    found
   end
 
   # Counts the number of lines in the wordlist
@@ -110,7 +113,7 @@ module BruteForce
   # wordlists, although bareable.
   def self.lines_in_file(file_path)
     lines = 0
-    File.open(file_path, 'r').each { |line| lines += 1 }
+    File.open(file_path, 'r').each { || lines += 1 }
     lines
   end
 end

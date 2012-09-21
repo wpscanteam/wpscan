@@ -37,6 +37,7 @@ describe WpTarget do
   it_should_behave_like "WpFullPathDisclosure"
   it_should_behave_like "WpLoginProtection"
   it_should_behave_like "Malwares"
+  it_should_behave_like "BruteForce"
   it_should_behave_like "WpUsernames"
   it_should_behave_like "WpTimthumbs"
   it_should_behave_like "WpPlugins"

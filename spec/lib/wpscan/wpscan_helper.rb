@@ -30,7 +30,7 @@ SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR = SPEC_FIXTURES_WPSCAN_DIR + '/wp_version'
 
 class WpScanModuleSpec
   attr_reader :uri
-  attr_accessor :error_404_hash, :wp_content_dir
+  attr_accessor :error_404_hash, :wp_content_dir, :verbose
 
   def initialize(target_url)
     @uri = URI.parse(add_http_protocol(target_url))
