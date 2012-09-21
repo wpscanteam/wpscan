@@ -66,7 +66,7 @@ def get_equal_string_end(stringarray = [""])
           break
         end
       end
-      if looping == false or (counter * -1 ) >= base.length
+      if looping == false or (counter * -1 ) > base.length
         break
       end
       already_found = "#{character if character}#{already_found}"

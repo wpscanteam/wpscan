@@ -80,4 +80,161 @@ shared_examples_for "WpUsernames" do
     end
   end
 
+  describe "#get_nickname_from_url" do
+    after :each do
+      url = "http://example.localhost/"
+      stub_request(:get, url).to_return(:status => @status, :body => @content)
+      username = @module.get_nickname_from_url(url)
+      username.should === @expected
+    end
+
+    it "should return nil" do
+      @status = 200
+      @content = ""
+      @expected = nil
+    end
+
+    it "should return nil" do
+      @status = 400
+      @content = ""
+      @expected = nil
+    end
+
+    it "should return admin" do
+      @status = 200
+      @content = "<title>admin</title>"
+      @expected = "admin"
+    end
+
+    it "should return nil" do
+      @status = 201
+      @content = "<title>admin</title>"
+      @expected = nil
+    end
+  end
+
+  describe "#get_nickname_from_response" do
+    after :each do
+      url = "http://example.localhost/"
+      stub_request(:get, url).to_return(:status => @status, :body => @content)
+      resp = Browser.instance.get(url)
+      username = @module.get_nickname_from_response(resp)
+      username.should === @expected
+    end
+
+    it "should return nil" do
+      @status = 200
+      @content = ""
+      @expected = nil
+    end
+
+    it "should return nil" do
+      @status = 400
+      @content = ""
+      @expected = nil
+    end
+
+    it "should return admin" do
+      @status = 200
+      @content = "<title>admin</title>"
+      @expected = "admin"
+    end
+
+    it "should return nil" do
+      @status = 201
+      @content = "<title>admin</title>"
+      @expected = nil
+    end
+  end
+
+  describe "#extract_nickname_from_body" do
+    after :each do
+      result = @module.extract_nickname_from_body(@body)
+      result.should === @expected
+    end
+
+    it "should return admin" do
+      @body = "<title>admin</title>"
+      @expected = "admin"
+    end
+
+    it "should return nil" do
+      @body = "<title>adm<in</title>"
+      @expected = nil
+    end
+
+    it "should return nil" do
+      @body = "<titler>admin</titler>"
+      @expected = nil
+    end
+
+    it "should return admin | " do
+      @body = "<title>admin | </title>"
+      @expected = "admin | "
+    end
+
+    it "should return an empty string" do
+      @body = "<title></title>"
+      @expected = ""
+    end
+  end
+
+  describe "#remove_junk_from_nickname" do
+    it "should throw an exception" do
+      @input = nil
+      expect { @module.remove_junk_from_nickname(@input) }.to raise_error(RuntimeError, "Need an array as input")
+    end
+
+    it "should not throw an exception" do
+      @input = []
+      expect { @module.remove_junk_from_nickname(@input) }.to_not raise_error
+    end
+
+    it "should throw an exception" do
+      @input = [WpOptions.new]
+      expect { @module.remove_junk_from_nickname(@input) }.to raise_error(RuntimeError, "Items must be of type WpUser")
+    end
+  end
+
+  describe "#remove_junk_from_nickname" do
+    after :each do
+      result = @module.remove_junk_from_nickname(@input)
+      result.eql?(@expected).should === true
+    end
+
+    it "should return an empty array" do
+      @input = []
+      @expected = @input
+    end
+
+    it "should return input object" do
+      @input = [WpUser.new(nil, nil, nil)]
+      @expected = @input
+    end
+
+    it "should return input object" do
+      @input = [WpUser.new("", "", "")]
+      @expected = @input
+    end
+
+    it "should remove asdf" do
+      @input = [WpUser.new(nil, nil, "lkjh asdf"), WpUser.new(nil, nil, "ijrjd asdf")]
+      @expected = [WpUser.new(nil, nil, "lkjh"), WpUser.new(nil, nil, "ijrjd")]
+    end
+
+    it "should return unmodified input object" do
+      @input = [WpUser.new(nil, nil, "lkjh asdfa"), WpUser.new(nil, nil, "ijrjd asdf")]
+      @expected = @input
+    end
+
+    it "should return input object" do
+      @input = [WpUser.new(nil, nil, "lkjh asdf")]
+      @expected = @input
+    end
+
+    it "should return lkhj asdf" do
+      @input = [WpUser.new(nil, nil, "lkhj asdf"), WpUser.new(nil, nil, "lkhj asdf")]
+      @expected = [WpUser.new(nil, nil, ""), WpUser.new(nil, nil, "")]
+    end
+  end
 end

@@ -79,8 +79,14 @@ module WpUsernames
   end
 
   def remove_junk_from_nickname(usernames)
+    unless usernames.kind_of? Array
+      raise("Need an array as input")
+    end
     nicknames = []
     usernames.each do |u|
+      unless u.kind_of? WpUser
+        raise("Items must be of type WpUser")
+      end
       nickname = u.nickname
       unless nickname == "empty"
         nicknames << nickname
