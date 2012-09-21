@@ -61,21 +61,21 @@ module BruteForce
           if response.body =~ /login_error/i
             puts "\nIncorrect username and/or password." if @verbose
           elsif response.code == 302
-            puts "\n  [SUCCESS] Username : #{username} Password : #{password}\n"
+            puts "\n  " + green("[SUCCESS]") + " Username : #{username} Password : #{password}\n"
             found << { :name => username, :password => password }
             password_found = true
           elsif response.timed_out?
-            puts "ERROR: Request timed out."
+            puts red("ERROR:") + " Request timed out."
           elsif response.code == 0
-            puts "ERROR: No response from remote server. WAF/IPS?"
+            puts red("ERROR:") + " No response from remote server. WAF/IPS?"
           # code is a fixnum, needs a string for regex
           elsif response.code.to_s =~ /^50/
-            puts "ERROR: Server error, try reducing the number of threads."
+            puts red("ERROR:") + " Server error, try reducing the number of threads."
           else
-            puts "\nERROR: We recieved an unknown response for #{password}..."
+            puts "\n" + red("ERROR:") + " We recieved an unknown response for #{password}..."
             if @verbose
-              puts "Code: #{response.code.to_s}"
-              puts "Body: #{response.body}"
+              puts red("Code: #{response.code.to_s}")
+              puts red("Body: #{response.body}")
               puts
             end
           end
