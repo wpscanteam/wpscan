@@ -26,7 +26,7 @@ class WpUser
   end
 
   def <=>(item)
-    item.name <=> @name and item.id <=> @id and item.nickname <=> @nickname
+    item.name <=> @name
   end
 
   def ===(item)
