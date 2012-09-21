@@ -19,6 +19,8 @@
 #++
 
 $: << '.'
+require "rubygems"
+require "bundler/setup"
 require File.dirname(__FILE__) +'/lib/wpscan/wpscan_helper'
 
 banner()
