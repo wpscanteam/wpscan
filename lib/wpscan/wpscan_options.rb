@@ -99,7 +99,7 @@ class WpscanOptions
   end
 
   def enumerate_only_vulnerable_themes=(enumerate_only_vulnerable_themes)
-    if enumerate_only_vulnerable_themes === true and @enumerate_plugins === true
+    if enumerate_only_vulnerable_themes === true and @enumerate_themes === true
       raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
     else
       @enumerate_only_vulnerable_themes = enumerate_only_vulnerable_themes

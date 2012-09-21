@@ -88,7 +88,8 @@ describe "WpscanOptions" do
   describe "#enumerate_plugins=" do
     it "should raise an error" do
       @wpscan_options.enumerate_only_vulnerable_plugins = true
-      expect { @wpscan_options.enumerate_plugins = true }.to raise_error
+      expect { @wpscan_options.enumerate_plugins = true }.to raise_error(RuntimeError,
+            "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -99,10 +100,26 @@ describe "WpscanOptions" do
     end
   end
 
+  describe "#enumerate_themes=" do
+    it "should raise an error" do
+      @wpscan_options.enumerate_only_vulnerable_themes = true
+      expect { @wpscan_options.enumerate_themes = true }.to raise_error(RuntimeError,
+            "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+    end
+
+    it "should not raise an error" do
+      @wpscan_options.enumerate_only_vulnerable_themes = false
+      @wpscan_options.enumerate_themes = true
+
+      @wpscan_options.enumerate_themes.should be_true
+    end
+  end
+
   describe "#enumerate_only_vulnerable_plugins=" do
     it "should raise an error" do
       @wpscan_options.enumerate_plugins = true
-      expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error
+      expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error(RuntimeError,
+            "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -110,6 +127,21 @@ describe "WpscanOptions" do
       @wpscan_options.enumerate_only_vulnerable_plugins = true
 
       @wpscan_options.enumerate_only_vulnerable_plugins.should be_true
+    end
+  end
+
+  describe "#enumerate_only_vulnerable_themes=" do
+    it "should raise an error" do
+      @wpscan_options.enumerate_themes = true
+      expect { @wpscan_options.enumerate_only_vulnerable_themes = true }.to raise_error(RuntimeError,
+            "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+    end
+
+    it "should not raise an error" do
+      @wpscan_options.enumerate_themes = false
+      @wpscan_options.enumerate_only_vulnerable_themes = true
+
+      @wpscan_options.enumerate_only_vulnerable_themes.should be_true
     end
   end
 

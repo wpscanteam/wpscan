@@ -158,6 +158,8 @@
         
           <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
         
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
           <li><a href="./WpUsernames.html">WpUsernames</a></li>
         
           <li><a href="./WpVersion.html">WpVersion</a></li>
@@ -219,10 +221,10 @@ on large wordlists, although bareable.</p>
             
             <div class="method-source-code" id="lines_in_file-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/brute_force.rb, line 111</span>
+<span class="ruby-comment"># File lib/wpscan/modules/brute_force.rb, line 114</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">lines_in_file</span>(<span class="ruby-identifier">file_path</span>)
   <span class="ruby-identifier">lines</span> = <span class="ruby-value">0</span>
-  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_path</span>, <span class="ruby-string">'r'</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file_path</span>, <span class="ruby-string">'r'</span>).<span class="ruby-identifier">each</span> { <span class="ruby-operator">||</span> <span class="ruby-identifier">lines</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> }
   <span class="ruby-identifier">lines</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- lines_in_file-source -->
@@ -265,23 +267,24 @@ on large wordlists, although bareable.</p>
   <span class="ruby-identifier">hydra</span>               = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">hydra</span>
   <span class="ruby-identifier">number_of_passwords</span> = <span class="ruby-constant">BruteForce</span>.<span class="ruby-identifier">lines_in_file</span>(<span class="ruby-identifier">wordlist_path</span>)
   <span class="ruby-identifier">login_url</span>           = <span class="ruby-identifier">login_url</span>()
+  <span class="ruby-identifier">found</span>               = []
 
   <span class="ruby-identifier">logins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">login</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">queue_count</span>    = <span class="ruby-value">0</span>
     <span class="ruby-identifier">request_count</span>  = <span class="ruby-value">0</span>
     <span class="ruby-identifier">password_found</span> = <span class="ruby-keyword">false</span>
 
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">wordlist_path</span>, <span class="ruby-string">'r'</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">password</span><span class="ruby-operator">|</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">wordlist_path</span>, <span class="ruby-string">&quot;r&quot;</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">password</span><span class="ruby-operator">|</span>
 
       <span class="ruby-comment"># ignore file comments, but will miss passwords if they start with a hash...</span>
-      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">password</span>[<span class="ruby-value">0</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-string">'#'</span>
+      <span class="ruby-keyword">next</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">password</span>[<span class="ruby-value">0</span>,<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-node">&quot;#&quot;</span>
 
       <span class="ruby-comment"># keep a count of the amount of requests to be sent</span>
       <span class="ruby-identifier">request_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
       <span class="ruby-identifier">queue_count</span>   <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 
       <span class="ruby-comment"># create local vars for on_complete call back, Issue 51.</span>
-      <span class="ruby-identifier">username</span> = <span class="ruby-identifier">login</span>
+      <span class="ruby-identifier">username</span> = <span class="ruby-identifier">login</span>.<span class="ruby-identifier">name</span>
       <span class="ruby-identifier">password</span> = <span class="ruby-identifier">password</span>
 
       <span class="ruby-comment"># the request object</span>
@@ -302,18 +305,20 @@ on large wordlists, although bareable.</p>
           <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;\nIncorrect username and/or password.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span>
           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n  [SUCCESS] Username : #{username} Password : #{password}\n&quot;</span>
+          <span class="ruby-identifier">found</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span>, <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">password</span> }
           <span class="ruby-identifier">password_found</span> = <span class="ruby-keyword">true</span>
         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">timed_out?</span>
           <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ERROR: Request timed out.&quot;</span>
         <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
           <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ERROR: No response from remote server. WAF/IPS?&quot;</span>
-        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^50/</span>
+        <span class="ruby-comment"># code is a fixnum, needs a string for regex</span>
+        <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^50/</span>
           <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ERROR: Server error, try reducing the number of threads.&quot;</span>
         <span class="ruby-keyword">else</span>
           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\nERROR: We recieved an unknown response for #{password}...&quot;</span>
           <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
-            <span class="ruby-identifier">puts</span> <span class="ruby-string">'Code: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>.<span class="ruby-identifier">to_s</span>
-            <span class="ruby-identifier">puts</span> <span class="ruby-string">'Body: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Code: #{response.code.to_s}&quot;</span>
+            <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Body: #{response.body}&quot;</span>
             <span class="ruby-identifier">puts</span>
           <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
@@ -343,7 +348,7 @@ on large wordlists, although bareable.</p>
     <span class="ruby-comment"># run all of the remaining requests</span>
     <span class="ruby-identifier">hydra</span>.<span class="ruby-identifier">run</span>
   <span class="ruby-keyword">end</span>
-
+  <span class="ruby-identifier">found</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- brute_force-source -->
             

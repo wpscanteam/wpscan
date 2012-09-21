@@ -198,6 +198,8 @@
         
           <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
         
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
           <li><a href="./WpUsernames.html">WpUsernames</a></li>
         
           <li><a href="./WpVersion.html">WpVersion</a></li>
@@ -552,7 +554,7 @@ any remaining ‘-’ by ‘_’</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes=</span>(<span class="ruby-identifier">enumerate_only_vulnerable_themes</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@enumerate_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@enumerate_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You can't enumerate themes and only vulnerable themes at the same time, please choose only one&quot;</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-ivar">@enumerate_only_vulnerable_themes</span> = <span class="ruby-identifier">enumerate_only_vulnerable_themes</span>

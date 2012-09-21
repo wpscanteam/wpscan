@@ -166,6 +166,8 @@
         
           <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
         
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
           <li><a href="./WpUsernames.html">WpUsernames</a></li>
         
           <li><a href="./WpVersion.html">WpVersion</a></li>
@@ -226,7 +228,7 @@
             
             <div class="method-source-code" id="author_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 98</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 102</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">author_url</span>(<span class="ruby-identifier">author_id</span>)
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;?author=#{author_id}&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -259,7 +261,7 @@
             
             <div class="method-source-code" id="extract_nickname_from_body-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 79</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_nickname_from_body</span>(<span class="ruby-identifier">body</span>)
   <span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;title&gt;([^&lt;]*)&lt;/title&gt;}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -292,7 +294,7 @@
             
             <div class="method-source-code" id="get_nickname_from_response-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 71</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_nickname_from_response</span>(<span class="ruby-identifier">resp</span>)
   <span class="ruby-identifier">nickname</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
@@ -329,7 +331,7 @@
             
             <div class="method-source-code" id="get_nickname_from_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 62</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_nickname_from_url</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>, { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> })
   <span class="ruby-identifier">nickname</span> = <span class="ruby-keyword">nil</span>
@@ -367,18 +369,24 @@
             
             <div class="method-source-code" id="remove_junk_from_nickname-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 83</span>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_usernames.rb, line 81</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_junk_from_nickname</span>(<span class="ruby-identifier">usernames</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">usernames</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Array</span>
+    <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;Need an array as input&quot;</span>)
+  <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">nicknames</span> = []
   <span class="ruby-identifier">usernames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">u</span>[<span class="ruby-value">:nickname</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">u</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">WpUser</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;Items must be of type WpUser&quot;</span>)
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nickname</span>
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;empty&quot;</span>
       <span class="ruby-identifier">nicknames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nickname</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">junk</span> = <span class="ruby-identifier">get_equal_string_end</span>(<span class="ruby-identifier">nicknames</span>)
   <span class="ruby-identifier">usernames</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">u</span>[<span class="ruby-value">:nickname</span>] = <span class="ruby-identifier">u</span>[<span class="ruby-value">:nickname</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-node">/#{Regexp.escape(junk)}$/</span>, <span class="ruby-string">&quot;&quot;</span>)
+    <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">nickname</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-node">/#{Regexp.escape(junk)}$/</span>, <span class="ruby-string">&quot;&quot;</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">usernames</span>
 <span class="ruby-keyword">end</span></pre>
@@ -412,7 +420,7 @@ href="http://seclists.org/fulldisclosure/2011/May/493">seclists.org/fulldisclosu
 
 <pre>:range - default : 1..10</pre>
 
-<p>returns an array of usernames (can be empty)</p>
+<p>returns an array of <a href="WpUser.html">WpUser</a> (can be empty)</p>
             
 
             
@@ -440,9 +448,7 @@ href="http://seclists.org/fulldisclosure/2011/May/493">seclists.org/fulldisclosu
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-keyword">unless</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
-      <span class="ruby-identifier">usernames</span> <span class="ruby-operator">&lt;&lt;</span> { <span class="ruby-value">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">author_id</span>,
-                     <span class="ruby-value">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">username</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>,
-                     <span class="ruby-value">:nickname</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>}
+      <span class="ruby-identifier">usernames</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpUser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">username</span>, <span class="ruby-identifier">author_id</span>, <span class="ruby-identifier">nickname</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">usernames</span> = <span class="ruby-identifier">remove_junk_from_nickname</span>(<span class="ruby-identifier">usernames</span>)

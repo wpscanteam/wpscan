@@ -129,5 +129,10 @@ describe WpOptions do
       @options[:type] = nil
       @message = "type must be set"
     end
+
+    it "should raise an exception (type unknown)" do
+      @options[:type] = "unknown"
+      @message = "Unknown type unknown"
+    end
   end
 end
