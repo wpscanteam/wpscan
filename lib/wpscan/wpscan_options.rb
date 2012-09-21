@@ -176,7 +176,8 @@ class WpscanOptions
     if value =~ /u/
       @enumerate_usernames = true
       # Check for usernames range
-      if matches = %r{\[([\d]+)-([\d]+)\]}.match(value)
+      matches = %r{\[([\d]+)-([\d]+)\]}.match(value)
+      if matches
         @enumerate_usernames_range = (matches[1].to_i..matches[2].to_i)
       end
     end

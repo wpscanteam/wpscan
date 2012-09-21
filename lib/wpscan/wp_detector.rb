@@ -36,7 +36,7 @@ class WpDetector
           break
         end
       end
-      if not already_present
+      unless already_present
         result << enum_result
       end
     end

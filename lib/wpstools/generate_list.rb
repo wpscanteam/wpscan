@@ -92,8 +92,7 @@ class Generate_List
     @hydra.run
 
     found_items.sort!
-    found_items.uniq!
-    return found_items
+    found_items.uniq
   end
 
   # Save the file

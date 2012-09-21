@@ -36,8 +36,7 @@ class Svn_Parser
       dirs = get_root_directories
     end
     urls = get_svn_project_urls(dirs)
-    entries = get_svn_file_entries(urls)
-    return entries
+    get_svn_file_entries(urls)
   end
 
   #Private methods start here
@@ -51,8 +50,7 @@ class Svn_Parser
       dirs << dir[0]
     end
     dirs.sort!
-    dirs.uniq!
-    return dirs
+    dirs.uniq
   end
 
   def get_svn_project_urls(dirs)
@@ -89,7 +87,7 @@ class Svn_Parser
       end
     end
     @svn_hydra.run
-    return urls
+    urls
   end
   
   # Get a file in each directory
@@ -124,7 +122,7 @@ class Svn_Parser
       end
     end
     @svn_hydra.run
-    return entries
+    entries
   end
 
   def contains_trunk(body)
@@ -132,6 +130,6 @@ class Svn_Parser
     if !!(body =~ %r[<li><a href="trunk/">trunk/</a></li>]i)
       contains = true
     end
-    return contains
+    contains
   end
 end

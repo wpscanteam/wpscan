@@ -58,7 +58,8 @@ class WpTheme < WpItem
   def self.find_from_css_link(target_uri)
     response = Browser.instance.get(target_uri.to_s, { :follow_location => true, :max_redirects => 2 })
 
-    if matches = %r{https?://[^"']+/themes/([^"']+)/style.css}i.match(response.body)
+    matches = %r{https?://[^"']+/themes/([^"']+)/style.css}i.match(response.body)
+    if matches
       style_url = matches[0]
       theme_name = matches[1]
 
@@ -76,7 +77,8 @@ class WpTheme < WpItem
     body = Browser.instance.get(target_uri.to_s).body
     regexp = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?" />\s+<meta name="generator" content="WooFramework\s?([^"]+)?" />}
 
-    if matches = regexp.match(body)
+    matches = regexp.match(body)
+    if matches
       woo_theme_name        = matches[1]
       woo_theme_version     = matches[2]
       woo_framework_version = matches[3] # Not used at this time

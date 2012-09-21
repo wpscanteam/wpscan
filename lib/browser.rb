@@ -18,7 +18,7 @@
 
 class Browser
   @@instance = nil
-  @@user_agent_modes = ["static", "semi-static", "random"]
+  @@user_agent_modes = %w{ static semi-static random }
 
   ACCESSOR_OPTIONS = [
     :user_agent,
@@ -80,12 +80,12 @@ class Browser
   # return the user agent, according to the user_agent_mode
   def user_agent
     case @user_agent_mode
-    when "semi-static"
-      unless @user_agent
+      when "semi-static"
+        unless @user_agent
+          @user_agent = @available_user_agents.sample
+        end
+      when "random"
         @user_agent = @available_user_agents.sample
-      end
-    when "random"
-      @user_agent = @available_user_agents.sample
     end
     @user_agent
   end
@@ -149,11 +149,11 @@ class Browser
       params = params.merge(:proxy => @proxy)
     end
 
-    if !params.has_key?(:disable_ssl_host_verification)
+    unless params.has_key?(:disable_ssl_host_verification)
       params = params.merge(:disable_ssl_host_verification => true)
     end
 
-    if !params.has_key?(:disable_ssl_peer_verification)
+    unless params.has_key?(:disable_ssl_peer_verification)
       params = params.merge(:disable_ssl_peer_verification => true)
     end
 
@@ -164,7 +164,7 @@ class Browser
     end
 
     # Used to enable the cache system if :cache_timeout > 0
-    if !params.has_key?(:cache_timeout)
+    unless params.has_key?(:cache_timeout)
       params = params.merge(:cache_timeout => @cache_timeout)
     end
 

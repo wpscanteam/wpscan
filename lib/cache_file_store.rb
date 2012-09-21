@@ -36,7 +36,7 @@ class CacheFileStore
     @serializer   = serializer
 
     # File.directory? for ruby <= 1.9 otherwise, it makes more sense to do Dir.exist? :/
-    if !File.directory?(@storage_path)
+    unless File.directory?(@storage_path)
       Dir.mkdir(@storage_path)
     end
   end
@@ -56,7 +56,7 @@ class CacheFileStore
   end
 
   def write_entry(key, data_to_store, cache_timeout)
-    if (cache_timeout > 0)
+    if cache_timeout > 0
       File.open(get_entry_file_path(key), 'w') do |f|
         f.write(@serializer.dump(data_to_store))
       end

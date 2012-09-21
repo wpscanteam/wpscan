@@ -54,6 +54,7 @@ module WebSite
   # see if the remote url returns 30x redirect
   # return a string with the redirection or nil
   def redirection(url = nil)
+    redirection = nil
     url ||= @uri.to_s
     response = Browser.instance.get(url)
 

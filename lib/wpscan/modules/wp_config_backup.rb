@@ -47,10 +47,11 @@ module WpConfigBackup
 
   # @return Array
   def self.config_backup_files
-    [
-      'wp-config.php~','#wp-config.php#','wp-config.php.save','wp-config.php.swp','wp-config.php.swo','wp-config.php_bak',
-      'wp-config.bak', 'wp-config.php.bak', 'wp-config.save'
-    ] # thanks to Feross.org for these
+    %w{
+      wp-config.php~ #wp-config.php# wp-config.php.save wp-config.php.swp wp-config.php.swo wp-config.php_bak
+      wp-config.bak wp-config.php.bak wp-config.save wp-config.old wp-config.php.old wp-config.php.orig
+      wp-config.org wp-config.php.original wp-config.original
+    } # thanks to Feross.org for these
   end
 
 end

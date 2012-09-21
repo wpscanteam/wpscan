@@ -94,7 +94,7 @@ class WpEnumerator
     type              = options[:type]
     targets_url       = []
 
-    if only_vulnerable == false
+    unless only_vulnerable
       # Open and parse the 'most popular' plugin list...
       File.open(file, 'r') do |f|
         f.readlines.collect do |line|

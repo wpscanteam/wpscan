@@ -18,7 +18,7 @@
 
 module WpLoginProtection
 
-  @@login_protection_method_pattern = /^has_(.*)_protection\?/i
+  LOGIN_PROTECTION_METHOD_PATTERN = /^has_(.*)_protection\?/i
   # Used as cache
   @login_protection_plugin = nil
 
@@ -31,10 +31,10 @@ module WpLoginProtection
   # return a WpPlugin object or nil if no one is found
   def login_protection_plugin
     unless @login_protection_plugin
-      protected_methods.grep(@@login_protection_method_pattern).each do |symbol_to_call|
+      protected_methods.grep(LOGIN_PROTECTION_METHOD_PATTERN).each do |symbol_to_call|
 
         if send(symbol_to_call)
-          plugin_name = symbol_to_call[@@login_protection_method_pattern, 1].gsub('_', '-')
+          plugin_name = symbol_to_call[LOGIN_PROTECTION_METHOD_PATTERN, 1].gsub('_', '-')
 
           return @login_protection_plugin = WpPlugin.new(
               :name => plugin_name,

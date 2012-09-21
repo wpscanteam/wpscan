@@ -71,84 +71,73 @@ class RpcClient
 
   def get_exploit_info(name)
     authenticate()
-    result = @server.call('module.info', @auth_token, 'exploit', name)
-    return result
+    @server.call('module.info', @auth_token, 'exploit', name)
   end
 
   # retrieve exploit options
 
   def get_options(name)
     authenticate()
-    result = @server.call('module.options', @auth_token, 'exploit',name)
-    return result
+    @server.call('module.options', @auth_token, 'exploit',name)
   end
 
   # retrieve the exploit payloads
 
   def get_payloads(name)
     authenticate()
-    result = @server.call('module.compatible_payloads', @auth_token, name)
-    return result
+    @server.call('module.compatible_payloads', @auth_token, name)
   end
 
   # execute exploit
 
   def exploit(name, opts)
     authenticate()
-    result = @server.call('module.execute', @auth_token, 'exploit', name, opts)
-    return result
+    @server.call('module.execute', @auth_token, 'exploit', name, opts)
   end
  
   # list msf jobs
 
   def jobs()
     authenticate()
-    result = @server.call('job.list', @auth_token)
-    return result
+    @server.call('job.list', @auth_token)
   end
 
   # list msf sessions
 
   def sessions()
     authenticate()
-    result = @server.call('session.list', @auth_token)
-    return result
+    @server.call('session.list', @auth_token)
   end
 
   # kill msf session
 
   def kill_session(id)
     authenticate()
-    result = @server.call('session.stop', @auth_token, id)
-    return result
+    @server.call('session.stop', @auth_token, id)
   end
 
   # reads any pending output from session
 
   def read_shell(id)
     authenticate()
-    result = @server.call('session.shell_read', @auth_token, id)
-    return result
+    @server.call('session.shell_read', @auth_token, id)
   end
 
   # writes the specified input into the session
 
   def write_shell(id, data)
     authenticate()
-    result = @server.call('session.shell_write', @auth_token, id, data)
-    return result
+    @server.call('session.shell_write', @auth_token, id, data)
   end
 
   def meterpreter_read(id)
     authenticate()
-    result = @server.call('session.meterpreter_read', @auth_token, id)
-    return result
+    @server.call('session.meterpreter_read', @auth_token, id)
   end
 
   def meterpreter_write(id, data)
     authenticate()
-    result = @server.call('session.meterpreter_write', @auth_token, id, data)
-    return result
+    @server.call('session.meterpreter_write', @auth_token, id, data)
   end
 
 end

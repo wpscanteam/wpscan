@@ -35,7 +35,7 @@ shared_examples_for "WpLoginProtection" do
   # there is not false positive : for example the login-lock must not be detected as login-lockdown
   describe "#has_.*_protection?" do
 
-    pattern         = WpLoginProtection.class_variable_get(:@@login_protection_method_pattern)
+    pattern         = WpLoginProtection::LOGIN_PROTECTION_METHOD_PATTERN
     fixtures        =
         %w{
             wp-login-clean.php wp-login-login_lockdown.php wp-login-login_lock.php
