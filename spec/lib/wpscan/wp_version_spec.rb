@@ -138,4 +138,42 @@ describe WpVersion do
     end
   end
 
+  describe "#find_from_advanced_fingerprinting" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + '/advanced' }
+
+    it "should return 3.2.1" do
+      stub_request_to_fixture(:url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
+                              :status => 200,
+                              :fixture => "#{fixtures_dir}/3.2.1.js")
+      version = WpVersion.find_from_advanced_fingerprinting(:url => @target_uri,
+                                                            :wp_content_dir => "wp-content",
+                                                            :version_xml => "#{fixtures_dir}/wp_versions.xml")
+      version.should == "3.2.1"
+    end
+  end
+
+  describe "#initialize" do
+    it "should initialize a WpVersion object" do
+      v = WpVersion.new(1, { :discovery_method => "method", :vulns_xml => "asdf.xml" })
+      v.number.should == 1
+      v.discovery_method.should == "method"
+    end
+  end
+
+  describe "#find" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + '/advanced' }
+
+    it "should find all versions" do
+      # All requests get a HTTP 404
+      stub_request(:any, /.*/).to_return(:status => 404)
+      # Wordpress Version 3.2.1
+      stub_request_to_fixture(:url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
+                              :status => 200,
+                              :fixture => "#{fixtures_dir}/3.2.1.js")
+      version = WpVersion.find(@target_uri, "wp-content")
+      version.number.should == "3.2.1"
+      version.discovery_method.should == "advanced fingerprinting"
+    end
+  end
+
 end
