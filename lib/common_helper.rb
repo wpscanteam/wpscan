@@ -66,7 +66,7 @@ def get_equal_string_end(stringarray = [""])
           break
         end
       end
-      if looping == false or (counter * -1 ) > base.length
+      if looping == false or (counter * -1) > base.length
         break
       end
       already_found = "#{character if character}#{already_found}"
@@ -87,6 +87,7 @@ if RUBY_VERSION < "1.9"
       end
       matches
     end
+
     alias_method :grep, :_grep_
   end
 end
@@ -125,5 +126,10 @@ def colorize(text, color_code)
   "\e[#{color_code}m#{text}\e[0m"
 end
 
-def red(text); colorize(text, 31) end
-def green(text); colorize(text, 32) end
+def red(text)
+  ; colorize(text, 31)
+end
+
+def green(text)
+  ; colorize(text, 32)
+end

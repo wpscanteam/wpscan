@@ -73,13 +73,13 @@ describe WpUser do
     it "should return true" do
       user1 = WpUser.new("a", "id", "nick")
       user2 = WpUser.new("a", "id", "nick")
-      (user1.eql?user2).should be_true
+      (user1.eql? user2).should be_true
     end
 
     it "should return false" do
       user1 = WpUser.new("a", "id", "nick")
       user2 = WpUser.new("b", "id", "nick")
-      (user1.eql?user2).should be_false
+      (user1.eql? user2).should be_false
     end
   end
 end

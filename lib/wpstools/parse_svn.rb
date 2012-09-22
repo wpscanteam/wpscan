@@ -30,7 +30,7 @@ class Svn_Parser
     @svn_browser = Browser.instance
     @svn_hydra = @svn_browser.hydra
   end
-  
+
   def parse(dirs=nil)
     if dirs == nil
       dirs = get_root_directories
@@ -64,14 +64,14 @@ class Svn_Parser
         # trunk folder present
         if contains_trunk(response)
           puts "[+] Adding trunk on #{dir}" if @verbose
-          urls << { :name => dir, :folder => "trunk"}
-        # no trunk folder. This is true on theme svn repos
+          urls << {:name => dir, :folder => "trunk"}
+          # no trunk folder. This is true on theme svn repos
         else
           folders = response.body.scan(%r{^\s*<li><a href="(.+)/">.+/</a></li>$}i)
           if folders != nil and folders.length > 0
             last_version = folders.last[0]
             puts "[+] Adding #{last_version} on #{dir}" if @verbose
-            urls << { :name => dir, :folder => last_version}
+            urls << {:name => dir, :folder => last_version}
           else
             puts "[+] No content in #{dir}" if @verbose
           end
@@ -89,7 +89,7 @@ class Svn_Parser
     @svn_hydra.run
     urls
   end
-  
+
   # Get a file in each directory
   # TODO: exclude files like Thumbs.db (Example: wordpress-23-related-posts-plugin/)
   def get_svn_file_entries(dirs)

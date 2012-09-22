@@ -33,7 +33,7 @@ class CacheFileStore
   # Marshal does not need any "require"
   def initialize(storage_path, serializer = Marshal)
     @storage_path = File.expand_path(storage_path)
-    @serializer   = serializer
+    @serializer = serializer
 
     # File.directory? for ruby <= 1.9 otherwise, it makes more sense to do Dir.exist? :/
     unless File.directory?(@storage_path)

@@ -89,7 +89,7 @@ describe "WpscanOptions" do
     it "should raise an error" do
       @wpscan_options.enumerate_only_vulnerable_plugins = true
       expect { @wpscan_options.enumerate_plugins = true }.to raise_error(RuntimeError,
-            "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
+                                                                         "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -104,7 +104,7 @@ describe "WpscanOptions" do
     it "should raise an error" do
       @wpscan_options.enumerate_only_vulnerable_themes = true
       expect { @wpscan_options.enumerate_themes = true }.to raise_error(RuntimeError,
-            "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+                                                                        "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -119,7 +119,7 @@ describe "WpscanOptions" do
     it "should raise an error" do
       @wpscan_options.enumerate_plugins = true
       expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error(RuntimeError,
-            "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
+                                                                                         "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -134,7 +134,7 @@ describe "WpscanOptions" do
     it "should raise an error" do
       @wpscan_options.enumerate_themes = true
       expect { @wpscan_options.enumerate_only_vulnerable_themes = true }.to raise_error(RuntimeError,
-            "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+                                                                                        "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -176,12 +176,12 @@ describe "WpscanOptions" do
     end
 
     it "should return 'url'" do
-      @option   = "--url"
+      @option = "--url"
       @expected = "url"
     end
 
     it "should return 'u'" do
-      @option   = "-u"
+      @option = "-u"
       @expected = 'u'
     end
 
@@ -275,8 +275,8 @@ describe "WpscanOptions" do
     it "should set enumerate_timthumbs to true, enumerate_usernames to true, enumerate_usernames_range to (1..2)" do
       @argument = "u[1-2]t"
       @expected_hash = {
-        :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
-        :enumerate_timthumbs => true
+          :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
+          :enumerate_timthumbs => true
       }
     end
   end

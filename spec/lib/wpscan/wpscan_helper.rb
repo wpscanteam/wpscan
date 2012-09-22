@@ -35,8 +35,8 @@ class WpScanModuleSpec
   def initialize(target_url)
     @uri = URI.parse(add_http_protocol(target_url))
     Browser.instance(
-      :config_file   => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
-      :cache_timeout => 0
+        :config_file => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
+        :cache_timeout => 0
     )
   end
 

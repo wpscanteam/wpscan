@@ -35,8 +35,8 @@ shared_examples_for "WpLoginProtection" do
   # there is not false positive : for example the login-lock must not be detected as login-lockdown
   describe "#has_.*_protection?" do
 
-    pattern         = WpLoginProtection::LOGIN_PROTECTION_METHOD_PATTERN
-    fixtures        =
+    pattern = WpLoginProtection::LOGIN_PROTECTION_METHOD_PATTERN
+    fixtures =
         %w{
             wp-login-clean.php wp-login-login_lockdown.php wp-login-login_lock.php
             wp-login-better_wp_security.php wp-login-simple_login_lockdown.php wp-login-login_security_solution.php
@@ -69,10 +69,10 @@ shared_examples_for "WpLoginProtection" do
         expected = plugin_name_from_fixture === plugin_name_from_symbol ? true : false
 
         it "#{symbol_to_call} with #{fixture} should return #{expected}" do
-          @plugin_name    = plugin_name_from_fixture
-          @fixture        = @fixtures_dir + '/' + fixture
+          @plugin_name = plugin_name_from_fixture
+          @fixture = @fixtures_dir + '/' + fixture
           @symbol_to_call = symbol_to_call
-          @expected       = expected
+          @expected = expected
         end
       end
     end

@@ -26,9 +26,9 @@ module WpUsernames
   #
   # returns an array of WpUser (can be empty)
   def usernames(options = {})
-    range       = options[:range] || (1..10)
-    browser     = Browser.instance
-    usernames   = []
+    range = options[:range] || (1..10)
+    browser = Browser.instance
+    usernames = []
 
     range.each do |author_id|
       url = author_url(author_id)
@@ -58,7 +58,7 @@ module WpUsernames
   end
 
   def get_nickname_from_url(url)
-    resp = Browser.instance.get(url, { :follow_location => true, :max_redirects => 2 })
+    resp = Browser.instance.get(url, {:follow_location => true, :max_redirects => 2})
     nickname = nil
     if resp.code == 200
       nickname = extract_nickname_from_body(resp.body)

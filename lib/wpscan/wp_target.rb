@@ -34,8 +34,8 @@ class WpTarget
   attr_reader :uri, :verbose
 
   def initialize(target_url, options = {})
-    @uri            = URI.parse(add_trailing_slash(add_http_protocol(target_url)))
-    @verbose        = options[:verbose]
+    @uri = URI.parse(add_trailing_slash(add_http_protocol(target_url)))
+    @verbose = options[:verbose]
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
 
@@ -111,7 +111,7 @@ class WpTarget
 
   def has_debug_log?
     # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
-    response_body = Browser.instance.get(debug_log_url(), :headers => { "range" => "bytes=0-700"}).body
+    response_body = Browser.instance.get(debug_log_url(), :headers => {"range" => "bytes=0-700"}).body
     response_body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
   end
 

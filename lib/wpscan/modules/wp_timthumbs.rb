@@ -47,7 +47,7 @@ module WpTimthumbs
 
   protected
   def targets_url_from_theme(theme_name, options)
-    targets    = []
+    targets = []
     theme_name = URI.escape(theme_name)
 
     %w{
@@ -55,10 +55,10 @@ module WpTimthumbs
       scripts/timthumb.php tools/timthumb.php functions/timthumb.php
     }.each do |file|
       targets << {
-          :url            => options[:url],
-          :path           => "themes/#{theme_name}/#{file}",
+          :url => options[:url],
+          :path => "themes/#{theme_name}/#{file}",
           :wp_content_dir => options[:wp_content_dir],
-          :name           => options[:name]
+          :name => options[:name]
       }
     end
     targets

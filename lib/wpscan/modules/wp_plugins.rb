@@ -22,19 +22,19 @@ module WpPlugins
   #
   # return array of WpPlugin
   def plugins_from_aggressive_detection(options)
-    options[:file]          = options[:file] || "#{DATA_DIR}/plugins.txt"
-    options[:vulns_file]    = options[:vulns_file] || "#{DATA_DIR}/plugin_vulns.xml"
-    options[:vulns_xpath]   = "//plugin[@name='#{@name}']/vulnerability"
+    options[:file] = options[:file] || "#{DATA_DIR}/plugins.txt"
+    options[:vulns_file] = options[:vulns_file] || "#{DATA_DIR}/plugin_vulns.xml"
+    options[:vulns_xpath] = "//plugin[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
-    options[:type]          = "plugins"
-    result                  = WpDetector.aggressive_detection(options)
+    options[:type] = "plugins"
+    result = WpDetector.aggressive_detection(options)
     plugins = []
     result.each do |r|
       plugins << WpPlugin.new(
-          :url            => r[:url],
-          :path           => r[:path],
+          :url => r[:url],
+          :path => r[:path],
           :wp_content_dir => r[:wp_content_dir],
-          :name           => r[:name]
+          :name => r[:name]
       )
     end
     plugins.sort_by { |p| p.name }
@@ -52,9 +52,9 @@ module WpPlugins
 
     temp.each do |item|
       plugins << WpPlugin.new(
-          :url            => item[:url],
-          :name           => item[:name],
-          :path           => item[:path],
+          :url => item[:url],
+          :name => item[:name],
+          :path => item[:path],
           :wp_content_dir => options[:wp_content_dir]
       )
     end

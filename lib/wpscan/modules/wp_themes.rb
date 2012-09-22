@@ -19,19 +19,19 @@
 module WpThemes
 
   def themes_from_aggressive_detection(options)
-    options[:file]          = options[:file] || "#{DATA_DIR}/themes.txt"
-    options[:vulns_file]    = options[:vulns_file] || "#{DATA_DIR}/wp_theme_vulns.xml"
-    options[:vulns_xpath]   = "//theme[@name='#{@name}']/vulnerability"
+    options[:file] = options[:file] || "#{DATA_DIR}/themes.txt"
+    options[:vulns_file] = options[:vulns_file] || "#{DATA_DIR}/wp_theme_vulns.xml"
+    options[:vulns_xpath] = "//theme[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//theme"
-    options[:type]          = "themes"
-    result                  = WpDetector.aggressive_detection(options)
+    options[:type] = "themes"
+    result = WpDetector.aggressive_detection(options)
     themes = []
     result.each do |r|
       themes << WpTheme.new(
-          :url            => r[:url],
-          :path           => r[:path],
+          :url => r[:url],
+          :path => r[:path],
           :wp_content_dir => r[:wp_content_dir],
-          :name           => r[:name]
+          :name => r[:name]
       )
     end
     themes.sort_by { |t| t.name }
@@ -43,9 +43,9 @@ module WpThemes
 
     temp.each do |item|
       themes << WpTheme.new(
-          :url            => item[:url],
-          :name           => item[:name],
-          :path           => item[:path],
+          :url => item[:url],
+          :name => item[:name],
+          :path => item[:path],
           :wp_content_dir => options[:wp_content_dir]
       )
     end

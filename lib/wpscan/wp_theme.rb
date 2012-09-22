@@ -23,10 +23,10 @@ class WpTheme < WpItem
   attr_reader :name, :style_url, :version
 
   def initialize(options = {})
-    options[:vulns_xml]   = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
+    options[:vulns_xml] = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
     options[:vulns_xpath] = "//theme[@name='$name$']/vulnerability"
-    @version              = options[:version]
-    @style_url            = options[:style_url]
+    @version = options[:version]
+    @style_url = options[:style_url]
     super(options)
   end
 
@@ -56,18 +56,18 @@ class WpTheme < WpItem
 
   # Discover the wordpress theme name by parsing the css link rel
   def self.find_from_css_link(target_uri)
-    response = Browser.instance.get(target_uri.to_s, { :follow_location => true, :max_redirects => 2 })
+    response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
     matches = %r{https?://[^"']+/themes/([^"']+)/style.css}i.match(response.body)
     if matches
       style_url = matches[0]
       theme_name = matches[1]
 
-      return new(:name            => theme_name,
-                 :style_url       => style_url,
-                 :url             => style_url,
-                 :path            => "",
-                 :wp_content_dir  => ""
+      return new(:name => theme_name,
+                 :style_url => style_url,
+                 :url => style_url,
+                 :path => "",
+                 :wp_content_dir => ""
       )
     end
   end
@@ -79,15 +79,15 @@ class WpTheme < WpItem
 
     matches = regexp.match(body)
     if matches
-      woo_theme_name        = matches[1]
-      woo_theme_version     = matches[2]
+      woo_theme_name = matches[1]
+      woo_theme_version = matches[2]
       woo_framework_version = matches[3] # Not used at this time
 
-      return new(:name            => woo_theme_name,
-                 :version         => woo_theme_version,
-                 :url             => matches[0],
-                 :path            => "",
-                 :wp_content_dir  => ""
+      return new(:name => woo_theme_name,
+                 :version => woo_theme_version,
+                 :url => matches[0],
+                 :path => "",
+                 :wp_content_dir => ""
       )
     end
   end

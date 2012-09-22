@@ -74,16 +74,16 @@ describe CacheFileStore do
     end
 
     it "should get the correct entry (string)" do
-      @timeout  = 10
-      @key      = "some_key"
-      @data     = "Hello World !"
+      @timeout = 10
+      @key = "some_key"
+      @data = "Hello World !"
       @expected = @data
     end
 
     it "should not write the entry" do
-      @timeout  = 0
-      @key      = "another_key"
-      @data     = "Another Hello World !"
+      @timeout = 0
+      @key = "another_key"
+      @data = "Another Hello World !"
       @expected = nil
     end
 

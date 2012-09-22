@@ -14,12 +14,12 @@ describe GitUpdater do
 
     it "should return false if the command is not found" do
       @stub_value = "git: command not found"
-      @expected   = false
+      @expected = false
     end
 
     it "should return true if the repo is a git one" do
       @stub_value = "# On branch master\n# Changed but not updated:"
-      @expected   = true
+      @expected = true
     end
   end
 

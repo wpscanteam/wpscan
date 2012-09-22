@@ -50,14 +50,14 @@ shared_examples_for "WebSite" do
 
     it "should return true if the wp-login is found and is a valid wordpress one" do
       stub_request(:get, @module.login_url).
-        to_return(:status => 200, :body => File.new(fixtures_dir + '/wp-login.php'))
+          to_return(:status => 200, :body => File.new(fixtures_dir + '/wp-login.php'))
 
       @module.is_wordpress?.should be_true
     end
 
     it "should return true if the xmlrpc is found" do
       stub_request(:get, @module.xmlrpc_url).
-        to_return(:status => 200, :body => File.new(fixtures_dir + '/xmlrpc.php'))
+          to_return(:status => 200, :body => File.new(fixtures_dir + '/xmlrpc.php'))
 
       @module.is_wordpress?.should be_true
     end
@@ -85,7 +85,7 @@ shared_examples_for "WebSite" do
     [301, 302].each do |status_code|
       it "should return http://new-location.com if the status code is #{status_code}" do
         stub_request(:get, @module.url).
-          to_return(:status => status_code, :headers => { :location => "http://new-location.com" })
+            to_return(:status => status_code, :headers => {:location => "http://new-location.com"})
 
         @module.redirection.should === "http://new-location.com"
       end

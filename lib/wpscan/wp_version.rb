@@ -23,10 +23,10 @@ class WpVersion < Vulnerable
   attr_reader :number, :discovery_method
 
   def initialize(number, options = {})
-    @number           = number
+    @number = number
     @discovery_method = options[:discovery_method]
-    @vulns_xml        = options[:vulns_xml] || DATA_DIR + '/wp_vulns.xml'
-    @vulns_xpath      = "//wordpress[@version='#{@number}']/vulnerability"
+    @vulns_xml = options[:vulns_xml] || DATA_DIR + '/wp_vulns.xml'
+    @vulns_xpath = "//wordpress[@version='#{@number}']/vulnerability"
   end
 
   # Will use all method self.find_from_* to try to detect the version
@@ -38,7 +38,7 @@ class WpVersion < Vulnerable
   # (find_from_meta_generator, find_from_rss_generator etc)
   def self.find(target_uri, wp_content_dir)
     options = {
-        :url            => target_uri,
+        :url => target_uri,
         :wp_content_dir => wp_content_dir
     }
     self.methods.grep(/find_from_/).each do |method_to_call|
@@ -60,14 +60,14 @@ class WpVersion < Vulnerable
   # that it is reinstated on upgrade.
   def self.find_from_meta_generator(options)
     target_uri = options[:url]
-    response = Browser.instance.get(target_uri.to_s, { :follow_location => true, :max_redirects => 2 })
+    response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
     response.body[%r{name="generator" content="wordpress ([^"]+)"}i, 1]
   end
 
   def self.find_from_rss_generator(options)
     target_uri = options[:url]
-    response = Browser.instance.get(target_uri.merge("feed/").to_s, { :follow_location => true, :max_redirects => 2 })
+    response = Browser.instance.get(target_uri.merge("feed/").to_s, {:follow_location => true, :max_redirects => 2})
 
     response.body[%r{<generator>http://wordpress.org/\?v=([^<]+)</generator>}i, 1]
   end
@@ -105,11 +105,11 @@ class WpVersion < Vulnerable
       file_url = target_uri.merge(node.attribute('src').text).to_s
       file_url = file_url.gsub(/\$wp-plugins\$/i, wp_plugins).gsub(/\$wp-content\$/i, wp_content)
       response = Browser.instance.get(file_url)
-      md5sum   = Digest::MD5.hexdigest(response.body)
+      md5sum = Digest::MD5.hexdigest(response.body)
 
       node.search('hash').each do |hash|
         if hash.attribute('md5').text == md5sum
-         return hash.search('versions').text
+          return hash.search('versions').text
         end
       end
     end

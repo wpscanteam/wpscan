@@ -43,16 +43,16 @@ describe WpPlugin do
 
   describe "#error_log_url" do
     it "should return a correct url" do
-      temp = WpPlugin.new(:url            => "http://wordpress.com",
-                          :path           => "plugins/test/asdf.php")
+      temp = WpPlugin.new(:url => "http://wordpress.com",
+                          :path => "plugins/test/asdf.php")
       temp.error_log_url.to_s.should == "http://wordpress.com/wp-content/plugins/test/error_log"
     end
   end
 
   describe "#error_log?" do
     before :each do
-      @temp = WpPlugin.new(:url           => "http://wordpress.com",
-                          :path           => "plugins/test/asdf.php")
+      @temp = WpPlugin.new(:url => "http://wordpress.com",
+                           :path => "plugins/test/asdf.php")
     end
 
     it "should return true" do

@@ -21,16 +21,16 @@ class Browser
   @@user_agent_modes = %w{ static semi-static random }
 
   ACCESSOR_OPTIONS = [
-    :user_agent,
-    :user_agent_mode,
-    :available_user_agents,
-    :proxy,
-    :max_threads,
-    :cache_timeout,
-    :request_timeout
+      :user_agent,
+      :user_agent_mode,
+      :available_user_agents,
+      :proxy,
+      :max_threads,
+      :cache_timeout,
+      :request_timeout
   ]
 
-  attr_reader   :hydra, :config_file
+  attr_reader :hydra, :config_file
   attr_accessor *ACCESSOR_OPTIONS
 
   def initialize(options = {})
@@ -52,6 +52,7 @@ class Browser
     # might be in CacheFileStore
     setup_cache_handlers
   end
+
   private_class_method :new
 
   def self.instance(options = {})
@@ -113,9 +114,9 @@ class Browser
   def setup_cache_handlers
     @hydra.cache_setter do |request|
       @cache.write_entry(
-        Browser.generate_cache_key_from_request(request),
-        request.response,
-        request.cache_timeout
+          Browser.generate_cache_key_from_request(request),
+          request.response,
+          request.cache_timeout
       )
     end
 
@@ -123,24 +124,25 @@ class Browser
       @cache.read_entry(Browser.generate_cache_key_from_request(request)) rescue nil
     end
   end
+
   private :setup_cache_handlers
 
   def get(url, params = {})
     run_request(
-      forge_request(url, params.merge(:method => :get))
+        forge_request(url, params.merge(:method => :get))
     )
   end
 
   def post(url, params = {})
     run_request(
-      forge_request(url, params.merge(:method => :post))
+        forge_request(url, params.merge(:method => :post))
     )
   end
 
   def forge_request(url, params = {})
     Typhoeus::Request.new(
-      url.to_s,
-      merge_request_params(params)
+        url.to_s,
+        merge_request_params(params)
     )
   end
 

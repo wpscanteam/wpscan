@@ -181,11 +181,11 @@ begin
     puts
 
     options = {}
-    options[:url]                   = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
-    options[:show_progress_bar]     = true
-    options[:wp_content_dir]        = wp_target.wp_content_dir
-    options[:error_404_hash]        = wp_target.error_404_hash
+    options[:url] = wp_target.uri
+    options[:only_vulnerable_ones] = wpscan_options.enumerate_only_vulnerable_plugins || false
+    options[:show_progress_bar] = true
+    options[:wp_content_dir] = wp_target.wp_content_dir
+    options[:error_404_hash] = wp_target.error_404_hash
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
@@ -235,11 +235,11 @@ begin
     puts
 
     options = {}
-    options[:url]                   = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
-    options[:show_progress_bar]     = true
-    options[:wp_content_dir]        = wp_target.wp_content_dir
-    options[:error_404_hash]        = wp_target.error_404_hash
+    options[:url] = wp_target.uri
+    options[:only_vulnerable_ones] = wpscan_options.enumerate_only_vulnerable_themes || false
+    options[:show_progress_bar] = true
+    options[:wp_content_dir] = wp_target.wp_content_dir
+    options[:error_404_hash] = wp_target.error_404_hash
 
     themes = wp_target.themes_from_aggressive_detection(options)
     unless themes.empty?
@@ -280,11 +280,11 @@ begin
     puts green("[+]") + " Enumerating timthumb files ..."
     puts
 
-    options                     = {}
-    options[:url]               = wp_target.uri
+    options = {}
+    options[:url] = wp_target.uri
     options[:show_progress_bar] = true
-    options[:wp_content_dir]    = wp_target.wp_content_dir
-    options[:error_404_hash]    = wp_target.error_404_hash
+    options[:wp_content_dir] = wp_target.wp_content_dir
+    options[:error_404_hash] = wp_target.error_404_hash
 
     theme_name = wp_theme ? wp_theme.name : nil
     if wp_target.has_timthumbs?(theme_name, options)
@@ -323,9 +323,9 @@ begin
       puts green("[+]") + " We found the following #{usernames.length.to_s} username/s :"
       puts
 
-      max_id_length = usernames.sort{|a,b| a.id <=> b.id}.last.id.to_s.length
-      max_name_length = usernames.sort{|a,b| a.name <=> b.name}.last.name.length
-      max_nickname_length = usernames.sort{|a,b| a.nickname <=> b.nickname}.last.nickname.length
+      max_id_length = usernames.sort { |a, b| a.id <=> b.id }.last.id.to_s.length
+      max_name_length = usernames.sort { |a, b| a.name <=> b.name }.last.name.length
+      max_nickname_length = usernames.sort { |a, b| a.nickname <=> b.nickname }.last.nickname.length
 
       space = 1
       usernames.each do |u|

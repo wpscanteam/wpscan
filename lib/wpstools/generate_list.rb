@@ -49,14 +49,14 @@ class Generate_List
     items = Svn_Parser.new(@svn_url, @verbose).parse
     save items
   end
-  
+
   def generate_popular_list(pages)
     popular = get_popular_items(pages)
     items = Svn_Parser.new(@svn_url, @verbose).parse(popular)
     save items
   end
-  
-  
+
+
   # Send a HTTP request to the WordPress most popular theme or plugin webpage
   # parse the response for the names.
   def get_popular_items(pages)
@@ -83,9 +83,9 @@ class Generate_List
       @hydra.queue(request)
 
       if queue_count == @browser.max_threads
-         @hydra.run
-         queue_count = 0
-       end
+        @hydra.run
+        queue_count = 0
+      end
 
     end
 

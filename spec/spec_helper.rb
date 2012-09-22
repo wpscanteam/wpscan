@@ -71,7 +71,7 @@ def stub_request_to_fixture(arguments = {})
   raise "No arguments[:fixture] supplied" if arguments[:fixture].nil?
 
   stub_request(arguments[:method], arguments[:url].to_s).
-    to_return(:status => arguments[:status], :body => File.new(arguments[:fixture]))
+      to_return(:status => arguments[:status], :body => File.new(arguments[:fixture]))
 end
 
 # The object must be given as we will mock the Kernel#` or Kernel#system (Kernel is a module)

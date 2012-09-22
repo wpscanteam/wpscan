@@ -20,20 +20,20 @@ require File.expand_path(File.dirname(__FILE__) + '/updater')
 
 class SvnUpdater < Updater
 
-  @@revision_pattern = /revision="(\d+)"/i
-  @@trunk_url        = "https://wpscan.googlecode.com/svn/trunk"
+  REVISION_PATTERN = /revision="(\d+)"/i
+  TRUNK_URL = "https://github.com/wpscanteam/wpscan"
 
   def is_installed?
-    %x[svn info "#{@repo_directory}" --xml 2>&1] =~ /revision=/ ? true : false
+    %x[svn info "#@repo_directory" --xml 2>&1] =~ /revision=/ ? true : false
   end
 
   def local_revision_number
-    local_revision = %x[svn info "#{@repo_directory}" --xml 2>&1]
-    local_revision[@@revision_pattern, 1].to_s
+    local_revision = %x[svn info "#@repo_directory" --xml 2>&1]
+    local_revision[REVISION_PATTERN, 1].to_s
   end
 
   def update
-    %x[svn up "#{@repo_directory}"]
+    %x[svn up "#@repo_directory"]
   end
 
 end

@@ -22,16 +22,16 @@ describe WpOptions do
   describe "#check_options" do
     before :each do
       @options = {}
-      @options[:url]                   = "url"
-      @options[:only_vulnerable_ones]  = false
-      @options[:file]                  = "file"
-      @options[:vulns_file]            = "vulns_file"
-      @options[:vulns_xpath]           = "vulns_xpath"
-      @options[:vulns_xpath_2]         = "vulns_xpath_2"
-      @options[:wp_content_dir]        = "wp_content_dir"
-      @options[:show_progress_bar]     = true
-      @options[:error_404_hash]        = "error_404_hash"
-      @options[:type]                  = "type"
+      @options[:url] = "url"
+      @options[:only_vulnerable_ones] = false
+      @options[:file] = "file"
+      @options[:vulns_file] = "vulns_file"
+      @options[:vulns_xpath] = "vulns_xpath"
+      @options[:vulns_xpath_2] = "vulns_xpath_2"
+      @options[:wp_content_dir] = "wp_content_dir"
+      @options[:show_progress_bar] = true
+      @options[:error_404_hash] = "error_404_hash"
+      @options[:type] = "type"
 
       @message = ""
     end

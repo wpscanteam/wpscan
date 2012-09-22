@@ -19,8 +19,8 @@
 shared_examples_for "WpPlugins" do
 
   before :all do
-    @fixtures_dir      = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_plugins'
-    @plugins_file      = @fixtures_dir + "/plugins.txt"
+    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_plugins'
+    @plugins_file = @fixtures_dir + "/plugins.txt"
     @plugin_vulns_file = @fixtures_dir + "/plugin_vulns.xml"
 
     @wp_url = "http://example.localhost/"
@@ -31,42 +31,42 @@ shared_examples_for "WpPlugins" do
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
     @module.extend(WpPlugins)
 
-    @options = { :url => @wp_url,
-                 :only_vulnerable_ones => false,
-                 :show_progress_bar => false,
-                 :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
-                 :vulns_file => @plugin_vulns_file,
-                 :file => @plugins_file,
-                 :type => "plugins",
-                 :wp_content_dir => "wp-content",
-                 :vulns_xpath_2 => "//plugin"
+    @options = {:url => @wp_url,
+                :only_vulnerable_ones => false,
+                :show_progress_bar => false,
+                :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
+                :vulns_file => @plugin_vulns_file,
+                :file => @plugins_file,
+                :type => "plugins",
+                :wp_content_dir => "wp-content",
+                :vulns_xpath_2 => "//plugin"
     }
     File.exist?(@plugin_vulns_file).should == true
     File.exist?(@plugins_file).should == true
-    @targets = [WpPlugin.new({:url=>"http://example.localhost/",
-                              :path=>"plugins/exclude-pages/exclude_pages.php",
-                              :wp_content_dir=>"wp-content",
-                              :name=>"exclude-pages"}),
-                WpPlugin.new({:url=>"http://example.localhost/",
-                              :path=>"plugins/display-widgets/display-widgets.php",
-                              :wp_content_dir=>"wp-content",
-                              :name=>"display-widgets"}),
-                WpPlugin.new({:url=>"http://example.localhost/",
-                              :path=>"plugins/media-library",
-                              :wp_content_dir=>"wp-content",
-                              :name=>"media-library"}),
-                WpPlugin.new({:url=>"http://example.localhost/",
-                              :path=>"plugins/deans",
-                              :wp_content_dir=>"wp-content",
-                              :name=>"deans"}),
-                WpPlugin.new({:url=>"http://example.localhost/",
-                              :path=>"plugins/formidable/formidable.php",
-                              :wp_content_dir=>"wp-content",
-                              :name=>"formidable"}),
-                WpPlugin.new({:url=>"http://example.localhost/",
-                              :path=>"plugins/regenerate-thumbnails/readme.txt",
-                              :wp_content_dir=>"wp-content",
-                              :name=>"regenerate-thumbnails"})]
+    @targets = [WpPlugin.new({:url => "http://example.localhost/",
+                              :path => "plugins/exclude-pages/exclude_pages.php",
+                              :wp_content_dir => "wp-content",
+                              :name => "exclude-pages"}),
+                WpPlugin.new({:url => "http://example.localhost/",
+                              :path => "plugins/display-widgets/display-widgets.php",
+                              :wp_content_dir => "wp-content",
+                              :name => "display-widgets"}),
+                WpPlugin.new({:url => "http://example.localhost/",
+                              :path => "plugins/media-library",
+                              :wp_content_dir => "wp-content",
+                              :name => "media-library"}),
+                WpPlugin.new({:url => "http://example.localhost/",
+                              :path => "plugins/deans",
+                              :wp_content_dir => "wp-content",
+                              :name => "deans"}),
+                WpPlugin.new({:url => "http://example.localhost/",
+                              :path => "plugins/formidable/formidable.php",
+                              :wp_content_dir => "wp-content",
+                              :name => "formidable"}),
+                WpPlugin.new({:url => "http://example.localhost/",
+                              :path => "plugins/regenerate-thumbnails/readme.txt",
+                              :wp_content_dir => "wp-content",
+                              :name => "regenerate-thumbnails"})]
   end
 
   describe "#plugins_from_passive_detection" do

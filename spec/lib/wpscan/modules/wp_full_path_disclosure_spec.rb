@@ -35,21 +35,21 @@ shared_examples_for "WpFullPathDisclosure" do
 
     it "should return false on a 404" do
       stub_request(:get, @module.full_path_disclosure_url).
-        to_return(:status => 404)
+          to_return(:status => 404)
 
       @module.has_full_path_disclosure?.should be_false
     end
 
     it "should return false if no fpd found (blank page for example)" do
       stub_request(:get, @module.full_path_disclosure_url).
-        to_return(:status => 200, :body => "")
+          to_return(:status => 200, :body => "")
 
       @module.has_full_path_disclosure?.should be_false
     end
 
     it "should return true" do
       stub_request(:get, @module.full_path_disclosure_url).
-        to_return(:status => 200, :body => File.new(@fixtures_dir + '/rss-functions-disclosure.php'))
+          to_return(:status => 200, :body => File.new(@fixtures_dir + '/rss-functions-disclosure.php'))
 
       @module.has_full_path_disclosure?.should be_true
     end

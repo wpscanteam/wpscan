@@ -23,8 +23,8 @@ describe WpTheme do
     @target_uri = URI.parse("http://example.localhost/")
 
     Browser.instance(
-      :config_file   => SPEC_FIXTURES_CONF_DIR + "/browser/browser.conf.json",
-      :cache_timeout => 0
+        :config_file => SPEC_FIXTURES_CONF_DIR + "/browser/browser.conf.json",
+        :cache_timeout => 0
     )
   end
 
@@ -70,20 +70,20 @@ describe WpTheme do
     end
 
     it "should return a WpTheme object with .name = twentyeleven" do
-      @fixture       = fixtures_dir + "/wordpress-twentyeleven.htm"
+      @fixture = fixtures_dir + "/wordpress-twentyeleven.htm"
       @expected_name = "twentyeleven"
     end
 
     # http://code.google.com/p/wpscan/issues/detail?id=131
     # Theme name with spaces raises bad URI(is not URI?)
     it "should not raise an error if the theme name has spaces or special chars" do
-      @fixture       = fixtures_dir + "/theme-name-with-spaces.html"
+      @fixture = fixtures_dir + "/theme-name-with-spaces.html"
       @expected_name = "Copia di simplefolio"
     end
 
     # https://github.com/wpscanteam/wpscan/issues/18
     it "should get the theme if the <link> is inline with some other tags" do
-      @fixture       = fixtures_dir + "/inline_link_tag.html"
+      @fixture = fixtures_dir + "/inline_link_tag.html"
       @expected_name = "inline"
     end
   end
@@ -128,7 +128,7 @@ describe WpTheme do
     end
 
     it "should return nil if no theme is found" do
-      @fixture  = SPEC_FIXTURES_DIR + "/empty-file"
+      @fixture = SPEC_FIXTURES_DIR + "/empty-file"
       @expected_name = nil
     end
 
@@ -158,7 +158,7 @@ describe WpTheme do
     end
 
     it "should return nil if the version is not found" do
-      @fixture  = fixtures_dir + "/twentyeleven-unknow.css"
+      @fixture = fixtures_dir + "/twentyeleven-unknow.css"
       @expected = nil
     end
 
@@ -167,69 +167,69 @@ describe WpTheme do
     end
 
     it "should return 1.3" do
-      @fixture  = fixtures_dir + "/twentyeleven-1.3.css"
+      @fixture = fixtures_dir + "/twentyeleven-1.3.css"
       @expected = "1.3"
     end
 
     it "should return 1.5.1" do
-      @fixture  = fixtures_dir + "/bueno-1.5.1.css"
+      @fixture = fixtures_dir + "/bueno-1.5.1.css"
       @expected = "1.5.1"
     end
   end
 
   describe "#===" do
     it "should return false (name not equal)" do
-      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                             :path            => "themes/name/asdf.php",
-                             :vulns_xml       => "XXX.xml",
-                             :version         => "1.0"
+      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                             :path => "themes/name/asdf.php",
+                             :vulns_xml => "XXX.xml",
+                             :version => "1.0"
       )
-      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                              :path            => "themes/newname/asdf.php",
-                              :vulns_xml       => "XXX.xml",
-                              :version         => "1.0"
+      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                              :path => "themes/newname/asdf.php",
+                              :vulns_xml => "XXX.xml",
+                              :version => "1.0"
       )
       (instance===instance2).should == false
     end
 
     it "should return false (version not equal)" do
-      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                             :path            => "themes/name/asdf.php",
-                             :vulns_xml       => "XXX.xml",
-                             :version         => "1.0"
+      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                             :path => "themes/name/asdf.php",
+                             :vulns_xml => "XXX.xml",
+                             :version => "1.0"
       )
-      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                              :path            => "themes/name/asdf.php",
-                              :vulns_xml       => "XXX.xml",
-                              :version         => "2.0"
+      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                              :path => "themes/name/asdf.php",
+                              :vulns_xml => "XXX.xml",
+                              :version => "2.0"
       )
       (instance===instance2).should == false
     end
 
     it "should return false (version and name not equal)" do
-      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                             :path            => "themes/name/asdf.php",
-                             :vulns_xml       => "XXX.xml",
-                             :version         => "1.0"
+      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                             :path => "themes/name/asdf.php",
+                             :vulns_xml => "XXX.xml",
+                             :version => "1.0"
       )
-      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                              :path            => "themes/newname/asdf.php",
-                              :vulns_xml       => "XXX.xml",
-                              :version         => "2.0"
+      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                              :path => "themes/newname/asdf.php",
+                              :vulns_xml => "XXX.xml",
+                              :version => "2.0"
       )
       (instance===instance2).should == false
     end
 
     it "should return true" do
-      instance = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                             :path            => "themes/test/asdf.php",
-                             :vulns_xml       => "XXX.xml",
-                             :version         => "1.0"
+      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                             :path => "themes/test/asdf.php",
+                             :vulns_xml => "XXX.xml",
+                             :version => "1.0"
       )
-      instance2 = WpTheme.new(:url             => "http://sub.example.com/path/to/wordpress/",
-                              :path            => "themes/test/asdf.php",
-                              :vulns_xml       => "XXX.xml",
-                              :version         => "1.0"
+      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+                              :path => "themes/test/asdf.php",
+                              :vulns_xml => "XXX.xml",
+                              :version => "1.0"
       )
       (instance===instance2).should == true
     end

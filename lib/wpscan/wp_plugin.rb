@@ -18,10 +18,10 @@
 
 class WpPlugin < WpItem
   def initialize(options = {})
-    options[:vulns_xml]     = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
-    options[:vulns_xpath]   = "//plugin[@name='$name$']/vulnerability"
+    options[:vulns_xml] = options[:vulns_xml] || DATA_DIR + '/plugin_vulns.xml'
+    options[:vulns_xpath] = "//plugin[@name='$name$']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
-    options[:type]          = "plugins"
+    options[:type] = "plugins"
     super(options)
   end
 
@@ -31,7 +31,7 @@ class WpPlugin < WpItem
   # however can also be found in their specific plugin dir.
   # http://www.exploit-db.com/ghdb/3714/
   def error_log?
-    response_body = Browser.instance.get(error_log_url(), :headers => { "range" => "bytes=0-700"}).body
+    response_body = Browser.instance.get(error_log_url(), :headers => {"range" => "bytes=0-700"}).body
     response_body[%r{PHP Fatal error}i] ? true : false
   end
 

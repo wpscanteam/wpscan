@@ -19,33 +19,33 @@
 shared_examples_for "WpTimthumbs" do
 
   before :each do
-    @options                        = {}
-    @url                            = "http://example.localhost/"
-    @theme_name                     = "bueno"
-    @options[:url]                  = @url
-    @options[:wp_content_dir]       = "wp-content"
-    @options[:name]                 = @theme_name
-    @options[:error_404_hash]       = "xx"
-    @options[:show_progress_bar]    = false
+    @options = {}
+    @url = "http://example.localhost/"
+    @theme_name = "bueno"
+    @options[:url] = @url
+    @options[:wp_content_dir] = "wp-content"
+    @options[:name] = @theme_name
+    @options[:error_404_hash] = "xx"
+    @options[:show_progress_bar] = false
     @options[:only_vulnerable_ones] = false
-    @module                         = WpScanModuleSpec.new(@url)
-    @fixtures_dir                   = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
-    @timthumbs_file                 = @fixtures_dir + "/timthumbs.txt"
-    @targets_from_file              =
-    %w{
+    @module = WpScanModuleSpec.new(@url)
+    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
+    @timthumbs_file = @fixtures_dir + "/timthumbs.txt"
+    @targets_from_file =
+        %w{
       http://example.localhost/wp-content/plugins/fotoslide/timthumb.php
       http://example.localhost/wp-content/plugins/feature-slideshow/timthumb.php
     }
     @targets_from_theme =
-    [
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/timthumb.php",
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/lib/timthumb.php",
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/inc/timthumb.php",
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/includes/timthumb.php",
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/scripts/timthumb.php",
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/tools/timthumb.php",
-      "http://example.localhost/wp-content/themes/" + @theme_name + "/functions/timthumb.php"
-    ]
+        [
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/timthumb.php",
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/lib/timthumb.php",
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/inc/timthumb.php",
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/includes/timthumb.php",
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/scripts/timthumb.php",
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/tools/timthumb.php",
+            "http://example.localhost/wp-content/themes/" + @theme_name + "/functions/timthumb.php"
+        ]
 
     @module.extend(WpTimthumbs)
   end
@@ -93,7 +93,7 @@ shared_examples_for "WpTimthumbs" do
       urls.sample(2).each do |target_url|
         expected << target_url
         stub_request(:get, target_url).
-          to_return(:status => 200, :body => File.new(@fixtures_dir + "/timthumb.php"))
+            to_return(:status => 200, :body => File.new(@fixtures_dir + "/timthumb.php"))
       end
 
       timthumbs = @module.timthumbs(nil, @options)
