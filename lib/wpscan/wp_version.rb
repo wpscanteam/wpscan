@@ -23,10 +23,10 @@ class WpVersion < Vulnerable
   attr_reader :number, :discovery_method
 
   def initialize(number, options = {})
-    @number = number
+    @number           = number
     @discovery_method = options[:discovery_method]
-    @vulns_xml = options[:vulns_xml] || DATA_DIR + '/wp_vulns.xml'
-    @vulns_xpath = "//wordpress[@version='#{@number}']/vulnerability"
+    @vulns_xml        = options[:vulns_xml] || DATA_DIR + '/wp_vulns.xml'
+    @vulns_xpath      = "//wordpress[@version='#{@number}']/vulnerability"
   end
 
   # Will use all method self.find_from_* to try to detect the version
@@ -38,7 +38,7 @@ class WpVersion < Vulnerable
   # (find_from_meta_generator, find_from_rss_generator etc)
   def self.find(target_uri, wp_content_dir)
     options = {
-        :url => target_uri,
+        :url            => target_uri,
         :wp_content_dir => wp_content_dir
     }
     self.methods.grep(/find_from_/).each do |method_to_call|

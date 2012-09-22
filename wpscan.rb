@@ -181,11 +181,11 @@ begin
     puts
 
     options = {}
-    options[:url] = wp_target.uri
-    options[:only_vulnerable_ones] = wpscan_options.enumerate_only_vulnerable_plugins || false
-    options[:show_progress_bar] = true
-    options[:wp_content_dir] = wp_target.wp_content_dir
-    options[:error_404_hash] = wp_target.error_404_hash
+    options[:url]                   = wp_target.uri
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
+    options[:show_progress_bar]     = true
+    options[:wp_content_dir]        = wp_target.wp_content_dir
+    options[:error_404_hash]        = wp_target.error_404_hash
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
@@ -235,11 +235,11 @@ begin
     puts
 
     options = {}
-    options[:url] = wp_target.uri
-    options[:only_vulnerable_ones] = wpscan_options.enumerate_only_vulnerable_themes || false
-    options[:show_progress_bar] = true
-    options[:wp_content_dir] = wp_target.wp_content_dir
-    options[:error_404_hash] = wp_target.error_404_hash
+    options[:url]                   = wp_target.uri
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
+    options[:show_progress_bar]     = true
+    options[:wp_content_dir]        = wp_target.wp_content_dir
+    options[:error_404_hash]        = wp_target.error_404_hash
 
     themes = wp_target.themes_from_aggressive_detection(options)
     unless themes.empty?
@@ -281,10 +281,10 @@ begin
     puts
 
     options = {}
-    options[:url] = wp_target.uri
+    options[:url]               = wp_target.uri
     options[:show_progress_bar] = true
-    options[:wp_content_dir] = wp_target.wp_content_dir
-    options[:error_404_hash] = wp_target.error_404_hash
+    options[:wp_content_dir]    = wp_target.wp_content_dir
+    options[:error_404_hash]    = wp_target.error_404_hash
 
     theme_name = wp_theme ? wp_theme.name : nil
     if wp_target.has_timthumbs?(theme_name, options)

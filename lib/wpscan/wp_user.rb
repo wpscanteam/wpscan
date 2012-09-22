@@ -20,8 +20,8 @@ class WpUser
   attr_accessor :name, :id, :nickname
 
   def initialize(name, id, nickname)
-    @name = name ? name : "empty"
-    @id = id ? id : "empty"
+    @name     = name ? name : "empty"
+    @id       = id ? id : "empty"
     @nickname = nickname ? nickname : "empty"
   end
 

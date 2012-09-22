@@ -27,12 +27,12 @@ module WpTimthumbs
 
   def timthumbs(theme_name = nil, options = {})
     if @wp_timthumbs.nil?
-      options[:type] = "timthumbs"
-      options[:only_vulnerable_ones] = false
-      options[:file] = options[:file] || DATA_DIR + "/timthumbs.txt"
-      options[:vulns_file] = "xxx"
-      options[:vulns_xpath] = "xxx"
-      options[:vulns_xpath_2] = "xxx"
+      options[:type]                  = "timthumbs"
+      options[:only_vulnerable_ones]  = false
+      options[:file]                  = options[:file] || DATA_DIR + "/timthumbs.txt"
+      options[:vulns_file]            = "xxx"
+      options[:vulns_xpath]           = "xxx"
+      options[:vulns_xpath_2]         = "xxx"
 
       WpOptions.check_options(options)
       if theme_name == nil
@@ -55,10 +55,10 @@ module WpTimthumbs
       scripts/timthumb.php tools/timthumb.php functions/timthumb.php
     }.each do |file|
       targets << {
-          :url => options[:url],
-          :path => "themes/#{theme_name}/#{file}",
+          :url            => options[:url],
+          :path           => "themes/#{theme_name}/#{file}",
           :wp_content_dir => options[:wp_content_dir],
-          :name => options[:name]
+          :name           => options[:name]
       }
     end
     targets

@@ -26,23 +26,23 @@ class Generate_List
   # type = themes | plugins
   def initialize(type, verbose)
     if type =~ /plugins/i
-      @type = "plugin"
-      @svn_url = 'http://plugins.svn.wordpress.org/'
-      @file_name = DATA_DIR + '/plugins.txt'
-      @popular_url = 'http://wordpress.org/extend/plugins/browse/popular/'
-      @popular_regex = %r{<h3><a href="http://wordpress.org/extend/plugins/(.+)/">.+</a></h3>}i
+      @type           = "plugin"
+      @svn_url        = 'http://plugins.svn.wordpress.org/'
+      @file_name      = DATA_DIR + '/plugins.txt'
+      @popular_url    = 'http://wordpress.org/extend/plugins/browse/popular/'
+      @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/plugins/(.+)/">.+</a></h3>}i
     elsif type =~ /themes/i
-      @type = "theme"
-      @svn_url = 'http://themes.svn.wordpress.org/'
-      @file_name = DATA_DIR + '/themes.txt'
-      @popular_url = 'http://wordpress.org/extend/themes/browse/popular/'
-      @popular_regex = %r{<h3><a href="http://wordpress.org/extend/themes/(.+)">.+</a></h3>}i
+      @type           = "theme"
+      @svn_url        = 'http://themes.svn.wordpress.org/'
+      @file_name      = DATA_DIR + '/themes.txt'
+      @popular_url    = 'http://wordpress.org/extend/themes/browse/popular/'
+      @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/themes/(.+)">.+</a></h3>}i
     else
       raise "Type #{type} not defined"
     end
-    @verbose = verbose
-    @browser = Browser.instance
-    @hydra = @browser.hydra
+    @verbose  = verbose
+    @browser  = Browser.instance
+    @hydra    = @browser.hydra
   end
 
   def generate_full_list

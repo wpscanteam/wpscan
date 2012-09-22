@@ -24,11 +24,11 @@ class Svn_Parser
   attr_accessor :verbose, :svn_root, :keep_empty_dirs
 
   def initialize(svn_root, verbose, keep_empty_dirs = false)
-    @svn_root = svn_root
-    @verbose = verbose
-    @keep_empty_dirs = keep_empty_dirs
-    @svn_browser = Browser.instance
-    @svn_hydra = @svn_browser.hydra
+    @svn_root         = svn_root
+    @verbose          = verbose
+    @keep_empty_dirs  = keep_empty_dirs
+    @svn_browser      = Browser.instance
+    @svn_hydra        = @svn_browser.hydra
   end
 
   def parse(dirs=nil)

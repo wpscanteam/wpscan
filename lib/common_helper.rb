@@ -16,14 +16,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-LIB_DIR = File.dirname(__FILE__)
-ROOT_DIR = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
-DATA_DIR = ROOT_DIR + "/data"
-CONF_DIR = ROOT_DIR + "/conf"
-CACHE_DIR = ROOT_DIR + "/cache"
-WPSCAN_LIB_DIR = LIB_DIR + "/wpscan"
-WPSTOOLS_LIB_DIR = LIB_DIR + "/wpstools"
-UPDATER_LIB_DIR = LIB_DIR + "/updater"
+LIB_DIR           = File.dirname(__FILE__)
+ROOT_DIR          = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+DATA_DIR          = ROOT_DIR + "/data"
+CONF_DIR          = ROOT_DIR + "/conf"
+CACHE_DIR         = ROOT_DIR + "/cache"
+WPSCAN_LIB_DIR    = LIB_DIR + "/wpscan"
+WPSTOOLS_LIB_DIR  = LIB_DIR + "/wpstools"
+UPDATER_LIB_DIR   = LIB_DIR + "/updater"
 
 WPSCAN_VERSION = "2.0"
 
@@ -127,9 +127,9 @@ def colorize(text, color_code)
 end
 
 def red(text)
-  ; colorize(text, 31)
+  colorize(text, 31)
 end
 
 def green(text)
-  ; colorize(text, 32)
+  colorize(text, 32)
 end

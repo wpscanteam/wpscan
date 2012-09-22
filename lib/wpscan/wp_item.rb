@@ -24,17 +24,17 @@ class WpItem < Vulnerable
 
   def initialize(options = {})
     @wp_content_dir = options[:wp_content_dir] || "wp-content"
-    @url = options[:url]
-    @path = options[:path]
-    @name = options[:name] || extract_name_from_url
-    @vulns_xml = options[:vulns_xml]
-    @vulns_xpath = options[:vulns_xpath].sub(/\$name\$/, @name)
+    @url            = options[:url]
+    @path           = options[:path]
+    @name           = options[:name] || extract_name_from_url
+    @vulns_xml      = options[:vulns_xml]
+    @vulns_xpath    = options[:vulns_xpath].sub(/\$name\$/, @name)
 
-    raise("url not set") unless @url
-    raise("path not set") unless @path
+    raise("url not set")            unless @url
+    raise("path not set")           unless @path
     raise("wp_content_dir not set") unless @wp_content_dir
-    raise("name not set") unless @name
-    raise("vulns_xml not set") unless @vulns_xml
+    raise("name not set")           unless @name
+    raise("vulns_xml not set")      unless @vulns_xml
   end
 
   # Get the full url for this item
