@@ -81,6 +81,12 @@ shared_examples_for "WpTimthumbs" do
       @module.has_timthumbs?(nil, @options).should be_false
     end
 
+    it "should return an array with 7 elements (from passive detection)" do
+      stub_request(:get, %r{http://example\.localhost/wp-content/themes/my-theme/.*}).to_return(:status => 200)
+      timthumbs = @module.timthumbs("my-theme", @options)
+      timthumbs.length.should == 7
+    end
+
     it "should return an array with 2 timthumbs url" do
       expected = []
       urls = []

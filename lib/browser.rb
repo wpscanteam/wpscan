@@ -18,7 +18,7 @@
 
 class Browser
   @@instance = nil
-  @@user_agent_modes = %w{ static semi-static random }
+  USER_AGENT_MODES = %w{ static semi-static random }
 
   ACCESSOR_OPTIONS = [
       :user_agent,
@@ -69,7 +69,7 @@ class Browser
   def user_agent_mode=(ua_mode)
     ua_mode ||= "static"
 
-    if @@user_agent_modes.include?(ua_mode)
+    if USER_AGENT_MODES.include?(ua_mode)
       @user_agent_mode = ua_mode
       # For semi-static user agent mode, the user agent has to be nil the first time (it will be set with the getter)
       @user_agent = nil if ua_mode === "semi-static"

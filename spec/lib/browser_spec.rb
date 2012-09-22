@@ -42,7 +42,7 @@ describe Browser do
 
   describe "#user_agent_mode setter / getter" do
     # Testing all valid modes
-    Browser.class_variable_get(:@@user_agent_modes).each do |user_agent_mode|
+    Browser::USER_AGENT_MODES.each do |user_agent_mode|
       it "should set / return #{user_agent_mode}" do
         @browser.user_agent_mode = user_agent_mode
         @browser.user_agent_mode.should === user_agent_mode
