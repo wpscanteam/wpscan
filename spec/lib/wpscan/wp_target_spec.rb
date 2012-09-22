@@ -24,9 +24,10 @@ describe WpTarget do
     Browser.reset
     @options =
     {
-      :config_file   => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
-      :cache_timeout => 0,
-      :wp_plugins_dir => "wp-content/plugins"
+      :config_file    => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
+      :cache_timeout  => 0,
+      :wp_content_dir => "wp-content",
+      :wp_plugins_dir => "plugins"
     }
     @wp_target = WpTarget.new("http://example.localhost/", @options)
   end
@@ -162,9 +163,9 @@ describe WpTarget do
       @expected  = "custom-plugins"
     end
 
-    it "should return 'wp-content/plugins'" do
+    it "should return 'plugins'" do
       @stub_value = "wp-content"
-      @expected   = "wp-content/plugins"
+      @expected   = "plugins"
     end
   end
 

@@ -50,11 +50,7 @@ class WpEnumerator
     enumerate_size = targets.size
 
     targets.each do |target|
-      # Timthumb files have no /timthumbs/ directory
-      unless options[:type] =~ /timthumbs/i
-        target[:path] = "#{options[:type]}/#{target[:path]}"
-      end
-      url = "#{target[:url]}#{target[:wp_content_dir]}/#{target[:path]}"
+      url = target.get_url
 
       request = enum_browser.forge_request(url, { :cache_timeout => 0, :follow_location => true })
       request_count += 1
@@ -92,18 +88,22 @@ class WpEnumerator
     wp_content_dir    = options[:wp_content_dir]
     url               = options[:url]
     type              = options[:type]
+    plugins_dir       = options[:wp_plugins_dir]
     targets_url       = []
 
     unless only_vulnerable
       # Open and parse the 'most popular' plugin list...
-      File.open(file, 'r') do |f|
+      File.open(file, "r") do |f|
         f.readlines.collect do |line|
-          targets_url << {
+          targets_url << WpItem.new(
               :url            => url,
               :path           => line.strip,
               :wp_content_dir => wp_content_dir,
-              :name           => File.dirname(line.strip)
-          }
+              :name           => File.dirname(line.strip),
+              :vulns_file     => vulns_file,
+              :type           => type,
+              :wp_plugins_dir => plugins_dir
+          )
         end
       end
     end
@@ -117,17 +117,20 @@ class WpEnumerator
       # We check if the plugin name from the plugin_vulns_file is already in targets, otherwise we add it
       xml.xpath(options[:vulns_xpath_2]).each do |node|
         name = node.attribute("name").text
-        targets_url << {
+        targets_url << WpItem.new(
             :url            => url,
             :path           => name,
             :wp_content_dir => wp_content_dir,
-            :name           => name
-        }
+            :name           => name,
+            :vulns_file     => vulns_file,
+            :type           => type,
+            :wp_plugins_dir => plugins_dir
+        )
         end
     end
 
-    targets_url.flatten!
-    targets_url.uniq!
+    targets_url.flatten! { |t| t.name }
+    targets_url.uniq! { |t| t.name }
     # randomize the plugins array to *maybe* help in some crappy IDS/IPS/WAF detection
     targets_url.sort_by! { rand }
   end

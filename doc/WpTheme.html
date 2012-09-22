@@ -91,6 +91,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -286,7 +288,7 @@
             
             <div class="method-source-code" id="find-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 42</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/find_from_/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method_to_call</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">theme</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">method_to_call</span>, <span class="ruby-identifier">target_uri</span>)
@@ -326,8 +328,10 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>]   = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xml</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/wp_theme_vulns.xml'</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]    = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">?</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/wp_theme_vulns.xml&quot;</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-string">&quot;//theme[@name='$name$']/vulnerability&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]        = <span class="ruby-string">&quot;themes&quot;</span>
   <span class="ruby-ivar">@version</span>              = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>]
   <span class="ruby-ivar">@style_url</span>            = <span class="ruby-identifier">options</span>[<span class="ruby-value">:style_url</span>]
   <span class="ruby-keyword">super</span>(<span class="ruby-identifier">options</span>)
@@ -367,11 +371,12 @@
             
             <div class="method-source-code" id="find_from_css_link-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 58</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_css_link</span>(<span class="ruby-identifier">target_uri</span>)
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, { <span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span> })
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>})
 
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span> = <span class="ruby-regexp">%{https?://[^&quot;']+/themes/([^&quot;']+)/style.css}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
+  <span class="ruby-identifier">matches</span> = <span class="ruby-regexp">%{https?://[^&quot;']+/themes/([^&quot;']+)/style.css}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span>
     <span class="ruby-identifier">style_url</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">0</span>]
     <span class="ruby-identifier">theme_name</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>]
 
@@ -413,14 +418,15 @@ href="http://code.google.com/p/wpscan/issues/detail?id=141">code.google.com/p/wp
             
             <div class="method-source-code" id="find_from_wooframework-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 75</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 78</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_wooframework</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">regexp</span> = <span class="ruby-regexp">%{&lt;meta name=&quot;generator&quot; content=&quot;([^\s&quot;]+)\s?([^&quot;]+)?&quot; /&gt;\s+&lt;meta name=&quot;generator&quot; content=&quot;WooFramework\s?([^&quot;]+)?&quot; /&gt;}</span>
 
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">regexp</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">body</span>)
-    <span class="ruby-identifier">woo_theme_name</span>        = <span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>]
-    <span class="ruby-identifier">woo_theme_version</span>     = <span class="ruby-identifier">matches</span>[<span class="ruby-value">2</span>]
+  <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">regexp</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">body</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span>
+    <span class="ruby-identifier">woo_theme_name</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-identifier">woo_theme_version</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">2</span>]
     <span class="ruby-identifier">woo_framework_version</span> = <span class="ruby-identifier">matches</span>[<span class="ruby-value">3</span>] <span class="ruby-comment"># Not used at this time</span>
 
     <span class="ruby-keyword">return</span> <span class="ruby-identifier">new</span>(<span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">woo_theme_name</span>,
@@ -466,7 +472,7 @@ href="http://code.google.com/p/wpscan/issues/detail?id=141">code.google.com/p/wp
             
             <div class="method-source-code" id="3D-3D-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 51</span>
+<span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">wp_theme</span>)
   <span class="ruby-identifier">wp_theme</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">wp_theme</span>.<span class="ruby-identifier">version</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@version</span>
 <span class="ruby-keyword">end</span></pre>

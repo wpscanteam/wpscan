@@ -91,6 +91,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -276,10 +278,10 @@ binary format Marshal does not need any “require”</p>
 <span class="ruby-comment"># File lib/cache_file_store.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">storage_path</span>, <span class="ruby-identifier">serializer</span> = <span class="ruby-constant">Marshal</span>)
   <span class="ruby-ivar">@storage_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">storage_path</span>)
-  <span class="ruby-ivar">@serializer</span>   = <span class="ruby-identifier">serializer</span>
+  <span class="ruby-ivar">@serializer</span> = <span class="ruby-identifier">serializer</span>
 
   <span class="ruby-comment"># File.directory? for ruby &lt;= 1.9 otherwise, it makes more sense to do Dir.exist? :/</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-ivar">@storage_path</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-ivar">@storage_path</span>)
     <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-ivar">@storage_path</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -425,7 +427,7 @@ binary format Marshal does not need any “require”</p>
 <pre>
 <span class="ruby-comment"># File lib/cache_file_store.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">write_entry</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">data_to_store</span>, <span class="ruby-identifier">cache_timeout</span>)
-  <span class="ruby-keyword">if</span> (<span class="ruby-identifier">cache_timeout</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cache_timeout</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">get_entry_file_path</span>(<span class="ruby-identifier">key</span>), <span class="ruby-string">'w'</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@serializer</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">data_to_store</span>))
     <span class="ruby-keyword">end</span>

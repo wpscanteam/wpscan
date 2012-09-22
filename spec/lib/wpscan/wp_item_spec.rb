@@ -21,10 +21,11 @@ require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 describe WpPlugin do
   before :each do
     @instance = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
-                           :path => "plugins/test/asdf.php",
-                           :vulns_xml => "XXX.xml",
+                           :path => "test/asdf.php",
+                           :vulns_file => "XXX.xml",
                            :name => "test",
-                           :vulns_xpath => "XX"
+                           :vulns_xpath => "XX",
+                           :type => "plugins"
     )
   end
 
@@ -32,7 +33,7 @@ describe WpPlugin do
     it "should create a correct instance" do
       @instance.wp_content_dir.should == "wp-content"
       @instance.url.should == "http://sub.example.com/path/to/wordpress/"
-      @instance.path.should == "plugins/test/asdf.php"
+      @instance.path.should == "test/asdf.php"
     end
   end
 
@@ -43,13 +44,15 @@ describe WpPlugin do
 
     it "should return the correct url (custom wp_content_dir)" do
       @instance.wp_content_dir = "custom"
+      @instance.type = "plugins"
       @instance.get_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/asdf.php"
     end
 
     it "should trim / and add missing / before concatenating url" do
       @instance.wp_content_dir = "/custom/"
       @instance.url = "http://sub.example.com/path/to/wordpress"
-      @instance.path = "plugins/test/asdf.php"
+      @instance.path = "test/asdf.php"
+      @instance.type = "plugins"
       @instance.get_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/asdf.php"
     end
   end
@@ -67,12 +70,14 @@ describe WpPlugin do
     it "should trim / and add missing / before concatenating url" do
       @instance.wp_content_dir = "/custom/"
       @instance.url = "http://sub.example.com/path/to/wordpress"
-      @instance.path = "plugins/test/asdf.php"
+      @instance.path = "test/asdf.php"
+      @instance.type = "plugins"
       @instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/"
     end
 
     it "should not remove the last foldername" do
-      @instance.path = "plugins/test/"
+      @instance.path = "test/"
+      @instance.type = "plugins"
       @instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
     end
 
@@ -82,7 +87,8 @@ describe WpPlugin do
     end
 
     it "should add the last slash if it's not present" do
-      @instance.path = "plugins/test-one"
+      @instance.path = "test-one"
+      @instance.type = "plugins"
       @instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test-one/"
     end
   end
@@ -145,17 +151,20 @@ describe WpPlugin do
     it "should extract the correct name" do
       @instance.wp_content_dir = "/custom/"
       @instance.url = "http://sub.example.com/path/to/wordpress"
-      @instance.path = "plugins/test2/asdf.php"
+      @instance.path = "test2/asdf.php"
+      @instance.type = "plugins"
       @instance.extract_name_from_url.should == "test2"
     end
 
     it "should extract the correct plugin name" do
-      @instance.path = "plugins/testplugin/"
+      @instance.path = "testplugin/"
+      @instance.type = "plugins"
       @instance.extract_name_from_url.should == "testplugin"
     end
 
     it "should extract the correct theme name" do
-      @instance.path = "themes/testtheme/"
+      @instance.path = "testtheme/"
+      @instance.type = "plugins"
       @instance.extract_name_from_url.should == "testtheme"
     end
   end
@@ -175,8 +184,9 @@ describe WpPlugin do
   describe "#==" do
     it "should return false" do
       instance2 = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "plugins/newname/asdf.php",
-                             :vulns_xml => "XXX.xml",
+                             :path => "newname/asdf.php",
+                             :type => "plugins",
+                             :vulns_file => "XXX.xml",
                              :vulns_xpath => "XX"
       )
       (@instance==instance2).should == false
@@ -184,11 +194,79 @@ describe WpPlugin do
 
     it "should return true" do
       instance2 = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "plugins/test/asdf.php",
-                             :vulns_xml => "XXX.xml",
+                             :path => "test/asdf.php",
+                             :type => "plugins",
+                             :vulns_file => "XXX.xml",
                              :vulns_xpath => "XX"
       )
       (@instance==instance2).should == true
+    end
+  end
+
+  describe "#get_sub_folder" do
+    it "should return plugins" do
+      item = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
+                        :path => "test/asdf.php",
+                        :vulns_file => "XXX.xml",
+                        :wp_content_dir => "wp-content",
+                        :wp_plugins_dir => "plugins",
+                        :name => "test",
+                        :vulns_xpath => "XX",
+                        :type => "plugins"
+      )
+      item.get_sub_folder.should == "plugins"
+    end
+
+    it "should return custom-plugins" do
+      item = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
+                        :path => "test/asdf.php",
+                        :vulns_file => "XXX.xml",
+                        :wp_content_dir => "wp-content",
+                        :wp_plugins_dir => "custom-plugins",
+                        :name => "test",
+                        :vulns_xpath => "XX",
+                        :type => "plugins"
+      )
+      item.get_sub_folder.should == "custom-plugins"
+    end
+
+    it "should return themes" do
+      item = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
+                        :path => "test/asdf.php",
+                        :vulns_file => "XXX.xml",
+                        :wp_content_dir => "wp-content",
+                        :wp_plugins_dir => "plugins",
+                        :name => "test",
+                        :vulns_xpath => "XX",
+                        :type => "themes"
+      )
+      item.get_sub_folder.should == "themes"
+    end
+
+    it "should return nil" do
+      item = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
+                        :path => "test/asdf.php",
+                        :vulns_file => "XXX.xml",
+                        :wp_content_dir => "wp-content",
+                        :wp_plugins_dir => "plugins",
+                        :name => "test",
+                        :vulns_xpath => "XX",
+                        :type => "timthumbs"
+      )
+      item.get_sub_folder.should == nil
+    end
+
+    it "should raise an exception" do
+      item = WpItem.new(:url => "http://sub.example.com/path/to/wordpress/",
+                        :path => "test/asdf.php",
+                        :vulns_file => "XXX.xml",
+                        :wp_content_dir => "wp-content",
+                        :wp_plugins_dir => "plugins",
+                        :name => "test",
+                        :vulns_xpath => "XX",
+                        :type => "type"
+      )
+      expect { item.get_sub_folder }.to raise_error(RuntimeError, "unknown type type")
     end
   end
 
@@ -199,17 +277,20 @@ describe WpPlugin do
 
     it "should return the corrent plugin readme url (custom wp_content)" do
       @instance.wp_content_dir = "custom"
+      @instance.type = "plugins"
       @instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/readme.txt"
     end
 
     it "should return the corrent theme readme url" do
-      @instance.path = "themes/test/asdf.php"
+      @instance.path = "test/asdf.php"
+      @instance.type = "themes"
       @instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/themes/test/readme.txt"
     end
 
     it "should return the corrent theme readme url (custom wp_content)" do
       @instance.wp_content_dir = "custom"
-      @instance.path = "themes/test/asdf.php"
+      @instance.path = "test/asdf.php"
+      @instance.type = "themes"
       @instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/themes/test/readme.txt"
     end
   end
@@ -221,17 +302,20 @@ describe WpPlugin do
 
     it "should return the corrent plugin changelog url (custom wp_content)" do
       @instance.wp_content_dir = "custom"
+      @instance.type = "plugins"
       @instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/changelog.txt"
     end
 
     it "should return the corrent theme changelog url" do
-      @instance.path = "themes/test/asdf.php"
+      @instance.path = "test/asdf.php"
+      @instance.type = "themes"
       @instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/themes/test/changelog.txt"
     end
 
     it "should return the corrent theme changelog url (custom wp_content)" do
       @instance.wp_content_dir = "custom"
-      @instance.path = "themes/test/asdf.php"
+      @instance.path = "test/asdf.php"
+      @instance.type = "themes"
       @instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/themes/test/changelog.txt"
     end
   end

@@ -31,10 +31,12 @@ module WpPlugins
     plugins = []
     result.each do |r|
       plugins << WpPlugin.new(
-          :url            => r[:url],
-          :path           => r[:path],
-          :wp_content_dir => r[:wp_content_dir],
-          :name           => r[:name]
+          :url            => r.url,
+          :path           => r.path,
+          :wp_content_dir => r.wp_content_dir,
+          :name           => r.name,
+          :type           => "plugins",
+          :wp_plugins_dir  => r.wp_plugin_dir
       )
     end
     plugins.sort_by { |p| p.name }
@@ -52,10 +54,12 @@ module WpPlugins
 
     temp.each do |item|
       plugins << WpPlugin.new(
-          :url            => item[:url],
-          :name           => item[:name],
-          :path           => item[:path],
-          :wp_content_dir => options[:wp_content_dir]
+          :url            => item.url,
+          :name           => item.name,
+          :path           => item.path,
+          :wp_content_dir => options[:wp_content_dir],
+          :type           => "plugins",
+          :wp_plugins_dir  => options[:wp_plugin_dir]
       )
     end
     plugins.sort_by { |p| p.name }

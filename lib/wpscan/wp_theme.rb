@@ -23,8 +23,10 @@ class WpTheme < WpItem
   attr_reader :name, :style_url, :version
 
   def initialize(options = {})
-    options[:vulns_xml]   = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
+    options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
+        options[:vulns_file] : DATA_DIR + "/wp_theme_vulns.xml"
     options[:vulns_xpath] = "//theme[@name='$name$']/vulnerability"
+    options[:type]        = "themes"
     @version              = options[:version]
     @style_url            = options[:style_url]
     super(options)

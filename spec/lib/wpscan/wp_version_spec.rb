@@ -154,7 +154,7 @@ describe WpVersion do
 
   describe "#initialize" do
     it "should initialize a WpVersion object" do
-      v = WpVersion.new(1, {:discovery_method => "method", :vulns_xml => "asdf.xml"})
+      v = WpVersion.new(1, {:discovery_method => "method", :vulns_file => "asdf.xml"})
       v.number.should == 1
       v.discovery_method.should == "method"
     end

@@ -77,9 +77,15 @@
           
           <li><a href="#method-i-banner">#banner</a></li>
           
+          <li><a href="#method-i-colorize">#colorize</a></li>
+          
           <li><a href="#method-i-get_equal_string_end">#get_equal_string_end</a></li>
           
+          <li><a href="#method-i-green">#green</a></li>
+          
           <li><a href="#method-i-help">#help</a></li>
+          
+          <li><a href="#method-i-red">#red</a></li>
           
           <li><a href="#method-i-require_files_from_directory">#require_files_from_directory</a></li>
           
@@ -100,6 +106,8 @@
         <ul>
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
         
           <li class="file"><a href="./README.html">README</a></li>
         
@@ -372,7 +380,7 @@
             
             <div class="method-source-code" id="banner-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 105</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">banner</span>()
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'____________________________________________________'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot; __          _______   _____                  &quot;</span>
@@ -399,6 +407,39 @@
 
           
         </div><!-- banner-method -->
+
+      
+        <div id="colorize-method" class="method-detail ">
+          <a name="method-i-colorize"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">colorize</span><span
+              class="method-args">(text, color_code)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="colorize-source">
+<pre>
+<span class="ruby-comment"># File lib/common_helper.rb, line 125</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">color_code</span>)
+  <span class="ruby-node">&quot;\e[#{color_code}m#{text}\e[0m&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- colorize-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- colorize-method -->
 
       
         <div id="get_equal_string_end-method" class="method-detail ">
@@ -435,7 +476,7 @@
           <span class="ruby-keyword">break</span>
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">looping</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">or</span> (<span class="ruby-identifier">counter</span> * <span class="ruby-value">-1</span> ) <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">length</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">looping</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">or</span> (<span class="ruby-identifier">counter</span> * <span class="ruby-value">-1</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">length</span>
         <span class="ruby-keyword">break</span>
       <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">already_found</span> = <span class="ruby-node">&quot;#{character if character}#{already_found}&quot;</span>
@@ -452,6 +493,39 @@
 
           
         </div><!-- get_equal_string_end-method -->
+
+      
+        <div id="green-method" class="method-detail ">
+          <a name="method-i-green"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">green</span><span
+              class="method-args">(text)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="green-source">
+<pre>
+<span class="ruby-comment"># File lib/common_helper.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">green</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">32</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- green-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- green-method -->
 
       
         <div id="help-method" class="method-detail ">
@@ -516,6 +590,39 @@
 
           
         </div><!-- help-method -->
+
+      
+        <div id="red-method" class="method-detail ">
+          <a name="method-i-red"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">red</span><span
+              class="method-args">(text)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="red-source">
+<pre>
+<span class="ruby-comment"># File lib/common_helper.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">red</span>(<span class="ruby-identifier">text</span>)
+  <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">31</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- red-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- red-method -->
 
       
         <div id="require_files_from_directory-method" class="method-detail ">

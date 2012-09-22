@@ -85,6 +85,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -290,11 +292,11 @@
 <pre>
 <span class="ruby-comment"># File lib/wpstools/parse_svn.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">svn_root</span>, <span class="ruby-identifier">verbose</span>, <span class="ruby-identifier">keep_empty_dirs</span> = <span class="ruby-keyword">false</span>)
-  <span class="ruby-ivar">@svn_root</span> = <span class="ruby-identifier">svn_root</span>
-  <span class="ruby-ivar">@verbose</span> = <span class="ruby-identifier">verbose</span>
-  <span class="ruby-ivar">@keep_empty_dirs</span> = <span class="ruby-identifier">keep_empty_dirs</span>
-  <span class="ruby-ivar">@svn_browser</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
-  <span class="ruby-ivar">@svn_hydra</span> = <span class="ruby-ivar">@svn_browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-ivar">@svn_root</span>         = <span class="ruby-identifier">svn_root</span>
+  <span class="ruby-ivar">@verbose</span>          = <span class="ruby-identifier">verbose</span>
+  <span class="ruby-ivar">@keep_empty_dirs</span>  = <span class="ruby-identifier">keep_empty_dirs</span>
+  <span class="ruby-ivar">@svn_browser</span>      = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-ivar">@svn_hydra</span>        = <span class="ruby-ivar">@svn_browser</span>.<span class="ruby-identifier">hydra</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -337,8 +339,7 @@
     <span class="ruby-identifier">dirs</span> = <span class="ruby-identifier">get_root_directories</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">urls</span> = <span class="ruby-identifier">get_svn_project_urls</span>(<span class="ruby-identifier">dirs</span>)
-  <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">get_svn_file_entries</span>(<span class="ruby-identifier">urls</span>)
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">entries</span>
+  <span class="ruby-identifier">get_svn_file_entries</span>(<span class="ruby-identifier">urls</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- parse-source -->
             

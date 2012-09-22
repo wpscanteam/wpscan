@@ -54,12 +54,15 @@ module WpTimthumbs
       timthumb.php lib/timthumb.php inc/timthumb.php includes/timthumb.php
       scripts/timthumb.php tools/timthumb.php functions/timthumb.php
     }.each do |file|
-      targets << {
+      targets << WpItem.new(
           :url            => options[:url],
           :path           => "themes/#{theme_name}/#{file}",
           :wp_content_dir => options[:wp_content_dir],
-          :name           => options[:name]
-      }
+          :name           => theme_name,
+          :vulns_file     => "XX",
+          :type           => "timthumbs",
+          :wp_plugins_dir => options[:wp_plugins_dir]
+      )
     end
     targets
   end

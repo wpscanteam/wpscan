@@ -19,22 +19,40 @@
 require "#{WPSCAN_LIB_DIR}/vulnerable"
 
 class WpItem < Vulnerable
-  attr_accessor :path, :url, :wp_content_dir, :name, :vulns_xml, :vulns_xpath
+  attr_accessor :path, :url, :wp_content_dir, :name, :vulns_file, :vulns_xpath, :wp_plugin_dir, :type
   @version = nil
 
-  def initialize(options = {})
+  def initialize(options)
+    @type           = options[:type]
     @wp_content_dir = options[:wp_content_dir] || "wp-content"
+    @wp_plugin_dir  = options[:wp_plugins_dir] || "plugins"
     @url            = options[:url]
     @path           = options[:path]
     @name           = options[:name] || extract_name_from_url
-    @vulns_xml      = options[:vulns_xml]
-    @vulns_xpath    = options[:vulns_xpath].sub(/\$name\$/, @name)
+    @vulns_file     = options[:vulns_file]
+    @vulns_xpath    = options[:vulns_xpath].sub(/\$name\$/, @name) unless options[:vulns_xpath] == nil
 
     raise("url not set")            unless @url
     raise("path not set")           unless @path
     raise("wp_content_dir not set") unless @wp_content_dir
     raise("name not set")           unless @name
-    raise("vulns_xml not set")      unless @vulns_xml
+    raise("vulns_file not set")     unless @vulns_file
+    raise("type not set")           unless @type
+  end
+
+  def get_sub_folder
+    case @type
+      when "plugins"
+        folder = @wp_plugin_dir
+      when "themes"
+        folder = "themes"
+      when "timthumbs"
+        # not needed
+        folder = nil
+      else
+        raise("unknown type #@type")
+    end
+    folder
   end
 
   # Get the full url for this item
@@ -44,7 +62,13 @@ class WpItem < Vulnerable
     wp_content_dir = @wp_content_dir.sub(/^\//, "").sub(/\/$/, "")
     # remove first /
     path = @path.sub(/^\//, "")
-    URI.parse("#{url}#{wp_content_dir}/#{path}")
+    if type == "timthumbs"
+      # timthumbs have folder in path variable
+      ret = URI.parse("#{url}#{wp_content_dir}/#{path}")
+    else
+      ret = URI.parse("#{url}#{wp_content_dir}/#{get_sub_folder}/#{path}")
+    end
+    ret
   end
 
   # Gets the full url for this item without filenames

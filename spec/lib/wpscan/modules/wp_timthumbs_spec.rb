@@ -28,6 +28,8 @@ shared_examples_for "WpTimthumbs" do
     @options[:error_404_hash] = "xx"
     @options[:show_progress_bar] = false
     @options[:only_vulnerable_ones] = false
+    @options[:vulns_file] = "xx"
+    @options[:type] = "timthumbs"
     @module = WpScanModuleSpec.new(@url)
     @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
     @timthumbs_file = @fixtures_dir + "/timthumbs.txt"
@@ -58,8 +60,7 @@ shared_examples_for "WpTimthumbs" do
       targets.length.should > 0
       temp = []
       targets.each do |t|
-        url = "#{t[:url]}#{t[:wp_content_dir]}/#{t[:path]}"
-        temp << url
+        temp << t.get_url.to_s
       end
       temp.sort.should === @targets_from_theme.sort
     end
@@ -68,8 +69,6 @@ shared_examples_for "WpTimthumbs" do
   describe "#timthumbs and #has_timthumbs?" do
     before :each do
       @options[:file] = @timthumbs_file
-      @options[:vulns_file] = "xxx"
-      @options[:type] = "timthumbs"
       @targets_from_file.each do |url|
         stub_request(:get, url).to_return(:status => 404)
       end
@@ -92,7 +91,7 @@ shared_examples_for "WpTimthumbs" do
       urls = []
       urls_hash = WpEnumerator.generate_items(@options)
       urls_hash.each do |u|
-        url = "#{u[:url]}#{u[:wp_content_dir]}/#{u[:path]}"
+        url = u.get_url.to_s
         urls << url
         stub_request(:get, url).to_return(:status => 404)
       end
@@ -107,8 +106,7 @@ shared_examples_for "WpTimthumbs" do
 
       temp = []
       timthumbs.each do |t|
-        url = "#{t[:url]}#{t[:wp_content_dir]}/#{t[:path]}"
-        temp << url
+        temp << t.get_url.to_s
       end
       temp.sort.should === expected.sort
       @module.has_timthumbs?(nil).should be_true

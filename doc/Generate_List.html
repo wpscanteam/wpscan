@@ -91,6 +91,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -263,23 +265,23 @@
 <span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">verbose</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/plugins/</span>
-    <span class="ruby-ivar">@type</span> = <span class="ruby-string">&quot;plugin&quot;</span>
-    <span class="ruby-ivar">@svn_url</span> = <span class="ruby-string">'http://plugins.svn.wordpress.org/'</span>
-    <span class="ruby-ivar">@file_name</span> = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/plugins.txt'</span>
-    <span class="ruby-ivar">@popular_url</span> = <span class="ruby-string">'http://wordpress.org/extend/plugins/browse/popular/'</span>
-    <span class="ruby-ivar">@popular_regex</span> = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/extend/plugins/(.+)/&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
+    <span class="ruby-ivar">@type</span>           = <span class="ruby-string">&quot;plugin&quot;</span>
+    <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">'http://plugins.svn.wordpress.org/'</span>
+    <span class="ruby-ivar">@file_name</span>      = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/plugins.txt'</span>
+    <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">'http://wordpress.org/extend/plugins/browse/popular/'</span>
+    <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/extend/plugins/(.+)/&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/themes/</span>
-    <span class="ruby-ivar">@type</span> = <span class="ruby-string">&quot;theme&quot;</span>
-    <span class="ruby-ivar">@svn_url</span> = <span class="ruby-string">'http://themes.svn.wordpress.org/'</span>
-    <span class="ruby-ivar">@file_name</span> = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/themes.txt'</span>
-    <span class="ruby-ivar">@popular_url</span> = <span class="ruby-string">'http://wordpress.org/extend/themes/browse/popular/'</span>
-    <span class="ruby-ivar">@popular_regex</span> = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/extend/themes/(.+)&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
+    <span class="ruby-ivar">@type</span>           = <span class="ruby-string">&quot;theme&quot;</span>
+    <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">'http://themes.svn.wordpress.org/'</span>
+    <span class="ruby-ivar">@file_name</span>      = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/themes.txt'</span>
+    <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">'http://wordpress.org/extend/themes/browse/popular/'</span>
+    <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/extend/themes/(.+)&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Type #{type} not defined&quot;</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-ivar">@verbose</span> = <span class="ruby-identifier">verbose</span>
-  <span class="ruby-ivar">@browser</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
-  <span class="ruby-ivar">@hydra</span> = <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-ivar">@verbose</span>  = <span class="ruby-identifier">verbose</span>
+  <span class="ruby-ivar">@browser</span>  = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-ivar">@hydra</span>    = <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">hydra</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -411,17 +413,16 @@ parse the response for the names.</p>
     <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">queue_count</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">max_threads</span>
-       <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">run</span>
-       <span class="ruby-identifier">queue_count</span> = <span class="ruby-value">0</span>
-     <span class="ruby-keyword">end</span>
+      <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">run</span>
+      <span class="ruby-identifier">queue_count</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">end</span>
 
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">run</span>
 
   <span class="ruby-identifier">found_items</span>.<span class="ruby-identifier">sort!</span>
-  <span class="ruby-identifier">found_items</span>.<span class="ruby-identifier">uniq!</span>
-  <span class="ruby-keyword">return</span> <span class="ruby-identifier">found_items</span>
+  <span class="ruby-identifier">found_items</span>.<span class="ruby-identifier">uniq</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- get_popular_items-source -->
             
@@ -452,7 +453,7 @@ parse the response for the names.</p>
             
             <div class="method-source-code" id="save-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 100</span>
+<span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">items</span>)
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">sort!</span>
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">uniq!</span>

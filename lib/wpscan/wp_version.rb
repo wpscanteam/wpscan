@@ -25,7 +25,7 @@ class WpVersion < Vulnerable
   def initialize(number, options = {})
     @number           = number
     @discovery_method = options[:discovery_method]
-    @vulns_xml        = options[:vulns_xml] || DATA_DIR + '/wp_vulns.xml'
+    @vulns_file       = options[:vulns_file] || DATA_DIR + '/wp_vulns.xml'
     @vulns_xpath      = "//wordpress[@version='#{@number}']/vulnerability"
   end
 

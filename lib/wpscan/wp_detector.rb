@@ -31,7 +31,7 @@ class WpDetector
       already_present = false
       result.each do |r|
         # Already found via passive detection
-        if r[:name] == enum_result[:name]
+        if r.name == enum_result.name
           already_present = true
           break
         end
@@ -60,12 +60,14 @@ class WpDetector
     names.uniq!
 
     names.each do |item|
-      items << {
+      items << WpItem.new(
           :url            => url,
           :name           => item,
-          :path           => "#{type}/#{item}/",
-          :wp_content_dir => wp_content_dir
-      }
+          :type           => type,
+          :path           => "#{item}/",
+          :wp_content_dir => wp_content_dir,
+          :vulns_file     => ""
+      )
     end
     items
   end

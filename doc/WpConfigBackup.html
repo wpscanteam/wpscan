@@ -77,6 +77,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -222,10 +224,11 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_config_backup.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">config_backup_files</span>
-  [
-    <span class="ruby-string">'wp-config.php~'</span>,<span class="ruby-string">'#wp-config.php#'</span>,<span class="ruby-string">'wp-config.php.save'</span>,<span class="ruby-string">'wp-config.php.swp'</span>,<span class="ruby-string">'wp-config.php.swo'</span>,<span class="ruby-string">'wp-config.php_bak'</span>,
-    <span class="ruby-string">'wp-config.bak'</span>, <span class="ruby-string">'wp-config.php.bak'</span>, <span class="ruby-string">'wp-config.save'</span>
-  ] <span class="ruby-comment"># thanks to Feross.org for these</span>
+  <span class="ruby-node">%{
+    wp-config.php~ #wp-config.php# wp-config.php.save wp-config.php.swp wp-config.php.swo wp-config.php_bak
+    wp-config.bak wp-config.php.bak wp-config.save wp-config.old wp-config.php.old wp-config.php.orig
+    wp-config.orig wp-config.php.original wp-config.original
+  }</span> <span class="ruby-comment"># thanks to Feross.org for these</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- config_backup_files-source -->
             
@@ -266,14 +269,14 @@ an array of backup config files url</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_config_backup.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">config_backup</span>
-  <span class="ruby-identifier">found</span>      = []
-  <span class="ruby-identifier">backups</span>    = <span class="ruby-constant">WpConfigBackup</span>.<span class="ruby-identifier">config_backup_files</span>
-  <span class="ruby-identifier">browser</span>    = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
-  <span class="ruby-identifier">hydra</span>      = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-identifier">found</span> = []
+  <span class="ruby-identifier">backups</span> = <span class="ruby-constant">WpConfigBackup</span>.<span class="ruby-identifier">config_backup_files</span>
+  <span class="ruby-identifier">browser</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-identifier">hydra</span> = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">hydra</span>
 
   <span class="ruby-identifier">backups</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">file_url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">file</span>)).<span class="ruby-identifier">to_s</span>
-    <span class="ruby-identifier">request</span>  = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">file_url</span>)
+    <span class="ruby-identifier">request</span> = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">file_url</span>)
 
     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{define}</span>] <span class="ruby-keyword">and</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;\s?html}</span>]

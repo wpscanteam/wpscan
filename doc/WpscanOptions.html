@@ -117,6 +117,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -280,7 +282,7 @@ href="WpscanOptions.html">WpscanOptions</a></p>
 
   <span class="ruby-keyword">if</span> <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
     <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">get_opt_long</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
-     <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">set_option_from_cli</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span>)
+      <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">set_option_from_cli</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
@@ -357,7 +359,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="clean_option-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 216</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 217</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clean_option</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-identifier">cleaned_option</span> = <span class="ruby-identifier">option</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^--?/</span>, <span class="ruby-string">''</span>)
   <span class="ruby-identifier">cleaned_option</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/-/</span>, <span class="ruby-string">'_'</span>)
@@ -392,23 +394,23 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="get_opt_long-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 188</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 189</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_opt_long</span>
   <span class="ruby-constant">GetoptLong</span>.<span class="ruby-identifier">new</span>(
-    [<span class="ruby-string">&quot;--url&quot;</span>, <span class="ruby-string">&quot;-u&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--enumerate&quot;</span>, <span class="ruby-string">&quot;-e&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">OPTIONAL_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--username&quot;</span>, <span class="ruby-string">&quot;-U&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--wordlist&quot;</span>, <span class="ruby-string">&quot;-w&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--threads&quot;</span>, <span class="ruby-string">&quot;-t&quot;</span>,<span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--force&quot;</span>, <span class="ruby-string">&quot;-f&quot;</span>,<span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--help&quot;</span>, <span class="ruby-string">&quot;-h&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--verbose&quot;</span>, <span class="ruby-string">&quot;-v&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>] ,
-    [<span class="ruby-string">&quot;--proxy&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">OPTIONAL_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--update&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--follow-redirection&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--wp-content-dir&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--wp-plugins-dir&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
-    [<span class="ruby-string">&quot;--config-file&quot;</span>, <span class="ruby-string">&quot;-c&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>]
+      [<span class="ruby-string">&quot;--url&quot;</span>, <span class="ruby-string">&quot;-u&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--enumerate&quot;</span>, <span class="ruby-string">&quot;-e&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">OPTIONAL_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--username&quot;</span>, <span class="ruby-string">&quot;-U&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--wordlist&quot;</span>, <span class="ruby-string">&quot;-w&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--threads&quot;</span>, <span class="ruby-string">&quot;-t&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--force&quot;</span>, <span class="ruby-string">&quot;-f&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--help&quot;</span>, <span class="ruby-string">&quot;-h&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--verbose&quot;</span>, <span class="ruby-string">&quot;-v&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--proxy&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">OPTIONAL_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--update&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--follow-redirection&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--wp-content-dir&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--wp-plugins-dir&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+      [<span class="ruby-string">&quot;--config-file&quot;</span>, <span class="ruby-string">&quot;-c&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>]
   )
 <span class="ruby-keyword">end</span></pre>
             </div><!-- get_opt_long-source -->
@@ -440,7 +442,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="is_long_option-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 207</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 208</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_long_option?</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">:&quot;#{WpscanOptions.clean_option(option)}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -473,10 +475,10 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="option_to_instance_variable_setter-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 221</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 222</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">option_to_instance_variable_setter</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-identifier">cleaned_option</span> = <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">clean_option</span>(<span class="ruby-identifier">option</span>)
-  <span class="ruby-identifier">option_syms</span>    = <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-node">%{^#{cleaned_option}}</span>)
+  <span class="ruby-identifier">option_syms</span> = <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-node">%{^#{cleaned_option}}</span>)
 
   <span class="ruby-identifier">option_syms</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-value">:&quot;#{option_syms.at(0)}=&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -609,7 +611,8 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/u/</span>
     <span class="ruby-ivar">@enumerate_usernames</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-comment"># Check for usernames range</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span> = <span class="ruby-regexp">%{\[([\d]+)-([\d]+)\]}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">value</span>)
+    <span class="ruby-identifier">matches</span> = <span class="ruby-regexp">%{\[([\d]+)-([\d]+)\]}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span>
       <span class="ruby-ivar">@enumerate_usernames_range</span> = (<span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span><span class="ruby-operator">..</span><span class="ruby-identifier">matches</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">to_i</span>)
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
@@ -794,11 +797,11 @@ value</p>
 
   <span class="ruby-keyword">if</span> <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">is_long_option?</span>(<span class="ruby-identifier">cli_option</span>)
     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(
-      <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">option_to_instance_variable_setter</span>(<span class="ruby-identifier">cli_option</span>),
-      <span class="ruby-identifier">cli_value</span>
+        <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">option_to_instance_variable_setter</span>(<span class="ruby-identifier">cli_option</span>),
+        <span class="ruby-identifier">cli_value</span>
     )
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">cli_option</span> <span class="ruby-operator">===</span> <span class="ruby-string">&quot;--enumerate&quot;</span> <span class="ruby-comment"># Special cases</span>
-    <span class="ruby-comment"># Default value if no argument is given</span>
+                                     <span class="ruby-comment"># Default value if no argument is given</span>
     <span class="ruby-identifier">cli_value</span> = <span class="ruby-string">&quot;T!tup!&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cli_value</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
 
     <span class="ruby-identifier">enumerate_options_from_string</span>(<span class="ruby-identifier">cli_value</span>)

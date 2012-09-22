@@ -79,6 +79,8 @@
         
           <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
         
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
           <li class="file"><a href="./README.html">README</a></li>
         
         </ul>
@@ -258,12 +260,12 @@
 <span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 28</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">timthumbs</span>(<span class="ruby-identifier">theme_name</span> = <span class="ruby-keyword">nil</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@wp_timthumbs</span>.<span class="ruby-identifier">nil?</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>] = <span class="ruby-string">&quot;timthumbs&quot;</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>] = <span class="ruby-keyword">false</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/timthumbs.txt&quot;</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] = <span class="ruby-string">&quot;xxx&quot;</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-string">&quot;xxx&quot;</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">&quot;xxx&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]                  = <span class="ruby-string">&quot;timthumbs&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>]  = <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]                  = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/timthumbs.txt&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]            = <span class="ruby-string">&quot;xxx&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]           = <span class="ruby-string">&quot;xxx&quot;</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>]         = <span class="ruby-string">&quot;xxx&quot;</span>
 
     <span class="ruby-constant">WpOptions</span>.<span class="ruby-identifier">check_options</span>(<span class="ruby-identifier">options</span>)
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">theme_name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
@@ -312,19 +314,22 @@
 <pre>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_timthumbs.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_url_from_theme</span>(<span class="ruby-identifier">theme_name</span>, <span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">targets</span>    = []
+  <span class="ruby-identifier">targets</span> = []
   <span class="ruby-identifier">theme_name</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">theme_name</span>)
 
   <span class="ruby-node">%{
     timthumb.php lib/timthumb.php inc/timthumb.php includes/timthumb.php
     scripts/timthumb.php tools/timthumb.php functions/timthumb.php
   }</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> {
+    <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
         <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>],
         <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;themes/#{theme_name}/#{file}&quot;</span>,
         <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>],
-        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>]
-    }
+        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">theme_name</span>,
+        <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;XX&quot;</span>,
+        <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;timthumbs&quot;</span>,
+        <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_plugins_dir</span>]
+    )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">targets</span>
 <span class="ruby-keyword">end</span></pre>

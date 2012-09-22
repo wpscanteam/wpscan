@@ -119,7 +119,7 @@ begin
   end
 
   wp_target.config_backup.each do |file_url|
-    puts red("[!]") + " A wp-config.php backup file has been found '#{file_url}'"
+    puts red("[!] A wp-config.php backup file has been found '#{file_url}'")
   end
 
   if wp_target.has_malwares?
@@ -186,6 +186,7 @@ begin
     options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
     options[:error_404_hash]        = wp_target.error_404_hash
+    options[:wp_plugins_dir]        = wp_target.wp_plugins_dir
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
@@ -295,7 +296,7 @@ begin
       puts
 
       timthumbs.each do |t|
-        puts " | " + red("[!]") + " #{t[:url]}#{t[:wp_content_dir]}/#{t[:path]}"
+        puts " | " + red("[!]") + " #{t.get_url.to_s}"
       end
       puts
       puts red(" * Reference: http://www.exploit-db.com/exploits/17602/")

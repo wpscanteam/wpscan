@@ -181,12 +181,12 @@ describe WpTheme do
     it "should return false (name not equal)" do
       instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/name/asdf.php",
-                             :vulns_xml => "XXX.xml",
+                             :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
       instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/newname/asdf.php",
-                              :vulns_xml => "XXX.xml",
+                              :vulns_file => "XXX.xml",
                               :version => "1.0"
       )
       (instance===instance2).should == false
@@ -195,12 +195,12 @@ describe WpTheme do
     it "should return false (version not equal)" do
       instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/name/asdf.php",
-                             :vulns_xml => "XXX.xml",
+                             :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
       instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/name/asdf.php",
-                              :vulns_xml => "XXX.xml",
+                              :vulns_file => "XXX.xml",
                               :version => "2.0"
       )
       (instance===instance2).should == false
@@ -209,12 +209,12 @@ describe WpTheme do
     it "should return false (version and name not equal)" do
       instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/name/asdf.php",
-                             :vulns_xml => "XXX.xml",
+                             :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
       instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/newname/asdf.php",
-                              :vulns_xml => "XXX.xml",
+                              :vulns_file => "XXX.xml",
                               :version => "2.0"
       )
       (instance===instance2).should == false
@@ -223,12 +223,12 @@ describe WpTheme do
     it "should return true" do
       instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/test/asdf.php",
-                             :vulns_xml => "XXX.xml",
+                             :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
       instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/test/asdf.php",
-                              :vulns_xml => "XXX.xml",
+                              :vulns_file => "XXX.xml",
                               :version => "1.0"
       )
       (instance===instance2).should == true

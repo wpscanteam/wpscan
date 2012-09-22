@@ -18,13 +18,13 @@
 
 class Vulnerable
 
-  attr_reader :vulns_xml, :vulns_xpath
+  attr_reader :vulns_file, :vulns_xpath
 
   # @return an array of WpVulnerability (can be empty)
   def vulnerabilities
     vulnerabilities = []
 
-    xml = Nokogiri::XML(File.open(@vulns_xml)) do |config|
+    xml = Nokogiri::XML(File.open(@vulns_file)) do |config|
       config.noblanks
     end
 
