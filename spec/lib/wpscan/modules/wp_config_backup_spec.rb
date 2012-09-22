@@ -76,4 +76,10 @@ shared_examples_for "WpConfigBackup" do
     end
   end
 
+  describe "#config_backup_files" do
+    it "should not contain duplicates" do
+      WpConfigBackup.config_backup_files.flatten.uniq.length.should == WpConfigBackup.config_backup_files.length
+    end
+  end
+
 end
