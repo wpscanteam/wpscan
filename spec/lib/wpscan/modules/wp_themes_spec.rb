@@ -31,7 +31,7 @@ shared_examples_for "WpThemes" do
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
     @module.extend(WpThemes)
 
-    @options = {:url => @wp_url,
+    @options = {:base_url => @wp_url,
                 :only_vulnerable_ones => false,
                 :show_progress_bar => false,
                 :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
@@ -43,55 +43,55 @@ shared_examples_for "WpThemes" do
     }
     File.exist?(@theme_vulns_file).should == true
     File.exist?(@themes_file).should == true
-    @targets = [WpTheme.new({:url => "http://example.localhost/",
+    @targets = [WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zenpro/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zenpro"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zeta-zip/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zeta-zip"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zfirst/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zfirst"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zgrey/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zgrey"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zindi-ii/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zindi-ii"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zindi/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zindi"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zombie-apocalypse/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zombie-apocalypse"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zsofa/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zsofa"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "zwei-seiten/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "zwei-seiten"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "twentyten/404.php",
                              :wp_content_dir => "wp-content",
                              :name => "twentyten"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "shopperpress",
                              :wp_content_dir => "wp-content",
                              :name => "shopperpress"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "wise",
                              :wp_content_dir => "wp-content",
                              :name => "wise"}),
-                WpTheme.new({:url => "http://example.localhost/",
+                WpTheme.new({:base_url => "http://example.localhost/",
                              :path => "webfolio",
                              :wp_content_dir => "wp-content",
                              :name => "webfolio"})]
@@ -102,7 +102,7 @@ shared_examples_for "WpThemes" do
 
     it "should return an empty array" do
       stub_request_to_fixture(:url => @module.url, :fixture => File.new(passive_detection_fixtures + '/no_theme.htm'))
-      themes = @module.themes_from_passive_detection(:url => @module.url, :wp_content_dir => "wp-content")
+      themes = @module.themes_from_passive_detection(:base_url => @module.url, :wp_content_dir => "wp-content")
       themes.should be_empty
     end
 
@@ -112,12 +112,12 @@ shared_examples_for "WpThemes" do
       expected_theme_names = %w{ theme1 theme2 theme3 }
       expected_themes = []
       expected_theme_names.each do |theme_name|
-        expected_themes << WpTheme.new(:url => @module.url,
+        expected_themes << WpTheme.new(:base_url => @module.url,
                                        :path => "/themes/#{theme_name}/",
                                        :name => theme_name)
       end
 
-      themes = @module.themes_from_passive_detection(:url => @module.url, :wp_content_dir => "wp-content")
+      themes = @module.themes_from_passive_detection(:base_url => @module.url, :wp_content_dir => "wp-content")
       themes.should_not be_empty
       themes.length.should == expected_themes.length
       themes.sort.should == expected_themes.sort
@@ -130,7 +130,7 @@ shared_examples_for "WpThemes" do
       stub_request(:get, @module.uri.to_s).to_return(:status => 200)
       # Point all targets to a 404
       @targets.each do |target|
-        stub_request(:get, target.get_url.to_s).to_return(:status => 404)
+        stub_request(:get, target.get_full_url.to_s).to_return(:status => 404)
         # to_s calls readme_url
         stub_request(:get, target.readme_url.to_s).to_return(:status => 404)
       end
@@ -152,9 +152,9 @@ shared_examples_for "WpThemes" do
       @passive_detection_fixture = @fixtures_dir + "/passive_detection/one_theme.htm"
       @expected_themes = @targets.sample(2)
       @expected_themes.each do |p|
-        stub_request(:get, p.get_url.to_s).to_return(:status => 200)
+        stub_request(:get, p.get_full_url.to_s).to_return(:status => 200)
       end
-      new_theme = WpTheme.new(:url => "http://example.localhost/",
+      new_theme = WpTheme.new(:base_url => "http://example.localhost/",
                               :path => "/themes/custom-twentyten/",
                               :name => "custom-twentyten")
       stub_request(:get, new_theme.readme_url.to_s).to_return(:status => 200)
@@ -169,7 +169,7 @@ shared_examples_for "WpThemes" do
         theme_url.should_not be_nil
         theme_url.length.should == 1
         @expected_themes = theme_url
-        stub_request(:get, theme_url[0].get_url.to_s).to_return(:status => valid_response_code)
+        stub_request(:get, theme_url[0].get_full_url.to_s).to_return(:status => valid_response_code)
       end
     end
   end

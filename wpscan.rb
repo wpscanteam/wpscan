@@ -154,14 +154,14 @@ begin
     puts
     puts green("[+]") + " Enumerating plugins from passive detection ... "
 
-    plugins = wp_target.plugins_from_passive_detection(:url => wp_target.uri, :wp_content_dir => wp_target.wp_content_dir)
+    plugins = wp_target.plugins_from_passive_detection(:base_url => wp_target.uri, :wp_content_dir => wp_target.wp_content_dir)
     unless plugins.empty?
       puts "#{plugins.size} found :"
 
       plugins.each do |plugin|
         puts
         puts " | Name: #{plugin.name}"
-        puts " | Location: #{plugin.get_url}"
+        puts " | Location: #{plugin.get_full_url}"
 
         plugin.vulnerabilities.each do |vulnerability|
           puts " |"
@@ -181,7 +181,7 @@ begin
     puts
 
     options = {}
-    options[:url]                   = wp_target.uri
+    options[:base_url]              = wp_target.uri
     options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
     options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
@@ -236,7 +236,7 @@ begin
     puts
 
     options = {}
-    options[:url]                   = wp_target.uri
+    options[:base_url]              = wp_target.uri
     options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
     options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
@@ -282,7 +282,7 @@ begin
     puts
 
     options = {}
-    options[:url]               = wp_target.uri
+    options[:base_url]          = wp_target.uri
     options[:show_progress_bar] = true
     options[:wp_content_dir]    = wp_target.wp_content_dir
     options[:error_404_hash]    = wp_target.error_404_hash
@@ -296,7 +296,7 @@ begin
       puts
 
       timthumbs.each do |t|
-        puts " | " + red("[!]") + " #{t.get_url.to_s}"
+        puts " | " + red("[!]") + " #{t.get_full_url.to_s}"
       end
       puts
       puts red(" * Reference: http://www.exploit-db.com/exploits/17602/")

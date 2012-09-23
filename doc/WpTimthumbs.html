@@ -322,7 +322,7 @@
     scripts/timthumb.php tools/timthumb.php functions/timthumb.php
   }</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>],
+        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>],
         <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;themes/#{theme_name}/#{file}&quot;</span>,
         <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>],
         <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">theme_name</span>,

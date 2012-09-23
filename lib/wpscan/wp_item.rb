@@ -19,20 +19,20 @@
 require "#{WPSCAN_LIB_DIR}/vulnerable"
 
 class WpItem < Vulnerable
-  attr_accessor :path, :url, :wp_content_dir, :name, :vulns_file, :vulns_xpath, :wp_plugin_dir, :type
+  attr_reader :base_url, :path, :wp_content_dir, :name, :vulns_file, :vulns_xpath, :wp_plugins_dir, :type
   @version = nil
 
   def initialize(options)
     @type           = options[:type]
-    @wp_content_dir = options[:wp_content_dir] || "wp-content"
-    @wp_plugin_dir  = options[:wp_plugins_dir] || "plugins"
-    @url            = options[:url]
+    @wp_content_dir = options[:wp_content_dir] ? options[:wp_content_dir].sub(/^\//, "").sub(/\/$/, "") : "wp-content"
+    @wp_plugins_dir = options[:wp_plugins_dir] || "#@wp_content_dir/plugins"
+    @base_url       = options[:base_url]
     @path           = options[:path]
     @name           = options[:name] || extract_name_from_url
     @vulns_file     = options[:vulns_file]
     @vulns_xpath    = options[:vulns_xpath].sub(/\$name\$/, @name) unless options[:vulns_xpath] == nil
 
-    raise("url not set")            unless @url
+    raise("base_url not set")       unless @base_url
     raise("path not set")           unless @path
     raise("wp_content_dir not set") unless @wp_content_dir
     raise("name not set")           unless @name
@@ -42,8 +42,6 @@ class WpItem < Vulnerable
 
   def get_sub_folder
     case @type
-      when "plugins"
-        folder = @wp_plugin_dir
       when "themes"
         folder = "themes"
       when "timthumbs"
@@ -56,13 +54,16 @@ class WpItem < Vulnerable
   end
 
   # Get the full url for this item
-  def get_url
-    url = @url.to_s.end_with?("/") ? @url.to_s : "#@url/"
+  def get_full_url
+    url = @base_url.to_s.end_with?("/") ? @base_url.to_s : "#@base_url/"
     # remove first and last /
     wp_content_dir = @wp_content_dir.sub(/^\//, "").sub(/\/$/, "")
     # remove first /
     path = @path.sub(/^\//, "")
-    if type == "timthumbs"
+    if type =="plugins"
+      # plugins can be outside of wp-content. wp_content_dir included in wp_plugins_dir
+      ret = URI.parse("#{url}#@wp_plugins_dir/#{path}")
+    elsif type == "timthumbs"
       # timthumbs have folder in path variable
       ret = URI.parse("#{url}#{wp_content_dir}/#{path}")
     else
@@ -73,7 +74,7 @@ class WpItem < Vulnerable
 
   # Gets the full url for this item without filenames
   def get_url_without_filename
-    location_url = get_url.to_s
+    location_url = get_full_url.to_s
     valid_location_url = location_url[%r{^(https?://.*/)[^.]+\.[^/]+$}, 1]
     unless valid_location_url
       valid_location_url = add_trailing_slash(location_url)
@@ -84,7 +85,7 @@ class WpItem < Vulnerable
   # Returns version number from readme.txt if it exists
   def version
     unless @version
-      response = Browser.instance.get(get_url.merge("readme.txt").to_s)
+      response = Browser.instance.get(get_full_url.merge("readme.txt").to_s)
       @version = response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
     end
     @version
@@ -98,7 +99,7 @@ class WpItem < Vulnerable
 
   # Extract item name from a url
   def extract_name_from_url
-    get_url.to_s[%r{^(https?://.*/([^/]+)/)}i, 2]
+    get_full_url.to_s[%r{^(https?://.*/([^/]+)/)}i, 2]
   end
 
   # To string. Adds a version number if detected

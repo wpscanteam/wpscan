@@ -31,12 +31,12 @@ module WpPlugins
     plugins = []
     result.each do |r|
       plugins << WpPlugin.new(
-          :url            => r.url,
+          :base_url       => r.base_url,
           :path           => r.path,
           :wp_content_dir => r.wp_content_dir,
           :name           => r.name,
           :type           => "plugins",
-          :wp_plugins_dir  => r.wp_plugin_dir
+          :wp_plugins_dir => r.wp_plugins_dir
       )
     end
     plugins.sort_by { |p| p.name }
@@ -50,16 +50,16 @@ module WpPlugins
   # return array of WpPlugin
   def plugins_from_passive_detection(options)
     plugins = []
-    temp = WpDetector.passive_detection(options[:url], "plugins", options[:wp_content_dir])
+    temp = WpDetector.passive_detection(options[:base_url], "plugins", options[:wp_content_dir])
 
     temp.each do |item|
       plugins << WpPlugin.new(
-          :url            => item.url,
+          :base_url       => item.base_url,
           :name           => item.name,
           :path           => item.path,
           :wp_content_dir => options[:wp_content_dir],
           :type           => "plugins",
-          :wp_plugins_dir  => options[:wp_plugin_dir]
+          :wp_plugins_dir => options[:wp_plugins_dir]
       )
     end
     plugins.sort_by { |p| p.name }

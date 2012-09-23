@@ -55,7 +55,7 @@ module WpTimthumbs
       scripts/timthumb.php tools/timthumb.php functions/timthumb.php
     }.each do |file|
       targets << WpItem.new(
-          :url            => options[:url],
+          :base_url       => options[:base_url],
           :path           => "themes/#{theme_name}/#{file}",
           :wp_content_dir => options[:wp_content_dir],
           :name           => theme_name,

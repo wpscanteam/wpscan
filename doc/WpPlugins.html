@@ -235,12 +235,12 @@
   <span class="ruby-identifier">plugins</span> = []
   <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">plugins</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">url</span>,
+        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">base_url</span>,
         <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">path</span>,
         <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">wp_content_dir</span>,
         <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span>,
         <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;plugins&quot;</span>,
-        <span class="ruby-value">:wp_plugins_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">wp_plugin_dir</span>
+        <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">wp_plugins_dir</span>
     )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">name</span> }
@@ -285,16 +285,16 @@ plugins can be found in the source code :</p>
 <span class="ruby-comment"># File lib/wpscan/modules/wp_plugins.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">plugins_from_passive_detection</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">plugins</span> = []
-  <span class="ruby-identifier">temp</span> = <span class="ruby-constant">WpDetector</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>], <span class="ruby-string">&quot;plugins&quot;</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
+  <span class="ruby-identifier">temp</span> = <span class="ruby-constant">WpDetector</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>], <span class="ruby-string">&quot;plugins&quot;</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
 
   <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">plugins</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">url</span>,
+        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">base_url</span>,
         <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span>,
         <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">path</span>,
         <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>],
         <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;plugins&quot;</span>,
-        <span class="ruby-value">:wp_plugins_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_plugin_dir</span>]
+        <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_plugins_dir</span>]
     )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">name</span> }

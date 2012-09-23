@@ -37,6 +37,6 @@ class WpPlugin < WpItem
   end
 
   def error_log_url
-    get_url.merge("error_log").to_s
+    get_full_url.merge("error_log").to_s
   end
 end

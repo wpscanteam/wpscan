@@ -31,7 +31,7 @@ describe WpVersion do
     after :each do
       stub_request_to_fixture(:url => @target_uri.to_s, :fixture => @fixture)
 
-      WpVersion.find_from_meta_generator(:url => @target_uri.to_s).should === @expected
+      WpVersion.find_from_meta_generator(:base_url => @target_uri.to_s).should === @expected
     end
 
     it "should return nil if the meta-generator is not found" do
@@ -57,7 +57,7 @@ describe WpVersion do
       @status_code ||= 200
       stub_request_to_fixture(:url => @target_uri.merge("feed/").to_s, :status => @status_code, :fixture => @fixture)
 
-      WpVersion.find_from_rss_generator(:url => @target_uri).should === @expected
+      WpVersion.find_from_rss_generator(:base_url => @target_uri).should === @expected
     end
 
     it "should return nil on a 404" do
@@ -92,7 +92,7 @@ describe WpVersion do
       stub_request(:get, @target_uri.merge("sitemap.xml").to_s).
           to_return(:status => 200, :body => @body)
 
-      WpVersion.find_from_sitemap_generator(:url => @target_uri).should === @expected
+      WpVersion.find_from_sitemap_generator(:base_url => @target_uri).should === @expected
     end
 
     it "should return nil if the generator is not found" do
@@ -118,7 +118,7 @@ describe WpVersion do
       @status_code ||= 200
       stub_request_to_fixture(:url => @target_uri.merge("readme.html").to_s, :status => @status_code, :fixture => @fixture)
 
-      WpVersion.find_from_readme(:url => @target_uri).should === @expected
+      WpVersion.find_from_readme(:base_url => @target_uri).should === @expected
     end
 
     it "should return nil on a 404" do
@@ -145,7 +145,7 @@ describe WpVersion do
       stub_request_to_fixture(:url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
                               :status => 200,
                               :fixture => "#{fixtures_dir}/3.2.1.js")
-      version = WpVersion.find_from_advanced_fingerprinting(:url => @target_uri,
+      version = WpVersion.find_from_advanced_fingerprinting(:base_url => @target_uri,
                                                             :wp_content_dir => "wp-content",
                                                             :version_xml => "#{fixtures_dir}/wp_versions.xml")
       version.should == "3.2.1"

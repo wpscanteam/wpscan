@@ -21,29 +21,29 @@ require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 describe WpPlugin do
   describe "#initialize" do
     it "should not raise an exception" do
-      expect { WpPlugin.new(:url => "url", :path => "path", :wp_content_dir => "dir", :name => "name") }.to_not raise_error
+      expect { WpPlugin.new(:base_url => "url", :path => "path", :wp_content_dir => "dir", :name => "name") }.to_not raise_error
     end
 
     it "should not raise an exception (wp_content_dir not set)" do
-      expect { WpPlugin.new(:url => "url", :path => "path", :name => "name") }.to_not raise_error
+      expect { WpPlugin.new(:base_url => "url", :path => "path", :name => "name") }.to_not raise_error
     end
 
-    it "should raise an exception (url not set)" do
+    it "should raise an exception (base_url not set)" do
       expect { WpPlugin.new(:path => "path", :wp_content_dir => "dir", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (path not set)" do
-      expect { WpPlugin.new(:url => "url", :wp_content_dir => "dir", :name => "name") }.to raise_error
+      expect { WpPlugin.new(:base_url => "url", :wp_content_dir => "dir", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (name not set)" do
-      expect { WpPlugin.new(:url => "url", :path => "path", :wp_content_dir => "dir") }.to raise_error
+      expect { WpPlugin.new(:base_url => "url", :path => "path", :wp_content_dir => "dir") }.to raise_error
     end
   end
 
   describe "#error_log_url" do
     it "should return a correct url" do
-      temp = WpPlugin.new(:url => "http://wordpress.com",
+      temp = WpPlugin.new(:base_url => "http://wordpress.com",
                           :path => "test/asdf.php")
       temp.error_log_url.to_s.should == "http://wordpress.com/wp-content/plugins/test/error_log"
     end
@@ -51,7 +51,7 @@ describe WpPlugin do
 
   describe "#error_log?" do
     before :each do
-      @temp = WpPlugin.new(:url => "http://wordpress.com",
+      @temp = WpPlugin.new(:base_url => "http://wordpress.com",
                            :path => "test/asdf.php")
     end
 

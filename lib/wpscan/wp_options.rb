@@ -32,7 +32,7 @@
 # * +type+ - Type: plugins, themes
 class WpOptions
   def self.check_options(options)
-    raise("url must be set")                  unless options[:url] != nil and options[:url].to_s.length > 0
+    raise("base_url must be set")             unless options[:base_url] != nil and options[:base_url].to_s.length > 0
     raise("only_vulnerable_ones must be set") unless options[:only_vulnerable_ones] != nil
     raise("file must be set")                 unless options[:file] != nil and options[:file].length > 0
     raise("vulns_file must be set")           unless options[:vulns_file] != nil and options[:vulns_file].length > 0

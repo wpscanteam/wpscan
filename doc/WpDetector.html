@@ -236,7 +236,7 @@
 
   <span class="ruby-identifier">result</span> = <span class="ruby-identifier">items</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
+    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">enum_results</span> = <span class="ruby-constant">WpEnumerator</span>.<span class="ruby-identifier">enumerate</span>(<span class="ruby-identifier">options</span>)
@@ -303,7 +303,7 @@
 
   <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
+        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
         <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>,
         <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
         <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{item}/&quot;</span>,

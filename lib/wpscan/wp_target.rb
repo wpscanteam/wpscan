@@ -104,7 +104,7 @@ class WpTarget
 
   def wp_plugins_dir
     unless @wp_plugins_dir
-      @wp_plugins_dir = "plugins"
+      @wp_plugins_dir = "#{wp_content_dir}/plugins"
     end
     @wp_plugins_dir
   end

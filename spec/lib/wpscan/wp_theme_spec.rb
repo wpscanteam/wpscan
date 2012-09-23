@@ -30,23 +30,23 @@ describe WpTheme do
 
   describe "#initialize" do
     it "should not raise an exception" do
-      expect { WpTheme.new(:url => "url", :path => "path", :wp_content_dir => "dir", :name => "name") }.to_not raise_error
+      expect { WpTheme.new(:base_url => "url", :path => "path", :wp_content_dir => "dir", :name => "name") }.to_not raise_error
     end
 
     it "should not raise an exception (wp_content_dir not set)" do
-      expect { WpTheme.new(:url => "url", :path => "path", :name => "name") }.to_not raise_error
+      expect { WpTheme.new(:base_url => "url", :path => "path", :name => "name") }.to_not raise_error
     end
 
-    it "should raise an exception (url not set)" do
+    it "should raise an exception (base_url not set)" do
       expect { WpTheme.new(:path => "path", :wp_content_dir => "dir", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (path not set)" do
-      expect { WpTheme.new(:url => "url", :wp_content_dir => "dir", :name => "name") }.to raise_error
+      expect { WpTheme.new(:base_url => "url", :wp_content_dir => "dir", :name => "name") }.to raise_error
     end
 
     it "should raise an exception (name not set)" do
-      expect { WpTheme.new(:url => "url", :path => "path", :wp_content_dir => "dir") }.to raise_error
+      expect { WpTheme.new(:base_url => "url", :path => "path", :wp_content_dir => "dir") }.to raise_error
     end
   end
 
@@ -102,12 +102,12 @@ describe WpTheme do
 
     it "should return a WpTheme object with .name 'Editorial' and .version '1.3.5'" do
       @fixture = fixtures_dir + "/editorial-1.3.5.html"
-      @expected_theme = WpTheme.new(:name => "Editorial", :version => "1.3.5", :url => "", :path => "", :wp_content_dir => "")
+      @expected_theme = WpTheme.new(:name => "Editorial", :version => "1.3.5", :base_url => "", :path => "", :wp_content_dir => "")
     end
 
     it "should return a WpTheme object with .name 'Merchant'" do
       @fixture = fixtures_dir + "/merchant-no-version.html"
-      @expected_theme = WpTheme.new(:name => "Merchant", :url => "", :path => "", :wp_content_dir => "")
+      @expected_theme = WpTheme.new(:name => "Merchant", :base_url => "", :path => "", :wp_content_dir => "")
     end
   end
 
@@ -151,7 +151,7 @@ describe WpTheme do
       if @fixture
         stub_request_to_fixture(:url => theme_style_url, :fixture => @fixture)
 
-        wp_theme = WpTheme.new(:name => 'spec-theme', :style_url => theme_style_url, :url => "", :path => "", :wp_content_dir => "")
+        wp_theme = WpTheme.new(:name => "spec-theme", :style_url => theme_style_url, :base_url => "", :path => "", :wp_content_dir => "")
 
         wp_theme.version.should === @expected
       end
@@ -163,7 +163,7 @@ describe WpTheme do
     end
 
     it "should return nil if the style_url is nil" do
-      WpTheme.new(:name => "hello-world", :url => "", :path => "", :wp_content_dir => "").version.should be_nil
+      WpTheme.new(:name => "hello-world", :base_url => "", :path => "", :wp_content_dir => "").version.should be_nil
     end
 
     it "should return 1.3" do
@@ -179,12 +179,12 @@ describe WpTheme do
 
   describe "#===" do
     it "should return false (name not equal)" do
-      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/name/asdf.php",
                              :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
-      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/newname/asdf.php",
                               :vulns_file => "XXX.xml",
                               :version => "1.0"
@@ -193,12 +193,12 @@ describe WpTheme do
     end
 
     it "should return false (version not equal)" do
-      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/name/asdf.php",
                              :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
-      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/name/asdf.php",
                               :vulns_file => "XXX.xml",
                               :version => "2.0"
@@ -207,12 +207,12 @@ describe WpTheme do
     end
 
     it "should return false (version and name not equal)" do
-      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/name/asdf.php",
                              :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
-      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/newname/asdf.php",
                               :vulns_file => "XXX.xml",
                               :version => "2.0"
@@ -221,12 +221,12 @@ describe WpTheme do
     end
 
     it "should return true" do
-      instance = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                              :path => "themes/test/asdf.php",
                              :vulns_file => "XXX.xml",
                              :version => "1.0"
       )
-      instance2 = WpTheme.new(:url => "http://sub.example.com/path/to/wordpress/",
+      instance2 = WpTheme.new(:base_url => "http://sub.example.com/path/to/wordpress/",
                               :path => "themes/test/asdf.php",
                               :vulns_file => "XXX.xml",
                               :version => "1.0"

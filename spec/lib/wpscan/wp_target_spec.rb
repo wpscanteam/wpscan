@@ -27,7 +27,7 @@ describe WpTarget do
       :config_file    => SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
       :cache_timeout  => 0,
       :wp_content_dir => "wp-content",
-      :wp_plugins_dir => "plugins"
+      :wp_plugins_dir => "wp-content/plugins"
     }
     @wp_target = WpTarget.new("http://example.localhost/", @options)
   end
@@ -153,19 +153,24 @@ describe WpTarget do
 
   describe "#wp_plugins_dir" do
     after :each do
-      @wp_target.stub(:wp_content_dir => @stub_value) if @stub_value
+      @wp_target.stub(:wp_plugins_dir => @stub_value) if @stub_value
 
       @wp_target.wp_plugins_dir.should === @expected
     end
 
     it "should return the string set in the initialize method" do
-      @wp_target = WpTarget.new("http://example.localhost/", :wp_plugins_dir => "custom-plugins")
+      @wp_target = WpTarget.new("http://example.localhost/", :wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins")
       @expected  = "custom-plugins"
     end
 
     it "should return 'plugins'" do
-      @stub_value = "wp-content"
+      @stub_value = "plugins"
       @expected   = "plugins"
+    end
+
+    it "should return 'wp-content/plugins'" do
+      @stub_value = nil
+      @expected   = "wp-content/plugins"
     end
   end
 

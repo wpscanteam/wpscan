@@ -22,7 +22,7 @@ describe WpOptions do
   describe "#check_options" do
     before :each do
       @options = {}
-      @options[:url] = "url"
+      @options[:base_url] = "url"
       @options[:only_vulnerable_ones] = false
       @options[:file] = "file"
       @options[:vulns_file] = "vulns_file"
@@ -40,14 +40,14 @@ describe WpOptions do
       expect { WpOptions.check_options(@options) }.to raise_error(RuntimeError, @message)
     end
 
-    it "should raise an exception (url empty)" do
-      @options[:url] = ""
-      @message = "url must be set"
+    it "should raise an exception (base_url empty)" do
+      @options[:base_url] = ""
+      @message = "base_url must be set"
     end
 
-    it "should raise an exception (url nil)" do
-      @options[:url] = nil
-      @message = "url must be set"
+    it "should raise an exception (base_url nil)" do
+      @options[:base_url] = nil
+      @message = "base_url must be set"
     end
 
     it "should raise an exception (only_vulnerable_ones nil)" do

@@ -31,7 +31,7 @@ shared_examples_for "WpPlugins" do
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
     @module.extend(WpPlugins)
 
-    @options = {:url => @wp_url,
+    @options = {:base_url => @wp_url,
                 :only_vulnerable_ones => false,
                 :show_progress_bar => false,
                 :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
@@ -43,27 +43,27 @@ shared_examples_for "WpPlugins" do
     }
     File.exist?(@plugin_vulns_file).should == true
     File.exist?(@plugins_file).should == true
-    @targets = [WpPlugin.new({:url => "http://example.localhost/",
+    @targets = [WpPlugin.new({:base_url => "http://example.localhost/",
                               :path => "exclude-pages/exclude_pages.php",
                               :wp_content_dir => "wp-content",
                               :name => "exclude-pages"}),
-                WpPlugin.new({:url => "http://example.localhost/",
+                WpPlugin.new({:base_url => "http://example.localhost/",
                               :path => "display-widgets/display-widgets.php",
                               :wp_content_dir => "wp-content",
                               :name => "display-widgets"}),
-                WpPlugin.new({:url => "http://example.localhost/",
+                WpPlugin.new({:base_url => "http://example.localhost/",
                               :path => "media-library",
                               :wp_content_dir => "wp-content",
                               :name => "media-library"}),
-                WpPlugin.new({:url => "http://example.localhost/",
+                WpPlugin.new({:base_url => "http://example.localhost/",
                               :path => "deans",
                               :wp_content_dir => "wp-content",
                               :name => "deans"}),
-                WpPlugin.new({:url => "http://example.localhost/",
+                WpPlugin.new({:base_url => "http://example.localhost/",
                               :path => "formidable/formidable.php",
                               :wp_content_dir => "wp-content",
                               :name => "formidable"}),
-                WpPlugin.new({:url => "http://example.localhost/",
+                WpPlugin.new({:base_url => "http://example.localhost/",
                               :path => "regenerate-thumbnails/readme.txt",
                               :wp_content_dir => "wp-content",
                               :name => "regenerate-thumbnails"})]
@@ -74,7 +74,7 @@ shared_examples_for "WpPlugins" do
 
     it "should return an empty array" do
       stub_request_to_fixture(:url => @module.url, :fixture => File.new(passive_detection_fixtures + '/no_plugins.htm'))
-      plugins = @module.plugins_from_passive_detection(:url => @module.url, :wp_content_dir => "wp-content")
+      plugins = @module.plugins_from_passive_detection(:base_url => @module.url, :wp_content_dir => "wp-content")
       plugins.should be_empty
     end
 
@@ -92,12 +92,12 @@ shared_examples_for "WpPlugins" do
       }
       expected_plugins = []
       expected_plugin_names.each do |plugin_name|
-        expected_plugins << WpPlugin.new(:url => @module.url,
+        expected_plugins << WpPlugin.new(:base_url => @module.url,
                                          :path => "/plugins/#{plugin_name}/",
                                          :name => plugin_name)
       end
 
-      plugins = @module.plugins_from_passive_detection(:url => @module.url, :wp_content_dir => "wp-content")
+      plugins = @module.plugins_from_passive_detection(:base_url => @module.url, :wp_content_dir => "wp-content")
       plugins.should_not be_empty
       plugins.length.should == expected_plugins.length
       plugins.sort.should == expected_plugins.sort
@@ -110,7 +110,7 @@ shared_examples_for "WpPlugins" do
       stub_request(:get, @module.uri.to_s).to_return(:status => 200)
       # Point all targets to a 404
       @targets.each do |target|
-        stub_request(:get, target.get_url.to_s).to_return(:status => 404)
+        stub_request(:get, target.get_full_url.to_s).to_return(:status => 404)
         # to_s calls readme_url
         stub_request(:get, target.readme_url.to_s).to_return(:status => 404)
       end
@@ -132,9 +132,9 @@ shared_examples_for "WpPlugins" do
       @passive_detection_fixture = @fixtures_dir + "/passive_detection/one_plugin.htm"
       @expected_plugins = @targets.sample(2)
       @expected_plugins.each do |p|
-        stub_request(:get, p.get_url.to_s).to_return(:status => 200)
+        stub_request(:get, p.get_full_url.to_s).to_return(:status => 200)
       end
-      new_plugin = WpPlugin.new(:url => "http://example.localhost/",
+      new_plugin = WpPlugin.new(:base_url => "http://example.localhost/",
                                 :path => "/plugins/comment-info-tip/",
                                 :name => "comment-info-tip")
       stub_request(:get, new_plugin.readme_url.to_s).to_return(:status => 200)
@@ -149,7 +149,7 @@ shared_examples_for "WpPlugins" do
         plugin_url.should_not be_nil
         plugin_url.length.should == 1
         @expected_plugins = plugin_url
-        stub_request(:get, plugin_url[0].get_url.to_s).to_return(:status => valid_response_code)
+        stub_request(:get, plugin_url[0].get_full_url.to_s).to_return(:status => valid_response_code)
       end
     end
   end

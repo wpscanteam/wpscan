@@ -29,7 +29,7 @@ module WpThemes
     themes = []
     result.each do |r|
       themes << WpTheme.new(
-          :url            => r.url,
+          :base_url       => r.base_url,
           :path           => r.path,
           :wp_content_dir => r.wp_content_dir,
           :name           => r.name
@@ -40,11 +40,11 @@ module WpThemes
 
   def themes_from_passive_detection(options)
     themes = []
-    temp = WpDetector.passive_detection(options[:url], "themes", options[:wp_content_dir])
+    temp = WpDetector.passive_detection(options[:base_url], "themes", options[:wp_content_dir])
 
     temp.each do |item|
       themes << WpTheme.new(
-          :url            => item.url,
+          :base_url       => item.base_url,
           :name           => item.name,
           :path           => item.path,
           :wp_content_dir => options[:wp_content_dir]

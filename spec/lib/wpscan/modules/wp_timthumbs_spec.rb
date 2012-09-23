@@ -22,7 +22,7 @@ shared_examples_for "WpTimthumbs" do
     @options = {}
     @url = "http://example.localhost/"
     @theme_name = "bueno"
-    @options[:url] = @url
+    @options[:base_url] = @url
     @options[:wp_content_dir] = "wp-content"
     @options[:name] = @theme_name
     @options[:error_404_hash] = "xx"
@@ -60,7 +60,7 @@ shared_examples_for "WpTimthumbs" do
       targets.length.should > 0
       temp = []
       targets.each do |t|
-        temp << t.get_url.to_s
+        temp << t.get_full_url.to_s
       end
       temp.sort.should === @targets_from_theme.sort
     end
@@ -91,7 +91,7 @@ shared_examples_for "WpTimthumbs" do
       urls = []
       urls_hash = WpEnumerator.generate_items(@options)
       urls_hash.each do |u|
-        url = u.get_url.to_s
+        url = u.get_full_url.to_s
         urls << url
         stub_request(:get, url).to_return(:status => 404)
       end
@@ -106,7 +106,7 @@ shared_examples_for "WpTimthumbs" do
 
       temp = []
       timthumbs.each do |t|
-        temp << t.get_url.to_s
+        temp << t.get_full_url.to_s
       end
       temp.sort.should === expected.sort
       @module.has_timthumbs?(nil).should be_true

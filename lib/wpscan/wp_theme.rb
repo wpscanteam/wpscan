@@ -20,7 +20,7 @@ require "#{WPSCAN_LIB_DIR}/vulnerable"
 
 class WpTheme < WpItem
 
-  attr_reader :name, :style_url, :version
+  attr_reader :style_url, :version
 
   def initialize(options = {})
     options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
@@ -67,7 +67,7 @@ class WpTheme < WpItem
 
       return new(:name            => theme_name,
                  :style_url       => style_url,
-                 :url             => style_url,
+                 :base_url        => style_url,
                  :path            => "",
                  :wp_content_dir  => ""
       )
@@ -87,7 +87,7 @@ class WpTheme < WpItem
 
       return new(:name            => woo_theme_name,
                  :version         => woo_theme_version,
-                 :url             => matches[0],
+                 :base_url        => matches[0],
                  :path            => "",
                  :wp_content_dir  => ""
       )

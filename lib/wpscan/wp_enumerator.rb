@@ -24,7 +24,7 @@ class WpEnumerator
   # ==== Attributes
   #
   # * +targets+ - targets to enumerate
-  # * * +:url+ - Base URL
+  # * * +:base_url+ - Base URL
   # * * +:wp_content+ - wp-content directory
   # * * +:path+ - Path to plugin
   # * +type+ - "plugins" or "themes", item to enumerate
@@ -50,7 +50,7 @@ class WpEnumerator
     enumerate_size = targets.size
 
     targets.each do |target|
-      url = target.get_url
+      url = target.get_full_url
 
       request = enum_browser.forge_request(url, { :cache_timeout => 0, :follow_location => true })
       request_count += 1
@@ -86,7 +86,7 @@ class WpEnumerator
     file              = options[:file]
     vulns_file        = options[:vulns_file]
     wp_content_dir    = options[:wp_content_dir]
-    url               = options[:url]
+    url               = options[:base_url]
     type              = options[:type]
     plugins_dir       = options[:wp_plugins_dir]
     targets_url       = []
@@ -96,7 +96,7 @@ class WpEnumerator
       File.open(file, "r") do |f|
         f.readlines.collect do |line|
           targets_url << WpItem.new(
-              :url            => url,
+              :base_url       => url,
               :path           => line.strip,
               :wp_content_dir => wp_content_dir,
               :name           => File.dirname(line.strip),
@@ -118,7 +118,7 @@ class WpEnumerator
       xml.xpath(options[:vulns_xpath_2]).each do |node|
         name = node.attribute("name").text
         targets_url << WpItem.new(
-            :url            => url,
+            :base_url       => url,
             :path           => name,
             :wp_content_dir => wp_content_dir,
             :name           => name,

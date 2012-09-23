@@ -38,7 +38,7 @@ class WpVersion < Vulnerable
   # (find_from_meta_generator, find_from_rss_generator etc)
   def self.find(target_uri, wp_content_dir)
     options = {
-        :url            => target_uri,
+        :base_url       => target_uri,
         :wp_content_dir => wp_content_dir
     }
     self.methods.grep(/find_from_/).each do |method_to_call|
@@ -59,14 +59,14 @@ class WpVersion < Vulnerable
   # The meta tag can be removed however it seems,
   # that it is reinstated on upgrade.
   def self.find_from_meta_generator(options)
-    target_uri = options[:url]
+    target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
     response.body[%r{name="generator" content="wordpress ([^"]+)"}i, 1]
   end
 
   def self.find_from_rss_generator(options)
-    target_uri = options[:url]
+    target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.merge("feed/").to_s, {:follow_location => true, :max_redirects => 2})
 
     response.body[%r{<generator>http://wordpress.org/\?v=([^<]+)</generator>}i, 1]
@@ -92,7 +92,7 @@ class WpVersion < Vulnerable
   #  /!\ Warning : this method might return false positive if the file used for fingerprinting is part of a theme (they can be updated)
   #
   def self.find_from_advanced_fingerprinting(options)
-    target_uri = options[:url]
+    target_uri = options[:base_url]
     # needed for rpsec tests
     version_xml = options[:version_xml] || DATA_DIR + "/wp_versions.xml"
     xml = Nokogiri::XML(File.open(version_xml)) do |config|
@@ -117,18 +117,18 @@ class WpVersion < Vulnerable
   end
 
   def self.find_from_readme(options)
-    target_uri = options[:url]
+    target_uri = options[:base_url]
     Browser.instance.get(target_uri.merge("readme.html").to_s).body[%r{<br />\sversion #{WpVersion.version_pattern}}i, 1]
   end
 
   # http://code.google.com/p/wpscan/issues/detail?id=109
   def self.find_from_sitemap_generator(options)
-    target_uri = options[:url]
+    target_uri = options[:base_url]
     Browser.instance.get(target_uri.merge("sitemap.xml").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}, 1]
   end
 
-  # Used to check if the version is correct : should be numeric with at least one '.'
+  # Used to check if the version is correct : must contain at least one .
   def self.version_pattern
-    '(.*(?=.)(?=.*\d)(?=.*[.]).*)'
+    '([^\r\n]+[\.][^\r\n]+)'
   end
 end

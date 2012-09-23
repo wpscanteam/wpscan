@@ -38,7 +38,7 @@ module WpLoginProtection
 
           return @login_protection_plugin = WpPlugin.new(
               :name           => plugin_name,
-              :url            => @uri,
+              :base_url       => @uri,
               :path           => "/plugins/#{plugin_name}/",
               :wp_content_dir => @wp_content_dir
           )
@@ -68,7 +68,7 @@ module WpLoginProtection
 
   def better_wp_security_url
     WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :url             => @uri,
+                 :base_url        => @uri,
                  :path            => "/plugins/better-wp-security/",
                  :name            => "better-wp-security"
     ).get_url_without_filename
@@ -81,7 +81,7 @@ module WpLoginProtection
 
   def simple_login_lockdown_url
     WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :url             => @uri,
+                 :base_url        => @uri,
                  :path            => "/plugins/simple-login-lockdown/",
                  :name            => "simple-login-lockdown"
     ).get_url_without_filename
@@ -94,7 +94,7 @@ module WpLoginProtection
 
   def login_security_solution_url
     WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :url             => @uri,
+                 :base_url        => @uri,
                  :path            => "/plugins/login-security-solution/",
                  :name            => "login-security-solution"
     ).get_url_without_filename
@@ -107,7 +107,7 @@ module WpLoginProtection
 
   def limit_login_attempts_url
     WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :url             => @uri,
+                 :base_url        => @uri,
                  :path            => "/plugins/limit-login-attempts/",
                  :name            => "limit-login-attempts"
     ).get_url_without_filename
@@ -120,7 +120,7 @@ module WpLoginProtection
 
   def bluetrait_event_viewer_url
     WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :url             => @uri,
+                 :base_url        => @uri,
                  :path            => "/plugins/bluetrait-event-viewer/",
                  :name            => "bluetrait-event-viewer"
     ).get_url_without_filename

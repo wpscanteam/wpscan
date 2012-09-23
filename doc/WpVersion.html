@@ -293,7 +293,7 @@ etc)</p>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 39</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">target_uri</span>, <span class="ruby-identifier">wp_content_dir</span>)
   <span class="ruby-identifier">options</span> = {
-      <span class="ruby-value">:url</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">target_uri</span>,
+      <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">target_uri</span>,
       <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>
   }
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">methods</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/find_from_/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method_to_call</span><span class="ruby-operator">|</span>
@@ -393,7 +393,7 @@ file across all versions of wordpress.</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_advanced_fingerprinting</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
   <span class="ruby-comment"># needed for rpsec tests</span>
   <span class="ruby-identifier">version_xml</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version_xml</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/wp_versions.xml&quot;</span>
   <span class="ruby-identifier">xml</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">version_xml</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">config</span><span class="ruby-operator">|</span>
@@ -451,7 +451,7 @@ upgrade.</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_meta_generator</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>, {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>})
 
   <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{name=&quot;generator&quot; content=&quot;wordpress ([^&quot;]+)&quot;}</span>, <span class="ruby-value">1</span>]
@@ -487,7 +487,7 @@ upgrade.</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 119</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_readme</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.html&quot;</span>).<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>[<span class="ruby-node">%{&lt;br /&gt;\sversion #{WpVersion.version_pattern}}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
             </div><!-- find_from_readme-source -->
@@ -521,7 +521,7 @@ upgrade.</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_rss_generator</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;feed/&quot;</span>).<span class="ruby-identifier">to_s</span>, {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>})
 
   <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;generator&gt;http://wordpress.org/\?v=([^&lt;]+)&lt;/generator&gt;}</span>, <span class="ruby-value">1</span>]
@@ -558,7 +558,7 @@ href="http://code.google.com/p/wpscan/issues/detail?id=109">code.google.com/p/wp
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 125</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_sitemap_generator</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:url</span>]
+  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;sitemap.xml&quot;</span>).<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>[<span class="ruby-node">%{generator=&quot;wordpress/#{WpVersion.version_pattern}&quot;}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
             </div><!-- find_from_sitemap_generator-source -->
@@ -584,8 +584,7 @@ href="http://code.google.com/p/wpscan/issues/detail?id=109">code.google.com/p/wp
 
           <div class="method-description">
             
-            <p>Used to check if the version is correct : should be numeric with at least
-one ‘.’</p>
+            <p>Used to check if the version is correct : must contain at least one .</p>
             
 
             
@@ -593,7 +592,7 @@ one ‘.’</p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_pattern</span>
-  <span class="ruby-string">'(.*(?=.)(?=.*\d)(?=.*[.]).*)'</span>
+  <span class="ruby-string">'([^\r\n]+[\.][^\r\n]+)'</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- version_pattern-source -->
             
