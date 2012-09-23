@@ -57,6 +57,9 @@ def usage()
   puts "-Use custom content directory ..."
   puts "ruby #{script_name} -u www.example.com --wp-content-dir custom-content"
   puts
+  puts "-Use custom plugins directory ..."
+  puts "ruby #{script_name} -u www.example.com --wp-plugins-dir wp-content/custom-plugins"
+  puts
   puts "-Update ..."
   puts "ruby #{script_name} --update"
   puts
