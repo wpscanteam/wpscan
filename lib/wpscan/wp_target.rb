@@ -109,6 +109,10 @@ class WpTarget
     @wp_plugins_dir
   end
 
+  def wp_plugins_dir_exists?
+    Browser.instance.get(@uri.merge(wp_plugins_dir)).code != 404
+  end
+
   def has_debug_log?
     # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
     response_body = Browser.instance.get(debug_log_url(), :headers => {"range" => "bytes=0-700"}).body
