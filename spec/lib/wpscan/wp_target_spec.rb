@@ -174,6 +174,22 @@ describe WpTarget do
     end
   end
 
+  describe "#wp_plugins_dir_exists?" do
+    it "should return true" do
+      target = WpTarget.new("http://example.localhost/", :wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins")
+      url = target.uri.merge(target.wp_plugins_dir).to_s
+      stub_request(:any, url).to_return(:status => 200)
+      target.wp_plugins_dir_exists?.should == true
+    end
+
+    it "should return false" do
+      target = WpTarget.new("http://example.localhost/", :wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins")
+      url = target.uri.merge(target.wp_plugins_dir).to_s
+      stub_request(:any, url).to_return(:status => 404)
+      target.wp_plugins_dir_exists?.should == false
+    end
+  end
+
   describe "#debug_log_url" do
     it "should return 'http://example.localhost/wp-content/debug.log" do
       @wp_target.stub(:wp_content_dir => "wp-content")
