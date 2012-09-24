@@ -125,6 +125,7 @@ class WpTarget
 
   # Script for replacing strings in wordpress databases
   # reveals databse credentials after hitting submit
+  # http://interconnectit.com/124/search-and-replace-for-wordpress-databases/
   def search_replace_db_2_url
     @uri.merge("searchreplacedb2.php").to_s
   end
