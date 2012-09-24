@@ -132,7 +132,7 @@ class WpTarget
 
   def search_replace_db_2_exists?
     resp = Browser.instance.get(search_replace_db_2_url)
-    resp.status == 200 && resp.body[%r{by interconnect}i]
+    resp.code == 200 && resp.body[%r{by interconnect}i]
   end
 
   # Should check wp-login.php if registration is enabled or not

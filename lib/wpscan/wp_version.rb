@@ -124,12 +124,12 @@ class WpVersion < Vulnerable
   # http://code.google.com/p/wpscan/issues/detail?id=109
   def self.find_from_sitemap_generator(options)
     target_uri = options[:base_url]
-    Browser.instance.get(target_uri.merge("sitemap.xml").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}, 1]
+    Browser.instance.get(target_uri.merge("sitemap.xml").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}i, 1]
   end
 
   def self.find_from_links_opml(options)
     target_uri = options[:base_url]
-    Browser.instance.get(target_uri.merge("wp-links-opml.php").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}, 1]
+    Browser.instance.get(target_uri.merge("wp-links-opml.php").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}i, 1]
   end
 
   # Used to check if the version is correct : must contain at least one .

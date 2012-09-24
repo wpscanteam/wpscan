@@ -221,4 +221,27 @@ describe WpTarget do
       @expected = true
     end
   end
+
+  describe "#search_replace_db_2_url" do
+    it "should return the correct url" do
+      @wp_target.search_replace_db_2_url.should == "http://example.localhost/searchreplacedb2.php"
+    end
+  end
+
+  describe "#search_replace_db_2_exists?" do
+    it "should return true" do
+      stub_request(:any, @wp_target.search_replace_db_2_url).to_return(:status => 200, :body => "asdf by interconnect asdf")
+      @wp_target.search_replace_db_2_exists?.should be_true
+    end
+
+    it "should return false" do
+      stub_request(:any, @wp_target.search_replace_db_2_url).to_return(:status => 500)
+      @wp_target.search_replace_db_2_exists?.should be_false
+    end
+
+    it "should return false" do
+      stub_request(:any, @wp_target.search_replace_db_2_url).to_return(:status => 500, :body => "asdf by interconnect asdf")
+      @wp_target.search_replace_db_2_exists?.should be_false
+    end
+  end
 end

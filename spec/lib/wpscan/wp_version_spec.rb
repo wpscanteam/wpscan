@@ -139,7 +139,7 @@ describe WpVersion do
   end
 
   describe "#find_from_advanced_fingerprinting" do
-    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + '/advanced' }
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/advanced" }
 
     it "should return 3.2.1" do
       stub_request_to_fixture(:url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
@@ -149,6 +149,26 @@ describe WpVersion do
                                                             :wp_content_dir => "wp-content",
                                                             :version_xml => "#{fixtures_dir}/wp_versions.xml")
       version.should == "3.2.1"
+    end
+  end
+
+  describe "#find_from_links_opml" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/opml" }
+
+    it "should return 3.4.2" do
+      stub_request_to_fixture(:url => @target_uri.merge("wp-links-opml.php").to_s,
+                              :status => 200,
+                              :fixture => "#{fixtures_dir}/wp-links-opml.xml")
+      version = WpVersion.find_from_links_opml(:base_url => @target_uri)
+      version.should == "3.4.2"
+    end
+
+    it "should return nil" do
+      stub_request_to_fixture(:url => @target_uri.merge("wp-links-opml.php").to_s,
+                              :status => 200,
+                              :fixture => "#{fixtures_dir}/wp-links-opml-nogenerator.xml")
+      version = WpVersion.find_from_links_opml(:base_url => @target_uri)
+      version.should be_nil
     end
   end
 
