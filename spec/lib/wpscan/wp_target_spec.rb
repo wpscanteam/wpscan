@@ -246,20 +246,53 @@ describe WpTarget do
   end
 
   describe "#registration_url" do
-    it "should return the correct url" do
+    it "should return the correct url (multisite)" do
+      # set to multi site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 200)
+      @wp_target.registration_url.to_s.should == "http://example.localhost/wp-signup.php"
+    end
+
+    it "should return the correct url (not multisite)" do
+      # set to single site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 302, :headers => { "Location" => "wp-login.php?action=register" })
       @wp_target.registration_url.to_s.should == "http://example.localhost/wp-login.php?action=register"
     end
   end
 
   describe "#registration_enabled?" do
-    it "should return false" do
+    it "should return false (multisite)" do
+      # set to multi site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 200)
       stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 302, :headers => { "Location" => "wp-login.php?registration=disabled" })
       @wp_target.registration_enabled?.should be_false
     end
 
-    it "should return true" do
-      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 200)
+    it "should return true (multisite)" do
+      # set to multi site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 200)
+      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 200, :body => %{<form id="setupform" method="post" action="wp-signup.php">})
       @wp_target.registration_enabled?.should be_true
+    end
+
+    it "should return false (not multisite)" do
+      # set to single site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 302, :headers => { "Location" => "wp-login.php?action=register" })
+      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 302, :headers => { "Location" => "wp-login.php?registration=disabled" })
+      @wp_target.registration_enabled?.should be_false
+    end
+
+    it "should return true (not multisite)" do
+      # set to single site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 302, :headers => { "Location" => "wp-login.php?action=register" })
+      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 200, :body => %{<form name="registerform" id="registerform" action="wp-login.php"})
+      @wp_target.registration_enabled?.should be_true
+    end
+
+    it "should return false" do
+      # set to single site
+      stub_request(:any, "http://example.localhost/wp-signup.php").to_return(:status => 302, :headers => { "Location" => "wp-login.php?action=register" })
+      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 500)
+      @wp_target.registration_enabled?.should be_false
     end
   end
 
@@ -281,6 +314,11 @@ describe WpTarget do
     it "should return true" do
       stub_request(:any, @url).to_return(:status => 200)
       @wp_target.is_multisite?.should be_true
+    end
+
+    it "should return false" do
+      stub_request(:any, @url).to_return(:status => 500)
+      @wp_target.is_multisite?.should be_false
     end
   end
 end
