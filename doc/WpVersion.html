@@ -69,6 +69,8 @@
           
           <li><a href="#method-c-find_from_advanced_fingerprinting">::find_from_advanced_fingerprinting</a></li>
           
+          <li><a href="#method-c-find_from_links_opml">::find_from_links_opml</a></li>
+          
           <li><a href="#method-c-find_from_meta_generator">::find_from_meta_generator</a></li>
           
           <li><a href="#method-c-find_from_readme">::find_from_readme</a></li>
@@ -426,6 +428,40 @@ file across all versions of wordpress.</p>
         </div><!-- find_from_advanced_fingerprinting-method -->
 
       
+        <div id="find_from_links_opml-method" class="method-detail ">
+          <a name="method-c-find_from_links_opml"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_links_opml</span><span
+              class="method-args">(options)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="find_from_links_opml-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 130</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">find_from_links_opml</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">target_uri</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-links-opml.php&quot;</span>).<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>[<span class="ruby-node">%{generator=&quot;wordpress/#{WpVersion.version_pattern}&quot;}</span>, <span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- find_from_links_opml-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- find_from_links_opml-method -->
+
+      
         <div id="find_from_meta_generator-method" class="method-detail ">
           <a name="method-c-find_from_meta_generator"></a>
 
@@ -590,7 +626,7 @@ href="http://code.google.com/p/wpscan/issues/detail?id=109">code.google.com/p/wp
             
             <div class="method-source-code" id="version_pattern-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 131</span>
+<span class="ruby-comment"># File lib/wpscan/wp_version.rb, line 136</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">version_pattern</span>
   <span class="ruby-string">'([^\r\n]+[\.][^\r\n]+)'</span>
 <span class="ruby-keyword">end</span></pre>

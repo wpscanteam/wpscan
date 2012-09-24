@@ -75,11 +75,17 @@
           
           <li><a href="#method-i-has_debug_log-3F">#has_debug_log?</a></li>
           
+          <li><a href="#method-i-is_multisite-3F">#is_multisite?</a></li>
+          
           <li><a href="#method-i-login_url">#login_url</a></li>
           
           <li><a href="#method-i-registration_enabled-3F">#registration_enabled?</a></li>
           
           <li><a href="#method-i-registration_url">#registration_url</a></li>
+          
+          <li><a href="#method-i-search_replace_db_2_exists-3F">#search_replace_db_2_exists?</a></li>
+          
+          <li><a href="#method-i-search_replace_db_2_url">#search_replace_db_2_url</a></li>
           
           <li><a href="#method-i-theme">#theme</a></li>
           
@@ -90,6 +96,8 @@
           <li><a href="#method-i-wp_content_dir">#wp_content_dir</a></li>
           
           <li><a href="#method-i-wp_plugins_dir">#wp_plugins_dir</a></li>
+          
+          <li><a href="#method-i-wp_plugins_dir_exists-3F">#wp_plugins_dir_exists?</a></li>
           
         </ul>
       </div>
@@ -418,7 +426,7 @@
             
             <div class="method-source-code" id="debug_log_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 118</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 122</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">debug_log_url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;#{wp_content_dir()}/debug.log&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -492,7 +500,7 @@
             
             <div class="method-source-code" id="has_debug_log-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 112</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_debug_log?</span>
   <span class="ruby-comment"># We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)</span>
   <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
@@ -506,6 +514,54 @@
 
           
         </div><!-- has_debug_log-3F-method -->
+
+      
+        <div id="is_multisite-3F-method" class="method-detail ">
+          <a name="method-i-is_multisite-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">is_multisite?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="is_multisite-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_multisite?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@multisite</span>
+    <span class="ruby-comment"># when multi site, there is no redirection or a redirect to the site itself</span>
+    <span class="ruby-comment"># otherwise redirect to wp-login.php</span>
+    <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>)
+    <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/wp-login\.php\?action=register/</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/wp-signup\.php/</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@multisite</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- is_multisite-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- is_multisite-3F-method -->
 
       
         <div id="login_url-method" class="method-detail ">
@@ -568,9 +624,23 @@
             
             <div class="method-source-code" id="registration_enabled-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 123</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_enabled?</span>
-  <span class="ruby-comment"># TODO</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">registration_url</span>)
+  <span class="ruby-comment"># redirect only on non multi sites</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/wp-login\.php\?registration=disabled/</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-comment"># multi site registration form</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;form id=&quot;setupform&quot; method=&quot;post&quot; action=&quot;[^&quot;]*wp-signup\.php[^&quot;]*&quot;&gt;/</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-comment"># normal registration form</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;form name=&quot;registerform&quot; id=&quot;registerform&quot; action=&quot;[^&quot;]*wp-login\.php[^&quot;]*&quot;/</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-comment"># registration disabled</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">enabled</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- registration_enabled-3F-source -->
             
@@ -601,9 +671,9 @@
             
             <div class="method-source-code" id="registration_url-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 127</span>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 157</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_url</span>
-  <span class="ruby-comment"># TODO</span>
+  <span class="ruby-identifier">is_multisite?</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php?action=register&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- registration_url-source -->
             
@@ -613,6 +683,75 @@
 
           
         </div><!-- registration_url-method -->
+
+      
+        <div id="search_replace_db_2_exists-3F-method" class="method-detail ">
+          <a name="method-i-search_replace_db_2_exists-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">search_replace_db_2_exists?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="search_replace_db_2_exists-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_exists?</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">search_replace_db_2_url</span>)
+  <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{by interconnect}</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- search_replace_db_2_exists-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- search_replace_db_2_exists-3F-method -->
+
+      
+        <div id="search_replace_db_2_url-method" class="method-detail ">
+          <a name="method-i-search_replace_db_2_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">search_replace_db_2_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Script for replacing strings in wordpress databases reveals databse
+credentials after hitting submit <a
+href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/">interconnectit.com/124/search-and-replace-for-wordpress-databases/</a></p>
+            
+
+            
+            <div class="method-source-code" id="search_replace_db_2_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_url</span>
+  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;searchreplacedb2.php&quot;</span>).<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- search_replace_db_2_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- search_replace_db_2_url-method -->
 
       
         <div id="theme-method" class="method-detail ">
@@ -792,6 +931,39 @@
 
           
         </div><!-- wp_plugins_dir-method -->
+
+      
+        <div id="wp_plugins_dir_exists-3F-method" class="method-detail ">
+          <a name="method-i-wp_plugins_dir_exists-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">wp_plugins_dir_exists?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="wp_plugins_dir_exists-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir_exists?</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">wp_plugins_dir</span>)).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- wp_plugins_dir_exists-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- wp_plugins_dir_exists-3F-method -->
 
       
       </div><!-- public-instance-method-details -->
