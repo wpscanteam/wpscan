@@ -345,9 +345,9 @@ begin
       puts green("[+]") + " We found the following #{usernames.length.to_s} username/s :"
       puts
 
-      max_id_length = usernames.sort { |a, b| a.id <=> b.id }.last.id.to_s.length
-      max_name_length = usernames.sort { |a, b| a.name <=> b.name }.last.name.length
-      max_nickname_length = usernames.sort { |a, b| a.nickname <=> b.nickname }.last.nickname.length
+      max_id_length = usernames.sort { |a, b| a.id.to_s.length <=> b.id.to_s.length }.last.id.to_s.length
+      max_name_length = usernames.sort { |a, b| a.name.length <=> b.name.length }.last.name.length
+      max_nickname_length = usernames.sort { |a, b| a.nickname.length <=> b.nickname.length }.last.nickname.length
 
       space = 1
       usernames.each do |u|
