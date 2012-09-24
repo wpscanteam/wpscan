@@ -101,11 +101,11 @@ begin
   wp_theme = wp_target.theme
   if wp_theme
     # Theme version is handled in wp_item.to_s
-    puts green("[!]") + " The WordPress theme in use is #{wp_theme}"
+    puts green("[+]") + " The WordPress theme in use is #{wp_theme}"
 
     theme_vulnerabilities = wp_theme.vulnerabilities
     unless theme_vulnerabilities.empty?
-      puts red("[+]") + " We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
+      puts red("[!]") + " We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
       theme_vulnerabilities.each do |vulnerability|
         puts
         puts " | " + red("* Title: #{vulnerability.title}")
@@ -133,6 +133,14 @@ begin
 
   if wp_target.search_replace_db_2_exists?
     puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
+  end
+
+  if wp_target.is_multisite?
+    puts green("[+]") + " This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)"
+  end
+
+  if wp_target.registration_enabled?
+    puts green("[+]") + " Userregistration is enabled"
   end
 
   if wp_target.has_malwares?

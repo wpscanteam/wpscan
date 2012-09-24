@@ -244,4 +244,43 @@ describe WpTarget do
       @wp_target.search_replace_db_2_exists?.should be_false
     end
   end
+
+  describe "#registration_url" do
+    it "should return the correct url" do
+      @wp_target.registration_url.to_s.should == "http://example.localhost/wp-login.php?action=register"
+    end
+  end
+
+  describe "#registration_enabled?" do
+    it "should return false" do
+      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 302, :headers => { "Location" => "wp-login.php?registration=disabled" })
+      @wp_target.registration_enabled?.should be_false
+    end
+
+    it "should return true" do
+      stub_request(:any, @wp_target.registration_url.to_s).to_return(:status => 200)
+      @wp_target.registration_enabled?.should be_true
+    end
+  end
+
+  describe "#is_multisite?" do
+    before :each do
+      @url = @wp_target.uri.merge("wp-signup.php").to_s
+    end
+
+    it "should return false" do
+      stub_request(:any, @url).to_return(:status => 302, :headers => { "Location" => "wp-login.php?action=register" })
+      @wp_target.is_multisite?.should be_false
+    end
+
+    it "should return true" do
+      stub_request(:any, @url).to_return(:status => 302, :headers => { "Location" => "http://example.localhost/wp-signup.php" })
+      @wp_target.is_multisite?.should be_true
+    end
+
+    it "should return true" do
+      stub_request(:any, @url).to_return(:status => 200)
+      @wp_target.is_multisite?.should be_true
+    end
+  end
 end
