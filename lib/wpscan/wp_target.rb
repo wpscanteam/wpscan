@@ -123,6 +123,17 @@ class WpTarget
     @uri.merge("#{wp_content_dir()}/debug.log").to_s
   end
 
+  # Script for replacing strings in wordpress databases
+  # reveals databse credentials after hitting submit
+  def search_replace_db_2_url
+    @uri.merge("searchreplacedb2.php").to_s
+  end
+
+  def search_replace_db_2_exists?
+    resp = Browser.instance.get(search_replace_db_2_url)
+    resp.status == 200 && resp.body[%r{by interconnect}i]
+  end
+
   # Should check wp-login.php if registration is enabled or not
   def registration_enabled?
     # TODO

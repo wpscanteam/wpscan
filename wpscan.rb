@@ -131,6 +131,10 @@ begin
     puts red("[!] A wp-config.php backup file has been found '#{file_url}'")
   end
 
+  if wp_target.search_replace_db_2_exists?
+    puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
+  end
+
   if wp_target.has_malwares?
     malwares = wp_target.malwares
     puts red("[!]") + " #{malwares.size} malware(s) found :"
