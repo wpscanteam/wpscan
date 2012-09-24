@@ -127,6 +127,11 @@ class WpVersion < Vulnerable
     Browser.instance.get(target_uri.merge("sitemap.xml").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}, 1]
   end
 
+  def self.find_from_links_opml(options)
+    target_uri = options[:base_url]
+    Browser.instance.get(target_uri.merge("wp-links-opml.php").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}, 1]
+  end
+
   # Used to check if the version is correct : must contain at least one .
   def self.version_pattern
     '([^\r\n]+[\.][^\r\n]+)'
