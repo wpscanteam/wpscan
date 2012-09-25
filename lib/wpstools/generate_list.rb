@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-#
+#--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012
 #
@@ -16,6 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
 
 # This tool generates a list to use for plugin and theme enumeration
 class Generate_List
@@ -25,37 +26,37 @@ class Generate_List
   # type = themes | plugins
   def initialize(type, verbose)
     if type =~ /plugins/i
-      @type = "plugin"
-      @svn_url = 'http://plugins.svn.wordpress.org/'
-      @file_name = DATA_DIR + '/plugins.txt'
-      @popular_url = 'http://wordpress.org/extend/plugins/browse/popular/'
-      @popular_regex = %r{<h3><a href="http://wordpress.org/extend/plugins/(.+)/">.+</a></h3>}i
+      @type           = "plugin"
+      @svn_url        = 'http://plugins.svn.wordpress.org/'
+      @file_name      = DATA_DIR + '/plugins.txt'
+      @popular_url    = 'http://wordpress.org/extend/plugins/browse/popular/'
+      @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/plugins/(.+)/">.+</a></h3>}i
     elsif type =~ /themes/i
-      @type = "theme"
-      @svn_url = 'http://themes.svn.wordpress.org/'
-      @file_name = DATA_DIR + '/themes.txt'
-      @popular_url = 'http://wordpress.org/extend/themes/browse/popular/'
-      @popular_regex = %r{<h3><a href="http://wordpress.org/extend/themes/(.+)">.+</a></h3>}i
+      @type           = "theme"
+      @svn_url        = 'http://themes.svn.wordpress.org/'
+      @file_name      = DATA_DIR + '/themes.txt'
+      @popular_url    = 'http://wordpress.org/extend/themes/browse/popular/'
+      @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/themes/(.+)">.+</a></h3>}i
     else
       raise "Type #{type} not defined"
     end
-    @verbose = verbose
-    @browser = Browser.instance
-    @hydra = @browser.hydra
+    @verbose  = verbose
+    @browser  = Browser.instance
+    @hydra    = @browser.hydra
   end
 
   def generate_full_list
     items = Svn_Parser.new(@svn_url, @verbose).parse
     save items
   end
-  
+
   def generate_popular_list(pages)
     popular = get_popular_items(pages)
     items = Svn_Parser.new(@svn_url, @verbose).parse(popular)
     save items
   end
-  
-  
+
+
   # Send a HTTP request to the WordPress most popular theme or plugin webpage
   # parse the response for the names.
   def get_popular_items(pages)
@@ -82,17 +83,16 @@ class Generate_List
       @hydra.queue(request)
 
       if queue_count == @browser.max_threads
-         @hydra.run
-         queue_count = 0
-       end
+        @hydra.run
+        queue_count = 0
+      end
 
     end
 
     @hydra.run
 
     found_items.sort!
-    found_items.uniq!
-    return found_items
+    found_items.uniq
   end
 
   # Save the file

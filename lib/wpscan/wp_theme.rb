@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,20 +14,22 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 require "#{WPSCAN_LIB_DIR}/vulnerable"
 
-class WpTheme < Vulnerable
+class WpTheme < WpItem
 
-  attr_reader :name, :style_url, :version
+  attr_reader :style_url, :version
 
-  def initialize(name, options = {})
-    @name        = name
-    @vulns_xml   = options[:vulns_xml] || DATA_DIR + '/wp_theme_vulns.xml'
-    @vulns_xpath = "//theme[@name='#{@name}']/vulnerability"
-    @style_url   = options[:style_url]
-    @version     = options[:version]
+  def initialize(options = {})
+    options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
+        options[:vulns_file] : DATA_DIR + "/wp_theme_vulns.xml"
+    options[:vulns_xpath] = "//theme[@name='$name$']/vulnerability"
+    options[:type]        = "themes"
+    @version              = options[:version]
+    @style_url            = options[:style_url]
+    super(options)
   end
 
   def version
@@ -39,7 +41,6 @@ class WpTheme < Vulnerable
     @version
   end
 
-
   def self.find(target_uri)
     self.methods.grep(/find_from_/).each do |method_to_call|
       theme = self.send(method_to_call, target_uri)
@@ -47,11 +48,6 @@ class WpTheme < Vulnerable
       return theme if theme
     end
     nil
-  end
-
-  def to_s
-    version = version()
-    "#{@name}#{' v' + version if version}"
   end
 
   def ===(wp_theme)
@@ -62,13 +58,19 @@ class WpTheme < Vulnerable
 
   # Discover the wordpress theme name by parsing the css link rel
   def self.find_from_css_link(target_uri)
-    response = Browser.instance.get(target_uri.to_s, :follow_location => true, :max_redirects => 2)
+    response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
-    if matches = %r{https?://[^"]+/themes/([^"]+)/style.css}i.match(response.body)
+    matches = %r{https?://[^"']+/themes/([^"']+)/style.css}i.match(response.body)
+    if matches
       style_url = matches[0]
       theme_name = matches[1]
 
-      return new(theme_name, :style_url => style_url)
+      return new(:name            => theme_name,
+                 :style_url       => style_url,
+                 :base_url        => style_url,
+                 :path            => "",
+                 :wp_content_dir  => ""
+      )
     end
   end
 
@@ -77,13 +79,18 @@ class WpTheme < Vulnerable
     body = Browser.instance.get(target_uri.to_s).body
     regexp = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?" />\s+<meta name="generator" content="WooFramework\s?([^"]+)?" />}
 
-    if matches = regexp.match(body)
-      woo_theme_name        = matches[1]
-      woo_theme_version     = matches[2]
+    matches = regexp.match(body)
+    if matches
+      woo_theme_name = matches[1]
+      woo_theme_version = matches[2]
       woo_framework_version = matches[3] # Not used at this time
 
-      return new(woo_theme_name, :version => woo_theme_version)
+      return new(:name            => woo_theme_name,
+                 :version         => woo_theme_version,
+                 :base_url        => matches[0],
+                 :path            => "",
+                 :wp_content_dir  => ""
+      )
     end
   end
-
 end

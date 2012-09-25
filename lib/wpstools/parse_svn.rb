@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-#
+#--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012
 #
@@ -16,6 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
 
 # This Class Parses SVN Repositories via HTTP
 class Svn_Parser
@@ -23,21 +24,23 @@ class Svn_Parser
   attr_accessor :verbose, :svn_root, :keep_empty_dirs
 
   def initialize(svn_root, verbose, keep_empty_dirs = false)
-    @svn_root = svn_root
-    @verbose = verbose
-    @keep_empty_dirs = keep_empty_dirs
-    @svn_browser = Browser.instance
-    @svn_hydra = @svn_browser.hydra
+    @svn_root         = svn_root
+    @verbose          = verbose
+    @keep_empty_dirs  = keep_empty_dirs
+    @svn_browser      = Browser.instance
+    @svn_hydra        = @svn_browser.hydra
   end
-  
+
   def parse(dirs=nil)
     if dirs == nil
       dirs = get_root_directories
     end
     urls = get_svn_project_urls(dirs)
-    entries = get_svn_file_entries(urls)
-    return entries
+    get_svn_file_entries(urls)
   end
+
+  #Private methods start here
+  private
 
   # Gets all directories in the SVN root
   def get_root_directories
@@ -47,8 +50,7 @@ class Svn_Parser
       dirs << dir[0]
     end
     dirs.sort!
-    dirs.uniq!
-    return dirs
+    dirs.uniq
   end
 
   def get_svn_project_urls(dirs)
@@ -62,14 +64,14 @@ class Svn_Parser
         # trunk folder present
         if contains_trunk(response)
           puts "[+] Adding trunk on #{dir}" if @verbose
-          urls << { :name => dir, :folder => "trunk"}
-        # no trunk folder. This is true on theme svn repos
+          urls << {:name => dir, :folder => "trunk"}
+          # no trunk folder. This is true on theme svn repos
         else
           folders = response.body.scan(%r{^\s*<li><a href="(.+)/">.+/</a></li>$}i)
           if folders != nil and folders.length > 0
             last_version = folders.last[0]
             puts "[+] Adding #{last_version} on #{dir}" if @verbose
-            urls << { :name => dir, :folder => last_version}
+            urls << {:name => dir, :folder => last_version}
           else
             puts "[+] No content in #{dir}" if @verbose
           end
@@ -85,10 +87,11 @@ class Svn_Parser
       end
     end
     @svn_hydra.run
-    return urls
+    urls
   end
-  
+
   # Get a file in each directory
+  # TODO: exclude files like Thumbs.db (Example: wordpress-23-related-posts-plugin/)
   def get_svn_file_entries(dirs)
     entries = []
     queue_count = 0
@@ -119,7 +122,7 @@ class Svn_Parser
       end
     end
     @svn_hydra.run
-    return entries
+    entries
   end
 
   def contains_trunk(body)
@@ -127,6 +130,6 @@ class Svn_Parser
     if !!(body =~ %r[<li><a href="trunk/">trunk/</a></li>]i)
       contains = true
     end
-    return contains
+    contains
   end
 end

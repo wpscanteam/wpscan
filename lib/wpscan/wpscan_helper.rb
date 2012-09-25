@@ -1,3 +1,21 @@
+#--
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 require File.expand_path(File.dirname(__FILE__) + '/../common_helper')
 
 require_files_from_directory(WPSCAN_LIB_DIR, "**/*.rb")
@@ -18,8 +36,17 @@ def usage()
   puts "-Do wordlist password brute force on the 'admin' username only ..."
   puts "ruby #{script_name} --url www.example.com --wordlist darkc0de.lst --username admin"
   puts
-  puts "-Enumerate instaled plugins ..."
+  puts "-Enumerate installed plugins ..."
   puts "ruby #{script_name} --url www.example.com --enumerate p"
+  puts
+  puts "-Enumerate installed themes ..."
+  puts "ruby #{script_name} --url www.example.com --enumerate T"
+  puts
+  puts "-Enumerate users ..."
+  puts "ruby #{script_name} --url www.example.com --enumerate u"
+  puts
+  puts "-Enumerate installed timthumbs ..."
+  puts "ruby #{script_name} --url www.example.com --enumerate t"
   puts
   puts "-Use a HTTP proxy ..."
   puts "ruby #{script_name} --url www.example.com --proxy 127.0.0.1:8118"
@@ -29,6 +56,9 @@ def usage()
   puts
   puts "-Use custom content directory ..."
   puts "ruby #{script_name} -u www.example.com --wp-content-dir custom-content"
+  puts
+  puts "-Use custom plugins directory ..."
+  puts "ruby #{script_name} -u www.example.com --wp-plugins-dir wp-content/custom-plugins"
   puts
   puts "-Update ..."
   puts "ruby #{script_name} --update"
@@ -54,6 +84,8 @@ def help()
   puts "    p        plugins"
   puts "    p!       only vulnerable plugins"
   puts "    t        timthumbs"
+  puts "    T        themes"
+  puts "    T!       only vulnerable themes"
   puts "  Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins"
   puts "  If no option is supplied, the default is 'tup!'"
   puts

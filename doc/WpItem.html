@@ -1,0 +1,939 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: WpItem</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/wpscan/wp_item_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/wp_item.rb">lib/wpscan/wp_item.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="Vulnerable.html">Vulnerable</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-i-3C-3D-3E">#<=></a></li>
+          
+          <li><a href="#method-i-3D-3D">#==</a></li>
+          
+          <li><a href="#method-i-3D-3D-3D">#===</a></li>
+          
+          <li><a href="#method-i-changelog_url">#changelog_url</a></li>
+          
+          <li><a href="#method-i-directory_listing-3F">#directory_listing?</a></li>
+          
+          <li><a href="#method-i-extract_name_from_url">#extract_name_from_url</a></li>
+          
+          <li><a href="#method-i-get_full_url">#get_full_url</a></li>
+          
+          <li><a href="#method-i-get_sub_folder">#get_sub_folder</a></li>
+          
+          <li><a href="#method-i-get_url_without_filename">#get_url_without_filename</a></li>
+          
+          <li><a href="#method-i-has_changelog-3F">#has_changelog?</a></li>
+          
+          <li><a href="#method-i-has_readme-3F">#has_readme?</a></li>
+          
+          <li><a href="#method-i-readme_url">#readme_url</a></li>
+          
+          <li><a href="#method-i-to_s">#to_s</a></li>
+          
+          <li><a href="#method-i-version">#version</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./Exploit.html">Exploit</a></li>
+        
+          <li><a href="./Generate_List.html">Generate_List</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./RpcClient.html">RpcClient</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./Vulnerable.html">Vulnerable</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpDetector.html">WpDetector</a></li>
+        
+          <li><a href="./WpEnumerator.html">WpEnumerator</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpOptions.html">WpOptions</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUsernames.html">WpUsernames</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVulnerability.html">WpVulnerability</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">WpItem</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="base_url-attribute-method" class="method-detail">
+          <a name="base_url"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">base_url</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="name-attribute-method" class="method-detail">
+          <a name="name"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">name</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="path-attribute-method" class="method-detail">
+          <a name="path"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">path</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="type-attribute-method" class="method-detail">
+          <a name="type"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">type</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="vulns_file-attribute-method" class="method-detail">
+          <a name="vulns_file"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">vulns_file</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="vulns_xpath-attribute-method" class="method-detail">
+          <a name="vulns_xpath"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">vulns_xpath</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="wp_content_dir-attribute-method" class="method-detail">
+          <a name="wp_content_dir"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">wp_content_dir</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="wp_plugins_dir-attribute-method" class="method-detail">
+          <a name="wp_plugins_dir"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">wp_plugins_dir</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(options)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 25</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-ivar">@type</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]
+  <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\/$/</span>, <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-string">&quot;wp-content&quot;</span>
+  <span class="ruby-ivar">@wp_plugins_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_plugins_dir</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#@wp_content_dir/plugins&quot;</span>
+  <span class="ruby-ivar">@base_url</span>       = <span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>]
+  <span class="ruby-ivar">@path</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:path</span>]
+  <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">options</span>[<span class="ruby-value">:name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">extract_name_from_url</span>
+  <span class="ruby-ivar">@vulns_file</span>     = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]
+  <span class="ruby-ivar">@vulns_xpath</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>].<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\$name\$/</span>, <span class="ruby-ivar">@name</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;base_url not set&quot;</span>)       <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@base_url</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;path not set&quot;</span>)           <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@path</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;wp_content_dir not set&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;name not set&quot;</span>)           <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@name</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;vulns_file not set&quot;</span>)     <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@vulns_file</span>
+  <span class="ruby-identifier">raise</span>(<span class="ruby-string">&quot;type not set&quot;</span>)           <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@type</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="3C-3D-3E-method" class="method-detail ">
+          <a name="method-i-3C-3D-3E"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">&lt;=&gt;</span><span
+              class="method-args">(other)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Compare</p>
+            
+
+            
+            <div class="method-source-code" id="3C-3D-3E-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- 3C-3D-3E-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- 3C-3D-3E-method -->
+
+      
+        <div id="3D-3D-method" class="method-detail ">
+          <a name="method-i-3D-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">==</span><span
+              class="method-args">(other)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Compare</p>
+            
+
+            
+            <div class="method-source-code" id="3D-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">==</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- 3D-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- 3D-3D-method -->
+
+      
+        <div id="3D-3D-3D-method" class="method-detail ">
+          <a name="method-i-3D-3D-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">===</span><span
+              class="method-args">(other)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Compare</p>
+            
+
+            
+            <div class="method-source-code" id="3D-3D-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 117</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- 3D-3D-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- 3D-3D-3D-method -->
+
+      
+        <div id="changelog_url-method" class="method-detail ">
+          <a name="method-i-changelog_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">changelog_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Url for changelog.txt</p>
+            
+
+            
+            <div class="method-source-code" id="changelog_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">changelog_url</span>
+  <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;changelog.txt&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- changelog_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- changelog_url-method -->
+
+      
+        <div id="directory_listing-3F-method" class="method-detail ">
+          <a name="method-i-directory_listing-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">directory_listing?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Is directory listing enabled?</p>
+            
+
+            
+            <div class="method-source-code" id="directory_listing-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 95</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">directory_listing?</span>
+  <span class="ruby-comment"># Need to remove to file part from the url</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">get_url_without_filename</span>).<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;title&gt;Index of}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- directory_listing-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- directory_listing-3F-method -->
+
+      
+        <div id="extract_name_from_url-method" class="method-detail ">
+          <a name="method-i-extract_name_from_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">extract_name_from_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Extract item name from a url</p>
+            
+
+            
+            <div class="method-source-code" id="extract_name_from_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">extract_name_from_url</span>
+  <span class="ruby-identifier">get_full_url</span>.<span class="ruby-identifier">to_s</span>[<span class="ruby-regexp">%{^(https?://.*/([^/]+)/)}</span>, <span class="ruby-value">2</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- extract_name_from_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- extract_name_from_url-method -->
+
+      
+        <div id="get_full_url-method" class="method-detail ">
+          <a name="method-i-get_full_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_full_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Get the full url for this item</p>
+            
+
+            
+            <div class="method-source-code" id="get_full_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 57</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_full_url</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@base_url</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">end_with?</span>(<span class="ruby-string">&quot;/&quot;</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@base_url</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#@base_url/&quot;</span>
+  <span class="ruby-comment"># remove first and last /</span>
+  <span class="ruby-identifier">wp_content_dir</span> = <span class="ruby-ivar">@wp_content_dir</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;&quot;</span>).<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/\/$/</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-comment"># remove first /</span>
+  <span class="ruby-identifier">path</span> = <span class="ruby-ivar">@path</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">/^\//</span>, <span class="ruby-string">&quot;&quot;</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span><span class="ruby-string">&quot;plugins&quot;</span>
+    <span class="ruby-comment"># plugins can be outside of wp-content. wp_content_dir included in wp_plugins_dir</span>
+    <span class="ruby-identifier">ret</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{url}#@wp_plugins_dir/#{path}&quot;</span>)
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-string">&quot;timthumbs&quot;</span>
+    <span class="ruby-comment"># timthumbs have folder in path variable</span>
+    <span class="ruby-identifier">ret</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{url}#{wp_content_dir}/#{path}&quot;</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">ret</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-node">&quot;#{url}#{wp_content_dir}/#{get_sub_folder}/#{path}&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">ret</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_full_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_full_url-method -->
+
+      
+        <div id="get_sub_folder-method" class="method-detail ">
+          <a name="method-i-get_sub_folder"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_sub_folder</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="get_sub_folder-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_sub_folder</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@type</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;themes&quot;</span>
+      <span class="ruby-identifier">folder</span> = <span class="ruby-string">&quot;themes&quot;</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;timthumbs&quot;</span>
+      <span class="ruby-comment"># not needed</span>
+      <span class="ruby-identifier">folder</span> = <span class="ruby-keyword">nil</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span>(<span class="ruby-node">&quot;unknown type #@type&quot;</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">folder</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_sub_folder-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_sub_folder-method -->
+
+      
+        <div id="get_url_without_filename-method" class="method-detail ">
+          <a name="method-i-get_url_without_filename"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_url_without_filename</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Gets the full url for this item without filenames</p>
+            
+
+            
+            <div class="method-source-code" id="get_url_without_filename-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_url_without_filename</span>
+  <span class="ruby-identifier">location_url</span> = <span class="ruby-identifier">get_full_url</span>.<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">location_url</span>[<span class="ruby-regexp">%{^(https?://.*/)[^.]+\.[^/]+$}</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">valid_location_url</span>
+    <span class="ruby-identifier">valid_location_url</span> = <span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">location_url</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">valid_location_url</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_url_without_filename-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_url_without_filename-method -->
+
+      
+        <div id="has_changelog-3F-method" class="method-detail ">
+          <a name="method-i-has_changelog-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_changelog?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>changelog.txt present?</p>
+            
+
+            
+            <div class="method-source-code" id="has_changelog-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 146</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_changelog?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@changelog</span>
+    <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">changelog_url</span>).<span class="ruby-identifier">code</span>
+    <span class="ruby-ivar">@changelog</span> = <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@changelog</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- has_changelog-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- has_changelog-3F-method -->
+
+      
+        <div id="has_readme-3F-method" class="method-detail ">
+          <a name="method-i-has_readme-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_readme?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>readme.txt present?</p>
+            
+
+            
+            <div class="method-source-code" id="has_readme-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 137</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_readme?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@readme</span>
+    <span class="ruby-identifier">status</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">readme_url</span>).<span class="ruby-identifier">code</span>
+    <span class="ruby-ivar">@readme</span> = <span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@readme</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- has_readme-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- has_readme-3F-method -->
+
+      
+        <div id="readme_url-method" class="method-detail ">
+          <a name="method-i-readme_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">readme_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Url for readme.txt</p>
+            
+
+            
+            <div class="method-source-code" id="readme_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">readme_url</span>
+  <span class="ruby-identifier">get_url_without_filename</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- readme_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- readme_url-method -->
+
+      
+        <div id="to_s-method" class="method-detail ">
+          <a name="method-i-to_s"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">to_s</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>To string. Adds a version number if detected</p>
+            
+
+            
+            <div class="method-source-code" id="to_s-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 106</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">item_version</span> = <span class="ruby-identifier">version</span>
+  <span class="ruby-node">&quot;#@name#{' v' + item_version.strip if item_version}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- to_s-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- to_s-method -->
+
+      
+        <div id="version-method" class="method-detail ">
+          <a name="method-i-version"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">version</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns version number from readme.txt if it exists</p>
+            
+
+            
+            <div class="method-source-code" id="version-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_item.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@version</span>
+    <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">get_full_url</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;readme.txt&quot;</span>).<span class="ruby-identifier">to_s</span>)
+    <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-node">%{stable tag: #{WpVersion.version_pattern}}</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@version</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- version-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- version-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

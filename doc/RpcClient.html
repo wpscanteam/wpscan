@@ -1,0 +1,762 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: RpcClient</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/wpscan/msfrpc_client_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/msfrpc_client.rb">lib/wpscan/msfrpc_client.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="Object.html">Object</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-i-authenticate">#authenticate</a></li>
+          
+          <li><a href="#method-i-exploit">#exploit</a></li>
+          
+          <li><a href="#method-i-get_exploit_info">#get_exploit_info</a></li>
+          
+          <li><a href="#method-i-get_options">#get_options</a></li>
+          
+          <li><a href="#method-i-get_payloads">#get_payloads</a></li>
+          
+          <li><a href="#method-i-jobs">#jobs</a></li>
+          
+          <li><a href="#method-i-kill_session">#kill_session</a></li>
+          
+          <li><a href="#method-i-login">#login</a></li>
+          
+          <li><a href="#method-i-meterpreter_read">#meterpreter_read</a></li>
+          
+          <li><a href="#method-i-meterpreter_write">#meterpreter_write</a></li>
+          
+          <li><a href="#method-i-read_shell">#read_shell</a></li>
+          
+          <li><a href="#method-i-sessions">#sessions</a></li>
+          
+          <li><a href="#method-i-write_shell">#write_shell</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./Exploit.html">Exploit</a></li>
+        
+          <li><a href="./Generate_List.html">Generate_List</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./RpcClient.html">RpcClient</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./Vulnerable.html">Vulnerable</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpDetector.html">WpDetector</a></li>
+        
+          <li><a href="./WpEnumerator.html">WpEnumerator</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpOptions.html">WpOptions</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUsernames.html">WpUsernames</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVulnerability.html">WpVulnerability</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">RpcClient</h1>
+
+    <div id="description" class="description">
+      
+<p>This library should contain all methods to communicate with msfrpc. See
+framework/documentation/msfrpc.txt for further information. msfrpcd -S -U
+wpscan -P wpscan -f -t Web -u /RPC2 name = exploit/unix/webapp/php_include</p>
+
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+  <span class="ruby-ivar">@config</span> = {}
+  <span class="ruby-ivar">@config</span>[<span class="ruby-string">'host'</span>] = <span class="ruby-string">&quot;127.0.0.1&quot;</span>
+  <span class="ruby-ivar">@config</span>[<span class="ruby-string">'path'</span>] = <span class="ruby-string">&quot;/RPC2&quot;</span>
+  <span class="ruby-ivar">@config</span>[<span class="ruby-string">'port'</span>] = <span class="ruby-value">55553</span>
+  <span class="ruby-ivar">@config</span>[<span class="ruby-string">'user'</span>] = <span class="ruby-string">&quot;wpscan&quot;</span>
+  <span class="ruby-ivar">@config</span>[<span class="ruby-string">'pass'</span>] = <span class="ruby-string">&quot;wpscan&quot;</span>
+  <span class="ruby-ivar">@auth_token</span> = <span class="ruby-keyword">nil</span>
+  <span class="ruby-ivar">@last_auth</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-keyword">begin</span>
+     <span class="ruby-ivar">@server</span> = <span class="ruby-constant">XMLRPC</span><span class="ruby-operator">::</span><span class="ruby-constant">Client</span>.<span class="ruby-identifier">new3</span>( <span class="ruby-value">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@config</span>[<span class="ruby-string">&quot;host&quot;</span>], <span class="ruby-value">:path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@config</span>[<span class="ruby-string">&quot;path&quot;</span>], <span class="ruby-value">:port</span> =<span class="ruby-operator">&gt;</span>  <span class="ruby-ivar">@config</span>[<span class="ruby-string">&quot;port&quot;</span>], <span class="ruby-value">:user</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@config</span>[<span class="ruby-string">&quot;user&quot;</span>], <span class="ruby-value">:password</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@config</span>[<span class="ruby-string">&quot;pass&quot;</span>])
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;[ERROR] Could not create XMLRPC object.&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">faultCode</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">faultString</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="authenticate-method" class="method-detail ">
+          <a name="method-i-authenticate"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">authenticate</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>check authentication</p>
+            
+
+            
+            <div class="method-source-code" id="authenticate-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-identifier">login</span>() <span class="ruby-keyword">if</span> <span class="ruby-ivar">@auth_token</span>.<span class="ruby-identifier">nil?</span>
+  <span class="ruby-identifier">login</span>() <span class="ruby-keyword">if</span> (<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@last_auth</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">600</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- authenticate-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- authenticate-method -->
+
+      
+        <div id="exploit-method" class="method-detail ">
+          <a name="method-i-exploit"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">exploit</span><span
+              class="method-args">(name, opts)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>execute exploit</p>
+            
+
+            
+            <div class="method-source-code" id="exploit-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 93</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">exploit</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">opts</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'module.execute'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-string">'exploit'</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">opts</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- exploit-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- exploit-method -->
+
+      
+        <div id="get_exploit_info-method" class="method-detail ">
+          <a name="method-i-get_exploit_info"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_exploit_info</span><span
+              class="method-args">(name)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>retrieve information about the exploit</p>
+            
+
+            
+            <div class="method-source-code" id="get_exploit_info-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 72</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_exploit_info</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'module.info'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-string">'exploit'</span>, <span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_exploit_info-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_exploit_info-method -->
+
+      
+        <div id="get_options-method" class="method-detail ">
+          <a name="method-i-get_options"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_options</span><span
+              class="method-args">(name)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>retrieve exploit options</p>
+            
+
+            
+            <div class="method-source-code" id="get_options-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 79</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_options</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'module.options'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-string">'exploit'</span>,<span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_options-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_options-method -->
+
+      
+        <div id="get_payloads-method" class="method-detail ">
+          <a name="method-i-get_payloads"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">get_payloads</span><span
+              class="method-args">(name)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>retrieve the exploit payloads</p>
+            
+
+            
+            <div class="method-source-code" id="get_payloads-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_payloads</span>(<span class="ruby-identifier">name</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'module.compatible_payloads'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-identifier">name</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- get_payloads-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- get_payloads-method -->
+
+      
+        <div id="jobs-method" class="method-detail ">
+          <a name="method-i-jobs"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">jobs</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>list msf jobs</p>
+            
+
+            
+            <div class="method-source-code" id="jobs-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">jobs</span>()
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'job.list'</span>, <span class="ruby-ivar">@auth_token</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- jobs-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- jobs-method -->
+
+      
+        <div id="kill_session-method" class="method-detail ">
+          <a name="method-i-kill_session"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">kill_session</span><span
+              class="method-args">(id)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>kill msf session</p>
+            
+
+            
+            <div class="method-source-code" id="kill_session-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 114</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">kill_session</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'session.stop'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- kill_session-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- kill_session-method -->
+
+      
+        <div id="login-method" class="method-detail ">
+          <a name="method-i-login"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">login</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>login to msfrpcd</p>
+            
+
+            
+            <div class="method-source-code" id="login-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 49</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login</span>()
+  <span class="ruby-identifier">result</span> = <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">&quot;auth.login&quot;</span>, <span class="ruby-ivar">@config</span>[<span class="ruby-string">'user'</span>], <span class="ruby-ivar">@config</span>[<span class="ruby-string">'pass'</span>])
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">result</span>[<span class="ruby-string">'result'</span>] <span class="ruby-operator">==</span> <span class="ruby-string">&quot;success&quot;</span>
+    <span class="ruby-ivar">@auth_token</span> = <span class="ruby-identifier">result</span>[<span class="ruby-string">'token'</span>]
+    <span class="ruby-ivar">@last_auth</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">logged_in</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;[ERROR] Invalid login credentials provided to msfrpcd.&quot;</span>
+    <span class="ruby-identifier">logged_in</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+ 
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- login-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- login-method -->
+
+      
+        <div id="meterpreter_read-method" class="method-detail ">
+          <a name="method-i-meterpreter_read"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">meterpreter_read</span><span
+              class="method-args">(id)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="meterpreter_read-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">meterpreter_read</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'session.meterpreter_read'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- meterpreter_read-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- meterpreter_read-method -->
+
+      
+        <div id="meterpreter_write-method" class="method-detail ">
+          <a name="method-i-meterpreter_write"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">meterpreter_write</span><span
+              class="method-args">(id, data)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="meterpreter_write-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 138</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">meterpreter_write</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">data</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'session.meterpreter_write'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">data</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- meterpreter_write-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- meterpreter_write-method -->
+
+      
+        <div id="read_shell-method" class="method-detail ">
+          <a name="method-i-read_shell"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">read_shell</span><span
+              class="method-args">(id)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>reads any pending output from session</p>
+            
+
+            
+            <div class="method-source-code" id="read_shell-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_shell</span>(<span class="ruby-identifier">id</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'session.shell_read'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- read_shell-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- read_shell-method -->
+
+      
+        <div id="sessions-method" class="method-detail ">
+          <a name="method-i-sessions"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">sessions</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>list msf sessions</p>
+            
+
+            
+            <div class="method-source-code" id="sessions-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">sessions</span>()
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'session.list'</span>, <span class="ruby-ivar">@auth_token</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- sessions-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- sessions-method -->
+
+      
+        <div id="write_shell-method" class="method-detail ">
+          <a name="method-i-write_shell"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">write_shell</span><span
+              class="method-args">(id, data)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>writes the specified input into the session</p>
+            
+
+            
+            <div class="method-source-code" id="write_shell-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/msfrpc_client.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_shell</span>(<span class="ruby-identifier">id</span>, <span class="ruby-identifier">data</span>)
+  <span class="ruby-identifier">authenticate</span>()
+  <span class="ruby-ivar">@server</span>.<span class="ruby-identifier">call</span>(<span class="ruby-string">'session.shell_write'</span>, <span class="ruby-ivar">@auth_token</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">data</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- write_shell-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- write_shell-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,26 +14,23 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# ryandewhurst at gmail
-#
+#++
 
 class Browser
   @@instance = nil
-  @@user_agent_modes = ["static", "semi-static", "random"]
+  USER_AGENT_MODES = %w{ static semi-static random }
 
   ACCESSOR_OPTIONS = [
-    :user_agent,
-    :user_agent_mode,
-    :available_user_agents,
-    :proxy,
-    :max_threads,
-    :cache_timeout,
-    :request_timeout,
-    :variables_to_replace_in_url
+      :user_agent,
+      :user_agent_mode,
+      :available_user_agents,
+      :proxy,
+      :max_threads,
+      :cache_timeout,
+      :request_timeout
   ]
 
-  attr_reader   :hydra, :config_file
+  attr_reader :hydra, :config_file
   attr_accessor *ACCESSOR_OPTIONS
 
   def initialize(options = {})
@@ -55,6 +52,7 @@ class Browser
     # might be in CacheFileStore
     setup_cache_handlers
   end
+
   private_class_method :new
 
   def self.instance(options = {})
@@ -71,7 +69,7 @@ class Browser
   def user_agent_mode=(ua_mode)
     ua_mode ||= "static"
 
-    if @@user_agent_modes.include?(ua_mode)
+    if USER_AGENT_MODES.include?(ua_mode)
       @user_agent_mode = ua_mode
       # For semi-static user agent mode, the user agent has to be nil the first time (it will be set with the getter)
       @user_agent = nil if ua_mode === "semi-static"
@@ -83,12 +81,12 @@ class Browser
   # return the user agent, according to the user_agent_mode
   def user_agent
     case @user_agent_mode
-    when "semi-static"
-      unless @user_agent
+      when "semi-static"
+        unless @user_agent
+          @user_agent = @available_user_agents.sample
+        end
+      when "random"
         @user_agent = @available_user_agents.sample
-      end
-    when "random"
-      @user_agent = @available_user_agents.sample
     end
     @user_agent
   end
@@ -116,9 +114,9 @@ class Browser
   def setup_cache_handlers
     @hydra.cache_setter do |request|
       @cache.write_entry(
-        Browser.generate_cache_key_from_request(request),
-        request.response,
-        request.cache_timeout
+          Browser.generate_cache_key_from_request(request),
+          request.response,
+          request.cache_timeout
       )
     end
 
@@ -126,48 +124,38 @@ class Browser
       @cache.read_entry(Browser.generate_cache_key_from_request(request)) rescue nil
     end
   end
+
   private :setup_cache_handlers
 
   def get(url, params = {})
     run_request(
-      forge_request(url, params.merge(:method => :get))
+        forge_request(url, params.merge(:method => :get))
     )
   end
 
   def post(url, params = {})
     run_request(
-      forge_request(url, params.merge(:method => :post))
+        forge_request(url, params.merge(:method => :post))
     )
   end
 
   def forge_request(url, params = {})
     Typhoeus::Request.new(
-      replace_variables_in_url(url),
-      merge_request_params(params)
+        url.to_s,
+        merge_request_params(params)
     )
   end
-
-  # return string
-  def replace_variables_in_url(url)
-    @variables_to_replace_in_url ||= {}
-
-    @variables_to_replace_in_url.each do |subject, replacement|
-      url.gsub!(subject, replacement)
-    end
-    url
-  end
-  protected :replace_variables_in_url
 
   def merge_request_params(params = {})
     if @proxy
       params = params.merge(:proxy => @proxy)
     end
 
-    if !params.has_key?(:disable_ssl_host_verification)
+    unless params.has_key?(:disable_ssl_host_verification)
       params = params.merge(:disable_ssl_host_verification => true)
     end
 
-    if !params.has_key?(:disable_ssl_peer_verification)
+    unless params.has_key?(:disable_ssl_peer_verification)
       params = params.merge(:disable_ssl_peer_verification => true)
     end
 
@@ -178,7 +166,7 @@ class Browser
     end
 
     # Used to enable the cache system if :cache_timeout > 0
-    if !params.has_key?(:cache_timeout)
+    unless params.has_key?(:cache_timeout)
       params = params.merge(:cache_timeout => @cache_timeout)
     end
 

@@ -1,3 +1,21 @@
+#--
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe "WpscanOptions" do
@@ -70,7 +88,8 @@ describe "WpscanOptions" do
   describe "#enumerate_plugins=" do
     it "should raise an error" do
       @wpscan_options.enumerate_only_vulnerable_plugins = true
-      expect { @wpscan_options.enumerate_plugins = true }.to raise_error
+      expect { @wpscan_options.enumerate_plugins = true }.to raise_error(RuntimeError,
+                                                                         "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -81,10 +100,26 @@ describe "WpscanOptions" do
     end
   end
 
+  describe "#enumerate_themes=" do
+    it "should raise an error" do
+      @wpscan_options.enumerate_only_vulnerable_themes = true
+      expect { @wpscan_options.enumerate_themes = true }.to raise_error(RuntimeError,
+                                                                        "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+    end
+
+    it "should not raise an error" do
+      @wpscan_options.enumerate_only_vulnerable_themes = false
+      @wpscan_options.enumerate_themes = true
+
+      @wpscan_options.enumerate_themes.should be_true
+    end
+  end
+
   describe "#enumerate_only_vulnerable_plugins=" do
     it "should raise an error" do
       @wpscan_options.enumerate_plugins = true
-      expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error
+      expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error(RuntimeError,
+                                                                                         "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
     end
 
     it "should not raise an error" do
@@ -92,6 +127,21 @@ describe "WpscanOptions" do
       @wpscan_options.enumerate_only_vulnerable_plugins = true
 
       @wpscan_options.enumerate_only_vulnerable_plugins.should be_true
+    end
+  end
+
+  describe "#enumerate_only_vulnerable_themes=" do
+    it "should raise an error" do
+      @wpscan_options.enumerate_themes = true
+      expect { @wpscan_options.enumerate_only_vulnerable_themes = true }.to raise_error(RuntimeError,
+                                                                                        "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+    end
+
+    it "should not raise an error" do
+      @wpscan_options.enumerate_themes = false
+      @wpscan_options.enumerate_only_vulnerable_themes = true
+
+      @wpscan_options.enumerate_only_vulnerable_themes.should be_true
     end
   end
 
@@ -126,12 +176,12 @@ describe "WpscanOptions" do
     end
 
     it "should return 'url'" do
-      @option   = "--url"
+      @option = "--url"
       @expected = "url"
     end
 
     it "should return 'u'" do
-      @option   = "-u"
+      @option = "-u"
       @expected = 'u'
     end
 
@@ -225,8 +275,8 @@ describe "WpscanOptions" do
     it "should set enumerate_timthumbs to true, enumerate_usernames to true, enumerate_usernames_range to (1..2)" do
       @argument = "u[1-2]t"
       @expected_hash = {
-        :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
-        :enumerate_timthumbs => true
+          :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
+          :enumerate_timthumbs => true
       }
     end
   end

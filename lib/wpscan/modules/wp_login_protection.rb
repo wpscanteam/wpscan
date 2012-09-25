@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,11 +14,11 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 module WpLoginProtection
 
-  @@login_protection_method_pattern = /^has_(.*)_protection\?/i
+  LOGIN_PROTECTION_METHOD_PATTERN = /^has_(.*)_protection\?/i
   # Used as cache
   @login_protection_plugin = nil
 
@@ -31,17 +31,16 @@ module WpLoginProtection
   # return a WpPlugin object or nil if no one is found
   def login_protection_plugin
     unless @login_protection_plugin
-      protected_methods.grep(@@login_protection_method_pattern).each do |symbol_to_call|
+      protected_methods.grep(LOGIN_PROTECTION_METHOD_PATTERN).each do |symbol_to_call|
 
         if send(symbol_to_call)
-          plugin_name = symbol_to_call[@@login_protection_method_pattern, 1].gsub('_', '-')
+          plugin_name = symbol_to_call[LOGIN_PROTECTION_METHOD_PATTERN, 1].gsub('_', '-')
 
           return @login_protection_plugin = WpPlugin.new(
-            WpPlugin::create_location_url_from_name(
-              plugin_name,
-              @uri.to_s
-            ),
-            :name => plugin_name
+              :name           => plugin_name,
+              :base_url       => @uri,
+              :path           => "/plugins/#{plugin_name}/",
+              :wp_content_dir => @wp_content_dir
           )
         end
       end
@@ -68,7 +67,11 @@ module WpLoginProtection
   end
 
   def better_wp_security_url
-    WpPlugin.create_location_url_from_name("better-wp-security", @uri)
+    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
+                 :base_url        => @uri,
+                 :path            => "/plugins/better-wp-security/",
+                 :name            => "better-wp-security"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/simple-login-lockdown/
@@ -77,7 +80,11 @@ module WpLoginProtection
   end
 
   def simple_login_lockdown_url
-    WpPlugin.create_location_url_from_name("simple-login-lockdown", @uri)
+    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
+                 :base_url        => @uri,
+                 :path            => "/plugins/simple-login-lockdown/",
+                 :name            => "simple-login-lockdown"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/login-security-solution/
@@ -86,7 +93,11 @@ module WpLoginProtection
   end
 
   def login_security_solution_url
-    WpPlugin.create_location_url_from_name("login-security-solution", @uri)
+    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
+                 :base_url        => @uri,
+                 :path            => "/plugins/login-security-solution/",
+                 :name            => "login-security-solution"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/limit-login-attempts/
@@ -95,7 +106,11 @@ module WpLoginProtection
   end
 
   def limit_login_attempts_url
-    WpPlugin.create_location_url_from_name("limit-login-attempts", @uri)
+    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
+                 :base_url        => @uri,
+                 :path            => "/plugins/limit-login-attempts/",
+                 :name            => "limit-login-attempts"
+    ).get_url_without_filename
   end
 
   # http://wordpress.org/extend/plugins/bluetrait-event-viewer/
@@ -104,6 +119,10 @@ module WpLoginProtection
   end
 
   def bluetrait_event_viewer_url
-    WpPlugin.create_location_url_from_name("bluetrait-event-viewer", @uri)
+    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
+                 :base_url        => @uri,
+                 :path            => "/plugins/bluetrait-event-viewer/",
+                 :name            => "bluetrait-event-viewer"
+    ).get_url_without_filename
   end
 end
