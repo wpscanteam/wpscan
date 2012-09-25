@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 module WebSite
 
@@ -23,17 +23,17 @@ module WebSite
   def is_wordpress?
     wordpress = false
 
-    response = Browser.instance.get(login_url(),
-      :follow_location => true,
-      :max_redirects => 2
+    response = Browser.instance.get(
+        login_url(),
+        {:follow_location => true, :max_redirects => 2}
     )
 
     if response.body =~ %r{WordPress}i
       wordpress = true
     else
-      response = Browser.instance.get(xmlrpc_url(),
-        :follow_location => true,
-        :max_redirects => 2
+      response = Browser.instance.get(
+          xmlrpc_url(),
+          {:follow_location => true, :max_redirects => 2}
       )
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
@@ -56,6 +56,7 @@ module WebSite
   # see if the remote url returns 30x redirect
   # return a string with the redirection or nil
   def redirection(url = nil)
+    redirection = nil
     url ||= @uri.to_s
     response = Browser.instance.get(url)
 

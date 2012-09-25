@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 class WpTarget
   include WebSite
@@ -26,6 +26,7 @@ class WpTarget
   include WpUsernames
   include WpTimthumbs
   include WpPlugins
+  include WpThemes
   include BruteForce
 
   @error_404_hash = nil
@@ -50,7 +51,8 @@ class WpTarget
     url = @uri.merge("wp-login.php").to_s
 
     # Let's check if the login url is redirected (to https url for example)
-    if redirection = redirection(url)
+    redirection = redirection(url)
+    if redirection
       url = redirection
     end
 
@@ -70,6 +72,11 @@ class WpTarget
     @error_404_hash
   end
 
+  # Valid HTTP return codes
+  def self.valid_response_codes
+    [200, 403, 301, 302, 500]
+  end
+
   # return WpTheme
   def theme
     WpTheme.find(@uri)
@@ -77,17 +84,19 @@ class WpTarget
 
   # return WpVersion
   def version
-    WpVersion.find(@uri)
+    WpVersion.find(@uri, wp_content_dir)
   end
 
   def wp_content_dir
     unless @wp_content_dir
       index_body = Browser.instance.get(@uri.to_s).body
+      # Only use the path because domain can be text or an ip
+      uri_path = @uri.path
 
-      if index_body[%r{/wp-content/(?:themes|plugins)/}i]
+      if index_body[/#{Regexp.escape(uri_path)}\/wp-content\/(?:themes|plugins)\//i]
         @wp_content_dir = "wp-content"
       else
-        @wp_content_dir = index_body[%r{(?:href|src)=(?:"|')#{@uri}/?([^"']+)/(?:themes|plugins)/.*(?:"|')}i, 1]
+        @wp_content_dir = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}([^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
       end
     end
     @wp_content_dir
@@ -95,14 +104,18 @@ class WpTarget
 
   def wp_plugins_dir
     unless @wp_plugins_dir
-      @wp_plugins_dir = wp_content_dir() + "/plugins"
+      @wp_plugins_dir = "#{wp_content_dir}/plugins"
     end
     @wp_plugins_dir
   end
 
+  def wp_plugins_dir_exists?
+    Browser.instance.get(@uri.merge(wp_plugins_dir)).code != 404
+  end
+
   def has_debug_log?
     # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
-    response_body = Browser.instance.get(debug_log_url(), :headers => { "range" => "bytes=0-700"}).body
+    response_body = Browser.instance.get(debug_log_url(), :headers => {"range" => "bytes=0-700"}).body
     response_body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
   end
 
@@ -110,4 +123,57 @@ class WpTarget
     @uri.merge("#{wp_content_dir()}/debug.log").to_s
   end
 
+  # Script for replacing strings in wordpress databases
+  # reveals databse credentials after hitting submit
+  # http://interconnectit.com/124/search-and-replace-for-wordpress-databases/
+  def search_replace_db_2_url
+    @uri.merge("searchreplacedb2.php").to_s
+  end
+
+  def search_replace_db_2_exists?
+    resp = Browser.instance.get(search_replace_db_2_url)
+    resp.code == 200 && resp.body[%r{by interconnect}i]
+  end
+
+  # Should check wp-login.php if registration is enabled or not
+  def registration_enabled?
+    resp = Browser.instance.get(registration_url)
+    # redirect only on non multi sites
+    if resp.code == 302 and resp.headers_hash["location"] =~ /wp-login\.php\?registration=disabled/i
+      enabled = false
+    # multi site registration form
+    elsif resp.code == 200 and resp.body =~ /<form id="setupform" method="post" action="[^"]*wp-signup\.php[^"]*">/i
+      enabled = true
+    # normal registration form
+    elsif resp.code == 200 and resp.body =~ /<form name="registerform" id="registerform" action="[^"]*wp-login\.php[^"]*"/i
+      enabled = true
+    # registration disabled
+    else
+      enabled = false
+    end
+    enabled
+  end
+
+  def registration_url
+    is_multisite? ? @uri.merge("wp-signup.php") : @uri.merge("wp-login.php?action=register")
+  end
+
+  def is_multisite?
+    unless @multisite
+      # when multi site, there is no redirection or a redirect to the site itself
+      # otherwise redirect to wp-login.php
+      url = @uri.merge("wp-signup.php")
+      resp = Browser.instance.get(url)
+      if resp.code == 302 and resp.headers_hash["location"] =~ /wp-login\.php\?action=register/
+        @multisite = false
+      elsif resp.code == 302 and resp.headers_hash["location"] =~ /wp-signup\.php/
+        @multisite = true
+      elsif resp.code == 200
+        @multisite = true
+      else
+        @multisite = false
+      end
+    end
+    @multisite
+  end
 end

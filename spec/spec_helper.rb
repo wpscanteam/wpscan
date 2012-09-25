@@ -1,3 +1,21 @@
+#--
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 # https://github.com/bblimke/webmock
 # https://github.com/colszowka/simplecov
 
@@ -52,8 +70,8 @@ def stub_request_to_fixture(arguments = {})
   raise "No arguments[:url] supplied" if arguments[:url].nil?
   raise "No arguments[:fixture] supplied" if arguments[:fixture].nil?
 
-  stub_request(arguments[:method], arguments[:url]).
-    to_return(:status => arguments[:status], :body => File.new(arguments[:fixture]))
+  stub_request(arguments[:method], arguments[:url].to_s).
+      to_return(:status => arguments[:status], :body => File.new(arguments[:fixture]))
 end
 
 # The object must be given as we will mock the Kernel#` or Kernel#system (Kernel is a module)

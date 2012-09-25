@@ -1,13 +1,31 @@
+#--
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#++
+
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe Browser do
   CONFIG_FILE_WITHOUT_PROXY = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json'
-  CONFIG_FILE_WITH_PROXY    = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy.json'
-  INSTANCE_VARS_TO_CHECK    = ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy', 'max_threads', 'request_timeout', 'cache_timeout']
+  CONFIG_FILE_WITH_PROXY = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy.json'
+  INSTANCE_VARS_TO_CHECK = ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy', 'max_threads', 'request_timeout', 'cache_timeout']
 
   before :all do
     @json_config_without_proxy = JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY))
-    @json_config_with_proxy    = JSON.parse(File.read(CONFIG_FILE_WITH_PROXY))
+    @json_config_with_proxy = JSON.parse(File.read(CONFIG_FILE_WITH_PROXY))
   end
 
   before :each do
@@ -24,7 +42,7 @@ describe Browser do
 
   describe "#user_agent_mode setter / getter" do
     # Testing all valid modes
-    Browser.class_variable_get(:@@user_agent_modes).each do |user_agent_mode|
+    Browser::USER_AGENT_MODES.each do |user_agent_mode|
       it "should set / return #{user_agent_mode}" do
         @browser.user_agent_mode = user_agent_mode
         @browser.user_agent_mode.should === user_agent_mode
@@ -54,7 +72,7 @@ describe Browser do
   end
 
   describe "#user_agent" do
-    available_user_agents = [ "ua-1", "ua-2", "ua-3", "ua-4", "ua-6", "ua-7", "ua-8", "ua-9", "ua-10" ]
+    available_user_agents = %w{ ua-1 ua-2 ua-3 ua-4 ua-6 ua-7 ua-8 ua-9 ua-10 ua-11 ua-12 ua-13 ua-14 ua-15 ua-16 ua-17}
 
     it "should always return the same user agent in static mode" do
       @browser.user_agent = "fake UA"
@@ -97,8 +115,8 @@ describe Browser do
     it "will check the instance vars" do
       Browser.reset
       check_instance_variables(
-        Browser.instance(:config_file => CONFIG_FILE_WITHOUT_PROXY),
-        @json_config_without_proxy
+          Browser.instance(:config_file => CONFIG_FILE_WITHOUT_PROXY),
+          @json_config_without_proxy
       )
     end
   end
@@ -107,8 +125,8 @@ describe Browser do
     it "will check the instance vars" do
       Browser.reset
       check_instance_variables(
-        Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY),
-        @json_config_with_proxy
+          Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY),
+          @json_config_with_proxy
       )
     end
   end
@@ -118,22 +136,22 @@ describe Browser do
     it "will check the instance vars, with an overriden one" do
       Browser.reset
       check_instance_variables(
-        Browser.instance(
-          :config_file => CONFIG_FILE_WITHOUT_PROXY,
-          :user_agent  => "fake IE"
-        ),
-        @json_config_without_proxy.merge("user_agent" => "fake IE")
+          Browser.instance(
+              :config_file => CONFIG_FILE_WITHOUT_PROXY,
+              :user_agent => "fake IE"
+          ),
+          @json_config_without_proxy.merge("user_agent" => "fake IE")
       )
     end
 
     it "should not override the max_threads if max_threads = nil" do
       Browser.reset
       check_instance_variables(
-        Browser.instance(
-          :config_file => CONFIG_FILE_WITHOUT_PROXY,
-          :max_threads => nil
-        ),
-        @json_config_without_proxy
+          Browser.instance(
+              :config_file => CONFIG_FILE_WITHOUT_PROXY,
+              :max_threads => nil
+          ),
+          @json_config_without_proxy
       )
     end
   end
@@ -145,10 +163,10 @@ describe Browser do
   describe "#merge_request_params without proxy" do
     it "should return the default params" do
       expected_params = {
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers                       => {'user-agent' => @browser.user_agent},
-        :cache_timeout                 => @json_config_without_proxy['cache_timeout']
+          :disable_ssl_host_verification => true,
+          :disable_ssl_peer_verification => true,
+          :headers => {'user-agent' => @browser.user_agent},
+          :cache_timeout => @json_config_without_proxy['cache_timeout']
       }
 
       @browser.merge_request_params().should == expected_params
@@ -156,25 +174,25 @@ describe Browser do
 
     it "should return the default params with some values overriden" do
       expected_params = {
-        :disable_ssl_host_verification => false,
-        :disable_ssl_peer_verification => true,
-        :headers                       => {'user-agent' => 'Fake IE'},
-        :cache_timeout                 => 0
+          :disable_ssl_host_verification => false,
+          :disable_ssl_peer_verification => true,
+          :headers => {'user-agent' => 'Fake IE'},
+          :cache_timeout => 0
       }
 
       @browser.merge_request_params(
-        :disable_ssl_host_verification => false,
-        :headers                       => {'user-agent' => 'Fake IE'},
-        :cache_timeout                 => 0
+          :disable_ssl_host_verification => false,
+          :headers => {'user-agent' => 'Fake IE'},
+          :cache_timeout => 0
       ).should == expected_params
     end
 
     it "should return the defaul params with :headers:accept = 'text/html' (should not override :headers:user-agent)" do
       expected_params = {
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers                       => {'user-agent' => @browser.user_agent, 'accept' => 'text/html'},
-        :cache_timeout                 => @json_config_without_proxy['cache_timeout']
+          :disable_ssl_host_verification => true,
+          :disable_ssl_peer_verification => true,
+          :headers => {'user-agent' => @browser.user_agent, 'accept' => 'text/html'},
+          :cache_timeout => @json_config_without_proxy['cache_timeout']
       }
 
       @browser.merge_request_params(:headers => {'accept' => 'text/html'}).should == expected_params
@@ -187,44 +205,14 @@ describe Browser do
       browser = Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY)
 
       expected_params = {
-        :proxy                         => @json_config_with_proxy['proxy'],
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers                       => {'user-agent' => @json_config_with_proxy['user_agent']},
-        :cache_timeout                 => @json_config_with_proxy['cache_timeout']
+          :proxy => @json_config_with_proxy['proxy'],
+          :disable_ssl_host_verification => true,
+          :disable_ssl_peer_verification => true,
+          :headers => {'user-agent' => @json_config_with_proxy['user_agent']},
+          :cache_timeout => @json_config_with_proxy['cache_timeout']
       }
 
       browser.merge_request_params().should == expected_params
-    end
-  end
-
-  describe "#replace_variables_in_url" do
-    after :each do
-      @browser.variables_to_replace_in_url = @variables if @variables
-      @browser.send(:replace_variables_in_url, @url).should === @expected
-    end
-
-    it "should not replace anything (empty variables_to_replace_in_url)" do
-      @url      = "http://target.tld/wp-content/file.txt"
-      @expected = @url
-    end
-
-    it "should not replace anything (not match found)" do
-      @variables = {"%nothing%" => "hello"}
-      @url       = "http://target.tld/nothing/file.txt"
-      @expected  = @url
-    end
-
-    it "should replace %wp-content% by 'custom-content'" do
-      @variables = {"%wp-content%" => "custom-content"}
-      @url       = "http://target.tld/%wp-content%/some-file.txt"
-      @expected  = "http://target.tld/custom-content/some-file.txt"
-    end
-
-    it "should replace %wp-content% by 'custom-content' and %plugins% by 'wp_plugins'" do
-      @variables = {"%wp-content%" => "custom-content", "%plugins%" => "wp_plugins"}
-      @url       = "http://target.tld/%wp-content%/hello/%plugins%"
-      @expected  = "http://target.tld/custom-content/hello/wp_plugins"
     end
   end
 
@@ -238,11 +226,11 @@ describe Browser do
       url = 'http://example.com/'
 
       stub_request(:post, url).
-        with(:body => "login=master&password=it's me !").
-        to_return(:status => 200, :body => "Welcome Master")
+          with(:body => "login=master&password=it's me !").
+          to_return(:status => 200, :body => "Welcome Master")
 
       response = @browser.post(url,
-        :params => {:login => "master", :password => "it's me !"}
+                               :params => {:login => "master", :password => "it's me !"}
       )
 
       response.should be_a Typhoeus::Response
@@ -255,7 +243,7 @@ describe Browser do
       url = 'http://example.com/'
 
       stub_request(:get, url).
-        to_return(:status => 200, :body => "Hello World !")
+          to_return(:status => 200, :body => "Hello World !")
 
       response = @browser.get(url)
 
@@ -290,7 +278,7 @@ describe Browser do
       url = 'http://example.localhost'
 
       stub_request(:get, url).
-        to_return(:status => 200, :body => "Hello World !")
+          to_return(:status => 200, :body => "Hello World !")
 
       response1 = @browser.get(url)
       response2 = @browser.get(url)

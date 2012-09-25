@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,30 +14,32 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 class WpscanOptions
 
   ACCESSOR_OPTIONS = [
-    :enumerate_plugins,
-    :enumerate_only_vulnerable_plugins,
-    :enumerate_timthumbs,
-    :enumerate_usernames,
-    :enumerate_usernames_range,
-    :proxy,
-    :threads,
-    :url,
-    :wordlist,
-    :force,
-    :update,
-    :verbose,
-    :username,
-    :password,
-    :follow_redirection,
-    :wp_content_dir,
-    :wp_plugins_dir,
-    :help,
-    :config_file
+      :enumerate_plugins,
+      :enumerate_only_vulnerable_plugins,
+      :enumerate_themes,
+      :enumerate_only_vulnerable_themes,
+      :enumerate_timthumbs,
+      :enumerate_usernames,
+      :enumerate_usernames_range,
+      :proxy,
+      :threads,
+      :url,
+      :wordlist,
+      :force,
+      :update,
+      :verbose,
+      :username,
+      :password,
+      :follow_redirection,
+      :wp_content_dir,
+      :wp_plugins_dir,
+      :help,
+      :config_file
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -88,6 +90,22 @@ class WpscanOptions
     end
   end
 
+  def enumerate_themes=(enumerate_themes)
+    if enumerate_themes === true and @enumerate_only_vulnerable_themes === true
+      raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+    else
+      @enumerate_themes = enumerate_themes
+    end
+  end
+
+  def enumerate_only_vulnerable_themes=(enumerate_only_vulnerable_themes)
+    if enumerate_only_vulnerable_themes === true and @enumerate_themes === true
+      raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+    else
+      @enumerate_only_vulnerable_themes = enumerate_only_vulnerable_themes
+    end
+  end
+
   def has_options?
     !to_h.empty?
   end
@@ -113,7 +131,7 @@ class WpscanOptions
 
     if ARGV.length > 0
       WpscanOptions.get_opt_long.each do |opt, arg|
-       wpscan_options.set_option_from_cli(opt, arg)
+        wpscan_options.set_option_from_cli(opt, arg)
       end
     end
 
@@ -126,12 +144,12 @@ class WpscanOptions
 
     if WpscanOptions.is_long_option?(cli_option)
       self.send(
-        WpscanOptions.option_to_instance_variable_setter(cli_option),
-        cli_value
+          WpscanOptions.option_to_instance_variable_setter(cli_option),
+          cli_value
       )
     elsif cli_option === "--enumerate" # Special cases
-      # Default value if no argument is given
-      cli_value = "tup!" if cli_value.length == 0
+                                       # Default value if no argument is given
+      cli_value = "T!tup!" if cli_value.length == 0
 
       enumerate_options_from_string(cli_value)
     else
@@ -151,10 +169,15 @@ class WpscanOptions
 
     @enumerate_timthumbs = true if value =~ /t/
 
+    self.enumerate_only_vulnerable_themes = true if value =~ /T!/
+
+    self.enumerate_themes = true if value =~ /T(?!!)/
+
     if value =~ /u/
       @enumerate_usernames = true
       # Check for usernames range
-      if matches = %r{\[([\d]+)-([\d]+)\]}.match(value)
+      matches = %r{\[([\d]+)-([\d]+)\]}.match(value)
+      if matches
         @enumerate_usernames_range = (matches[1].to_i..matches[2].to_i)
       end
     end
@@ -165,20 +188,20 @@ class WpscanOptions
   # Even if a short option is given (IE : -u), the long one will be returned (IE : --url)
   def self.get_opt_long
     GetoptLong.new(
-      ["--url", "-u", GetoptLong::REQUIRED_ARGUMENT],
-      ["--enumerate", "-e", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--username", "-U", GetoptLong::REQUIRED_ARGUMENT],
-      ["--wordlist", "-w", GetoptLong::REQUIRED_ARGUMENT],
-      ["--threads", "-t",GetoptLong::REQUIRED_ARGUMENT],
-      ["--force", "-f",GetoptLong::NO_ARGUMENT],
-      ["--help", "-h", GetoptLong::NO_ARGUMENT],
-      ["--verbose", "-v", GetoptLong::NO_ARGUMENT] ,
-      ["--proxy", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--update", GetoptLong::NO_ARGUMENT],
-      ["--follow-redirection", GetoptLong::NO_ARGUMENT],
-      ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
-      ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
-      ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT]
+        ["--url", "-u", GetoptLong::REQUIRED_ARGUMENT],
+        ["--enumerate", "-e", GetoptLong::OPTIONAL_ARGUMENT],
+        ["--username", "-U", GetoptLong::REQUIRED_ARGUMENT],
+        ["--wordlist", "-w", GetoptLong::REQUIRED_ARGUMENT],
+        ["--threads", "-t", GetoptLong::REQUIRED_ARGUMENT],
+        ["--force", "-f", GetoptLong::NO_ARGUMENT],
+        ["--help", "-h", GetoptLong::NO_ARGUMENT],
+        ["--verbose", "-v", GetoptLong::NO_ARGUMENT],
+        ["--proxy", GetoptLong::OPTIONAL_ARGUMENT],
+        ["--update", GetoptLong::NO_ARGUMENT],
+        ["--follow-redirection", GetoptLong::NO_ARGUMENT],
+        ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
+        ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
+        ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 
@@ -198,7 +221,7 @@ class WpscanOptions
 
   def self.option_to_instance_variable_setter(option)
     cleaned_option = WpscanOptions.clean_option(option)
-    option_syms    = ACCESSOR_OPTIONS.grep(%r{^#{cleaned_option}})
+    option_syms = ACCESSOR_OPTIONS.grep(%r{^#{cleaned_option}})
 
     option_syms.length == 1 ? :"#{option_syms.at(0)}=" : nil
   end

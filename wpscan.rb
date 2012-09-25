@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,9 +16,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
-# ryandewhurst at gmail
-#
+#++
 
 $: << '.'
 require File.dirname(__FILE__) +'/lib/wpscan/wpscan_helper'
@@ -55,7 +53,8 @@ begin
     raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
   end
 
-  if redirection = wp_target.redirection
+  redirection = wp_target.redirection
+  if redirection
     if wpscan_options.follow_redirection
       puts "Following redirection #{redirection}"
       puts
@@ -80,129 +79,157 @@ begin
     end
   end
 
-  if wp_content_dir = wp_target.wp_content_dir()
-    Browser.instance.variables_to_replace_in_url = {"$wp-content$" => wp_content_dir, "$wp-plugins$" => wp_target.wp_plugins_dir()}
-  else
+  unless wp_target.wp_content_dir
     raise "The wp_content_dir has not been found, please supply it with --wp-content-dir"
   end
 
+  unless wp_target.wp_plugins_dir_exists?
+    puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
+    puts "You can specify one per command line option (don't forget to include the wp-content directory if needed)"
+    puts "Continue? [y/n]"
+    unless Readline.readline =~ /^y/i
+      exit
+    end
+  end
+
   # Output runtime data
+  start_time = Time.now
   puts "| URL: #{wp_target.url}"
-  puts "| Started on #{Time.now.asctime}"
+  puts "| Started on #{start_time.asctime}"
   puts
 
-  if wp_theme = wp_target.theme
-    theme_version = wp_theme.version
-    puts "[!] The WordPress theme in use is #{wp_theme}"
+  wp_theme = wp_target.theme
+  if wp_theme
+    # Theme version is handled in wp_item.to_s
+    puts green("[+]") + " The WordPress theme in use is #{wp_theme}"
 
     theme_vulnerabilities = wp_theme.vulnerabilities
     unless theme_vulnerabilities.empty?
-      puts "[+] We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
+      puts red("[!]") + " We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
       theme_vulnerabilities.each do |vulnerability|
         puts
-        puts " | * Title: " + vulnerability.title
-        puts " | * Reference: " + vulnerability.reference
+        puts " | " + red("* Title: #{vulnerability.title}")
+        puts " | " + red("* Reference: #{vulnerability.reference}")
       end
       puts
     end
   end
 
   if wp_target.has_readme?
-    puts "[!] The WordPress '#{wp_target.readme_url}' file exists"
+    puts red("[!]") + " The WordPress '#{wp_target.readme_url}' file exists"
   end
 
   if wp_target.has_full_path_disclosure?
-    puts "[!] Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}'"
+    puts red("[!]") + " Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}'"
   end
 
   if wp_target.has_debug_log?
-    puts "[!] Debug log file found : #{wp_target.debug_log_url}"
+    puts red("[!]") + " Debug log file found : #{wp_target.debug_log_url}"
   end
 
   wp_target.config_backup.each do |file_url|
-    puts "[!] A wp-config.php backup file has been found '#{file_url}'"
+    puts red("[!] A wp-config.php backup file has been found '#{file_url}'")
+  end
+
+  if wp_target.search_replace_db_2_exists?
+    puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
+  end
+
+  if wp_target.is_multisite?
+    puts green("[+]") + " This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)"
+  end
+
+  if wp_target.registration_enabled?
+    puts green("[+]") + " User registration is enabled"
   end
 
   if wp_target.has_malwares?
     malwares = wp_target.malwares
-    puts "[!] #{malwares.size} malware(s) found :"
+    puts red("[!]") + " #{malwares.size} malware(s) found :"
 
     malwares.each do |malware_url|
       puts
-      puts " | " + malware_url
+      puts " | " + red("#{malware_url}")
     end
     puts
   end
 
-  if wp_version = wp_target.version
-    puts "[!] WordPress version #{wp_version.number} identified from #{wp_version.discovery_method}"
+  wp_version = wp_target.version
+  if wp_version
+    puts green("[+]") + " WordPress version #{wp_version.number} identified from #{wp_version.discovery_method}"
 
     version_vulnerabilities = wp_version.vulnerabilities
 
     unless version_vulnerabilities.empty?
       puts
-      puts "[+] We have identified #{version_vulnerabilities.size} vulnerabilities from the version number :"
+      puts red("[!]") + " We have identified #{version_vulnerabilities.size} vulnerabilities from the version number :"
       version_vulnerabilities.each do |vulnerability|
         puts
-        puts " | * Title: " + vulnerability.title
-        puts " | * Reference: " + vulnerability.reference
+        puts " | " + red("* Title: #{vulnerability.title}")
+        puts " | " + red("* Reference: #{vulnerability.reference}")
       end
     end
   end
 
   if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
     puts
-    print "[+] Enumerating plugins from passive detection ... "
+    puts green("[+]") + " Enumerating plugins from passive detection ... "
 
-    plugins = wp_target.plugins_from_passive_detection
+    plugins = wp_target.plugins_from_passive_detection(:base_url => wp_target.uri, :wp_content_dir => wp_target.wp_content_dir)
     unless plugins.empty?
-      print "#{plugins.size} found :\n"
+      puts "#{plugins.size} found :"
 
       plugins.each do |plugin|
         puts
-        puts " | Name: " + plugin.name
-        puts " | Location: " + plugin.location_url.gsub("$wp-plugins$", wp_target.wp_plugins_dir()) #Hotfix
+        puts " | Name: #{plugin.name}"
+        puts " | Location: #{plugin.get_full_url}"
 
         plugin.vulnerabilities.each do |vulnerability|
           puts " |"
-          puts " | [!] " + vulnerability.title
-          puts " | * Reference: " + vulnerability.reference
+          puts " | " + red("[!] #{vulnerability.title}")
+          puts " | " + red("* Reference: #{vulnerability.reference}")
         end
       end
     else
-      print "No plugins found :(\n"
+      puts "No plugins found :("
     end
   end
 
   # Enumerate the installed plugins
   if wpscan_options.enumerate_plugins or wpscan_options.enumerate_only_vulnerable_plugins
     puts
-    puts "[+] Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
+    puts green("[+]") + " Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
     puts
 
-    plugins = wp_target.plugins_from_aggressive_detection(
-      :only_vulnerable_ones => wpscan_options.enumerate_only_vulnerable_plugins,
-      :show_progress_bar => true
-    )
+    options = {}
+    options[:base_url]              = wp_target.uri
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
+    options[:show_progress_bar]     = true
+    options[:wp_content_dir]        = wp_target.wp_content_dir
+    options[:error_404_hash]        = wp_target.error_404_hash
+    options[:wp_plugins_dir]        = wp_target.wp_plugins_dir
+
+    plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
       puts
       puts
-      puts "[+] We found " + plugins.size.to_s  + " plugins:"
+      puts green("[+]") + " We found #{plugins.size.to_s} plugins:"
 
       plugins.each do |plugin|
         puts
         puts " | Name: #{plugin}" #this will also output the version number if detected
-        puts " | Location: " + plugin.location_url.gsub("$wp-plugins$", wp_target.wp_plugins_dir()) #Hotfix
-
-        puts " | Directory listing enabled? #{plugin.directory_listing? ? "Yes." : "No."}"
+        puts " | Location: #{plugin.get_url_without_filename}"
+        puts " | Directory listing enabled: Yes" if plugin.directory_listing?
+        puts " | Readme: #{plugin.readme_url}" if plugin.has_readme?
+        puts " | Changelog: #{plugin.changelog_url}" if plugin.has_changelog?
 
         plugin.vulnerabilities.each do |vulnerability|
           #vulnerability['vulnerability'][0]['uri'] == nil ? "" : uri = vulnerability['vulnerability'][0]['uri'] # uri
           #vulnerability['vulnerability'][0]['postdata'] == nil ? "" : postdata = CGI.unescapeHTML(vulnerability['vulnerability'][0]['postdata']) # postdata
 
           puts " |"
-          puts " | [!] " + vulnerability.title
-          puts " | * Reference: " + vulnerability.reference
+          puts " | " + red("[!] #{vulnerability.title}")
+          puts " | " + red("* Reference: #{vulnerability.reference}")
 
           # This has been commented out as MSF are moving from
           # XML-RPC to MessagePack.
@@ -214,7 +241,7 @@ begin
         end
 
         if plugin.error_log?
-          puts " | [!] A WordPress error_log file has been found : " + plugin.error_log_url
+          puts " | " + red("[!]") + " A WordPress error_log file has been found : #{plugin.error_log_url}"
         end
       end
     else
@@ -223,23 +250,77 @@ begin
     end
   end
 
-  if wpscan_options.enumerate_timthumbs
+  # Enumerate installed themes
+  if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes
     puts
-    puts "[+] Enumerating timthumb files ..."
+    puts green("[+]") + " Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
     puts
 
-    if wp_target.has_timthumbs?(:theme_name => wp_theme ? wp_theme.name : nil, :show_progress_bar => true)
+    options = {}
+    options[:base_url]              = wp_target.uri
+    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
+    options[:show_progress_bar]     = true
+    options[:wp_content_dir]        = wp_target.wp_content_dir
+    options[:error_404_hash]        = wp_target.error_404_hash
+
+    themes = wp_target.themes_from_aggressive_detection(options)
+    unless themes.empty?
+      puts
+      puts
+      puts green("[+]") + " We found #{themes.size.to_s} themes:"
+
+      themes.each do |theme|
+        puts
+        puts " | Name: #{theme}" #this will also output the version number if detected
+        puts " | Location: #{theme.get_url_without_filename}"
+        puts " | Directory listing enabled: Yes" if theme.directory_listing?
+        puts " | Readme: #{theme.readme_url}" if theme.has_readme?
+        puts " | Changelog: #{theme.changelog_url}" if theme.has_changelog?
+
+        theme.vulnerabilities.each do |vulnerability|
+          puts " |"
+          puts " | " + red("[!] #{vulnerability.title}")
+          puts " | " + red("* Reference: #{vulnerability.reference}")
+
+          # This has been commented out as MSF are moving from
+          # XML-RPC to MessagePack.
+          # I need to get to grips with the new way of communicating
+          # with MSF and implement new code.
+
+          # check if vuln is exploitable
+          #Exploit.new(url, type, uri, postdata.to_s, use_proxy, proxy_addr, proxy_port)
+        end
+      end
+    else
+      puts
+      puts "No themes found :("
+    end
+  end
+
+  if wpscan_options.enumerate_timthumbs
+    puts
+    puts green("[+]") + " Enumerating timthumb files ..."
+    puts
+
+    options = {}
+    options[:base_url]          = wp_target.uri
+    options[:show_progress_bar] = true
+    options[:wp_content_dir]    = wp_target.wp_content_dir
+    options[:error_404_hash]    = wp_target.error_404_hash
+
+    theme_name = wp_theme ? wp_theme.name : nil
+    if wp_target.has_timthumbs?(theme_name, options)
       timthumbs = wp_target.timthumbs
 
       puts
-      puts "[+] We found " + timthumbs.size.to_s  + " timthumb file/s :"
+      puts green("[+]") + " We found #{timthumbs.size.to_s} timthumb file/s :"
       puts
 
-      timthumbs.each do |file_url|
-        puts " | [!] " +  file_url
+      timthumbs.each do |t|
+        puts " | " + red("[!]") + " #{t.get_full_url.to_s}"
       end
       puts
-      puts " * Reference: http://www.exploit-db.com/exploits/17602/"
+      puts red(" * Reference: http://www.exploit-db.com/exploits/17602/")
     else
       puts
       puts "No timthumb files found :("
@@ -249,7 +330,7 @@ begin
   # If we haven't been supplied a username, enumerate them...
   if !wpscan_options.username and wpscan_options.wordlist or wpscan_options.enumerate_usernames
     puts
-    puts "[+] Enumerating usernames ..."
+    puts green("[+]") + " Enumerating usernames ..."
 
     usernames = wp_target.usernames(:range => wpscan_options.enumerate_usernames_range)
 
@@ -261,17 +342,28 @@ begin
       exit(1)
     else
       puts
-      puts "We found the following " + usernames.length.to_s + " username/s :"
+      puts green("[+]") + " We found the following #{usernames.length.to_s} username/s :"
       puts
 
-      usernames.each {|username| puts "  " + username}
+      max_id_length = usernames.sort { |a, b| a.id.to_s.length <=> b.id.to_s.length }.last.id.to_s.length
+      max_name_length = usernames.sort { |a, b| a.name.length <=> b.name.length }.last.name.length
+      max_nickname_length = usernames.sort { |a, b| a.nickname.length <=> b.nickname.length }.last.nickname.length
+
+      space = 1
+      usernames.each do |u|
+        id_string = "id: #{u.id.to_s.ljust(max_id_length + space)}"
+        name_string = "name: #{u.name.ljust(max_name_length + space)}"
+        nickname_string = "nickname: #{u.nickname.ljust(max_nickname_length + space)}"
+        puts " | #{id_string}| #{name_string}| #{nickname_string}"
+      end
     end
 
   else
-    usernames = [wpscan_options.username]
+    usernames = [WpUser.new(wpscan_options.username, -1, "empty")]
   end
 
   # Start the brute forcer
+  bruteforce = true
   if wpscan_options.wordlist
     if wp_target.has_login_protection?
 
@@ -291,17 +383,20 @@ begin
       puts "Brute forcing aborted"
     else
       puts
-      puts "[+] Starting the password brute forcer"
+      puts green("[+]") + " Starting the password brute forcer"
       puts
       wp_target.brute_force(usernames, wpscan_options.wordlist)
     end
   end
 
+  stop_time = Time.now
   puts
-  puts '[+] Finished at ' + Time.now.asctime
+  puts green("[+] Finished at #{stop_time.asctime}")
+  elapsed = stop_time - start_time
+  puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime("%H:%M:%S")}")
   exit() # must exit!
 rescue => e
-  puts "[ERROR] #{e.message}"
-  puts "Trace :"
-  puts e.backtrace.join("\n")
+  puts red("[ERROR] #{e.message}")
+  puts red("Trace :")
+  puts red(e.backtrace.join("\n"))
 end

@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,25 +14,25 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 class Vulnerable
 
-  attr_reader :vulns_xml, :vulns_xpath
+  attr_reader :vulns_file, :vulns_xpath
 
   # @return an array of WpVulnerability (can be empty)
   def vulnerabilities
     vulnerabilities = []
 
-    xml = Nokogiri::XML(File.open(@vulns_xml)) do |config|
+    xml = Nokogiri::XML(File.open(@vulns_file)) do |config|
       config.noblanks
     end
 
     xml.xpath(@vulns_xpath).each do |node|
       vulnerabilities << WpVulnerability.new(
-        node.search('title').text,
-        node.search('reference').text,
-        node.search('type').text
+        node.search("title").text,
+        node.search("reference").text,
+        node.search("type").text
       )
     end
     vulnerabilities

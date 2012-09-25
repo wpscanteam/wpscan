@@ -1,0 +1,984 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+
+  <title>Class: WpTarget</title>
+
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+<body id="top" class="class">
+
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
+
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/wpscan/wp_target_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/wp_target.rb">lib/wpscan/wp_target.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="Object.html">Object</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-c-valid_response_codes">::valid_response_codes</a></li>
+          
+          <li><a href="#method-i-debug_log_url">#debug_log_url</a></li>
+          
+          <li><a href="#method-i-error_404_hash">#error_404_hash</a></li>
+          
+          <li><a href="#method-i-has_debug_log-3F">#has_debug_log?</a></li>
+          
+          <li><a href="#method-i-is_multisite-3F">#is_multisite?</a></li>
+          
+          <li><a href="#method-i-login_url">#login_url</a></li>
+          
+          <li><a href="#method-i-registration_enabled-3F">#registration_enabled?</a></li>
+          
+          <li><a href="#method-i-registration_url">#registration_url</a></li>
+          
+          <li><a href="#method-i-search_replace_db_2_exists-3F">#search_replace_db_2_exists?</a></li>
+          
+          <li><a href="#method-i-search_replace_db_2_url">#search_replace_db_2_url</a></li>
+          
+          <li><a href="#method-i-theme">#theme</a></li>
+          
+          <li><a href="#method-i-url">#url</a></li>
+          
+          <li><a href="#method-i-version">#version</a></li>
+          
+          <li><a href="#method-i-wp_content_dir">#wp_content_dir</a></li>
+          
+          <li><a href="#method-i-wp_plugins_dir">#wp_plugins_dir</a></li>
+          
+          <li><a href="#method-i-wp_plugins_dir_exists-3F">#wp_plugins_dir_exists?</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><a class="include" href="WebSite.html">WebSite</a></li>
+        
+        
+        
+          <li><a class="include" href="WpReadme.html">WpReadme</a></li>
+        
+        
+        
+          <li><a class="include" href="WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+        
+        
+          <li><a class="include" href="WpConfigBackup.html">WpConfigBackup</a></li>
+        
+        
+        
+          <li><a class="include" href="WpLoginProtection.html">WpLoginProtection</a></li>
+        
+        
+        
+          <li><a class="include" href="Malwares.html">Malwares</a></li>
+        
+        
+        
+          <li><a class="include" href="WpUsernames.html">WpUsernames</a></li>
+        
+        
+        
+          <li><a class="include" href="WpTimthumbs.html">WpTimthumbs</a></li>
+        
+        
+        
+          <li><a class="include" href="WpPlugins.html">WpPlugins</a></li>
+        
+        
+        
+          <li><a class="include" href="WpThemes.html">WpThemes</a></li>
+        
+        
+        
+          <li><a class="include" href="BruteForce.html">BruteForce</a></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./Exploit.html">Exploit</a></li>
+        
+          <li><a href="./Generate_List.html">Generate_List</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./RpcClient.html">RpcClient</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./Vulnerable.html">Vulnerable</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpDetector.html">WpDetector</a></li>
+        
+          <li><a href="./WpEnumerator.html">WpEnumerator</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpOptions.html">WpOptions</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUsernames.html">WpUsernames</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVulnerability.html">WpVulnerability</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">WpTarget</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="uri-attribute-method" class="method-detail">
+          <a name="uri"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">uri</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="verbose-attribute-method" class="method-detail">
+          <a name="verbose"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">verbose</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
+
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(target_url, options = {})</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">target_url</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-ivar">@uri</span>            = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">target_url</span>)))
+  <span class="ruby-ivar">@verbose</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:verbose</span>]
+  <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
+  <span class="ruby-ivar">@wp_plugins_dir</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_plugins_dir</span>]
+
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:max_threads</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:threads</span>]))
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- new-method -->
+
+      
+        <div id="valid_response_codes-method" class="method-detail ">
+          <a name="method-c-valid_response_codes"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">valid_response_codes</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Valid HTTP return codes</p>
+            
+
+            
+            <div class="method-source-code" id="valid_response_codes-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 76</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_response_codes</span>
+  [<span class="ruby-value">200</span>, <span class="ruby-value">403</span>, <span class="ruby-value">301</span>, <span class="ruby-value">302</span>, <span class="ruby-value">500</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- valid_response_codes-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- valid_response_codes-method -->
+
+      
+      </div><!-- public-class-method-details -->
+    
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="debug_log_url-method" class="method-detail ">
+          <a name="method-i-debug_log_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">debug_log_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="debug_log_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 122</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">debug_log_url</span>
+  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;#{wp_content_dir()}/debug.log&quot;</span>).<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- debug_log_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- debug_log_url-method -->
+
+      
+        <div id="error_404_hash-method" class="method-detail ">
+          <a name="method-i-error_404_hash"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">error_404_hash</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Return the MD5 hash of a 404 page</p>
+            
+
+            
+            <div class="method-source-code" id="error_404_hash-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 63</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_404_hash</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@error_404_hash</span>
+    <span class="ruby-identifier">non_existant_page</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">9999999999</span>).<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.html&quot;</span>
+
+    <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">non_existant_page</span>).<span class="ruby-identifier">to_s</span>)
+
+    <span class="ruby-ivar">@error_404_hash</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-ivar">@error_404_hash</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- error_404_hash-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- error_404_hash-method -->
+
+      
+        <div id="has_debug_log-3F-method" class="method-detail ">
+          <a name="method-i-has_debug_log-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_debug_log?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="has_debug_log-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_debug_log?</span>
+  <span class="ruby-comment"># We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)</span>
+  <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">response_body</span>[<span class="ruby-regexp">%{\[[^\]]+\] PHP (?:Warning|Error|Notice):}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- has_debug_log-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- has_debug_log-3F-method -->
+
+      
+        <div id="is_multisite-3F-method" class="method-detail ">
+          <a name="method-i-is_multisite-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">is_multisite?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="is_multisite-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 161</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_multisite?</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@multisite</span>
+    <span class="ruby-comment"># when multi site, there is no redirection or a redirect to the site itself</span>
+    <span class="ruby-comment"># otherwise redirect to wp-login.php</span>
+    <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>)
+    <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/wp-login\.php\?action=register/</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/wp-signup\.php/</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@multisite</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- is_multisite-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- is_multisite-3F-method -->
+
+      
+        <div id="login_url-method" class="method-detail ">
+          <a name="method-i-login_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">login_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="login_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login_url</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php&quot;</span>).<span class="ruby-identifier">to_s</span>
+
+  <span class="ruby-comment"># Let's check if the login url is redirected (to https url for example)</span>
+  <span class="ruby-identifier">redirection</span> = <span class="ruby-identifier">redirection</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">redirection</span>
+    <span class="ruby-identifier">url</span> = <span class="ruby-identifier">redirection</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">url</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- login_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- login_url-method -->
+
+      
+        <div id="registration_enabled-3F-method" class="method-detail ">
+          <a name="method-i-registration_enabled-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">registration_enabled?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Should check wp-login.php if registration is enabled or not</p>
+            
+
+            
+            <div class="method-source-code" id="registration_enabled-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 139</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_enabled?</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">registration_url</span>)
+  <span class="ruby-comment"># redirect only on non multi sites</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">/wp-login\.php\?registration=disabled/</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-comment"># multi site registration form</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;form id=&quot;setupform&quot; method=&quot;post&quot; action=&quot;[^&quot;]*wp-signup\.php[^&quot;]*&quot;&gt;/</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-comment"># normal registration form</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/&lt;form name=&quot;registerform&quot; id=&quot;registerform&quot; action=&quot;[^&quot;]*wp-login\.php[^&quot;]*&quot;/</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-comment"># registration disabled</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">false</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">enabled</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- registration_enabled-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- registration_enabled-3F-method -->
+
+      
+        <div id="registration_url-method" class="method-detail ">
+          <a name="method-i-registration_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">registration_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="registration_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 157</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_url</span>
+  <span class="ruby-identifier">is_multisite?</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php?action=register&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- registration_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- registration_url-method -->
+
+      
+        <div id="search_replace_db_2_exists-3F-method" class="method-detail ">
+          <a name="method-i-search_replace_db_2_exists-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">search_replace_db_2_exists?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="search_replace_db_2_exists-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_exists?</span>
+  <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">search_replace_db_2_url</span>)
+  <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{by interconnect}</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- search_replace_db_2_exists-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- search_replace_db_2_exists-3F-method -->
+
+      
+        <div id="search_replace_db_2_url-method" class="method-detail ">
+          <a name="method-i-search_replace_db_2_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">search_replace_db_2_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Script for replacing strings in wordpress databases reveals databse
+credentials after hitting submit <a
+href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/">interconnectit.com/124/search-and-replace-for-wordpress-databases/</a></p>
+            
+
+            
+            <div class="method-source-code" id="search_replace_db_2_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_url</span>
+  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;searchreplacedb2.php&quot;</span>).<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- search_replace_db_2_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- search_replace_db_2_url-method -->
+
+      
+        <div id="theme-method" class="method-detail ">
+          <a name="method-i-theme"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">theme</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>return <a href="WpTheme.html">WpTheme</a></p>
+            
+
+            
+            <div class="method-source-code" id="theme-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">theme</span>
+  <span class="ruby-constant">WpTheme</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@uri</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- theme-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- theme-method -->
+
+      
+        <div id="url-method" class="method-detail ">
+          <a name="method-i-url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Alias of @uri.to_s</p>
+            
+
+            
+            <div class="method-source-code" id="url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">url</span>
+  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- url-method -->
+
+      
+        <div id="version-method" class="method-detail ">
+          <a name="method-i-version"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">version</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>return <a href="WpVersion.html">WpVersion</a></p>
+            
+
+            
+            <div class="method-source-code" id="version-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>
+  <span class="ruby-constant">WpVersion</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@uri</span>, <span class="ruby-identifier">wp_content_dir</span>)
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- version-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- version-method -->
+
+      
+        <div id="wp_content_dir-method" class="method-detail ">
+          <a name="method-i-wp_content_dir"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">wp_content_dir</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="wp_content_dir-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 90</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_content_dir</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
+    <span class="ruby-identifier">index_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
+    <span class="ruby-comment"># Only use the path because domain can be text or an ip</span>
+    <span class="ruby-identifier">uri_path</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">path</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">index_body</span>[<span class="ruby-node">/#{Regexp.escape(uri_path)}\/wp-content\/(?:themes|plugins)\//</span>]
+      <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-string">&quot;wp-content&quot;</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-identifier">index_body</span>[<span class="ruby-node">/(?:href|src)\s*=\s*(?:&quot;|').+#{Regexp.escape(uri_path)}([^&quot;']+)\/(?:themes|plugins)\/.*(?:&quot;|')/</span>, <span class="ruby-value">1</span>]
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@wp_content_dir</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- wp_content_dir-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- wp_content_dir-method -->
+
+      
+        <div id="wp_plugins_dir-method" class="method-detail ">
+          <a name="method-i-wp_plugins_dir"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">wp_plugins_dir</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="wp_plugins_dir-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_plugins_dir</span>
+    <span class="ruby-ivar">@wp_plugins_dir</span> = <span class="ruby-node">&quot;#{wp_content_dir}/plugins&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@wp_plugins_dir</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- wp_plugins_dir-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- wp_plugins_dir-method -->
+
+      
+        <div id="wp_plugins_dir_exists-3F-method" class="method-detail ">
+          <a name="method-i-wp_plugins_dir_exists-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">wp_plugins_dir_exists?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="wp_plugins_dir_exists-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir_exists?</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">wp_plugins_dir</span>)).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- wp_plugins_dir_exists-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- wp_plugins_dir_exists-3F-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
+  
+
+  </div><!-- documentation -->
+
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+
+</body>
+</html>
+

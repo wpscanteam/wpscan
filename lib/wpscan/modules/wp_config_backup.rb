@@ -1,6 +1,6 @@
-#
+#--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+# Copyright (C) 2012
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#
+#++
 
 module WpConfigBackup
 
@@ -22,14 +22,14 @@ module WpConfigBackup
   # See http://www.feross.org/cmsploit/
   # return an array of backup config files url
   def config_backup
-    found      = []
-    backups    = WpConfigBackup.config_backup_files
-    browser    = Browser.instance
-    hydra      = browser.hydra
+    found = []
+    backups = WpConfigBackup.config_backup_files
+    browser = Browser.instance
+    hydra = browser.hydra
 
     backups.each do |file|
       file_url = @uri.merge(URI.escape(file)).to_s
-      request  = browser.forge_request(file_url)
+      request = browser.forge_request(file_url)
 
       request.on_complete do |response|
         if response.body[%r{define}i] and not response.body[%r{<\s?html}i]
@@ -47,10 +47,11 @@ module WpConfigBackup
 
   # @return Array
   def self.config_backup_files
-    [
-      'wp-config.php~','#wp-config.php#','wp-config.php.save','wp-config.php.swp','wp-config.php.swo','wp-config.php_bak',
-      'wp-config.bak', 'wp-config.php.bak', 'wp-config.save'
-    ] # thanks to Feross.org for these
+    %w{
+      wp-config.php~ #wp-config.php# wp-config.php.save wp-config.php.swp wp-config.php.swo wp-config.php_bak
+      wp-config.bak wp-config.php.bak wp-config.save wp-config.old wp-config.php.old wp-config.php.orig
+      wp-config.orig wp-config.php.original wp-config.original
+    } # thanks to Feross.org for these
   end
 
 end
