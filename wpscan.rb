@@ -140,7 +140,7 @@ begin
   end
 
   if wp_target.registration_enabled?
-    puts green("[+]") + " Userregistration is enabled"
+    puts green("[+]") + " User registration is enabled"
   end
 
   if wp_target.has_malwares?
