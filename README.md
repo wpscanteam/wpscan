@@ -69,6 +69,8 @@ WPScan only supports Ruby => 1.9.
         p        plugins
         p!       only vulnerable plugins
         t        timthumbs
+        T        themes
+        T!       only vulnerable themes
     Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins
     If no option is supplied, the default is 'tup!'
 
