@@ -155,9 +155,9 @@ class Browser
     if @basic_auth
 
       if !params.has_key?(:headers)
-      params = params.merge(:headers => {'Authorization' => @basic_auth})
+        params = params.merge(:headers => {'Authorization' => @basic_auth})
       elsif !params[:headers].has_key?('Authorization')
-      params[:headers]['Authorization'] = @basic_auth
+        params[:headers]['Authorization'] = @basic_auth
     end
 
 

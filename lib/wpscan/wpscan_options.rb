@@ -51,8 +51,6 @@ class WpscanOptions
 
   def basic_auth=(basic_auth)
     raise "Invalid basic authentication credentials" if basic_auth.index(':').nil?
-    require 'base64'
-
     @basic_auth="Basic #{Base64.encode64(basic_auth).chomp}="
 
   end
