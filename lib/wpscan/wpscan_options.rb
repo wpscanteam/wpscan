@@ -39,12 +39,21 @@ class WpscanOptions
       :wp_content_dir,
       :wp_plugins_dir,
       :help,
-      :config_file
+      :config_file,
+      :basic_auth
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
 
   def initialize
+
+  end
+
+  def basic_auth=(basic_auth)
+    raise "Invalid basic authentication credentials" if basic_auth.index(':').nil?
+    require 'base64'
+
+    @basic_auth="Basic #{Base64.encode64(basic_auth).chomp}="
 
   end
 
@@ -201,7 +210,8 @@ class WpscanOptions
         ["--follow-redirection", GetoptLong::NO_ARGUMENT],
         ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
         ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
-        ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT]
+        ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT],
+        ["--basic-auth", "-b", GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

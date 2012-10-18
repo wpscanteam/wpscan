@@ -36,6 +36,7 @@ class Browser
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
     options.delete(:config_file)
+    @basic_auth = options[:basic_auth]
 
     load_config()
 
@@ -149,6 +150,17 @@ class Browser
   def merge_request_params(params = {})
     if @proxy
       params = params.merge(:proxy => @proxy)
+    end
+
+    if @basic_auth
+
+      if !params.has_key?(:headers)
+      params = params.merge(:headers => {'Authorization' => @basic_auth})
+      elsif !params[:headers].has_key?('Authorization')
+      params[:headers]['Authorization'] = @basic_auth
+    end
+
+
     end
 
     unless params.has_key?(:disable_ssl_host_verification)

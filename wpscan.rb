@@ -53,6 +53,10 @@ begin
     raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
   end
 
+  if wp_target.has_basic_auth?
+    raise "The WordPress URL supplied '#{wp_target.uri}' seems to be protected with basic auth." unless wpscan_options.basic_auth
+  end
+
   redirection = wp_target.redirection
   if redirection
     if wpscan_options.follow_redirection
