@@ -21,7 +21,9 @@ ryandewhurst at gmail
   This file contains vulnerabilities associated with WordPress plugins.
   TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF"]
 -->
+
 <vulnerabilities>
+
   <plugin name="slideshow-jquery-image-gallery">
     <vulnerability>
         <title>Slideshow jQuery Image Gallery  Multiple Vulnerabilities</title>
@@ -717,6 +719,11 @@ File Upload Vulnerability</title>
   </plugin>
 
   <plugin name="better-wp-security">
+    <vulnerability>
+      <title>Better WP Security v3.4.3</title>
+      <reference>http://seclists.org/bugtraq/2012/Oct/9</reference>
+      <type>XSS</type>
+    </vulnerability>
     <vulnerability>
       <title>Better WP Security &lt;= 3.2.4 Cross Site Scripting</title>
       <reference>http://packetstormsecurity.org/files/112617/</reference>
