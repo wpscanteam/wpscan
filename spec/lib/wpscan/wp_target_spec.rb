@@ -222,6 +222,14 @@ describe WpTarget do
     end
   end
 
+  describe "#has_basic_auth?" do
+    it "should detect that the wpsite is basic auth protected" do
+      stub_request(:any,  "http://example.localhost/").to_return(:status => 401)
+      @wp_target.has_basic_auth?.should be_true
+    end
+  end
+
+
   describe "#search_replace_db_2_url" do
     it "should return the correct url" do
       @wp_target.search_replace_db_2_url.should == "http://example.localhost/searchreplacedb2.php"
