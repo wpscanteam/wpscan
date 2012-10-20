@@ -40,15 +40,11 @@ end
 
 # Add protocol
 def add_http_protocol(url)
-  if url !~ /^https?:/
-    url = "http://#{url}"
-  end
-  url
+  url =~ /^https?:/ ? url : "http://#{url}"
 end
 
 def add_trailing_slash(url)
-  url = "#{url}/" if url !~ /\/$/
-  url
+  url =~ /\/$/ ? url : "#{url}/"
 end
 
 # Gets the string all elements in stringarray ends with
