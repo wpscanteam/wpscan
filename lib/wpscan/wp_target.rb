@@ -35,6 +35,7 @@ class WpTarget
 
   def initialize(target_url, options = {})
     @uri            = URI.parse(add_trailing_slash(add_http_protocol(target_url)))
+    @basic_auth     = options[:basic_auth]
     @verbose        = options[:verbose]
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
@@ -75,7 +76,7 @@ class WpTarget
 
   # Valid HTTP return codes
   def self.valid_response_codes
-    [200, 403, 301, 302, 500]
+    [200, 401, 403, 301, 302, 500]
   end
 
   # return WpTheme

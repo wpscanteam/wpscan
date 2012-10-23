@@ -53,6 +53,10 @@ module WebSite
     Browser.instance.get(@uri.to_s).code != 0
   end
 
+  def has_basic_auth?
+    Browser.instance.get(@uri.to_s).code == 401 
+  end
+
   # see if the remote url returns 30x redirect
   # return a string with the redirection or nil
   def redirection(url = nil)
