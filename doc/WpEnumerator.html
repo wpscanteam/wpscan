@@ -132,6 +132,8 @@
         
           <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
         
+          <li><a href="./URI.html">URI</a></li>
+        
           <li><a href="./Updater.html">Updater</a></li>
         
           <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
@@ -279,9 +281,9 @@
     <span class="ruby-identifier">request_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 
     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progress_bar</span>]
-        <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete.&quot;</span>
-      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progress_bar</span>]
+
       <span class="ruby-keyword">if</span> <span class="ruby-constant">WpTarget</span>.<span class="ruby-identifier">valid_response_codes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>)
         <span class="ruby-keyword">if</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>) <span class="ruby-operator">!=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:error_404_hash</span>]
           <span class="ruby-identifier">found</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target</span>

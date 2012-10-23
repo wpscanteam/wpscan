@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-  <title>Class: WpPlugin</title>
+  <title>Class: WpUser</title>
 
   <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./lib/wpscan/wp_plugin_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/wpscan/wp_plugin.rb">lib/wpscan/wp_plugin.rb</a></li>
+            <li><a href="./lib/wpscan/wp_user_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/wp_user.rb">lib/wpscan/wp_user.rb</a></li>
           
           </ul>
         </div>
@@ -50,7 +50,7 @@
       <div id="parent-class-section" class="section">
         <h3 class="section-header">Parent</h3>
         
-        <p class="link"><a href="WpItem.html">WpItem</a></p>
+        <p class="link"><a href="Object.html">Object</a></p>
         
       </div>
       
@@ -67,9 +67,11 @@
           
           <li><a href="#method-c-new">::new</a></li>
           
-          <li><a href="#method-i-error_log-3F">#error_log?</a></li>
+          <li><a href="#method-i-3C-3D-3E">#<=></a></li>
           
-          <li><a href="#method-i-error_log_url">#error_log_url</a></li>
+          <li><a href="#method-i-3D-3D-3D">#===</a></li>
+          
+          <li><a href="#method-i-eql-3F">#eql?</a></li>
           
         </ul>
       </div>
@@ -191,7 +193,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="class">WpPlugin</h1>
+    <h1 class="class">WpUser</h1>
 
     <div id="description" class="description">
       
@@ -208,6 +210,64 @@
       
 
       
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="id-attribute-method" class="method-detail">
+          <a name="id"></a>
+          
+          <a name="id="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">id</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="name-attribute-method" class="method-detail">
+          <a name="name"></a>
+          
+          <a name="name="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">name</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="nickname-attribute-method" class="method-detail">
+          <a name="nickname"></a>
+          
+          <a name="nickname="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">nickname</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+      </div><!-- attribute-method-details -->
+      
 
       <!-- Methods -->
       
@@ -221,7 +281,7 @@
           
           <div class="method-heading">
             <span class="method-name">new</span><span
-              class="method-args">(options = {})</span>
+              class="method-args">(name, id, nickname)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -234,14 +294,11 @@
             
             <div class="method-source-code" id="new-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]    = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">?</span>
-      <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/plugin_vulns.xml&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]   = <span class="ruby-string">&quot;//plugin[@name='$name$']/vulnerability&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">&quot;//plugin&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]          = <span class="ruby-string">&quot;plugins&quot;</span>
-  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">options</span>)
+<span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">nickname</span>)
+  <span class="ruby-ivar">@name</span>     = <span class="ruby-identifier">name</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>
+  <span class="ruby-ivar">@id</span>       = <span class="ruby-identifier">id</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>
+  <span class="ruby-ivar">@nickname</span> = <span class="ruby-identifier">nickname</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -259,50 +316,46 @@
         <h3 class="section-header">Public Instance Methods</h3>
 
       
-        <div id="error_log-3F-method" class="method-detail ">
-          <a name="method-i-error_log-3F"></a>
+        <div id="3C-3D-3E-method" class="method-detail ">
+          <a name="method-i-3C-3D-3E"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">error_log?</span><span
-              class="method-args">()</span>
+            <span class="method-name">&lt;=&gt;</span><span
+              class="method-args">(item)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
 
           <div class="method-description">
             
-            <p>Discover any error_log files created by WordPress These are created by the
-WordPress error_log() function They are normally found in the /plugins/
-directory, however can also be found in their specific plugin dir. <a
-href="http://www.exploit-db.com/ghdb/3714/">www.exploit-db.com/ghdb/3714/</a></p>
+            
             
 
             
-            <div class="method-source-code" id="error_log-3F-source">
+            <div class="method-source-code" id="3C-3D-3E-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 34</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_log?</span>
-  <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">error_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">response_body</span>[<span class="ruby-regexp">%{PHP Fatal error}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+<span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">item</span>)
+  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@name</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- error_log-3F-source -->
+            </div><!-- 3C-3D-3E-source -->
             
           </div>
 
           
 
           
-        </div><!-- error_log-3F-method -->
+        </div><!-- 3C-3D-3E-method -->
 
       
-        <div id="error_log_url-method" class="method-detail ">
-          <a name="method-i-error_log_url"></a>
+        <div id="3D-3D-3D-method" class="method-detail ">
+          <a name="method-i-3D-3D-3D"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">error_log_url</span><span
-              class="method-args">()</span>
+            <span class="method-name">===</span><span
+              class="method-args">(item)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
           
@@ -313,20 +366,53 @@ href="http://www.exploit-db.com/ghdb/3714/">www.exploit-db.com/ghdb/3714/</a></p
             
 
             
-            <div class="method-source-code" id="error_log_url-source">
+            <div class="method-source-code" id="3D-3D-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 39</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_log_url</span>
-  <span class="ruby-identifier">get_full_url</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;error_log&quot;</span>).<span class="ruby-identifier">to_s</span>
+<span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">item</span>)
+  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@nickname</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- error_log_url-source -->
+            </div><!-- 3D-3D-3D-source -->
             
           </div>
 
           
 
           
-        </div><!-- error_log_url-method -->
+        </div><!-- 3D-3D-3D-method -->
+
+      
+        <div id="eql-3F-method" class="method-detail ">
+          <a name="method-i-eql-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">eql?</span><span
+              class="method-args">(item)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="eql-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">item</span>)
+  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@nickname</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- eql-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- eql-3F-method -->
 
       
       </div><!-- public-instance-method-details -->

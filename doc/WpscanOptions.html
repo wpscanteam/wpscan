@@ -164,6 +164,8 @@
         
           <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
         
+          <li><a href="./URI.html">URI</a></li>
+        
           <li><a href="./Updater.html">Updater</a></li>
         
           <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
@@ -276,7 +278,7 @@ href="WpscanOptions.html">WpscanOptions</a></p>
             
             <div class="method-source-code" id="load_from_arguments-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 129</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">load_from_arguments</span>
   <span class="ruby-identifier">wpscan_options</span> = <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">new</span>
 
@@ -319,7 +321,9 @@ href="WpscanOptions.html">WpscanOptions</a></p>
 <pre>
 <span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
-
+  <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-node">&quot;@#{option}&quot;</span>, <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -359,7 +363,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="clean_option-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 217</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 219</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clean_option</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-identifier">cleaned_option</span> = <span class="ruby-identifier">option</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^--?/</span>, <span class="ruby-string">''</span>)
   <span class="ruby-identifier">cleaned_option</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/-/</span>, <span class="ruby-string">'_'</span>)
@@ -394,7 +398,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="get_opt_long-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 189</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 191</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_opt_long</span>
   <span class="ruby-constant">GetoptLong</span>.<span class="ruby-identifier">new</span>(
       [<span class="ruby-string">&quot;--url&quot;</span>, <span class="ruby-string">&quot;-u&quot;</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
@@ -442,7 +446,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="is_long_option-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 208</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 210</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_long_option?</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">:&quot;#{WpscanOptions.clean_option(option)}&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -475,7 +479,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="option_to_instance_variable_setter-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 222</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 224</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">option_to_instance_variable_setter</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-identifier">cleaned_option</span> = <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">clean_option</span>(<span class="ruby-identifier">option</span>)
   <span class="ruby-identifier">option_syms</span> = <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-node">%{^#{cleaned_option}}</span>)
@@ -517,7 +521,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="enumerate_only_vulnerable_plugins-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 85</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 87</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_only_vulnerable_plugins=</span>(<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@enumerate_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one&quot;</span>
@@ -554,7 +558,7 @@ any remaining ‘-’ by ‘_’</p>
             
             <div class="method-source-code" id="enumerate_only_vulnerable_themes-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 101</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes=</span>(<span class="ruby-identifier">enumerate_only_vulnerable_themes</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@enumerate_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You can't enumerate themes and only vulnerable themes at the same time, please choose only one&quot;</span>
@@ -595,7 +599,7 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
             
             <div class="method-source-code" id="enumerate_options_from_string-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 164</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 166</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_options_from_string</span>(<span class="ruby-identifier">value</span>)
   <span class="ruby-comment"># Usage of self is mandatory because there are overridden setters</span>
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/p!/</span>
@@ -647,7 +651,7 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
             
             <div class="method-source-code" id="enumerate_plugins-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 77</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_plugins=</span>(<span class="ruby-identifier">enumerate_plugins</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one&quot;</span>
@@ -684,7 +688,7 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
             
             <div class="method-source-code" id="enumerate_themes-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 93</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_themes=</span>(<span class="ruby-identifier">enumerate_themes</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> <span class="ruby-ivar">@enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;You can't enumerate themes and only vulnerable themes at the same time, please choose only one&quot;</span>
@@ -721,7 +725,7 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
             
             <div class="method-source-code" id="has_options-3F-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 109</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_options?</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">to_h</span>.<span class="ruby-identifier">empty?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -754,7 +758,7 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
             
             <div class="method-source-code" id="proxy-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 69</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">proxy=</span>(<span class="ruby-identifier">proxy</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Invalid proxy format. Should be host:port.&quot;</span>
@@ -792,7 +796,7 @@ value</p>
             
             <div class="method-source-code" id="set_option_from_cli-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 143</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 145</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_option_from_cli</span>(<span class="ruby-identifier">cli_option</span>, <span class="ruby-identifier">cli_value</span>)
 
   <span class="ruby-keyword">if</span> <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">is_long_option?</span>(<span class="ruby-identifier">cli_option</span>)
@@ -838,7 +842,7 @@ value</p>
             
             <div class="method-source-code" id="threads-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 57</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">threads=</span>(<span class="ruby-identifier">threads</span>)
   <span class="ruby-ivar">@threads</span> = <span class="ruby-identifier">threads</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">threads</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">threads</span>.<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
@@ -871,7 +875,7 @@ value</p>
             
             <div class="method-source-code" id="to_h-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 114</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">to_h</span>
   <span class="ruby-identifier">options</span> = {}
 
@@ -913,7 +917,7 @@ value</p>
             
             <div class="method-source-code" id="url-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 51</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">url=</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Empty URL given&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">url</span>
 
@@ -948,7 +952,7 @@ value</p>
             
             <div class="method-source-code" id="wordlist-3D-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 61</span>
+<span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 63</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wordlist=</span>(<span class="ruby-identifier">wordlist</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">wordlist</span>)
     <span class="ruby-ivar">@wordlist</span> = <span class="ruby-identifier">wordlist</span>

@@ -34,14 +34,14 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="./lib/common_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/common_helper.rb">lib/common_helper.rb</a></li>
+            <li><a href="./lib/wpstools/wpstools_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpstools/wpstools_helper.rb">lib/wpstools/wpstools_helper.rb</a></li>
           
             <li><a href="./lib/wpscan/wpscan_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
               class="thickbox" title="lib/wpscan/wpscan_helper.rb">lib/wpscan/wpscan_helper.rb</a></li>
           
-            <li><a href="./lib/wpstools/wpstools_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/wpstools/wpstools_helper.rb">lib/wpstools/wpstools_helper.rb</a></li>
+            <li><a href="./lib/common_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/common_helper.rb">lib/common_helper.rb</a></li>
           
           </ul>
         </div>
@@ -153,6 +153,8 @@
           <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
         
           <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
+        
+          <li><a href="./URI.html">URI</a></li>
         
           <li><a href="./Updater.html">Updater</a></li>
         
@@ -312,10 +314,7 @@
 <pre>
 <span class="ruby-comment"># File lib/common_helper.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/^https?:/</span>
-    <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;http://#{url}&quot;</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">url</span>
+  <span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^https?:/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;http://#{url}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- add_http_protocol-source -->
             
@@ -346,10 +345,9 @@
             
             <div class="method-source-code" id="add_trailing_slash-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 49</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">url</span> = <span class="ruby-node">&quot;#{url}/&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/\/$/</span>
-  <span class="ruby-identifier">url</span>
+  <span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\/$/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{url}/&quot;</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- add_trailing_slash-source -->
             
@@ -380,7 +378,7 @@
             
             <div class="method-source-code" id="banner-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 106</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 112</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">banner</span>()
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'____________________________________________________'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot; __          _______   _____                  &quot;</span>
@@ -428,7 +426,7 @@
             
             <div class="method-source-code" id="colorize-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 125</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">color_code</span>)
   <span class="ruby-node">&quot;\e[#{color_code}m#{text}\e[0m&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -461,7 +459,7 @@
             
             <div class="method-source-code" id="get_equal_string_end-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 55</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_equal_string_end</span>(<span class="ruby-identifier">stringarray</span> = [<span class="ruby-string">&quot;&quot;</span>])
   <span class="ruby-identifier">already_found</span> = <span class="ruby-string">&quot;&quot;</span>
   <span class="ruby-identifier">looping</span> = <span class="ruby-keyword">true</span>
@@ -514,7 +512,7 @@
             
             <div class="method-source-code" id="green-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 133</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 139</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">green</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">32</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -541,45 +539,28 @@
 
           <div class="method-description">
             
-            <p>command help</p>
+            
             
 
             
             <div class="method-source-code" id="help-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 71</span>
+<span class="ruby-comment"># File lib/wpstools/wpstools_helper.rb, line 46</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>()
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Help :&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Some values are settable in conf/browser.conf.json :&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  user-agent, proxy, threads, cache timeout and request timeout&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--update   Update to the latest revision&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--url   | -u &lt;target url&gt;  The WordPress URL/domain to scan.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--force | -f Forces WPScan to not check if the remote site is running WordPress.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--enumerate | -e [option(s)]  Enumeration.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  option :&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    u        usernames from id 1 to 10&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    u[10-20] usernames from id 10 to 20 (you must write [] chars)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    p        plugins&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    p!       only vulnerable plugins&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    t        timthumbs&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    T        themes&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;    T!       only vulnerable themes&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  If no option is supplied, the default is 'tup!'&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--config-file | -c &lt;config file&gt; Use the specified config file&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--wp-content-dir &lt;wp content dir&gt;  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--wp-plugins-dir &lt;wp plugins dir&gt;  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--proxy  Supply a proxy in the format host:port or protocol://host:port (will override the one from conf/browser.conf.json).&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;         HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--wordlist | -w &lt;wordlist&gt;  Supply a wordlist for the password bruter and do the brute.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--threads  | -t &lt;number of threads&gt;  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--username | -U &lt;username&gt;  Only brute force the supplied username.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--help     | -h This help screen.&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--verbose  | -v Verbose output.&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--help    | -h   This help screen.&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--Verbose | -v   Verbose output.&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--update  | -u   Update to the latest revision.&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--gpl  Alias for --generate_plugin_list&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--generate_full_plugin_list  Generate a new full data/plugins.txt file&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--gfpl  Alias for --generate_full_plugin_list&quot;</span>
+
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--generate_theme_list [number of pages]  Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 150)&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--gtl  Alias for --generate_theme_list&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--generate_full_theme_list  Generate a new full data/themes.txt file&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--gftl  Alias for --generate_full_theme_list&quot;</span>
   <span class="ruby-identifier">puts</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- help-source -->
@@ -611,7 +592,7 @@
             
             <div class="method-source-code" id="red-source">
 <pre>
-<span class="ruby-comment"># File lib/common_helper.rb, line 129</span>
+<span class="ruby-comment"># File lib/common_helper.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">red</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">31</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -675,54 +656,31 @@
 
           <div class="method-description">
             
-            <p>wpscan usage</p>
+            
             
 
             
             <div class="method-source-code" id="usage-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 24</span>
+<span class="ruby-comment"># File lib/wpstools/wpstools_helper.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">usage</span>()
   <span class="ruby-identifier">script_name</span> = <span class="ruby-identifier">$0</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--help or -h for further help.&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Examples :&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-h for further help.&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Do 'non-intrusive' checks ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Examples:&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Do wordlist password brute force on enumerated users using 50 threads ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --wordlist darkc0de.lst --threads 50&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;- Generate a new 'most popular' plugin list, up to 150 pages ...&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ruby &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">script_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; --generate_plugin_list 150&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Do wordlist password brute force on the 'admin' username only ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --wordlist darkc0de.lst --username admin&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;- Generate a new full plugin list&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ruby &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">script_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; --generate_full_plugin_list&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate installed plugins ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate p&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;- Generate a new 'most popular' theme list, up to 150 pages ...&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ruby &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">script_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; --generate_theme_list 150&quot;</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate installed themes ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate T&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate users ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate u&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Enumerate installed timthumbs ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --enumerate t&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Use a HTTP proxy ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --proxy 127.0.0.1:8118&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Use a SOCKS5 proxy ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --proxy socks5://127.0.0.1:9000&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Use custom content directory ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} -u www.example.com --wp-content-dir custom-content&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Use custom plugins directory ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} -u www.example.com --wp-plugins-dir wp-content/custom-plugins&quot;</span>
-  <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;-Update ...&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --update&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;- Generate a new full theme list&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;ruby &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">script_name</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot; --generate_full_theme_list&quot;</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;See README for further information.&quot;</span>
   <span class="ruby-identifier">puts</span>

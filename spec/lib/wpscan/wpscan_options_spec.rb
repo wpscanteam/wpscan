@@ -25,7 +25,11 @@ describe "WpscanOptions" do
   end
 
   describe "#initialize" do
-
+    it "should set all options to nil" do
+      WpscanOptions::ACCESSOR_OPTIONS.each do |option|
+        @wpscan_options.send(option).should === nil
+      end
+    end
   end
 
   describe "#url=" do

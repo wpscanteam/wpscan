@@ -88,6 +88,8 @@
         
           <li><a href="./Svn_Parser.html">Svn_Parser</a></li>
         
+          <li><a href="./URI.html">URI</a></li>
+        
           <li><a href="./Updater.html">Updater</a></li>
         
           <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
@@ -183,12 +185,12 @@ directory. WPScan only supports Ruby =&gt; 1.9.</p>
 
 <pre>-&gt; Installing on Backtrack5 Gnome/KDE 32bit :
 
-  sudo apt-get install libcurl4-gnutls-dev
+  sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev
   sudo gem install --user-install mime-types typhoeus nokogiri json
 
 -&gt; Installing on Debian/Ubuntu :
 
-  sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby
+  sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev
   sudo gem install typhoeus nokogiri json
 
 -&gt; Installing on other nix : (not tested)
@@ -230,6 +232,8 @@ WordPress.</p>
   p        plugins
   p!       only vulnerable plugins
   t        timthumbs
+  T        themes
+  T!       only vulnerable themes
 Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins
 If no option is supplied, the default is 'tup!'</pre>
 
