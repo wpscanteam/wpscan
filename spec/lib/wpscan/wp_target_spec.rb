@@ -103,7 +103,7 @@ describe WpTarget do
     end
 
     it "should return the string set in the initialize method" do
-      @wp_target = WpTarget.new("http://example.localhost/", :wp_content_dir => "hello-world")
+      @wp_target = WpTarget.new("http://example.localhost/", @options.merge(:wp_content_dir => "hello-world"))
       @expected  = "hello-world"
     end
 
@@ -159,7 +159,7 @@ describe WpTarget do
     end
 
     it "should return the string set in the initialize method" do
-      @wp_target = WpTarget.new("http://example.localhost/", :wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins")
+      @wp_target = WpTarget.new("http://example.localhost/", @options.merge(:wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins"))
       @expected  = "custom-plugins"
     end
 
@@ -169,22 +169,22 @@ describe WpTarget do
     end
 
     it "should return 'wp-content/plugins'" do
-      @stub_value = nil
-      @expected   = "wp-content/plugins"
+      @wp_target = WpTarget.new("http://example.localhost/", @options.merge(:wp_content_dir => "wp-content", :wp_plugins_dir => nil))
+      @expected  = "wp-content/plugins"
     end
   end
 
   describe "#wp_plugins_dir_exists?" do
     it "should return true" do
-      target = WpTarget.new("http://example.localhost/", :wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins")
-      url = target.uri.merge(target.wp_plugins_dir).to_s
+      target = WpTarget.new("http://example.localhost/", @options.merge(:wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins"))
+      url    = target.uri.merge(target.wp_plugins_dir).to_s
       stub_request(:any, url).to_return(:status => 200)
       target.wp_plugins_dir_exists?.should == true
     end
 
     it "should return false" do
-      target = WpTarget.new("http://example.localhost/", :wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins")
-      url = target.uri.merge(target.wp_plugins_dir).to_s
+      target = WpTarget.new("http://example.localhost/", @options.merge(:wp_content_dir => "asdf", :wp_plugins_dir => "custom-plugins"))
+      url    = target.uri.merge(target.wp_plugins_dir).to_s
       stub_request(:any, url).to_return(:status => 404)
       target.wp_plugins_dir_exists?.should == false
     end
@@ -217,7 +217,7 @@ describe WpTarget do
     end
 
     it "should also detect it if there are PHP notice" do
-      @fixture = fixtures_dir + "/debug-notice.log"
+      @fixture  = fixtures_dir + "/debug-notice.log"
       @expected = true
     end
   end

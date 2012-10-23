@@ -56,9 +56,9 @@ class WpEnumerator
       request_count += 1
 
       request.on_complete do |response|
-        if options[:show_progress_bar]
-          print "\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete."
-        end
+
+        print "\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete." if options[:show_progress_bar]
+
         if WpTarget.valid_response_codes.include?(response.code)
           if Digest::MD5.hexdigest(response.body) != options[:error_404_hash]
             found << target
