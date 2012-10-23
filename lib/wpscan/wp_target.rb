@@ -38,6 +38,7 @@ class WpTarget
     @verbose        = options[:verbose]
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
+    @multisite      = nil
 
     Browser.instance(options.merge(:max_threads => options[:threads]))
   end

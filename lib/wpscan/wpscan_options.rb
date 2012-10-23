@@ -45,7 +45,9 @@ class WpscanOptions
   attr_accessor *ACCESSOR_OPTIONS
 
   def initialize
-
+    ACCESSOR_OPTIONS.each do |option|
+      instance_variable_set("@#{option}", nil)
+    end
   end
 
   def url=(url)
