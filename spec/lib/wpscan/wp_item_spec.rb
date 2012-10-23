@@ -21,12 +21,13 @@ require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 describe WpPlugin do
   describe "#initialize" do
     it "should create a correct instance" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
+      instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
       )
       instance.wp_content_dir.should == "wp-content"
       instance.base_url.should == "http://sub.example.com/path/to/wordpress/"
@@ -35,109 +36,79 @@ describe WpPlugin do
   end
 
   describe "#get_full_url" do
+    after :each do
+      arguments = {
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins",
+        :wp_content_dir => @wp_content_dir
+      }
+
+      instance = WpItem.new(arguments)
+      instance.get_full_url.to_s.should === @expected
+    end
+
     it "should return the correct url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.get_full_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/asdf.php"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/asdf.php"
     end
 
     it "should return the correct url (custom wp_content_dir)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "custom"
-      )
-      instance.get_full_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/asdf.php"
+      @wp_content_dir = "custom"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/plugins/test/asdf.php"
     end
 
     it "should trim / and add missing / before concatenating url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "/custom/"
-      )
-      instance.get_full_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/asdf.php"
+      @wp_content_dir = "/custom/"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/plugins/test/asdf.php"
     end
   end
 
   describe "#get_url_without_filename" do
+    after :each do
+      arguments = {
+        :base_url => @base_url || "http://sub.example.com/path/to/wordpress/",
+        :path => @path || "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins",
+        :wp_content_dir => @wp_content_dir
+      }
+
+      instance = WpItem.new(arguments)
+      instance.get_url_without_filename.to_s.should === @expected
+    end
+
     it "should return the correct url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
     end
 
     it "should return the correct url (custom wp_content_dir)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "custom"
-      )
-      instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/"
+      @wp_content_dir = "custom"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/plugins/test/"
     end
 
     it "should trim / and add missing / before concatenating url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "/custom/"
-      )
-      instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/"
+      @wp_content_dir = "/custom/"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/plugins/test/"
     end
 
     it "should not remove the last foldername" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
+      @path     = "test/"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
     end
 
     it "should return the correct url (https)" do
-      instance = WpItem.new(:base_url => "https://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.get_url_without_filename.to_s.should == "https://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
+      @base_url = "https://sub.example.com/path/to/wordpress/"
+      @expected = "https://sub.example.com/path/to/wordpress/wp-content/plugins/test/"
     end
 
     it "should add the last slash if it's not present" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test-one",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.get_url_without_filename.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test-one/"
+      @path     = "test-one"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/plugins/test-one/"
     end
   end
 
@@ -145,12 +116,13 @@ describe WpPlugin do
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR + '/version' }
 
     before :each do
-      @instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :vulns_file => "XXX.xml",
-                             :name => "test",
-                             :vulns_xpath => "XX",
-                             :type => "plugins"
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+       :path => "test/asdf.php",
+       :vulns_file => "XXX.xml",
+       :name => "test",
+       :vulns_xpath => "XX",
+       :type => "plugins"
       )
     end
 
@@ -165,39 +137,39 @@ describe WpPlugin do
     end
 
     it "should return nil if the version is invalid (IE : trunk etc)" do
-      stub_request(:get, @instance.readme_url.to_s).to_return(:status => 200,
-                                                              :body => File.new(fixtures_dir + '/trunk-version.txt'))
+      stub_request_to_fixture(:url => @instance.readme_url.to_s, :fixture => fixtures_dir + '/trunk-version.txt')
       @instance.version.should be_nil
     end
 
     it "should return the version 0.4" do
-      stub_request(:get, @instance.readme_url.to_s).to_return(:status => 200,
-                                                              :body => File.new(fixtures_dir + '/simple-login-lockdown-0.4.txt'))
-
+      stub_request_to_fixture(:url => @instance.readme_url.to_s, :fixture => fixtures_dir + '/simple-login-lockdown-0.4.txt')
       @instance.version.should === "0.4"
     end
   end
 
   describe "#directory_listing?" do
     before :each do
-      @instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :vulns_file => "XXX.xml",
-                             :name => "test",
-                             :vulns_xpath => "XX",
-                             :type => "plugins"
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
       )
     end
 
     it "should return true" do
-      stub_request(:get, @instance.get_url_without_filename.to_s).to_return(:status => 200,
-                                                                            :body => "<html><head><title>Index of asdf</title></head></html>")
+      stub_request(:get, @instance.get_url_without_filename.to_s)
+      .to_return(:status => 200, :body => "<html><head><title>Index of asdf</title></head></html>")
+
       @instance.directory_listing?.should == true
     end
 
     it "should return false" do
-      stub_request(:get, @instance.get_url_without_filename.to_s).to_return(:status => 200,
-                                                                            :body => "<html><head><title>My Wordpress Site</title></head></html>")
+      stub_request(:get, @instance.get_url_without_filename.to_s)
+      .to_return(:status => 200, :body => "<html><head><title>My Wordpress Site</title></head></html>")
+
       @instance.directory_listing?.should == false
     end
 
@@ -208,72 +180,57 @@ describe WpPlugin do
   end
 
   describe "#extract_name_from_url" do
+    after :each do
+      arguments = {
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => @path || "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => @type || "plugins",
+        :wp_content_dir => @wp_content_dir
+      }
+
+      instance = WpItem.new(arguments)
+      instance.extract_name_from_url.should === @expected
+    end
+
     it "should extract the correct name" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.extract_name_from_url.should == "test"
+      @expected = "test"
     end
 
     it "should extract the correct name (custom wp_content_dir)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "custom"
-      )
-      instance.extract_name_from_url.should == "test"
+      @wp_content_dir = "custom"
+      @expected       = "test"
     end
 
     it "should extract the correct name" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test2/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "/custom/"
-      )
-      instance.extract_name_from_url.should == "test2"
+      @path           = "test2/asdf.php"
+      @wp_content_dir = "/custom/"
+      @expected       = "test2"
     end
 
     it "should extract the correct plugin name" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "testplugin/",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.extract_name_from_url.should == "testplugin"
+      @path     = "testplugin/"
+      @expected = "testplugin"
     end
 
     it "should extract the correct theme name" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "testtheme/",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "themes"
-      )
-      instance.extract_name_from_url.should == "testtheme"
+      @path     = "testtheme/"
+      @type     = "themes"
+      @expected = "testtheme"
     end
   end
 
   describe "#to_s" do
     before :each do
-      @instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :vulns_file => "XXX.xml",
-                             :name => "test",
-                             :vulns_xpath => "XX",
-                             :type => "plugins"
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
       )
     end
 
@@ -290,194 +247,159 @@ describe WpPlugin do
 
   describe "#==" do
     before :each do
-      @instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :vulns_file => "XXX.xml",
-                             :name => "test",
-                             :vulns_xpath => "XX",
-                             :type => "plugins"
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
       )
     end
 
     it "should return false" do
-      instance2 = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "newname/asdf.php",
-                             :type => "plugins",
-                             :vulns_file => "XXX.xml",
-                             :vulns_xpath => "XX"
+      instance2 = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "newname/asdf.php",
+        :type => "plugins",
+        :vulns_file => "XXX.xml",
+        :vulns_xpath => "XX"
       )
       (@instance==instance2).should == false
     end
 
     it "should return true" do
-      instance2 = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :type => "plugins",
-                             :vulns_file => "XXX.xml",
-                             :vulns_xpath => "XX"
+      instance2 = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :type => "plugins",
+        :vulns_file => "XXX.xml",
+        :vulns_xpath => "XX"
       )
       (@instance==instance2).should == true
     end
   end
 
   describe "#get_sub_folder" do
-    it "should return themes" do
-      item = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                        :path => "test/asdf.php",
-                        :vulns_file => "XXX.xml",
-                        :wp_content_dir => "wp-content",
-                        :wp_plugins_dir => "wp-content/plugins",
-                        :name => "test",
-                        :vulns_xpath => "XX",
-                        :type => "themes"
-      )
-      item.get_sub_folder.should == "themes"
+    after :each do
+      arguments = {
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :wp_content_dir => "wp-content",
+        :wp_plugins_dir => "wp-content/plugins",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => @type || "themes"
+      }
+
+      instance = WpItem.new(arguments)
+
+      if @raise_error
+        expect { instance.get_sub_folder }.to @raise_error
+      else
+        instance.get_sub_folder.should === @expected
+      end
     end
 
     it "should return themes" do
-      item = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                        :path => "test/asdf.php",
-                        :vulns_file => "XXX.xml",
-                        :wp_content_dir => "wp-content",
-                        :wp_plugins_dir => "wp-content/plugins",
-                        :name => "test",
-                        :vulns_xpath => "XX",
-                        :type => "themes"
-      )
-      item.get_sub_folder.should == "themes"
+      @expected = "themes"
     end
 
     it "should return nil" do
-      item = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                        :path => "test/asdf.php",
-                        :vulns_file => "XXX.xml",
-                        :wp_content_dir => "wp-content",
-                        :wp_plugins_dir => "wp-content/plugins",
-                        :name => "test",
-                        :vulns_xpath => "XX",
-                        :type => "timthumbs"
-      )
-      item.get_sub_folder.should == nil
+      @type     = "timthumbs"
+      @expected = nil
     end
 
     it "should raise an exception" do
-      item = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                        :path => "test/asdf.php",
-                        :vulns_file => "XXX.xml",
-                        :wp_content_dir => "wp-content",
-                        :wp_plugins_dir => "wp-content/plugins",
-                        :name => "test",
-                        :vulns_xpath => "XX",
-                        :type => "type"
-      )
-      expect { item.get_sub_folder }.to raise_error(RuntimeError, "unknown type type")
+      @type        = "type"
+      @raise_error = raise_error(RuntimeError, "unknown type type")
     end
   end
 
   describe "#readme_url" do
+    after :each do
+      arguments = {
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => @type || "plugins",
+        :wp_content_dir => @wp_content_dir
+      }
+
+      instance = WpItem.new(arguments)
+      instance.readme_url.to_s.should === @expected
+    end
+
     it "should return the corrent plugin readme url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/readme.txt"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/readme.txt"
     end
 
     it "should return the corrent plugin readme url (custom wp_content)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "custom"
-      )
-      instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/readme.txt"
+      @wp_content_dir = "custom"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/plugins/test/readme.txt"
     end
 
     it "should return the corrent theme readme url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "themes"
-      )
-      instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/themes/test/readme.txt"
+      @type     = "themes"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/themes/test/readme.txt"
     end
 
     it "should return the corrent theme readme url (custom wp_content)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "themes",
-                            :wp_content_dir => "custom"
-      )
-      instance.readme_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/themes/test/readme.txt"
+      @type           = "themes"
+      @wp_content_dir = "custom"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/themes/test/readme.txt"
     end
   end
 
   describe "#changelog_url" do
+    after :each do
+      arguments = {
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => @type || "plugins",
+        :wp_content_dir => @wp_content_dir
+      }
+
+      instance = WpItem.new(arguments)
+      instance.changelog_url.to_s.should === @expected
+    end
+
     it "should return the corrent plugin changelog url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins"
-      )
-      instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/changelog.txt"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/plugins/test/changelog.txt"
     end
 
     it "should return the corrent plugin changelog url (custom wp_content)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "plugins",
-                            :wp_content_dir => "custom"
-      )
-      instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/plugins/test/changelog.txt"
+      @wp_content_dir = "custom"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/plugins/test/changelog.txt"
     end
 
     it "should return the corrent theme changelog url" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "themes"
-      )
-      instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/wp-content/themes/test/changelog.txt"
+      @type     = "themes"
+      @expected = "http://sub.example.com/path/to/wordpress/wp-content/themes/test/changelog.txt"
     end
 
     it "should return the corrent theme changelog url (custom wp_content)" do
-      instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                            :path => "test/asdf.php",
-                            :vulns_file => "XXX.xml",
-                            :name => "test",
-                            :vulns_xpath => "XX",
-                            :type => "themes",
-                            :wp_content_dir => "custom"
-      )
-      instance.changelog_url.to_s.should == "http://sub.example.com/path/to/wordpress/custom/themes/test/changelog.txt"
+      @type           = "themes"
+      @wp_content_dir = "custom"
+      @expected       = "http://sub.example.com/path/to/wordpress/custom/themes/test/changelog.txt"
     end
   end
 
   describe "#has_readme?" do
     before :each do
-      @instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :vulns_file => "XXX.xml",
-                             :name => "test",
-                             :vulns_xpath => "XX",
-                             :type => "plugins"
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
       )
     end
 
@@ -494,12 +416,13 @@ describe WpPlugin do
 
   describe "#has_changelog?" do
     before :each do
-      @instance = WpItem.new(:base_url => "http://sub.example.com/path/to/wordpress/",
-                             :path => "test/asdf.php",
-                             :vulns_file => "XXX.xml",
-                             :name => "test",
-                             :vulns_xpath => "XX",
-                             :type => "plugins"
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
       )
     end
 
