@@ -113,6 +113,12 @@ describe WpTarget do
       @expected   = "wp-content"
     end
 
+    it "should return 'wp-content' if url has trailing slash" do
+      @target_url = "http://lamp/wordpress-3.4.1/"
+      @fixture    = fixtures_dir + "/wordpress-3.4.1.htm"
+      @expected   = "wp-content"
+    end
+
     it "should find the default 'wp-content' dir even if the target_url is not the same (ie : the user supply an IP address and the url used in the code is a domain)" do
       @target_url = "http://192.168.1.103/wordpress-3.4.1/"
       @fixture    = fixtures_dir + "/wordpress-3.4.1.htm"
