@@ -30,7 +30,6 @@ describe WpVersion do
 
     after :each do
       stub_request_to_fixture(:url => @target_uri.to_s, :fixture => @fixture)
-
       WpVersion.find_from_meta_generator(:base_url => @target_uri.to_s).should === @expected
     end
 
@@ -48,6 +47,11 @@ describe WpVersion do
       @fixture = fixtures_dir + "/3.4-beta4.htm"
       @expected = "3.4-beta4"
     end
+
+    it "should return nil if it's not a valid version, must contains at least one '.'" do
+      @fixture = fixtures_dir + "/invalid_version.htm"
+      @expected = nil
+    end
   end
 
   describe "#find_from_rss_generator" do
@@ -56,7 +60,6 @@ describe WpVersion do
     after :each do
       @status_code ||= 200
       stub_request_to_fixture(:url => @target_uri.merge("feed/").to_s, :status => @status_code, :fixture => @fixture)
-
       WpVersion.find_from_rss_generator(:base_url => @target_uri).should === @expected
     end
 
@@ -84,6 +87,11 @@ describe WpVersion do
     it "should return 3.4-beta4" do
       @fixture = fixtures_dir + "/3.4-beta4.htm"
       @expected = "3.4-beta4"
+    end
+
+    it "should return nil if it's not a valid version, must contains at least one '.'" do
+      @fixture = fixtures_dir + "/invalid_version.htm"
+      @expected = nil
     end
   end
 
@@ -136,6 +144,11 @@ describe WpVersion do
       @fixture = fixtures_dir + "/readme-3.3.2.html"
       @expected = "3.3.2"
     end
+  
+    it "should return nil if it's not a valid version, must contains at least one '.'" do
+      @fixture = fixtures_dir + "/invalid_version.html"
+      @expected = nil
+    end  
   end
 
   describe "#find_from_advanced_fingerprinting" do

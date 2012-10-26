@@ -62,14 +62,14 @@ class WpVersion < Vulnerable
     target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
-    response.body[%r{name="generator" content="wordpress ([^"]+)"}i, 1]
+    response.body[%r{name="generator" content="wordpress (#{WpVersion.version_pattern})"}i, 1]
   end
 
   def self.find_from_rss_generator(options)
     target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.merge("feed/").to_s, {:follow_location => true, :max_redirects => 2})
 
-    response.body[%r{<generator>http://wordpress.org/\?v=([^<]+)</generator>}i, 1]
+    response.body[%r{<generator>http://wordpress.org/\?v=(#{WpVersion.version_pattern})</generator>}i, 1]
   end
 
   # Uses data/wp_versions.xml to try to identify a
