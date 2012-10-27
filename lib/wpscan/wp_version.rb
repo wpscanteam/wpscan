@@ -62,15 +62,57 @@ class WpVersion < Vulnerable
     target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
-    response.body[%r{name="generator" content="wordpress (#{WpVersion.version_pattern})"}i, 1]
+    response.body[%r{name="generator" content="wordpress #{WpVersion.version_pattern}"}i, 1]
   end
 
+  # Attempts to find the WordPress version from,
+  # the generator tag in the RSS feed source.
   def self.find_from_rss_generator(options)
     target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.merge("feed/").to_s, {:follow_location => true, :max_redirects => 2})
 
-    response.body[%r{<generator>http://wordpress.org/\?v=(#{WpVersion.version_pattern})</generator>}i, 1]
+    response.body[%r{<generator>http://wordpress.org/\?v=#{WpVersion.version_pattern}</generator>}i, 1]
   end
+
+  # Attempts to find WordPress version from,
+  # the generator tag in the RDF feed source.
+  def self.find_from_rdf_generator(options)
+    target_uri = options[:base_url]
+    response = Browser.instance.get(target_uri.merge("feed/rdf/").to_s, {:follow_location => true, :max_redirects => 2})
+
+    response.body[%r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i, 1]  
+  end
+
+  # Attempts to find the WordPress version from,
+  # the generator tag in the RSS2 feed source.
+  #
+  # Have not been able to find an example of this - Ryan
+  #def self.find_from_rss2_generator(options)
+  #  target_uri = options[:base_url]
+  #  response = Browser.instance.get(target_uri.merge("feed/rss/").to_s, {:follow_location => true, :max_redirects => 2})
+  #
+  #  response.body[%r{<generator>http://wordpress.org/?v=(#{WpVersion.version_pattern})</generator>}i, 1]
+  #end
+
+  # Attempts to find the WordPress version from,
+  # the generator tag in the Atom source.
+  def self.find_from_atom_generator(options)
+    target_uri = options[:base_url]
+    response = Browser.instance.get(target_uri.merge("feed/atom/").to_s, {:follow_location => true, :max_redirects => 2})
+
+    response.body[%r{<generator uri="http://wordpress.org/" version="#{WpVersion.version_pattern}">WordPress</generator>}i, 1]
+  end
+
+  # Attempts to find the WordPress version from,
+  # the generator tag in the comment rss source.
+  #
+  # Have not been able to find an example of this - Ryan
+  #def self.find_from_comments_rss_generator(options)
+  #  target_uri = options[:base_url]
+  #  response = Browser.instance.get(target_uri.merge("comments/feed/").to_s, {:follow_location => true, :max_redirects => 2})
+  #
+  #  response.body[%r{<!-- generator="WordPress/#{WpVersion.version_pattern}" -->}i, 1]
+  #end
 
   # Uses data/wp_versions.xml to try to identify a
   # wordpress version.
@@ -116,23 +158,27 @@ class WpVersion < Vulnerable
     nil # Otherwise the data['file'] is returned (issue #107)
   end
 
+  # Attempts to find the WordPress version from the readme.html file.
   def self.find_from_readme(options)
     target_uri = options[:base_url]
     Browser.instance.get(target_uri.merge("readme.html").to_s).body[%r{<br />\sversion #{WpVersion.version_pattern}}i, 1]
   end
 
-  # http://code.google.com/p/wpscan/issues/detail?id=109
+  # Attempts to find the WordPress version from the sitemap.xml file.
+  #
+  # See: http://code.google.com/p/wpscan/issues/detail?id=109
   def self.find_from_sitemap_generator(options)
     target_uri = options[:base_url]
     Browser.instance.get(target_uri.merge("sitemap.xml").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}i, 1]
   end
 
+  # Attempts to find the WordPress version from the p-links-opml.php file.
   def self.find_from_links_opml(options)
     target_uri = options[:base_url]
     Browser.instance.get(target_uri.merge("wp-links-opml.php").to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}i, 1]
   end
 
-  # Used to check if the version is correct : must contain at least one .
+  # Used to check if the version is correct: must contain at least one dot.
   def self.version_pattern
     '([^\r\n]+[\.][^\r\n]+)'
   end

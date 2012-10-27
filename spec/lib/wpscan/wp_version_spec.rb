@@ -95,6 +95,88 @@ describe WpVersion do
     end
   end
 
+  describe "#find_from_rdf_generator" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/rdf-generator" }
+
+    after :each do
+      @status_code ||= 200
+      stub_request_to_fixture(:url => @target_uri.merge("feed/rdf/").to_s, :status => @status_code, :fixture => @fixture)
+      WpVersion.find_from_rdf_generator(:base_url => @target_uri).should === @expected
+    end
+
+    it "should return nil on a 404" do
+      @status_code = 404
+      @fixture = SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/404.htm"
+      @expected = nil
+    end
+
+    it "should return nil if the rdf-generator is not found" do
+      @fixture = fixtures_dir + "/no-rdf-generator.htm"
+      @expected = nil
+    end
+
+    it "should return nil if the version is not found (but the rdf-generator is present)" do
+      @fixture = fixtures_dir + "/no-version.htm"
+      @expected = nil
+    end
+
+    it "shuld return 3.3.2" do
+      @fixture = fixtures_dir + "/3.3.2.htm"
+      @expected = "3.3.2"
+    end
+
+    it "should return 3.4-beta4" do
+      @fixture = fixtures_dir + "/3.4-beta4.htm"
+      @expected = "3.4-beta4"
+    end
+
+    it "should return nil if it's not a valid version, must contains at least one '.'" do
+      @fixture = fixtures_dir + "/invalid_version.htm"
+      @expected = nil
+    end
+  end
+
+  describe "#find_from_atom_generator" do
+    let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/atom-generator" }
+
+    after :each do
+      @status_code ||= 200
+      stub_request_to_fixture(:url => @target_uri.merge("feed/atom/").to_s, :status => @status_code, :fixture => @fixture)
+      WpVersion.find_from_atom_generator(:base_url => @target_uri).should === @expected
+    end
+
+    it "should return nil on a 404" do
+      @status_code = 404
+      @fixture = SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/404.htm"
+      @expected = nil
+    end
+
+    it "should return nil if the atom-generator is not found" do
+      @fixture = fixtures_dir + "/no-atom-generator.htm"
+      @expected = nil
+    end
+
+    it "should return nil if the version is not found (but the atom-generator is present)" do
+      @fixture = fixtures_dir + "/no-version.htm"
+      @expected = nil
+    end
+
+    it "shuld return 3.3.2" do
+      @fixture = fixtures_dir + "/3.3.2.htm"
+      @expected = "3.3.2"
+    end
+
+    it "should return 3.4-beta4" do
+      @fixture = fixtures_dir + "/3.4-beta4.htm"
+      @expected = "3.4-beta4"
+    end
+
+    it "should return nil if it's not a valid version, must contains at least one '.'" do
+      @fixture = fixtures_dir + "/invalid_version.htm"
+      @expected = nil
+    end
+  end
+
   describe "#find_from_sitemap_generator" do
     after :each do
       stub_request(:get, @target_uri.merge("sitemap.xml").to_s).
