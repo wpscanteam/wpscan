@@ -35,15 +35,15 @@ WPScan only supports Ruby => 1.9.
 
 ```sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev```
 
-``` sudo gem install typhoeus nokogiri json```
+```sudo gem install bundler && bundle install```
 
 *Installing on other nix:* (not tested)
 
-```sudo gem install typhoeus nokogiri json```
+```sudo gem install bundler && bundle install```
 
 *Installing on Mac OSX:*
 
-```sudo gem install typhoeus nokogiri json```
+```sudo gem install bundler && bundle install```
 
 #### KNOWN ISSUES
 

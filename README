@@ -35,30 +35,25 @@ WPScan comes pre-installed on BackTrack5 R1 in the /pentest/web/wpscan directory
   -> Installing on Backtrack5 Gnome/KDE 32bit :
 
     sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev
-    sudo gem install --user-install mime-types typhoeus nokogiri json
-
+    sudo gem install bundler && bundle install
 
   -> Installing on Debian/Ubuntu :
 
     sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev
-    sudo gem install typhoeus nokogiri json
-
+    sudo gem install bundler && bundle install
 
   -> Installing on other nix : (not tested)
 
-    sudo gem install typhoeus nokogiri json
-
+    sudo gem install bundler && bundle install
 
   -> Installing on Windows : (not tested)
 
     gem install typhoeus ("Windows is not officially supported")
     gem install nokogiri json
 
-
   -> Installing on Mac OSX :
 
-    sudo gem install typhoeus nokogiri json
-
+     sudo gem install bundler && bundle install
 
 ==KNOWN ISSUES==
 
