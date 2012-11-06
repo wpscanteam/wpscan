@@ -141,7 +141,7 @@ class Browser
 
   def forge_request(url, params = {})
     Typhoeus::Request.new(
-        url.to_s,
+        URI.encode(url.to_s),
         merge_request_params(params)
     )
   end

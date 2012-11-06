@@ -47,10 +47,10 @@ begin
 
   options.each do |option, argument|
     case option
-      when "--help"
+      when "--help", "-h"
         help()
         exit
-      when "--verbose"
+      when "--verbose", "-v"
         @verbose = true
       when "--generate_plugin_list", "--gpl"
         if argument == ''
@@ -70,7 +70,7 @@ begin
         end
 
         @generate_theme_list = true
-      when "--update"
+      when "--update", "-u"
         @update = true
       when "--generate_full_plugin_list", "--gfpl"
         @generate_full_plugin_list = true
