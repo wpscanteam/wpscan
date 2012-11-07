@@ -62,12 +62,12 @@ class WpItem < Vulnerable
     path = @path.sub(/^\//, "")
     if type =="plugins"
       # plugins can be outside of wp-content. wp_content_dir included in wp_plugins_dir
-      ret = URI.parse("#{url}#@wp_plugins_dir/#{path}")
+      ret = URI.parse(URI.encode("#{url}#@wp_plugins_dir/#{path}"))
     elsif type == "timthumbs"
       # timthumbs have folder in path variable
-      ret = URI.parse("#{url}#{wp_content_dir}/#{path}")
+      ret = URI.parse(URI.encode("#{url}#{wp_content_dir}/#{path}"))
     else
-      ret = URI.parse("#{url}#{wp_content_dir}/#{get_sub_folder}/#{path}")
+      ret = URI.parse(URI.encode("#{url}#{wp_content_dir}/#{get_sub_folder}/#{path}"))
     end
     ret
   end
@@ -79,7 +79,7 @@ class WpItem < Vulnerable
     unless valid_location_url
       valid_location_url = add_trailing_slash(location_url)
     end
-    URI.parse(valid_location_url)
+    URI.parse(URI.encode(valid_location_url))
   end
 
   # Returns version number from readme.txt if it exists

@@ -59,7 +59,7 @@ class Svn_Parser
     # First get all trunk or version directories
     dirs.each do |dir|
       svnurl = @svn_root + dir + "/"
-      request = @svn_browser.forge_request(svnurl)
+      request = @svn_browser.forge_request(URI.encode(svnurl))
       request.on_complete do |response|
         # trunk folder present
         if contains_trunk(response)
@@ -97,7 +97,7 @@ class Svn_Parser
     queue_count = 0
     dirs.each do |dir|
       url = @svn_root + dir[:name] + "/" + dir[:folder] + "/"
-      request = @svn_browser.forge_request(url)
+      request = @svn_browser.forge_request(URI.encode(url))
       request.on_complete do |response|
         puts "[+] Parsing url #{url} [#{response.code.to_s}]" if @verbose
         file = response.body[%r{<li><a href="(.+\.[^/]+)">.+</a></li>}i, 1]
