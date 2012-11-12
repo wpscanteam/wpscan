@@ -24,35 +24,57 @@ ryandewhurst at gmail
 
 WPScan comes pre-installed on the following Linux distributions:
 
-- [BackTrack Linux](http://www.backtrack-linux.org/) since version 5 R1 in the /pentest/web/wpscan/ directory.
-- [SamuraiWTF](http://samurai.inguardians.com/)
 - [BackBox Linux](http://www.backbox.org/)
+- [BackTrack Linux](http://www.backtrack-linux.org/) (outdated WPScan installed, update needed)
 - [Pentoo](http://www.pentoo.ch/)
+- [SamuraiWTF](http://samurai.inguardians.com/)
 
-WPScan only supports Ruby => 1.9.
+Prerequisites:
+
+- Ruby => 1.9
+- RubyGems
+- Git
 
 *Installing on Debian/Ubuntu:*
 
 ```sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev```
 
+```git clone https://github.com/wpscanteam/wpscan.git```
+
+```cd wpscan```
+
 ```sudo gem install bundler && bundle install```
 
-*Installing on other nix:* (not tested)
+*Installing on Fedora:*
+
+```sudo yum install libcurl-devel```
+
+```git clone https://github.com/wpscanteam/wpscan.git```
+
+```cd wpscan```
 
 ```sudo gem install bundler && bundle install```
 
 *Installing on Mac OSX:*
+
+```git clone https://github.com/wpscanteam/wpscan.git```
+
+```cd wpscan```
 
 ```sudo gem install bundler && bundle install```
 
 #### KNOWN ISSUES
 
   - Typhoeus segmentation fault
-      Update curl to at least v7.21 (you may have to install it from sources)
+      Update cURL to version => 7.21 (may have to install from source)
       See http://code.google.com/p/wpscan/issues/detail?id=81
 
   - If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
       It happens with enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
+
+  - Proxy not working
+      Update cURL to version => 7.21.7 (may have to install from source).
+      See https://github.com/wpscanteam/wpscan/issues/7
 
 #### WPSCAN ARGUMENTS
 
