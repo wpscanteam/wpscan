@@ -67,13 +67,16 @@ Prerequisites:
 #### KNOWN ISSUES
 
   - Typhoeus segmentation fault
+
       Update cURL to version => 7.21 (may have to install from source)
       See http://code.google.com/p/wpscan/issues/detail?id=81
 
   - If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
+
       It happens with enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
 
   - Proxy not working
+
       Update cURL to version => 7.21.7 (may have to install from source).
       See https://github.com/wpscanteam/wpscan/issues/7
 
