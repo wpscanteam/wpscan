@@ -31,6 +31,7 @@ WPScan comes pre-installed on the following Linux distributions:
 
 Prerequisites:
 
+- Windows not supported
 - Ruby => 1.9
 - RubyGems
 - Git
