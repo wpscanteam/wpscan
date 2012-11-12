@@ -63,36 +63,68 @@
 <p>WPScan comes pre-installed on the following Linux distributions:</p>
 
 <ul>
-<li>
-<a href="http://www.backtrack-linux.org/">BackTrack Linux</a> since version 5 R1 in the /pentest/web/wpscan/ directory. </li>
-<li><a href="http://samurai.inguardians.com/">SamuraiWTF</a></li>
-<li><a href="http://www.backbox.org/">BackBox Linux</a></li>
-<li><a href="http://www.pentoo.ch/">Pentoo</a></li>
-</ul><p>WPScan only supports Ruby =&gt; 1.9.</p>
+  <li><a href="http://www.backbox.org/">BackBox Linux</a></li>
+  <li><a href="http://www.backtrack-linux.org/">BackTrack Linux</a> (outdated WPScan installed, update needed)</li>
+  <li><a href="http://www.pentoo.ch/">Pentoo</a></li>
+  <li><a href="http://samurai.inguardians.com/">SamuraiWTF</a></li>
+</ul>
+
+<p>Prerequisites:</p>
+
+<ul>
+  <li>Windows not supported</li>
+  <li>Ruby => 1.9</li>
+  <li>RubyGems</li>
+  <li>Git</li>
+</ul>
 
 <p><em>Installing on Debian/Ubuntu:</em></p>
 
 <p><code>sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev</code></p>
 
+<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
+
+<p><code>cd wpscan</code></p>
+
 <p><code>sudo gem install bundler && bundle install</code></p>
 
-<p><em>Installing on other nix:</em> (not tested)</p>
+<p><em>Installing on Fedora:</em></p>
 
-<p><code>sudo gem install bundler && bundle install/code></p>
+<p><code>sudo yum install libcurl-devel</code></p>
+
+<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
+
+<p><code>cd wpscan</code></p>
+
+<p><code>sudo gem install bundler && bundle install</code></p>
 
 <p><em>Installing on Mac OSX:</em></p>
+
+<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
+
+<p><code>cd wpscan</code></p>
 
 <p><code>sudo gem install bundler && bundle install</code></p>
 
 <h4>KNOWN ISSUES</h4>
 
 <ul>
-<li><p>Typhoeus segmentation fault
-  Update curl to at least v7.21 (you may have to install it from sources)
-  See <a href="http://code.google.com/p/wpscan/issues/detail?id=81">http://code.google.com/p/wpscan/issues/detail?id=81</a></p></li>
-<li><p>If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
-  It happens whith enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'</p></li>
-</ul><h4>WPSCAN ARGUMENTS</h4>
+<li><p>
+Typhoeus segmentation fault
+  Update curl to at least v7.21 (may have to install from source)
+  See <a href="http://code.google.com/p/wpscan/issues/detail?id=81">http://code.google.com/p/wpscan/issues/detail?id=81</a>
+</p></li>
+<li><p>
+If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
+  It happens whith enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
+</p></li>
+<li><p>
+Proxy not working
+Update cURL to version => 7.21.7 (may have to install from source). See <a href="https://github.com/wpscanteam/wpscan/issues/7">https://github.com/wpscanteam/wpscan/issues/7</a>
+</p></li>
+</ul>
+
+<h4>WPSCAN ARGUMENTS</h4>
 
 <pre><code>--url   | -u &lt;target url&gt;  The WordPress URL/domain to scan.
 
