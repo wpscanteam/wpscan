@@ -10,7 +10,7 @@ __________________________________________________
 ==LICENSE==
 
 WPScan - WordPress Security Scanner
-Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
+Copyright (C) 2011-2012  Ryan Dewhurst AKA ethicalhack3r
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -27,43 +27,54 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ryandewhurst at gmail
 
-
 ==INSTALL==
 
-WPScan comes pre-installed on BackTrack5 R1 in the /pentest/web/wpscan directory. WPScan only supports Ruby => 1.9.
+  WPScan comes pre-installed on the following Linux distributions:
 
-  -> Installing on Backtrack5 Gnome/KDE 32bit :
+   * BackBox Linux
+   * BackTrack Linux (outdated WPScan installed, update needed)
+   * Pentoo
+   * SamuraiWTF
 
-    sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev
-    sudo gem install bundler && bundle install
+  Prerequisites:
 
-  -> Installing on Debian/Ubuntu :
+   * Windows not supported
+   * Ruby => 1.9
+   * RubyGems
+   * Git
+
+  -> Installing on Debian/Ubuntu:
 
     sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
     sudo gem install bundler && bundle install
 
-  -> Installing on other nix : (not tested)
+  -> Installing on Fedora:
 
+    sudo yum install libcurl-devel
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
     sudo gem install bundler && bundle install
 
-  -> Installing on Windows : (not tested)
+  -> Installing on Mac OS X:
 
-    gem install typhoeus ("Windows is not officially supported")
-    gem install nokogiri json
-
-  -> Installing on Mac OSX :
-
-     sudo gem install bundler && bundle install
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler && bundle install
 
 ==KNOWN ISSUES==
 
-  - Typhoeus segmentation fault
-      Update curl to at least v7.21 (you may have to install it from sources)
+  - Typhoeus segmentation fault:
+      Update cURL to version => 7.21 (may have to install from source) 
       See http://code.google.com/p/wpscan/issues/detail?id=81
 
-  - If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
+  - If you have one the following errors: "-bash: !t: event not found", "-bash: !u: event not found" 
       It happens with enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
 
+  - Proxy not working:
+      Update cURL to version => 7.21.7 (may have to install from source) 
+      See https://github.com/wpscanteam/wpscan/issues/7
 
 ==WPSCAN ARGUMENTS==
 
@@ -105,7 +116,6 @@ WPScan comes pre-installed on BackTrack5 R1 in the /pentest/web/wpscan directory
 
 --verbose  | -v Verbose output.
 
-
 ==WPSCAN EXAMPLES==
 
 Do 'non-intrusive' checks...
@@ -124,7 +134,6 @@ Enumerate instaled plugins...
 
   ruby wpscan.rb --url www.example.com --enumerate p
 
-
 ==WPSTOOLS ARGUMENTS==
 
 --help    | -h   This help screen.
@@ -133,12 +142,10 @@ Enumerate instaled plugins...
 --generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
 --gpl  Alias for --generate_plugin_list
 
-
 ==WPSTOOLS EXAMPLES==
 
 - Generate a new 'most popular' plugin list, up to 150 pages ...
 ruby wpstools.rb --generate_plugin_list 150
-
 
 ===PROJECT HOME===
 
