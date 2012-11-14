@@ -32,6 +32,7 @@ begin
 
   if wpscan_options.help
     help()
+    usage()
     exit
   end
 

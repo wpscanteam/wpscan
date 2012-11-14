@@ -93,12 +93,12 @@ Prerequisites:
         u        usernames from id 1 to 10
         u[10-20] usernames from id 10 to 20 (you must write [] chars)
         p        plugins
-        p!       only vulnerable plugins
-        t        timthumbs
-        T        themes
-        T!       only vulnerable themes
-    Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins
-    If no option is supplied, the default is 'tup!'
+        vp       only vulnerable plugins
+        tt       timthumbs
+        t        themes
+        vt       only vulnerable themes
+    Multiple values are allowed : '-e tt,p' will enumerate timthumbs and plugins
+    If no option is supplied, the default is 'vt,tt,u,vp'
 
     --config-file | -c <config file> Use the specified config file
 
