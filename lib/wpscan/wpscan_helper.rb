@@ -23,9 +23,11 @@ require_files_from_directory(WPSCAN_LIB_DIR, "**/*.rb")
 # wpscan usage
 def usage()
   script_name = $0
-  puts "--help or -h for further help."
   puts
   puts "Examples :"
+  puts
+  puts "-Further help ..."
+  puts "ruby #{script_name} --help"
   puts
   puts "-Do 'non-intrusive' checks ..."
   puts "ruby #{script_name} --url www.example.com"
@@ -40,18 +42,18 @@ def usage()
   puts "ruby #{script_name} --url www.example.com --enumerate p"
   puts
   puts "-Enumerate installed themes ..."
-  puts "ruby #{script_name} --url www.example.com --enumerate T"
+  puts "ruby #{script_name} --url www.example.com --enumerate t"
   puts
   puts "-Enumerate users ..."
   puts "ruby #{script_name} --url www.example.com --enumerate u"
   puts
   puts "-Enumerate installed timthumbs ..."
-  puts "ruby #{script_name} --url www.example.com --enumerate t"
+  puts "ruby #{script_name} --url www.example.com --enumerate tt"
   puts
   puts "-Use a HTTP proxy ..."
   puts "ruby #{script_name} --url www.example.com --proxy 127.0.0.1:8118"
   puts
-  puts "-Use a SOCKS5 proxy ..."
+  puts "-Use a SOCKS5 proxy ... (cURL >= v7.21.7 needed)"
   puts "ruby #{script_name} --url www.example.com --proxy socks5://127.0.0.1:9000"
   puts
   puts "-Use custom content directory ..."
@@ -82,12 +84,12 @@ def help()
   puts "    u        usernames from id 1 to 10"
   puts "    u[10-20] usernames from id 10 to 20 (you must write [] chars)"
   puts "    p        plugins"
-  puts "    p!       only vulnerable plugins"
-  puts "    t        timthumbs"
-  puts "    T        themes"
-  puts "    T!       only vulnerable themes"
-  puts "  Multiple values are allowed : '-e tp' will enumerate timthumbs and plugins"
-  puts "  If no option is supplied, the default is 'tup!'"
+  puts "    vp       only vulnerable plugins"
+  puts "    tt       timthumbs"
+  puts "    t        themes"
+  puts "    vt       only vulnerable themes"
+  puts "  Multiple values are allowed : '-e t,p' will enumerate timthumbs and plugins"
+  puts "  If no option is supplied, the default is 'vt,tt,u,vp'"
   puts
   puts "--config-file | -c <config file> Use the specified config file"
   puts "--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not"

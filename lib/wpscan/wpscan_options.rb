@@ -151,7 +151,7 @@ class WpscanOptions
       )
     elsif cli_option === "--enumerate" # Special cases
                                        # Default value if no argument is given
-      cli_value = "T!tup!" if cli_value.length == 0
+      cli_value = "vt,tt,u,vp" if cli_value.length == 0
 
       enumerate_options_from_string(cli_value)
     else
@@ -160,25 +160,28 @@ class WpscanOptions
   end
 
   # Will set enumerate_* from the string value
-  # IE : if value = p! => :enumerate_only_vulnerable_plugins will be set to true
-  # multiple enumeration are possible : 'up' => :enumerate_usernames and :enumerate_plugins
+  # IE : if value = vp => :enumerate_only_vulnerable_plugins will be set to true
+  # multiple enumeration are possible : 'u,p' => :enumerate_usernames and :enumerate_plugins
   # Special case for usernames, a range is possible : u[1-10] will enumerate usernames from 1 to 10
   def enumerate_options_from_string(value)
     # Usage of self is mandatory because there are overridden setters
-    self.enumerate_only_vulnerable_plugins = true if value =~ /p!/
 
-    self.enumerate_plugins = true if value =~ /p(?!!)/
+    value = value.split(',').map{ |c| c.downcase }
 
-    @enumerate_timthumbs = true if value =~ /t/
+    self.enumerate_only_vulnerable_plugins = true if value.include?('vp')
 
-    self.enumerate_only_vulnerable_themes = true if value =~ /T!/
+    self.enumerate_plugins = true if value.include?('p')
 
-    self.enumerate_themes = true if value =~ /T(?!!)/
+    @enumerate_timthumbs = true if value.include?('tt')
 
-    if value =~ /u/
+    self.enumerate_only_vulnerable_themes = true if value.include?('vt')
+
+    self.enumerate_themes = true if value.include?('t')
+
+    value.grep(/^u/) do |username_enum_value|
       @enumerate_usernames = true
       # Check for usernames range
-      matches = %r{\[([\d]+)-([\d]+)\]}.match(value)
+      matches = %r{\[([\d]+)-([\d]+)\]}.match(username_enum_value)
       if matches
         @enumerate_usernames_range = (matches[1].to_i..matches[2].to_i)
       end

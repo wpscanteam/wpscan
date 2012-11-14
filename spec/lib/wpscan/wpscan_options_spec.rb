@@ -247,7 +247,7 @@ describe "WpscanOptions" do
     end
 
     it "should raise an error if p and p! are " do
-      expect { @wpscan_options.enumerate_options_from_string("pp!") }.to raise_error
+      expect { @wpscan_options.enumerate_options_from_string("p,vp") }.to raise_error
     end
 
     it "should set enumerate_plugins to true" do
@@ -256,12 +256,12 @@ describe "WpscanOptions" do
     end
 
     it "should set enumerate_only_vulnerable_plugins to tue" do
-      @argument = "p!"
+      @argument = "vp"
       @expected_hash = {:enumerate_only_vulnerable_plugins => true}
     end
 
     it "should set enumerate_timthumbs to true" do
-      @argument = 't'
+      @argument = 'tt'
       @expected_hash = {:enumerate_timthumbs => true}
     end
 
@@ -277,7 +277,7 @@ describe "WpscanOptions" do
 
     # Let's try some multiple choices
     it "should set enumerate_timthumbs to true, enumerate_usernames to true, enumerate_usernames_range to (1..2)" do
-      @argument = "u[1-2]t"
+      @argument = "u[1-2],tt"
       @expected_hash = {
           :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
           :enumerate_timthumbs => true
@@ -347,7 +347,7 @@ describe "WpscanOptions" do
     end
 
     it "should return {:url => 'example.com', :enumerate_plugins => true, :enumerate_timthumbs => true}" do
-      @argv = "-u example.com -e pt"
+      @argv = "-u example.com -e p,tt"
       @expected_hash = {:url => 'http://example.com', :enumerate_plugins => true, :enumerate_timthumbs => true}
     end
   end
