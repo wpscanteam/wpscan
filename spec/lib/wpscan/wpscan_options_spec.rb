@@ -89,11 +89,24 @@ describe "WpscanOptions" do
     end
   end
 
+  describe "#proxy_auth=" do
+    it "should raise an error if the format is not correct" do
+      expect { @wpscan_options.proxy_auth = "invalidauth" }.to raise_error
+    end
+
+    it "should not raise en error" do
+      proxy_auth = "user:pass"
+      @wpscan_options.proxy_auth = proxy_auth
+      @wpscan_options.proxy_auth.should === proxy_auth
+    end
+  end
+
   describe "#enumerate_plugins=" do
     it "should raise an error" do
       @wpscan_options.enumerate_only_vulnerable_plugins = true
-      expect { @wpscan_options.enumerate_plugins = true }.to raise_error(RuntimeError,
-                                                                         "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
+      expect { @wpscan_options.enumerate_plugins = true }.to raise_error(
+        RuntimeError, "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one"
+      )
     end
 
     it "should not raise an error" do
@@ -107,8 +120,9 @@ describe "WpscanOptions" do
   describe "#enumerate_themes=" do
     it "should raise an error" do
       @wpscan_options.enumerate_only_vulnerable_themes = true
-      expect { @wpscan_options.enumerate_themes = true }.to raise_error(RuntimeError,
-                                                                        "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+      expect { @wpscan_options.enumerate_themes = true }.to raise_error(
+        RuntimeError, "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+      )
     end
 
     it "should not raise an error" do
@@ -122,8 +136,9 @@ describe "WpscanOptions" do
   describe "#enumerate_only_vulnerable_plugins=" do
     it "should raise an error" do
       @wpscan_options.enumerate_plugins = true
-      expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error(RuntimeError,
-                                                                                         "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one")
+      expect { @wpscan_options.enumerate_only_vulnerable_plugins = true }.to raise_error(
+        RuntimeError, "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one"
+      )
     end
 
     it "should not raise an error" do
@@ -137,8 +152,9 @@ describe "WpscanOptions" do
   describe "#enumerate_only_vulnerable_themes=" do
     it "should raise an error" do
       @wpscan_options.enumerate_themes = true
-      expect { @wpscan_options.enumerate_only_vulnerable_themes = true }.to raise_error(RuntimeError,
-                                                                                        "You can't enumerate themes and only vulnerable themes at the same time, please choose only one")
+      expect { @wpscan_options.enumerate_only_vulnerable_themes = true }.to raise_error(
+        RuntimeError, "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+      )
     end
 
     it "should not raise an error" do
@@ -200,19 +216,19 @@ describe "WpscanOptions" do
       WpscanOptions.option_to_instance_variable_setter(@argument).should === @expected
     end
 
-    it "should return @url" do
+    it "should return :url=" do
       @argument = "--url"
       @expected = :url=
     end
 
-    it "should return @verbose" do
-      @argument = "-v"
+    it "should return :verbose=" do
+      @argument = "--verbose"
       @expected = :verbose=
     end
 
-    it "should return nil for -U" do
-      @argument = "-U"
-      @expected = nil
+    it "should return :proxy= for --proxy" do
+      @argument = "--proxy"
+      @expected = :proxy=
     end
 
     it "should return nil for --enumerate" do
@@ -220,9 +236,9 @@ describe "WpscanOptions" do
       @expected = nil
     end
 
-    it "should return nil for -e" do
-      @argument = "-e"
-      @expected = nil
+    it "should return :proxy_auth= for --proxy_auth" do
+      @argument = "--proxy_auth"
+      @expected = :proxy_auth=
     end
   end
 
@@ -279,8 +295,8 @@ describe "WpscanOptions" do
     it "should set enumerate_timthumbs to true, enumerate_usernames to true, enumerate_usernames_range to (1..2)" do
       @argument = "u[1-2],tt"
       @expected_hash = {
-          :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
-          :enumerate_timthumbs => true
+        :enumerate_usernames => true, :enumerate_usernames_range => (1..2),
+        :enumerate_timthumbs => true
       }
     end
   end

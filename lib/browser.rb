@@ -25,6 +25,7 @@ class Browser
       :user_agent_mode,
       :available_user_agents,
       :proxy,
+      :proxy_auth,
       :max_threads,
       :cache_timeout,
       :request_timeout
@@ -98,6 +99,29 @@ class Browser
     @max_threads = max_threads
   end
 
+  def proxy_auth=(auth)
+    unless auth.nil?
+      if auth.is_a?(Hash)
+        if !auth.include?(:proxy_username) or !auth.include?(:proxy_password)
+          raise_invalid_proxy_format()
+        end
+        @proxy_auth = auth
+      elsif auth.is_a?(String)
+        if matches = %r{([^:]+):(.*)}.match(auth)
+          @proxy_auth = {:proxy_username => matches[1], :proxy_password => matches[2]}
+        else
+          raise_invalid_proxy_format()
+        end
+      else
+        raise_invalid_proxy_format()
+      end
+    end
+  end
+
+  def raise_invalid_proxy_format
+    raise "Invalid proxy auth format, expected username:password or {:proxy_username => username, :proxy_password => password}"
+  end
+
   # TODO reload hydra (if the .load_config is called on a browser object, hydra will not have the new @max_threads and @request_timeout)
   def load_config(config_file = nil)
     @config_file = config_file || @config_file
@@ -149,6 +173,10 @@ class Browser
   def merge_request_params(params = {})
     if @proxy
       params = params.merge(:proxy => @proxy)
+
+      if @proxy_auth
+        params = params.merge(@proxy_auth)
+      end
     end
 
     unless params.has_key?(:disable_ssl_host_verification)

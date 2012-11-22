@@ -27,6 +27,7 @@ class WpscanOptions
       :enumerate_usernames,
       :enumerate_usernames_range,
       :proxy,
+      :proxy_auth,
       :threads,
       :url,
       :wordlist,
@@ -73,6 +74,14 @@ class WpscanOptions
       raise "Invalid proxy format. Should be host:port."
     else
       @proxy = proxy
+    end
+  end
+
+  def proxy_auth=(auth)
+    if auth.index(':') == nil
+      raise "Invalid proxy auth format, username:password expected"
+    else
+      @proxy_auth = auth
     end
   end
 
@@ -150,7 +159,7 @@ class WpscanOptions
           cli_value
       )
     elsif cli_option === "--enumerate" # Special cases
-                                       # Default value if no argument is given
+      # Default value if no argument is given
       cli_value = "vt,tt,u,vp" if cli_value.length == 0
 
       enumerate_options_from_string(cli_value)
@@ -201,7 +210,8 @@ class WpscanOptions
         ["--force", "-f", GetoptLong::NO_ARGUMENT],
         ["--help", "-h", GetoptLong::NO_ARGUMENT],
         ["--verbose", "-v", GetoptLong::NO_ARGUMENT],
-        ["--proxy", GetoptLong::OPTIONAL_ARGUMENT],
+        ["--proxy", GetoptLong::REQUIRED_ARGUMENT],
+        ["--proxy-auth", GetoptLong::REQUIRED_ARGUMENT],
         ["--update", GetoptLong::NO_ARGUMENT],
         ["--follow-redirection", GetoptLong::NO_ARGUMENT],
         ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
@@ -226,7 +236,7 @@ class WpscanOptions
 
   def self.option_to_instance_variable_setter(option)
     cleaned_option = WpscanOptions.clean_option(option)
-    option_syms = ACCESSOR_OPTIONS.grep(%r{^#{cleaned_option}})
+    option_syms = ACCESSOR_OPTIONS.grep(%r{^#{cleaned_option}$})
 
     option_syms.length == 1 ? :"#{option_syms.at(0)}=" : nil
   end
