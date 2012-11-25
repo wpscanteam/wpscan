@@ -27,15 +27,13 @@ class Generate_List
   def initialize(type, verbose)
     if type =~ /plugins/i
       @type           = "plugin"
-      @svn_url        = 'http://plugins.svn.wordpress.org/'
-      @file_name      = DATA_DIR + '/plugins.txt'
-      @popular_url    = 'http://wordpress.org/extend/plugins/browse/popular/'
+      @svn_url        = "http://plugins.svn.wordpress.org/"
+      @popular_url    = "http://wordpress.org/extend/plugins/browse/popular/"
       @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/plugins/(.+)/">.+</a></h3>}i
     elsif type =~ /themes/i
       @type           = "theme"
-      @svn_url        = 'http://themes.svn.wordpress.org/'
-      @file_name      = DATA_DIR + '/themes.txt'
-      @popular_url    = 'http://wordpress.org/extend/themes/browse/popular/'
+      @svn_url        = "http://themes.svn.wordpress.org/"
+      @popular_url    = "http://wordpress.org/extend/themes/browse/popular/"
       @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/themes/(.+)">.+</a></h3>}i
     else
       raise "Type #{type} not defined"
@@ -45,17 +43,43 @@ class Generate_List
     @hydra    = @browser.hydra
   end
 
+  def set_file_name(type)
+    case @type
+      when "plugin"
+        case type
+          when :full
+            @file_name = DATA_DIR + "/plugins_full.txt"
+          when :popular
+            @file_name = DATA_DIR + "/plugins.txt"
+          else
+            raise "Unknown type"
+        end
+      when "theme"
+        case type
+          when :full
+            @file_name = DATA_DIR + "/themes_full.txt"
+          when :popular
+            @file_name = DATA_DIR + "/themes.txt"
+          else
+            raise "Unknown type"
+        end
+      else
+        raise "Unknown type #@type"
+    end
+  end
+
   def generate_full_list
+    set_file_name(:full)
     items = Svn_Parser.new(@svn_url, @verbose).parse
     save items
   end
 
   def generate_popular_list(pages)
+    set_file_name(:popular)
     popular = get_popular_items(pages)
     items = Svn_Parser.new(@svn_url, @verbose).parse(popular)
     save items
   end
-
 
   # Send a HTTP request to the WordPress most popular theme or plugin webpage
   # parse the response for the names.
@@ -75,7 +99,7 @@ class Generate_List
         puts "[+] Parsing page " + page_count.to_s if @verbose
         page_count += 1
         response.body.scan(@popular_regex).each do |item|
-          puts "[+] Found popular #{@type}: #{item}" if @verbose
+          puts "[+] Found popular #@type: #{item}" if @verbose
           found_items << item[0]
         end
       end
@@ -99,9 +123,9 @@ class Generate_List
   def save(items)
     items.sort!
     items.uniq!
-    puts "[*] We have parsed #{items.length} #{@type}s"
+    puts "[*] We have parsed #{items.length} #@types"
     File.open(@file_name, 'w') { |f| f.puts(items) }
-    puts "New #{@file_name} file created"
+    puts "New #@file_name file created"
   end
 
 end
