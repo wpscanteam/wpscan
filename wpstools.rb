@@ -38,10 +38,12 @@ begin
       ["--generate_full_plugin_list", GetoptLong::NO_ARGUMENT],
       ["--generate_theme_list", GetoptLong::OPTIONAL_ARGUMENT],
       ["--generate_full_theme_list", GetoptLong::NO_ARGUMENT],
+      ["--generate_all", GetoptLong::NO_ARGUMENT],
       ["--gpl", GetoptLong::OPTIONAL_ARGUMENT],
       ["--gfpl", GetoptLong::OPTIONAL_ARGUMENT],
       ["--gtl", GetoptLong::OPTIONAL_ARGUMENT],
       ["--gftl", GetoptLong::OPTIONAL_ARGUMENT],
+      ["--ga", GetoptLong::OPTIONAL_ARGUMENT],
       ["--update", "-u", GetoptLong::NO_ARGUMENT]
   )
 
@@ -76,6 +78,12 @@ begin
         @generate_full_plugin_list = true
       when "--generate_full_theme_list", "--gftl"
         @generate_full_theme_list = true
+      when "--generate_all", "--ga"
+        @generate_plugin_list = true
+        @generate_theme_list = true
+        @number_of_pages = 150
+        @generate_full_theme_list = true
+        @generate_full_plugin_list = true
     end
   end
 

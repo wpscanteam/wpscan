@@ -39,6 +39,9 @@ def usage()
   puts "- Generate a new full theme list"
   puts "ruby " + script_name + " --generate_full_theme_list"
   puts
+  puts "- Generate all list"
+  puts "ruby " + script_name + " --generate_all"
+  puts
   puts "See README for further information."
   puts
 end
@@ -58,5 +61,7 @@ def help()
   puts "--gtl  Alias for --generate_theme_list"
   puts "--generate_full_theme_list  Generate a new full data/themes.txt file"
   puts "--gftl  Alias for --generate_full_theme_list"
+  puts "--generate_all  Generate a new full plugins, full themes, popular plugins and popular themes list"
+  puts "--ga  Alias for --generate_all"
   puts
 end
