@@ -165,6 +165,38 @@ describe "WpscanOptions" do
     end
   end
 
+  describe "#enumerate_all_themes=" do
+    it "should raise an error" do
+      @wpscan_options.enumerate_themes = true
+      expect { @wpscan_options.enumerate_all_themes = true }.to raise_error(
+        RuntimeError, "Please choose only one theme enumeration option"
+      )
+    end
+
+    it "should not raise an error" do
+      @wpscan_options.enumerate_themes = false
+      @wpscan_options.enumerate_all_themes = true
+
+      @wpscan_options.enumerate_all_themes.should be_true
+    end
+  end
+
+  describe "#enumerate_all_plugins=" do
+    it "should raise an error" do
+      @wpscan_options.enumerate_plugins = true
+      expect { @wpscan_options.enumerate_all_plugins = true }.to raise_error(
+        RuntimeError, "Please choose only one plugin enumeration option"
+      )
+    end
+
+    it "should not raise an error" do
+      @wpscan_options.enumerate_plugins = false
+      @wpscan_options.enumerate_all_plugins = true
+
+      @wpscan_options.enumerate_all_plugins.should be_true
+    end
+  end
+
   describe "#to_h" do
     it "should return an empty hash" do
       @wpscan_options.to_h.should be_a Hash

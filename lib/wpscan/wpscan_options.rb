@@ -21,8 +21,10 @@ class WpscanOptions
   ACCESSOR_OPTIONS = [
       :enumerate_plugins,
       :enumerate_only_vulnerable_plugins,
+      :enumerate_all_plugins,
       :enumerate_themes,
       :enumerate_only_vulnerable_themes,
+      :enumerate_all_themes,
       :enumerate_timthumbs,
       :enumerate_usernames,
       :enumerate_usernames_range,
