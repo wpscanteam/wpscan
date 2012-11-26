@@ -197,7 +197,7 @@ begin
   end
 
   # Enumerate the installed plugins
-  if wpscan_options.enumerate_plugins or wpscan_options.enumerate_only_vulnerable_plugins
+  if wpscan_options.enumerate_plugins or wpscan_options.enumerate_only_vulnerable_plugins or wpscan_options.enumerate_all_plugins
     puts
     puts green("[+]") + " Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
     puts
@@ -209,6 +209,7 @@ begin
     options[:wp_content_dir]        = wp_target.wp_content_dir
     options[:error_404_hash]        = wp_target.error_404_hash
     options[:wp_plugins_dir]        = wp_target.wp_plugins_dir
+    options[:full]                  = wpscan_options.enumerate_all_plugins
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
@@ -252,7 +253,7 @@ begin
   end
 
   # Enumerate installed themes
-  if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes
+  if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes or wpscan_options.enumerate_all_themes
     puts
     puts green("[+]") + " Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
     puts
@@ -263,6 +264,7 @@ begin
     options[:show_progress_bar]     = true
     options[:wp_content_dir]        = wp_target.wp_content_dir
     options[:error_404_hash]        = wp_target.error_404_hash
+    options[:full]                  = wpscan_options.enumerate_all_themes
 
     themes = wp_target.themes_from_aggressive_detection(options)
     unless themes.empty?
