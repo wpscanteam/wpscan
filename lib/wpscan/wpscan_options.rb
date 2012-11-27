@@ -21,8 +21,10 @@ class WpscanOptions
   ACCESSOR_OPTIONS = [
       :enumerate_plugins,
       :enumerate_only_vulnerable_plugins,
+      :enumerate_all_plugins,
       :enumerate_themes,
       :enumerate_only_vulnerable_themes,
+      :enumerate_all_themes,
       :enumerate_timthumbs,
       :enumerate_usernames,
       :enumerate_usernames_range,
@@ -86,34 +88,50 @@ class WpscanOptions
   end
 
   def enumerate_plugins=(enumerate_plugins)
-    if enumerate_plugins === true and @enumerate_only_vulnerable_plugins === true
-      raise "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one"
+    if enumerate_plugins === true and (@enumerate_all_plugins === true or @enumerate_only_vulnerable_plugins === true)
+      raise "Please choose only one plugin enumeration option"
     else
       @enumerate_plugins = enumerate_plugins
     end
   end
 
   def enumerate_only_vulnerable_plugins=(enumerate_only_vulnerable_plugins)
-    if enumerate_only_vulnerable_plugins === true and @enumerate_plugins === true
-      raise "You can't enumerate plugins and only vulnerable plugins at the same time, please choose only one"
+    if enumerate_only_vulnerable_plugins === true and (@enumerate_all_plugins === true or @enumerate_plugins === true)
+      raise "Please choose only one plugin enumeration option"
     else
       @enumerate_only_vulnerable_plugins = enumerate_only_vulnerable_plugins
     end
   end
 
+  def enumerate_all_plugins=(enumerate_all_plugins)
+    if enumerate_all_plugins === true and (@enumerate_plugins === true or @enumerate_only_vulnerable_plugins === true)
+      raise "Please choose only one plugin enumeration option"
+    else
+      @enumerate_all_plugins = enumerate_all_plugins
+    end
+  end
+
   def enumerate_themes=(enumerate_themes)
-    if enumerate_themes === true and @enumerate_only_vulnerable_themes === true
-      raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+    if enumerate_themes === true and (@enumerate_all_themes === true or @enumerate_only_vulnerable_themes === true)
+      raise "Please choose only one theme enumeration option"
     else
       @enumerate_themes = enumerate_themes
     end
   end
 
   def enumerate_only_vulnerable_themes=(enumerate_only_vulnerable_themes)
-    if enumerate_only_vulnerable_themes === true and @enumerate_themes === true
-      raise "You can't enumerate themes and only vulnerable themes at the same time, please choose only one"
+    if enumerate_only_vulnerable_themes === true and (@enumerate_all_themes === true or @enumerate_themes === true)
+      raise "Please choose only one theme enumeration option"
     else
       @enumerate_only_vulnerable_themes = enumerate_only_vulnerable_themes
+    end
+  end
+
+  def enumerate_all_themes=(enumerate_all_themes)
+    if enumerate_all_themes === true and (@enumerate_themes === true or @enumerate_only_vulnerable_themes === true)
+      raise "Please choose only one theme enumeration option"
+    else
+      @enumerate_all_themes = enumerate_all_themes
     end
   end
 
@@ -181,11 +199,15 @@ class WpscanOptions
 
     self.enumerate_plugins = true if value.include?('p')
 
+    self.enumerate_all_plugins = true if value.include?('ap')
+
     @enumerate_timthumbs = true if value.include?('tt')
 
     self.enumerate_only_vulnerable_themes = true if value.include?('vt')
 
     self.enumerate_themes = true if value.include?('t')
+
+    self.enumerate_all_themes = true if value.include?('at')
 
     value.grep(/^u/) do |username_enum_value|
       @enumerate_usernames = true

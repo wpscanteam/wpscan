@@ -19,7 +19,7 @@
 module WpThemes
 
   def themes_from_aggressive_detection(options)
-    options[:file]          = options[:file] || "#{DATA_DIR}/themes.txt"
+    options[:file]          = options[:file] || (options[:full] ? "#{DATA_DIR}/themes_full.txt" : "#{DATA_DIR}/themes.txt")
     options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
         options[:vulns_file] : DATA_DIR + "/wp_theme_vulns.xml"
     options[:vulns_xpath]   = "//theme[@name='#{@name}']/vulnerability"

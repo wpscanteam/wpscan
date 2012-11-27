@@ -22,8 +22,9 @@ module WpPlugins
   #
   # return array of WpPlugin
   def plugins_from_aggressive_detection(options)
-    options[:file]          = options[:file] || "#{DATA_DIR}/plugins.txt"
-    options[:vulns_file]    = options[:vulns_file] || "#{DATA_DIR}/plugin_vulns.xml"
+    options[:file]          = options[:file] || (options[:full] ? "#{DATA_DIR}/plugins_full.txt" : "#{DATA_DIR}/plugins.txt")
+    options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
+        options[:vulns_file] : DATA_DIR + "/plugin_vulns.xml"
     options[:vulns_xpath]   = "//plugin[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
     options[:type]          = "plugins"

@@ -85,9 +85,11 @@ def help()
   puts "    u[10-20] usernames from id 10 to 20 (you must write [] chars)"
   puts "    p        plugins"
   puts "    vp       only vulnerable plugins"
+  puts "    ap       all plugins (can take a long time)"
   puts "    tt       timthumbs"
   puts "    t        themes"
   puts "    vt       only vulnerable themes"
+  puts "    at       all themes (can take a long time)"
   puts "  Multiple values are allowed : '-e t,p' will enumerate timthumbs and plugins"
   puts "  If no option is supplied, the default is 'vt,tt,u,vp'"
   puts
