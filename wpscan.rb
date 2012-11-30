@@ -376,19 +376,17 @@ begin
       puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login. Not a good idea for brute forcing !"
       puts "[?] Do you want to start the brute force anyway ? [y/n]"
 
-      if Readline.readline !~ /^y/i
-        bruteforce = false
-      end
+      bruteforce = false if Readline.readline !~ /^y/i
     end
 
-    if bruteforce === false
-      puts
-      puts "Brute forcing aborted"
-    else
+    if bruteforce
       puts
       puts green("[+]") + " Starting the password brute forcer"
       puts
-      wp_target.brute_force(usernames, wpscan_options.wordlist)
+      wp_target.brute_force(usernames, wpscan_options.wordlist)  
+    else
+      puts
+      puts "Brute forcing aborted"
     end
   end
 
