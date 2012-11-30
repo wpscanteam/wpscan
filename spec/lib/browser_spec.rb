@@ -16,7 +16,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require 'spec_helper'
 
 describe Browser do
   CONFIG_FILE_WITHOUT_PROXY       = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json'
