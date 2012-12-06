@@ -23,7 +23,9 @@ class WpDetector
 
     result = items
     if items == nil or items.length == 0
-      result = passive_detection(options[:base_url], options[:type], options[:wp_content_dir])
+      unless options[:only_vulnerable_ones]
+        result = passive_detection(options[:base_url], options[:type], options[:wp_content_dir])
+      end
     end
 
     enum_results = WpEnumerator.enumerate(options)
