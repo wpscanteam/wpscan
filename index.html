@@ -109,19 +109,36 @@
 <h4>KNOWN ISSUES</h4>
 
 <ul>
-<li><p>
-Typhoeus segmentation fault
-  Update curl to at least v7.21 (may have to install from source)
-  See <a href="http://code.google.com/p/wpscan/issues/detail?id=81">http://code.google.com/p/wpscan/issues/detail?id=81</a>
-</p></li>
-<li><p>
-If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
-  It happens whith enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
-</p></li>
-<li><p>
-Proxy not working
-Update cURL to version =&gt; 7.21.7 (may have to install from source). See <a href="https://github.com/wpscanteam/wpscan/issues/7">https://github.com/wpscanteam/wpscan/issues/7</a>
-</p></li>
+  <li>
+    <p>
+      Typhoeus segmentation fault
+      Update curl to at least v7.21 (may have to install from source)
+      See <a href="http://code.google.com/p/wpscan/issues/detail?id=81">http://code.google.com/p/wpscan/issues/detail?id=81</a>
+    </p>
+  </li>
+  <li>
+    <p>
+      If you have one the following errors : "-bash: !t: event not found", "-bash: !u: event not found"
+      It happens whith enumeration : just put the 't' or 'u' before the 'p!' : '-e tp!' instead of '-e p!t'
+    </p>
+  </li>
+  <li>
+    <p>
+      Proxy not working
+      Update cURL to version =&gt; 7.21.7 (may have to install from source).<br />
+
+      Installation from sources :
+      <ul>
+        <li>Grab the sources from http://curl.haxx.se/download.html</li>
+        <li>Decompress the archive</li>
+        <li>Open the folder with the extracted files</li>
+        <li>Run ./configure</li>
+        <li>Run make</li>
+        <li>Run sudo make install</li>
+        <li>Run sudo ldconfig</li>
+      </ul>
+    </p>
+  </li>
 </ul>
 
 <h4>WPSCAN ARGUMENTS</h4>
