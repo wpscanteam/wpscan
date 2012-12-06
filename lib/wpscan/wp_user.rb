@@ -17,23 +17,55 @@
 #++
 
 class WpUser
-  attr_accessor :name, :id, :nickname
+
+  def name
+    if @name.nil? or @name.to_s.strip.empty?
+      return "empty"
+    end
+    @name
+  end
+
+  def name=(new_name)
+    @name = new_name
+  end
+
+  def id
+    if @id.nil? or @id.to_s.strip.empty?
+      return "empty"
+    end
+    @id
+  end
+
+  def id=(new_id)
+    @id = new_id
+  end
+
+  def nickname
+    if @nickname.nil? or @nickname.to_s.strip.empty?
+      return "empty"
+    end
+    @nickname
+  end
+
+  def nickname=(new_nickname)
+    @nickname = new_nickname
+  end
 
   def initialize(name, id, nickname)
-    @name     = name ? name : "empty"
-    @id       = id ? id : "empty"
-    @nickname = nickname ? nickname : "empty"
+    self.name = name
+    self.id = id
+    self.nickname = nickname
   end
 
   def <=>(item)
-    item.name <=> @name
+    item.name <=> self.name
   end
 
   def ===(item)
-    item.name === @name and item.id === @id and item.nickname === @nickname
+    item.name === self.name and item.id === self.id and item.nickname === self.nickname
   end
 
   def eql?(item)
-    item.name === @name and item.id === @id and item.nickname === @nickname
+    item.name === self.name and item.id === self.id and item.nickname === self.nickname
   end
 end
