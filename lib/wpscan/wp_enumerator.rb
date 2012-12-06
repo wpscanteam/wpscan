@@ -42,12 +42,13 @@ class WpEnumerator
       end
     end
 
-    found = []
-    queue_count = 0
-    request_count = 0
-    enum_browser = Browser.instance
-    enum_hydra = enum_browser.hydra
+    found          = []
+    queue_count    = 0
+    request_count  = 0
+    enum_browser   = Browser.instance
+    enum_hydra     = enum_browser.hydra
     enumerate_size = targets.size
+    exclude_regexp = options[:exclude_content_based] ? %r{#{options[:exclude_content_based]}} : nil
 
     targets.each do |target|
       url = target.get_full_url
@@ -61,7 +62,13 @@ class WpEnumerator
 
         if WpTarget.valid_response_codes.include?(response.code)
           if Digest::MD5.hexdigest(response.body) != options[:error_404_hash]
-            found << target
+            if options[:exclude_content_based]
+              unless response.body[exclude_regexp]
+                found << target
+              end
+            else
+              found << target
+            end
           end
         end
       end

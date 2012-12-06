@@ -19,30 +19,31 @@
 class WpscanOptions
 
   ACCESSOR_OPTIONS = [
-      :enumerate_plugins,
-      :enumerate_only_vulnerable_plugins,
-      :enumerate_all_plugins,
-      :enumerate_themes,
-      :enumerate_only_vulnerable_themes,
-      :enumerate_all_themes,
-      :enumerate_timthumbs,
-      :enumerate_usernames,
-      :enumerate_usernames_range,
-      :proxy,
-      :proxy_auth,
-      :threads,
-      :url,
-      :wordlist,
-      :force,
-      :update,
-      :verbose,
-      :username,
-      :password,
-      :follow_redirection,
-      :wp_content_dir,
-      :wp_plugins_dir,
-      :help,
-      :config_file
+    :enumerate_plugins,
+    :enumerate_only_vulnerable_plugins,
+    :enumerate_all_plugins,
+    :enumerate_themes,
+    :enumerate_only_vulnerable_themes,
+    :enumerate_all_themes,
+    :enumerate_timthumbs,
+    :enumerate_usernames,
+    :enumerate_usernames_range,
+    :proxy,
+    :proxy_auth,
+    :threads,
+    :url,
+    :wordlist,
+    :force,
+    :update,
+    :verbose,
+    :username,
+    :password,
+    :follow_redirection,
+    :wp_content_dir,
+    :wp_plugins_dir,
+    :help,
+    :config_file,
+    :exclude_content_based
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -238,7 +239,8 @@ class WpscanOptions
         ["--follow-redirection", GetoptLong::NO_ARGUMENT],
         ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
         ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
-        ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT]
+        ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT],
+        ["--exclude-content-based", GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

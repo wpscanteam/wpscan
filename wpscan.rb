@@ -202,14 +202,16 @@ begin
     puts green("[+]") + " Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
     puts
 
-    options = {}
-    options[:base_url]              = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_plugins || false
-    options[:show_progress_bar]     = true
-    options[:wp_content_dir]        = wp_target.wp_content_dir
-    options[:error_404_hash]        = wp_target.error_404_hash
-    options[:wp_plugins_dir]        = wp_target.wp_plugins_dir
-    options[:full]                  = wpscan_options.enumerate_all_plugins
+    options = {
+      :base_url              => wp_target.uri,
+      :only_vulnerable_ones  => wpscan_options.enumerate_only_vulnerable_plugins || false,
+      :show_progress_bar     => true,
+      :wp_content_dir        => wp_target.wp_content_dir,
+      :error_404_hash        => wp_target.error_404_hash,
+      :wp_plugins_dir        => wp_target.wp_plugins_dir,
+      :full                  => wpscan_options.enumerate_all_plugins,
+      :exclude_content_based => wpscan_options.exclude_content_based
+    }
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
     unless plugins.empty?
@@ -258,13 +260,15 @@ begin
     puts green("[+]") + " Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
     puts
 
-    options = {}
-    options[:base_url]              = wp_target.uri
-    options[:only_vulnerable_ones]  = wpscan_options.enumerate_only_vulnerable_themes || false
-    options[:show_progress_bar]     = true
-    options[:wp_content_dir]        = wp_target.wp_content_dir
-    options[:error_404_hash]        = wp_target.error_404_hash
-    options[:full]                  = wpscan_options.enumerate_all_themes
+    options = {
+      :base_url              => wp_target.uri,
+      :only_vulnerable_ones  => wpscan_options.enumerate_only_vulnerable_themes || false,
+      :show_progress_bar     => true,
+      :wp_content_dir        => wp_target.wp_content_dir,
+      :error_404_hash        => wp_target.error_404_hash,
+      :full                  => wpscan_options.enumerate_all_themes,
+      :exclude_content_based => wpscan_options.exclude_content_based
+    }
 
     themes = wp_target.themes_from_aggressive_detection(options)
     unless themes.empty?
@@ -305,11 +309,13 @@ begin
     puts green("[+]") + " Enumerating timthumb files ..."
     puts
 
-    options = {}
-    options[:base_url]          = wp_target.uri
-    options[:show_progress_bar] = true
-    options[:wp_content_dir]    = wp_target.wp_content_dir
-    options[:error_404_hash]    = wp_target.error_404_hash
+    options = {
+      :base_url              => wp_target.uri,
+      :show_progress_bar     => true,
+      :wp_content_dir        => wp_target.wp_content_dir,
+      :error_404_hash        => wp_target.error_404_hash,
+      :exclude_content_based => wpscan_options.exclude_content_based
+    }
 
     theme_name = wp_theme ? wp_theme.name : nil
     if wp_target.has_timthumbs?(theme_name, options)
@@ -383,7 +389,7 @@ begin
       puts
       puts green("[+]") + " Starting the password brute forcer"
       puts
-      wp_target.brute_force(usernames, wpscan_options.wordlist)  
+      wp_target.brute_force(usernames, wpscan_options.wordlist)
     else
       puts
       puts "Brute forcing aborted"

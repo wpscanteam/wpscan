@@ -93,6 +93,8 @@ def help()
   puts "  Multiple values are allowed : '-e t,p' will enumerate timthumbs and plugins"
   puts "  If no option is supplied, the default is 'vt,tt,u,vp'"
   puts
+  puts "--exclude-content-based '<regexp or string>' Used with the enumeration option, will exclude all occurence based on the regexp or string supplied"
+  puts "                                             You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)"
   puts "--config-file | -c <config file> Use the specified config file"
   puts "--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not"
   puts "--wp-content-dir <wp content dir>  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed"
