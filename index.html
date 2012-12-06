@@ -139,6 +139,22 @@
       </ul>
     </p>
   </li>
+  <li>
+    <p>cannot load such file -- readline</p>
+    <p>Run sudo aptitude install libreadline5-dev libncurses5-dev</p>
+    <p>Then, open the directory of readline gem (you have to locate it first)</p>
+
+    <pre>
+      <code>
+        cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
+        ruby extconf.rb
+        make
+        make install
+      </code>
+    </pre>
+
+    <p>See <a href="http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/">here</a> for more details</p>
+  </li>
 </ul>
 
 <h4>WPSCAN ARGUMENTS</h4>
