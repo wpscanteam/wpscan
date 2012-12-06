@@ -78,7 +78,15 @@ Prerequisites:
   - Proxy not working
 
       Update cURL to version => 7.21.7 (may have to install from source).
-      See https://github.com/wpscanteam/wpscan/issues/7
+
+      Installation from sources :
+        - Grab the sources from http://curl.haxx.se/download.html
+        - Decompress the archive
+        - Open the folder with the extracted files
+        - Run ./configure
+        - Run make
+        - Run sudo make install
+        - Run sudo ldconfig
 
 #### WPSCAN ARGUMENTS
 
