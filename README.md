@@ -92,7 +92,7 @@ Prerequisites:
 
   - cannot load such file -- readline:
 
-      Run sudo aptitude install libreadline5-dev libncurses5-dev
+      ```sudo aptitude install libreadline5-dev libncurses5-dev```
 
       Then, open the directory of the readline gem (you have to locate it)
       ```
