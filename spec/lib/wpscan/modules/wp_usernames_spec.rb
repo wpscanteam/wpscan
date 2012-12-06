@@ -237,4 +237,18 @@ shared_examples_for "WpUsernames" do
       @expected = [WpUser.new(nil, nil, ""), WpUser.new(nil, nil, "")]
     end
   end
+
+  # Issue 66
+  describe "#remove_junk_from_nickname" do
+    it "should contain the string empty" do
+      input = [WpUser.new("admin", 1, "admin | Wordpress 3.4.2"), WpUser.new("", 2, "Wordpress 3.4.2")]
+      result = @module.remove_junk_from_nickname(input)
+      result[0].nickname.should === "admin | "
+      result[0].name.should === "admin"
+      result[0].id.should === 1
+      result[1].nickname.should === "empty"
+      result[1].name.should === "empty"
+      result[1].id.should === 2
+    end
+  end
 end
