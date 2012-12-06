@@ -88,6 +88,19 @@ Prerequisites:
         - Run sudo make install
         - Run sudo ldconfig
 
+  - cannot load such file -- readline:
+
+      Run sudo aptitude install libreadline5-dev libncurses5-dev
+
+      Then, open the directory of the readline gem (you have to locate it)
+
+      cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
+      ruby extconf.rb
+      make
+      make install
+
+      See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
+
 #### WPSCAN ARGUMENTS
 
     --update  Update to the latest revision
