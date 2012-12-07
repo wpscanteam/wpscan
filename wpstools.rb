@@ -39,12 +39,14 @@ begin
       ["--generate_theme_list", GetoptLong::OPTIONAL_ARGUMENT],
       ["--generate_full_theme_list", GetoptLong::NO_ARGUMENT],
       ["--generate_all", GetoptLong::NO_ARGUMENT],
-      ["--gpl", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--gfpl", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--gtl", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--gftl", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--ga", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--update", "-u", GetoptLong::NO_ARGUMENT]
+      ["--gpl", GetoptLong::OPTIONAL_ARGUMENT],           # Alias for --generate_plugin_list
+      ["--gfpl", GetoptLong::OPTIONAL_ARGUMENT],          # Alias for --generate_full_plugin_list
+      ["--gtl", GetoptLong::OPTIONAL_ARGUMENT],           # Alias for --generate_theme_list
+      ["--gftl", GetoptLong::OPTIONAL_ARGUMENT],          # Alias for --generate_full_theme_list
+      ["--ga", GetoptLong::OPTIONAL_ARGUMENT],            # Alias for --generate_all
+      ["--update", "-u", GetoptLong::NO_ARGUMENT],
+      ["--check-vuln-ref-urls", GetoptLong::NO_ARGUMENT],
+      ["--cvru", GetoptLong::NO_ARGUMENT]                 # Alias for --check-vuln-ref-urls
   )
 
   options.each do |option, argument|
@@ -79,11 +81,13 @@ begin
       when "--generate_full_theme_list", "--gftl"
         @generate_full_theme_list = true
       when "--generate_all", "--ga"
-        @generate_plugin_list = true
-        @generate_theme_list = true
-        @number_of_pages = 150
-        @generate_full_theme_list = true
+        @generate_plugin_list      = true
+        @generate_theme_list       = true
+        @number_of_pages           = 150
+        @generate_full_theme_list  = true
         @generate_full_plugin_list = true
+      when "--check-vuln-ref-urls", "--cvru"
+        @check_vuln_ref_urls = true
     end
   end
 
@@ -109,6 +113,61 @@ begin
     puts "[+] Generating new full theme list"
     puts
     Generate_List.new('themes', @verbose).generate_full_list
+  end
+
+  # seclists.org redirects to the homepage if the reference does not exist
+  # TODO : the special case above
+  if @check_vuln_ref_urls
+    vuln_ref_files   = ["plugin_vulns.xml", "wp_theme_vulns.xml", "wp_vulns.xml"]
+    error_codes      = [404, 500, 403]
+    not_found_regexp = %r{No Results Found|error 404|ID Invalid or Not Found}i
+
+    puts "[+] Checking vulnerabilities reference urls"
+
+    vuln_ref_files.each do |vuln_ref_file|
+      xml = Nokogiri::XML(File.open(DATA_DIR + '/' + vuln_ref_file)) do |config|
+        config.noblanks
+      end
+
+      urls = []
+      xml.xpath("//reference").each { |node| urls << node.text }
+
+      urls.uniq!
+
+      dead_urls       = []
+      queue_count     = 0
+      request_count   = 0
+      browser         = Browser.instance
+      hydra           = browser.hydra
+      number_of_urls  = urls.size
+
+      urls.each do |url|
+        request = browser.forge_request(url, { :cache_timeout => 0, :follow_location => true })
+        request_count += 1
+
+        request.on_complete do |response|
+          print "\r  [+] Checking #{vuln_ref_file} #{number_of_urls} total ... #{(request_count * 100) / number_of_urls}% complete."
+
+          if error_codes.include?(response.code) or not_found_regexp.match(response.body)
+            dead_urls << url
+          end
+        end
+
+        hydra.queue(request)
+        queue_count += 1
+
+        if queue_count == browser.max_threads
+          hydra.run
+          queue_count = 0
+        end
+      end
+
+      hydra.run
+      puts
+      unless dead_urls.empty?
+        dead_urls.each { |url| puts "    Not Found #{url}" }
+      end
+    end
   end
 
   if @update
