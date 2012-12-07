@@ -224,7 +224,9 @@
 
   <span class="ruby-identifier">result</span> = <span class="ruby-identifier">items</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">items</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">items</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
-    <span class="ruby-identifier">result</span> = <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>]
+      <span class="ruby-identifier">result</span> = <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>], <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">enum_results</span> = <span class="ruby-constant">WpEnumerator</span>.<span class="ruby-identifier">enumerate</span>(<span class="ruby-identifier">options</span>)
@@ -273,7 +275,7 @@
 
           
           <div class="method-source-code" id="passive_detection-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_detector.rb, line 50</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_detector.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">wp_content_dir</span>)
   <span class="ruby-identifier">items</span>         = []
   <span class="ruby-identifier">response</span>      = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)

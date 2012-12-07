@@ -80,6 +80,8 @@
     
     <li><a href="#method-i-save">#save</a>
     
+    <li><a href="#method-i-set_file_name">#set_file_name</a>
+    
   </ul>
 </nav>
 
@@ -250,15 +252,13 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">verbose</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rplugins/</span>
     <span class="ruby-ivar">@type</span>           = <span class="ruby-string">&quot;plugin&quot;</span>
-    <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">'http://plugins.svn.wordpress.org/'</span>
-    <span class="ruby-ivar">@file_name</span>      = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/plugins.txt'</span>
-    <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">'http://wordpress.org/extend/plugins/browse/popular/'</span>
+    <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">&quot;http://plugins.svn.wordpress.org/&quot;</span>
+    <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">&quot;http://wordpress.org/extend/plugins/browse/popular/&quot;</span>
     <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%r{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/extend/plugins/(.+)/&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rthemes/</span>
     <span class="ruby-ivar">@type</span>           = <span class="ruby-string">&quot;theme&quot;</span>
-    <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">'http://themes.svn.wordpress.org/'</span>
-    <span class="ruby-ivar">@file_name</span>      = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/themes.txt'</span>
-    <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">'http://wordpress.org/extend/themes/browse/popular/'</span>
+    <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">&quot;http://themes.svn.wordpress.org/&quot;</span>
+    <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">&quot;http://wordpress.org/extend/themes/browse/popular/&quot;</span>
     <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%r{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/extend/themes/(.+)&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Type #{type} not defined&quot;</span>
@@ -299,8 +299,9 @@
 
           
           <div class="method-source-code" id="generate_full_list-source">
-            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 48</span>
+            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_full_list</span>
+  <span class="ruby-identifier">set_file_name</span>(<span class="ruby-value">:full</span>)
   <span class="ruby-identifier">items</span> = <span class="ruby-constant">Svn_Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@svn_url</span>, <span class="ruby-ivar">@verbose</span>).<span class="ruby-identifier">parse</span>
   <span class="ruby-identifier">save</span> <span class="ruby-identifier">items</span>
 <span class="ruby-keyword">end</span></pre>
@@ -330,8 +331,9 @@
 
           
           <div class="method-source-code" id="generate_popular_list-source">
-            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 53</span>
+            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_popular_list</span>(<span class="ruby-identifier">pages</span>)
+  <span class="ruby-identifier">set_file_name</span>(<span class="ruby-value">:popular</span>)
   <span class="ruby-identifier">popular</span> = <span class="ruby-identifier">get_popular_items</span>(<span class="ruby-identifier">pages</span>)
   <span class="ruby-identifier">items</span> = <span class="ruby-constant">Svn_Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@svn_url</span>, <span class="ruby-ivar">@verbose</span>).<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">popular</span>)
   <span class="ruby-identifier">save</span> <span class="ruby-identifier">items</span>
@@ -363,7 +365,7 @@ parse the response for the names.</p>
 
           
           <div class="method-source-code" id="get_popular_items-source">
-            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 62</span>
+            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 86</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_popular_items</span>(<span class="ruby-identifier">pages</span>)
   <span class="ruby-identifier">found_items</span> = []
   <span class="ruby-identifier">page_count</span> = <span class="ruby-value">1</span>
@@ -380,7 +382,7 @@ parse the response for the names.</p>
       <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;[+] Parsing page &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">page_count</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
       <span class="ruby-identifier">page_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
       <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@popular_regex</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Found popular #{@type}: #{item}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Found popular #@type: #{item}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
         <span class="ruby-identifier">found_items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>]
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -425,13 +427,13 @@ parse the response for the names.</p>
 
           
           <div class="method-source-code" id="save-source">
-            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 99</span>
+            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">items</span>)
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">sort!</span>
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">uniq!</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[*] We have parsed #{items.length} #{@type}s&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[*] We have parsed #{items.length} #@types&quot;</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@file_name</span>, <span class="ruby-string">'w'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">items</span>) }
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;New #{@file_name} file created&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;New #@file_name file created&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- save-source -->
           
@@ -441,6 +443,57 @@ parse the response for the names.</p>
 
         
       </div><!-- save-method -->
+
+    
+      <div id="method-i-set_file_name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_file_name</span><span
+            class="method-args">(type)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="set_file_name-source">
+            <pre><span class="ruby-comment"># File lib/wpstools/generate_list.rb, line 46</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_file_name</span>(<span class="ruby-identifier">type</span>)
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@type</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;plugin&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:full</span>
+          <span class="ruby-ivar">@file_name</span> = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/plugins_full.txt&quot;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:popular</span>
+          <span class="ruby-ivar">@file_name</span> = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/plugins.txt&quot;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Unknown type&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;theme&quot;</span>
+      <span class="ruby-keyword">case</span> <span class="ruby-identifier">type</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:full</span>
+          <span class="ruby-ivar">@file_name</span> = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/themes_full.txt&quot;</span>
+        <span class="ruby-keyword">when</span> <span class="ruby-value">:popular</span>
+          <span class="ruby-ivar">@file_name</span> = <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/themes.txt&quot;</span>
+        <span class="ruby-keyword">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Unknown type&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Unknown type #@type&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_file_name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_file_name-method -->
 
     
     </section><!-- public-instance-method-details -->
