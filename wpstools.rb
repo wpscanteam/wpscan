@@ -91,6 +91,15 @@ begin
     end
   end
 
+  if @update
+    unless @updater.nil?
+      puts @updater.update()
+    else
+      puts "Svn / Git not installed, or wpscan has not been installed with one of them."
+      puts "Update aborted"
+    end
+  end
+
   if @generate_plugin_list
     puts "[+] Generating new most popular plugin list"
     puts
@@ -167,15 +176,6 @@ begin
       unless dead_urls.empty?
         dead_urls.each { |url| puts "    Not Found #{url}" }
       end
-    end
-  end
-
-  if @update
-    unless @updater.nil?
-      puts @updater.update()
-    else
-      puts "Svn / Git not installed, or wpscan has not been installed with one of them."
-      puts "Update aborted"
     end
   end
 
