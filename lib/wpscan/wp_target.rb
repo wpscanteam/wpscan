@@ -97,7 +97,8 @@ class WpTarget
       if index_body[/\/wp-content\/(?:themes|plugins)\//i]
         @wp_content_dir = "wp-content"
       else
-        @wp_content_dir = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}([^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
+        domains_excluded = "(?:www\.)?(facebook|twitter)\.com"
+        @wp_content_dir  = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}((?!#{domains_excluded})[^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
       end
     end
     @wp_content_dir

@@ -107,6 +107,7 @@ describe WpTarget do
       @expected  = "hello-world"
     end
 
+
     it "should return 'wp-content'" do
       @target_url = "http://lamp/wordpress-3.4.1"
       @fixture    = fixtures_dir + "/wordpress-3.4.1.htm"
@@ -155,6 +156,11 @@ describe WpTarget do
       @expected   = "wp-content"
     end
 
+    it "should not detect facebook.com as a custom wp-content directory" do
+      @target_url = "http://lamp.localhost/"
+      @fixture    = fixtures_dir + "/facebook-detection.htm"
+      @expected   = nil
+    end
   end
 
   describe "#wp_plugins_dir" do
