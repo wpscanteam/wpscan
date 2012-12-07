@@ -273,7 +273,7 @@ on large wordlists, although bareable.</p>
       <span class="ruby-identifier">queue_count</span>   <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 
       <span class="ruby-comment"># create local vars for on_complete call back, Issue 51.</span>
-      <span class="ruby-identifier">username</span> = <span class="ruby-identifier">login</span>.<span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">username</span> = <span class="ruby-identifier">login</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">!=</span> <span class="ruby-string">'empty'</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">login</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">login</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-comment"># Issue #66 </span>
       <span class="ruby-identifier">password</span> = <span class="ruby-identifier">password</span>
 
       <span class="ruby-comment"># the request object</span>
