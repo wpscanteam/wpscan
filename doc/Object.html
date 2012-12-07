@@ -514,7 +514,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Help :&quot;</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Some values are settable in conf/browser.conf.json :&quot;</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  user-agent, proxy, threads, cache timeout and request timeout&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  user-agent, proxy, proxy-auth, threads, cache timeout and request timeout&quot;</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--update   Update to the latest revision&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--url   | -u &lt;target url&gt;  The WordPress URL/domain to scan.&quot;</span>
@@ -533,12 +533,15 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  Multiple values are allowed : '-e t,p' will enumerate timthumbs and plugins&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;  If no option is supplied, the default is 'vt,tt,u,vp'&quot;</span>
   <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--exclude-content-based '&lt;regexp or string&gt;' Used with the enumeration option, will exclude all occurence based on the regexp or string supplied&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;                                             You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--config-file | -c &lt;config file&gt; Use the specified config file&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--wp-content-dir &lt;wp content dir&gt;  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--wp-plugins-dir &lt;wp plugins dir&gt;  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--proxy  Supply a proxy in the format host:port or protocol://host:port (will override the one from conf/browser.conf.json).&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;         HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--proxy-auth Supply the proxy login credentials in the format username:password (will override the one from conf/browser.conf.json).&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--wordlist | -w &lt;wordlist&gt;  Supply a wordlist for the password bruter and do the brute.&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--threads  | -t &lt;number of threads&gt;  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)&quot;</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--username | -U &lt;username&gt;  Only brute force the supplied username.&quot;</span>

@@ -215,15 +215,35 @@ href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>&gt;.</p>
 <h2 id="label-KNOWN+ISSUES%3D%3D">KNOWN ISSUES==</h2>
 
 <pre class="ruby"><span class="ruby-operator">-</span> <span class="ruby-constant">Typhoeus</span> <span class="ruby-identifier">segmentation</span> <span class="ruby-identifier">fault</span><span class="ruby-operator">:</span>
-    <span class="ruby-constant">Update</span> <span class="ruby-identifier">cURL</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7.21</span> (<span class="ruby-identifier">may</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">source</span>) 
+    <span class="ruby-constant">Update</span> <span class="ruby-identifier">cURL</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7.21</span> (<span class="ruby-identifier">may</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">source</span>)
     <span class="ruby-constant">See</span> <span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">%rcode.google.com/</span><span class="ruby-identifier">p</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span><span class="ruby-operator">/</span><span class="ruby-identifier">issues</span><span class="ruby-operator">/</span><span class="ruby-identifier">detail?</span><span class="ruby-identifier">id</span>=<span class="ruby-value">81</span>
 
-<span class="ruby-operator">-</span> <span class="ruby-constant">If</span> <span class="ruby-identifier">you</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">one</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">following</span> <span class="ruby-identifier">errors</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-bash: !t: event not found&quot;</span>, <span class="ruby-string">&quot;-bash: !u: event not found&quot;</span> 
+<span class="ruby-operator">-</span> <span class="ruby-constant">If</span> <span class="ruby-identifier">you</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">one</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">following</span> <span class="ruby-identifier">errors</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;-bash: !t: event not found&quot;</span>, <span class="ruby-string">&quot;-bash: !u: event not found&quot;</span>
     <span class="ruby-constant">It</span> <span class="ruby-identifier">happens</span> <span class="ruby-identifier">with</span> <span class="ruby-identifier">enumeration</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">just</span> <span class="ruby-identifier">put</span> <span class="ruby-identifier">the</span> <span class="ruby-string">'t'</span> <span class="ruby-keyword">or</span> <span class="ruby-string">'u'</span> <span class="ruby-identifier">before</span> <span class="ruby-identifier">the</span> <span class="ruby-string">'p!'</span> <span class="ruby-operator">:</span> <span class="ruby-string">'-e tp!'</span> <span class="ruby-identifier">instead</span> <span class="ruby-identifier">of</span> <span class="ruby-string">'-e p!t'</span>
 
 <span class="ruby-operator">-</span> <span class="ruby-constant">Proxy</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">working</span><span class="ruby-operator">:</span>
-    <span class="ruby-constant">Update</span> <span class="ruby-identifier">cURL</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7.21</span><span class="ruby-value">.7</span> (<span class="ruby-identifier">may</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">source</span>) 
-    <span class="ruby-constant">See</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">%rgithub.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span><span class="ruby-operator">/</span><span class="ruby-identifier">issues</span><span class="ruby-operator">/</span><span class="ruby-value">7</span>
+    <span class="ruby-constant">Update</span> <span class="ruby-identifier">cURL</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7.21</span><span class="ruby-value">.7</span> (<span class="ruby-identifier">may</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">source</span>).
+
+    <span class="ruby-constant">Installation</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">sources</span> <span class="ruby-operator">:</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Grab</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">sources</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">%rcurl.haxx.se/</span><span class="ruby-identifier">download</span>.<span class="ruby-identifier">html</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Decompress</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">archive</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Open</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">folder</span> <span class="ruby-identifier">with</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">extracted</span> <span class="ruby-identifier">files</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> .<span class="ruby-operator">/</span><span class="ruby-identifier">configure</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> <span class="ruby-identifier">make</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">make</span> <span class="ruby-identifier">install</span>
+      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">ldconfig</span>
+
+<span class="ruby-operator">-</span> <span class="ruby-identifier">cannot</span> <span class="ruby-identifier">load</span> <span class="ruby-identifier">such</span> <span class="ruby-identifier">file</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span> <span class="ruby-identifier">readline</span><span class="ruby-operator">:</span>
+    <span class="ruby-constant">Run</span> <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">aptitude</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">libreadline5</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span> <span class="ruby-identifier">libncurses5</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span>
+
+    <span class="ruby-constant">Then</span>, <span class="ruby-identifier">open</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">directory</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">readline</span> <span class="ruby-identifier">gem</span> (<span class="ruby-identifier">you</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">locate</span> <span class="ruby-identifier">it</span>)
+
+    <span class="ruby-identifier">cd</span> <span class="ruby-operator">~</span><span class="ruby-regexp">%r.rvm/</span><span class="ruby-identifier">rc</span><span class="ruby-operator">/</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-value">1.9</span><span class="ruby-value">.2</span><span class="ruby-operator">-</span><span class="ruby-identifier">p180</span><span class="ruby-operator">/</span><span class="ruby-identifier">ext</span><span class="ruby-operator">/</span><span class="ruby-identifier">readline</span>
+    <span class="ruby-identifier">ruby</span> <span class="ruby-identifier">extconf</span>.<span class="ruby-identifier">rb</span>
+    <span class="ruby-identifier">make</span>
+    <span class="ruby-identifier">make</span> <span class="ruby-identifier">install</span>
+
+    <span class="ruby-constant">See</span> <span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">%rvvv.tobiassjosten.net/</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-identifier">on</span><span class="ruby-operator">-</span><span class="ruby-identifier">rails</span><span class="ruby-operator">/</span><span class="ruby-identifier">fixing</span><span class="ruby-operator">-</span><span class="ruby-identifier">readline</span><span class="ruby-operator">-</span><span class="ruby-keyword">for</span><span class="ruby-operator">-</span><span class="ruby-identifier">the</span><span class="ruby-operator">-</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-identifier">on</span><span class="ruby-operator">-</span><span class="ruby-identifier">rails</span><span class="ruby-operator">-</span><span class="ruby-identifier">console</span><span class="ruby-operator">/</span> <span class="ruby-keyword">for</span> <span class="ruby-identifier">more</span> <span class="ruby-identifier">details</span>
 </pre>
 
 <h2 id="label-WPSCAN+ARGUMENTS%3D%3D">WPSCAN ARGUMENTS==</h2>
@@ -242,11 +262,19 @@ WordPress.</p>
   u[10-20] usernames from id 10 to 20 (you must write [] chars)
   p        plugins
   vp       only vulnerable plugins
+  ap       all plugins (can take a long time)
   tt       timthumbs
   t        themes
   vp       only vulnerable themes
+  at       all themes (can take a long time)
 Multiple values are allowed : '-e tt,p' will enumerate timthumbs and plugins
 If no option is supplied, the default is 'vt,tt,u,vp'</pre>
+
+<p>–exclude-content-based ‘&lt;regexp or string&gt;’  Used with the
+enumeration option, will exclude all occurence based on the regexp or
+string supplied</p>
+
+<pre>You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)</pre>
 
 <p>–config-file | -c &lt;config file&gt; Use the specified config file</p>
 
@@ -265,6 +293,9 @@ wp-content-dir/plugins. Subdirectories are allowed</p>
 (will override the one from conf/browser.conf.json). HTTP, SOCKS4 SOCKS4A
 and SOCKS5 are supported. If no protocol is given (format host:port), HTTP
 will be used</p>
+
+<p>–proxy-auth Supply the proxy login credentials in the format
+username:password (will override the one from conf/browser.conf.json).</p>
 
 <p>–wordlist | -w &lt;wordlist&gt;  Supply a wordlist for the password bruter
 and do the brute.</p>

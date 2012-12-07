@@ -253,12 +253,13 @@
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">found</span> = []
-  <span class="ruby-identifier">queue_count</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">request_count</span> = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">enum_browser</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
-  <span class="ruby-identifier">enum_hydra</span> = <span class="ruby-identifier">enum_browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-identifier">found</span>          = []
+  <span class="ruby-identifier">queue_count</span>    = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">request_count</span>  = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">enum_browser</span>   = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-identifier">enum_hydra</span>     = <span class="ruby-identifier">enum_browser</span>.<span class="ruby-identifier">hydra</span>
   <span class="ruby-identifier">enumerate_size</span> = <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-identifier">exclude_regexp</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:exclude_content_based</span>] <span class="ruby-operator">?</span> <span class="ruby-node">%r{#{options[:exclude_content_based]}}</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
 
   <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">url</span> = <span class="ruby-identifier">target</span>.<span class="ruby-identifier">get_full_url</span>
@@ -272,7 +273,13 @@
 
       <span class="ruby-keyword">if</span> <span class="ruby-constant">WpTarget</span>.<span class="ruby-identifier">valid_response_codes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>)
         <span class="ruby-keyword">if</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>) <span class="ruby-operator">!=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:error_404_hash</span>]
-          <span class="ruby-identifier">found</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:exclude_content_based</span>]
+            <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-identifier">exclude_regexp</span>]
+              <span class="ruby-identifier">found</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target</span>
+            <span class="ruby-keyword">end</span>
+          <span class="ruby-keyword">else</span>
+            <span class="ruby-identifier">found</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target</span>
+          <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -321,7 +328,7 @@
 
           
           <div class="method-source-code" id="generate_items-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_enumerator.rb, line 84</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_enumerator.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate_items</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">only_vulnerable</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>]
   <span class="ruby-identifier">file</span>              = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]

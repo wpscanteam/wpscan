@@ -78,6 +78,18 @@
     
     <li><a href="#method-i-eql-3F">#eql?</a>
     
+    <li><a href="#method-i-id">#id</a>
+    
+    <li><a href="#method-i-id-3D">#id=</a>
+    
+    <li><a href="#method-i-name">#name</a>
+    
+    <li><a href="#method-i-name-3D">#name=</a>
+    
+    <li><a href="#method-i-nickname">#nickname</a>
+    
+    <li><a href="#method-i-nickname-3D">#nickname=</a>
+    
   </ul>
 </nav>
 
@@ -199,52 +211,6 @@
     
 
     
-    <!-- Attributes -->
-    <section id="attribute-method-details" class="method-section section">
-      <h3 class="section-header">Attributes</h3>
-
-      
-      <div id="attribute-i-id" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">id</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-name" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">name</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-nickname" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">nickname</span><span
-            class="attribute-access-type">[RW]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-    </section><!-- attribute-method-details -->
-    
 
     <!-- Methods -->
     
@@ -268,11 +234,11 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 22</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 54</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">nickname</span>)
-  <span class="ruby-ivar">@name</span>     = <span class="ruby-identifier">name</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>
-  <span class="ruby-ivar">@id</span>       = <span class="ruby-identifier">id</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>
-  <span class="ruby-ivar">@nickname</span> = <span class="ruby-identifier">nickname</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">nickname</span> <span class="ruby-operator">:</span> <span class="ruby-string">&quot;empty&quot;</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> = <span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -306,9 +272,9 @@
 
           
           <div class="method-source-code" id="3C-3D-3E-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 28</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-ivar">@name</span>
+  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- 3C-3D-3E-source -->
           
@@ -336,9 +302,9 @@
 
           
           <div class="method-source-code" id="3D-3D-3D-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 32</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 64</span>
 <span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@nickname</span>
+  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- 3D-3D-3D-source -->
           
@@ -366,9 +332,9 @@
 
           
           <div class="method-source-code" id="eql-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 36</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-ivar">@nickname</span>
+  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- eql-3F-source -->
           
@@ -378,6 +344,195 @@
 
         
       </div><!-- eql-3F-method -->
+
+    
+      <div id="method-i-id" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">id</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="id-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">id</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;empty&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- id-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- id-method -->
+
+    
+      <div id="method-i-id-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">id=</span><span
+            class="method-args">(new_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="id-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">id=</span>(<span class="ruby-identifier">new_id</span>)
+  <span class="ruby-ivar">@id</span> = <span class="ruby-identifier">new_id</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- id-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- id-3D-method -->
+
+    
+      <div id="method-i-name" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">name</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="name-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 21</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">name</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;empty&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- name-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- name-method -->
+
+    
+      <div id="method-i-name-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">name=</span><span
+            class="method-args">(new_name)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="name-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 28</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">name=</span>(<span class="ruby-identifier">new_name</span>)
+  <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">new_name</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- name-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- name-3D-method -->
+
+    
+      <div id="method-i-nickname" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nickname</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="nickname-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nickname</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nickname</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@nickname</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;empty&quot;</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@nickname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- nickname-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- nickname-method -->
+
+    
+      <div id="method-i-nickname-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">nickname=</span><span
+            class="method-args">(new_nickname)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="nickname-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 50</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">nickname=</span>(<span class="ruby-identifier">new_nickname</span>)
+  <span class="ruby-ivar">@nickname</span> = <span class="ruby-identifier">new_nickname</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- nickname-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- nickname-3D-method -->
 
     
     </section><!-- public-instance-method-details -->
