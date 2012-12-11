@@ -80,7 +80,7 @@ class WpVersion < Vulnerable
     target_uri = options[:base_url]
     response = Browser.instance.get(target_uri.merge("feed/rdf/").to_s, {:follow_location => true, :max_redirects => 2})
 
-    response.body[%r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i, 1]  
+    response.body[%r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i, 1]
   end
 
   # Attempts to find the WordPress version from,
@@ -118,18 +118,6 @@ class WpVersion < Vulnerable
   # wordpress version.
   #
   # It does this by using client side file hashing
-  # with a scoring system.
-  #
-  # The scoring system is a number representing
-  # the uniqueness of a client side file across
-  # all versions of wordpress.
-  #
-  # Example:
-  #
-  # Score - Hash - File - Versions
-  #   1 - 3e63c08553696a1dedb24b22ef6783c3 - /wp-content/themes/twentyeleven/style.css - 3.2.1
-  #   2 - 15fc925fd39bb496871e842b2a754c76 - /wp-includes/js/wp-lists.js - 2.6,2.5.1
-  #   3 - 3f03bce84d1d2a169b4bf4d8a0126e38 - /wp-includes/js/autosave.js - 2.9.2,2.9.1,2.9
   #
   #  /!\ Warning : this method might return false positive if the file used for fingerprinting is part of a theme (they can be updated)
   #
@@ -151,7 +139,7 @@ class WpVersion < Vulnerable
 
       node.search('hash').each do |hash|
         if hash.attribute('md5').text == md5sum
-          return hash.search('versions').text
+          return hash.search('version').text
         end
       end
     end

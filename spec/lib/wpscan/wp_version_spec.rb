@@ -226,23 +226,26 @@ describe WpVersion do
       @fixture = fixtures_dir + "/readme-3.3.2.html"
       @expected = "3.3.2"
     end
-  
+
     it "should return nil if it's not a valid version, must contains at least one '.'" do
       @fixture = fixtures_dir + "/invalid_version.html"
       @expected = nil
-    end  
+    end
   end
 
   describe "#find_from_advanced_fingerprinting" do
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/advanced" }
 
     it "should return 3.2.1" do
-      stub_request_to_fixture(:url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
-                              :status => 200,
-                              :fixture => "#{fixtures_dir}/3.2.1.js")
-      version = WpVersion.find_from_advanced_fingerprinting(:base_url => @target_uri,
-                                                            :wp_content_dir => "wp-content",
-                                                            :version_xml => "#{fixtures_dir}/wp_versions.xml")
+      stub_request_to_fixture(
+        :url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
+        :fixture => "#{fixtures_dir}/3.2.1.js"
+      )
+      version = WpVersion.find_from_advanced_fingerprinting(
+        :base_url => @target_uri,
+        :wp_content_dir => "wp-content",
+        :version_xml => "#{fixtures_dir}/wp_versions.xml"
+      )
       version.should == "3.2.1"
     end
   end
@@ -251,17 +254,19 @@ describe WpVersion do
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_VERSION_DIR + "/opml" }
 
     it "should return 3.4.2" do
-      stub_request_to_fixture(:url => @target_uri.merge("wp-links-opml.php").to_s,
-                              :status => 200,
-                              :fixture => "#{fixtures_dir}/wp-links-opml.xml")
+      stub_request_to_fixture(
+        :url => @target_uri.merge("wp-links-opml.php").to_s,
+        :fixture => "#{fixtures_dir}/wp-links-opml.xml"
+      )
       version = WpVersion.find_from_links_opml(:base_url => @target_uri)
       version.should == "3.4.2"
     end
 
     it "should return nil" do
-      stub_request_to_fixture(:url => @target_uri.merge("wp-links-opml.php").to_s,
-                              :status => 200,
-                              :fixture => "#{fixtures_dir}/wp-links-opml-nogenerator.xml")
+      stub_request_to_fixture(
+        :url => @target_uri.merge("wp-links-opml.php").to_s,
+        :fixture => "#{fixtures_dir}/wp-links-opml-nogenerator.xml"
+      )
       version = WpVersion.find_from_links_opml(:base_url => @target_uri)
       version.should be_nil
     end
@@ -282,9 +287,10 @@ describe WpVersion do
       # All requests get a HTTP 404
       stub_request(:any, /.*/).to_return(:status => 404)
       # Wordpress Version 3.2.1
-      stub_request_to_fixture(:url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
-                              :status => 200,
-                              :fixture => "#{fixtures_dir}/3.2.1.js")
+      stub_request_to_fixture(
+        :url => @target_uri.merge("wp-admin/js/wp-fullscreen.js").to_s,
+        :fixture => "#{fixtures_dir}/3.2.1.js"
+      )
       version = WpVersion.find(@target_uri, "wp-content")
       version.number.should == "3.2.1"
       version.discovery_method.should == "advanced fingerprinting"
