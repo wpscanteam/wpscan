@@ -197,17 +197,20 @@ describe "WpscanOptions" do
     end
   end
 
-  describe "#to_h" do
-    it "should return an empty hash" do
-      @wpscan_options.to_h.should be_a Hash
-      @wpscan_options.to_h.should be_empty
+  describe "#basic_auth=" do
+    context "invalid format" do
+      it "should raise an error if the : is missing" do
+        expect { @wpscan_options.basic_auth = "helloworld" }.to raise_error(
+          RuntimeError, "Invalid basic authentication format, login:password expected"
+        )
+      end
     end
 
-    it "should return a hash with :verbose = true" do
-      expected = {:verbose => true}
-      @wpscan_options.verbose = true
-
-      @wpscan_options.to_h.should === expected
+    context "valid format" do
+      it "should add the 'Basic' word and do the encode64. See RFC 2617" do
+        @wpscan_options.basic_auth = "Aladdin:open sesame"
+        @wpscan_options.basic_auth.should == "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+      end
     end
   end
 
@@ -219,6 +222,20 @@ describe "WpscanOptions" do
     it "should return true" do
       @wpscan_options.verbose = false
       @wpscan_options.has_options?.should be_true
+    end
+  end
+
+  describe "#to_h" do
+    it "should return an empty hash" do
+      @wpscan_options.to_h.should be_a Hash
+      @wpscan_options.to_h.should be_empty
+    end
+
+    it "should return a hash with :verbose = true" do
+      expected = {:verbose => true}
+      @wpscan_options.verbose = true
+
+      @wpscan_options.to_h.should === expected
     end
   end
 

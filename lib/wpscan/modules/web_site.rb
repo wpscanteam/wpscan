@@ -24,16 +24,16 @@ module WebSite
     wordpress = false
 
     response = Browser.instance.get(
-        login_url(),
-        {:follow_location => true, :max_redirects => 2}
+      login_url(),
+      {:follow_location => true, :max_redirects => 2}
     )
 
     if response.body =~ %r{WordPress}i
       wordpress = true
     else
       response = Browser.instance.get(
-          xmlrpc_url(),
-          {:follow_location => true, :max_redirects => 2}
+        xmlrpc_url(),
+        {:follow_location => true, :max_redirects => 2}
       )
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
@@ -51,6 +51,10 @@ module WebSite
   # Checks if the remote website is up.
   def is_online?
     Browser.instance.get(@uri.to_s).code != 0
+  end
+
+  def has_basic_auth?
+    Browser.instance.get(@uri.to_s).code == 401
   end
 
   # see if the remote url returns 30x redirect

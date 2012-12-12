@@ -57,7 +57,7 @@ shared_examples_for "WebSite" do
 
     it "should return true if the xmlrpc is found" do
       stub_request(:get, @module.xmlrpc_url).
-          to_return(:status => 200, :body => File.new(fixtures_dir + '/xmlrpc.php'))
+        to_return(:status => 200, :body => File.new(fixtures_dir + '/xmlrpc.php'))
 
       @module.is_wordpress?.should be_true
     end
@@ -72,6 +72,18 @@ shared_examples_for "WebSite" do
     it "should return true" do
       stub_request(:get, @module.url).to_return(:status => 200)
       @module.is_online?.should be_true
+    end
+  end
+
+  describe "#has_basic_auth?" do
+    it "should detect that the wpsite is basic auth protected" do
+      stub_request(:get, "http://example.localhost/").to_return(:status => 401)
+      @module.should have_basic_auth
+    end
+
+    it "should not have a basic auth for a 200" do
+      stub_request(:get, "http://example.localhost/").to_return(:status => 200)
+      @module.should_not have_basic_auth
     end
   end
 

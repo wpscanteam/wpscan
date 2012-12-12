@@ -235,6 +235,24 @@ describe Browser do
 
       @browser.merge_request_params(:headers => {'accept' => 'text/html'}).should == expected_params
     end
+
+    it "should merge the basic-auth" do
+      @browser.basic_auth = "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+      expected_params = {
+        :disable_ssl_host_verification => true,
+        :disable_ssl_peer_verification => true,
+        :headers                       => {
+          "Authorization" => "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==",
+          "user-agent"    => @browser.user_agent
+        },
+        :cache_timeout                 => @json_config_without_proxy['cache_timeout']
+      }
+
+      @browser.merge_request_params().should == expected_params
+
+      expected_params[:headers].merge!("user-agent" => "Fake FF")
+      @browser.merge_request_params(:headers => {"user-agent" => "Fake FF"}).should == expected_params
+    end
   end
 
   describe "#merge_request_params with proxy" do

@@ -21,14 +21,15 @@ class Browser
   USER_AGENT_MODES = %w{ static semi-static random }
 
   ACCESSOR_OPTIONS = [
-      :user_agent,
-      :user_agent_mode,
-      :available_user_agents,
-      :proxy,
-      :proxy_auth,
-      :max_threads,
-      :cache_timeout,
-      :request_timeout
+    :user_agent,
+    :user_agent_mode,
+    :available_user_agents,
+    :proxy,
+    :proxy_auth,
+    :max_threads,
+    :cache_timeout,
+    :request_timeout,
+    :basic_auth
   ]
 
   attr_reader :hydra, :config_file
@@ -36,6 +37,7 @@ class Browser
 
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
+    #@basic_auth  = options[:basic_auth]
     options.delete(:config_file)
 
     load_config()
@@ -138,9 +140,9 @@ class Browser
   def setup_cache_handlers
     @hydra.cache_setter do |request|
       @cache.write_entry(
-          Browser.generate_cache_key_from_request(request),
-          request.response,
-          request.cache_timeout
+        Browser.generate_cache_key_from_request(request),
+        request.response,
+        request.cache_timeout
       )
     end
 
@@ -153,20 +155,20 @@ class Browser
 
   def get(url, params = {})
     run_request(
-        forge_request(url, params.merge(:method => :get))
+      forge_request(url, params.merge(:method => :get))
     )
   end
 
   def post(url, params = {})
     run_request(
-        forge_request(url, params.merge(:method => :post))
+      forge_request(url, params.merge(:method => :post))
     )
   end
 
   def forge_request(url, params = {})
     Typhoeus::Request.new(
-        url.to_s,
-        merge_request_params(params)
+      url.to_s,
+      merge_request_params(params)
     )
   end
 
@@ -176,6 +178,14 @@ class Browser
 
       if @proxy_auth
         params = params.merge(@proxy_auth)
+      end
+    end
+
+    if @basic_auth
+      if !params.has_key?(:headers)
+        params = params.merge(:headers => {'Authorization' => @basic_auth})
+      elsif !params[:headers].has_key?('Authorization')
+        params[:headers]['Authorization'] = @basic_auth
       end
     end
 

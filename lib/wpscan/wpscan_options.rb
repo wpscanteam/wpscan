@@ -43,7 +43,8 @@ class WpscanOptions
     :wp_plugins_dir,
     :help,
     :config_file,
-    :exclude_content_based
+    :exclude_content_based,
+    :basic_auth
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -136,6 +137,11 @@ class WpscanOptions
     end
   end
 
+  def basic_auth=(basic_auth)
+    raise "Invalid basic authentication format, login:password expected" if basic_auth.index(':').nil?
+    @basic_auth = "Basic #{Base64.encode64(basic_auth).chomp}"
+  end
+
   def has_options?
     !to_h.empty?
   end
@@ -225,22 +231,23 @@ class WpscanOptions
   # Even if a short option is given (IE : -u), the long one will be returned (IE : --url)
   def self.get_opt_long
     GetoptLong.new(
-        ["--url", "-u", GetoptLong::REQUIRED_ARGUMENT],
-        ["--enumerate", "-e", GetoptLong::OPTIONAL_ARGUMENT],
-        ["--username", "-U", GetoptLong::REQUIRED_ARGUMENT],
-        ["--wordlist", "-w", GetoptLong::REQUIRED_ARGUMENT],
-        ["--threads", "-t", GetoptLong::REQUIRED_ARGUMENT],
-        ["--force", "-f", GetoptLong::NO_ARGUMENT],
-        ["--help", "-h", GetoptLong::NO_ARGUMENT],
-        ["--verbose", "-v", GetoptLong::NO_ARGUMENT],
-        ["--proxy", GetoptLong::REQUIRED_ARGUMENT],
-        ["--proxy-auth", GetoptLong::REQUIRED_ARGUMENT],
-        ["--update", GetoptLong::NO_ARGUMENT],
-        ["--follow-redirection", GetoptLong::NO_ARGUMENT],
-        ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
-        ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
-        ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT],
-        ["--exclude-content-based", GetoptLong::REQUIRED_ARGUMENT]
+      ["--url", "-u", GetoptLong::REQUIRED_ARGUMENT],
+      ["--enumerate", "-e", GetoptLong::OPTIONAL_ARGUMENT],
+      ["--username", "-U", GetoptLong::REQUIRED_ARGUMENT],
+      ["--wordlist", "-w", GetoptLong::REQUIRED_ARGUMENT],
+      ["--threads", "-t", GetoptLong::REQUIRED_ARGUMENT],
+      ["--force", "-f", GetoptLong::NO_ARGUMENT],
+      ["--help", "-h", GetoptLong::NO_ARGUMENT],
+      ["--verbose", "-v", GetoptLong::NO_ARGUMENT],
+      ["--proxy", GetoptLong::REQUIRED_ARGUMENT],
+      ["--proxy-auth", GetoptLong::REQUIRED_ARGUMENT],
+      ["--update", GetoptLong::NO_ARGUMENT],
+      ["--follow-redirection", GetoptLong::NO_ARGUMENT],
+      ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
+      ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
+      ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT],
+      ["--exclude-content-based", GetoptLong::REQUIRED_ARGUMENT],
+      ["--basic-auth", GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 
