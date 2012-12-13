@@ -32,8 +32,8 @@ module WebSite
       wordpress = true
     else
       response = Browser.instance.get(
-        xmlrpc_url(),
-        {:follow_location => true, :max_redirects => 2}
+          xml_rpc_url,
+          {:follow_location => true, :max_redirects => 2}
       )
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
@@ -44,8 +44,21 @@ module WebSite
     wordpress
   end
 
-  def xmlrpc_url
-    @uri.merge("xmlrpc.php").to_s
+  def xml_rpc_url
+    unless @xmlrpc_url
+      headers = Browser.instance.get(@uri.to_s).headers_hash
+      value = headers["x-pingback"]
+      if value.nil? or value.empty?
+        @xmlrpc_url = nil
+      else
+        @xmlrpc_url = value
+      end
+    end
+    @xmlrpc_url
+  end
+
+  def has_xml_rpc?
+    !xml_rpc_url.nil?
   end
 
   # Checks if the remote website is up.
