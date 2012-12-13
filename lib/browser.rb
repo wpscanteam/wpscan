@@ -37,7 +37,6 @@ class Browser
 
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
-    #@basic_auth  = options[:basic_auth]
     options.delete(:config_file)
 
     load_config()
