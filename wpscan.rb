@@ -73,6 +73,10 @@ begin
     end
   end
 
+  if wp_target.has_basic_auth? && wpscan_options.basic_auth.nil?
+    raise "A basic authentification is required, please provide it with --basic-auth <login:password>"
+  end
+
   # Remote website is wordpress?
   unless wpscan_options.force
     unless wp_target.is_wordpress?
