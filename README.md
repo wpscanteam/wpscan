@@ -138,6 +138,8 @@ Prerequisites:
 
     --proxy-auth Supply the proxy login credentials in the format username:password (will override the one from conf/browser.conf.json).
 
+    --basic-auth <username:password>  Set the HTTP Basic authentification
+
     --wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.
 
     --threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)
