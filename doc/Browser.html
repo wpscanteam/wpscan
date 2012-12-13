@@ -289,7 +289,7 @@
 
           
           <div class="method-source-code" id="instance-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 59</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">@@instance</span>
     <span class="ruby-identifier">@@instance</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>)
@@ -322,7 +322,7 @@
 
           
           <div class="method-source-code" id="reset-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 66</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 68</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset</span>
   <span class="ruby-identifier">@@instance</span> = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -358,11 +358,11 @@
 
           
           <div class="method-source-code" id="forge_request-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 166</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span> = {})
   <span class="ruby-constant">Typhoeus</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(
-      <span class="ruby-identifier">url</span>.<span class="ruby-identifier">to_s</span>,
-      <span class="ruby-identifier">merge_request_params</span>(<span class="ruby-identifier">params</span>)
+    <span class="ruby-identifier">url</span>.<span class="ruby-identifier">to_s</span>,
+    <span class="ruby-identifier">merge_request_params</span>(<span class="ruby-identifier">params</span>)
   )
 <span class="ruby-keyword">end</span></pre>
           </div><!-- forge_request-source -->
@@ -391,10 +391,10 @@
 
           
           <div class="method-source-code" id="get-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 154</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 156</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span> = {})
   <span class="ruby-identifier">run_request</span>(
-      <span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>))
+    <span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:get</span>))
   )
 <span class="ruby-keyword">end</span></pre>
           </div><!-- get-source -->
@@ -426,7 +426,7 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="load_config-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 126</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 128</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_config</span>(<span class="ruby-identifier">config_file</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@config_file</span> = <span class="ruby-identifier">config_file</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@config_file</span>
 
@@ -464,7 +464,7 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="max_threads-3D-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 95</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">max_threads=</span>(<span class="ruby-identifier">max_threads</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">max_threads</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">max_threads</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>
     <span class="ruby-identifier">max_threads</span> = <span class="ruby-value">1</span>
@@ -497,13 +497,21 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="merge_request_params-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 173</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 175</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_request_params</span>(<span class="ruby-identifier">params</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@proxy</span>
     <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:proxy</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@proxy</span>)
 
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@proxy_auth</span>
       <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@proxy_auth</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@basic_auth</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-value">:headers</span>)
+      <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">'Authorization'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@basic_auth</span>})
+    <span class="ruby-keyword">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">params</span>[<span class="ruby-value">:headers</span>].<span class="ruby-identifier">has_key?</span>(<span class="ruby-string">'Authorization'</span>)
+      <span class="ruby-identifier">params</span>[<span class="ruby-value">:headers</span>][<span class="ruby-string">'Authorization'</span>] = <span class="ruby-ivar">@basic_auth</span>
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
@@ -554,10 +562,10 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="post-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 160</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 162</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span> = {})
   <span class="ruby-identifier">run_request</span>(
-      <span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:post</span>))
+    <span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-value">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:post</span>))
   )
 <span class="ruby-keyword">end</span></pre>
           </div><!-- post-source -->
@@ -586,7 +594,7 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="proxy_auth-3D-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 102</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 104</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">proxy_auth=</span>(<span class="ruby-identifier">auth</span>)
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">nil?</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
@@ -631,7 +639,7 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="raise_invalid_proxy_format-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 121</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">raise_invalid_proxy_format</span>
   <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;Invalid proxy auth format, expected username:password or {:proxy_username =&gt; username, :proxy_password =&gt; password}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
@@ -661,7 +669,7 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="user_agent-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 83</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 85</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">user_agent</span>
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@user_agent_mode</span>
     <span class="ruby-keyword">when</span> <span class="ruby-string">&quot;semi-static&quot;</span>
@@ -699,7 +707,7 @@ browser object, hydra will not have the new @max_threads and
 
           
           <div class="method-source-code" id="user_agent_mode-3D-source">
-            <pre><span class="ruby-comment"># File lib/browser.rb, line 70</span>
+            <pre><span class="ruby-comment"># File lib/browser.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">user_agent_mode=</span>(<span class="ruby-identifier">ua_mode</span>)
   <span class="ruby-identifier">ua_mode</span> <span class="ruby-operator">||=</span> <span class="ruby-string">&quot;static&quot;</span>
 

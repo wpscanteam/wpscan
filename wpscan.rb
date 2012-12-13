@@ -148,6 +148,10 @@ begin
     puts green("[+]") + " User registration is enabled"
   end
 
+  if wp_target.has_xml_rpc?
+    puts green("[+]") + " XML-RPC Interface available under #{wp_target.xml_rpc_url}"
+  end
+
   if wp_target.has_malwares?
     malwares = wp_target.malwares
     puts red("[!]") + " #{malwares.size} malware(s) found :"
