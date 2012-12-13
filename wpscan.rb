@@ -144,7 +144,7 @@ begin
     puts green("[+]") + " User registration is enabled"
   end
 
-  if wp_target.xml_rpc_enabled
+  if wp_target.has_xml_rpc?
     puts green("[+]") + " XML-RPC Interface available under #{wp_target.xml_rpc_url}"
   end
 

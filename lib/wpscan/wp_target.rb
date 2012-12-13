@@ -178,21 +178,4 @@ class WpTarget
     end
     @multisite
   end
-
-  def xml_rpc_url
-    unless @xmlrpc_url
-      headers = Browser.instance.get(@uri).headers_hash
-      value = headers["x-pingback"]
-      if value.nil? or value.empty?
-        @xmlrpc_url = "nope"
-      else
-        @xmlrpc_url = value
-      end
-    end
-    @xmlrpc_url
-  end
-
-  def xml_rpc_enabled
-    xml_rpc_url != "nope"
-  end
 end

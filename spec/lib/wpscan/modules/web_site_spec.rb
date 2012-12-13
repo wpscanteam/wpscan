@@ -17,10 +17,10 @@
 #++
 
 shared_examples_for "WebSite" do
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/web_site' }
+  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/web_site" }
 
   before :each do
-    @module = WpScanModuleSpec.new('http://example.localhost/')
+    @module = WpScanModuleSpec.new("http://example.localhost/")
     @module.extend(WebSite)
   end
 
@@ -30,16 +30,39 @@ shared_examples_for "WebSite" do
     end
   end
 
-  describe "#xmlrpc_url" do
+  describe "#xml_rpc_url" do
     it "should return the correct url : http://example.localhost/xmlrpc.php" do
-      @module.xmlrpc_url.should === "http://example.localhost/xmlrpc.php"
+      xmlrpc = "http://example.localhost/xmlrpc.php"
+      stub_request(:get, "http://example.localhost/").
+          to_return(:status => 200, :body => "", :headers => { "X-Pingback" => xmlrpc})
+      @module.xml_rpc_url.should === xmlrpc
+    end
+
+    it "should return nil" do
+      stub_request(:get, "http://example.localhost/").to_return(:status => 200)
+      @module.xml_rpc_url.should be_nil
+    end
+  end
+
+  describe "#has_xml_rpc?" do
+    it "should return true" do
+      stub_request(:get, "http://example.localhost/").
+          to_return(:status => 200, :body => "", :headers => { "X-Pingback" => "xmlrpc"})
+      @module.has_xml_rpc?.should be_true
+    end
+
+    it "should return false" do
+      stub_request(:get, "http://example.localhost/").to_return(:status => 200)
+      @module.has_xml_rpc?.should be_false
     end
   end
 
   describe "#is_wordpress?" do
     # each url (wp-login and xmlrpc) pointed to a 404
     before :each do
-      [@module.login_url, @module.xmlrpc_url].each do |url|
+      stub_request(:get, @module.uri.to_s).
+          to_return(:status => 200, :body => "", :headers => { "X-Pingback" => @module.uri.merge("xmlrpc.php")})
+      [@module.login_url, @module.xml_rpc_url].each do |url|
         stub_request(:get, url).to_return(:status => 404, :body => "")
       end
     end
@@ -50,14 +73,14 @@ shared_examples_for "WebSite" do
 
     it "should return true if the wp-login is found and is a valid wordpress one" do
       stub_request(:get, @module.login_url).
-          to_return(:status => 200, :body => File.new(fixtures_dir + '/wp-login.php'))
+          to_return(:status => 200, :body => File.new(fixtures_dir + "/wp-login.php"))
 
       @module.is_wordpress?.should be_true
     end
 
     it "should return true if the xmlrpc is found" do
-      stub_request(:get, @module.xmlrpc_url).
-        to_return(:status => 200, :body => File.new(fixtures_dir + '/xmlrpc.php'))
+      stub_request(:get, @module.xml_rpc_url).
+        to_return(:status => 200, :body => File.new(fixtures_dir + "/xmlrpc.php"))
 
       @module.is_wordpress?.should be_true
     end
