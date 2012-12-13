@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ryandewhurst at gmail
 
   This file contains vulnerabilities associated with WordPress plugins.
-  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF"]
+  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF", "AUTHBYPASS"]
 
   <plugin name="">
     <vulnerability>
@@ -2418,6 +2418,13 @@ File Upload Vulnerability</title>
       <title>plugin BackWPup 1.5.2, 1.6.1, 1.7.1 Remote and Local Code Execution Vulnerability</title>
       <reference>http://osvdb.org/show/osvdb/71481</reference>
       <type>RCE</type>
+    </vulnerability>
+  </plugin>
+  <plugin name="portable-phpmyadmin">
+    <vulnerability>
+      <title>portable-phpMyAdmin &lt; 1.3.1 Authentication Bypass</title>
+      <reference>http://www.exploit-db.com/exploits/23356</reference>
+      <type>AUTHBYPASS</type>
     </vulnerability>
   </plugin>
 </vulnerabilities>
