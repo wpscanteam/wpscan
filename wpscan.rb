@@ -50,7 +50,7 @@ begin
   wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)
 
   # Remote website up?
-  unless wp_target.is_online?
+  unless wp_target.online?
     raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
   end
 
@@ -79,7 +79,7 @@ begin
 
   # Remote website is wordpress?
   unless wpscan_options.force
-    unless wp_target.is_wordpress?
+    unless wp_target.wordpress?
       raise "The remote website is up, but does not seem to be running WordPress."
     end
   end
