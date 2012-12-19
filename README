@@ -48,20 +48,20 @@ ryandewhurst at gmail
     sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
-    sudo gem install bundler && bundle install
+    sudo gem install bundler && bundle install --without test development
 
   -> Installing on Fedora:
 
     sudo yum install libcurl-devel
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
-    sudo gem install bundler && bundle install
+    sudo gem install bundler && bundle install --without test development
 
   -> Installing on Mac OS X:
 
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
-    sudo gem install bundler && bundle install
+    sudo gem install bundler && bundle install --without test development
 
 ==KNOWN ISSUES==
 

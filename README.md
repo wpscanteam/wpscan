@@ -44,7 +44,7 @@ Prerequisites:
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install```
+```sudo gem install bundler && bundle install --without test development```
 
 *Installing on Fedora:*
 
@@ -54,7 +54,7 @@ Prerequisites:
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install```
+```sudo gem install bundler && bundle install --without test development```
 
 *Installing on Mac OSX:*
 
@@ -62,7 +62,7 @@ Prerequisites:
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install```
+```sudo gem install bundler && bundle install --without test development```
 
 #### KNOWN ISSUES
 
