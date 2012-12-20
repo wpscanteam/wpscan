@@ -93,7 +93,7 @@ module WebSite
 
   def homepage_hash
     unless @homepage_hash
-      @homepage_hash = WebSite.page_hash(self.url)
+      @homepage_hash = WebSite.page_hash(@uri.to_s)
     end
     @homepage_hash
   end
@@ -105,5 +105,12 @@ module WebSite
       @error_404_hash   = WebSite.page_hash(@uri.merge(non_existant_page).to_s)
     end
     @error_404_hash
+  end
+
+  # Will try to find the rss url in the homepage
+  # Only the first one found iw returned
+  def rss_url
+    homepage_body = Browser.instance.get(@uri.to_s).body
+    homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
   end
 end

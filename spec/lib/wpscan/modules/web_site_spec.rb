@@ -148,4 +148,16 @@ shared_examples_for "WebSite" do
       web_site.error_404_hash.should === Digest::MD5.hexdigest("404 page !")
     end
   end
+
+  describe "#rss_url" do
+    it "should return nil if the url is not found" do
+      stub_request(:get, web_site.url).to_return(:body => "No RSS link in this body !")
+      web_site.rss_url.should be_nil
+    end
+
+    it "should return 'http://lamp-wp/wordpress-3.5/?feed=rss2'" do
+      stub_request_to_fixture(:url => web_site.url, :fixture => fixtures_dir + "/rss_url/wordpress-3.5.htm")
+      web_site.rss_url.should === "http://lamp-wp/wordpress-3.5/?feed=rss2"
+    end
+  end
 end
