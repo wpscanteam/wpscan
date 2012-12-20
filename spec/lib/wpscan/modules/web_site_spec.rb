@@ -120,6 +120,26 @@ shared_examples_for "WebSite" do
     end
   end
 
+  describe "#page_hash" do
+    it "should return the MD5 hash of the page" do
+      url   = "http://e.localhost/somepage.php"
+      body  = "Hello World !"
+
+      stub_request(:get, url).to_return(:body => body)
+
+      WebSite.page_hash(url).should === Digest::MD5.hexdigest(body)
+    end
+  end
+
+  describe "#homepage_hash" do
+    it "should return the MD5 hash of the homepage" do
+      body = "Hello World"
+
+      stub_request(:get, web_site.url).to_return(:body => body)
+      web_site.homepage_hash.should === Digest::MD5.hexdigest(body)
+    end
+  end
+
   describe "#error_404_hash" do
     it "should return the md5sum of the 404 page" do
       stub_request(:any, /.*/).

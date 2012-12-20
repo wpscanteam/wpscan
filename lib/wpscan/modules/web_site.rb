@@ -86,16 +86,24 @@ module WebSite
     redirection
   end
 
+  # Returns the MD5 hash of the page given by url
+  def self.page_hash(url)
+    Digest::MD5.hexdigest(Browser.instance.get(url).body)
+  end
+
+  def homepage_hash
+    unless @homepage_hash
+      @homepage_hash = WebSite.page_hash(self.url)
+    end
+    @homepage_hash
+  end
+
   # Return the MD5 hash of a 404 page
   def error_404_hash
     unless @error_404_hash
       non_existant_page = Digest::MD5.hexdigest(rand(9999999999).to_s) + ".html"
-
-      response = Browser.instance.get(@uri.merge(non_existant_page).to_s)
-
-      @error_404_hash = Digest::MD5.hexdigest(response.body)
+      @error_404_hash   = WebSite.page_hash(@uri.merge(non_existant_page).to_s)
     end
-
     @error_404_hash
   end
 end
