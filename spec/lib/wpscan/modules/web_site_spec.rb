@@ -120,4 +120,12 @@ shared_examples_for "WebSite" do
     end
   end
 
+  describe "#error_404_hash" do
+    it "should return the md5sum of the 404 page" do
+      stub_request(:any, /.*/).
+        to_return(:status => 404, :body => "404 page !")
+
+      web_site.error_404_hash.should === Digest::MD5.hexdigest("404 page !")
+    end
+  end
 end

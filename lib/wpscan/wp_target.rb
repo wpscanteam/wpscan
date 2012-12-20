@@ -29,8 +29,6 @@ class WpTarget
   include WpThemes
   include BruteForce
 
-  @error_404_hash = nil
-
   attr_reader :uri, :verbose
 
   def initialize(target_url, options = {})
@@ -58,19 +56,6 @@ class WpTarget
     end
 
     url
-  end
-
-  # Return the MD5 hash of a 404 page
-  def error_404_hash
-    unless @error_404_hash
-      non_existant_page = Digest::MD5.hexdigest(rand(9999999999).to_s) + ".html"
-
-      response = Browser.instance.get(@uri.merge(non_existant_page).to_s)
-
-      @error_404_hash = Digest::MD5.hexdigest(response.body)
-    end
-
-    @error_404_hash
   end
 
   # Valid HTTP return codes

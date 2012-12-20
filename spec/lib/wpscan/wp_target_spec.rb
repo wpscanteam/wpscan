@@ -83,15 +83,6 @@ describe WpTarget do
     end
   end
 
-  describe "#error_404_hash" do
-    it "should return the md5sum of the 404 page" do
-      stub_request(:any, /.*/).
-        to_return(:status => 404, :body => "404 page !")
-
-      @wp_target.error_404_hash.should === Digest::MD5.hexdigest("404 page !")
-    end
-  end
-
   describe "#wp_content_dir" do
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + "/wp_content_dir" }
 
