@@ -24,7 +24,7 @@ module WpPlugins
   def plugins_from_aggressive_detection(options)
     options[:file]          = options[:file] || (options[:full] ? "#{DATA_DIR}/plugins_full.txt" : "#{DATA_DIR}/plugins.txt")
     options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
-        options[:vulns_file] : DATA_DIR + "/plugin_vulns.xml"
+      options[:vulns_file] : DATA_DIR + "/plugin_vulns.xml"
     options[:vulns_xpath]   = "//plugin[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//plugin"
     options[:type]          = "plugins"
@@ -32,12 +32,12 @@ module WpPlugins
     plugins = []
     result.each do |r|
       plugins << WpPlugin.new(
-          :base_url       => r.base_url,
-          :path           => r.path,
-          :wp_content_dir => r.wp_content_dir,
-          :name           => r.name,
-          :type           => "plugins",
-          :wp_plugins_dir => r.wp_plugins_dir
+        :base_url       => r.base_url,
+        :path           => r.path,
+        :wp_content_dir => r.wp_content_dir,
+        :name           => r.name,
+        :type           => "plugins",
+        :wp_plugins_dir => r.wp_plugins_dir
       )
     end
     plugins.sort_by { |p| p.name }
@@ -55,12 +55,12 @@ module WpPlugins
 
     temp.each do |item|
       plugins << WpPlugin.new(
-          :base_url       => item.base_url,
-          :name           => item.name,
-          :path           => item.path,
-          :wp_content_dir => options[:wp_content_dir],
-          :type           => "plugins",
-          :wp_plugins_dir => options[:wp_plugins_dir]
+        :base_url       => item.base_url,
+        :name           => item.name,
+        :path           => item.path,
+        :wp_content_dir => options[:wp_content_dir],
+        :type           => "plugins",
+        :wp_plugins_dir => options[:wp_plugins_dir]
       )
     end
     plugins.sort_by { |p| p.name }

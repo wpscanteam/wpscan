@@ -122,8 +122,8 @@ shared_examples_for "WebSite" do
 
   describe "#page_hash" do
     it "should return the MD5 hash of the page" do
-      url   = "http://e.localhost/somepage.php"
-      body  = "Hello World !"
+      url  = "http://e.localhost/somepage.php"
+      body = "Hello World !"
 
       stub_request(:get, url).to_return(:body => body)
 

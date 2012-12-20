@@ -86,7 +86,7 @@ module WebSite
     redirection
   end
 
-  # Returns the MD5 hash of the page given by url
+  # Return the MD5 hash of the page given by url
   def self.page_hash(url)
     Digest::MD5.hexdigest(Browser.instance.get(url).body)
   end
