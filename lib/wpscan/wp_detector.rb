@@ -50,25 +50,25 @@ class WpDetector
   #   <link rel='stylesheet' href='http://example.com/wp-content/plugins/wp-minify/..' type='text/css' media='screen'/>
   #   ...
   def self.passive_detection(url, type, wp_content_dir)
-    items         = []
-    response      = Browser.instance.get(url)
-    regex1        = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
-    regex2        = %r{\\?/}
-    regex3        = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
+    items    = []
+    response = Browser.instance.get(url)
+    regex1   = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
+    regex2   = %r{\\?/}
+    regex3   = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
     # Custom wp-content dir is now used in this regex
-    names = response.body.scan(/#{regex1}#{Regexp.escape(wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/i)
+    names    = response.body.scan(/#{regex1}#{Regexp.escape(wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/i)
 
     names.flatten!
     names.uniq!
 
     names.each do |item|
       items << WpItem.new(
-          :base_url       => url,
-          :name           => item,
-          :type           => type,
-          :path           => "#{item}/",
-          :wp_content_dir => wp_content_dir,
-          :vulns_file     => ""
+        :base_url       => url,
+        :name           => item,
+        :type           => type,
+        :path           => "#{item}/",
+        :wp_content_dir => wp_content_dir,
+        :vulns_file     => ""
       )
     end
     items

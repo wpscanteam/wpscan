@@ -103,13 +103,13 @@ class WpEnumerator
       File.open(file, "r") do |f|
         f.readlines.collect do |line|
           targets_url << WpItem.new(
-              :base_url       => url,
-              :path           => line.strip,
-              :wp_content_dir => wp_content_dir,
-              :name           => File.dirname(line.strip),
-              :vulns_file     => vulns_file,
-              :type           => type,
-              :wp_plugins_dir => plugins_dir
+            :base_url       => url,
+            :path           => line.strip,
+            :wp_content_dir => wp_content_dir,
+            :name           => File.dirname(line.strip),
+            :vulns_file     => vulns_file,
+            :type           => type,
+            :wp_plugins_dir => plugins_dir
           )
         end
       end
@@ -125,13 +125,13 @@ class WpEnumerator
       xml.xpath(options[:vulns_xpath_2]).each do |node|
         name = node.attribute("name").text
         targets_url << WpItem.new(
-            :base_url       => url,
-            :path           => name,
-            :wp_content_dir => wp_content_dir,
-            :name           => name,
-            :vulns_file     => vulns_file,
-            :type           => type,
-            :wp_plugins_dir => plugins_dir
+          :base_url       => url,
+          :path           => name,
+          :wp_content_dir => wp_content_dir,
+          :name           => name,
+          :vulns_file     => vulns_file,
+          :type           => type,
+          :wp_plugins_dir => plugins_dir
         )
         end
     end
