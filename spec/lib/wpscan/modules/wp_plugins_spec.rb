@@ -29,44 +29,70 @@ shared_examples_for "WpPlugins" do
   before :each do
     @module = WpScanModuleSpec.new(@wp_url)
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
+    @module.homepage_hash  = Digest::MD5.hexdigest("Homepage!")
     @module.extend(WpPlugins)
 
-    @options = {:base_url => @wp_url,
-                :only_vulnerable_ones => false,
-                :show_progress_bar => false,
-                :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
-                :vulns_file => @plugin_vulns_file,
-                :file => @plugins_file,
-                :type => "plugins",
-                :wp_content_dir => "wp-content",
-                :vulns_xpath_2 => "//plugin"
+    @options = {
+      :base_url             => @wp_url,
+      :only_vulnerable_ones => false,
+      :show_progress_bar    => false,
+      :error_404_hash       => @module.error_404_hash,
+      :homepage_hash        => @module.homepage_hash,
+      :vulns_file           => @plugin_vulns_file,
+      :file                 => @plugins_file,
+      :type                 => "plugins",
+      :wp_content_dir       => "wp-content",
+      :vulns_xpath_2        => "//plugin"
     }
     File.exist?(@plugin_vulns_file).should == true
     File.exist?(@plugins_file).should == true
-    @targets = [WpPlugin.new({:base_url => "http://example.localhost/",
-                              :path => "exclude-pages/exclude_pages.php",
-                              :wp_content_dir => "wp-content",
-                              :name => "exclude-pages"}),
-                WpPlugin.new({:base_url => "http://example.localhost/",
-                              :path => "display-widgets/display-widgets.php",
-                              :wp_content_dir => "wp-content",
-                              :name => "display-widgets"}),
-                WpPlugin.new({:base_url => "http://example.localhost/",
-                              :path => "media-library",
-                              :wp_content_dir => "wp-content",
-                              :name => "media-library"}),
-                WpPlugin.new({:base_url => "http://example.localhost/",
-                              :path => "deans",
-                              :wp_content_dir => "wp-content",
-                              :name => "deans"}),
-                WpPlugin.new({:base_url => "http://example.localhost/",
-                              :path => "formidable/formidable.php",
-                              :wp_content_dir => "wp-content",
-                              :name => "formidable"}),
-                WpPlugin.new({:base_url => "http://example.localhost/",
-                              :path => "regenerate-thumbnails/readme.txt",
-                              :wp_content_dir => "wp-content",
-                              :name => "regenerate-thumbnails"})]
+
+    # These targets are listed in @fixtures_dir + "/plugins.txt"
+    # TODO : load them directly from the fixture file
+    @targets = [
+      WpPlugin.new(
+      {
+        :base_url       => "http://example.localhost/",
+        :path           => "exclude-pages/exclude_pages.php",
+        :wp_content_dir => "wp-content",
+        :name           => "exclude-pages"
+      }),
+      WpPlugin.new(
+      {
+        :base_url       => "http://example.localhost/",
+        :path           => "display-widgets/display-widgets.php",
+        :wp_content_dir => "wp-content",
+        :name           => "display-widgets"
+      }),
+      WpPlugin.new(
+      {
+        :base_url       => "http://example.localhost/",
+        :path           => "media-library",
+        :wp_content_dir => "wp-content",
+        :name           => "media-library"
+      }),
+      WpPlugin.new(
+      {
+        :base_url       => "http://example.localhost/",
+        :path           => "deans",
+        :wp_content_dir => "wp-content",
+        :name           => "deans"
+      }),
+      WpPlugin.new(
+      {
+        :base_url       => "http://example.localhost/",
+        :path           => "formidable/formidable.php",
+        :wp_content_dir => "wp-content",
+        :name           => "formidable"
+      }),
+      WpPlugin.new(
+      {
+        :base_url       => "http://example.localhost/",
+        :path           => "regenerate-thumbnails/readme.txt",
+        :wp_content_dir => "wp-content",
+        :name           => "regenerate-thumbnails"
+      })
+    ]
   end
 
   describe "#plugins_from_passive_detection" do
@@ -92,9 +118,11 @@ shared_examples_for "WpPlugins" do
       }
       expected_plugins = []
       expected_plugin_names.each do |plugin_name|
-        expected_plugins << WpPlugin.new(:base_url => @module.url,
-                                         :path => "/plugins/#{plugin_name}/",
-                                         :name => plugin_name)
+        expected_plugins << WpPlugin.new(
+          :base_url => @module.url,
+          :path     => "/plugins/#{plugin_name}/",
+          :name     => plugin_name
+        )
       end
 
       plugins = @module.plugins_from_passive_detection(:base_url => @module.url, :wp_content_dir => "wp-content")
@@ -134,9 +162,11 @@ shared_examples_for "WpPlugins" do
       @expected_plugins.each do |p|
         stub_request(:get, p.get_full_url.to_s).to_return(:status => 200)
       end
-      new_plugin = WpPlugin.new(:base_url => "http://example.localhost/",
-                                :path => "/plugins/comment-info-tip/",
-                                :name => "comment-info-tip")
+      new_plugin = WpPlugin.new(
+        :base_url => "http://example.localhost/",
+        :path => "/plugins/comment-info-tip/",
+        :name => "comment-info-tip"
+      )
       stub_request(:get, new_plugin.readme_url.to_s).to_return(:status => 200)
       @expected_plugins << new_plugin
     end
@@ -152,5 +182,15 @@ shared_examples_for "WpPlugins" do
         stub_request(:get, plugin_url[0].get_full_url.to_s).to_return(:status => valid_response_code)
       end
     end
+
+    it "should not detect the plugin if there is a redirection to the homepage" do
+      # Let's pick up 2 plugins (The first one will redirect to the homepage)
+      plugins = @targets.sample(2)
+      stub_request(:get, plugins[0].get_full_url.to_s).to_return(:status => 200, :body => "Homepage!")
+      stub_request(:get, plugins[1].get_full_url.to_s).to_return(:status => 200)
+
+      @expected_plugins = [plugins[1]]
+    end
+
   end
 end

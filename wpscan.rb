@@ -216,6 +216,7 @@ begin
       :show_progress_bar     => true,
       :wp_content_dir        => wp_target.wp_content_dir,
       :error_404_hash        => wp_target.error_404_hash,
+      :homepage_hash         => wp_target.homepage_hash,
       :wp_plugins_dir        => wp_target.wp_plugins_dir,
       :full                  => wpscan_options.enumerate_all_plugins,
       :exclude_content_based => wpscan_options.exclude_content_based
@@ -274,6 +275,7 @@ begin
       :show_progress_bar     => true,
       :wp_content_dir        => wp_target.wp_content_dir,
       :error_404_hash        => wp_target.error_404_hash,
+      :homepage_hash         => wp_target.homepage_hash,
       :full                  => wpscan_options.enumerate_all_themes,
       :exclude_content_based => wpscan_options.exclude_content_based
     }
@@ -322,6 +324,7 @@ begin
       :show_progress_bar     => true,
       :wp_content_dir        => wp_target.wp_content_dir,
       :error_404_hash        => wp_target.error_404_hash,
+      :homepage_hash         => wp_target.homepage_hash,
       :exclude_content_based => wpscan_options.exclude_content_based
     }
 

@@ -57,11 +57,12 @@ class WpEnumerator
       request_count += 1
 
       request.on_complete do |response|
+        page_hash = Digest::MD5.hexdigest(response.body)
 
         print "\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete." if options[:show_progress_bar]
 
         if WpTarget.valid_response_codes.include?(response.code)
-          if Digest::MD5.hexdigest(response.body) != options[:error_404_hash]
+          if page_hash != options[:error_404_hash] and page_hash != options[:homepage_hash]
             if options[:exclude_content_based]
               unless response.body[exclude_regexp]
                 found << target

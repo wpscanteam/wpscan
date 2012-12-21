@@ -18,8 +18,6 @@
 
 module WebSite
 
-  #@error_404_hash = nil
-
   # Checks if the remote website is up.
   def online?
     Browser.instance.get(@uri.to_s).code != 0
