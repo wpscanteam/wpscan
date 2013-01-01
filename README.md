@@ -38,7 +38,7 @@ Prerequisites:
 
 *Installing on Debian/Ubuntu:*
 
-```sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev```
+```sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev```
 
 ```git clone https://github.com/wpscanteam/wpscan.git```
 
