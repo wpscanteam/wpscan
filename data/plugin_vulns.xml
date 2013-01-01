@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ryandewhurst at gmail
 
   This file contains vulnerabilities associated with WordPress plugins.
-  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF", "AUTHBYPASS"]
+  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF", "AUTHBYPASS", "FPD"]
 
   <plugin name="">
     <vulnerability>
@@ -30,6 +30,13 @@ ryandewhurst at gmail
 
 -->
 <vulnerabilities>
+  <plugin name="sitepress-multilingual-cms">
+    <vulnerability>
+      <title>Wordpress sitepress-multilingual-cms Full Path Disclosure</title>
+      <reference>http://1337day.com/exploit/20067</reference>
+      <type>FPD</type>
+    <vulnerability>
+  </plugin>
   <plugin name="asset-manager">
     <vulnerability>
       <title>WordPress plugin Asset manager upload.php Arbitrary Code Execution</title>
