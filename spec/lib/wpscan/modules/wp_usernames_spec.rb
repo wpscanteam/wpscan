@@ -45,7 +45,7 @@ shared_examples_for "WpUsernames" do
 
     it "should return an array with 1 username (from header location)" do
       stub_request(:get, @module.author_url(3)).
-          to_return(:status => 301, :headers => {'location' => '/author/Youhou/'})
+        to_return(:status => 301, :headers => {'location' => '/author/Youhou'})
 
       usernames = @module.usernames
       usernames.should_not be_empty
@@ -57,7 +57,7 @@ shared_examples_for "WpUsernames" do
 
     it "should return an array with 1 username (from in the body response)" do
       stub_request(:get, @module.author_url(2)).
-          to_return(:status => 200, :body => File.new(@fixtures_dir + '/admin.htm'))
+        to_return(:status => 200, :body => File.new(@fixtures_dir + '/admin.htm'))
 
       usernames = @module.usernames(:range => (1..2))
       usernames.should_not be_empty
@@ -66,15 +66,17 @@ shared_examples_for "WpUsernames" do
 
     it "should return an array with 2 usernames (one is a duplicate and should not be present twice)" do
       stub_request(:get, @module.author_url(4)).
-          to_return(:status => 301, :headers => {'location' => '/author/Youhou/'})
+        to_return(:status => 301, :headers => {'location' => '/author/Youhou/'})
 
       stub_request(:get, @module.author_url(2)).
-          to_return(:status => 200, :body => File.new(@fixtures_dir + '/admin.htm'))
+        to_return(:status => 200, :body => File.new(@fixtures_dir + '/admin.htm'))
 
       usernames = @module.usernames(:range => (1..5))
       usernames.should_not be_empty
-      expected = [WpUser.new("admin", 2, "admin | Wordpress 3.3.2"),
-                  WpUser.new("Youhou", 4, "empty")]
+      expected = [
+        WpUser.new("admin", 2, "admin | Wordpress 3.3.2"),
+        WpUser.new("Youhou", 4, "empty")
+      ]
 
       usernames.sort_by { |u| u.name }.eql?(expected.sort_by { |u| u.name }).should be_true
     end

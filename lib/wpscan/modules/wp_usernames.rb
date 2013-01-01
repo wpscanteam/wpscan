@@ -37,7 +37,7 @@ module WpUsernames
       username = nil
       nickname = nil
       if response.code == 301 # username in location?
-        username = response.headers_hash['location'][%r{/author/([^/]+)/}i, 1]
+        username = response.headers_hash['location'][%r{/author/([^/\b]+)/?}i, 1]
         # Get the real name from the redirect site
         nickname = get_nickname_from_url(url)
       elsif response.code == 200 # username in body?
