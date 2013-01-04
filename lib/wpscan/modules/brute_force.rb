@@ -20,11 +20,14 @@ module BruteForce
 
   # param array of string logins
   # param string wordlist_path
-  def brute_force(logins, wordlist_path)
+  # param hash options
+  #   boolean :show_progression If true, will output the details (Sucess, error etc)
+  def brute_force(logins, wordlist_path, options = {})
     hydra               = Browser.instance.hydra
     number_of_passwords = BruteForce.lines_in_file(wordlist_path)
     login_url           = login_url()
     found               = []
+    show_progression    = options[:show_progression] || false
 
     logins.each do |login|
       queue_count    = 0
@@ -41,7 +44,7 @@ module BruteForce
         queue_count   += 1
 
         # create local vars for on_complete call back, Issue 51.
-        username = login.name != 'empty' ? login.name : login.nickname # Issue #66 
+        username = login.name != 'empty' ? login.name : login.nickname # Issue #66
         password = password
 
         # the request object
@@ -61,23 +64,23 @@ module BruteForce
           if response.body =~ /login_error/i
             puts "\nIncorrect username and/or password." if @verbose
           elsif response.code == 302
-            puts "\n  " + green("[SUCCESS]") + " Username : #{username} Password : #{password}\n"
+            puts "\n  " + green("[SUCCESS]") + " Username : #{username} Password : #{password}\n" if show_progression
             found << { :name => username, :password => password }
             password_found = true
           elsif response.timed_out?
-            puts red("ERROR:") + " Request timed out."
+            puts red("ERROR:") + " Request timed out." if show_progression
           elsif response.code == 0
-            puts red("ERROR:") + " No response from remote server. WAF/IPS?"
+            puts red("ERROR:") + " No response from remote server. WAF/IPS?" if show_progression
           # code is a fixnum, needs a string for regex
           elsif response.code.to_s =~ /^50/
-            puts red("ERROR:") + " Server error, try reducing the number of threads."
+            puts red("ERROR:") + " Server error, try reducing the number of threads." if show_progression
           else
-            puts "\n" + red("ERROR:") + " We recieved an unknown response for #{password}..."
-            if @verbose
-              puts red("Code: #{response.code.to_s}")
-              puts red("Body: #{response.body}")
-              puts
-            end
+            puts "\n" + red("ERROR:") + " We recieved an unknown response for #{password}..." if show_progression
+
+            # ugly method to get the coverage :/ (otherwise some output is present in the rspec)
+            puts red("Code: #{response.code.to_s}") if @verbose
+            puts red("Body: #{response.body}") if @verbose
+            puts if @verbose
           end
         end
 
@@ -88,7 +91,7 @@ module BruteForce
         hydra.queue(request)
 
         # progress indicator
-        print "\r  Brute forcing user '#{username}' with #{number_of_passwords} passwords... #{(request_count * 100) / number_of_passwords}% complete."
+        print "\r  Brute forcing user '#{username}' with #{number_of_passwords} passwords... #{(request_count * 100) / number_of_passwords}% complete." if show_progression
 
         # it can take a long time to queue 2 million requests,
         # for that reason, we queue @threads, send @threads, queue @threads and so on.

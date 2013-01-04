@@ -25,7 +25,7 @@ shared_examples_for "BruteForce" do
     @username           = "admin"
 
     @module.extend(BruteForce)
-    @module.verbose = true
+    #@module.verbose = true
     Browser.instance.max_threads = 1
   end
 
@@ -49,11 +49,13 @@ shared_examples_for "BruteForce" do
       end
       # Last status must be 302 to get full code coverage
       passwords.each do ||
-        stub_request(:any, @module.login_url).to_return( { :status => 200, :body => "login_error" },
-                                                         { :status => 0,   :body => "no reponse" },
-                                                         { :status => 50, :body => "server error" },
-                                                         { :status => 999, :body => "invalid" },
-                                                         { :status => 302, :body => "FOUND!" })
+        stub_request(:any, @module.login_url).to_return(
+          { :status => 200, :body => "login_error" },
+          { :status => 0,   :body => "no reponse" },
+          { :status => 50, :body => "server error" },
+          { :status => 999, :body => "invalid" },
+          { :status => 302, :body => "FOUND!" }
+        )
       end
 
       user = WpUser.new("admin", 1, nil)

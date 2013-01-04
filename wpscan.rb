@@ -400,7 +400,7 @@ begin
       puts
       puts green("[+]") + " Starting the password brute forcer"
       puts
-      wp_target.brute_force(usernames, wpscan_options.wordlist)
+      wp_target.brute_force(usernames, wpscan_options.wordlist, {:show_progression => true})
     else
       puts
       puts "Brute forcing aborted"
