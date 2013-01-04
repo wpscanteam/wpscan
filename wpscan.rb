@@ -213,7 +213,7 @@ begin
     options = {
       :base_url              => wp_target.uri,
       :only_vulnerable_ones  => wpscan_options.enumerate_only_vulnerable_plugins || false,
-      :show_progress_bar     => true,
+      :show_progression      => true,
       :wp_content_dir        => wp_target.wp_content_dir,
       :error_404_hash        => wp_target.error_404_hash,
       :homepage_hash         => wp_target.homepage_hash,
@@ -272,7 +272,7 @@ begin
     options = {
       :base_url              => wp_target.uri,
       :only_vulnerable_ones  => wpscan_options.enumerate_only_vulnerable_themes || false,
-      :show_progress_bar     => true,
+      :show_progression      => true,
       :wp_content_dir        => wp_target.wp_content_dir,
       :error_404_hash        => wp_target.error_404_hash,
       :homepage_hash         => wp_target.homepage_hash,
@@ -321,7 +321,7 @@ begin
 
     options = {
       :base_url              => wp_target.uri,
-      :show_progress_bar     => true,
+      :show_progression      => true,
       :wp_content_dir        => wp_target.wp_content_dir,
       :error_404_hash        => wp_target.error_404_hash,
       :homepage_hash         => wp_target.homepage_hash,

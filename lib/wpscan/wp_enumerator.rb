@@ -29,7 +29,7 @@ class WpEnumerator
   # * * +:path+ - Path to plugin
   # * +type+ - "plugins" or "themes", item to enumerate
   # * +filename+ - filename in the data directory with paths
-  # * +show_progress_bar+ - Show a progress bar during enumeration
+  # * +show_progression+ - Show a progress bar during enumeration
   def self.enumerate(options = {}, items = nil)
 
     WpOptions.check_options(options)
@@ -42,13 +42,14 @@ class WpEnumerator
       end
     end
 
-    found          = []
-    queue_count    = 0
-    request_count  = 0
-    enum_browser   = Browser.instance
-    enum_hydra     = enum_browser.hydra
-    enumerate_size = targets.size
-    exclude_regexp = options[:exclude_content_based] ? %r{#{options[:exclude_content_based]}} : nil
+    found            = []
+    queue_count      = 0
+    request_count    = 0
+    enum_browser     = Browser.instance
+    enum_hydra       = enum_browser.hydra
+    enumerate_size   = targets.size
+    exclude_regexp   = options[:exclude_content_based] ? %r{#{options[:exclude_content_based]}} : nil
+    show_progression = options[:show_progression] || false
 
     targets.each do |target|
       url = target.get_full_url
@@ -59,7 +60,7 @@ class WpEnumerator
       request.on_complete do |response|
         page_hash = Digest::MD5.hexdigest(response.body)
 
-        print "\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete." if options[:show_progress_bar]
+        print "\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete." if show_progression
 
         if WpTarget.valid_response_codes.include?(response.code)
           if page_hash != options[:error_404_hash] and page_hash != options[:homepage_hash]

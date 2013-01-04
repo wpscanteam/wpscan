@@ -19,35 +19,34 @@
 shared_examples_for "WpTimthumbs" do
 
   before :each do
-    @options = {}
-    @url = "http://example.localhost/"
-    @theme_name = "bueno"
-    @options[:base_url] = @url
-    @options[:wp_content_dir] = "wp-content"
-    @options[:name] = @theme_name
-    @options[:error_404_hash] = "xx"
-    @options[:show_progress_bar] = false
+    @options                        = {}
+    @url                            = "http://example.localhost/"
+    @theme_name                     = "bueno"
+    @options[:base_url]             = @url
+    @options[:wp_content_dir]       = "wp-content"
+    @options[:name]                 = @theme_name
+    @options[:error_404_hash]       = "xx"
+    @options[:show_progression]     = false
     @options[:only_vulnerable_ones] = false
-    @options[:vulns_file] = "xx"
-    @options[:type] = "timthumbs"
-    @module = WpScanModuleSpec.new(@url)
-    @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
-    @timthumbs_file = @fixtures_dir + "/timthumbs.txt"
-    @targets_from_file =
-        %w{
+    @options[:vulns_file]           = "xx"
+    @options[:type]                 = "timthumbs"
+    @module                         = WpScanModuleSpec.new(@url)
+    @fixtures_dir                   = SPEC_FIXTURES_WPSCAN_MODULES_DIR + "/wp_timthumbs"
+    @timthumbs_file                 = @fixtures_dir + "/timthumbs.txt"
+    @targets_from_file = %w{
       http://example.localhost/wp-content/plugins/fotoslide/timthumb.php
       http://example.localhost/wp-content/plugins/feature-slideshow/timthumb.php
     }
     @targets_from_theme =
-        [
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/timthumb.php",
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/lib/timthumb.php",
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/inc/timthumb.php",
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/includes/timthumb.php",
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/scripts/timthumb.php",
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/tools/timthumb.php",
-            "http://example.localhost/wp-content/themes/" + @theme_name + "/functions/timthumb.php"
-        ]
+    [
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/timthumb.php",
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/lib/timthumb.php",
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/inc/timthumb.php",
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/includes/timthumb.php",
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/scripts/timthumb.php",
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/tools/timthumb.php",
+      "http://example.localhost/wp-content/themes/" + @theme_name + "/functions/timthumb.php"
+    ]
 
     @module.extend(WpTimthumbs)
   end

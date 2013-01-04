@@ -31,15 +31,16 @@ shared_examples_for "WpThemes" do
     @module.error_404_hash = Digest::MD5.hexdigest("Error 404!")
     @module.extend(WpThemes)
 
-    @options = {:base_url => @wp_url,
-                :only_vulnerable_ones => false,
-                :show_progress_bar => false,
-                :error_404_hash => Digest::MD5.hexdigest("Error 404!"),
-                :vulns_file => @theme_vulns_file,
-                :file => @themes_file,
-                :type => "themes",
-                :wp_content_dir => "wp-content",
-                :vulns_xpath_2 => "//theme"
+    @options = {
+      :base_url             => @wp_url,
+      :only_vulnerable_ones => false,
+      :show_progression     => false,
+      :error_404_hash       => Digest::MD5.hexdigest("Error 404!"),
+      :vulns_file           => @theme_vulns_file,
+      :file                 => @themes_file,
+      :type                 => "themes",
+      :wp_content_dir       => "wp-content",
+      :vulns_xpath_2        => "//theme"
     }
     File.exist?(@theme_vulns_file).should == true
     File.exist?(@themes_file).should == true

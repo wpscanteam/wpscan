@@ -35,7 +35,7 @@ shared_examples_for "WpPlugins" do
     @options = {
       :base_url             => @wp_url,
       :only_vulnerable_ones => false,
-      :show_progress_bar    => false,
+      :show_progression     => false,
       :error_404_hash       => @module.error_404_hash,
       :homepage_hash        => @module.homepage_hash,
       :vulns_file           => @plugin_vulns_file,
