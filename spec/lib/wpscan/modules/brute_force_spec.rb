@@ -25,7 +25,6 @@ shared_examples_for "BruteForce" do
     @username           = "admin"
 
     @module.extend(BruteForce)
-    #@module.verbose = true
     Browser.instance.max_threads = 1
   end
 
