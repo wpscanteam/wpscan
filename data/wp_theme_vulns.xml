@@ -18,10 +18,24 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
   This file contains vulnerabilities associated with WordPress themes.
-  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS"]
+  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "FPD"]
 
 -->
 <themes>
+
+  <theme name="moneymasters">
+    <vulnerability>
+      <title>moneymasters Full Path Disclosure vulnerability</title>
+      <reference>http://1337day.com/exploit/20077</reference>
+      <type>FPD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>moneymasters File Upload Vulnerability (metasploit)</title>
+      <reference>http://1337day.com/exploit/20076</reference>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </theme>
+
   <theme name="ovum">
     <vulnerability>
         <title>XSS vulnerability in Imediapixel premium WordPress themes</title>
