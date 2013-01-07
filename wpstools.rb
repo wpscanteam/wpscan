@@ -186,12 +186,13 @@ begin
 
   if @check_local_vulnerable_files
     if Dir::exist?(@dir_to_scan)
-      local_hashes   = {}
-      xml_file = DATA_DIR + "/local_vulnerable_files.xml"
+      xml_file               = DATA_DIR + "/local_vulnerable_files.xml"
+      local_hashes           = {}
+      file_extension_to_scan = "*.{js,php,swf,html,htm}"
 
       print "[+] Generating local hashes ... "
 
-      Dir[File::join(@dir_to_scan, "**", "*.{js,php,swf}")].each do |filename|
+      Dir[File::join(@dir_to_scan, "**", file_extension_to_scan)].each do |filename|
         sha1sum = Digest::SHA1.file(filename).hexdigest
 
         if local_hashes.has_key?(sha1sum)
@@ -223,6 +224,7 @@ begin
           local_filenames.each do |file|
             puts "  |  - #{file}"
           end
+          puts "  |"
           puts "  | Title: #{vuln_title}"
           puts "  | Refrence: #{vuln_refrence}"
         end
