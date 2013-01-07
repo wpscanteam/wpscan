@@ -226,7 +226,8 @@ begin
           end
           puts "  |"
           puts "  | Title: #{vuln_title}"
-          puts "  | Refrence: #{vuln_refrence}"
+          puts "  | Refrence: #{vuln_refrence}" if !vuln_refrence.empty?
+          puts
         end
       end
 
