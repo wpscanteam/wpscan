@@ -169,11 +169,15 @@ Enumerate instaled plugins...
 --update  | -u   Update to the latest revision.
 --generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
 --gpl  Alias for --generate_plugin_list
+--check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells
 
 ==WPSTOOLS EXAMPLES==
 
 - Generate a new 'most popular' plugin list, up to 150 pages ...
 ruby wpstools.rb --generate_plugin_list 150
+
+- Locally scan a wordpress installation for vulnerable files or shells :
+ruby wpstools.rb --check-local-vulnerable-files /var/www/wordpress/
 
 ===PROJECT HOME===
 

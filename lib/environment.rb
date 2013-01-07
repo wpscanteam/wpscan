@@ -25,6 +25,7 @@ begin
   require 'resolv'
   require 'xmlrpc/client'
   require 'digest/md5'
+  require 'digest/sha1'
   require 'readline'
   require 'base64'
   require 'cgi'

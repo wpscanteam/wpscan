@@ -28,19 +28,22 @@ def usage()
   puts "Examples:"
   puts
   puts "- Generate a new 'most popular' plugin list, up to 150 pages ..."
-  puts "ruby " + script_name + " --generate_plugin_list 150"
+  puts "ruby #{script_name} --generate_plugin_list 150"
   puts
   puts "- Generate a new full plugin list"
-  puts "ruby " + script_name + " --generate_full_plugin_list"
+  puts "ruby #{script_name} --generate_full_plugin_list"
   puts
   puts "- Generate a new 'most popular' theme list, up to 150 pages ..."
-  puts "ruby " + script_name + " --generate_theme_list 150"
+  puts "ruby #{script_name} --generate_theme_list 150"
   puts
   puts "- Generate a new full theme list"
-  puts "ruby " + script_name + " --generate_full_theme_list"
+  puts "ruby #{script_name} --generate_full_theme_list"
   puts
   puts "- Generate all list"
-  puts "ruby " + script_name + " --generate_all"
+  puts "ruby #{script_name} --generate_all"
+  puts
+  puts "Locally scan a wordpress installation for vulnerable files or shells"
+  puts "ruby #{script_name} --check-local-vulnerable-files /var/www/wordpress/"
   puts
   puts "See README for further information."
   puts
@@ -63,5 +66,6 @@ def help()
   puts "--generate_all  Generate a new full plugins, full themes, popular plugins and popular themes list"
   puts "--ga  Alias for --generate_all"
   puts "--check-vuln-ref-urls | --cvru  Check all the vulnerabilities reference urls for 404"
+  puts "--check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells"
   puts
 end

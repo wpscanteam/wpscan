@@ -46,7 +46,9 @@ begin
       ["--ga", GetoptLong::OPTIONAL_ARGUMENT],            # Alias for --generate_all
       ["--update", "-u", GetoptLong::NO_ARGUMENT],
       ["--check-vuln-ref-urls", GetoptLong::NO_ARGUMENT],
-      ["--cvru", GetoptLong::NO_ARGUMENT]                 # Alias for --check-vuln-ref-urls
+      ["--cvru", GetoptLong::NO_ARGUMENT],                 # Alias for --check-vuln-ref-urls
+      ["--check-local-vulnerable-files", GetoptLong::REQUIRED_ARGUMENT],
+      ["--clvf", GetoptLong::REQUIRED_ARGUMENT]            # Alias for --check-local-vulnerable-files
   )
 
   options.each do |option, argument|
@@ -88,6 +90,9 @@ begin
         @generate_full_plugin_list = true
       when "--check-vuln-ref-urls", "--cvru"
         @check_vuln_ref_urls = true
+      when "--check-local-vulnerable-files", "--clvf"
+        @check_local_vulnerable_files = true
+        @dir_to_scan                  = argument
     end
   end
 
@@ -176,6 +181,57 @@ begin
       unless dead_urls.empty?
         dead_urls.each { |url| puts "    Not Found #{url}" }
       end
+    end
+  end
+
+  if @check_local_vulnerable_files
+    if Dir::exist?(@dir_to_scan)
+      local_hashes   = {}
+      xml_file = DATA_DIR + "/local_vulnerable_files.xml"
+
+      print "[+] Generating local hashes ... "
+
+      Dir[File::join(@dir_to_scan, "**", "*.{js,php,swf}")].each do |filename|
+        sha1sum = Digest::SHA1.file(filename).hexdigest
+
+        if local_hashes.has_key?(sha1sum)
+          local_hashes[sha1sum] << filename
+        else
+          local_hashes[sha1sum] = [filename]
+        end
+      end
+
+      puts "done."
+
+      puts "[+] Checking for vulnerable files ..."
+
+      xml = Nokogiri::XML(File.open(xml_file)) do |config|
+        config.noblanks
+      end
+
+      xml.xpath("//hash").each do |node|
+        sha1sum = node.attribute("sha1").text
+
+        if local_hashes.has_key?(sha1sum)
+          local_filenames = local_hashes[sha1sum]
+          vuln_title      = node.search("title").text
+          vuln_filename   = node.search("file").text
+          vuln_refrence   = node.search("reference").text
+
+          puts "  #{vuln_filename} found :"
+          puts "  | Location(s):"
+          local_filenames.each do |file|
+            puts "  |  - #{file}"
+          end
+          puts "  | Title: #{vuln_title}"
+          puts "  | Refrence: #{vuln_refrence}"
+        end
+      end
+
+      puts "done."
+
+    else
+      puts "The supplied directory '#{@dir_to_scan}' does not exist"
     end
   end
 
