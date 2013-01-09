@@ -128,8 +128,6 @@
     
     <li><a href="#method-i-debug_log_url">#debug_log_url</a>
     
-    <li><a href="#method-i-error_404_hash">#error_404_hash</a>
-    
     <li><a href="#method-i-has_debug_log-3F">#has_debug_log?</a>
     
     <li><a href="#method-i-is_multisite-3F">#is_multisite?</a>
@@ -333,7 +331,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 36</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">target_url</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-ivar">@uri</span>            = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">target_url</span>)))
   <span class="ruby-ivar">@verbose</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-value">:verbose</span>]
@@ -369,7 +367,7 @@
 
           
           <div class="method-source-code" id="valid_response_codes-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 77</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">valid_response_codes</span>
   [<span class="ruby-value">200</span>, <span class="ruby-value">301</span>, <span class="ruby-value">302</span>, <span class="ruby-value">401</span>, <span class="ruby-value">403</span>, <span class="ruby-value">500</span>]
 <span class="ruby-keyword">end</span></pre>
@@ -405,7 +403,7 @@
 
           
           <div class="method-source-code" id="debug_log_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 124</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 109</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">debug_log_url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-node">&quot;#{wp_content_dir()}/debug.log&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -417,44 +415,6 @@
 
         
       </div><!-- debug_log_url-method -->
-
-    
-      <div id="method-i-error_404_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">error_404_hash</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Return the MD5 hash of a 404 page</p>
-          
-
-          
-          <div class="method-source-code" id="error_404_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 64</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_404_hash</span>
-  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@error_404_hash</span>
-    <span class="ruby-identifier">non_existant_page</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">9999999999</span>).<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.html&quot;</span>
-
-    <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">non_existant_page</span>).<span class="ruby-identifier">to_s</span>)
-
-    <span class="ruby-ivar">@error_404_hash</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-ivar">@error_404_hash</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- error_404_hash-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- error_404_hash-method -->
 
     
       <div id="method-i-has_debug_log-3F" class="method-detail ">
@@ -473,7 +433,7 @@
 
           
           <div class="method-source-code" id="has_debug_log-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 118</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_debug_log?</span>
   <span class="ruby-comment"># We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)</span>
   <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
@@ -505,7 +465,7 @@
 
           
           <div class="method-source-code" id="is_multisite-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 163</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 148</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">is_multisite?</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@multisite</span>
     <span class="ruby-comment"># when multi site, there is no redirection or a redirect to the site itself</span>
@@ -550,7 +510,7 @@
 
           
           <div class="method-source-code" id="login_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 51</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_url</span>
   <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php&quot;</span>).<span class="ruby-identifier">to_s</span>
 
@@ -588,7 +548,7 @@
 
           
           <div class="method-source-code" id="registration_enabled-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 141</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 126</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_enabled?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">registration_url</span>)
   <span class="ruby-comment"># redirect only on non multi sites</span>
@@ -632,7 +592,7 @@
 
           
           <div class="method-source-code" id="registration_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 159</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_url</span>
   <span class="ruby-identifier">is_multisite?</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php?action=register&quot;</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -662,7 +622,7 @@
 
           
           <div class="method-source-code" id="search_replace_db_2_exists-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 135</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_exists?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">search_replace_db_2_url</span>)
   <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>[<span class="ruby-regexp">%r{by interconnect}</span>]
@@ -695,7 +655,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="search_replace_db_2_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 131</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;searchreplacedb2.php&quot;</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -725,7 +685,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="theme-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 82</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">theme</span>
   <span class="ruby-constant">WpTheme</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@uri</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -755,7 +715,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 47</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">url</span>
   <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
@@ -785,7 +745,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="version-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 87</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">version</span>
   <span class="ruby-constant">WpVersion</span>.<span class="ruby-identifier">find</span>(<span class="ruby-ivar">@uri</span>, <span class="ruby-identifier">wp_content_dir</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -815,7 +775,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="wp_content_dir-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 91</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_content_dir</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_content_dir</span>
     <span class="ruby-identifier">index_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
@@ -857,7 +817,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="wp_plugins_dir-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 107</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@wp_plugins_dir</span>
     <span class="ruby-ivar">@wp_plugins_dir</span> = <span class="ruby-node">&quot;#{wp_content_dir}/plugins&quot;</span>
@@ -890,7 +850,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
 
           
           <div class="method-source-code" id="wp_plugins_dir_exists-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 114</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">wp_plugins_dir_exists?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">wp_plugins_dir</span>)).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
 <span class="ruby-keyword">end</span></pre>

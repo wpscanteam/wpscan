@@ -234,7 +234,7 @@
 </li><li>
 <p><code>filename</code> - filename in the data directory with paths</p>
 </li><li>
-<p><code>show_progress_bar</code> - Show a progress bar during enumeration</p>
+<p><code>show_progression</code> - Show a progress bar during enumeration</p>
 </li></ul>
           
 
@@ -253,13 +253,14 @@
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">found</span>          = []
-  <span class="ruby-identifier">queue_count</span>    = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">request_count</span>  = <span class="ruby-value">0</span>
-  <span class="ruby-identifier">enum_browser</span>   = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
-  <span class="ruby-identifier">enum_hydra</span>     = <span class="ruby-identifier">enum_browser</span>.<span class="ruby-identifier">hydra</span>
-  <span class="ruby-identifier">enumerate_size</span> = <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">size</span>
-  <span class="ruby-identifier">exclude_regexp</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:exclude_content_based</span>] <span class="ruby-operator">?</span> <span class="ruby-node">%r{#{options[:exclude_content_based]}}</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">found</span>            = []
+  <span class="ruby-identifier">queue_count</span>      = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">request_count</span>    = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">enum_browser</span>     = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-identifier">enum_hydra</span>       = <span class="ruby-identifier">enum_browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-identifier">enumerate_size</span>   = <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">size</span>
+  <span class="ruby-identifier">exclude_regexp</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-value">:exclude_content_based</span>] <span class="ruby-operator">?</span> <span class="ruby-node">%r{#{options[:exclude_content_based]}}</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  <span class="ruby-identifier">show_progression</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progression</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
 
   <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">url</span> = <span class="ruby-identifier">target</span>.<span class="ruby-identifier">get_full_url</span>
@@ -268,11 +269,12 @@
     <span class="ruby-identifier">request_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 
     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">page_hash</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
 
-      <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progress_bar</span>]
+      <span class="ruby-identifier">print</span> <span class="ruby-node">&quot;\rChecking for #{enumerate_size} total #{options[:type]}... #{(request_count * 100) / enumerate_size}% complete.&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">show_progression</span>
 
       <span class="ruby-keyword">if</span> <span class="ruby-constant">WpTarget</span>.<span class="ruby-identifier">valid_response_codes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>)
-        <span class="ruby-keyword">if</span> <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>) <span class="ruby-operator">!=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:error_404_hash</span>]
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">page_hash</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:error_404_hash</span>] <span class="ruby-keyword">and</span> <span class="ruby-identifier">page_hash</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:homepage_hash</span>]
           <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:exclude_content_based</span>]
             <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-identifier">exclude_regexp</span>]
               <span class="ruby-identifier">found</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target</span>
@@ -328,7 +330,7 @@
 
           
           <div class="method-source-code" id="generate_items-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_enumerator.rb, line 91</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wp_enumerator.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">generate_items</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">only_vulnerable</span>   = <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable_ones</span>]
   <span class="ruby-identifier">file</span>              = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]
@@ -344,13 +346,13 @@
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-string">&quot;r&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">f</span>.<span class="ruby-identifier">readlines</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
         <span class="ruby-identifier">targets_url</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
-            <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
-            <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>,
-            <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
-            <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>),
-            <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vulns_file</span>,
-            <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
-            <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugins_dir</span>
+          <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
+          <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>,
+          <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
+          <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>),
+          <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vulns_file</span>,
+          <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+          <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugins_dir</span>
         )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -366,13 +368,13 @@
     <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">name</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">attribute</span>(<span class="ruby-string">&quot;name&quot;</span>).<span class="ruby-identifier">text</span>
       <span class="ruby-identifier">targets_url</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
-          <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
-          <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
-          <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
-          <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
-          <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vulns_file</span>,
-          <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
-          <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugins_dir</span>
+        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
+        <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
+        <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
+        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
+        <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vulns_file</span>,
+        <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+        <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugins_dir</span>
       )
       <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>

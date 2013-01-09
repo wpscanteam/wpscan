@@ -114,7 +114,9 @@ begin
       theme_vulnerabilities.each do |vulnerability|
         puts
         puts " | " + red("* Title: #{vulnerability.title}")
-        puts " | " + red("* Reference: #{vulnerability.reference}")
+        vulnerability.references.each do |r|
+          puts " | " + red("* Reference: #{r}")
+        end
       end
       puts
     end
@@ -175,7 +177,9 @@ begin
       version_vulnerabilities.each do |vulnerability|
         puts
         puts " | " + red("* Title: #{vulnerability.title}")
-        puts " | " + red("* Reference: #{vulnerability.reference}")
+        vulnerability.references.each do |r|
+          puts " | " + red("* Reference: #{r}")
+        end
       end
     end
   end
@@ -196,7 +200,9 @@ begin
         plugin.vulnerabilities.each do |vulnerability|
           puts " |"
           puts " | " + red("[!] #{vulnerability.title}")
-          puts " | " + red("* Reference: #{vulnerability.reference}")
+          vulnerability.references.each do |r|
+            puts " | " + red("* Reference: #{r}")
+          end
         end
       end
     else
@@ -242,7 +248,9 @@ begin
 
           puts " |"
           puts " | " + red("[!] #{vulnerability.title}")
-          puts " | " + red("* Reference: #{vulnerability.reference}")
+          vulnerability.references.each do |r|
+            puts " | " + red("* Reference: #{r}")
+          end
 
           # This has been commented out as MSF are moving from
           # XML-RPC to MessagePack.
@@ -297,7 +305,9 @@ begin
         theme.vulnerabilities.each do |vulnerability|
           puts " |"
           puts " | " + red("[!] #{vulnerability.title}")
-          puts " | " + red("* Reference: #{vulnerability.reference}")
+          vulnerability.references.each do |r|
+            puts " | " + red("* Reference: #{r}")
+          end
 
           # This has been commented out as MSF are moving from
           # XML-RPC to MessagePack.

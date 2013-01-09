@@ -64,15 +64,23 @@
 
   <ul class="link-list">
     
+    <li><a href="#method-c-page_hash">::page_hash</a>
+    
+    <li><a href="#method-i-error_404_hash">#error_404_hash</a>
+    
     <li><a href="#method-i-has_basic_auth-3F">#has_basic_auth?</a>
     
     <li><a href="#method-i-has_xml_rpc-3F">#has_xml_rpc?</a>
     
-    <li><a href="#method-i-is_online-3F">#is_online?</a>
+    <li><a href="#method-i-homepage_hash">#homepage_hash</a>
     
-    <li><a href="#method-i-is_wordpress-3F">#is_wordpress?</a>
+    <li><a href="#method-i-online-3F">#online?</a>
     
     <li><a href="#method-i-redirection">#redirection</a>
+    
+    <li><a href="#method-i-rss_url">#rss_url</a>
+    
+    <li><a href="#method-i-wordpress-3F">#wordpress?</a>
     
     <li><a href="#method-i-xml_rpc_url">#xml_rpc_url</a>
     
@@ -200,8 +208,78 @@
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-page_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">page_hash</span><span
+            class="method-args">(url)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the MD5 hash of the page given by url</p>
+          
+
+          
+          <div class="method-source-code" id="page_hash-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">body</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- page_hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- page_hash-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-error_404_hash" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">error_404_hash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Return the MD5 hash of a 404 page</p>
+          
+
+          
+          <div class="method-source-code" id="error_404_hash-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 100</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_404_hash</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@error_404_hash</span>
+    <span class="ruby-identifier">non_existant_page</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">9999999999</span>).<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.html&quot;</span>
+    <span class="ruby-ivar">@error_404_hash</span>   = <span class="ruby-constant">WebSite</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">non_existant_page</span>).<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@error_404_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- error_404_hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- error_404_hash-method -->
 
     
       <div id="method-i-has_basic_auth-3F" class="method-detail ">
@@ -220,7 +298,7 @@
 
           
           <div class="method-source-code" id="has_basic_auth-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 69</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_basic_auth?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">401</span>
 <span class="ruby-keyword">end</span></pre>
@@ -250,7 +328,7 @@
 
           
           <div class="method-source-code" id="has_xml_rpc-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 60</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 56</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_xml_rpc?</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">xml_rpc_url</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
@@ -264,10 +342,43 @@
       </div><!-- has_xml_rpc-3F-method -->
 
     
-      <div id="method-i-is_online-3F" class="method-detail ">
+      <div id="method-i-homepage_hash" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">is_online?</span><span
+          <span class="method-name">homepage_hash</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="homepage_hash-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 92</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">homepage_hash</span>
+  <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@homepage_hash</span>
+    <span class="ruby-ivar">@homepage_hash</span> = <span class="ruby-constant">WebSite</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@homepage_hash</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- homepage_hash-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- homepage_hash-method -->
+
+    
+      <div id="method-i-online-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">online?</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -279,69 +390,19 @@
           
 
           
-          <div class="method-source-code" id="is_online-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 65</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_online?</span>
+          <div class="method-source-code" id="online-3F-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">online?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- is_online-3F-source -->
+          </div><!-- online-3F-source -->
           
         </div>
 
         
 
         
-      </div><!-- is_online-3F-method -->
-
-    
-      <div id="method-i-is_wordpress-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">is_wordpress?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>check if the remote website is actually running wordpress.</p>
-          
-
-          
-          <div class="method-source-code" id="is_wordpress-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 23</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">is_wordpress?</span>
-  <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">false</span>
-
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(
-    <span class="ruby-identifier">login_url</span>(),
-    {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>}
-  )
-
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{WordPress}</span>
-    <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(
-        <span class="ruby-identifier">xml_rpc_url</span>,
-        {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>}
-    )
-
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{XML-RPC server accepts POST requests only}</span>
-      <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">wordpress</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- is_wordpress-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- is_wordpress-3F-method -->
+      </div><!-- online-3F-method -->
 
     
       <div id="method-i-redirection" class="method-detail ">
@@ -383,6 +444,88 @@ redirection or nil</p>
       </div><!-- redirection-method -->
 
     
+      <div id="method-i-rss_url" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">rss_url</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Will try to find the rss url in the homepage Only the first one found iw
+returned</p>
+          
+
+          
+          <div class="method-source-code" id="rss_url-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 110</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">rss_url</span>
+  <span class="ruby-identifier">homepage_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">homepage_body</span>[<span class="ruby-regexp">%r{&lt;link .* type=&quot;application/rss\+xml&quot; .* href=&quot;([^&quot;]+)&quot; /&gt;}</span>, <span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- rss_url-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- rss_url-method -->
+
+    
+      <div id="method-i-wordpress-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">wordpress?</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>check if the remote website is actually running wordpress.</p>
+          
+
+          
+          <div class="method-source-code" id="wordpress-3F-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 32</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wordpress?</span>
+  <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">false</span>
+
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(
+    <span class="ruby-identifier">login_url</span>(),
+    {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>}
+  )
+
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{WordPress}</span>
+    <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(
+      <span class="ruby-identifier">xml_rpc_url</span>,
+      {<span class="ruby-value">:follow_location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">true</span>, <span class="ruby-value">:max_redirects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>}
+    )
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{XML-RPC server accepts POST requests only}</span>
+      <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">wordpress</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- wordpress-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- wordpress-3F-method -->
+
+    
       <div id="method-i-xml_rpc_url" class="method-detail ">
         
         <div class="method-heading">
@@ -399,7 +542,7 @@ redirection or nil</p>
 
           
           <div class="method-source-code" id="xml_rpc_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 47</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 60</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">xml_rpc_url</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@xmlrpc_url</span>
     <span class="ruby-identifier">headers</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">headers_hash</span>

@@ -132,7 +132,7 @@ begin
   # seclists.org redirects to the homepage if the reference does not exist
   # TODO : the special case above
   if @check_vuln_ref_urls
-    vuln_ref_files   = ["plugin_vulns.xml", "wp_theme_vulns.xml", "wp_vulns.xml"]
+    vuln_ref_files   = ["plugin_vulns.xml", "theme_vulns.xml", "wp_vulns.xml"]
     error_codes      = [404, 500, 403]
     not_found_regexp = %r{No Results Found|error 404|ID Invalid or Not Found}i
 
