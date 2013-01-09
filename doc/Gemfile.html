@@ -145,8 +145,16 @@
   
 <p>source “<a href="https://rubygems.org">rubygems.org</a>”</p>
 
-<p>gem “typhoeus”, “0.4.2” gem “rspec”, :require =&gt; “spec” gem “nokogiri”
-gem “json” gem “webmock”, “1.8.11” gem “simplecov”</p>
+<p>gem “typhoeus”, “0.4.2” gem “nokogiri” gem “json”</p>
+
+<p>group :development, :test do</p>
+
+<pre class="ruby"><span class="ruby-identifier">gem</span> <span class="ruby-string">&quot;webmock&quot;</span>, <span class="ruby-string">&quot;1.8.11&quot;</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">&quot;simplecov&quot;</span>
+<span class="ruby-identifier">gem</span> <span class="ruby-string">&quot;rspec&quot;</span>, :<span class="ruby-identifier">require</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;spec&quot;</span>
+</pre>
+
+<p>end</p>
 
 </div>
 

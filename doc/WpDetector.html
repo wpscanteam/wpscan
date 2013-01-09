@@ -277,25 +277,25 @@
           <div class="method-source-code" id="passive_detection-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_detector.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">wp_content_dir</span>)
-  <span class="ruby-identifier">items</span>         = []
-  <span class="ruby-identifier">response</span>      = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">regex1</span>        = <span class="ruby-regexp">%r{(?:[^=:]+)\s?(?:=|:)\s?(?:&quot;|')[^&quot;']+\\?/}</span>
-  <span class="ruby-identifier">regex2</span>        = <span class="ruby-regexp">%r{\\?/}</span>
-  <span class="ruby-identifier">regex3</span>        = <span class="ruby-regexp">%r{\\?/([^/\\&quot;']+)\\?(?:/|&quot;|')}</span>
+  <span class="ruby-identifier">items</span>    = []
+  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-identifier">regex1</span>   = <span class="ruby-regexp">%r{(?:[^=:]+)\s?(?:=|:)\s?(?:&quot;|')[^&quot;']+\\?/}</span>
+  <span class="ruby-identifier">regex2</span>   = <span class="ruby-regexp">%r{\\?/}</span>
+  <span class="ruby-identifier">regex3</span>   = <span class="ruby-regexp">%r{\\?/([^/\\&quot;']+)\\?(?:/|&quot;|')}</span>
   <span class="ruby-comment"># Custom wp-content dir is now used in this regex</span>
-  <span class="ruby-identifier">names</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-node">%r#{regex1}#{Regexp.escape(wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/</span>)
+  <span class="ruby-identifier">names</span>    = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-node">%r#{regex1}#{Regexp.escape(wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/</span>)
 
   <span class="ruby-identifier">names</span>.<span class="ruby-identifier">flatten!</span>
   <span class="ruby-identifier">names</span>.<span class="ruby-identifier">uniq!</span>
 
   <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
-        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>,
-        <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
-        <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{item}/&quot;</span>,
-        <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
-        <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>
+      <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
+      <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>,
+      <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+      <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{item}/&quot;</span>,
+      <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
+      <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;&quot;</span>
     )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">items</span>
