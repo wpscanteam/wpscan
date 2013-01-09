@@ -41,7 +41,7 @@ require 'webmock/rspec'
 SPEC_DIR = ROOT_DIR + '/spec'
 SPEC_LIB_DIR = SPEC_DIR + '/lib'
 SPEC_CACHE_DIR = SPEC_DIR + '/cache'
-SPEC_FIXTURES_DIR = SPEC_DIR + '/fixtures'
+SPEC_FIXTURES_DIR = SPEC_DIR + '/samples'
 SPEC_FIXTURES_CONF_DIR = SPEC_FIXTURES_DIR + '/conf'
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
 
