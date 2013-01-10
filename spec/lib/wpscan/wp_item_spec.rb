@@ -436,4 +436,21 @@ describe WpPlugin do
       @instance.has_changelog?.should == false
     end
   end
+
+  describe "#wp_org_url" do
+    before :each do
+      @instance = WpItem.new(
+        :base_url => "http://sub.example.com/path/to/wordpress/",
+        :path => "test/asdf.php",
+        :vulns_file => "XXX.xml",
+        :name => "test",
+        :vulns_xpath => "XX",
+        :type => "plugins"
+      )
+    end
+    
+    it "should return the correct url" do
+       @expected = "http://wordpress.org/extend/plugins/test/"  
+    end  
+  end
 end

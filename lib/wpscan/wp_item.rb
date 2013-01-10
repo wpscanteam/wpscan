@@ -40,6 +40,12 @@ class WpItem < Vulnerable
     raise("type not set")           unless @type
   end
 
+  # The wordpress.org plugins directory URL
+  # See: https://github.com/wpscanteam/wpscan/issues/100
+  def wp_org_url
+    URI('http://wordpress.org/extend/plugins/').merge("#@name/")
+  end
+
   def get_sub_folder
     case @type
       when "themes"
