@@ -193,7 +193,6 @@ begin
       puts "#{plugins.size} found :"
 
       plugins.each do |plugin|
-        p plugin
         puts
         puts " | Name: #{plugin.name}"
         puts " | Location: #{plugin.get_full_url}"
