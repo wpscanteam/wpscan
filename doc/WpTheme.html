@@ -295,7 +295,7 @@
             <pre><span class="ruby-comment"># File lib/wpscan/wp_theme.rb, line 25</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]    = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">?</span>
-      <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/wp_theme_vulns.xml&quot;</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/theme_vulns.xml&quot;</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>] = <span class="ruby-string">&quot;//theme[@name='$name$']/vulnerability&quot;</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]        = <span class="ruby-string">&quot;themes&quot;</span>
   <span class="ruby-ivar">@version</span>              = <span class="ruby-identifier">options</span>[<span class="ruby-value">:version</span>]

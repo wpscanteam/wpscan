@@ -416,7 +416,7 @@ href="http://seclists.org/fulldisclosure/2011/May/493">seclists.org/fulldisclosu
     <span class="ruby-identifier">username</span> = <span class="ruby-keyword">nil</span>
     <span class="ruby-identifier">nickname</span> = <span class="ruby-keyword">nil</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">301</span> <span class="ruby-comment"># username in location?</span>
-      <span class="ruby-identifier">username</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>][<span class="ruby-regexp">%r{/author/([^/]+)/}</span>, <span class="ruby-value">1</span>]
+      <span class="ruby-identifier">username</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>][<span class="ruby-regexp">%r{/author/([^/\b]+)/?}</span>, <span class="ruby-value">1</span>]
       <span class="ruby-comment"># Get the real name from the redirect site</span>
       <span class="ruby-identifier">nickname</span> = <span class="ruby-identifier">get_nickname_from_url</span>(<span class="ruby-identifier">url</span>)
     <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-comment"># username in body?</span>
