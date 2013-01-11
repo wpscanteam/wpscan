@@ -3,7 +3,7 @@
 #### LICENSE
 
 WPScan - WordPress Security Scanner
-Copyright (C), 2011-2012  Ryan Dewhurst AKA ethicalhack3r
+Copyright (C), 2011-2013 The WPScan Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

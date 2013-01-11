@@ -2,7 +2,7 @@
 
 #--
 # WPScan - WordPress Security Scanner
-# Copyright (C) 2012
+# Copyright (C) 2012-2013
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -52,6 +52,14 @@ begin
   # Remote website up?
   unless wp_target.online?
     raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
+  end
+
+  if wpscan_options.proxy
+    proxy_reponse = Browser.instance.get(wp_target.url)
+
+    unless WpTarget::valid_response_codes.include?(proxy_reponse.code)
+      raise "Proxy Error :\r\n#{proxy_reponse.headers}"
+    end
   end
 
   redirection = wp_target.redirection
