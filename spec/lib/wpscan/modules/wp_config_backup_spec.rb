@@ -31,7 +31,7 @@ shared_examples_for "WpConfigBackup" do
     # set all @config_backup_files to point to a 404
     before :each do
       @config_backup_files.each do |backup_file|
-        file_url = @module.uri.merge(URI.encode(backup_file)).to_s
+        file_url = @module.uri.merge(URI.escape(backup_file)).to_s
 
         stub_request(:get, file_url).
             to_return(:status => 404, :body => "")
@@ -46,7 +46,7 @@ shared_examples_for "WpConfigBackup" do
       expected = []
 
       @config_backup_files.sample(1).each do |backup_file|
-        file_url = @module.uri.merge(backup_file).to_s
+        file_url = @module.uri.merge(URI.escape(backup_file)).to_s
         expected << file_url
 
         stub_request(:get, file_url).
@@ -63,7 +63,7 @@ shared_examples_for "WpConfigBackup" do
       expected = []
 
       @config_backup_files.sample(2).each do |backup_file|
-        file_url = @module.uri.merge(backup_file).to_s
+        file_url = @module.uri.merge(URI.escape(backup_file)).to_s
         expected << file_url
 
         stub_request(:get, file_url).
