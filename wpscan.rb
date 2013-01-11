@@ -54,6 +54,14 @@ begin
     raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
   end
 
+  if wpscan_options.proxy
+    proxy_reponse = Browser.instance.get(wp_target.url)
+
+    unless WpTarget::valid_response_codes.include?(proxy_reponse.code)
+      raise "Proxy Error :\r\n#{proxy_reponse.headers}"
+    end
+  end
+
   redirection = wp_target.redirection
   if redirection
     if wpscan_options.follow_redirection
