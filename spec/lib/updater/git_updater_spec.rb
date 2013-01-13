@@ -47,7 +47,7 @@ describe GitUpdater do
 
   describe "#has_local_changes?" do
     after :each do
-      stub_system_command(@git_updater, /^git diff --exit-code 2>&1/, @stub_value)
+      stub_system_command(@git_updater, /^git .* diff --exit-code 2>&1/, @stub_value)
       @git_updater.has_local_changes?.should === @expected
     end
 
