@@ -35,7 +35,7 @@ def output_vulnerabilities(vulns)
 end
 
 # delete old logfile
-File.delete("log.txt")
+File.delete(LOG_FILE) if File.exist?(LOG_FILE)
 
 banner()
 

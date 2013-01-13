@@ -24,6 +24,7 @@ CACHE_DIR         = ROOT_DIR + "/cache"
 WPSCAN_LIB_DIR    = LIB_DIR + "/wpscan"
 WPSTOOLS_LIB_DIR  = LIB_DIR + "/wpstools"
 UPDATER_LIB_DIR   = LIB_DIR + "/updater"
+LOG_FILE          = ROOT_DIR + "/log.txt"
 
 WPSCAN_VERSION = "2.0"
 
@@ -150,6 +151,6 @@ end
 def puts(o = "")
   # remove color for logging
   temp = o.gsub(/\[\d+m(?<text>.*)?\[0m/, '\k<text>')
-  File.open("log.txt", "a+") { |f| f.puts(temp) }
+  File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
   super(o)
 end
