@@ -150,8 +150,6 @@ end
 def puts(o = "")
   # remove color for logging
   temp = o.gsub(/\[\d+m(?<text>.*)?\[0m/, '\k<text>')
-  #temp = o.inspect.gsub(/\\e\[\d+m(?<text>.*)?\\e\[0m/, '\k<text>')
   File.open("log.txt", "a+") { |f| f.puts(temp) }
-  File.open("log2.txt", "a+") { |f| f.puts(o) }
   super(o)
 end
