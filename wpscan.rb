@@ -39,6 +39,10 @@ begin
   # Check for updates
   if wpscan_options.update
     unless @updater.nil?
+      if @updater.has_local_changes?
+        puts "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n]"
+        Readline.readline =~ /^y/i ? @updater.reset_head : raise('Update aborted')
+      end
       puts @updater.update()
     else
       puts "Svn / Git not installed, or wpscan has not been installed with one of them."
