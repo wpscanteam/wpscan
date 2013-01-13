@@ -44,4 +44,29 @@ describe GitUpdater do
       @git_updater.update().should === "Already up-to-date."
     end
   end
+
+  describe "#has_local_changes?" do
+    after :each do
+      stub_system_command(@git_updater, /^git .* diff --exit-code 2>&1/, @stub_value)
+      @git_updater.has_local_changes?.should === @expected
+    end
+
+    it "should return true if there are local changes" do
+      @stub_value = 'diff'
+      @expected = true
+    end
+
+    it "should return false if there are no local changes" do
+      @stub_value = ''
+      @expected = false
+    end
+  end
+
+  describe "#reset_head" do
+    it "should reset the local repo" do
+      stub_system_command(@git_updater, /^git .* reset --hard HEAD/, "HEAD is now at")
+      @git_updater.reset_head.should match(/^HEAD is now at/)
+    end
+  end
+
 end

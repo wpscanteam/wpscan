@@ -34,6 +34,14 @@ class GitUpdater < Updater
     %x[git #{repo_directory_arguments()} pull]
   end
 
+  def has_local_changes?
+    %x[git #{repo_directory_arguments()} diff --exit-code 2>&1] =~ /diff/ ? true : false
+  end
+
+  def reset_head
+    %x[git #{repo_directory_arguments()} reset --hard HEAD]
+  end
+
   protected
   def repo_directory_arguments
     if @repo_directory
