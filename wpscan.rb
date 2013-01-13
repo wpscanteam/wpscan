@@ -34,6 +34,9 @@ def output_vulnerabilities(vulns)
   end
 end
 
+# delete old logfile
+File.delete("log.txt")
+
 banner()
 
 begin
