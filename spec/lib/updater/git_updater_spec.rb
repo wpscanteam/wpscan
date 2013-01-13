@@ -62,4 +62,11 @@ describe GitUpdater do
     end
   end
 
+  describe "#reset_head" do
+    it "should reset the local repo" do
+      stub_system_command(@git_updater, /^git .* reset --hard HEAD/, "HEAD is now at")
+      @git_updater.reset_head.should match(/^HEAD is now at/)
+    end
+  end
+
 end
