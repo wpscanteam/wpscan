@@ -21,6 +21,19 @@
 $: << '.'
 require File.dirname(__FILE__) +'/lib/wpscan/wpscan_helper'
 
+def output_vulnerabilities(vulns)
+  vulns.each do |vulnerability|
+    puts
+    puts " | " + red("* Title: #{vulnerability.title}")
+    vulnerability.references.each do |r|
+      puts " | " + red("* Reference: #{r}")
+    end
+    vulnerability.metasploit_modules.each do |m|
+      puts " | " + red("* Metasploit module: #{get_metasploit_url(m)}")
+    end
+  end
+end
+
 banner()
 
 begin
@@ -119,13 +132,7 @@ begin
     theme_vulnerabilities = wp_theme.vulnerabilities
     unless theme_vulnerabilities.empty?
       puts red("[!]") + " We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
-      theme_vulnerabilities.each do |vulnerability|
-        puts
-        puts " | " + red("* Title: #{vulnerability.title}")
-        vulnerability.references.each do |r|
-          puts " | " + red("* Reference: #{r}")
-        end
-      end
+      output_vulnerabilities(theme_vulnerabilities)
       puts
     end
   end
@@ -182,13 +189,7 @@ begin
     unless version_vulnerabilities.empty?
       puts
       puts red("[!]") + " We have identified #{version_vulnerabilities.size} vulnerabilities from the version number :"
-      version_vulnerabilities.each do |vulnerability|
-        puts
-        puts " | " + red("* Title: #{vulnerability.title}")
-        vulnerability.references.each do |r|
-          puts " | " + red("* Reference: #{r}")
-        end
-      end
+      output_vulnerabilities(version_vulnerabilities)
     end
   end
 
@@ -206,13 +207,7 @@ begin
         puts " | Location: #{plugin.get_full_url}"
         puts " | WordPress: #{plugin.wp_org_url}"
 
-        plugin.vulnerabilities.each do |vulnerability|
-          puts " |"
-          puts " | " + red("[!] #{vulnerability.title}")
-          vulnerability.references.each do |r|
-            puts " | " + red("* Reference: #{r}")
-          end
-        end
+        output_vulnerabilities(plugin.vulnerabilities)
       end
     else
       puts "No plugins found :("
@@ -251,24 +246,7 @@ begin
         puts " | Readme: #{plugin.readme_url}" if plugin.has_readme?
         puts " | Changelog: #{plugin.changelog_url}" if plugin.has_changelog?
 
-        plugin.vulnerabilities.each do |vulnerability|
-          #vulnerability['vulnerability'][0]['uri'] == nil ? "" : uri = vulnerability['vulnerability'][0]['uri'] # uri
-          #vulnerability['vulnerability'][0]['postdata'] == nil ? "" : postdata = CGI.unescapeHTML(vulnerability['vulnerability'][0]['postdata']) # postdata
-
-          puts " |"
-          puts " | " + red("[!] #{vulnerability.title}")
-          vulnerability.references.each do |r|
-            puts " | " + red("* Reference: #{r}")
-          end
-
-          # This has been commented out as MSF are moving from
-          # XML-RPC to MessagePack.
-          # I need to get to grips with the new way of communicating
-          # with MSF and implement new code.
-
-          # check if vuln is exploitable
-          #Exploit.new(url, type, uri, postdata.to_s, use_proxy, proxy_addr, proxy_port)
-        end
+        output_vulnerabilities(plugin.vulnerabilities)
 
         if plugin.error_log?
           puts " | " + red("[!]") + " A WordPress error_log file has been found : #{plugin.error_log_url}"
@@ -311,21 +289,7 @@ begin
         puts " | Readme: #{theme.readme_url}" if theme.has_readme?
         puts " | Changelog: #{theme.changelog_url}" if theme.has_changelog?
 
-        theme.vulnerabilities.each do |vulnerability|
-          puts " |"
-          puts " | " + red("[!] #{vulnerability.title}")
-          vulnerability.references.each do |r|
-            puts " | " + red("* Reference: #{r}")
-          end
-
-          # This has been commented out as MSF are moving from
-          # XML-RPC to MessagePack.
-          # I need to get to grips with the new way of communicating
-          # with MSF and implement new code.
-
-          # check if vuln is exploitable
-          #Exploit.new(url, type, uri, postdata.to_s, use_proxy, proxy_addr, proxy_port)
-        end
+        output_vulnerabilities(theme.vulnerabilities)
       end
     else
       puts

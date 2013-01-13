@@ -139,3 +139,9 @@ end
 def green(text)
   colorize(text, 32)
 end
+
+def get_metasploit_url(module_path)
+  # remove leading slash
+  module_path = module_path.sub(/^\//, "")
+  "http://www.metasploit.com/modules/#{module_path}"
+end

@@ -32,7 +32,8 @@ class Vulnerable
       vulnerabilities << WpVulnerability.new(
         node.search("title").text,
         node.search("reference").map(&:text),
-        node.search("type").text
+        node.search("type").text,
+        node.search("metasploit").map(&:text)
       )
     end
     vulnerabilities
