@@ -135,13 +135,20 @@ begin
   if wp_theme
     # Theme version is handled in wp_item.to_s
     puts green("[+]") + " The WordPress theme in use is #{wp_theme}"
+    puts
+    puts " | Name: #{wp_theme}" #this will also output the version number if detected
+    puts " | Location: #{wp_theme.get_url_without_filename}"
+    puts " | WordPress: #{wp_theme.wp_org_url}"
+    puts " | Directory listing enabled: Yes" if wp_theme.directory_listing?
+    puts " | Readme: #{wp_theme.readme_url}" if wp_theme.has_readme?
+    puts " | Changelog: #{wp_theme.changelog_url}" if wp_theme.has_changelog?
 
     theme_vulnerabilities = wp_theme.vulnerabilities
     unless theme_vulnerabilities.empty?
       puts red("[!]") + " We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
       output_vulnerabilities(theme_vulnerabilities)
-      puts
     end
+    puts
   end
 
   if wp_target.has_readme?
@@ -249,6 +256,7 @@ begin
         puts
         puts " | Name: #{plugin}" #this will also output the version number if detected
         puts " | Location: #{plugin.get_url_without_filename}"
+        puts " | WordPress: #{plugin.wp_org_url}"
         puts " | Directory listing enabled: Yes" if plugin.directory_listing?
         puts " | Readme: #{plugin.readme_url}" if plugin.has_readme?
         puts " | Changelog: #{plugin.changelog_url}" if plugin.has_changelog?
@@ -292,6 +300,7 @@ begin
         puts
         puts " | Name: #{theme}" #this will also output the version number if detected
         puts " | Location: #{theme.get_url_without_filename}"
+        puts " | WordPress: #{theme.wp_org_url}"
         puts " | Directory listing enabled: Yes" if theme.directory_listing?
         puts " | Readme: #{theme.readme_url}" if theme.has_readme?
         puts " | Changelog: #{theme.changelog_url}" if theme.has_changelog?

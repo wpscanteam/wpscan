@@ -43,7 +43,14 @@ class WpItem < Vulnerable
   # The wordpress.org plugins directory URL
   # See: https://github.com/wpscanteam/wpscan/issues/100
   def wp_org_url
-    URI('http://wordpress.org/extend/plugins/').merge("#@name/")
+    case @type
+      when "themes"
+        return URI("http://wordpress.org/extend/themes/").merge("#@name/")
+      when "plugins"
+        return URI("http://wordpress.org/extend/plugins/").merge("#@name/")
+      else
+        raise("No Wordpress URL for #@type")
+    end
   end
 
   def get_sub_folder
