@@ -52,6 +52,11 @@ describe WpVersion do
       @fixture = fixtures_dir + "/invalid_version.htm"
       @expected = nil
     end
+
+    it "should return 3.5" do
+      @fixture = fixtures_dir + "/3.5_minified.htm"
+      @expected = "3.5"
+    end
   end
 
   describe "#find_from_rss_generator" do

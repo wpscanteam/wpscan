@@ -168,6 +168,6 @@ class WpVersion < Vulnerable
 
   # Used to check if the version is correct: must contain at least one dot.
   def self.version_pattern
-    '([^\r\n]+[\.][^\r\n]+)'
+    '([^\r\n"\']+\.[^\r\n"\']+)'
   end
 end
