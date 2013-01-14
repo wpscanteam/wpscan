@@ -60,16 +60,17 @@ class WpTheme < WpItem
   def self.find_from_css_link(target_uri)
     response = Browser.instance.get(target_uri.to_s, {:follow_location => true, :max_redirects => 2})
 
-    matches = %r{https?://[^"']+/themes/([^"']+)/style.css}i.match(response.body)
+    matches = %r{https?://[^"']+/([^/]+)/themes/([^"']+)/style.css}i.match(response.body)
     if matches
       style_url = matches[0]
-      theme_name = matches[1]
+      wp_content_dir = matches[1]
+      theme_name = matches[2]
 
       return new(:name            => theme_name,
                  :style_url       => style_url,
-                 :base_url        => style_url,
-                 :path            => "",
-                 :wp_content_dir  => ""
+                 :base_url        => target_uri,
+                 :path            => theme_name,
+                 :wp_content_dir  => wp_content_dir
       )
     end
   end
