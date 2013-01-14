@@ -438,19 +438,40 @@ describe WpPlugin do
   end
 
   describe "#wp_org_url" do
-    before :each do
-      @instance = WpItem.new(
-        :base_url => "http://sub.example.com/path/to/wordpress/",
-        :path => "test/asdf.php",
-        :vulns_file => "XXX.xml",
-        :name => "test",
-        :vulns_xpath => "XX",
-        :type => "plugins"
+    it "sould return a themes url" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "test",
+          :vulns_xpath => "XX",
+          :type => "themes"
       )
+      instance.wp_org_url.to_s.should == "http://wordpress.org/extend/themes/test/"
     end
-    
-    it "should return the correct url" do
-       @expected = "http://wordpress.org/extend/plugins/test/"  
-    end  
+
+    it "sould return a plugins url" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "test",
+          :vulns_xpath => "XX",
+          :type => "plugins"
+      )
+      instance.wp_org_url.to_s.should == "http://wordpress.org/extend/plugins/test/"
+    end
+
+    it "sould raise an exception" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "test",
+          :vulns_xpath => "XX",
+          :type => "invalid"
+      )
+      expect { instance.wp_org_url }.to raise_error(RuntimeError, "No Wordpress URL for invalid")
+    end
   end
 end
