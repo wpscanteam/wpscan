@@ -17,7 +17,7 @@ describe Updater do
       methods_to_call = [:is_installed?, :update, :local_revision_number]
 
       methods_to_call.each do |method_to_call|
-        expect { test_updater.send(method_to_call) }.to raise_error
+        expect { test_updater.send(method_to_call) }.to raise_error(NotImplementedError)
       end
     end
   end

@@ -27,21 +27,15 @@ class Updater
   end
 
   def is_installed?
-    raise_must_be_implemented()
+    raise NotImplementedError
   end
 
   def local_revision_number
-    raise_must_be_implemented()
+    raise NotImplementedError
   end
 
   def update
-    raise_must_be_implemented()
-  end
-
-  protected
-
-  def raise_must_be_implemented
-    raise "The method must be implemented"
+    raise NotImplementedError
   end
 
 end
