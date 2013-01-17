@@ -27,10 +27,6 @@ if RUBY_VERSION >= "1.9"
     add_filter "_helper.rb"
     add_filter "environment.rb"
     add_filter "_plugin.rb"
-
-    # Unused files at this time
-    add_filter "exploit.rb"
-    add_filter "msfrpc_client.rb"
   end
 end
 
