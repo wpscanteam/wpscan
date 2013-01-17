@@ -109,7 +109,7 @@ describe Browser do
   end
 
   describe "#user_agent" do
-    available_user_agents = %w{ ua-1 ua-2 ua-3 ua-4 ua-6 ua-7 ua-8 ua-9 ua-10 ua-11 ua-12 ua-13 ua-14 ua-15 ua-16 ua-17}
+    available_user_agents = %w{ ua-1 ua-2 ua-3 ua-4 ua-6 ua-7 ua-8 ua-9 ua-10 ua-11 ua-12 ua-13 ua-14 ua-15 ua-16 ua-17 }
 
     it "should always return the same user agent in static mode" do
       @browser.user_agent = "fake UA"
@@ -138,7 +138,11 @@ describe Browser do
       @browser.available_user_agents = available_user_agents
       @browser.user_agent_mode = "random"
 
-      @browser.user_agent.should_not === @browser.user_agent
+      ua_1 = @browser.user_agent
+      ua_2 = @browser.user_agent
+      ua_3 = @browser.user_agent
+
+      fail if ua_1 === ua_2 and ua_2 === ua_3
     end
   end
 
