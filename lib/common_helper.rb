@@ -16,17 +16,22 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-LIB_DIR           = File.dirname(__FILE__)
-ROOT_DIR          = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
-DATA_DIR          = ROOT_DIR + "/data"
-CONF_DIR          = ROOT_DIR + "/conf"
-CACHE_DIR         = ROOT_DIR + "/cache"
-WPSCAN_LIB_DIR    = LIB_DIR + "/wpscan"
-WPSTOOLS_LIB_DIR  = LIB_DIR + "/wpstools"
-UPDATER_LIB_DIR   = LIB_DIR + "/updater"
-LOG_FILE          = ROOT_DIR + "/log.txt"
+LIB_DIR              = File.dirname(__FILE__)
+ROOT_DIR             = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+DATA_DIR             = ROOT_DIR + "/data"
+CONF_DIR             = ROOT_DIR + "/conf"
+CACHE_DIR            = ROOT_DIR + "/cache"
+WPSCAN_LIB_DIR       = LIB_DIR + "/wpscan"
+WPSTOOLS_LIB_DIR     = LIB_DIR + "/wpstools"
+UPDATER_LIB_DIR      = LIB_DIR + "/updater"
+COMMON_LIB_DIR       = LIB_DIR + "/common"
+LOG_FILE             = ROOT_DIR + "/log.txt"
+# Plugins directories
+COMON_PLUGINS_DIR    = COMMON_LIB_DIR + "/plugins"
+WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + "/plugins"
+WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + "/plugins"
 
-WPSCAN_VERSION = "2.0"
+WPSCAN_VERSION       = "2.0"
 
 require "#{LIB_DIR}/environment"
 
@@ -38,6 +43,9 @@ def require_files_from_directory(absolute_dir_path, files_pattern = "*.rb")
     #puts "require #{f}" # Used for debug
   end
 end
+
+#require_files_from_directory(COMMON_LIB_DIR)
+require_files_from_directory(COMMON_LIB_DIR, "**/*.rb")
 
 # Add protocol
 def add_http_protocol(url)
@@ -148,9 +156,9 @@ def get_metasploit_url(module_path)
 end
 
 # Override for puts to enable logging
-def puts(o = "")
+#def puts(o = "")
   # remove color for logging
-  temp = o.gsub(/\e\[\d+m(?<text>.*)?\e\[0m/, '\k<text>')
-  File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
-  super(o)
-end
+  #temp = o.gsub(/\e\[\d+m(?<text>.*)?\e\[0m/, '\k<text>')
+  #File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
+  #super(o)
+#end

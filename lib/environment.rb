@@ -20,6 +20,7 @@ begin
   # Standard libs
   require 'rubygems'
   require 'getoptlong'
+  require 'optparse' # Will replace getoptlong
   require 'uri'
   require 'time'
   require 'resolv'

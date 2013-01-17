@@ -19,7 +19,7 @@
 #++
 
 # This tool generates a list to use for plugin and theme enumeration
-class Generate_List
+class GenerateList
 
   attr_accessor :verbose
 
@@ -70,14 +70,14 @@ class Generate_List
 
   def generate_full_list
     set_file_name(:full)
-    items = Svn_Parser.new(@svn_url, @verbose).parse
+    items = SvnParser.new(@svn_url, @verbose).parse
     save items
   end
 
   def generate_popular_list(pages)
     set_file_name(:popular)
     popular = get_popular_items(pages)
-    items = Svn_Parser.new(@svn_url, @verbose).parse(popular)
+    items = SvnParser.new(@svn_url, @verbose).parse(popular)
     save items
   end
 

@@ -1,6 +1,3 @@
-#!/usr/bin/env ruby
-
-#--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
 #
@@ -18,35 +15,26 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-$: << '.'
-require File.dirname(__FILE__) + "/lib/wpstools/wpstools_helper"
+class Plugin
 
-begin
+  attr_reader :author, :registered_options
 
-  banner()
-
-  option_parser = CustomOptionParser.new("Usage: ./wpstools.rb [options]", 60)
-  option_parser.separator ""
-  option_parser.add(["-v", "--verbose", "Verbose output"])
-
-  plugins = Plugins.new(option_parser)
-  plugins.register(
-    CheckerPlugin.new,
-    ListGeneratorPlugin.new
-  )
-
-  options = option_parser.results
-
-  if options.empty?
-    raise "No option supplied\n\n#{option_parser}"
+  def initialize(infos = {})
+    @author  = infos[:author]
   end
 
-  plugins.each do |plugin|
-    plugin.run(options)
+  def run(options = {})
+    raise NotImplementedError
   end
 
-rescue => e
-  puts "[ERROR] #{e.message}"
-  puts "Trace :"
-  puts e.backtrace.join("\n")
+  # param Array options
+  def register_options(*options)
+    options.each do |option|
+      unless option.is_a?(Array)
+        raise "Each option must be an array, #{option.class} supplied"
+      end
+    end
+    @registered_options = options
+  end
+
 end

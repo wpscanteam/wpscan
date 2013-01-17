@@ -19,6 +19,7 @@
 require File.expand_path(File.dirname(__FILE__) + '/../common_helper')
 
 require_files_from_directory(WPSTOOLS_LIB_DIR)
+require_files_from_directory(WPSTOOLS_PLUGINS_DIR, "**/*.rb")
 
 def usage()
   script_name = $0
@@ -28,44 +29,23 @@ def usage()
   puts "Examples:"
   puts
   puts "- Generate a new 'most popular' plugin list, up to 150 pages ..."
-  puts "ruby #{script_name} --generate_plugin_list 150"
+  puts "ruby #{script_name} --generate-plugin-list 150"
   puts
   puts "- Generate a new full plugin list"
-  puts "ruby #{script_name} --generate_full_plugin_list"
+  puts "ruby #{script_name} --generate-full-plugin-list"
   puts
   puts "- Generate a new 'most popular' theme list, up to 150 pages ..."
-  puts "ruby #{script_name} --generate_theme_list 150"
+  puts "ruby #{script_name} --generate-theme-list 150"
   puts
   puts "- Generate a new full theme list"
-  puts "ruby #{script_name} --generate_full_theme_list"
+  puts "ruby #{script_name} --generate-full-theme-list"
   puts
   puts "- Generate all list"
-  puts "ruby #{script_name} --generate_all"
+  puts "ruby #{script_name} --generate-all"
   puts
   puts "Locally scan a wordpress installation for vulnerable files or shells"
   puts "ruby #{script_name} --check-local-vulnerable-files /var/www/wordpress/"
   puts
   puts "See README for further information."
-  puts
-end
-
-def help()
-  puts "Help :"
-  puts
-  puts "--help    | -h   This help screen."
-  puts "--Verbose | -v   Verbose output."
-  puts "--update  | -u   Update to the latest revision."
-  puts "--generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)"
-  puts "--gpl  Alias for --generate_plugin_list"
-  puts "--generate_full_plugin_list  Generate a new full data/plugins.txt file"
-  puts "--gfpl  Alias for --generate_full_plugin_list"
-  puts "--generate_theme_list [number of pages]  Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 150)"
-  puts "--gtl  Alias for --generate_theme_list"
-  puts "--generate_full_theme_list  Generate a new full data/themes.txt file"
-  puts "--gftl  Alias for --generate_full_theme_list"
-  puts "--generate_all  Generate a new full plugins, full themes, popular plugins and popular themes list"
-  puts "--ga  Alias for --generate_all"
-  puts "--check-vuln-ref-urls | --cvru  Check all the vulnerabilities reference urls for 404"
-  puts "--check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells"
   puts
 end

@@ -19,7 +19,7 @@
 #++
 
 # This Class Parses SVN Repositories via HTTP
-class Svn_Parser
+class SvnParser
 
   attr_accessor :verbose, :svn_root, :keep_empty_dirs
 
