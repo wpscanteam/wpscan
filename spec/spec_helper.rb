@@ -22,12 +22,6 @@
 # Code Coverage (only works with ruby >= 1.9)
 if RUBY_VERSION >= "1.9"
   require 'simplecov'
-  SimpleCov.start do
-    add_filter "/spec/"
-    add_filter "_helper.rb"
-    add_filter "environment.rb"
-    add_filter "_plugin.rb"
-  end
 end
 
 require File.expand_path(File.dirname(__FILE__) + '/../lib/common_helper')
