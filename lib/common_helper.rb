@@ -156,9 +156,9 @@ def get_metasploit_url(module_path)
 end
 
 # Override for puts to enable logging
-#def puts(o = "")
+def puts(o = "")
   # remove color for logging
-  #temp = o.gsub(/\e\[\d+m(?<text>.*)?\e\[0m/, '\k<text>')
-  #File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
-  #super(o)
-#end
+  temp = o.gsub(/\e\[\d+m(.*)?\e\[0m/, '\1')
+  File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
+  super(o)
+end
