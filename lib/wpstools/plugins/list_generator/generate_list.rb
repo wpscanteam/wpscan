@@ -70,14 +70,13 @@ class GenerateList
 
   def generate_full_list
     set_file_name(:full)
-    items = SvnParser.new(@svn_url, @verbose).parse
+    items = SvnParser.new(@svn_url).parse
     save items
   end
 
   def generate_popular_list(pages)
     set_file_name(:popular)
-    popular = get_popular_items(pages)
-    items = SvnParser.new(@svn_url, @verbose).parse(popular)
+    items = get_popular_items(pages)
     save items
   end
 
