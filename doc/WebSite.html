@@ -101,6 +101,8 @@
   
     <li class="file"><a href="./README.html">README</a>
   
+    <li class="file"><a href="./log_txt.html">log</a>
+  
   </ul>
 </nav>
 
@@ -117,21 +119,27 @@
   
     <li><a href="./CacheFileStore.html">CacheFileStore</a>
   
-    <li><a href="./Exploit.html">Exploit</a>
+    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
   
-    <li><a href="./Generate_List.html">Generate_List</a>
+    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="./GenerateList.html">GenerateList</a>
   
     <li><a href="./GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
   
     <li><a href="./Malwares.html">Malwares</a>
   
     <li><a href="./Object.html">Object</a>
   
-    <li><a href="./RpcClient.html">RpcClient</a>
+    <li><a href="./Plugin.html">Plugin</a>
+  
+    <li><a href="./Plugins.html">Plugins</a>
+  
+    <li><a href="./SvnParser.html">SvnParser</a>
   
     <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./Svn_Parser.html">Svn_Parser</a>
   
     <li><a href="./URI.html">URI</a>
   
@@ -228,7 +236,7 @@
 
           
           <div class="method-source-code" id="page_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 88</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">body</span>)
 <span class="ruby-keyword">end</span></pre>
@@ -264,7 +272,7 @@
 
           
           <div class="method-source-code" id="error_404_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 100</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">error_404_hash</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@error_404_hash</span>
     <span class="ruby-identifier">non_existant_page</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">9999999999</span>).<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-string">&quot;.html&quot;</span>
@@ -358,7 +366,7 @@
 
           
           <div class="method-source-code" id="homepage_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 92</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 98</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">homepage_hash</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@homepage_hash</span>
     <span class="ruby-ivar">@homepage_hash</span> = <span class="ruby-constant">WebSite</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>)
@@ -416,13 +424,13 @@
 
         <div class="method-description">
           
-          <p>see if the remote url returns 30x redirect return a string with the
-redirection or nil</p>
+          <p>See if the remote url returns 30x redirect This method is recursive Return
+a string with the redirection or nil</p>
           
 
           
           <div class="method-source-code" id="redirection-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 75</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 76</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">redirection</span>(<span class="ruby-identifier">url</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">redirection</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">url</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
@@ -430,6 +438,11 @@ redirection or nil</p>
 
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">301</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span>
     <span class="ruby-identifier">redirection</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>]
+
+    <span class="ruby-comment"># Let's check if there is a redirection in the redirection</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">other_redirection</span> = <span class="ruby-identifier">redirection</span>(<span class="ruby-identifier">redirection</span>)
+      <span class="ruby-identifier">redirection</span> = <span class="ruby-identifier">other_redirection</span>
+    <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-identifier">redirection</span>
@@ -461,7 +474,7 @@ returned</p>
 
           
           <div class="method-source-code" id="rss_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 110</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rss_url</span>
   <span class="ruby-identifier">homepage_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">homepage_body</span>[<span class="ruby-regexp">%r{&lt;link .* type=&quot;application/rss\+xml&quot; .* href=&quot;([^&quot;]+)&quot; /&gt;}</span>, <span class="ruby-value">1</span>]

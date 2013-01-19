@@ -91,6 +91,8 @@
   
     <li class="file"><a href="./README.html">README</a>
   
+    <li class="file"><a href="./log_txt.html">log</a>
+  
   </ul>
 </nav>
 
@@ -107,21 +109,27 @@
   
     <li><a href="./CacheFileStore.html">CacheFileStore</a>
   
-    <li><a href="./Exploit.html">Exploit</a>
+    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
   
-    <li><a href="./Generate_List.html">Generate_List</a>
+    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="./GenerateList.html">GenerateList</a>
   
     <li><a href="./GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
   
     <li><a href="./Malwares.html">Malwares</a>
   
     <li><a href="./Object.html">Object</a>
   
-    <li><a href="./RpcClient.html">RpcClient</a>
+    <li><a href="./Plugin.html">Plugin</a>
+  
+    <li><a href="./Plugins.html">Plugins</a>
+  
+    <li><a href="./SvnParser.html">SvnParser</a>
   
     <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./Svn_Parser.html">Svn_Parser</a>
   
     <li><a href="./URI.html">URI</a>
   
@@ -345,11 +353,12 @@
     <span class="ruby-comment"># Open and parse the 'most popular' plugin list...</span>
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-string">&quot;r&quot;</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">f</span>.<span class="ruby-identifier">readlines</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">l</span> = <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>
         <span class="ruby-identifier">targets_url</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpItem</span>.<span class="ruby-identifier">new</span>(
           <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">url</span>,
-          <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>,
+          <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">l</span>,
           <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">wp_content_dir</span>,
-          <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">line</span>.<span class="ruby-identifier">strip</span>),
+          <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">l</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r.+\/.+/</span> <span class="ruby-operator">?</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">l</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">%r\/$/</span>, <span class="ruby-string">&quot;&quot;</span>),
           <span class="ruby-value">:vulns_file</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">vulns_file</span>,
           <span class="ruby-value">:type</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
           <span class="ruby-value">:wp_plugins_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugins_dir</span>

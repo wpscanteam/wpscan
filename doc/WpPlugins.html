@@ -85,6 +85,8 @@
   
     <li class="file"><a href="./README.html">README</a>
   
+    <li class="file"><a href="./log_txt.html">log</a>
+  
   </ul>
 </nav>
 
@@ -101,21 +103,27 @@
   
     <li><a href="./CacheFileStore.html">CacheFileStore</a>
   
-    <li><a href="./Exploit.html">Exploit</a>
+    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
   
-    <li><a href="./Generate_List.html">Generate_List</a>
+    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="./GenerateList.html">GenerateList</a>
   
     <li><a href="./GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
   
     <li><a href="./Malwares.html">Malwares</a>
   
     <li><a href="./Object.html">Object</a>
   
-    <li><a href="./RpcClient.html">RpcClient</a>
+    <li><a href="./Plugin.html">Plugin</a>
+  
+    <li><a href="./Plugins.html">Plugins</a>
+  
+    <li><a href="./SvnParser.html">SvnParser</a>
   
     <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./Svn_Parser.html">Svn_Parser</a>
   
     <li><a href="./URI.html">URI</a>
   
@@ -216,9 +224,9 @@
           <div class="method-source-code" id="plugins_from_aggressive_detection-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_plugins.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">plugins_from_aggressive_detection</span>(<span class="ruby-identifier">options</span>)
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]          = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">options</span>[<span class="ruby-value">:full</span>] <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{DATA_DIR}/plugins_full.txt&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{DATA_DIR}/plugins.txt&quot;</span>)
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]          = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">options</span>[<span class="ruby-value">:full</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">PLUGINS_FULL_FILE</span> <span class="ruby-operator">:</span> <span class="ruby-constant">PLUGINS_FILE</span>)
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]    = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">?</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">&quot;/plugin_vulns.xml&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">PLUGINS_VULNS_FILE</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]   = <span class="ruby-node">&quot;//plugin[@name='#{@name}']/vulnerability&quot;</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">&quot;//plugin&quot;</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]          = <span class="ruby-string">&quot;plugins&quot;</span>

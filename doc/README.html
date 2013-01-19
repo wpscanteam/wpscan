@@ -55,6 +55,8 @@
   
     <li class="file"><a href="./README.html">README</a>
   
+    <li class="file"><a href="./log_txt.html">log</a>
+  
   </ul>
 </nav>
 
@@ -71,21 +73,27 @@
   
     <li><a href="./CacheFileStore.html">CacheFileStore</a>
   
-    <li><a href="./Exploit.html">Exploit</a>
+    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
   
-    <li><a href="./Generate_List.html">Generate_List</a>
+    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="./GenerateList.html">GenerateList</a>
   
     <li><a href="./GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
   
     <li><a href="./Malwares.html">Malwares</a>
   
     <li><a href="./Object.html">Object</a>
   
-    <li><a href="./RpcClient.html">RpcClient</a>
+    <li><a href="./Plugin.html">Plugin</a>
+  
+    <li><a href="./Plugins.html">Plugins</a>
+  
+    <li><a href="./SvnParser.html">SvnParser</a>
   
     <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./Svn_Parser.html">Svn_Parser</a>
   
     <li><a href="./URI.html">URI</a>
   
@@ -156,8 +164,7 @@
 
 <h2 id="label-LICENSE%3D%3D">LICENSE==</h2>
 
-<p>WPScan - WordPress Security Scanner Copyright (C) 2011-2012  Ryan Dewhurst
-AKA ethicalhack3r</p>
+<p>WPScan - WordPress Security Scanner Copyright (C) 2011-2013 The WPScan Team</p>
 
 <p>This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the Free
@@ -204,6 +211,18 @@ href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>&gt;.</p>
   <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">%rgithub.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span>.<span class="ruby-identifier">git</span>
   <span class="ruby-identifier">cd</span> <span class="ruby-identifier">wpscan</span>
   <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">without</span> <span class="ruby-identifier">test</span> <span class="ruby-identifier">development</span>
+
+<span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> <span class="ruby-constant">Installing</span> <span class="ruby-identifier">on</span> <span class="ruby-constant">Archlinux</span><span class="ruby-operator">:</span>
+
+  <span class="ruby-identifier">pacman</span> <span class="ruby-operator">-</span><span class="ruby-constant">Sy</span> <span class="ruby-identifier">ruby</span>
+  <span class="ruby-identifier">pacman</span> <span class="ruby-operator">-</span><span class="ruby-constant">Sy</span> <span class="ruby-identifier">libyaml</span>
+
+  <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">%rgithub.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span>.<span class="ruby-identifier">git</span>
+  <span class="ruby-identifier">cd</span> <span class="ruby-identifier">wpscan</span>
+  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">without</span> <span class="ruby-identifier">test</span> <span class="ruby-identifier">development</span>
+
+  <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">typhoeus</span>
+  <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">nokogiri</span>
 
 <span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> <span class="ruby-constant">Installing</span> <span class="ruby-identifier">on</span> <span class="ruby-constant">Mac</span> <span class="ruby-constant">OS</span> <span class="ruby-constant">X</span><span class="ruby-operator">:</span>
 
