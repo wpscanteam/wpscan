@@ -77,7 +77,8 @@ describe WpTarget do
     it "should return the redirection url if there is one (ie: for https)" do
       https_login_url = login_url.gsub(/^http:/, "https:")
 
-      stub_request(:get, login_url).to_return(:status => 302, :headers => {:location => https_login_url})
+      stub_request(:get, login_url).to_return(:status => 302, :headers => { :location => https_login_url })
+      stub_request(:get, https_login_url).to_return(:status => 200)
 
       @wp_target.login_url.should === https_login_url
     end
