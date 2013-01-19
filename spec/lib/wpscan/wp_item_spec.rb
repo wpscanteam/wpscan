@@ -474,4 +474,67 @@ describe WpPlugin do
       expect { instance.wp_org_url }.to raise_error(RuntimeError, "No Wordpress URL for invalid")
     end
   end
+
+  describe "#wp_org_item?" do
+    it "sould return true" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "w3-total-cache",
+          :vulns_xpath => "XX",
+          :type => "plugins"
+      )
+      instance.wp_org_item?.should be_true
+    end
+
+    it "sould return true" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "twentyten",
+          :vulns_xpath => "XX",
+          :type => "themes"
+      )
+      instance.wp_org_item?.should be_true
+    end
+
+    it "sould return false" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "can_not_be_in_repository",
+          :vulns_xpath => "XX",
+          :type => "plugins"
+      )
+      instance.wp_org_item?.should be_false
+    end
+
+    it "sould return false" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "can_not_be_in_repository",
+          :vulns_xpath => "XX",
+          :type => "themes"
+      )
+      instance.wp_org_item?.should be_false
+    end
+
+    it "sould raise an exception" do
+      instance = WpItem.new(
+          :base_url => "http://sub.example.com/path/to/wordpress/",
+          :path => "test/asdf.php",
+          :vulns_file => "XXX.xml",
+          :name => "test",
+          :vulns_xpath => "XX",
+          :type => "invalid"
+      )
+      expect { instance.wp_org_item? }.to raise_error(RuntimeError, "Unknown type invalid")
+    end
+  end
+
 end
