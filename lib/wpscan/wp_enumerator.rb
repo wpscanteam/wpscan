@@ -104,11 +104,12 @@ class WpEnumerator
       # Open and parse the 'most popular' plugin list...
       File.open(file, "r") do |f|
         f.readlines.collect do |line|
+          l = line.strip
           targets_url << WpItem.new(
             :base_url       => url,
-            :path           => line.strip,
+            :path           => l,
             :wp_content_dir => wp_content_dir,
-            :name           => File.dirname(line.strip),
+            :name           => l =~ /.+\/.+/ ? File.dirname(l) : l.sub(/\/$/, ""),
             :vulns_file     => vulns_file,
             :type           => type,
             :wp_plugins_dir => plugins_dir
