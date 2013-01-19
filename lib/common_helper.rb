@@ -158,7 +158,9 @@ end
 # Override for puts to enable logging
 def puts(o = "")
   # remove color for logging
-  temp = o.gsub(/\e\[\d+m(.*)?\e\[0m/, '\1')
-  File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
+  if o.respond_to?("gsub")
+    temp = o.gsub(/\e\[\d+m(.*)?\e\[0m/, '\1')
+    File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
+  end
   super(o)
 end
