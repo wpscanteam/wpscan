@@ -138,7 +138,7 @@ begin
     puts
     puts " | Name: #{wp_theme}" #this will also output the version number if detected
     puts " | Location: #{wp_theme.get_url_without_filename}"
-    puts " | WordPress: #{wp_theme.wp_org_url}"
+    puts " | WordPress: #{wp_theme.wp_org_url}" if wp_theme.wp_org_item?
     puts " | Directory listing enabled: Yes" if wp_theme.directory_listing?
     puts " | Readme: #{wp_theme.readme_url}" if wp_theme.has_readme?
     puts " | Changelog: #{wp_theme.changelog_url}" if wp_theme.has_changelog?
@@ -219,7 +219,7 @@ begin
         puts
         puts " | Name: #{plugin.name}"
         puts " | Location: #{plugin.get_full_url}"
-        puts " | WordPress: #{plugin.wp_org_url}"
+        puts " | WordPress: #{plugin.wp_org_url}" if plugin.wp_org_item?
 
         output_vulnerabilities(plugin.vulnerabilities)
       end
@@ -256,7 +256,7 @@ begin
         puts
         puts " | Name: #{plugin}" #this will also output the version number if detected
         puts " | Location: #{plugin.get_url_without_filename}"
-        puts " | WordPress: #{plugin.wp_org_url}"
+        puts " | WordPress: #{plugin.wp_org_url}"  if plugin.wp_org_item?
         puts " | Directory listing enabled: Yes" if plugin.directory_listing?
         puts " | Readme: #{plugin.readme_url}" if plugin.has_readme?
         puts " | Changelog: #{plugin.changelog_url}" if plugin.has_changelog?
@@ -300,7 +300,7 @@ begin
         puts
         puts " | Name: #{theme}" #this will also output the version number if detected
         puts " | Location: #{theme.get_url_without_filename}"
-        puts " | WordPress: #{theme.wp_org_url}"
+        puts " | WordPress: #{theme.wp_org_url}" if theme.wp_org_item?
         puts " | Directory listing enabled: Yes" if theme.directory_listing?
         puts " | Readme: #{theme.readme_url}" if theme.has_readme?
         puts " | Changelog: #{theme.changelog_url}" if theme.has_changelog?

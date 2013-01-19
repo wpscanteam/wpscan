@@ -53,6 +53,20 @@ class WpItem < Vulnerable
     end
   end
 
+  # returns true if this theme or plugin is hosted on wordpress.org
+  def wp_org_item?
+    case @type
+      when "themes"
+        file = "#{DATA_DIR}/themes_full.txt"
+      when "plugins"
+        file = "#{DATA_DIR}/plugins_full.txt"
+      else
+        raise("Unknown type #@type")
+    end
+    f = File.readlines(file).grep(/^#{Regexp.escape(@name)}$/i)
+    f.empty? ? false : true
+  end
+
   def get_sub_folder
     case @type
       when "themes"
