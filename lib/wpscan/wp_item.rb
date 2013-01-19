@@ -57,9 +57,9 @@ class WpItem < Vulnerable
   def wp_org_item?
     case @type
       when "themes"
-        file = "#{DATA_DIR}/themes_full.txt"
+        file = THEMES_FULL_FILE
       when "plugins"
-        file = "#{DATA_DIR}/plugins_full.txt"
+        file = PLUGINS_FULL_FILE
       else
         raise("Unknown type #@type")
     end

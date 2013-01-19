@@ -24,7 +24,7 @@ class WpTheme < WpItem
 
   def initialize(options = {})
     options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
-        options[:vulns_file] : DATA_DIR + "/theme_vulns.xml"
+        options[:vulns_file] : THEMES_VULNS_FILE
     options[:vulns_xpath] = "//theme[@name='$name$']/vulnerability"
     options[:type]        = "themes"
     @version              = options[:version]

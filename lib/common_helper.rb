@@ -31,6 +31,15 @@ COMON_PLUGINS_DIR    = COMMON_LIB_DIR + "/plugins"
 WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + "/plugins"
 WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + "/plugins"
 
+# Data files
+PLUGINS_FILE        = DATA_DIR + "/plugins.txt"
+PLUGINS_FULL_FILE   = DATA_DIR + "/plugins_full.txt"
+PLUGINS_VULNS_FILE  = DATA_DIR + "/plugin_vulns.xml"
+THEMES_FILE         = DATA_DIR + "/themes.txt"
+THEMES_FULL_FILE    = DATA_DIR + "/themes_full.txt"
+THEMES_VULNS_FILE   = DATA_DIR + "/theme_vulns.xml"
+WP_VULNS_FILE       = DATA_DIR + "/wp_vulns.xml"
+
 WPSCAN_VERSION       = "2.0"
 
 require "#{LIB_DIR}/environment"

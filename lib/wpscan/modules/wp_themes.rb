@@ -19,9 +19,9 @@
 module WpThemes
 
   def themes_from_aggressive_detection(options)
-    options[:file]          = options[:file] || (options[:full] ? "#{DATA_DIR}/themes_full.txt" : "#{DATA_DIR}/themes.txt")
+    options[:file]          = options[:file] || (options[:full] ? THEMES_FULL_FILE : THEMES_FILE)
     options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
-        options[:vulns_file] : DATA_DIR + "/theme_vulns.xml"
+        options[:vulns_file] : THEMES_VULNS_FILE
     options[:vulns_xpath]   = "//theme[@name='#{@name}']/vulnerability"
     options[:vulns_xpath_2] = "//theme"
     options[:type]          = "themes"

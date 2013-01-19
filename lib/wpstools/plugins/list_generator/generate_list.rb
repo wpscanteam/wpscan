@@ -48,18 +48,18 @@ class GenerateList
       when "plugin"
         case type
           when :full
-            @file_name = DATA_DIR + "/plugins_full.txt"
+            @file_name = PLUGINS_FULL_FILE
           when :popular
-            @file_name = DATA_DIR + "/plugins.txt"
+            @file_name = PLUGINS_FILE
           else
             raise "Unknown type"
         end
       when "theme"
         case type
           when :full
-            @file_name = DATA_DIR + "/themes_full.txt"
+            @file_name = THEMES_FULL_FILE
           when :popular
-            @file_name = DATA_DIR + "/themes.txt"
+            @file_name = THEMES_FILE
           else
             raise "Unknown type"
         end

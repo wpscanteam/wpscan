@@ -39,14 +39,14 @@ class CheckerPlugin < Plugin
   end
 
   def check_vuln_ref_urls
-    vuln_ref_files   = ["plugin_vulns.xml", "theme_vulns.xml", "wp_vulns.xml"]
+    vuln_ref_files   = [ PLUGINS_VULNS_FILE , THEMES_VULNS_FILE, WP_VULNS_FILE ]
     error_codes      = [404, 500, 403]
     not_found_regexp = %r{No Results Found|error 404|ID Invalid or Not Found}i
 
     puts "[+] Checking vulnerabilities reference urls"
 
     vuln_ref_files.each do |vuln_ref_file|
-      xml = Nokogiri::XML(File.open(DATA_DIR + '/' + vuln_ref_file)) do |config|
+      xml = Nokogiri::XML(File.open(vuln_ref_file)) do |config|
         config.noblanks
       end
 
