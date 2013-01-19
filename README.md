@@ -56,6 +56,18 @@ Prerequisites:
 
 ```sudo gem install bundler && bundle install --without test development```
 
+*Installing on Archlinux:*
+
+```pacman -Sy ruby```
+```pacman -Sy libyaml```
+
+```git clone https://github.com/wpscanteam/wpscan.git```
+```cd wpscan```
+```sudo gem install bundler && bundle install --without test development```
+
+```gem install typhoeus```
+```gem install nokogiri```
+
 *Installing on Mac OSX:*
 
 ```git clone https://github.com/wpscanteam/wpscan.git```
