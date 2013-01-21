@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012-2013
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="stringtype">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="uritype">
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="sha1type">
+    <xs:restriction base="stringtype">
+      <xs:pattern value="[0-9a-f]{40}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="hashtype">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="title" type="stringtype"/>
+      <xs:element name="file" type="stringtype"/>
+      <xs:element name="reference" type="uritype"/>
+    </xs:sequence>
+    <xs:attribute type="sha1type" name="sha1" use="required"/>
+  </xs:complexType>
+
+  <xs:element name="hashes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="hash" type="hashtype" maxOccurs="unbounded" minOccurs="1"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

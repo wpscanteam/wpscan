@@ -1,36 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-WPScan - WordPress Security Scanner
-Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-ryandewhurst at gmail
-
-  <hash sha1="">
-    <title></title>
-    <file></file>
-    <reference></reference>
-  </hash>
-
-  PS :  Only he following extensions are scanned : js, php, swf, html, htm
-        If you want to add one, modify the variable file_extension_to_scan, line 191 in wpstools.rb
-
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012-2013
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 
-<hashes>
+<!--
+  Only he following extensions are scanned : js, php, swf, html, htm
+  If you want to add one, modify the variable file_extension_to_scan, line 191 in wpstools.rb
+-->
+
+<hashes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="local_vulnerable_files.xsd">
 
   <hash sha1="17c372678aafb3bc1a7b37320b5cc1d8af433527">
     <title>XSS in swfupload.swf</title>
@@ -70,4 +64,3 @@ ryandewhurst at gmail
   </hash>
 
 </hashes>
-

@@ -23,20 +23,15 @@ describe "XML checks" do
   after :each do
     FileTest.exists?(@file).should be_true
 
-    if @xsd
-      xsd = Nokogiri::XML::Schema(File.read(@xsd))
-      doc = Nokogiri::XML(File.read(@file))
+    xsd = Nokogiri::XML::Schema(File.read(@xsd))
+    doc = Nokogiri::XML(File.read(@file))
 
-      errors = []
-      xsd.validate(doc).each do |error|
-        errors << error.message
-      end
-
-      errors.should === []
-    else
-      expect { Nokogiri::XML(File.read(@file)) { |config| config.strict } }.to_not raise_error
+    errors = []
+    xsd.validate(doc).each do |error|
+      errors << error.message
     end
 
+    errors.should === []
   end
 
   it "check plugin_vulns.xml for syntax errors" do
@@ -61,6 +56,6 @@ describe "XML checks" do
 
   it "check local_vulnerable_files.xml for syntax errors" do
     @file = LOCAL_FILES_FILE
-    @xsd = nil
+    @xsd = LOCAL_FILES_XSD
   end
 end

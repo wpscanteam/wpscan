@@ -24,6 +24,10 @@
     <xs:restriction base="xs:string"/>
   </xs:simpleType>
 
+  <xs:simpleType name="uritype">
+    <xs:restriction base="xs:anyURI"/>
+  </xs:simpleType>
+
   <xs:simpleType name="typetype">
     <xs:restriction base="xs:string">
       <xs:enumeration value="SQLI"/>
@@ -58,7 +62,7 @@
   <xs:complexType name="vulntype">
     <xs:sequence minOccurs="1" maxOccurs="1">
       <xs:element name="title" type="stringtype"/>
-      <xs:element name="reference" type="stringtype" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element name="reference" type="uritype" maxOccurs="unbounded" minOccurs="1"/>
       <xs:element name="metasploit" type="stringtype" maxOccurs="unbounded" minOccurs="0"/>
       <xs:element name="type" type="typetype"/>
     </xs:sequence>
