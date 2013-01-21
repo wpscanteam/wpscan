@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-WPScan - WordPress Security Scanner
-Copyright (C) 2011  Ryan Dewhurst AKA ethicalhack3r
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-ryandewhurst at gmail
-
-  This file contains vulnerabilities associated with WordPress plugins.
-  TYPE = ["SQLI", "MULTI", "REDIRECT", "RCE", "RFI", "LFI", "UPLOAD", "UNKNOWN", "XSS", "CSRF", "AUTHBYPASS", "FPD"]
-
-  <plugin name="">
-    <vulnerability>
-      <title></title>
-      <reference></reference>
-      <reference></reference>
-      <metasploit></metasploit>
-      <metasploit></metasploit>
-      <type></type>
-    </vulnerability>
-  </plugin>
-
+# WPScan - WordPress Security Scanner
+# Copyright (C) 2012-2013
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
-<vulnerabilities>
+
+<vulnerabilities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:noNamespaceSchemaLocation="vuln.xsd">
 
   <plugin name="crayon-syntax-highlighter">
     <vulnerability>
@@ -1459,8 +1444,6 @@ File Upload Vulnerability</title>
       <title>AllWebMenus 1.1.3 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17861/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/allwebmenus-wordpress-menu-plugin/actions.php</uri>
-      <postdata>abspath=XXpathXX</postdata>
     </vulnerability>
   </plugin>
 
@@ -2087,7 +2070,6 @@ File Upload Vulnerability</title>
       <title>DM Albums 1.9.2 Remote File Inclusion Vuln</title>
       <reference>http://www.exploit-db.com/exploits/9043/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/dm-albums/template/album.php?SECURITY_FILE=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2286,10 +2268,9 @@ File Upload Vulnerability</title>
 
   <plugin name="backupwordpress">
     <vulnerability>
-      <title>BackUp&lt;= 0.4.2b RFI Vulnerability</title>
+      <title>BackUp &lt;= 0.4.2b RFI Vulnerability</title>
       <reference>http://www.exploit-db.com/exploits/4593/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/BackUp/Archive.php?bkpwp_plugin_path=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2298,7 +2279,6 @@ File Upload Vulnerability</title>
       <title>plugin myflash &lt;= 1.00 (wppath) RFI Vulnerability</title>
       <reference>http://www.exploit-db.com/exploits/3828/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/myflash/myflash-button.php?wpPATH=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2307,7 +2287,6 @@ File Upload Vulnerability</title>
       <title>plugin wordTube &lt;= 1.43 (wpPATH) RFI Vulnerability</title>
       <reference>http://www.exploit-db.com/exploits/3825/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/wordtube/wordtube-button.php?wpPATH=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2316,7 +2295,6 @@ File Upload Vulnerability</title>
       <title>plugin wp-Table &lt;= 1.43 (inc_dir) RFI Vulnerability</title>
       <reference>http://www.exploit-db.com/exploits/3824/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/wp-table/js/wptable-button.phpp?wpPATH=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2325,7 +2303,6 @@ File Upload Vulnerability</title>
       <title>myGallery &lt;= 1.4b4 Remote File Inclusion Vulnerability</title>
       <reference>http://www.exploit-db.com/exploits/3814/</reference>
       <type>RFI</type>
-      <uri>/mygallery/myfunctions/mygallerybrowser.php?myPath=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2684,7 +2661,6 @@ File Upload Vulnerability</title>
       <title>TheCartPress 1.1.1 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17860/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/thecartpress/checkout/CheckoutEditor.php?tcp_save_fields=true&amp;tcp_class_name=asdf&amp;tcp_class_path=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2693,7 +2669,6 @@ File Upload Vulnerability</title>
       <title>WPEasyStats 1.8 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17862/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/wpeasystats/export.php?homep=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2702,7 +2677,6 @@ File Upload Vulnerability</title>
       <title>Annonces 1.2.0.0 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17863/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/annonces/includes/lib/photo/uploadPhoto.php?abspath=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2711,8 +2685,6 @@ File Upload Vulnerability</title>
       <title>Livesig 0.4 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17864/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/livesig/livesig-ajax-backend.php</uri>
-      <postdata>wp-root=XXpathXX&amp;action=asdf</postdata>
     </vulnerability>
   </plugin>
 
@@ -2721,7 +2693,6 @@ File Upload Vulnerability</title>
       <title>Disclosure Policy 1.0 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17865/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/disclosure-policy-plugin/functions/action.php?delete=asdf&amp;blogUrl=asdf&amp;abspath=XXpathXX</uri>
     </vulnerability>
   </plugin>
 
@@ -2730,7 +2701,6 @@ File Upload Vulnerability</title>
       <title>Mailing List 1.3.2 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17866/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/mailz/lists/config/config.php?wpabspath=XXpathXX</uri>
     </vulnerability>
     <vulnerability>
       <title>Mailing List &lt; 1.4.1 Arbitrary file download</title>
@@ -2744,7 +2714,6 @@ File Upload Vulnerability</title>
       <title>Zingiri Web Shop 2.2.0 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17867/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/g-web-shop/fws/ajax/init.inc.php?wpabspath=XXpathXX</uri>
     </vulnerability>
     <vulnerability>
       <title>Zingiri Web Shop &lt;= 2.2.3 Remote Code Execution</title>
@@ -2771,7 +2740,6 @@ File Upload Vulnerability</title>
       <title>Relocate Upload 0.14 Remote File Inclusion</title>
       <reference>http://www.exploit-db.com/exploits/17869/</reference>
       <type>RFI</type>
-      <uri>/wp-content/plugins/relocate-upload/relocate-upload.php?ru_folder=asdf&amp;abspath=XXpathXX</uri>
     </vulnerability>
   </plugin>
 

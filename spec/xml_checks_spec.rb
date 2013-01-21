@@ -25,27 +25,44 @@ describe "XML checks" do
 
     FileTest.exists?(full_path).should be_true
 
-    expect { Nokogiri::XML(File.read(full_path)) { |config| config.strict } }.to_not raise_error
+    if @xsd
+      xsd = Nokogiri::XML::Schema(File.read(@xsd))
+      doc = Nokogiri::XML(File.read(full_path))
+
+      errors = []
+      xsd.validate(doc).each do |error|
+        errors << error.message
+      end
+
+      errors.should === []
+    else
+      expect { Nokogiri::XML(File.read(full_path)) { |config| config.strict } }.to_not raise_error
+    end
 
   end
 
   it "check plugin_vulns.xml for syntax errors" do
     @file = "plugin_vulns.xml"
+    @xsd = VULNS_XSD
   end
 
   it "check theme_vulns.xml for syntax errors" do
     @file = "theme_vulns.xml"
+    @xsd = VULNS_XSD
   end
 
   it "check wp_versions.xml for syntax errors" do
     @file = "wp_versions.xml"
+    @xsd = nil
   end
 
   it "check wp_vulns.xml for syntax errors" do
     @file = "wp_vulns.xml"
+    @xsd = VULNS_XSD
   end
 
   it "check local_vulnerable_files.xml for syntax errors" do
     @file = "local_vulnerable_files.xml"
+    @xsd = nil
   end
 end

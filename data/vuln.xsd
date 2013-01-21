@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:simpleType name="stringtype">
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+
+  <xs:simpleType name="typetype">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SQLI"/>
+      <xs:enumeration value="MULTI"/>
+      <xs:enumeration value="REDIRECT"/>
+      <xs:enumeration value="RCE"/>
+      <xs:enumeration value="RFI"/>
+      <xs:enumeration value="LFI"/>
+      <xs:enumeration value="UPLOAD"/>
+      <xs:enumeration value="UNKNOWN"/>
+      <xs:enumeration value="XSS"/>
+      <xs:enumeration value="CSRF"/>
+      <xs:enumeration value="AUTHBYPASS"/>
+      <xs:enumeration value="FPD"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="itemtype">
+    <xs:sequence>
+      <xs:element name="vulnerability" type="vulntype" maxOccurs="unbounded" minOccurs="1" />
+    </xs:sequence>
+    <xs:attribute type="stringtype" name="name" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="wordpresstype">
+    <xs:sequence>
+      <xs:element name="vulnerability" type="vulntype" maxOccurs="unbounded" minOccurs="1" />
+    </xs:sequence>
+    <xs:attribute type="stringtype" name="version" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="vulntype">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="title" type="stringtype"/>
+      <xs:element name="reference" type="stringtype" maxOccurs="unbounded" minOccurs="1"/>
+      <xs:element name="metasploit" type="stringtype" maxOccurs="unbounded" minOccurs="0"/>
+      <xs:element name="type" type="typetype"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="vulnerabilities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="plugin" type="itemtype" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element name="theme" type="itemtype" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element name="wordpress" type="wordpresstype" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+
+</xs:schema>
