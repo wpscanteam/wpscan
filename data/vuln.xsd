@@ -76,6 +76,18 @@
         <xs:element name="wordpress" type="wordpresstype" maxOccurs="unbounded" minOccurs="0"/>
       </xs:sequence>
     </xs:complexType>
+    <xs:unique name="uniquePlugin">
+      <xs:selector xpath="plugin"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
+    <xs:unique name="uniqueTheme">
+      <xs:selector xpath="theme"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
+    <xs:unique name="uniqueWordpress">
+      <xs:selector xpath="wordpress"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
   </xs:element>
 
 
