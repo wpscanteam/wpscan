@@ -21,13 +21,11 @@ require 'spec_helper'
 describe "XML checks" do
 
   after :each do
-    full_path = "#{DATA_DIR}/#@file"
-
-    FileTest.exists?(full_path).should be_true
+    FileTest.exists?(@file).should be_true
 
     if @xsd
       xsd = Nokogiri::XML::Schema(File.read(@xsd))
-      doc = Nokogiri::XML(File.read(full_path))
+      doc = Nokogiri::XML(File.read(@file))
 
       errors = []
       xsd.validate(doc).each do |error|
@@ -36,33 +34,33 @@ describe "XML checks" do
 
       errors.should === []
     else
-      expect { Nokogiri::XML(File.read(full_path)) { |config| config.strict } }.to_not raise_error
+      expect { Nokogiri::XML(File.read(@file)) { |config| config.strict } }.to_not raise_error
     end
 
   end
 
   it "check plugin_vulns.xml for syntax errors" do
-    @file = "plugin_vulns.xml"
+    @file = PLUGINS_VULNS_FILE
     @xsd = VULNS_XSD
   end
 
   it "check theme_vulns.xml for syntax errors" do
-    @file = "theme_vulns.xml"
+    @file = THEMES_VULNS_FILE
     @xsd = VULNS_XSD
   end
 
   it "check wp_versions.xml for syntax errors" do
-    @file = "wp_versions.xml"
-    @xsd = nil
+    @file = WP_VERSIONS_FILE
+    @xsd = WP_VERSIONS_XSD
   end
 
   it "check wp_vulns.xml for syntax errors" do
-    @file = "wp_vulns.xml"
+    @file = WP_VULNS_FILE
     @xsd = VULNS_XSD
   end
 
   it "check local_vulnerable_files.xml for syntax errors" do
-    @file = "local_vulnerable_files.xml"
+    @file = LOCAL_FILES_FILE
     @xsd = nil
   end
 end

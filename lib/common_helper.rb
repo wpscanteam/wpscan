@@ -39,7 +39,10 @@ THEMES_FILE         = DATA_DIR + "/themes.txt"
 THEMES_FULL_FILE    = DATA_DIR + "/themes_full.txt"
 THEMES_VULNS_FILE   = DATA_DIR + "/theme_vulns.xml"
 WP_VULNS_FILE       = DATA_DIR + "/wp_vulns.xml"
+WP_VERSIONS_FILE    = DATA_DIR + "/wp_versions.xml"
+LOCAL_FILES_FILE    = DATA_DIR + "/local_vulnerable_files.xml"
 VULNS_XSD           = DATA_DIR + "/vuln.xsd"
+WP_VERSIONS_XSD     = DATA_DIR + "/wp_versions.xsd"
 
 WPSCAN_VERSION       = "2.0"
 

@@ -93,7 +93,7 @@ class CheckerPlugin < Plugin
 
   def check_local_vulnerable_files(dir_to_scan)
     if Dir::exist?(dir_to_scan)
-      xml_file               = DATA_DIR + "/local_vulnerable_files.xml"
+      xml_file               = LOCAL_FILES_FILE
       local_hashes           = {}
       file_extension_to_scan = "*.{js,php,swf,html,htm}"
 

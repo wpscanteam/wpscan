@@ -124,7 +124,7 @@ class WpVersion < Vulnerable
   def self.find_from_advanced_fingerprinting(options)
     target_uri = options[:base_url]
     # needed for rpsec tests
-    version_xml = options[:version_xml] || DATA_DIR + "/wp_versions.xml"
+    version_xml = options[:version_xml] || WP_VERSIONS_FILE
     xml = Nokogiri::XML(File.open(version_xml)) do |config|
       config.noblanks
     end
