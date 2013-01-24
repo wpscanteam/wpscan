@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -56,7 +57,7 @@ class WpscanOptions
   end
 
   def url=(url)
-    raise "Empty URL given" if !url
+    raise 'Empty URL given' if !url
 
     @url = URI.parse(add_http_protocol(url)).to_s
   end
@@ -75,7 +76,7 @@ class WpscanOptions
 
   def proxy=(proxy)
     if proxy.index(':') == nil
-      raise "Invalid proxy format. Should be host:port."
+      raise 'Invalid proxy format. Should be host:port.'
     else
       @proxy = proxy
     end
@@ -83,7 +84,7 @@ class WpscanOptions
 
   def proxy_auth=(auth)
     if auth.index(':') == nil
-      raise "Invalid proxy auth format, username:password expected"
+      raise 'Invalid proxy auth format, username:password expected'
     else
       @proxy_auth = auth
     end
@@ -91,7 +92,7 @@ class WpscanOptions
 
   def enumerate_plugins=(enumerate_plugins)
     if enumerate_plugins === true and (@enumerate_all_plugins === true or @enumerate_only_vulnerable_plugins === true)
-      raise "Please choose only one plugin enumeration option"
+      raise 'Please choose only one plugin enumeration option'
     else
       @enumerate_plugins = enumerate_plugins
     end
@@ -99,7 +100,7 @@ class WpscanOptions
 
   def enumerate_only_vulnerable_plugins=(enumerate_only_vulnerable_plugins)
     if enumerate_only_vulnerable_plugins === true and (@enumerate_all_plugins === true or @enumerate_plugins === true)
-      raise "Please choose only one plugin enumeration option"
+      raise 'Please choose only one plugin enumeration option'
     else
       @enumerate_only_vulnerable_plugins = enumerate_only_vulnerable_plugins
     end
@@ -107,7 +108,7 @@ class WpscanOptions
 
   def enumerate_all_plugins=(enumerate_all_plugins)
     if enumerate_all_plugins === true and (@enumerate_plugins === true or @enumerate_only_vulnerable_plugins === true)
-      raise "Please choose only one plugin enumeration option"
+      raise 'Please choose only one plugin enumeration option'
     else
       @enumerate_all_plugins = enumerate_all_plugins
     end
@@ -115,7 +116,7 @@ class WpscanOptions
 
   def enumerate_themes=(enumerate_themes)
     if enumerate_themes === true and (@enumerate_all_themes === true or @enumerate_only_vulnerable_themes === true)
-      raise "Please choose only one theme enumeration option"
+      raise 'Please choose only one theme enumeration option'
     else
       @enumerate_themes = enumerate_themes
     end
@@ -123,7 +124,7 @@ class WpscanOptions
 
   def enumerate_only_vulnerable_themes=(enumerate_only_vulnerable_themes)
     if enumerate_only_vulnerable_themes === true and (@enumerate_all_themes === true or @enumerate_themes === true)
-      raise "Please choose only one theme enumeration option"
+      raise 'Please choose only one theme enumeration option'
     else
       @enumerate_only_vulnerable_themes = enumerate_only_vulnerable_themes
     end
@@ -131,14 +132,14 @@ class WpscanOptions
 
   def enumerate_all_themes=(enumerate_all_themes)
     if enumerate_all_themes === true and (@enumerate_themes === true or @enumerate_only_vulnerable_themes === true)
-      raise "Please choose only one theme enumeration option"
+      raise 'Please choose only one theme enumeration option'
     else
       @enumerate_all_themes = enumerate_all_themes
     end
   end
 
   def basic_auth=(basic_auth)
-    raise "Invalid basic authentication format, login:password expected" if basic_auth.index(':').nil?
+    raise 'Invalid basic authentication format, login:password expected' if basic_auth.index(':').nil?
     @basic_auth = "Basic #{Base64.encode64(basic_auth).chomp}"
   end
 
@@ -183,9 +184,9 @@ class WpscanOptions
           WpscanOptions.option_to_instance_variable_setter(cli_option),
           cli_value
       )
-    elsif cli_option === "--enumerate" # Special cases
+    elsif cli_option === '--enumerate' # Special cases
       # Default value if no argument is given
-      cli_value = "vt,tt,u,vp" if cli_value.length == 0
+      cli_value = 'vt,tt,u,vp' if cli_value.length == 0
 
       enumerate_options_from_string(cli_value)
     else
@@ -200,7 +201,7 @@ class WpscanOptions
   def enumerate_options_from_string(value)
     # Usage of self is mandatory because there are overridden setters
 
-    value = value.split(',').map{ |c| c.downcase }
+    value = value.split(',').map { |c| c.downcase }
 
     self.enumerate_only_vulnerable_plugins = true if value.include?('vp')
 
@@ -231,23 +232,23 @@ class WpscanOptions
   # Even if a short option is given (IE : -u), the long one will be returned (IE : --url)
   def self.get_opt_long
     GetoptLong.new(
-      ["--url", "-u", GetoptLong::REQUIRED_ARGUMENT],
-      ["--enumerate", "-e", GetoptLong::OPTIONAL_ARGUMENT],
-      ["--username", "-U", GetoptLong::REQUIRED_ARGUMENT],
-      ["--wordlist", "-w", GetoptLong::REQUIRED_ARGUMENT],
-      ["--threads", "-t", GetoptLong::REQUIRED_ARGUMENT],
-      ["--force", "-f", GetoptLong::NO_ARGUMENT],
-      ["--help", "-h", GetoptLong::NO_ARGUMENT],
-      ["--verbose", "-v", GetoptLong::NO_ARGUMENT],
-      ["--proxy", GetoptLong::REQUIRED_ARGUMENT],
-      ["--proxy-auth", GetoptLong::REQUIRED_ARGUMENT],
-      ["--update", GetoptLong::NO_ARGUMENT],
-      ["--follow-redirection", GetoptLong::NO_ARGUMENT],
-      ["--wp-content-dir", GetoptLong::REQUIRED_ARGUMENT],
-      ["--wp-plugins-dir", GetoptLong::REQUIRED_ARGUMENT],
-      ["--config-file", "-c", GetoptLong::REQUIRED_ARGUMENT],
-      ["--exclude-content-based", GetoptLong::REQUIRED_ARGUMENT],
-      ["--basic-auth", GetoptLong::REQUIRED_ARGUMENT]
+      ['--url', '-u', GetoptLong::REQUIRED_ARGUMENT],
+      ['--enumerate', '-e', GetoptLong::OPTIONAL_ARGUMENT],
+      ['--username', '-U', GetoptLong::REQUIRED_ARGUMENT],
+      ['--wordlist', '-w', GetoptLong::REQUIRED_ARGUMENT],
+      ['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
+      ['--force', '-f', GetoptLong::NO_ARGUMENT],
+      ['--help', '-h', GetoptLong::NO_ARGUMENT],
+      ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
+      ['--proxy', GetoptLong::REQUIRED_ARGUMENT],
+      ['--proxy-auth', GetoptLong::REQUIRED_ARGUMENT],
+      ['--update', GetoptLong::NO_ARGUMENT],
+      ['--follow-redirection', GetoptLong::NO_ARGUMENT],
+      ['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
+      ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
+      ['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
+      ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
+      ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

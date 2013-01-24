@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -22,22 +23,24 @@ module WpPlugins
   #
   # return array of WpPlugin
   def plugins_from_aggressive_detection(options)
+    if options[:vulns_file].nil? or options[:vulns_file] == ''
+      options[:vulns_file] = PLUGINS_VULNS_FILE
+    end
+
     options[:file]          = options[:file] || (options[:full] ? PLUGINS_FULL_FILE : PLUGINS_FILE)
-    options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
-    options[:vulns_file] : PLUGINS_VULNS_FILE
     options[:vulns_xpath]   = "//plugin[@name='#{@name}']/vulnerability"
-    options[:vulns_xpath_2] = "//plugin"
-    options[:type]          = "plugins"
+    options[:vulns_xpath_2] = '//plugin'
+    options[:type]          = 'plugins'
     result = WpDetector.aggressive_detection(options)
     plugins = []
     result.each do |r|
       plugins << WpPlugin.new(
-        :base_url       => r.base_url,
-        :path           => r.path,
-        :wp_content_dir => r.wp_content_dir,
-        :name           => r.name,
-        :type           => "plugins",
-        :wp_plugins_dir => r.wp_plugins_dir
+        base_url:       r.base_url,
+        path:           r.path,
+        wp_content_dir: r.wp_content_dir,
+        name:           r.name,
+        type:           'plugins',
+        wp_plugins_dir: r.wp_plugins_dir
       )
     end
     plugins.sort_by { |p| p.name }
@@ -51,16 +54,16 @@ module WpPlugins
   # return array of WpPlugin
   def plugins_from_passive_detection(options)
     plugins = []
-    temp = WpDetector.passive_detection(options[:base_url], "plugins", options[:wp_content_dir])
+    temp = WpDetector.passive_detection(options[:base_url], 'plugins', options[:wp_content_dir])
 
     temp.each do |item|
       plugins << WpPlugin.new(
-        :base_url       => item.base_url,
-        :name           => item.name,
-        :path           => item.path,
-        :wp_content_dir => options[:wp_content_dir],
-        :type           => "plugins",
-        :wp_plugins_dir => options[:wp_plugins_dir]
+        base_url:       item.base_url,
+        name:           item.name,
+        path:           item.path,
+        wp_content_dir: options[:wp_content_dir],
+        type:           'plugins',
+        wp_plugins_dir: options[:wp_plugins_dir]
       )
     end
     plugins.sort_by { |p| p.name }

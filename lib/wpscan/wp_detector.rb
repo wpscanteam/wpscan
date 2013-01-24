@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -63,12 +64,12 @@ class WpDetector
 
     names.each do |item|
       items << WpItem.new(
-        :base_url       => url,
-        :name           => item,
-        :type           => type,
-        :path           => "#{item}/",
-        :wp_content_dir => wp_content_dir,
-        :vulns_file     => ""
+        base_url:       url,
+        name:           item,
+        type:           type,
+        path:           "#{item}/",
+        wp_content_dir: wp_content_dir,
+        vulns_file:     ''
       )
     end
     items

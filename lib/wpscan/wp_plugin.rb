@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -18,11 +19,14 @@
 
 class WpPlugin < WpItem
   def initialize(options = {})
-    options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
-    options[:vulns_file] : PLUGINS_VULNS_FILE
+    if options[:vulns_file].nil? or options[:vulns_file] == ''
+      options[:vulns_file] = PLUGINS_VULNS_FILE
+    end
+
     options[:vulns_xpath]   = "//plugin[@name='$name$']/vulnerability"
-    options[:vulns_xpath_2] = "//plugin"
-    options[:type]          = "plugins"
+    options[:vulns_xpath_2] = '//plugin'
+    options[:type]          = 'plugins'
+
     super(options)
   end
 
@@ -32,11 +36,11 @@ class WpPlugin < WpItem
   # however can also be found in their specific plugin dir.
   # http://www.exploit-db.com/ghdb/3714/
   def error_log?
-    response_body = Browser.instance.get(error_log_url(), :headers => {"range" => "bytes=0-700"}).body
+    response_body = Browser.instance.get(error_log_url(), headers: {'range' => 'bytes=0-700'}).body
     response_body[%r{PHP Fatal error}i] ? true : false
   end
 
   def error_log_url
-    get_full_url.merge("error_log").to_s
+    get_full_url.merge('error_log').to_s
   end
 end

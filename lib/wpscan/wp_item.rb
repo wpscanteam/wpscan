@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -24,7 +25,7 @@ class WpItem < Vulnerable
 
   def initialize(options)
     @type           = options[:type]
-    @wp_content_dir = options[:wp_content_dir] ? options[:wp_content_dir].sub(/^\//, "").sub(/\/$/, "") : "wp-content"
+    @wp_content_dir = options[:wp_content_dir] ? options[:wp_content_dir].sub(/^\//, '').sub(/\/$/, '') : 'wp-content'
     @wp_plugins_dir = options[:wp_plugins_dir] || "#@wp_content_dir/plugins"
     @base_url       = options[:base_url]
     @path           = options[:path]
@@ -32,36 +33,36 @@ class WpItem < Vulnerable
     @vulns_file     = options[:vulns_file]
     @vulns_xpath    = options[:vulns_xpath].sub(/\$name\$/, @name) unless options[:vulns_xpath] == nil
 
-    raise("base_url not set")       unless @base_url
-    raise("path not set")           unless @path
-    raise("wp_content_dir not set") unless @wp_content_dir
-    raise("name not set")           unless @name
-    raise("vulns_file not set")     unless @vulns_file
-    raise("type not set")           unless @type
+    raise('base_url not set')       unless @base_url
+    raise('path not set')           unless @path
+    raise('wp_content_dir not set') unless @wp_content_dir
+    raise('name not set')           unless @name
+    raise('vulns_file not set')     unless @vulns_file
+    raise('type not set')           unless @type
   end
 
   # The wordpress.org plugins directory URL
   # See: https://github.com/wpscanteam/wpscan/issues/100
   def wp_org_url
     case @type
-      when "themes"
-        return URI("http://wordpress.org/extend/themes/").merge("#@name/")
-      when "plugins"
-        return URI("http://wordpress.org/extend/plugins/").merge("#@name/")
-      else
-        raise("No Wordpress URL for #@type")
+    when 'themes'
+      return URI('http://wordpress.org/extend/themes/').merge("#@name/")
+    when 'plugins'
+      return URI('http://wordpress.org/extend/plugins/').merge("#@name/")
+    else
+      raise("No Wordpress URL for #@type")
     end
   end
 
   # returns true if this theme or plugin is hosted on wordpress.org
   def wp_org_item?
     case @type
-      when "themes"
-        file = THEMES_FULL_FILE
-      when "plugins"
-        file = PLUGINS_FULL_FILE
-      else
-        raise("Unknown type #@type")
+    when 'themes'
+      file = THEMES_FULL_FILE
+    when 'plugins'
+      file = PLUGINS_FULL_FILE
+    else
+      raise("Unknown type #@type")
     end
     f = File.readlines(file).grep(/^#{Regexp.escape(@name)}$/i)
     f.empty? ? false : true
@@ -69,28 +70,28 @@ class WpItem < Vulnerable
 
   def get_sub_folder
     case @type
-      when "themes"
-        folder = "themes"
-      when "timthumbs"
-        # not needed
-        folder = nil
-      else
-        raise("unknown type #@type")
+    when 'themes'
+      folder = 'themes'
+    when 'timthumbs'
+      # not needed
+      folder = nil
+    else
+      raise("unknown type #@type")
     end
     folder
   end
 
   # Get the full url for this item
   def get_full_url
-    url = @base_url.to_s.end_with?("/") ? @base_url.to_s : "#@base_url/"
+    url = @base_url.to_s.end_with?('/') ? @base_url.to_s : "#@base_url/"
     # remove first and last /
-    wp_content_dir = @wp_content_dir.sub(/^\//, "").sub(/\/$/, "")
+    wp_content_dir = @wp_content_dir.sub(/^\//, "").sub(/\/$/, '')
     # remove first /
-    path = @path.sub(/^\//, "")
-    if type =="plugins"
+    path = @path.sub(/^\//, '')
+    if type == 'plugins'
       # plugins can be outside of wp-content. wp_content_dir included in wp_plugins_dir
       ret = URI.parse(URI.encode("#{url}#@wp_plugins_dir/#{path}"))
-    elsif type == "timthumbs"
+    elsif type == 'timthumbs'
       # timthumbs have folder in path variable
       ret = URI.parse(URI.encode("#{url}#{wp_content_dir}/#{path}"))
     else
@@ -112,7 +113,7 @@ class WpItem < Vulnerable
   # Returns version number from readme.txt if it exists
   def version
     unless @version
-      response = Browser.instance.get(get_full_url.merge("readme.txt").to_s)
+      response = Browser.instance.get(get_full_url.merge('readme.txt').to_s)
       @version = response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
     end
     @version
@@ -152,12 +153,12 @@ class WpItem < Vulnerable
 
   # Url for readme.txt
   def readme_url
-    get_url_without_filename.merge("readme.txt")
+    get_url_without_filename.merge('readme.txt')
   end
 
   # Url for changelog.txt
   def changelog_url
-    get_url_without_filename.merge("changelog.txt")
+    get_url_without_filename.merge('changelog.txt')
   end
 
   # readme.txt present?

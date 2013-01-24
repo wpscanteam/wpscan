@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -30,10 +31,10 @@ class Vulnerable
 
     xml.xpath(@vulns_xpath).each do |node|
       vulnerabilities << WpVulnerability.new(
-        node.search("title").text,
-        node.search("reference").map(&:text),
-        node.search("type").text,
-        node.search("metasploit").map(&:text)
+        node.search('title').text,
+        node.search('reference').map(&:text),
+        node.search('type').text,
+        node.search('metasploit').map(&:text)
       )
     end
     vulnerabilities

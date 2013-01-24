@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -20,7 +21,7 @@ class WpUser
 
   def name
     if @name.nil? or @name.to_s.strip.empty?
-      return "empty"
+      return 'empty'
     end
     @name
   end
@@ -31,7 +32,7 @@ class WpUser
 
   def id
     if @id.nil? or @id.to_s.strip.empty?
-      return "empty"
+      return 'empty'
     end
     @id
   end
@@ -42,7 +43,7 @@ class WpUser
 
   def nickname
     if @nickname.nil? or @nickname.to_s.strip.empty?
-      return "empty"
+      return 'empty'
     end
     @nickname
   end
@@ -57,15 +58,15 @@ class WpUser
     self.nickname = nickname
   end
 
-  def <=>(item)
-    item.name <=> self.name
+  def <=>(other)
+    other.name <=> self.name
   end
 
-  def ===(item)
-    item.name === self.name and item.id === self.id and item.nickname === self.nickname
+  def ===(other)
+    other.name === self.name and other.id === self.id and other.nickname === self.nickname
   end
 
-  def eql?(item)
-    item.name === self.name and item.id === self.id and item.nickname === self.nickname
+  def eql?(other)
+    other.name === self.name and other.id === self.id and other.nickname === self.nickname
   end
 end

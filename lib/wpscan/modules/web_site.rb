@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -34,7 +35,7 @@ module WebSite
 
     response = Browser.instance.get(
       login_url(),
-      {:follow_location => true, :max_redirects => 2}
+      { follow_location: true, max_redirects: 2 }
     )
 
     if response.body =~ %r{WordPress}i
@@ -42,7 +43,7 @@ module WebSite
     else
       response = Browser.instance.get(
         xml_rpc_url,
-        {:follow_location => true, :max_redirects => 2}
+        { follow_location: true, max_redirects: 2 }
       )
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
@@ -60,7 +61,7 @@ module WebSite
   def xml_rpc_url
     unless @xmlrpc_url
       headers = Browser.instance.get(@uri.to_s).headers_hash
-      value = headers["x-pingback"]
+      value = headers['x-pingback']
       if value.nil? or value.empty?
         @xmlrpc_url = nil
       else
@@ -105,7 +106,7 @@ module WebSite
   # Return the MD5 hash of a 404 page
   def error_404_hash
     unless @error_404_hash
-      non_existant_page = Digest::MD5.hexdigest(rand(9999999999).to_s) + ".html"
+      non_existant_page = Digest::MD5.hexdigest(rand(999_999_999).to_s) + '.html'
       @error_404_hash   = WebSite.page_hash(@uri.merge(non_existant_page).to_s)
     end
     @error_404_hash

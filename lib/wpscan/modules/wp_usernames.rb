@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -58,7 +59,7 @@ module WpUsernames
   end
 
   def get_nickname_from_url(url)
-    resp = Browser.instance.get(url, {:follow_location => true, :max_redirects => 2})
+    resp = Browser.instance.get(url, { follow_location: true, max_redirects: 2 })
     nickname = nil
     if resp.code == 200
       nickname = extract_nickname_from_body(resp.body)
@@ -80,21 +81,21 @@ module WpUsernames
 
   def remove_junk_from_nickname(usernames)
     unless usernames.kind_of? Array
-      raise("Need an array as input")
+      raise('Need an array as input')
     end
     nicknames = []
     usernames.each do |u|
       unless u.kind_of? WpUser
-        raise("Items must be of type WpUser")
+        raise('Items must be of type WpUser')
       end
       nickname = u.nickname
-      unless nickname == "empty"
+      unless nickname == 'empty'
         nicknames << nickname
       end
     end
     junk = get_equal_string_end(nicknames)
     usernames.each do |u|
-      u.nickname = u.nickname.sub(/#{Regexp.escape(junk)}$/, "")
+      u.nickname = u.nickname.sub(/#{Regexp.escape(junk)}$/, '')
     end
     usernames
   end

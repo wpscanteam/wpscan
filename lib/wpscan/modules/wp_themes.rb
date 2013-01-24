@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -19,20 +20,22 @@
 module WpThemes
 
   def themes_from_aggressive_detection(options)
+    if options[:vulns_file].nil? or options[:vulns_file] == ''
+      options[:vulns_file] = THEMES_VULNS_FILE
+    end
+
     options[:file]          = options[:file] || (options[:full] ? THEMES_FULL_FILE : THEMES_FILE)
-    options[:vulns_file]    = (options[:vulns_file] != nil and options[:vulns_file] != "") ?
-        options[:vulns_file] : THEMES_VULNS_FILE
     options[:vulns_xpath]   = "//theme[@name='#{@name}']/vulnerability"
-    options[:vulns_xpath_2] = "//theme"
-    options[:type]          = "themes"
+    options[:vulns_xpath_2] = '//theme'
+    options[:type]          = 'themes'
     result = WpDetector.aggressive_detection(options)
     themes = []
     result.each do |r|
       themes << WpTheme.new(
-          :base_url       => r.base_url,
-          :path           => r.path,
-          :wp_content_dir => r.wp_content_dir,
-          :name           => r.name
+        base_url:       r.base_url,
+        path:           r.path,
+        wp_content_dir: r.wp_content_dir,
+        name:           r.name
       )
     end
     themes.sort_by { |t| t.name }
@@ -40,14 +43,14 @@ module WpThemes
 
   def themes_from_passive_detection(options)
     themes = []
-    temp = WpDetector.passive_detection(options[:base_url], "themes", options[:wp_content_dir])
+    temp = WpDetector.passive_detection(options[:base_url], 'themes', options[:wp_content_dir])
 
     temp.each do |item|
       themes << WpTheme.new(
-          :base_url       => item.base_url,
-          :name           => item.name,
-          :path           => item.path,
-          :wp_content_dir => options[:wp_content_dir]
+        base_url:       item.base_url,
+        name:           item.name,
+        path:           item.path,
+        wp_content_dir: options[:wp_content_dir]
       )
     end
     themes.sort_by { |t| t.name }

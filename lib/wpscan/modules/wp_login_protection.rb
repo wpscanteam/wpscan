@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -37,10 +38,10 @@ module WpLoginProtection
           plugin_name = symbol_to_call[LOGIN_PROTECTION_METHOD_PATTERN, 1].gsub('_', '-')
 
           return @login_protection_plugin = WpPlugin.new(
-              :name           => plugin_name,
-              :base_url       => @uri,
-              :path           => "/plugins/#{plugin_name}/",
-              :wp_content_dir => @wp_content_dir
+            name:           plugin_name,
+            base_url:       @uri,
+            path:           "/plugins/#{plugin_name}/",
+            wp_content_dir: @wp_content_dir
           )
         end
       end
@@ -67,10 +68,10 @@ module WpLoginProtection
   end
 
   def better_wp_security_url
-    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :base_url        => @uri,
-                 :path            => "/plugins/better-wp-security/",
-                 :name            => "better-wp-security"
+    WpPlugin.new(wp_content_dir:  @wp_content_dir,
+                 base_url:        @uri,
+                 path:            '/plugins/better-wp-security/',
+                 name:            'better-wp-security'
     ).get_url_without_filename
   end
 
@@ -80,10 +81,10 @@ module WpLoginProtection
   end
 
   def simple_login_lockdown_url
-    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :base_url        => @uri,
-                 :path            => "/plugins/simple-login-lockdown/",
-                 :name            => "simple-login-lockdown"
+    WpPlugin.new(wp_content_dir:  @wp_content_dir,
+                 base_url:        @uri,
+                 path:            '/plugins/simple-login-lockdown/',
+                 name:            'simple-login-lockdown'
     ).get_url_without_filename
   end
 
@@ -93,10 +94,10 @@ module WpLoginProtection
   end
 
   def login_security_solution_url
-    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :base_url        => @uri,
-                 :path            => "/plugins/login-security-solution/",
-                 :name            => "login-security-solution"
+    WpPlugin.new(wp_content_dir:  @wp_content_dir,
+                 base_url:        @uri,
+                 path:            '/plugins/login-security-solution/',
+                 name:            'login-security-solution'
     ).get_url_without_filename
   end
 
@@ -106,10 +107,10 @@ module WpLoginProtection
   end
 
   def limit_login_attempts_url
-    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :base_url        => @uri,
-                 :path            => "/plugins/limit-login-attempts/",
-                 :name            => "limit-login-attempts"
+    WpPlugin.new(wp_content_dir:  @wp_content_dir,
+                 base_url:        @uri,
+                 path:            '/plugins/limit-login-attempts/',
+                 name:            'limit-login-attempts'
     ).get_url_without_filename
   end
 
@@ -119,10 +120,10 @@ module WpLoginProtection
   end
 
   def bluetrait_event_viewer_url
-    WpPlugin.new(:wp_content_dir  => @wp_content_dir,
-                 :base_url        => @uri,
-                 :path            => "/plugins/bluetrait-event-viewer/",
-                 :name            => "bluetrait-event-viewer"
+    WpPlugin.new(wp_content_dir:  @wp_content_dir,
+                 base_url:        @uri,
+                 path:            '/plugins/bluetrait-event-viewer/',
+                 name:            'bluetrait-event-viewer'
     ).get_url_without_filename
   end
 end

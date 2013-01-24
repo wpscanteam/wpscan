@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -25,6 +26,6 @@ module WpFullPathDisclosure
   end
 
   def full_path_disclosure_url
-    @uri.merge("wp-includes/rss-functions.php").to_s
+    @uri.merge('wp-includes/rss-functions.php').to_s
   end
 end

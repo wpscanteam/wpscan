@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -34,10 +35,10 @@ module BruteForce
       request_count  = 0
       password_found = false
 
-      File.open(wordlist_path, "r").each do |password|
+      File.open(wordlist_path, 'r').each do |password|
 
         # ignore file comments, but will miss passwords if they start with a hash...
-        next if password[0,1] == "#"
+        next if password[0, 1] == '#'
 
         # keep a count of the amount of requests to be sent
         request_count += 1
@@ -50,9 +51,9 @@ module BruteForce
         # the request object
         request = Browser.instance.forge_request(login_url,
           {
-            :method => :post,
-            :params => {:log => username, :pwd => password},
-            :cache_timeout => 0
+            method: :post,
+            params: {log: username, pwd: password},
+            cache_timeout: 0
           }
         )
 
@@ -64,20 +65,20 @@ module BruteForce
           if response.body =~ /login_error/i
             puts "\nIncorrect username and/or password." if @verbose
           elsif response.code == 302
-            puts "\n  " + green("[SUCCESS]") + " Username : #{username} Password : #{password}\n" if show_progression
-            found << { :name => username, :password => password }
+            puts "\n  " + green('[SUCCESS]') + " Username : #{username} Password : #{password}\n" if show_progression
+            found << { name: username, password: password }
             password_found = true
           elsif response.timed_out?
-            puts red("ERROR:") + " Request timed out." if show_progression
+            puts red('ERROR:') + ' Request timed out.' if show_progression
           elsif response.code == 0
-            puts red("ERROR:") + " No response from remote server. WAF/IPS?" if show_progression
+            puts red('ERROR:') + ' No response from remote server. WAF/IPS?' if show_progression
           # code is a fixnum, needs a string for regex
           elsif response.code.to_s =~ /^50/
-            puts red("ERROR:") + " Server error, try reducing the number of threads." if show_progression
+            puts red('ERROR:') + ' Server error, try reducing the number of threads.' if show_progression
           else
-            puts "\n" + red("ERROR:") + " We recieved an unknown response for #{password}..." if show_progression
+            puts "\n" + red('ERROR:') + " We recieved an unknown response for #{password}..." if show_progression
 
-            # ugly method to get the coverage :/ (otherwise some output is present in the rspec)
+            # HACK to get the coverage :/ (otherwise some output is present in the rspec)
             puts red("Code: #{response.code.to_s}") if @verbose
             puts red("Body: #{response.body}") if @verbose
             puts if @verbose
@@ -116,7 +117,7 @@ module BruteForce
   # wordlists, although bareable.
   def self.lines_in_file(file_path)
     lines = 0
-    File.open(file_path, 'r').each { || lines += 1 }
+    File.open(file_path, 'r').each { |_| lines += 1 }
     lines
   end
 end

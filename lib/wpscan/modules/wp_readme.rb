@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -31,6 +32,6 @@ module WpReadme
   end
 
   def readme_url
-    @uri.merge("readme.html").to_s
+    @uri.merge('readme.html').to_s
   end
 end
