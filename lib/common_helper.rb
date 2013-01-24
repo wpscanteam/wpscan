@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -18,39 +19,39 @@
 
 LIB_DIR              = File.dirname(__FILE__)
 ROOT_DIR             = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
-DATA_DIR             = ROOT_DIR + "/data"
-CONF_DIR             = ROOT_DIR + "/conf"
-CACHE_DIR            = ROOT_DIR + "/cache"
-WPSCAN_LIB_DIR       = LIB_DIR + "/wpscan"
-WPSTOOLS_LIB_DIR     = LIB_DIR + "/wpstools"
-UPDATER_LIB_DIR      = LIB_DIR + "/updater"
-COMMON_LIB_DIR       = LIB_DIR + "/common"
-LOG_FILE             = ROOT_DIR + "/log.txt"
+DATA_DIR             = ROOT_DIR + '/data'
+CONF_DIR             = ROOT_DIR + '/conf'
+CACHE_DIR            = ROOT_DIR + '/cache'
+WPSCAN_LIB_DIR       = LIB_DIR + '/wpscan'
+WPSTOOLS_LIB_DIR     = LIB_DIR + '/wpstools'
+UPDATER_LIB_DIR      = LIB_DIR + '/updater'
+COMMON_LIB_DIR       = LIB_DIR + '/common'
+LOG_FILE             = ROOT_DIR + '/log.txt'
 # Plugins directories
-COMON_PLUGINS_DIR    = COMMON_LIB_DIR + "/plugins"
-WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + "/plugins"
-WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + "/plugins"
+COMON_PLUGINS_DIR    = COMMON_LIB_DIR + '/plugins'
+WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins'
+WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + '/plugins'
 
 # Data files
-PLUGINS_FILE        = DATA_DIR + "/plugins.txt"
-PLUGINS_FULL_FILE   = DATA_DIR + "/plugins_full.txt"
-PLUGINS_VULNS_FILE  = DATA_DIR + "/plugin_vulns.xml"
-THEMES_FILE         = DATA_DIR + "/themes.txt"
-THEMES_FULL_FILE    = DATA_DIR + "/themes_full.txt"
-THEMES_VULNS_FILE   = DATA_DIR + "/theme_vulns.xml"
-WP_VULNS_FILE       = DATA_DIR + "/wp_vulns.xml"
-WP_VERSIONS_FILE    = DATA_DIR + "/wp_versions.xml"
-LOCAL_FILES_FILE    = DATA_DIR + "/local_vulnerable_files.xml"
-VULNS_XSD           = DATA_DIR + "/vuln.xsd"
-WP_VERSIONS_XSD     = DATA_DIR + "/wp_versions.xsd"
-LOCAL_FILES_XSD     = DATA_DIR + "/local_vulnerable_files.xsd"
+PLUGINS_FILE        = DATA_DIR + '/plugins.txt'
+PLUGINS_FULL_FILE   = DATA_DIR + '/plugins_full.txt'
+PLUGINS_VULNS_FILE  = DATA_DIR + '/plugin_vulns.xml'
+THEMES_FILE         = DATA_DIR + '/themes.txt'
+THEMES_FULL_FILE    = DATA_DIR + '/themes_full.txt'
+THEMES_VULNS_FILE   = DATA_DIR + '/theme_vulns.xml'
+WP_VULNS_FILE       = DATA_DIR + '/wp_vulns.xml'
+WP_VERSIONS_FILE    = DATA_DIR + '/wp_versions.xml'
+LOCAL_FILES_FILE    = DATA_DIR + '/local_vulnerable_files.xml'
+VULNS_XSD           = DATA_DIR + '/vuln.xsd'
+WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
+LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 
-WPSCAN_VERSION       = "2.0"
+WPSCAN_VERSION       = '2.0'
 
 require "#{LIB_DIR}/environment"
 
 # TODO : add an exclude pattern ?
-def require_files_from_directory(absolute_dir_path, files_pattern = "*.rb")
+def require_files_from_directory(absolute_dir_path, files_pattern = '*.rb')
   Dir[File.join(absolute_dir_path, files_pattern)].sort.each do |f|
     f = File.expand_path(f)
     require f
@@ -59,7 +60,7 @@ def require_files_from_directory(absolute_dir_path, files_pattern = "*.rb")
 end
 
 #require_files_from_directory(COMMON_LIB_DIR)
-require_files_from_directory(COMMON_LIB_DIR, "**/*.rb")
+require_files_from_directory(COMMON_LIB_DIR, '**/*.rb')
 
 # Add protocol
 def add_http_protocol(url)
@@ -71,8 +72,8 @@ def add_trailing_slash(url)
 end
 
 # Gets the string all elements in stringarray ends with
-def get_equal_string_end(stringarray = [""])
-  already_found = ""
+def get_equal_string_end(stringarray = [''])
+  already_found = ''
   looping = true
   counter = -1
   if stringarray.kind_of? Array and stringarray.length > 1
@@ -97,15 +98,15 @@ end
 
 # Since ruby 1.9.2, URI::escape is obsolete
 # See http://rosettacode.org/wiki/URL_encoding#Ruby and http://www.ruby-forum.com/topic/207489
-if RUBY_VERSION >= "1.9.2"
+if RUBY_VERSION >= '1.9.2'
   module URI
     def self.escape(str)
-      URI.encode_www_form_component(str).gsub("+", "%20")
+      URI.encode_www_form_component(str).gsub('+', '%20')
     end
   end
 end
 
-if RUBY_VERSION < "1.9"
+if RUBY_VERSION < '1.9'
   class Array
     # Fix for grep with symbols in ruby <= 1.8.7
     def _grep_(regexp)
@@ -128,25 +129,25 @@ require_files_from_directory(UPDATER_LIB_DIR)
 if @updater
   REVISION = @updater.local_revision_number()
 else
-  REVISION = "NA"
+  REVISION = 'NA'
 end
 
 # our 1337 banner
-def banner()
+def banner
   puts '____________________________________________________'
-  puts " __          _______   _____                  "
-  puts " \\ \\        / /  __ \\ / ____|                 "
-  puts "  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  "
-  puts "   \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | '_ \\ "
-  puts "    \\  /\\  /  | |     ____) | (__| (_| | | | |"
+  puts ' __          _______   _____                  '
+  puts ' \\ \\        / /  __ \\ / ____|                 '
+  puts '  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
+  puts '   \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
+  puts '    \\  /\\  /  | |     ____) | (__| (_| | | | |'
   puts "     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_| v#{WPSCAN_VERSION}r#{REVISION}"
   puts
-  puts "    WordPress Security Scanner by the WPScan Team"
-  puts " Sponsored by the RandomStorm Open Source Initiative"
+  puts '    WordPress Security Scanner by the WPScan Team'
+  puts ' Sponsored by the RandomStorm Open Source Initiative'
   puts '_____________________________________________________'
   puts
-  if RUBY_VERSION < "1.9"
-    puts "[WARNING] Ruby < 1.9 not officially supported, please upgrade."
+  if RUBY_VERSION < '1.9'
+    puts '[WARNING] Ruby < 1.9 not officially supported, please upgrade.'
     puts
   end
 end
@@ -165,16 +166,16 @@ end
 
 def get_metasploit_url(module_path)
   # remove leading slash
-  module_path = module_path.sub(/^\//, "")
+  module_path = module_path.sub(/^\//, '')
   "http://www.metasploit.com/modules/#{module_path}"
 end
 
 # Override for puts to enable logging
-def puts(o = "")
+def puts(o = '')
   # remove color for logging
-  if o.respond_to?("gsub")
+  if o.respond_to?('gsub')
     temp = o.gsub(/\e\[\d+m(.*)?\e\[0m/, '\1')
-    File.open(LOG_FILE, "a+") { |f| f.puts(temp) }
+    File.open(LOG_FILE, 'a+') { |f| f.puts(temp) }
   end
   super(o)
 end

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -45,7 +46,11 @@ class Browser
       override_config_with_options(options)
     end
 
-    @hydra = Typhoeus::Hydra.new(:max_concurrency => @max_threads, :timeout => @request_timeout)
+    @hydra = Typhoeus::Hydra.new(
+      max_concurrency: @max_threads,
+      timeout: @request_timeout
+    )
+
     # TODO : add an option for the cache dir instead of using a constant
     @cache = CacheFileStore.new(CACHE_DIR + '/browser')
 
@@ -69,12 +74,13 @@ class Browser
   end
 
   def user_agent_mode=(ua_mode)
-    ua_mode ||= "static"
+    ua_mode ||= 'static'
 
     if USER_AGENT_MODES.include?(ua_mode)
       @user_agent_mode = ua_mode
-      # For semi-static user agent mode, the user agent has to be nil the first time (it will be set with the getter)
-      @user_agent = nil if ua_mode === "semi-static"
+      # For semi-static user agent mode, the user agent has to
+      # be nil the first time (it will be set with the getter)
+      @user_agent = nil if ua_mode === 'semi-static'
     else
       raise "Unknow user agent mode : '#{ua_mode}'"
     end
@@ -83,12 +89,12 @@ class Browser
   # return the user agent, according to the user_agent_mode
   def user_agent
     case @user_agent_mode
-      when "semi-static"
-        unless @user_agent
-          @user_agent = @available_user_agents.sample
-        end
-      when "random"
+    when 'semi-static'
+      unless @user_agent
         @user_agent = @available_user_agents.sample
+      end
+    when 'random'
+      @user_agent = @available_user_agents.sample
     end
     @user_agent
   end
@@ -109,21 +115,25 @@ class Browser
         @proxy_auth = auth
       elsif auth.is_a?(String)
         if matches = %r{([^:]+):(.*)}.match(auth)
-          @proxy_auth = {:proxy_username => matches[1], :proxy_password => matches[2]}
+          @proxy_auth = {
+            proxy_username: matches[1],
+            proxy_password: matches[2]
+          }
         else
-          raise_invalid_proxy_format()
+          raise_invalid_proxy_auth_format()
         end
       else
-        raise_invalid_proxy_format()
+        raise_invalid_proxy_auth_format()
       end
     end
   end
 
-  def raise_invalid_proxy_format
-    raise "Invalid proxy auth format, expected username:password or {:proxy_username => username, :proxy_password => password}"
+  def raise_invalid_proxy_auth_format
+    raise 'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'
   end
 
-  # TODO reload hydra (if the .load_config is called on a browser object, hydra will not have the new @max_threads and @request_timeout)
+  # TODO reload hydra (if the .load_config is called on a browser object,
+  # hydra will not have the new @max_threads and @request_timeout)
   def load_config(config_file = nil)
     @config_file = config_file || @config_file
 
@@ -146,7 +156,9 @@ class Browser
     end
 
     @hydra.cache_getter do |request|
-      @cache.read_entry(Browser.generate_cache_key_from_request(request)) rescue nil
+      @cache.read_entry(
+        Browser.generate_cache_key_from_request(request)
+      ) rescue nil
     end
   end
 

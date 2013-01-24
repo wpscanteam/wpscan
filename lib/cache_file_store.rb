@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -18,7 +19,8 @@
 
 #
 # => @todo take consideration of the cache_timeout :
-#      -> create 2 files per key : one for the data storage (key.store ?) and the other for the cache timeout (key.expiration, key.timeout ?)
+#      -> create 2 files per key : one for the data storage (key.store ?)
+#         and the other for the cache timeout (key.expiration, key.timeout ?)
 #      or 1 file for all timeouts ?
 #      -> 2 dirs : 1 for storage, the other for cache_timeout ?
 #
@@ -28,14 +30,16 @@ require 'yaml'
 class CacheFileStore
   attr_reader :storage_path, :serializer
 
-  # The serializer must have the 2 methods .load and .dump (Marshal and YAML have them)
+  # The serializer must have the 2 methods .load and .dump
+  #   (Marshal and YAML have them)
   # YAML is Human Readable, contrary to Marshal which store in a binary format
   # Marshal does not need any "require"
   def initialize(storage_path, serializer = Marshal)
     @storage_path = File.expand_path(storage_path)
     @serializer = serializer
 
-    # File.directory? for ruby <= 1.9 otherwise, it makes more sense to do Dir.exist? :/
+    # File.directory? for ruby <= 1.9 otherwise,
+    # it makes more sense to do Dir.exist? :/
     unless File.directory?(@storage_path)
       Dir.mkdir(@storage_path)
     end

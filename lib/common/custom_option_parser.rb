@@ -1,3 +1,5 @@
+# encoding: UTF-8
+#
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
 #

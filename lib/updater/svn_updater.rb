@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -21,7 +22,7 @@ require File.expand_path(File.dirname(__FILE__) + '/updater')
 class SvnUpdater < Updater
 
   REVISION_PATTERN = /revision="(\d+)"/i
-  TRUNK_URL = "https://github.com/wpscanteam/wpscan"
+  TRUNK_URL        = 'https://github.com/wpscanteam/wpscan'
 
   def is_installed?
     %x[svn info "#@repo_directory" --xml 2>&1] =~ /revision=/ ? true : false

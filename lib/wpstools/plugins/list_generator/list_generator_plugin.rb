@@ -1,3 +1,5 @@
+# encoding: UTF-8
+#
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
 #
@@ -18,18 +20,16 @@
 class ListGeneratorPlugin < Plugin
 
   def initialize
-    super(
-      :author => "WPScanTeam - @FireFart"
-    )
+    super(author: 'WPScanTeam - @FireFart')
 
     register_options(
-      ["--generate-plugin-list [NUMBER_OF_PAGES]", "--gpl", Integer, "Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)"],
-      ["--generate-full-plugin-list", "--gfpl", "Generate a new full data/plugins.txt file"],
+      ['--generate-plugin-list [NUMBER_OF_PAGES]', '--gpl', Integer, 'Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)'],
+      ['--generate-full-plugin-list', '--gfpl', 'Generate a new full data/plugins.txt file'],
 
-      ["--generate-theme-list [NUMBER_OF_PAGES]", "--gtl", Integer, "Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 150)"],
-      ["--generate-full-theme-list", "--gftl", "Generate a new full data/themes.txt file"],
+      ['--generate-theme-list [NUMBER_OF_PAGES]', '--gtl', Integer, 'Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 150)'],
+      ['--generate-full-theme-list', '--gftl', 'Generate a new full data/themes.txt file'],
 
-      ["--generate-all", "--ga", "Generate a new full plugins, full themes, popular plugins and popular themes list"],
+      ['--generate-all', '--ga', 'Generate a new full plugins, full themes, popular plugins and popular themes list']
     )
   end
 
@@ -40,13 +40,13 @@ class ListGeneratorPlugin < Plugin
     if options.has_key?(:generate_plugin_list) || generate_all
       number_of_pages = options[:generate_plugin_list] || 150
 
-      puts "[+] Generating new most popular plugin list"
+      puts '[+] Generating new most popular plugin list'
       puts
       GenerateList.new('plugins', verbose).generate_popular_list(number_of_pages)
     end
 
     if options[:generate_full_plugin_list] || generate_all
-      puts "[+] Generating new full plugin list"
+      puts '[+] Generating new full plugin list'
       puts
       GenerateList.new('plugins', verbose).generate_full_list
     end
@@ -54,13 +54,13 @@ class ListGeneratorPlugin < Plugin
     if options.has_key?(:generate_theme_list) || generate_all
       number_of_pages = options[:generate_theme_list] || 150
 
-      puts "[+] Generating new most popular theme list"
+      puts '[+] Generating new most popular theme list'
       puts
       GenerateList.new('themes', verbose).generate_popular_list(number_of_pages)
     end
 
     if options[:generate_full_theme_list] || generate_all
-      puts "[+] Generating new full theme list"
+      puts '[+] Generating new full theme list'
       puts
       GenerateList.new('themes', verbose).generate_full_list
     end

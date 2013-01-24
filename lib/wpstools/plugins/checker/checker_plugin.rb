@@ -1,3 +1,5 @@
+# encoding: UTF-8
+#
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
 #
@@ -18,13 +20,11 @@
 class CheckerPlugin < Plugin
 
   def initialize
-    super(
-      :author => "@wpscanteam - @erwanlr"
-    )
+    super(author: 'WPScanTeam - @erwanlr')
 
     register_options(
-      ["--check-vuln-ref-urls", "--cvru", "Check all the vulnerabilities reference urls for 404"],
-      ["--check-local-vulnerable-files LOCAL_DIRECTORY", "--clvf", "Perform a recursive scan in the LOCAL_DIRECTORY to find vulnerable files or shells"]
+      ['--check-vuln-ref-urls', '--cvru', 'Check all the vulnerabilities reference urls for 404'],
+      ['--check-local-vulnerable-files LOCAL_DIRECTORY', '--clvf', 'Perform a recursive scan in the LOCAL_DIRECTORY to find vulnerable files or shells']
     )
   end
 
@@ -39,11 +39,11 @@ class CheckerPlugin < Plugin
   end
 
   def check_vuln_ref_urls
-    vuln_ref_files   = [ PLUGINS_VULNS_FILE , THEMES_VULNS_FILE, WP_VULNS_FILE ]
+    vuln_ref_files   = [PLUGINS_VULNS_FILE, THEMES_VULNS_FILE, WP_VULNS_FILE]
     error_codes      = [404, 500, 403]
     not_found_regexp = %r{No Results Found|error 404|ID Invalid or Not Found}i
 
-    puts "[+] Checking vulnerabilities reference urls"
+    puts '[+] Checking vulnerabilities reference urls'
 
     vuln_ref_files.each do |vuln_ref_file|
       xml = Nokogiri::XML(File.open(vuln_ref_file)) do |config|
@@ -51,7 +51,7 @@ class CheckerPlugin < Plugin
       end
 
       urls = []
-      xml.xpath("//reference").each { |node| urls << node.text }
+      xml.xpath('//reference').each { |node| urls << node.text }
 
       urls.uniq!
 
@@ -63,7 +63,7 @@ class CheckerPlugin < Plugin
       number_of_urls  = urls.size
 
       urls.each do |url|
-        request = browser.forge_request(url, { :cache_timeout => 0, :follow_location => true })
+        request = browser.forge_request(url, { cache_timeout: 0, follow_location: true })
         request_count += 1
 
         request.on_complete do |response|
@@ -95,11 +95,11 @@ class CheckerPlugin < Plugin
     if Dir::exist?(dir_to_scan)
       xml_file               = LOCAL_FILES_FILE
       local_hashes           = {}
-      file_extension_to_scan = "*.{js,php,swf,html,htm}"
+      file_extension_to_scan = '*.{js,php,swf,html,htm}'
 
-      print "[+] Generating local hashes ... "
+      print '[+] Generating local hashes ... '
 
-      Dir[File::join(dir_to_scan, "**", file_extension_to_scan)].each do |filename|
+      Dir[File::join(dir_to_scan, '**', file_extension_to_scan)].each do |filename|
         sha1sum = Digest::SHA1.file(filename).hexdigest
 
         if local_hashes.has_key?(sha1sum)
@@ -109,36 +109,36 @@ class CheckerPlugin < Plugin
         end
       end
 
-      puts "done."
+      puts 'done.'
 
-      puts "[+] Checking for vulnerable files ..."
+      puts '[+] Checking for vulnerable files ...'
 
       xml = Nokogiri::XML(File.open(xml_file)) do |config|
         config.noblanks
       end
 
-      xml.xpath("//hash").each do |node|
-        sha1sum = node.attribute("sha1").text
+      xml.xpath('//hash').each do |node|
+        sha1sum = node.attribute('sha1').text
 
         if local_hashes.has_key?(sha1sum)
           local_filenames = local_hashes[sha1sum]
-          vuln_title      = node.search("title").text
-          vuln_filename   = node.search("file").text
-          vuln_refrence   = node.search("reference").text
+          vuln_title      = node.search('title').text
+          vuln_filename   = node.search('file').text
+          vuln_refrence   = node.search('reference').text
 
           puts "  #{vuln_filename} found :"
-          puts "  | Location(s):"
+          puts '  | Location(s):'
           local_filenames.each do |file|
             puts "  |  - #{file}"
           end
-          puts "  |"
+          puts '  |'
           puts "  | Title: #{vuln_title}"
           puts "  | Refrence: #{vuln_refrence}" if !vuln_refrence.empty?
           puts
         end
       end
 
-      puts "done."
+      puts 'done.'
 
     else
       puts "The supplied directory '#{dir_to_scan}' does not exist"

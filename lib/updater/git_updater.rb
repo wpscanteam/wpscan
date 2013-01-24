@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -24,7 +25,8 @@ class GitUpdater < Updater
     %x[git #{repo_directory_arguments()} status 2>&1] =~ /On branch/ ? true : false
   end
 
-  # Git has not a revsion number like SVN, so we will take the 7 first chars of the last commit hash
+  # Git has not a revsion number like SVN,
+  # so we will take the 7 first chars of the last commit hash
   def local_revision_number
     git_log = %x[git #{repo_directory_arguments()} log -1 2>&1]
     git_log[/commit ([0-9a-z]{7})/i, 1].to_s

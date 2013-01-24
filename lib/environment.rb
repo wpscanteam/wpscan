@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -47,7 +48,7 @@ rescue LoadError => e
   if missing_gem
     if missing_gem =~ /nokogiri/i
       puts
-      puts "Nokogiri needs some packets, please run 'sudo apt-get install libxml2 libxml2-dev libxslt1-dev' to install them. Then run the command below"
+      puts 'Nokogiri needs some packets, please run \'sudo apt-get install libxml2 libxml2-dev libxslt1-dev\' to install them. Then run the command below'
       puts
     end
     puts "[TIP] Try to run 'gem install #{missing_gem}' or 'gem install --user-install #{missing_gem}'. If you still get an error, Please see README file or https://github.com/wpscanteam/wpscan"
@@ -55,7 +56,7 @@ rescue LoadError => e
   exit(1)
 end
 
-if Typhoeus::VERSION == "0.4.0"
-  puts "Typhoeus 0.4.0 detected, please update the gem otherwise wpscan will not work correctly"
+if Typhoeus::VERSION == '0.4.0'
+  puts 'Typhoeus 0.4.0 detected, please update the gem otherwise wpscan will not work correctly'
   exit(1)
 end

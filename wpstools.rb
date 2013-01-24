@@ -19,15 +19,15 @@
 #++
 
 $: << '.'
-require File.dirname(__FILE__) + "/lib/wpstools/wpstools_helper"
+require File.dirname(__FILE__) + '/lib/wpstools/wpstools_helper'
 
 begin
 
   banner()
 
-  option_parser = CustomOptionParser.new("Usage: ./wpstools.rb [options]", 60)
-  option_parser.separator ""
-  option_parser.add(["-v", "--verbose", "Verbose output"])
+  option_parser = CustomOptionParser.new('Usage: ./wpstools.rb [options]', 60)
+  option_parser.separator ''
+  option_parser.add(['-v', '--verbose', 'Verbose output'])
 
   plugins = Plugins.new(option_parser)
   plugins.register(
@@ -47,6 +47,6 @@ begin
 
 rescue => e
   puts "[ERROR] #{e.message}"
-  puts "Trace :"
+  puts 'Trace :'
   puts e.backtrace.join("\n")
 end

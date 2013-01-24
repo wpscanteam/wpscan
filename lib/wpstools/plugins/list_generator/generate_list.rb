@@ -1,5 +1,4 @@
-#!/usr/bin/env ruby
-
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -26,14 +25,14 @@ class GenerateList
   # type = themes | plugins
   def initialize(type, verbose)
     if type =~ /plugins/i
-      @type           = "plugin"
-      @svn_url        = "http://plugins.svn.wordpress.org/"
-      @popular_url    = "http://wordpress.org/extend/plugins/browse/popular/"
+      @type           = 'plugin'
+      @svn_url        = 'http://plugins.svn.wordpress.org/'
+      @popular_url    = 'http://wordpress.org/extend/plugins/browse/popular/'
       @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/plugins/(.+)/">.+</a></h3>}i
     elsif type =~ /themes/i
-      @type           = "theme"
-      @svn_url        = "http://themes.svn.wordpress.org/"
-      @popular_url    = "http://wordpress.org/extend/themes/browse/popular/"
+      @type           = 'theme'
+      @svn_url        = 'http://themes.svn.wordpress.org/'
+      @popular_url    = 'http://wordpress.org/extend/themes/browse/popular/'
       @popular_regex  = %r{<h3><a href="http://wordpress.org/extend/themes/(.+)">.+</a></h3>}i
     else
       raise "Type #{type} not defined"
@@ -45,24 +44,24 @@ class GenerateList
 
   def set_file_name(type)
     case @type
-      when "plugin"
-        case type
-          when :full
-            @file_name = PLUGINS_FULL_FILE
-          when :popular
-            @file_name = PLUGINS_FILE
-          else
-            raise "Unknown type"
-        end
-      when "theme"
-        case type
-          when :full
-            @file_name = THEMES_FULL_FILE
-          when :popular
-            @file_name = THEMES_FILE
-          else
-            raise "Unknown type"
-        end
+    when 'plugin'
+      case type
+      when :full
+        @file_name = PLUGINS_FULL_FILE
+      when :popular
+        @file_name = PLUGINS_FILE
+      else
+        raise 'Unknown type'
+      end
+    when 'theme'
+      case type
+      when :full
+        @file_name = THEMES_FULL_FILE
+      when :popular
+        @file_name = THEMES_FILE
+      else
+        raise 'Unknown type'
+      end
       else
         raise "Unknown type #@type"
     end
@@ -87,7 +86,7 @@ class GenerateList
     page_count = 1
     queue_count = 0
 
-    (1...(pages.to_i+1)).each do |page|
+    (1...(pages.to_i + 1)).each do |page|
       # First page has another URL
       url = (page == 1) ? @popular_url : @popular_url + 'page/' + page.to_s + '/'
       request = @browser.forge_request(url)
@@ -95,7 +94,7 @@ class GenerateList
       queue_count += 1
 
       request.on_complete do |response|
-        puts "[+] Parsing page " + page_count.to_s if @verbose
+        puts "[+] Parsing page #{page_count}" if @verbose
         page_count += 1
         response.body.scan(@popular_regex).each do |item|
           puts "[+] Found popular #@type: #{item}" if @verbose
