@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -18,9 +19,9 @@
 
 require 'spec_helper'
 
-describe "wpscan main checks" do
+describe 'wpscan main checks' do
 
-  it "check for errors on running the mainscript" do
+  it 'check for errors on running the mainscript' do
     a = %x[ruby #{ROOT_DIR}/wpscan.rb]
     a.should =~ /\[ERROR\] No argument supplied/
   end

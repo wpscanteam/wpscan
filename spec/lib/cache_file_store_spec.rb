@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -34,20 +35,20 @@ describe CacheFileStore do
     @cache.clean
   end
 
-  describe "#storage_path" do
-    it "returns the storage path given in the #new" do
+  describe '#storage_path' do
+    it 'returns the storage path given in the #new' do
       @cache.storage_path.should == @cache_dir
     end
   end
 
-  describe "#serializer" do
-    it "should return the default serializer : Marshal" do
+  describe '#serializer' do
+    it 'should return the default serializer : Marshal' do
       @cache.serializer.should == Marshal
       @cache.serializer.should_not == YAML
     end
   end
 
-  describe "#clean" do
+  describe '#clean' do
     it "should remove all files from the cache dir (#{@cache_dir}" do
       # let's create some files into the directory first
       (0..5).each do |i|
@@ -60,30 +61,30 @@ describe CacheFileStore do
     end
   end
 
-  describe "#read_entry (nonexistent entry)" do
-    it "should return nil" do
+  describe '#read_entry (nonexistent entry)' do
+    it 'should return nil' do
       @cache.read_entry(Digest::SHA1.hexdigest('hello world')).should be_nil
     end
   end
 
-  describe "#write_entry, #read_entry" do
+  describe '#write_entry, #read_entry' do
 
     after :each do
       @cache.write_entry(@key, @data, @timeout)
       @cache.read_entry(@key).should === @expected
     end
 
-    it "should get the correct entry (string)" do
+    it 'should get the correct entry (string)' do
       @timeout = 10
-      @key = "some_key"
-      @data = "Hello World !"
+      @key = 'some_key'
+      @data = 'Hello World !'
       @expected = @data
     end
 
-    it "should not write the entry" do
+    it 'should not write the entry' do
       @timeout = 0
-      @key = "another_key"
-      @data = "Another Hello World !"
+      @key = 'another_key'
+      @data = 'Another Hello World !'
       @expected = nil
     end
 

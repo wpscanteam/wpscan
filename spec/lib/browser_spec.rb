@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -30,7 +31,7 @@ describe Browser do
   end
 
   before :each do
-    @browser = Browser.instance(:config_file => CONFIG_FILE_WITHOUT_PROXY)
+    @browser = Browser.instance(config_file: CONFIG_FILE_WITHOUT_PROXY)
   end
 
   def check_instance_variables(browser, json_expected_vars)
@@ -41,7 +42,7 @@ describe Browser do
     end
   end
 
-  describe "#user_agent_mode setter / getter" do
+  describe '#user_agent_mode setter / getter' do
     # Testing all valid modes
     Browser::USER_AGENT_MODES.each do |user_agent_mode|
       it "should set / return #{user_agent_mode}" do
@@ -52,27 +53,27 @@ describe Browser do
 
     it "shoud set the mode to 'static' if nil is given" do
       @browser.user_agent_mode = nil
-      @browser.user_agent_mode.should === "static"
+      @browser.user_agent_mode.should === 'static'
     end
 
-    it "should raise an error if the mode in not valid" do
-      expect { @browser.user_agent_mode = "invalid-mode" }.to raise_error
+    it 'should raise an error if the mode in not valid' do
+      expect { @browser.user_agent_mode = 'invalid-mode' }.to raise_error
     end
   end
 
-  describe "#max_threads=" do
-    it "should set max_threads to 1 if nil is given" do
+  describe '#max_threads=' do
+    it 'should set max_threads to 1 if nil is given' do
       @browser.max_threads = nil
       @browser.max_threads.should === 1
     end
 
-    it "should set max_threads to 1 if 0 is given" do
+    it 'should set max_threads to 1 if 0 is given' do
       @browser.max_threads = 0
       @browser.max_threads.should === 1
     end
   end
 
-  describe "#proxy_auth=" do
+  describe '#proxy_auth=' do
     after :each do
       if @raise_error
         expect { @browser.proxy_auth = @proxy_auth }.to raise_error
@@ -82,51 +83,51 @@ describe Browser do
       end
     end
 
-    it "should raise an error if the format is not correct" do
-      @proxy_auth  = "invaludauthformat"
+    it 'should raise an error if the format is not correct' do
+      @proxy_auth  = 'invaludauthformat'
       @raise_error = true
     end
 
-    it "should raise an error if the hash does not contain :proxy_username and :proxy_password" do
-      @proxy_auth  = { :proxy_password => "hello" }
+    it 'should raise an error if the hash does not contain :proxy_username and :proxy_password' do
+      @proxy_auth  = { proxy_password: 'hello' }
       @raise_error = true
     end
 
-    it "should raise an error if the auth if not a string or a hash" do
+    it 'should raise an error if the auth if not a string or a hash' do
       @proxy_auth  = 10
       @raise_error = true
     end
 
-    it "should set the correct credentials" do
-      @proxy_auth = {:proxy_username => "user", :proxy_password => "pass" }
+    it 'should set the correct credentials' do
+      @proxy_auth = { proxy_username: 'user', proxy_password: 'pass' }
       @expected   = @proxy_auth
     end
 
-    it "should set the correct credentials" do
-      @proxy_auth = "username:passwd"
-      @expected   = {:proxy_username => "username", :proxy_password => "passwd" }
+    it 'should set the correct credentials' do
+      @proxy_auth = 'username:passwd'
+      @expected   = { proxy_username: 'username', proxy_password: 'passwd' }
     end
   end
 
-  describe "#user_agent" do
+  describe '#user_agent' do
     available_user_agents = %w{ ua-1 ua-2 ua-3 ua-4 ua-6 ua-7 ua-8 ua-9 ua-10 ua-11 ua-12 ua-13 ua-14 ua-15 ua-16 ua-17 }
 
-    it "should always return the same user agent in static mode" do
-      @browser.user_agent = "fake UA"
-      @browser.user_agent_mode = "static"
+    it 'should always return the same user agent in static mode' do
+      @browser.user_agent = 'fake UA'
+      @browser.user_agent_mode = 'static'
 
       (1..3).each do
-        @browser.user_agent.should === "fake UA"
+        @browser.user_agent.should === 'fake UA'
       end
     end
 
-    it "should choose a random user_agent in the available_user_agents array an always return it" do
+    it 'should choose a random user_agent in the available_user_agents array an always return it' do
       @browser.available_user_agents = available_user_agents
-      @browser.user_agent = "Firefox 11.0"
-      @browser.user_agent_mode = "semi-static"
+      @browser.user_agent = 'Firefox 11.0'
+      @browser.user_agent_mode = 'semi-static'
 
       user_agent = @browser.user_agent
-      user_agent.should_not === "Firefox 11.0"
+      user_agent.should_not === 'Firefox 11.0'
       available_user_agents.include?(user_agent).should be_true
 
       (1..3).each do
@@ -134,9 +135,9 @@ describe Browser do
       end
     end
 
-    it "should return a random user agent each time" do
+    it 'should return a random user agent each time' do
       @browser.available_user_agents = available_user_agents
-      @browser.user_agent_mode = "random"
+      @browser.user_agent_mode = 'random'
 
       ua_1 = @browser.user_agent
       ua_2 = @browser.user_agent
@@ -146,51 +147,51 @@ describe Browser do
     end
   end
 
-  describe "Singleton" do
-    it "should not allow #new" do
+  describe 'Singleton' do
+    it 'should not allow #new' do
       expect { Browser.new }.to raise_error
     end
   end
 
   describe "#instance with :config_file = #{CONFIG_FILE_WITHOUT_PROXY}" do
-    it "will check the instance vars" do
+    it 'will check the instance vars' do
       Browser.reset
       check_instance_variables(
-        Browser.instance(:config_file => CONFIG_FILE_WITHOUT_PROXY),
+        Browser.instance(config_file: CONFIG_FILE_WITHOUT_PROXY),
         @json_config_without_proxy
       )
     end
   end
 
   describe "#instance with :config_file = #{CONFIG_FILE_WITH_PROXY}" do
-    it "will check the instance vars" do
+    it 'will check the instance vars' do
       Browser.reset
       check_instance_variables(
-        Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY),
+        Browser.instance(config_file: CONFIG_FILE_WITH_PROXY),
         @json_config_with_proxy
       )
     end
   end
 
   # TODO Write something to test all possible overriding
-  describe "override option : user_agent & threads" do
-    it "will check the instance vars, with an overriden one" do
+  describe 'override option : user_agent & threads' do
+    it 'will check the instance vars, with an overriden one' do
       Browser.reset
       check_instance_variables(
         Browser.instance(
-          :config_file => CONFIG_FILE_WITHOUT_PROXY,
-          :user_agent => "fake IE"
+          config_file: CONFIG_FILE_WITHOUT_PROXY,
+          user_agent: 'fake IE'
         ),
-        @json_config_without_proxy.merge("user_agent" => "fake IE")
+        @json_config_without_proxy.merge('user_agent' => 'fake IE')
       )
     end
 
-    it "should not override the max_threads if max_threads = nil" do
+    it 'should not override the max_threads if max_threads = nil' do
       Browser.reset
       check_instance_variables(
         Browser.instance(
-          :config_file => CONFIG_FILE_WITHOUT_PROXY,
-          :max_threads => nil
+          config_file: CONFIG_FILE_WITHOUT_PROXY,
+          max_threads: nil
         ),
         @json_config_without_proxy
       )
@@ -198,95 +199,95 @@ describe Browser do
   end
 
   # TODO
-  describe "#load_config" do
+  describe '#load_config' do
 
   end
 
-  describe "#merge_request_params without proxy" do
-    it "should return the default params" do
+  describe '#merge_request_params without proxy' do
+    it 'should return the default params' do
       expected_params = {
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers => {'user-agent' => @browser.user_agent},
-        :cache_timeout => @json_config_without_proxy['cache_timeout']
+        disable_ssl_host_verification: true,
+        disable_ssl_peer_verification: true,
+        headers: { 'user-agent' => @browser.user_agent },
+        cache_timeout: @json_config_without_proxy['cache_timeout']
       }
 
       @browser.merge_request_params().should == expected_params
     end
 
-    it "should return the default params with some values overriden" do
+    it 'should return the default params with some values overriden' do
       expected_params = {
-        :disable_ssl_host_verification => false,
-        :disable_ssl_peer_verification => true,
-        :headers => {'user-agent' => 'Fake IE'},
-        :cache_timeout => 0
+        disable_ssl_host_verification: false,
+        disable_ssl_peer_verification: true,
+        headers: { 'user-agent' => 'Fake IE' },
+        cache_timeout: 0
       }
 
       @browser.merge_request_params(
-        :disable_ssl_host_verification => false,
-        :headers => {'user-agent' => 'Fake IE'},
-        :cache_timeout => 0
+        disable_ssl_host_verification: false,
+        headers: { 'user-agent' => 'Fake IE' },
+        cache_timeout: 0
       ).should == expected_params
     end
 
-    it "should return the defaul params with :headers:accept = 'text/html' (should not override :headers:user-agent)" do
+    it 'should return the defaul params with :headers:accept = \'text/html\' (should not override :headers:user-agent)' do
       expected_params = {
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers => {'user-agent' => @browser.user_agent, 'accept' => 'text/html'},
-        :cache_timeout => @json_config_without_proxy['cache_timeout']
+        disable_ssl_host_verification: true,
+        disable_ssl_peer_verification: true,
+        headers: { 'user-agent' => @browser.user_agent, 'accept' => 'text/html' },
+        cache_timeout: @json_config_without_proxy['cache_timeout']
       }
 
-      @browser.merge_request_params(:headers => {'accept' => 'text/html'}).should == expected_params
+      @browser.merge_request_params(headers: { 'accept' => 'text/html' }).should == expected_params
     end
 
-    it "should merge the basic-auth" do
-      @browser.basic_auth = "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=="
+    it 'should merge the basic-auth' do
+      @browser.basic_auth = 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
       expected_params = {
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers                       => {
-          "Authorization" => "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==",
-          "user-agent"    => @browser.user_agent
-        },
-        :cache_timeout                 => @json_config_without_proxy['cache_timeout']
+        disable_ssl_host_verification: true,
+        disable_ssl_peer_verification: true,
+        cache_timeout:                 @json_config_without_proxy['cache_timeout'],
+        headers:                       {
+          'Authorization' => 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==',
+          'user-agent'    => @browser.user_agent
+        }
       }
 
       @browser.merge_request_params().should == expected_params
 
-      expected_params[:headers].merge!("user-agent" => "Fake FF")
-      @browser.merge_request_params(:headers => {"user-agent" => "Fake FF"}).should == expected_params
+      expected_params[:headers].merge!('user-agent' => 'Fake FF')
+      @browser.merge_request_params(headers: { 'user-agent' => 'Fake FF' }).should == expected_params
     end
   end
 
-  describe "#merge_request_params with proxy" do
-    it "should return the default params" do
+  describe '#merge_request_params with proxy' do
+    it 'should return the default params' do
       Browser.reset
-      browser = Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY)
+      browser = Browser.instance(config_file: CONFIG_FILE_WITH_PROXY)
 
       expected_params = {
-        :proxy => @json_config_with_proxy['proxy'],
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers => {'user-agent' => @json_config_with_proxy['user_agent']},
-        :cache_timeout => @json_config_with_proxy['cache_timeout']
+        proxy: @json_config_with_proxy['proxy'],
+        disable_ssl_host_verification: true,
+        disable_ssl_peer_verification: true,
+        headers: { 'user-agent' => @json_config_with_proxy['user_agent'] },
+        cache_timeout: @json_config_with_proxy['cache_timeout']
       }
 
       browser.merge_request_params().should == expected_params
     end
 
-    it "should return the default params (proxy_auth set)" do
+    it 'should return the default params (proxy_auth set)' do
       Browser.reset
-      browser = Browser.instance(:config_file => CONFIG_FILE_WITH_PROXY_AND_AUTH)
+      browser = Browser.instance(config_file: CONFIG_FILE_WITH_PROXY_AND_AUTH)
 
       expected_params = {
-        :proxy => @json_config_with_proxy['proxy'],
-        :proxy_username => "user",
-        :proxy_password => "pass",
-        :disable_ssl_host_verification => true,
-        :disable_ssl_peer_verification => true,
-        :headers => {'user-agent' => @json_config_with_proxy['user_agent']},
-        :cache_timeout => @json_config_with_proxy['cache_timeout']
+        proxy: @json_config_with_proxy['proxy'],
+        proxy_username: 'user',
+        proxy_password: 'pass',
+        disable_ssl_host_verification: true,
+        disable_ssl_peer_verification: true,
+        headers: { 'user-agent' => @json_config_with_proxy['user_agent'] },
+        cache_timeout: @json_config_with_proxy['cache_timeout']
       }
 
       browser.merge_request_params().should == expected_params
@@ -294,21 +295,21 @@ describe Browser do
   end
 
   # TODO
-  describe "#forge_request" do
+  describe '#forge_request' do
 
   end
 
-  describe "#post" do
-    it "should return a Typhoeus::Response wth body = 'Welcome Master' if login=master&password=it's me !" do
+  describe '#post' do
+    it 'should return a Typhoeus::Response wth body = "Welcome Master" if login=master&password=it\'s me !' do
       url = 'http://example.com/'
 
       stub_request(:post, url).
-        with(:body => "login=master&password=it's me !").
-        to_return(:status => 200, :body => "Welcome Master")
+        with(body: "login=master&password=it's me !").
+        to_return(status: 200, body: 'Welcome Master')
 
       response = @browser.post(
         url,
-        :params => {:login => "master", :password => "it's me !"}
+        params: { login: 'master', password: 'it\'s me !' }
       )
 
       response.should be_a Typhoeus::Response
@@ -316,12 +317,12 @@ describe Browser do
     end
   end
 
-  describe "#get" do
+  describe '#get' do
     it "should return a Typhoeus::Response with body = 'Hello World !'" do
       url = 'http://example.com/'
 
       stub_request(:get, url).
-        to_return(:status => 200, :body => "Hello World !")
+        to_return(status: 200, body: 'Hello World !')
 
       response = @browser.get(url)
 
@@ -330,8 +331,8 @@ describe Browser do
     end
   end
 
-  describe "#Browser.generate_cache_key_from_request" do
-    it "2 requests with the same url, without params must have the same cache_key" do
+  describe '#Browser.generate_cache_key_from_request' do
+    it '2 requests with the same url, without params must have the same cache_key' do
 
       url = 'http://example.com'
       key1 = Browser.generate_cache_key_from_request(@browser.forge_request(url))
@@ -340,23 +341,23 @@ describe Browser do
       key1.should === key2
     end
 
-    it "2 requests with the same url, but with different params should have a different cache_key" do
+    it '2 requests with the same url, but with different params should have a different cache_key' do
 
       url = 'http://example.com'
-      key1 = Browser.generate_cache_key_from_request(@browser.forge_request(url, :params => {:login => "master", :password => "it's me !"}))
+      key1 = Browser.generate_cache_key_from_request(@browser.forge_request(url, params: { login: 'master', password: 'it\'s me !' }))
       key2 = Browser.generate_cache_key_from_request(@browser.forge_request(url))
 
       key1.should_not == key2
     end
   end
 
-  describe "testing caching" do
-    it "should only do 1 request, and retrieve the other one from the cache" do
+  describe 'testing caching' do
+    it 'should only do 1 request, and retrieve the other one from the cache' do
 
       url = 'http://example.localhost'
 
       stub_request(:get, url).
-        to_return(:status => 200, :body => "Hello World !")
+        to_return(status: 200, body: 'Hello World !')
 
       response1 = @browser.get(url)
       response2 = @browser.get(url)
@@ -366,10 +367,10 @@ describe Browser do
     end
   end
 
-  describe "testing UTF8" do
-    it "should not throw an encoding exception" do
-      url = SPEC_FIXTURES_DIR + "/utf8.html"
-      stub_request(:get, url).to_return(:status => 200, :body => File.read(url))
+  describe 'testing UTF8' do
+    it 'should not throw an encoding exception' do
+      url = SPEC_FIXTURES_DIR + '/utf8.html'
+      stub_request(:get, url).to_return(status: 200, body: File.read(url))
       response1 = @browser.get(url)
       expect { response1.body }.to_not raise_error
     end

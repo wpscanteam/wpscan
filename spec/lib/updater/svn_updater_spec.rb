@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe SvnUpdater do
@@ -6,23 +8,23 @@ describe SvnUpdater do
     @svn_updater = SvnUpdater.new
   end
 
-  describe "#is_installed?" do
+  describe '#is_installed?' do
     after :each do
       stub_system_command(@svn_updater, /^svn info/, @stub_value)
       @svn_updater.is_installed?.should === @expected
     end
 
-    it "should return false if the svn command is not found" do
-      @stub_value = "svn: command not found"
-      @expected = false
+    it 'should return false if the svn command is not found' do
+      @stub_value = 'svn: command not found'
+      @expected   = false
     end
 
-    it "should return false if the repository is not manage by svn" do
+    it 'should return false if the repository is not manage by svn' do
       @stub_value = "svn: '.' is not a working copy"
-      @expected = false
+      @expected   = false
     end
 
-    it "should return true" do
+    it 'should return true' do
       @stub_value = '<?xml version="1.0"?>
         <info>
           <entry kind="dir" path="." revision="362">
@@ -45,13 +47,13 @@ describe SvnUpdater do
     end
   end
 
-  describe "#local_revision_number" do
+  describe '#local_revision_number' do
     after :each do
       stub_system_command(@svn_updater, /^svn info/, @stub_value)
       @svn_updater.local_revision_number.should === @expected
     end
 
-    it "should return 399" do
+    it 'should return 399' do
       @stub_value = '<?xml version="1.0"?>
         <info>
           <entry kind="dir" path="." revision="362">
@@ -70,14 +72,14 @@ describe SvnUpdater do
             </commit>
           </entry>
         </info>'
-      @expected = "362"
+      @expected = '362'
     end
   end
 
-  describe "#update" do
-    it "should do nothing xD" do
-      stub_system_command(@svn_updater, /^svn up/, "At revision 425.")
-      @svn_updater.update().should === "At revision 425."
+  describe '#update' do
+    it 'should do nothing xD' do
+      stub_system_command(@svn_updater, /^svn up/, 'At revision 425.')
+      @svn_updater.update().should === 'At revision 425.'
     end
   end
 

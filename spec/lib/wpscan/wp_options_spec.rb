@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -19,120 +20,120 @@
 require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpOptions do
-  describe "#check_options" do
+  describe '#check_options' do
     before :each do
       @options                        = {}
-      @options[:base_url]             = "url"
+      @options[:base_url]             = 'url'
       @options[:only_vulnerable_ones] = false
-      @options[:file]                 = "file"
-      @options[:vulns_file]           = "vulns_file"
-      @options[:vulns_xpath]          = "vulns_xpath"
-      @options[:vulns_xpath_2]        = "vulns_xpath_2"
-      @options[:wp_content_dir]       = "wp_content_dir"
+      @options[:file]                 = 'file'
+      @options[:vulns_file]           = 'vulns_file'
+      @options[:vulns_xpath]          = 'vulns_xpath'
+      @options[:vulns_xpath_2]        = 'vulns_xpath_2'
+      @options[:wp_content_dir]       = 'wp_content_dir'
       @options[:show_progression]     = true
-      @options[:error_404_hash]       = "error_404_hash"
-      @options[:type]                 = "type"
+      @options[:error_404_hash]       = 'error_404_hash'
+      @options[:type]                 = 'type'
 
-      @message = ""
+      @message = ''
     end
 
     after :each do
       expect { WpOptions.check_options(@options) }.to raise_error(RuntimeError, @message)
     end
 
-    it "should raise an exception (base_url empty)" do
-      @options[:base_url] = ""
-      @message = "base_url must be set"
+    it 'should raise an exception (base_url empty)' do
+      @options[:base_url] = ''
+      @message            = 'base_url must be set'
     end
 
-    it "should raise an exception (base_url nil)" do
+    it 'should raise an exception (base_url nil)' do
       @options[:base_url] = nil
-      @message = "base_url must be set"
+      @message            = 'base_url must be set'
     end
 
-    it "should raise an exception (only_vulnerable_ones nil)" do
+    it 'should raise an exception (only_vulnerable_ones nil)' do
       @options[:only_vulnerable_ones] = nil
-      @message = "only_vulnerable_ones must be set"
+      @message                        = 'only_vulnerable_ones must be set'
     end
 
-    it "should raise an exception (file empty)" do
-      @options[:file] = ""
-      @message = "file must be set"
+    it 'should raise an exception (file empty)' do
+      @options[:file] = ''
+      @message        = 'file must be set'
     end
 
-    it "should raise an exception (file nil)" do
+    it 'should raise an exception (file nil)' do
       @options[:file] = nil
-      @message = "file must be set"
+      @message        = 'file must be set'
     end
 
-    it "should raise an exception (vulns_file empty)" do
-      @options[:vulns_file] = ""
-      @message = "vulns_file must be set"
+    it 'should raise an exception (vulns_file empty)' do
+      @options[:vulns_file] = ''
+      @message              = 'vulns_file must be set'
     end
 
-    it "should raise an exception (vulns_file nil)" do
+    it 'should raise an exception (vulns_file nil)' do
       @options[:vulns_file] = nil
-      @message = "vulns_file must be set"
+      @message              = 'vulns_file must be set'
     end
 
-    it "should raise an exception (vulns_xpath empty)" do
-      @options[:vulns_xpath] = ""
-      @message = "vulns_xpath must be set"
+    it 'should raise an exception (vulns_xpath empty)' do
+      @options[:vulns_xpath] = ''
+      @message               = 'vulns_xpath must be set'
     end
 
-    it "should raise an exception (vulns_xpath nil)" do
+    it 'should raise an exception (vulns_xpath nil)' do
       @options[:vulns_xpath] = nil
-      @message = "vulns_xpath must be set"
+      @message               = 'vulns_xpath must be set'
     end
 
-    it "should raise an exception (vulns_xpath_2 empty)" do
-      @options[:vulns_xpath_2] = ""
-      @message = "vulns_xpath_2 must be set"
+    it 'should raise an exception (vulns_xpath_2 empty)' do
+      @options[:vulns_xpath_2] = ''
+      @message                 = 'vulns_xpath_2 must be set'
     end
 
-    it "should raise an exception (vulns_xpath_2 nil)" do
+    it 'should raise an exception (vulns_xpath_2 nil)' do
       @options[:vulns_xpath_2] = nil
-      @message = "vulns_xpath_2 must be set"
+      @message                 = 'vulns_xpath_2 must be set'
     end
 
-    it "should raise an exception (wp_content_dir empty)" do
-      @options[:wp_content_dir] = ""
-      @message = "wp_content_dir must be set"
+    it 'should raise an exception (wp_content_dir empty)' do
+      @options[:wp_content_dir] = ''
+      @message                  = 'wp_content_dir must be set'
     end
 
-    it "should raise an exception (wp_content_dir nil)" do
+    it 'should raise an exception (wp_content_dir nil)' do
       @options[:wp_content_dir] = nil
-      @message = "wp_content_dir must be set"
+      @message                  = 'wp_content_dir must be set'
     end
 
-    it "should raise an exception (show_progression nil)" do
+    it 'should raise an exception (show_progression nil)' do
       @options[:show_progression] = nil
-      @message = "show_progression must be set"
+      @message                    = 'show_progression must be set'
     end
 
-    it "should raise an exception (error_404_hash empty)" do
-      @options[:error_404_hash] = ""
-      @message = "error_404_hash must be set"
+    it 'should raise an exception (error_404_hash empty)' do
+      @options[:error_404_hash] = ''
+      @message                  = 'error_404_hash must be set'
     end
 
-    it "should raise an exception (error_404_hash nil)" do
+    it 'should raise an exception (error_404_hash nil)' do
       @options[:error_404_hash] = nil
-      @message = "error_404_hash must be set"
+      @message                  = 'error_404_hash must be set'
     end
 
-    it "should raise an exception (type empty)" do
-      @options[:type] = ""
-      @message = "type must be set"
+    it 'should raise an exception (type empty)' do
+      @options[:type] = ''
+      @message        = 'type must be set'
     end
 
-    it "should raise an exception (type nil)" do
+    it 'should raise an exception (type nil)' do
       @options[:type] = nil
-      @message = "type must be set"
+      @message        = 'type must be set'
     end
 
-    it "should raise an exception (type unknown)" do
-      @options[:type] = "unknown"
-      @message = "Unknown type unknown"
+    it 'should raise an exception (type unknown)' do
+      @options[:type] = 'unknown'
+      @message        = 'Unknown type unknown'
     end
   end
 end

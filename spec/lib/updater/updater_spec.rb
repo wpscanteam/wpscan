@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe Updater do
@@ -11,8 +13,8 @@ describe Updater do
     Object.send(:remove_const, :TestUpdater)
   end
 
-  describe "non implementation of #is_installed?, #has_update? and #update" do
-    it "should raise errors" do
+  describe 'non implementation of #is_installed?, #has_update? and #update' do
+    it 'should raise errors' do
       test_updater = TestUpdater.new
       methods_to_call = [:is_installed?, :update, :local_revision_number]
 

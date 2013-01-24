@@ -1,17 +1,19 @@
+# encoding: UTF-8
+
 require 'spec_helper'
 
 describe UpdaterFactory do
 
-  describe "#available_updaters_classes" do
+  describe '#available_updaters_classes' do
     after :each do
       UpdaterFactory.available_updaters_classes.sort.should === @expected.sort
     end
 
-    it "should return [:GitUpdater, :SvnUpdater]" do
+    it 'should return [:GitUpdater, :SvnUpdater]' do
       @expected = [:GitUpdater, :SvnUpdater]
     end
 
-    it "should return [:TestUpdater, :GitUpdater, :SvnUpdater]" do
+    it 'should return [:TestUpdater, :GitUpdater, :SvnUpdater]' do
       class TestUpdater < Updater
       end
 
@@ -20,7 +22,7 @@ describe UpdaterFactory do
   end
 
   # TODO : Find a way to test that
-  describe "#get_updater" do
+  describe '#get_updater' do
 
   end
 

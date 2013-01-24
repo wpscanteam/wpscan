@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -16,69 +17,69 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + "/wpscan_helper")
+require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpUser do
-  describe "#initialize" do
-    it "should replace nil with empty" do
+  describe '#initialize' do
+    it 'should replace nil with empty' do
       user = WpUser.new(nil, nil, nil)
-      user.name.should == "empty"
-      user.id.should == "empty"
-      user.nickname == "empty"
+      user.name.should == 'empty'
+      user.id.should == 'empty'
+      user.nickname == 'empty'
     end
 
-    it "should initialize a user object" do
-      user = WpUser.new("name", "id", "nickname")
-      user.name.should == "name"
-      user.id.should == "id"
-      user.nickname == "nickname"
-    end
-  end
-
-  describe "#<=>" do
-    it "should return -1" do
-      user1 = WpUser.new("b", nil, nil)
-      user2 = WpUser.new("a", nil, nil)
-      (user1<=>user2).should === -1
-    end
-
-    it "should return 0" do
-      user1 = WpUser.new("a", nil, nil)
-      user2 = WpUser.new("a", nil, nil)
-      (user1<=>user2).should === 0
-    end
-
-    it "should return 1" do
-      user1 = WpUser.new("a", nil, nil)
-      user2 = WpUser.new("b", nil, nil)
-      (user1<=>user2).should === 1
+    it 'should initialize a user object' do
+      user = WpUser.new('name', 'id', 'nickname')
+      user.name.should == 'name'
+      user.id.should == 'id'
+      user.nickname == 'nickname'
     end
   end
 
-  describe "#===" do
-    it "should return true" do
-      user1 = WpUser.new("a", "id", "nick")
-      user2 = WpUser.new("a", "id", "nick")
-      (user1===user2).should be_true
+  describe '#<=>' do
+    it 'should return -1' do
+      user1 = WpUser.new('b', nil, nil)
+      user2 = WpUser.new('a', nil, nil)
+      (user1 <=> user2).should === -1
     end
 
-    it "should return false" do
-      user1 = WpUser.new("a", "id", "nick")
-      user2 = WpUser.new("b", "id", "nick")
-      (user1===user2).should be_false
+    it 'should return 0' do
+      user1 = WpUser.new('a', nil, nil)
+      user2 = WpUser.new('a', nil, nil)
+      (user1 <=> user2).should === 0
+    end
+
+    it 'should return 1' do
+      user1 = WpUser.new('a', nil, nil)
+      user2 = WpUser.new('b', nil, nil)
+      (user1 <=> user2).should === 1
     end
   end
 
-  describe "#eql?" do
-    it "should return true" do
-      user1 = WpUser.new("a", "id", "nick")
-      user2 = WpUser.new("a", "id", "nick")
+  describe '#===' do
+    it 'should return true' do
+      user1 = WpUser.new('a', 'id', 'nick')
+      user2 = WpUser.new('a', 'id', 'nick')
+      (user1 === user2).should be_true
+    end
+
+    it 'should return false' do
+      user1 = WpUser.new('a', 'id', 'nick')
+      user2 = WpUser.new('b', 'id', 'nick')
+      (user1 === user2).should be_false
+    end
+  end
+
+  describe '#eql?' do
+    it 'should return true' do
+      user1 = WpUser.new('a', 'id', 'nick')
+      user2 = WpUser.new('a', 'id', 'nick')
       (user1.eql? user2).should be_true
     end
 
-    it "should return false" do
-      user1 = WpUser.new("a", "id", "nick")
-      user2 = WpUser.new("b", "id", "nick")
+    it 'should return false' do
+      user1 = WpUser.new('a', 'id', 'nick')
+      user2 = WpUser.new('b', 'id', 'nick')
       (user1.eql? user2).should be_false
     end
   end

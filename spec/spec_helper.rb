@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -20,7 +21,7 @@
 # https://github.com/colszowka/simplecov
 
 # Code Coverage (only works with ruby >= 1.9)
-if RUBY_VERSION >= "1.9"
+if RUBY_VERSION >= '1.9'
   require 'simplecov'
 end
 
@@ -29,11 +30,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/common_helper')
 gem 'webmock', '=1.8.11'
 require 'webmock/rspec'
 
-SPEC_DIR = ROOT_DIR + '/spec'
-SPEC_LIB_DIR = SPEC_DIR + '/lib'
-SPEC_CACHE_DIR = SPEC_DIR + '/cache'
-SPEC_FIXTURES_DIR = SPEC_DIR + '/samples'
-SPEC_FIXTURES_CONF_DIR = SPEC_FIXTURES_DIR + '/conf'
+SPEC_DIR                      = ROOT_DIR + '/spec'
+SPEC_LIB_DIR                  = SPEC_DIR + '/lib'
+SPEC_CACHE_DIR                = SPEC_DIR + '/cache'
+SPEC_FIXTURES_DIR             = SPEC_DIR + '/samples'
+SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf'
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
 
 def count_files_in_dir(absolute_dir_path, files_pattern = '*')
@@ -59,15 +60,20 @@ end
 def stub_request_to_fixture(arguments = {})
   arguments[:method] ||= :get
   arguments[:status] ||= 200
-  raise "No arguments[:url] supplied" if arguments[:url].nil?
-  raise "No arguments[:fixture] supplied" if arguments[:fixture].nil?
+  raise 'No arguments[:url] supplied' if arguments[:url].nil?
+  raise 'No arguments[:fixture] supplied' if arguments[:fixture].nil?
 
   stub_request(arguments[:method], arguments[:url].to_s).
-      to_return(:status => arguments[:status], :body => File.new(arguments[:fixture]))
+    to_return(
+      status: arguments[:status],
+      body: File.new(arguments[:fixture])
+    )
 end
 
-# The object must be given as we will mock the Kernel#` or Kernel#system (Kernel is a module)
-# system_method :
+# The object must be given as we will mock the Kernel#` or
+# Kernel#system (Kernel is a module)
+#
+#  system_method :
 #  :` for `` or %x
 #  :system for system()
 def stub_system_command(object, command, return_value, system_method = :`)

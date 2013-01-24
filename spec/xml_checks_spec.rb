@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -18,7 +19,7 @@
 
 require 'spec_helper'
 
-describe "XML checks" do
+describe 'XML checks' do
 
   after :each do
     FileTest.exists?(@file).should be_true
@@ -34,28 +35,28 @@ describe "XML checks" do
     errors.should === []
   end
 
-  it "check plugin_vulns.xml for syntax errors" do
+  it 'check plugin_vulns.xml for syntax errors' do
     @file = PLUGINS_VULNS_FILE
-    @xsd = VULNS_XSD
+    @xsd  = VULNS_XSD
   end
 
-  it "check theme_vulns.xml for syntax errors" do
+  it 'check theme_vulns.xml for syntax errors' do
     @file = THEMES_VULNS_FILE
-    @xsd = VULNS_XSD
+    @xsd  = VULNS_XSD
   end
 
-  it "check wp_versions.xml for syntax errors" do
+  it 'check wp_versions.xml for syntax errors' do
     @file = WP_VERSIONS_FILE
-    @xsd = WP_VERSIONS_XSD
+    @xsd  = WP_VERSIONS_XSD
   end
 
-  it "check wp_vulns.xml for syntax errors" do
+  it 'check wp_vulns.xml for syntax errors' do
     @file = WP_VULNS_FILE
-    @xsd = VULNS_XSD
+    @xsd  = VULNS_XSD
   end
 
-  it "check local_vulnerable_files.xml for syntax errors" do
+  it 'check local_vulnerable_files.xml for syntax errors' do
     @file = LOCAL_FILES_FILE
-    @xsd = LOCAL_FILES_XSD
+    @xsd  = LOCAL_FILES_XSD
   end
 end

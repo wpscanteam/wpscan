@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #--
 # WPScan - WordPress Security Scanner
 # Copyright (C) 2012-2013
@@ -16,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-shared_examples_for "WpConfigBackup" do
+shared_examples_for 'WpConfigBackup' do
 
   before :all do
     @module = WpScanModuleSpec.new('http://example.localhost')
@@ -26,7 +27,7 @@ shared_examples_for "WpConfigBackup" do
     @module.extend(WpConfigBackup)
   end
 
-  describe "#config_backup" do
+  describe '#config_backup' do
 
     # set all @config_backup_files to point to a 404
     before :each do
@@ -34,15 +35,15 @@ shared_examples_for "WpConfigBackup" do
         file_url = @module.uri.merge(URI.escape(backup_file)).to_s
 
         stub_request(:get, file_url).
-            to_return(:status => 404, :body => "")
+            to_return(status: 404, body: '')
       end
     end
 
-    it "shoud return an empty array if no config backup is present" do
+    it 'shoud return an empty array if no config backup is present' do
       @module.config_backup.should be_empty
     end
 
-    it "should return an array with 1 backup file" do
+    it 'should return an array with 1 backup file' do
       expected = []
 
       @config_backup_files.sample(1).each do |backup_file|
@@ -50,7 +51,7 @@ shared_examples_for "WpConfigBackup" do
         expected << file_url
 
         stub_request(:get, file_url).
-            to_return(:status => 200, :body => File.new(@fixtures_dir + '/wp-config.php'))
+            to_return(status: 200, body: File.new(@fixtures_dir + '/wp-config.php'))
       end
 
       wp_config_backup = @module.config_backup
@@ -59,7 +60,7 @@ shared_examples_for "WpConfigBackup" do
     end
 
     # Is there a way to factorise that one with the previous test ?
-    it "should return an array with 2 backup file" do
+    it 'should return an array with 2 backup file' do
       expected = []
 
       @config_backup_files.sample(2).each do |backup_file|
@@ -67,7 +68,7 @@ shared_examples_for "WpConfigBackup" do
         expected << file_url
 
         stub_request(:get, file_url).
-            to_return(:status => 200, :body => File.new(@fixtures_dir + '/wp-config.php'))
+            to_return(status: 200, body: File.new(@fixtures_dir + '/wp-config.php'))
       end
 
       wp_config_backup = @module.config_backup
@@ -76,8 +77,8 @@ shared_examples_for "WpConfigBackup" do
     end
   end
 
-  describe "#config_backup_files" do
-    it "should not contain duplicates" do
+  describe '#config_backup_files' do
+    it 'should not contain duplicates' do
       WpConfigBackup.config_backup_files.flatten.uniq.length.should == WpConfigBackup.config_backup_files.length
     end
   end
