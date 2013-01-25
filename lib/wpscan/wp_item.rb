@@ -64,7 +64,7 @@ class WpItem < Vulnerable
     else
       raise("Unknown type #@type")
     end
-    f = File.readlines(file).grep(/^#{Regexp.escape(@name)}$/i)
+    f = File.readlines(file, encoding: 'UTF-8').grep(/^#{Regexp.escape(@name)}$/i)
     f.empty? ? false : true
   end
 
