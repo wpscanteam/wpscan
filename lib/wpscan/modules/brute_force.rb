@@ -52,7 +52,7 @@ module BruteForce
         request = Browser.instance.forge_request(login_url,
           {
             method: :post,
-            params: {log: username, pwd: password},
+            params: { log: URI::encode(username), pwd: URI::encode(password) },
             cache_timeout: 0
           }
         )
