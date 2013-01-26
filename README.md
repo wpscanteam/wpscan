@@ -93,13 +93,13 @@ Prerequisites:
 
       Installation from sources :
       ```
-        - Grab the sources from http://curl.haxx.se/download.html
-        - Decompress the archive
-        - Open the folder with the extracted files
-        - Run ./configure
-        - Run make
-        - Run sudo make install
-        - Run sudo ldconfig
+        Grab the sources from http://curl.haxx.se/download.html
+        Decompress the archive
+        Open the folder with the extracted files
+        Run ./configure
+        Run make
+        Run sudo make install
+        Run sudo ldconfig
       ```
 
   - cannot load such file -- readline:
