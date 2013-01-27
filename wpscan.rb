@@ -34,8 +34,8 @@ def output_vulnerabilities(vulns)
   end
 end
 
-# delete old logfile
-File.delete(LOG_FILE) if File.exist?(LOG_FILE)
+# delete old logfile, check if it is a symlink first.
+File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
 banner()
 
