@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>class CacheFileStore - RDoc Documentation</title>
+<title>class Plugins - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/cache_file_store.rb
+    <li>lib/common/plugins/plugins.rb
   </ul>
 </nav>
 
@@ -59,7 +59,7 @@
     <nav id="parent-class-section" class="section">
   <h3 class="section-header">Parent</h3>
   
-  <p class="link"><a href="Object.html">Object</a>
+  <p class="link"><a href="Array.html">Array</a>
   
 </nav>
 
@@ -72,13 +72,9 @@
     
     <li><a href="#method-c-new">::new</a>
     
-    <li><a href="#method-i-clean">#clean</a>
+    <li><a href="#method-i-register">#register</a>
     
-    <li><a href="#method-i-get_entry_file_path">#get_entry_file_path</a>
-    
-    <li><a href="#method-i-read_entry">#read_entry</a>
-    
-    <li><a href="#method-i-write_entry">#write_entry</a>
+    <li><a href="#method-i-register_plugin">#register_plugin</a>
     
   </ul>
 </nav>
@@ -192,10 +188,28 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class CacheFileStore</h1>
+  <h1 class="class">class Plugins</h1>
 
   <div id="description" class="description">
     
+<pre>WPScan - WordPress Security Scanner
+Copyright (C) 2012-2013
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</pre>
+
+<p>++</p>
+
   </div><!-- description -->
 
   
@@ -214,22 +228,9 @@
       <h3 class="section-header">Attributes</h3>
 
       
-      <div id="attribute-i-serializer" class="method-detail">
+      <div id="attribute-i-option_parser" class="method-detail">
         <div class="method-heading attribute-method-heading">
-          <span class="method-name">serializer</span><span
-            class="attribute-access-type">[R]</span>
-        </div>
-
-        <div class="method-description">
-        
-        
-        
-        </div>
-      </div>
-      
-      <div id="attribute-i-storage_path" class="method-detail">
-        <div class="method-heading attribute-method-heading">
-          <span class="method-name">storage_path</span><span
+          <span class="method-name">option_parser</span><span
             class="attribute-access-type">[R]</span>
         </div>
 
@@ -253,32 +254,28 @@
         
         <div class="method-heading">
           <span class="method-name">new</span><span
-            class="method-args">(storage_path, serializer = Marshal)</span>
+            class="method-args">(option_parser = nil)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          <p>The serializer must have the 2 methods .load and .dump</p>
-
-<pre>(Marshal and YAML have them)</pre>
-
-<p>YAML is Human Readable, contrary to Marshal which store in a binary format
-Marshal does not need any “require”</p>
+          
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/cache_file_store.rb, line 36</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">storage_path</span>, <span class="ruby-identifier">serializer</span> = <span class="ruby-constant">Marshal</span>)
-  <span class="ruby-ivar">@storage_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">storage_path</span>)
-  <span class="ruby-ivar">@serializer</span> = <span class="ruby-identifier">serializer</span>
-
-  <span class="ruby-comment"># File.directory? for ruby &lt;= 1.9 otherwise,</span>
-  <span class="ruby-comment"># it makes more sense to do Dir.exist? :/</span>
-  <span class="ruby-keyword">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-ivar">@storage_path</span>)
-    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">mkdir</span>(<span class="ruby-ivar">@storage_path</span>)
+            <pre><span class="ruby-comment"># File lib/common/plugins/plugins.rb, line 23</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">option_parser</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">option_parser</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">option_parser</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">CustomOptionParser</span>)
+      <span class="ruby-ivar">@option_parser</span> = <span class="ruby-identifier">option_parser</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;The parser must be an instance of CustomOptionParser, #{option_parser.class} supplied&quot;</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@option_parser</span> = <span class="ruby-constant">CustomOptionParser</span>.<span class="ruby-identifier">new</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
@@ -297,134 +294,75 @@ Marshal does not need any “require”</p>
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-clean" class="method-detail ">
+      <div id="method-i-register" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">clean</span><span
-            class="method-args">()</span>
+          <span class="method-name">register</span><span
+            class="method-args">(*plugins)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
+          <p>param Array(<a href="Plugin.html">Plugin</a>) plugins</p>
           
 
           
-          <div class="method-source-code" id="clean-source">
-            <pre><span class="ruby-comment"># File lib/cache_file_store.rb, line 47</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">clean</span>
-  <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@storage_path</span>, <span class="ruby-string">'*'</span>)].<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">f</span>)
+          <div class="method-source-code" id="register-source">
+            <pre><span class="ruby-comment"># File lib/common/plugins/plugins.rb, line 36</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">register</span>(*<span class="ruby-identifier">plugins</span>)
+  <span class="ruby-identifier">plugins</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">plugin</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">register_plugin</span>(<span class="ruby-identifier">plugin</span>)
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- clean-source -->
+          </div><!-- register-source -->
           
         </div>
 
         
 
         
-      </div><!-- clean-method -->
+      </div><!-- register-method -->
 
     
-      <div id="method-i-get_entry_file_path" class="method-detail ">
+      <div id="method-i-register_plugin" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">get_entry_file_path</span><span
-            class="method-args">(key)</span>
+          <span class="method-name">register_plugin</span><span
+            class="method-args">(plugin)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
 
         <div class="method-description">
           
-          
-          
-
-          
-          <div class="method-source-code" id="get_entry_file_path-source">
-            <pre><span class="ruby-comment"># File lib/cache_file_store.rb, line 69</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_entry_file_path</span>(<span class="ruby-identifier">key</span>)
-  <span class="ruby-ivar">@storage_path</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">key</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_entry_file_path-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_entry_file_path-method -->
-
-    
-      <div id="method-i-read_entry" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">read_entry</span><span
-            class="method-args">(key)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
+          <p>param <a href="Plugin.html">Plugin</a> plugin</p>
           
 
           
-          <div class="method-source-code" id="read_entry-source">
-            <pre><span class="ruby-comment"># File lib/cache_file_store.rb, line 53</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">read_entry</span>(<span class="ruby-identifier">key</span>)
-  <span class="ruby-identifier">entry_file_path</span> = <span class="ruby-identifier">get_entry_file_path</span>(<span class="ruby-identifier">key</span>)
+          <div class="method-source-code" id="register_plugin-source">
+            <pre><span class="ruby-comment"># File lib/common/plugins/plugins.rb, line 43</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">register_plugin</span>(<span class="ruby-identifier">plugin</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Plugin</span>)
+    <span class="ruby-keyword">self</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">plugin</span>
 
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">entry_file_path</span>)
-    <span class="ruby-keyword">return</span> <span class="ruby-ivar">@serializer</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">entry_file_path</span>))
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- read_entry-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- read_entry-method -->
-
-    
-      <div id="method-i-write_entry" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">write_entry</span><span
-            class="method-args">(key, data_to_store, cache_timeout)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="write_entry-source">
-            <pre><span class="ruby-comment"># File lib/cache_file_store.rb, line 61</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">write_entry</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">data_to_store</span>, <span class="ruby-identifier">cache_timeout</span>)
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">cache_timeout</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
-    <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">get_entry_file_path</span>(<span class="ruby-identifier">key</span>), <span class="ruby-string">'w'</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@serializer</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">data_to_store</span>))
+    <span class="ruby-comment"># A plugin may not have options</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">plugin_options</span> = <span class="ruby-identifier">plugin</span>.<span class="ruby-identifier">registered_options</span>
+      <span class="ruby-ivar">@option_parser</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">plugin_options</span>)
     <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;The argument must be an instance of Plugin, #{plugin.class} supplied&quot;</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- write_entry-source -->
+          </div><!-- register_plugin-source -->
           
         </div>
 
         
 
         
-      </div><!-- write_entry-method -->
+      </div><!-- register_plugin-method -->
 
     
     </section><!-- public-instance-method-details -->

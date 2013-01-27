@@ -222,20 +222,22 @@
           <div class="method-source-code" id="themes_from_aggressive_detection-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_themes.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">themes_from_aggressive_detection</span>(<span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">==</span> <span class="ruby-string">''</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] = <span class="ruby-constant">THEMES_VULNS_FILE</span>
+  <span class="ruby-keyword">end</span>
+
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]          = <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">options</span>[<span class="ruby-value">:full</span>] <span class="ruby-operator">?</span> <span class="ruby-constant">THEMES_FULL_FILE</span> <span class="ruby-operator">:</span> <span class="ruby-constant">THEMES_FILE</span>)
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>]    = (<span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">!=</span> <span class="ruby-string">&quot;&quot;</span>) <span class="ruby-operator">?</span>
-      <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">:</span> <span class="ruby-constant">THEMES_VULNS_FILE</span>
   <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]   = <span class="ruby-node">&quot;//theme[@name='#{@name}']/vulnerability&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">&quot;//theme&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]          = <span class="ruby-string">&quot;themes&quot;</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">'//theme'</span>
+  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]          = <span class="ruby-string">'themes'</span>
   <span class="ruby-identifier">result</span> = <span class="ruby-constant">WpDetector</span>.<span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">themes</span> = []
   <span class="ruby-identifier">result</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">themes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpTheme</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">base_url</span>,
-        <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">path</span>,
-        <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">wp_content_dir</span>,
-        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span>
+      <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>       <span class="ruby-identifier">r</span>.<span class="ruby-identifier">base_url</span>,
+      <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">r</span>.<span class="ruby-identifier">path</span>,
+      <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">wp_content_dir</span>,
+      <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">r</span>.<span class="ruby-identifier">name</span>
     )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">themes</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span> }
@@ -266,17 +268,17 @@
 
           
           <div class="method-source-code" id="themes_from_passive_detection-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_themes.rb, line 41</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_themes.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">themes_from_passive_detection</span>(<span class="ruby-identifier">options</span>)
   <span class="ruby-identifier">themes</span> = []
-  <span class="ruby-identifier">temp</span> = <span class="ruby-constant">WpDetector</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>], <span class="ruby-string">&quot;themes&quot;</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
+  <span class="ruby-identifier">temp</span> = <span class="ruby-constant">WpDetector</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:base_url</span>], <span class="ruby-string">'themes'</span>, <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>])
 
   <span class="ruby-identifier">temp</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">themes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpTheme</span>.<span class="ruby-identifier">new</span>(
-        <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">base_url</span>,
-        <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span>,
-        <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">path</span>,
-        <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
+      <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>       <span class="ruby-identifier">item</span>.<span class="ruby-identifier">base_url</span>,
+      <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span>,
+      <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">item</span>.<span class="ruby-identifier">path</span>,
+      <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:wp_content_dir</span>]
     )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">themes</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span> }

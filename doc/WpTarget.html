@@ -444,7 +444,7 @@
             <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 103</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_debug_log?</span>
   <span class="ruby-comment"># We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)</span>
-  <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-value">:headers</span> =<span class="ruby-operator">&gt;</span> {<span class="ruby-string">&quot;range&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bytes=0-700&quot;</span>}).<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">debug_log_url</span>(), <span class="ruby-identifier">headers</span><span class="ruby-operator">:</span> {<span class="ruby-string">'range'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'bytes=0-700'</span>}).<span class="ruby-identifier">body</span>
   <span class="ruby-identifier">response_body</span>[<span class="ruby-regexp">%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- has_debug_log-3F-source -->
@@ -478,11 +478,11 @@
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@multisite</span>
     <span class="ruby-comment"># when multi site, there is no redirection or a redirect to the site itself</span>
     <span class="ruby-comment"># otherwise redirect to wp-login.php</span>
-    <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>)
+    <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'wp-signup.php'</span>)
     <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>)
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rwp-login\.php\?action=register/</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rwp-login\.php\?action=register/</span>
       <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">false</span>
-    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rwp-signup\.php/</span>
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rwp-signup\.php/</span>
       <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">true</span>
     <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
       <span class="ruby-ivar">@multisite</span> = <span class="ruby-keyword">true</span>
@@ -520,7 +520,7 @@
           <div class="method-source-code" id="login_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 49</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_url</span>
-  <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php&quot;</span>).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-identifier">url</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'wp-login.php'</span>).<span class="ruby-identifier">to_s</span>
 
   <span class="ruby-comment"># Let's check if the login url is redirected (to https url for example)</span>
   <span class="ruby-identifier">redirection</span> = <span class="ruby-identifier">redirection</span>(<span class="ruby-identifier">url</span>)
@@ -560,7 +560,7 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_enabled?</span>
   <span class="ruby-identifier">resp</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">registration_url</span>)
   <span class="ruby-comment"># redirect only on non multi sites</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">&quot;location&quot;</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rwp-login\.php\?registration=disabled/</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'location'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rwp-login\.php\?registration=disabled/</span>
     <span class="ruby-identifier">enabled</span> = <span class="ruby-keyword">false</span>
   <span class="ruby-comment"># multi site registration form</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r&lt;form id=&quot;setupform&quot; method=&quot;post&quot; action=&quot;[^&quot;]*wp-signup\.php[^&quot;]*&quot;&gt;/</span>
@@ -602,7 +602,7 @@
           <div class="method-source-code" id="registration_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 144</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">registration_url</span>
-  <span class="ruby-identifier">is_multisite?</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-signup.php&quot;</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;wp-login.php?action=register&quot;</span>)
+  <span class="ruby-identifier">is_multisite?</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'wp-signup.php'</span>) <span class="ruby-operator">:</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'wp-login.php?action=register'</span>)
 <span class="ruby-keyword">end</span></pre>
           </div><!-- registration_url-source -->
           
@@ -665,7 +665,7 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
           <div class="method-source-code" id="search_replace_db_2_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_target.rb, line 116</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">search_replace_db_2_url</span>
-  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">&quot;searchreplacedb2.php&quot;</span>).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'searchreplacedb2.php'</span>).<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- search_replace_db_2_url-source -->
           
@@ -791,9 +791,9 @@ href="http://interconnectit.com/124/search-and-replace-for-wordpress-databases/"
     <span class="ruby-identifier">uri_path</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">path</span>
 
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">index_body</span>[<span class="ruby-regexp">%r\/wp-content\/(?:themes|plugins)\//</span>]
-      <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-string">&quot;wp-content&quot;</span>
+      <span class="ruby-ivar">@wp_content_dir</span> = <span class="ruby-string">'wp-content'</span>
     <span class="ruby-keyword">else</span>
-      <span class="ruby-identifier">domains_excluded</span> = <span class="ruby-string">&quot;(?:www\.)?(facebook|twitter)\.com&quot;</span>
+      <span class="ruby-identifier">domains_excluded</span> = <span class="ruby-string">'(?:www\.)?(facebook|twitter)\.com'</span>
       <span class="ruby-ivar">@wp_content_dir</span>  = <span class="ruby-identifier">index_body</span>[<span class="ruby-node">%r(?:href|src)\s*=\s*(?:&quot;|').+#{Regexp.escape(uri_path)}((?!#{domains_excluded})[^&quot;']+)\/(?:themes|plugins)\/.*(?:&quot;|')/</span>, <span class="ruby-value">1</span>]
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>

@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>module WpReadme - RDoc Documentation</title>
+<title>log - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
 
-<body id="top" class="module">
+<body class="file">
 <nav id="metadata">
   <nav id="home-section" class="section">
   <h3 class="section-header">
@@ -42,36 +42,6 @@
   <ul id="search-results" class="initially-hidden"></ul>
 </nav>
 
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/wpscan/modules/wp_readme.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li><a href="#method-i-has_readme-3F">#has_readme?</a>
-    
-    <li><a href="#method-i-readme_url">#readme_url</a>
-    
-  </ul>
-</nav>
-
-  </div>
 
   <div id="project-metadata">
     <nav id="fileindex-section" class="section project-section">
@@ -179,103 +149,86 @@
   </div>
 </nav>
 
-<div id="documentation">
-  <h1 class="module">module WpReadme</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
+<div id="documentation" class="description">
   
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
+<p><em>__</em></p>
 
-    
+<pre>__          _______   _____                  
+\ \        / /  __ \ / ____|                 
+ \ \  /\  / /| |__) | (___   ___  __ _ _ __  
+  \ \/  \/ / |  ___/ \___ \ / __|/ _` | '_ \ 
+   \  /\  /  | |     ____) | (__| (_| | | | |
+    \/  \/   |_|    |_____/ \___|\__,_|_| |_| v2.0r60a6f16
 
-    
+   WordPress Security Scanner by the WPScan Team
+Sponsored by the RandomStorm Open Source Initiative</pre>
 
-    
+<p><em>_</em></p>
 
-    <!-- Methods -->
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+<p>Examples :</p>
 
-    
-      <div id="method-i-has_readme-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_readme?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
+<p>-Further help … ruby /Users/firefart/Coding/wpscan_master/wpscan.rb –help</p>
 
-        <div class="method-description">
-          
-          <p>Checks to see if the readme.html file exists</p>
+<p>-Do ‘non-intrusive’ checks … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a></p>
 
-<p>This file comes by default in a wordpress installation, and if deleted is
-reinstated with an upgrade.</p>
-          
+<p>-Do wordlist password brute force on enumerated users using 50 threads …
+ruby /Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a> –wordlist darkc0de.lst
+–threads 50</p>
 
-          
-          <div class="method-source-code" id="has_readme-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_readme.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_readme?</span>
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">readme_url</span>())
+<p>-Do wordlist password brute force on the ‘admin’ username only … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a> –wordlist darkc0de.lst
+–username admin</p>
 
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">404</span>
-    <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{wordpress}</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- has_readme-3F-source -->
-          
-        </div>
+<p>-Enumerate installed plugins … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a> –enumerate p</p>
 
-        
+<p>-Enumerate installed themes … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a> –enumerate t</p>
 
-        
-      </div><!-- has_readme-3F-method -->
+<p>-Enumerate users … ruby /Users/firefart/Coding/wpscan_master/wpscan.rb –url
+<a href="http://www.example.com">www.example.com</a> –enumerate u</p>
 
-    
-      <div id="method-i-readme_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">readme_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
+<p>-Enumerate installed timthumbs … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a> –enumerate tt</p>
 
-        <div class="method-description">
-          
-          
-          
+<p>-Use a HTTP proxy … ruby /Users/firefart/Coding/wpscan_master/wpscan.rb
+–url <a href="http://www.example.com">www.example.com</a> –proxy
+127.0.0.1:8118</p>
 
-          
-          <div class="method-source-code" id="readme_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_readme.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">readme_url</span>
-  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'readme.html'</span>).<span class="ruby-identifier">to_s</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- readme_url-source -->
-          
-        </div>
+<p>-Use a SOCKS5 proxy … (cURL &gt;= v7.21.7 needed) ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb –url <a
+href="http://www.example.com">www.example.com</a> –proxy
+socks5://127.0.0.1:9000</p>
 
-        
+<p>-Use custom content directory … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb -u <a
+href="http://www.example.com">www.example.com</a> –wp-content-dir
+custom-content</p>
 
-        
-      </div><!-- readme_url-method -->
+<p>-Use custom plugins directory … ruby
+/Users/firefart/Coding/wpscan_master/wpscan.rb -u <a
+href="http://www.example.com">www.example.com</a> –wp-plugins-dir
+wp-content/custom-plugins</p>
 
-    
-    </section><!-- public-instance-method-details -->
-  
-  </section><!-- 5Buntitled-5D -->
+<p>-Update … ruby /Users/firefart/Coding/wpscan_master/wpscan.rb –update</p>
 
-</div><!-- documentation -->
+<p>See <a href="README.html">README</a> for further information.</p>
+
+<p>[<a href="http://ERROR">31m</a> No argument supplied [0m Trace :
+/Users/firefart/Coding/wpscan_master/wpscan.rb:46:in `&lt;main&gt;‘
+Coverage report generated for RSpec to
+/Users/firefart/Coding/wpscan_master/coverage. 1040 / 1113 LOC (93.44%)
+covered.</p>
+
+</div>
+
 
 
 <footer id="validator-badges">

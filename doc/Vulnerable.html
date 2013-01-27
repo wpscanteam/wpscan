@@ -268,10 +268,10 @@ be empty)</p>
 
   <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-ivar">@vulns_xpath</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">vulnerabilities</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpVulnerability</span>.<span class="ruby-identifier">new</span>(
-      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">&quot;title&quot;</span>).<span class="ruby-identifier">text</span>,
-      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">&quot;reference&quot;</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:text</span>),
-      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">&quot;type&quot;</span>).<span class="ruby-identifier">text</span>,
-      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">&quot;metasploit&quot;</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:text</span>)
+      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">'title'</span>).<span class="ruby-identifier">text</span>,
+      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">'reference'</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:text</span>),
+      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">'type'</span>).<span class="ruby-identifier">text</span>,
+      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">search</span>(<span class="ruby-string">'metasploit'</span>).<span class="ruby-identifier">map</span>(&amp;<span class="ruby-value">:text</span>)
     )
   <span class="ruby-keyword">end</span>
   <span class="ruby-identifier">vulnerabilities</span>

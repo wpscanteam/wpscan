@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>module WpReadme - RDoc Documentation</title>
+<title>class SvnParser - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
 
-<body id="top" class="module">
+<body id="top" class="class">
 <nav id="metadata">
   <nav id="home-section" class="section">
   <h3 class="section-header">
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>lib/wpscan/modules/wp_readme.rb
+    <li>lib/wpstools/plugins/list_generator/svn_parser.rb
   </ul>
 </nav>
 
@@ -56,7 +56,13 @@
 
   <div id="class-metadata">
     
-    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
     
     <!-- Method Quickref -->
 <nav id="method-list-section" class="section">
@@ -64,9 +70,9 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-has_readme-3F">#has_readme?</a>
+    <li><a href="#method-c-new">::new</a>
     
-    <li><a href="#method-i-readme_url">#readme_url</a>
+    <li><a href="#method-i-parse">#parse</a>
     
   </ul>
 </nav>
@@ -180,10 +186,12 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="module">module WpReadme</h1>
+  <h1 class="class">class SvnParser</h1>
 
   <div id="description" class="description">
     
+<p>This Class Parses SVN Repositories via HTTP</p>
+
   </div><!-- description -->
 
   
@@ -197,54 +205,101 @@
     
 
     
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-keep_empty_dirs" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">keep_empty_dirs</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-svn_root" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">svn_root</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-verbose" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">verbose</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
 
     <!-- Methods -->
     
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">(svn_root)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/wpstools/plugins/list_generator/svn_parser.rb, line 24</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">svn_root</span>)
+  <span class="ruby-ivar">@svn_root</span>    = <span class="ruby-identifier">svn_root</span>
+  <span class="ruby-ivar">@svn_browser</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-ivar">@svn_hydra</span>   = <span class="ruby-ivar">@svn_browser</span>.<span class="ruby-identifier">hydra</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
      <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-has_readme-3F" class="method-detail ">
+      <div id="method-i-parse" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">has_readme?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Checks to see if the readme.html file exists</p>
-
-<p>This file comes by default in a wordpress installation, and if deleted is
-reinstated with an upgrade.</p>
-          
-
-          
-          <div class="method-source-code" id="has_readme-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_readme.rb, line 25</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_readme?</span>
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">readme_url</span>())
-
-  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">404</span>
-    <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{wordpress}</span>
-  <span class="ruby-keyword">end</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- has_readme-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- has_readme-3F-method -->
-
-    
-      <div id="method-i-readme_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">readme_url</span><span
+          <span class="method-name">parse</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -256,19 +311,19 @@ reinstated with an upgrade.</p>
           
 
           
-          <div class="method-source-code" id="readme_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_readme.rb, line 33</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">readme_url</span>
-  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'readme.html'</span>).<span class="ruby-identifier">to_s</span>
+          <div class="method-source-code" id="parse-source">
+            <pre><span class="ruby-comment"># File lib/wpstools/plugins/list_generator/svn_parser.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parse</span>
+  <span class="ruby-identifier">get_root_directories</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- readme_url-source -->
+          </div><!-- parse-source -->
           
         </div>
 
         
 
         
-      </div><!-- readme_url-method -->
+      </div><!-- parse-method -->
 
     
     </section><!-- public-instance-method-details -->

@@ -268,7 +268,7 @@
         
         <div class="method-heading">
           <span class="method-name">&lt;=&gt;</span><span
-            class="method-args">(item)</span>
+            class="method-args">(other)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -281,8 +281,8 @@
           
           <div class="method-source-code" id="3C-3D-3E-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 60</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- 3C-3D-3E-source -->
           
@@ -298,7 +298,7 @@
         
         <div class="method-heading">
           <span class="method-name">===</span><span
-            class="method-args">(item)</span>
+            class="method-args">(other)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -311,8 +311,8 @@
           
           <div class="method-source-code" id="3D-3D-3D-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 64</span>
-<span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span>
+<span class="ruby-keyword">def</span> <span class="ruby-operator">===</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- 3D-3D-3D-source -->
           
@@ -328,7 +328,7 @@
         
         <div class="method-heading">
           <span class="method-name">eql?</span><span
-            class="method-args">(item)</span>
+            class="method-args">(other)</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
         
@@ -341,8 +341,8 @@
           
           <div class="method-source-code" id="eql-3F-source">
             <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 68</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">item</span>)
-  <span class="ruby-identifier">item</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">eql?</span>(<span class="ruby-identifier">other</span>)
+  <span class="ruby-identifier">other</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">name</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">id</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">other</span>.<span class="ruby-identifier">nickname</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">nickname</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- eql-3F-source -->
           
@@ -373,7 +373,7 @@
             <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">id</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@id</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;empty&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">'empty'</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@id</span>
 <span class="ruby-keyword">end</span></pre>
@@ -436,7 +436,7 @@
             <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 21</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">name</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@name</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;empty&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">'empty'</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@name</span>
 <span class="ruby-keyword">end</span></pre>
@@ -499,7 +499,7 @@
             <pre><span class="ruby-comment"># File lib/wpscan/wp_user.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">nickname</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@nickname</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@nickname</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
-    <span class="ruby-keyword">return</span> <span class="ruby-string">&quot;empty&quot;</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">'empty'</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@nickname</span>
 <span class="ruby-keyword">end</span></pre>

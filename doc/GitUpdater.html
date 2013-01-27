@@ -234,7 +234,7 @@
 
           
           <div class="method-source-code" id="has_local_changes-3F-source">
-            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 37</span>
+            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_local_changes?</span>
   <span class="ruby-node">%x[git #{repo_directory_arguments()} diff --exit-code 2&gt;&amp;1]</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%rdiff/</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
@@ -295,7 +295,7 @@ the last commit hash</p>
 
           
           <div class="method-source-code" id="local_revision_number-source">
-            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 28</span>
+            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 29</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">local_revision_number</span>
   <span class="ruby-identifier">git_log</span> = <span class="ruby-node">%x[git #{repo_directory_arguments()} log -1 2&gt;&amp;1]</span>
   <span class="ruby-identifier">git_log</span>[<span class="ruby-regexp">%rcommit ([0-9a-z]{7})/</span>, <span class="ruby-value">1</span>].<span class="ruby-identifier">to_s</span>
@@ -326,7 +326,7 @@ the last commit hash</p>
 
           
           <div class="method-source-code" id="reset_head-source">
-            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 41</span>
+            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">reset_head</span>
   <span class="ruby-node">%x[git #{repo_directory_arguments()} reset --hard HEAD]</span>
 <span class="ruby-keyword">end</span></pre>
@@ -356,7 +356,7 @@ the last commit hash</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 33</span>
+            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-node">%x[git #{repo_directory_arguments()} pull]</span>
 <span class="ruby-keyword">end</span></pre>
@@ -392,7 +392,7 @@ the last commit hash</p>
 
           
           <div class="method-source-code" id="repo_directory_arguments-source">
-            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 46</span>
+            <pre><span class="ruby-comment"># File lib/updater/git_updater.rb, line 47</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">repo_directory_arguments</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@repo_directory</span>
     <span class="ruby-keyword">return</span> <span class="ruby-node">&quot;--git-dir=\&quot;#{@repo_directory}/.git\&quot; --work-tree=\&quot;#{@repo_directory}\&quot;&quot;</span>

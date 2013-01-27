@@ -299,10 +299,10 @@ found</p>
         <span class="ruby-identifier">plugin_name</span> = <span class="ruby-identifier">symbol_to_call</span>[<span class="ruby-constant">LOGIN_PROTECTION_METHOD_PATTERN</span>, <span class="ruby-value">1</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-string">'_'</span>, <span class="ruby-string">'-'</span>)
 
         <span class="ruby-keyword">return</span> <span class="ruby-ivar">@login_protection_plugin</span> = <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(
-            <span class="ruby-value">:name</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin_name</span>,
-            <span class="ruby-value">:base_url</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@uri</span>,
-            <span class="ruby-value">:path</span>           =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/plugins/#{plugin_name}/&quot;</span>,
-            <span class="ruby-value">:wp_content_dir</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@wp_content_dir</span>
+          <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">plugin_name</span>,
+          <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>       <span class="ruby-ivar">@uri</span>,
+          <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>           <span class="ruby-node">&quot;/plugins/#{plugin_name}/&quot;</span>,
+          <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@wp_content_dir</span>
         )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -344,10 +344,10 @@ found</p>
           <div class="method-source-code" id="better_wp_security_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 69</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">better_wp_security_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:wp_content_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-value">:base_url</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-value">:path</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/plugins/better-wp-security/&quot;</span>,
-               <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;better-wp-security&quot;</span>
+  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
+               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
+               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/better-wp-security/'</span>,
+               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'better-wp-security'</span>
   ).<span class="ruby-identifier">get_url_without_filename</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- better_wp_security_url-source -->
@@ -378,10 +378,10 @@ found</p>
           <div class="method-source-code" id="bluetrait_event_viewer_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 121</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bluetrait_event_viewer_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:wp_content_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-value">:base_url</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-value">:path</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/plugins/bluetrait-event-viewer/&quot;</span>,
-               <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;bluetrait-event-viewer&quot;</span>
+  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
+               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
+               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/bluetrait-event-viewer/'</span>,
+               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'bluetrait-event-viewer'</span>
   ).<span class="ruby-identifier">get_url_without_filename</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- bluetrait_event_viewer_url-source -->
@@ -629,10 +629,10 @@ href="http://wordpress.org/extend/plugins/simple-login-lockdown/">wordpress.org/
           <div class="method-source-code" id="limit_login_attempts_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">limit_login_attempts_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:wp_content_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-value">:base_url</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-value">:path</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/plugins/limit-login-attempts/&quot;</span>,
-               <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;limit-login-attempts&quot;</span>
+  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
+               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
+               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/limit-login-attempts/'</span>,
+               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'limit-login-attempts'</span>
   ).<span class="ruby-identifier">get_url_without_filename</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- limit_login_attempts_url-source -->
@@ -663,10 +663,10 @@ href="http://wordpress.org/extend/plugins/simple-login-lockdown/">wordpress.org/
           <div class="method-source-code" id="login_security_solution_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_security_solution_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:wp_content_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-value">:base_url</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-value">:path</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/plugins/login-security-solution/&quot;</span>,
-               <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;login-security-solution&quot;</span>
+  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
+               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
+               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/login-security-solution/'</span>,
+               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'login-security-solution'</span>
   ).<span class="ruby-identifier">get_url_without_filename</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- login_security_solution_url-source -->
@@ -697,10 +697,10 @@ href="http://wordpress.org/extend/plugins/simple-login-lockdown/">wordpress.org/
           <div class="method-source-code" id="simple_login_lockdown_url-source">
             <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 82</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">simple_login_lockdown_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value">:wp_content_dir</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-value">:base_url</span>        =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-value">:path</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;/plugins/simple-login-lockdown/&quot;</span>,
-               <span class="ruby-value">:name</span>            =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;simple-login-lockdown&quot;</span>
+  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
+               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
+               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/simple-login-lockdown/'</span>,
+               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'simple-login-lockdown'</span>
   ).<span class="ruby-identifier">get_url_without_filename</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- simple_login_lockdown_url-source -->
