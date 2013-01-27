@@ -47,7 +47,7 @@ class CacheFileStore
 
   def clean
     Dir[File.join(@storage_path, '*')].each do |f|
-      File.delete(f)
+      File.delete(f) if !File.symlink?(f)
     end
   end
 
