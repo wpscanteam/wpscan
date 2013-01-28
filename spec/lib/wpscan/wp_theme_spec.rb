@@ -87,6 +87,11 @@ describe WpTheme do
       @fixture = fixtures_dir + '/inline_link_tag.html'
       @expected_name = 'inline'
     end
+
+    it 'should get the theme name even if relative URLs are used' do
+      @fixture = fixtures_dir + '/relative_urls.html'
+      @expected_name = 'theme_name'
+    end
   end
 
   describe '#find_from_wooframework' do
