@@ -64,7 +64,8 @@ class WpTheme < WpItem
   def self.find_from_css_link(target_uri)
     response = Browser.instance.get(target_uri.to_s, { follow_location: true, max_redirects: 2 })
 
-    matches = %r{https?://[^"']+/([^/]+)/themes/([^"']+)/style.css}i.match(response.body)
+    # https + domain is optional because of relative links
+    matches = %r{(?:https?://[^"']+)?/([^/]+)/themes/([^"']+)/style.css}i.match(response.body)
     if matches
       style_url = matches[0]
       wp_content_dir = matches[1]
