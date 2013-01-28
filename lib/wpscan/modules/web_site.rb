@@ -34,11 +34,10 @@ module WebSite
     wordpress = false
 
     response = Browser.instance.get(
-      login_url(),
-      { follow_location: true, max_redirects: 2 }
+        @uri.to_s,
+        { follow_location: true, max_redirects: 2 }
     )
-
-    if response.body =~ %r{WordPress}i
+    if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
       wordpress = true
     else
       response = Browser.instance.get(
@@ -48,6 +47,15 @@ module WebSite
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
         wordpress = true
+      else
+        response = Browser.instance.get(
+            login_url(),
+            { follow_location: true, max_redirects: 2 }
+        )
+
+        if response.body =~ %r{WordPress}i
+          wordpress = true
+        end
       end
     end
 
