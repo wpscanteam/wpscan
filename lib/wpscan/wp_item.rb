@@ -113,7 +113,7 @@ class WpItem < Vulnerable
   # Returns version number from readme.txt if it exists
   def version
     unless @version
-      response = Browser.instance.get(get_full_url.merge('readme.txt').to_s)
+      response = Browser.instance.get(readme_url.to_s)
       @version = response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
     end
     @version
