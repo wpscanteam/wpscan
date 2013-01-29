@@ -94,7 +94,7 @@ def help
   puts '  Multiple values are allowed : "-e t,p" will enumerate timthumbs and plugins'
   puts '  If no option is supplied, the default is "vt,tt,u,vp"'
   puts
-  puts '--exclude-content-based "<regexp or string>" Used with the enumeration option, will exclude all occurence based on the regexp or string supplied'
+  puts '--exclude-content-based "<regexp or string>" Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied'
   puts '                                             You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)'
   puts '--config-file | -c <config file> Use the specified config file'
   puts '--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not'
@@ -103,7 +103,7 @@ def help
   puts '--proxy <[protocol://]host:port> Supply a proxy (will override the one from conf/browser.conf.json).'
   puts '                                 HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used'
   puts '--proxy-auth <username:password>  Supply the proxy login credentials (will override the one from conf/browser.conf.json).'
-  puts '--basic-auth <username:password>  Set the HTTP Basic authentification'
+  puts '--basic-auth <username:password>  Set the HTTP Basic authentication'
   puts '--wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.'
   puts '--threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)'
   puts '--username | -U <username>  Only brute force the supplied username.'

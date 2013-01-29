@@ -138,7 +138,7 @@ Prerequisites:
     Multiple values are allowed : '-e tt,p' will enumerate timthumbs and plugins
     If no option is supplied, the default is 'vt,tt,u,vp'
 
-    --exclude-content-based '<regexp or string>'  Used with the enumeration option, will exclude all occurence based on the regexp or string supplied
+    --exclude-content-based '<regexp or string>'  Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied
                                                   You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)
 
     --config-file | -c <config file> Use the specified config file
@@ -154,7 +154,7 @@ Prerequisites:
 
     --proxy-auth <username:password>  Supply the proxy login credentials (will override the one from conf/browser.conf.json).
 
-    --basic-auth <username:password>  Set the HTTP Basic authentification
+    --basic-auth <username:password>  Set the HTTP Basic authentication
 
     --wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.
 
