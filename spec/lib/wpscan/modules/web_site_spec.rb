@@ -178,4 +178,22 @@ shared_examples_for 'WebSite' do
       web_site.rss_url.should === 'http://lamp-wp/wordpress-3.5/?feed=rss2'
     end
   end
+
+  describe '#robots_url' do
+    it 'should return the correct url' do
+      web_site.robots_url.should === 'http://example.localhost/robots.txt'
+    end
+  end
+
+  describe '#has_robots?' do
+    it 'should return true' do
+      stub_request(:get, web_site.robots_url).to_return(status: 200)
+      web_site.has_robots?.should be_true
+    end
+
+    it 'should return false' do
+      stub_request(:get, web_site.robots_url).to_return(status: 404)
+      web_site.has_robots?.should be_false
+    end
+  end
 end

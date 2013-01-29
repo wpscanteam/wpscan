@@ -151,6 +151,10 @@ begin
     puts
   end
 
+  if wp_target.has_robots?
+    puts green('[+]') + " robots.txt available under '#{wp_target.robots_url}'"
+  end
+
   if wp_target.has_readme?
     puts red('[!]') + " The WordPress '#{wp_target.readme_url}' file exists"
   end

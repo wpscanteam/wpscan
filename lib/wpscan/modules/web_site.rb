@@ -126,4 +126,16 @@ module WebSite
     homepage_body = Browser.instance.get(@uri.to_s).body
     homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
   end
+
+  # Checks if a robots.txt file exists
+  def has_robots?
+    Browser.instance.get(robots_url).code == 200
+  end
+
+  # Gets a robots.txt URL
+  def robots_url
+    robots = @uri.clone
+    robots.path = '/robots.txt'
+    robots.to_s
+  end
 end
