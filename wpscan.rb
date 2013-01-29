@@ -75,10 +75,10 @@ begin
   end
 
   if wpscan_options.proxy
-    proxy_reponse = Browser.instance.get(wp_target.url)
+    proxy_response = Browser.instance.get(wp_target.url)
 
-    unless WpTarget::valid_response_codes.include?(proxy_reponse.code)
-      raise "Proxy Error :\r\n#{proxy_reponse.headers}"
+    unless WpTarget::valid_response_codes.include?(proxy_response.code)
+      raise "Proxy Error :\r\n#{proxy_response.headers}"
     end
   end
 
@@ -102,7 +102,7 @@ begin
   end
 
   if wp_target.has_basic_auth? && wpscan_options.basic_auth.nil?
-    raise 'A basic authentification is required, please provide it with --basic-auth <login:password>'
+    raise 'Basic authentication is required, please provide it with --basic-auth <login:password>'
   end
 
   # Remote website is wordpress?
