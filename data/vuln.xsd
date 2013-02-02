@@ -21,15 +21,19 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:simpleType name="stringtype">
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="uritype">
-    <xs:restriction base="xs:anyURI"/>
+    <xs:restriction base="xs:anyURI">
+      <xs:minLength value="1" />
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="typetype">
-    <xs:restriction base="xs:string">
+    <xs:restriction base="stringtype">
       <xs:enumeration value="SQLI"/>
       <xs:enumeration value="MULTI"/>
       <xs:enumeration value="REDIRECT"/>

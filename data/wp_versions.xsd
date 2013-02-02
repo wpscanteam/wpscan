@@ -21,7 +21,9 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <xs:simpleType name="stringtype">
-    <xs:restriction base="xs:string"/>
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1" />
+    </xs:restriction>
   </xs:simpleType>
 
   <xs:complexType name="filetype">
