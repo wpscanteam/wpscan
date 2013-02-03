@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# encoding: UTF-8
 
 #--
 # WPScan - WordPress Security Scanner
@@ -54,7 +55,7 @@ begin
 
   # Check for updates
   if wpscan_options.update
-    unless @updater.nil?
+    if !@updater.nil?
       if @updater.has_local_changes?
         puts "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n]"
         Readline.readline =~ /^y/i ? @updater.reset_head : raise('Update aborted')
@@ -216,7 +217,7 @@ begin
     puts green('[+]') + ' Enumerating plugins from passive detection ... '
 
     plugins = wp_target.plugins_from_passive_detection(base_url: wp_target.uri, wp_content_dir: wp_target.wp_content_dir)
-    unless plugins.empty?
+    if !plugins.empty?
       puts "#{plugins.size} found :"
 
       plugins.each do |plugin|
@@ -251,7 +252,7 @@ begin
     }
 
     plugins = wp_target.plugins_from_aggressive_detection(options)
-    unless plugins.empty?
+    if !plugins.empty?
       puts
       puts
       puts green('[+]') + " We found #{plugins.size.to_s} plugins:"
@@ -295,7 +296,7 @@ begin
     }
 
     themes = wp_target.themes_from_aggressive_detection(options)
-    unless themes.empty?
+    if !themes.empty?
       puts
       puts
       puts green('[+]') + " We found #{themes.size.to_s} themes:"

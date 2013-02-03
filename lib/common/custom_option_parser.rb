@@ -48,7 +48,7 @@ class CustomOptionParser < OptionParser
     if option.is_a?(Array)
       option_symbol = CustomOptionParser::option_to_symbol(option)
 
-      unless @symbols_used.include?(option_symbol)
+      if !@symbols_used.include?(option_symbol)
         @symbols_used << option_symbol
 
         self.on(*option) do |arg|
