@@ -222,7 +222,7 @@ begin
 
       plugins.each do |plugin|
         puts
-        puts " | Name: #{plugin.name}"
+        puts " | Name: #{plugin}"
         puts " | Location: #{plugin.get_full_url}"
         puts " | WordPress: #{plugin.wp_org_url}" if plugin.wp_org_item?
 
