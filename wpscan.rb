@@ -35,6 +35,22 @@ def output_vulnerabilities(vulns)
   end
 end
 
+def output_item_details(item)
+  puts
+  puts " | Name: #{item}" #this will also output the version number if detected
+  puts " | Location: #{item.get_url_without_filename}"
+  puts " | WordPress: #{item.wp_org_url}"  if item.wp_org_item?
+  puts ' | Directory listing enabled: Yes' if item.directory_listing?
+  puts " | Readme: #{item.readme_url}" if item.has_readme?
+  puts " | Changelog: #{item.changelog_url}" if item.has_changelog?
+
+  output_vulnerabilities(item.vulnerabilities)
+
+  if item.error_log?
+    puts ' | ' + red('[!]') + " A WordPress error_log file has been found : #{item.error_log_url}"
+  end
+end
+
 # delete old logfile, check if it is a symlink first.
 File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
@@ -136,19 +152,7 @@ begin
   if wp_theme
     # Theme version is handled in wp_item.to_s
     puts green('[+]') + " The WordPress theme in use is #{wp_theme}"
-    puts
-    puts " | Name: #{wp_theme}" #this will also output the version number if detected
-    puts " | Location: #{wp_theme.get_url_without_filename}"
-    puts " | WordPress: #{wp_theme.wp_org_url}" if wp_theme.wp_org_item?
-    puts ' | Directory listing enabled: Yes' if wp_theme.directory_listing?
-    puts " | Readme: #{wp_theme.readme_url}" if wp_theme.has_readme?
-    puts " | Changelog: #{wp_theme.changelog_url}" if wp_theme.has_changelog?
-
-    theme_vulnerabilities = wp_theme.vulnerabilities
-    unless theme_vulnerabilities.empty?
-      puts red('[!]') + " We have identified #{theme_vulnerabilities.size} vulnerabilities for this theme :"
-      output_vulnerabilities(theme_vulnerabilities)
-    end
+    output_item_details(wp_theme)
     puts
   end
 
@@ -218,15 +222,10 @@ begin
 
     plugins = wp_target.plugins_from_passive_detection(base_url: wp_target.uri, wp_content_dir: wp_target.wp_content_dir)
     if !plugins.empty?
-      puts "#{plugins.size} found :"
+      puts "#{plugins.size} plugins found :"
 
       plugins.each do |plugin|
-        puts
-        puts " | Name: #{plugin}"
-        puts " | Location: #{plugin.get_full_url}"
-        puts " | WordPress: #{plugin.wp_org_url}" if plugin.wp_org_item?
-
-        output_vulnerabilities(plugin.vulnerabilities)
+        output_item_details(plugin)
       end
     else
       puts 'No plugins found :('
@@ -258,19 +257,7 @@ begin
       puts green('[+]') + " We found #{plugins.size.to_s} plugins:"
 
       plugins.each do |plugin|
-        puts
-        puts " | Name: #{plugin}" #this will also output the version number if detected
-        puts " | Location: #{plugin.get_url_without_filename}"
-        puts " | WordPress: #{plugin.wp_org_url}"  if plugin.wp_org_item?
-        puts ' | Directory listing enabled: Yes' if plugin.directory_listing?
-        puts " | Readme: #{plugin.readme_url}" if plugin.has_readme?
-        puts " | Changelog: #{plugin.changelog_url}" if plugin.has_changelog?
-
-        output_vulnerabilities(plugin.vulnerabilities)
-
-        if plugin.error_log?
-          puts ' | ' + red('[!]') + " A WordPress error_log file has been found : #{plugin.error_log_url}"
-        end
+        output_item_details(plugin)
       end
     else
       puts
@@ -302,15 +289,7 @@ begin
       puts green('[+]') + " We found #{themes.size.to_s} themes:"
 
       themes.each do |theme|
-        puts
-        puts " | Name: #{theme}" #this will also output the version number if detected
-        puts " | Location: #{theme.get_url_without_filename}"
-        puts " | WordPress: #{theme.wp_org_url}" if theme.wp_org_item?
-        puts ' | Directory listing enabled: Yes' if theme.directory_listing?
-        puts " | Readme: #{theme.readme_url}" if theme.has_readme?
-        puts " | Changelog: #{theme.changelog_url}" if theme.has_changelog?
-
-        output_vulnerabilities(theme.vulnerabilities)
+        output_item_details(theme)
       end
     else
       puts

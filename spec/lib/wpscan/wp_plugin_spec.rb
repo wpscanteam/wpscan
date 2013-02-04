@@ -41,42 +41,4 @@ describe WpPlugin do
       expect { WpPlugin.new(base_url: 'url', path: 'path', wp_content_dir: 'dir') }.to raise_error
     end
   end
-
-  describe '#error_log_url' do
-    it 'should return a correct url' do
-      temp = WpPlugin.new(
-        base_url: 'http://wordpress.com',
-        path:     'test/asdf.php'
-      )
-      temp.error_log_url.to_s.should == 'http://wordpress.com/wp-content/plugins/test/error_log'
-    end
-  end
-
-  describe '#error_log?' do
-    before :each do
-      @temp = WpPlugin.new(
-        base_url: 'http://wordpress.com',
-        path:     'test/asdf.php')
-    end
-
-    it 'should return true' do
-      stub_request(:get, @temp.error_log_url.to_s).to_return(status: 200, body: 'PHP Fatal error')
-      @temp.error_log?.should be true
-    end
-
-    it 'should return false' do
-      stub_request(:get, @temp.error_log_url.to_s).to_return(status: 500, body: 'Access denied')
-      @temp.error_log?.should be false
-    end
-
-    it 'should return true' do
-      fixtures_dir = SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR + '/error_log'
-      stub_request(:get, @temp.error_log_url.to_s).to_return(
-        status: 200,
-        body: File.new(fixtures_dir + '/error_log')
-      )
-
-      @temp.error_log?.should be true
-    end
-  end
 end

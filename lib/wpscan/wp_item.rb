@@ -161,6 +161,20 @@ class WpItem < Vulnerable
     get_url_without_filename.merge('changelog.txt')
   end
 
+  def error_log_url
+    get_url_without_filename.merge('error_log')
+  end
+
+  # Discover any error_log files created by WordPress
+  # These are created by the WordPress error_log() function
+  # They are normally found in the /plugins/ directory,
+  # however can also be found in their specific plugin dir.
+  # http://www.exploit-db.com/ghdb/3714/
+  def error_log?
+    response_body = Browser.instance.get(error_log_url, headers: {'range' => 'bytes=0-700'}).body
+    response_body[%r{PHP Fatal error}i] ? true : false
+  end
+
   # readme.txt present?
   def has_readme?
     unless @readme
