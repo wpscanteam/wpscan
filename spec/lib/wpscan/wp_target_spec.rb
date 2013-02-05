@@ -85,13 +85,8 @@ describe WpTarget do
       end
     end
 
-    it 'should return false if both files are not found (404)' do
-      @wp_target.should_not be_wordpress
-    end
-
-    it 'should return true if the wp-login is found and is a valid wordpress one' do
-      stub_request(:get, @wp_target.login_url).
-        to_return(status: 200, body: File.new(fixtures_dir + '/wp-login.php'))
+    it 'should return true if there is a /wp-content/ detected in the index page source' do
+      stub_request_to_fixture(url: @wp_target.url, fixture: fixtures_dir + '/wp_content_dir/wordpress-3.4.1.htm')
 
       @wp_target.should be_wordpress
     end
@@ -101,6 +96,17 @@ describe WpTarget do
         to_return(status: 200, body: File.new(fixtures_dir + '/xmlrpc.php'))
 
       @wp_target.should be_wordpress
+    end
+
+    it 'should return true if the wp-login is found and is a valid wordpress one' do
+      stub_request(:get, @wp_target.login_url).
+        to_return(status: 200, body: File.new(fixtures_dir + '/wp-login.php'))
+
+      @wp_target.should be_wordpress
+    end
+
+    it 'should return false if both files are not found (404)' do
+      @wp_target.should_not be_wordpress
     end
   end
 
