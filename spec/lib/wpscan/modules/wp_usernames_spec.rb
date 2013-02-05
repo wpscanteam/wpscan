@@ -58,11 +58,11 @@ shared_examples_for 'WpUsernames' do
 
     it 'should return an array with 1 username (from in the body response)' do
       stub_request(:get, @module.author_url(2)).
-        to_return(status: 200, body: File.new(@fixtures_dir + '/admin.htm'))
+        to_return(status: 200, body: File.new(@fixtures_dir + '/test.html'))
 
       usernames = @module.usernames(range: (1..2))
       usernames.should_not be_empty
-      usernames.eql?([WpUser.new('admin', 2, 'admin | Wordpress 3.3.2')]).should be_true
+      usernames.should === ([WpUser.new('test', 2, 'first last | user&#039;s Blog!')])
     end
 
     it 'should return an array with 2 usernames (one is a duplicate and should not be present twice)' do
@@ -70,16 +70,16 @@ shared_examples_for 'WpUsernames' do
         to_return(status: 301, headers: {'location' => '/author/Youhou/'})
 
       stub_request(:get, @module.author_url(2)).
-        to_return(status: 200, body: File.new(@fixtures_dir + '/admin.htm'))
+        to_return(status: 200, body: File.new(@fixtures_dir + '/test.html'))
 
       usernames = @module.usernames(range: (1..5))
       usernames.should_not be_empty
       expected = [
-        WpUser.new('admin', 2, 'admin | Wordpress 3.3.2'),
+        WpUser.new('test', 2, 'first last | user&#039;s Blog!'),
         WpUser.new('Youhou', 4, 'empty')
       ]
 
-      usernames.sort_by { |u| u.name }.eql?(expected.sort_by { |u| u.name }).should be_true
+      usernames.sort_by { |u| u.name }.should === expected.sort_by { |u| u.name }
     end
   end
 
@@ -202,7 +202,7 @@ shared_examples_for 'WpUsernames' do
   describe '#remove_junk_from_nickname' do
     after :each do
       result = @module.remove_junk_from_nickname(@input)
-      result.eql?(@expected).should === true
+      result.should === @expected
     end
 
     it 'should return an empty array' do

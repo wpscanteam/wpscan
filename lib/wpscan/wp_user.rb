@@ -62,6 +62,10 @@ class WpUser
     other.name <=> self.name
   end
 
+  def ==(other)
+    other.name == self.name and other.id == self.id and other.nickname == self.nickname
+  end
+
   def ===(other)
     other.name === self.name and other.id === self.id and other.nickname === self.nickname
   end
