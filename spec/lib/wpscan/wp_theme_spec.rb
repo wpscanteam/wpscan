@@ -102,18 +102,21 @@ describe WpTheme do
 
       wp_theme = WpTheme.find_from_wooframework(@target_uri)
 
+      stub_request(:get, wp_theme.default_style_url.to_s).to_return(status: 200)
+      stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 200)
+
       wp_theme.should be_a WpTheme unless wp_theme.nil?
       wp_theme.should === @expected_theme
     end
 
     it "should return a WpTheme object with .name 'Editorial' and .version '1.3.5'" do
       @fixture = fixtures_dir + '/editorial-1.3.5.html'
-      @expected_theme = WpTheme.new(name: 'Editorial', version: '1.3.5', base_url: '', path: '', wp_content_dir: '')
+      @expected_theme = WpTheme.new(name: 'Editorial', version: '1.3.5', base_url: 'http://example.localhost/', path: 'Editorial')
     end
 
     it "should return a WpTheme object with .name 'Merchant'" do
       @fixture = fixtures_dir + '/merchant-no-version.html'
-      @expected_theme = WpTheme.new(name: 'Merchant', base_url: '', path: '', wp_content_dir: '')
+      @expected_theme = WpTheme.new(name: 'Merchant', base_url: 'http://example.localhost/', path: 'Merchant')
     end
   end
 
@@ -157,7 +160,9 @@ describe WpTheme do
       if @fixture
         stub_request_to_fixture(url: theme_style_url, fixture: @fixture)
 
-        wp_theme = WpTheme.new(name: 'spec-theme', style_url: theme_style_url, base_url: '', path: '', wp_content_dir: '')
+        wp_theme = WpTheme.new(name: 'spec-theme', style_url: theme_style_url, base_url: 'http://example.localhost/', path: 'spec-theme')
+
+        stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 200)
 
         wp_theme.version.should === @expected
       end
@@ -169,7 +174,10 @@ describe WpTheme do
     end
 
     it 'should return nil if the style_url is nil' do
-      WpTheme.new(name: 'hello-world', base_url: '', path: '', wp_content_dir: '').version.should be_nil
+      wp_theme = WpTheme.new(name: 'hello-world', base_url: 'http://example.localhost/', path: 'hello-world')
+      stub_request(:get, wp_theme.default_style_url.to_s).to_return(status: 200)
+      stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 200)
+      wp_theme.version.should be_nil
     end
 
     it 'should return 1.3' do
@@ -180,6 +188,35 @@ describe WpTheme do
     it 'should return 1.5.1' do
       @fixture = fixtures_dir + '/bueno-1.5.1.css'
       @expected = '1.5.1'
+    end
+
+    it 'should get the version from default style.css url' do
+      wp_theme = WpTheme.new(name: 'hello-world', base_url: 'http://example.localhost/', path: 'hello-world')
+      stub_request(:get, wp_theme.default_style_url.to_s).to_return(status: 200, body: 'Version: 1.3.4.5')
+      stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 404)
+      wp_theme.version.should === '1.3.4.5'
+    end
+
+    it 'should get the version from custom style.css url' do
+      style_url = 'http://example.localhost/custom_style.css'
+      wp_theme = WpTheme.new(name: 'hello-world', base_url: 'http://example.localhost/', path: 'hello-world', style_url: style_url)
+      stub_request(:get, style_url).to_return(status: 200, body: 'Version: 1.3.4.5')
+      stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 404)
+      wp_theme.version.should === '1.3.4.5'
+    end
+
+    it 'should get the version from readme.txt' do
+      wp_theme = WpTheme.new(name: 'hello-world', base_url: 'http://example.localhost/', path: 'hello-world')
+      stub_request(:get, wp_theme.default_style_url.to_s).to_return(status: 404)
+      stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 200, body: 'Stable Tag: 1.2.3.4')
+      wp_theme.version.should === '1.2.3.4'
+    end
+
+    it 'should get the version from readme.txt' do
+      wp_theme = WpTheme.new(name: 'hello-world', base_url: 'http://example.localhost/', path: 'hello-world')
+      stub_request(:get, wp_theme.default_style_url.to_s).to_return(status: 200)
+      stub_request(:get, wp_theme.readme_url.to_s).to_return(status: 200, body: 'Stable Tag: 1.2.3.4')
+      wp_theme.version.should === '1.2.3.4'
     end
   end
 

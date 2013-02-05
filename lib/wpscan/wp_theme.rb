@@ -39,10 +39,22 @@ class WpTheme < WpItem
   def version
     unless @version
       if @style_url
-        @version = Browser.instance.get(@style_url).body[%r{Version:\s([^\s]+)}i, 1]
+        url = @style_url
+      else
+        url = default_style_url
+      end
+      @version = Browser.instance.get(url).body[%r{Version:\s([^\s]+)}i, 1]
+
+      # Get Version from readme.txt
+      if @version.nil?
+        @version = super
       end
     end
     @version
+  end
+
+  def default_style_url
+    get_url_without_filename.merge('style.css')
   end
 
   def self.find(target_uri)
@@ -93,11 +105,10 @@ class WpTheme < WpItem
       woo_framework_version = matches[3] # Not used at this time
 
       return new(
-        name:            woo_theme_name,
-        version:         woo_theme_version,
-        base_url:        matches[0],
-        path:            '',
-        wp_content_dir:  ''
+        name:     woo_theme_name,
+        version:  woo_theme_version,
+        base_url: target_uri.to_s,
+        path:     woo_theme_name
       )
     end
   end
