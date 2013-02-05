@@ -121,8 +121,8 @@ shared_examples_for 'WpUsernames' do
       url = 'http://example.localhost/'
       stub_request(:get, url).to_return(status: @status, body: @content)
       resp = Browser.instance.get(url)
-      username = @module.get_nickname_from_response(resp)
-      username.should === @expected
+      nickname = @module.get_nickname_from_response(resp)
+      nickname.should === @expected
     end
 
     it 'should return nil' do
@@ -147,6 +147,28 @@ shared_examples_for 'WpUsernames' do
       @status = 201
       @content = '<title>admin</title>'
       @expected = nil
+    end
+  end
+
+  describe '#get_username_from_response' do
+    after :each do
+      url = @module.url
+      stub_request_to_fixture(url: url, fixture: File.new(@fixtures_dir + @file))
+      resp = Browser.instance.get(url)
+      username = @module.get_username_from_response(resp)
+      username.should === @expected
+    end
+
+    # No Permalinks
+    it 'should return admin' do
+      @file = '/admin.html'
+      @expected = 'admin'
+    end
+
+    # With Permalinks
+    it 'should return test' do
+      @file = '/test.html'
+      @expected = 'test'
     end
   end
 

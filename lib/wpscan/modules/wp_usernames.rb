@@ -43,7 +43,7 @@ module WpUsernames
         nickname = get_nickname_from_url(url)
       elsif response.code == 200 # username in body?
         # get the username from the author feed URL
-        username = response.body[%r{/author/([^/\b]+)/?}i, 1]
+        username = get_username_from_response(response)
         nickname = get_nickname_from_response(response)
       end
 
@@ -74,6 +74,16 @@ module WpUsernames
       nickname = extract_nickname_from_body(resp.body)
     end
     nickname
+  end
+
+  def get_username_from_response(resp)
+    # Feed URL with Permalinks
+    username = resp.body[%r{/author/([^/\b]+)/?}i, 1]
+    if username.nil?
+      # No Permalinks
+      username = resp.body[%r{<body class="archive author author-([^\s]+) author-(\d+)}i, 1]
+    end
+    username
   end
 
   def extract_nickname_from_body(body)
