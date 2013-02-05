@@ -17,8 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-class WpTarget
-  include WebSite
+class WpTarget < WebSite
   include WpReadme
   include WpFullPathDisclosure
   include WpConfigBackup
@@ -30,10 +29,11 @@ class WpTarget
   include WpThemes
   include BruteForce
 
-  attr_reader :uri, :verbose
+  attr_reader :verbose
 
   def initialize(target_url, options = {})
-    @uri            = URI.parse(add_trailing_slash(add_http_protocol(target_url)))
+    super(target_url)
+
     @verbose        = options[:verbose]
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
@@ -42,9 +42,39 @@ class WpTarget
     Browser.instance(options.merge(:max_threads => options[:threads]))
   end
 
-  # Alias of @uri.to_s
-  def url
-    @uri.to_s
+  # check if the target website is
+  # actually running wordpress.
+  def wordpress?
+    wordpress = false
+
+    response = Browser.instance.get(
+      @uri.to_s,
+      { follow_location: true, max_redirects: 2 }
+    )
+
+    if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
+      wordpress = true
+    else
+      response = Browser.instance.get(
+        xml_rpc_url,
+        { follow_location: true, max_redirects: 2 }
+      )
+
+      if response.body =~ %r{XML-RPC server accepts POST requests only}i
+        wordpress = true
+      else
+        response = Browser.instance.get(
+          login_url,
+          { follow_location: true, max_redirects: 2 }
+        )
+
+        if response.body =~ %r{WordPress}i
+          wordpress = true
+        end
+      end
+    end
+
+    wordpress
   end
 
   def login_url

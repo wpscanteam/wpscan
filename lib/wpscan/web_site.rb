@@ -17,7 +17,21 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-module WebSite
+class WebSite
+
+  attr_reader :uri
+
+  def initialize(site_url)
+    self.url = site_url
+  end
+
+  def url=(url)
+    @uri = URI.parse(add_trailing_slash(add_http_protocol(url)))
+  end
+
+  def url
+    @uri.to_s
+  end
 
   # Checks if the remote website is up.
   def online?
@@ -26,40 +40,6 @@ module WebSite
 
   def has_basic_auth?
     Browser.instance.get(@uri.to_s).code == 401
-  end
-
-  # check if the remote website is
-  # actually running wordpress.
-  def wordpress?
-    wordpress = false
-
-    response = Browser.instance.get(
-        @uri.to_s,
-        { follow_location: true, max_redirects: 2 }
-    )
-    if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
-      wordpress = true
-    else
-      response = Browser.instance.get(
-        xml_rpc_url,
-        { follow_location: true, max_redirects: 2 }
-      )
-
-      if response.body =~ %r{XML-RPC server accepts POST requests only}i
-        wordpress = true
-      else
-        response = Browser.instance.get(
-            login_url(),
-            { follow_location: true, max_redirects: 2 }
-        )
-
-        if response.body =~ %r{WordPress}i
-          wordpress = true
-        end
-      end
-    end
-
-    wordpress
   end
 
   def has_xml_rpc?

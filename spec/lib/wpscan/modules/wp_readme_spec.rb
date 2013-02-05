@@ -28,7 +28,7 @@ shared_examples_for 'WpReadme' do
 
   describe '#readme_url' do
     it 'should return http://example.localhost/readme.html' do
-      @module.readme_url.should === "#{@module.uri}/readme.html"
+      @module.readme_url.should === "#{@module.uri}readme.html"
     end
   end
 

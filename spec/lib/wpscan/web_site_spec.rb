@@ -17,9 +17,34 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-shared_examples_for 'WebSite' do
-  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/web_site' }
-  subject(:web_site) { WpScanModuleSpec.new('http://example.localhost/').extend(WebSite) }
+describe 'WebSite' do
+  let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WEB_SITE_DIR }
+  subject(:web_site) { WebSite.new('http://example.localhost/') }
+
+  describe "#new" do
+    its(:url) { should  === 'http://example.localhost/' }
+  end
+
+  describe '#url=' do
+    after :each do
+      web_site.url = @uri
+      web_site.url.should === @expected
+    end
+
+    context 'when protocol or trailing slash is missing' do
+      it 'should add the them' do
+        @uri      = 'example.localhost'
+        @expected = 'http://example.localhost/'
+      end
+    end
+
+    context 'when there is a protocol or a trailing slash' do
+      it 'should not add them' do
+        @uri      = 'http://example.localhost/'
+        @expected = @uri
+      end
+    end
+  end
 
   describe '#online?' do
     it 'should not be considered online if the status code is 0' do
@@ -71,70 +96,6 @@ shared_examples_for 'WebSite' do
     it 'should return false' do
       stub_request(:get, web_site.url).to_return(status: 200)
       web_site.should_not have_xml_rpc
-    end
-  end
-
-  describe '#wordpress?' do
-    # each url (wp-login and xmlrpc) pointed to a 404
-    before :each do
-      stub_request(:get, web_site.url).
-        to_return(status: 200, body: '', headers: { 'X-Pingback' => web_site.uri.merge('xmlrpc.php')})
-
-      [web_site.login_url, web_site.xml_rpc_url].each do |url|
-        stub_request(:get, url).to_return(status: 404, body: '')
-      end
-    end
-
-    it 'should return false if both files are not found (404)' do
-      web_site.should_not be_wordpress
-    end
-
-    it 'should return true if the wp-login is found and is a valid wordpress one' do
-      stub_request(:get, web_site.login_url).
-        to_return(status: 200, body: File.new(fixtures_dir + '/wp-login.php'))
-
-      web_site.should be_wordpress
-    end
-
-    it 'should return true if the xmlrpc is found' do
-      stub_request(:get, web_site.xml_rpc_url).
-        to_return(status: 200, body: File.new(fixtures_dir + '/xmlrpc.php'))
-
-      web_site.should be_wordpress
-    end
-  end
-
-  describe '#redirection' do
-    it 'should return nil if no redirection detected' do
-      stub_request(:get, web_site.url).to_return(status: 200, body: '')
-
-      web_site.redirection.should be_nil
-    end
-
-    [301, 302].each do |status_code|
-      it "should return http://new-location.com if the status code is #{status_code}" do
-        new_location = 'http://new-location.com'
-
-        stub_request(:get, web_site.url).
-          to_return(status: status_code, headers: { location: new_location })
-
-        stub_request(:get, new_location).to_return(status: 200)
-
-        web_site.redirection.should === 'http://new-location.com'
-      end
-    end
-
-    context 'when multiple redirections' do
-      it 'should return the last redirection' do
-        first_redirection = 'www.redirection.com'
-        last_redirection   = 'redirection.com'
-
-        stub_request(:get, web_site.url).to_return(status: 301, headers: { location: first_redirection })
-        stub_request(:get, first_redirection).to_return(status: 302, headers: { location: last_redirection })
-        stub_request(:get, last_redirection).to_return(status: 200)
-
-        web_site.redirection.should === last_redirection
-      end
     end
   end
 
