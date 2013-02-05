@@ -148,14 +148,6 @@ begin
   puts "| Started on #{start_time.asctime}"
   puts
 
-  wp_theme = wp_target.theme
-  if wp_theme
-    # Theme version is handled in wp_item.to_s
-    puts green('[+]') + " The WordPress theme in use is #{wp_theme}"
-    output_item_details(wp_theme)
-    puts
-  end
-
   if wp_target.has_robots?
     puts green('[+]') + " robots.txt available under '#{wp_target.robots_url}'"
   end
@@ -214,6 +206,14 @@ begin
       puts red('[!]') + " We have identified #{version_vulnerabilities.size} vulnerabilities from the version number :"
       output_vulnerabilities(version_vulnerabilities)
     end
+  end
+
+  wp_theme = wp_target.theme
+  if wp_theme
+    puts
+    # Theme version is handled in wp_item.to_s
+    puts green('[+]') + " The WordPress theme in use is #{wp_theme}"
+    output_item_details(wp_theme)
   end
 
   if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
