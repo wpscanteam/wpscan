@@ -42,7 +42,8 @@ module WpUsernames
         # Get the real name from the redirect site
         nickname = get_nickname_from_url(url)
       elsif response.code == 200 # username in body?
-        username = response.body[%r{posts by (.*) feed}i, 1]
+        # get the username from the author feed URL
+        username = response.body[%r{/author/([^/\b]+)/?}i, 1]
         nickname = get_nickname_from_response(response)
       end
 
