@@ -69,4 +69,10 @@ module WpPlugins
     plugins.sort_by { |p| p.name }
   end
 
+  def plugin_vulns_count(file=PLUGINS_VULNS_FILE)
+    xml = Nokogiri::XML(File.open(file)) do |config|
+      config.noblanks
+    end
+    xml.xpath("count(//plugin)").to_i
+  end
 end

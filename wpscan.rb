@@ -146,6 +146,8 @@ begin
   start_time = Time.now
   puts "| URL: #{wp_target.url}"
   puts "| Started on #{start_time.asctime}"
+  puts "| Total vulnerable plugins: #{wp_target.plugin_vulns_count}"
+  puts "| Total vulnerable themes: #{wp_target.theme_vulns_count}"
   puts
 
   if wp_target.has_robots?

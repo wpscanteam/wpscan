@@ -56,4 +56,10 @@ module WpThemes
     themes.sort_by { |t| t.name }
   end
 
+  def theme_vulns_count(file=THEMES_VULNS_FILE)
+    xml = Nokogiri::XML(File.open(file)) do |config|
+      config.noblanks
+    end
+    xml.xpath("count(//theme)").to_i
+  end
 end

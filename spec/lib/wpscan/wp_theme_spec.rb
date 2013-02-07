@@ -285,4 +285,5 @@ describe WpTheme do
       (instance === instance2).should == true
     end
   end
+
 end
