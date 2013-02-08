@@ -56,7 +56,7 @@ File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
 banner()
 # Stats
-puts "Wpscan Databse Statistics:"
+puts "Wpscan Database Statistics:"
 puts "\tTotal vulnerable plugins: #{WpscanStats.vuln_plugin_count}"
 puts "\tTotal vulnerable themes: #{WpscanStats.vuln_theme_count}"
 puts "\tTotal plugin vulnerabilities: #{WpscanStats.plugin_vulns_count}"
