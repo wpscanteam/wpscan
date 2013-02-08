@@ -17,46 +17,54 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../wpstools_helper')
 
-describe 'WpscanStats' do
+describe 'StatsPlugin' do
+  before :each do
+    @stats = StatsPlugin.new()
+  end
+
   describe '#vuln_plugin_count' do
     it 'should return the correct number' do
       xml = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/vulnerabilities/plugin_vulns.xml"
-      WpscanStats.vuln_plugin_count(xml).should == 2
+      @stats.vuln_plugin_count(xml).should == 2
     end
   end
 
   describe '#vuln_theme_count' do
     it 'should return the correct number' do
       xml = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/vulnerabilities/theme_vulns.xml"
-      WpscanStats.vuln_theme_count(xml).should == 2
+      @stats.vuln_theme_count(xml).should == 2
     end
   end
 
   describe '#plugin_vulns_count' do
     it 'should return the correct number' do
       xml = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/vulnerabilities/plugin_vulns.xml"
-      WpscanStats.plugin_vulns_count(xml).should == 3
+      @stats.plugin_vulns_count(xml).should == 3
     end
   end
 
   describe '#theme_vulns_count' do
     it 'should return the correct number' do
       xml = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/vulnerabilities/theme_vulns.xml"
-      WpscanStats.theme_vulns_count(xml).should == 3
+      @stats.theme_vulns_count(xml).should == 3
     end
   end
 
   describe '#total_plugins' do
-    xml = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/vulnerabilities/plugin_vulns.xml"
-    file = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/plugins.txt"
-    WpscanStats.total_plugins(file, xml).should == 4
+    it 'should return the correct numer' do
+      xml = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/vulnerabilities/plugin_vulns.xml"
+      file = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/plugins.txt"
+      @stats.total_plugins(file, xml).should == 4
+    end
   end
 
   describe '#total_themes' do
-    xml = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/vulnerabilities/theme_vulns.xml"
-    file = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/themes.txt"
-    WpscanStats.total_themes(file, xml).should == 5
+    it 'should return the correct numer' do
+      xml = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/vulnerabilities/theme_vulns.xml"
+      file = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/themes.txt"
+      @stats.total_themes(file, xml).should == 5
+    end
   end
 end

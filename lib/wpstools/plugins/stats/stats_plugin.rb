@@ -17,37 +17,61 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-class WpscanStats
+require_files_from_directory(WPSCAN_LIB_DIR, '**/*.rb')
 
-  def self.vuln_plugin_count(file=PLUGINS_VULNS_FILE)
+class StatsPlugin < Plugin
+
+  def initialize
+    super(author: 'WPScanTeam - Christian Mehlmauer')
+
+    register_options(
+        ['--stats', '--s', 'Show WpScan Database statistics']
+    )
+  end
+
+  def run(options = {})
+    if options[:stats]
+      puts "Wpscan Databse Statistics:"
+      puts "--------------------------"
+      puts "[#] Total vulnerable plugins: #{vuln_plugin_count}"
+      puts "[#] Total vulnerable themes: #{vuln_theme_count}"
+      puts "[#] Total plugin vulnerabilities: #{plugin_vulns_count}"
+      puts "[#] Total theme vulnerabilities: #{theme_vulns_count}"
+      puts "[#] Total plugins to enumerate: #{total_plugins}"
+      puts "[#] Total themes to enumerate: #{total_themes}"
+      puts
+    end
+  end
+
+  def vuln_plugin_count(file=PLUGINS_VULNS_FILE)
     xml = Nokogiri::XML(File.open(file)) do |config|
       config.noblanks
     end
     xml.xpath("count(//plugin)").to_i
   end
 
-  def self.vuln_theme_count(file=THEMES_VULNS_FILE)
+  def vuln_theme_count(file=THEMES_VULNS_FILE)
     xml = Nokogiri::XML(File.open(file)) do |config|
       config.noblanks
     end
     xml.xpath("count(//theme)").to_i
   end
 
-  def self.plugin_vulns_count(file=PLUGINS_VULNS_FILE)
+  def plugin_vulns_count(file=PLUGINS_VULNS_FILE)
     xml = Nokogiri::XML(File.open(file)) do |config|
       config.noblanks
     end
     xml.xpath("count(//vulnerability)").to_i
   end
 
-  def self.theme_vulns_count(file=THEMES_VULNS_FILE)
+  def theme_vulns_count(file=THEMES_VULNS_FILE)
     xml = Nokogiri::XML(File.open(file)) do |config|
       config.noblanks
     end
     xml.xpath("count(//vulnerability)").to_i
   end
 
-  def self.total_plugins(file=PLUGINS_FULL_FILE, xml=PLUGINS_VULNS_FILE)
+  def total_plugins(file=PLUGINS_FULL_FILE, xml=PLUGINS_VULNS_FILE)
     options = {}
     options[:only_vulnerable_ones] = false
     options[:file] = file
@@ -57,7 +81,7 @@ class WpscanStats
     WpEnumerator.generate_items(options).count
   end
 
-  def self.total_themes(file=THEMES_FULL_FILE, xml=THEMES_VULNS_FILE)
+  def total_themes(file=THEMES_FULL_FILE, xml=THEMES_VULNS_FILE)
     options = {}
     options[:only_vulnerable_ones] = false
     options[:file] = file

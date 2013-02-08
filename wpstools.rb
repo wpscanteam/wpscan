@@ -33,7 +33,8 @@ begin
   plugins = Plugins.new(option_parser)
   plugins.register(
     CheckerPlugin.new,
-    ListGeneratorPlugin.new
+    ListGeneratorPlugin.new,
+    StatsPlugin.new
   )
 
   options = option_parser.results
