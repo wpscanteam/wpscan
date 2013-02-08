@@ -55,6 +55,15 @@ end
 File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
 banner()
+# Stats
+puts "Wpscan Databse Statistics:"
+puts "\tTotal vulnerable plugins: #{WpscanStats.vuln_plugin_count}"
+puts "\tTotal vulnerable themes: #{WpscanStats.vuln_theme_count}"
+puts "\tTotal plugin vulnerabilities: #{WpscanStats.plugin_vulns_count}"
+puts "\tTotal theme vulnerabilities: #{WpscanStats.theme_vulns_count}"
+puts "\tTotal plugins to enumerate: #{WpscanStats.total_plugins}"
+puts "\tTotal themes to enumerate: #{WpscanStats.total_themes}"
+puts
 
 begin
   wpscan_options = WpscanOptions.load_from_arguments
@@ -146,8 +155,6 @@ begin
   start_time = Time.now
   puts "| URL: #{wp_target.url}"
   puts "| Started on #{start_time.asctime}"
-  puts "| Total vulnerable plugins: #{wp_target.plugin_vulns_count}"
-  puts "| Total vulnerable themes: #{wp_target.theme_vulns_count}"
   puts
 
   if wp_target.has_robots?

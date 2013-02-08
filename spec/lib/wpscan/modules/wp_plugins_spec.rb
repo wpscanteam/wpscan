@@ -194,10 +194,4 @@ shared_examples_for 'WpPlugins' do
     end
   end
 
-  describe '#plugin_vulns_count' do
-    it 'should return the correct number' do
-      xml = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/vulnerabilities/plugin_vulns.xml"
-      @module.plugin_vulns_count(xml).should === 2
-    end
-  end
 end
