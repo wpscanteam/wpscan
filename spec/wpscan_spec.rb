@@ -21,9 +21,16 @@ require 'spec_helper'
 
 describe 'wpscan main checks' do
 
-  it 'check for errors on running the mainscript' do
+  it 'should check for errors on running the mainscript' do
     a = %x[ruby #{ROOT_DIR}/wpscan.rb]
     a.should =~ /\[ERROR\] No argument supplied/
   end
 
+  it 'should check for valid syntax' do
+    Dir.glob("**/*.rb") do |file|
+      res = %x{ruby -c #{file} 2>&1}.split("\n")
+      ok = res.select {|msg| msg =~ /Syntax OK/}
+      fail("Syntax error in #{file}:\n" + res.join("\n")) if ok.size != 1
+    end
+  end
 end
