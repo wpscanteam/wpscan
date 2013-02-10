@@ -28,7 +28,7 @@ describe 'wpscan main checks' do
 
   it 'should check for valid syntax' do
     Dir.glob("**/*.rb") do |file|
-      res = %x{ruby -c #{file} 2>&1}.split("\n")
+      res = %x{ruby -c #{ROOT_DIR}/#{file} 2>&1}.split("\n")
       ok = res.select {|msg| msg =~ /Syntax OK/}
       fail("Syntax error in #{file}:\n" + res.join("\n")) if ok.size != 1
     end
