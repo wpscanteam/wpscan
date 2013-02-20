@@ -25,7 +25,7 @@ if RUBY_VERSION >= '1.9'
   require 'simplecov'
 end
 
-require File.expand_path(File.dirname(__FILE__) + '/../lib/common_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../lib/common/common_helper')
 
 gem 'webmock', '=1.8.11'
 require 'webmock/rspec'

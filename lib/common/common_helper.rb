@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-LIB_DIR              = File.dirname(__FILE__)
+LIB_DIR              = File.expand_path(File.dirname(__FILE__) + '/..')
 ROOT_DIR             = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
 DATA_DIR             = ROOT_DIR + '/data'
 CONF_DIR             = ROOT_DIR + '/conf'
@@ -28,8 +28,8 @@ UPDATER_LIB_DIR      = LIB_DIR + '/updater'
 COMMON_LIB_DIR       = LIB_DIR + '/common'
 LOG_FILE             = ROOT_DIR + '/log.txt'
 # Plugins directories
-COMMON_PLUGINS_DIR    = COMMON_LIB_DIR + '/plugins'
-WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins'
+COMMON_PLUGINS_DIR   = COMMON_LIB_DIR + '/plugins'
+WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins' # Not used ATM
 WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + '/plugins'
 
 # Data files

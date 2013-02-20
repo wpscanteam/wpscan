@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + '/../common_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../common/common_helper')
 
 require_files_from_directory(WPSCAN_LIB_DIR + '/modules')
 require_files_from_directory(WPSCAN_LIB_DIR, '**/*.rb')
