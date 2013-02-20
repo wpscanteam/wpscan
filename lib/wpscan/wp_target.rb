@@ -59,7 +59,7 @@ class WpTarget < WebSite
       else
         response = Browser.instance.get_and_follow_location(login_url)
 
-        if response.body =~ %r{WordPress}i
+        if response.code == 200 && response.body =~ %r{WordPress}i
           wordpress = true
         end
       end

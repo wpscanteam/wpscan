@@ -21,6 +21,7 @@ require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpTarget do
   let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR }
+  let(:target_url) { 'http://example.localhost/' }
 
   before :each do
     Browser.reset
@@ -31,7 +32,7 @@ describe WpTarget do
       wp_content_dir: 'wp-content',
       wp_plugins_dir: 'wp-content/plugins'
     }
-    @wp_target = WpTarget.new('http://example.localhost/', @options)
+    @wp_target = WpTarget.new(target_url, @options)
   end
 
   it_should_behave_like 'WpReadme'
@@ -107,6 +108,16 @@ describe WpTarget do
 
     it 'should return false if both files are not found (404)' do
       @wp_target.should_not be_wordpress
+    end
+
+    context 'when the url contains "wordpress" and is a 404' do
+      let(:target_url) { 'http://lamp/wordpress-3.5./' }
+
+      it 'returns false' do
+        stub_request(:get, @wp_target.login_url).to_return(status: 404, body: 'The requested URL /wordpress-3.5. was not found on this server.')
+
+        @wp_target.should_not be_wordpress
+      end
     end
   end
 
