@@ -166,13 +166,21 @@ class Browser
 
   def get(url, params = {})
     run_request(
-      forge_request(url, params.merge(:method => :get))
+      forge_request(url, params.merge(method: :get))
     )
   end
 
   def post(url, params = {})
     run_request(
-      forge_request(url, params.merge(:method => :post))
+      forge_request(url, params.merge(method: :post))
+    )
+  end
+
+  def get_and_follow_location(url, params = {})
+    params[:max_redirects] ||= 2
+
+    run_request(
+      forge_request(url, params.merge(method: :get, follow_location: true))
     )
   end
 

@@ -61,7 +61,7 @@ class WpVersion < Vulnerable
   # that it is reinstated on upgrade.
   def self.find_from_meta_generator(options)
     target_uri = options[:base_url]
-    response = Browser.instance.get(target_uri.to_s, { follow_location: true, max_redirects: 2 })
+    response = Browser.instance.get_and_follow_location(target_uri.to_s)
 
     response.body[%r{name="generator" content="wordpress #{WpVersion.version_pattern}"}i, 1]
   end
@@ -70,7 +70,7 @@ class WpVersion < Vulnerable
   # the generator tag in the RSS feed source.
   def self.find_from_rss_generator(options)
     target_uri = options[:base_url]
-    response = Browser.instance.get(target_uri.merge('feed/').to_s, { follow_location: true, max_redirects: 2 })
+    response = Browser.instance.get_and_follow_location(target_uri.merge('feed/').to_s)
 
     response.body[%r{<generator>http://wordpress.org/\?v=#{WpVersion.version_pattern}</generator>}i, 1]
   end
@@ -79,7 +79,7 @@ class WpVersion < Vulnerable
   # the generator tag in the RDF feed source.
   def self.find_from_rdf_generator(options)
     target_uri = options[:base_url]
-    response = Browser.instance.get(target_uri.merge('feed/rdf/').to_s, { follow_location: true, max_redirects: 2 })
+    response = Browser.instance.get_and_follow_location(target_uri.merge('feed/rdf/').to_s)
 
     response.body[%r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i, 1]
   end
@@ -90,7 +90,7 @@ class WpVersion < Vulnerable
   # Have not been able to find an example of this - Ryan
   #def self.find_from_rss2_generator(options)
   #  target_uri = options[:base_url]
-  #  response = Browser.instance.get(target_uri.merge('feed/rss/').to_s, {:follow_location => true, :max_redirects => 2})
+  #  response = Browser.instance.get_and_follow_location(target_uri.merge('feed/rss/').to_s)
   #
   #  response.body[%r{<generator>http://wordpress.org/?v=(#{WpVersion.version_pattern})</generator>}i, 1]
   #end
@@ -99,7 +99,7 @@ class WpVersion < Vulnerable
   # the generator tag in the Atom source.
   def self.find_from_atom_generator(options)
     target_uri = options[:base_url]
-    response = Browser.instance.get(target_uri.merge('feed/atom/').to_s, { follow_location: true, max_redirects: 2 })
+    response = Browser.instance.get_and_follow_location(target_uri.merge('feed/atom/').to_s)
 
     response.body[%r{<generator uri="http://wordpress.org/" version="#{WpVersion.version_pattern}">WordPress</generator>}i, 1]
   end
@@ -110,7 +110,7 @@ class WpVersion < Vulnerable
   # Have not been able to find an example of this - Ryan
   #def self.find_from_comments_rss_generator(options)
   #  target_uri = options[:base_url]
-  #  response = Browser.instance.get(target_uri.merge('comments/feed/').to_s, {:follow_location => true, :max_redirects => 2})
+  #  response = Browser.instance.get_and_follow_location(target_uri.merge('comments/feed/').to_s)
   #
   #  response.body[%r{<!-- generator="WordPress/#{WpVersion.version_pattern}" -->}i, 1]
   #end

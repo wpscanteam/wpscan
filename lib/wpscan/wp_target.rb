@@ -47,26 +47,17 @@ class WpTarget < WebSite
   def wordpress?
     wordpress = false
 
-    response = Browser.instance.get(
-      @uri.to_s,
-      { follow_location: true, max_redirects: 2 }
-    )
+    response = Browser.instance.get_and_follow_location(@uri.to_s)
 
     if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
       wordpress = true
     else
-      response = Browser.instance.get(
-        xml_rpc_url,
-        { follow_location: true, max_redirects: 2 }
-      )
+      response = Browser.instance.get_and_follow_location(xml_rpc_url)
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
         wordpress = true
       else
-        response = Browser.instance.get(
-          login_url,
-          { follow_location: true, max_redirects: 2 }
-        )
+        response = Browser.instance.get_and_follow_location(login_url)
 
         if response.body =~ %r{WordPress}i
           wordpress = true
