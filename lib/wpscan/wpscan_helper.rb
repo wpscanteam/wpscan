@@ -19,6 +19,7 @@
 
 require File.expand_path(File.dirname(__FILE__) + '/../common_helper')
 
+require_files_from_directory(WPSCAN_LIB_DIR + '/modules')
 require_files_from_directory(WPSCAN_LIB_DIR, '**/*.rb')
 
 # wpscan usage

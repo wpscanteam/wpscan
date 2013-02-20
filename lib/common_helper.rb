@@ -28,7 +28,7 @@ UPDATER_LIB_DIR      = LIB_DIR + '/updater'
 COMMON_LIB_DIR       = LIB_DIR + '/common'
 LOG_FILE             = ROOT_DIR + '/log.txt'
 # Plugins directories
-COMON_PLUGINS_DIR    = COMMON_LIB_DIR + '/plugins'
+COMMON_PLUGINS_DIR    = COMMON_LIB_DIR + '/plugins'
 WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins'
 WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + '/plugins'
 
@@ -48,18 +48,22 @@ LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 
 WPSCAN_VERSION       = '2.0'
 
-require "#{LIB_DIR}/environment"
+$LOAD_PATH.unshift(LIB_DIR)
+
+require 'environment'
 
 # TODO : add an exclude pattern ?
 def require_files_from_directory(absolute_dir_path, files_pattern = '*.rb')
-  Dir[File.join(absolute_dir_path, files_pattern)].sort.each do |f|
+  files = Dir[File.join(absolute_dir_path, files_pattern)]
+
+  # Files in the root dir are loaded first, then thoses in the subdirectories
+  files.sort_by { |file| [file.count("/"), file] }.each do |f|
     f = File.expand_path(f)
-    require f
     #puts "require #{f}" # Used for debug
+    require f
   end
 end
 
-#require_files_from_directory(COMMON_LIB_DIR)
 require_files_from_directory(COMMON_LIB_DIR, '**/*.rb')
 
 # Add protocol
