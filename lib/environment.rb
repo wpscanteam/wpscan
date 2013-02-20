@@ -38,8 +38,8 @@ begin
   require 'json'
   require 'nokogiri'
   # Custom libs
-  require 'browser'
-  require 'cache_file_store'
+  require 'common/browser'
+  require 'common/cache_file_store'
   require 'common/custom_option_parser'
 rescue LoadError => e
   puts "[ERROR] #{e}"
