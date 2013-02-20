@@ -60,7 +60,7 @@ module WpUsernames
   end
 
   def get_nickname_from_url(url)
-    resp = Browser.instance.get(url, { follow_location: true, max_redirects: 2 })
+    resp = Browser.instance.get_and_follow_location(url)
     nickname = nil
     if resp.code == 200
       nickname = extract_nickname_from_body(resp.body)

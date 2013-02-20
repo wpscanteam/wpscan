@@ -51,7 +51,7 @@ class CacheFileStore
     end
   end
 
-  def read_entry(key)
+  def get(key)
     entry_file_path = get_entry_file_path(key)
 
     if File.exists?(entry_file_path)
@@ -59,7 +59,7 @@ class CacheFileStore
     end
   end
 
-  def write_entry(key, data_to_store, cache_timeout)
+  def set(key, data_to_store, cache_timeout)
     if cache_timeout > 0
       File.open(get_entry_file_path(key), 'w') do |f|
         f.write(@serializer.dump(data_to_store))

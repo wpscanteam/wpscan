@@ -27,7 +27,7 @@ end
 
 require File.expand_path(File.dirname(__FILE__) + '/../lib/common/common_helper')
 
-gem 'webmock', '=1.8.11'
+#gem 'webmock', '=1.8.11'
 require 'webmock/rspec'
 
 SPEC_DIR                      = ROOT_DIR + '/spec'

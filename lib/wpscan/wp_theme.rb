@@ -74,7 +74,7 @@ class WpTheme < WpItem
 
   # Discover the wordpress theme name by parsing the css link rel
   def self.find_from_css_link(target_uri)
-    response = Browser.instance.get(target_uri.to_s, { follow_location: true, max_redirects: 2 })
+    response = Browser.instance.get_and_follow_location(target_uri.to_s)
 
     # https + domain is optional because of relative links
     matches = %r{(?:https?://[^"']+)?/([^/]+)/themes/([^"']+)/style.css}i.match(response.body)

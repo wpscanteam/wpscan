@@ -48,7 +48,7 @@ class Browser
 
     @hydra = Typhoeus::Hydra.new(
       max_concurrency: @max_threads,
-      timeout: @request_timeout
+      #connecttimeout: @request_timeout
     )
 
     # TODO : add an option for the cache dir instead of using a constant
@@ -56,8 +56,7 @@ class Browser
 
     @cache.clean
 
-    # might be in CacheFileStore
-    setup_cache_handlers
+    #Typhoeus::Config.cache = @cache
   end
 
   private_class_method :new
@@ -146,24 +145,6 @@ class Browser
     end
   end
 
-  def setup_cache_handlers
-    @hydra.cache_setter do |request|
-      @cache.write_entry(
-        Browser.generate_cache_key_from_request(request),
-        request.response,
-        request.cache_timeout
-      )
-    end
-
-    @hydra.cache_getter do |request|
-      @cache.read_entry(
-        Browser.generate_cache_key_from_request(request)
-      ) rescue nil
-    end
-  end
-
-  private :setup_cache_handlers
-
   def get(url, params = {})
     run_request(
       forge_request(url, params.merge(method: :get))
@@ -177,10 +158,10 @@ class Browser
   end
 
   def get_and_follow_location(url, params = {})
-    params[:max_redirects] ||= 2
+    params[:maxredirs] ||= 2
 
     run_request(
-      forge_request(url, params.merge(method: :get, follow_location: true))
+      forge_request(url, params.merge(method: :get, followlocation: true))
     )
   end
 
@@ -208,12 +189,13 @@ class Browser
       end
     end
 
-    unless params.has_key?(:disable_ssl_host_verification)
-      params = params.merge(:disable_ssl_host_verification => true)
+    # TODO : check if it's the default value into ethon. If so, removed the lines from here
+    unless params.has_key?(:ssl_verifyhost)
+      params = params.merge(ssl_verifyhost: 0)
     end
 
-    unless params.has_key?(:disable_ssl_peer_verification)
-      params = params.merge(:disable_ssl_peer_verification => true)
+    unless params.has_key?(:ssl_verifypeer)
+      params = params.merge(ssl_verifypeer: false)
     end
 
     if !params.has_key?(:headers)
@@ -223,9 +205,9 @@ class Browser
     end
 
     # Used to enable the cache system if :cache_timeout > 0
-    unless params.has_key?(:cache_timeout)
-      params = params.merge(:cache_timeout => @cache_timeout)
-    end
+    #unless params.has_key?(:cache_ttl)
+    #  params = params.merge(cache_ttl: @cache_timeout)
+    #end
 
     params
   end
@@ -246,18 +228,5 @@ class Browser
         self.send(:"#{option}=", value)
       end
     end
-  end
-
-  # The Typhoeus::Request.cache_key only hash the url :/
-  # this one will include the params
-  # TODO : include also the method (:get, :post, :any)
-  def self.generate_cache_key_from_request(request)
-    cache_key = request.cache_key
-
-    if request.params
-      cache_key = Digest::SHA1.hexdigest("#{cache_key}-#{request.params.hash}")
-    end
-
-    cache_key
   end
 end

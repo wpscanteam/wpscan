@@ -354,26 +354,6 @@ describe Browser do
     #end
   end
 
-  describe '#Browser.generate_cache_key_from_request' do
-    it '2 requests with the same url, without params must have the same cache_key' do
-
-      url = 'http://example.com'
-      key1 = Browser.generate_cache_key_from_request(@browser.forge_request(url))
-      key2 = Browser.generate_cache_key_from_request(@browser.forge_request(url))
-
-      key1.should === key2
-    end
-
-    it '2 requests with the same url, but with different params should have a different cache_key' do
-
-      url = 'http://example.com'
-      key1 = Browser.generate_cache_key_from_request(@browser.forge_request(url, params: { login: 'master', password: 'it\'s me !' }))
-      key2 = Browser.generate_cache_key_from_request(@browser.forge_request(url))
-
-      key1.should_not == key2
-    end
-  end
-
   describe 'testing caching' do
     it 'should only do 1 request, and retrieve the other one from the cache' do
 

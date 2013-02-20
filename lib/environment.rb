@@ -33,7 +33,6 @@ begin
   require 'rbconfig'
   require 'pp'
   # Third party libs
-  gem 'typhoeus', '=0.4.2'
   require 'typhoeus'
   require 'json'
   require 'nokogiri'

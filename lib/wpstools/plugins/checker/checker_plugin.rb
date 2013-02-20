@@ -63,7 +63,7 @@ class CheckerPlugin < Plugin
       number_of_urls  = urls.size
 
       urls.each do |url|
-        request = browser.forge_request(url, { cache_timeout: 0, follow_location: true })
+        request = browser.forge_request(url, { cache_ttl: 0, followlocation: true })
         request_count += 1
 
         request.on_complete do |response|

@@ -61,17 +61,17 @@ describe CacheFileStore do
     end
   end
 
-  describe '#read_entry (nonexistent entry)' do
+  describe '#get (nonexistent entry)' do
     it 'should return nil' do
-      @cache.read_entry(Digest::SHA1.hexdigest('hello world')).should be_nil
+      @cache.get(Digest::SHA1.hexdigest('hello world')).should be_nil
     end
   end
 
-  describe '#write_entry, #read_entry' do
+  describe '#set, #get' do
 
     after :each do
-      @cache.write_entry(@key, @data, @timeout)
-      @cache.read_entry(@key).should === @expected
+      @cache.set(@key, @data, @timeout)
+      @cache.get(@key).should === @expected
     end
 
     it 'should get the correct entry (string)' do
