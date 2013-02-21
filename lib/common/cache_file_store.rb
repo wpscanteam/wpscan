@@ -68,7 +68,7 @@ class CacheFileStore
   end
 
   def get_entry_file_path(key)
-    @storage_path + '/' + key
+    File::join(@storage_path, key)
   end
 
 end

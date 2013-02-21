@@ -17,6 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
+require 'common/typhoeus_cache'
+
 class Browser
   @@instance = nil
   USER_AGENT_MODES = %w{ static semi-static random }
@@ -51,12 +53,12 @@ class Browser
       #connecttimeout: @request_timeout
     )
 
-    # TODO : add an option for the cache dir instead of using a constant
-    @cache = CacheFileStore.new(CACHE_DIR + '/browser')
+    # TODO : add an argument for the cache dir instead of using a constant
+    @cache = TyphoeusCache.new(CACHE_DIR + '/browser')
 
     @cache.clean
 
-    #Typhoeus::Config.cache = @cache
+    Typhoeus::Config.cache = @cache
   end
 
   private_class_method :new
@@ -199,15 +201,15 @@ class Browser
     end
 
     if !params.has_key?(:headers)
-      params = params.merge(:headers => {'user-agent' => self.user_agent})
+      params = params.merge(:headers => {'ser-agent' => self.user_agent})
     elsif !params[:headers].has_key?('user-agent')
       params[:headers]['user-agent'] = self.user_agent
     end
 
     # Used to enable the cache system if :cache_timeout > 0
-    #unless params.has_key?(:cache_ttl)
-    #  params = params.merge(cache_ttl: @cache_timeout)
-    #end
+    unless params.has_key?(:cache_ttl)
+      params = params.merge(cache_ttl: @cache_timeout)
+    end
 
     params
   end
