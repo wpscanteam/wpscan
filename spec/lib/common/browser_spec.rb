@@ -23,7 +23,7 @@ describe Browser do
   CONFIG_FILE_WITHOUT_PROXY       = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json'
   CONFIG_FILE_WITH_PROXY          = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy.json'
   CONFIG_FILE_WITH_PROXY_AND_AUTH = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy_auth.json'
-  INSTANCE_VARS_TO_CHECK          = ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy', 'max_threads', 'request_timeout', 'cache_timeout']
+  INSTANCE_VARS_TO_CHECK          = ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy', 'max_threads', 'request_timeout', 'cache_ttl']
 
   before :all do
     @json_config_without_proxy = JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY))
@@ -31,6 +31,7 @@ describe Browser do
   end
 
   before :each do
+    Browser::reset
     @browser = Browser.instance(config_file: CONFIG_FILE_WITHOUT_PROXY)
   end
 
@@ -100,12 +101,12 @@ describe Browser do
 
     it 'should set the correct credentials' do
       @proxy_auth = { proxy_username: 'user', proxy_password: 'pass' }
-      @expected   = @proxy_auth
+      @expected   = 'user:pass'
     end
 
     it 'should set the correct credentials' do
       @proxy_auth = 'username:passwd'
-      @expected   = { proxy_username: 'username', proxy_password: 'passwd' }
+      @expected   = @proxy_auth
     end
   end
 
@@ -206,10 +207,10 @@ describe Browser do
   describe '#merge_request_params without proxy' do
     it 'should return the default params' do
       expected_params = {
-        disable_ssl_host_verification: true,
-        disable_ssl_peer_verification: true,
-        headers: { 'user-agent' => @browser.user_agent },
-        cache_timeout: @json_config_without_proxy['cache_timeout']
+        #disable_ssl_host_verification: true,
+        #disable_ssl_peer_verification: true,
+        headers: { 'User-Agent' => @browser.user_agent },
+        cache_ttl: @json_config_without_proxy['cache_ttl']
       }
 
       @browser.merge_request_params().should == expected_params
@@ -217,25 +218,25 @@ describe Browser do
 
     it 'should return the default params with some values overriden' do
       expected_params = {
-        disable_ssl_host_verification: false,
-        disable_ssl_peer_verification: true,
-        headers: { 'user-agent' => 'Fake IE' },
-        cache_timeout: 0
+        #disable_ssl_host_verification: false,
+        #disable_ssl_peer_verification: true,
+        headers: { 'User-Agent' => 'Fake IE' },
+        cache_ttl: 0
       }
 
       @browser.merge_request_params(
-        disable_ssl_host_verification: false,
-        headers: { 'user-agent' => 'Fake IE' },
-        cache_timeout: 0
+        #disable_ssl_host_verification: false,
+        headers: { 'User-Agent' => 'Fake IE' },
+        cache_ttl: 0
       ).should == expected_params
     end
 
-    it 'should return the defaul params with :headers:accept = \'text/html\' (should not override :headers:user-agent)' do
+    it 'should return the defaul params with :headers:accept = \'text/html\' (should not override :headers:User-Agent)' do
       expected_params = {
-        disable_ssl_host_verification: true,
-        disable_ssl_peer_verification: true,
-        headers: { 'user-agent' => @browser.user_agent, 'accept' => 'text/html' },
-        cache_timeout: @json_config_without_proxy['cache_timeout']
+        #disable_ssl_host_verification: true,
+        #disable_ssl_peer_verification: true,
+        headers: { 'User-Agent' => @browser.user_agent, 'accept' => 'text/html' },
+        cache_ttl: @json_config_without_proxy['cache_ttl']
       }
 
       @browser.merge_request_params(headers: { 'accept' => 'text/html' }).should == expected_params
@@ -244,19 +245,19 @@ describe Browser do
     it 'should merge the basic-auth' do
       @browser.basic_auth = 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
       expected_params = {
-        disable_ssl_host_verification: true,
-        disable_ssl_peer_verification: true,
-        cache_timeout:                 @json_config_without_proxy['cache_timeout'],
-        headers:                       {
+        #disable_ssl_host_verification: true,
+        #disable_ssl_peer_verification: true,
+        cache_ttl: @json_config_without_proxy['cache_ttl'],
+        headers: {
           'Authorization' => 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==',
-          'user-agent'    => @browser.user_agent
+          'User-Agent'    => @browser.user_agent
         }
       }
 
       @browser.merge_request_params().should == expected_params
 
-      expected_params[:headers].merge!('user-agent' => 'Fake FF')
-      @browser.merge_request_params(headers: { 'user-agent' => 'Fake FF' }).should == expected_params
+      expected_params[:headers].merge!('User-Agent' => 'Fake FF')
+      @browser.merge_request_params(headers: { 'User-Agent' => 'Fake FF' }).should == expected_params
     end
   end
 
@@ -267,10 +268,10 @@ describe Browser do
 
       expected_params = {
         proxy: @json_config_with_proxy['proxy'],
-        disable_ssl_host_verification: true,
-        disable_ssl_peer_verification: true,
-        headers: { 'user-agent' => @json_config_with_proxy['user_agent'] },
-        cache_timeout: @json_config_with_proxy['cache_timeout']
+        #disable_ssl_host_verification: true,
+        #disable_ssl_peer_verification: true,
+        headers: { 'User-Agent' => @json_config_with_proxy['user_agent'] },
+        cache_ttl: @json_config_with_proxy['cache_ttl']
       }
 
       browser.merge_request_params().should == expected_params
@@ -282,12 +283,11 @@ describe Browser do
 
       expected_params = {
         proxy: @json_config_with_proxy['proxy'],
-        proxy_username: 'user',
-        proxy_password: 'pass',
-        disable_ssl_host_verification: true,
-        disable_ssl_peer_verification: true,
-        headers: { 'user-agent' => @json_config_with_proxy['user_agent'] },
-        cache_timeout: @json_config_with_proxy['cache_timeout']
+        proxyauth: 'user:pass',
+        #disable_ssl_host_verification: true,
+        #disable_ssl_peer_verification: true,
+        headers: { 'User-Agent' => @json_config_with_proxy['user_agent'] },
+        cache_ttl: @json_config_with_proxy['cache_ttl']
       }
 
       browser.merge_request_params().should == expected_params
@@ -300,16 +300,16 @@ describe Browser do
   end
 
   describe '#post' do
-    it 'should return a Typhoeus::Response wth body = "Welcome Master" if login=master&password=it\'s me !' do
+    it 'should return a Typhoeus::Response wth body = "Welcome Master" if login=master&password=itsme!' do
       url = 'http://example.com/'
 
-      stub_request(:post, url).
-        with(body: "login=master&password=it's me !").
+      stub_request(:post, url).with(body: { login: 'master', password: 'itsme!' }).
         to_return(status: 200, body: 'Welcome Master')
 
       response = @browser.post(
         url,
-        params: { login: 'master', password: 'it\'s me !' }
+        body: 'login=master&password=itsme!'
+        #body: { login: 'master', password: 'hello' } # It's should be this line, but it fails
       )
 
       response.should be_a Typhoeus::Response

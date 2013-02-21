@@ -30,7 +30,7 @@ class Browser
     :proxy,
     :proxy_auth,
     :max_threads,
-    :cache_timeout,
+    :cache_ttl,
     :request_timeout,
     :basic_auth
   ]
@@ -113,13 +113,10 @@ class Browser
         if !auth.include?(:proxy_username) or !auth.include?(:proxy_password)
           raise_invalid_proxy_format()
         end
-        @proxy_auth = auth
+        @proxy_auth = auth[:proxy_username] + ':' + auth[:proxy_password]
       elsif auth.is_a?(String)
-        if matches = %r{([^:]+):(.*)}.match(auth)
-          @proxy_auth = {
-            proxy_username: matches[1],
-            proxy_password: matches[2]
-          }
+        if auth.index(':') != nil
+          @proxy_auth = auth
         else
           raise_invalid_proxy_auth_format()
         end
@@ -176,10 +173,10 @@ class Browser
 
   def merge_request_params(params = {})
     if @proxy
-      params = params.merge(:proxy => @proxy)
+      params = params.merge(proxy: @proxy)
 
       if @proxy_auth
-        params = params.merge(@proxy_auth)
+        params = params.merge(proxyauth: @proxy_auth)
       end
     end
 
@@ -191,24 +188,23 @@ class Browser
       end
     end
 
-    # TODO : check if it's the default value into ethon. If so, removed the lines from here
-    unless params.has_key?(:ssl_verifyhost)
-      params = params.merge(ssl_verifyhost: 0)
-    end
+    #unless params.has_key?(:ssl_verifyhost)
+    #  params = params.merge(ssl_verifyhost: 0)
+    #end
 
-    unless params.has_key?(:ssl_verifypeer)
-      params = params.merge(ssl_verifypeer: false)
-    end
+    #unless params.has_key?(:ssl_verifypeer)
+    #  params = params.merge(ssl_verifypeer: 0)
+    #end
 
     if !params.has_key?(:headers)
-      params = params.merge(:headers => {'ser-agent' => self.user_agent})
-    elsif !params[:headers].has_key?('user-agent')
-      params[:headers]['user-agent'] = self.user_agent
+      params = params.merge(:headers => {'User-Agent' => self.user_agent})
+    elsif !params[:headers].has_key?('User-Agent')
+      params[:headers]['User-Agent'] = self.user_agent
     end
 
-    # Used to enable the cache system if :cache_timeout > 0
+    # Used to enable the cache system if :cache_ttl > 0
     unless params.has_key?(:cache_ttl)
-      params = params.merge(cache_ttl: @cache_timeout)
+      params = params.merge(cache_ttl: @cache_ttl)
     end
 
     params

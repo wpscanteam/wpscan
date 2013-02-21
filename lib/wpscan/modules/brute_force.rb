@@ -36,9 +36,10 @@ module BruteForce
       password_found = false
 
       File.open(wordlist_path, 'r').each do |password|
-
         # ignore file comments, but will miss passwords if they start with a hash...
         next if password[0, 1] == '#'
+
+        password.strip!
 
         # keep a count of the amount of requests to be sent
         request_count += 1
@@ -52,8 +53,8 @@ module BruteForce
         request = Browser.instance.forge_request(login_url,
           {
             method: :post,
-            params: { log: URI::encode(username), pwd: URI::encode(password) },
-            cache_timeout: 0
+            body: { log: URI::encode(username), pwd: URI::encode(password) },
+            cache_ttl: 0
           }
         )
 

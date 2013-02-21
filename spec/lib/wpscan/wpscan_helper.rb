@@ -39,9 +39,10 @@ class WpScanModuleSpec
   def initialize(target_url)
     @uri = URI.parse(add_trailing_slash(add_http_protocol(target_url)))
 
+    Browser::reset
     Browser.instance(
       config_file:   SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
-      cache_timeout: 0
+      cache_ttl: 0
     )
   end
 

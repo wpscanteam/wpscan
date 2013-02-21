@@ -23,10 +23,11 @@ module WpConfigBackup
   # See http://www.feross.org/cmsploit/
   # return an array of backup config files url
   def config_backup
-    found = []
-    backups = WpConfigBackup.config_backup_files
-    browser = Browser.instance
-    hydra = browser.hydra
+    found       = []
+    backups     = WpConfigBackup.config_backup_files
+    browser     = Browser.instance
+    hydra       = browser.hydra
+    queue_count = 0
 
     backups.each do |file|
       file_url = @uri.merge(URI.escape(file)).to_s
@@ -39,6 +40,12 @@ module WpConfigBackup
       end
 
       hydra.queue(request)
+      queue_count += 1
+
+      if queue_count == browser.max_threads
+        hydra.run
+        queue_count = 0
+      end
     end
 
     hydra.run

@@ -34,8 +34,7 @@ shared_examples_for 'WpConfigBackup' do
       @config_backup_files.each do |backup_file|
         file_url = @module.uri.merge(URI.escape(backup_file)).to_s
 
-        stub_request(:get, file_url).
-            to_return(status: 404, body: '')
+        stub_request(:get, file_url).to_return(status: 404)
       end
     end
 
@@ -50,8 +49,7 @@ shared_examples_for 'WpConfigBackup' do
         file_url = @module.uri.merge(URI.escape(backup_file)).to_s
         expected << file_url
 
-        stub_request(:get, file_url).
-            to_return(status: 200, body: File.new(@fixtures_dir + '/wp-config.php'))
+        stub_request_to_fixture(url: file_url, fixture: @fixtures_dir + '/wp-config.php')
       end
 
       wp_config_backup = @module.config_backup
@@ -67,8 +65,7 @@ shared_examples_for 'WpConfigBackup' do
         file_url = @module.uri.merge(URI.escape(backup_file)).to_s
         expected << file_url
 
-        stub_request(:get, file_url).
-            to_return(status: 200, body: File.new(@fixtures_dir + '/wp-config.php'))
+        stub_request_to_fixture(url: file_url, fixture: @fixtures_dir + '/wp-config.php')
       end
 
       wp_config_backup = @module.config_backup

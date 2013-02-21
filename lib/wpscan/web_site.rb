@@ -48,12 +48,14 @@ class WebSite
 
   def xml_rpc_url
     unless @xmlrpc_url
-      headers = Browser.instance.get(@uri.to_s).headers_hash
-      value = headers['x-pingback']
-      if value.nil? or value.empty?
-        @xmlrpc_url = nil
-      else
-        @xmlrpc_url = value
+      headers     = Browser.instance.get(@uri.to_s).headers_hash
+      @xmlrpc_url = nil
+
+      unless headers.nil?
+        value = headers['X-Pingback']
+        unless value.nil? && value.empty?
+          @xmlrpc_url = value
+        end
       end
     end
     @xmlrpc_url

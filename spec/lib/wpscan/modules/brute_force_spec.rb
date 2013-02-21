@@ -48,26 +48,29 @@ shared_examples_for 'BruteForce' do
         passwords << password.strip unless password.strip[0, 1] == '#'
       end
       # Last status must be 302 to get full code coverage
-      passwords.each do |_|
-        stub_request(:any, @module.login_url).to_return(
-          { status: 200, body: 'login_error' },
-          { status: 0,   body: 'no reponse' },
-          { status: 50,  body: 'server error' },
-          { status: 999, body: 'invalid' },
-          { status: 302, body: 'FOUND!' }
-        )
+      passwords.each do |password|
+        stub_request(:post, @module.login_url).
+          to_return(
+            { status: 200, body: 'login_error' },
+            { status: 0,   body: 'no reponse' },
+            { status: 500, body: 'server error' },
+            { status: 999, body: 'invalid' },
+            { status: 302, body: 'FOUND!' }
+          )
       end
 
-      user = WpUser.new('admin', 1, nil)
+      user   = WpUser.new('admin', 1, nil)
       result = @module.brute_force([user], @wordlist)
+
       result.length.should == 1
       result.should === [{ name: 'admin', password: 'root' }]
     end
 
     it 'should cover the timeout branch and return an empty array' do
-      stub_request(:any, @module.login_url).to_timeout
-      user = WpUser.new('admin', 1, nil)
-      result = @module.brute_force([user], @wordlist)
+      stub_request(:post, @module.login_url).to_timeout
+
+      user          = WpUser.new('admin', 1, nil)
+      result        = @module.brute_force([user], @wordlist)
       result.should == []
     end
   end
