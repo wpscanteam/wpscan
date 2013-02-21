@@ -55,7 +55,7 @@ class WpEnumerator
     targets.each do |target|
       url = target.get_full_url
 
-      request = enum_browser.forge_request(url, { cache_ttl: 0, followlocation: true })
+      request = enum_browser.forge_request(url, cache_ttl: 0, followlocation: true)
       request_count += 1
 
       request.on_complete do |response|

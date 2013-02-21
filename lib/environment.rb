@@ -20,6 +20,7 @@
 begin
   # Standard libs
   require 'rubygems'
+  require 'bundler/setup'
   require 'getoptlong'
   require 'optparse' # Will replace getoptlong
   require 'uri'
@@ -33,6 +34,7 @@ begin
   require 'rbconfig'
   require 'pp'
   # Third party libs
+  #gem 'typhoeus', :git => "https://github.com/typhoeus/typhoeus.git"
   require 'typhoeus'
   require 'json'
   require 'nokogiri'

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "typhoeus", "~>0.6.1"
+gem "typhoeus", :git => "https://github.com/typhoeus/typhoeus.git"
 gem "nokogiri"
 gem "json"
 
