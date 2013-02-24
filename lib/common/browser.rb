@@ -137,7 +137,11 @@ class Browser
   def load_config(config_file = nil)
     @config_file = config_file || @config_file
 
-    data = JSON.parse(File.read(@config_file))
+    if File.symlink?(@config_file)
+      raise "[ERROR] #{config_file} is a symlink."
+    else
+      data = JSON.parse(File.read(@config_file))
+    end
 
     ACCESSOR_OPTIONS.each do |option|
       option_name = option.to_s

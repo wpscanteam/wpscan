@@ -200,7 +200,14 @@ describe Browser do
 
   # TODO
   describe '#load_config' do
-
+    it 'should raise an error if file is a symlink' do
+      symlink = './rspec_symlink'
+      browser = Browser.instance
+      
+      File.symlink('./testfile', symlink)
+      expect { browser.load_config(symlink) }.to raise_error
+      File.unlink(symlink)
+    end
   end
 
   describe '#merge_request_params without proxy' do
