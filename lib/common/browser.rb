@@ -138,7 +138,7 @@ class Browser
     @config_file = config_file || @config_file
 
     if File.symlink?(@config_file)
-      raise "[ERROR] #{config_file} is a symlink."
+      raise "[ERROR] Config file is a symlink."
     else
       data = JSON.parse(File.read(@config_file))
     end

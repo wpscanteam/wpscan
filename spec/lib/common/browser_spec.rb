@@ -205,7 +205,7 @@ describe Browser do
       browser = Browser.instance
       
       File.symlink('./testfile', symlink)
-      expect { browser.load_config(symlink) }.to raise_error
+      expect { browser.load_config(symlink) }.to raise_error("[ERROR] Config file is a symlink.")
       File.unlink(symlink)
     end
   end
