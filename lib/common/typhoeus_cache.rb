@@ -19,14 +19,26 @@
 
 require 'common/cache_file_store'
 
+# Implementaion of a cache_key (Request:hash cannot be used as such)
+# See https://github.com/typhoeus/typhoeus/issues/277
+module Typhoeus
+  class Request
+    module Cacheable
+      def cache_key
+        Digest::SHA2.hexdigest("#{url}-#{options[:body]}-#{options[:method]}")
+      end
+    end
+  end
+end
+
 class TyphoeusCache < CacheFileStore
 
   def get(request)
-    read_entry(request.hash.to_s)
+    read_entry(request.cache_key)
   end
 
   def set(request, response)
-    write_entry(request.hash.to_s, response, request.cache_ttl)
+    write_entry(request.cache_key, response, request.cache_ttl)
   end
 
 end
