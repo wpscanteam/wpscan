@@ -79,17 +79,43 @@ describe 'WebSite' do
   end
 
   describe '#xml_rpc_url' do
-    it 'should return the correct url : http://example.localhost/xmlrpc.php' do
-      xmlrpc = 'http://example.localhost/xmlrpc.php'
-      stub_request(:get, web_site.url).
-        to_return(status: 200, headers: { 'X-Pingback' => xmlrpc })
+    context 'when the x-pingback is' do
 
-      web_site.xml_rpc_url.should === xmlrpc
-    end
+      context 'correctly supplied' do
+        it 'returns the url in the header : http://example.localhost/xmlrpc.php' do
+          xmlrpc = 'http://example.localhost/xmlrpc.php'
+          stub_request(:get, web_site.url).
+            to_return(status: 200, headers: { 'X-Pingback' => xmlrpc })
 
-    it 'should return nil' do
-      stub_request(:get, web_site.url).to_return(status: 200)
-      web_site.xml_rpc_url.should be_nil
+          web_site.xml_rpc_url.should === xmlrpc
+        end
+      end
+
+      context 'not supplied' do
+        it 'returns nil' do
+          stub_request(:get, web_site.url).to_return(status: 200)
+          web_site.xml_rpc_url.should be_nil
+        end
+
+        context 'but there is another header field' do
+          it 'returns nil' do
+            stub_request(:get, web_site.url).
+              to_return(status:200, headers: { 'another-field' => 'which we do not care' })
+
+            web_site.xml_rpc_url.should be_nil
+          end
+        end
+      end
+
+      context 'empty' do
+        it 'returns nil' do
+          stub_request(:get, web_site.url).
+            to_return(status: 200, headers: { 'X-Pingback' => '' })
+
+          web_site.xml_rpc_url.should be_nil
+        end
+      end
+
     end
   end
 
