@@ -19,8 +19,7 @@
 
 require 'common/cache_file_store'
 
-# Implementaion of a cache_key (Request:hash cannot be used as such)
-# See https://github.com/typhoeus/typhoeus/issues/277
+# Implementaion of a cache_key (Typhoeus::Request#hash has too many options)
 module Typhoeus
   class Request
     module Cacheable
