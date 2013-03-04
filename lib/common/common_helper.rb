@@ -46,7 +46,7 @@ VULNS_XSD           = DATA_DIR + '/vuln.xsd'
 WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
 LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 
-WPSCAN_VERSION       = '2.0'
+WPSCAN_VERSION       = '2.1'
 
 $LOAD_PATH.unshift(LIB_DIR)
 
