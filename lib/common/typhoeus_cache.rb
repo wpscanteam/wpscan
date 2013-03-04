@@ -24,7 +24,7 @@ module Typhoeus
   class Request
     module Cacheable
       def cache_key
-        Digest::SHA2.hexdigest("#{url}-#{options[:body]}-#{options[:method]}")
+        Digest::SHA2.hexdigest("#{url}-#{options[:body]}-#{options[:method]}")[0..32]
       end
     end
   end
