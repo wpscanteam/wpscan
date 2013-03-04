@@ -53,7 +53,7 @@ class WebSite
 
       unless headers.nil?
         value = headers['X-Pingback']
-        unless value.nil? && value.empty?
+        if value && !value.empty?
           @xmlrpc_url = value
         end
       end
