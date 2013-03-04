@@ -20,6 +20,7 @@
 begin
   # Standard libs
   require 'rubygems'
+  require 'bundler/setup'
   require 'getoptlong'
   require 'optparse' # Will replace getoptlong
   require 'uri'
@@ -33,13 +34,11 @@ begin
   require 'rbconfig'
   require 'pp'
   # Third party libs
-  gem 'typhoeus', '=0.4.2'
   require 'typhoeus'
   require 'json'
   require 'nokogiri'
   # Custom libs
   require 'common/browser'
-  require 'common/cache_file_store'
   require 'common/custom_option_parser'
 rescue LoadError => e
   puts "[ERROR] #{e}"

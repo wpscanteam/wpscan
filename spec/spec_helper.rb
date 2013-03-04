@@ -20,15 +20,11 @@
 # https://github.com/bblimke/webmock
 # https://github.com/colszowka/simplecov
 
-# Code Coverage (only works with ruby >= 1.9)
-if RUBY_VERSION >= '1.9'
-  require 'simplecov'
-end
-
 require File.expand_path(File.dirname(__FILE__) + '/../lib/common/common_helper')
 
-gem 'webmock', '=1.8.11'
 require 'webmock/rspec'
+# Code Coverage (only works with ruby >= 1.9)
+require 'simplecov' if RUBY_VERSION >= '1.9'
 
 SPEC_DIR                      = ROOT_DIR + '/spec'
 SPEC_LIB_DIR                  = SPEC_DIR + '/lib'

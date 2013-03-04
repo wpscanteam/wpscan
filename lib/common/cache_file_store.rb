@@ -59,8 +59,8 @@ class CacheFileStore
     end
   end
 
-  def write_entry(key, data_to_store, cache_timeout)
-    if cache_timeout > 0
+  def write_entry(key, data_to_store, cache_ttl)
+    if cache_ttl > 0
       File.open(get_entry_file_path(key), 'w') do |f|
         f.write(@serializer.dump(data_to_store))
       end
@@ -68,7 +68,7 @@ class CacheFileStore
   end
 
   def get_entry_file_path(key)
-    @storage_path + '/' + key
+    File::join(@storage_path, key)
   end
 
 end

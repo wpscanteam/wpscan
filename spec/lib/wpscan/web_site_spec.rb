@@ -21,6 +21,14 @@ describe 'WebSite' do
   let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WEB_SITE_DIR }
   subject(:web_site) { WebSite.new('http://example.localhost/') }
 
+  before :all do
+    Browser::reset
+    Browser.instance(
+      config_file: SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
+      cache_ttl: 0
+    )
+  end
+
   describe "#new" do
     its(:url) { should  === 'http://example.localhost/' }
   end
@@ -74,7 +82,7 @@ describe 'WebSite' do
     it 'should return the correct url : http://example.localhost/xmlrpc.php' do
       xmlrpc = 'http://example.localhost/xmlrpc.php'
       stub_request(:get, web_site.url).
-        to_return(status: 200, body: '', headers: { 'X-Pingback' => xmlrpc})
+        to_return(status: 200, headers: { 'X-Pingback' => xmlrpc })
 
       web_site.xml_rpc_url.should === xmlrpc
     end
@@ -88,7 +96,7 @@ describe 'WebSite' do
   describe '#has_xml_rpc?' do
     it 'should return true' do
       stub_request(:get, web_site.url).
-        to_return(status: 200, body: '', headers: { 'X-Pingback' => 'xmlrpc'})
+        to_return(status: 200, headers: { 'X-Pingback' => 'xmlrpc' })
 
       web_site.should have_xml_rpc
     end

@@ -24,11 +24,11 @@ describe WpTarget do
   let(:target_url) { 'http://example.localhost/' }
 
   before :each do
-    Browser.reset
+    Browser::reset
     @options =
     {
       config_file:    SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
-      cache_timeout:  0,
+      cache_ttl:      0,
       wp_content_dir: 'wp-content',
       wp_plugins_dir: 'wp-content/plugins'
     }

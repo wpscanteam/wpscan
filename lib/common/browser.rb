@@ -17,6 +17,8 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
+require 'common/typhoeus_cache'
+
 class Browser
   @@instance = nil
   USER_AGENT_MODES = %w{ static semi-static random }
@@ -28,7 +30,7 @@ class Browser
     :proxy,
     :proxy_auth,
     :max_threads,
-    :cache_timeout,
+    :cache_ttl,
     :request_timeout,
     :basic_auth
   ]
@@ -48,16 +50,15 @@ class Browser
 
     @hydra = Typhoeus::Hydra.new(
       max_concurrency: @max_threads,
-      timeout: @request_timeout
+      #connecttimeout: @request_timeout
     )
 
-    # TODO : add an option for the cache dir instead of using a constant
-    @cache = CacheFileStore.new(CACHE_DIR + '/browser')
+    # TODO : add an argument for the cache dir instead of using a constant
+    @cache = TyphoeusCache.new(CACHE_DIR + '/browser')
 
     @cache.clean
 
-    # might be in CacheFileStore
-    setup_cache_handlers
+    Typhoeus::Config.cache = @cache
   end
 
   private_class_method :new
@@ -112,13 +113,10 @@ class Browser
         if !auth.include?(:proxy_username) or !auth.include?(:proxy_password)
           raise_invalid_proxy_format()
         end
-        @proxy_auth = auth
+        @proxy_auth = auth[:proxy_username] + ':' + auth[:proxy_password]
       elsif auth.is_a?(String)
-        if matches = %r{([^:]+):(.*)}.match(auth)
-          @proxy_auth = {
-            proxy_username: matches[1],
-            proxy_password: matches[2]
-          }
+        if auth.index(':') != nil
+          @proxy_auth = auth
         else
           raise_invalid_proxy_auth_format()
         end
@@ -150,24 +148,6 @@ class Browser
     end
   end
 
-  def setup_cache_handlers
-    @hydra.cache_setter do |request|
-      @cache.write_entry(
-        Browser.generate_cache_key_from_request(request),
-        request.response,
-        request.cache_timeout
-      )
-    end
-
-    @hydra.cache_getter do |request|
-      @cache.read_entry(
-        Browser.generate_cache_key_from_request(request)
-      ) rescue nil
-    end
-  end
-
-  private :setup_cache_handlers
-
   def get(url, params = {})
     run_request(
       forge_request(url, params.merge(method: :get))
@@ -181,10 +161,10 @@ class Browser
   end
 
   def get_and_follow_location(url, params = {})
-    params[:max_redirects] ||= 2
+    params[:maxredirs] ||= 2
 
     run_request(
-      forge_request(url, params.merge(method: :get, follow_location: true))
+      forge_request(url, params.merge(method: :get, followlocation: true))
     )
   end
 
@@ -197,10 +177,10 @@ class Browser
 
   def merge_request_params(params = {})
     if @proxy
-      params = params.merge(:proxy => @proxy)
+      params = params.merge(proxy: @proxy)
 
       if @proxy_auth
-        params = params.merge(@proxy_auth)
+        params = params.merge(proxyauth: @proxy_auth)
       end
     end
 
@@ -212,23 +192,23 @@ class Browser
       end
     end
 
-    unless params.has_key?(:disable_ssl_host_verification)
-      params = params.merge(:disable_ssl_host_verification => true)
-    end
+    #unless params.has_key?(:ssl_verifyhost)
+    #  params = params.merge(ssl_verifyhost: 0)
+    #end
 
-    unless params.has_key?(:disable_ssl_peer_verification)
-      params = params.merge(:disable_ssl_peer_verification => true)
-    end
+    #unless params.has_key?(:ssl_verifypeer)
+    #  params = params.merge(ssl_verifypeer: 0)
+    #end
 
     if !params.has_key?(:headers)
-      params = params.merge(:headers => {'user-agent' => self.user_agent})
-    elsif !params[:headers].has_key?('user-agent')
-      params[:headers]['user-agent'] = self.user_agent
+      params = params.merge(:headers => {'User-Agent' => self.user_agent})
+    elsif !params[:headers].has_key?('User-Agent')
+      params[:headers]['User-Agent'] = self.user_agent
     end
 
-    # Used to enable the cache system if :cache_timeout > 0
-    unless params.has_key?(:cache_timeout)
-      params = params.merge(:cache_timeout => @cache_timeout)
+    # Used to enable the cache system if :cache_ttl > 0
+    unless params.has_key?(:cache_ttl)
+      params = params.merge(cache_ttl: @cache_ttl)
     end
 
     params
@@ -250,18 +230,5 @@ class Browser
         self.send(:"#{option}=", value)
       end
     end
-  end
-
-  # The Typhoeus::Request.cache_key only hash the url :/
-  # this one will include the params
-  # TODO : include also the method (:get, :post, :any)
-  def self.generate_cache_key_from_request(request)
-    cache_key = request.cache_key
-
-    if request.params
-      cache_key = Digest::SHA1.hexdigest("#{cache_key}-#{request.params.hash}")
-    end
-
-    cache_key
   end
 end
