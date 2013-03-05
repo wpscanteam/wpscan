@@ -46,19 +46,31 @@ class WebSite
     !xml_rpc_url.nil?
   end
 
+  # See http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3
   def xml_rpc_url
     unless @xmlrpc_url
-      headers     = Browser.instance.get(@uri.to_s).headers_hash
-      @xmlrpc_url = nil
-
-      unless headers.nil?
-        pingback_url = headers['X-Pingback']
-        unless pingback_url.nil? || pingback_url.empty?
-          @xmlrpc_url = pingback_url
-        end
-      end
+      @xmlrpc_url = xml_rpc_url_from_headers() || xml_rpc_url_from_body()
     end
     @xmlrpc_url
+  end
+
+  def xml_rpc_url_from_headers
+    headers    = Browser.instance.get(@uri.to_s).headers_hash
+    xmlrpc_url = nil
+
+    unless headers.nil?
+      pingback_url = headers['X-Pingback']
+      unless pingback_url.nil? || pingback_url.empty?
+        xmlrpc_url = pingback_url
+      end
+    end
+    xmlrpc_url
+  end
+
+  def xml_rpc_url_from_body
+    body = Browser.instance.get(@uri.to_s).body
+
+    body[%r{<link rel="pingback" href="([^"]+)" ?\/?>}, 1]
   end
 
   # See if the remote url returns 30x redirect

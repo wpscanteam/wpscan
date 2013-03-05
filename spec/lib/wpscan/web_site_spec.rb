@@ -78,7 +78,7 @@ describe 'WebSite' do
     end
   end
 
-  describe '#xml_rpc_url' do
+  describe '#xml_rpc_url_from_headers' do
     context 'when the x-pingback is' do
 
       context 'correctly supplied' do
@@ -87,14 +87,14 @@ describe 'WebSite' do
           stub_request(:get, web_site.url).
             to_return(status: 200, headers: { 'X-Pingback' => xmlrpc })
 
-          web_site.xml_rpc_url.should === xmlrpc
+          web_site.xml_rpc_url_from_headers.should === xmlrpc
         end
       end
 
       context 'not supplied' do
         it 'returns nil' do
           stub_request(:get, web_site.url).to_return(status: 200)
-          web_site.xml_rpc_url.should be_nil
+          web_site.xml_rpc_url_from_headers.should be_nil
         end
 
         context 'but there is another header field' do
@@ -102,7 +102,7 @@ describe 'WebSite' do
             stub_request(:get, web_site.url).
               to_return(status:200, headers: { 'another-field' => 'which we do not care' })
 
-            web_site.xml_rpc_url.should be_nil
+            web_site.xml_rpc_url_from_headers.should be_nil
           end
         end
       end
@@ -112,10 +112,64 @@ describe 'WebSite' do
           stub_request(:get, web_site.url).
             to_return(status: 200, headers: { 'X-Pingback' => '' })
 
-          web_site.xml_rpc_url.should be_nil
+          web_site.xml_rpc_url_from_headers.should be_nil
         end
       end
 
+    end
+  end
+
+  describe '#xml_rpc_url_from_body' do
+    context 'when the pattern does not match' do
+      it 'returns nil' do
+        stub_request_to_fixture(url: web_site.url, fixture: fixtures_dir + '/xml_rpc_url/body_dont_match.html')
+
+        web_site.xml_rpc_url_from_body.should be_nil
+      end
+    end
+
+    context 'when the pattern match' do
+      it 'return the url' do
+        stub_request_to_fixture(url: web_site.url, fixture: fixtures_dir + '/xml_rpc_url/body_match.html')
+
+        web_site.xml_rpc_url_from_body.should == 'http://lamp/wordpress-3.5.1/xmlrpc.php'
+      end
+    end
+  end
+
+  describe '#xml_rpc_url' do
+    after :each do
+      web_site.xml_rpc_url.should === xmlrpc_url
+    end
+
+    context 'when found in the headers' do
+      let(:xmlrpc_url) { 'http://from-headers.localhost/xmlrpc.php' }
+
+      it 'returns the url' do
+        web_site.stub(xml_rpc_url_from_headers: xmlrpc_url)
+      end
+    end
+
+    context 'when found in the body' do
+      let(:xmlrpc_url) { 'http://from-body.localhost/xmlrpc.php' }
+
+      it 'returns the url' do
+        web_site.stub(
+          xml_rpc_url_from_headers: nil,
+          xml_rpc_url_from_body: xmlrpc_url
+        )
+      end
+    end
+
+    context 'when not found' do
+      let(:xmlrpc_url) { nil }
+
+      it 'returns nil' do
+        web_site.stub(
+          xml_rpc_url_from_headers: nil,
+          xml_rpc_url_from_body: nil
+        )
+      end
     end
   end
 
