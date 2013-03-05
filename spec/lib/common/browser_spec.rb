@@ -84,29 +84,54 @@ describe Browser do
       end
     end
 
-    it 'should raise an error if the format is not correct' do
-      @proxy_auth  = 'invaludauthformat'
-      @raise_error = true
-    end
+    context 'when the auth supplied is' do
 
-    it 'should raise an error if the hash does not contain :proxy_username and :proxy_password' do
-      @proxy_auth  = { proxy_password: 'hello' }
-      @raise_error = true
-    end
+      context 'not a String or a Hash' do
+        it 'raises an error' do
+          @proxy_auth  = 10
+          @raise_error = true
+        end
+      end
 
-    it 'should raise an error if the auth if not a string or a hash' do
-      @proxy_auth  = 10
-      @raise_error = true
-    end
+      context 'a String with' do
+        context 'invalid format' do
+          it 'raises an error' do
+            @proxy_auth  = 'invaludauthformat'
+            @raise_error = true
+          end
+        end
 
-    it 'should set the correct credentials' do
-      @proxy_auth = { proxy_username: 'user', proxy_password: 'pass' }
-      @expected   = 'user:pass'
-    end
+        context 'valid format' do
+           it 'sets the auth' do
+            @proxy_auth = 'username:passwd'
+            @expected   = @proxy_auth
+          end
+        end
+      end
 
-    it 'should set the correct credentials' do
-      @proxy_auth = 'username:passwd'
-      @expected   = @proxy_auth
+      context 'a Hash with' do
+        context 'only :proxy_username' do
+          it 'raises an error' do
+            @proxy_auth  = { proxy_username: 'username' }
+            @raise_error = true
+          end
+        end
+
+        context 'only :proxy_password' do
+          it 'raises an error' do
+            @proxy_auth  = { proxy_password: 'hello' }
+            @raise_error = true
+          end
+        end
+
+        context ':proxy_username and :proxy_password' do
+          it 'sets the auth' do
+            @proxy_auth = { proxy_username: 'user', proxy_password: 'pass' }
+            @expected   = 'user:pass'
+          end
+        end
+      end
+
     end
   end
 
@@ -204,7 +229,7 @@ describe Browser do
     it 'should raise an error if file is a symlink' do
       symlink = './rspec_symlink'
       browser = Browser.instance
-      
+
       File.symlink('./testfile', symlink)
       expect { browser.load_config(symlink) }.to raise_error("[ERROR] Config file is a symlink.")
       File.unlink(symlink)

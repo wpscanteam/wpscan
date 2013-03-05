@@ -109,25 +109,18 @@ class Browser
 
   def proxy_auth=(auth)
     unless auth.nil?
-      if auth.is_a?(Hash)
-        if !auth.include?(:proxy_username) or !auth.include?(:proxy_password)
-          raise_invalid_proxy_format()
-        end
+      if auth.is_a?(Hash) && auth.include?(:proxy_username) && auth.include?(:proxy_password)
         @proxy_auth = auth[:proxy_username] + ':' + auth[:proxy_password]
-      elsif auth.is_a?(String)
-        if auth.index(':') != nil
-          @proxy_auth = auth
-        else
-          raise_invalid_proxy_auth_format()
-        end
+      elsif auth.is_a?(String) && auth.index(':') != nil
+        @proxy_auth = auth
       else
-        raise_invalid_proxy_auth_format()
+        raise invalid_proxy_auth_format
       end
     end
   end
 
-  def raise_invalid_proxy_auth_format
-    raise 'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'
+  def invalid_proxy_auth_format
+    'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'
   end
 
   # TODO reload hydra (if the .load_config is called on a browser object,
