@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require File.expand_path(File.dirname(__FILE__) + '/updater')
+require 'common/updater/updater'
 
 class GitUpdater < Updater
 

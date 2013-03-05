@@ -17,7 +17,7 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require "#{WPSCAN_LIB_DIR}/vulnerable"
+require "wpscan/vulnerable"
 
 class WpItem < Vulnerable
   attr_reader :base_url, :path, :wp_content_dir, :name, :vulns_file, :vulns_xpath, :wp_plugins_dir, :type
