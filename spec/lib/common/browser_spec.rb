@@ -236,94 +236,98 @@ describe Browser do
     end
   end
 
-  describe '#merge_request_params without proxy' do
-    it 'should return the default params' do
-      expected_params = {
-        #disable_ssl_host_verification: true,
-        #disable_ssl_peer_verification: true,
-        headers: { 'User-Agent' => @browser.user_agent },
-        cache_ttl: @json_config_without_proxy['cache_ttl']
-      }
-
-      @browser.merge_request_params().should == expected_params
+  describe '#append_params_header_field' do
+    after :each do
+      Browser.append_params_header_field(
+        @params,
+        @field,
+        @field_value
+      ).should === @expected
     end
 
-    it 'should return the default params with some values overriden' do
-      expected_params = {
-        #disable_ssl_host_verification: false,
-        #disable_ssl_peer_verification: true,
-        headers: { 'User-Agent' => 'Fake IE' },
-        cache_ttl: 0
-      }
-
-      @browser.merge_request_params(
-        #disable_ssl_host_verification: false,
-        headers: { 'User-Agent' => 'Fake IE' },
-        cache_ttl: 0
-      ).should == expected_params
+    context 'when there is no headers' do
+      it 'create the header and set the field' do
+        @params      = { somekey: 'somevalue' }
+        @field       = 'User-Agent'
+        @field_value = 'FakeOne'
+        @expected    = { somekey: 'somevalue', headers: { 'User-Agent' => 'FakeOne' } }
+      end
     end
 
-    it 'should return the defaul params with :headers:accept = \'text/html\' (should not override :headers:User-Agent)' do
-      expected_params = {
-        #disable_ssl_host_verification: true,
-        #disable_ssl_peer_verification: true,
-        headers: { 'User-Agent' => @browser.user_agent, 'accept' => 'text/html' },
-        cache_ttl: @json_config_without_proxy['cache_ttl']
-      }
+    context 'when there are headers' do
+      context 'when the field already exists' do
+        it 'does not replace it' do
+          @params      = { somekey: 'somevalue', headers: { 'Location' => 'SomeLocation' } }
+          @field       = 'Location'
+          @field_value = 'AnotherLocation'
+          @expected    = @params
+        end
+      end
 
-      @browser.merge_request_params(headers: { 'accept' => 'text/html' }).should == expected_params
+      context 'when the field is not present' do
+        it 'sets the field' do
+          @params      = { somekey: 'somevalue', headers: { 'Auth' => 'user:pass' } }
+          @field       = 'UA'
+          @field_value = 'FF'
+          @expected    = { somekey: 'somevalue', headers: { 'Auth' => 'user:pass', 'UA' => 'FF' } }
+        end
+      end
     end
 
-    it 'should merge the basic-auth' do
-      @browser.basic_auth = 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
-      expected_params = {
-        #disable_ssl_host_verification: true,
-        #disable_ssl_peer_verification: true,
-        cache_ttl: @json_config_without_proxy['cache_ttl'],
-        headers: {
-          'Authorization' => 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==',
-          'User-Agent'    => @browser.user_agent
-        }
-      }
-
-      @browser.merge_request_params().should == expected_params
-
-      expected_params[:headers].merge!('User-Agent' => 'Fake FF')
-      @browser.merge_request_params(headers: { 'User-Agent' => 'Fake FF' }).should == expected_params
-    end
   end
 
-  describe '#merge_request_params with proxy' do
-    it 'should return the default params' do
-      Browser.reset
-      browser = Browser.instance(config_file: CONFIG_FILE_WITH_PROXY)
+  describe '#merge_request_params' do
+    let(:params) { {} }
+    let(:default_expectation) { { cache_ttl: 250, headers: { 'User-Agent' => 'SomeUA' } } }
 
-      expected_params = {
-        proxy: @json_config_with_proxy['proxy'],
-        #disable_ssl_host_verification: true,
-        #disable_ssl_peer_verification: true,
-        headers: { 'User-Agent' => @json_config_with_proxy['user_agent'] },
-        cache_ttl: @json_config_with_proxy['cache_ttl']
-      }
+    after :each do
+      @browser.stub(user_agent: 'SomeUA')
+      @browser.cache_ttl = 250
 
-      browser.merge_request_params().should == expected_params
+      @browser.merge_request_params(params).should == @expected
     end
 
-    it 'should return the default params (proxy_auth set)' do
-      Browser.reset
-      browser = Browser.instance(config_file: CONFIG_FILE_WITH_PROXY_AND_AUTH)
-
-      expected_params = {
-        proxy: @json_config_with_proxy['proxy'],
-        proxyauth: 'user:pass',
-        #disable_ssl_host_verification: true,
-        #disable_ssl_peer_verification: true,
-        headers: { 'User-Agent' => @json_config_with_proxy['user_agent'] },
-        cache_ttl: @json_config_with_proxy['cache_ttl']
-      }
-
-      browser.merge_request_params().should == expected_params
+    it 'sets the User-Agent header field and cache_ttl' do
+      @expected = default_expectation
     end
+
+
+    context 'when @proxy' do
+      let(:proxy) { '127.0.0.1:9050' }
+      let(:proxy_expectation) { default_expectation.merge(proxy: proxy) }
+
+      it 'merges the proxy' do
+        @browser.proxy = proxy
+        @expected      = proxy_expectation
+      end
+
+      context 'when @proxy_auth' do
+        it 'sets the proxy_auth' do
+          @browser.proxy      = proxy
+          @browser.proxy_auth = 'user:pass'
+          @expected           = proxy_expectation.merge(proxyauth: 'user:pass')
+        end
+      end
+    end
+
+    context 'when @basic_auth' do
+      it 'appends the basic_auth' do
+        @browser.basic_auth = 'basic-auth'
+        @expected           = default_expectation.merge(
+          headers: default_expectation[:headers].merge('Authorization' => 'basic-auth')
+        )
+      end
+
+    end
+
+    context 'when the cache_ttl is alreday set' do
+      let(:params) { { cache_ttl: 500 } }
+
+      it 'does not override it' do
+        @expected = default_expectation.merge(params)
+      end
+    end
+
   end
 
   # TODO

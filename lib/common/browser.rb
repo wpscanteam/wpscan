@@ -169,6 +169,12 @@ class Browser
   end
 
   def merge_request_params(params = {})
+    params = Browser.append_params_header_field(
+      params,
+      'User-Agent',
+      self.user_agent
+    )
+
     if @proxy
       params = params.merge(proxy: @proxy)
 
@@ -178,25 +184,11 @@ class Browser
     end
 
     if @basic_auth
-      if !params.has_key?(:headers)
-        params = params.merge(:headers => {'Authorization' => @basic_auth})
-      elsif !params[:headers].has_key?('Authorization')
-        params[:headers]['Authorization'] = @basic_auth
-      end
-    end
-
-    #unless params.has_key?(:ssl_verifyhost)
-    #  params = params.merge(ssl_verifyhost: 0)
-    #end
-
-    #unless params.has_key?(:ssl_verifypeer)
-    #  params = params.merge(ssl_verifypeer: 0)
-    #end
-
-    if !params.has_key?(:headers)
-      params = params.merge(:headers => {'User-Agent' => self.user_agent})
-    elsif !params[:headers].has_key?('User-Agent')
-      params[:headers]['User-Agent'] = self.user_agent
+      params = Browser.append_params_header_field(
+        params,
+        'Authorization',
+        @basic_auth
+      )
     end
 
     # Used to enable the cache system if :cache_ttl > 0
@@ -208,6 +200,16 @@ class Browser
   end
 
   private
+
+  # return Array
+  def self.append_params_header_field(params = {}, field, field_value)
+    if !params.has_key?(:headers)
+      params = params.merge(:headers => { field => field_value })
+    elsif !params[:headers].has_key?(field)
+      params[:headers][field] = field_value
+    end
+    params
+  end
 
   # return the response
   def run_request(request)
