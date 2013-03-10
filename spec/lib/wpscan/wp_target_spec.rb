@@ -259,6 +259,7 @@ describe WpTarget do
       stub_request(:any, /.*\.html$/).to_return(:status => 200, :body => '404!') # 404 hash request
       @expected   = true
     end
+  end
 
   describe '#wp_plugins_dir' do
     after :each do
