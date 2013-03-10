@@ -160,7 +160,10 @@ describe WpTarget do
 
     after :each do
       @wp_target = WpTarget.new(@target_url) if @target_url
+
       stub_request_to_fixture(url: @wp_target.url, fixture: @fixture) if @fixture
+      stub_request(:any, /.*\/wp-content\/?$/).to_return(:status => 200, :body => '') # default dir request
+      stub_request(:any, /.*\.html$/).to_return(:status => 200, :body => '') # 404 hash request
 
       @wp_target.wp_content_dir.should === @expected
     end
@@ -169,7 +172,6 @@ describe WpTarget do
       @wp_target = WpTarget.new('http://example.localhost/', @options.merge(wp_content_dir: 'hello-world'))
       @expected  = 'hello-world'
     end
-
 
     it "should return 'wp-content'" do
       @target_url = 'http://lamp/wordpress-3.4.1'
@@ -224,6 +226,48 @@ describe WpTarget do
       @fixture    = fixtures_dir + '/facebook-detection.htm'
       @expected   = nil
     end
+  end
+
+  describe '#default_wp_content_dir_exists?' do
+    after :each do
+      @wp_target = WpTarget.new(@target_url) if @target_url
+      stub_request(:any, @wp_target.url).to_return(:status => 200, :body => 'homepage') # homepage request
+
+      @wp_target.default_wp_content_dir_exists?.should === @expected
+    end
+
+    it 'returns false if wp-content returns an invalid response code' do
+      stub_request(:any, /.*\/wp-content\/?$/).to_return(:status => 404, :body => '') # default dir request
+      stub_request(:any, /.*\.html$/).to_return(:status => 404, :body => '') # 404 hash request
+
+      @target_url = 'http://lamp.localhost/'
+      @expected   = false
+    end
+
+     it 'returns false if wp-content and homepage have same bodies' do
+      stub_request(:any, /.*\/wp-content\/?$/).to_return(:status => 200, :body => 'homepage') # default dir request
+      stub_request(:any, /.*\.html$/).to_return(:status => 404, :body => '404!') # 404 hash request
+
+      @target_url = 'http://lamp.localhost/'
+      @expected   = false
+    end
+
+    it 'returns false if wp-content and 404 page have same bodies' do
+      stub_request(:any, /.*\/wp-content\/?$/).to_return(:status => 200, :body => '404!') # default dir request
+      stub_request(:any, /.*\.html$/).to_return(:status => 404, :body => '404!') # 404 hash request
+
+      @target_url = 'http://lamp.localhost/'
+      @expected   = false
+    end
+
+     it 'returns true if wp-content, 404 page and hoempage return different bodies' do
+      stub_request(:any, /.*\/wp-content\/?$/).to_return(:status => 200, :body => '') # default dir request
+      stub_request(:any, /.*\.html$/).to_return(:status => 200, :body => '404!') # 404 hash request
+
+      @target_url = 'http://lamp.localhost/'
+      @expected   = true
+    end
+
   end
 
   describe '#wp_plugins_dir' do

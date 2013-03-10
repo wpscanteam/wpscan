@@ -98,17 +98,28 @@ class WpTarget < WebSite
   def wp_content_dir
     unless @wp_content_dir
       index_body = Browser.instance.get(@uri.to_s).body
-      # Only use the path because domain can be text or an ip
-      uri_path = @uri.path
+      uri_path = @uri.path # Only use the path because domain can be text or an IP
 
-      if index_body[/\/wp-content\/(?:themes|plugins)\//i]
+      if index_body[/\/wp-content\/(?:themes|plugins)\//i] || default_wp_content_dir_exists?
         @wp_content_dir = 'wp-content'
       else
         domains_excluded = '(?:www\.)?(facebook|twitter)\.com'
         @wp_content_dir  = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}((?!#{domains_excluded})[^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
       end
     end
+
     @wp_content_dir
+  end
+
+  def default_wp_content_dir_exists?
+    response = Browser.instance.get(@uri.merge('wp-content').to_s)
+    hash = Digest::MD5.hexdigest(response.body)
+
+    if WpTarget.valid_response_codes.include?(response.code)
+      return true if hash != error_404_hash and hash != homepage_hash
+    end
+
+    false
   end
 
   def wp_plugins_dir
