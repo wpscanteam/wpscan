@@ -54,8 +54,8 @@ class WpVersion < Vulnerable
 
   protected
 
-  # Returns the first match in the body of the url
-  def self.scan_url_for_pattern(base_uri, pattern, path = nil)
+  # Returns the first match of <pattern> in the body of the url
+  def self.scan_url(base_uri, pattern, path = nil)
     url     = path ? base_uri.merge(path).to_s : base_uri.to_s
     response = Browser.instance.get_and_follow_location(url)
 
@@ -68,7 +68,7 @@ class WpVersion < Vulnerable
   # The meta tag can be removed however it seems,
   # that it is reinstated on upgrade.
   def self.find_from_meta_generator(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{name="generator" content="wordpress #{WpVersion.version_pattern}"}i
     )
@@ -77,7 +77,7 @@ class WpVersion < Vulnerable
   # Attempts to find the WordPress version from,
   # the generator tag in the RSS feed source.
   def self.find_from_rss_generator(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{<generator>http://wordpress.org/\?v=#{WpVersion.version_pattern}</generator>}i,
       'feed/'
@@ -87,7 +87,7 @@ class WpVersion < Vulnerable
   # Attempts to find WordPress version from,
   # the generator tag in the RDF feed source.
   def self.find_from_rdf_generator(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i,
       'feed/rdf/'
@@ -99,7 +99,7 @@ class WpVersion < Vulnerable
   #
   # Have not been able to find an example of this - Ryan
   #def self.find_from_rss2_generator(options)
-  #  WpVersion.scan_url_for_pattern(
+  #  WpVersion.scan_url(
   #    options[:base_uri],
   #    %r{<generator>http://wordpress.org/?v=(#{WpVersion.version_pattern})</generator>}i,
   #    'feed/rss/'
@@ -109,7 +109,7 @@ class WpVersion < Vulnerable
   # Attempts to find the WordPress version from,
   # the generator tag in the Atom source.
   def self.find_from_atom_generator(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{<generator uri="http://wordpress.org/" version="#{WpVersion.version_pattern}">WordPress</generator>}i,
       'feed/atom/'
@@ -121,7 +121,7 @@ class WpVersion < Vulnerable
   #
   # Have not been able to find an example of this - Ryan
   #def self.find_from_comments_rss_generator(options)
-  #  WpVersion.scan_url_for_pattern(
+  #  WpVersion.scan_url(
   #    options[:base_uri],
   #    %r{<!-- generator="WordPress/#{WpVersion.version_pattern}" -->}i,
   #    'comments/feed/'
@@ -161,7 +161,7 @@ class WpVersion < Vulnerable
 
   # Attempts to find the WordPress version from the readme.html file.
   def self.find_from_readme(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{<br />\sversion #{WpVersion.version_pattern}}i,
       'readme.html'
@@ -172,7 +172,7 @@ class WpVersion < Vulnerable
   #
   # See: http://code.google.com/p/wpscan/issues/detail?id=109
   def self.find_from_sitemap_generator(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{generator="wordpress/#{WpVersion.version_pattern}"}i,
       'sitemap.xml'
@@ -181,7 +181,7 @@ class WpVersion < Vulnerable
 
   # Attempts to find the WordPress version from the p-links-opml.php file.
   def self.find_from_links_opml(options)
-    WpVersion.scan_url_for_pattern(
+    WpVersion.scan_url(
       options[:base_uri],
       %r{generator="wordpress/#{WpVersion.version_pattern}"}i,
       'wp-links-opml.php'
