@@ -62,6 +62,12 @@ class WpVersion < Vulnerable
     response.body[pattern, 1]
   end
 
+  #
+  # DO NOT Change the order of the following methods
+  # unless you know what you are doing
+  # See WpVersion.find
+  #
+
   # Attempts to find the wordpress version from,
   # the generator meta tag in the html source.
   #
@@ -146,9 +152,13 @@ class WpVersion < Vulnerable
     end
 
     xml.xpath('//file').each do |node|
-      file_url = target_uri.merge(node.attribute('src').text).to_s
-      file_url = file_url.gsub(/\$wp-plugins\$/i, wp_plugins).gsub(/\$wp-content\$/i, wp_content)
-      md5sum   = Digest::MD5.hexdigest(Browser.instance.get(file_url).body)
+      file_src = node.attribute('src').text
+      file_url = target_uri.merge(file_src).to_s.
+                 gsub(/\$wp-plugins\$/i, wp_plugins).
+                 gsub(/\$wp-content\$/i, wp_content)
+
+      response = Browser.instance.get(file_url)
+      md5sum   = Digest::MD5.hexdigest(response.body)
 
       node.search('hash').each do |hash|
         if hash.attribute('md5').text == md5sum
