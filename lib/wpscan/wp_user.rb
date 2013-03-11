@@ -63,7 +63,7 @@ class WpUser
   end
 
   def ==(other)
-    other.name == self.name and other.id == self.id and other.nickname == self.nickname
+    self === other
   end
 
   def ===(other)
@@ -71,6 +71,6 @@ class WpUser
   end
 
   def eql?(other)
-    other.name === self.name and other.id === self.id and other.nickname === self.nickname
+    self === other
   end
 end
