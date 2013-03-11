@@ -65,22 +65,21 @@ class StatsPlugin < Plugin
   end
 
   def total_plugins(file=PLUGINS_FULL_FILE, xml=PLUGINS_VULNS_FILE)
-    options = {}
-    options[:only_vulnerable_ones] = false
-    options[:file] = file
-    options[:vulns_file] = xml
-    options[:base_url] = "http://localhost"
-    options[:type] = "plugins"
-    WpEnumerator.generate_items(options).count
+    total('plugins', file, xml)
   end
 
   def total_themes(file=THEMES_FULL_FILE, xml=THEMES_VULNS_FILE)
-    options = {}
-    options[:only_vulnerable_ones] = false
-    options[:file] = file
-    options[:vulns_file] = xml
-    options[:base_url] = "http://localhost"
-    options[:type] = "themes"
+    total('themes', file, xml)
+  end
+
+  def total(type, file, xml)
+    options = {
+      type: type,
+      file: file,
+      vulns_file: xml,
+      base_url: 'http://localhost',
+      only_vulnerable_ones: false
+    }
     WpEnumerator.generate_items(options).count
   end
 
