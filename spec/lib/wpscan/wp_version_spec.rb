@@ -31,7 +31,7 @@ describe WpVersion do
 
     after :each do
       stub_request_to_fixture(url: @target_uri.to_s, fixture: @fixture)
-      WpVersion.find_from_meta_generator(base_url: @target_uri.to_s).should === @expected
+      WpVersion.find_from_meta_generator(base_uri: @target_uri.to_s).should === @expected
     end
 
     it 'should return nil if the meta-generator is not found' do
@@ -66,7 +66,7 @@ describe WpVersion do
     after :each do
       @status_code ||= 200
       stub_request_to_fixture(url: @target_uri.merge('feed/').to_s, status: @status_code, fixture: @fixture)
-      WpVersion.find_from_rss_generator(base_url: @target_uri).should === @expected
+      WpVersion.find_from_rss_generator(base_uri: @target_uri).should === @expected
     end
 
     it 'should return nil on a 404' do
@@ -107,7 +107,7 @@ describe WpVersion do
     after :each do
       @status_code ||= 200
       stub_request_to_fixture(url: @target_uri.merge('feed/rdf/').to_s, status: @status_code, fixture: @fixture)
-      WpVersion.find_from_rdf_generator(base_url: @target_uri).should === @expected
+      WpVersion.find_from_rdf_generator(base_uri: @target_uri).should === @expected
     end
 
     it 'should return nil on a 404' do
@@ -148,7 +148,7 @@ describe WpVersion do
     after :each do
       @status_code ||= 200
       stub_request_to_fixture(url: @target_uri.merge('feed/atom/').to_s, status: @status_code, fixture: @fixture)
-      WpVersion.find_from_atom_generator(base_url: @target_uri).should === @expected
+      WpVersion.find_from_atom_generator(base_uri: @target_uri).should === @expected
     end
 
     it 'should return nil on a 404' do
@@ -188,7 +188,7 @@ describe WpVersion do
       stub_request(:get, @target_uri.merge('sitemap.xml').to_s).
           to_return(status: 200, body: @body)
 
-      WpVersion.find_from_sitemap_generator(base_url: @target_uri).should === @expected
+      WpVersion.find_from_sitemap_generator(base_uri: @target_uri).should === @expected
     end
 
     it 'should return nil if the generator is not found' do
@@ -214,7 +214,7 @@ describe WpVersion do
       @status_code ||= 200
       stub_request_to_fixture(url: @target_uri.merge('readme.html').to_s, status: @status_code, fixture: @fixture)
 
-      WpVersion.find_from_readme(base_url: @target_uri).should === @expected
+      WpVersion.find_from_readme(base_uri: @target_uri).should === @expected
     end
 
     it 'should return nil on a 404' do
@@ -248,7 +248,7 @@ describe WpVersion do
         fixture: "#{fixtures_dir}/3.2.1.js"
       )
       version = WpVersion.find_from_advanced_fingerprinting(
-        base_url:       @target_uri,
+        base_uri:       @target_uri,
         wp_content_dir: 'wp-content',
         version_xml:    "#{fixtures_dir}/wp_versions.xml"
       )
@@ -264,7 +264,7 @@ describe WpVersion do
         url:     @target_uri.merge('wp-links-opml.php').to_s,
         fixture: "#{fixtures_dir}/wp-links-opml.xml"
       )
-      version = WpVersion.find_from_links_opml(base_url: @target_uri)
+      version = WpVersion.find_from_links_opml(base_uri: @target_uri)
       version.should == '3.4.2'
     end
 
@@ -273,7 +273,7 @@ describe WpVersion do
         url:     @target_uri.merge('wp-links-opml.php').to_s,
         fixture: "#{fixtures_dir}/wp-links-opml-nogenerator.xml"
       )
-      version = WpVersion.find_from_links_opml(base_url: @target_uri)
+      version = WpVersion.find_from_links_opml(base_uri: @target_uri)
       version.should be_nil
     end
   end

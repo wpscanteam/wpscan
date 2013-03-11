@@ -39,7 +39,7 @@ class WpVersion < Vulnerable
   # (find_from_meta_generator, find_from_rss_generator etc)
   def self.find(target_uri, wp_content_dir)
     options = {
-      base_url:       target_uri,
+      base_uri:       target_uri,
       wp_content_dir: wp_content_dir
     }
     self.methods.grep(/find_from_/).each do |method_to_call|
@@ -54,34 +54,44 @@ class WpVersion < Vulnerable
 
   protected
 
+  # Returns the first match in the body of the url
+  def self.scan_url_for_pattern(base_uri, pattern, path = nil)
+    url     = path ? base_uri.merge(path).to_s : base_uri.to_s
+    response = Browser.instance.get_and_follow_location(url)
+
+    response.body[pattern, 1]
+  end
+
   # Attempts to find the wordpress version from,
   # the generator meta tag in the html source.
   #
   # The meta tag can be removed however it seems,
   # that it is reinstated on upgrade.
   def self.find_from_meta_generator(options)
-    target_uri = options[:base_url]
-    response = Browser.instance.get_and_follow_location(target_uri.to_s)
-
-    response.body[%r{name="generator" content="wordpress #{WpVersion.version_pattern}"}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{name="generator" content="wordpress #{WpVersion.version_pattern}"}i
+    )
   end
 
   # Attempts to find the WordPress version from,
   # the generator tag in the RSS feed source.
   def self.find_from_rss_generator(options)
-    target_uri = options[:base_url]
-    response = Browser.instance.get_and_follow_location(target_uri.merge('feed/').to_s)
-
-    response.body[%r{<generator>http://wordpress.org/\?v=#{WpVersion.version_pattern}</generator>}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{<generator>http://wordpress.org/\?v=#{WpVersion.version_pattern}</generator>}i,
+      'feed/'
+    )
   end
 
   # Attempts to find WordPress version from,
   # the generator tag in the RDF feed source.
   def self.find_from_rdf_generator(options)
-    target_uri = options[:base_url]
-    response = Browser.instance.get_and_follow_location(target_uri.merge('feed/rdf/').to_s)
-
-    response.body[%r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{<admin:generatorAgent rdf:resource="http://wordpress.org/\?v=#{WpVersion.version_pattern}" />}i,
+      'feed/rdf/'
+    )
   end
 
   # Attempts to find the WordPress version from,
@@ -89,19 +99,21 @@ class WpVersion < Vulnerable
   #
   # Have not been able to find an example of this - Ryan
   #def self.find_from_rss2_generator(options)
-  #  target_uri = options[:base_url]
-  #  response = Browser.instance.get_and_follow_location(target_uri.merge('feed/rss/').to_s)
-  #
-  #  response.body[%r{<generator>http://wordpress.org/?v=(#{WpVersion.version_pattern})</generator>}i, 1]
+  #  WpVersion.scan_url_for_pattern(
+  #    options[:base_uri],
+  #    %r{<generator>http://wordpress.org/?v=(#{WpVersion.version_pattern})</generator>}i,
+  #    'feed/rss/'
+  #  )
   #end
 
   # Attempts to find the WordPress version from,
   # the generator tag in the Atom source.
   def self.find_from_atom_generator(options)
-    target_uri = options[:base_url]
-    response = Browser.instance.get_and_follow_location(target_uri.merge('feed/atom/').to_s)
-
-    response.body[%r{<generator uri="http://wordpress.org/" version="#{WpVersion.version_pattern}">WordPress</generator>}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{<generator uri="http://wordpress.org/" version="#{WpVersion.version_pattern}">WordPress</generator>}i,
+      'feed/atom/'
+    )
   end
 
   # Attempts to find the WordPress version from,
@@ -109,10 +121,11 @@ class WpVersion < Vulnerable
   #
   # Have not been able to find an example of this - Ryan
   #def self.find_from_comments_rss_generator(options)
-  #  target_uri = options[:base_url]
-  #  response = Browser.instance.get_and_follow_location(target_uri.merge('comments/feed/').to_s)
-  #
-  #  response.body[%r{<!-- generator="WordPress/#{WpVersion.version_pattern}" -->}i, 1]
+  #  WpVersion.scan_url_for_pattern(
+  #    options[:base_uri],
+  #    %r{<!-- generator="WordPress/#{WpVersion.version_pattern}" -->}i,
+  #    'comments/feed/'
+  #  )
   #end
 
   # Uses data/wp_versions.xml to try to identify a
@@ -123,20 +136,19 @@ class WpVersion < Vulnerable
   #  /!\ Warning : this method might return false positive if the file used for fingerprinting is part of a theme (they can be updated)
   #
   def self.find_from_advanced_fingerprinting(options)
-    target_uri = options[:base_url]
-    # needed for rpsec tests
-    version_xml = options[:version_xml] || WP_VERSIONS_FILE
+    target_uri  = options[:base_uri]
+    version_xml = options[:version_xml] || WP_VERSIONS_FILE # needed for rpsec
+    wp_content  = options[:wp_content_dir]
+    wp_plugins  = "#{wp_content}/plugins"
+
     xml = Nokogiri::XML(File.open(version_xml)) do |config|
       config.noblanks
     end
 
     xml.xpath('//file').each do |node|
-      wp_content = options[:wp_content_dir]
-      wp_plugins = "#{wp_content}/plugins"
       file_url = target_uri.merge(node.attribute('src').text).to_s
       file_url = file_url.gsub(/\$wp-plugins\$/i, wp_plugins).gsub(/\$wp-content\$/i, wp_content)
-      response = Browser.instance.get(file_url)
-      md5sum = Digest::MD5.hexdigest(response.body)
+      md5sum   = Digest::MD5.hexdigest(Browser.instance.get(file_url).body)
 
       node.search('hash').each do |hash|
         if hash.attribute('md5').text == md5sum
@@ -144,27 +156,36 @@ class WpVersion < Vulnerable
         end
       end
     end
-    nil # Otherwise the data['file'] is returned (issue #107)
+    nil
   end
 
   # Attempts to find the WordPress version from the readme.html file.
   def self.find_from_readme(options)
-    target_uri = options[:base_url]
-    Browser.instance.get(target_uri.merge('readme.html').to_s).body[%r{<br />\sversion #{WpVersion.version_pattern}}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{<br />\sversion #{WpVersion.version_pattern}}i,
+      'readme.html'
+    )
   end
 
   # Attempts to find the WordPress version from the sitemap.xml file.
   #
   # See: http://code.google.com/p/wpscan/issues/detail?id=109
   def self.find_from_sitemap_generator(options)
-    target_uri = options[:base_url]
-    Browser.instance.get(target_uri.merge('sitemap.xml').to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{generator="wordpress/#{WpVersion.version_pattern}"}i,
+      'sitemap.xml'
+    )
   end
 
   # Attempts to find the WordPress version from the p-links-opml.php file.
   def self.find_from_links_opml(options)
-    target_uri = options[:base_url]
-    Browser.instance.get(target_uri.merge('wp-links-opml.php').to_s).body[%r{generator="wordpress/#{WpVersion.version_pattern}"}i, 1]
+    WpVersion.scan_url_for_pattern(
+      options[:base_uri],
+      %r{generator="wordpress/#{WpVersion.version_pattern}"}i,
+      'wp-links-opml.php'
+    )
   end
 
   # Used to check if the version is correct: must contain at least one dot.
