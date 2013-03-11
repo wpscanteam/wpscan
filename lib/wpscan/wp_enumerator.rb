@@ -121,9 +121,7 @@ class WpEnumerator
 
     # Timthumbs have no XML file
     unless type =~ /timthumbs/i
-      xml = Nokogiri::XML(File.open(vulns_file)) do |config|
-        config.noblanks
-      end
+      xml = Nokogiri::XML(File.open(vulns_file))
 
       # We check if the plugin name from the plugin_vulns_file is already in targets, otherwise we add it
       xml.xpath(options[:vulns_xpath_2]).each do |node|

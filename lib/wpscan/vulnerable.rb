@@ -23,11 +23,8 @@ class Vulnerable
 
   # @return an array of WpVulnerability (can be empty)
   def vulnerabilities
+    xml             = Nokogiri::XML(File.open(@vulns_file))
     vulnerabilities = []
-
-    xml = Nokogiri::XML(File.open(@vulns_file)) do |config|
-      config.noblanks
-    end
 
     xml.xpath(@vulns_xpath).each do |node|
       vulnerabilities << WpVulnerability.new(
