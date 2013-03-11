@@ -34,36 +34,37 @@ class ListGeneratorPlugin < Plugin
   end
 
   def run(options = {})
-    verbose      = options[:verbose] || false
+    @verbose     = options[:verbose] || false
     generate_all = options[:generate_all] || false
 
     if options.has_key?(:generate_plugin_list) || generate_all
-      number_of_pages = options[:generate_plugin_list] || 150
-
-      puts '[+] Generating new most popular plugin list'
-      puts
-      GenerateList.new('plugins', verbose).generate_popular_list(number_of_pages)
+      most_popular('plugin', options[:generate_plugin_list] || 150)
     end
 
     if options[:generate_full_plugin_list] || generate_all
-      puts '[+] Generating new full plugin list'
-      puts
-      GenerateList.new('plugins', verbose).generate_full_list
+      full('plugin')
     end
 
     if options.has_key?(:generate_theme_list) || generate_all
-      number_of_pages = options[:generate_theme_list] || 150
-
-      puts '[+] Generating new most popular theme list'
-      puts
-      GenerateList.new('themes', verbose).generate_popular_list(number_of_pages)
+      most_popular('theme', options[:generate_theme_list] || 150)
     end
 
     if options[:generate_full_theme_list] || generate_all
-      puts '[+] Generating new full theme list'
-      puts
-      GenerateList.new('themes', verbose).generate_full_list
+      full('theme')
     end
   end
 
+  private
+
+  def most_popular(type, number_of_pages)
+    puts "[+] Generating new most popular #{type} list"
+    puts
+    GenerateList.new(type + 's', @verbose).generate_popular_list(number_of_pages)
+  end
+
+  def full(type)
+    puts "[+] Generating new full #{type} list"
+    puts
+    GenerateList.new(type + 's', @verbose).generate_full_list
+  end
 end
