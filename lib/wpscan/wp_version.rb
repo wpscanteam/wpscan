@@ -146,7 +146,7 @@ class WpVersion < Vulnerable
     version_xml = options[:version_xml] || WP_VERSIONS_FILE # needed for rpsec
     wp_content  = options[:wp_content_dir]
     wp_plugins  = "#{wp_content}/plugins"
-    xml         = Nokogiri::XML(File.open(version_xml))
+    xml         = xml(version_xml)
 
     xml.xpath('//file').each do |node|
       file_src = node.attribute('src').text

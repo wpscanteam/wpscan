@@ -46,7 +46,7 @@ class CheckerPlugin < Plugin
     puts '[+] Checking vulnerabilities reference urls'
 
     vuln_ref_files.each do |vuln_ref_file|
-      xml = Nokogiri::XML(File.open(vuln_ref_file))
+      xml = xml(vuln_ref_file)
 
       urls = []
       xml.xpath('//reference').each { |node| urls << node.text }
@@ -111,7 +111,7 @@ class CheckerPlugin < Plugin
 
       puts '[+] Checking for vulnerable files ...'
 
-      xml = Nokogiri::XML(File.open(xml_file))
+      xml = xml(xml_file)
 
       xml.xpath('//hash').each do |node|
         sha1sum = node.attribute('sha1').text

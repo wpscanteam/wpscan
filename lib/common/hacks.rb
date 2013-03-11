@@ -1,14 +1,5 @@
 # encoding: UTF-8
 
-# Default option changed from DEFAULT_XML to NOBLANKS
-module Nokogiri
-  class << self
-    def XML thing, url = nil, encoding = nil, options = XML::ParseOptions::NOBLANKS, &block
-      Nokogiri::XML::Document.parse(thing, url, encoding, options, &block)
-    end
-  end
-end
-
 # Since ruby 1.9.2, URI::escape is obsolete
 # See http://rosettacode.org/wiki/URL_encoding#Ruby and http://www.ruby-forum.com/topic/207489
 if RUBY_VERSION >= '1.9.2'

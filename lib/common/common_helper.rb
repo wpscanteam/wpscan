@@ -147,3 +147,9 @@ def get_metasploit_url(module_path)
   module_path = module_path.sub(/^\//, '')
   "http://www.metasploit.com/modules/#{module_path}"
 end
+
+def xml(file)
+  Nokogiri::XML(File.open(file)) do |config|
+    config.noblanks
+  end
+end

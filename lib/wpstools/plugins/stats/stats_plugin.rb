@@ -44,24 +44,20 @@ class StatsPlugin < Plugin
     end
   end
 
-  def xml(file)
-    Nokogiri::XML(File.open(file))
-  end
-
   def vuln_plugin_count(file=PLUGINS_VULNS_FILE)
-    self.xml(file).xpath("count(//plugin)").to_i
+    xml(file).xpath("count(//plugin)").to_i
   end
 
   def vuln_theme_count(file=THEMES_VULNS_FILE)
-    self.xml(file).xpath("count(//theme)").to_i
+    xml(file).xpath("count(//theme)").to_i
   end
 
   def plugin_vulns_count(file=PLUGINS_VULNS_FILE)
-    self.xml(file).xpath("count(//vulnerability)").to_i
+    xml(file).xpath("count(//vulnerability)").to_i
   end
 
   def theme_vulns_count(file=THEMES_VULNS_FILE)
-    self.xml(file).xpath("count(//vulnerability)").to_i
+    xml(file).xpath("count(//vulnerability)").to_i
   end
 
   def total_plugins(file=PLUGINS_FULL_FILE, xml=PLUGINS_VULNS_FILE)
