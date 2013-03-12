@@ -31,7 +31,7 @@ describe 'XSD checks' do
       errors << error.message
     end
 
-    errors.should === []
+    errors.should be_empty
   end
 
   it 'check plugin_vulns.xml for syntax errors' do
@@ -67,7 +67,7 @@ describe 'Well formed XML checks' do
     begin
       Nokogiri::XML(File.open(@file)) { |config| config.options = Nokogiri::XML::ParseOptions::STRICT }
     rescue Nokogiri::XML::SyntaxError => e
-      fail "#{@file}: #{e.message}"
+      fail "#{@file}:#{e.line},#{e.column}: #{e.message}"
     end
   end
 
