@@ -20,6 +20,7 @@
 require 'spec_helper'
 
 describe 'XSD checks' do
+
   after :each do
     FileTest.exists?(@file).should be_true
 
@@ -28,10 +29,12 @@ describe 'XSD checks' do
 
     errors = []
     xsd.validate(doc).each do |error|
-      errors << error.message
+      errors << "#{@file}:#{error.line}: #{error.message}"
     end
 
-    errors.should be_empty
+    unless errors.empty?
+      fail errors.join('\n')
+    end
   end
 
   it 'check plugin_vulns.xml for syntax errors' do
