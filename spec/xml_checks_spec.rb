@@ -33,7 +33,7 @@ describe 'XSD checks' do
     end
 
     unless errors.empty?
-      fail errors.join('\n')
+      fail errors.join("\n")
     end
   end
 
