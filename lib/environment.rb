@@ -17,6 +17,13 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
+require 'rubygems'
+
+if Gem::Version.create(RUBY_VERSION) < Gem::Version.create(1.9)
+  puts "Ruby >= 1.9 required to run wpscan (You have #{RUBY_VERSION})"
+  exit(1)
+end
+
 begin
   # Standard libs
   require 'rubygems'

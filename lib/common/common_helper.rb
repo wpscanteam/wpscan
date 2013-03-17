@@ -124,10 +124,6 @@ def banner
   puts ' Sponsored by the RandomStorm Open Source Initiative'
   puts '_____________________________________________________'
   puts
-  if RUBY_VERSION < '1.9'
-    puts '[WARNING] Ruby < 1.9 not officially supported, please upgrade.'
-    puts
-  end
 end
 
 def colorize(text, color_code)
