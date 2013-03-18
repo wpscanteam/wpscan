@@ -19,8 +19,9 @@
 
 require 'rubygems'
 
-if Gem::Version.create(RUBY_VERSION) < Gem::Version.create(1.9)
-  puts "Ruby >= 1.9 required to run wpscan (You have #{RUBY_VERSION})"
+version = RUBY_VERSION.dup
+if Gem::Version.create(version) < Gem::Version.create(1.9)
+  puts "Ruby >= 1.9 required to run wpscan (You have #{version})"
   exit(1)
 end
 
