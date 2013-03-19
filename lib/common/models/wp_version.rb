@@ -10,7 +10,7 @@ class WpVersion < WpItem
   include WpVersion::Vulnerable
   include WpVersion::Output
 
-  @@version_xml =
+  @@version_xml = WP_VERSIONS_FILE
 
   # The version number
   attr_accessor :number
