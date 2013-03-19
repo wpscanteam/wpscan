@@ -9,5 +9,10 @@ class WpTimthumb < WpItem
       response = Browser.instance.get(url)
       response.body[%r{TimThumb version\s*: ([^<]+)} , 1]
     end
+
+    def to_s
+      "#{url}#{ ' v' + version if version}"
+    end
+
   end
 end

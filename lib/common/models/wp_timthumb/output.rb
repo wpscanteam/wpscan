@@ -4,7 +4,7 @@ class WpTimthumb < WpItem
   module Output
 
     def output
-      puts ' | ' + red('[!]') + " #{url}"
+      puts ' | ' + red('[!]') + " #{self}"
     end
 
   end

@@ -256,7 +256,7 @@ def main
       )
       if !wp_timthumbs.empty?
         puts
-        puts green('[+]') + " We found #{timthumbs.size} timthumb file/s :"
+        puts green('[+]') + " We found #{wp_timthumbs.size} timthumb file/s :"
         puts
 
         wp_timthumbs.output
