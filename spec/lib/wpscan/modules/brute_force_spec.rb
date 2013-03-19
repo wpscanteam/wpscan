@@ -59,7 +59,7 @@ shared_examples_for 'BruteForce' do
           )
       end
 
-      user   = WpUser.new('admin', 1, nil)
+      user   = WpUser.new(@module.uri, login: 'admin')
       result = @module.brute_force([user], @wordlist)
 
       result.length.should == 1
@@ -69,7 +69,7 @@ shared_examples_for 'BruteForce' do
     it 'should cover the timeout branch and return an empty array' do
       stub_request(:post, @module.login_url).to_timeout
 
-      user          = WpUser.new('admin', 1, nil)
+      user          = WpUser.new(@module.uri, login: 'admin')
       result        = @module.brute_force([user], @wordlist)
       result.should == []
     end

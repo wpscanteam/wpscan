@@ -26,7 +26,11 @@ WPSCAN_LIB_DIR       = LIB_DIR + '/wpscan'
 WPSTOOLS_LIB_DIR     = LIB_DIR + '/wpstools'
 UPDATER_LIB_DIR      = LIB_DIR + '/updater'
 COMMON_LIB_DIR       = LIB_DIR + '/common'
+MODELS_LIB_DIR       = COMMON_LIB_DIR + '/models'
+COLLECTIONS_LIB_DIR  = COMMON_LIB_DIR + '/collections'
+
 LOG_FILE             = ROOT_DIR + '/log.txt'
+
 # Plugins directories
 COMMON_PLUGINS_DIR   = COMMON_LIB_DIR + '/plugins'
 WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins' # Not used ATM
@@ -49,6 +53,7 @@ LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 WPSCAN_VERSION       = '2.1'
 
 $LOAD_PATH.unshift(LIB_DIR)
+$LOAD_PATH.unshift(MODELS_LIB_DIR)
 
 require 'environment'
 
@@ -73,31 +78,6 @@ end
 
 def add_trailing_slash(url)
   url =~ /\/$/ ? url : "#{url}/"
-end
-
-# Gets the string all elements in stringarray ends with
-def get_equal_string_end(stringarray = [''])
-  already_found = ''
-  looping = true
-  counter = -1
-  if stringarray.kind_of? Array and stringarray.length > 1
-    base = stringarray[0]
-    while looping
-      character = base[counter, 1]
-      stringarray.each do |s|
-        if s[counter, 1] != character
-          looping = false
-          break
-        end
-      end
-      if looping == false or (counter * -1) > base.length
-        break
-      end
-      already_found = "#{character if character}#{already_found}"
-      counter -= 1
-    end
-  end
-  already_found
 end
 
 # loading the updater
@@ -136,12 +116,6 @@ end
 
 def green(text)
   colorize(text, 32)
-end
-
-def get_metasploit_url(module_path)
-  # remove leading slash
-  module_path = module_path.sub(/^\//, '')
-  "http://www.metasploit.com/modules/#{module_path}"
 end
 
 def xml(file)

@@ -19,18 +19,18 @@
 
 module BruteForce
 
-  # param array of string logins
+  # param array of WpUsers wp_users
   # param string wordlist_path
   # param hash options
   #   boolean :show_progression If true, will output the details (Sucess, error etc)
-  def brute_force(logins, wordlist_path, options = {})
+  def brute_force(wp_users, wordlist_path, options = {})
     hydra               = Browser.instance.hydra
     number_of_passwords = BruteForce.lines_in_file(wordlist_path)
     login_url           = login_url()
     found               = []
     show_progression    = options[:show_progression] || false
 
-    logins.each do |login|
+    wp_users.each do |wp_user|
       queue_count    = 0
       request_count  = 0
       password_found = false
@@ -46,14 +46,14 @@ module BruteForce
         queue_count   += 1
 
         # create local vars for on_complete call back, Issue 51.
-        username = login.name != 'empty' ? login.name : login.nickname # Issue #66
+        login    = wp_user.login
         password = password
 
         # the request object
         request = Browser.instance.forge_request(login_url,
           {
             method: :post,
-            body: { log: URI::encode(username), pwd: URI::encode(password) },
+            body: { log: URI::encode(login), pwd: URI::encode(password) },
             cache_ttl: 0
           }
         )
@@ -61,13 +61,13 @@ module BruteForce
         # tell hydra what to do when the request completes
         request.on_complete do |response|
 
-          puts "\n  Trying Username : #{username} Password : #{password}" if @verbose
+          puts "\n  Trying Username : #{login} Password : #{password}" if @verbose
 
           if response.body =~ /login_error/i
-            puts "\nIncorrect username and/or password." if @verbose
+            puts "\nIncorrect login and/or password." if @verbose
           elsif response.code == 302
-            puts "\n  " + green('[SUCCESS]') + " Username : #{username} Password : #{password}\n" if show_progression
-            found << { name: username, password: password }
+            puts "\n  " + green('[SUCCESS]') + " Login : #{login} Password : #{password}\n" if show_progression
+            found << { name: login, password: password }
             password_found = true
           elsif response.timed_out?
             puts red('ERROR:') + ' Request timed out.' if show_progression
@@ -86,14 +86,14 @@ module BruteForce
           end
         end
 
-        # move onto the next username if we have found a valid password
+        # move onto the next login if we have found a valid password
         break if password_found
 
         # queue the request to be sent later
         hydra.queue(request)
 
         # progress indicator
-        print "\r  Brute forcing user '#{username}' with #{number_of_passwords} passwords... #{(request_count * 100) / number_of_passwords}% complete." if show_progression
+        print "\r  Brute forcing user '#{login}' with #{number_of_passwords} passwords... #{(request_count * 100) / number_of_passwords}% complete." if show_progression
 
         # it can take a long time to queue 2 million requests,
         # for that reason, we queue @threads, send @threads, queue @threads and so on.

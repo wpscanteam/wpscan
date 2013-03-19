@@ -19,35 +19,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-def output_vulnerabilities(vulns)
-  vulns.each do |vulnerability|
-    puts
-    puts ' | ' + red("* Title: #{vulnerability.title}")
-    vulnerability.references.each do |r|
-      puts ' | ' + red("* Reference: #{r}")
-    end
-    vulnerability.metasploit_modules.each do |m|
-      puts ' | ' + red("* Metasploit module: #{get_metasploit_url(m)}")
-    end
-  end
-end
-
-def output_item_details(item)
-  puts
-  puts " | Name: #{item}" #this will also output the version number if detected
-  puts " | Location: #{item.get_url_without_filename}"
-  puts " | WordPress: #{item.wp_org_url}"  if item.wp_org_item?
-  puts ' | Directory listing enabled: Yes' if item.directory_listing?
-  puts " | Readme: #{item.readme_url}" if item.has_readme?
-  puts " | Changelog: #{item.changelog_url}" if item.has_changelog?
-
-  output_vulnerabilities(item.vulnerabilities)
-
-  if item.error_log?
-    puts ' | ' + red('[!]') + " A WordPress error_log file has been found : #{item.error_log_url}"
-  end
-end
-
 def main
   # delete old logfile, check if it is a symlink first.
   File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
@@ -193,38 +164,31 @@ def main
       puts
     end
 
-    wp_version = wp_target.version
-    if wp_version
-      puts green('[+]') + " WordPress version #{wp_version.number} identified from #{wp_version.discovery_method}"
+    enum_options = {
+      show_progression: true,
+      exclude_content:  wpscan_options.exclude_content_based
+    }
 
-      version_vulnerabilities = wp_version.vulnerabilities
-
-      unless version_vulnerabilities.empty?
-        puts
-        puts red('[!]') + " We have identified #{version_vulnerabilities.size} vulnerabilities from the version number :"
-        output_vulnerabilities(version_vulnerabilities)
-      end
+    if wp_version = wp_target.version
+      wp_version.output
     end
 
-    wp_theme = wp_target.theme
-    if wp_theme
+    if wp_theme = wp_target.theme
       puts
-      # Theme version is handled in wp_item.to_s
+      # Theme version is handled in #to_s
       puts green('[+]') + " The WordPress theme in use is #{wp_theme}"
-      output_item_details(wp_theme)
+      wp_theme.output
     end
 
     if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
       puts
       puts green('[+]') + ' Enumerating plugins from passive detection ... '
 
-      plugins = wp_target.plugins_from_passive_detection(base_url: wp_target.uri, wp_content_dir: wp_target.wp_content_dir)
-      if !plugins.empty?
-        puts "#{plugins.size} plugins found :"
+      wp_plugins = WpPlugins.passive_detection(wp_target)
+      if !wp_plugins.empty?
+        puts "#{wp_plugins.size} plugins found :"
 
-        plugins.each do |plugin|
-          output_item_details(plugin)
-        end
+        wp_plugins.output
       else
         puts 'No plugins found :('
       end
@@ -236,27 +200,18 @@ def main
       puts green('[+]') + " Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
       puts
 
-      options = {
-          base_url:              wp_target.uri,
-          only_vulnerable_ones:  wpscan_options.enumerate_only_vulnerable_plugins || false,
-          show_progression:      true,
-          wp_content_dir:        wp_target.wp_content_dir,
-          error_404_hash:        wp_target.error_404_hash,
-          homepage_hash:         wp_target.homepage_hash,
-          wp_plugins_dir:        wp_target.wp_plugins_dir,
-          full:                  wpscan_options.enumerate_all_plugins,
-          exclude_content_based: wpscan_options.exclude_content_based
-      }
-
-      plugins = wp_target.plugins_from_aggressive_detection(options)
-      if !plugins.empty?
+      wp_plugins = WpPlugins.aggressive_detection(wp_target,
+        enum_options.merge(
+          file: wpscan_options.enumerate_all_plugins ? PLUGINS_FULL_FILE : PLUGINS_FILE,
+          only_vulnerable: wpscan_options.enumerate_only_vulnerable_plugins || false
+        )
+      )
+      if !wp_plugins.empty?
         puts
         puts
-        puts green('[+]') + " We found #{plugins.size.to_s} plugins:"
+        puts green('[+]') + " We found #{wp_plugins.size} plugins:"
 
-        plugins.each do |plugin|
-          output_item_details(plugin)
-        end
+        wp_plugins.output
       else
         puts
         puts 'No plugins found :('
@@ -269,26 +224,19 @@ def main
       puts green('[+]') + " Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
       puts
 
-      options = {
-          base_url:              wp_target.uri,
-          only_vulnerable_ones:  wpscan_options.enumerate_only_vulnerable_themes || false,
-          show_progression:      true,
-          wp_content_dir:        wp_target.wp_content_dir,
-          error_404_hash:        wp_target.error_404_hash,
-          homepage_hash:         wp_target.homepage_hash,
-          full:                  wpscan_options.enumerate_all_themes,
-          exclude_content_based: wpscan_options.exclude_content_based
-      }
+      wp_themes = WpThemes.aggressive_detection(wp_target,
+        enum_options.merge(
+          file: wpscan_options.enumerate_all_themes ? THEMES_FULL_FILE : THEMES_FILE,
+          only_vulnerable: wpscan_options.enumerate_only_vulnerable_themes || false
+        )
+      )
 
-      themes = wp_target.themes_from_aggressive_detection(options)
-      if !themes.empty?
+      if !wp_themes.empty?
         puts
         puts
-        puts green('[+]') + " We found #{themes.size.to_s} themes:"
+        puts green('[+]') + " We found #{wp_themes.size} themes:"
 
-        themes.each do |theme|
-          output_item_details(theme)
-        end
+        wp_themes.output
       else
         puts
         puts 'No themes found :('
@@ -300,26 +248,19 @@ def main
       puts green('[+]') + ' Enumerating timthumb files ...'
       puts
 
-      options = {
-          base_url:              wp_target.uri,
-          show_progression:      true,
-          wp_content_dir:        wp_target.wp_content_dir,
-          error_404_hash:        wp_target.error_404_hash,
-          homepage_hash:         wp_target.homepage_hash,
-          exclude_content_based: wpscan_options.exclude_content_based
-      }
-
-      theme_name = wp_theme ? wp_theme.name : nil
-      if wp_target.has_timthumbs?(theme_name, options)
-        timthumbs = wp_target.timthumbs
-
+      wp_timthumbs = WpTimthumbs.aggressive_detection(wp_target,
+        enum_options.merge(
+          file: DATA_DIR + '/timthumbs.txt',
+          theme_name: wp_theme ? wp_theme.name : nil
+        )
+      )
+      if !wp_timthumbs.empty?
         puts
-        puts green('[+]') + " We found #{timthumbs.size.to_s} timthumb file/s :"
+        puts green('[+]') + " We found #{timthumbs.size} timthumb file/s :"
         puts
 
-        timthumbs.each do |t|
-          puts ' | ' + red('[!]') + " #{t.get_full_url.to_s}"
-        end
+        wp_timthumbs.output
+
         puts
         puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')
       else
@@ -333,9 +274,14 @@ def main
       puts
       puts green('[+]') + ' Enumerating usernames ...'
 
-      usernames = wp_target.usernames(range: wpscan_options.enumerate_usernames_range)
+      wp_users = WpUsers.aggressive_detection(wp_target,
+        enum_options.merge(
+          range: wpscan_options.enumerate_usernames_range,
+          show_progression: false
+        )
+      )
 
-      if usernames.empty?
+      if wp_users.empty?
         puts
         puts 'We did not enumerate any usernames :('
         puts 'Try supplying your own username with the --username option'
@@ -343,24 +289,14 @@ def main
         exit(1)
       else
         puts
-        puts green('[+]') + " We found the following #{usernames.length.to_s} username/s :"
-        puts
+        puts green('[+]') + " We found the following #{wp_users.size} user/s :"
 
-        max_id_length = usernames.sort { |a, b| a.id.to_s.length <=> b.id.to_s.length }.last.id.to_s.length
-        max_name_length = usernames.sort { |a, b| a.name.length <=> b.name.length }.last.name.length
-        max_nickname_length = usernames.sort { |a, b| a.nickname.length <=> b.nickname.length }.last.nickname.length
-
-        space = 1
-        usernames.each do |u|
-          id_string = "id: #{u.id.to_s.ljust(max_id_length + space)}"
-          name_string = "name: #{u.name.ljust(max_name_length + space)}"
-          nickname_string = "nickname: #{u.nickname.ljust(max_nickname_length + space)}"
-          puts " | #{id_string}| #{name_string}| #{nickname_string}"
-        end
+        wp_users.output(' ' * 4)
       end
 
     else
-      usernames = [WpUser.new(wpscan_options.username, -1, 'empty')]
+      # FIXME : Change the .username to .login (and also the --username in the CLI)
+      wp_users = WpUsers.new << WpUser.new(wp_target, login: wpscan_options.username)
     end
 
     # Start the brute forcer
@@ -381,7 +317,7 @@ def main
         puts
         puts green('[+]') + ' Starting the password brute forcer'
         puts
-        wp_target.brute_force(usernames, wpscan_options.wordlist, {show_progression: true})
+        wp_target.brute_force(wp_users, wpscan_options.wordlist, { show_progression: true })
       else
         puts
         puts 'Brute forcing aborted'

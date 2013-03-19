@@ -54,17 +54,15 @@ describe 'StatsPlugin' do
 
   describe '#total_plugins' do
     it 'should return the correct numer' do
-      xml = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/vulnerabilities/plugin_vulns.xml"
       file = "#{SPEC_FIXTURES_WPSCAN_WP_PLUGIN_DIR}/plugins.txt"
-      @stats.total_plugins(file, xml).should == 4
+      @stats.total_plugins(file).should == 4
     end
   end
 
   describe '#total_themes' do
     it 'should return the correct numer' do
-      xml = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/vulnerabilities/theme_vulns.xml"
       file = "#{SPEC_FIXTURES_WPSCAN_WP_THEME_DIR}/themes.txt"
-      @stats.total_themes(file, xml).should == 5
+      @stats.total_themes(file).should == 5
     end
   end
 end

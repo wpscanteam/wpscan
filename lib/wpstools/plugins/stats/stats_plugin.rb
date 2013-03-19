@@ -17,9 +17,6 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
-require 'wpscan/wp_enumerator'
-require 'wpscan/wp_item'
-
 class StatsPlugin < Plugin
 
   def initialize
@@ -60,23 +57,16 @@ class StatsPlugin < Plugin
     xml(file).xpath("count(//vulnerability)").to_i
   end
 
-  def total_plugins(file=PLUGINS_FULL_FILE, xml=PLUGINS_VULNS_FILE)
-    total('plugins', file, xml)
+  def total_plugins(file=PLUGINS_FULL_FILE)
+    lines_in_file(file)
   end
 
-  def total_themes(file=THEMES_FULL_FILE, xml=THEMES_VULNS_FILE)
-    total('themes', file, xml)
+  def total_themes(file=THEMES_FULL_FILE)
+    lines_in_file(file)
   end
 
-  def total(type, file, xml)
-    options = {
-      type: type,
-      file: file,
-      vulns_file: xml,
-      base_url: 'http://localhost',
-      only_vulnerable_ones: false
-    }
-    WpEnumerator.generate_items(options).count
+  def lines_in_file(file)
+    IO.readlines(file).size
   end
 
 end

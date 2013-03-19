@@ -23,10 +23,6 @@ class WpTarget < WebSite
   include WpConfigBackup
   include WpLoginProtection
   include Malwares
-  include WpUsernames
-  include WpTimthumbs
-  include WpPlugins
-  include WpThemes
   include BruteForce
 
   attr_reader :verbose
@@ -92,7 +88,17 @@ class WpTarget < WebSite
 
   # return WpVersion
   def version
-    WpVersion.find(@uri, wp_content_dir)
+    WpVersion.find(@uri, wp_content_dir, wp_plugins_dir)
+  end
+
+  def has_plugin?(name, version = nil)
+    WpPlugin.new(
+      @uri,
+      name: name,
+      version: version,
+      wp_content_dir: wp_content_dir,
+      wp_plugins_dir: wp_plugins_dir
+    ).exists?
   end
 
   def wp_content_dir

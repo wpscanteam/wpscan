@@ -27,7 +27,6 @@ end
 
 begin
   # Standard libs
-  require 'rubygems'
   require 'bundler/setup'
   require 'getoptlong'
   require 'optparse' # Will replace getoptlong

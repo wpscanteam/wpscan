@@ -22,6 +22,7 @@ shared_examples_for 'WpLoginProtection' do
   before :each do
     @module = WpScanModuleSpec.new('http://example.localhost')
     @module.extend(WpLoginProtection)
+    @module.stub(:wp_plugins_dir).and_return('wp-content/plugins')
 
     @fixtures_dir = SPEC_FIXTURES_WPSCAN_MODULES_DIR + '/wp_login_protection'
   end
@@ -70,10 +71,10 @@ shared_examples_for 'WpLoginProtection' do
         expected = plugin_name_from_fixture === plugin_name_from_symbol ? true : false
 
         it "#{symbol_to_call} with #{fixture} should return #{expected}" do
-          @plugin_name = plugin_name_from_fixture
-          @fixture = @fixtures_dir + '/' + fixture
+          @plugin_name    = plugin_name_from_fixture
+          @fixture        = @fixtures_dir + '/' + fixture
           @symbol_to_call = symbol_to_call
-          @expected = expected
+          @expected       = expected
         end
       end
     end
@@ -89,33 +90,25 @@ shared_examples_for 'WpLoginProtection' do
       stub_request(:get, @module.send(:limit_login_attempts_url).to_s).to_return(status: 404)
       stub_request(:get, @module.send(:bluetrait_event_viewer_url).to_s).to_return(status: 404)
 
-      @module.login_protection_plugin().should === @plugin_expected
+      @module.login_protection_plugin().should == @plugin_expected
       @module.has_login_protection?.should === @has_protection_expected
     end
 
     it 'should return nil if no protection is present' do
-      @fixture = @fixtures_dir + '/wp-login-clean.php'
-      @plugin_expected = nil
+      @fixture                 = @fixtures_dir + '/wp-login-clean.php'
+      @plugin_expected         = nil
       @has_protection_expected = false
     end
 
     it 'should return a login-lockdown WpPlugin object' do
-      @fixture = @fixtures_dir + '/wp-login-login_lockdown.php'
-      @plugin_expected = WpPlugin.new(
-        base_url: @module.url,
-        path:     '/plugins/login-lockdown/',
-        name:     'login-lockdown'
-      )
+      @fixture                 = @fixtures_dir + '/wp-login-login_lockdown.php'
+      @plugin_expected         = WpPlugin.new(@module.uri, name: 'login-lockdown')
       @has_protection_expected = true
     end
 
     it 'should return a login-lock WpPlugin object' do
-      @fixture = @fixtures_dir + '/wp-login-login_lock.php'
-      @plugin_expected = WpPlugin.new(
-        base_url: @module.url,
-        path:     '/plugins/login-lock/',
-        name:     'login-lock'
-      )
+      @fixture                 = @fixtures_dir + '/wp-login-login_lock.php'
+      @plugin_expected         = WpPlugin.new(@module.uri, name: 'login-lock')
       @has_protection_expected = true
     end
   end
