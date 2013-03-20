@@ -33,6 +33,8 @@ SPEC_FIXTURES_DIR             = SPEC_DIR + '/samples'
 SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf'
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
 
+MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
+
 def count_files_in_dir(absolute_dir_path, files_pattern = '*')
   Dir.glob(File.join(absolute_dir_path, files_pattern)).count
 end
