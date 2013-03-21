@@ -23,8 +23,10 @@ class WpItem
     [:name, :wp_content_dir, :wp_plugins_dir, :path, :version, :vulns_file]
   end
 
-  # options :
-  #   See allowed_options
+  # @param [ URI ] target_base_uri
+  # @param [ Hash ] options See allowed_option
+  #
+  # @return [ WpItem ]
   def initialize(target_base_uri, options = {})
 
     options[:wp_content_dir] ||= 'wp-content'
@@ -34,6 +36,9 @@ class WpItem
     forge_uri(target_base_uri)
   end
 
+  # @param [ Hash ] options
+  #
+  # @return [ void ]
   def set_options(options)
     allowed_options.each do |allowed_option|
       if options.has_key?(allowed_option)
@@ -49,30 +54,46 @@ class WpItem
   end
   private :set_options
 
+  # @param [ URI ] target_base_uri
+  #
+  # @return [ void ]
   def forge_uri(target_base_uri)
     @uri = target_base_uri
   end
 
+  # @return [ URI ] The uri to the WpItem, with the path if present
   def uri
-    return path ? @uri.merge(path) : @uri
+    path ? @uri.merge(path) : @uri
   end
 
+  # @return [ String ] The url to the WpItem
   def url; uri.to_s end
 
+  # Sets the path
+  #
+  # Variable, such as $wp-plugins$ and $wp-content$ can be used
+  # and will be replace by their value
+  #
+  # @param [ String ] path
+  #
+  # @return [ void ]
   def path=(path)
     @path = URI.encode(
       path.gsub(/\$wp-plugins\$/i, wp_plugins_dir).gsub(/\$wp-content\$/i, wp_content_dir)
     )
   end
 
+  # @param [ WpItem ] other
   def <=>(other)
     name <=> other.name
   end
 
+  # @param [ WpItem ] other
   def ==(other)
     name === other.name
   end
 
+  # @param [ WpItem ] other
   def ===(other)
     self == other && version === other.version
   end
