@@ -26,6 +26,22 @@ if RUBY_VERSION < '1.9'
   end
 end
 
+# This is used in WpItem::Existable
+module Typhoeus
+  class Response
+
+    # Compare the body hash to error_404_hash and homepage_hash
+    # returns true if they are different, false otherwise
+    #
+    # @return [ Boolean ]
+    def has_valid_hash?(error_404_hash, homepage_hash)
+      body_hash = Digest::MD5.hexdigest(self.body)
+
+      body_hash != error_404_hash && body_hash != homepage_hash
+    end
+  end
+end
+
 # Override for puts to enable logging
 def puts(o = '')
   # remove color for logging

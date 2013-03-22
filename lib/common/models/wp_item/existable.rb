@@ -1,21 +1,5 @@
 # encoding: UTF-8
 
-# HACK
-module Typhoeus
-  class Response
-
-    # Compare the body hash to error_404_hash and homepage_hash
-    # returns true if they are different, false otherwise
-    #
-    # @return [ Boolean ]
-    def has_valid_hash?(error_404_hash, homepage_hash)
-      body_hash = Digest::MD5.hexdigest(self.body)
-
-      body_hash != error_404_hash && body_hash != homepage_hash
-    end
-  end
-end
-
 class WpItem
   module Existable
 
