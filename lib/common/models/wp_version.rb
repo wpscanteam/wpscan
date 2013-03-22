@@ -13,6 +13,7 @@ class WpVersion < WpItem
   # The version number
   attr_accessor :number
 
+  # @return [ Array ]
   def allowed_options; super << :number << :found_from end
 
 end

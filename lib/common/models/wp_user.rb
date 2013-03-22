@@ -9,6 +9,7 @@ class WpUser < WpItem
 
   def allowed_options; [:id, :login, :display_name, :password] end
 
+  # @return [ URI ] The uri to the auhor page
   def uri
     if id
       return @uri.merge("?author=#{id}")
@@ -17,14 +18,17 @@ class WpUser < WpItem
     end
   end
 
+  # @param [ Wpuser ] other
   def <=>(other)
     id <=> other.id
   end
 
+  # @param [ WpUser ] other
   def ==(other)
     self === other
   end
 
+  # @param [ WpUser ] other
   def ===(other)
     id === other.id && login === other.login
   end

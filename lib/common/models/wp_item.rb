@@ -19,6 +19,8 @@ class WpItem
   attr_reader   :path
   attr_accessor :name, :wp_content_dir, :wp_plugins_dir
 
+  # @return [ Array ]
+  # Make it private ?
   def allowed_options
     [:name, :wp_content_dir, :wp_plugins_dir, :path, :version, :vulns_file]
   end
