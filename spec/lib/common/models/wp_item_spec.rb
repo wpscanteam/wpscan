@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe WpItem do
+  it_behaves_like 'WpItem::Existable'
+
   subject(:wp_item) { WpItem.new(uri, options) }
   let(:uri)         { URI.parse('http://example.com') }
   let(:options)     { {} }

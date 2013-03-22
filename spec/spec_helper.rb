@@ -30,10 +30,14 @@ SPEC_DIR                      = ROOT_DIR + '/spec'
 SPEC_LIB_DIR                  = SPEC_DIR + '/lib'
 SPEC_CACHE_DIR                = SPEC_DIR + '/cache'
 SPEC_FIXTURES_DIR             = SPEC_DIR + '/samples'
+SHARED_EXAMPLES_DIR           = SPEC_DIR + '/shared_examples'
 SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf'
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
 
 MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
+
+# Load all the shared examples
+require_files_from_directory(SHARED_EXAMPLES_DIR)
 
 def count_files_in_dir(absolute_dir_path, files_pattern = '*')
   Dir.glob(File.join(absolute_dir_path, files_pattern)).count
