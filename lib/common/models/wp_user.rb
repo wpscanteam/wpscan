@@ -3,7 +3,6 @@
 require 'wp_user/existable'
 
 class WpUser < WpItem
-
   include WpUser::Existable
 
   attr_accessor :id, :login, :display_name, :password
@@ -23,7 +22,7 @@ class WpUser < WpItem
   end
 
   def ==(other)
-    self === (other)
+    self === other
   end
 
   def ===(other)
