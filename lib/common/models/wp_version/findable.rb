@@ -1,7 +1,21 @@
 # encoding: UTF-8
 
 class WpVersion < WpItem
+
   module Findable
+    @@version_xml = WP_VERSIONS_FILE
+
+    def version_xml
+      @@version_xml
+    end
+
+    def version_xml=(xml)
+      if File.exists?(xml)
+        @@version_xml = xml
+      else
+        raise "The file #{xml} does not exist"
+      end
+    end
 
     # Find the version of the wp_target blog
     # returns a WpVersion object or nil
@@ -16,6 +30,7 @@ class WpVersion < WpItem
 
     # Returns the first match of <pattern> in the body of the url
     def scan_url(target_uri, pattern, path = nil)
+      return nil
       url = path ? target_uri.merge(path).to_s : target_uri.to_s
       response = Browser.instance.get_and_follow_location(url)
 
