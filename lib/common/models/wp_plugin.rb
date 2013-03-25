@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'wp_plugin/vulnerable'
+
 class WpPlugin < WpItem
   include WpPlugin::Vulnerable
 

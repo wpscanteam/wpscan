@@ -30,7 +30,6 @@ class WpVersion < WpItem
 
     # Returns the first match of <pattern> in the body of the url
     def scan_url(target_uri, pattern, path = nil)
-      return nil
       url = path ? target_uri.merge(path).to_s : target_uri.to_s
       response = Browser.instance.get_and_follow_location(url)
 

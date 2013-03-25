@@ -2,6 +2,7 @@
 
 require 'wp_theme/findable'
 require 'wp_theme/versionable'
+require 'wp_theme/vulnerable'
 
 class WpTheme < WpItem
   extend WpTheme::Findable

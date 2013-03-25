@@ -11,6 +11,11 @@ describe WpItem do
     let(:error_log_url) { uri.merge('error_log').to_s }
   end
   it_behaves_like 'WpItem::Versionable'
+  it_behaves_like 'WpItem::Vulnerable' do
+    let(:vulns_file)     { MODELS_FIXTURES + '/wp_item/vulnerable/vulns_items.xml' }
+    let(:vulns_xpath)    { "//item[@name='neo']/vulnerability" }
+    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new("I'm the one", 'XSS', ["http://ref1.com"]) }
+  end
 
   subject(:wp_item) { WpItem.new(uri, options) }
   let(:uri)         { URI.parse('http://example.com') }

@@ -1,17 +1,11 @@
 # encoding: UTF-8
 
 class WpItem
-
-  # moved this into the module ?
-  def vulns_file=(file)
-    if File.exists?(file)
-      @vulns_file = file
-    else
-      raise "The file #{file} does not exist"
-    end
-  end
-
   module Vulnerable
+    attr_accessor :vulns_file, :vulns_xpath
+
+    # Get the vulnerabilities associated to the WpItem
+    #
     # @return [ Vulnerabilities ]
     def vulnerabilities
       xml             = xml(vulns_file)
@@ -23,4 +17,5 @@ class WpItem
       vulnerabilities
     end
   end
+
 end
