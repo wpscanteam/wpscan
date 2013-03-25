@@ -3,11 +3,11 @@
 class WpItem
   attr_writer :version
 
-  #def allowed_options; super << :version end
-
   module Versionable
 
     # Get the version from the readme.txt
+    #
+    # @return [ String ] The version number
     def version
       unless @version
         response = Browser.instance.get(readme_url)
@@ -16,6 +16,7 @@ class WpItem
       @version
     end
 
+    # @return [ String ]
     def to_s
       item_version = self.version
       "#@name#{' v' + item_version.strip if item_version}"

@@ -10,6 +10,7 @@ describe WpItem do
     let(:changelog_url) { uri.merge('changelog.txt').to_s }
     let(:error_log_url) { uri.merge('error_log').to_s }
   end
+  it_behaves_like 'WpItem::Versionable'
 
   subject(:wp_item) { WpItem.new(uri, options) }
   let(:uri)         { URI.parse('http://example.com') }
