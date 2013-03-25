@@ -5,6 +5,11 @@ require 'spec_helper'
 describe WpItem do
   it_behaves_like 'WpItem::Existable'
   it_behaves_like 'WpItem::Findable#Found_From='
+  it_behaves_like 'WpItem::Infos' do
+    let(:readme_url)    { uri.merge('readme.txt').to_s }
+    let(:changelog_url) { uri.merge('changelog.txt').to_s }
+    let(:error_log_url) { uri.merge('error_log').to_s }
+  end
 
   subject(:wp_item) { WpItem.new(uri, options) }
   let(:uri)         { URI.parse('http://example.com') }
