@@ -4,9 +4,13 @@
 # See http://rosettacode.org/wiki/URL_encoding#Ruby and http://www.ruby-forum.com/topic/207489
 if RUBY_VERSION >= '1.9.2'
   module URI
-    def self.escape(str)
-      URI.encode_www_form_component(str).gsub('+', '%20')
+    extend self
+
+    def escape(str)
+      URI::Parser.new.escape(str)
     end
+    alias :encode :escape
+
   end
 end
 
