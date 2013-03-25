@@ -4,6 +4,7 @@ require 'spec_helper'
 
 describe WpItem do
   it_behaves_like 'WpItem::Existable'
+  it_behaves_like 'WpItem::Findable#Found_From='
 
   subject(:wp_item) { WpItem.new(uri, options) }
   let(:uri)         { URI.parse('http://example.com') }

@@ -3,10 +3,9 @@
 class WpItem
   attr_reader :found_from
 
-  #def allowed_options; super << :found_from end
-
   def found_from=(method)
-    @found_from = method[%r{find_from_(.*)}, 1].gsub('_', ' ')
+    found       = method[%r{find_from_(.*)}, 1]
+    @found_from = found.gsub('_', ' ') if found
   end
 
   module Findable
