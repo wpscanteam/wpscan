@@ -2,6 +2,8 @@
 
 class WpTheme < WpItem
   module Vulnerable
+
+    # @return [ String ] The path to the file containing vulnerabilities
     def vulns_file
       unless @vulns_file
         @vulns_file = THEMES_VULNS_FILE
@@ -9,8 +11,10 @@ class WpTheme < WpItem
       @vulns_file
     end
 
+    # @return [ String ]
     def vulns_xpath
       "//theme[@name='#{@name}']/vulnerability"
     end
+
   end
 end

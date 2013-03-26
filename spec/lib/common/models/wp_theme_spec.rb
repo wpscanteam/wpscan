@@ -4,6 +4,12 @@ require 'spec_helper'
 
 describe WpTheme do
   it_behaves_like 'WpTheme::Versionable'
+  it_behaves_like 'WpTheme::Vulnerable'
+  it_behaves_like 'WpItem::Vulnerable' do
+    let(:options)        { { name: 'the-oracle' } }
+    let(:vulns_file)     { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.xml' }
+    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new('I see you', 'FPD', ['http://ref.com']) }
+  end
 
   subject(:wp_theme)  { WpTheme.new(uri, options) }
   let(:uri)           { URI.parse('http://example.com/') }
