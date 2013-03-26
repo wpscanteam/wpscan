@@ -8,9 +8,7 @@ class WpTheme < WpItem
         @version = Browser.instance.get(style_url).body[%r{Version:\s([^\s]+)}i, 1]
 
         # Get Version from readme.txt
-        unless @version
-          @version = super
-        end
+        @version ||= super
       end
       @version
     end

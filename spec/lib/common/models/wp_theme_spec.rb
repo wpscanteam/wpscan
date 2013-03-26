@@ -3,8 +3,10 @@
 require 'spec_helper'
 
 describe WpTheme do
+  it_behaves_like 'WpTheme::Versionable'
+
   subject(:wp_theme)  { WpTheme.new(uri, options) }
-  let(:uri)           { URI.parse('http://example.com') }
+  let(:uri)           { URI.parse('http://example.com/') }
   let(:options)       { { name: 'theme-name' } }
   let(:theme_path)    { 'wp-content/themes/theme-name/' }
 
