@@ -8,5 +8,4 @@ class WpTimthumb < WpItem
   include WpTimthumb::Versionable
   include WpTimthumb::Existable
   include WpTimthumb::Output
-
 end
