@@ -5,11 +5,17 @@ class WpTimthumb < WpItem
 
     # Get the version from the body of an invalid request
     # See https://code.google.com/p/timthumb/source/browse/trunk/timthumb.php#426
+    #
+    # @return [ String ] The version
     def version
-      response = Browser.instance.get(url)
-      response.body[%r{TimThumb version\s*: ([^<]+)} , 1]
+      unless @version
+        response = Browser.instance.get(url)
+        @version = response.body[%r{TimThumb version\s*: ([^<]+)} , 1]
+      end
+      @version
     end
 
+    # @return [ String ]
     def to_s
       "#{url}#{ ' v' + version if version}"
     end
