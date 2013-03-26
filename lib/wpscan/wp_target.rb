@@ -155,6 +155,16 @@ class WpTarget < WebSite
     resp.code == 200 && resp.body[%r{by interconnect}i]
   end
 
+  # FIXME: a plugin which does not follow the wordpress plugin system
+  def backupbuddy_url
+    @uri.merge('importbuddy.php').to_s
+  end
+
+  def has_backupbuddy?
+    response = Browser.instance.get(backupbuddy_url)
+    response.code == 200 && response.body[%r{BackupBuddy}i]
+  end
+
   # Should check wp-login.php if registration is enabled or not
   def registration_enabled?
     resp = Browser.instance.get(registration_url)
