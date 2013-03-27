@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe WpUser do
+  it_behaves_like 'WpUser::Existable'
+
   subject(:wp_user) { WpUser.new(uri, options) }
   let(:uri)         { URI.parse('http://example.com') }
   let(:options)     { {} }

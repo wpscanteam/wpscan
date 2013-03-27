@@ -18,7 +18,7 @@ class WpUser < WpItem
     end
   end
 
-  # @param [ Wpuser ] other
+  # @param [ WpUser ] other
   def <=>(other)
     id <=> other.id
   end
