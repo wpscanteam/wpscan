@@ -9,7 +9,7 @@ shared_examples 'WpTimthumb::Versionable' do
       subject.version.should === @expected
     end
 
-    context 'when a version is already sets' do
+    context 'when a version is already set' do
       it 'returns it' do
         subject.version = '2.3.1'
         @expected       = '2.3.1'

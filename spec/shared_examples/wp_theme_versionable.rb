@@ -13,7 +13,7 @@ shared_examples 'WpTheme::Versionable' do
       subject.version.should == @expected
     end
 
-    context 'the version is already sets' do
+    context 'the version is already set' do
       it 'returns it' do
         subject.version = '2.1'
         @expected = '2.1'

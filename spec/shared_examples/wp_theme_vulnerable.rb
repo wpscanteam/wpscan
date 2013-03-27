@@ -5,7 +5,7 @@ shared_examples 'WpTheme::Vulnerable' do
   describe '#vulns_file' do
     after { subject.vulns_file.should == @expected }
 
-    context 'when :vulns_file is no set' do
+    context 'when :vulns_file is not set' do
       it 'returns the default one' do
         @expected = THEMES_VULNS_FILE
       end

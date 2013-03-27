@@ -117,7 +117,7 @@ describe 'WpTheme::Findable' do
     end
 
     context 'when the theme is found' do
-      it 'returns it, with the :found_from sets' do
+      it 'returns it, with the :found_from set' do
         stub_all_to_nil()
         expected = WpTheme.new(uri, name: 'the-oracle')
 
