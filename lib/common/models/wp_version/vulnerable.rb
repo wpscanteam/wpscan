@@ -2,6 +2,7 @@
 
 class WpVersion < WpItem
   module Vulnerable
+
     def vulns_file
       unless @vulns_file
         @vulns_file = WP_VULNS_FILE
@@ -12,5 +13,6 @@ class WpVersion < WpItem
     def vulns_xpath
       "//wordpress[@version='#{@number}']/vulnerability"
     end
+
   end
 end
