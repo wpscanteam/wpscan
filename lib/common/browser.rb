@@ -196,6 +196,10 @@ class Browser
       params = params.merge(cache_ttl: @cache_ttl)
     end
 
+    # Disable SSL-Certificate checks
+    params = params.merge(ssl_verifypeer: false)
+    params = params.merge(ssl_verifyhost: 0)
+
     params
   end
 

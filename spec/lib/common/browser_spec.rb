@@ -278,7 +278,7 @@ describe Browser do
 
   describe '#merge_request_params' do
     let(:params) { {} }
-    let(:default_expectation) { { cache_ttl: 250, headers: { 'User-Agent' => 'SomeUA' } } }
+    let(:default_expectation) { { cache_ttl: 250, headers: { 'User-Agent' => 'SomeUA' }, ssl_verifypeer: false, ssl_verifyhost: 0 } }
 
     after :each do
       @browser.stub(user_agent: 'SomeUA')
