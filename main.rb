@@ -169,7 +169,7 @@ def main
       exclude_content:  wpscan_options.exclude_content_based
     }
 
-    if wp_version = wp_target.version
+    if wp_version = wp_target.version(WP_VERSIONS_FILE)
       wp_version.output
     end
 

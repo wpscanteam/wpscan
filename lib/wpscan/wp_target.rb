@@ -86,9 +86,11 @@ class WpTarget < WebSite
     WpTheme.find(@uri)
   end
 
-  # return WpVersion
-  def version
-    WpVersion.find(@uri, wp_content_dir, wp_plugins_dir)
+  # @param [ String ] versions_xml
+  #
+  # @return [ WpVersion ]
+  def version(versions_xml)
+    WpVersion.find(@uri, wp_content_dir, wp_plugins_dir, versions_xml)
   end
 
   def has_plugin?(name, version = nil)

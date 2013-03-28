@@ -16,4 +16,11 @@ class WpVersion < WpItem
   # @return [ Array ]
   def allowed_options; super << :number << :found_from end
 
+  # @param [ WpVersion ] other
+  #
+  # @return [ Boolean ]
+  def ==(other)
+    number == other.number
+  end
+
 end
