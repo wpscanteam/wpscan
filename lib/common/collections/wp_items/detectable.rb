@@ -1,17 +1,20 @@
 # encoding: UTF-8
 
 class WpItems < Array
-
   module Detectable
 
-    # The default request parameters
-    def request_params; { cache_ttl: 0, followlocation: true } end
+    attr_reader :vulns_file, :item_xpath
 
     # options:
     #    option name    - default - description
     #   show_progress   -  false  -  Output a progress bar
     #   only_vulnerable -   nil   -  Only check for vulnerable items
     #   exclude_content -   nil   -
+    # @param [ Wptarget ] wp_target
+    # @param [ options ] options
+    # @options
+    #
+    # @return [ WpItems ]
     def aggressive_detection(wp_target, options = {})
       queue_count      = 0
       request_count    = 0
@@ -59,6 +62,9 @@ class WpItems < Array
       results # can't just return results.sort because the #sort returns an array, and we want a WpItems
     end
 
+    # @param [ WpTarget ] wp_target
+    #
+    # @return [ WpItems ]
     def passive_detection(wp_target, options = {})
       results      = new
       item_class   = self.item_class
@@ -67,7 +73,7 @@ class WpItems < Array
       item_options = {
         wp_content_dir: wp_target.wp_content_dir,
         wp_plugins_dir: wp_target.wp_plugins_dir,
-        vulns_file:     vulns_file
+        vulns_file:     self.vulns_file
       }
 
       regex1 = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
@@ -86,6 +92,16 @@ class WpItems < Array
 
     protected
 
+    # The default request parameters
+    #
+    # @return [ Hash ]
+    def request_params; { cache_ttl: 0, followlocation: true } end
+
+    # @param [ WpTarget ] wp_target
+    # @param [ String ] vulns_file
+    # @param [ options ] options
+    #
+    # @return [ Array<WpItem> ]
     def targets_items(wp_target, options = {})
       item_class = self.item_class
       vulns_file = self.vulns_file
@@ -104,6 +120,11 @@ class WpItems < Array
       targets.sort_by { rand }
     end
 
+    # @param [ WpTarget ] wp_target
+    # @param [ Class ] item_class
+    # @param [ String ] vulns_file
+    #
+    # @return [ Array<WpItem> ]
     def vulnerable_targets_items(wp_target, item_class, vulns_file)
       targets = []
       xml     = xml(vulns_file)
@@ -119,6 +140,12 @@ class WpItems < Array
       targets
     end
 
+    # @param [ Class ] klass
+    # @param [ String ] name
+    # @param [ WpTarget ] wp_target
+    # @option [ String ] vulns_file
+    #
+    # @return [ WpItem ]
     def create_item(klass, name, wp_target, vulns_file = nil)
       klass.new(
         wp_target.uri,
@@ -129,6 +156,12 @@ class WpItems < Array
       )
     end
 
+    # @param [ String ] file
+    # @param [ WpTarget ] wp_target
+    # @param [ Class ] item_class
+    # @param [ String ] vulns_file
+    #
+    # @return [ WpItem ]
     def targets_items_from_file(file, wp_target, item_class, vulns_file)
       targets = []
 
@@ -145,7 +178,7 @@ class WpItems < Array
       targets
     end
 
-    # return class
+    # @return [ Class ]
     def item_class
       Object.const_get(self.to_s.gsub(/.$/, ''))
     end

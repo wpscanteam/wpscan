@@ -17,6 +17,14 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #++
 
+require 'web_site'
+require 'modules/wp_readme'
+require 'modules/wp_full_path_disclosure'
+require 'modules/wp_config_backup'
+require 'modules/wp_login_protection'
+require 'modules/malwares'
+require 'modules/brute_force'
+
 class WpTarget < WebSite
   include WpReadme
   include WpFullPathDisclosure

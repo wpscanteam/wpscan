@@ -5,7 +5,7 @@ class WpTimthumbs < WpItems
 
     # No passive detection
     # @return [ WpTimthumbs ]
-    def passive_detection(wp_target, topns = {})
+    def passive_detection(wp_target, options = {})
       new
     end
 

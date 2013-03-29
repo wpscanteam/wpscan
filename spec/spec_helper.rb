@@ -35,6 +35,7 @@ SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf'
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
 
 MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
+COLLECTIONS_FIXTURES = SPEC_FIXTURES_DIR + '/common/collections'
 
 # Load all the shared examples
 require_files_from_directory(SHARED_EXAMPLES_DIR)
