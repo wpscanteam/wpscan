@@ -5,14 +5,11 @@ class WpItems < Array
 
     attr_reader :vulns_file, :item_xpath
 
-    # options:
-    #    option name    - default - description
-    #   show_progress   -  false  -  Output a progress bar
-    #   only_vulnerable -   nil   -  Only check for vulnerable items
-    #   exclude_content -   nil   -
     # @param [ Wptarget ] wp_target
-    # @param [ options ] options
-    # @options
+    # @param [ Hash ] options
+    # @option options [ Boolean ] :show_progression  Whether or not output the progress bar
+    # @option options [ Boolean ] :only_vulnerable   Only check for vulnerable items
+    # @option options [ String ]  :exclude_content
     #
     # @return [ WpItems ]
     def aggressive_detection(wp_target, options = {})
@@ -63,6 +60,7 @@ class WpItems < Array
     end
 
     # @param [ WpTarget ] wp_target
+    # @param [ Hash ] options
     #
     # @return [ WpItems ]
     def passive_detection(wp_target, options = {})
@@ -98,8 +96,9 @@ class WpItems < Array
     def request_params; { cache_ttl: 0, followlocation: true } end
 
     # @param [ WpTarget ] wp_target
-    # @param [ String ] vulns_file
     # @param [ options ] options
+    # @option options [ Boolean ] :only_vulnerable
+    # @option options [ String ]  :file The path to the file containing the targets
     #
     # @return [ Array<WpItem> ]
     def targets_items(wp_target, options = {})
