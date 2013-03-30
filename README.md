@@ -117,6 +117,7 @@ Prerequisites:
       See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
 
   - no such file to load -- rubygems
+
       ```update-alternatives --config ruby```
 
       And select your ruby version
