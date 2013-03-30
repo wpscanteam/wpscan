@@ -104,7 +104,7 @@ shared_examples 'WpItems::Detectable' do
       if @expected
         results = subject.send(:targets_items, wp_target, options)
 
-        results.map { |i| i.name }.sort.should == @expected.map { |i| i.name }.sort
+        results.sort.map { |i| i.name }.should == @expected.sort.map { |i| i.name }
       end
     end
 
@@ -137,10 +137,10 @@ shared_examples 'WpItems::Detectable' do
     after do
       stub_request_to_fixture(url: wp_target.url, fixture: @fixture)
 
-      result = subject.passive_detection(wp_target)
+      results = subject.passive_detection(wp_target)
 
-      result.should be_a subject
-      result.map { |i| i.name }.should == @expected.map { |i| i.name }.sort
+      results.should be_a subject
+      results.map { |i| i.name }.should == @expected.sort.map { |i| i.name }
     end
 
     context 'when the page is empty' do
@@ -171,7 +171,7 @@ shared_examples 'WpItems::Detectable' do
       result = subject.aggressive_detection(wp_target, options)
 
       result.should be_a subject
-      result.map { |i| i.name }.should == @expected.map { |i| i.name }.sort
+      result.sort.map { |i| i.name }.should == @expected.sort.map { |i| i.name }
     end
 
     context 'when :only_vulnerable' do
