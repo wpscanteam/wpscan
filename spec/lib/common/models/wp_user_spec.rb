@@ -33,6 +33,34 @@ describe WpUser do
     end
   end
 
+  describe '#to_s' do
+    after do
+      subject.id = 1
+      subject.to_s.should == @expected
+    end
+
+    it 'returns @id' do
+      @expected = '1'
+    end
+
+    context 'when @login' do
+      it 'returns @id | @login' do
+        subject.login = 'admin'
+
+        @expected = '1 | admin'
+      end
+
+      context 'when @display_name' do
+        it 'returns @id | @login | @display_name' do
+          subject.login        = 'admin'
+          subject.display_name = 'real name'
+
+          @expected = '1 | admin | real name'
+        end
+      end
+    end
+  end
+
   describe '#<=>' do
     it 'bases the comparaison on the :id' do
       wp_user.id = 1

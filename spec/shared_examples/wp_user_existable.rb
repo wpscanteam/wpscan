@@ -69,6 +69,13 @@ shared_examples 'WpUser::Existable' do
       end
     end
 
+    context 'when the body is an ASCII-8BIT' do
+      it 'return the correct display_name' do
+        @body = '<title>its me  |  wordpress</title>'.encode('ASCII-8BIT')
+        @expected = 'its me'
+      end
+    end
+
     context 'when pattern is found' do
       context 'when unencoded extra chars' do
         it 'returns the display_name w/o extra chars' do
@@ -91,7 +98,7 @@ shared_examples 'WpUser::Existable' do
         end
       end
 
-      it 'decodes entities in display_name' do
+      it 'decodes entities' do
         @body     = '<title>user &amp; nickname &#124; Wordpress-3.5.1</title>'
         @expected = 'user & nickname'
       end

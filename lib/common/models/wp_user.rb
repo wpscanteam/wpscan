@@ -7,6 +7,7 @@ class WpUser < WpItem
 
   attr_accessor :id, :login, :display_name, :password
 
+  # @return [ Array<Symbol> ]
   def allowed_options; [:id, :login, :display_name, :password] end
 
   # @return [ URI ] The uri to the auhor page
@@ -32,11 +33,15 @@ class WpUser < WpItem
   end
 
   # @param [ WpUser ] other
+  #
+  # @return [ Boolean ]
   def ==(other)
     self === other
   end
 
   # @param [ WpUser ] other
+  #
+  # @return [ Boolean ]
   def ===(other)
     id === other.id && login === other.login
   end

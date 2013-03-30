@@ -43,6 +43,7 @@ module Typhoeus
 
       body_hash != error_404_hash && body_hash != homepage_hash
     end
+
   end
 end
 
