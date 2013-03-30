@@ -3,10 +3,23 @@
 class WpUsers < WpItems
   module Detectable
 
+    # @return [ Hash ]
     def request_params; {} end
 
-    # options:
-    #   :range - default 1..10
+    # No passive detection
+    #
+    # @return [ WpUsers ]
+    def passive_detection(wp_target, options = {})
+      new
+    end
+
+    protected
+
+    # @param [ WpTarget ] wp_target
+    # @param [ Hash ] options
+    # @option options [ Range ] :range ((1..10))
+    #
+    # @return [ Array<WpUser> ]
     def targets_items(wp_target, options = {})
       range   = options[:range] || (1..10)
       targets = []
@@ -15,12 +28,6 @@ class WpUsers < WpItems
         targets << WpUser.new(wp_target.uri, id: user_id)
       end
       targets
-    end
-
-    # No passive detection
-    # @return [ WpUsers ]
-    def passive_detection(wp_target, options = {})
-      new
     end
 
   end

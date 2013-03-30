@@ -18,6 +18,14 @@ class WpUser < WpItem
     end
   end
 
+  # @return [ String ]
+  def to_s
+    s  = "#{id}"
+    s += " | #{login}" if login
+    s += " | #{display_name}" if display_name
+    s
+  end
+
   # @param [ WpUser ] other
   def <=>(other)
     id <=> other.id
