@@ -170,14 +170,6 @@ def main
       puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
     end
 
-    if wp_target.has_backupbuddy?
-      puts red("[!] BackupBuddy has been found")
-      puts ' |'
-      puts " | Location: #{wp_target.backupbuddy_url}"
-      puts ' | ' + red('* Reference: http://seclists.org/fulldisclosure/2013/Mar/206')
-      puts
-    end
-
     if wp_target.is_multisite?
       puts green('[+]') + ' This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)'
     end
