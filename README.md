@@ -116,6 +116,14 @@ Prerequisites:
 
       See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
 
+  - no such file to load -- rubygems
+
+      ```update-alternatives --config ruby```
+
+      And select your ruby version
+
+      See https://github.com/wpscanteam/wpscan/issues/148
+
 #### WPSCAN ARGUMENTS
 
     --update  Update to the latest revision
