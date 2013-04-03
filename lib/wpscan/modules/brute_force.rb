@@ -77,7 +77,7 @@ module BruteForce
           elsif response.code.to_s =~ /^50/
             puts red('ERROR:') + ' Server error, try reducing the number of threads.' if show_progression
           else
-            puts "\n" + red('ERROR:') + " We recieved an unknown response for #{password}..." if show_progression
+            puts "\n" + red('ERROR:') + " We received an unknown response for #{password}..." if show_progression
 
             # HACK to get the coverage :/ (otherwise some output is present in the rspec)
             puts red("Code: #{response.code.to_s}") if @verbose
