@@ -58,7 +58,9 @@ def main
     wpscan_options = WpscanOptions.load_from_arguments
 
     unless wpscan_options.has_options?
-      raise "No argument supplied\n#{usage()}"
+      usage()
+      puts red('No argument supplied')
+      exit(0)
     end
 
     if wpscan_options.help
