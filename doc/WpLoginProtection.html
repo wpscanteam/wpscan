@@ -1,296 +1,375 @@
-<!DOCTYPE html>
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>module WpLoginProtection - RDoc Documentation</title>
+  <title>Module: WpLoginProtection</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
-
-
+</head>
 <body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
 
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/wpscan/modules/wp_login_protection.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li><a href="#method-i-better_wp_security_url">#better_wp_security_url</a>
-    
-    <li><a href="#method-i-bluetrait_event_viewer_url">#bluetrait_event_viewer_url</a>
-    
-    <li><a href="#method-i-has_better_wp_security_protection-3F">#has_better_wp_security_protection?</a>
-    
-    <li><a href="#method-i-has_bluetrait_event_viewer_protection-3F">#has_bluetrait_event_viewer_protection?</a>
-    
-    <li><a href="#method-i-has_limit_login_attempts_protection-3F">#has_limit_login_attempts_protection?</a>
-    
-    <li><a href="#method-i-has_login_lock_protection-3F">#has_login_lock_protection?</a>
-    
-    <li><a href="#method-i-has_login_lockdown_protection-3F">#has_login_lockdown_protection?</a>
-    
-    <li><a href="#method-i-has_login_protection-3F">#has_login_protection?</a>
-    
-    <li><a href="#method-i-has_login_security_solution_protection-3F">#has_login_security_solution_protection?</a>
-    
-    <li><a href="#method-i-has_simple_login_lockdown_protection-3F">#has_simple_login_lockdown_protection?</a>
-    
-    <li><a href="#method-i-limit_login_attempts_url">#limit_login_attempts_url</a>
-    
-    <li><a href="#method-i-login_protection_plugin">#login_protection_plugin</a>
-    
-    <li><a href="#method-i-login_security_solution_url">#login_security_solution_url</a>
-    
-    <li><a href="#method-i-simple_login_lockdown_url">#simple_login_lockdown_url</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./CREDITS.html">CREDITS</a>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./log_txt.html">log</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Browser.html">Browser</a>
-  
-    <li><a href="./BruteForce.html">BruteForce</a>
-  
-    <li><a href="./CacheFileStore.html">CacheFileStore</a>
-  
-    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
-  
-    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
-  
-    <li><a href="./GenerateList.html">GenerateList</a>
-  
-    <li><a href="./GitUpdater.html">GitUpdater</a>
-  
-    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
-  
-    <li><a href="./Malwares.html">Malwares</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Plugin.html">Plugin</a>
-  
-    <li><a href="./Plugins.html">Plugins</a>
-  
-    <li><a href="./SvnParser.html">SvnParser</a>
-  
-    <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./URI.html">URI</a>
-  
-    <li><a href="./Updater.html">Updater</a>
-  
-    <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
-  
-    <li><a href="./Vulnerable.html">Vulnerable</a>
-  
-    <li><a href="./WebSite.html">WebSite</a>
-  
-    <li><a href="./WpConfigBackup.html">WpConfigBackup</a>
-  
-    <li><a href="./WpDetector.html">WpDetector</a>
-  
-    <li><a href="./WpEnumerator.html">WpEnumerator</a>
-  
-    <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a>
-  
-    <li><a href="./WpItem.html">WpItem</a>
-  
-    <li><a href="./WpLoginProtection.html">WpLoginProtection</a>
-  
-    <li><a href="./WpOptions.html">WpOptions</a>
-  
-    <li><a href="./WpPlugin.html">WpPlugin</a>
-  
-    <li><a href="./WpPlugins.html">WpPlugins</a>
-  
-    <li><a href="./WpReadme.html">WpReadme</a>
-  
-    <li><a href="./WpTarget.html">WpTarget</a>
-  
-    <li><a href="./WpTheme.html">WpTheme</a>
-  
-    <li><a href="./WpThemes.html">WpThemes</a>
-  
-    <li><a href="./WpTimthumbs.html">WpTimthumbs</a>
-  
-    <li><a href="./WpUser.html">WpUser</a>
-  
-    <li><a href="./WpUsernames.html">WpUsernames</a>
-  
-    <li><a href="./WpVersion.html">WpVersion</a>
-  
-    <li><a href="./WpVulnerability.html">WpVulnerability</a>
-  
-    <li><a href="./WpscanOptions.html">WpscanOptions</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="module">module WpLoginProtection</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="LOGIN_PROTECTION_METHOD_PATTERN">LOGIN_PROTECTION_METHOD_PATTERN
-        
-        <dd class="description">
-        
-      
-      </dl>
-    </section>
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-has_login_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_login_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/wpscan/modules/wp_login_protection_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/modules/wp_login_protection.rb">lib/wpscan/modules/wp_login_protection.rb</a></li>
+          
+          </ul>
         </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-better_wp_security_url">#better_wp_security_url</a></li>
+          
+          <li><a href="#method-i-bluetrait_event_viewer_url">#bluetrait_event_viewer_url</a></li>
+          
+          <li><a href="#method-i-has_better_wp_security_protection-3F">#has_better_wp_security_protection?</a></li>
+          
+          <li><a href="#method-i-has_bluetrait_event_viewer_protection-3F">#has_bluetrait_event_viewer_protection?</a></li>
+          
+          <li><a href="#method-i-has_limit_login_attempts_protection-3F">#has_limit_login_attempts_protection?</a></li>
+          
+          <li><a href="#method-i-has_login_lock_protection-3F">#has_login_lock_protection?</a></li>
+          
+          <li><a href="#method-i-has_login_lockdown_protection-3F">#has_login_lockdown_protection?</a></li>
+          
+          <li><a href="#method-i-has_login_protection-3F">#has_login_protection?</a></li>
+          
+          <li><a href="#method-i-has_login_security_solution_protection-3F">#has_login_security_solution_protection?</a></li>
+          
+          <li><a href="#method-i-has_simple_login_lockdown_protection-3F">#has_simple_login_lockdown_protection?</a></li>
+          
+          <li><a href="#method-i-limit_login_attempts_url">#limit_login_attempts_url</a></li>
+          
+          <li><a href="#method-i-login_protection_plugin">#login_protection_plugin</a></li>
+          
+          <li><a href="#method-i-login_security_solution_url">#login_security_solution_url</a></li>
+          
+          <li><a href="#method-i-plugin_url">#plugin_url</a></li>
+          
+          <li><a href="#method-i-simple_login_lockdown_url">#simple_login_lockdown_url</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
         
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
 
-        <div class="method-description">
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpItem/Existable.html">WpItem::Existable</a></li>
+        
+          <li><a href="./WpItem/Findable.html">WpItem::Findable</a></li>
+        
+          <li><a href="./WpItem/Infos.html">WpItem::Infos</a></li>
+        
+          <li><a href="./WpItem/Output.html">WpItem::Output</a></li>
+        
+          <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a></li>
+        
+          <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a></li>
+        
+          <li><a href="./Typhoeus.html">Typhoeus</a></li>
+        
+          <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a></li>
+        
+          <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a></li>
+        
+          <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a></li>
+        
+          <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a></li>
+        
+          <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a></li>
+        
+          <li><a href="./WpTimthumb.html">WpTimthumb</a></li>
+        
+          <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a></li>
+        
+          <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a></li>
+        
+          <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a></li>
+        
+          <li><a href="./WpVersion/Output.html">WpVersion::Output</a></li>
+        
+          <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a></li>
+        
+          <li><a href="./WpItems.html">WpItems</a></li>
+        
+          <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a></li>
+        
+          <li><a href="./WpItems/Output.html">WpItems::Output</a></li>
+        
+          <li><a href="./WpUsers.html">WpUsers</a></li>
+        
+          <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a></li>
+        
+          <li><a href="./WpUsers/Output.html">WpUsers::Output</a></li>
+        
+          <li><a href="./Vulnerabilities.html">Vulnerabilities</a></li>
+        
+          <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a></li>
+        
+          <li><a href="./Vulnerability.html">Vulnerability</a></li>
+        
+          <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUser/Existable.html">WpUser::Existable</a></li>
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./CheckerPlugin.html">CheckerPlugin</a></li>
+        
+          <li><a href="./CustomOptionParser.html">CustomOptionParser</a></li>
+        
+          <li><a href="./GenerateList.html">GenerateList</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./Plugin.html">Plugin</a></li>
+        
+          <li><a href="./Plugins.html">Plugins</a></li>
+        
+          <li><a href="./StatsPlugin.html">StatsPlugin</a></li>
+        
+          <li><a href="./SvnParser.html">SvnParser</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./TyphoeusCache.html">TyphoeusCache</a></li>
+        
+          <li><a href="./URI.html">URI</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="module">WpLoginProtection</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+      <!-- Constants -->
+      <div id="constants-list" class="section">
+        <h3 class="section-header">Constants</h3>
+        <dl>
+        
+          <dt><a name="LOGIN_PROTECTION_METHOD_PATTERN">LOGIN_PROTECTION_METHOD_PATTERN</a></dt>
           
+          <dd class="description"></dd>
           
-          
+        
+        </dl>
+      </div>
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="has_login_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_login_protection-3F"></a>
 
           
-          <div class="method-source-code" id="has_login_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 25</span>
+          <div class="method-heading">
+            <span class="method-name">has_login_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="has_login_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_login_protection?</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">login_protection_plugin</span>().<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_login_protection-3F-source -->
+            </div><!-- has_login_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_login_protection-3F-method -->
-
-    
-      <div id="method-i-login_protection_plugin" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">login_protection_plugin</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p>Checks if a login protection plugin is enabled <a
+        </div><!-- has_login_protection-3F-method -->
+
+      
+        <div id="login_protection_plugin-method" class="method-detail ">
+          <a name="method-i-login_protection_plugin"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">login_protection_plugin</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Checks if a login protection plugin is enabled <a
 href="http://code.google.com/p/wpscan/issues/detail?id=111">code.google.com/p/wpscan/issues/detail?id=111</a>
 return a <a href="WpPlugin.html">WpPlugin</a> object or nil if no one is
 found</p>
-          
+            
 
-          
-          <div class="method-source-code" id="login_protection_plugin-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 32</span>
+            
+            <div class="method-source-code" id="login_protection_plugin-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 15</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_protection_plugin</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@login_protection_plugin</span>
     <span class="ruby-identifier">protected_methods</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-constant">LOGIN_PROTECTION_METHOD_PATTERN</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">symbol_to_call</span><span class="ruby-operator">|</span>
@@ -299,10 +378,10 @@ found</p>
         <span class="ruby-identifier">plugin_name</span> = <span class="ruby-identifier">symbol_to_call</span>[<span class="ruby-constant">LOGIN_PROTECTION_METHOD_PATTERN</span>, <span class="ruby-value">1</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-string">'_'</span>, <span class="ruby-string">'-'</span>)
 
         <span class="ruby-keyword">return</span> <span class="ruby-ivar">@login_protection_plugin</span> = <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(
+          <span class="ruby-ivar">@uri</span>,
           <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">plugin_name</span>,
-          <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>       <span class="ruby-ivar">@uri</span>,
-          <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>           <span class="ruby-node">&quot;/plugins/#{plugin_name}/&quot;</span>,
-          <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@wp_content_dir</span>
+          <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_content_dir</span>,
+          <span class="ruby-identifier">wp_plugins_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_plugins_dir</span>
         )
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -310,419 +389,476 @@ found</p>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@login_protection_plugin</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- login_protection_plugin-source -->
+            </div><!-- login_protection_plugin-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- login_protection_plugin-method -->
 
-        
-      </div><!-- login_protection_plugin-method -->
-
+      
+      </div><!-- public-instance-method-details -->
     
-    </section><!-- public-instance-method-details -->
-  
-     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Protected Instance Methods</h3>
+      <div id="protected-instance-method-details" class="method-section section">
+        <h3 class="section-header">Protected Instance Methods</h3>
 
-    
-      <div id="method-i-better_wp_security_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">better_wp_security_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
+      
+        <div id="better_wp_security_url-method" class="method-detail ">
+          <a name="method-i-better_wp_security_url"></a>
 
           
-          <div class="method-source-code" id="better_wp_security_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 69</span>
+          <div class="method-heading">
+            <span class="method-name">better_wp_security_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="better_wp_security_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">better_wp_security_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/better-wp-security/'</span>,
-               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'better-wp-security'</span>
-  ).<span class="ruby-identifier">get_url_without_filename</span>
+  <span class="ruby-identifier">plugin_url</span>(<span class="ruby-string">'better-wp-security/'</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- better_wp_security_url-source -->
-          
-        </div>
+            </div><!-- better_wp_security_url-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- better_wp_security_url-method -->
-
-    
-      <div id="method-i-bluetrait_event_viewer_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">bluetrait_event_viewer_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="bluetrait_event_viewer_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 121</span>
+        </div><!-- better_wp_security_url-method -->
+
+      
+        <div id="bluetrait_event_viewer_url-method" class="method-detail ">
+          <a name="method-i-bluetrait_event_viewer_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">bluetrait_event_viewer_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="bluetrait_event_viewer_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 97</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">bluetrait_event_viewer_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/bluetrait-event-viewer/'</span>,
-               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'bluetrait-event-viewer'</span>
-  ).<span class="ruby-identifier">get_url_without_filename</span>
+  <span class="ruby-identifier">plugin_url</span>(<span class="ruby-string">'bluetrait-event-viewer'</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- bluetrait_event_viewer_url-source -->
+            </div><!-- bluetrait_event_viewer_url-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- bluetrait_event_viewer_url-method -->
-
-    
-      <div id="method-i-has_better_wp_security_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_better_wp_security_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p><a
+        </div><!-- bluetrait_event_viewer_url-method -->
+
+      
+        <div id="has_better_wp_security_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_better_wp_security_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_better_wp_security_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p><a
 href="http://wordpress.org/extend/plugins/better-wp-security/">wordpress.org/extend/plugins/better-wp-security/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_better_wp_security_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 65</span>
+            
+            <div class="method-source-code" id="has_better_wp_security_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_better_wp_security_protection?</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">better_wp_security_url</span>()).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">better_wp_security_url</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_better_wp_security_protection-3F-source -->
+            </div><!-- has_better_wp_security_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_better_wp_security_protection-3F-method -->
-
-    
-      <div id="method-i-has_bluetrait_event_viewer_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_bluetrait_event_viewer_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p><a
+        </div><!-- has_better_wp_security_protection-3F-method -->
+
+      
+        <div id="has_bluetrait_event_viewer_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_bluetrait_event_viewer_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_bluetrait_event_viewer_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p><a
 href="http://wordpress.org/extend/plugins/bluetrait-event-viewer/">wordpress.org/extend/plugins/bluetrait-event-viewer/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_bluetrait_event_viewer_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 117</span>
+            
+            <div class="method-source-code" id="has_bluetrait_event_viewer_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 93</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_bluetrait_event_viewer_protection?</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">bluetrait_event_viewer_url</span>()).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">bluetrait_event_viewer_url</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_bluetrait_event_viewer_protection-3F-source -->
+            </div><!-- has_bluetrait_event_viewer_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_bluetrait_event_viewer_protection-3F-method -->
-
-    
-      <div id="method-i-has_limit_login_attempts_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_limit_login_attempts_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p><a
+        </div><!-- has_bluetrait_event_viewer_protection-3F-method -->
+
+      
+        <div id="has_limit_login_attempts_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_limit_login_attempts_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_limit_login_attempts_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p><a
 href="http://wordpress.org/extend/plugins/limit-login-attempts/">wordpress.org/extend/plugins/limit-login-attempts/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_limit_login_attempts_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 104</span>
+            
+            <div class="method-source-code" id="has_limit_login_attempts_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_limit_login_attempts_protection?</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">limit_login_attempts_url</span>()).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">limit_login_attempts_url</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_limit_login_attempts_protection-3F-source -->
+            </div><!-- has_limit_login_attempts_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_limit_login_attempts_protection-3F-method -->
-
-    
-      <div id="method-i-has_login_lock_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_login_lock_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p><a
+        </div><!-- has_limit_login_attempts_protection-3F-method -->
+
+      
+        <div id="has_login_lock_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_login_lock_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_login_lock_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p><a
 href="http://wordpress.org/extend/plugins/login-lock/">wordpress.org/extend/plugins/login-lock/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_login_lock_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 60</span>
+            
+            <div class="method-source-code" id="has_login_lock_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 43</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_login_lock_protection?</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">login_url</span>()).<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{LOGIN LOCK}</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">login_url</span>).<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%{LOGIN LOCK}</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_login_lock_protection-3F-source -->
+            </div><!-- has_login_lock_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_login_lock_protection-3F-method -->
-
-    
-      <div id="method-i-has_login_lockdown_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_login_lockdown_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p>Thanks to Alip Aswalid for providing this method. <a
+        </div><!-- has_login_lock_protection-3F-method -->
+
+      
+        <div id="has_login_lockdown_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_login_lockdown_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_login_lockdown_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Thanks to Alip Aswalid for providing this method. <a
 href="http://wordpress.org/extend/plugins/login-lockdown/">wordpress.org/extend/plugins/login-lockdown/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_login_lockdown_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 55</span>
+            
+            <div class="method-source-code" id="has_login_lockdown_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_login_lockdown_protection?</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">login_url</span>()).<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{Login LockDown}</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">login_url</span>).<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%{Login LockDown}</span> <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_login_lockdown_protection-3F-source -->
+            </div><!-- has_login_lockdown_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_login_lockdown_protection-3F-method -->
-
-    
-      <div id="method-i-has_login_security_solution_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_login_security_solution_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p><a
+        </div><!-- has_login_lockdown_protection-3F-method -->
+
+      
+        <div id="has_login_security_solution_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_login_security_solution_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_login_security_solution_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p><a
 href="http://wordpress.org/extend/plugins/login-security-solution/">wordpress.org/extend/plugins/login-security-solution/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_login_security_solution_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 91</span>
+            
+            <div class="method-source-code" id="has_login_security_solution_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 75</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_login_security_solution_protection?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">login_security_solution_url</span>()).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_login_security_solution_protection-3F-source -->
+            </div><!-- has_login_security_solution_protection-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- has_login_security_solution_protection-3F-method -->
-
-    
-      <div id="method-i-has_simple_login_lockdown_protection-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_simple_login_lockdown_protection?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p><a
+        </div><!-- has_login_security_solution_protection-3F-method -->
+
+      
+        <div id="has_simple_login_lockdown_protection-3F-method" class="method-detail ">
+          <a name="method-i-has_simple_login_lockdown_protection-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_simple_login_lockdown_protection?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p><a
 href="http://wordpress.org/extend/plugins/simple-login-lockdown/">wordpress.org/extend/plugins/simple-login-lockdown/</a></p>
-          
+            
 
-          
-          <div class="method-source-code" id="has_simple_login_lockdown_protection-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 78</span>
+            
+            <div class="method-source-code" id="has_simple_login_lockdown_protection-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 66</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_simple_login_lockdown_protection?</span>
-  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">simple_login_lockdown_url</span>()).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">simple_login_lockdown_url</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">404</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_simple_login_lockdown_protection-3F-source -->
-          
-        </div>
+            </div><!-- has_simple_login_lockdown_protection-3F-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- has_simple_login_lockdown_protection-3F-method -->
-
-    
-      <div id="method-i-limit_login_attempts_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">limit_login_attempts_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="limit_login_attempts_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 108</span>
+        </div><!-- has_simple_login_lockdown_protection-3F-method -->
+
+      
+        <div id="limit_login_attempts_url-method" class="method-detail ">
+          <a name="method-i-limit_login_attempts_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">limit_login_attempts_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="limit_login_attempts_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 88</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">limit_login_attempts_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/limit-login-attempts/'</span>,
-               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'limit-login-attempts'</span>
-  ).<span class="ruby-identifier">get_url_without_filename</span>
+  <span class="ruby-identifier">plugin_url</span>(<span class="ruby-string">'limit-login-attempts'</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- limit_login_attempts_url-source -->
-          
-        </div>
+            </div><!-- limit_login_attempts_url-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- limit_login_attempts_url-method -->
-
-    
-      <div id="method-i-login_security_solution_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">login_security_solution_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="login_security_solution_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 95</span>
+        </div><!-- limit_login_attempts_url-method -->
+
+      
+        <div id="login_security_solution_url-method" class="method-detail ">
+          <a name="method-i-login_security_solution_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">login_security_solution_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="login_security_solution_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_security_solution_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/login-security-solution/'</span>,
-               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'login-security-solution'</span>
-  ).<span class="ruby-identifier">get_url_without_filename</span>
+  <span class="ruby-identifier">plugin_url</span>(<span class="ruby-string">'login-security-solution'</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- login_security_solution_url-source -->
-          
-        </div>
+            </div><!-- login_security_solution_url-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- login_security_solution_url-method -->
-
-    
-      <div id="method-i-simple_login_lockdown_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">simple_login_lockdown_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="simple_login_lockdown_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 82</span>
+        </div><!-- login_security_solution_url-method -->
+
+      
+        <div id="plugin_url-method" class="method-detail ">
+          <a name="method-i-plugin_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">plugin_url</span><span
+              class="method-args">(plugin_name)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="plugin_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">plugin_url</span>(<span class="ruby-identifier">plugin_name</span>)
+  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-ivar">@uri</span>,
+    <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">plugin_name</span>,
+    <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_content_dir</span>,
+    <span class="ruby-identifier">wp_plugins_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_plugins_dir</span>
+  ).<span class="ruby-identifier">url</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- plugin_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- plugin_url-method -->
+
+      
+        <div id="simple_login_lockdown_url-method" class="method-detail ">
+          <a name="method-i-simple_login_lockdown_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">simple_login_lockdown_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="simple_login_lockdown_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/modules/wp_login_protection.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">simple_login_lockdown_url</span>
-  <span class="ruby-constant">WpPlugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span>  <span class="ruby-ivar">@wp_content_dir</span>,
-               <span class="ruby-identifier">base_url</span><span class="ruby-operator">:</span>        <span class="ruby-ivar">@uri</span>,
-               <span class="ruby-identifier">path</span><span class="ruby-operator">:</span>            <span class="ruby-string">'/plugins/simple-login-lockdown/'</span>,
-               <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>            <span class="ruby-string">'simple-login-lockdown'</span>
-  ).<span class="ruby-identifier">get_url_without_filename</span>
+  <span class="ruby-identifier">plugin_url</span>(<span class="ruby-string">'simple-login-lockdown/'</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- simple_login_lockdown_url-source -->
+            </div><!-- simple_login_lockdown_url-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- simple_login_lockdown_url-method -->
 
-        
-      </div><!-- simple_login_lockdown_url-method -->
-
+      
+      </div><!-- protected-instance-method-details -->
     
-    </section><!-- protected-instance-method-details -->
+    </div><!-- 5Buntitled-5D -->
   
-  </section><!-- 5Buntitled-5D -->
 
-</div><!-- documentation -->
+  </div><!-- documentation -->
 
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+</body>
+</html>
 

@@ -1,460 +1,559 @@
-<!DOCTYPE html>
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>class Object - RDoc Documentation</title>
+  <title>Class: Object</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
-
-
+</head>
 <body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
 
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/common_helper.rb
-    <li>lib/wpscan/wpscan_helper.rb
-    <li>lib/wpstools/wpstools_helper.rb
-    <li>wpscan.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
-  
-  <p class="link">BasicObject
-  
-</nav>
-
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li><a href="#method-i-add_http_protocol">#add_http_protocol</a>
-    
-    <li><a href="#method-i-add_trailing_slash">#add_trailing_slash</a>
-    
-    <li><a href="#method-i-banner">#banner</a>
-    
-    <li><a href="#method-i-colorize">#colorize</a>
-    
-    <li><a href="#method-i-get_equal_string_end">#get_equal_string_end</a>
-    
-    <li><a href="#method-i-get_metasploit_url">#get_metasploit_url</a>
-    
-    <li><a href="#method-i-green">#green</a>
-    
-    <li><a href="#method-i-help">#help</a>
-    
-    <li><a href="#method-i-output_vulnerabilities">#output_vulnerabilities</a>
-    
-    <li><a href="#method-i-puts">#puts</a>
-    
-    <li><a href="#method-i-red">#red</a>
-    
-    <li><a href="#method-i-require_files_from_directory">#require_files_from_directory</a>
-    
-    <li><a href="#method-i-usage">#usage</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./CREDITS.html">CREDITS</a>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./log_txt.html">log</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Browser.html">Browser</a>
-  
-    <li><a href="./BruteForce.html">BruteForce</a>
-  
-    <li><a href="./CacheFileStore.html">CacheFileStore</a>
-  
-    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
-  
-    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
-  
-    <li><a href="./GenerateList.html">GenerateList</a>
-  
-    <li><a href="./GitUpdater.html">GitUpdater</a>
-  
-    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
-  
-    <li><a href="./Malwares.html">Malwares</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Plugin.html">Plugin</a>
-  
-    <li><a href="./Plugins.html">Plugins</a>
-  
-    <li><a href="./SvnParser.html">SvnParser</a>
-  
-    <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./URI.html">URI</a>
-  
-    <li><a href="./Updater.html">Updater</a>
-  
-    <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
-  
-    <li><a href="./Vulnerable.html">Vulnerable</a>
-  
-    <li><a href="./WebSite.html">WebSite</a>
-  
-    <li><a href="./WpConfigBackup.html">WpConfigBackup</a>
-  
-    <li><a href="./WpDetector.html">WpDetector</a>
-  
-    <li><a href="./WpEnumerator.html">WpEnumerator</a>
-  
-    <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a>
-  
-    <li><a href="./WpItem.html">WpItem</a>
-  
-    <li><a href="./WpLoginProtection.html">WpLoginProtection</a>
-  
-    <li><a href="./WpOptions.html">WpOptions</a>
-  
-    <li><a href="./WpPlugin.html">WpPlugin</a>
-  
-    <li><a href="./WpPlugins.html">WpPlugins</a>
-  
-    <li><a href="./WpReadme.html">WpReadme</a>
-  
-    <li><a href="./WpTarget.html">WpTarget</a>
-  
-    <li><a href="./WpTheme.html">WpTheme</a>
-  
-    <li><a href="./WpThemes.html">WpThemes</a>
-  
-    <li><a href="./WpTimthumbs.html">WpTimthumbs</a>
-  
-    <li><a href="./WpUser.html">WpUser</a>
-  
-    <li><a href="./WpUsernames.html">WpUsernames</a>
-  
-    <li><a href="./WpVersion.html">WpVersion</a>
-  
-    <li><a href="./WpVulnerability.html">WpVulnerability</a>
-  
-    <li><a href="./WpscanOptions.html">WpscanOptions</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="class">class Object</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-    <!-- Constants -->
-    <section id="constants-list" class="section">
-      <h3 class="section-header">Constants</h3>
-      <dl>
-      
-        <dt id="CACHE_DIR">CACHE_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="COMMON_LIB_DIR">COMMON_LIB_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="COMON_PLUGINS_DIR">COMON_PLUGINS_DIR
-        
-        <dd class="description"><p><a href="Plugins.html">Plugins</a> directories</p>
-        
-      
-        <dt id="CONF_DIR">CONF_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="DATA_DIR">DATA_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="LIB_DIR">LIB_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="LOCAL_FILES_FILE">LOCAL_FILES_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="LOCAL_FILES_XSD">LOCAL_FILES_XSD
-        
-        <dd class="description">
-        
-      
-        <dt id="LOG_FILE">LOG_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="PLUGINS_FILE">PLUGINS_FILE
-        
-        <dd class="description"><p>Data files</p>
-        
-      
-        <dt id="PLUGINS_FULL_FILE">PLUGINS_FULL_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="PLUGINS_VULNS_FILE">PLUGINS_VULNS_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="REVISION">REVISION
-        
-        <dd class="description">
-        
-      
-        <dt id="ROOT_DIR">ROOT_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="THEMES_FILE">THEMES_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="THEMES_FULL_FILE">THEMES_FULL_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="THEMES_VULNS_FILE">THEMES_VULNS_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="UPDATER_LIB_DIR">UPDATER_LIB_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="VULNS_XSD">VULNS_XSD
-        
-        <dd class="description">
-        
-      
-        <dt id="WPSCAN_LIB_DIR">WPSCAN_LIB_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="WPSCAN_PLUGINS_DIR">WPSCAN_PLUGINS_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="WPSCAN_VERSION">WPSCAN_VERSION
-        
-        <dd class="description">
-        
-      
-        <dt id="WPSTOOLS_LIB_DIR">WPSTOOLS_LIB_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="WPSTOOLS_PLUGINS_DIR">WPSTOOLS_PLUGINS_DIR
-        
-        <dd class="description">
-        
-      
-        <dt id="WP_VERSIONS_FILE">WP_VERSIONS_FILE
-        
-        <dd class="description">
-        
-      
-        <dt id="WP_VERSIONS_XSD">WP_VERSIONS_XSD
-        
-        <dd class="description">
-        
-      
-        <dt id="WP_VULNS_FILE">WP_VULNS_FILE
-        
-        <dd class="description">
-        
-      
-      </dl>
-    </section>
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-add_http_protocol" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">add_http_protocol</span><span
-            class="method-args">(url)</span>
-          <span class="method-click-advice">click to toggle source</span>
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/wpscan/wpscan_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/wpscan_helper.rb">lib/wpscan/wpscan_helper.rb</a></li>
+          
+            <li><a href="./lib/common/common_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/common/common_helper.rb">lib/common/common_helper.rb</a></li>
+          
+            <li><a href="./lib/common/hacks_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/common/hacks.rb">lib/common/hacks.rb</a></li>
+          
+            <li><a href="./lib/wpstools/wpstools_helper_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpstools/wpstools_helper.rb">lib/wpstools/wpstools_helper.rb</a></li>
+          
+            <li><a href="./wpscan_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="wpscan.rb">wpscan.rb</a></li>
+          
+          </ul>
         </div>
+      </div>
+
+      
+    </div>
+
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
         
+        <p class="link">BasicObject</p>
+        
+      </div>
+      
 
-        <div class="method-description">
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
           
-          <p>Add protocol</p>
+          <li><a href="#method-i-add_http_protocol">#add_http_protocol</a></li>
           
+          <li><a href="#method-i-add_trailing_slash">#add_trailing_slash</a></li>
+          
+          <li><a href="#method-i-banner">#banner</a></li>
+          
+          <li><a href="#method-i-colorize">#colorize</a></li>
+          
+          <li><a href="#method-i-green">#green</a></li>
+          
+          <li><a href="#method-i-help">#help</a></li>
+          
+          <li><a href="#method-i-main">#main</a></li>
+          
+          <li><a href="#method-i-puts">#puts</a></li>
+          
+          <li><a href="#method-i-red">#red</a></li>
+          
+          <li><a href="#method-i-require_files_from_directory">#require_files_from_directory</a></li>
+          
+          <li><a href="#method-i-usage">#usage</a></li>
+          
+          <li><a href="#method-i-xml">#xml</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpItem/Existable.html">WpItem::Existable</a></li>
+        
+          <li><a href="./WpItem/Findable.html">WpItem::Findable</a></li>
+        
+          <li><a href="./WpItem/Infos.html">WpItem::Infos</a></li>
+        
+          <li><a href="./WpItem/Output.html">WpItem::Output</a></li>
+        
+          <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a></li>
+        
+          <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a></li>
+        
+          <li><a href="./Typhoeus.html">Typhoeus</a></li>
+        
+          <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a></li>
+        
+          <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a></li>
+        
+          <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a></li>
+        
+          <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a></li>
+        
+          <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a></li>
+        
+          <li><a href="./WpTimthumb.html">WpTimthumb</a></li>
+        
+          <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a></li>
+        
+          <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a></li>
+        
+          <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a></li>
+        
+          <li><a href="./WpVersion/Output.html">WpVersion::Output</a></li>
+        
+          <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a></li>
+        
+          <li><a href="./WpItems.html">WpItems</a></li>
+        
+          <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a></li>
+        
+          <li><a href="./WpItems/Output.html">WpItems::Output</a></li>
+        
+          <li><a href="./WpUsers.html">WpUsers</a></li>
+        
+          <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a></li>
+        
+          <li><a href="./WpUsers/Output.html">WpUsers::Output</a></li>
+        
+          <li><a href="./Vulnerabilities.html">Vulnerabilities</a></li>
+        
+          <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a></li>
+        
+          <li><a href="./Vulnerability.html">Vulnerability</a></li>
+        
+          <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUser/Existable.html">WpUser::Existable</a></li>
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./CheckerPlugin.html">CheckerPlugin</a></li>
+        
+          <li><a href="./CustomOptionParser.html">CustomOptionParser</a></li>
+        
+          <li><a href="./GenerateList.html">GenerateList</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./Plugin.html">Plugin</a></li>
+        
+          <li><a href="./Plugins.html">Plugins</a></li>
+        
+          <li><a href="./StatsPlugin.html">StatsPlugin</a></li>
+        
+          <li><a href="./SvnParser.html">SvnParser</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./TyphoeusCache.html">TyphoeusCache</a></li>
+        
+          <li><a href="./URI.html">URI</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">Object</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+      <!-- Constants -->
+      <div id="constants-list" class="section">
+        <h3 class="section-header">Constants</h3>
+        <dl>
+        
+          <dt><a name="CACHE_DIR">CACHE_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="COLLECTIONS_LIB_DIR">COLLECTIONS_LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="COMMON_LIB_DIR">COMMON_LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="COMMON_PLUGINS_DIR">COMMON_PLUGINS_DIR</a></dt>
+          
+          <dd class="description"><p><a href="Plugins.html">Plugins</a> directories</p></dd>
+          
+        
+          <dt><a name="CONF_DIR">CONF_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="DATA_DIR">DATA_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="LIB_DIR">LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="LOCAL_FILES_FILE">LOCAL_FILES_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="LOCAL_FILES_XSD">LOCAL_FILES_XSD</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="LOG_FILE">LOG_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="MODELS_LIB_DIR">MODELS_LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="PLUGINS_FILE">PLUGINS_FILE</a></dt>
+          
+          <dd class="description"><p>Data files</p></dd>
+          
+        
+          <dt><a name="PLUGINS_FULL_FILE">PLUGINS_FULL_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="PLUGINS_VULNS_FILE">PLUGINS_VULNS_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="REVISION">REVISION</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="ROOT_DIR">ROOT_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="THEMES_FILE">THEMES_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="THEMES_FULL_FILE">THEMES_FULL_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="THEMES_VULNS_FILE">THEMES_VULNS_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="UPDATER_LIB_DIR">UPDATER_LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="VULNS_XSD">VULNS_XSD</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WPSCAN_LIB_DIR">WPSCAN_LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WPSCAN_PLUGINS_DIR">WPSCAN_PLUGINS_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WPSCAN_VERSION">WPSCAN_VERSION</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WPSTOOLS_LIB_DIR">WPSTOOLS_LIB_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WPSTOOLS_PLUGINS_DIR">WPSTOOLS_PLUGINS_DIR</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WP_VERSIONS_FILE">WP_VERSIONS_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WP_VERSIONS_XSD">WP_VERSIONS_XSD</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+          <dt><a name="WP_VULNS_FILE">WP_VULNS_FILE</a></dt>
+          
+          <dd class="description"></dd>
+          
+        
+        </dl>
+      </div>
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="add_http_protocol-method" class="method-detail ">
+          <a name="method-i-add_http_protocol"></a>
 
           
-          <div class="method-source-code" id="add_http_protocol-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 65</span>
+          <div class="method-heading">
+            <span class="method-name">add_http_protocol</span><span
+              class="method-args">(url)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Add protocol</p>
+            
+
+            
+            <div class="method-source-code" id="add_http_protocol-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 58</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r^https?:/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;http://#{url}&quot;</span>
+  <span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^https?:/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;http://#{url}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- add_http_protocol-source -->
-          
-        </div>
+            </div><!-- add_http_protocol-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- add_http_protocol-method -->
-
-    
-      <div id="method-i-add_trailing_slash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">add_trailing_slash</span><span
-            class="method-args">(url)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="add_trailing_slash-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 69</span>
+        </div><!-- add_http_protocol-method -->
+
+      
+        <div id="add_trailing_slash-method" class="method-detail ">
+          <a name="method-i-add_trailing_slash"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">add_trailing_slash</span><span
+              class="method-args">(url)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="add_trailing_slash-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r\/$/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{url}/&quot;</span>
+  <span class="ruby-identifier">url</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\/$/</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">url</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{url}/&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- add_trailing_slash-source -->
-          
-        </div>
+            </div><!-- add_trailing_slash-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- add_trailing_slash-method -->
-
-    
-      <div id="method-i-banner" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">banner</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>our 1337 banner</p>
           
 
           
-          <div class="method-source-code" id="banner-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 135</span>
+        </div><!-- add_trailing_slash-method -->
+
+      
+        <div id="banner-method" class="method-detail ">
+          <a name="method-i-banner"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">banner</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>our 1337 banner</p>
+            
+
+            
+            <div class="method-source-code" id="banner-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">banner</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'____________________________________________________'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">' __          _______   _____                  '</span>
@@ -468,180 +567,103 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">' Sponsored by the RandomStorm Open Source Initiative'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'_____________________________________________________'</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-constant">RUBY_VERSION</span> <span class="ruby-operator">&lt;</span> <span class="ruby-string">'1.9'</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">'[WARNING] Ruby &lt; 1.9 not officially supported, please upgrade.'</span>
-    <span class="ruby-identifier">puts</span>
-  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- banner-source -->
-          
-        </div>
+            </div><!-- banner-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- banner-method -->
-
-    
-      <div id="method-i-colorize" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">colorize</span><span
-            class="method-args">(text, color_code)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="colorize-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 154</span>
+        </div><!-- banner-method -->
+
+      
+        <div id="colorize-method" class="method-detail ">
+          <a name="method-i-colorize"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">colorize</span><span
+              class="method-args">(text, color_code)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="colorize-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">color_code</span>)
   <span class="ruby-node">&quot;\e[#{color_code}m#{text}\e[0m&quot;</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- colorize-source -->
-          
-        </div>
+            </div><!-- colorize-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- colorize-method -->
-
-    
-      <div id="method-i-get_equal_string_end" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_equal_string_end</span><span
-            class="method-args">(stringarray = [''])</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Gets the string all elements in stringarray ends with</p>
           
 
           
-          <div class="method-source-code" id="get_equal_string_end-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 74</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_equal_string_end</span>(<span class="ruby-identifier">stringarray</span> = [<span class="ruby-string">''</span>])
-  <span class="ruby-identifier">already_found</span> = <span class="ruby-string">''</span>
-  <span class="ruby-identifier">looping</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-identifier">counter</span> = <span class="ruby-value">-1</span>
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">stringarray</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Array</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">stringarray</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
-    <span class="ruby-identifier">base</span> = <span class="ruby-identifier">stringarray</span>[<span class="ruby-value">0</span>]
-    <span class="ruby-keyword">while</span> <span class="ruby-identifier">looping</span>
-      <span class="ruby-identifier">character</span> = <span class="ruby-identifier">base</span>[<span class="ruby-identifier">counter</span>, <span class="ruby-value">1</span>]
-      <span class="ruby-identifier">stringarray</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
-        <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>[<span class="ruby-identifier">counter</span>, <span class="ruby-value">1</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">character</span>
-          <span class="ruby-identifier">looping</span> = <span class="ruby-keyword">false</span>
-          <span class="ruby-keyword">break</span>
-        <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">looping</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">or</span> (<span class="ruby-identifier">counter</span> * <span class="ruby-value">-1</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">length</span>
-        <span class="ruby-keyword">break</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">already_found</span> = <span class="ruby-node">&quot;#{character if character}#{already_found}&quot;</span>
-      <span class="ruby-identifier">counter</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">already_found</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_equal_string_end-source -->
-          
-        </div>
+        </div><!-- colorize-method -->
 
-        
-
-        
-      </div><!-- get_equal_string_end-method -->
-
-    
-      <div id="method-i-get_metasploit_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">get_metasploit_url</span><span
-            class="method-args">(module_path)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
+      
+        <div id="green-method" class="method-detail ">
+          <a name="method-i-green"></a>
 
           
-          <div class="method-source-code" id="get_metasploit_url-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 166</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_metasploit_url</span>(<span class="ruby-identifier">module_path</span>)
-  <span class="ruby-comment"># remove leading slash</span>
-  <span class="ruby-identifier">module_path</span> = <span class="ruby-identifier">module_path</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp">%r^\//</span>, <span class="ruby-string">''</span>)
-  <span class="ruby-node">&quot;http://www.metasploit.com/modules/#{module_path}&quot;</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- get_metasploit_url-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- get_metasploit_url-method -->
-
-    
-      <div id="method-i-green" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">green</span><span
-            class="method-args">(text)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
+          <div class="method-heading">
+            <span class="method-name">green</span><span
+              class="method-args">(text)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
           
 
-          
-          <div class="method-source-code" id="green-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 162</span>
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="green-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">green</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">32</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- green-source -->
-          
-        </div>
+            </div><!-- green-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- green-method -->
-
-    
-      <div id="method-i-help" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">help</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>command help</p>
           
 
           
-          <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 73</span>
+        </div><!-- green-method -->
+
+      
+        <div id="help-method" class="method-detail ">
+          <a name="method-i-help"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">help</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>command help</p>
+            
+
+            
+            <div class="method-source-code" id="help-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'Help :'</span>
   <span class="ruby-identifier">puts</span>
@@ -665,7 +687,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'  Multiple values are allowed : &quot;-e t,p&quot; will enumerate timthumbs and plugins'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'  If no option is supplied, the default is &quot;vt,tt,u,vp&quot;'</span>
   <span class="ruby-identifier">puts</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">'--exclude-content-based &quot;&lt;regexp or string&gt;&quot; Used with the enumeration option, will exclude all occurence based on the regexp or string supplied'</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">'--exclude-content-based &quot;&lt;regexp or string&gt;&quot; Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'                                             You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--config-file | -c &lt;config file&gt; Use the specified config file'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not'</span>
@@ -674,7 +696,7 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--proxy &lt;[protocol://]host:port&gt; Supply a proxy (will override the one from conf/browser.conf.json).'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'                                 HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--proxy-auth &lt;username:password&gt;  Supply the proxy login credentials (will override the one from conf/browser.conf.json).'</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-string">'--basic-auth &lt;username:password&gt;  Set the HTTP Basic authentification'</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">'--basic-auth &lt;username:password&gt;  Set the HTTP Basic authentication'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--wordlist | -w &lt;wordlist&gt;  Supply a wordlist for the password bruter and do the brute.'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--threads  | -t &lt;number of threads&gt;  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--username | -U &lt;username&gt;  Only brute force the supplied username.'</span>
@@ -682,171 +704,496 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'--verbose  | -v Verbose output.'</span>
   <span class="ruby-identifier">puts</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- help-source -->
-          
-        </div>
+            </div><!-- help-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- help-method -->
-
-    
-      <div id="method-i-output_vulnerabilities" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">output_vulnerabilities</span><span
-            class="method-args">(vulns)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="output_vulnerabilities-source">
-            <pre><span class="ruby-comment"># File wpscan.rb, line 24</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">output_vulnerabilities</span>(<span class="ruby-identifier">vulns</span>)
-  <span class="ruby-identifier">vulns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vulnerability</span><span class="ruby-operator">|</span>
+        </div><!-- help-method -->
+
+      
+        <div id="main-method" class="method-detail ">
+          <a name="method-i-main"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">main</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="main-source">
+<pre>
+<span class="ruby-comment"># File wpscan.rb, line 5</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">main</span>
+  <span class="ruby-comment"># delete old logfile, check if it is a symlink first.</span>
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-constant">LOG_FILE</span>) <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-constant">LOG_FILE</span>) <span class="ruby-keyword">and</span> <span class="ruby-operator">!</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">symlink?</span>(<span class="ruby-constant">LOG_FILE</span>)
+
+  <span class="ruby-identifier">banner</span>()
+
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-identifier">wpscan_options</span> = <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">load_from_arguments</span>
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">has_options?</span>
+      <span class="ruby-identifier">usage</span>()
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">'No argument supplied'</span>)
+      <span class="ruby-identifier">exit</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">help</span>
+      <span class="ruby-identifier">help</span>()
+      <span class="ruby-identifier">usage</span>()
+      <span class="ruby-identifier">exit</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Check for updates</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">update</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@updater</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-ivar">@updater</span>.<span class="ruby-identifier">has_local_changes?</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n]&quot;</span>
+          <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">readline</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^y/</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@updater</span>.<span class="ruby-identifier">reset_head</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">raise</span>(<span class="ruby-string">'Update aborted'</span>)
+        <span class="ruby-keyword">end</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-ivar">@updater</span>.<span class="ruby-identifier">update</span>()
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Svn / Git not installed, or wpscan has not been installed with one of them.'</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Update aborted'</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">exit</span>(<span class="ruby-value">1</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">wp_target</span> = <span class="ruby-constant">WpTarget</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">url</span>, <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">to_h</span>)
+
+    <span class="ruby-comment"># Remote website up?</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">online?</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;The WordPress URL supplied '#{wp_target.uri}' seems to be down.&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">proxy</span>
+      <span class="ruby-identifier">proxy_response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">url</span>)
+
+      <span class="ruby-keyword">unless</span> <span class="ruby-constant">WpTarget</span><span class="ruby-operator">::</span><span class="ruby-identifier">valid_response_codes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">proxy_response</span>.<span class="ruby-identifier">code</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Proxy Error :\r\n#{proxy_response.headers}&quot;</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">redirection</span> = <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">redirection</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">redirection</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">follow_redirection</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Following redirection #{redirection}&quot;</span>
+        <span class="ruby-identifier">puts</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;The remote host tried to redirect us to #{redirection}&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Do you want follow the redirection ? [y/n]'</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">follow_redirection</span> <span class="ruby-keyword">or</span> <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">readline</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^y/</span>
+        <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">url</span> = <span class="ruby-identifier">redirection</span>
+        <span class="ruby-identifier">wp_target</span> = <span class="ruby-constant">WpTarget</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">redirection</span>, <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">to_h</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Scan aborted'</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_basic_auth?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">basic_auth</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-string">'Basic authentication is required, please provide it with --basic-auth &lt;login:password&gt;'</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Remote website is wordpress?</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">force</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wordpress?</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-string">'The remote website is up, but does not seem to be running WordPress.'</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_content_dir</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-string">'The wp_content_dir has not been found, please supply it with --wp-content-dir'</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_plugins_dir_exists?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;The plugins directory '#{wp_target.wp_plugins_dir}' does not exist.&quot;</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">'You can specify one per command line option (don\t forget to include the wp-content directory if needed)'</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-string">'Continue? [y/n]'</span>
+      <span class="ruby-keyword">unless</span> <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">readline</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/^y/</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Output runtime data</span>
+    <span class="ruby-identifier">start_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;| URL: #{wp_target.url}&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;| Started on #{start_time.asctime}&quot;</span>
     <span class="ruby-identifier">puts</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">' | '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;* Title: #{vulnerability.title}&quot;</span>)
-    <span class="ruby-identifier">vulnerability</span>.<span class="ruby-identifier">references</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">r</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">' | '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;* Reference: #{r}&quot;</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_robots?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; robots.txt available under '#{wp_target.robots_url}'&quot;</span>
     <span class="ruby-keyword">end</span>
-    <span class="ruby-identifier">vulnerability</span>.<span class="ruby-identifier">metasploit_modules</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-string">' | '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;* Metasploit module: #{get_metasploit_url(m)}&quot;</span>)
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_readme?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">'[!]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; The WordPress '#{wp_target.readme_url}' file exists&quot;</span>
     <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_full_path_disclosure?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">'[!]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}'&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_debug_log?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">'[!]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; Debug log file found : #{wp_target.debug_log_url}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">config_backup</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file_url</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;[!] A wp-config.php backup file has been found '#{file_url}'&quot;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">search_replace_db_2_exists?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'&quot;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">is_multisite?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-string">' This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)'</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">registration_enabled?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-string">' User registration is enabled'</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_xml_rpc?</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; XML-RPC Interface available under #{wp_target.xml_rpc_url}&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_malwares?</span>
+      <span class="ruby-identifier">malwares</span> = <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">malwares</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">'[!]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; #{malwares.size} malware(s) found :&quot;</span>
+
+      <span class="ruby-identifier">malwares</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">malware_url</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">' | '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;#{malware_url}&quot;</span>)
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">puts</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">enum_options</span> = {
+      <span class="ruby-identifier">show_progression</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>,
+      <span class="ruby-identifier">exclude_content</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">exclude_content_based</span>
+    }
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_version</span> = <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">version</span>(<span class="ruby-constant">WP_VERSIONS_FILE</span>)
+      <span class="ruby-identifier">wp_version</span>.<span class="ruby-identifier">output</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_theme</span> = <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">theme</span>
+      <span class="ruby-identifier">puts</span>
+      <span class="ruby-comment"># Theme version is handled in #to_s</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; The WordPress theme in use is #{wp_theme}&quot;</span>
+      <span class="ruby-identifier">wp_theme</span>.<span class="ruby-identifier">output</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_plugins</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-identifier">puts</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-string">' Enumerating plugins from passive detection ... '</span>
+
+      <span class="ruby-identifier">wp_plugins</span> = <span class="ruby-constant">WpPlugins</span>.<span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">wp_target</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">wp_plugins</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{wp_plugins.size} plugins found :&quot;</span>
+
+        <span class="ruby-identifier">wp_plugins</span>.<span class="ruby-identifier">output</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'No plugins found :('</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Enumerate the installed plugins</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_plugins</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_all_plugins</span>
+      <span class="ruby-identifier">puts</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ...&quot;</span>
+      <span class="ruby-identifier">puts</span>
+
+      <span class="ruby-identifier">wp_plugins</span> = <span class="ruby-constant">WpPlugins</span>.<span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">wp_target</span>,
+        <span class="ruby-identifier">enum_options</span>.<span class="ruby-identifier">merge</span>(
+          <span class="ruby-identifier">file</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_all_plugins</span> <span class="ruby-operator">?</span> <span class="ruby-constant">PLUGINS_FULL_FILE</span> <span class="ruby-operator">:</span> <span class="ruby-constant">PLUGINS_FILE</span>,
+          <span class="ruby-identifier">only_vulnerable</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+        )
+      )
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">wp_plugins</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; We found #{wp_plugins.size} plugins:&quot;</span>
+
+        <span class="ruby-identifier">wp_plugins</span>.<span class="ruby-identifier">output</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'No plugins found :('</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Enumerate installed themes</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_themes</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_only_vulnerable_themes</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_all_themes</span>
+      <span class="ruby-identifier">puts</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ...&quot;</span>
+      <span class="ruby-identifier">puts</span>
+
+      <span class="ruby-identifier">wp_themes</span> = <span class="ruby-constant">WpThemes</span>.<span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">wp_target</span>,
+        <span class="ruby-identifier">enum_options</span>.<span class="ruby-identifier">merge</span>(
+          <span class="ruby-identifier">file</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_all_themes</span> <span class="ruby-operator">?</span> <span class="ruby-constant">THEMES_FULL_FILE</span> <span class="ruby-operator">:</span> <span class="ruby-constant">THEMES_FILE</span>,
+          <span class="ruby-identifier">only_vulnerable</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_only_vulnerable_themes</span> <span class="ruby-operator">||</span> <span class="ruby-keyword">false</span>
+        )
+      )
+
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">wp_themes</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; We found #{wp_themes.size} themes:&quot;</span>
+
+        <span class="ruby-identifier">wp_themes</span>.<span class="ruby-identifier">output</span>
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'No themes found :('</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_timthumbs</span>
+      <span class="ruby-identifier">puts</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-string">' Enumerating timthumb files ...'</span>
+      <span class="ruby-identifier">puts</span>
+
+      <span class="ruby-identifier">wp_timthumbs</span> = <span class="ruby-constant">WpTimthumbs</span>.<span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">wp_target</span>,
+        <span class="ruby-identifier">enum_options</span>.<span class="ruby-identifier">merge</span>(
+          <span class="ruby-identifier">file</span><span class="ruby-operator">:</span> <span class="ruby-constant">DATA_DIR</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/timthumbs.txt'</span>,
+          <span class="ruby-identifier">theme_name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_theme</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">wp_theme</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+        )
+      )
+      <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">wp_timthumbs</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; We found #{wp_timthumbs.size} timthumb file/s :&quot;</span>
+        <span class="ruby-identifier">puts</span>
+
+        <span class="ruby-identifier">wp_timthumbs</span>.<span class="ruby-identifier">output</span>
+
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">' * Reference: http://www.exploit-db.com/exploits/17602/'</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'No timthumb files found :('</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># If we haven't been supplied a username, enumerate them...</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">username</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">wordlist</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_usernames</span>
+      <span class="ruby-identifier">puts</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-string">' Enumerating usernames ...'</span>
+
+      <span class="ruby-identifier">wp_users</span> = <span class="ruby-constant">WpUsers</span>.<span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">wp_target</span>,
+        <span class="ruby-identifier">enum_options</span>.<span class="ruby-identifier">merge</span>(
+          <span class="ruby-identifier">range</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">enumerate_usernames_range</span>,
+          <span class="ruby-identifier">show_progression</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+        )
+      )
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_users</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'We did not enumerate any usernames :('</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Try supplying your own username with the --username option'</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">exit</span>(<span class="ruby-value">1</span>)
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; We found the following #{wp_users.size} user/s :&quot;</span>
+
+        <span class="ruby-identifier">wp_users</span>.<span class="ruby-identifier">output</span>(<span class="ruby-string">' '</span> * <span class="ruby-value">4</span>)
+      <span class="ruby-keyword">end</span>
+
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-comment"># FIXME : Change the .username to .login (and also the --username in the CLI)</span>
+      <span class="ruby-identifier">wp_users</span> = <span class="ruby-constant">WpUsers</span>.<span class="ruby-identifier">new</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">WpUser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">login</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">username</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-comment"># Start the brute forcer</span>
+    <span class="ruby-identifier">bruteforce</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">wordlist</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">has_login_protection?</span>
+
+        <span class="ruby-identifier">protection_plugin</span> = <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">login_protection_plugin</span>()
+
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login. Not a good idea for brute forcing !&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'[?] Do you want to start the brute force anyway ? [y/n]'</span>
+
+        <span class="ruby-identifier">bruteforce</span> = <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">readline</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/^y/</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">bruteforce</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-string">' Starting the password brute forcer'</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">brute_force</span>(<span class="ruby-identifier">wp_users</span>, <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">wordlist</span>, { <span class="ruby-identifier">show_progression</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> })
+      <span class="ruby-keyword">else</span>
+        <span class="ruby-identifier">puts</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Brute forcing aborted'</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">stop_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+    <span class="ruby-identifier">puts</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-node">&quot;[+] Finished at #{stop_time.asctime}&quot;</span>)
+    <span class="ruby-identifier">elapsed</span> = <span class="ruby-identifier">stop_time</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">start_time</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-node">&quot;[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}&quot;</span>)
+    <span class="ruby-identifier">exit</span>() <span class="ruby-comment"># must exit!</span>
+  <span class="ruby-keyword">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;[ERROR] #{e.message}&quot;</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-string">'Trace :'</span>)
+    <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>))
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- output_vulnerabilities-source -->
-          
-        </div>
+            </div><!-- main-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- output_vulnerabilities-method -->
-
-    
-      <div id="method-i-puts" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">puts</span><span
-            class="method-args">(o = '')</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Override for puts to enable logging</p>
           
 
           
-          <div class="method-source-code" id="puts-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 173</span>
+        </div><!-- main-method -->
+
+      
+        <div id="puts-method" class="method-detail ">
+          <a name="method-i-puts"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">puts</span><span
+              class="method-args">(o = '')</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Override for puts to enable logging</p>
+            
+
+            
+            <div class="method-source-code" id="puts-source">
+<pre>
+<span class="ruby-comment"># File lib/common/hacks.rb, line 50</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">puts</span>(<span class="ruby-identifier">o</span> = <span class="ruby-string">''</span>)
   <span class="ruby-comment"># remove color for logging</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-string">'gsub'</span>)
-    <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">%r\e\[\d+m(.*)?\e\[0m/</span>, <span class="ruby-string">'\1'</span>)
+    <span class="ruby-identifier">temp</span> = <span class="ruby-identifier">o</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/\e\[\d+m(.*)?\e\[0m/</span>, <span class="ruby-string">'\1'</span>)
     <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">LOG_FILE</span>, <span class="ruby-string">'a+'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">temp</span>) }
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">super</span>(<span class="ruby-identifier">o</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- puts-source -->
-          
-        </div>
+            </div><!-- puts-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- puts-method -->
-
-    
-      <div id="method-i-red" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">red</span><span
-            class="method-args">(text)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="red-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 158</span>
+        </div><!-- puts-method -->
+
+      
+        <div id="red-method" class="method-detail ">
+          <a name="method-i-red"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">red</span><span
+              class="method-args">(text)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="red-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 96</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">red</span>(<span class="ruby-identifier">text</span>)
   <span class="ruby-identifier">colorize</span>(<span class="ruby-identifier">text</span>, <span class="ruby-value">31</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- red-source -->
-          
-        </div>
+            </div><!-- red-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- red-method -->
-
-    
-      <div id="method-i-require_files_from_directory" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">require_files_from_directory</span><span
-            class="method-args">(absolute_dir_path, files_pattern = '*.rb')</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>TODO : add an exclude pattern ?</p>
           
 
           
-          <div class="method-source-code" id="require_files_from_directory-source">
-            <pre><span class="ruby-comment"># File lib/common_helper.rb, line 53</span>
+        </div><!-- red-method -->
+
+      
+        <div id="require_files_from_directory-method" class="method-detail ">
+          <a name="method-i-require_files_from_directory"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">require_files_from_directory</span><span
+              class="method-args">(absolute_dir_path, files_pattern = '*.rb')</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>TODO : add an exclude pattern ?</p>
+            
+
+            
+            <div class="method-source-code" id="require_files_from_directory-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 44</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">require_files_from_directory</span>(<span class="ruby-identifier">absolute_dir_path</span>, <span class="ruby-identifier">files_pattern</span> = <span class="ruby-string">'*.rb'</span>)
-  <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">absolute_dir_path</span>, <span class="ruby-identifier">files_pattern</span>)].<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+  <span class="ruby-identifier">files</span> = <span class="ruby-constant">Dir</span>[<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">absolute_dir_path</span>, <span class="ruby-identifier">files_pattern</span>)]
+
+  <span class="ruby-comment"># Files in the root dir are loaded first, then thoses in the subdirectories</span>
+  <span class="ruby-identifier">files</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span> [<span class="ruby-identifier">file</span>.<span class="ruby-identifier">count</span>(<span class="ruby-string">&quot;/&quot;</span>), <span class="ruby-identifier">file</span>] }.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">f</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">f</span>)
-    <span class="ruby-identifier">require</span> <span class="ruby-identifier">f</span>
     <span class="ruby-comment">#puts &quot;require #{f}&quot; # Used for debug</span>
+    <span class="ruby-identifier">require</span> <span class="ruby-identifier">f</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- require_files_from_directory-source -->
-          
-        </div>
+            </div><!-- require_files_from_directory-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- require_files_from_directory-method -->
-
-    
-      <div id="method-i-usage" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">usage</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>wpscan usage</p>
           
 
           
-          <div class="method-source-code" id="usage-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 24</span>
+        </div><!-- require_files_from_directory-method -->
+
+      
+        <div id="usage-method" class="method-detail ">
+          <a name="method-i-usage"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">usage</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>wpscan usage</p>
+            
+
+            
+            <div class="method-source-code" id="usage-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">usage</span>
   <span class="ruby-identifier">script_name</span> = <span class="ruby-identifier">$0</span>
   <span class="ruby-identifier">puts</span>
@@ -894,26 +1241,64 @@
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'See README for further information.'</span>
   <span class="ruby-identifier">puts</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- usage-source -->
+            </div><!-- usage-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- usage-method -->
 
-        
-      </div><!-- usage-method -->
+      
+        <div id="xml-method" class="method-detail ">
+          <a name="method-i-xml"></a>
 
+          
+          <div class="method-heading">
+            <span class="method-name">xml</span><span
+              class="method-args">(file)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="xml-source">
+<pre>
+<span class="ruby-comment"># File lib/common/common_helper.rb, line 104</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>)
+  <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>)) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">config</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">config</span>.<span class="ruby-identifier">noblanks</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- xml-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- xml-method -->
+
+      
+      </div><!-- public-instance-method-details -->
     
-    </section><!-- public-instance-method-details -->
+    </div><!-- 5Buntitled-5D -->
   
-  </section><!-- 5Buntitled-5D -->
 
-</div><!-- documentation -->
+  </div><!-- documentation -->
 
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+</body>
+</html>
 

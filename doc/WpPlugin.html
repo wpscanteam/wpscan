@@ -1,335 +1,362 @@
-<!DOCTYPE html>
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>class WpPlugin - RDoc Documentation</title>
+  <title>Class: WpPlugin</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
-
-
+</head>
 <body id="top" class="class">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
 
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/common/models/wp_plugin_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/common/models/wp_plugin.rb">lib/common/models/wp_plugin.rb</a></li>
+          
+            <li><a href="./lib/common/models/wp_plugin/vulnerable_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/common/models/wp_plugin/vulnerable.rb">lib/common/models/wp_plugin/vulnerable.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+      
+    </div>
 
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
+        
+        <p class="link"><a href="WpItem.html">WpItem</a></p>
+        
+      </div>
+      
 
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/wpscan/wp_plugin.rb
-  </ul>
-</nav>
+      
 
-    
+      
+      <!-- Namespace Contents -->
+      <div id="namespace-list-section" class="section">
+        <h3 class="section-header">Namespace</h3>
+        <ul class="link-list">
+          
+          <li><span class="type">MODULE</span> <a href="WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-i-forge_uri">#forge_uri</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+      <!-- Included Modules -->
+      <div id="includes-section" class="section">
+        <h3 class="section-header">Included Modules</h3>
+        <ul class="link-list">
+        
+        
+          <li><a class="include" href="WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+        
+        </ul>
+      </div>
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpItem/Existable.html">WpItem::Existable</a></li>
+        
+          <li><a href="./WpItem/Findable.html">WpItem::Findable</a></li>
+        
+          <li><a href="./WpItem/Infos.html">WpItem::Infos</a></li>
+        
+          <li><a href="./WpItem/Output.html">WpItem::Output</a></li>
+        
+          <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a></li>
+        
+          <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a></li>
+        
+          <li><a href="./Typhoeus.html">Typhoeus</a></li>
+        
+          <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a></li>
+        
+          <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a></li>
+        
+          <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a></li>
+        
+          <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a></li>
+        
+          <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a></li>
+        
+          <li><a href="./WpTimthumb.html">WpTimthumb</a></li>
+        
+          <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a></li>
+        
+          <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a></li>
+        
+          <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a></li>
+        
+          <li><a href="./WpVersion/Output.html">WpVersion::Output</a></li>
+        
+          <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a></li>
+        
+          <li><a href="./WpItems.html">WpItems</a></li>
+        
+          <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a></li>
+        
+          <li><a href="./WpItems/Output.html">WpItems::Output</a></li>
+        
+          <li><a href="./WpUsers.html">WpUsers</a></li>
+        
+          <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a></li>
+        
+          <li><a href="./WpUsers/Output.html">WpUsers::Output</a></li>
+        
+          <li><a href="./Vulnerabilities.html">Vulnerabilities</a></li>
+        
+          <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a></li>
+        
+          <li><a href="./Vulnerability.html">Vulnerability</a></li>
+        
+          <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUser/Existable.html">WpUser::Existable</a></li>
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./CheckerPlugin.html">CheckerPlugin</a></li>
+        
+          <li><a href="./CustomOptionParser.html">CustomOptionParser</a></li>
+        
+          <li><a href="./GenerateList.html">GenerateList</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./Plugin.html">Plugin</a></li>
+        
+          <li><a href="./Plugins.html">Plugins</a></li>
+        
+          <li><a href="./StatsPlugin.html">StatsPlugin</a></li>
+        
+          <li><a href="./SvnParser.html">SvnParser</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./TyphoeusCache.html">TyphoeusCache</a></li>
+        
+          <li><a href="./URI.html">URI</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
   </div>
 
-  <div id="class-metadata">
+  <div id="documentation">
+    <h1 class="class">WpPlugin</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
     
-    <nav id="parent-class-section" class="section">
-  <h3 class="section-header">Parent</h3>
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="forge_uri-method" class="method-detail ">
+          <a name="method-i-forge_uri"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">forge_uri</span><span
+              class="method-args">(target_base_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Sets the @uri</p>
+
+<p>@param [ <a href="URI.html">URI</a> ] target_base_uri The <a
+href="URI.html">URI</a> of the wordpress blog</p>
+
+<p>@return [ void ]</p>
+            
+
+            
+            <div class="method-source-code" id="forge_uri-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_plugin.rb, line 12</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">forge_uri</span>(<span class="ruby-identifier">target_base_uri</span>)
+  <span class="ruby-ivar">@uri</span> = <span class="ruby-identifier">target_base_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-constant">URI</span>.<span class="ruby-identifier">encode</span>(<span class="ruby-identifier">wp_plugins_dir</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">name</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/'</span>))
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- forge_uri-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- forge_uri-method -->
+
+      
+      </div><!-- public-instance-method-details -->
+    
+    </div><!-- 5Buntitled-5D -->
   
-  <p class="link"><a href="WpItem.html">WpItem</a>
-  
-</nav>
 
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
+  </div><!-- documentation -->
 
-  <ul class="link-list">
-    
-    <li><a href="#method-c-new">::new</a>
-    
-    <li><a href="#method-i-error_log-3F">#error_log?</a>
-    
-    <li><a href="#method-i-error_log_url">#error_log_url</a>
-    
-  </ul>
-</nav>
-
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
   </div>
 
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./CREDITS.html">CREDITS</a>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./log_txt.html">log</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Browser.html">Browser</a>
-  
-    <li><a href="./BruteForce.html">BruteForce</a>
-  
-    <li><a href="./CacheFileStore.html">CacheFileStore</a>
-  
-    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
-  
-    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
-  
-    <li><a href="./GenerateList.html">GenerateList</a>
-  
-    <li><a href="./GitUpdater.html">GitUpdater</a>
-  
-    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
-  
-    <li><a href="./Malwares.html">Malwares</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Plugin.html">Plugin</a>
-  
-    <li><a href="./Plugins.html">Plugins</a>
-  
-    <li><a href="./SvnParser.html">SvnParser</a>
-  
-    <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./URI.html">URI</a>
-  
-    <li><a href="./Updater.html">Updater</a>
-  
-    <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
-  
-    <li><a href="./Vulnerable.html">Vulnerable</a>
-  
-    <li><a href="./WebSite.html">WebSite</a>
-  
-    <li><a href="./WpConfigBackup.html">WpConfigBackup</a>
-  
-    <li><a href="./WpDetector.html">WpDetector</a>
-  
-    <li><a href="./WpEnumerator.html">WpEnumerator</a>
-  
-    <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a>
-  
-    <li><a href="./WpItem.html">WpItem</a>
-  
-    <li><a href="./WpLoginProtection.html">WpLoginProtection</a>
-  
-    <li><a href="./WpOptions.html">WpOptions</a>
-  
-    <li><a href="./WpPlugin.html">WpPlugin</a>
-  
-    <li><a href="./WpPlugins.html">WpPlugins</a>
-  
-    <li><a href="./WpReadme.html">WpReadme</a>
-  
-    <li><a href="./WpTarget.html">WpTarget</a>
-  
-    <li><a href="./WpTheme.html">WpTheme</a>
-  
-    <li><a href="./WpThemes.html">WpThemes</a>
-  
-    <li><a href="./WpTimthumbs.html">WpTimthumbs</a>
-  
-    <li><a href="./WpUser.html">WpUser</a>
-  
-    <li><a href="./WpUsernames.html">WpUsernames</a>
-  
-    <li><a href="./WpVersion.html">WpVersion</a>
-  
-    <li><a href="./WpVulnerability.html">WpVulnerability</a>
-  
-    <li><a href="./WpscanOptions.html">WpscanOptions</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="class">class WpPlugin</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-new" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">new</span><span
-            class="method-args">(options = {})</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 20</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] <span class="ruby-operator">==</span> <span class="ruby-string">''</span>
-    <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_file</span>] = <span class="ruby-constant">PLUGINS_VULNS_FILE</span>
-  <span class="ruby-keyword">end</span>
-
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath</span>]   = <span class="ruby-string">&quot;//plugin[@name='$name$']/vulnerability&quot;</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:vulns_xpath_2</span>] = <span class="ruby-string">'//plugin'</span>
-  <span class="ruby-identifier">options</span>[<span class="ruby-value">:type</span>]          = <span class="ruby-string">'plugins'</span>
-
-  <span class="ruby-keyword">super</span>(<span class="ruby-identifier">options</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- new-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- new-method -->
-
-    
-    </section><!-- public-class-method-details -->
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-error_log-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">error_log?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Discover any error_log files created by WordPress These are created by the
-WordPress error_log() function They are normally found in the /plugins/
-directory, however can also be found in their specific plugin dir. <a
-href="http://www.exploit-db.com/ghdb/3714/">www.exploit-db.com/ghdb/3714/</a></p>
-          
-
-          
-          <div class="method-source-code" id="error_log-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 37</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_log?</span>
-  <span class="ruby-identifier">response_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">error_log_url</span>(), <span class="ruby-identifier">headers</span><span class="ruby-operator">:</span> {<span class="ruby-string">'range'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">'bytes=0-700'</span>}).<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">response_body</span>[<span class="ruby-regexp">%r{PHP Fatal error}</span>] <span class="ruby-operator">?</span> <span class="ruby-keyword">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- error_log-3F-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- error_log-3F-method -->
-
-    
-      <div id="method-i-error_log_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">error_log_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
-          
-
-          
-          <div class="method-source-code" id="error_log_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wp_plugin.rb, line 42</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">error_log_url</span>
-  <span class="ruby-identifier">get_full_url</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-string">'error_log'</span>).<span class="ruby-identifier">to_s</span>
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- error_log_url-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- error_log_url-method -->
-
-    
-    </section><!-- public-instance-method-details -->
-  
-  </section><!-- 5Buntitled-5D -->
-
-</div><!-- documentation -->
-
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+</body>
+</html>
 

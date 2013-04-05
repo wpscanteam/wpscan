@@ -1,278 +1,430 @@
-<!DOCTYPE html>
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>module WebSite - RDoc Documentation</title>
+  <title>Class: WebSite</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
+  <script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+</head>
+<body id="top" class="class">
 
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
-<body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
+          
+            <li><a href="./lib/wpscan/web_site_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/web_site.rb">lib/wpscan/web_site.rb</a></li>
+          
+          </ul>
+        </div>
+      </div>
 
+      
+    </div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/wpscan/modules/web_site.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li><a href="#method-c-page_hash">::page_hash</a>
-    
-    <li><a href="#method-i-error_404_hash">#error_404_hash</a>
-    
-    <li><a href="#method-i-has_basic_auth-3F">#has_basic_auth?</a>
-    
-    <li><a href="#method-i-has_xml_rpc-3F">#has_xml_rpc?</a>
-    
-    <li><a href="#method-i-homepage_hash">#homepage_hash</a>
-    
-    <li><a href="#method-i-online-3F">#online?</a>
-    
-    <li><a href="#method-i-redirection">#redirection</a>
-    
-    <li><a href="#method-i-rss_url">#rss_url</a>
-    
-    <li><a href="#method-i-wordpress-3F">#wordpress?</a>
-    
-    <li><a href="#method-i-xml_rpc_url">#xml_rpc_url</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./CREDITS.html">CREDITS</a>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./log_txt.html">log</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Browser.html">Browser</a>
-  
-    <li><a href="./BruteForce.html">BruteForce</a>
-  
-    <li><a href="./CacheFileStore.html">CacheFileStore</a>
-  
-    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
-  
-    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
-  
-    <li><a href="./GenerateList.html">GenerateList</a>
-  
-    <li><a href="./GitUpdater.html">GitUpdater</a>
-  
-    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
-  
-    <li><a href="./Malwares.html">Malwares</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Plugin.html">Plugin</a>
-  
-    <li><a href="./Plugins.html">Plugins</a>
-  
-    <li><a href="./SvnParser.html">SvnParser</a>
-  
-    <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./URI.html">URI</a>
-  
-    <li><a href="./Updater.html">Updater</a>
-  
-    <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
-  
-    <li><a href="./Vulnerable.html">Vulnerable</a>
-  
-    <li><a href="./WebSite.html">WebSite</a>
-  
-    <li><a href="./WpConfigBackup.html">WpConfigBackup</a>
-  
-    <li><a href="./WpDetector.html">WpDetector</a>
-  
-    <li><a href="./WpEnumerator.html">WpEnumerator</a>
-  
-    <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a>
-  
-    <li><a href="./WpItem.html">WpItem</a>
-  
-    <li><a href="./WpLoginProtection.html">WpLoginProtection</a>
-  
-    <li><a href="./WpOptions.html">WpOptions</a>
-  
-    <li><a href="./WpPlugin.html">WpPlugin</a>
-  
-    <li><a href="./WpPlugins.html">WpPlugins</a>
-  
-    <li><a href="./WpReadme.html">WpReadme</a>
-  
-    <li><a href="./WpTarget.html">WpTarget</a>
-  
-    <li><a href="./WpTheme.html">WpTheme</a>
-  
-    <li><a href="./WpThemes.html">WpThemes</a>
-  
-    <li><a href="./WpTimthumbs.html">WpTimthumbs</a>
-  
-    <li><a href="./WpUser.html">WpUser</a>
-  
-    <li><a href="./WpUsernames.html">WpUsernames</a>
-  
-    <li><a href="./WpVersion.html">WpVersion</a>
-  
-    <li><a href="./WpVulnerability.html">WpVulnerability</a>
-  
-    <li><a href="./WpscanOptions.html">WpscanOptions</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="module">module WebSite</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Class Methods</h3>
-
-    
-      <div id="method-c-page_hash" class="method-detail ">
+    <div id="class-metadata">
+      
+      <!-- Parent Class -->
+      <div id="parent-class-section" class="section">
+        <h3 class="section-header">Parent</h3>
         
-        <div class="method-heading">
-          <span class="method-name">page_hash</span><span
-            class="method-args">(url)</span>
-          <span class="method-click-advice">click to toggle source</span>
+        <p class="link"><a href="Object.html">Object</a></p>
+        
+      </div>
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
+          
+          <li><a href="#method-c-new">::new</a></li>
+          
+          <li><a href="#method-c-page_hash">::page_hash</a></li>
+          
+          <li><a href="#method-i-error_404_hash">#error_404_hash</a></li>
+          
+          <li><a href="#method-i-has_basic_auth-3F">#has_basic_auth?</a></li>
+          
+          <li><a href="#method-i-has_robots-3F">#has_robots?</a></li>
+          
+          <li><a href="#method-i-has_xml_rpc-3F">#has_xml_rpc?</a></li>
+          
+          <li><a href="#method-i-homepage_hash">#homepage_hash</a></li>
+          
+          <li><a href="#method-i-online-3F">#online?</a></li>
+          
+          <li><a href="#method-i-redirection">#redirection</a></li>
+          
+          <li><a href="#method-i-robots_url">#robots_url</a></li>
+          
+          <li><a href="#method-i-rss_url">#rss_url</a></li>
+          
+          <li><a href="#method-i-url">#url</a></li>
+          
+          <li><a href="#method-i-url-3D">#url=</a></li>
+          
+          <li><a href="#method-i-xml_rpc_url">#xml_rpc_url</a></li>
+          
+          <li><a href="#method-i-xml_rpc_url_from_body">#xml_rpc_url_from_body</a></li>
+          
+          <li><a href="#method-i-xml_rpc_url_from_headers">#xml_rpc_url_from_headers</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpItem/Existable.html">WpItem::Existable</a></li>
+        
+          <li><a href="./WpItem/Findable.html">WpItem::Findable</a></li>
+        
+          <li><a href="./WpItem/Infos.html">WpItem::Infos</a></li>
+        
+          <li><a href="./WpItem/Output.html">WpItem::Output</a></li>
+        
+          <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a></li>
+        
+          <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a></li>
+        
+          <li><a href="./Typhoeus.html">Typhoeus</a></li>
+        
+          <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a></li>
+        
+          <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a></li>
+        
+          <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a></li>
+        
+          <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a></li>
+        
+          <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a></li>
+        
+          <li><a href="./WpTimthumb.html">WpTimthumb</a></li>
+        
+          <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a></li>
+        
+          <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a></li>
+        
+          <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a></li>
+        
+          <li><a href="./WpVersion/Output.html">WpVersion::Output</a></li>
+        
+          <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a></li>
+        
+          <li><a href="./WpItems.html">WpItems</a></li>
+        
+          <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a></li>
+        
+          <li><a href="./WpItems/Output.html">WpItems::Output</a></li>
+        
+          <li><a href="./WpUsers.html">WpUsers</a></li>
+        
+          <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a></li>
+        
+          <li><a href="./WpUsers/Output.html">WpUsers::Output</a></li>
+        
+          <li><a href="./Vulnerabilities.html">Vulnerabilities</a></li>
+        
+          <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a></li>
+        
+          <li><a href="./Vulnerability.html">Vulnerability</a></li>
+        
+          <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUser/Existable.html">WpUser::Existable</a></li>
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./BruteForce.html">BruteForce</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./CheckerPlugin.html">CheckerPlugin</a></li>
+        
+          <li><a href="./CustomOptionParser.html">CustomOptionParser</a></li>
+        
+          <li><a href="./GenerateList.html">GenerateList</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a></li>
+        
+          <li><a href="./Malwares.html">Malwares</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./Plugin.html">Plugin</a></li>
+        
+          <li><a href="./Plugins.html">Plugins</a></li>
+        
+          <li><a href="./StatsPlugin.html">StatsPlugin</a></li>
+        
+          <li><a href="./SvnParser.html">SvnParser</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./TyphoeusCache.html">TyphoeusCache</a></li>
+        
+          <li><a href="./URI.html">URI</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpConfigBackup.html">WpConfigBackup</a></li>
+        
+          <li><a href="./WpFullPathDisclosure.html">WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpLoginProtection.html">WpLoginProtection</a></li>
+        
+          <li><a href="./WpReadme.html">WpReadme</a></li>
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="class">WebSite</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+      <!-- Attributes -->
+      <div id="attribute-method-details" class="method-section section">
+        <h3 class="section-header">Attributes</h3>
+
+        
+        <div id="uri-attribute-method" class="method-detail">
+          <a name="uri"></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">uri</span><span
+              class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
         </div>
         
+      </div><!-- attribute-method-details -->
+      
 
-        <div class="method-description">
+      <!-- Methods -->
+      
+      <div id="public-class-method-details" class="method-section section">
+        <h3 class="section-header">Public Class Methods</h3>
+
+      
+        <div id="new-method" class="method-detail ">
+          <a name="method-c-new"></a>
+
           
-          <p>Return the MD5 hash of the page given by url</p>
+          <div class="method-heading">
+            <span class="method-name">new</span><span
+              class="method-args">(site_url)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="new-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 6</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">site_url</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">url</span> = <span class="ruby-identifier">site_url</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- new-source -->
+            
+          </div>
+
           
 
           
-          <div class="method-source-code" id="page_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 94</span>
+        </div><!-- new-method -->
+
+      
+        <div id="page_hash-method" class="method-detail ">
+          <a name="method-c-page_hash"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">page_hash</span><span
+              class="method-args">(url)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Return the MD5 hash of the page given by url</p>
+            
+
+            
+            <div class="method-source-code" id="page_hash-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-identifier">url</span>)
   <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">url</span>).<span class="ruby-identifier">body</span>)
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- page_hash-source -->
+            </div><!-- page_hash-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- page_hash-method -->
 
-        
-      </div><!-- page_hash-method -->
-
+      
+      </div><!-- public-class-method-details -->
     
-    </section><!-- public-class-method-details -->
-  
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
 
-    
-      <div id="method-i-error_404_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">error_404_hash</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Return the MD5 hash of a 404 page</p>
-          
+      
+        <div id="error_404_hash-method" class="method-detail ">
+          <a name="method-i-error_404_hash"></a>
 
           
-          <div class="method-source-code" id="error_404_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 106</span>
+          <div class="method-heading">
+            <span class="method-name">error_404_hash</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Return the MD5 hash of a 404 page</p>
+            
+
+            
+            <div class="method-source-code" id="error_404_hash-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 91</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">error_404_hash</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@error_404_hash</span>
     <span class="ruby-identifier">non_existant_page</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span>.<span class="ruby-identifier">hexdigest</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">999_999_999</span>).<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-string">'.html'</span>
@@ -280,157 +432,205 @@
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@error_404_hash</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- error_404_hash-source -->
-          
-        </div>
+            </div><!-- error_404_hash-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- error_404_hash-method -->
-
-    
-      <div id="method-i-has_basic_auth-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_basic_auth?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="has_basic_auth-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 26</span>
+        </div><!-- error_404_hash-method -->
+
+      
+        <div id="has_basic_auth-3F-method" class="method-detail ">
+          <a name="method-i-has_basic_auth-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_basic_auth?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="has_basic_auth-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 23</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_basic_auth?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">401</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_basic_auth-3F-source -->
-          
-        </div>
+            </div><!-- has_basic_auth-3F-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- has_basic_auth-3F-method -->
-
-    
-      <div id="method-i-has_xml_rpc-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">has_xml_rpc?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="has_xml_rpc-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 56</span>
+        </div><!-- has_basic_auth-3F-method -->
+
+      
+        <div id="has_robots-3F-method" class="method-detail ">
+          <a name="method-i-has_robots-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_robots?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Checks if a robots.txt file exists</p>
+            
+
+            
+            <div class="method-source-code" id="has_robots-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_robots?</span>
+  <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">robots_url</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- has_robots-3F-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- has_robots-3F-method -->
+
+      
+        <div id="has_xml_rpc-3F-method" class="method-detail ">
+          <a name="method-i-has_xml_rpc-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">has_xml_rpc?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="has_xml_rpc-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">has_xml_rpc?</span>
   <span class="ruby-operator">!</span><span class="ruby-identifier">xml_rpc_url</span>.<span class="ruby-identifier">nil?</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- has_xml_rpc-3F-source -->
-          
-        </div>
+            </div><!-- has_xml_rpc-3F-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- has_xml_rpc-3F-method -->
-
-    
-      <div id="method-i-homepage_hash" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">homepage_hash</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="homepage_hash-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 98</span>
+        </div><!-- has_xml_rpc-3F-method -->
+
+      
+        <div id="homepage_hash-method" class="method-detail ">
+          <a name="method-i-homepage_hash"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">homepage_hash</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="homepage_hash-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 83</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">homepage_hash</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@homepage_hash</span>
     <span class="ruby-ivar">@homepage_hash</span> = <span class="ruby-constant">WebSite</span>.<span class="ruby-identifier">page_hash</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>)
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@homepage_hash</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- homepage_hash-source -->
-          
-        </div>
+            </div><!-- homepage_hash-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- homepage_hash-method -->
-
-    
-      <div id="method-i-online-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">online?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>Checks if the remote website is up.</p>
           
 
           
-          <div class="method-source-code" id="online-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 22</span>
+        </div><!-- homepage_hash-method -->
+
+      
+        <div id="online-3F-method" class="method-detail ">
+          <a name="method-i-online-3F"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">online?</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Checks if the remote website is up.</p>
+            
+
+            
+            <div class="method-source-code" id="online-3F-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 19</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">online?</span>
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- online-3F-source -->
+            </div><!-- online-3F-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- online-3F-method -->
-
-    
-      <div id="method-i-redirection" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">redirection</span><span
-            class="method-args">(url = nil)</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p>See if the remote url returns 30x redirect This method is recursive Return
+        </div><!-- online-3F-method -->
+
+      
+        <div id="redirection-method" class="method-detail ">
+          <a name="method-i-redirection"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">redirection</span><span
+              class="method-args">(url = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>See if the remote url returns 30x redirect This method is recursive Return
 a string with the redirection or nil</p>
-          
+            
 
-          
-          <div class="method-source-code" id="redirection-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 76</span>
+            
+            <div class="method-source-code" id="redirection-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">redirection</span>(<span class="ruby-identifier">url</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">redirection</span> = <span class="ruby-keyword">nil</span>
   <span class="ruby-identifier">url</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
@@ -447,147 +647,279 @@ a string with the redirection or nil</p>
 
   <span class="ruby-identifier">redirection</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- redirection-source -->
+            </div><!-- redirection-source -->
+            
+          </div>
+
           
-        </div>
 
-        
-
-        
-      </div><!-- redirection-method -->
-
-    
-      <div id="method-i-rss_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">rss_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
           
-          <p>Will try to find the rss url in the homepage Only the first one found iw
+        </div><!-- redirection-method -->
+
+      
+        <div id="robots_url-method" class="method-detail ">
+          <a name="method-i-robots_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">robots_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Gets a robots.txt URL</p>
+            
+
+            
+            <div class="method-source-code" id="robots_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 112</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">robots_url</span>
+  <span class="ruby-identifier">robots</span> = <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">clone</span>
+  <span class="ruby-identifier">robots</span>.<span class="ruby-identifier">path</span> = <span class="ruby-string">'/robots.txt'</span>
+  <span class="ruby-identifier">robots</span>.<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- robots_url-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- robots_url-method -->
+
+      
+        <div id="rss_url-method" class="method-detail ">
+          <a name="method-i-rss_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">rss_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Will try to find the rss url in the homepage Only the first one found iw
 returned</p>
-          
+            
 
-          
-          <div class="method-source-code" id="rss_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 116</span>
+            
+            <div class="method-source-code" id="rss_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 101</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">rss_url</span>
   <span class="ruby-identifier">homepage_body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
-  <span class="ruby-identifier">homepage_body</span>[<span class="ruby-regexp">%r{&lt;link .* type=&quot;application/rss\+xml&quot; .* href=&quot;([^&quot;]+)&quot; /&gt;}</span>, <span class="ruby-value">1</span>]
+  <span class="ruby-identifier">homepage_body</span>[<span class="ruby-regexp">%{&lt;link .* type=&quot;application/rss\+xml&quot; .* href=&quot;([^&quot;]+)&quot; /&gt;}</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- rss_url-source -->
-          
-        </div>
+            </div><!-- rss_url-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- rss_url-method -->
-
-    
-      <div id="method-i-wordpress-3F" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">wordpress?</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>check if the remote website is actually running wordpress.</p>
           
 
           
-          <div class="method-source-code" id="wordpress-3F-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 32</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">wordpress?</span>
-  <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">false</span>
+        </div><!-- rss_url-method -->
 
-  <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(
-    <span class="ruby-identifier">login_url</span>(),
-    { <span class="ruby-identifier">follow_location</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">max_redirects</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span> }
-  )
+      
+        <div id="url-method" class="method-detail ">
+          <a name="method-i-url"></a>
 
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{WordPress}</span>
-    <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
-  <span class="ruby-keyword">else</span>
-    <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(
-      <span class="ruby-identifier">xml_rpc_url</span>,
-      { <span class="ruby-identifier">follow_location</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>, <span class="ruby-identifier">max_redirects</span><span class="ruby-operator">:</span> <span class="ruby-value">2</span> }
-    )
+          
+          <div class="method-heading">
+            <span class="method-name">url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
 
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">%r{XML-RPC server accepts POST requests only}</span>
-      <span class="ruby-identifier">wordpress</span> = <span class="ruby-keyword">true</span>
-    <span class="ruby-keyword">end</span>
-  <span class="ruby-keyword">end</span>
+          <div class="method-description">
+            
+            
+            
 
-  <span class="ruby-identifier">wordpress</span>
+            
+            <div class="method-source-code" id="url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">url</span>
+  <span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- wordpress-3F-source -->
-          
-        </div>
+            </div><!-- url-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- wordpress-3F-method -->
-
-    
-      <div id="method-i-xml_rpc_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">xml_rpc_url</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          
           
 
           
-          <div class="method-source-code" id="xml_rpc_url-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/modules/web_site.rb, line 60</span>
+        </div><!-- url-method -->
+
+      
+        <div id="url-3D-method" class="method-detail ">
+          <a name="method-i-url-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">url=</span><span
+              class="method-args">(url)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="url-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 10</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">url=</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-ivar">@uri</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">add_trailing_slash</span>(<span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">url</span>)))
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- url-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- url-3D-method -->
+
+      
+        <div id="xml_rpc_url-method" class="method-detail ">
+          <a name="method-i-xml_rpc_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">xml_rpc_url</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>See <a
+href="http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3">www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3</a></p>
+            
+
+            
+            <div class="method-source-code" id="xml_rpc_url-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">xml_rpc_url</span>
   <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@xmlrpc_url</span>
-    <span class="ruby-identifier">headers</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">headers_hash</span>
-    <span class="ruby-identifier">value</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-string">'x-pingback'</span>]
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">empty?</span>
-      <span class="ruby-ivar">@xmlrpc_url</span> = <span class="ruby-keyword">nil</span>
-    <span class="ruby-keyword">else</span>
-      <span class="ruby-ivar">@xmlrpc_url</span> = <span class="ruby-identifier">value</span>
-    <span class="ruby-keyword">end</span>
+    <span class="ruby-ivar">@xmlrpc_url</span> = <span class="ruby-identifier">xml_rpc_url_from_headers</span>() <span class="ruby-operator">||</span> <span class="ruby-identifier">xml_rpc_url_from_body</span>()
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@xmlrpc_url</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- xml_rpc_url-source -->
+            </div><!-- xml_rpc_url-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- xml_rpc_url-method -->
 
-        
-      </div><!-- xml_rpc_url-method -->
+      
+        <div id="xml_rpc_url_from_body-method" class="method-detail ">
+          <a name="method-i-xml_rpc_url_from_body"></a>
 
+          
+          <div class="method-heading">
+            <span class="method-name">xml_rpc_url_from_body</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="xml_rpc_url_from_body-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 52</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">xml_rpc_url_from_body</span>
+  <span class="ruby-identifier">body</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">body</span>
+
+  <span class="ruby-identifier">body</span>[<span class="ruby-regexp">%{&lt;link rel=&quot;pingback&quot; href=&quot;([^&quot;]+)&quot; ?\/?&gt;}</span>, <span class="ruby-value">1</span>]
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- xml_rpc_url_from_body-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- xml_rpc_url_from_body-method -->
+
+      
+        <div id="xml_rpc_url_from_headers-method" class="method-detail ">
+          <a name="method-i-xml_rpc_url_from_headers"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">xml_rpc_url_from_headers</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            
+            
+
+            
+            <div class="method-source-code" id="xml_rpc_url_from_headers-source">
+<pre>
+<span class="ruby-comment"># File lib/wpscan/web_site.rb, line 39</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">xml_rpc_url_from_headers</span>
+  <span class="ruby-identifier">headers</span>    = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">get</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>).<span class="ruby-identifier">headers_hash</span>
+  <span class="ruby-identifier">xmlrpc_url</span> = <span class="ruby-keyword">nil</span>
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">pingback_url</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-string">'X-Pingback'</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">pingback_url</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">pingback_url</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">xmlrpc_url</span> = <span class="ruby-identifier">pingback_url</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">xmlrpc_url</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- xml_rpc_url_from_headers-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- xml_rpc_url_from_headers-method -->
+
+      
+      </div><!-- public-instance-method-details -->
     
-    </section><!-- public-instance-method-details -->
+    </div><!-- 5Buntitled-5D -->
   
-  </section><!-- 5Buntitled-5D -->
 
-</div><!-- documentation -->
+  </div><!-- documentation -->
 
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+</body>
+</html>
 
