@@ -1,21 +1,4 @@
 # encoding: UTF-8
-#--
-# WPScan - WordPress Security Scanner
-# Copyright (C) 2012-2013
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#++
 
 # https://github.com/bblimke/webmock
 # https://github.com/colszowka/simplecov
@@ -30,8 +13,15 @@ SPEC_DIR                      = ROOT_DIR + '/spec'
 SPEC_LIB_DIR                  = SPEC_DIR + '/lib'
 SPEC_CACHE_DIR                = SPEC_DIR + '/cache'
 SPEC_FIXTURES_DIR             = SPEC_DIR + '/samples'
+SHARED_EXAMPLES_DIR           = SPEC_DIR + '/shared_examples'
 SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf'
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
+
+MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
+COLLECTIONS_FIXTURES = SPEC_FIXTURES_DIR + '/common/collections'
+
+# Load all the shared examples
+require_files_from_directory(SHARED_EXAMPLES_DIR)
 
 def count_files_in_dir(absolute_dir_path, files_pattern = '*')
   Dir.glob(File.join(absolute_dir_path, files_pattern)).count

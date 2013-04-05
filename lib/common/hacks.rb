@@ -4,9 +4,13 @@
 # See http://rosettacode.org/wiki/URL_encoding#Ruby and http://www.ruby-forum.com/topic/207489
 if RUBY_VERSION >= '1.9.2'
   module URI
-    def self.escape(str)
-      URI.encode_www_form_component(str).gsub('+', '%20')
+    extend self
+
+    def escape(str)
+      URI::Parser.new.escape(str)
     end
+    alias :encode :escape
+
   end
 end
 
@@ -23,6 +27,23 @@ if RUBY_VERSION < '1.9'
     end
 
     alias_method :grep, :_grep_
+  end
+end
+
+# This is used in WpItem::Existable
+module Typhoeus
+  class Response
+
+    # Compare the body hash to error_404_hash and homepage_hash
+    # returns true if they are different, false otherwise
+    #
+    # @return [ Boolean ]
+    def has_valid_hash?(error_404_hash, homepage_hash)
+      body_hash = Digest::MD5.hexdigest(self.body)
+
+      body_hash != error_404_hash && body_hash != homepage_hash
+    end
+
   end
 end
 

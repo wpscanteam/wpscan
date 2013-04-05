@@ -1,21 +1,4 @@
 # encoding: UTF-8
-#--
-# WPScan - WordPress Security Scanner
-# Copyright (C) 2012-2013
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#++
 
 shared_examples_for 'BruteForce' do
   before :each do
@@ -59,7 +42,7 @@ shared_examples_for 'BruteForce' do
           )
       end
 
-      user   = WpUser.new('admin', 1, nil)
+      user   = WpUser.new(@module.uri, login: 'admin')
       result = @module.brute_force([user], @wordlist)
 
       result.length.should == 1
@@ -69,7 +52,7 @@ shared_examples_for 'BruteForce' do
     it 'should cover the timeout branch and return an empty array' do
       stub_request(:post, @module.login_url).to_timeout
 
-      user          = WpUser.new('admin', 1, nil)
+      user          = WpUser.new(@module.uri, login: 'admin')
       result        = @module.brute_force([user], @wordlist)
       result.should == []
     end

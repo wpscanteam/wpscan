@@ -1,21 +1,12 @@
 # encoding: UTF-8
-#--
-# WPScan - WordPress Security Scanner
-# Copyright (C) 2012-2013
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#++
+
+require 'web_site'
+require 'modules/wp_readme'
+require 'modules/wp_full_path_disclosure'
+require 'modules/wp_config_backup'
+require 'modules/wp_login_protection'
+require 'modules/malwares'
+require 'modules/brute_force'
 
 class WpTarget < WebSite
   include WpReadme
@@ -23,10 +14,6 @@ class WpTarget < WebSite
   include WpConfigBackup
   include WpLoginProtection
   include Malwares
-  include WpUsernames
-  include WpTimthumbs
-  include WpPlugins
-  include WpThemes
   include BruteForce
 
   attr_reader :verbose
@@ -90,9 +77,21 @@ class WpTarget < WebSite
     WpTheme.find(@uri)
   end
 
-  # return WpVersion
-  def version
-    WpVersion.find(@uri, wp_content_dir)
+  # @param [ String ] versions_xml
+  #
+  # @return [ WpVersion ]
+  def version(versions_xml)
+    WpVersion.find(@uri, wp_content_dir, wp_plugins_dir, versions_xml)
+  end
+
+  def has_plugin?(name, version = nil)
+    WpPlugin.new(
+      @uri,
+      name: name,
+      version: version,
+      wp_content_dir: wp_content_dir,
+      wp_plugins_dir: wp_plugins_dir
+    ).exists?
   end
 
   def wp_content_dir

@@ -1,0 +1,28 @@
+#encoding: UTF-8
+
+require 'spec_helper'
+
+describe WpThemes do
+  it_behaves_like 'WpItems::Detectable' do
+    subject(:wp_themes) { WpThemes }
+    let(:item_class)    { WpTheme }
+    let(:fixtures_dir)  { COLLECTIONS_FIXTURES + '/wp_themes/detectable' }
+
+    let(:expected) do
+      {
+        request_params:                  { cache_ttl: 0, followlocation: true },
+        vulns_file:                      THEMES_VULNS_FILE,
+        targets_items_from_file:         [ WpTheme.new(uri, name: '3colours'),
+                                           WpTheme.new(uri, name:'42k'),
+                                           WpTheme.new(uri, name: 'a-ri')],
+
+        vulnerable_targets_items:        [ WpTheme.new(uri, name: 'shopperpress'),
+                                           WpTheme.new(uri, name: 'webfolio')],
+
+        passive_detection: WpThemes.new << WpTheme.new(uri, name: 'theme1') <<
+                                           WpTheme.new(uri, name: 'theme 2') <<
+                                           WpTheme.new(uri, name: 'theme-3')
+      }
+    end
+  end
+end
