@@ -128,7 +128,7 @@ def main
       puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
     end
 
-    if wp_target.is_multisite?
+    if wp_target.multisite?
       puts green('[+]') + ' This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)'
     end
 
