@@ -21,7 +21,7 @@ MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
 COLLECTIONS_FIXTURES = SPEC_FIXTURES_DIR + '/common/collections'
 
 # Load all the shared examples
-require_files_from_directory(SHARED_EXAMPLES_DIR)
+require_files_from_directory(SHARED_EXAMPLES_DIR, '**/*.rb')
 
 def count_files_in_dir(absolute_dir_path, files_pattern = '*')
   Dir.glob(File.join(absolute_dir_path, files_pattern)).count

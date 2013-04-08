@@ -1,20 +1,24 @@
 # encoding: UTF-8
 
 require 'web_site'
-require 'modules/wp_readme'
-require 'modules/wp_full_path_disclosure'
-require 'modules/wp_config_backup'
-require 'modules/wp_login_protection'
-require 'modules/malwares'
-require 'modules/brute_force'
+require 'wp_target/malwares'
+require 'wp_target/wp_readme'
+require 'wp_target/brute_force'
+require 'wp_target/wp_registrable'
+require 'wp_target/wp_config_backup'
+require 'wp_target/wp_login_protection'
+require 'wp_target/wp_custom_directories'
+require 'wp_target/wp_full_path_disclosure'
 
 class WpTarget < WebSite
+  include Malwares
   include WpReadme
-  include WpFullPathDisclosure
+  include BruteForce
+  include WpRegistrable
   include WpConfigBackup
   include WpLoginProtection
-  include Malwares
-  include BruteForce
+  include WpCustomDirectories
+  include WpFullPathDisclosure
 
   attr_reader :verbose
 
@@ -72,17 +76,21 @@ class WpTarget < WebSite
     [200, 301, 302, 401, 403, 500, 400]
   end
 
-  # return WpTheme
+  # @return [ WpTheme ]
+  # :nocov:
   def theme
     WpTheme.find(@uri)
   end
+  # :nocov:
 
   # @param [ String ] versions_xml
   #
   # @return [ WpVersion ]
+  # :nocov:
   def version(versions_xml)
     WpVersion.find(@uri, wp_content_dir, wp_plugins_dir, versions_xml)
   end
+  # :nocov:
 
   def has_plugin?(name, version = nil)
     WpPlugin.new(
@@ -92,44 +100,6 @@ class WpTarget < WebSite
       wp_content_dir: wp_content_dir,
       wp_plugins_dir: wp_plugins_dir
     ).exists?
-  end
-
-  def wp_content_dir
-    unless @wp_content_dir
-      index_body = Browser.instance.get(@uri.to_s).body
-      uri_path = @uri.path # Only use the path because domain can be text or an IP
-
-      if index_body[/\/wp-content\/(?:themes|plugins)\//i] || default_wp_content_dir_exists?
-        @wp_content_dir = 'wp-content'
-      else
-        domains_excluded = '(?:www\.)?(facebook|twitter)\.com'
-        @wp_content_dir  = index_body[/(?:href|src)\s*=\s*(?:"|').+#{Regexp.escape(uri_path)}((?!#{domains_excluded})[^"']+)\/(?:themes|plugins)\/.*(?:"|')/i, 1]
-      end
-    end
-
-    @wp_content_dir
-  end
-
-  def default_wp_content_dir_exists?
-    response = Browser.instance.get(@uri.merge('wp-content').to_s)
-    hash = Digest::MD5.hexdigest(response.body)
-
-    if WpTarget.valid_response_codes.include?(response.code)
-      return true if hash != error_404_hash and hash != homepage_hash
-    end
-
-    false
-  end
-
-  def wp_plugins_dir
-    unless @wp_plugins_dir
-      @wp_plugins_dir = "#{wp_content_dir}/plugins"
-    end
-    @wp_plugins_dir
-  end
-
-  def wp_plugins_dir_exists?
-    Browser.instance.get(@uri.merge(wp_plugins_dir)).code != 404
   end
 
   def has_debug_log?
@@ -152,47 +122,5 @@ class WpTarget < WebSite
   def search_replace_db_2_exists?
     resp = Browser.instance.get(search_replace_db_2_url)
     resp.code == 200 && resp.body[%r{by interconnect}i]
-  end
-
-  # Should check wp-login.php if registration is enabled or not
-  def registration_enabled?
-    resp = Browser.instance.get(registration_url)
-    # redirect only on non multi sites
-    if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?registration=disabled/i
-      enabled = false
-    # multi site registration form
-    elsif resp.code == 200 and resp.body =~ /<form id="setupform" method="post" action="[^"]*wp-signup\.php[^"]*">/i
-      enabled = true
-    # normal registration form
-    elsif resp.code == 200 and resp.body =~ /<form name="registerform" id="registerform" action="[^"]*wp-login\.php[^"]*"/i
-      enabled = true
-    # registration disabled
-    else
-      enabled = false
-    end
-    enabled
-  end
-
-  def registration_url
-    is_multisite? ? @uri.merge('wp-signup.php') : @uri.merge('wp-login.php?action=register')
-  end
-
-  def is_multisite?
-    unless @multisite
-      # when multi site, there is no redirection or a redirect to the site itself
-      # otherwise redirect to wp-login.php
-      url = @uri.merge('wp-signup.php')
-      resp = Browser.instance.get(url)
-      if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?action=register/
-        @multisite = false
-      elsif resp.code == 302 and resp.headers_hash['location'] =~ /wp-signup\.php/
-        @multisite = true
-      elsif resp.code == 200
-        @multisite = true
-      else
-        @multisite = false
-      end
-    end
-    @multisite
   end
 end
