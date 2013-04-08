@@ -180,8 +180,11 @@ class Browser
     end
 
     # Disable SSL-Certificate checks
-    params = params.merge(ssl_verifypeer: false)
-    params = params.merge(ssl_verifyhost: 0)
+    params.merge!(ssl_verifypeer: false)
+    params.merge!(ssl_verifyhost: 0)
+
+    params.merge!(cookie_jar: CACHE_DIR + '/cookie-jar')
+    params.merge!(cookie_file: CACHE_DIR + '/cookie-jar')
 
     params
   end

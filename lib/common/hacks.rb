@@ -47,6 +47,20 @@ module Typhoeus
   end
 end
 
+module Ethon
+  class Easy
+    module Options
+      def cookie_jar=(value)
+        Curl.set_option(:cookiejar, value_for(value, :string), handle)
+      end
+
+      def cookie_file=(value)
+        Curl.set_option(:cookiefile, value_for(value, :string), handle)
+      end
+    end
+  end
+end
+
 # Override for puts to enable logging
 def puts(o = '')
   # remove color for logging

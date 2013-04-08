@@ -260,8 +260,16 @@ describe Browser do
   end
 
   describe '#merge_request_params' do
-    let(:params) { {} }
-    let(:default_expectation) { { cache_ttl: 250, headers: { 'User-Agent' => 'SomeUA' }, ssl_verifypeer: false, ssl_verifyhost: 0 } }
+    let(:params)              { {} }
+    let(:cookie_jar)          { CACHE_DIR + '/cookie-jar' }
+    let(:default_expectation) {
+      {
+        cache_ttl: 250,
+        headers: { 'User-Agent' => 'SomeUA' },
+        ssl_verifypeer: false, ssl_verifyhost: 0,
+        cookie_jar: cookie_jar, cookie_file: cookie_jar
+      }
+    }
 
     after :each do
       @browser.stub(user_agent: 'SomeUA')
