@@ -267,7 +267,7 @@ describe Browser do
         cache_ttl: 250,
         headers: { 'User-Agent' => 'SomeUA' },
         ssl_verifypeer: false, ssl_verifyhost: 0,
-        cookie_jar: cookie_jar, cookie_file: cookie_jar
+        cookiejar: cookie_jar, cookiefile: cookie_jar
       }
     }
 
@@ -333,7 +333,7 @@ describe Browser do
       stub_request(:post, url).with(body: { login: 'master', password: 'itsme!' }).
         to_return(status: 200, body: 'Welcome Master')
 
-      response = @browser.post(
+      response = Browser.post(
         url,
         body: 'login=master&password=itsme!'
         #body: { login: 'master', password: 'hello' } # It's should be this line, but it fails
@@ -351,7 +351,7 @@ describe Browser do
       stub_request(:get, url).
         to_return(status: 200, body: 'Hello World !')
 
-      response = @browser.get(url)
+      response = Browser.get(url)
 
       response.should be_a Typhoeus::Response
       response.body.should == 'Hello World !'
@@ -389,8 +389,8 @@ describe Browser do
       stub_request(:get, url).
         to_return(status: 200, body: 'Hello World !')
 
-      response1 = @browser.get(url)
-      response2 = @browser.get(url)
+      response1 = Browser.get(url)
+      response2 = Browser.get(url)
 
       response1.body.should == response2.body
       #WebMock.should have_requested(:get, url).times(1) # This one fail, dunno why :s (but it works without mock)
@@ -401,7 +401,7 @@ describe Browser do
     it 'should not throw an encoding exception' do
       url = SPEC_FIXTURES_DIR + '/utf8.html'
       stub_request(:get, url).to_return(status: 200, body: File.read(url))
-      response1 = @browser.get(url)
+      response1 = Browser.get(url)
       expect { response1.body }.to_not raise_error
     end
   end

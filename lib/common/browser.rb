@@ -170,13 +170,6 @@ class Browser
     params
   end
 
-  # return the response
-  def run_request(request)
-    @hydra.queue request
-    @hydra.run
-    request.response
-  end
-
   private
 
   # return Array

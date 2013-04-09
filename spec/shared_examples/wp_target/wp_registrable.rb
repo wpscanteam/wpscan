@@ -27,7 +27,7 @@ shared_examples 'WpTarget::WpRegistrable' do
   describe '#registration_enabled?' do
     after do
       wp_target.stub(:multisite?).and_return(multisite)
-      stub_request(:get, wp_target.registration_url.to_s).to_return(@stub)
+      stub_request(:get, wp_target.registration_url).to_return(@stub)
 
       wp_target.registration_enabled?.should === @expected
     end
