@@ -31,13 +31,11 @@ class Browser
       override_config_with_options(options)
     end
 
-    @hydra = Typhoeus::Hydra.new(
-      max_concurrency: @max_threads,
-      #connecttimeout: @request_timeout
-    )
+    @hydra = Typhoeus::Hydra.new(max_concurrency: @max_threads)
 
     # TODO : add an argument for the cache dir instead of using a constant
-    @cache = TyphoeusCache.new(CACHE_DIR + '/browser')
+    @cache_dir = CACHE_DIR + '/browser'
+    @cache = TyphoeusCache.new(@cache_dir)
 
     @cache.clean
 
@@ -183,8 +181,8 @@ class Browser
     params.merge!(ssl_verifypeer: false)
     params.merge!(ssl_verifyhost: 0)
 
-    params.merge!(cookie_jar: CACHE_DIR + '/cookie-jar')
-    params.merge!(cookie_file: CACHE_DIR + '/cookie-jar')
+    params.merge!(cookie_jar: @cache_dir + '/cookie-jar')
+    params.merge!(cookie_file: @cache_dir + '/cookie-jar')
 
     params
   end

@@ -261,7 +261,7 @@ describe Browser do
 
   describe '#merge_request_params' do
     let(:params)              { {} }
-    let(:cookie_jar)          { CACHE_DIR + '/cookie-jar' }
+    let(:cookie_jar)          { CACHE_DIR + '/browser/cookie-jar' }
     let(:default_expectation) {
       {
         cache_ttl: 250,
