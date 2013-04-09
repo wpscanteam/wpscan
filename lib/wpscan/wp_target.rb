@@ -11,14 +11,14 @@ require 'wp_target/wp_custom_directories'
 require 'wp_target/wp_full_path_disclosure'
 
 class WpTarget < WebSite
-  include Malwares
-  include WpReadme
-  include BruteForce
-  include WpRegistrable
-  include WpConfigBackup
-  include WpLoginProtection
-  include WpCustomDirectories
-  include WpFullPathDisclosure
+  include WpTarget::Malwares
+  include WpTarget::WpReadme
+  include WpTarget::BruteForce
+  include WpTarget::WpRegistrable
+  include WpTarget::WpConfigBackup
+  include WpTarget::WpLoginProtection
+  include WpTarget::WpCustomDirectories
+  include WpTarget::WpFullPathDisclosure
 
   attr_reader :verbose
 
@@ -38,17 +38,17 @@ class WpTarget < WebSite
   def wordpress?
     wordpress = false
 
-    response = Browser.instance.get_and_follow_location(@uri.to_s)
+    response = Browser.get_and_follow_location(@uri.to_s)
 
     if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
       wordpress = true
     else
-      response = Browser.instance.get_and_follow_location(xml_rpc_url)
+      response = Browser.get_and_follow_location(xml_rpc_url)
 
       if response.body =~ %r{XML-RPC server accepts POST requests only}i
         wordpress = true
       else
-        response = Browser.instance.get_and_follow_location(login_url)
+        response = Browser.get_and_follow_location(login_url)
 
         if response.code == 200 && response.body =~ %r{WordPress}i
           wordpress = true
@@ -104,7 +104,7 @@ class WpTarget < WebSite
 
   def has_debug_log?
     # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
-    response_body = Browser.instance.get(debug_log_url(), headers: {'range' => 'bytes=0-700'}).body
+    response_body = Browser.get(debug_log_url(), headers: {'range' => 'bytes=0-700'}).body
     response_body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
   end
 
@@ -120,7 +120,7 @@ class WpTarget < WebSite
   end
 
   def search_replace_db_2_exists?
-    resp = Browser.instance.get(search_replace_db_2_url)
+    resp = Browser.get(search_replace_db_2_url)
     resp.code == 200 && resp.body[%r{by interconnect}i]
   end
 end

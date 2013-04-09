@@ -24,7 +24,7 @@ class WpUser < WpItem
 
         @login        = Existable.login_from_author_pattern(location)
         @display_name = Existable.display_name_from_body(
-          Browser.instance.get(location).body
+          Browser.get(location).body
         )
       elsif response.code == 200 # login in body?
         @login        = Existable.login_from_body(response.body)

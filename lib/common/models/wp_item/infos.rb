@@ -7,7 +7,7 @@ class WpItem
 
     # @return [ Boolean ]
     def has_readme?
-      Browser.instance.get(readme_url).code == 200 ? true : false
+      Browser.get(readme_url).code == 200 ? true : false
     end
 
     # @return [ String ] The url to the readme file
@@ -17,7 +17,7 @@ class WpItem
 
     # @return [ Boolean ]
     def has_changelog?
-      Browser.instance.get(changelog_url).code == 200 ? true : false
+      Browser.get(changelog_url).code == 200 ? true : false
     end
 
     # @return [ String ] The url to the changelog file
@@ -27,7 +27,7 @@ class WpItem
 
     # @return [ Boolean ]
     def has_directory_listing?
-      Browser.instance.get(@uri.to_s).body[%r{<title>Index of}] ? true : false
+      Browser.get(@uri.to_s).body[%r{<title>Index of}] ? true : false
     end
 
     # Discover any error_log files created by WordPress
@@ -41,7 +41,7 @@ class WpItem
     #
     # @return [ Boolean ]
     def has_error_log?
-      response_body = Browser.instance.get(error_log_url, headers: {'range' => 'bytes=0-700'}).body
+      response_body = Browser.get(error_log_url, headers: {'range' => 'bytes=0-700'}).body
       response_body[%r{PHP Fatal error}i] ? true : false
     end
 

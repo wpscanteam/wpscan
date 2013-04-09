@@ -48,7 +48,7 @@ def main
     end
 
     if wpscan_options.proxy
-      proxy_response = Browser.instance.get(wp_target.url)
+      proxy_response = Browser.get(wp_target.url)
 
       unless WpTarget::valid_response_codes.include?(proxy_response.code)
         raise "Proxy Error :\r\n#{proxy_response.headers}"

@@ -7,7 +7,7 @@ class WpTarget < WebSite
     #
     # @return [ Boolean ]
     def has_full_path_disclosure?
-      response = Browser.instance.get(full_path_disclosure_url())
+      response = Browser.get(full_path_disclosure_url())
       response.body[%r{Fatal error}i] ? true : false
     end
 

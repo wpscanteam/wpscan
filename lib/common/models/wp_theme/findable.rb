@@ -27,7 +27,7 @@ class WpTheme < WpItem
     #
     # @return [ WpTheme ]
     def find_from_css_link(target_uri)
-      response = Browser.instance.get_and_follow_location(target_uri.to_s)
+      response = Browser.get_and_follow_location(target_uri.to_s)
 
       # https + domain is optional because of relative links
       matches = %r{(?:https?://[^"']+)?/([^/]+)/themes/([^"']+)/style.css}i.match(response.body)
@@ -49,7 +49,7 @@ class WpTheme < WpItem
     #
     # @return [ WpTheme ]
     def find_from_wooframework(target_uri)
-      body = Browser.instance.get(target_uri.to_s).body
+      body = Browser.get(target_uri.to_s).body
       regexp = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?" />\s+<meta name="generator" content="WooFramework\s?([^"]+)?" />}
 
 

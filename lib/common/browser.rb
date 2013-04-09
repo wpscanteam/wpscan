@@ -1,8 +1,11 @@
 # encoding: UTF-8
 
 require 'common/typhoeus_cache'
+require 'common/browser/actions'
 
 class Browser
+  extend Browser::Actions
+
   @@instance = nil
   USER_AGENT_MODES = %w{ static semi-static random }
 
@@ -122,26 +125,6 @@ class Browser
     end
   end
 
-  def get(url, params = {})
-    run_request(
-      forge_request(url, params.merge(method: :get))
-    )
-  end
-
-  def post(url, params = {})
-    run_request(
-      forge_request(url, params.merge(method: :post))
-    )
-  end
-
-  def get_and_follow_location(url, params = {})
-    params[:maxredirs] ||= 2
-
-    run_request(
-      forge_request(url, params.merge(method: :get, followlocation: true))
-    )
-  end
-
   def forge_request(url, params = {})
     Typhoeus::Request.new(
       url.to_s,
@@ -181,10 +164,17 @@ class Browser
     params.merge!(ssl_verifypeer: false)
     params.merge!(ssl_verifyhost: 0)
 
-    params.merge!(cookie_jar: @cache_dir + '/cookie-jar')
-    params.merge!(cookie_file: @cache_dir + '/cookie-jar')
+    params.merge!(cookiejar: @cache_dir + '/cookie-jar')
+    params.merge!(cookiefile: @cache_dir + '/cookie-jar')
 
     params
+  end
+
+  # return the response
+  def run_request(request)
+    @hydra.queue request
+    @hydra.run
+    request.response
   end
 
   private
@@ -199,13 +189,6 @@ class Browser
     params
   end
 
-  # return the response
-  def run_request(request)
-    @hydra.queue request
-    @hydra.run
-    request.response
-  end
-
   # Override with the options if they are set
   def override_config_with_options(options)
     options.each do |option, value|
@@ -214,4 +197,5 @@ class Browser
       end
     end
   end
+
 end

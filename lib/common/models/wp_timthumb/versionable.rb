@@ -9,7 +9,7 @@ class WpTimthumb < WpItem
     # @return [ String ] The version
     def version
       unless @version
-        response = Browser.instance.get(url)
+        response = Browser.get(url)
         @version = response.body[%r{TimThumb version\s*: ([^<]+)} , 1]
       end
       @version
