@@ -2,30 +2,20 @@
 
 require 'common/typhoeus_cache'
 require 'common/browser/actions'
+require 'common/browser/options'
 
 class Browser
-  extend Browser::Actions
+  extend  Browser::Actions
+  include Browser::Options
 
   @@instance = nil
-  USER_AGENT_MODES = %w{ static semi-static random }
-
-  ACCESSOR_OPTIONS = [
-    :user_agent,
-    :user_agent_mode,
-    :available_user_agents,
-    :proxy,
-    :proxy_auth,
-    :max_threads,
-    :cache_ttl,
-    :request_timeout,
-    :basic_auth
-  ]
 
   attr_reader :hydra, :config_file
-  attr_accessor *ACCESSOR_OPTIONS
 
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
+    @cache_dir   = CACHE_DIR + '/browser'
+
     options.delete(:config_file)
 
     load_config()
@@ -34,12 +24,9 @@ class Browser
       override_config_with_options(options)
     end
 
-    @hydra = Typhoeus::Hydra.new(max_concurrency: @max_threads)
-
+    @hydra = Typhoeus::Hydra.new(max_concurrency: self.max_threads)
     # TODO : add an argument for the cache dir instead of using a constant
-    @cache_dir = CACHE_DIR + '/browser'
     @cache = TyphoeusCache.new(@cache_dir)
-
     @cache.clean
 
     Typhoeus::Config.cache = @cache
@@ -56,55 +43,6 @@ class Browser
 
   def self.reset
     @@instance = nil
-  end
-
-  def user_agent_mode=(ua_mode)
-    ua_mode ||= 'static'
-
-    if USER_AGENT_MODES.include?(ua_mode)
-      @user_agent_mode = ua_mode
-      # For semi-static user agent mode, the user agent has to
-      # be nil the first time (it will be set with the getter)
-      @user_agent = nil if ua_mode === 'semi-static'
-    else
-      raise "Unknow user agent mode : '#{ua_mode}'"
-    end
-  end
-
-  # return the user agent, according to the user_agent_mode
-  def user_agent
-    case @user_agent_mode
-    when 'semi-static'
-      unless @user_agent
-        @user_agent = @available_user_agents.sample
-      end
-    when 'random'
-      @user_agent = @available_user_agents.sample
-    end
-    @user_agent
-  end
-
-  def max_threads=(max_threads)
-    if max_threads.nil? or max_threads <= 0
-      max_threads = 1
-    end
-    @max_threads = max_threads
-  end
-
-  def proxy_auth=(auth)
-    unless auth.nil?
-      if auth.is_a?(Hash) && auth.include?(:proxy_username) && auth.include?(:proxy_password)
-        @proxy_auth = auth[:proxy_username] + ':' + auth[:proxy_password]
-      elsif auth.is_a?(String) && auth.index(':') != nil
-        @proxy_auth = auth
-      else
-        raise invalid_proxy_auth_format
-      end
-    end
-  end
-
-  def invalid_proxy_auth_format
-    'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'
   end
 
   # TODO reload hydra (if the .load_config is called on a browser object,
@@ -180,15 +118,6 @@ class Browser
       params[:headers][field] = field_value
     end
     params
-  end
-
-  # Override with the options if they are set
-  def override_config_with_options(options)
-    options.each do |option, value|
-      if value != nil and ACCESSOR_OPTIONS.include?(option)
-        self.send(:"#{option}=", value)
-      end
-    end
   end
 
 end

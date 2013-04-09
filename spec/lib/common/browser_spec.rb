@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe Browser do
+  it_behaves_like 'Browser::Actions'
+
   CONFIG_FILE_WITHOUT_PROXY       = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json'
   CONFIG_FILE_WITH_PROXY          = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy.json'
   CONFIG_FILE_WITH_PROXY_AND_AUTH = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy_auth.json'
@@ -324,61 +326,6 @@ describe Browser do
   # TODO
   describe '#forge_request' do
 
-  end
-
-  describe '#post' do
-    it 'should return a Typhoeus::Response wth body = "Welcome Master" if login=master&password=itsme!' do
-      url = 'http://example.com/'
-
-      stub_request(:post, url).with(body: { login: 'master', password: 'itsme!' }).
-        to_return(status: 200, body: 'Welcome Master')
-
-      response = Browser.post(
-        url,
-        body: 'login=master&password=itsme!'
-        #body: { login: 'master', password: 'hello' } # It's should be this line, but it fails
-      )
-
-      response.should be_a Typhoeus::Response
-      response.body.should == 'Welcome Master'
-    end
-  end
-
-  describe '#get' do
-    it "should return a Typhoeus::Response with body = 'Hello World !'" do
-      url = 'http://example.com/'
-
-      stub_request(:get, url).
-        to_return(status: 200, body: 'Hello World !')
-
-      response = Browser.get(url)
-
-      response.should be_a Typhoeus::Response
-      response.body.should == 'Hello World !'
-    end
-  end
-
-  describe '#get_and_follow_location' do
-    # Typhoeus does not follow the location (maybe it's fixed in > 0.4.2)
-    # Or, something else is wrong
-
-    #context 'whitout max_redirects params' do
-    #  context 'when multiples redirection' do
-    #    it 'returns the last redirection response' do
-    #      url               = 'http://target.com'
-    #      first_redirection = 'www.first-redirection.com'
-    #      last_redirection  = 'last-redirection.com'
-
-    #      stub_request(:get, url).to_return(status: 301, headers: { location: first_redirection })
-    #      stub_request(:get, first_redirection).to_return(status: 301, headers: { location: last_redirection })
-    #      stub_request(:get, last_redirection).to_return(status: 200, body: 'Hello World!')
-
-    #      response = @browser.get_and_follow_location(url)
-
-    #      response.body.should === 'Hellow World!'
-    #    end
-    #  end
-    #end
   end
 
   describe 'testing caching' do
