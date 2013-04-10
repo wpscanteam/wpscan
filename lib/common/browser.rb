@@ -12,6 +12,7 @@ class Browser
 
   attr_reader :hydra, :config_file
 
+  # @param [ Hash ] options
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
     @cache_dir   = CACHE_DIR + '/browser'
@@ -56,10 +57,12 @@ class Browser
       data = JSON.parse(File.read(@config_file))
     end
 
-    ACCESSOR_OPTIONS.each do |option|
+    Options::OPTIONS.each do |option|
       option_name = option.to_s
 
-      self.send(:"#{option_name}=", data[option_name])
+      if data[option_name]
+        self.send(:"#{option_name}=", data[option_name])
+      end
     end
   end
 

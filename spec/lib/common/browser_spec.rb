@@ -4,11 +4,17 @@ require 'spec_helper'
 
 describe Browser do
   it_behaves_like 'Browser::Actions'
+  it_behaves_like 'Browser::Options'
 
   CONFIG_FILE_WITHOUT_PROXY       = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json'
   CONFIG_FILE_WITH_PROXY          = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy.json'
   CONFIG_FILE_WITH_PROXY_AND_AUTH = SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf_proxy_auth.json'
-  INSTANCE_VARS_TO_CHECK          = ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy', 'max_threads', 'request_timeout', 'cache_ttl']
+  INSTANCE_VARS_TO_CHECK          = ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy', 'max_threads', 'cache_ttl']
+
+  subject(:browser) {
+    Browser::reset
+    Browser.instance
+  }
 
   before :all do
     @json_config_without_proxy = JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY))
@@ -47,17 +53,17 @@ describe Browser do
     end
   end
 
-  describe '#max_threads=' do
-    it 'should set max_threads to 1 if nil is given' do
-      @browser.max_threads = nil
-      @browser.max_threads.should === 1
-    end
-
-    it 'should set max_threads to 1 if 0 is given' do
-      @browser.max_threads = 0
-      @browser.max_threads.should === 1
-    end
-  end
+  #describe '#max_threads=' do
+  #  it 'should set max_threads to 1 if nil is given' do
+  #    @browser.max_threads = nil
+  #    @browser.max_threads.should === 1
+  #  end
+#
+  #  it 'should set max_threads to 1 if 0 is given' do
+  #    @browser.max_threads = 0
+  #    @browser.max_threads.should === 1
+  #  end
+  #end
 
   describe '#proxy_auth=' do
     after :each do
@@ -305,9 +311,9 @@ describe Browser do
 
     context 'when @basic_auth' do
       it 'appends the basic_auth' do
-        @browser.basic_auth = 'basic-auth'
+        @browser.basic_auth = 'user:pass'
         @expected           = default_expectation.merge(
-          headers: default_expectation[:headers].merge('Authorization' => 'basic-auth')
+          headers: default_expectation[:headers].merge('Authorization' => 'Basic '+Base64.encode64('user:pass'))
         )
       end
 

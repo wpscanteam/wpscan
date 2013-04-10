@@ -31,7 +31,7 @@ class Browser
     # @return [ void ]
     def basic_auth=(auth)
       if auth.index(':')
-        @basic_auth = "Basic #{Base64.encode64(basic_auth.chomp)}"
+        @basic_auth = "Basic #{Base64.encode64(auth.chomp)}"
       elsif auth =~ /\ABasic .*\z/
         @basic_auth = auth.chomp
       else
@@ -42,19 +42,6 @@ class Browser
     # @return [ Integer ]
     def max_threads
       @max_threads || 1
-    end
-
-    # @return [ String ] The user agent, according to the user_agent_mode
-    def user_agent
-      case @user_agent_mode
-      when 'semi-static'
-        unless @user_agent
-          @user_agent = @available_user_agents.sample
-        end
-      when 'random'
-        @user_agent = @available_user_agents.sample
-      end
-      @user_agent
     end
 
     # Sets the user_agent_mode, which can be one of the following:
@@ -76,6 +63,19 @@ class Browser
       else
         raise "Unknow user agent mode : '#{ua_mode}'"
       end
+    end
+
+    # @return [ String ] The user agent, according to the user_agent_mode
+    def user_agent
+      case @user_agent_mode
+      when 'semi-static'
+        unless @user_agent
+          @user_agent = @available_user_agents.sample
+        end
+      when 'random'
+        @user_agent = @available_user_agents.sample
+      end
+      @user_agent
     end
 
     # Sets the proxy

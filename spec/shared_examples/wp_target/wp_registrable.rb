@@ -34,12 +34,12 @@ shared_examples 'WpTarget::WpRegistrable' do
 
     context 'when multisite' do
       let(:multisite) { true }
-      it 'returns false (multisite)' do
+      it 'returns false' do
         @stub     = { status: 302, headers: { 'Location' => 'wp-login.php?registration=disabled' } }
         @expected = false
       end
 
-      it 'returns true (multisite)' do
+      it 'returns true' do
         @stub     = { status: 200, body: %{<form id="setupform" method="post" action="wp-signup.php">} }
         @expected = true
       end
@@ -48,12 +48,12 @@ shared_examples 'WpTarget::WpRegistrable' do
     context 'when not multisite' do
       let(:multisite) { false }
 
-      it 'returns false (not multisite)' do
+      it 'returns false' do
         @stub     = { status: 302, headers: { 'Location' => 'wp-login.php?registration=disabled' } }
         @expected = false
       end
 
-      it 'returns true (not multisite)' do
+      it 'returns true' do
         @stub     = { status: 200, body: %{<form name="registerform" id="registerform" action="wp-login.php"} }
         @expected = true
       end
