@@ -5,9 +5,9 @@ class Browser
 
     USER_AGENT_MODES = %w{ static semi-static random }
 
-    attr_reader   :basic_auth, :user_agent_mode, :proxy, :proxy_auth
     attr_accessor :available_user_agents, :cache_ttl
-    attr_writer   :max_threads, :user_agent
+    attr_reader   :basic_auth, :user_agent_mode, :proxy, :proxy_auth
+    attr_writer   :user_agent
 
     # Sets the Basic Authentification credentials
     # Accepted format:
@@ -32,10 +32,21 @@ class Browser
       @max_threads || 1
     end
 
+    def max_threads=(threads)
+      if threads.is_a?(Integer) && threads > 0
+        @max_threads = threads
+        @hydra = Typhoeus::Hydra.new(max_concurrency: threads)
+      else
+        raise 'max_threads must be an Integer > 0'
+      end
+    end
+
     # Sets the user_agent_mode, which can be one of the following:
     #   static:      The UA is defined by the user, and will be the same in each requests
     #   semi-static: The UA is randomly chosen at the first request, and will not change
     #   random:      UA randomly chosen each request
+    #
+    # UA are from @available_user_agents
     #
     # @param [ String ] ua_mode
     #

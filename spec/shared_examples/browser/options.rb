@@ -7,10 +7,10 @@ shared_examples 'Browser::Options' do
 
     after do
       if @expected
-        subject.basic_auth = @auth
-        subject.basic_auth.should == @expected
+        browser.basic_auth = @auth
+        browser.basic_auth.should == @expected
       else
-        expect { subject.basic_auth = @auth }.to raise_error(exception)
+        expect { browser.basic_auth = @auth }.to raise_error(exception)
       end
     end
 
@@ -41,18 +41,29 @@ shared_examples 'Browser::Options' do
     end
   end
 
-  describe '#max_threads' do
+  describe '#max_threads= & #max_threads' do
+    let(:exception) { 'max_threads must be an Integer > 0' }
+
     after do
-      subject.max_threads = @max_threads
-      subject.max_threads.should == @expected
+      if @expected
+        browser.max_threads = @max_threads
+        browser.max_threads.should == @expected
+      else
+        expect { browser.max_threads = @max_threads }.to raise_error(exception)
+      end
     end
 
-    context 'when no @max_threads' do
-      @max_threads = nil
-      @expected    = 1
+    context 'when the argument is not an Integer > 0' do
+      it 'raises an error' do
+        @max_thrads = nil
+      end
+
+      it 'raises an error' do
+        @max_threads = -3
+      end
     end
 
-    context 'when @max_threads' do
+    context 'when the argument is an Integer' do
       it 'returns the @max_threads' do
         @max_threads = 10
         @expected    = 10
@@ -64,18 +75,18 @@ shared_examples 'Browser::Options' do
     # Testing all valid modes
     Browser::USER_AGENT_MODES.each do |user_agent_mode|
       it "sets & returns #{user_agent_mode}" do
-        subject.user_agent_mode = user_agent_mode
-        subject.user_agent_mode.should === user_agent_mode
+        browser.user_agent_mode = user_agent_mode
+        browser.user_agent_mode.should === user_agent_mode
       end
     end
 
     it 'sets the mode to "static" if nil is given' do
-      subject.user_agent_mode = nil
-      subject.user_agent_mode.should === 'static'
+      browser.user_agent_mode = nil
+      browser.user_agent_mode.should === 'static'
     end
 
     it 'raises an error if the mode is not valid' do
-      expect { subject.user_agent_mode = 'invalid-mode' }.to raise_error
+      expect { browser.user_agent_mode = 'invalid-mode' }.to raise_error
     end
   end
 
@@ -84,39 +95,39 @@ shared_examples 'Browser::Options' do
 
     context 'when static mode' do
       it 'returns the same user agent' do
-        subject.user_agent = 'fake UA'
-        subject.user_agent_mode = 'static'
+        browser.user_agent      = 'fake UA'
+        browser.user_agent_mode = 'static'
 
         (1..3).each do
-          subject.user_agent.should === 'fake UA'
+          browser.user_agent.should === 'fake UA'
         end
       end
     end
 
     context 'when semi-static mode' do
       it 'chooses a random user_agent in the available_user_agents array and always return it' do
-        subject.available_user_agents = available_user_agents
-        subject.user_agent            = 'Firefox 11.0'
-        subject.user_agent_mode       = 'semi-static'
+        browser.available_user_agents = available_user_agents
+        browser.user_agent            = 'Firefox 11.0'
+        browser.user_agent_mode       = 'semi-static'
 
-        user_agent = subject.user_agent
+        user_agent = browser.user_agent
         user_agent.should_not === 'Firefox 11.0'
         available_user_agents.include?(user_agent).should be_true
 
         (1..3).each do
-          subject.user_agent.should === user_agent
+          browser.user_agent.should === user_agent
         end
       end
     end
 
     context 'when random' do
       it 'returns a random user agent each time' do
-        subject.available_user_agents = available_user_agents
-        subject.user_agent_mode       = 'random'
+        browser.available_user_agents = available_user_agents
+        browser.user_agent_mode       = 'random'
 
-        ua_1 = subject.user_agent
-        ua_2 = subject.user_agent
-        ua_3 = subject.user_agent
+        ua_1 = browser.user_agent
+        ua_2 = browser.user_agent
+        ua_3 = browser.user_agent
 
         fail if ua_1 === ua_2 and ua_2 === ua_3
       end
@@ -128,10 +139,10 @@ shared_examples 'Browser::Options' do
 
     after do
       if @expected
-        subject.proxy = @proxy
-        subject.proxy.should == @expected
+        browser.proxy = @proxy
+        browser.proxy.should == @expected
       else
-        expect { subject.proxy = @proxy }.to raise_error(exception)
+        expect { browser.proxy = @proxy }.to raise_error(exception)
       end
     end
 
@@ -152,10 +163,10 @@ shared_examples 'Browser::Options' do
 
     after :each do
       if @expected
-        subject.proxy_auth = @proxy_auth
-        subject.proxy_auth.should === @expected
+        browser.proxy_auth = @proxy_auth
+        browser.proxy_auth.should === @expected
       else
-        expect { subject.proxy_auth = @proxy_auth }.to raise_error
+        expect { browser.proxy_auth = @proxy_auth }.to raise_error
       end
     end
 
@@ -206,16 +217,16 @@ shared_examples 'Browser::Options' do
 
   describe '#override_config' do
     after do
-      subject.send(:override_config, override_options)
+      browser.send(:override_config, override_options)
     end
 
-    let(:config) { JSON.parse(File.read(subject.config_file)) }
+    let(:config) { JSON.parse(File.read(browser.config_file)) }
 
     context 'when an option value is nil' do
       let(:override_options) { { max_threads: nil } }
 
       it 'does not set it' do
-        subject.should_not_receive(:max_threads=)
+        browser.should_not_receive(:max_threads=)
       end
     end
 
@@ -223,7 +234,7 @@ shared_examples 'Browser::Options' do
       let(:override_options) { { not_allowed: 'owned' } }
 
       it 'does not set it' do
-        subject.should_not_receive(:not_allowed=)
+        browser.should_not_receive(:not_allowed=)
       end
     end
 
@@ -231,7 +242,7 @@ shared_examples 'Browser::Options' do
       let(:override_options) { { max_threads: 30 } }
 
       it 'sets it' do
-        subject.should_receive(:max_threads=).with(30)
+        browser.should_receive(:max_threads=).with(30)
       end
     end
 
@@ -241,9 +252,9 @@ shared_examples 'Browser::Options' do
       }
 
       it 'sets @max_threads, @proxy' do
-        subject.should_not_receive(:not_allowed=)
-        subject.should_receive(:max_threads=).with(10)
-        subject.should_receive(:proxy=).with('host:port')
+        browser.should_not_receive(:not_allowed=)
+        browser.should_receive(:max_threads=).with(10)
+        browser.should_receive(:proxy=).with('host:port')
       end
     end
   end

@@ -24,20 +24,19 @@ class Browser
   attr_reader :hydra, :config_file, :cache_dir
 
   # @param [ Hash ] options
-  # @options
+  #
+  # @return [ Browser ]
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
     @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
 
-    #options.delete(:config_file)
-
     load_config()
+    override_config(options)
 
-    #if options.length > 0
-      override_config(options)
-    #end
+    unless @hydra
+      @hydra = Typhoeus::Hydra.new(max_concurrency: self.max_threads)
+    end
 
-    @hydra = Typhoeus::Hydra.new(max_concurrency: self.max_threads)
     @cache = TyphoeusCache.new(@cache_dir)
     @cache.clean
 
@@ -46,6 +45,9 @@ class Browser
 
   private_class_method :new
 
+  # @param [ Hash ] options
+  #
+  # @return [ Browser ]
   def self.instance(options = {})
     unless @@instance
       @@instance = new(options)
@@ -57,8 +59,13 @@ class Browser
     @@instance = nil
   end
 
-  # TODO reload hydra (if the .load_config is called on a browser object,
-  # hydra will not have the new @max_threads)
+  #
+  # If an option was set but is not in the new config_file
+  # it's value is kept
+  #
+  # @param [ String ] config_file
+  #
+  # @return [ void ]
   def load_config(config_file = nil)
     @config_file = config_file || @config_file
 
@@ -77,10 +84,17 @@ class Browser
     end
   end
 
+  # @param [ String ] url
+  # @param [ Hash ] params
+  #
+  # @return [ Typhoeus::Request ]
   def forge_request(url, params = {})
     Typhoeus::Request.new(url, merge_request_params(params))
   end
 
+  # @param [ Hash ] params
+  #
+  # @return [ Hash ]
   def merge_request_params(params = {})
     params = Browser.append_params_header_field(
       params,
@@ -121,7 +135,11 @@ class Browser
 
   private
 
-  # return Array
+  # @param [ Hash ] params
+  # @param [ String ] field
+  # @param [ Mixed ] field_value
+  #
+  # @return [ Array ]
   def self.append_params_header_field(params = {}, field, field_value)
     if !params.has_key?(:headers)
       params = params.merge(:headers => { field => field_value })

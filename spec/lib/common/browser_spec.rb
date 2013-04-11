@@ -19,11 +19,8 @@ describe Browser do
     ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy',
      'max_threads', 'cache_ttl']
   }
-
-  before :all do
-    @json_config_without_proxy = JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY))
-    @json_config_with_proxy    = JSON.parse(File.read(CONFIG_FILE_WITH_PROXY))
-  end
+  let(:json_config_without_proxy) { JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY)) }
+  let(:json_config_with_proxy)    { JSON.parse(File.read(CONFIG_FILE_WITH_PROXY)) }
 
   def check_instance_variables(browser, json_expected_vars)
     json_expected_vars['max_threads'] ||= 1 # max_thread can not be nil
@@ -44,7 +41,7 @@ describe Browser do
 
     context "when default config_file = #{CONFIG_FILE_WITHOUT_PROXY}" do
       it 'will check the instance vars' do
-        @json_expected_vars = @json_config_without_proxy
+        @json_expected_vars = json_config_without_proxy
       end
     end
 
@@ -52,7 +49,7 @@ describe Browser do
       let(:options) { { config_file: CONFIG_FILE_WITH_PROXY } }
 
       it 'will check the instance vars' do
-        @json_expected_vars = @json_config_with_proxy
+        @json_expected_vars = json_config_with_proxy
       end
     end
 
@@ -63,19 +60,32 @@ describe Browser do
       after { subject.cache_dir.should == cache_dir }
 
       it 'sets @cache_dir' do
-        @json_expected_vars = @json_config_without_proxy
+        @json_expected_vars = json_config_without_proxy
       end
     end
   end
 
-  # TODO
   describe '#load_config' do
-    it 'should raise an error if file is a symlink' do
-      symlink = './rspec_symlink'
+    context 'when config_file is a symlink' do
+      let(:config_file) { './rspec_symlink' }
 
-      File.symlink('./testfile', symlink)
-      expect { browser.load_config(symlink) }.to raise_error("[ERROR] Config file is a symlink.")
-      File.unlink(symlink)
+      it 'raises an error' do
+        File.symlink('./testfile', config_file)
+        expect { browser.load_config(config_file) }.to raise_error("[ERROR] Config file is a symlink.")
+        File.unlink(config_file)
+      end
+    end
+
+    context 'otherwise' do
+      after do
+        browser.load_config(@config_file)
+        check_instance_variables(browser, @expected)
+      end
+
+      it 'sets the correct variables' do
+        @config_file = CONFIG_FILE_WITH_PROXY
+        @expected    = json_config_without_proxy.merge(json_config_with_proxy)
+      end
     end
   end
 
@@ -197,8 +207,7 @@ describe Browser do
 
       url = 'http://example.localhost'
 
-      stub_request(:get, url).
-        to_return(status: 200, body: 'Hello World !')
+      stub_request(:get, url).to_return(status: 200, body: 'Hello World !')
 
       response1 = Browser.get(url)
       response2 = Browser.get(url)
@@ -212,8 +221,9 @@ describe Browser do
     it 'should not throw an encoding exception' do
       url = SPEC_FIXTURES_DIR + '/utf8.html'
       stub_request(:get, url).to_return(status: 200, body: File.read(url))
-      response1 = Browser.get(url)
-      expect { response1.body }.to_not raise_error
+
+      response = Browser.get(url)
+      expect { response.body }.to_not raise_error
     end
   end
 end
