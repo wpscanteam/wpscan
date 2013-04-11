@@ -18,11 +18,11 @@ class WebSite
 
   # Checks if the remote website is up.
   def online?
-    Browser.instance.get(@uri.to_s).code != 0
+    Browser.get(@uri.to_s).code != 0
   end
 
   def has_basic_auth?
-    Browser.instance.get(@uri.to_s).code == 401
+    Browser.get(@uri.to_s).code == 401
   end
 
   def has_xml_rpc?
@@ -38,7 +38,7 @@ class WebSite
   end
 
   def xml_rpc_url_from_headers
-    headers    = Browser.instance.get(@uri.to_s).headers_hash
+    headers    = Browser.get(@uri.to_s).headers_hash
     xmlrpc_url = nil
 
     unless headers.nil?
@@ -51,7 +51,7 @@ class WebSite
   end
 
   def xml_rpc_url_from_body
-    body = Browser.instance.get(@uri.to_s).body
+    body = Browser.get(@uri.to_s).body
 
     body[%r{<link rel="pingback" href="([^"]+)" ?\/?>}, 1]
   end
@@ -62,7 +62,7 @@ class WebSite
   def redirection(url = nil)
     redirection = nil
     url ||= @uri.to_s
-    response = Browser.instance.get(url)
+    response = Browser.get(url)
 
     if response.code == 301 || response.code == 302
       redirection = response.headers_hash['location']
@@ -78,7 +78,7 @@ class WebSite
 
   # Return the MD5 hash of the page given by url
   def self.page_hash(url)
-    Digest::MD5.hexdigest(Browser.instance.get(url).body)
+    Digest::MD5.hexdigest(Browser.get(url).body)
   end
 
   def homepage_hash
@@ -100,13 +100,13 @@ class WebSite
   # Will try to find the rss url in the homepage
   # Only the first one found iw returned
   def rss_url
-    homepage_body = Browser.instance.get(@uri.to_s).body
+    homepage_body = Browser.get(@uri.to_s).body
     homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
   end
 
   # Checks if a robots.txt file exists
   def has_robots?
-    Browser.instance.get(robots_url).code == 200
+    Browser.get(robots_url).code == 200
   end
 
   # Gets a robots.txt URL

@@ -67,7 +67,7 @@ class WpItems < Array
       results      = new
       item_class   = self.item_class
       type         = self.to_s.gsub(/Wp/, '').downcase
-      response     = Browser.instance.get(wp_target.url)
+      response     = Browser.get(wp_target.url)
       item_options = {
         wp_content_dir: wp_target.wp_content_dir,
         wp_plugins_dir: wp_target.wp_plugins_dir,

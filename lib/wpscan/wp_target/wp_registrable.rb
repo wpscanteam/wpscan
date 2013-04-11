@@ -7,7 +7,7 @@ class WpTarget < WebSite
     #
     # @return [ Boolean ]
     def registration_enabled?
-      resp = Browser.instance.get(registration_url)
+      resp = Browser.get(registration_url)
       # redirect only on non multi sites
       if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?registration=disabled/i
         enabled = false
@@ -34,8 +34,7 @@ class WpTarget < WebSite
       unless @multisite
         # when multi site, there is no redirection or a redirect to the site itself
         # otherwise redirect to wp-login.php
-        url = @uri.merge('wp-signup.php')
-        resp = Browser.instance.get(url)
+        resp = Browser.get(@uri.merge('wp-signup.php').to_s)
 
         if resp.code == 302 and resp.headers_hash['location'] =~ /wp-login\.php\?action=register/
           @multisite = false

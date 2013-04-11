@@ -13,7 +13,7 @@ class WpItem
     # @return [ Boolean ]
     def exists?(options = {}, response = nil)
       unless response
-        response = Browser.instance.get(url)
+        response = Browser.get(url)
       end
       exists_from_response?(response, options)
     end

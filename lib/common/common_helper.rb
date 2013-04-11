@@ -107,3 +107,8 @@ def xml(file)
     config.noblanks
   end
 end
+
+def redefine_constant(constant, value)
+  Object.send(:remove_const, constant)
+  Object.const_set(constant, value)
+end

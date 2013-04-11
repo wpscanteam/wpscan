@@ -1,42 +1,43 @@
 # encoding: UTF-8
 
 require 'common/typhoeus_cache'
+require 'common/browser/actions'
+require 'common/browser/options'
 
 class Browser
-  @@instance = nil
-  USER_AGENT_MODES = %w{ static semi-static random }
+  extend  Browser::Actions
+  include Browser::Options
 
-  ACCESSOR_OPTIONS = [
+  OPTIONS = [
+    :available_user_agents,
+    :basic_auth,
+    :cache_ttl,
+    :max_threads,
     :user_agent,
     :user_agent_mode,
-    :available_user_agents,
     :proxy,
-    :proxy_auth,
-    :max_threads,
-    :cache_ttl,
-    :request_timeout,
-    :basic_auth
+    :proxy_auth
   ]
 
-  attr_reader :hydra, :config_file
-  attr_accessor *ACCESSOR_OPTIONS
+  @@instance = nil
 
+  attr_reader :hydra, :config_file, :cache_dir
+
+  # @param [ Hash ] options
+  #
+  # @return [ Browser ]
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
-    options.delete(:config_file)
+    @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
 
     load_config()
+    override_config(options)
 
-    if options.length > 0
-      override_config_with_options(options)
+    unless @hydra
+      @hydra = Typhoeus::Hydra.new(max_concurrency: self.max_threads)
     end
 
-    @hydra = Typhoeus::Hydra.new(max_concurrency: @max_threads)
-
-    # TODO : add an argument for the cache dir instead of using a constant
-    @cache_dir = CACHE_DIR + '/browser'
     @cache = TyphoeusCache.new(@cache_dir)
-
     @cache.clean
 
     Typhoeus::Config.cache = @cache
@@ -44,6 +45,9 @@ class Browser
 
   private_class_method :new
 
+  # @param [ Hash ] options
+  #
+  # @return [ Browser ]
   def self.instance(options = {})
     unless @@instance
       @@instance = new(options)
@@ -55,57 +59,13 @@ class Browser
     @@instance = nil
   end
 
-  def user_agent_mode=(ua_mode)
-    ua_mode ||= 'static'
-
-    if USER_AGENT_MODES.include?(ua_mode)
-      @user_agent_mode = ua_mode
-      # For semi-static user agent mode, the user agent has to
-      # be nil the first time (it will be set with the getter)
-      @user_agent = nil if ua_mode === 'semi-static'
-    else
-      raise "Unknow user agent mode : '#{ua_mode}'"
-    end
-  end
-
-  # return the user agent, according to the user_agent_mode
-  def user_agent
-    case @user_agent_mode
-    when 'semi-static'
-      unless @user_agent
-        @user_agent = @available_user_agents.sample
-      end
-    when 'random'
-      @user_agent = @available_user_agents.sample
-    end
-    @user_agent
-  end
-
-  def max_threads=(max_threads)
-    if max_threads.nil? or max_threads <= 0
-      max_threads = 1
-    end
-    @max_threads = max_threads
-  end
-
-  def proxy_auth=(auth)
-    unless auth.nil?
-      if auth.is_a?(Hash) && auth.include?(:proxy_username) && auth.include?(:proxy_password)
-        @proxy_auth = auth[:proxy_username] + ':' + auth[:proxy_password]
-      elsif auth.is_a?(String) && auth.index(':') != nil
-        @proxy_auth = auth
-      else
-        raise invalid_proxy_auth_format
-      end
-    end
-  end
-
-  def invalid_proxy_auth_format
-    'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'
-  end
-
-  # TODO reload hydra (if the .load_config is called on a browser object,
-  # hydra will not have the new @max_threads and @request_timeout)
+  #
+  # If an option was set but is not in the new config_file
+  # it's value is kept
+  #
+  # @param [ String ] config_file
+  #
+  # @return [ void ]
   def load_config(config_file = nil)
     @config_file = config_file || @config_file
 
@@ -115,40 +75,26 @@ class Browser
       data = JSON.parse(File.read(@config_file))
     end
 
-    ACCESSOR_OPTIONS.each do |option|
+    OPTIONS.each do |option|
       option_name = option.to_s
 
-      self.send(:"#{option_name}=", data[option_name])
+      unless data[option_name].nil?
+        self.send(:"#{option_name}=", data[option_name])
+      end
     end
   end
 
-  def get(url, params = {})
-    run_request(
-      forge_request(url, params.merge(method: :get))
-    )
-  end
-
-  def post(url, params = {})
-    run_request(
-      forge_request(url, params.merge(method: :post))
-    )
-  end
-
-  def get_and_follow_location(url, params = {})
-    params[:maxredirs] ||= 2
-
-    run_request(
-      forge_request(url, params.merge(method: :get, followlocation: true))
-    )
-  end
-
+  # @param [ String ] url
+  # @param [ Hash ] params
+  #
+  # @return [ Typhoeus::Request ]
   def forge_request(url, params = {})
-    Typhoeus::Request.new(
-      url.to_s,
-      merge_request_params(params)
-    )
+    Typhoeus::Request.new(url, merge_request_params(params))
   end
 
+  # @param [ Hash ] params
+  #
+  # @return [ Hash ]
   def merge_request_params(params = {})
     params = Browser.append_params_header_field(
       params,
@@ -189,7 +135,11 @@ class Browser
 
   private
 
-  # return Array
+  # @param [ Hash ] params
+  # @param [ String ] field
+  # @param [ Mixed ] field_value
+  #
+  # @return [ Array ]
   def self.append_params_header_field(params = {}, field, field_value)
     if !params.has_key?(:headers)
       params = params.merge(:headers => { field => field_value })
@@ -199,19 +149,4 @@ class Browser
     params
   end
 
-  # return the response
-  def run_request(request)
-    @hydra.queue request
-    @hydra.run
-    request.response
-  end
-
-  # Override with the options if they are set
-  def override_config_with_options(options)
-    options.each do |option, value|
-      if value != nil and ACCESSOR_OPTIONS.include?(option)
-        self.send(:"#{option}=", value)
-      end
-    end
-  end
 end

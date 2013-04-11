@@ -7,7 +7,7 @@ shared_examples 'WpItem::Existable' do
       let(:response) { Typhoeus::Response.new }
 
       it 'does not create a request' do
-        Browser.instance.should_not_receive(:get)
+        Browser.should_not_receive(:get)
         subject.stub(:exists_from_response?).and_return(true)
 
         subject.exists?({}, response).should be_true
@@ -16,7 +16,7 @@ shared_examples 'WpItem::Existable' do
 
     context 'when the response is not supplied' do
       it 'creates a request' do
-        Browser.instance.should_receive(:get)
+        Browser.should_receive(:get)
         subject.stub(:exists_from_response?).and_return(false)
 
         subject.exists?.should be_false

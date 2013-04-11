@@ -1,8 +1,5 @@
 # encoding: UTF-8
 
-# https://github.com/bblimke/webmock
-# https://github.com/colszowka/simplecov
-
 require 'webmock/rspec'
 # Code Coverage (only works with ruby >= 1.9)
 require 'simplecov' if RUBY_VERSION >= '1.9'
@@ -11,11 +8,14 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/common/common_helper'
 
 SPEC_DIR                      = ROOT_DIR + '/spec'
 SPEC_LIB_DIR                  = SPEC_DIR + '/lib'
-SPEC_CACHE_DIR                = SPEC_DIR + '/cache'
+SPEC_CACHE_DIR                = SPEC_DIR + '/cache' # FIXME remove it
 SPEC_FIXTURES_DIR             = SPEC_DIR + '/samples'
 SHARED_EXAMPLES_DIR           = SPEC_DIR + '/shared_examples'
-SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf'
+SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf' # FIXME Remove it
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
+
+redefine_constant(:CACHE_DIR, SPEC_DIR + '/cache')
+redefine_constant(:CONF_DIR, SPEC_FIXTURES_DIR + '/conf/browser') # FIXME Remove the /browser
 
 MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
 COLLECTIONS_FIXTURES = SPEC_FIXTURES_DIR + '/common/collections'

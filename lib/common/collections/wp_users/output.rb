@@ -10,7 +10,7 @@ class WpUsers < WpItems
       max_display_name_length = self.sort { |a, b| a.display_name.length <=> b.display_name.length }.last.display_name.length
 
       inner_space         = 2
-      id_length           = (max_id_length + inner_space * 2) /2 *2
+      id_length           = (max_id_length + inner_space * 2) /2 * 2
       login_length        = max_login_length + inner_space * 2
       display_name_length = max_display_name_length + inner_space * 2
 

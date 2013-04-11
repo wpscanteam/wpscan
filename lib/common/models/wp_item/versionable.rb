@@ -10,7 +10,7 @@ class WpItem
     # @return [ String ] The version number
     def version
       unless @version
-        response = Browser.instance.get(readme_url)
+        response = Browser.get(readme_url)
         @version = response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
       end
       @version

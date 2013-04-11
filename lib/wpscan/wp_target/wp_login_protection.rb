@@ -38,17 +38,17 @@ class WpTarget < WebSite
     # Thanks to Alip Aswalid for providing this method.
     # http://wordpress.org/extend/plugins/login-lockdown/
     def has_login_lockdown_protection?
-      Browser.instance.get(login_url).body =~ %r{Login LockDown}i ? true : false
+      Browser.get(login_url).body =~ %r{Login LockDown}i ? true : false
     end
 
     # http://wordpress.org/extend/plugins/login-lock/
     def has_login_lock_protection?
-      Browser.instance.get(login_url).body =~ %r{LOGIN LOCK} ? true : false
+      Browser.get(login_url).body =~ %r{LOGIN LOCK} ? true : false
     end
 
     # http://wordpress.org/extend/plugins/better-wp-security/
     def has_better_wp_security_protection?
-      Browser.instance.get(better_wp_security_url).code != 404
+      Browser.get(better_wp_security_url).code != 404
     end
 
     def plugin_url(plugin_name)
@@ -66,7 +66,7 @@ class WpTarget < WebSite
 
     # http://wordpress.org/extend/plugins/simple-login-lockdown/
     def has_simple_login_lockdown_protection?
-      Browser.instance.get(simple_login_lockdown_url).code != 404
+      Browser.get(simple_login_lockdown_url).code != 404
     end
 
     def simple_login_lockdown_url
@@ -75,7 +75,7 @@ class WpTarget < WebSite
 
     # http://wordpress.org/extend/plugins/login-security-solution/
     def has_login_security_solution_protection?
-      Browser.instance.get(login_security_solution_url()).code != 404
+      Browser.get(login_security_solution_url()).code != 404
     end
 
     def login_security_solution_url
@@ -84,7 +84,7 @@ class WpTarget < WebSite
 
     # http://wordpress.org/extend/plugins/limit-login-attempts/
     def has_limit_login_attempts_protection?
-      Browser.instance.get(limit_login_attempts_url).code != 404
+      Browser.get(limit_login_attempts_url).code != 404
     end
 
     def limit_login_attempts_url
@@ -93,7 +93,7 @@ class WpTarget < WebSite
 
     # http://wordpress.org/extend/plugins/bluetrait-event-viewer/
     def has_bluetrait_event_viewer_protection?
-      Browser.instance.get(bluetrait_event_viewer_url).code != 404
+      Browser.get(bluetrait_event_viewer_url).code != 404
     end
 
     def bluetrait_event_viewer_url

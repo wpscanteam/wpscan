@@ -6,7 +6,7 @@ class WpTarget < WebSite
     # @return [ String ] The wp-content directory
     def wp_content_dir
       unless @wp_content_dir
-        index_body = Browser.instance.get(@uri.to_s).body
+        index_body = Browser.get(@uri.to_s).body
         uri_path = @uri.path # Only use the path because domain can be text or an IP
 
         if index_body[/\/wp-content\/(?:themes|plugins)\//i] || default_wp_content_dir_exists?
@@ -22,7 +22,7 @@ class WpTarget < WebSite
 
     # @return [ Boolean ]
     def default_wp_content_dir_exists?
-      response = Browser.instance.get(@uri.merge('wp-content').to_s)
+      response = Browser.get(@uri.merge('wp-content').to_s)
       hash = Digest::MD5.hexdigest(response.body)
 
       if WpTarget.valid_response_codes.include?(response.code)
@@ -42,7 +42,7 @@ class WpTarget < WebSite
 
     # @return [ Boolean ]
     def wp_plugins_dir_exists?
-      Browser.instance.get(@uri.merge(wp_plugins_dir)).code != 404
+      Browser.get(@uri.merge(wp_plugins_dir).to_s).code != 404
     end
 
   end

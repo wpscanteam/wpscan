@@ -45,7 +45,7 @@ class WpVersion < WpItem
     # @return [ String ]
     def scan_url(target_uri, pattern, path = nil)
       url = path ? target_uri.merge(path).to_s : target_uri.to_s
-      response = Browser.instance.get_and_follow_location(url)
+      response = Browser.get_and_follow_location(url)
 
       response.body[pattern, 1]
     end
@@ -163,7 +163,7 @@ class WpVersion < WpItem
       xml.xpath('//file').each do |node|
         wp_item.path = node.attribute('src').text
 
-        response = Browser.instance.get(wp_item.url)
+        response = Browser.get(wp_item.url)
         md5sum = Digest::MD5.hexdigest(response.body)
 
         node.search('hash').each do |hash|

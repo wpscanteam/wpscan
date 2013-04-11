@@ -33,7 +33,7 @@ begin
 rescue LoadError => e
   puts "[ERROR] #{e}"
 
-  missing_gem = e.to_s[%r{ -- ([^\z/]+)/?}, 1]
+  missing_gem = e.to_s[%r{ -- ([^/]+)/?\z}, 1]
   if missing_gem
     if missing_gem =~ /nokogiri/i
       puts
