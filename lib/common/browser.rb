@@ -181,8 +181,8 @@ class Browser
     params.merge!(ssl_verifypeer: false)
     params.merge!(ssl_verifyhost: 0)
 
-    params.merge!(cookie_jar: @cache_dir + '/cookie-jar')
-    params.merge!(cookie_file: @cache_dir + '/cookie-jar')
+    params.merge!(cookiejar: @cache_dir + '/cookie-jar')
+    params.merge!(cookiefile: @cache_dir + '/cookie-jar')
 
     params
   end

@@ -267,7 +267,7 @@ describe Browser do
         cache_ttl: 250,
         headers: { 'User-Agent' => 'SomeUA' },
         ssl_verifypeer: false, ssl_verifyhost: 0,
-        cookie_jar: cookie_jar, cookie_file: cookie_jar
+        cookiejar: cookie_jar, cookiefile: cookie_jar
       }
     }
 

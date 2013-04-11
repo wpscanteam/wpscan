@@ -50,11 +50,11 @@ end
 module Ethon
   class Easy
     module Options
-      def cookie_jar=(value)
+      def cookiejar=(value)
         Curl.set_option(:cookiejar, value_for(value, :string), handle)
       end
 
-      def cookie_file=(value)
+      def cookiefile=(value)
         Curl.set_option(:cookiefile, value_for(value, :string), handle)
       end
     end
