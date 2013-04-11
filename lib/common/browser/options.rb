@@ -3,18 +3,6 @@
 class Browser
   module Options
 
-    OPTIONS = [
-      :available_user_agents,
-      :basic_auth,
-      :cache_ttl,
-      :max_threads,
-      :user_agent,
-      :user_agent_mode,
-      :proxy,
-      :proxy_auth,
-      #:request_timeout,
-    ]
-
     USER_AGENT_MODES = %w{ static semi-static random }
 
     attr_reader   :basic_auth, :user_agent_mode, :proxy, :proxy_auth
@@ -31,9 +19,9 @@ class Browser
     # @return [ void ]
     def basic_auth=(auth)
       if auth.index(':')
-        @basic_auth = "Basic #{Base64.encode64(auth.chomp)}"
-      elsif auth =~ /\ABasic .*\z/
-        @basic_auth = auth.chomp
+        @basic_auth = "Basic #{Base64.encode64(auth).chomp}"
+      elsif auth =~ /\ABasic [a-zA-Z0-9=]+\z/
+        @basic_auth = auth
       else
        raise 'Invalid basic authentication format, "login:password" or "Basic base_64_encoded" expected'
      end
@@ -80,7 +68,10 @@ class Browser
 
     # Sets the proxy
     # Accepted format:
-    #   host:post
+    #   [protocol://]host:post
+    #
+    #  Supported protocols:
+    #    Depends on the curl protocols, See curl --version
     #
     # @param [ String ] proxy
     #
@@ -89,7 +80,7 @@ class Browser
       if proxy.index(':')
         @proxy = proxy
       else
-        raise 'Invalid proxy format. Should be host:port.'
+        raise 'Invalid proxy format. Should be [protocol://]host:port.'
       end
     end
 
@@ -123,7 +114,7 @@ class Browser
     # @param [ Hash ] options
     #
     # @return [ void ]
-    def override_config_with_options(options = {})
+    def override_config(options = {})
       options.each do |option, value|
         if value != nil and OPTIONS.include?(option)
           self.send(:"#{option}=", value)

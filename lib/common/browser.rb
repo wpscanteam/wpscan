@@ -8,25 +8,36 @@ class Browser
   extend  Browser::Actions
   include Browser::Options
 
+  OPTIONS = [
+    :available_user_agents,
+    :basic_auth,
+    :cache_ttl,
+    :max_threads,
+    :user_agent,
+    :user_agent_mode,
+    :proxy,
+    :proxy_auth
+  ]
+
   @@instance = nil
 
-  attr_reader :hydra, :config_file
+  attr_reader :hydra, :config_file, :cache_dir
 
   # @param [ Hash ] options
+  # @options
   def initialize(options = {})
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
-    @cache_dir   = CACHE_DIR + '/browser'
+    @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
 
-    options.delete(:config_file)
+    #options.delete(:config_file)
 
     load_config()
 
-    if options.length > 0
-      override_config_with_options(options)
-    end
+    #if options.length > 0
+      override_config(options)
+    #end
 
     @hydra = Typhoeus::Hydra.new(max_concurrency: self.max_threads)
-    # TODO : add an argument for the cache dir instead of using a constant
     @cache = TyphoeusCache.new(@cache_dir)
     @cache.clean
 
@@ -47,7 +58,7 @@ class Browser
   end
 
   # TODO reload hydra (if the .load_config is called on a browser object,
-  # hydra will not have the new @max_threads and @request_timeout)
+  # hydra will not have the new @max_threads)
   def load_config(config_file = nil)
     @config_file = config_file || @config_file
 
@@ -57,20 +68,17 @@ class Browser
       data = JSON.parse(File.read(@config_file))
     end
 
-    Options::OPTIONS.each do |option|
+    OPTIONS.each do |option|
       option_name = option.to_s
 
-      if data[option_name]
+      unless data[option_name].nil?
         self.send(:"#{option_name}=", data[option_name])
       end
     end
   end
 
   def forge_request(url, params = {})
-    Typhoeus::Request.new(
-      url.to_s,
-      merge_request_params(params)
-    )
+    Typhoeus::Request.new(url, merge_request_params(params))
   end
 
   def merge_request_params(params = {})
