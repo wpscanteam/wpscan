@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-gem "typhoeus", ">=0.6.3"
+gem "typhoeus", "=0.6.2"
+gem "ethon", "=0.5.10"
 gem "nokogiri"
 gem "json"
 
