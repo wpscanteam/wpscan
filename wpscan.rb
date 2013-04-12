@@ -304,7 +304,10 @@ def main
         puts
         puts green('[+]') + ' Starting the password brute forcer'
         puts
-        wp_target.brute_force(wp_users, wpscan_options.wordlist, { show_progression: true })
+
+        wp_users.brute_force(wpscan_options.wordlist,
+                             show_progression: true,
+                             verbose: wpscan_options.verbose)
       else
         puts
         puts 'Brute forcing aborted'

@@ -1,9 +1,11 @@
 # encoding: UTF-8
 
 require 'wp_user/existable'
+require 'wp_user/brute_forcable'
 
 class WpUser < WpItem
   include WpUser::Existable
+  include WpUser::BruteForcable
 
   attr_accessor :id, :login, :display_name, :password
 

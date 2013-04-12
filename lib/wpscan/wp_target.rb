@@ -3,7 +3,6 @@
 require 'web_site'
 require 'wp_target/malwares'
 require 'wp_target/wp_readme'
-require 'wp_target/brute_force'
 require 'wp_target/wp_registrable'
 require 'wp_target/wp_config_backup'
 require 'wp_target/wp_login_protection'
@@ -13,7 +12,6 @@ require 'wp_target/wp_full_path_disclosure'
 class WpTarget < WebSite
   include WpTarget::Malwares
   include WpTarget::WpReadme
-  include WpTarget::BruteForce
   include WpTarget::WpRegistrable
   include WpTarget::WpConfigBackup
   include WpTarget::WpLoginProtection

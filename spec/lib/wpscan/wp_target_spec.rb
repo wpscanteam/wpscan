@@ -20,7 +20,6 @@ describe WpTarget do
 
   it_behaves_like 'WpTarget::Malwares'
   it_behaves_like 'WpTarget::WpReadme'
-  it_behaves_like 'WpTarget::BruteForce'
   it_behaves_like 'WpTarget::WpRegistrable'
   it_behaves_like 'WpTarget::WpConfigBackup'
   it_behaves_like 'WpTarget::WpLoginProtection'
