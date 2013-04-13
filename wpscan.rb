@@ -282,7 +282,7 @@ def main
 
     else
       # FIXME : Change the .username to .login (and also the --username in the CLI)
-      wp_users = WpUsers.new << WpUser.new(wp_target, login: wpscan_options.username)
+      wp_users = WpUsers.new << WpUser.new(wp_target.uri, login: wpscan_options.username)
     end
 
     # Start the brute forcer
