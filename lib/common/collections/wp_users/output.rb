@@ -8,7 +8,6 @@ class WpUsers < WpItems
     #
     # @return [ void ]
     def output(options = {})
-
       rows     = []
       headings = ['Id', 'Name']
       headings << 'Password' if options[:show_password]
