@@ -2,7 +2,7 @@
 
 shared_examples 'WpUser::BruteForcable' do
   let(:fixtures_dir) { MODELS_FIXTURES + '/wp_user/brute_forcable' }
-  let(:wordlist)     { fixtures_dir + '/wordlist.txt' }
+  let(:wordlist)     { fixtures_dir + '/wordlist-iso-8859-1.txt' }
   let(:mod)          { WpUser::BruteForcable }
   let(:login_url)    { uri.merge('wp-login.php').to_s }
 
@@ -72,11 +72,31 @@ shared_examples 'WpUser::BruteForcable' do
     end
   end
 
+  describe 'wordlist charset' do
+    let(:expected) { %w{password1 pa55w0rd #comment admin root kansei£Ô} }
+
+    %w{wordlist-iso-8859-1.txt wordlist-utf-8.txt}.each do |file|
+      it 'contains the expected lines' do
+        file    = fixtures_dir + '/' + file
+        charset = File.charset(file)
+
+        lines = []
+        File.open(file, "r:#{charset}").each do |line|
+          lines << line.encode!('UTF-8').strip!
+        end
+
+        lines.should == expected
+      end
+    end
+  end
+
   describe '#brute_force' do
     let(:passwords) {
       passwords = []
-      File.open(wordlist, 'r').each do |line|
-        line.strip!
+      charset   = File.charset(wordlist)
+
+      File.open(wordlist, "r:#{charset}").each do |line|
+        line.encode!('UTF-8').strip!
         passwords << line unless line[0,1] == '#'
       end
       passwords

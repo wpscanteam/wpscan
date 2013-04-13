@@ -9,14 +9,15 @@ class WpUser < WpItem
     # @return [ void ]
     def brute_force(wordlist, options = {})
       hydra               = Browser.instance.hydra
+      wordlist_charset    = File.charset(wordlist)
       number_of_passwords = BruteForcable.lines_in_file(wordlist)
       login_url           = @uri.merge('wp-login.php').to_s
 
-      queue_count    = 0
-      request_count  = 0
+      queue_count         = 0
+      request_count       = 0
 
-      File.open(wordlist, 'r').each do |line|
-        line.strip!
+      File.open(wordlist, "r:#{wordlist_charset}").each do |line|
+        line.encode!('UTF-8').strip!
         # ignore file comments, but will miss passwords if they start with a hash...
         next if line[0, 1] == '#'
 
@@ -101,7 +102,7 @@ class WpUser < WpItem
     # @return [ Integer ]
     def self.lines_in_file(file_path)
       lines = 0
-      File.open(file_path, 'r').each do |line|
+      File.open(file_path, 'rb').each do |line|
         lines += 1 if line.strip[0,1] != '#'
       end
       lines
