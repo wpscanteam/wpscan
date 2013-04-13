@@ -28,7 +28,7 @@ class WpUser < WpItem
         request = Browser.instance.forge_request(login_url,
           {
             method: :post,
-            body: { log: URI::encode(login), pwd: URI::encode(password) },
+            body: { log: login, pwd: password },
             cache_ttl: 0
           }
         )
