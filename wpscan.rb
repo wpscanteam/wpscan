@@ -15,14 +15,13 @@ def main
 
     unless wpscan_options.has_options?
       usage()
-      puts red('No argument supplied')
-      exit(0)
+      raise('No argument supplied')
     end
 
     if wpscan_options.help
       help()
       usage()
-      exit
+      exit(1)
     end
 
     # Check for updates
@@ -321,9 +320,13 @@ def main
     puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
     exit() # must exit!
   rescue => e
-    puts red("[ERROR] #{e.message}")
-    puts red('Trace :')
-    puts red(e.backtrace.join("\n"))
+    if e.backtrace[0] =~ /main/
+      puts red(e.message)
+    else
+      puts red("[ERROR] #{e.message}")
+      puts red('Trace :')
+      puts red(e.backtrace.join("\n"))
+    end
   end
 end
 
