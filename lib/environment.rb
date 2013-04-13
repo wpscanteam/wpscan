@@ -27,6 +27,7 @@ begin
   require 'typhoeus'
   require 'json'
   require 'nokogiri'
+  require 'terminal-table'
   # Custom libs
   require 'common/browser'
   require 'common/custom_option_parser'

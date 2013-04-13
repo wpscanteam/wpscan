@@ -5,6 +5,7 @@ gem "typhoeus", "=0.6.2"
 gem "ethon", "=0.5.10"
 gem "nokogiri"
 gem "json"
+gem "terminal-table"
 
 group :development, :test do
   gem "webmock", ">=1.9.3"

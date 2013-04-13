@@ -277,7 +277,7 @@ def main
         puts
         puts green('[+]') + " We found the following #{wp_users.size} user/s :"
 
-        wp_users.output(' ' * 4)
+        wp_users.output(margin_left: ' ' * 4)
       end
 
     else
@@ -307,6 +307,8 @@ def main
         wp_users.brute_force(wpscan_options.wordlist,
                              show_progression: true,
                              verbose: wpscan_options.verbose)
+        puts
+        wp_users.output(show_password: true, margin_left: ' ' * 2)
       else
         puts
         puts 'Brute forcing aborted'
