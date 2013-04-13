@@ -61,6 +61,7 @@ class WpUser < WpItem
 
       # run all of the remaining requests
       hydra.run
+      puts if options[:show_progression]
     end
 
     # @param [ Typhoeus::Response ] response
