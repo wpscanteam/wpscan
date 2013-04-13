@@ -9,11 +9,11 @@ class WpUsers < WpItems
     # @return [ void ]
     def output(options = {})
       rows     = []
-      headings = ['Id', 'Name']
+      headings = ['Id', 'Login', 'Name']
       headings << 'Password' if options[:show_password]
 
       self.each do |wp_user|
-        row = [wp_user.id, wp_user.display_name]
+        row = [wp_user.id, wp_user.login, wp_user.display_name]
         row << wp_user.password if options[:show_password]
         rows << row
       end
