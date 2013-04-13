@@ -63,6 +63,7 @@ class WpUser < WpItem
     end
 
     # @param [ Typhoeus::Response ] response
+    # @param [ String ] password
     # @param [ Hash ] options
     #
     # @return [ Boolean ]
