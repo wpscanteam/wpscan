@@ -3,28 +3,24 @@
 class WpUser < WpItem
   module BruteForcable
 
-    # @param [ String ] wordlist The wordlist path
+    # @param [ String, Array<String> ] wordlist The wordlist path
     # @param [ Hash ] options
+    # @option options [ Boolean ] :verbose
+    # @option options [ Boolean ] :show_progression
     #
     # @return [ void ]
     def brute_force(wordlist, options = {})
       hydra               = Browser.instance.hydra
-      wordlist_charset    = File.charset(wordlist)
-      number_of_passwords = BruteForcable.lines_in_file(wordlist)
+      passwords           = BruteForcable.passwords_from_wordlist(wordlist)
+      number_of_passwords = passwords.size
       login_url           = @uri.merge('wp-login.php').to_s
-
       queue_count         = 0
       request_count       = 0
 
-      File.open(wordlist, "r:#{wordlist_charset}").each do |line|
-        line.encode!('UTF-8').strip!
-        # ignore file comments, but will miss passwords if they start with a hash...
-        next if line[0, 1] == '#'
-
+      passwords.each do |password|
         request_count += 1
         queue_count   += 1
         login          = self.login
-        password       = line
 
         request = Browser.instance.forge_request(login_url,
           {
@@ -67,6 +63,8 @@ class WpUser < WpItem
     # @param [ Typhoeus::Response ] response
     # @param [ String ] password
     # @param [ Hash ] options
+    # @option options [ Boolean ] :verbose
+    # @option options [ Boolean ] :show_progression
     #
     # @return [ Boolean ]
     def valid_password?(response, password, options = {})
@@ -92,21 +90,35 @@ class WpUser < WpItem
       false
     end
 
-    # Counts the number of lines in the wordlist
-    # It can take a couple of minutes on large
-    # wordlists, although bareable.
+    # Load the passwords from the wordlist, which can be a file path or
+    # an array or passwords
     #
-    # Each line which starts with # is ignored
+    # File comments are ignored, but will miss passwords if they start with a hash...
     #
-    # @param [ String ] file_path
+    # @param [ String, Array<String> ] wordlist
     #
-    # @return [ Integer ]
-    def self.lines_in_file(file_path)
-      lines = 0
-      File.open(file_path, 'rb').each do |line|
-        lines += 1 if line.strip[0,1] != '#'
+    # @return [ Array<String> ]
+    def self.passwords_from_wordlist(wordlist)
+      if wordlist.is_a?(String)
+        passwords = []
+        charset   = File.charset(wordlist).upcase
+        opt       = "r:#{charset}"
+        # To remove warning when charset = UTF-8
+        # Ignoring internal encoding UTF-8: it is identical to external encoding utf-8
+        opt      += ':UTF-8' if charset != 'UTF-8'
+
+        File.open(wordlist, opt).each do |line|
+          next if line[0,1] == '#'
+
+          passwords << line.strip
+        end
+      elsif wordlist.is_a?(Array)
+        passwords = wordlist
+      else
+        raise 'Invalid wordlist, expected String or Array'
       end
-      lines
+
+      passwords
     end
 
   end

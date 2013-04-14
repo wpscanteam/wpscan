@@ -1,22 +1,63 @@
 # encoding: UTF-8
 
 shared_examples 'WpUser::BruteForcable' do
-  let(:fixtures_dir) { MODELS_FIXTURES + '/wp_user/brute_forcable' }
-  let(:wordlist)     { fixtures_dir + '/wordlist-iso-8859-1.txt' }
-  let(:mod)          { WpUser::BruteForcable }
-  let(:login_url)    { uri.merge('wp-login.php').to_s }
+  let(:fixtures_dir)  { MODELS_FIXTURES + '/wp_user/brute_forcable' }
+  let(:wordlist_iso)  { fixtures_dir + '/wordlist-iso-8859-1.txt' }
+  let(:wordlist_utf8) { fixtures_dir + '/wordlist-utf-8.txt' }
+  let(:mod)           { WpUser::BruteForcable }
+  let(:login_url)     { uri.merge('wp-login.php').to_s }
 
   before { Browser.instance.max_threads = 1 }
 
-  describe '::lines_in_file' do
-    it 'returns 5 (1 line is a comment)' do
-      lines = mod.lines_in_file(wordlist)
-      lines.should == 5
+  describe '::passwords_from_wordlist' do
+    let(:expected)  { %w{password1 pa55w0rd admin root kansei£Ô} }
+    let(:exception) { 'Invalid wordlist, expected String or Array' }
+
+    after do
+      if @expected
+        mod.passwords_from_wordlist(wordlist).should == @expected
+      else
+        expect { mod.passwords_from_wordlist(wordlist) }.to raise_error(@exception)
+      end
+    end
+
+    context 'when the wordlist is a file' do
+      context 'when encoded with ISO-8859-1' do
+        let(:wordlist) { wordlist_iso }
+
+        it 'returns the expected passwords' do
+          @expected = expected
+        end
+      end
+
+      context 'when encoded with UTF-8' do
+        let(:wordlist) { wordlist_utf8 }
+
+        it 'returns the expected passwords' do
+          @expected = expected
+        end
+      end
+    end
+
+    context 'when the wordlist is an Array<String>' do
+      let(:wordlist) { %w{hello pwet yolo} }
+
+      it 'returns it' do
+        @expected = wordlist
+      end
+    end
+
+    context 'when the wordlist is invalid' do
+      let(:wordlist) { 200 }
+
+      it 'raises an error' do
+        @exception = exception
+      end
     end
   end
 
   describe '#valid_password?' do
-    let(:response) { Typhoeus::Response.new(resp_options) }
+    let(:response)     { Typhoeus::Response.new(resp_options) }
     let(:resp_options) { {} }
 
     after do
@@ -72,40 +113,13 @@ shared_examples 'WpUser::BruteForcable' do
     end
   end
 
-  describe 'wordlist charset' do
-    let(:expected) { %w{password1 pa55w0rd #comment admin root kansei£Ô} }
-
-    %w{wordlist-iso-8859-1.txt wordlist-utf-8.txt}.each do |file|
-      it 'contains the expected lines' do
-        file    = fixtures_dir + '/' + file
-        charset = File.charset(file)
-
-        lines = []
-        File.open(file, "r:#{charset}").each do |line|
-          lines << line.encode!('UTF-8').strip!
-        end
-
-        lines.should == expected
-      end
-    end
-  end
-
   describe '#brute_force' do
-    let(:passwords) {
-      passwords = []
-      charset   = File.charset(wordlist)
-
-      File.open(wordlist, "r:#{charset}").each do |line|
-        line.encode!('UTF-8').strip!
-        passwords << line unless line[0,1] == '#'
-      end
-      passwords
-    }
-    let(:login) { 'someuser' }
+    let(:passwords) { %w{pass1 pass2 yolo kansei£Ô} }
+    let(:login)     { 'someuser' }
 
     after do
       wp_user.login = login
-      wp_user.brute_force(wordlist)
+      wp_user.brute_force(passwords)
       wp_user.password.should == @expected
     end
 
