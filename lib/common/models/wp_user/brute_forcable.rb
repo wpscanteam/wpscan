@@ -22,8 +22,6 @@ class WpUser < WpItem
                                         total: passwords.size) if options[:show_progression]
 
       passwords.each do |password|
-        queue_count += 1
-
         request = Browser.instance.forge_request(login_url,
           method: :post,
           body: { log: login, pwd: password },
@@ -43,6 +41,7 @@ class WpUser < WpItem
         end
 
         hydra.queue(request)
+        queue_count += 1
 
         # it can take a long time to queue 2 million requests,
         # for that reason, we queue @threads, send @threads, queue @threads and so on.

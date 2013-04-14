@@ -14,17 +14,18 @@ class WpItems < Array
     # @return [ WpItems ]
     def aggressive_detection(wp_target, options = {})
       queue_count      = 0
-      request_count    = 0
       browser          = Browser.instance
       hydra            = browser.hydra
       targets          = targets_items(wp_target, options)
-      targets_size     = targets.size
-      show_progression = options[:show_progression] || false
       exist_options    = {
         error_404_hash:  wp_target.error_404_hash,
         homepage_hash:   wp_target.homepage_hash,
         exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
+      progress_bar     = ProgressBar.create(format: '%t %a <%B> (%c / %C) %P%% %e',
+                                            title: '  ', # Otherwise 'Progress' replaces the title
+                                            length: 120,
+                                            total: targets.size) if options[:show_progression]
 
       # If we only want the vulnerable ones, the passive detection is ignored
       # Otherwise, a passive detection is performed, and results will be merged
@@ -32,11 +33,9 @@ class WpItems < Array
 
       targets.each do |target_item|
         request = browser.forge_request(target_item.url, request_params)
-        request_count += 1
 
         request.on_complete do |response|
-
-          print "\rChecking for #{targets_size} total ... #{(request_count * 100) / targets_size}% complete." if show_progression
+          progress_bar.progress += 1 if options[:show_progression]
 
           if target_item.exists?(exist_options, response)
             if !results.include?(target_item)
