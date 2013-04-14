@@ -23,7 +23,7 @@ class WpItems < Array
         exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
       progress_bar     = ProgressBar.create(format: '%t %a <%B> (%c / %C) %P%% %e',
-                                            title: '  ', # Otherwise 'Progress' replaces the title
+                                            title: '  ', # Used to craete a left margin
                                             length: 120,
                                             total: targets.size) if options[:show_progression]
 
