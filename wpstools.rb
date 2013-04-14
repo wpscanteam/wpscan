@@ -29,8 +29,10 @@ begin
     plugin.run(options)
   end
 
+  exit(0)
 rescue => e
   puts "[ERROR] #{e.message}"
   puts 'Trace :'
   puts e.backtrace.join("\n")
+  exit(1)
 end

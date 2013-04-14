@@ -21,7 +21,7 @@ def main
     if wpscan_options.help
       help()
       usage()
-      exit(1)
+      exit(0)
     end
 
     # Check for updates
@@ -36,7 +36,7 @@ def main
         puts 'Svn / Git not installed, or wpscan has not been installed with one of them.'
         puts 'Update aborted'
       end
-      exit(1)
+      exit(0)
     end
 
     wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)
@@ -69,7 +69,7 @@ def main
         wp_target = WpTarget.new(redirection, wpscan_options.to_h)
       else
         puts 'Scan aborted'
-        exit
+        exit(0)
       end
     end
 
@@ -93,7 +93,7 @@ def main
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
       puts 'Continue? [y/n]'
       unless Readline.readline =~ /^y/i
-        exit
+        exit(0)
       end
     end
 
@@ -320,7 +320,7 @@ def main
     puts green("[+] Finished at #{stop_time.asctime}")
     elapsed = stop_time - start_time
     puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
-    exit() # must exit!
+    exit(0) # must exit!
   rescue => e
     if e.backtrace[0] =~ /main/
       puts red(e.message)
@@ -329,6 +329,7 @@ def main
       puts red('Trace :')
       puts red(e.backtrace.join("\n"))
     end
+    exit(1)
   end
 end
 
