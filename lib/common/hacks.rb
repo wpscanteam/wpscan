@@ -76,7 +76,7 @@ class File
   #
   # @return [ String ] The charset of the file
   def self.charset(file_path)
-    %x{file -i #{file_path}}[%r{charset=([^\n]+)\n}, 1]
+    %x{file -i "#{file_path}"}[%r{charset=([^\n]+)\n}, 1]
   end
 end
 

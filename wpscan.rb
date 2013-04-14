@@ -302,7 +302,6 @@ def main
       if bruteforce
         puts
         puts green('[+]') + ' Starting the password brute forcer'
-        puts
 
         wp_users.brute_force(wpscan_options.wordlist,
                              show_progression: true,
