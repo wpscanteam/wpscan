@@ -7,8 +7,6 @@ class SvnParser
 
   def initialize(svn_root)
     @svn_root    = svn_root
-    @svn_browser = Browser.instance
-    @svn_hydra   = @svn_browser.hydra
   end
 
   def parse
@@ -21,7 +19,7 @@ class SvnParser
   # Gets all directories in the SVN root
   def get_root_directories
     dirs      = []
-    rootindex = @svn_browser.get(@svn_root).body
+    rootindex = Browser.get(@svn_root).body
 
     rootindex.scan(%r{<li><a href=".+">(.+)/</a></li>}i).each do |dir|
       dirs << dir[0]
