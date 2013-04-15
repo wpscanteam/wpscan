@@ -10,14 +10,15 @@ class WpUser < WpItem
     #
     # @return [ void ]
     def brute_force(wordlist, options = {})
-      hydra        = Browser.instance.hydra
+      browser      = Browser.instance
+      hydra        = browser.hydra
       passwords    = BruteForcable.passwords_from_wordlist(wordlist)
       login        = self.login
       login_url    = @uri.merge('wp-login.php').to_s
       queue_count  = 0
       found        = false
       progress_bar = ProgressBar.create(format: '%t %a <%B> (%c / %C) %P%% %e',
-                                        title: "  Brute Forcing user '#{login}'",
+                                        title: "  Brute Forcing '#{login}'",
                                         length: 120,
                                         total: passwords.size) if options[:show_progression]
 
@@ -29,9 +30,9 @@ class WpUser < WpItem
         )
 
         request.on_complete do |response|
-          puts "\n  Trying Username : #{login} Password : #{password}" if options[:verbose]
-
           progress_bar.progress += 1 if options[:show_progression] && !found
+
+          puts "\n  Trying Username : #{login} Password : #{password}" if options[:verbose]
 
           if valid_password?(response, password, options)
             self.password = password
@@ -48,10 +49,10 @@ class WpUser < WpItem
         # hydra.run only returns when it has recieved all of its,
         # responses. This means that while we are waiting for @threads,
         # responses, we are waiting...
-        if queue_count >= Browser.instance.max_threads
+        if queue_count >= browser.max_threads
           hydra.run
           queue_count = 0
-          puts "Sent #{Browser.instance.max_threads} requests ..." if options[:verbose]
+          puts "Sent #{browser.max_threads} requests ..." if options[:verbose]
         end
       end
 
