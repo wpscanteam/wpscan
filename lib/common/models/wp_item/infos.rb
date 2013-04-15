@@ -7,17 +7,30 @@ class WpItem
 
     # @return [ Boolean ]
     def has_readme?
-      Browser.get(readme_url).code == 200 ? true : false
+      !readme_url.nil?
     end
 
-    # @return [ String ] The url to the readme file
+    # @return [ String,nil ] The url to the readme file, nil if not found
     def readme_url
-      @uri.merge('readme.txt').to_s
+      %w{readme.txt README.txt}.each do |readme|
+        url = @uri.merge(readme).to_s
+        return url if url_is_200?(url)
+      end
+      nil
     end
 
     # @return [ Boolean ]
     def has_changelog?
-      Browser.get(changelog_url).code == 200 ? true : false
+      url_is_200?(changelog_url)
+    end
+
+    # Checks if the url status code is 200
+    #
+    # @param [ String ] url
+    #
+    # @return [ Boolean ] True if the url status is 200
+    def url_is_200?(url)
+      Browser.get(url).code == 200
     end
 
     # @return [ String ] The url to the changelog file

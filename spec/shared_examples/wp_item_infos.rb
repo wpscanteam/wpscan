@@ -4,30 +4,46 @@ shared_examples 'WpItem::Infos' do
 
   # 3 expected urls have to be set in the described class (or subject)
   # e.g :
-  #  let(:readme_url)    { }
   #  let(:changelog_url) { }
   #  let(:error_log_url) { }
 
   describe '#readme_url' do
-    it 'returns the correct url' do
-      subject.readme_url.should == readme_url
+    after { subject.readme_url.should === @expected }
+
+    it 'returns nil' do
+      stub_request(:get, /.*/).to_return(status: 404)
+      @expected = nil
+    end
+
+    context 'when the file exists' do
+      %w{readme.txt README.txt}.each do |readme|
+        it 'returns the correct url' do
+          url       = uri.merge(readme).to_s
+          @expected = url
+
+          stub_request(:get, %r{^(?!#{url})}).to_return(status: 404)
+          stub_request(:get, url).to_return(status: 200)
+        end
+      end
     end
   end
 
   describe '#has_readme?' do
-    after :each do
-      stub_request(:get, subject.readme_url).to_return(status: @status)
+    after do
+      subject.stub(readme_url: @stub)
       subject.has_readme?.should === @expected
     end
 
-    it 'returns true on a 200' do
-      @status   = 200
-      @expected = true
+    context 'when readme_url is nil'
+    it 'returns false' do
+      @stub     = nil
+      @expected = false
     end
 
-    it 'returns false otherwise' do
-      @status   = 404
-      @expected = false
+    context 'when readme_url is not nil'
+    it 'returns true' do
+      @stub     = uri.merge('readme.txt').to_s
+      @expected = true
     end
   end
 

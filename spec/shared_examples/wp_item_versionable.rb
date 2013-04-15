@@ -4,6 +4,7 @@ shared_examples 'WpItem::Versionable' do
 
   describe '#version' do
     let(:fixtures_dir) { MODELS_FIXTURES + '/wp_item/versionable' }
+    let(:readme_url)   { subject.uri.merge('readme.txt').to_s }
 
     context 'when the version is already set' do
       it 'returns it' do
@@ -14,7 +15,7 @@ shared_examples 'WpItem::Versionable' do
 
     context 'otherwise' do
       after do
-        stub_request_to_fixture(url: subject.readme_url, fixture: fixtures_dir + @file)
+        stub_request_to_fixture(url: readme_url, fixture: fixtures_dir + @file)
         subject.version.should == @expected
       end
 
