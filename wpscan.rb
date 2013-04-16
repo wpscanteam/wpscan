@@ -192,14 +192,12 @@ def main
           only_vulnerable: wpscan_options.enumerate_only_vulnerable_plugins || false
         )
       )
+      puts
       if !wp_plugins.empty?
-        puts
-        puts
         puts green('[+]') + " We found #{wp_plugins.size} plugins:"
 
         wp_plugins.output
       else
-        puts
         puts 'No plugins found :('
       end
     end
@@ -216,15 +214,12 @@ def main
           only_vulnerable: wpscan_options.enumerate_only_vulnerable_themes || false
         )
       )
-
+      puts
       if !wp_themes.empty?
-        puts
-        puts
         puts green('[+]') + " We found #{wp_themes.size} themes:"
 
         wp_themes.output
       else
-        puts
         puts 'No themes found :('
       end
     end
@@ -240,8 +235,8 @@ def main
           theme_name: wp_theme ? wp_theme.name : nil
         )
       )
+      puts
       if !wp_timthumbs.empty?
-        puts
         puts green('[+]') + " We found #{wp_timthumbs.size} timthumb file/s :"
         puts
 
@@ -250,7 +245,6 @@ def main
         puts
         puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')
       else
-        puts
         puts 'No timthumb files found :('
       end
     end
@@ -266,15 +260,13 @@ def main
           show_progression: false
         )
       )
-
+      puts
       if wp_users.empty?
-        puts
         puts 'We did not enumerate any usernames :('
         puts 'Try supplying your own username with the --username option'
         puts
         exit(1)
       else
-        puts
         puts green('[+]') + " We found the following #{wp_users.size} user/s :"
 
         wp_users.output(margin_left: ' ' * 4)
@@ -298,11 +290,9 @@ def main
 
         bruteforce = false if Readline.readline !~ /^y/i
       end
-
+      puts
       if bruteforce
-        puts
         puts green('[+]') + ' Starting the password brute forcer'
-        puts
 
         wp_users.brute_force(wpscan_options.wordlist,
                              show_progression: true,
@@ -310,7 +300,6 @@ def main
         puts
         wp_users.output(show_password: true, margin_left: ' ' * 2)
       else
-        puts
         puts 'Brute forcing aborted'
       end
     end
