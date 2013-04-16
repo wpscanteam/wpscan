@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 shared_examples 'WpItem::Existable' do
+  let(:fixtures_dir) { MODELS_FIXTURES + '/wp_item/existable' }
 
   describe '#exists?' do
     context 'when the response is supplied' do
@@ -72,6 +73,19 @@ shared_examples 'WpItem::Existable' do
         it 'returns true' do
           @resp_opt = { code: 200, body: 'hello dude!' }
           @expected = true
+        end
+      end
+    end
+
+    context 'when it\'s a redirect to the homepage' do
+      context 'and the cache generation time is in comment tag' do
+        let(:body)             { File.new(fixtures_dir + '/cache_generation.html').read }
+        let(:uncommented_body) { body.gsub(/<!--.*?-->/m, '') }
+        let(:exists_options)   { { homepage_hash: Digest::MD5.hexdigest(uncommented_body) } }
+
+        it 'returns false' do
+          @resp_opt = { code: 200, body: body }
+          @expected = false
         end
       end
     end

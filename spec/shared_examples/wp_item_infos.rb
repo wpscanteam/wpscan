@@ -2,7 +2,7 @@
 
 shared_examples 'WpItem::Infos' do
 
-  # 3 expected urls have to be set in the described class (or subject)
+  # 2 expected urls have to be set in the described class (or subject)
   # e.g :
   #  let(:changelog_url) { }
   #  let(:error_log_url) { }

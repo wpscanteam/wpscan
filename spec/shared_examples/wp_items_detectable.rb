@@ -195,7 +195,6 @@ shared_examples 'WpItems::Detectable' do
           @expected = subject.new
         end
       end
-
     end
 
     context 'when no :only_vulnerable' do
