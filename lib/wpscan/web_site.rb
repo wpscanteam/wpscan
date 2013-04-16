@@ -85,7 +85,7 @@ class WebSite
   def self.page_hash(page)
     page = Browser.get(page) unless page.is_a?(Typhoeus::Response)
 
-    Digest::MD5.hexdigest(page.body.gsub(/<!--[^>]+-->/, ''))
+    Digest::MD5.hexdigest(page.body.gsub(/<!--.*?-->/m, ''))
   end
 
   def homepage_hash

@@ -193,7 +193,10 @@ describe 'WebSite' do
     end
 
     context 'when there are comments' do
-      let(:page) { Typhoeus::Response.new(body: "yolo\n\n<!--I should no longer be there -->\nworld!") }
+      let(:page) {
+        body = "yolo\n\n<!--I should <script>no longer be</script> there -->\nworld!"
+        Typhoeus::Response.new(body: body)
+      }
 
       it 'removes them' do
         @expected = "yolo\n\n\nworld!"
