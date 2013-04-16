@@ -157,32 +157,52 @@ describe 'WebSite' do
   end
 
   describe '#has_xml_rpc?' do
-    it 'should return true' do
+    it 'returns true' do
       stub_request(:get, web_site.url).
         to_return(status: 200, headers: { 'X-Pingback' => 'xmlrpc' })
 
       web_site.should have_xml_rpc
     end
 
-    it 'should return false' do
+    it 'returns false' do
       stub_request(:get, web_site.url).to_return(status: 200)
       web_site.should_not have_xml_rpc
     end
   end
 
   describe '#page_hash' do
-    it 'should return the MD5 hash of the page' do
-      url  = 'http://e.localhost/somepage.php'
-      body = 'Hello World !'
+    after { WebSite.page_hash(page).should == Digest::MD5.hexdigest(@expected) }
 
-      stub_request(:get, url).to_return(body: body)
+    context 'when the page is an url' do
+      let(:page) { 'http://e.localhost/somepage.php' }
 
-      WebSite.page_hash(url).should === Digest::MD5.hexdigest(body)
+      it 'returns the MD5 hash of the page' do
+        body = 'Hello World !'
+        stub_request(:get, page).to_return(body: body)
+
+        @expected = body
+      end
+    end
+
+    context 'when the page is a Typhoeus::Response' do
+      let(:page) { Typhoeus::Response.new(body: 'Hello Example!') }
+
+      it 'returns the correct hash' do
+        @expected = 'Hello Example!'
+      end
+    end
+
+    context 'when there are comments' do
+      let(:page) { Typhoeus::Response.new(body: "yolo\n\n<!--I should no longer be there -->\nworld!") }
+
+      it 'removes them' do
+        @expected = "yolo\n\n\nworld!"
+      end
     end
   end
 
   describe '#homepage_hash' do
-    it 'should return the MD5 hash of the homepage' do
+    it 'returns the MD5 hash of the homepage' do
       body = 'Hello World'
 
       stub_request(:get, web_site.url).to_return(body: body)
@@ -191,7 +211,7 @@ describe 'WebSite' do
   end
 
   describe '#error_404_hash' do
-    it 'should return the md5sum of the 404 page' do
+    it 'returns the md5sum of the 404 page' do
       stub_request(:any, /.*/).
         to_return(status: 404, body: '404 page !')
 
@@ -200,30 +220,30 @@ describe 'WebSite' do
   end
 
   describe '#rss_url' do
-    it 'should return nil if the url is not found' do
+    it 'returns nil if the url is not found' do
       stub_request(:get, web_site.url).to_return(body: 'No RSS link in this body !')
       web_site.rss_url.should be_nil
     end
 
-    it "should return 'http://lamp-wp/wordpress-3.5/?feed=rss2'" do
+    it "returns 'http://lamp-wp/wordpress-3.5/?feed=rss2'" do
       stub_request_to_fixture(url: web_site.url, fixture: fixtures_dir + '/rss_url/wordpress-3.5.htm')
       web_site.rss_url.should === 'http://lamp-wp/wordpress-3.5/?feed=rss2'
     end
   end
 
   describe '#robots_url' do
-    it 'should return the correct url' do
+    it 'returns the correct url' do
       web_site.robots_url.should === 'http://example.localhost/robots.txt'
     end
   end
 
   describe '#has_robots?' do
-    it 'should return true' do
+    it 'returns true' do
       stub_request(:get, web_site.robots_url).to_return(status: 200)
       web_site.has_robots?.should be_true
     end
 
-    it 'should return false' do
+    it 'returns false' do
       stub_request(:get, web_site.robots_url).to_return(status: 404)
       web_site.has_robots?.should be_false
     end

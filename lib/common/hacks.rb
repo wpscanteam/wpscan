@@ -39,7 +39,7 @@ module Typhoeus
     #
     # @return [ Boolean ]
     def has_valid_hash?(error_404_hash, homepage_hash)
-      body_hash = Digest::MD5.hexdigest(self.body)
+      body_hash = WebSite.page_hash(self)
 
       body_hash != error_404_hash && body_hash != homepage_hash
     end

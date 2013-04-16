@@ -76,9 +76,16 @@ class WebSite
     redirection
   end
 
-  # Return the MD5 hash of the page given by url
-  def self.page_hash(url)
-    Digest::MD5.hexdigest(Browser.get(url).body)
+  # Compute the MD5 of the page
+  # Comments are deleted from the page to avoid cache generation details
+  #
+  # @param [ String, Typhoeus::Response ] page The url of the response of the page
+  #
+  # @return [ String ] The MD5 hash of the page
+  def self.page_hash(page)
+    page = Browser.get(page) unless page.is_a?(Typhoeus::Response)
+
+    Digest::MD5.hexdigest(page.body.gsub(/<!--[^>]+-->/, ''))
   end
 
   def homepage_hash
