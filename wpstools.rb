@@ -32,7 +32,11 @@ begin
   exit(0)
 rescue => e
   puts "[ERROR] #{e.message}"
-  puts 'Trace :'
-  puts e.backtrace.join("\n")
+
+  unless e.backtrace[0] =~ /main/
+    puts 'Trace :'
+    puts e.backtrace.join("\n")
+  end
+
   exit(1)
 end
