@@ -5,7 +5,6 @@ shared_examples 'WpUser::BruteForcable' do
   let(:wordlist_iso)  { fixtures_dir + '/wordlist-iso-8859-1.txt' }
   let(:wordlist_utf8) { fixtures_dir + '/wordlist-utf-8.txt' }
   let(:mod)           { WpUser::BruteForcable }
-  let(:login_url)     { uri.merge('wp-login.php').to_s }
 
   before { Browser.instance.max_threads = 1 }
 
@@ -113,6 +112,11 @@ shared_examples 'WpUser::BruteForcable' do
     end
   end
 
+  # TODO
+  describe '#login_request' do
+
+  end
+
   describe '#brute_force' do
     let(:passwords) { %w{pass1 pass2 yolo kansei£Ô} }
     let(:login)     { 'someuser' }
@@ -125,7 +129,7 @@ shared_examples 'WpUser::BruteForcable' do
 
     context 'when no password is valid' do
       before do
-        stub_request(:post, login_url).
+        stub_request(:post, wp_user.login_url).
           #with(body: { log: login }). # produces an error : undefined method `split' for {:log=>"someuser", :pwd=>"password1"}:Hash
           to_return(body: 'login_error')
       end
@@ -139,7 +143,7 @@ shared_examples 'WpUser::BruteForcable' do
       # Due to the error with .with(body: { log: login }) above
       # We can't use it to stub the request for a specific password
       # So, the first one will be valid
-      before { stub_request(:post, login_url).to_return(status: 302) }
+      before { stub_request(:post, wp_user.login_url).to_return(status: 302) }
 
       it 'sets the @password' do
         @expected = passwords[0]

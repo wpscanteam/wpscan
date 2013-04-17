@@ -22,6 +22,11 @@ class WpUser < WpItem
   end
 
   # @return [ String ]
+  def login_url
+    @uri.merge('wp-login.php').to_s
+  end
+
+  # @return [ String ]
   def to_s
     s  = "#{id}"
     s += " | #{login}" if login

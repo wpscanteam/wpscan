@@ -3,6 +3,16 @@
 class WpUser < WpItem
   module BruteForcable
 
+    # Brute force the user with the wordlist supplied
+    #
+    # It can take a long time to queue 2 million requests,
+    # for that reason, we queue browser.max_threads, send browser.max_threads,
+    # queue browser.max_threads and so on.
+    #
+    # hydra.run only returns when it has recieved all of its, responses.
+    # This means that while we are waiting for browser.max_threads,
+    # responses, we are waiting...
+    #
     # @param [ String, Array<String> ] wordlist The wordlist path
     # @param [ Hash ] options
     # @option options [ Boolean ] :verbose
@@ -13,21 +23,12 @@ class WpUser < WpItem
       browser      = Browser.instance
       hydra        = browser.hydra
       passwords    = BruteForcable.passwords_from_wordlist(wordlist)
-      login        = self.login
-      login_url    = @uri.merge('wp-login.php').to_s
       queue_count  = 0
       found        = false
-      progress_bar = ProgressBar.create(format: '%t %a <%B> (%c / %C) %P%% %e',
-                                        title: "  Brute Forcing '#{login}'",
-                                        length: 120,
-                                        total: passwords.size) if options[:show_progression]
+      progress_bar = self.progress_bar(passwords.size) if options[:show_progression]
 
       passwords.each do |password|
-        request = Browser.instance.forge_request(login_url,
-          method: :post,
-          body: { log: login, pwd: password },
-          cache_ttl: 0
-        )
+        request = login_request(password)
 
         request.on_complete do |response|
           progress_bar.progress += 1 if options[:show_progression] && !found
@@ -35,20 +36,15 @@ class WpUser < WpItem
           puts "\n  Trying Username : #{login} Password : #{password}" if options[:verbose]
 
           if valid_password?(response, password, options)
-            self.password = password
             found         = true
-            return # Used as break
+            self.password = password
+            return
           end
         end
 
         hydra.queue(request)
         queue_count += 1
 
-        # it can take a long time to queue 2 million requests,
-        # for that reason, we queue @threads, send @threads, queue @threads and so on.
-        # hydra.run only returns when it has recieved all of its,
-        # responses. This means that while we are waiting for @threads,
-        # responses, we are waiting...
         if queue_count >= browser.max_threads
           hydra.run
           queue_count = 0
@@ -58,6 +54,31 @@ class WpUser < WpItem
 
       # run all of the remaining requests
       hydra.run
+    end
+
+    # @param [ Integer ] password_size
+    #
+    # @return [ ProgressBar ]
+    # :nocov:
+    def progress_bar(passwords_size)
+      ProgressBar.create(
+        format: '%t %a <%B> (%c / %C) %P%% %e',
+        title: "  Brute Forcing '#{login}'",
+        length: 120,
+        total: passwords_size
+      )
+    end
+    # :nocov:
+
+    # @param [ String ] password
+    #
+    # @return [ Typhoeus::Request ]
+    def login_request(password)
+      Browser.instance.forge_request(login_url,
+        method: :post,
+        body: { log: login, pwd: password },
+        cache_ttl: 0
+      )
     end
 
     # @param [ Typhoeus::Response ] response
@@ -82,10 +103,13 @@ class WpUser < WpItem
       else
         puts "\n  " + red('ERROR:') + " We received an unknown response for #{password}..." if options[:show_progression]
 
-        # HACK to get the coverage :/ (otherwise some output is present in the rspec)
-        puts red("    Code: #{response.code}") if options[:verbose]
-        puts red("    Body: #{response.body}") if options[:verbose]
-        puts if options[:verbose]
+        # :nocov:
+        if options[:verbose]
+          puts red("    Code: #{response.code}")
+          puts red("    Body: #{response.body}")
+          puts
+        end
+        # :nocov:
       end
       false
     end
