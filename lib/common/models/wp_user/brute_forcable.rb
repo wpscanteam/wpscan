@@ -25,7 +25,7 @@ class WpUser < WpItem
       passwords    = BruteForcable.passwords_from_wordlist(wordlist)
       queue_count  = 0
       found        = false
-      progress_bar = self.progress_bar(passwords.size) if options[:show_progression]
+      progress_bar = self.progress_bar(passwords.size, options)
 
       passwords.each do |password|
         request = login_request(password)
@@ -56,17 +56,20 @@ class WpUser < WpItem
       hydra.run
     end
 
-    # @param [ Integer ] password_size
+    # @param [ Integer ] targets_size
+    # @param [ Hash ] options
     #
     # @return [ ProgressBar ]
     # :nocov:
-    def progress_bar(passwords_size)
-      ProgressBar.create(
-        format: '%t %a <%B> (%c / %C) %P%% %e',
-        title: "  Brute Forcing '#{login}'",
-        length: 120,
-        total: passwords_size
-      )
+    def progress_bar(passwords_size, options)
+      if options[:show_progression]
+        ProgressBar.create(
+          format: '%t %a <%B> (%c / %C) %P%% %e',
+          title: "  Brute Forcing '#{login}'",
+          length: 120,
+          total: passwords_size
+        )
+      end
     end
     # :nocov:
 
@@ -90,28 +93,25 @@ class WpUser < WpItem
     # @return [ Boolean ]
     def valid_password?(response, password, options = {})
       if response.code == 302
-        puts "\n  " + green('[SUCCESS]') + " Login : #{login} Password : #{password}\n\n" if options[:show_progression]
-        return true
+        progression = "#{green('[SUCCESS]')} Login : #{login} Password : #{password}\n\n"
+        valid       = true
       elsif response.body =~ /login_error/i
-        puts "\n  Incorrect login and/or password." if options[:verbose]
+        verbose = "\n  Incorrect login and/or password."
       elsif response.timed_out?
-        puts "\n  " + red('ERROR:') + ' Request timed out.' if options[:show_progression]
+        progression = "#{red('ERROR:')} Request timed out."
       elsif response.code == 0
-        puts "\n  " + red('ERROR:') + ' No response from remote server. WAF/IPS?' if options[:show_progression]
+        progression = "#{red('ERROR:')} No response from remote server. WAF/IPS?"
       elsif response.code.to_s =~ /^50/
-        puts "\n  " + red('ERROR:') + ' Server error, try reducing the number of threads.' if options[:show_progression]
+        progression = "#{red('ERROR:')} Server error, try reducing the number of threads."
       else
-        puts "\n  " + red('ERROR:') + " We received an unknown response for #{password}..." if options[:show_progression]
-
-        # :nocov:
-        if options[:verbose]
-          puts red("    Code: #{response.code}")
-          puts red("    Body: #{response.body}")
-          puts
-        end
-        # :nocov:
+        progression = "#{red('ERROR:')} We received an unknown response for #{password}..."
+        verbose     = red("    Code: #{response.code}\n    Body: #{response.body}\n")
       end
-      false
+
+      puts "\n  " + progression if progression && options[:show_progression]
+      puts verbose if verbose && options[:verbose]
+
+      valid || false
     end
 
     # Load the passwords from the wordlist, which can be a file path or

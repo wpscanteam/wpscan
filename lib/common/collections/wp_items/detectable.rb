@@ -17,15 +17,12 @@ class WpItems < Array
       browser          = Browser.instance
       hydra            = browser.hydra
       targets          = targets_items(wp_target, options)
+      progress_bar     = progress_bar(targets.size, options)
       exist_options    = {
         error_404_hash:  wp_target.error_404_hash,
         homepage_hash:   wp_target.homepage_hash,
         exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
-      progress_bar     = ProgressBar.create(format: '%t %a <%B> (%c / %C) %P%% %e',
-                                            title: '  ', # Used to craete a left margin
-                                            length: 120,
-                                            total: targets.size) if options[:show_progression]
 
       # If we only want the vulnerable ones, the passive detection is ignored
       # Otherwise, a passive detection is performed, and results will be merged
@@ -57,6 +54,23 @@ class WpItems < Array
       results.sort!
       results # can't just return results.sort because the #sort returns an array, and we want a WpItems
     end
+
+    # @param [ Integer ] targets_size
+    # @param [ Hash ] options
+    #
+    # @return [ ProgressBar ]
+    # :nocov:
+    def progress_bar(targets_size, options)
+      if options[:show_progression]
+        ProgressBar.create(
+          format: '%t %a <%B> (%c / %C) %P%% %e',
+          title: '  ', # Used to craete a left margin
+          length: 120,
+          total: targets_size
+        )
+      end
+    end
+    # :nocov:
 
     # @param [ WpTarget ] wp_target
     # @param [ Hash ] options
