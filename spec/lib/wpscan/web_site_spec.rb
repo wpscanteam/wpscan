@@ -278,6 +278,7 @@ describe 'WebSite' do
     end
 
     # This doesn't work in rspec, WebMock or Typhoeus returns the whole file
+    # See https://github.com/bblimke/webmock/issues/277
     #it 'only checks the first 700 bytes' do
     #  @file     = 'matches_after_700_bytes.txt'
     #  @expected = false
