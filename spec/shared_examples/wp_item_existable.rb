@@ -51,7 +51,7 @@ shared_examples 'WpItem::Existable' do
     end
 
     context 'w/o exclude_content' do
-      [200, 301, 302, 401, 403].each do |code|
+      [200, 401, 403].each do |code|
         it "returns true on #{code}" do
           @resp_opt = { code: code, body: '' }
           @expected = true

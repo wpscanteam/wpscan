@@ -29,10 +29,7 @@ class WpItem
     #
     # @return [ Boolean ]
     def exists_from_response?(response, options = {})
-      # FIXME : The response is supposed to follow locations, so we should not have 301 or 302.
-      # However, due to an issue with Typhoeus or Webmock, the location is not followed in specs
-      # See https://github.com/typhoeus/typhoeus/issues/279
-      if [200, 301, 302, 401, 403].include?(response.code)
+      if [200, 401, 403].include?(response.code)
         if response.has_valid_hash?(options[:error_404_hash], options[:homepage_hash])
           if options[:exclude_content]
             unless response.body.match(options[:exclude_content])

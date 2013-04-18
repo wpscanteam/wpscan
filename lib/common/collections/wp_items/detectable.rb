@@ -5,7 +5,7 @@ class WpItems < Array
 
     attr_reader :vulns_file, :item_xpath
 
-    # @param [ Wptarget ] wp_target
+    # @param [ WpTarget ] wp_target
     # @param [ Hash ] options
     # @option options [ Boolean ] :show_progression  Whether or not output the progress bar
     # @option options [ Boolean ] :only_vulnerable   Only check for vulnerable items
@@ -13,7 +13,6 @@ class WpItems < Array
     #
     # @return [ WpItems ]
     def aggressive_detection(wp_target, options = {})
-      queue_count      = 0
       browser          = Browser.instance
       hydra            = browser.hydra
       targets          = targets_items(wp_target, options)
@@ -42,12 +41,6 @@ class WpItems < Array
         end
 
         hydra.queue(request)
-        queue_count += 1
-
-        if queue_count == browser.max_threads
-          hydra.run
-          queue_count = 0
-        end
       end
 
       hydra.run
