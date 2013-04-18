@@ -1,5 +1,7 @@
 # encoding: UTF-8
 
+require 'spec_helper'
+
 describe 'WebSite' do
   let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WEB_SITE_DIR }
   subject(:web_site) { WebSite.new('http://example.localhost/') }
@@ -250,5 +252,35 @@ describe 'WebSite' do
       stub_request(:get, web_site.robots_url).to_return(status: 404)
       web_site.has_robots?.should be_false
     end
+  end
+
+  describe '::has_log?' do
+    let(:log_url) { web_site.uri.merge('log.txt').to_s }
+    let(:pattern) { %r{PHP Fatal error} }
+
+    after do
+      stub_request_to_fixture(url: log_url, fixture: fixtures_dir + "/has_log/#{@file}")
+      WebSite.has_log?(log_url, pattern).should == @expected
+    end
+
+    context 'when the pattern does not match' do
+      it 'returns false' do
+        @file     = 'no_match.txt'
+        @expected = false
+      end
+    end
+
+    context 'when the pattern matches' do
+      it 'returns true' do
+        @file     = 'matches.txt'
+        @expected = true
+      end
+    end
+
+    # This doesn't work in rspec, WebMock or Typhoeus returns the whole file
+    #it 'only checks the first 700 bytes' do
+    #  @file     = 'matches_after_700_bytes.txt'
+    #  @expected = false
+    #end
   end
 end

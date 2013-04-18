@@ -49,13 +49,9 @@ class WpItem
     # however can also be found in their specific plugin dir.
     # http://www.exploit-db.com/ghdb/3714/
     #
-    # Only the first 700 bytes are checked to avoid the download
-    # of the whole file which can be very huge (like 2 Go)
-    #
     # @return [ Boolean ]
     def has_error_log?
-      response_body = Browser.get(error_log_url, headers: {'range' => 'bytes=0-700'}).body
-      response_body[%r{PHP Fatal error}i] ? true : false
+      WebSite.has_log?(error_log_url, %r{PHP Fatal error}i)
     end
 
     # @return [ String ] The url to the error_log file

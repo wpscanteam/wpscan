@@ -90,6 +90,12 @@ class WpTarget < WebSite
   end
   # :nocov:
 
+  # The version is not yet considerated
+  #
+  # @param [ String ] name
+  # @param [ String ] version
+  #
+  # @return [ Boolean ]
   def has_plugin?(name, version = nil)
     WpPlugin.new(
       @uri,
@@ -100,12 +106,12 @@ class WpTarget < WebSite
     ).exists?
   end
 
+  # @return [ Boolean ]
   def has_debug_log?
-    # We only get the first 700 bytes of the file to avoid loading huge file (like 2Go)
-    response_body = Browser.get(debug_log_url(), headers: {'range' => 'bytes=0-700'}).body
-    response_body[%r{\[[^\]]+\] PHP (?:Warning|Error|Notice):}] ? true : false
+    WebSite.has_log?(debug_log_url, %r{\[[^\]]+\] PHP (?:Warning|Error|Notice):})
   end
 
+  # @return [ String ]
   def debug_log_url
     @uri.merge("#{wp_content_dir()}/debug.log").to_s
   end
@@ -113,10 +119,13 @@ class WpTarget < WebSite
   # Script for replacing strings in wordpress databases
   # reveals databse credentials after hitting submit
   # http://interconnectit.com/124/search-and-replace-for-wordpress-databases/
+  #
+  # @return [ String ]
   def search_replace_db_2_url
     @uri.merge('searchreplacedb2.php').to_s
   end
 
+  # @return [ Boolean ]
   def search_replace_db_2_exists?
     resp = Browser.get(search_replace_db_2_url)
     resp.code == 200 && resp.body[%r{by interconnect}i]

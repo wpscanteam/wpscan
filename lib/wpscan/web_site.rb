@@ -117,9 +117,21 @@ class WebSite
   end
 
   # Gets a robots.txt URL
+  #
+  # @return [ String ]
   def robots_url
-    robots = @uri.clone
-    robots.path = '/robots.txt'
-    robots.to_s
+    @uri.merge('robots.txt').to_s
+  end
+
+  # Only the first 700 bytes are checked to avoid the download
+  # of the whole file which can be very huge (like 2 Go)
+  #
+  # @param [ String ] log_url
+  # @param [ RegEx ] pattern
+  #
+  # @return [ Boolean ]
+  def self.has_log?(log_url, pattern)
+    log_body = Browser.get(log_url, headers: {'range' => 'bytes=0-700'}).body
+    log_body[pattern] ? true : false
   end
 end
