@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module Browser::Options - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/common/browser/options.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-basic_auth-3D">#basic_auth=</a>
+    
+    <li ><a href="#method-i-invalid_proxy_auth_format">#invalid_proxy_auth_format</a>
+    
+    <li ><a href="#method-i-max_threads">#max_threads</a>
+    
+    <li ><a href="#method-i-max_threads-3D">#max_threads=</a>
+    
+    <li ><a href="#method-i-override_config">#override_config</a>
+    
+    <li ><a href="#method-i-proxy-3D">#proxy=</a>
+    
+    <li ><a href="#method-i-proxy_auth-3D">#proxy_auth=</a>
+    
+    <li ><a href="#method-i-user_agent">#user_agent</a>
+    
+    <li ><a href="#method-i-user_agent_mode-3D">#user_agent_mode=</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../CREDITS.html">CREDITS</a>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li class="file"><a href="../LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="../README.html">README</a>
+  
+    <li class="file"><a href="../README_md.html">README</a>
+  
+    <li class="file"><a href="../conf/browser_conf_json.html">browser.conf.json</a>
+  
+    <li class="file"><a href="../generate_doc_sh.html">generate_doc.sh</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Array.html">Array</a>
+  
+    <li><a href="../Browser.html">Browser</a>
+  
+    <li><a href="../Browser/Actions.html">Browser::Actions</a>
+  
+    <li><a href="../Browser/Options.html">Browser::Options</a>
+  
+    <li><a href="../CacheFileStore.html">CacheFileStore</a>
+  
+    <li><a href="../CheckerPlugin.html">CheckerPlugin</a>
+  
+    <li><a href="../CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="../Ethon.html">Ethon</a>
+  
+    <li><a href="../Ethon/Easy.html">Ethon::Easy</a>
+  
+    <li><a href="../Ethon/Easy/Options.html">Ethon::Easy::Options</a>
+  
+    <li><a href="../File.html">File</a>
+  
+    <li><a href="../Gem.html">Gem</a>
+  
+    <li><a href="../GenerateList.html">GenerateList</a>
+  
+    <li><a href="../GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="../ListGeneratorPlugin.html">ListGeneratorPlugin</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../Plugin.html">Plugin</a>
+  
+    <li><a href="../Plugins.html">Plugins</a>
+  
+    <li><a href="../StatsPlugin.html">StatsPlugin</a>
+  
+    <li><a href="../SvnParser.html">SvnParser</a>
+  
+    <li><a href="../SvnUpdater.html">SvnUpdater</a>
+  
+    <li><a href="../Terminal.html">Terminal</a>
+  
+    <li><a href="../Terminal/Table.html">Terminal::Table</a>
+  
+    <li><a href="../Terminal/Table/Style.html">Terminal::Table::Style</a>
+  
+    <li><a href="../Typhoeus.html">Typhoeus</a>
+  
+    <li><a href="../Typhoeus/Request.html">Typhoeus::Request</a>
+  
+    <li><a href="../Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a>
+  
+    <li><a href="../Typhoeus/Response.html">Typhoeus::Response</a>
+  
+    <li><a href="../TyphoeusCache.html">TyphoeusCache</a>
+  
+    <li><a href="../URI.html">URI</a>
+  
+    <li><a href="../Updater.html">Updater</a>
+  
+    <li><a href="../UpdaterFactory.html">UpdaterFactory</a>
+  
+    <li><a href="../Vulnerabilities.html">Vulnerabilities</a>
+  
+    <li><a href="../Vulnerabilities/Output.html">Vulnerabilities::Output</a>
+  
+    <li><a href="../Vulnerability.html">Vulnerability</a>
+  
+    <li><a href="../Vulnerability/Output.html">Vulnerability::Output</a>
+  
+    <li><a href="../WebSite.html">WebSite</a>
+  
+    <li><a href="../WpItem.html">WpItem</a>
+  
+    <li><a href="../WpItem/Existable.html">WpItem::Existable</a>
+  
+    <li><a href="../WpItem/Findable.html">WpItem::Findable</a>
+  
+    <li><a href="../WpItem/Infos.html">WpItem::Infos</a>
+  
+    <li><a href="../WpItem/Output.html">WpItem::Output</a>
+  
+    <li><a href="../WpItem/Versionable.html">WpItem::Versionable</a>
+  
+    <li><a href="../WpItem/Vulnerable.html">WpItem::Vulnerable</a>
+  
+    <li><a href="../WpItems.html">WpItems</a>
+  
+    <li><a href="../WpItems/Detectable.html">WpItems::Detectable</a>
+  
+    <li><a href="../WpItems/Output.html">WpItems::Output</a>
+  
+    <li><a href="../WpPlugin.html">WpPlugin</a>
+  
+    <li><a href="../WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a>
+  
+    <li><a href="../WpPlugins.html">WpPlugins</a>
+  
+    <li><a href="../WpPlugins/Detectable.html">WpPlugins::Detectable</a>
+  
+    <li><a href="../WpTarget.html">WpTarget</a>
+  
+    <li><a href="../WpTarget/Malwares.html">WpTarget::Malwares</a>
+  
+    <li><a href="../WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a>
+  
+    <li><a href="../WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a>
+  
+    <li><a href="../WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a>
+  
+    <li><a href="../WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a>
+  
+    <li><a href="../WpTarget/WpReadme.html">WpTarget::WpReadme</a>
+  
+    <li><a href="../WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a>
+  
+    <li><a href="../WpTheme.html">WpTheme</a>
+  
+    <li><a href="../WpTheme/Findable.html">WpTheme::Findable</a>
+  
+    <li><a href="../WpTheme/Versionable.html">WpTheme::Versionable</a>
+  
+    <li><a href="../WpTheme/Vulnerable.html">WpTheme::Vulnerable</a>
+  
+    <li><a href="../WpThemes.html">WpThemes</a>
+  
+    <li><a href="../WpThemes/Detectable.html">WpThemes::Detectable</a>
+  
+    <li><a href="../WpTimthumb.html">WpTimthumb</a>
+  
+    <li><a href="../WpTimthumb/Existable.html">WpTimthumb::Existable</a>
+  
+    <li><a href="../WpTimthumb/Output.html">WpTimthumb::Output</a>
+  
+    <li><a href="../WpTimthumb/Versionable.html">WpTimthumb::Versionable</a>
+  
+    <li><a href="../WpTimthumbs.html">WpTimthumbs</a>
+  
+    <li><a href="../WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a>
+  
+    <li><a href="../WpUser.html">WpUser</a>
+  
+    <li><a href="../WpUser/BruteForcable.html">WpUser::BruteForcable</a>
+  
+    <li><a href="../WpUser/Existable.html">WpUser::Existable</a>
+  
+    <li><a href="../WpUsers.html">WpUsers</a>
+  
+    <li><a href="../WpUsers/BruteForcable.html">WpUsers::BruteForcable</a>
+  
+    <li><a href="../WpUsers/Detectable.html">WpUsers::Detectable</a>
+  
+    <li><a href="../WpUsers/Output.html">WpUsers::Output</a>
+  
+    <li><a href="../WpVersion.html">WpVersion</a>
+  
+    <li><a href="../WpVersion/Findable.html">WpVersion::Findable</a>
+  
+    <li><a href="../WpVersion/Output.html">WpVersion::Output</a>
+  
+    <li><a href="../WpVersion/Vulnerable.html">WpVersion::Vulnerable</a>
+  
+    <li><a href="../WpscanOptions.html">WpscanOptions</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module Browser::Options</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="USER_AGENT_MODES">USER_AGENT_MODES
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-available_user_agents" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">available_user_agents</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-basic_auth" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">basic_auth</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-cache_ttl" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">cache_ttl</span><span
+            class="attribute-access-type">[RW]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-proxy" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">proxy</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-proxy_auth" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">proxy_auth</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-user_agent" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user_agent</span><span
+            class="attribute-access-type">[W]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-user_agent_mode" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">user_agent_mode</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-basic_auth-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">basic_auth=</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the Basic Authentification credentials Accepted format:</p>
+
+<pre>login:password
+Basic base_64_encoded</pre>
+
+<p>@param [ String ] auth</p>
+
+<p>@return [ void ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="basic_auth-3D-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 19</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">basic_auth=</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>)
+    <span class="ruby-ivar">@basic_auth</span> = <span class="ruby-node">&quot;Basic #{Base64.encode64(auth).chomp}&quot;</span>
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">auth</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/\ABasic [a-zA-Z0-9=]+\z/</span>
+    <span class="ruby-ivar">@basic_auth</span> = <span class="ruby-identifier">auth</span>
+  <span class="ruby-keyword">else</span>
+   <span class="ruby-identifier">raise</span> <span class="ruby-string">'Invalid basic authentication format, &quot;login:password&quot; or &quot;Basic base_64_encoded&quot; expected'</span>
+ <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- basic_auth-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- basic_auth-3D-method -->
+
+    
+      <div id="method-i-max_threads" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">max_threads</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [ Integer ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="max_threads-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 30</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">max_threads</span>
+  <span class="ruby-ivar">@max_threads</span> <span class="ruby-operator">||</span> <span class="ruby-value">1</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- max_threads-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- max_threads-method -->
+
+    
+      <div id="method-i-max_threads-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">max_threads=</span><span
+            class="method-args">(threads)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="max_threads-3D-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 34</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">max_threads=</span>(<span class="ruby-identifier">threads</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">threads</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">threads</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-ivar">@max_threads</span> = <span class="ruby-identifier">threads</span>
+    <span class="ruby-ivar">@hydra</span> = <span class="ruby-constant">Typhoeus</span><span class="ruby-operator">::</span><span class="ruby-constant">Hydra</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">max_concurrency</span><span class="ruby-operator">:</span> <span class="ruby-identifier">threads</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'max_threads must be an Integer &gt; 0'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- max_threads-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- max_threads-3D-method -->
+
+    
+      <div id="method-i-proxy-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy=</span><span
+            class="method-args">(proxy)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the proxy Accepted format:</p>
+
+<pre> [protocol://]host:post
+
+Supported protocols:
+  Depends on the curl protocols, See curl --version</pre>
+
+<p>@param [ String ] proxy</p>
+
+<p>@return [ void ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="proxy-3D-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 89</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">proxy=</span>(<span class="ruby-identifier">proxy</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>)
+    <span class="ruby-ivar">@proxy</span> = <span class="ruby-identifier">proxy</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Invalid proxy format. Should be [protocol://]host:port.'</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- proxy-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- proxy-3D-method -->
+
+    
+      <div id="method-i-proxy_auth-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy_auth=</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the proxy credentials Accepted format:</p>
+
+<pre>username:password
+{ proxy_username: username, :proxy_password: password }</pre>
+
+<p>@param [ String ] auth</p>
+
+<p>@return [ void ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="proxy_auth-3D-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 105</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">proxy_auth=</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">:proxy_username</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">:proxy_password</span>)
+      <span class="ruby-ivar">@proxy_auth</span> = <span class="ruby-identifier">auth</span>[<span class="ruby-value">:proxy_username</span>] <span class="ruby-operator">+</span> <span class="ruby-string">':'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">auth</span>[<span class="ruby-value">:proxy_password</span>]
+    <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>) <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span>
+      <span class="ruby-ivar">@proxy_auth</span> = <span class="ruby-identifier">auth</span>
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-identifier">invalid_proxy_auth_format</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- proxy_auth-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- proxy_auth-3D-method -->
+
+    
+      <div id="method-i-user_agent" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_agent</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [ String ] The user agent, according to the <a
+href="Options.html#attribute-i-user_agent_mode">#user_agent_mode</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="user_agent-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_agent</span>
+  <span class="ruby-keyword">case</span> <span class="ruby-ivar">@user_agent_mode</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">'semi-static'</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-ivar">@user_agent</span>
+      <span class="ruby-ivar">@user_agent</span> = <span class="ruby-ivar">@available_user_agents</span>.<span class="ruby-identifier">sample</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">when</span> <span class="ruby-string">'random'</span>
+    <span class="ruby-ivar">@user_agent</span> = <span class="ruby-ivar">@available_user_agents</span>.<span class="ruby-identifier">sample</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-ivar">@user_agent</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- user_agent-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- user_agent-method -->
+
+    
+      <div id="method-i-user_agent_mode-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">user_agent_mode=</span><span
+            class="method-args">(ua_mode)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Sets the <a
+href="Options.html#attribute-i-user_agent_mode">#user_agent_mode</a>, which
+can be one of the following:</p>
+
+<pre>static:      The UA is defined by the user, and will be the same in each requests
+semi-static: The UA is randomly chosen at the first request, and will not change
+random:      UA randomly chosen each request</pre>
+
+<p>UA are from @available_user_agents</p>
+
+<p>@param [ String ] ua_mode</p>
+
+<p>@return [ void ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="user_agent_mode-3D-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 53</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">user_agent_mode=</span>(<span class="ruby-identifier">ua_mode</span>)
+  <span class="ruby-identifier">ua_mode</span> <span class="ruby-operator">||=</span> <span class="ruby-string">'static'</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">USER_AGENT_MODES</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">ua_mode</span>)
+    <span class="ruby-ivar">@user_agent_mode</span> = <span class="ruby-identifier">ua_mode</span>
+    <span class="ruby-comment"># For semi-static user agent mode, the user agent has to</span>
+    <span class="ruby-comment"># be nil the first time (it will be set with the getter)</span>
+    <span class="ruby-ivar">@user_agent</span> = <span class="ruby-keyword">nil</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">ua_mode</span> <span class="ruby-operator">===</span> <span class="ruby-string">'semi-static'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Unknow user agent mode : '#{ua_mode}'&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- user_agent_mode-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- user_agent_mode-3D-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-invalid_proxy_auth_format" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">invalid_proxy_auth_format</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="invalid_proxy_auth_format-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 119</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">invalid_proxy_auth_format</span>
+  <span class="ruby-string">'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- invalid_proxy_auth_format-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- invalid_proxy_auth_format-method -->
+
+    
+      <div id="method-i-override_config" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">override_config</span><span
+            class="method-args">(options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Override with the options if they are set @param [ Hash ] options</p>
+
+<p>@return [ void ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="override_config-source">
+            <pre><span class="ruby-comment"># File lib/common/browser/options.rb, line 127</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">override_config</span>(<span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-constant">OPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">option</span>)
+      <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-value">:&quot;#{option}=&quot;</span>, <span class="ruby-identifier">value</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- override_config-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- override_config-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

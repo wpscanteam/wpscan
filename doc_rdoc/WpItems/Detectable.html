@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>module WpItems::Detectable - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "../";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="../index.html">Home</a>
+    <a href="../table_of_contents.html#classes">Classes</a>
+    <a href="../table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/common/collections/wp_items/detectable.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-i-aggressive_detection">#aggressive_detection</a>
+    
+    <li ><a href="#method-i-create_item">#create_item</a>
+    
+    <li ><a href="#method-i-item_class">#item_class</a>
+    
+    <li ><a href="#method-i-passive_detection">#passive_detection</a>
+    
+    <li ><a href="#method-i-progress_bar">#progress_bar</a>
+    
+    <li ><a href="#method-i-request_params">#request_params</a>
+    
+    <li ><a href="#method-i-targets_items">#targets_items</a>
+    
+    <li ><a href="#method-i-targets_items_from_file">#targets_items_from_file</a>
+    
+    <li ><a href="#method-i-vulnerable_targets_items">#vulnerable_targets_items</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="../CREDITS.html">CREDITS</a>
+  
+    <li class="file"><a href="../Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="../Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li class="file"><a href="../LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="../README.html">README</a>
+  
+    <li class="file"><a href="../README_md.html">README</a>
+  
+    <li class="file"><a href="../conf/browser_conf_json.html">browser.conf.json</a>
+  
+    <li class="file"><a href="../generate_doc_sh.html">generate_doc.sh</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="../Array.html">Array</a>
+  
+    <li><a href="../Browser.html">Browser</a>
+  
+    <li><a href="../Browser/Actions.html">Browser::Actions</a>
+  
+    <li><a href="../Browser/Options.html">Browser::Options</a>
+  
+    <li><a href="../CacheFileStore.html">CacheFileStore</a>
+  
+    <li><a href="../CheckerPlugin.html">CheckerPlugin</a>
+  
+    <li><a href="../CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="../Ethon.html">Ethon</a>
+  
+    <li><a href="../Ethon/Easy.html">Ethon::Easy</a>
+  
+    <li><a href="../Ethon/Easy/Options.html">Ethon::Easy::Options</a>
+  
+    <li><a href="../File.html">File</a>
+  
+    <li><a href="../Gem.html">Gem</a>
+  
+    <li><a href="../GenerateList.html">GenerateList</a>
+  
+    <li><a href="../GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="../ListGeneratorPlugin.html">ListGeneratorPlugin</a>
+  
+    <li><a href="../Object.html">Object</a>
+  
+    <li><a href="../Plugin.html">Plugin</a>
+  
+    <li><a href="../Plugins.html">Plugins</a>
+  
+    <li><a href="../StatsPlugin.html">StatsPlugin</a>
+  
+    <li><a href="../SvnParser.html">SvnParser</a>
+  
+    <li><a href="../SvnUpdater.html">SvnUpdater</a>
+  
+    <li><a href="../Terminal.html">Terminal</a>
+  
+    <li><a href="../Terminal/Table.html">Terminal::Table</a>
+  
+    <li><a href="../Terminal/Table/Style.html">Terminal::Table::Style</a>
+  
+    <li><a href="../Typhoeus.html">Typhoeus</a>
+  
+    <li><a href="../Typhoeus/Request.html">Typhoeus::Request</a>
+  
+    <li><a href="../Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a>
+  
+    <li><a href="../Typhoeus/Response.html">Typhoeus::Response</a>
+  
+    <li><a href="../TyphoeusCache.html">TyphoeusCache</a>
+  
+    <li><a href="../URI.html">URI</a>
+  
+    <li><a href="../Updater.html">Updater</a>
+  
+    <li><a href="../UpdaterFactory.html">UpdaterFactory</a>
+  
+    <li><a href="../Vulnerabilities.html">Vulnerabilities</a>
+  
+    <li><a href="../Vulnerabilities/Output.html">Vulnerabilities::Output</a>
+  
+    <li><a href="../Vulnerability.html">Vulnerability</a>
+  
+    <li><a href="../Vulnerability/Output.html">Vulnerability::Output</a>
+  
+    <li><a href="../WebSite.html">WebSite</a>
+  
+    <li><a href="../WpItem.html">WpItem</a>
+  
+    <li><a href="../WpItem/Existable.html">WpItem::Existable</a>
+  
+    <li><a href="../WpItem/Findable.html">WpItem::Findable</a>
+  
+    <li><a href="../WpItem/Infos.html">WpItem::Infos</a>
+  
+    <li><a href="../WpItem/Output.html">WpItem::Output</a>
+  
+    <li><a href="../WpItem/Versionable.html">WpItem::Versionable</a>
+  
+    <li><a href="../WpItem/Vulnerable.html">WpItem::Vulnerable</a>
+  
+    <li><a href="../WpItems.html">WpItems</a>
+  
+    <li><a href="../WpItems/Detectable.html">WpItems::Detectable</a>
+  
+    <li><a href="../WpItems/Output.html">WpItems::Output</a>
+  
+    <li><a href="../WpPlugin.html">WpPlugin</a>
+  
+    <li><a href="../WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a>
+  
+    <li><a href="../WpPlugins.html">WpPlugins</a>
+  
+    <li><a href="../WpPlugins/Detectable.html">WpPlugins::Detectable</a>
+  
+    <li><a href="../WpTarget.html">WpTarget</a>
+  
+    <li><a href="../WpTarget/Malwares.html">WpTarget::Malwares</a>
+  
+    <li><a href="../WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a>
+  
+    <li><a href="../WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a>
+  
+    <li><a href="../WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a>
+  
+    <li><a href="../WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a>
+  
+    <li><a href="../WpTarget/WpReadme.html">WpTarget::WpReadme</a>
+  
+    <li><a href="../WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a>
+  
+    <li><a href="../WpTheme.html">WpTheme</a>
+  
+    <li><a href="../WpTheme/Findable.html">WpTheme::Findable</a>
+  
+    <li><a href="../WpTheme/Versionable.html">WpTheme::Versionable</a>
+  
+    <li><a href="../WpTheme/Vulnerable.html">WpTheme::Vulnerable</a>
+  
+    <li><a href="../WpThemes.html">WpThemes</a>
+  
+    <li><a href="../WpThemes/Detectable.html">WpThemes::Detectable</a>
+  
+    <li><a href="../WpTimthumb.html">WpTimthumb</a>
+  
+    <li><a href="../WpTimthumb/Existable.html">WpTimthumb::Existable</a>
+  
+    <li><a href="../WpTimthumb/Output.html">WpTimthumb::Output</a>
+  
+    <li><a href="../WpTimthumb/Versionable.html">WpTimthumb::Versionable</a>
+  
+    <li><a href="../WpTimthumbs.html">WpTimthumbs</a>
+  
+    <li><a href="../WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a>
+  
+    <li><a href="../WpUser.html">WpUser</a>
+  
+    <li><a href="../WpUser/BruteForcable.html">WpUser::BruteForcable</a>
+  
+    <li><a href="../WpUser/Existable.html">WpUser::Existable</a>
+  
+    <li><a href="../WpUsers.html">WpUsers</a>
+  
+    <li><a href="../WpUsers/BruteForcable.html">WpUsers::BruteForcable</a>
+  
+    <li><a href="../WpUsers/Detectable.html">WpUsers::Detectable</a>
+  
+    <li><a href="../WpUsers/Output.html">WpUsers::Output</a>
+  
+    <li><a href="../WpVersion.html">WpVersion</a>
+  
+    <li><a href="../WpVersion/Findable.html">WpVersion::Findable</a>
+  
+    <li><a href="../WpVersion/Output.html">WpVersion::Output</a>
+  
+    <li><a href="../WpVersion/Vulnerable.html">WpVersion::Vulnerable</a>
+  
+    <li><a href="../WpscanOptions.html">WpscanOptions</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module WpItems::Detectable</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+    <!-- Attributes -->
+    <section id="attribute-method-details" class="method-section section">
+      <h3 class="section-header">Attributes</h3>
+
+      
+      <div id="attribute-i-item_xpath" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">item_xpath</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+      <div id="attribute-i-vulns_file" class="method-detail">
+        <div class="method-heading attribute-method-heading">
+          <span class="method-name">vulns_file</span><span
+            class="attribute-access-type">[R]</span>
+        </div>
+
+        <div class="method-description">
+        
+        
+        
+        </div>
+      </div>
+      
+    </section><!-- attribute-method-details -->
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-aggressive_detection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">aggressive_detection</span><span
+            class="method-args">(wp_target, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ <a href="../WpTarget.html">WpTarget</a> ] wp_target @param [ Hash
+] options @option options [ Boolean ] :show_progression  Whether or not
+output the progress bar @option options [ Boolean ] :only_vulnerable   Only
+check for vulnerable items @option options [ String ]  :exclude_content</p>
+
+<p>@return [ <a href="../WpItems.html">WpItems</a> ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="aggressive_detection-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 14</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">aggressive_detection</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">browser</span>          = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-identifier">hydra</span>            = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-identifier">targets</span>          = <span class="ruby-identifier">targets_items</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">progress_bar</span>     = <span class="ruby-identifier">progress_bar</span>(<span class="ruby-identifier">targets</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-identifier">exist_options</span>    = {
+    <span class="ruby-identifier">error_404_hash</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">error_404_hash</span>,
+    <span class="ruby-identifier">homepage_hash</span><span class="ruby-operator">:</span>   <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">homepage_hash</span>,
+    <span class="ruby-identifier">exclude_content</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:exclude_content</span>] <span class="ruby-operator">?</span> <span class="ruby-node">%r{#{options[:exclude_content]}}</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+  }
+
+  <span class="ruby-comment"># If we only want the vulnerable ones, the passive detection is ignored</span>
+  <span class="ruby-comment"># Otherwise, a passive detection is performed, and results will be merged</span>
+  <span class="ruby-identifier">results</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable</span>] <span class="ruby-operator">?</span> <span class="ruby-identifier">new</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span>)
+
+  <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">target_item</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">request</span> = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">target_item</span>.<span class="ruby-identifier">url</span>, <span class="ruby-identifier">request_params</span>)
+
+    <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">progress_bar</span>.<span class="ruby-identifier">progress</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progression</span>]
+
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">target_item</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">exist_options</span>, <span class="ruby-identifier">response</span>)
+        <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">results</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">target_item</span>)
+          <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target_item</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">hydra</span>.<span class="ruby-identifier">run</span>
+  <span class="ruby-identifier">results</span>.<span class="ruby-identifier">sort!</span>
+  <span class="ruby-identifier">results</span> <span class="ruby-comment"># can't just return results.sort because the #sort returns an array, and we want a WpItems</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- aggressive_detection-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- aggressive_detection-method -->
+
+    
+      <div id="method-i-passive_detection" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">passive_detection</span><span
+            class="method-args">(wp_target, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ <a href="../WpTarget.html">WpTarget</a> ] wp_target @param [ Hash
+] options</p>
+
+<p>@return [ <a href="../WpItems.html">WpItems</a> ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="passive_detection-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 71</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">results</span>      = <span class="ruby-identifier">new</span>
+  <span class="ruby-identifier">item_class</span>   = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">item_class</span>
+  <span class="ruby-identifier">type</span>         = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/Wp/</span>, <span class="ruby-string">''</span>).<span class="ruby-identifier">downcase</span>
+  <span class="ruby-identifier">response</span>     = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">url</span>)
+  <span class="ruby-identifier">item_options</span> = {
+    <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_content_dir</span>,
+    <span class="ruby-identifier">wp_plugins_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_plugins_dir</span>,
+    <span class="ruby-identifier">vulns_file</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">vulns_file</span>
+  }
+
+  <span class="ruby-identifier">regex1</span> = <span class="ruby-regexp">%r{(?:[^=:]+)\s?(?:=|:)\s?(?:&quot;|')[^&quot;']+\?/}</span>
+  <span class="ruby-identifier">regex2</span> = <span class="ruby-regexp">%r{\?/}</span>
+  <span class="ruby-identifier">regex3</span> = <span class="ruby-regexp">%r{\?/([^/\&quot;']+)\?(?:/|&quot;|')}</span>
+
+  <span class="ruby-identifier">names</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-node">/#{regex1}#{Regexp.escape(wp_target.wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/</span>)
+
+  <span class="ruby-identifier">names</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">item_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>))
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">results</span>.<span class="ruby-identifier">sort!</span>
+  <span class="ruby-identifier">results</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- passive_detection-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- passive_detection-method -->
+
+    
+      <div id="method-i-progress_bar" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">progress_bar</span><span
+            class="method-args">(targets_size, options)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ Integer ] targets_size @param [ Hash ] options</p>
+
+<p>@return [ ProgressBar ] :nocov:</p>
+          
+          
+
+          
+          <div class="method-source-code" id="progress_bar-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 55</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">progress_bar</span>(<span class="ruby-identifier">targets_size</span>, <span class="ruby-identifier">options</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progression</span>]
+    <span class="ruby-constant">ProgressBar</span>.<span class="ruby-identifier">create</span>(
+      <span class="ruby-identifier">format</span><span class="ruby-operator">:</span> <span class="ruby-string">'%t %a &lt;%B&gt; (%c / %C) %P%% %e'</span>,
+      <span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-string">'  '</span>, <span class="ruby-comment"># Used to craete a left margin</span>
+      <span class="ruby-identifier">length</span><span class="ruby-operator">:</span> <span class="ruby-value">120</span>,
+      <span class="ruby-identifier">total</span><span class="ruby-operator">:</span> <span class="ruby-identifier">targets_size</span>
+    )
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- progress_bar-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- progress_bar-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-create_item" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_item</span><span
+            class="method-args">(klass, name, wp_target, vulns_file = nil)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ Class ] klass @param [ String ] name @param [ <a
+href="../WpTarget.html">WpTarget</a> ] wp_target @option [ String ] <a
+href="Detectable.html#attribute-i-vulns_file">#vulns_file</a></p>
+
+<p>@return [ <a href="../WpItem.html">WpItem</a> ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="create_item-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 153</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_item</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">vulns_file</span> = <span class="ruby-keyword">nil</span>)
+  <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(
+    <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">uri</span>,
+    <span class="ruby-identifier">name</span><span class="ruby-operator">:</span>           <span class="ruby-identifier">name</span>,
+    <span class="ruby-identifier">vulns_file</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">vulns_file</span>,
+    <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_content_dir</span>,
+    <span class="ruby-identifier">wp_plugins_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_plugins_dir</span>
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_item-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_item-method -->
+
+    
+      <div id="method-i-item_class" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">item_class</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@return [ Class ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="item_class-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 186</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">item_class</span>
+  <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/.$/</span>, <span class="ruby-string">''</span>))
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- item_class-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- item_class-method -->
+
+    
+      <div id="method-i-request_params" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">request_params</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>The default request parameters</p>
+
+<p>@return [ Hash ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="request_params-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 101</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">request_params</span>; { <span class="ruby-identifier">cache_ttl</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">followlocation</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> } <span class="ruby-keyword">end</span></pre>
+          </div><!-- request_params-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- request_params-method -->
+
+    
+      <div id="method-i-targets_items" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">targets_items</span><span
+            class="method-args">(wp_target, options = {})</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ <a href="../WpTarget.html">WpTarget</a> ] wp_target @param [
+options ] options @option options [ Boolean ] :only_vulnerable @option
+options [ String ]  :file The path to the file containing the targets</p>
+
+<p>@return [ <a href="../Array.html">Array</a>&lt;WpItem&gt; ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="targets_items-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 109</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_items</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-identifier">item_class</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">item_class</span>
+  <span class="ruby-identifier">vulns_file</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">vulns_file</span>
+
+  <span class="ruby-identifier">targets</span> = <span class="ruby-identifier">vulnerable_targets_items</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">item_class</span>, <span class="ruby-identifier">vulns_file</span>)
+
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable</span>]
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-string">'A file must be supplied'</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">targets</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">targets_items_from_file</span>(<span class="ruby-identifier">options</span>[<span class="ruby-value">:file</span>], <span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">item_class</span>, <span class="ruby-identifier">vulns_file</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">uniq!</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span> }
+  <span class="ruby-identifier">targets</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-identifier">rand</span> }
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- targets_items-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- targets_items-method -->
+
+    
+      <div id="method-i-targets_items_from_file" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">targets_items_from_file</span><span
+            class="method-args">(file, wp_target, item_class, vulns_file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ String ] file @param [ <a href="../WpTarget.html">WpTarget</a> ]
+wp_target @param [ Class ] <a
+href="Detectable.html#method-i-item_class">#item_class</a> @param [ String
+] <a href="Detectable.html#attribute-i-vulns_file">#vulns_file</a></p>
+
+<p>@return [ <a href="../WpItem.html">WpItem</a> ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="targets_items_from_file-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 169</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_items_from_file</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">item_class</span>, <span class="ruby-identifier">vulns_file</span>)
+  <span class="ruby-identifier">targets</span> = []
+
+  <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-string">'r'</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">f</span>.<span class="ruby-identifier">readlines</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item_name</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">create_item</span>(
+        <span class="ruby-identifier">item_class</span>,
+        <span class="ruby-identifier">item_name</span>.<span class="ruby-identifier">strip</span>,
+        <span class="ruby-identifier">wp_target</span>,
+        <span class="ruby-identifier">vulns_file</span>
+      )
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">targets</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- targets_items_from_file-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- targets_items_from_file-method -->
+
+    
+      <div id="method-i-vulnerable_targets_items" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">vulnerable_targets_items</span><span
+            class="method-args">(wp_target, item_class, vulns_file)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>@param [ <a href="../WpTarget.html">WpTarget</a> ] wp_target @param [ Class
+] <a href="Detectable.html#method-i-item_class">#item_class</a> @param [
+String ] <a href="Detectable.html#attribute-i-vulns_file">#vulns_file</a></p>
+
+<p>@return [ <a href="../Array.html">Array</a>&lt;WpItem&gt; ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="vulnerable_targets_items-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 132</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">vulnerable_targets_items</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">item_class</span>, <span class="ruby-identifier">vulns_file</span>)
+  <span class="ruby-identifier">targets</span> = []
+  <span class="ruby-identifier">xml</span>     = <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">vulns_file</span>)
+
+  <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">xpath</span>(<span class="ruby-identifier">item_xpath</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">node</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">targets</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">create_item</span>(
+      <span class="ruby-identifier">item_class</span>,
+      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">attribute</span>(<span class="ruby-string">'name'</span>).<span class="ruby-identifier">text</span>,
+      <span class="ruby-identifier">wp_target</span>,
+      <span class="ruby-identifier">vulns_file</span>
+    )
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">targets</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- vulnerable_targets_items-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- vulnerable_targets_items-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

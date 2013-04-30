@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+
+<title>class WpscanOptions - RDoc Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="class">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/wpscan/wpscan_options.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-clean_option">::clean_option</a>
+    
+    <li ><a href="#method-c-get_opt_long">::get_opt_long</a>
+    
+    <li ><a href="#method-c-is_long_option-3F">::is_long_option?</a>
+    
+    <li ><a href="#method-c-load_from_arguments">::load_from_arguments</a>
+    
+    <li ><a href="#method-c-new">::new</a>
+    
+    <li ><a href="#method-c-option_to_instance_variable_setter">::option_to_instance_variable_setter</a>
+    
+    <li ><a href="#method-i-basic_auth-3D">#basic_auth=</a>
+    
+    <li ><a href="#method-i-enumerate_all_plugins-3D">#enumerate_all_plugins=</a>
+    
+    <li ><a href="#method-i-enumerate_all_themes-3D">#enumerate_all_themes=</a>
+    
+    <li ><a href="#method-i-enumerate_only_vulnerable_plugins-3D">#enumerate_only_vulnerable_plugins=</a>
+    
+    <li ><a href="#method-i-enumerate_only_vulnerable_themes-3D">#enumerate_only_vulnerable_themes=</a>
+    
+    <li ><a href="#method-i-enumerate_options_from_string">#enumerate_options_from_string</a>
+    
+    <li ><a href="#method-i-enumerate_plugins-3D">#enumerate_plugins=</a>
+    
+    <li ><a href="#method-i-enumerate_themes-3D">#enumerate_themes=</a>
+    
+    <li ><a href="#method-i-has_options-3F">#has_options?</a>
+    
+    <li ><a href="#method-i-proxy-3D">#proxy=</a>
+    
+    <li ><a href="#method-i-proxy_auth-3D">#proxy_auth=</a>
+    
+    <li ><a href="#method-i-set_option_from_cli">#set_option_from_cli</a>
+    
+    <li ><a href="#method-i-threads-3D">#threads=</a>
+    
+    <li ><a href="#method-i-to_h">#to_h</a>
+    
+    <li ><a href="#method-i-url-3D">#url=</a>
+    
+    <li ><a href="#method-i-wordlist-3D">#wordlist=</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./CREDITS.html">CREDITS</a>
+  
+    <li class="file"><a href="./Gemfile.html">Gemfile</a>
+  
+    <li class="file"><a href="./Gemfile_lock.html">Gemfile.lock</a>
+  
+    <li class="file"><a href="./LICENSE.html">LICENSE</a>
+  
+    <li class="file"><a href="./README.html">README</a>
+  
+    <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./conf/browser_conf_json.html">browser.conf.json</a>
+  
+    <li class="file"><a href="./generate_doc_sh.html">generate_doc.sh</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Array.html">Array</a>
+  
+    <li><a href="./Browser.html">Browser</a>
+  
+    <li><a href="./Browser/Actions.html">Browser::Actions</a>
+  
+    <li><a href="./Browser/Options.html">Browser::Options</a>
+  
+    <li><a href="./CacheFileStore.html">CacheFileStore</a>
+  
+    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
+  
+    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
+  
+    <li><a href="./Ethon.html">Ethon</a>
+  
+    <li><a href="./Ethon/Easy.html">Ethon::Easy</a>
+  
+    <li><a href="./Ethon/Easy/Options.html">Ethon::Easy::Options</a>
+  
+    <li><a href="./File.html">File</a>
+  
+    <li><a href="./Gem.html">Gem</a>
+  
+    <li><a href="./GenerateList.html">GenerateList</a>
+  
+    <li><a href="./GitUpdater.html">GitUpdater</a>
+  
+    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
+  
+    <li><a href="./Object.html">Object</a>
+  
+    <li><a href="./Plugin.html">Plugin</a>
+  
+    <li><a href="./Plugins.html">Plugins</a>
+  
+    <li><a href="./StatsPlugin.html">StatsPlugin</a>
+  
+    <li><a href="./SvnParser.html">SvnParser</a>
+  
+    <li><a href="./SvnUpdater.html">SvnUpdater</a>
+  
+    <li><a href="./Terminal.html">Terminal</a>
+  
+    <li><a href="./Terminal/Table.html">Terminal::Table</a>
+  
+    <li><a href="./Terminal/Table/Style.html">Terminal::Table::Style</a>
+  
+    <li><a href="./Typhoeus.html">Typhoeus</a>
+  
+    <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a>
+  
+    <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a>
+  
+    <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a>
+  
+    <li><a href="./TyphoeusCache.html">TyphoeusCache</a>
+  
+    <li><a href="./URI.html">URI</a>
+  
+    <li><a href="./Updater.html">Updater</a>
+  
+    <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
+  
+    <li><a href="./Vulnerabilities.html">Vulnerabilities</a>
+  
+    <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a>
+  
+    <li><a href="./Vulnerability.html">Vulnerability</a>
+  
+    <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a>
+  
+    <li><a href="./WebSite.html">WebSite</a>
+  
+    <li><a href="./WpItem.html">WpItem</a>
+  
+    <li><a href="./WpItem/Existable.html">WpItem::Existable</a>
+  
+    <li><a href="./WpItem/Findable.html">WpItem::Findable</a>
+  
+    <li><a href="./WpItem/Infos.html">WpItem::Infos</a>
+  
+    <li><a href="./WpItem/Output.html">WpItem::Output</a>
+  
+    <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a>
+  
+    <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a>
+  
+    <li><a href="./WpItems.html">WpItems</a>
+  
+    <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a>
+  
+    <li><a href="./WpItems/Output.html">WpItems::Output</a>
+  
+    <li><a href="./WpPlugin.html">WpPlugin</a>
+  
+    <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a>
+  
+    <li><a href="./WpPlugins.html">WpPlugins</a>
+  
+    <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a>
+  
+    <li><a href="./WpTarget.html">WpTarget</a>
+  
+    <li><a href="./WpTarget/Malwares.html">WpTarget::Malwares</a>
+  
+    <li><a href="./WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a>
+  
+    <li><a href="./WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a>
+  
+    <li><a href="./WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a>
+  
+    <li><a href="./WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a>
+  
+    <li><a href="./WpTarget/WpReadme.html">WpTarget::WpReadme</a>
+  
+    <li><a href="./WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a>
+  
+    <li><a href="./WpTheme.html">WpTheme</a>
+  
+    <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a>
+  
+    <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a>
+  
+    <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a>
+  
+    <li><a href="./WpThemes.html">WpThemes</a>
+  
+    <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a>
+  
+    <li><a href="./WpTimthumb.html">WpTimthumb</a>
+  
+    <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a>
+  
+    <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a>
+  
+    <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a>
+  
+    <li><a href="./WpTimthumbs.html">WpTimthumbs</a>
+  
+    <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a>
+  
+    <li><a href="./WpUser.html">WpUser</a>
+  
+    <li><a href="./WpUser/BruteForcable.html">WpUser::BruteForcable</a>
+  
+    <li><a href="./WpUser/Existable.html">WpUser::Existable</a>
+  
+    <li><a href="./WpUsers.html">WpUsers</a>
+  
+    <li><a href="./WpUsers/BruteForcable.html">WpUsers::BruteForcable</a>
+  
+    <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a>
+  
+    <li><a href="./WpUsers/Output.html">WpUsers::Output</a>
+  
+    <li><a href="./WpVersion.html">WpVersion</a>
+  
+    <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a>
+  
+    <li><a href="./WpVersion/Output.html">WpVersion::Output</a>
+  
+    <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a>
+  
+    <li><a href="./WpscanOptions.html">WpscanOptions</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="class">class WpscanOptions</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+    <!-- Constants -->
+    <section id="constants-list" class="section">
+      <h3 class="section-header">Constants</h3>
+      <dl>
+      
+        <dt id="ACCESSOR_OPTIONS">ACCESSOR_OPTIONS
+        
+        <dd class="description">
+        
+      
+      </dl>
+    </section>
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
+
+    
+      <div id="method-c-load_from_arguments" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">load_from_arguments</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Will load the options from ARGV return <a
+href="WpscanOptions.html">WpscanOptions</a></p>
+          
+          
+
+          
+          <div class="method-source-code" id="load_from_arguments-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 148</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">load_from_arguments</span>
+  <span class="ruby-identifier">wpscan_options</span> = <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">new</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+    <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">get_opt_long</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">set_option_from_cli</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-identifier">wpscan_options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- load_from_arguments-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- load_from_arguments-method -->
+
+    
+      <div id="method-c-new" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">new</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="new-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 35</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>
+  <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-node">&quot;@#{option}&quot;</span>, <span class="ruby-keyword">nil</span>)
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- new-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- new-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+     <section id="protected-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Class Methods</h3>
+
+    
+      <div id="method-c-clean_option" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">clean_option</span><span
+            class="method-args">(option)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Will removed the ‘-’ or ‘–’ chars at the beginning of option and replace
+any remaining ‘-’ by ‘_’</p>
+
+<p>param string option return string</p>
+          
+          
+
+          
+          <div class="method-source-code" id="clean_option-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 246</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">clean_option</span>(<span class="ruby-identifier">option</span>)
+  <span class="ruby-identifier">cleaned_option</span> = <span class="ruby-identifier">option</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/^--?/</span>, <span class="ruby-string">''</span>)
+  <span class="ruby-identifier">cleaned_option</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/-/</span>, <span class="ruby-string">'_'</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- clean_option-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- clean_option-method -->
+
+    
+      <div id="method-c-get_opt_long" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_opt_long</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Even if a short option is given (IE : -u), the long one will be returned
+(IE : –url)</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_opt_long-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 215</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">get_opt_long</span>
+  <span class="ruby-constant">GetoptLong</span>.<span class="ruby-identifier">new</span>(
+    [<span class="ruby-string">'--url'</span>, <span class="ruby-string">'-u'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--enumerate'</span>, <span class="ruby-string">'-e'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">OPTIONAL_ARGUMENT</span>],
+    [<span class="ruby-string">'--username'</span>, <span class="ruby-string">'-U'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--wordlist'</span>, <span class="ruby-string">'-w'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--threads'</span>, <span class="ruby-string">'-t'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--force'</span>, <span class="ruby-string">'-f'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+    [<span class="ruby-string">'--help'</span>, <span class="ruby-string">'-h'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+    [<span class="ruby-string">'--verbose'</span>, <span class="ruby-string">'-v'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+    [<span class="ruby-string">'--proxy'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--proxy-auth'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--update'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+    [<span class="ruby-string">'--follow-redirection'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">NO_ARGUMENT</span>],
+    [<span class="ruby-string">'--wp-content-dir'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--wp-plugins-dir'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--config-file'</span>, <span class="ruby-string">'-c'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--exclude-content-based'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>],
+    [<span class="ruby-string">'--basic-auth'</span>, <span class="ruby-constant">GetoptLong</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUIRED_ARGUMENT</span>]
+  )
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_opt_long-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_opt_long-method -->
+
+    
+      <div id="method-c-is_long_option-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_long_option?</span><span
+            class="method-args">(option)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="is_long_option-3F-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 237</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_long_option?</span>(<span class="ruby-identifier">option</span>)
+  <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">:&quot;#{WpscanOptions.clean_option(option)}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- is_long_option-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_long_option-3F-method -->
+
+    
+      <div id="method-c-option_to_instance_variable_setter" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">option_to_instance_variable_setter</span><span
+            class="method-args">(option)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="option_to_instance_variable_setter-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 251</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">option_to_instance_variable_setter</span>(<span class="ruby-identifier">option</span>)
+  <span class="ruby-identifier">cleaned_option</span> = <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">clean_option</span>(<span class="ruby-identifier">option</span>)
+  <span class="ruby-identifier">option_syms</span> = <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-node">%r{^#{cleaned_option}$}</span>)
+
+  <span class="ruby-identifier">option_syms</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-operator">?</span> <span class="ruby-value">:&quot;#{option_syms.at(0)}=&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-keyword">nil</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- option_to_instance_variable_setter-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- option_to_instance_variable_setter-method -->
+
+    
+    </section><!-- protected-class-method-details -->
+  
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-basic_auth-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">basic_auth=</span><span
+            class="method-args">(basic_auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="basic_auth-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 123</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">basic_auth=</span>(<span class="ruby-identifier">basic_auth</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">'Invalid basic authentication format, login:password expected'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">basic_auth</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>).<span class="ruby-identifier">nil?</span>
+  <span class="ruby-ivar">@basic_auth</span> = <span class="ruby-node">&quot;Basic #{Base64.encode64(basic_auth).chomp}&quot;</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- basic_auth-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- basic_auth-3D-method -->
+
+    
+      <div id="method-i-enumerate_all_plugins-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_all_plugins=</span><span
+            class="method-args">(enumerate_all_plugins)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_all_plugins-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 91</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_all_plugins=</span>(<span class="ruby-identifier">enumerate_all_plugins</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_all_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@enumerate_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Please choose only one plugin enumeration option'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@enumerate_all_plugins</span> = <span class="ruby-identifier">enumerate_all_plugins</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_all_plugins-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_all_plugins-3D-method -->
+
+    
+      <div id="method-i-enumerate_all_themes-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_all_themes=</span><span
+            class="method-args">(enumerate_all_themes)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_all_themes-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 115</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_all_themes=</span>(<span class="ruby-identifier">enumerate_all_themes</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_all_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@enumerate_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Please choose only one theme enumeration option'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@enumerate_all_themes</span> = <span class="ruby-identifier">enumerate_all_themes</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_all_themes-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_all_themes-3D-method -->
+
+    
+      <div id="method-i-enumerate_only_vulnerable_plugins-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_only_vulnerable_plugins=</span><span
+            class="method-args">(enumerate_only_vulnerable_plugins)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_only_vulnerable_plugins-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 83</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_only_vulnerable_plugins=</span>(<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@enumerate_all_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@enumerate_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Please choose only one plugin enumeration option'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@enumerate_only_vulnerable_plugins</span> = <span class="ruby-identifier">enumerate_only_vulnerable_plugins</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_only_vulnerable_plugins-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_only_vulnerable_plugins-3D-method -->
+
+    
+      <div id="method-i-enumerate_only_vulnerable_themes-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_only_vulnerable_themes=</span><span
+            class="method-args">(enumerate_only_vulnerable_themes)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_only_vulnerable_themes-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 107</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes=</span>(<span class="ruby-identifier">enumerate_only_vulnerable_themes</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@enumerate_all_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@enumerate_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Please choose only one theme enumeration option'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@enumerate_only_vulnerable_themes</span> = <span class="ruby-identifier">enumerate_only_vulnerable_themes</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_only_vulnerable_themes-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_only_vulnerable_themes-3D-method -->
+
+    
+      <div id="method-i-enumerate_options_from_string" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_options_from_string</span><span
+            class="method-args">(value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Will set enumerate_* from the string value IE : if value = vp =&gt;
+:enumerate_only_vulnerable_plugins will be set to true multiple enumeration
+are possible : ‘u,p’ =&gt; :enumerate_usernames and :enumerate_plugins
+Special case for usernames, a range is possible : <a
+href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_options_from_string-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 183</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_options_from_string</span>(<span class="ruby-identifier">value</span>)
+  <span class="ruby-comment"># Usage of self is mandatory because there are overridden setters</span>
+
+  <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">split</span>(<span class="ruby-string">','</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">downcase</span> }
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_only_vulnerable_plugins</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'vp'</span>)
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_plugins</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'p'</span>)
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_all_plugins</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'ap'</span>)
+
+  <span class="ruby-ivar">@enumerate_timthumbs</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'tt'</span>)
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_only_vulnerable_themes</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'vt'</span>)
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_themes</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'t'</span>)
+
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">enumerate_all_themes</span> = <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-string">'at'</span>)
+
+  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/^u/</span>) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">username_enum_value</span><span class="ruby-operator">|</span>
+    <span class="ruby-ivar">@enumerate_usernames</span> = <span class="ruby-keyword">true</span>
+    <span class="ruby-comment"># Check for usernames range</span>
+    <span class="ruby-identifier">matches</span> = <span class="ruby-regexp">%r{\[([\d]+)-([\d]+)\]}</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">username_enum_value</span>)
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">matches</span>
+      <span class="ruby-ivar">@enumerate_usernames_range</span> = (<span class="ruby-identifier">matches</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span><span class="ruby-operator">..</span><span class="ruby-identifier">matches</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">to_i</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_options_from_string-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_options_from_string-method -->
+
+    
+      <div id="method-i-enumerate_plugins-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_plugins=</span><span
+            class="method-args">(enumerate_plugins)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_plugins-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 75</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_plugins=</span>(<span class="ruby-identifier">enumerate_plugins</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@enumerate_all_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@enumerate_only_vulnerable_plugins</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Please choose only one plugin enumeration option'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@enumerate_plugins</span> = <span class="ruby-identifier">enumerate_plugins</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_plugins-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_plugins-3D-method -->
+
+    
+      <div id="method-i-enumerate_themes-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">enumerate_themes=</span><span
+            class="method-args">(enumerate_themes)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="enumerate_themes-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 99</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">enumerate_themes=</span>(<span class="ruby-identifier">enumerate_themes</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">enumerate_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">and</span> (<span class="ruby-ivar">@enumerate_all_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">or</span> <span class="ruby-ivar">@enumerate_only_vulnerable_themes</span> <span class="ruby-operator">===</span> <span class="ruby-keyword">true</span>)
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Please choose only one theme enumeration option'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@enumerate_themes</span> = <span class="ruby-identifier">enumerate_themes</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- enumerate_themes-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- enumerate_themes-3D-method -->
+
+    
+      <div id="method-i-has_options-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">has_options?</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="has_options-3F-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 128</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">has_options?</span>
+  <span class="ruby-operator">!</span><span class="ruby-identifier">to_h</span>.<span class="ruby-identifier">empty?</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- has_options-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- has_options-3F-method -->
+
+    
+      <div id="method-i-proxy-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy=</span><span
+            class="method-args">(proxy)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="proxy-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 59</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">proxy=</span>(<span class="ruby-identifier">proxy</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">proxy</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Invalid proxy format. Should be host:port.'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@proxy</span> = <span class="ruby-identifier">proxy</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- proxy-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- proxy-3D-method -->
+
+    
+      <div id="method-i-proxy_auth-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">proxy_auth=</span><span
+            class="method-args">(auth)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="proxy_auth-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 67</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">proxy_auth=</span>(<span class="ruby-identifier">auth</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">auth</span>.<span class="ruby-identifier">index</span>(<span class="ruby-string">':'</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword">nil</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'Invalid proxy auth format, username:password expected'</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-ivar">@proxy_auth</span> = <span class="ruby-identifier">auth</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- proxy_auth-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- proxy_auth-3D-method -->
+
+    
+      <div id="method-i-set_option_from_cli" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">set_option_from_cli</span><span
+            class="method-args">(cli_option, cli_value)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>string cli_option : –url, -u, –proxy etc string cli_value : the option
+value</p>
+          
+          
+
+          
+          <div class="method-source-code" id="set_option_from_cli-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 162</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">set_option_from_cli</span>(<span class="ruby-identifier">cli_option</span>, <span class="ruby-identifier">cli_value</span>)
+
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">is_long_option?</span>(<span class="ruby-identifier">cli_option</span>)
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">send</span>(
+        <span class="ruby-constant">WpscanOptions</span>.<span class="ruby-identifier">option_to_instance_variable_setter</span>(<span class="ruby-identifier">cli_option</span>),
+        <span class="ruby-identifier">cli_value</span>
+    )
+  <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">cli_option</span> <span class="ruby-operator">===</span> <span class="ruby-string">'--enumerate'</span> <span class="ruby-comment"># Special cases</span>
+    <span class="ruby-comment"># Default value if no argument is given</span>
+    <span class="ruby-identifier">cli_value</span> = <span class="ruby-string">'vt,tt,u,vp'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">cli_value</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+
+    <span class="ruby-identifier">enumerate_options_from_string</span>(<span class="ruby-identifier">cli_value</span>)
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Unknow option : #{cli_option} with value #{cli_value}&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- set_option_from_cli-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- set_option_from_cli-method -->
+
+    
+      <div id="method-i-threads-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">threads=</span><span
+            class="method-args">(threads)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="threads-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 47</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">threads=</span>(<span class="ruby-identifier">threads</span>)
+  <span class="ruby-ivar">@threads</span> = <span class="ruby-identifier">threads</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Integer</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">threads</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">threads</span>.<span class="ruby-identifier">to_i</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- threads-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- threads-3D-method -->
+
+    
+      <div id="method-i-to_h" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">to_h</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>return Hash</p>
+          
+          
+
+          
+          <div class="method-source-code" id="to_h-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 133</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">to_h</span>
+  <span class="ruby-identifier">options</span> = {}
+
+  <span class="ruby-constant">ACCESSOR_OPTIONS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">instance_variable</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{option}&quot;</span>)
+
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">instance_variable</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-value">:&quot;#{option}&quot;</span>] = <span class="ruby-identifier">instance_variable</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">options</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- to_h-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- to_h-method -->
+
+    
+      <div id="method-i-url-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">url=</span><span
+            class="method-args">(url)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="url-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">url=</span>(<span class="ruby-identifier">url</span>)
+  <span class="ruby-identifier">raise</span> <span class="ruby-string">'Empty URL given'</span> <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">url</span>
+
+  <span class="ruby-ivar">@url</span> = <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">add_http_protocol</span>(<span class="ruby-identifier">url</span>)).<span class="ruby-identifier">to_s</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- url-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- url-3D-method -->
+
+    
+      <div id="method-i-wordlist-3D" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">wordlist=</span><span
+            class="method-args">(wordlist)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="wordlist-3D-source">
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_options.rb, line 51</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">wordlist=</span>(<span class="ruby-identifier">wordlist</span>)
+  <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">wordlist</span>)
+    <span class="ruby-ivar">@wordlist</span> = <span class="ruby-identifier">wordlist</span>
+  <span class="ruby-keyword">else</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;The file #{wordlist} does not exist&quot;</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- wordlist-3D-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- wordlist-3D-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+
