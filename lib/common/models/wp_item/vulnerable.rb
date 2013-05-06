@@ -5,6 +5,7 @@ class WpItem
     attr_accessor :vulns_file, :vulns_xpath
 
     # Get the vulnerabilities associated to the WpItem
+    # Filters out already fixed vulnerabilities
     #
     # @return [ Vulnerabilities ]
     def vulnerabilities
