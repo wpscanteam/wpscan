@@ -12,7 +12,18 @@ class WpItem
       vulnerabilities = Vulnerabilities.new
 
       xml.xpath(vulns_xpath).each do |node|
-        vulnerabilities << Vulnerability.load_from_xml_node(node)
+        vuln = Vulnerability.load_from_xml_node(node)
+        if vuln
+          if version && vuln.fixed_in && !vuln.fixed_in.empty?
+            if VersionCompare::is_newer_or_same?(vuln.fixed_in, version)
+              # "Hooray, fixed"
+            else
+              vulnerabilities << vuln
+            end
+          else
+            vulnerabilities << vuln
+          end
+        end
       end
       vulnerabilities
     end
