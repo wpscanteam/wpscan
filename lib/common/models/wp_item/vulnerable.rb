@@ -15,9 +15,7 @@ class WpItem
         vuln = Vulnerability.load_from_xml_node(node)
         if vuln
           if version && vuln.fixed_in && !vuln.fixed_in.empty?
-            if VersionCompare::is_newer_or_same?(vuln.fixed_in, version)
-              # "Hooray, fixed"
-            else
+            unless VersionCompare::is_newer_or_same?(vuln.fixed_in, version)
               vulnerabilities << vuln
             end
           else
