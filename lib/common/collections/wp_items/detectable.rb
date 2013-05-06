@@ -102,6 +102,7 @@ class WpItems < Array
         vulns_file:     self.vulns_file
       }
     end
+
     # The default request parameters
     #
     # @return [ Hash ]
