@@ -12,6 +12,10 @@ shared_examples 'WpItem::Vulnerable' do
   describe '#vulnerabilities' do
     let(:empty_file) { MODELS_FIXTURES + '/wp_item/vulnerable/empty.xml' }
 
+    before do
+      stub_request(:get, /.*/)
+    end
+
     after do
       subject.vulns_file  = @vulns_file
       subject.vulns_xpath = vulns_xpath if defined?(vulns_xpath)
