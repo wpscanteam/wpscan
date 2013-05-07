@@ -14,17 +14,27 @@ class WpItem
 
       xml.xpath(vulns_xpath).each do |node|
         vuln = Vulnerability.load_from_xml_node(node)
-        if vuln
-          if version && vuln.fixed_in && !vuln.fixed_in.empty?
-            unless VersionCompare::is_newer_or_same?(vuln.fixed_in, version)
-              vulnerabilities << vuln
-            end
-          else
-            vulnerabilities << vuln
-          end
+        if vulnerable_to?(vuln)
+          vulnerabilities << vuln
         end
       end
       vulnerabilities
+    end
+
+    # Checks if a item is vulnerable to a specific vulnerability
+    #
+    # @param [ Vulnerability ] vuln Vulnerability to check the item against
+    #
+    # @return [ Boolean ]
+    def vulnerable_to?(vuln)
+      if version && vuln && vuln.fixed_in && !vuln.fixed_in.empty?
+        unless VersionCompare::is_newer_or_same?(vuln.fixed_in, version)
+          return true
+        end
+      else
+        return true
+      end
+      return false
     end
   end
 
