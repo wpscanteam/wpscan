@@ -66,7 +66,6 @@ class WpUser < WpItem
         ProgressBar.create(
           format: '%t %a <%B> (%c / %C) %P%% %e',
           title: "  Brute Forcing '#{login}'",
-          length: 120,
           total: passwords_size
         )
       end

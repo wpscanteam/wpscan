@@ -58,7 +58,6 @@ class WpItems < Array
         ProgressBar.create(
           format: '%t %a <%B> (%c / %C) %P%% %e',
           title: '  ', # Used to craete a left margin
-          length: 120,
           total: targets_size
         )
       end
