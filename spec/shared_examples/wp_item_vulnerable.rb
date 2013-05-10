@@ -54,22 +54,22 @@ shared_examples 'WpItem::Vulnerable' do
     end
 
     context 'check basic version comparing' do
-      it 'should return true because checked version is newer' do
+      it 'returns true because checked version is newer' do
         subject.version.should == version_orig
         subject.vulnerable_to?(newer).should be_true
       end
 
-      it 'should return false because checked version is older' do
+      it 'returns false because checked version is older' do
         subject.version.should == version_orig
         subject.vulnerable_to?(older).should be_false
       end
 
-      it 'should return false because checked version is the fixed version' do
+      it 'returns false because checked version is the fixed version' do
         subject.version.should == version_orig
         subject.vulnerable_to?(same).should be_false
       end
 
-      it 'should return true because no fixed_in version is provided' do
+      it 'returns true because no fixed_in version is provided' do
         subject.version.should == version_orig
         subject.vulnerable_to?(no_fixed_info).should be_true
       end
@@ -81,7 +81,7 @@ shared_examples 'WpItem::Vulnerable' do
         stub_request(:get, /.*\/style\.css/i).to_return(status: 404)
       end
 
-      it 'should return true because no version can be detected' do
+      it 'returns true because no version can be detected' do
         subject.vulnerable_to?(newer).should be_true
         subject.vulnerable_to?(older).should be_true
         subject.vulnerable_to?(same).should be_true
