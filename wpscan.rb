@@ -260,15 +260,17 @@ def main
           show_progression: false
         )
       )
-      puts
+
       if wp_users.empty?
         puts 'We did not enumerate any usernames :('
-        puts 'Try supplying your own username with the --username option'
-        puts
-        exit(1)
+
+        if wpscan_options.wordlist
+          puts 'Try supplying your own username with the --username option'
+          puts
+          exit(1)
+        end
       else
         puts green('[+]') + " We found the following #{wp_users.size} user/s :"
-
         wp_users.output(margin_left: ' ' * 4)
       end
 
