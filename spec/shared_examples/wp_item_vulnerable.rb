@@ -46,6 +46,7 @@ shared_examples 'WpItem::Vulnerable' do
     let(:newer) { Vulnerability.new('Newer', 'XSS', ['ref'], nil, version_newer) }
     let(:older) { Vulnerability.new('Older', 'XSS', ['ref'], nil, version_older) }
     let(:same) { Vulnerability.new('Same', 'XSS', ['ref'], nil, version_orig) }
+    let(:no_fixed_info) { Vulnerability.new('Same', 'XSS', ['ref'], nil, nil) }
 
     before do
       stub_request(:get, /.*\/readme\.txt/i).to_return(status: 200, body: "Stable Tag: #{version_orig}")
@@ -53,19 +54,24 @@ shared_examples 'WpItem::Vulnerable' do
     end
 
     context 'check basic version comparing' do
-      it 'should return true' do
+      it 'should return true because checked version is newer' do
         subject.version.should == version_orig
         subject.vulnerable_to?(newer).should be_true
       end
 
-      it 'should return false' do
+      it 'should return false because checked version is older' do
         subject.version.should == version_orig
         subject.vulnerable_to?(older).should be_false
       end
 
-      it 'should return false' do
+      it 'should return false because checked version is the fixed version' do
         subject.version.should == version_orig
         subject.vulnerable_to?(same).should be_false
+      end
+
+      it 'should return true because no fixed_in version is provided' do
+        subject.version.should == version_orig
+        subject.vulnerable_to?(no_fixed_info).should be_true
       end
     end
 
