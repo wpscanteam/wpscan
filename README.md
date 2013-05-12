@@ -58,9 +58,9 @@ Prerequisites:
 
 *Installing on Archlinux:*
 
-```pacman -Sy ruby```
+```pacman -Syu ruby```
 
-```pacman -Sy libyaml```
+```pacman -Syu libyaml```
 
 ```git clone https://github.com/wpscanteam/wpscan.git```
 
