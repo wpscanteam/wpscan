@@ -112,3 +112,28 @@ def redefine_constant(constant, value)
   Object.send(:remove_const, constant)
   Object.const_set(constant, value)
 end
+
+# Gets the string all elements in stringarray ends with
+def get_equal_string_end(stringarray = [''])
+  already_found = ''
+  looping = true
+  counter = -1
+  if stringarray.kind_of? Array and stringarray.length > 1
+    base = stringarray[0]
+    while looping
+      character = base[counter, 1]
+      stringarray.each do |s|
+        if s[counter, 1] != character
+          looping = false
+          break
+        end
+      end
+      if looping == false or (counter * -1) > base.length
+        break
+      end
+      already_found = "#{character if character}#{already_found}"
+      counter -= 1
+    end
+  end
+  already_found
+end
