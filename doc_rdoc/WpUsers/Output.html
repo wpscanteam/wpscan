@@ -69,6 +69,8 @@
     
     <li ><a href="#method-i-output">#output</a>
     
+    <li ><a href="#method-i-remove_junk_from_display_names">#remove_junk_from_display_names</a>
+    
   </ul>
 </nav>
 
@@ -91,6 +93,8 @@
     <li class="file"><a href="../README.html">README</a>
   
     <li class="file"><a href="../README_md.html">README</a>
+  
+    <li class="file"><a href="../cache/browser/cookie-jar.html">cookie-jar</a>
   
     <li class="file"><a href="../conf/browser_conf_json.html">browser.conf.json</a>
   
@@ -167,6 +171,8 @@
     <li><a href="../Updater.html">Updater</a>
   
     <li><a href="../UpdaterFactory.html">UpdaterFactory</a>
+  
+    <li><a href="../VersionCompare.html">VersionCompare</a>
   
     <li><a href="../Vulnerabilities.html">Vulnerabilities</a>
   
@@ -329,15 +335,19 @@ href="Output.html">Output</a> the password column</p>
   <span class="ruby-identifier">headings</span> = [<span class="ruby-string">'Id'</span>, <span class="ruby-string">'Login'</span>, <span class="ruby-string">'Name'</span>]
   <span class="ruby-identifier">headings</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-string">'Password'</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_password</span>]
 
+  <span class="ruby-identifier">remove_junk_from_display_names</span>
+
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">wp_user</span><span class="ruby-operator">|</span>
     <span class="ruby-identifier">row</span> = [<span class="ruby-identifier">wp_user</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">wp_user</span>.<span class="ruby-identifier">login</span>, <span class="ruby-identifier">wp_user</span>.<span class="ruby-identifier">display_name</span>]
     <span class="ruby-identifier">row</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">wp_user</span>.<span class="ruby-identifier">password</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_password</span>]
     <span class="ruby-identifier">rows</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">row</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">puts</span> <span class="ruby-constant">Terminal</span><span class="ruby-operator">::</span><span class="ruby-constant">Table</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">headings</span><span class="ruby-operator">:</span> <span class="ruby-identifier">headings</span>,
-                           <span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-identifier">rows</span>,
-                           <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">margin_left</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:margin_left</span>] <span class="ruby-operator">||</span> <span class="ruby-string">''</span> })
+  <span class="ruby-identifier">table</span> = <span class="ruby-constant">Terminal</span><span class="ruby-operator">::</span><span class="ruby-constant">Table</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">headings</span><span class="ruby-operator">:</span> <span class="ruby-identifier">headings</span>,
+                              <span class="ruby-identifier">rows</span><span class="ruby-operator">:</span> <span class="ruby-identifier">rows</span>,
+                              <span class="ruby-identifier">style</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">margin_left</span><span class="ruby-operator">:</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:margin_left</span>] <span class="ruby-operator">||</span> <span class="ruby-string">''</span> }).<span class="ruby-identifier">to_s</span>
+  <span class="ruby-comment"># variable needed for output</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-identifier">table</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- output-source -->
           
@@ -347,6 +357,51 @@ href="Output.html">Output</a> the password column</p>
 
         
       </div><!-- output-method -->
+
+    
+      <div id="method-i-remove_junk_from_display_names" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">remove_junk_from_display_names</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="remove_junk_from_display_names-source">
+            <pre><span class="ruby-comment"># File lib/common/collections/wp_users/output.rb, line 29</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">remove_junk_from_display_names</span>
+  <span class="ruby-identifier">display_names</span> = []
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">display_name</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">display_name</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">display_name</span> <span class="ruby-operator">==</span> <span class="ruby-string">'empty'</span>
+      <span class="ruby-identifier">display_names</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">display_name</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">junk</span> = <span class="ruby-identifier">get_equal_string_end</span>(<span class="ruby-identifier">display_names</span>)
+  <span class="ruby-keyword">unless</span> <span class="ruby-identifier">junk</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">junk</span>.<span class="ruby-identifier">empty?</span>
+    <span class="ruby-keyword">self</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">u</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">u</span>.<span class="ruby-identifier">display_name</span> = <span class="ruby-identifier">u</span>.<span class="ruby-identifier">display_name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-node">/#{Regexp.escape(junk)}$/</span>, <span class="ruby-string">''</span>)
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- remove_junk_from_display_names-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- remove_junk_from_display_names-method -->
 
     
     </section><!-- public-instance-method-details -->

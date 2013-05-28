@@ -296,6 +296,7 @@ hash...</p>
       <pre class="lines">
 
 
+124
 125
 126
 127
@@ -316,11 +317,10 @@ hash...</p>
 142
 143
 144
-145
-146</pre>
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 125</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 124</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_passwords_from_wordlist'>passwords_from_wordlist</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_wordlist'>wordlist</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
@@ -584,16 +584,16 @@ waiting...</p>
       <pre class="lines">
 
 
+78
 79
 80
 81
 82
 83
-84
-85</pre>
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 78</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_login_request'>login_request</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
   <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_forge_request'>forge_request</span><span class='lparen'>(</span><span class='id identifier rubyid_login_url'>login_url</span><span class='comma'>,</span>
@@ -680,8 +680,7 @@ waiting...</p>
 69
 70
 71
-72
-73</pre>
+72</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 64</span>
@@ -691,7 +690,6 @@ waiting...</p>
     <span class='const'>ProgressBar</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
       <span class='label'>format:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>%t %a &lt;%B&gt; (%c / %C) %P%% %e</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
       <span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>  Brute Forcing '</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_login'>login</span><span class='rbrace'>}</span><span class='tstring_content'>'</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
-      <span class='label'>length:</span> <span class='int'>120</span><span class='comma'>,</span>
       <span class='label'>total:</span> <span class='id identifier rubyid_passwords_size'>passwords_size</span>
     <span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -808,6 +806,7 @@ waiting...</p>
       <pre class="lines">
 
 
+93
 94
 95
 96
@@ -828,11 +827,10 @@ waiting...</p>
 111
 112
 113
-114
-115</pre>
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 94</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_valid_password?'>valid_password?</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>302</span>
@@ -866,7 +864,7 @@ waiting...</p>
 </div>
 
     <div id="footer">
-  Generated on Tue Apr 30 23:05:05 2013 by
+  Generated on Tue May 28 19:45:35 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.6.1 (ruby-1.9.3).
 </div>

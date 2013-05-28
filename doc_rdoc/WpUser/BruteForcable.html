@@ -100,6 +100,8 @@
   
     <li class="file"><a href="../README_md.html">README</a>
   
+    <li class="file"><a href="../cache/browser/cookie-jar.html">cookie-jar</a>
+  
     <li class="file"><a href="../conf/browser_conf_json.html">browser.conf.json</a>
   
     <li class="file"><a href="../generate_doc_sh.html">generate_doc.sh</a>
@@ -175,6 +177,8 @@
     <li><a href="../Updater.html">Updater</a>
   
     <li><a href="../UpdaterFactory.html">UpdaterFactory</a>
+  
+    <li><a href="../VersionCompare.html">VersionCompare</a>
   
     <li><a href="../Vulnerabilities.html">Vulnerabilities</a>
   
@@ -336,7 +340,7 @@ passwords if they start with a hash...</p>
 
           
           <div class="method-source-code" id="passwords_from_wordlist-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 124</span>
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 123</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">passwords_from_wordlist</span>(<span class="ruby-identifier">wordlist</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">wordlist</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
     <span class="ruby-identifier">passwords</span> = []
@@ -476,7 +480,7 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
 
           
           <div class="method-source-code" id="login_request-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 78</span>
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 77</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">login_request</span>(<span class="ruby-identifier">password</span>)
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">login_url</span>,
     <span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-value">:post</span>,
@@ -521,7 +525,6 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
     <span class="ruby-constant">ProgressBar</span>.<span class="ruby-identifier">create</span>(
       <span class="ruby-identifier">format</span><span class="ruby-operator">:</span> <span class="ruby-string">'%t %a &lt;%B&gt; (%c / %C) %P%% %e'</span>,
       <span class="ruby-identifier">title</span><span class="ruby-operator">:</span> <span class="ruby-node">&quot;  Brute Forcing '#{login}'&quot;</span>,
-      <span class="ruby-identifier">length</span><span class="ruby-operator">:</span> <span class="ruby-value">120</span>,
       <span class="ruby-identifier">total</span><span class="ruby-operator">:</span> <span class="ruby-identifier">passwords_size</span>
     )
   <span class="ruby-keyword">end</span>
@@ -559,7 +562,7 @@ response @param [ String ] password @param [ Hash ] options @option options
 
           
           <div class="method-source-code" id="valid_password-3F-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 93</span>
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_password?</span>(<span class="ruby-identifier">response</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span>
     <span class="ruby-identifier">progression</span> = <span class="ruby-node">&quot;#{green('[SUCCESS]')} Login : #{login} Password : #{password}\n\n&quot;</span>

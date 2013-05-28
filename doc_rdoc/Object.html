@@ -85,6 +85,8 @@
     
     <li ><a href="#method-i-colorize">#colorize</a>
     
+    <li ><a href="#method-i-get_equal_string_end">#get_equal_string_end</a>
+    
     <li ><a href="#method-i-green">#green</a>
     
     <li ><a href="#method-i-help">#help</a>
@@ -125,6 +127,8 @@
     <li class="file"><a href="./README.html">README</a>
   
     <li class="file"><a href="./README_md.html">README</a>
+  
+    <li class="file"><a href="./cache/browser/cookie-jar.html">cookie-jar</a>
   
     <li class="file"><a href="./conf/browser_conf_json.html">browser.conf.json</a>
   
@@ -201,6 +205,8 @@
     <li><a href="./Updater.html">Updater</a>
   
     <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
+  
+    <li><a href="./VersionCompare.html">VersionCompare</a>
   
     <li><a href="./Vulnerabilities.html">Vulnerabilities</a>
   
@@ -631,6 +637,59 @@
       </div><!-- colorize-method -->
 
     
+      <div id="method-i-get_equal_string_end" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">get_equal_string_end</span><span
+            class="method-args">(stringarray = [''])</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>Gets the string all elements in stringarray ends with</p>
+          
+          
+
+          
+          <div class="method-source-code" id="get_equal_string_end-source">
+            <pre><span class="ruby-comment"># File lib/common/common_helper.rb, line 116</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">get_equal_string_end</span>(<span class="ruby-identifier">stringarray</span> = [<span class="ruby-string">''</span>])
+  <span class="ruby-identifier">already_found</span> = <span class="ruby-string">''</span>
+  <span class="ruby-identifier">looping</span> = <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">counter</span> = <span class="ruby-value">-1</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">stringarray</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Array</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">stringarray</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">base</span> = <span class="ruby-identifier">stringarray</span>[<span class="ruby-value">0</span>]
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">looping</span>
+      <span class="ruby-identifier">character</span> = <span class="ruby-identifier">base</span>[<span class="ruby-identifier">counter</span>, <span class="ruby-value">1</span>]
+      <span class="ruby-identifier">stringarray</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">s</span>[<span class="ruby-identifier">counter</span>, <span class="ruby-value">1</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">character</span>
+          <span class="ruby-identifier">looping</span> = <span class="ruby-keyword">false</span>
+          <span class="ruby-keyword">break</span>
+        <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">looping</span> <span class="ruby-operator">==</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">or</span> (<span class="ruby-identifier">counter</span> <span class="ruby-operator">*</span> <span class="ruby-value">-1</span>) <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">length</span>
+        <span class="ruby-keyword">break</span>
+      <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">already_found</span> = <span class="ruby-node">&quot;#{character if character}#{already_found}&quot;</span>
+      <span class="ruby-identifier">counter</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">already_found</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- get_equal_string_end-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- get_equal_string_end-method -->
+
+    
       <div id="method-i-green" class="method-detail ">
         
         <div class="method-heading">
@@ -1010,15 +1069,17 @@
           <span class="ruby-identifier">show_progression</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
         )
       )
-      <span class="ruby-identifier">puts</span>
+
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">wp_users</span>.<span class="ruby-identifier">empty?</span>
         <span class="ruby-identifier">puts</span> <span class="ruby-string">'We did not enumerate any usernames :('</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-string">'Try supplying your own username with the --username option'</span>
-        <span class="ruby-identifier">puts</span>
-        <span class="ruby-identifier">exit</span>(<span class="ruby-value">1</span>)
+
+        <span class="ruby-keyword">if</span> <span class="ruby-identifier">wpscan_options</span>.<span class="ruby-identifier">wordlist</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-string">'Try supplying your own username with the --username option'</span>
+          <span class="ruby-identifier">puts</span>
+          <span class="ruby-identifier">exit</span>(<span class="ruby-value">1</span>)
+        <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">else</span>
         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">green</span>(<span class="ruby-string">'[+]'</span>) <span class="ruby-operator">+</span> <span class="ruby-node">&quot; We found the following #{wp_users.size} user/s :&quot;</span>
-
         <span class="ruby-identifier">wp_users</span>.<span class="ruby-identifier">output</span>(<span class="ruby-identifier">margin_left</span><span class="ruby-operator">:</span> <span class="ruby-string">' '</span> <span class="ruby-operator">*</span> <span class="ruby-value">4</span>)
       <span class="ruby-keyword">end</span>
 

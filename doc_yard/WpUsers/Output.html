@@ -125,6 +125,28 @@
 </li>
 
       
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#remove_junk_from_display_names-instance_method" title="#remove_junk_from_display_names (instance method)">- (Object) <strong>remove_junk_from_display_names</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
     </ul>
   
 
@@ -209,7 +231,11 @@
 21
 22
 23
-24</pre>
+24
+25
+26
+27
+28</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/common/collections/wp_users/output.rb', line 10</span>
@@ -219,15 +245,73 @@
   <span class='id identifier rubyid_headings'>headings</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Id</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Login</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Name</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_headings'>headings</span> <span class='op'>&lt;&lt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Password</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:show_password</span><span class='rbracket'>]</span>
 
+  <span class='id identifier rubyid_remove_junk_from_display_names'>remove_junk_from_display_names</span>
+
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_wp_user'>wp_user</span><span class='op'>|</span>
     <span class='id identifier rubyid_row'>row</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_wp_user'>wp_user</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span> <span class='id identifier rubyid_wp_user'>wp_user</span><span class='period'>.</span><span class='id identifier rubyid_login'>login</span><span class='comma'>,</span> <span class='id identifier rubyid_wp_user'>wp_user</span><span class='period'>.</span><span class='id identifier rubyid_display_name'>display_name</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_row'>row</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_wp_user'>wp_user</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:show_password</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_rows'>rows</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_row'>row</span>
   <span class='kw'>end</span>
 
-  <span class='id identifier rubyid_puts'>puts</span> <span class='const'>Terminal</span><span class='op'>::</span><span class='const'>Table</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>headings:</span> <span class='id identifier rubyid_headings'>headings</span><span class='comma'>,</span>
-                           <span class='label'>rows:</span> <span class='id identifier rubyid_rows'>rows</span><span class='comma'>,</span>
-                           <span class='label'>style:</span> <span class='lbrace'>{</span> <span class='label'>margin_left:</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:margin_left</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_table'>table</span> <span class='op'>=</span> <span class='const'>Terminal</span><span class='op'>::</span><span class='const'>Table</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>headings:</span> <span class='id identifier rubyid_headings'>headings</span><span class='comma'>,</span>
+                              <span class='label'>rows:</span> <span class='id identifier rubyid_rows'>rows</span><span class='comma'>,</span>
+                              <span class='label'>style:</span> <span class='lbrace'>{</span> <span class='label'>margin_left:</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:margin_left</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span> <span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
+  <span class='comment'># variable needed for output
+</span>  <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_table'>table</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="remove_junk_from_display_names-instance_method">
+  
+    - (<tt>Object</tt>) <strong>remove_junk_from_display_names</strong> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_users/output.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_remove_junk_from_display_names'>remove_junk_from_display_names</span>
+  <span class='id identifier rubyid_display_names'>display_names</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_u'>u</span><span class='op'>|</span>
+    <span class='id identifier rubyid_display_name'>display_name</span> <span class='op'>=</span> <span class='id identifier rubyid_u'>u</span><span class='period'>.</span><span class='id identifier rubyid_display_name'>display_name</span>
+    <span class='kw'>unless</span> <span class='id identifier rubyid_display_name'>display_name</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>empty</span><span class='tstring_end'>'</span></span>
+      <span class='id identifier rubyid_display_names'>display_names</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_display_name'>display_name</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_junk'>junk</span> <span class='op'>=</span> <span class='id identifier rubyid_get_equal_string_end'>get_equal_string_end</span><span class='lparen'>(</span><span class='id identifier rubyid_display_names'>display_names</span><span class='rparen'>)</span>
+  <span class='kw'>unless</span> <span class='id identifier rubyid_junk'>junk</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='kw'>or</span> <span class='id identifier rubyid_junk'>junk</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_u'>u</span><span class='op'>|</span>
+      <span class='id identifier rubyid_u'>u</span><span class='period'>.</span><span class='id identifier rubyid_display_name'>display_name</span> <span class='op'>=</span> <span class='id identifier rubyid_u'>u</span><span class='period'>.</span><span class='id identifier rubyid_display_name'>display_name</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_junk'>junk</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'>$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -239,7 +323,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Apr 30 23:05:05 2013 by
+  Generated on Tue May 28 19:45:35 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.6.1 (ruby-1.9.3).
 </div>

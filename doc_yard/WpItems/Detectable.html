@@ -758,6 +758,7 @@
       <pre class="lines">
 
 
+153
 154
 155
 156
@@ -765,11 +766,10 @@
 158
 159
 160
-161
-162</pre>
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 154</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_item'>create_item</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_vulns_file'>vulns_file</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
@@ -822,12 +822,12 @@
       <pre class="lines">
 
 
+186
 187
-188
-189</pre>
+188</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 187</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 186</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_item_class'>item_class</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -902,6 +902,7 @@
       <pre class="lines">
 
 
+71
 72
 73
 74
@@ -924,11 +925,10 @@
 91
 92
 93
-94
-95</pre>
+94</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 72</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_passive_detection'>passive_detection</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_results'>results</span>      <span class='op'>=</span> <span class='id identifier rubyid_new'>new</span>
@@ -1032,8 +1032,7 @@
 61
 62
 63
-64
-65</pre>
+64</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 56</span>
@@ -1043,8 +1042,7 @@
     <span class='const'>ProgressBar</span><span class='period'>.</span><span class='id identifier rubyid_create'>create</span><span class='lparen'>(</span>
       <span class='label'>format:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>%t %a &lt;%B&gt; (%c / %C) %P%% %e</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
       <span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  </span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='comment'># Used to craete a left margin
-</span>      <span class='label'>length:</span> <span class='int'>120</span><span class='comma'>,</span>
-      <span class='label'>total:</span> <span class='id identifier rubyid_targets_size'>targets_size</span>
+</span>      <span class='label'>total:</span> <span class='id identifier rubyid_targets_size'>targets_size</span>
     <span class='rparen'>)</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
@@ -1092,10 +1090,10 @@
       <pre class="lines">
 
 
-102</pre>
+101</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request_params'>request_params</span><span class='semicolon'>;</span> <span class='lbrace'>{</span> <span class='label'>cache_ttl:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>followlocation:</span> <span class='kw'>true</span> <span class='rbrace'>}</span> <span class='kw'>end</span></pre>
     </td>
@@ -1201,6 +1199,7 @@
       <pre class="lines">
 
 
+109
 110
 111
 112
@@ -1216,11 +1215,10 @@
 122
 123
 124
-125
-126</pre>
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_targets_items'>targets_items</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_item_class'>item_class</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_item_class'>item_class</span>
@@ -1329,6 +1327,7 @@
       <pre class="lines">
 
 
+169
 170
 171
 172
@@ -1342,11 +1341,10 @@
 180
 181
 182
-183
-184</pre>
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 170</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_targets_items_from_file'>targets_items_from_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_item_class'>item_class</span><span class='comma'>,</span> <span class='id identifier rubyid_vulns_file'>vulns_file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_targets'>targets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1442,6 +1440,7 @@
       <pre class="lines">
 
 
+132
 133
 134
 135
@@ -1454,11 +1453,10 @@
 142
 143
 144
-145
-146</pre>
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 132</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_vulnerable_targets_items'>vulnerable_targets_items</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_item_class'>item_class</span><span class='comma'>,</span> <span class='id identifier rubyid_vulns_file'>vulns_file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_targets'>targets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1484,7 +1482,7 @@
 </div>
 
     <div id="footer">
-  Generated on Tue Apr 30 23:05:05 2013 by
+  Generated on Tue May 28 19:45:36 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.6.1 (ruby-1.9.3).
 </div>
