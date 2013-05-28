@@ -18,9 +18,11 @@ class WpUsers < WpItems
         rows << row
       end
 
-      puts Terminal::Table.new(headings: headings,
-                               rows: rows,
-                               style: { margin_left: options[:margin_left] || '' })
+      table = Terminal::Table.new(headings: headings,
+                                  rows: rows,
+                                  style: { margin_left: options[:margin_left] || '' }).to_s
+      # variable needed for output
+      puts table
     end
 
   end
