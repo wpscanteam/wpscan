@@ -6,7 +6,7 @@ gem "ethon", "=0.5.10"
 gem "nokogiri"
 gem "json"
 gem "terminal-table"
-gem "ruby-progressbar"
+gem "ruby-progressbar", ">=1.1.0"
 
 group :development, :test do
   gem "webmock", ">=1.9.3"
