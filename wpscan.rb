@@ -287,7 +287,7 @@ def main
         protection_plugin = wp_target.login_protection_plugin()
 
         puts
-        puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login. Not a good idea for brute forcing !"
+        puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing !"
         puts '[?] Do you want to start the brute force anyway ? [y/n]'
 
         bruteforce = false if Readline.readline !~ /^y/i
