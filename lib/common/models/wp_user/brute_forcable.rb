@@ -17,9 +17,10 @@ class WpUser < WpItem
     # @param [ Hash ] options
     # @option options [ Boolean ] :verbose
     # @option options [ Boolean ] :show_progression
+    # @param [ String ] redirect_url Override for redirect_url
     #
     # @return [ void ]
-    def brute_force(wordlist, options = {})
+    def brute_force(wordlist, options = {}, redirect_url = nil)
       browser      = Browser.instance
       hydra        = browser.hydra
       passwords    = BruteForcable.passwords_from_wordlist(wordlist)
@@ -30,8 +31,10 @@ class WpUser < WpItem
       passwords.each do |password|
         # A successfull login will redirect us to the redirect_to parameter
         # Generate a radom one on each request
-        random = (0...8).map { 65.+(rand(26)).chr }.join
-        redirect_url = "#{@uri}#{random}/"
+        unless redirect_url
+          random = (0...8).map { 65.+(rand(26)).chr }.join
+          redirect_url = "#{@uri}#{random}/"
+        end
 
         request = login_request(password, redirect_url)
 
@@ -98,7 +101,7 @@ class WpUser < WpItem
     #
     # @return [ Boolean ]
     def valid_password?(response, password, redirect_url, options = {})
-      if response.code == 302 && response.headers_hash['Location'] == redirect_url
+      if response.code == 302 && response.headers_hash && response.headers_hash['Location'] == redirect_url
         progression = "#{green('[SUCCESS]')} Login : #{login} Password : #{password}\n\n"
         valid       = true
       elsif response.body =~ /login_error/i

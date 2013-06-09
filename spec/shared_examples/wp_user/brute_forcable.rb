@@ -58,16 +58,25 @@ shared_examples 'WpUser::BruteForcable' do
   describe '#valid_password?' do
     let(:response)     { Typhoeus::Response.new(resp_options) }
     let(:resp_options) { {} }
+    let(:return_to)    { 'http://www.example.com/asdf/' }
 
     after do
-      wp_user.valid_password?(response, 'password').should == @expected
+      wp_user.valid_password?(response, 'password', return_to).should == @expected
     end
 
-    context 'when 302' do
-      let(:resp_options) { { code: 302 } }
+    context 'when 302 and valid return_to parameter' do
+      let(:resp_options) { { code: 302, headers: { 'Location' => return_to } } }
 
       it 'returns true' do
         @expected = true
+      end
+    end
+
+    context 'when 302 and invalid return_to parameter' do
+      let(:resp_options) { { code: 302, headers: { 'Location' => nil } } }
+
+      it 'returns false' do
+        @expected = false
       end
     end
 
@@ -118,12 +127,13 @@ shared_examples 'WpUser::BruteForcable' do
   end
 
   describe '#brute_force' do
-    let(:passwords) { %w{pass1 pass2 yolo kansei£Ô} }
-    let(:login)     { 'someuser' }
+    let(:passwords)     { %w{pass1 pass2 yolo kansei£Ô} }
+    let(:login)         { 'someuser' }
+    let(:redirect_url)  { 'http://www.example.com/asdf/' }
 
     after do
       wp_user.login = login
-      wp_user.brute_force(passwords)
+      wp_user.brute_force(passwords, {}, redirect_url)
       wp_user.password.should == @expected
     end
 
@@ -143,7 +153,7 @@ shared_examples 'WpUser::BruteForcable' do
       # Due to the error with .with(body: { log: login }) above
       # We can't use it to stub the request for a specific password
       # So, the first one will be valid
-      before { stub_request(:post, wp_user.login_url).to_return(status: 302) }
+      before { stub_request(:post, wp_user.login_url).to_return(status: 302, headers: { 'Location' => redirect_url } ) }
 
       it 'sets the @password' do
         @expected = passwords[0]
