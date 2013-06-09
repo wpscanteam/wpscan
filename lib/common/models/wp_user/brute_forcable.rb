@@ -30,10 +30,10 @@ class WpUser < WpItem
 
       passwords.each do |password|
         # A successfull login will redirect us to the redirect_to parameter
-        # Generate a radom one on each request
+        # Generate a random one on each request
         unless redirect_url
           random = (0...8).map { 65.+(rand(26)).chr }.join
-          redirect_url = "#{@uri}#{random}/"
+          redirect_url = "#@uri#{random}/"
         end
 
         request = login_request(password, redirect_url)
