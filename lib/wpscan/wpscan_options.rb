@@ -28,7 +28,8 @@ class WpscanOptions
     :help,
     :config_file,
     :exclude_content_based,
-    :basic_auth
+    :basic_auth,
+    :debug_output
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -124,6 +125,10 @@ class WpscanOptions
   def basic_auth=(basic_auth)
     raise 'Invalid basic authentication format, login:password expected' if basic_auth.index(':').nil?
     @basic_auth = "Basic #{Base64.encode64(basic_auth).chomp}"
+  end
+
+  def debug_output=(debug_output)
+    Typhoeus::Config.verbose = debug_output
   end
 
   def has_options?
@@ -231,7 +236,8 @@ class WpscanOptions
       ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
       ['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
-      ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT]
+      ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT],
+      ['--debug-output', GetoptLong::NO_ARGUMENT]
     )
   end
 

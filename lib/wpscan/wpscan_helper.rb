@@ -49,6 +49,9 @@ def usage
   puts '-Update ...'
   puts "ruby #{script_name} --update"
   puts
+  puts '-Debug output ...'
+  puts "ruby #{script_name} --url www.example.com --debug-output 2>debug.log"
+  puts
   puts 'See README for further information.'
   puts
 end

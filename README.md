@@ -204,6 +204,10 @@ Update WPScan...
 
 ```ruby wpscan.rb --update```
 
+Debug output...
+
+```ruby wpscan.rb --url www.example.com --debug-output 2>debug.log```
+
 #### WPSTOOLS ARGUMENTS
 
     --help    | -h   This help screen.
