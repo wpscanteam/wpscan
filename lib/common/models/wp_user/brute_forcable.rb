@@ -28,14 +28,19 @@ class WpUser < WpItem
       progress_bar = self.progress_bar(passwords.size, options)
 
       passwords.each do |password|
-        request = login_request(password)
+        # A successfull login will redirect us to the redirect_to parameter
+        # Generate a radom one on each request
+        random = (0...8).map { 65.+(rand(26)).chr }.join
+        redirect_url = "#{@uri}#{random}/"
+
+        request = login_request(password, redirect_url)
 
         request.on_complete do |response|
           progress_bar.progress += 1 if options[:show_progression] && !found
 
           puts "\n  Trying Username : #{login} Password : #{password}" if options[:verbose]
 
-          if valid_password?(response, password, options)
+          if valid_password?(response, password, redirect_url, options)
             found         = true
             self.password = password
             return
@@ -73,25 +78,27 @@ class WpUser < WpItem
     # :nocov:
 
     # @param [ String ] password
+    # @param [ String ] redirect_url
     #
     # @return [ Typhoeus::Request ]
-    def login_request(password)
+    def login_request(password, redirect_url)
       Browser.instance.forge_request(login_url,
         method: :post,
-        body: { log: login, pwd: password },
+        body: { log: login, pwd: password, redirect_to: redirect_url },
         cache_ttl: 0
       )
     end
 
     # @param [ Typhoeus::Response ] response
     # @param [ String ] password
+    # @param [ String ] redirect_url
     # @param [ Hash ] options
     # @option options [ Boolean ] :verbose
     # @option options [ Boolean ] :show_progression
     #
     # @return [ Boolean ]
-    def valid_password?(response, password, options = {})
-      if response.code == 302
+    def valid_password?(response, password, redirect_url, options = {})
+      if response.code == 302 && response.headers_hash['Location'] == redirect_url
         progression = "#{green('[SUCCESS]')} Login : #{login} Password : #{password}\n\n"
         valid       = true
       elsif response.body =~ /login_error/i
