@@ -133,7 +133,8 @@
   <span class='symbol'>:help</span><span class='comma'>,</span>
   <span class='symbol'>:config_file</span><span class='comma'>,</span>
   <span class='symbol'>:exclude_content_based</span><span class='comma'>,</span>
-  <span class='symbol'>:basic_auth</span>
+  <span class='symbol'>:basic_auth</span><span class='comma'>,</span>
+  <span class='symbol'>:debug_output</span>
 <span class='rbracket'>]</span></pre></dd>
       
     </dl>
@@ -284,6 +285,28 @@ any remaining '-' by '_'.</p>
   <span class="summary_signature">
     
       <a href="#basic_auth%3D-instance_method" title="#basic_auth= (instance method)">- (Object) <strong>basic_auth=</strong>(basic_auth) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#debug_output%3D-instance_method" title="#debug_output= (instance method)">- (Object) <strong>debug_output=</strong>(debug_output) </a>
     
 
     
@@ -701,14 +724,14 @@ value.</p>
       <pre class="lines">
 
 
-36
 37
 38
 39
-40</pre>
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 36</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 37</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
   <span class='const'>ACCESSOR_OPTIONS</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_option'>option</span><span class='op'>|</span>
@@ -756,13 +779,13 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-247
-248
-249
-250</pre>
+253
+254
+255
+256</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 247</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 253</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clean_option'>clean_option</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cleaned_option'>cleaned_option</span> <span class='op'>=</span> <span class='id identifier rubyid_option'>option</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^--?</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
@@ -800,11 +823,6 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-216
-217
-218
-219
-220
 221
 222
 223
@@ -820,10 +838,16 @@ any remaining '-' by '_'</p>
 233
 234
 235
-236</pre>
+236
+237
+238
+239
+240
+241
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 216</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 221</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_get_opt_long'>get_opt_long</span>
   <span class='const'>GetoptLong</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
@@ -843,7 +867,8 @@ any remaining '-' by '_'</p>
     <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--wp-plugins-dir</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>GetoptLong</span><span class='op'>::</span><span class='const'>REQUIRED_ARGUMENT</span><span class='rbracket'>]</span><span class='comma'>,</span>
     <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--config-file</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-c</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>GetoptLong</span><span class='op'>::</span><span class='const'>REQUIRED_ARGUMENT</span><span class='rbracket'>]</span><span class='comma'>,</span>
     <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--exclude-content-based</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>GetoptLong</span><span class='op'>::</span><span class='const'>REQUIRED_ARGUMENT</span><span class='rbracket'>]</span><span class='comma'>,</span>
-    <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--basic-auth</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>GetoptLong</span><span class='op'>::</span><span class='const'>REQUIRED_ARGUMENT</span><span class='rbracket'>]</span>
+    <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--basic-auth</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>GetoptLong</span><span class='op'>::</span><span class='const'>REQUIRED_ARGUMENT</span><span class='rbracket'>]</span><span class='comma'>,</span>
+    <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>--debug-output</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='const'>GetoptLong</span><span class='op'>::</span><span class='const'>NO_ARGUMENT</span><span class='rbracket'>]</span>
   <span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -888,12 +913,12 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-238
-239
-240</pre>
+244
+245
+246</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 238</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 244</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_is_long_option?'>is_long_option?</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='const'>ACCESSOR_OPTIONS</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='symbol'>:#{</span><span class='const'>WpscanOptions</span><span class='period'>.</span><span class='id identifier rubyid_clean_option'>clean_option</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -929,20 +954,20 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-149
-150
-151
-152
-153
 154
 155
 156
 157
 158
-159</pre>
+159
+160
+161
+162
+163
+164</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 149</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_load_from_arguments'>load_from_arguments</span>
   <span class='id identifier rubyid_wpscan_options'>wpscan_options</span> <span class='op'>=</span> <span class='const'>WpscanOptions</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
@@ -975,15 +1000,15 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-252
-253
-254
-255
-256
-257</pre>
+258
+259
+260
+261
+262
+263</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 252</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 258</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_option_to_instance_variable_setter'>option_to_instance_variable_setter</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_cleaned_option'>cleaned_option</span> <span class='op'>=</span> <span class='const'>WpscanOptions</span><span class='period'>.</span><span class='id identifier rubyid_clean_option'>clean_option</span><span class='lparen'>(</span><span class='id identifier rubyid_option'>option</span><span class='rparen'>)</span>
@@ -1017,17 +1042,47 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-124
 125
 126
-127</pre>
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 125</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_basic_auth='>basic_auth=</span><span class='lparen'>(</span><span class='id identifier rubyid_basic_auth'>basic_auth</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Invalid basic authentication format, login:password expected</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_basic_auth'>basic_auth</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
   <span class='ivar'>@basic_auth</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Basic </span><span class='embexpr_beg'>#{</span><span class='const'>Base64</span><span class='period'>.</span><span class='id identifier rubyid_encode64'>encode64</span><span class='lparen'>(</span><span class='id identifier rubyid_basic_auth'>basic_auth</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chomp'>chomp</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="debug_output=-instance_method">
+  
+    - (<tt>Object</tt>) <strong>debug_output=</strong>(debug_output) 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+130
+131
+132</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 130</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_debug_output='>debug_output=</span><span class='lparen'>(</span><span class='id identifier rubyid_debug_output'>debug_output</span><span class='rparen'>)</span>
+  <span class='const'>Typhoeus</span><span class='op'>::</span><span class='const'>Config</span><span class='period'>.</span><span class='id identifier rubyid_verbose'>verbose</span> <span class='op'>=</span> <span class='id identifier rubyid_debug_output'>debug_output</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1049,16 +1104,16 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-92
 93
 94
 95
 96
 97
-98</pre>
+98
+99</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 92</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_all_plugins='>enumerate_all_plugins=</span><span class='lparen'>(</span><span class='id identifier rubyid_enumerate_all_plugins'>enumerate_all_plugins</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_enumerate_all_plugins'>enumerate_all_plugins</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@enumerate_plugins</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>or</span> <span class='ivar'>@enumerate_only_vulnerable_plugins</span> <span class='op'>===</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1087,16 +1142,16 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-116
 117
 118
 119
 120
 121
-122</pre>
+122
+123</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 116</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 117</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_all_themes='>enumerate_all_themes=</span><span class='lparen'>(</span><span class='id identifier rubyid_enumerate_all_themes'>enumerate_all_themes</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_enumerate_all_themes'>enumerate_all_themes</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@enumerate_themes</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>or</span> <span class='ivar'>@enumerate_only_vulnerable_themes</span> <span class='op'>===</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1125,16 +1180,16 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-84
 85
 86
 87
 88
 89
-90</pre>
+90
+91</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 84</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_only_vulnerable_plugins='>enumerate_only_vulnerable_plugins=</span><span class='lparen'>(</span><span class='id identifier rubyid_enumerate_only_vulnerable_plugins'>enumerate_only_vulnerable_plugins</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_enumerate_only_vulnerable_plugins'>enumerate_only_vulnerable_plugins</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@enumerate_all_plugins</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>or</span> <span class='ivar'>@enumerate_plugins</span> <span class='op'>===</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1163,16 +1218,16 @@ any remaining '-' by '_'</p>
       <pre class="lines">
 
 
-108
 109
 110
 111
 112
 113
-114</pre>
+114
+115</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_only_vulnerable_themes='>enumerate_only_vulnerable_themes=</span><span class='lparen'>(</span><span class='id identifier rubyid_enumerate_only_vulnerable_themes'>enumerate_only_vulnerable_themes</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_enumerate_only_vulnerable_themes'>enumerate_only_vulnerable_themes</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@enumerate_all_themes</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>or</span> <span class='ivar'>@enumerate_themes</span> <span class='op'>===</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1216,11 +1271,6 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
       <pre class="lines">
 
 
-184
-185
-186
-187
-188
 189
 190
 191
@@ -1244,10 +1294,15 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
 209
 210
 211
-212</pre>
+212
+213
+214
+215
+216
+217</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 184</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 189</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_options_from_string'>enumerate_options_from_string</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='comment'># Usage of self is mandatory because there are overridden setters
@@ -1298,16 +1353,16 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
       <pre class="lines">
 
 
-76
 77
 78
 79
 80
 81
-82</pre>
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 76</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 77</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_plugins='>enumerate_plugins=</span><span class='lparen'>(</span><span class='id identifier rubyid_enumerate_plugins'>enumerate_plugins</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_enumerate_plugins'>enumerate_plugins</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@enumerate_all_plugins</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>or</span> <span class='ivar'>@enumerate_only_vulnerable_plugins</span> <span class='op'>===</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1336,16 +1391,16 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
       <pre class="lines">
 
 
-100
 101
 102
 103
 104
 105
-106</pre>
+106
+107</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_enumerate_themes='>enumerate_themes=</span><span class='lparen'>(</span><span class='id identifier rubyid_enumerate_themes'>enumerate_themes</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_enumerate_themes'>enumerate_themes</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='ivar'>@enumerate_all_themes</span> <span class='op'>===</span> <span class='kw'>true</span> <span class='kw'>or</span> <span class='ivar'>@enumerate_only_vulnerable_themes</span> <span class='op'>===</span> <span class='kw'>true</span><span class='rparen'>)</span>
@@ -1396,12 +1451,12 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
       <pre class="lines">
 
 
-129
-130
-131</pre>
+134
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 129</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_options?'>has_options?</span>
   <span class='op'>!</span><span class='id identifier rubyid_to_h'>to_h</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -1426,16 +1481,16 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
       <pre class="lines">
 
 
-60
 61
 62
 63
 64
 65
-66</pre>
+66
+67</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 60</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 61</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_proxy='>proxy=</span><span class='lparen'>(</span><span class='id identifier rubyid_proxy'>proxy</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_proxy'>proxy</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>nil</span>
@@ -1464,16 +1519,16 @@ href="http://1-10">u</a> will enumerate usernames from 1 to 10</p>
       <pre class="lines">
 
 
-68
 69
 70
 71
 72
 73
-74</pre>
+74
+75</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 68</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_proxy_auth='>proxy_auth=</span><span class='lparen'>(</span><span class='id identifier rubyid_auth'>auth</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_auth'>auth</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>:</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> <span class='op'>==</span> <span class='kw'>nil</span>
@@ -1514,11 +1569,6 @@ value</p>
       <pre class="lines">
 
 
-163
-164
-165
-166
-167
 168
 169
 170
@@ -1529,10 +1579,15 @@ value</p>
 175
 176
 177
-178</pre>
+178
+179
+180
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 163</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 168</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_option_from_cli'>set_option_from_cli</span><span class='lparen'>(</span><span class='id identifier rubyid_cli_option'>cli_option</span><span class='comma'>,</span> <span class='id identifier rubyid_cli_value'>cli_value</span><span class='rparen'>)</span>
 
@@ -1570,12 +1625,12 @@ value</p>
       <pre class="lines">
 
 
-48
 49
-50</pre>
+50
+51</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 48</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 49</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_threads='>threads=</span><span class='lparen'>(</span><span class='id identifier rubyid_threads'>threads</span><span class='rparen'>)</span>
   <span class='ivar'>@threads</span> <span class='op'>=</span> <span class='id identifier rubyid_threads'>threads</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Integer</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='id identifier rubyid_threads'>threads</span> <span class='op'>:</span> <span class='id identifier rubyid_threads'>threads</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
@@ -1611,21 +1666,21 @@ value</p>
       <pre class="lines">
 
 
-134
-135
-136
-137
-138
 139
 140
 141
 142
 143
 144
-145</pre>
+145
+146
+147
+148
+149
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_to_h'>to_h</span>
   <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span>
@@ -1659,14 +1714,14 @@ value</p>
       <pre class="lines">
 
 
-42
 43
 44
 45
-46</pre>
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 42</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 43</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_url='>url=</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Empty URL given</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_url'>url</span>
@@ -1693,16 +1748,16 @@ value</p>
       <pre class="lines">
 
 
-52
 53
 54
 55
 56
 57
-58</pre>
+58
+59</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 52</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/wpscan_options.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_wordlist='>wordlist=</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='rparen'>)</span>
@@ -1721,7 +1776,7 @@ value</p>
 </div>
 
     <div id="footer">
-  Generated on Tue May 28 19:45:37 2013 by
+  Generated on Sun Jun  9 16:05:18 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.6.1 (ruby-1.9.3).
 </div>

@@ -261,6 +261,22 @@ conf/browser.conf.json)</p>
 
 <pre class="code ruby"><code class="ruby">ruby wpscan.rb --url www.example.com --enumerate p</code></pre>
 
+<p>Run all enumeration tools...</p>
+
+<pre class="code ruby"><code class="ruby">ruby wpscan.rb --url www.example.com --enumerate</code></pre>
+
+<p>Use custom content directory...</p>
+
+<pre class="code ruby"><code class="ruby">ruby wpscan.rb -u www.example.com --wp-content-dir custom-content</code></pre>
+
+<p>Update WPScan...</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_ruby'>ruby</span> <span class='id identifier rubyid_wpscan'>wpscan</span><span class='period'>.</span><span class='id identifier rubyid_rb'>rb</span> <span class='op'>-</span><span class='op'>-</span><span class='id identifier rubyid_update'>update</span></code></pre>
+
+<p>Debug output...</p>
+
+<pre class="code ruby"><code class="ruby">ruby wpscan.rb --url www.example.com --debug-output 2&gt;debug.log</code></pre>
+
 <h2>WPSTOOLS ARGUMENTS==</h2>
 
 <p>--help    | -h   This help screen. --Verbose | -v   Verbose output.
@@ -306,7 +322,7 @@ href="http://www.randomstorm.com">www.randomstorm.com</a></p>
 </div></div>
 
     <div id="footer">
-  Generated on Tue May 28 19:45:34 2013 by
+  Generated on Sun Jun  9 16:05:15 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.6.1 (ruby-1.9.3).
 </div>

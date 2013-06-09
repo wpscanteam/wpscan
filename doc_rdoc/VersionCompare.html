@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
 
-<title>Gemfile.lock - RDoc Documentation</title>
+<title>class VersionCompare - RDoc Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -20,7 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
 
 
-<body class="file">
+<body id="top" class="class">
 <nav id="metadata">
   <nav id="home-section" class="section">
   <h3 class="section-header">
@@ -44,6 +44,41 @@
 
 
   
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>lib/common/version_compare.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    <nav id="parent-class-section" class="section">
+  <h3 class="section-header">Parent</h3>
+  
+  <p class="link"><a href="Object.html">Object</a>
+  
+</nav>
+
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li ><a href="#method-c-is_newer_or_same-3F">::is_newer_or_same?</a>
+    
+  </ul>
+</nav>
+
+  </div>
 
   <div id="project-metadata">
     <nav id="fileindex-section" class="section project-section">
@@ -251,61 +286,85 @@
   </div>
 </nav>
 
-<div id="documentation" class="description">
+<div id="documentation">
+  <h1 class="class">class VersionCompare</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
   
-<p>GEM</p>
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
 
-<pre>remote: https://rubygems.org/
-specs:
-  addressable (2.3.3)
-  crack (0.3.2)
-  diff-lcs (1.2.3)
-  ethon (0.5.10)
-    ffi (~&gt; 1.3.0)
-    mime-types (~&gt; 1.18)
-  ffi (1.3.1)
-  json (1.7.7)
-  mime-types (1.22)
-  multi_json (1.7.2)
-  nokogiri (1.5.9)
-  rspec (2.13.0)
-    rspec-core (~&gt; 2.13.0)
-    rspec-expectations (~&gt; 2.13.0)
-    rspec-mocks (~&gt; 2.13.0)
-  rspec-core (2.13.1)
-  rspec-expectations (2.13.0)
-    diff-lcs (&gt;= 1.1.3, &lt; 2.0)
-  rspec-mocks (2.13.1)
-  ruby-progressbar (1.1.0)
-  simplecov (0.7.1)
-    multi_json (~&gt; 1.0)
-    simplecov-html (~&gt; 0.7.1)
-  simplecov-html (0.7.1)
-  terminal-table (1.4.5)
-  typhoeus (0.6.2)
-    ethon (~&gt; 0.5.10)
-  webmock (1.11.0)
-    addressable (&gt;= 2.2.7)
-    crack (&gt;= 0.3.2)</pre>
+    
 
-<p>PLATFORMS</p>
+    
 
-<pre>ruby</pre>
+    
 
-<p>DEPENDENCIES</p>
+    <!-- Methods -->
+    
+     <section id="public-class-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Class Methods</h3>
 
-<pre>ethon (= 0.5.10)
-json
-nokogiri
-rspec
-ruby-progressbar (&gt;= 1.1.0)
-simplecov
-terminal-table
-typhoeus (= 0.6.2)
-webmock (&gt;= 1.9.3)</pre>
+    
+      <div id="method-c-is_newer_or_same-3F" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">is_newer_or_same?</span><span
+            class="method-args">(version1, version2)</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
 
-</div>
+        <div class="method-description">
+          
+          <p>Compares two version strings. Returns true if version1 is equal to version2
+or when version1 is older than version2</p>
 
+<p>@param [ String ] version1 @param [ String ] version2</p>
+
+<p>@return [ Boolean ]</p>
+          
+          
+
+          
+          <div class="method-source-code" id="is_newer_or_same-3F-source">
+            <pre><span class="ruby-comment"># File lib/common/version_compare.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">is_newer_or_same?</span>(<span class="ruby-identifier">version1</span>, <span class="ruby-identifier">version2</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">version1</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">version2</span>)
+  <span class="ruby-comment"># Both versions must be set</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">unless</span> (<span class="ruby-identifier">version1</span> <span class="ruby-keyword">and</span> <span class="ruby-identifier">version2</span>)
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> (<span class="ruby-identifier">version1</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword">or</span> <span class="ruby-identifier">version2</span>.<span class="ruby-identifier">empty?</span>)
+  <span class="ruby-keyword">begin</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">true</span> <span class="ruby-keyword">if</span> (<span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">version1</span>) <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Version</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">version2</span>))
+  <span class="ruby-keyword">rescue</span> <span class="ruby-constant">ArgumentError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+    <span class="ruby-comment"># Example: ArgumentError: Malformed version number string a</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/Malformed version number string/</span>
+    <span class="ruby-identifier">raise</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-keyword">false</span>
+      <span class="ruby-keyword">end</span></pre>
+          </div><!-- is_newer_or_same-3F-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- is_newer_or_same-3F-method -->
+
+    
+    </section><!-- public-class-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
 
 
 <footer id="validator-badges">

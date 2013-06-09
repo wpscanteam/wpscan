@@ -742,7 +742,7 @@
 
           
           <div class="method-source-code" id="help-source">
-            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 56</span>
+            <pre><span class="ruby-comment"># File lib/wpscan/wpscan_helper.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">help</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'Help :'</span>
   <span class="ruby-identifier">puts</span>
@@ -1096,7 +1096,7 @@
         <span class="ruby-identifier">protection_plugin</span> = <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">login_protection_plugin</span>()
 
         <span class="ruby-identifier">puts</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login. Not a good idea for brute forcing !&quot;</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing !&quot;</span>
         <span class="ruby-identifier">puts</span> <span class="ruby-string">'[?] Do you want to start the brute force anyway ? [y/n]'</span>
 
         <span class="ruby-identifier">bruteforce</span> = <span class="ruby-keyword">false</span> <span class="ruby-keyword">if</span> <span class="ruby-constant">Readline</span>.<span class="ruby-identifier">readline</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp">/^y/</span>
@@ -1355,6 +1355,9 @@
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'-Update ...'</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --update&quot;</span>
+  <span class="ruby-identifier">puts</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-string">'-Debug output ...'</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;ruby #{script_name} --url www.example.com --debug-output 2&gt;debug.log&quot;</span>
   <span class="ruby-identifier">puts</span>
   <span class="ruby-identifier">puts</span> <span class="ruby-string">'See README for further information.'</span>
   <span class="ruby-identifier">puts</span>

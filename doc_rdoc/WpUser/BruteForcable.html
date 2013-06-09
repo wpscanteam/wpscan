@@ -340,7 +340,7 @@ passwords if they start with a hash...</p>
 
           
           <div class="method-source-code" id="passwords_from_wordlist-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 123</span>
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 133</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">passwords_from_wordlist</span>(<span class="ruby-identifier">wordlist</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">wordlist</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
     <span class="ruby-identifier">passwords</span> = []
@@ -383,7 +383,7 @@ passwords if they start with a hash...</p>
         
         <div class="method-heading">
           <span class="method-name">brute_force</span><span
-            class="method-args">(wordlist, options = {})</span>
+            class="method-args">(wordlist, options = {}, redirect_url = nil)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -404,7 +404,8 @@ waiting…</p>
 
 <p>@param [ String, <a href="../Array.html">Array</a>&lt;String&gt; ] wordlist
 The wordlist path @param [ Hash ] options @option options [ Boolean ]
-:verbose @option options [ Boolean ] :show_progression</p>
+:verbose @option options [ Boolean ] :show_progression @param [ String ]
+redirect_url Override for redirect_url</p>
 
 <p>@return [ void ]</p>
           
@@ -412,8 +413,8 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
 
           
           <div class="method-source-code" id="brute_force-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 21</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">brute_force</span>(<span class="ruby-identifier">wordlist</span>, <span class="ruby-identifier">options</span> = {})
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 22</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">brute_force</span>(<span class="ruby-identifier">wordlist</span>, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">redirect_url</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">browser</span>      = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
   <span class="ruby-identifier">hydra</span>        = <span class="ruby-identifier">browser</span>.<span class="ruby-identifier">hydra</span>
   <span class="ruby-identifier">passwords</span>    = <span class="ruby-constant">BruteForcable</span>.<span class="ruby-identifier">passwords_from_wordlist</span>(<span class="ruby-identifier">wordlist</span>)
@@ -422,14 +423,21 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
   <span class="ruby-identifier">progress_bar</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">progress_bar</span>(<span class="ruby-identifier">passwords</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">options</span>)
 
   <span class="ruby-identifier">passwords</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">password</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">request</span> = <span class="ruby-identifier">login_request</span>(<span class="ruby-identifier">password</span>)
+    <span class="ruby-comment"># A successfull login will redirect us to the redirect_to parameter</span>
+    <span class="ruby-comment"># Generate a radom one on each request</span>
+    <span class="ruby-keyword">unless</span> <span class="ruby-identifier">redirect_url</span>
+      <span class="ruby-identifier">random</span> = (<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-value">8</span>).<span class="ruby-identifier">map</span> { <span class="ruby-value">65</span>.<span class="ruby-operator">+</span>(<span class="ruby-identifier">rand</span>(<span class="ruby-value">26</span>)).<span class="ruby-identifier">chr</span> }.<span class="ruby-identifier">join</span>
+      <span class="ruby-identifier">redirect_url</span> = <span class="ruby-node">&quot;#{@uri}#{random}/&quot;</span>
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">request</span> = <span class="ruby-identifier">login_request</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">redirect_url</span>)
 
     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
       <span class="ruby-identifier">progress_bar</span>.<span class="ruby-identifier">progress</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progression</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">found</span>
 
       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;\n  Trying Username : #{login} Password : #{password}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:verbose</span>]
 
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_password?</span>(<span class="ruby-identifier">response</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">options</span>)
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">valid_password?</span>(<span class="ruby-identifier">response</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">redirect_url</span>, <span class="ruby-identifier">options</span>)
         <span class="ruby-identifier">found</span>         = <span class="ruby-keyword">true</span>
         <span class="ruby-keyword">self</span>.<span class="ruby-identifier">password</span> = <span class="ruby-identifier">password</span>
         <span class="ruby-keyword">return</span>
@@ -463,7 +471,7 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
         
         <div class="method-heading">
           <span class="method-name">login_request</span><span
-            class="method-args">(password)</span>
+            class="method-args">(password, redirect_url)</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -472,7 +480,7 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
 
         <div class="method-description">
           
-          <p>@param [ String ] password</p>
+          <p>@param [ String ] password @param [ String ] redirect_url</p>
 
 <p>@return [ <a href="../Typhoeus/Request.html">Typhoeus::Request</a> ]</p>
           
@@ -480,11 +488,11 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
 
           
           <div class="method-source-code" id="login_request-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 77</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">login_request</span>(<span class="ruby-identifier">password</span>)
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 86</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">login_request</span>(<span class="ruby-identifier">password</span>, <span class="ruby-identifier">redirect_url</span>)
   <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">login_url</span>,
     <span class="ruby-identifier">method</span><span class="ruby-operator">:</span> <span class="ruby-value">:post</span>,
-    <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">log</span><span class="ruby-operator">:</span> <span class="ruby-identifier">login</span>, <span class="ruby-identifier">pwd</span><span class="ruby-operator">:</span> <span class="ruby-identifier">password</span> },
+    <span class="ruby-identifier">body</span><span class="ruby-operator">:</span> { <span class="ruby-identifier">log</span><span class="ruby-operator">:</span> <span class="ruby-identifier">login</span>, <span class="ruby-identifier">pwd</span><span class="ruby-operator">:</span> <span class="ruby-identifier">password</span>, <span class="ruby-identifier">redirect_to</span><span class="ruby-operator">:</span> <span class="ruby-identifier">redirect_url</span> },
     <span class="ruby-identifier">cache_ttl</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>
   )
 <span class="ruby-keyword">end</span></pre>
@@ -519,7 +527,7 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
 
           
           <div class="method-source-code" id="progress_bar-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 63</span>
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 71</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">progress_bar</span>(<span class="ruby-identifier">passwords_size</span>, <span class="ruby-identifier">options</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progression</span>]
     <span class="ruby-constant">ProgressBar</span>.<span class="ruby-identifier">create</span>(
@@ -543,7 +551,7 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
         
         <div class="method-heading">
           <span class="method-name">valid_password?</span><span
-            class="method-args">(response, password, options = {})</span>
+            class="method-args">(response, password, redirect_url, options = {})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -553,8 +561,9 @@ The wordlist path @param [ Hash ] options @option options [ Boolean ]
         <div class="method-description">
           
           <p>@param [ <a href="../Typhoeus/Response.html">Typhoeus::Response</a> ]
-response @param [ String ] password @param [ Hash ] options @option options
-[ Boolean ] :verbose @option options [ Boolean ] :show_progression</p>
+response @param [ String ] password @param [ String ] redirect_url @param [
+Hash ] options @option options [ Boolean ] :verbose @option options [
+Boolean ] :show_progression</p>
 
 <p>@return [ Boolean ]</p>
           
@@ -562,9 +571,9 @@ response @param [ String ] password @param [ Hash ] options @option options
 
           
           <div class="method-source-code" id="valid_password-3F-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 92</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_password?</span>(<span class="ruby-identifier">response</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span>
+            <pre><span class="ruby-comment"># File lib/common/models/wp_user/brute_forcable.rb, line 102</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">valid_password?</span>(<span class="ruby-identifier">response</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">redirect_url</span>, <span class="ruby-identifier">options</span> = {})
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">302</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers_hash</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers_hash</span>[<span class="ruby-string">'Location'</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">redirect_url</span>
     <span class="ruby-identifier">progression</span> = <span class="ruby-node">&quot;#{green('[SUCCESS]')} Login : #{login} Password : #{password}\n\n&quot;</span>
     <span class="ruby-identifier">valid</span>       = <span class="ruby-keyword">true</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/login_error/</span>

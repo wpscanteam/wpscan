@@ -140,7 +140,7 @@ or passwords.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#brute_force-instance_method" title="#brute_force (instance method)">- (void) <strong>brute_force</strong>(wordlist, options = {}) </a>
+      <a href="#brute_force-instance_method" title="#brute_force (instance method)">- (void) <strong>brute_force</strong>(wordlist, options = {}, redirect_url = nil) </a>
     
 
     
@@ -164,7 +164,7 @@ or passwords.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#login_request-instance_method" title="#login_request (instance method)">- (Typhoeus::Request) <strong>login_request</strong>(password) </a>
+      <a href="#login_request-instance_method" title="#login_request (instance method)">- (Typhoeus::Request) <strong>login_request</strong>(password, redirect_url) </a>
     
 
     
@@ -210,7 +210,7 @@ or passwords.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#valid_password%3F-instance_method" title="#valid_password? (instance method)">- (Boolean) <strong>valid_password?</strong>(response, password, options = {}) </a>
+      <a href="#valid_password%3F-instance_method" title="#valid_password? (instance method)">- (Boolean) <strong>valid_password?</strong>(response, password, redirect_url, options = {}) </a>
     
 
     
@@ -296,16 +296,6 @@ hash...</p>
       <pre class="lines">
 
 
-124
-125
-126
-127
-128
-129
-130
-131
-132
-133
 134
 135
 136
@@ -317,10 +307,20 @@ hash...</p>
 142
 143
 144
-145</pre>
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 124</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_passwords_from_wordlist'>passwords_from_wordlist</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_wordlist'>wordlist</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>String</span><span class='rparen'>)</span>
@@ -358,7 +358,7 @@ hash...</p>
       <div class="method_details first">
   <h3 class="signature first" id="brute_force-instance_method">
   
-    - (<tt>void</tt>) <strong>brute_force</strong>(wordlist, options = {}) 
+    - (<tt>void</tt>) <strong>brute_force</strong>(wordlist, options = {}, redirect_url = nil) 
   
 
   
@@ -413,6 +413,24 @@ waiting...</p>
       
     </li>
   
+    <li>
+      
+        <span class='name'>redirect_url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>nil</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>Override for redirect_url</p>
+</div>
+      
+    </li>
+  
 </ul>
 
   
@@ -443,6 +461,8 @@ waiting...</p>
       
     </ul>
   
+    
+    
 
 
 </div><table class="source_code">
@@ -451,7 +471,6 @@ waiting...</p>
       <pre class="lines">
 
 
-22
 23
 24
 25
@@ -486,12 +505,20 @@ waiting...</p>
 54
 55
 56
-57</pre>
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 23</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_brute_force'>brute_force</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_brute_force'>brute_force</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_browser'>browser</span>      <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span>
   <span class='id identifier rubyid_hydra'>hydra</span>        <span class='op'>=</span> <span class='id identifier rubyid_browser'>browser</span><span class='period'>.</span><span class='id identifier rubyid_hydra'>hydra</span>
   <span class='id identifier rubyid_passwords'>passwords</span>    <span class='op'>=</span> <span class='const'>BruteForcable</span><span class='period'>.</span><span class='id identifier rubyid_passwords_from_wordlist'>passwords_from_wordlist</span><span class='lparen'>(</span><span class='id identifier rubyid_wordlist'>wordlist</span><span class='rparen'>)</span>
@@ -500,14 +527,21 @@ waiting...</p>
   <span class='id identifier rubyid_progress_bar'>progress_bar</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='lparen'>(</span><span class='id identifier rubyid_passwords'>passwords</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_passwords'>passwords</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_password'>password</span><span class='op'>|</span>
-    <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='id identifier rubyid_login_request'>login_request</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+    <span class='comment'># A successfull login will redirect us to the redirect_to parameter
+</span>    <span class='comment'># Generate a radom one on each request
+</span>    <span class='kw'>unless</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span>
+      <span class='id identifier rubyid_random'>random</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='int'>8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='int'>65</span><span class='period'>.</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>26</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
+      <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uri</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_random'>random</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='id identifier rubyid_login_request'>login_request</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span><span class='rparen'>)</span>
 
     <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_on_complete'>on_complete</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_response'>response</span><span class='op'>|</span>
       <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='period'>.</span><span class='id identifier rubyid_progress'>progress</span> <span class='op'>+=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:show_progression</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_found'>found</span>
 
       <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n  Trying Username : </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_login'>login</span><span class='rbrace'>}</span><span class='tstring_content'> Password : </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:verbose</span><span class='rbracket'>]</span>
 
-      <span class='kw'>if</span> <span class='id identifier rubyid_valid_password?'>valid_password?</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_valid_password?'>valid_password?</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
         <span class='id identifier rubyid_found'>found</span>         <span class='op'>=</span> <span class='kw'>true</span>
         <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_password'>password</span> <span class='op'>=</span> <span class='id identifier rubyid_password'>password</span>
         <span class='kw'>return</span>
@@ -535,7 +569,7 @@ waiting...</p>
       <div class="method_details ">
   <h3 class="signature " id="login_request-instance_method">
   
-    - (<tt><span class='object_link'><a href="../Typhoeus/Request.html" title="Typhoeus::Request (class)">Typhoeus::Request</a></span></tt>) <strong>login_request</strong>(password) 
+    - (<tt><span class='object_link'><a href="../Typhoeus/Request.html" title="Typhoeus::Request (class)">Typhoeus::Request</a></span></tt>) <strong>login_request</strong>(password, redirect_url) 
   
 
   
@@ -554,6 +588,17 @@ waiting...</p>
     <li>
       
         <span class='name'>password</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>redirect_url</span>
       
       
         <span class='type'>(<tt>String</tt>)</span>
@@ -584,21 +629,21 @@ waiting...</p>
       <pre class="lines">
 
 
-78
-79
-80
-81
-82
-83
-84</pre>
+87
+88
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 78</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 87</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_login_request'>login_request</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_login_request'>login_request</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span><span class='rparen'>)</span>
   <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_forge_request'>forge_request</span><span class='lparen'>(</span><span class='id identifier rubyid_login_url'>login_url</span><span class='comma'>,</span>
     <span class='label'>method:</span> <span class='symbol'>:post</span><span class='comma'>,</span>
-    <span class='label'>body:</span> <span class='lbrace'>{</span> <span class='label'>log:</span> <span class='id identifier rubyid_login'>login</span><span class='comma'>,</span> <span class='label'>pwd:</span> <span class='id identifier rubyid_password'>password</span> <span class='rbrace'>}</span><span class='comma'>,</span>
+    <span class='label'>body:</span> <span class='lbrace'>{</span> <span class='label'>log:</span> <span class='id identifier rubyid_login'>login</span><span class='comma'>,</span> <span class='label'>pwd:</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='label'>redirect_to:</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='rbrace'>}</span><span class='comma'>,</span>
     <span class='label'>cache_ttl:</span> <span class='int'>0</span>
   <span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
@@ -672,18 +717,18 @@ waiting...</p>
       <pre class="lines">
 
 
-64
-65
-66
-67
-68
-69
-70
-71
-72</pre>
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 64</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_progress_bar'>progress_bar</span><span class='lparen'>(</span><span class='id identifier rubyid_passwords_size'>passwords_size</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:show_progression</span><span class='rbracket'>]</span>
@@ -702,7 +747,7 @@ waiting...</p>
       <div class="method_details ">
   <h3 class="signature " id="valid_password?-instance_method">
   
-    - (<tt>Boolean</tt>) <strong>valid_password?</strong>(response, password, options = {}) 
+    - (<tt>Boolean</tt>) <strong>valid_password?</strong>(response, password, redirect_url, options = {}) 
   
 
   
@@ -742,6 +787,17 @@ waiting...</p>
   
     <li>
       
+        <span class='name'>redirect_url</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
         <span class='name'>options</span>
       
       
@@ -756,6 +812,8 @@ waiting...</p>
 </ul>
 
   
+    
+    
     
     
     
@@ -806,16 +864,6 @@ waiting...</p>
       <pre class="lines">
 
 
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
 103
 104
 105
@@ -827,13 +875,23 @@ waiting...</p>
 111
 112
 113
-114</pre>
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_user/brute_forcable.rb', line 103</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_valid_password?'>valid_password?</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>302</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_valid_password?'>valid_password?</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>302</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_headers_hash'>headers_hash</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_headers_hash'>headers_hash</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Location</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span>
     <span class='id identifier rubyid_progression'>progression</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_green'>green</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>[SUCCESS]</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rbrace'>}</span><span class='tstring_content'> Login : </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_login'>login</span><span class='rbrace'>}</span><span class='tstring_content'> Password : </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_password'>password</span><span class='rbrace'>}</span><span class='tstring_content'>\n\n</span><span class='tstring_end'>&quot;</span></span>
     <span class='id identifier rubyid_valid'>valid</span>       <span class='op'>=</span> <span class='kw'>true</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>login_error</span><span class='regexp_end'>/i</span></span>
@@ -864,7 +922,7 @@ waiting...</p>
 </div>
 
     <div id="footer">
-  Generated on Tue May 28 19:45:35 2013 by
+  Generated on Sun Jun  9 16:05:16 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.6.1 (ruby-1.9.3).
 </div>
