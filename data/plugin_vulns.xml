@@ -80,6 +80,12 @@
       <reference>http://secunia.com/advisories/50976/</reference>
       <type>XSS</type>
     </vulnerability>
+    <vulnerability>
+      <title>WordPress WP125 Plugin CSRF</title>
+      <reference>http://www.securityfocus.com/bid/58934</reference>
+      <type>CSRF</type>
+      <fixed_in>1.5.0</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="all-video-gallery">
@@ -1830,6 +1836,17 @@
       <reference>http://secunia.com/advisories/50674/</reference>
       <reference>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</reference>
       <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress WP Symposium Plugin &quot;u&quot; XSS</title>
+      <reference>http://secunia.com/advisories/52864/</reference>
+      <type>XSS</type>
+      <fixed_in>13.04</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress WP Symposium Plugin &quot;u&quot; Redirection Weakness</title>
+      <reference>http://secunia.com/advisories/52925/</reference>
+      <type>REDIRECT</type>
     </vulnerability>
   </plugin>
 
@@ -4428,7 +4445,7 @@
       <reference>https://secunia.com/advisories/52953/</reference>
       <reference>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-2702</reference>
       <type>CSRF</type>
-      <fixed_in>6.20</fixed_in>
+      <fixed_in>6.10</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4528,24 +4545,77 @@
       <type>XSS</type>
       <fixed_in>1.9</fixed_in>
     </vulnerability>
-</plugin>
+  </plugin>
 
-
-<plugin name="wp-print">
+  <plugin name="wp-print">
     <vulnerability>
       <title>WordPress WP-Print Plugin CSRF</title>
       <reference>http://www.securityfocus.com/bid/58900</reference>
       <type>CSRF</type>
       <fixed_in>2.52</fixed_in>
     </vulnerability>
-</plugin>
+  </plugin>
 
-<plugin name="trafficanalyzer">
+  <plugin name="trafficanalyzer">
     <vulnerability>
       <title>WordPress WP-Print Plugin CSRF</title>
       <reference>http://packetstorm.wowhacker.com/1304-exploits/wptrafficanalyzer-xss.txt</reference>
       <type>XSS</type>
     </vulnerability>
-</plugin>
-  
+  </plugin>
+
+  <plugin name="wp-download-manager">
+    <vulnerability>
+      <title>WordPress WP-DownloadManager Plugin CSRF</title>
+      <reference>http://www.securityfocus.com/bid/58937</reference>
+      <type>CSRF</type>
+      <fixed_in>1.61</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="digg-digg">
+    <vulnerability>
+      <title>Digg Digg CSRF</title>
+      <reference>http://wordpress.org/plugins/digg-digg/changelog/</reference>
+      <type>CSRF</type>
+      <fixed_in>5.3.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ssquiz">
+    <vulnerability>
+      <title>Vulneratbility in SS Quiz</title>
+      <reference>http://wordpress.org/plugins/ssquiz/changelog/</reference>
+      <type>UNKNOWN</type>
+      <fixed_in>2.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="funcaptcha">
+    <vulnerability>
+      <title>FunCaptcha CSRF</title>
+      <reference>http://wordpress.org/extend/plugins/funcaptcha/changelog/</reference>
+      <type>UNKNOWN</type>
+      <fixed_in>0.33</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="xili-language">
+    <vulnerability>
+      <title>xili-language XSS</title>
+      <reference>http://wordpress.org/plugins/xili-language/changelog/</reference>
+      <type>XSS</type>
+      <fixed_in>2.8.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wordpress-seo">
+    <vulnerability>
+      <title>Security issue which allowed any user to reset settings</title>
+      <reference>http://wordpress.org/plugins/wordpress-seo/changelog/</reference>
+      <type>UNKOWN</type>
+      <fixed_in>1.4.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
 </vulnerabilities>
