@@ -641,6 +641,11 @@
       <reference>http://secunia.com/advisories/51143/</reference>
       <type>MULTI</type>
     </vulnerability>
+    <vulnerability>
+      <title>WordPress Spider Catalog Plugin Multiple SQL Injection and Cross Site Scripting Vulnerabilities</title>
+      <reference>http://www.securityfocus.com/bid/60079/info</reference>
+      <type>MULTI</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="wordfence">
@@ -2150,11 +2155,24 @@
       <reference>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</reference>
       <reference>http://secunia.com/advisories/51271/</reference>
       <type>XSS</type>
+      <fixed_in>1.9.8</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>XSS in NextGEN Gallery &lt;= 1.5.1</title>
       <reference>http://www.exploit-db.com/exploits/12098/</reference>
       <type>XSS</type>
+      <fixed_in>1.5.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>swfupload.swf Multiple Cross Site Scripting Vulnerabilities</title>
+      <reference>http://www.securityfocus.com/bid/60433</reference>
+      <type>MULTI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery 1.9.12 Arbitrary File Upload (CVE-2013-3684)</title>
+      <reference>http://wordpress.org/plugins/nextgen-gallery/changelog/</reference>
+      <type>UPLOAD</type>
+      <fixed_in>1.9.13</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4456,6 +4474,11 @@
       <reference>http://seclists.org/bugtraq/2012/Nov/50</reference>
       <type>XSS</type>
     </vulnerability>
+    <vulnerability>
+      <title>WordPress plugin uk-cookie CSRF</title>
+      <reference>http://www.openwall.com/lists/oss-security/2013/06/06/10</reference>
+      <type>CSRF</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="wp-cleanfix">
@@ -4615,6 +4638,57 @@
       <reference>http://wordpress.org/plugins/wordpress-seo/changelog/</reference>
       <type>UNKNOWN</type>
       <fixed_in>1.4.5</fixed_in>
+    </vulnerability>
+  </plugin>
+  
+  <plugin name="underconstruction">
+    <vulnerability>
+      <title>CSRF in WordPress underConstruction plugin (CVE-2013-2699)</title>
+      <reference>http://wordpress.org/plugins/underconstruction/changelog/</reference>
+      <type>CSRF</type>
+      <fixed_in>1.09</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="adif-log-search-widget">
+    <vulnerability>
+      <title>ADIF Log Search Widget XSS Arbitrary Vulnerability</title>
+      <reference>http://packetstorm.interhost.co.il/1305-exploits/adif-xss.txt</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="exploit-scanner">
+    <vulnerability>
+      <title>FPD and Security bypass vulnerabilities in Exploit Scanner for WordPress</title>
+      <reference>http://seclists.org/fulldisclosure/2013/May/216</reference>
+      <type>MULTI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ga-universal">
+    <vulnerability>
+      <title>FPD and Security bypass vulnerabilities in Exploit Scanner for WordPress</title>
+      <reference>http://wordpress.org/plugins/ga-universal/changelog/</reference>
+      <type>XSS</type>
+      <fixed_in>1.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="export-to-text">
+    <vulnerability>
+      <title>Remote File Inclusion Vulnerability</title>
+      <reference>http://secunia.com/advisories/51348/</reference>
+      <type>RFI</type>
+      <fixed_in>2.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="qtranslate">
+    <vulnerability>
+      <title>WordPress qTranslate Plugin Cross-Site Request Forgery Vulnerability</title>
+      <reference>http://secunia.com/advisories/53126/</reference>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 
