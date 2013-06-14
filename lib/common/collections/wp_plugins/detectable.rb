@@ -36,19 +36,17 @@ class WpPlugins < WpItems
     # @return [ WpPlugins ]
     def from_header(wp_target)
       headers    = Browser.get(wp_target.url).headers
-      wp_plugins = WpPlugins.new
+      wp_plugins = WpPlugins.new(wp_target)
 
       if headers
-        powered_by     = headers[:x_powered_by]
+        powered_by     = headers['X-Powered-By']
         wp_super_cache = headers['wp-super-cache']
 
-        if powered_by =~ /W3 Total Cache/i
-          wp_plugins << create_item(WpPlugin, 'w3-total-cache', wp_target)
+        if matches = /W3 Total Cache\/([0-9.]+)/i.match(powered_by)
+          wp_plugins.add('w3-total-cache', version: matches[1])
         end
 
-        if wp_super_cache =~ /supercache/i
-          wp_plugins << create_item(WpPlugin, 'wp-super-cache', wp_target)
-        end
+        wp_plugins.add('wp-super-cache') if wp_super_cache =~ /supercache/i
       end
 
       wp_plugins
@@ -61,15 +59,10 @@ class WpPlugins < WpItems
     # @return [ WpPlugins ]
     def from_content(wp_target)
       body       = Browser.get(wp_target.url).body
-      wp_plugins = WpPlugins.new
+      wp_plugins = WpPlugins.new(wp_target)
 
-      if body =~ /wp-super-cache/i
-        wp_plugins << create_item(WpPlugin, 'wp-super-cache', wp_target)
-      end
-
-      if body =~ /w3 total cache/i
-        wp_plugins << create_item(WpPlugin, 'w3-total-cache', wp_target)
-      end
+      wp_plugins.add('wp-super-cache') if body =~ /wp-super-cache/i
+      wp_plugins.add('w3-total-cache') if body =~ /w3 total cache/i
 
       wp_plugins
     end

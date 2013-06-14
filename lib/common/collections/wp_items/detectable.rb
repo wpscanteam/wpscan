@@ -57,7 +57,7 @@ class WpItems < Array
       if options[:show_progression]
         ProgressBar.create(
           format: '%t %a <%B> (%c / %C) %P%% %e',
-          title: '  ', # Used to craete a left margin
+          title: '  ', # Used to create a left margin
           length: 120,
           total: targets_size
         )
@@ -173,7 +173,7 @@ class WpItems < Array
     # @param [ Class ] item_class
     # @param [ String ] vulns_file
     #
-    # @return [ WpItem ]
+    # @return [ Array<WpItem> ]
     def targets_items_from_file(file, wp_target, item_class, vulns_file)
       targets = []
 
