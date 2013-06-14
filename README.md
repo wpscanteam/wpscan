@@ -34,8 +34,9 @@ WPScan comes pre-installed on the following Linux distributions:
 Prerequisites:
 
 - Windows not supported
-- Ruby => 1.9
-- RubyGems
+- Ruby >= 1.9.2 - Recommended: 1.9.3
+- Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
+- RubyGems      - Recommended: latest
 - Git
 
 *Installing on Debian/Ubuntu:*
