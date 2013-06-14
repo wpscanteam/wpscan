@@ -73,11 +73,7 @@ class WpItems < Array
       item_class   = self.item_class
       type         = self.to_s.gsub(/Wp/, '').downcase
       response     = Browser.get(wp_target.url)
-      item_options = {
-        wp_content_dir: wp_target.wp_content_dir,
-        wp_plugins_dir: wp_target.wp_plugins_dir,
-        vulns_file:     self.vulns_file
-      }
+      item_options = self.item_options(wp_target)
 
       regex1 = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
       regex2 = %r{\\?/}
@@ -94,6 +90,17 @@ class WpItems < Array
     end
 
     protected
+
+    # @param [ WpTarget ] wp_target
+    #
+    # @return [ Hash ]
+    def item_options(wp_target)
+      {
+        wp_content_dir: wp_target.wp_content_dir,
+        wp_plugins_dir: wp_target.wp_plugins_dir,
+        vulns_file:     self.vulns_file
+      }
+    end
 
     # The default request parameters
     #
@@ -165,7 +172,7 @@ class WpItems < Array
     # @param [ Class ] item_class
     # @param [ String ] vulns_file
     #
-    # @return [ WpItem ]
+    # @return [ Array<WpItem> ]
     def targets_items_from_file(file, wp_target, item_class, vulns_file)
       targets = []
 
