@@ -3,6 +3,50 @@
 <vulnerabilities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:noNamespaceSchemaLocation="vuln.xsd">
 
+  <plugin name="content-slide">
+    <vulnerability>
+      <title>Content Slide Plugin Cross-Site Requst Forgery Vulnerability</title>
+      <reference>http://secunia.com/advisories/52949/</reference>
+      <reference>http://osvdb.org/show/osvdb/93871</reference>
+      <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wordpress-simple-paypal-shopping-cart">
+    <vulnerability>
+      <title>Simple Paypal Shopping Cart Plugin Cross-Site Request Forgery Vulnerability</title>
+      <reference>http://secunia.com/advisories/52963/</reference>
+      <reference>http://osvdb.org/show/osvdb/93953</reference>
+      <type>CSRF</type>
+      <fixed_in>3.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-sendsms">
+    <vulnerability>
+      <title>WP-SendSMS Plugin for WordPress Setting Manipulation CSRF</title>
+      <reference>http://secunia.com/advisories/53796/</reference>
+      <reference>http://osvdb.org/show/osvdb/94209</reference>
+      <reference>http://www.exploit-db.com/exploits/26124</reference>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP-SendSMS Plugin for WordPress wp-admin/admin.php Multiple Parameter XSS</title>
+      <reference>http://osvdb.org/show/osvdb/94210</reference>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="mail-subscribe-list">
+    <vulnerability>
+      <title>Mail Subscribe List Plugin Script Insertion Vulnerability</title>
+      <reference>http://secunia.com/advisories/53732/</reference>
+      <reference>http://osvdb.org/show/osvdb/94197</reference>
+      <type>XSS</type>
+      <fixed_in>2.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
   <plugin name="s3-video">
     <vulnerability>
       <title>VideoJS Cross-Site Scripting Vulnerability</title>
@@ -12,7 +56,7 @@
       <fixed_in>0.98</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="video-embed-thumbnail-generator">
     <vulnerability>
       <title>VideoJS Cross-Site Scripting Vulnerability</title>
@@ -22,7 +66,7 @@
       <fixed_in>4.1</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="1player">
     <vulnerability>
       <title>VideoJS Cross-Site Scripting Vulnerability</title>
@@ -32,7 +76,7 @@
       <fixed_in>1.4</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="external-video-for-everybody">
     <vulnerability>
       <title>VideoJS Cross-Site Scripting Vulnerability</title>
@@ -42,7 +86,7 @@
       <fixed_in>2.1</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="EasySqueezePage">
     <vulnerability>
       <title>VideoJS Cross-Site Scripting Vulnerability</title>
@@ -50,7 +94,7 @@
       <type>XSS</type>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="crayon-syntax-highlighter">
     <vulnerability>
       <title>Crayon Syntax Highlighter Remote File Inclusion</title>
@@ -2006,6 +2050,13 @@
       <type>SQLI</type>
       <fixed_in>2.56</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>GRAND FlAGallery Plugin "s" Cross-Site Scripting Vulnerability</title>
+      <reference>http://secunia.com/advisories/53111/</reference>
+      <reference>http://osvdb.org/show/osvdb/93714</reference>
+      <type>XSS</type>
+      <fixed_in>2.72</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="php_speedy_wp">
@@ -3424,6 +3475,8 @@
     <vulnerability>
       <title>WordPress Events Manager Multiple Cross Site Scripting Vulnerabilities</title>
       <reference>http://www.securityfocus.com/bid/60078</reference>
+      <reference>http://secunia.com/advisories/53478/</reference>
+      <reference>http://osvdb.org/show/osvdb/93558</reference>
       <type>XSS</type>
       <fixed_in>5.3.9</fixed_in>
     </vulnerability>
@@ -4529,7 +4582,7 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>WordPress plugin uk-cookie CSRF</title>
+      <title>CVE-2013-2180: uk-cookie CSRF</title>
       <reference>http://www.openwall.com/lists/oss-security/2013/06/06/10</reference>
       <type>CSRF</type>
     </vulnerability>
@@ -4537,10 +4590,14 @@
 
   <plugin name="wp-cleanfix">
     <vulnerability>
-      <title>CVE-2013-2108|CVE-2013-2109: wp-cleanfix Remote Command Execution and CSRF</title>
+      <title>CVE-2013-2108|CVE-2013-2109: wp-cleanfix Remote Command Execution, CSRF and XSS</title>
       <reference>https://github.com/wpscanteam/wpscan/issues/186</reference>
       <reference>http://wordpress.org/support/topic/plugin-wp-cleanfix-remote-code-execution-warning</reference>
-      <type>RCE</type>
+      <reference>http://osvdb.org/show/osvdb/93450</reference>
+      <reference>http://secunia.com/advisories/53395/</reference>
+      <reference>http://osvdb.org/show/osvdb/93468</reference>
+      <type>MULTI</type>
+      <fixed_in>3.0.2</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4552,7 +4609,7 @@
       <type>CSRF</type>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="advanced-xml-reader">
     <vulnerability>
       <title>Advanced XML Reader Plugin for WordPress XML External Entity (XXE) Data Parsing Arbitrary File Disclosure</title>
@@ -4569,7 +4626,7 @@
       <fixed_in>1.3.2</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="wordpress-23-related-posts-plugin">
     <vulnerability>
       <title>WordPress WordPress Related Posts Plugin Cross-Site Request Forgery Vulnerability</title>
@@ -4578,7 +4635,7 @@
       <fixed_in>2.6.2</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="related-posts">
     <vulnerability>
       <title>WordPress Related Posts Plugin Cross-Site Request Forgery Vulnerability</title>
@@ -4587,7 +4644,7 @@
       <fixed_in>2.7.2</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="wp-print-friendly">
     <vulnerability>
       <title>WordPress WP Print Friendly Plugin Security Bypass Vulnerability</title>
@@ -4596,7 +4653,7 @@
       <fixed_in>0.5.3</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="contextual-related-posts">
     <vulnerability>
       <title>WordPress Contextual Related Posts Plugin Cross-Site Request Forgery Vulnerability</title>
@@ -4605,7 +4662,7 @@
       <fixed_in>1.8.7</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="calendar">
     <vulnerability>
       <title>WordPress Calendar Plugin Cross-Site Request Forgery Vulnerability</title>
@@ -4614,7 +4671,7 @@
       <fixed_in>1.3.3</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="feedweb">
     <vulnerability>
       <title>WordPress Feedweb Plugin 'wp_post_id' Parameter XSS</title>
@@ -4654,6 +4711,8 @@
     <vulnerability>
       <title>Digg Digg CSRF</title>
       <reference>http://wordpress.org/plugins/digg-digg/changelog/</reference>
+      <reference>http://secunia.com/advisories/53120/</reference>
+      <reference>http://osvdb.org/show/osvdb/93544</reference>
       <type>CSRF</type>
       <fixed_in>5.3.5</fixed_in>
     </vulnerability>
@@ -4661,8 +4720,10 @@
 
   <plugin name="ssquiz">
     <vulnerability>
-      <title>Vulneratbility in SS Quiz</title>
+      <title>SS Quiz Plugin Multiple Unspecified Vulnerabilities</title>
       <reference>http://wordpress.org/plugins/ssquiz/changelog/</reference>
+      <reference>http://secunia.com/advisories/53378/</reference>
+      <reference>http://osvdb.org/show/osvdb/93531</reference>
       <type>UNKNOWN</type>
       <fixed_in>2.0</fixed_in>
     </vulnerability>
@@ -4694,11 +4755,13 @@
       <fixed_in>1.4.5</fixed_in>
     </vulnerability>
   </plugin>
-  
+
   <plugin name="underconstruction">
     <vulnerability>
       <title>CSRF in WordPress underConstruction plugin (CVE-2013-2699)</title>
       <reference>http://wordpress.org/plugins/underconstruction/changelog/</reference>
+      <reference>http://secunia.com/advisories/52881/</reference>
+      <reference>http://osvdb.org/show/osvdb/93857</reference>
       <type>CSRF</type>
       <fixed_in>1.09</fixed_in>
     </vulnerability>
@@ -4707,7 +4770,9 @@
   <plugin name="adif-log-search-widget">
     <vulnerability>
       <title>ADIF Log Search Widget XSS Arbitrary Vulnerability</title>
-      <reference>http://packetstorm.interhost.co.il/1305-exploits/adif-xss.txt</reference>
+      <reference>http://packetstormsecurity.com/files/121777/ADIF-Log-Search-Widget-1.0e-Cross-Site-Scripting.html</reference>
+      <reference>http://secunia.com/advisories/53599/</reference>
+      <reference>http://osvdb.org/show/osvdb/93721</reference>
       <type>XSS</type>
     </vulnerability>
   </plugin>
@@ -4743,6 +4808,64 @@
       <title>WordPress qTranslate Plugin Cross-Site Request Forgery Vulnerability</title>
       <reference>http://secunia.com/advisories/53126/</reference>
       <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="image-slider-with-description">
+    <vulnerability>
+      <title>Image slider with description Plugin Unspecified Vulnerability</title>
+      <reference>http://secunia.com/advisories/53588/</reference>
+      <reference>http://osvdb.org/show/osvdb/93691</reference>
+      <type>UNKNOWN</type>
+      <fixed_in>7.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="user-role-editor">
+    <vulnerability>
+      <title>User Role Editor Plugin Cross-Site Request Forgery Vulnerability</title>
+      <reference>http://secunia.com/advisories/53593/</reference>
+      <reference>http://osvdb.org/show/osvdb/93699</reference>
+      <reference>http://www.exploit-db.com/exploits/25721</reference>
+      <type>CSRF</type>
+      <fixed_in>3.14</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="eelv-newsletter">
+    <vulnerability>
+      <title>EELV Newsletter Plugin Cross-Site Scripting Vulnerability</title>
+      <reference>http://secunia.com/advisories/53546/</reference>
+      <reference>http://osvdb.org/show/osvdb/93685</reference>
+      <type>XSS</type>
+      <fixed_in>3.3.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+   <plugin name="frontier-post">
+    <vulnerability>
+      <title>Frontier Post Plugin Publishing Posts Security Bypass</title>
+      <reference>http://secunia.com/advisories/53474/</reference>
+      <reference>http://osvdb.org/show/osvdb/93639</reference>
+      <type>UNKNOWN</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="spider-catalog">
+    <vulnerability>
+      <title>Spider Catalog Plugin Cross-Site Scripting and SQL Injection Vulnerabilities</title>
+      <reference>http://secunia.com/advisories/53491/</reference>
+      <reference>http://osvdb.org/show/osvdb/93591</reference>
+      <type>MULTI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="spider-event-calendar">
+    <vulnerability>
+      <title>Spider Event Calendar Plugin Security Bypass, Cross-Site Scripting and SQLi Vulnerabilities</title>
+      <reference>http://secunia.com/advisories/53481/</reference>
+      <reference>http://osvdb.org/show/osvdb/93584</reference>
+      <type>MULTI</type>
     </vulnerability>
   </plugin>
 
