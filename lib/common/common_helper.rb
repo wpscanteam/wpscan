@@ -118,8 +118,10 @@ def get_equal_string_end(stringarray = [''])
   already_found = ''
   looping = true
   counter = -1
+  # remove nils (# Issue #231)
+  stringarray = stringarray.compact
   if stringarray.kind_of? Array and stringarray.length > 1
-    base = stringarray[0]
+    base = stringarray.first
     while looping
       character = base[counter, 1]
       stringarray.each do |s|

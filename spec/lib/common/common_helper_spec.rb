@@ -20,6 +20,21 @@ describe 'common_helper' do
       @expected = ''
     end
 
+    it 'returns an empty string' do
+      @input    = ['asdf', nil]
+      @expected = ''
+    end
+
+    it 'returns an empty string' do
+      @input    = [nil, 'asdf']
+      @expected = ''
+    end
+
+    it 'returns asdf' do
+      @input    = [nil, 'a asdf', nil, 'b asdf']
+      @expected = ' asdf'
+    end
+
     it 'returns asdf' do
       @input    = ['kjh asdf', 'oijr asdf']
       @expected = ' asdf'
