@@ -51,7 +51,7 @@ Prerequisites:
 
 *Installing on Fedora:*
 
-```sudo yum install libcurl-devel```
+```sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel```
 
 ```git clone https://github.com/wpscanteam/wpscan.git```
 
