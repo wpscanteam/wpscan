@@ -77,7 +77,7 @@ def help
   puts '    t        themes'
   puts '    vt       only vulnerable themes'
   puts '    at       all themes (can take a long time)'
-  puts '  Multiple values are allowed : "-e t,p" will enumerate timthumbs and plugins'
+  puts '  Multiple values are allowed : "-e tt,p" will enumerate timthumbs and plugins'
   puts '  If no option is supplied, the default is "vt,tt,u,vp"'
   puts
   puts '--exclude-content-based "<regexp or string>" Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied'
