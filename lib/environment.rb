@@ -10,7 +10,7 @@ end
 
 begin
   # Standard libs
-  require 'bundler/setup'
+  require 'bundler/setup' unless kali_linux?
   require 'getoptlong'
   require 'optparse' # Will replace getoptlong
   require 'uri'
