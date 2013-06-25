@@ -39,6 +39,10 @@ $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
 $LOAD_PATH.unshift(MODELS_LIB_DIR)
 
+def kali_linux?
+  %x{uname -a}.match(/linux kali/i) ? true : false
+end
+
 require 'environment'
 
 # TODO : add an exclude pattern ?
@@ -138,8 +142,4 @@ def get_equal_string_end(stringarray = [''])
     end
   end
   already_found
-end
-
-def kali_linux?
-  %x{uname -a}.match(/linux kali/i) ? true : false
 end
