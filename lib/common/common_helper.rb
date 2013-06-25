@@ -139,3 +139,7 @@ def get_equal_string_end(stringarray = [''])
   end
   already_found
 end
+
+def kali_linux?
+  %x{uname -a}.match(/linux kali/i) ? true : false
+end
