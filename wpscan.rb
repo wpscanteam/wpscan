@@ -296,11 +296,16 @@ def main
       if bruteforce
         puts green('[+]') + ' Starting the password brute forcer'
 
-        wp_users.brute_force(wpscan_options.wordlist,
-                             show_progression: true,
-                             verbose: wpscan_options.verbose)
-        puts
-        wp_users.output(show_password: true, margin_left: ' ' * 2)
+        begin
+          wp_users.brute_force(
+            wpscan_options.wordlist,
+            show_progression: true,
+            verbose: wpscan_options.verbose
+          )
+        ensure
+          puts
+          wp_users.output(show_password: true, margin_left: ' ' * 2)
+        end
       else
         puts 'Brute forcing aborted'
       end
@@ -312,6 +317,9 @@ def main
     elapsed = stop_time - start_time
     puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
     exit(0) # must exit!
+
+  rescue SystemExit, Interrupt
+    puts 'Exiting!'
   rescue => e
     if e.backtrace[0] =~ /main/
       puts red(e.message)
