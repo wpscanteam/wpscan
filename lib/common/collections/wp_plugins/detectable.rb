@@ -39,8 +39,8 @@ class WpPlugins < WpItems
       wp_plugins = WpPlugins.new(wp_target)
 
       if headers
-        powered_by     = headers['X-Powered-By']
-        wp_super_cache = headers['wp-super-cache']
+        powered_by     = headers['X-Powered-By'].to_s
+        wp_super_cache = headers['wp-super-cache'].to_s
 
         if matches = /W3 Total Cache\/([0-9.]+)/i.match(powered_by)
           wp_plugins.add('w3-total-cache', version: matches[1])
