@@ -104,7 +104,7 @@ class GenerateList
   def save(items)
     items.sort!
     items.uniq!
-    puts "[*] We have parsed #{items.length} #@types"
+    puts "[*] We have parsed #{items.length} #{@type}s"
     File.open(@file_name, 'w') { |f| f.puts(items) }
     puts "New #@file_name file created"
   end
