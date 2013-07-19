@@ -17,7 +17,7 @@ describe Browser do
   let(:options) { {} }
   let(:instance_vars_to_check) {
     ['user_agent', 'user_agent_mode', 'available_user_agents', 'proxy',
-     'max_threads', 'cache_ttl']
+     'max_threads', 'cache_ttl', 'request_timeout', 'connect_timeout']
   }
   let(:json_config_without_proxy) { JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY)) }
   let(:json_config_with_proxy)    { JSON.parse(File.read(CONFIG_FILE_WITH_PROXY)) }
@@ -136,7 +136,8 @@ describe Browser do
         cache_ttl: 250,
         headers: { 'User-Agent' => 'SomeUA' },
         ssl_verifypeer: false, ssl_verifyhost: 0,
-        cookiejar: cookie_jar, cookiefile: cookie_jar
+        cookiejar: cookie_jar, cookiefile: cookie_jar,
+        timeout: 2000, connecttimeout: 1000
       }
     }
 
