@@ -17,7 +17,6 @@ function fullListSearch() {
   searchCache = [];
   $('#full_list li').each(function() {
     var link = $(this).find('.object_link a');
-    if (link.length === 0) return;
     var fullName = link.attr('title').split(' ')[0];
     searchCache.push({name:link.text(), fullName:fullName, node:$(this), link:link});
   });
@@ -42,7 +41,7 @@ function fullListSearch() {
       $('#full_list li').removeClass('found').each(function() {
 
         var link = $(this).find('.object_link a');
-        if (link.length > 0) link.text(link.text());
+        link.text(link.text());
       });
       if (clicked) {
         clicked.parents('ul').each(function() {
@@ -111,10 +110,6 @@ clicked = null;
 function linkList() {
   $('#full_list li, #full_list li a:last').click(function(evt) {
     if ($(this).hasClass('toggle')) return true;
-    if ($(this).find('.object_link a').length === 0) {
-      $(this).children('a.toggle').click();
-      return false;
-    }
     if (this.tagName.toLowerCase() == "li") {
       var toggle = $(this).children('a.toggle');
       if (toggle.size() > 0 && evt.pageX < toggle.offset().left) {

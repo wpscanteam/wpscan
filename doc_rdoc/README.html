@@ -1,277 +1,243 @@
-<!DOCTYPE html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>README - RDoc Documentation</title>
+  <title>File: README [RDoc Documentation]</title>
 
-<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+  <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "./";
-</script>
-
-<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
-
+  <script src="./js/jquery.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/thickbox-compressed.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/quicksearch.js" type="text/javascript"
+    charset="utf-8"></script>
+  <script src="./js/darkfish.js" type="text/javascript"
+    charset="utf-8"></script>
+</head>
 
 <body class="file">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="./index.html">Home</a>
-    <a href="./table_of_contents.html#classes">Classes</a>
-    <a href="./table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="./CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="./Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="./LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="./README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class Index
+          <span class="search-toggle"><img src="./images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
 
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
+        <ul class="link-list">
+        
+          <li><a href="./WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="./WpTarget/InterestingHeaders.html">WpTarget::InterestingHeaders</a></li>
+        
+          <li><a href="./WpTarget/Malwares.html">WpTarget::Malwares</a></li>
+        
+          <li><a href="./WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a></li>
+        
+          <li><a href="./WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a></li>
+        
+          <li><a href="./WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a></li>
+        
+          <li><a href="./WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a></li>
+        
+          <li><a href="./WpTarget/WpReadme.html">WpTarget::WpReadme</a></li>
+        
+          <li><a href="./WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a></li>
+        
+          <li><a href="./WpItem.html">WpItem</a></li>
+        
+          <li><a href="./WpItem/Existable.html">WpItem::Existable</a></li>
+        
+          <li><a href="./WpItem/Findable.html">WpItem::Findable</a></li>
+        
+          <li><a href="./WpItem/Infos.html">WpItem::Infos</a></li>
+        
+          <li><a href="./WpItem/Output.html">WpItem::Output</a></li>
+        
+          <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a></li>
+        
+          <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a></li>
+        
+          <li><a href="./Typhoeus.html">Typhoeus</a></li>
+        
+          <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a></li>
+        
+          <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a></li>
+        
+          <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a></li>
+        
+          <li><a href="./WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a></li>
+        
+          <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a></li>
+        
+          <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a></li>
+        
+          <li><a href="./WpTimthumb.html">WpTimthumb</a></li>
+        
+          <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a></li>
+        
+          <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a></li>
+        
+          <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a></li>
+        
+          <li><a href="./WpUsers.html">WpUsers</a></li>
+        
+          <li><a href="./WpUsers/BruteForcable.html">WpUsers::BruteForcable</a></li>
+        
+          <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a></li>
+        
+          <li><a href="./WpUsers/Output.html">WpUsers::Output</a></li>
+        
+          <li><a href="./WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a></li>
+        
+          <li><a href="./WpVersion/Output.html">WpVersion::Output</a></li>
+        
+          <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a></li>
+        
+          <li><a href="./Browser.html">Browser</a></li>
+        
+          <li><a href="./Browser/Actions.html">Browser::Actions</a></li>
+        
+          <li><a href="./Browser/Options.html">Browser::Options</a></li>
+        
+          <li><a href="./Terminal.html">Terminal</a></li>
+        
+          <li><a href="./Terminal/Table.html">Terminal::Table</a></li>
+        
+          <li><a href="./Terminal/Table/Style.html">Terminal::Table::Style</a></li>
+        
+          <li><a href="./WpItems.html">WpItems</a></li>
+        
+          <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a></li>
+        
+          <li><a href="./WpItems/Output.html">WpItems::Output</a></li>
+        
+          <li><a href="./WpUser.html">WpUser</a></li>
+        
+          <li><a href="./WpUser/BruteForcable.html">WpUser::BruteForcable</a></li>
+        
+          <li><a href="./WpUser/Existable.html">WpUser::Existable</a></li>
+        
+          <li><a href="./Vulnerabilities.html">Vulnerabilities</a></li>
+        
+          <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a></li>
+        
+          <li><a href="./Vulnerability.html">Vulnerability</a></li>
+        
+          <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a></li>
+        
+          <li><a href="./WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+          <li><a href="./WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a></li>
+        
+          <li><a href="./WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a></li>
+        
+          <li><a href="./WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a></li>
+        
+          <li><a href="./Array.html">Array</a></li>
+        
+          <li><a href="./CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="./CheckerPlugin.html">CheckerPlugin</a></li>
+        
+          <li><a href="./CustomOptionParser.html">CustomOptionParser</a></li>
+        
+          <li><a href="./File.html">File</a></li>
+        
+          <li><a href="./GenerateList.html">GenerateList</a></li>
+        
+          <li><a href="./GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a></li>
+        
+          <li><a href="./Object.html">Object</a></li>
+        
+          <li><a href="./Plugin.html">Plugin</a></li>
+        
+          <li><a href="./Plugins.html">Plugins</a></li>
+        
+          <li><a href="./StatsPlugin.html">StatsPlugin</a></li>
+        
+          <li><a href="./SvnParser.html">SvnParser</a></li>
+        
+          <li><a href="./SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="./TyphoeusCache.html">TyphoeusCache</a></li>
+        
+          <li><a href="./URI.html">URI</a></li>
+        
+          <li><a href="./Updater.html">Updater</a></li>
+        
+          <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="./VersionCompare.html">VersionCompare</a></li>
+        
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
 
-
-  
-<div id="table-of-contents">
-  <nav class="section">
-    <h3 class="section-header">Table of Contents</h3>
-    <ul>
-      <li><a href="#label-LICENSE%3D%3D">LICENSE==</a>
-      <li><a href="#label-INSTALL%3D%3D">INSTALL==</a>
-      <li><a href="#label-KNOWN+ISSUES%3D%3D">KNOWN ISSUES==</a>
-      <li><a href="#label-WPSCAN+ARGUMENTS%3D%3D">WPSCAN ARGUMENTS==</a>
-      <li><a href="#label-WPSCAN+EXAMPLES%3D%3D">WPSCAN EXAMPLES==</a>
-      <li><a href="#label-WPSTOOLS+ARGUMENTS%3D%3D">WPSTOOLS ARGUMENTS==</a>
-      <li><a href="#label-WPSTOOLS+EXAMPLES%3D%3D">WPSTOOLS EXAMPLES==</a>
-      <li><a href="#label-PROJECT+HOME%3D%3D%3D">PROJECT HOME===</a>
-      <li><a href="#label-REPOSITORY%3D%3D%3D">REPOSITORY===</a>
-      <li><a href="#label-ISSUES%3D%3D%3D">ISSUES===</a>
-      <li><a href="#label-SPONSOR%3D%3D%3D">SPONSOR===</a>
-    </ul>
-  </nav>
-</div>
-
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="./CREDITS.html">CREDITS</a>
-  
-    <li class="file"><a href="./Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="./Gemfile_lock.html">Gemfile.lock</a>
-  
-    <li class="file"><a href="./LICENSE.html">LICENSE</a>
-  
-    <li class="file"><a href="./README.html">README</a>
-  
-    <li class="file"><a href="./README_md.html">README</a>
-  
-    <li class="file"><a href="./cache/browser/cookie-jar.html">cookie-jar</a>
-  
-    <li class="file"><a href="./conf/browser_conf_json.html">browser.conf.json</a>
-  
-    <li class="file"><a href="./generate_doc_sh.html">generate_doc.sh</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="./Array.html">Array</a>
-  
-    <li><a href="./Browser.html">Browser</a>
-  
-    <li><a href="./Browser/Actions.html">Browser::Actions</a>
-  
-    <li><a href="./Browser/Options.html">Browser::Options</a>
-  
-    <li><a href="./CacheFileStore.html">CacheFileStore</a>
-  
-    <li><a href="./CheckerPlugin.html">CheckerPlugin</a>
-  
-    <li><a href="./CustomOptionParser.html">CustomOptionParser</a>
-  
-    <li><a href="./Ethon.html">Ethon</a>
-  
-    <li><a href="./Ethon/Easy.html">Ethon::Easy</a>
-  
-    <li><a href="./Ethon/Easy/Options.html">Ethon::Easy::Options</a>
-  
-    <li><a href="./File.html">File</a>
-  
-    <li><a href="./Gem.html">Gem</a>
-  
-    <li><a href="./GenerateList.html">GenerateList</a>
-  
-    <li><a href="./GitUpdater.html">GitUpdater</a>
-  
-    <li><a href="./ListGeneratorPlugin.html">ListGeneratorPlugin</a>
-  
-    <li><a href="./Object.html">Object</a>
-  
-    <li><a href="./Plugin.html">Plugin</a>
-  
-    <li><a href="./Plugins.html">Plugins</a>
-  
-    <li><a href="./StatsPlugin.html">StatsPlugin</a>
-  
-    <li><a href="./SvnParser.html">SvnParser</a>
-  
-    <li><a href="./SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="./Terminal.html">Terminal</a>
-  
-    <li><a href="./Terminal/Table.html">Terminal::Table</a>
-  
-    <li><a href="./Terminal/Table/Style.html">Terminal::Table::Style</a>
-  
-    <li><a href="./Typhoeus.html">Typhoeus</a>
-  
-    <li><a href="./Typhoeus/Request.html">Typhoeus::Request</a>
-  
-    <li><a href="./Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a>
-  
-    <li><a href="./Typhoeus/Response.html">Typhoeus::Response</a>
-  
-    <li><a href="./TyphoeusCache.html">TyphoeusCache</a>
-  
-    <li><a href="./URI.html">URI</a>
-  
-    <li><a href="./Updater.html">Updater</a>
-  
-    <li><a href="./UpdaterFactory.html">UpdaterFactory</a>
-  
-    <li><a href="./VersionCompare.html">VersionCompare</a>
-  
-    <li><a href="./Vulnerabilities.html">Vulnerabilities</a>
-  
-    <li><a href="./Vulnerabilities/Output.html">Vulnerabilities::Output</a>
-  
-    <li><a href="./Vulnerability.html">Vulnerability</a>
-  
-    <li><a href="./Vulnerability/Output.html">Vulnerability::Output</a>
-  
-    <li><a href="./WebSite.html">WebSite</a>
-  
-    <li><a href="./WpItem.html">WpItem</a>
-  
-    <li><a href="./WpItem/Existable.html">WpItem::Existable</a>
-  
-    <li><a href="./WpItem/Findable.html">WpItem::Findable</a>
-  
-    <li><a href="./WpItem/Infos.html">WpItem::Infos</a>
-  
-    <li><a href="./WpItem/Output.html">WpItem::Output</a>
-  
-    <li><a href="./WpItem/Versionable.html">WpItem::Versionable</a>
-  
-    <li><a href="./WpItem/Vulnerable.html">WpItem::Vulnerable</a>
-  
-    <li><a href="./WpItems.html">WpItems</a>
-  
-    <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a>
-  
-    <li><a href="./WpItems/Output.html">WpItems::Output</a>
-  
-    <li><a href="./WpPlugin.html">WpPlugin</a>
-  
-    <li><a href="./WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a>
-  
-    <li><a href="./WpPlugins.html">WpPlugins</a>
-  
-    <li><a href="./WpPlugins/Detectable.html">WpPlugins::Detectable</a>
-  
-    <li><a href="./WpTarget.html">WpTarget</a>
-  
-    <li><a href="./WpTarget/Malwares.html">WpTarget::Malwares</a>
-  
-    <li><a href="./WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a>
-  
-    <li><a href="./WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a>
-  
-    <li><a href="./WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a>
-  
-    <li><a href="./WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a>
-  
-    <li><a href="./WpTarget/WpReadme.html">WpTarget::WpReadme</a>
-  
-    <li><a href="./WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a>
-  
-    <li><a href="./WpTheme.html">WpTheme</a>
-  
-    <li><a href="./WpTheme/Findable.html">WpTheme::Findable</a>
-  
-    <li><a href="./WpTheme/Versionable.html">WpTheme::Versionable</a>
-  
-    <li><a href="./WpTheme/Vulnerable.html">WpTheme::Vulnerable</a>
-  
-    <li><a href="./WpThemes.html">WpThemes</a>
-  
-    <li><a href="./WpThemes/Detectable.html">WpThemes::Detectable</a>
-  
-    <li><a href="./WpTimthumb.html">WpTimthumb</a>
-  
-    <li><a href="./WpTimthumb/Existable.html">WpTimthumb::Existable</a>
-  
-    <li><a href="./WpTimthumb/Output.html">WpTimthumb::Output</a>
-  
-    <li><a href="./WpTimthumb/Versionable.html">WpTimthumb::Versionable</a>
-  
-    <li><a href="./WpTimthumbs.html">WpTimthumbs</a>
-  
-    <li><a href="./WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a>
-  
-    <li><a href="./WpUser.html">WpUser</a>
-  
-    <li><a href="./WpUser/BruteForcable.html">WpUser::BruteForcable</a>
-  
-    <li><a href="./WpUser/Existable.html">WpUser::Existable</a>
-  
-    <li><a href="./WpUsers.html">WpUsers</a>
-  
-    <li><a href="./WpUsers/BruteForcable.html">WpUsers::BruteForcable</a>
-  
-    <li><a href="./WpUsers/Detectable.html">WpUsers::Detectable</a>
-  
-    <li><a href="./WpUsers/Output.html">WpUsers::Output</a>
-  
-    <li><a href="./WpVersion.html">WpVersion</a>
-  
-    <li><a href="./WpVersion/Findable.html">WpVersion::Findable</a>
-  
-    <li><a href="./WpVersion/Output.html">WpVersion::Output</a>
-  
-    <li><a href="./WpVersion/Vulnerable.html">WpVersion::Vulnerable</a>
-  
-    <li><a href="./WpscanOptions.html">WpscanOptions</a>
-  
-  </ul>
-</nav>
-
+      
+    </div>
   </div>
-</nav>
 
-<div id="documentation" class="description">
-  
+  <div id="documentation">
+    
 <p><em>__</em></p>
 
 <pre>__          _______   _____
@@ -283,7 +249,7 @@
 
 <p><em>__</em></p>
 
-<h2 id="label-LICENSE%3D%3D">LICENSE==<span><a href="#label-LICENSE%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>LICENSE==</h2>
 
 <p>WPScan - WordPress Security Scanner Copyright (C) 2011-2013 The WPScan Team</p>
 
@@ -299,97 +265,96 @@ more details.</p>
 
 <p>You should have received a copy of the GNU General Public License along
 with this program.  If not, see &lt;<a
-href="http://www.gnu.org/licenses">www.gnu.org/licenses</a>/&gt;.</p>
+href="http://www.gnu.org/licenses/">www.gnu.org/licenses/</a>&gt;.</p>
 
 <p>ryandewhurst at gmail</p>
 
-<h2 id="label-INSTALL%3D%3D">INSTALL==<span><a href="#label-INSTALL%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>INSTALL==</h2>
 
-<pre class="ruby"><span class="ruby-constant">WPScan</span> <span class="ruby-identifier">comes</span> <span class="ruby-identifier">pre</span><span class="ruby-operator">-</span><span class="ruby-identifier">installed</span> <span class="ruby-identifier">on</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">following</span> <span class="ruby-constant">Linux</span> <span class="ruby-identifier">distributions</span><span class="ruby-operator">:</span>
+<pre>WPScan comes pre-installed on the following Linux distributions:
 
- <span class="ruby-operator">*</span> <span class="ruby-constant">BackBox</span> <span class="ruby-constant">Linux</span>
- <span class="ruby-operator">*</span> <span class="ruby-constant">BackTrack</span> <span class="ruby-constant">Linux</span> (<span class="ruby-identifier">outdated</span> <span class="ruby-constant">WPScan</span> <span class="ruby-identifier">installed</span>, <span class="ruby-identifier">update</span> <span class="ruby-identifier">needed</span>)
- <span class="ruby-operator">*</span> <span class="ruby-constant">Pentoo</span>
- <span class="ruby-operator">*</span> <span class="ruby-constant">SamuraiWTF</span>
+ * BackBox Linux
+ * BackTrack Linux
+ * Pentoo
+ * SamuraiWTF
 
-<span class="ruby-constant">Prerequisites</span><span class="ruby-operator">:</span>
+Prerequisites:
 
- <span class="ruby-operator">*</span> <span class="ruby-constant">Windows</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">supported</span>
- <span class="ruby-operator">*</span> <span class="ruby-constant">Ruby</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">1.9</span>
- <span class="ruby-operator">*</span> <span class="ruby-constant">RubyGems</span>
- <span class="ruby-operator">*</span> <span class="ruby-constant">Git</span>
+ * Windows not supported
+ * Ruby &gt;= 1.9.2 - Recommended: 1.9.3
+ * Curl &gt;= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
+ * RubyGems      - Recommended: latest
+ * Git
 
-<span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> <span class="ruby-constant">Installing</span> <span class="ruby-identifier">on</span> <span class="ruby-constant">Debian</span><span class="ruby-operator">/</span><span class="ruby-constant">Ubuntu</span><span class="ruby-operator">:</span>
+-&gt; Installing on Debian/Ubuntu:
 
-  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">apt</span><span class="ruby-operator">-</span><span class="ruby-identifier">get</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">libcurl4</span><span class="ruby-operator">-</span><span class="ruby-identifier">gnutls</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span> <span class="ruby-identifier">libopenssl</span><span class="ruby-operator">-</span><span class="ruby-identifier">ruby</span> <span class="ruby-identifier">libxml2</span> <span class="ruby-identifier">libxml2</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span> <span class="ruby-identifier">libxslt1</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span> <span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span>
-  <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/github.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span>.<span class="ruby-identifier">git</span>
-  <span class="ruby-identifier">cd</span> <span class="ruby-identifier">wpscan</span>
-  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">without</span> <span class="ruby-identifier">test</span> <span class="ruby-identifier">development</span>
+  sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
+  git clone https://github.com/wpscanteam/wpscan.git
+  cd wpscan
+  sudo gem install bundler &amp;&amp; bundle install --without test development
 
-<span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> <span class="ruby-constant">Installing</span> <span class="ruby-identifier">on</span> <span class="ruby-constant">Fedora</span><span class="ruby-operator">:</span>
+-&gt; Installing on Fedora:
 
-  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">yum</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">libcurl</span><span class="ruby-operator">-</span><span class="ruby-identifier">devel</span>
-  <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/github.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span>.<span class="ruby-identifier">git</span>
-  <span class="ruby-identifier">cd</span> <span class="ruby-identifier">wpscan</span>
-  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">without</span> <span class="ruby-identifier">test</span> <span class="ruby-identifier">development</span>
+  sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel
+  git clone https://github.com/wpscanteam/wpscan.git
+  cd wpscan
+  sudo gem install bundler &amp;&amp; bundle install --without test development
 
-<span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> <span class="ruby-constant">Installing</span> <span class="ruby-identifier">on</span> <span class="ruby-constant">Archlinux</span><span class="ruby-operator">:</span>
+-&gt; Installing on Archlinux:
 
-  <span class="ruby-identifier">pacman</span> <span class="ruby-operator">-</span><span class="ruby-constant">Syu</span> <span class="ruby-identifier">ruby</span>
-  <span class="ruby-identifier">pacman</span> <span class="ruby-operator">-</span><span class="ruby-constant">Syu</span> <span class="ruby-identifier">libyaml</span>
+  pacman -Syu ruby
+  pacman -Syu libyaml
 
-  <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/github.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span>.<span class="ruby-identifier">git</span>
-  <span class="ruby-identifier">cd</span> <span class="ruby-identifier">wpscan</span>
-  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">without</span> <span class="ruby-identifier">test</span> <span class="ruby-identifier">development</span>
+  git clone https://github.com/wpscanteam/wpscan.git
+  cd wpscan
+  sudo gem install bundler &amp;&amp; bundle install --without test development
 
-  <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">typhoeus</span>
-  <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">nokogiri</span>
+  gem install typhoeus
+  gem install nokogiri
 
-<span class="ruby-operator">-</span><span class="ruby-operator">&gt;</span> <span class="ruby-constant">Installing</span> <span class="ruby-identifier">on</span> <span class="ruby-constant">Mac</span> <span class="ruby-constant">OS</span> <span class="ruby-constant">X</span><span class="ruby-operator">:</span>
+-&gt; Installing on Mac OS X:
 
-  <span class="ruby-identifier">git</span> <span class="ruby-identifier">clone</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/github.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span>.<span class="ruby-identifier">git</span>
-  <span class="ruby-identifier">cd</span> <span class="ruby-identifier">wpscan</span>
-  <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">gem</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">bundler</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">bundle</span> <span class="ruby-identifier">install</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">without</span> <span class="ruby-identifier">test</span> <span class="ruby-identifier">development</span>
-</pre>
+  git clone https://github.com/wpscanteam/wpscan.git
+  cd wpscan
+  sudo gem install bundler &amp;&amp; bundle install --without test development</pre>
 
-<h2 id="label-KNOWN+ISSUES%3D%3D">KNOWN ISSUES==<span><a href="#label-KNOWN+ISSUES%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>KNOWN ISSUES==</h2>
 
-<pre class="ruby"><span class="ruby-operator">-</span> <span class="ruby-constant">Typhoeus</span> <span class="ruby-identifier">segmentation</span> <span class="ruby-identifier">fault</span><span class="ruby-operator">:</span>
-    <span class="ruby-constant">Update</span> <span class="ruby-identifier">cURL</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7.21</span> (<span class="ruby-identifier">may</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">source</span>)
-    <span class="ruby-constant">See</span> <span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/code.google.com/</span><span class="ruby-identifier">p</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span><span class="ruby-operator">/</span><span class="ruby-identifier">issues</span><span class="ruby-operator">/</span><span class="ruby-identifier">detail?</span><span class="ruby-identifier">id</span>=<span class="ruby-value">81</span>
+<pre>- Typhoeus segmentation fault:
+    Update cURL to version =&gt; 7.21 (may have to install from source)
+    See http://code.google.com/p/wpscan/issues/detail?id=81
 
-<span class="ruby-operator">-</span> <span class="ruby-constant">Proxy</span> <span class="ruby-keyword">not</span> <span class="ruby-identifier">working</span><span class="ruby-operator">:</span>
-    <span class="ruby-constant">Update</span> <span class="ruby-identifier">cURL</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">version</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">7.21</span><span class="ruby-value">.7</span> (<span class="ruby-identifier">may</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">source</span>).
+- Proxy not working:
+    Update cURL to version =&gt; 7.21.7 (may have to install from source).
 
-    <span class="ruby-constant">Installation</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">sources</span> <span class="ruby-operator">:</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Grab</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">sources</span> <span class="ruby-identifier">from</span> <span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/curl.haxx.se/</span><span class="ruby-identifier">download</span>.<span class="ruby-identifier">html</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Decompress</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">archive</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Open</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">folder</span> <span class="ruby-identifier">with</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">extracted</span> <span class="ruby-identifier">files</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> .<span class="ruby-operator">/</span><span class="ruby-identifier">configure</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> <span class="ruby-identifier">make</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">make</span> <span class="ruby-identifier">install</span>
-      <span class="ruby-operator">-</span> <span class="ruby-constant">Run</span> <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">ldconfig</span>
+    Installation from sources :
+      - Grab the sources from http://curl.haxx.se/download.html
+      - Decompress the archive
+      - Open the folder with the extracted files
+      - Run ./configure
+      - Run make
+      - Run sudo make install
+      - Run sudo ldconfig
 
-<span class="ruby-operator">-</span> <span class="ruby-identifier">cannot</span> <span class="ruby-identifier">load</span> <span class="ruby-identifier">such</span> <span class="ruby-identifier">file</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span> <span class="ruby-identifier">readline</span><span class="ruby-operator">:</span>
-    <span class="ruby-constant">Run</span> <span class="ruby-identifier">sudo</span> <span class="ruby-identifier">aptitude</span> <span class="ruby-identifier">install</span> <span class="ruby-identifier">libreadline5</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span> <span class="ruby-identifier">libncurses5</span><span class="ruby-operator">-</span><span class="ruby-identifier">dev</span>
+- cannot load such file -- readline:
+    Run sudo aptitude install libreadline5-dev libncurses5-dev
 
-    <span class="ruby-constant">Then</span>, <span class="ruby-identifier">open</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">directory</span> <span class="ruby-identifier">of</span> <span class="ruby-identifier">the</span> <span class="ruby-identifier">readline</span> <span class="ruby-identifier">gem</span> (<span class="ruby-identifier">you</span> <span class="ruby-identifier">have</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">locate</span> <span class="ruby-identifier">it</span>)
+    Then, open the directory of the readline gem (you have to locate it)
 
-    <span class="ruby-identifier">cd</span> <span class="ruby-operator">~</span><span class="ruby-regexp">/.rvm/</span><span class="ruby-identifier">rc</span><span class="ruby-operator">/</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-value">1.9</span><span class="ruby-value">.2</span><span class="ruby-operator">-</span><span class="ruby-identifier">p180</span><span class="ruby-operator">/</span><span class="ruby-identifier">ext</span><span class="ruby-operator">/</span><span class="ruby-identifier">readline</span>
-    <span class="ruby-identifier">ruby</span> <span class="ruby-identifier">extconf</span>.<span class="ruby-identifier">rb</span>
-    <span class="ruby-identifier">make</span>
-    <span class="ruby-identifier">make</span> <span class="ruby-identifier">install</span>
+    cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
+    ruby extconf.rb
+    make
+    make install
 
-    <span class="ruby-constant">See</span> <span class="ruby-identifier">http</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/vvv.tobiassjosten.net/</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-identifier">on</span><span class="ruby-operator">-</span><span class="ruby-identifier">rails</span><span class="ruby-operator">/</span><span class="ruby-identifier">fixing</span><span class="ruby-operator">-</span><span class="ruby-identifier">readline</span><span class="ruby-operator">-</span><span class="ruby-keyword">for</span><span class="ruby-operator">-</span><span class="ruby-identifier">the</span><span class="ruby-operator">-</span><span class="ruby-identifier">ruby</span><span class="ruby-operator">-</span><span class="ruby-identifier">on</span><span class="ruby-operator">-</span><span class="ruby-identifier">rails</span><span class="ruby-operator">-</span><span class="ruby-identifier">console</span><span class="ruby-operator">/</span> <span class="ruby-keyword">for</span> <span class="ruby-identifier">more</span> <span class="ruby-identifier">details</span>
+    See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
 
-<span class="ruby-operator">-</span> <span class="ruby-identifier">no</span> <span class="ruby-identifier">such</span> <span class="ruby-identifier">file</span> <span class="ruby-identifier">to</span> <span class="ruby-identifier">load</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span> <span class="ruby-identifier">rubygems</span>
-    <span class="ruby-constant">Run</span> <span class="ruby-identifier">update</span><span class="ruby-operator">-</span><span class="ruby-identifier">alternatives</span> <span class="ruby-operator">-</span><span class="ruby-operator">-</span><span class="ruby-identifier">config</span> <span class="ruby-identifier">ruby</span>
-    <span class="ruby-constant">And</span> <span class="ruby-identifier">select</span> <span class="ruby-identifier">your</span> <span class="ruby-identifier">ruby</span> <span class="ruby-identifier">version</span>
+- no such file to load -- rubygems
+    Run update-alternatives --config ruby
+    And select your ruby version
 
-    <span class="ruby-constant">See</span> <span class="ruby-identifier">https</span>:<span class="ruby-operator">/</span><span class="ruby-regexp">/github.com/</span><span class="ruby-identifier">wpscanteam</span><span class="ruby-operator">/</span><span class="ruby-identifier">wpscan</span><span class="ruby-operator">/</span><span class="ruby-identifier">issues</span><span class="ruby-operator">/</span><span class="ruby-value">148</span>
-</pre>
+    See https://github.com/wpscanteam/wpscan/issues/148</pre>
 
-<h2 id="label-WPSCAN+ARGUMENTS%3D%3D">WPSCAN ARGUMENTS==<span><a href="#label-WPSCAN+ARGUMENTS%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>WPSCAN ARGUMENTS==</h2>
 
 <p>–update   Update to the latest revision</p>
 
@@ -433,13 +398,12 @@ for the plugins directory. If not supplied, WPScan will use
 wp-content-dir/plugins. Subdirectories are allowed</p>
 
 <p>–proxy &lt;[protocol://]host:port&gt;  Supply a proxy (will override the
-one from <a href="conf/browser_conf_json.html">conf/browser.conf.json</a>).</p>
+one from conf/browser.conf.json).</p>
 
 <pre>HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used</pre>
 
 <p>–proxy-auth &lt;username:password&gt;  Supply the proxy login credentials
-(will override the one from <a
-href="conf/browser_conf_json.html">conf/browser.conf.json</a>).</p>
+(will override the one from conf/browser.conf.json).</p>
 
 <p>–basic-auth &lt;username:password&gt;  Set the HTTP Basic authentication</p>
 
@@ -447,8 +411,8 @@ href="conf/browser_conf_json.html">conf/browser.conf.json</a>).</p>
 and do the brute.</p>
 
 <p>–threads  | -t &lt;number of threads&gt;  The number of threads to use when
-multi-threading requests. (will override the value from <a
-href="conf/browser_conf_json.html">conf/browser.conf.json</a>)</p>
+multi-threading requests. (will override the value from
+conf/browser.conf.json)</p>
 
 <p>–username | -U &lt;username&gt;  Only brute force the supplied username.</p>
 
@@ -456,7 +420,7 @@ href="conf/browser_conf_json.html">conf/browser.conf.json</a>)</p>
 
 <p>–verbose  | -v Verbose output.</p>
 
-<h2 id="label-WPSCAN+EXAMPLES%3D%3D">WPSCAN EXAMPLES==<span><a href="#label-WPSCAN+EXAMPLES%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>WPSCAN EXAMPLES==</h2>
 
 <p>Do ‘non-intrusive’ checks…</p>
 
@@ -490,56 +454,57 @@ href="conf/browser_conf_json.html">conf/browser.conf.json</a>)</p>
 
 <pre>ruby wpscan.rb --url www.example.com --debug-output 2&gt;debug.log</pre>
 
-<h2 id="label-WPSTOOLS+ARGUMENTS%3D%3D">WPSTOOLS ARGUMENTS==<span><a href="#label-WPSTOOLS+ARGUMENTS%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>WPSTOOLS ARGUMENTS==</h2>
 
 <p>–help    | -h   This help screen. –Verbose | -v   Verbose output. –update 
 | -u   Update to the latest revision. –generate_plugin_list [number of
 pages]  Generate a new data/plugins.txt file. (supply number of
-<strong>pages</strong> to parse, default : 150) –gpl  Alias for
-–generate_plugin_list –check-local-vulnerable-files | –clvf &lt;local
-directory&gt;  Perform a recursive scan in the &lt;local directory&gt; to
-find vulnerable files or shells</p>
+<b>pages</b> to parse, default : 150) –gpl  Alias for –generate_plugin_list
+–check-local-vulnerable-files | –clvf &lt;local directory&gt;  Perform a
+recursive scan in the &lt;local directory&gt; to find vulnerable files or
+shells</p>
 
-<h2 id="label-WPSTOOLS+EXAMPLES%3D%3D">WPSTOOLS EXAMPLES==<span><a href="#label-WPSTOOLS+EXAMPLES%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h2>
+<h2>WPSTOOLS EXAMPLES==</h2>
 <ul><li>
 <p>Generate a new ‘most popular’ plugin list, up to 150 pages …</p>
 </li></ul>
 
-<p>ruby wpstools.rb –generate_plugin_list 150</p>
+<p>ruby <a href="wpstools_rb.html">wpstools.rb</a> –generate_plugin_list 150</p>
 <ul><li>
 <p>Locally scan a wordpress installation for vulnerable files or shells :</p>
 </li></ul>
 
-<p>ruby wpstools.rb –check-local-vulnerable-files /var/www/wordpress/</p>
+<p>ruby <a href="wpstools_rb.html">wpstools.rb</a>
+–check-local-vulnerable-files /var/www/wordpress/</p>
 
-<h3 id="label-PROJECT+HOME%3D%3D%3D">PROJECT HOME===<span><a href="#label-PROJECT+HOME%3D%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3>PROJECT HOME===</h3>
 
 <p><a href="http://www.wpscan.org">www.wpscan.org</a></p>
 
-<h3 id="label-REPOSITORY%3D%3D%3D">REPOSITORY===<span><a href="#label-REPOSITORY%3D%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3>REPOSITORY===</h3>
 
 <p><a
 href="https://github.com/wpscanteam/wpscan">github.com/wpscanteam/wpscan</a></p>
 
-<h3 id="label-ISSUES%3D%3D%3D">ISSUES===<span><a href="#label-ISSUES%3D%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3>ISSUES===</h3>
 
 <p><a
 href="https://github.com/wpscanteam/wpscan/issues">github.com/wpscanteam/wpscan/issues</a></p>
 
-<h3 id="label-SPONSOR%3D%3D%3D">SPONSOR===<span><a href="#label-SPONSOR%3D%3D%3D">&para;</a> <a href="#documentation">&uarr;</a></span></h3>
+<h3>SPONSOR===</h3>
 
 <p>WPScan is sponsored by the RandomStorm Open Source Initiative.</p>
 
 <p>Visit RandomStorm at <a
 href="http://www.randomstorm.com">www.randomstorm.com</a></p>
 
-</div>
+  </div>
 
-
-
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
+</body>
+</html>
 

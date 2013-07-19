@@ -6,13 +6,13 @@
 <title>
   Module: WpItems::Detectable
   
-    &mdash; Documentation by YARD 0.8.6.1
+    &mdash; Documentation by YARD 0.8.5.2
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
@@ -232,6 +232,28 @@
 </li>
 
       
+        <li class="protected ">
+  <span class="summary_signature">
+    
+      <a href="#item_options-instance_method" title="#item_options (instance method)">- (Hash) <strong>item_options</strong>(wp_target) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  <span class="note title protected">protected</span>
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
         <li class="public ">
   <span class="summary_signature">
     
@@ -327,7 +349,7 @@
         <li class="protected ">
   <span class="summary_signature">
     
-      <a href="#targets_items_from_file-instance_method" title="#targets_items_from_file (instance method)">- (WpItem) <strong>targets_items_from_file</strong>(file, wp_target, item_class, vulns_file) </a>
+      <a href="#targets_items_from_file-instance_method" title="#targets_items_from_file (instance method)">- (Array&lt;WpItem&gt;) <strong>targets_items_from_file</strong>(file, wp_target, item_class, vulns_file) </a>
     
 
     
@@ -758,18 +780,18 @@
       <pre class="lines">
 
 
-153
-154
-155
-156
-157
-158
-159
 160
-161</pre>
+161
+162
+163
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 160</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_create_item'>create_item</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_vulns_file'>vulns_file</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
@@ -822,15 +844,90 @@
       <pre class="lines">
 
 
-186
-187
-188</pre>
+193
+194
+195</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 186</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 193</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_item_class'>item_class</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_const_get'>const_get</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="item_options-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>item_options</strong>(wp_target)  <span class="extras">(protected)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>wp_target</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../WpTarget.html" title="WpTarget (class)">WpTarget</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+97
+98
+99
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 97</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_item_options'>item_options</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='rparen'>)</span>
+  <span class='lbrace'>{</span>
+    <span class='label'>wp_content_dir:</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='period'>.</span><span class='id identifier rubyid_wp_content_dir'>wp_content_dir</span><span class='comma'>,</span>
+    <span class='label'>wp_plugins_dir:</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='period'>.</span><span class='id identifier rubyid_wp_plugins_dir'>wp_plugins_dir</span><span class='comma'>,</span>
+    <span class='label'>vulns_file:</span>     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_vulns_file'>vulns_file</span>
+  <span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -921,11 +1018,7 @@
 87
 88
 89
-90
-91
-92
-93
-94</pre>
+90</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 71</span>
@@ -935,11 +1028,7 @@
   <span class='id identifier rubyid_item_class'>item_class</span>   <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_item_class'>item_class</span>
   <span class='id identifier rubyid_type'>type</span>         <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Wp</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
   <span class='id identifier rubyid_response'>response</span>     <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
-  <span class='id identifier rubyid_item_options'>item_options</span> <span class='op'>=</span> <span class='lbrace'>{</span>
-    <span class='label'>wp_content_dir:</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='period'>.</span><span class='id identifier rubyid_wp_content_dir'>wp_content_dir</span><span class='comma'>,</span>
-    <span class='label'>wp_plugins_dir:</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='period'>.</span><span class='id identifier rubyid_wp_plugins_dir'>wp_plugins_dir</span><span class='comma'>,</span>
-    <span class='label'>vulns_file:</span>     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_vulns_file'>vulns_file</span>
-  <span class='rbrace'>}</span>
+  <span class='id identifier rubyid_item_options'>item_options</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_item_options'>item_options</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='rparen'>)</span>
 
   <span class='id identifier rubyid_regex1'>regex1</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>(?:[^=:]+)\s?(?:=|:)\s?(?:&quot;|')[^&quot;']+\\?/</span><span class='regexp_end'>}</span></span>
   <span class='id identifier rubyid_regex2'>regex2</span> <span class='op'>=</span> <span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>\\?/</span><span class='regexp_end'>}</span></span>
@@ -1090,10 +1179,10 @@
       <pre class="lines">
 
 
-101</pre>
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 101</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 108</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request_params'>request_params</span><span class='semicolon'>;</span> <span class='lbrace'>{</span> <span class='label'>cache_ttl:</span> <span class='int'>0</span><span class='comma'>,</span> <span class='label'>followlocation:</span> <span class='kw'>true</span> <span class='rbrace'>}</span> <span class='kw'>end</span></pre>
     </td>
@@ -1199,13 +1288,6 @@
       <pre class="lines">
 
 
-109
-110
-111
-112
-113
-114
-115
 116
 117
 118
@@ -1215,10 +1297,17 @@
 122
 123
 124
-125</pre>
+125
+126
+127
+128
+129
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 116</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_targets_items'>targets_items</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_item_class'>item_class</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_item_class'>item_class</span>
@@ -1245,7 +1334,7 @@
       <div class="method_details ">
   <h3 class="signature " id="targets_items_from_file-instance_method">
   
-    - (<tt><span class='object_link'><a href="../WpItem.html" title="WpItem (class)">WpItem</a></span></tt>) <strong>targets_items_from_file</strong>(file, wp_target, item_class, vulns_file)  <span class="extras">(protected)</span>
+    - (<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="../WpItem.html" title="WpItem (class)">WpItem</a></span>&gt;</tt>) <strong>targets_items_from_file</strong>(file, wp_target, item_class, vulns_file)  <span class="extras">(protected)</span>
   
 
   
@@ -1313,7 +1402,7 @@
     <li>
       
       
-        <span class='type'>(<tt><span class='object_link'><a href="../WpItem.html" title="WpItem (class)">WpItem</a></span></tt>)</span>
+        <span class='type'>(<tt><span class='object_link'><a href="../Array.html" title="Array (class)">Array</a></span>&lt;<span class='object_link'><a href="../WpItem.html" title="WpItem (class)">WpItem</a></span>&gt;</tt>)</span>
       
       
       
@@ -1327,13 +1416,6 @@
       <pre class="lines">
 
 
-169
-170
-171
-172
-173
-174
-175
 176
 177
 178
@@ -1341,10 +1423,17 @@
 180
 181
 182
-183</pre>
+183
+184
+185
+186
+187
+188
+189
+190</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 169</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 176</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_targets_items_from_file'>targets_items_from_file</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='comma'>,</span> <span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_item_class'>item_class</span><span class='comma'>,</span> <span class='id identifier rubyid_vulns_file'>vulns_file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_targets'>targets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1440,23 +1529,23 @@
       <pre class="lines">
 
 
-132
-133
-134
-135
-136
-137
-138
 139
 140
 141
 142
 143
 144
-145</pre>
+145
+146
+147
+148
+149
+150
+151
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 132</span>
+      <pre class="code"><span class="info file"># File 'lib/common/collections/wp_items/detectable.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_vulnerable_targets_items'>vulnerable_targets_items</span><span class='lparen'>(</span><span class='id identifier rubyid_wp_target'>wp_target</span><span class='comma'>,</span> <span class='id identifier rubyid_item_class'>item_class</span><span class='comma'>,</span> <span class='id identifier rubyid_vulns_file'>vulns_file</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_targets'>targets</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1482,9 +1571,9 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Jun  9 16:05:17 2013 by
+  Generated on Fri Jul 19 21:49:37 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.6.1 (ruby-1.9.3).
+  0.8.5.2 (ruby-1.9.3).
 </div>
 
   </body>

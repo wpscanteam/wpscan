@@ -1,355 +1,345 @@
-<!DOCTYPE html>
-
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-<title>module WpVersion::Findable - RDoc Documentation</title>
+  <title>Module: WpVersion::Findable</title>
 
-<link type="text/css" media="screen" href="../rdoc.css" rel="stylesheet">
+  <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
-<script type="text/javascript">
-  var rdoc_rel_prefix = "../";
-</script>
+  <script src="../js/jquery.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/thickbox-compressed.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/quicksearch.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../js/darkfish.js" type="text/javascript" charset="utf-8"></script>
 
-<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/navigation.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search_index.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/search.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/searcher.js"></script>
-<script type="text/javascript" charset="utf-8" src="../js/darkfish.js"></script>
-
-
+</head>
 <body id="top" class="module">
-<nav id="metadata">
-  <nav id="home-section" class="section">
-  <h3 class="section-header">
-    <a href="../index.html">Home</a>
-    <a href="../table_of_contents.html#classes">Classes</a>
-    <a href="../table_of_contents.html#methods">Methods</a>
-  </h3>
-</nav>
 
+  <div id="metadata">
+    <div id="home-metadata">
+      <div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#classes">Classes</a>
+          <a href="../index.html#methods">Methods</a>
+        </h3>
+      </div>
+    </div>
 
-  <nav id="search-section" class="section project-section" class="initially-hidden">
-  <form action="#" method="get" accept-charset="utf-8">
-    <h3 class="section-header">
-      <input type="text" name="search" placeholder="Search" id="search-field"
-             title="Type to search, Up and Down to navigate, Enter to load">
-    </h3>
-  </form>
-
-  <ul id="search-results" class="initially-hidden"></ul>
-</nav>
-
-
-  
-
-  <div id="file-metadata">
-    <nav id="file-list-section" class="section">
-  <h3 class="section-header">Defined In</h3>
-  <ul>
-    <li>lib/common/models/wp_version/findable.rb
-  </ul>
-</nav>
-
-    
-  </div>
-
-  <div id="class-metadata">
-    
-    
-    
-    
-    <!-- Method Quickref -->
-<nav id="method-list-section" class="section">
-  <h3 class="section-header">Methods</h3>
-
-  <ul class="link-list">
-    
-    <li ><a href="#method-i-find">#find</a>
-    
-    <li ><a href="#method-i-find_from_advanced_fingerprinting">#find_from_advanced_fingerprinting</a>
-    
-    <li ><a href="#method-i-find_from_atom_generator">#find_from_atom_generator</a>
-    
-    <li ><a href="#method-i-find_from_links_opml">#find_from_links_opml</a>
-    
-    <li ><a href="#method-i-find_from_meta_generator">#find_from_meta_generator</a>
-    
-    <li ><a href="#method-i-find_from_rdf_generator">#find_from_rdf_generator</a>
-    
-    <li ><a href="#method-i-find_from_readme">#find_from_readme</a>
-    
-    <li ><a href="#method-i-find_from_rss_generator">#find_from_rss_generator</a>
-    
-    <li ><a href="#method-i-find_from_sitemap_generator">#find_from_sitemap_generator</a>
-    
-    <li ><a href="#method-i-scan_url">#scan_url</a>
-    
-    <li ><a href="#method-i-version_pattern">#version_pattern</a>
-    
-  </ul>
-</nav>
-
-  </div>
-
-  <div id="project-metadata">
-    <nav id="fileindex-section" class="section project-section">
-  <h3 class="section-header">Pages</h3>
-
-  <ul>
-  
-    <li class="file"><a href="../CREDITS.html">CREDITS</a>
-  
-    <li class="file"><a href="../Gemfile.html">Gemfile</a>
-  
-    <li class="file"><a href="../Gemfile_lock.html">Gemfile.lock</a>
-  
-    <li class="file"><a href="../LICENSE.html">LICENSE</a>
-  
-    <li class="file"><a href="../README.html">README</a>
-  
-    <li class="file"><a href="../README_md.html">README</a>
-  
-    <li class="file"><a href="../cache/browser/cookie-jar.html">cookie-jar</a>
-  
-    <li class="file"><a href="../conf/browser_conf_json.html">browser.conf.json</a>
-  
-    <li class="file"><a href="../generate_doc_sh.html">generate_doc.sh</a>
-  
-  </ul>
-</nav>
-
-    <nav id="classindex-section" class="section project-section">
-  <h3 class="section-header">Class and Module Index</h3>
-
-  <ul class="link-list">
-  
-    <li><a href="../Array.html">Array</a>
-  
-    <li><a href="../Browser.html">Browser</a>
-  
-    <li><a href="../Browser/Actions.html">Browser::Actions</a>
-  
-    <li><a href="../Browser/Options.html">Browser::Options</a>
-  
-    <li><a href="../CacheFileStore.html">CacheFileStore</a>
-  
-    <li><a href="../CheckerPlugin.html">CheckerPlugin</a>
-  
-    <li><a href="../CustomOptionParser.html">CustomOptionParser</a>
-  
-    <li><a href="../Ethon.html">Ethon</a>
-  
-    <li><a href="../Ethon/Easy.html">Ethon::Easy</a>
-  
-    <li><a href="../Ethon/Easy/Options.html">Ethon::Easy::Options</a>
-  
-    <li><a href="../File.html">File</a>
-  
-    <li><a href="../Gem.html">Gem</a>
-  
-    <li><a href="../GenerateList.html">GenerateList</a>
-  
-    <li><a href="../GitUpdater.html">GitUpdater</a>
-  
-    <li><a href="../ListGeneratorPlugin.html">ListGeneratorPlugin</a>
-  
-    <li><a href="../Object.html">Object</a>
-  
-    <li><a href="../Plugin.html">Plugin</a>
-  
-    <li><a href="../Plugins.html">Plugins</a>
-  
-    <li><a href="../StatsPlugin.html">StatsPlugin</a>
-  
-    <li><a href="../SvnParser.html">SvnParser</a>
-  
-    <li><a href="../SvnUpdater.html">SvnUpdater</a>
-  
-    <li><a href="../Terminal.html">Terminal</a>
-  
-    <li><a href="../Terminal/Table.html">Terminal::Table</a>
-  
-    <li><a href="../Terminal/Table/Style.html">Terminal::Table::Style</a>
-  
-    <li><a href="../Typhoeus.html">Typhoeus</a>
-  
-    <li><a href="../Typhoeus/Request.html">Typhoeus::Request</a>
-  
-    <li><a href="../Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a>
-  
-    <li><a href="../Typhoeus/Response.html">Typhoeus::Response</a>
-  
-    <li><a href="../TyphoeusCache.html">TyphoeusCache</a>
-  
-    <li><a href="../URI.html">URI</a>
-  
-    <li><a href="../Updater.html">Updater</a>
-  
-    <li><a href="../UpdaterFactory.html">UpdaterFactory</a>
-  
-    <li><a href="../VersionCompare.html">VersionCompare</a>
-  
-    <li><a href="../Vulnerabilities.html">Vulnerabilities</a>
-  
-    <li><a href="../Vulnerabilities/Output.html">Vulnerabilities::Output</a>
-  
-    <li><a href="../Vulnerability.html">Vulnerability</a>
-  
-    <li><a href="../Vulnerability/Output.html">Vulnerability::Output</a>
-  
-    <li><a href="../WebSite.html">WebSite</a>
-  
-    <li><a href="../WpItem.html">WpItem</a>
-  
-    <li><a href="../WpItem/Existable.html">WpItem::Existable</a>
-  
-    <li><a href="../WpItem/Findable.html">WpItem::Findable</a>
-  
-    <li><a href="../WpItem/Infos.html">WpItem::Infos</a>
-  
-    <li><a href="../WpItem/Output.html">WpItem::Output</a>
-  
-    <li><a href="../WpItem/Versionable.html">WpItem::Versionable</a>
-  
-    <li><a href="../WpItem/Vulnerable.html">WpItem::Vulnerable</a>
-  
-    <li><a href="../WpItems.html">WpItems</a>
-  
-    <li><a href="../WpItems/Detectable.html">WpItems::Detectable</a>
-  
-    <li><a href="../WpItems/Output.html">WpItems::Output</a>
-  
-    <li><a href="../WpPlugin.html">WpPlugin</a>
-  
-    <li><a href="../WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a>
-  
-    <li><a href="../WpPlugins.html">WpPlugins</a>
-  
-    <li><a href="../WpPlugins/Detectable.html">WpPlugins::Detectable</a>
-  
-    <li><a href="../WpTarget.html">WpTarget</a>
-  
-    <li><a href="../WpTarget/Malwares.html">WpTarget::Malwares</a>
-  
-    <li><a href="../WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a>
-  
-    <li><a href="../WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a>
-  
-    <li><a href="../WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a>
-  
-    <li><a href="../WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a>
-  
-    <li><a href="../WpTarget/WpReadme.html">WpTarget::WpReadme</a>
-  
-    <li><a href="../WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a>
-  
-    <li><a href="../WpTheme.html">WpTheme</a>
-  
-    <li><a href="../WpTheme/Findable.html">WpTheme::Findable</a>
-  
-    <li><a href="../WpTheme/Versionable.html">WpTheme::Versionable</a>
-  
-    <li><a href="../WpTheme/Vulnerable.html">WpTheme::Vulnerable</a>
-  
-    <li><a href="../WpThemes.html">WpThemes</a>
-  
-    <li><a href="../WpThemes/Detectable.html">WpThemes::Detectable</a>
-  
-    <li><a href="../WpTimthumb.html">WpTimthumb</a>
-  
-    <li><a href="../WpTimthumb/Existable.html">WpTimthumb::Existable</a>
-  
-    <li><a href="../WpTimthumb/Output.html">WpTimthumb::Output</a>
-  
-    <li><a href="../WpTimthumb/Versionable.html">WpTimthumb::Versionable</a>
-  
-    <li><a href="../WpTimthumbs.html">WpTimthumbs</a>
-  
-    <li><a href="../WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a>
-  
-    <li><a href="../WpUser.html">WpUser</a>
-  
-    <li><a href="../WpUser/BruteForcable.html">WpUser::BruteForcable</a>
-  
-    <li><a href="../WpUser/Existable.html">WpUser::Existable</a>
-  
-    <li><a href="../WpUsers.html">WpUsers</a>
-  
-    <li><a href="../WpUsers/BruteForcable.html">WpUsers::BruteForcable</a>
-  
-    <li><a href="../WpUsers/Detectable.html">WpUsers::Detectable</a>
-  
-    <li><a href="../WpUsers/Output.html">WpUsers::Output</a>
-  
-    <li><a href="../WpVersion.html">WpVersion</a>
-  
-    <li><a href="../WpVersion/Findable.html">WpVersion::Findable</a>
-  
-    <li><a href="../WpVersion/Output.html">WpVersion::Output</a>
-  
-    <li><a href="../WpVersion/Vulnerable.html">WpVersion::Vulnerable</a>
-  
-    <li><a href="../WpscanOptions.html">WpscanOptions</a>
-  
-  </ul>
-</nav>
-
-  </div>
-</nav>
-
-<div id="documentation">
-  <h1 class="module">module WpVersion::Findable</h1>
-
-  <div id="description" class="description">
-    
-  </div><!-- description -->
-
-  
-  
-  
-  <section id="5Buntitled-5D" class="documentation-section">
-    
-
-    
-
-    
-
-    
-
-    <!-- Methods -->
-    
-     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Public Instance Methods</h3>
-
-    
-      <div id="method-i-find" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find</span><span
-            class="method-args">(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)</span>
+    <div id="file-metadata">
+      <div id="file-list-section" class="section">
+        <h3 class="section-header">In Files</h3>
+        <div class="section-body">
+          <ul>
           
-          <span class="method-click-advice">click to toggle source</span>
+            <li><a href="../lib/common/models/wp_version/findable_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/common/models/wp_version/findable.rb">lib/common/models/wp_version/findable.rb</a></li>
           
+          </ul>
         </div>
-        
+      </div>
 
-        <div class="method-description">
+      
+    </div>
+
+    <div id="class-metadata">
+      
+
+      
+
+      
+
+      
+      <!-- Method Quickref -->
+      <div id="method-list-section" class="section">
+        <h3 class="section-header">Methods</h3>
+        <ul class="link-list">
           
-          <p>Find the version of the blog designated from target_uri</p>
+          <li><a href="#method-i-find">#find</a></li>
+          
+          <li><a href="#method-i-find_from_advanced_fingerprinting">#find_from_advanced_fingerprinting</a></li>
+          
+          <li><a href="#method-i-find_from_atom_generator">#find_from_atom_generator</a></li>
+          
+          <li><a href="#method-i-find_from_links_opml">#find_from_links_opml</a></li>
+          
+          <li><a href="#method-i-find_from_meta_generator">#find_from_meta_generator</a></li>
+          
+          <li><a href="#method-i-find_from_rdf_generator">#find_from_rdf_generator</a></li>
+          
+          <li><a href="#method-i-find_from_readme">#find_from_readme</a></li>
+          
+          <li><a href="#method-i-find_from_rss_generator">#find_from_rss_generator</a></li>
+          
+          <li><a href="#method-i-find_from_sitemap_generator">#find_from_sitemap_generator</a></li>
+          
+          <li><a href="#method-i-scan_url">#scan_url</a></li>
+          
+          <li><a href="#method-i-version_pattern">#version_pattern</a></li>
+          
+        </ul>
+      </div>
+      
+
+      
+    </div>
+
+    <div id="project-metadata">
+      
+      
+      <div id="fileindex-section" class="section project-section">
+        <h3 class="section-header">Files</h3>
+        <ul>
+        
+          <li class="file"><a href="../CREDITS.html">CREDITS</a></li>
+        
+          <li class="file"><a href="../Gemfile.html">Gemfile</a></li>
+        
+          <li class="file"><a href="../LICENSE.html">LICENSE</a></li>
+        
+          <li class="file"><a href="../README.html">README</a></li>
+        
+        </ul>
+      </div>
+      
+
+      <div id="classindex-section" class="section project-section">
+        <h3 class="section-header">Class/Module Index
+          <span class="search-toggle"><img src="../images/find.png"
+            height="16" width="16" alt="[+]"
+            title="show/hide quicksearch" /></span></h3>
+        <form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+        <fieldset>
+          <legend>Quicksearch</legend>
+          <input type="text" name="quicksearch" value=""
+            class="quicksearch-field" />
+        </fieldset>
+        </form>
+
+        <ul class="link-list">
+        
+          <li><a href="../WpTarget.html">WpTarget</a></li>
+        
+          <li><a href="../WpTarget/InterestingHeaders.html">WpTarget::InterestingHeaders</a></li>
+        
+          <li><a href="../WpTarget/Malwares.html">WpTarget::Malwares</a></li>
+        
+          <li><a href="../WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a></li>
+        
+          <li><a href="../WpTarget/WpCustomDirectories.html">WpTarget::WpCustomDirectories</a></li>
+        
+          <li><a href="../WpTarget/WpFullPathDisclosure.html">WpTarget::WpFullPathDisclosure</a></li>
+        
+          <li><a href="../WpTarget/WpLoginProtection.html">WpTarget::WpLoginProtection</a></li>
+        
+          <li><a href="../WpTarget/WpReadme.html">WpTarget::WpReadme</a></li>
+        
+          <li><a href="../WpTarget/WpRegistrable.html">WpTarget::WpRegistrable</a></li>
+        
+          <li><a href="../WpItem.html">WpItem</a></li>
+        
+          <li><a href="../WpItem/Existable.html">WpItem::Existable</a></li>
+        
+          <li><a href="../WpItem/Findable.html">WpItem::Findable</a></li>
+        
+          <li><a href="../WpItem/Infos.html">WpItem::Infos</a></li>
+        
+          <li><a href="../WpItem/Output.html">WpItem::Output</a></li>
+        
+          <li><a href="../WpItem/Versionable.html">WpItem::Versionable</a></li>
+        
+          <li><a href="../WpItem/Vulnerable.html">WpItem::Vulnerable</a></li>
+        
+          <li><a href="../Typhoeus.html">Typhoeus</a></li>
+        
+          <li><a href="../Typhoeus/Request.html">Typhoeus::Request</a></li>
+        
+          <li><a href="../Typhoeus/Request/Cacheable.html">Typhoeus::Request::Cacheable</a></li>
+        
+          <li><a href="../Typhoeus/Response.html">Typhoeus::Response</a></li>
+        
+          <li><a href="../WpTheme.html">WpTheme</a></li>
+        
+          <li><a href="../WpTheme/Findable.html">WpTheme::Findable</a></li>
+        
+          <li><a href="../WpTheme/Versionable.html">WpTheme::Versionable</a></li>
+        
+          <li><a href="../WpTheme/Vulnerable.html">WpTheme::Vulnerable</a></li>
+        
+          <li><a href="../WpTimthumb.html">WpTimthumb</a></li>
+        
+          <li><a href="../WpTimthumb/Existable.html">WpTimthumb::Existable</a></li>
+        
+          <li><a href="../WpTimthumb/Output.html">WpTimthumb::Output</a></li>
+        
+          <li><a href="../WpTimthumb/Versionable.html">WpTimthumb::Versionable</a></li>
+        
+          <li><a href="../WpUsers.html">WpUsers</a></li>
+        
+          <li><a href="../WpUsers/BruteForcable.html">WpUsers::BruteForcable</a></li>
+        
+          <li><a href="../WpUsers/Detectable.html">WpUsers::Detectable</a></li>
+        
+          <li><a href="../WpUsers/Output.html">WpUsers::Output</a></li>
+        
+          <li><a href="../WpVersion.html">WpVersion</a></li>
+        
+          <li><a href="../WpVersion/Findable.html">WpVersion::Findable</a></li>
+        
+          <li><a href="../WpVersion/Output.html">WpVersion::Output</a></li>
+        
+          <li><a href="../WpVersion/Vulnerable.html">WpVersion::Vulnerable</a></li>
+        
+          <li><a href="../Browser.html">Browser</a></li>
+        
+          <li><a href="../Browser/Actions.html">Browser::Actions</a></li>
+        
+          <li><a href="../Browser/Options.html">Browser::Options</a></li>
+        
+          <li><a href="../Terminal.html">Terminal</a></li>
+        
+          <li><a href="../Terminal/Table.html">Terminal::Table</a></li>
+        
+          <li><a href="../Terminal/Table/Style.html">Terminal::Table::Style</a></li>
+        
+          <li><a href="../WpItems.html">WpItems</a></li>
+        
+          <li><a href="../WpItems/Detectable.html">WpItems::Detectable</a></li>
+        
+          <li><a href="../WpItems/Output.html">WpItems::Output</a></li>
+        
+          <li><a href="../WpUser.html">WpUser</a></li>
+        
+          <li><a href="../WpUser/BruteForcable.html">WpUser::BruteForcable</a></li>
+        
+          <li><a href="../WpUser/Existable.html">WpUser::Existable</a></li>
+        
+          <li><a href="../Vulnerabilities.html">Vulnerabilities</a></li>
+        
+          <li><a href="../Vulnerabilities/Output.html">Vulnerabilities::Output</a></li>
+        
+          <li><a href="../Vulnerability.html">Vulnerability</a></li>
+        
+          <li><a href="../Vulnerability/Output.html">Vulnerability::Output</a></li>
+        
+          <li><a href="../WpPlugin.html">WpPlugin</a></li>
+        
+          <li><a href="../WpPlugin/Vulnerable.html">WpPlugin::Vulnerable</a></li>
+        
+          <li><a href="../WpPlugins.html">WpPlugins</a></li>
+        
+          <li><a href="../WpPlugins/Detectable.html">WpPlugins::Detectable</a></li>
+        
+          <li><a href="../WpThemes.html">WpThemes</a></li>
+        
+          <li><a href="../WpThemes/Detectable.html">WpThemes::Detectable</a></li>
+        
+          <li><a href="../WpTimthumbs.html">WpTimthumbs</a></li>
+        
+          <li><a href="../WpTimthumbs/Detectable.html">WpTimthumbs::Detectable</a></li>
+        
+          <li><a href="../Array.html">Array</a></li>
+        
+          <li><a href="../CacheFileStore.html">CacheFileStore</a></li>
+        
+          <li><a href="../CheckerPlugin.html">CheckerPlugin</a></li>
+        
+          <li><a href="../CustomOptionParser.html">CustomOptionParser</a></li>
+        
+          <li><a href="../File.html">File</a></li>
+        
+          <li><a href="../GenerateList.html">GenerateList</a></li>
+        
+          <li><a href="../GitUpdater.html">GitUpdater</a></li>
+        
+          <li><a href="../ListGeneratorPlugin.html">ListGeneratorPlugin</a></li>
+        
+          <li><a href="../Object.html">Object</a></li>
+        
+          <li><a href="../Plugin.html">Plugin</a></li>
+        
+          <li><a href="../Plugins.html">Plugins</a></li>
+        
+          <li><a href="../StatsPlugin.html">StatsPlugin</a></li>
+        
+          <li><a href="../SvnParser.html">SvnParser</a></li>
+        
+          <li><a href="../SvnUpdater.html">SvnUpdater</a></li>
+        
+          <li><a href="../TyphoeusCache.html">TyphoeusCache</a></li>
+        
+          <li><a href="../URI.html">URI</a></li>
+        
+          <li><a href="../Updater.html">Updater</a></li>
+        
+          <li><a href="../UpdaterFactory.html">UpdaterFactory</a></li>
+        
+          <li><a href="../VersionCompare.html">VersionCompare</a></li>
+        
+          <li><a href="../WebSite.html">WebSite</a></li>
+        
+          <li><a href="../WpscanOptions.html">WpscanOptions</a></li>
+        
+        </ul>
+        <div id="no-class-search-results" style="display: none;">No matching classes.</div>
+      </div>
+
+      
+    </div>
+  </div>
+
+  <div id="documentation">
+    <h1 class="module">WpVersion::Findable</h1>
+
+    <div id="description" class="description">
+      
+    </div><!-- description -->
+
+    
+    
+    
+    <div id="5Buntitled-5D" class="documentation-section">
+      
+
+      
+
+      
+
+      
+
+      <!-- Methods -->
+      
+      <div id="public-instance-method-details" class="method-section section">
+        <h3 class="section-header">Public Instance Methods</h3>
+
+      
+        <div id="find-method" class="method-detail ">
+          <a name="method-i-find"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find</span><span
+              class="method-args">(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Find the version of the blog designated from target_uri</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri @param [ String ]
 wp_content_dir @param [ String ] wp_plugins_dir</p>
 
 <p>@return [ <a href="../WpVersion.html">WpVersion</a> ]</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 13</span>
+            
+            <div class="method-source-code" id="find-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 13</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find</span>(<span class="ruby-identifier">target_uri</span>, <span class="ruby-identifier">wp_content_dir</span>, <span class="ruby-identifier">wp_plugins_dir</span>, <span class="ruby-identifier">versions_xml</span>)
   <span class="ruby-identifier">methods</span>.<span class="ruby-identifier">grep</span>(<span class="ruby-regexp">/find_from_/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
 
@@ -365,71 +355,71 @@ wp_content_dir @param [ String ] wp_plugins_dir</p>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find-source -->
-          
-        </div>
+            </div><!-- find-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find-method -->
-
-    
-      <div id="method-i-version_pattern" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">version_pattern</span><span
-            class="method-args">()</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Used to check if the version is correct: must contain at least one dot.</p>
+        </div><!-- find-method -->
+
+      
+        <div id="version_pattern-method" class="method-detail ">
+          <a name="method-i-version_pattern"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">version_pattern</span><span
+              class="method-args">()</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Used to check if the version is correct: must contain at least one dot.</p>
 
 <p>@return [ String ]</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="version_pattern-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 32</span>
+            
+            <div class="method-source-code" id="version_pattern-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">version_pattern</span>
   <span class="ruby-string">'([^\r\n&quot;\]+\.[^\r\n&quot;\]+)'</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- version_pattern-source -->
+            </div><!-- version_pattern-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- version_pattern-method -->
 
-        
-      </div><!-- version_pattern-method -->
-
+      
+      </div><!-- public-instance-method-details -->
     
-    </section><!-- public-instance-method-details -->
-  
-     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
-      <h3 class="section-header">Protected Instance Methods</h3>
+      <div id="protected-instance-method-details" class="method-section section">
+        <h3 class="section-header">Protected Instance Methods</h3>
 
-    
-      <div id="method-i-find_from_advanced_fingerprinting" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_advanced_fingerprinting</span><span
-            class="method-args">(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)</span>
-          
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
+      
+        <div id="find_from_advanced_fingerprinting-method" class="method-detail ">
+          <a name="method-i-find_from_advanced_fingerprinting"></a>
 
-        <div class="method-description">
           
-          <p>Uses data/wp_versions.xml to try to identify a wordpress version.</p>
+          <div class="method-heading">
+            <span class="method-name">find_from_advanced_fingerprinting</span><span
+              class="method-args">(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Uses data/wp_versions.xml to try to identify a wordpress version.</p>
 
 <p>It does this by using client side file hashing</p>
 
@@ -441,12 +431,12 @@ wp_content_dir @param [ String ] wp_plugins_dir @param [ String ]
 versions_xml The path to the xml containing all versions</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_advanced_fingerprinting-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 153</span>
+            
+            <div class="method-source-code" id="find_from_advanced_fingerprinting-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 153</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_advanced_fingerprinting</span>(<span class="ruby-identifier">target_uri</span>, <span class="ruby-identifier">wp_content_dir</span>, <span class="ruby-identifier">wp_plugins_dir</span>, <span class="ruby-identifier">versions_xml</span>)
   <span class="ruby-identifier">xml</span>     = <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">versions_xml</span>)
 
@@ -470,113 +460,113 @@ versions_xml The path to the xml containing all versions</p>
   <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_advanced_fingerprinting-source -->
-          
-        </div>
+            </div><!-- find_from_advanced_fingerprinting-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_advanced_fingerprinting-method -->
-
-    
-      <div id="method-i-find_from_atom_generator" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_atom_generator</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find the WordPress version from, the generator tag in the Atom
+        </div><!-- find_from_advanced_fingerprinting-method -->
+
+      
+        <div id="find_from_atom_generator-method" class="method-detail ">
+          <a name="method-i-find_from_atom_generator"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_atom_generator</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find the WordPress version from, the generator tag in the Atom
 source.</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_atom_generator-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 120</span>
+            
+            <div class="method-source-code" id="find_from_atom_generator-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 120</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_atom_generator</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{&lt;generator uri=&quot;http://wordpress.org/&quot; version=&quot;#{version_pattern}&quot;&gt;WordPress&lt;/generator&gt;}</span>,
+    <span class="ruby-node">%{&lt;generator uri=&quot;http://wordpress.org/&quot; version=&quot;#{version_pattern}&quot;&gt;WordPress&lt;/generator&gt;}</span>,
     <span class="ruby-string">'feed/atom/'</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_atom_generator-source -->
-          
-        </div>
+            </div><!-- find_from_atom_generator-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_atom_generator-method -->
-
-    
-      <div id="method-i-find_from_links_opml" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_links_opml</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find the WordPress version from the p-links-opml.php file.</p>
+        </div><!-- find_from_atom_generator-method -->
+
+      
+        <div id="find_from_links_opml-method" class="method-detail ">
+          <a name="method-i-find_from_links_opml"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_links_opml</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find the WordPress version from the p-links-opml.php file.</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_links_opml-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 210</span>
+            
+            <div class="method-source-code" id="find_from_links_opml-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 210</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_links_opml</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{generator=&quot;wordpress/#{version_pattern}&quot;}</span>,
+    <span class="ruby-node">%{generator=&quot;wordpress/#{version_pattern}&quot;}</span>,
     <span class="ruby-string">'wp-links-opml.php'</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_links_opml-source -->
-          
-        </div>
+            </div><!-- find_from_links_opml-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_links_opml-method -->
-
-    
-      <div id="method-i-find_from_meta_generator" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_meta_generator</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find the wordpress version from, the generator meta tag in the
+        </div><!-- find_from_links_opml-method -->
+
+      
+        <div id="find_from_meta_generator-method" class="method-detail ">
+          <a name="method-i-find_from_meta_generator"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_meta_generator</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find the wordpress version from, the generator meta tag in the
 html source.</p>
 
 <p>The meta tag can be removed however it seems, that it is reinstated on
@@ -585,167 +575,167 @@ upgrade.</p>
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_meta_generator-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 67</span>
+            
+            <div class="method-source-code" id="find_from_meta_generator-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_meta_generator</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{name=&quot;generator&quot; content=&quot;wordpress #{version_pattern}&quot;}</span>
+    <span class="ruby-node">%{name=&quot;generator&quot; content=&quot;wordpress #{version_pattern}&quot;}</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_meta_generator-source -->
-          
-        </div>
+            </div><!-- find_from_meta_generator-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_meta_generator-method -->
-
-    
-      <div id="method-i-find_from_rdf_generator" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_rdf_generator</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find WordPress version from, the generator tag in the RDF feed
+        </div><!-- find_from_meta_generator-method -->
+
+      
+        <div id="find_from_rdf_generator-method" class="method-detail ">
+          <a name="method-i-find_from_rdf_generator"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_rdf_generator</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find WordPress version from, the generator tag in the RDF feed
 source.</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_rdf_generator-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 94</span>
+            
+            <div class="method-source-code" id="find_from_rdf_generator-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 94</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_rdf_generator</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{&lt;admin:generatorAgent rdf:resource=&quot;http://wordpress.org/\?v=#{version_pattern}&quot; /&gt;}</span>,
+    <span class="ruby-node">%{&lt;admin:generatorAgent rdf:resource=&quot;http://wordpress.org/\?v=#{version_pattern}&quot; /&gt;}</span>,
     <span class="ruby-string">'feed/rdf/'</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_rdf_generator-source -->
-          
-        </div>
+            </div><!-- find_from_rdf_generator-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_rdf_generator-method -->
-
-    
-      <div id="method-i-find_from_readme" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_readme</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find the WordPress version from the readme.html file.</p>
+        </div><!-- find_from_rdf_generator-method -->
+
+      
+        <div id="find_from_readme-method" class="method-detail ">
+          <a name="method-i-find_from_readme"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_readme</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find the WordPress version from the readme.html file.</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_readme-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 182</span>
+            
+            <div class="method-source-code" id="find_from_readme-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 182</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_readme</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{&lt;br /&gt;\sversion #{version_pattern}}</span>,
+    <span class="ruby-node">%{&lt;br /&gt;\sversion #{version_pattern}}</span>,
     <span class="ruby-string">'readme.html'</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_readme-source -->
-          
-        </div>
+            </div><!-- find_from_readme-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_readme-method -->
-
-    
-      <div id="method-i-find_from_rss_generator" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_rss_generator</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find the WordPress version from, the generator tag in the RSS
+        </div><!-- find_from_readme-method -->
+
+      
+        <div id="find_from_rss_generator-method" class="method-detail ">
+          <a name="method-i-find_from_rss_generator"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_rss_generator</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find the WordPress version from, the generator tag in the RSS
 feed source.</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_rss_generator-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 80</span>
+            
+            <div class="method-source-code" id="find_from_rss_generator-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 80</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_rss_generator</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{&lt;generator&gt;http://wordpress.org/\?v=#{version_pattern}&lt;/generator&gt;}</span>,
+    <span class="ruby-node">%{&lt;generator&gt;http://wordpress.org/\?v=#{version_pattern}&lt;/generator&gt;}</span>,
     <span class="ruby-string">'feed/'</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_rss_generator-source -->
-          
-        </div>
+            </div><!-- find_from_rss_generator-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_rss_generator-method -->
-
-    
-      <div id="method-i-find_from_sitemap_generator" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">find_from_sitemap_generator</span><span
-            class="method-args">(target_uri)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Attempts to find the WordPress version from the sitemap.xml file.</p>
+        </div><!-- find_from_rss_generator-method -->
+
+      
+        <div id="find_from_sitemap_generator-method" class="method-detail ">
+          <a name="method-i-find_from_sitemap_generator"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">find_from_sitemap_generator</span><span
+              class="method-args">(target_uri)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Attempts to find the WordPress version from the sitemap.xml file.</p>
 
 <p>See: <a
 href="http://code.google.com/p/wpscan/issues/detail?id=109">code.google.com/p/wpscan/issues/detail?id=109</a></p>
@@ -753,80 +743,83 @@ href="http://code.google.com/p/wpscan/issues/detail?id=109">code.google.com/p/wp
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri</p>
 
 <p>@return [ String ] The version number</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="find_from_sitemap_generator-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 197</span>
+            
+            <div class="method-source-code" id="find_from_sitemap_generator-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 197</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">find_from_sitemap_generator</span>(<span class="ruby-identifier">target_uri</span>)
   <span class="ruby-identifier">scan_url</span>(
     <span class="ruby-identifier">target_uri</span>,
-    <span class="ruby-node">%r{generator=&quot;wordpress/#{version_pattern}&quot;}</span>,
+    <span class="ruby-node">%{generator=&quot;wordpress/#{version_pattern}&quot;}</span>,
     <span class="ruby-string">'sitemap.xml'</span>
   )
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- find_from_sitemap_generator-source -->
-          
-        </div>
+            </div><!-- find_from_sitemap_generator-source -->
+            
+          </div>
 
-        
-
-        
-      </div><!-- find_from_sitemap_generator-method -->
-
-    
-      <div id="method-i-scan_url" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">scan_url</span><span
-            class="method-args">(target_uri, pattern, path = nil)</span>
           
-          <span class="method-click-advice">click to toggle source</span>
-          
-        </div>
-        
 
-        <div class="method-description">
           
-          <p>Returns the first match of &lt;pattern&gt; in the body of the url</p>
+        </div><!-- find_from_sitemap_generator-method -->
+
+      
+        <div id="scan_url-method" class="method-detail ">
+          <a name="method-i-scan_url"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">scan_url</span><span
+              class="method-args">(target_uri, pattern, path = nil)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Returns the first match of &lt;pattern&gt; in the body of the url</p>
 
 <p>@param [ <a href="../URI.html">URI</a> ] target_uri @param [ Regex ]
 pattern @param [ String ] path</p>
 
 <p>@return [ String ]</p>
-          
-          
+            
 
-          
-          <div class="method-source-code" id="scan_url-source">
-            <pre><span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 45</span>
+            
+            <div class="method-source-code" id="scan_url-source">
+<pre>
+<span class="ruby-comment"># File lib/common/models/wp_version/findable.rb, line 45</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">scan_url</span>(<span class="ruby-identifier">target_uri</span>, <span class="ruby-identifier">pattern</span>, <span class="ruby-identifier">path</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">url</span> = <span class="ruby-identifier">path</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">path</span>).<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">target_uri</span>.<span class="ruby-identifier">to_s</span>
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">get_and_follow_location</span>(<span class="ruby-identifier">url</span>)
 
   <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>[<span class="ruby-identifier">pattern</span>, <span class="ruby-value">1</span>]
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- scan_url-source -->
+            </div><!-- scan_url-source -->
+            
+          </div>
+
           
-        </div>
 
-        
+          
+        </div><!-- scan_url-method -->
 
-        
-      </div><!-- scan_url-method -->
-
+      
+      </div><!-- protected-instance-method-details -->
     
-    </section><!-- protected-instance-method-details -->
+    </div><!-- 5Buntitled-5D -->
   
-  </section><!-- 5Buntitled-5D -->
 
-</div><!-- documentation -->
+  </div><!-- documentation -->
 
+  <div id="validator-badges">
+    <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+    <p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+      Rdoc Generator</a> 2</small>.</p>
+  </div>
 
-<footer id="validator-badges">
-  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
-  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 4.0.1.
-  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
-</footer>
+</body>
+</html>
 

@@ -6,13 +6,13 @@
 <title>
   Module: WpUser::BruteForcable
   
-    &mdash; Documentation by YARD 0.8.6.1
+    &mdash; Documentation by YARD 0.8.5.2
   
 </title>
 
-  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
 
-  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
 
 <script type="text/javascript" charset="utf-8">
   hasFrames = window.top.frames.main ? true : false;
@@ -528,10 +528,10 @@ waiting...</p>
 
   <span class='id identifier rubyid_passwords'>passwords</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_password'>password</span><span class='op'>|</span>
     <span class='comment'># A successfull login will redirect us to the redirect_to parameter
-</span>    <span class='comment'># Generate a radom one on each request
+</span>    <span class='comment'># Generate a random one on each request
 </span>    <span class='kw'>unless</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span>
       <span class='id identifier rubyid_random'>random</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='int'>0</span><span class='op'>...</span><span class='int'>8</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span> <span class='lbrace'>{</span> <span class='int'>65</span><span class='period'>.</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>26</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_chr'>chr</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_join'>join</span>
-      <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='ivar'>@uri</span><span class='rbrace'>}</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_random'>random</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_redirect_url'>redirect_url</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embvar'>#</span><span class='ivar'>@uri</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_random'>random</span><span class='rbrace'>}</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
     <span class='kw'>end</span>
 
     <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='id identifier rubyid_login_request'>login_request</span><span class='lparen'>(</span><span class='id identifier rubyid_password'>password</span><span class='comma'>,</span> <span class='id identifier rubyid_redirect_url'>redirect_url</span><span class='rparen'>)</span>
@@ -922,9 +922,9 @@ waiting...</p>
 </div>
 
     <div id="footer">
-  Generated on Sun Jun  9 16:05:16 2013 by
+  Generated on Fri Jul 19 21:49:37 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.6.1 (ruby-1.9.3).
+  0.8.5.2 (ruby-1.9.3).
 </div>
 
   </body>
