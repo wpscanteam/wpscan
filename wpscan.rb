@@ -127,6 +127,10 @@ def main
       puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
     end
 
+    wp_target.interesting_headers.each do |header|
+      puts green('[+]') + " Interesting header: #{header[0]}: #{header[1]}"
+    end
+
     if wp_target.multisite?
       puts green('[+]') + ' This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)'
     end

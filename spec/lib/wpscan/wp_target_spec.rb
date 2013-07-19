@@ -23,6 +23,7 @@ describe WpTarget do
   it_behaves_like 'WpTarget::WpRegistrable'
   it_behaves_like 'WpTarget::WpConfigBackup'
   it_behaves_like 'WpTarget::WpLoginProtection'
+  it_behaves_like 'WpTarget::InterestingHeaders'
   it_behaves_like 'WpTarget::WpCustomDirectories'
   it_behaves_like 'WpTarget::WpFullPathDisclosure'
 

@@ -23,6 +23,14 @@ class Browser
     # @param [ Hash ] params
     #
     # @return [ Typhoeus::Response ]
+    def head(url, params = {})
+      process(url, params.merge(method: :head))
+    end
+
+    # @param [ String ] url
+    # @param [ Hash ] params
+    #
+    # @return [ Typhoeus::Response ]
     def get_and_follow_location(url, params = {})
       params[:maxredirs] ||= 2
 
