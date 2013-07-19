@@ -16,7 +16,9 @@ class Browser
     :user_agent,
     :user_agent_mode,
     :proxy,
-    :proxy_auth
+    :proxy_auth,
+    :request_timeout,
+    :connect_timeout
   ]
 
   @@instance = nil
@@ -30,7 +32,7 @@ class Browser
     @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
     @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
 
-    load_config()
+    load_config
     override_config(options)
 
     unless @hydra
@@ -70,7 +72,7 @@ class Browser
     @config_file = config_file || @config_file
 
     if File.symlink?(@config_file)
-      raise "[ERROR] Config file is a symlink."
+      raise '[ERROR] Config file is a symlink.'
     else
       data = JSON.parse(File.read(@config_file))
     end
@@ -116,6 +118,14 @@ class Browser
         'Authorization',
         @basic_auth
       )
+    end
+
+    if @request_timeout
+      params = params.merge(timeout: @request_timeout)
+    end
+
+    if @connect_timeout
+      params = params.merge(connecttimeout: @connect_timeout)
     end
 
     # Used to enable the cache system if :cache_ttl > 0

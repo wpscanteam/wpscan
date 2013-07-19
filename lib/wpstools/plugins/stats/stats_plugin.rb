@@ -12,8 +12,8 @@ class StatsPlugin < Plugin
 
   def run(options = {})
     if options[:stats]
-      puts "Wpscan Databse Statistics:"
-      puts "--------------------------"
+      puts 'Wpscan Databse Statistics:'
+      puts '--------------------------'
       puts "[#] Total vulnerable plugins: #{vuln_plugin_count}"
       puts "[#] Total vulnerable themes: #{vuln_theme_count}"
       puts "[#] Total plugin vulnerabilities: #{plugin_vulns_count}"
@@ -25,19 +25,19 @@ class StatsPlugin < Plugin
   end
 
   def vuln_plugin_count(file=PLUGINS_VULNS_FILE)
-    xml(file).xpath("count(//plugin)").to_i
+    xml(file).xpath('count(//plugin)').to_i
   end
 
   def vuln_theme_count(file=THEMES_VULNS_FILE)
-    xml(file).xpath("count(//theme)").to_i
+    xml(file).xpath('count(//theme)').to_i
   end
 
   def plugin_vulns_count(file=PLUGINS_VULNS_FILE)
-    xml(file).xpath("count(//vulnerability)").to_i
+    xml(file).xpath('count(//vulnerability)').to_i
   end
 
   def theme_vulns_count(file=THEMES_VULNS_FILE)
-    xml(file).xpath("count(//vulnerability)").to_i
+    xml(file).xpath('count(//vulnerability)').to_i
   end
 
   def total_plugins(file=PLUGINS_FULL_FILE)

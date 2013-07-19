@@ -11,17 +11,17 @@ class GenerateList
       @type           = 'plugin'
       @svn_url        = 'http://plugins.svn.wordpress.org/'
       @popular_url    = 'http://wordpress.org/plugins/browse/popular/'
-      @popular_regex  = %r{<h3><a href="http://wordpress.org/plugins/(.+)/">.+</a></h3>}i
+      @popular_regex  = %r{<h3><a href="http://wordpress.org/plugins/([^/]+)/">.+</a></h3>}i
     elsif type =~ /themes/i
       @type           = 'theme'
       @svn_url        = 'http://themes.svn.wordpress.org/'
       @popular_url    = 'http://wordpress.org/themes/browse/popular/'
-      @popular_regex  = %r{<h3><a href="http://wordpress.org/themes/(.+)">.+</a></h3>}i
+      @popular_regex  = %r{<h3><a href="http://wordpress.org/themes/([^/]+)">.+</a></h3>}i
     else
       raise "Type #{type} not defined"
     end
     @verbose  = verbose
-    @browser  = Browser.instance
+    @browser  = Browser.instance(request_timeout: 20000, connect_timeout: 20000, max_threads: 1)
     @hydra    = @browser.hydra
   end
 
@@ -77,12 +77,20 @@ class GenerateList
       queue_count += 1
 
       request.on_complete do |response|
+        if response.code != 200
+          puts red("Got HTTP Status #{response.code} for page #{page}. Retrying request...")
+          # Retry
+          @hydra.queue(request)
+          next
+        end
         puts "[+] Parsing page #{page_count}" if @verbose
         page_count += 1
+        found = 0
         response.body.scan(@popular_regex).each do |item|
-          puts "[+] Found popular #@type: #{item}" if @verbose
           found_items << item[0]
+          found = found + 1
         end
+        puts "[+] Found #{found} items on page #{page}" if @verbose
       end
 
       @hydra.queue(request)

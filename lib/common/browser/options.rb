@@ -5,7 +5,7 @@ class Browser
 
     USER_AGENT_MODES = %w{ static semi-static random }
 
-    attr_accessor :available_user_agents, :cache_ttl
+    attr_accessor :available_user_agents, :cache_ttl, :request_timeout, :connect_timeout
     attr_reader   :basic_auth, :user_agent_mode, :proxy, :proxy_auth
     attr_writer   :user_agent
 
@@ -113,6 +113,22 @@ class Browser
           raise invalid_proxy_auth_format
         end
       end
+    end
+
+    # Sets the request timeout
+    # @param [ Integer ] timeout Timeout in ms
+    #
+    # @return [ void ]
+    def request_timeout=(timeout)
+      @request_timeout = timeout
+    end
+
+    # Sets the connect timeout
+    # @param [ Integer ] timeout Timeout in ms
+    #
+    # @return [ void ]
+    def connect_timeout=(timeout)
+      @connect_timeout = timeout
     end
 
     protected
