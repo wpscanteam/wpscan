@@ -59,6 +59,8 @@
           
           <li><a href="#method-i-basic_auth-3D">#basic_auth=</a></li>
           
+          <li><a href="#method-i-connect_timeout-3D">#connect_timeout=</a></li>
+          
           <li><a href="#method-i-invalid_proxy_auth_format">#invalid_proxy_auth_format</a></li>
           
           <li><a href="#method-i-max_threads">#max_threads</a></li>
@@ -70,6 +72,8 @@
           <li><a href="#method-i-proxy-3D">#proxy=</a></li>
           
           <li><a href="#method-i-proxy_auth-3D">#proxy_auth=</a></li>
+          
+          <li><a href="#method-i-request_timeout-3D">#request_timeout=</a></li>
           
           <li><a href="#method-i-user_agent">#user_agent</a></li>
           
@@ -371,6 +375,23 @@
           </div>
         </div>
         
+        <div id="connect_timeout-attribute-method" class="method-detail">
+          <a name="connect_timeout"></a>
+          
+          <a name="connect_timeout="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">connect_timeout</span><span
+              class="attribute-access-type">[RW]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
         <div id="proxy-attribute-method" class="method-detail">
           <a name="proxy"></a>
           
@@ -392,6 +413,23 @@
           <div class="method-heading attribute-method-heading">
             <span class="method-name">proxy_auth</span><span
               class="attribute-access-type">[R]</span>
+          </div>
+
+          <div class="method-description">
+          
+          
+          
+          </div>
+        </div>
+        
+        <div id="request_timeout-attribute-method" class="method-detail">
+          <a name="request_timeout"></a>
+          
+          <a name="request_timeout="></a>
+          
+          <div class="method-heading attribute-method-heading">
+            <span class="method-name">request_timeout</span><span
+              class="attribute-access-type">[RW]</span>
           </div>
 
           <div class="method-description">
@@ -486,6 +524,41 @@ Basic base_64_encoded</pre>
 
           
         </div><!-- basic_auth-3D-method -->
+
+      
+        <div id="connect_timeout-3D-method" class="method-detail ">
+          <a name="method-i-connect_timeout-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">connect_timeout=</span><span
+              class="method-args">(timeout)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Sets the connect timeout @param [ Integer ] timeout Timeout in ms</p>
+
+<p>@return [ void ]</p>
+            
+
+            
+            <div class="method-source-code" id="connect_timeout-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/common/browser/options.rb, line 129</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">connect_timeout=</span>(<span class="ruby-identifier">timeout</span>)
+  <span class="ruby-ivar">@connect_timeout</span> = <span class="ruby-identifier">timeout</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- connect_timeout-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- connect_timeout-3D-method -->
 
       
         <div id="max_threads-method" class="method-detail ">
@@ -653,6 +726,41 @@ Supported protocols:
         </div><!-- proxy_auth-3D-method -->
 
       
+        <div id="request_timeout-3D-method" class="method-detail ">
+          <a name="method-i-request_timeout-3D"></a>
+
+          
+          <div class="method-heading">
+            <span class="method-name">request_timeout=</span><span
+              class="method-args">(timeout)</span>
+            <span class="method-click-advice">click to toggle source</span>
+          </div>
+          
+
+          <div class="method-description">
+            
+            <p>Sets the request timeout @param [ Integer ] timeout Timeout in ms</p>
+
+<p>@return [ void ]</p>
+            
+
+            
+            <div class="method-source-code" id="request_timeout-3D-source">
+<pre>
+<span class="ruby-comment"># File lib/common/browser/options.rb, line 121</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">request_timeout=</span>(<span class="ruby-identifier">timeout</span>)
+  <span class="ruby-ivar">@request_timeout</span> = <span class="ruby-identifier">timeout</span>
+<span class="ruby-keyword">end</span></pre>
+            </div><!-- request_timeout-3D-source -->
+            
+          </div>
+
+          
+
+          
+        </div><!-- request_timeout-3D-method -->
+
+      
         <div id="user_agent-method" class="method-detail ">
           <a name="method-i-user_agent"></a>
 
@@ -775,7 +883,7 @@ href="Options.html#attribute-i-available_user_agents">available_user_agents</a><
             
             <div class="method-source-code" id="invalid_proxy_auth_format-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser/options.rb, line 119</span>
+<span class="ruby-comment"># File lib/common/browser/options.rb, line 135</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">invalid_proxy_auth_format</span>
   <span class="ruby-string">'Invalid proxy auth format, expected username:password or {proxy_username: username, proxy_password: password}'</span>
 <span class="ruby-keyword">end</span></pre>
@@ -810,7 +918,7 @@ href="Options.html#attribute-i-available_user_agents">available_user_agents</a><
             
             <div class="method-source-code" id="override_config-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser/options.rb, line 127</span>
+<span class="ruby-comment"># File lib/common/browser/options.rb, line 143</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">override_config</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">!=</span> <span class="ruby-keyword">nil</span> <span class="ruby-keyword">and</span> <span class="ruby-constant">OPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">option</span>)

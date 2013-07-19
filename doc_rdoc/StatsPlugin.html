@@ -416,7 +416,7 @@
 <pre>
 <span class="ruby-comment"># File lib/wpstools/plugins/stats/stats_plugin.rb, line 34</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">plugin_vulns_count</span>(<span class="ruby-identifier">file</span>=<span class="ruby-constant">PLUGINS_VULNS_FILE</span>)
-  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">&quot;count(//vulnerability)&quot;</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">'count(//vulnerability)'</span>).<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- plugin_vulns_count-source -->
             
@@ -450,8 +450,8 @@
 <span class="ruby-comment"># File lib/wpstools/plugins/stats/stats_plugin.rb, line 12</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:stats</span>]
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;Wpscan Databse Statistics:&quot;</span>
-    <span class="ruby-identifier">puts</span> <span class="ruby-string">&quot;--------------------------&quot;</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">'Wpscan Databse Statistics:'</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-string">'--------------------------'</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#] Total vulnerable plugins: #{vuln_plugin_count}&quot;</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#] Total vulnerable themes: #{vuln_theme_count}&quot;</span>
     <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[#] Total plugin vulnerabilities: #{plugin_vulns_count}&quot;</span>
@@ -492,7 +492,7 @@
 <pre>
 <span class="ruby-comment"># File lib/wpstools/plugins/stats/stats_plugin.rb, line 38</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">theme_vulns_count</span>(<span class="ruby-identifier">file</span>=<span class="ruby-constant">THEMES_VULNS_FILE</span>)
-  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">&quot;count(//vulnerability)&quot;</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">'count(//vulnerability)'</span>).<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- theme_vulns_count-source -->
             
@@ -591,7 +591,7 @@
 <pre>
 <span class="ruby-comment"># File lib/wpstools/plugins/stats/stats_plugin.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vuln_plugin_count</span>(<span class="ruby-identifier">file</span>=<span class="ruby-constant">PLUGINS_VULNS_FILE</span>)
-  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">&quot;count(//plugin)&quot;</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">'count(//plugin)'</span>).<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- vuln_plugin_count-source -->
             
@@ -624,7 +624,7 @@
 <pre>
 <span class="ruby-comment"># File lib/wpstools/plugins/stats/stats_plugin.rb, line 30</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vuln_theme_count</span>(<span class="ruby-identifier">file</span>=<span class="ruby-constant">THEMES_VULNS_FILE</span>)
-  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">&quot;count(//theme)&quot;</span>).<span class="ruby-identifier">to_i</span>
+  <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">file</span>).<span class="ruby-identifier">xpath</span>(<span class="ruby-string">'count(//theme)'</span>).<span class="ruby-identifier">to_i</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- vuln_theme_count-source -->
             

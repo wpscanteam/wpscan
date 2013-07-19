@@ -135,7 +135,9 @@
   <span class='symbol'>:user_agent</span><span class='comma'>,</span>
   <span class='symbol'>:user_agent_mode</span><span class='comma'>,</span>
   <span class='symbol'>:proxy</span><span class='comma'>,</span>
-  <span class='symbol'>:proxy_auth</span>
+  <span class='symbol'>:proxy_auth</span><span class='comma'>,</span>
+  <span class='symbol'>:request_timeout</span><span class='comma'>,</span>
+  <span class='symbol'>:connect_timeout</span>
 <span class='rbracket'>]</span></pre></dd>
       
         <dt id="instance-classvariable" class="">@@instance =
@@ -252,7 +254,7 @@
   
   
   <h3 class="inherited">Attributes included from <span class='object_link'><a href="Browser/Options.html" title="Browser::Options (module)">Options</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Browser/Options.html#available_user_agents-instance_method" title="Browser::Options#available_user_agents (method)">#available_user_agents</a></span>, <span class='object_link'><a href="Browser/Options.html#basic_auth-instance_method" title="Browser::Options#basic_auth (method)">#basic_auth</a></span>, <span class='object_link'><a href="Browser/Options.html#cache_ttl-instance_method" title="Browser::Options#cache_ttl (method)">#cache_ttl</a></span>, <span class='object_link'><a href="Browser/Options.html#proxy-instance_method" title="Browser::Options#proxy (method)">#proxy</a></span>, <span class='object_link'><a href="Browser/Options.html#proxy_auth-instance_method" title="Browser::Options#proxy_auth (method)">#proxy_auth</a></span>, <span class='object_link'><a href="Browser/Options.html#user_agent-instance_method" title="Browser::Options#user_agent (method)">#user_agent</a></span>, <span class='object_link'><a href="Browser/Options.html#user_agent_mode-instance_method" title="Browser::Options#user_agent_mode (method)">#user_agent_mode</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Browser/Options.html#available_user_agents-instance_method" title="Browser::Options#available_user_agents (method)">#available_user_agents</a></span>, <span class='object_link'><a href="Browser/Options.html#basic_auth-instance_method" title="Browser::Options#basic_auth (method)">#basic_auth</a></span>, <span class='object_link'><a href="Browser/Options.html#cache_ttl-instance_method" title="Browser::Options#cache_ttl (method)">#cache_ttl</a></span>, <span class='object_link'><a href="Browser/Options.html#connect_timeout-instance_method" title="Browser::Options#connect_timeout (method)">#connect_timeout</a></span>, <span class='object_link'><a href="Browser/Options.html#proxy-instance_method" title="Browser::Options#proxy (method)">#proxy</a></span>, <span class='object_link'><a href="Browser/Options.html#proxy_auth-instance_method" title="Browser::Options#proxy_auth (method)">#proxy_auth</a></span>, <span class='object_link'><a href="Browser/Options.html#request_timeout-instance_method" title="Browser::Options#request_timeout (method)">#request_timeout</a></span>, <span class='object_link'><a href="Browser/Options.html#user_agent-instance_method" title="Browser::Options#user_agent (method)">#user_agent</a></span>, <span class='object_link'><a href="Browser/Options.html#user_agent_mode-instance_method" title="Browser::Options#user_agent_mode (method)">#user_agent_mode</a></span></p>
 
 
   
@@ -499,8 +501,6 @@
       <pre class="lines">
 
 
-29
-30
 31
 32
 33
@@ -514,16 +514,18 @@
 41
 42
 43
-44</pre>
+44
+45
+46</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 31</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='ivar'>@config_file</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:config_file</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='const'>CONF_DIR</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/browser.conf.json</span><span class='tstring_end'>'</span></span>
   <span class='ivar'>@cache_dir</span>   <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:cache_dir</span><span class='rbracket'>]</span>   <span class='op'>||</span> <span class='const'>CACHE_DIR</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/browser</span><span class='tstring_end'>'</span></span>
 
-  <span class='id identifier rubyid_load_config'>load_config</span><span class='lparen'>(</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_load_config'>load_config</span>
   <span class='id identifier rubyid_override_config'>override_config</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
 
   <span class='kw'>unless</span> <span class='ivar'>@hydra</span>
@@ -573,12 +575,12 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_cache_dir'>cache_dir</span>
   <span class='ivar'>@cache_dir</span>
@@ -616,12 +618,12 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config_file'>config_file</span>
   <span class='ivar'>@config_file</span>
@@ -659,12 +661,12 @@
       <pre class="lines">
 
 
-24
-25
-26</pre>
+26
+27
+28</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_hydra'>hydra</span>
   <span class='ivar'>@hydra</span>
@@ -757,17 +759,17 @@
       <pre class="lines">
 
 
-143
-144
-145
-146
-147
-148
-149
-150</pre>
+153
+154
+155
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_append_params_header_field'>append_params_header_field</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_field'>field</span><span class='comma'>,</span> <span class='id identifier rubyid_field_value'>field_value</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_has_key?'>has_key?</span><span class='lparen'>(</span><span class='symbol'>:headers</span><span class='rparen'>)</span>
@@ -836,15 +838,15 @@
       <pre class="lines">
 
 
-51
-52
 53
 54
 55
-56</pre>
+56
+57
+58</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 53</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='kw'>unless</span> <span class='cvar'>@@instance</span>
@@ -872,12 +874,12 @@
       <pre class="lines">
 
 
-58
-59
-60</pre>
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 58</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_reset'>reset</span>
   <span class='cvar'>@@instance</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -958,12 +960,12 @@
       <pre class="lines">
 
 
-91
-92
-93</pre>
+93
+94
+95</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 93</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_forge_request'>forge_request</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='const'>Typhoeus</span><span class='op'>::</span><span class='const'>Request</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_merge_request_params'>merge_request_params</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1016,8 +1018,6 @@
       <pre class="lines">
 
 
-69
-70
 71
 72
 73
@@ -1032,16 +1032,18 @@
 82
 83
 84
-85</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 71</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_load_config'>load_config</span><span class='lparen'>(</span><span class='id identifier rubyid_config_file'>config_file</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@config_file</span> <span class='op'>=</span> <span class='id identifier rubyid_config_file'>config_file</span> <span class='op'>||</span> <span class='ivar'>@config_file</span>
 
   <span class='kw'>if</span> <span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_symlink?'>symlink?</span><span class='lparen'>(</span><span class='ivar'>@config_file</span><span class='rparen'>)</span>
-    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[ERROR] Config file is a symlink.</span><span class='tstring_end'>&quot;</span></span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>[ERROR] Config file is a symlink.</span><span class='tstring_end'>'</span></span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_read'>read</span><span class='lparen'>(</span><span class='ivar'>@config_file</span><span class='rparen'>)</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -1113,8 +1115,6 @@
       <pre class="lines">
 
 
-98
-99
 100
 101
 102
@@ -1149,10 +1149,20 @@
 131
 132
 133
-134</pre>
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 98</span>
+      <pre class="code"><span class="info file"># File 'lib/common/browser.rb', line 100</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_merge_request_params'>merge_request_params</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_append_params_header_field'>append_params_header_field</span><span class='lparen'>(</span>
@@ -1175,6 +1185,14 @@
       <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>Authorization</span><span class='tstring_end'>'</span></span><span class='comma'>,</span>
       <span class='ivar'>@basic_auth</span>
     <span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@request_timeout</span>
+    <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>timeout:</span> <span class='ivar'>@request_timeout</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='kw'>if</span> <span class='ivar'>@connect_timeout</span>
+    <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='label'>connecttimeout:</span> <span class='ivar'>@connect_timeout</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Used to enable the cache system if :cache_ttl &gt; 0
@@ -1201,7 +1219,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Jul 19 21:49:37 2013 by
+  Generated on Fri Jul 19 23:10:16 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.5.2 (ruby-1.9.3).
 </div>

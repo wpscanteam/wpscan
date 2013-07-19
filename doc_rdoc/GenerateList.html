@@ -364,17 +364,17 @@
     <span class="ruby-ivar">@type</span>           = <span class="ruby-string">'plugin'</span>
     <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">'http://plugins.svn.wordpress.org/'</span>
     <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">'http://wordpress.org/plugins/browse/popular/'</span>
-    <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/plugins/(.+)/&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
+    <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/plugins/([^/]+)/&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
   <span class="ruby-keyword">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp">/themes/</span>
     <span class="ruby-ivar">@type</span>           = <span class="ruby-string">'theme'</span>
     <span class="ruby-ivar">@svn_url</span>        = <span class="ruby-string">'http://themes.svn.wordpress.org/'</span>
     <span class="ruby-ivar">@popular_url</span>    = <span class="ruby-string">'http://wordpress.org/themes/browse/popular/'</span>
-    <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/themes/(.+)&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
+    <span class="ruby-ivar">@popular_regex</span>  = <span class="ruby-regexp">%{&lt;h3&gt;&lt;a href=&quot;http://wordpress.org/themes/([^/]+)&quot;&gt;.+&lt;/a&gt;&lt;/h3&gt;}</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Type #{type} not defined&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@verbose</span>  = <span class="ruby-identifier">verbose</span>
-  <span class="ruby-ivar">@browser</span>  = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>
+  <span class="ruby-ivar">@browser</span>  = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">request_timeout</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>, <span class="ruby-identifier">connect_timeout</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>, <span class="ruby-identifier">max_threads</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>)
   <span class="ruby-ivar">@hydra</span>    = <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">hydra</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
@@ -497,12 +497,20 @@ parse the response for the names.</p>
     <span class="ruby-identifier">queue_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
 
     <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">200</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;Got HTTP Status #{response.code} for page #{page}. Retrying request...&quot;</span>)
+        <span class="ruby-comment"># Retry</span>
+        <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
+        <span class="ruby-keyword">next</span>
+      <span class="ruby-keyword">end</span>
       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Parsing page #{page_count}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
       <span class="ruby-identifier">page_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">found</span> = <span class="ruby-value">0</span>
       <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@popular_regex</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Found popular #@type: #{item}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
         <span class="ruby-identifier">found_items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>]
+        <span class="ruby-identifier">found</span> = <span class="ruby-identifier">found</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
       <span class="ruby-keyword">end</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Found #{found} items on page #{page}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
     <span class="ruby-keyword">end</span>
 
     <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
@@ -548,11 +556,11 @@ parse the response for the names.</p>
             
             <div class="method-source-code" id="save-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 103</span>
+<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 111</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">items</span>)
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">sort!</span>
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">uniq!</span>
-  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[*] We have parsed #{items.length} #@types&quot;</span>
+  <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[*] We have parsed #{items.length} #{@type}s&quot;</span>
   <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-ivar">@file_name</span>, <span class="ruby-string">'w'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">puts</span>(<span class="ruby-identifier">items</span>) }
   <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;New #@file_name file created&quot;</span>
 <span class="ruby-keyword">end</span></pre>

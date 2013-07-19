@@ -427,7 +427,7 @@
             
             <div class="method-source-code" id="instance-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser.rb, line 50</span>
+<span class="ruby-comment"># File lib/common/browser.rb, line 52</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">options</span> = {})
   <span class="ruby-keyword">unless</span> <span class="ruby-identifier">@@instance</span>
     <span class="ruby-identifier">@@instance</span> = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>)
@@ -463,7 +463,7 @@
             
             <div class="method-source-code" id="reset-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser.rb, line 57</span>
+<span class="ruby-comment"># File lib/common/browser.rb, line 59</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">reset</span>
   <span class="ruby-identifier">@@instance</span> = <span class="ruby-keyword">nil</span>
 <span class="ruby-keyword">end</span></pre>
@@ -504,7 +504,7 @@
             
             <div class="method-source-code" id="forge_request-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser.rb, line 90</span>
+<span class="ruby-comment"># File lib/common/browser.rb, line 92</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">params</span> = {})
   <span class="ruby-constant">Typhoeus</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">url</span>, <span class="ruby-identifier">merge_request_params</span>(<span class="ruby-identifier">params</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -544,12 +544,12 @@ href="Browser.html#attribute-i-config_file">config_file</a></p>
             
             <div class="method-source-code" id="load_config-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser.rb, line 68</span>
+<span class="ruby-comment"># File lib/common/browser.rb, line 70</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">load_config</span>(<span class="ruby-identifier">config_file</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-ivar">@config_file</span> = <span class="ruby-identifier">config_file</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@config_file</span>
 
   <span class="ruby-keyword">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">symlink?</span>(<span class="ruby-ivar">@config_file</span>)
-    <span class="ruby-identifier">raise</span> <span class="ruby-string">&quot;[ERROR] Config file is a symlink.&quot;</span>
+    <span class="ruby-identifier">raise</span> <span class="ruby-string">'[ERROR] Config file is a symlink.'</span>
   <span class="ruby-keyword">else</span>
     <span class="ruby-identifier">data</span> = <span class="ruby-constant">JSON</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-ivar">@config_file</span>))
   <span class="ruby-keyword">end</span>
@@ -593,7 +593,7 @@ href="Browser.html#attribute-i-config_file">config_file</a></p>
             
             <div class="method-source-code" id="merge_request_params-source">
 <pre>
-<span class="ruby-comment"># File lib/common/browser.rb, line 97</span>
+<span class="ruby-comment"># File lib/common/browser.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">merge_request_params</span>(<span class="ruby-identifier">params</span> = {})
   <span class="ruby-identifier">params</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">append_params_header_field</span>(
     <span class="ruby-identifier">params</span>,
@@ -615,6 +615,14 @@ href="Browser.html#attribute-i-config_file">config_file</a></p>
       <span class="ruby-string">'Authorization'</span>,
       <span class="ruby-ivar">@basic_auth</span>
     )
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@request_timeout</span>
+    <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">timeout</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@request_timeout</span>)
+  <span class="ruby-keyword">end</span>
+
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@connect_timeout</span>
+    <span class="ruby-identifier">params</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">connecttimeout</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@connect_timeout</span>)
   <span class="ruby-keyword">end</span>
 
   <span class="ruby-comment"># Used to enable the cache system if :cache_ttl &gt; 0</span>
