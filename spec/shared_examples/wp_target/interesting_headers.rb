@@ -3,7 +3,6 @@
 shared_examples 'WpTarget::InterestingHeaders' do
 
   let(:known_headers) { WpTarget::InterestingHeaders.known_headers }
-  let(:url) { 'http://localhost.com' }
 
   describe '#interesting_headers' do
 

@@ -29,6 +29,7 @@ class WpTarget < WebSite
         Pragma
         Vary
         Cache-Control
+        X-Pingback
       }
     end
 
