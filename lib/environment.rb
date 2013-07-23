@@ -8,6 +8,9 @@ if Gem::Version.create(version) < Gem::Version.create(1.9)
   exit(1)
 end
 
+# Fix for issue #245 "invalid byte sequence in US-ASCII"
+Encoding.default_external = Encoding::UTF_8
+
 begin
   # Standard libs
   require 'bundler/setup' unless kali_linux?
