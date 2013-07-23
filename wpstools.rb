@@ -5,6 +5,8 @@ $: << '.'
 require File.dirname(__FILE__) + '/lib/wpstools/wpstools_helper'
 
 begin
+  # delete old logfile, check if it is a symlink first.
+  File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
   banner()
 
