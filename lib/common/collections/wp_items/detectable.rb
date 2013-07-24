@@ -71,21 +71,11 @@ class WpItems < Array
     #
     # @return [ WpItems ]
     def passive_detection(wp_target, options = {})
-      results      = new
-      item_class   = self.item_class
-      type         = self.to_s.gsub(/Wp/, '').downcase
-      response     = Browser.get(wp_target.url)
-      item_options = self.item_options(wp_target)
+      results  = new(wp_target)
+      body     = Browser.get(wp_target.url).body
+      names    = body.scan(passive_detection_pattern(wp_target))
 
-      regex1 = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
-      regex2 = %r{\\?/}
-      regex3 = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
-
-      names = response.body.scan(/#{regex1}#{Regexp.escape(wp_target.wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/i)
-
-      names.flatten.uniq.each do |name|
-        results << item_class.new(wp_target.uri, item_options.merge(name: name))
-      end
+      names.flatten.uniq.each { |name| results.add(name) }
 
       results.sort!
       results
@@ -95,13 +85,14 @@ class WpItems < Array
 
     # @param [ WpTarget ] wp_target
     #
-    # @return [ Hash ]
-    def item_options(wp_target)
-      {
-        wp_content_dir: wp_target.wp_content_dir,
-        wp_plugins_dir: wp_target.wp_plugins_dir,
-        vulns_file:     self.vulns_file
-      }
+    # @return [ Regex ]
+    def passive_detection_pattern(wp_target)
+      type   = self.to_s.gsub(/Wp/, '').downcase
+      regex1 = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
+      regex2 = %r{\\?/}
+      regex3 = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
+
+      /#{regex1}#{Regexp.escape(wp_target.wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/i
     end
 
     # The default request parameters
