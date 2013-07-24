@@ -35,7 +35,9 @@ class WpItems < Array
 
           if target_item.exists?(exist_options, response)
             if !results.include?(target_item)
-              results << target_item
+              if !options[:only_vulnerable] || options[:only_vulnerable] && target_item.vulnerable?
+                results << target_item
+              end
             end
           end
         end

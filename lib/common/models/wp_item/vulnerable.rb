@@ -21,6 +21,10 @@ class WpItem
       vulnerabilities
     end
 
+    def vulnerable?
+      vulnerabilities.empty? ? false : true
+    end
+
     # Checks if a item is vulnerable to a specific vulnerability
     #
     # @param [ Vulnerability ] vuln Vulnerability to check the item against

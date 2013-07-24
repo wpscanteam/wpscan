@@ -39,6 +39,23 @@ shared_examples 'WpItem::Vulnerable' do
     end
   end
 
+  describe '#vulnerable?' do
+    after do
+      subject.stub(:vulnerabilities).and_return(@stub)
+      subject.vulnerable?.should == @expected
+    end
+
+    it 'returns false when no vulnerabilities' do
+      @stub     = []
+      @expected = false
+    end
+
+    it 'returns true when vulnerabilities' do
+      @stub     = ['not empty']
+      @expected = true
+    end
+  end
+
   describe '#vulnerable_to?' do
     let(:version_orig) { '1.5.6' }
     let(:version_newer) { '1.6' }

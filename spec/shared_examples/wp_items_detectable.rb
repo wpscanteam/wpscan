@@ -178,12 +178,20 @@ shared_examples 'WpItems::Detectable' do
       let(:options) { { only_vulnerable: true } }
       let(:targets) { expected[:vulnerable_targets_items] }
 
-      it 'only checks vulnerable targets' do
-        target    = targets.sample
-        @expected = subject.new << target
+      it 'only checks and return vulnerable targets' do
+        samples           = targets.sample(2)
+        fixed_target      = samples[0]
+        vulnerable_target = samples[1]
 
         stub_targets_dont_exist(targets)
-        target.stub(:exists?).and_return(true)
+
+        vulnerable_target.stub(:exists?).and_return(true)
+        vulnerable_target.stub(:vulnerable?).and_return(true)
+
+        fixed_target.stub(:exists?).and_return(true)
+        fixed_target.stub(:vulnerable?).and_return(false)
+
+        @expected = subject.new << vulnerable_target
 
         subject.should_receive(:targets_items).and_return(targets)
       end
