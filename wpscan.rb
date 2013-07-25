@@ -128,12 +128,14 @@ def main
     end
 
     wp_target.interesting_headers.each do |header|
+      output = "#{green('[+]')} Interesting header: "
+
       if header[1].class == Array 
         header[1].each do |value|
-          puts green('[+]') + " Interesting header: #{header[0]}: #{value}"
+          puts output + "#{header[0]}: #{value}"
         end
       else
-        puts green('[+]') + " Interesting header: #{header[0]}: #{header[1]}"
+        puts output + "#{header[0]}: #{header[1]}"
       end
     end
 
