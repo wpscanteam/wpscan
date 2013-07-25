@@ -128,7 +128,13 @@ def main
     end
 
     wp_target.interesting_headers.each do |header|
-      puts green('[+]') + " Interesting header: #{header[0]}: #{header[1]}"
+      if header[1].class == Array 
+        header[1].each do |value|
+          puts green('[+]') + " Interesting header: #{header[0]}: #{value}"
+        end
+      else
+        puts green('[+]') + " Interesting header: #{header[0]}: #{header[1]}"
+      end
     end
 
     if wp_target.multisite?
