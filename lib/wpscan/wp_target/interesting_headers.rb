@@ -30,12 +30,6 @@ class WpTarget < WebSite
         Vary
         Cache-Control
         X-Pingback
-        Strict-Transport-Security
-        X-Frame-Options
-        X-XSS-Protection
-        X-Content-Type-Options
-        X-WebKit-CSP
-        Content-Security-Policy
       }
     end
 
