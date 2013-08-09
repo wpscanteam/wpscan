@@ -43,9 +43,8 @@ class WpTarget < WebSite
     if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
       wordpress = true
     else
-      response = Browser.get_and_follow_location(xml_rpc_url)
 
-      if response.body =~ %r{XML-RPC server accepts POST requests only}i
+      if has_xml_rpc?
         wordpress = true
       else
         response = Browser.get_and_follow_location(login_url)
