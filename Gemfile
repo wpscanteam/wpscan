@@ -11,4 +11,5 @@ group :development, :test do
   gem "webmock", ">=1.9.3"
   gem "simplecov"
   gem "rspec", :require => "spec"
+  gem "rspec-mocks", "<=2.14.2" # 2.14.3 just messed around :/
 end
