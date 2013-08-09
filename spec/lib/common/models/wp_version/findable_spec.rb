@@ -167,6 +167,8 @@ describe 'WpVersion::Findable' do
     let(:version_xml)    {}
 
     after do
+      stub_request(:get, /#{uri.to_s}.*/).to_return(status: 0)
+
       version = WpVersion.find(uri, wp_content_dir, wp_plugins_dir, version_xml)
       version.should == @expected
       if @expected
