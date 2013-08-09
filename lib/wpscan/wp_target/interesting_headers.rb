@@ -24,12 +24,14 @@ class WpTarget < WebSite
         Content-Length
         Connection
         Etag
+        ETag
         Expires
         Last-Modified
         Pragma
         Vary
         Cache-Control
         X-Pingback
+        Accept-Ranges
       }
     end
 
