@@ -88,7 +88,7 @@ class WebSite
   end
 
   # Will try to find the rss url in the homepage
-  # Only the first one found iw returned
+  # Only the first one found is returned
   def rss_url
     homepage_body = Browser.get(@uri.to_s).body
     homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
