@@ -79,7 +79,6 @@ else
 end
 
 # our 1337 banner
-# v#{WPSCAN_VERSION}r#{REVISION}
 def banner
   puts '_______________________________________________________________'
   puts '        __          _______   _____                  '
