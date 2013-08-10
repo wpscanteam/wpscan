@@ -1,27 +1,27 @@
 # encoding: UTF-8
 
-shared_examples 'WpTarget::InterestingHeaders' do
+shared_examples 'WebSite::InterestingHeaders' do
 
-  let(:known_headers) { WpTarget::InterestingHeaders.known_headers }
+  let(:known_headers) { WebSite::InterestingHeaders.known_headers }
 
   describe '#interesting_headers' do
 
     it 'returns MyTestHeader' do
-      stub_request(:head, wp_target.url).
+      stub_request(:head, web_site.url).
           to_return(status: 200, headers: { 'Mytestheader' => 'Mytestheadervalue' })
-      wp_target.interesting_headers.should =~ [ [ 'Mytestheader', 'Mytestheadervalue' ] ]
+      web_site.interesting_headers.should =~ [ [ 'MYTESTHEADER', 'Mytestheadervalue' ] ]
     end
 
     it 'removes known headers' do
-      stub_request(:head, wp_target.url).
+      stub_request(:head, web_site.url).
           to_return(status: 200, headers: { 'Location' => 'a', 'Connection' => 'Close' })
-      wp_target.interesting_headers.should be_empty
+      web_site.interesting_headers.should be_empty
     end
 
     it 'returns nothing' do
-      stub_request(:head, wp_target.url).
+      stub_request(:head, web_site.url).
           to_return(status: 200, headers: { })
-      wp_target.interesting_headers.should be_empty
+      web_site.interesting_headers.should be_empty
     end
 
   end

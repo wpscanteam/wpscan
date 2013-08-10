@@ -6,7 +6,6 @@ require 'wp_target/wp_readme'
 require 'wp_target/wp_registrable'
 require 'wp_target/wp_config_backup'
 require 'wp_target/wp_login_protection'
-require 'wp_target/interesting_headers'
 require 'wp_target/wp_custom_directories'
 require 'wp_target/wp_full_path_disclosure'
 
@@ -16,7 +15,6 @@ class WpTarget < WebSite
   include WpTarget::WpRegistrable
   include WpTarget::WpConfigBackup
   include WpTarget::WpLoginProtection
-  include WpTarget::InterestingHeaders
   include WpTarget::WpCustomDirectories
   include WpTarget::WpFullPathDisclosure
 
