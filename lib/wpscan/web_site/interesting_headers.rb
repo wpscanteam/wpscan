@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-class WpTarget < WebSite
+class WebSite
   module InterestingHeaders
 
     # Checks for interesting headers
@@ -8,10 +8,15 @@ class WpTarget < WebSite
     def interesting_headers
       response = Browser.head(@uri.to_s)
       headers = response.headers
-      InterestingHeaders.known_headers.each do |h|
-          headers.delete(h)
+      # Header Names are case insensitve so convert them to upcase
+      headers_uppercase = headers.inject({}) do |hash, keys|
+        hash[keys[0].upcase] = keys[1]
+        hash
       end
-      headers.to_a.compact.sort
+      InterestingHeaders.known_headers.each do |h|
+        headers_uppercase.delete(h.upcase)
+      end
+      headers_uppercase.to_a.compact.sort
     end
 
     protected
@@ -25,7 +30,6 @@ class WpTarget < WebSite
         Content-Length
         Connection
         Etag
-        ETag
         Expires
         Last-Modified
         Pragma

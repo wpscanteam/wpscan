@@ -7,6 +7,7 @@ describe 'WebSite' do
   subject(:web_site) { WebSite.new('http://example.localhost/') }
 
   it_behaves_like 'WebSite::RobotsTxt'
+  it_behaves_like 'WebSite::InterestingHeaders'
 
   before :all do
     Browser::reset
