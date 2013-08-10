@@ -5,7 +5,7 @@
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 
-  <title>Module: WpTarget::InterestingHeaders</title>
+  <title>Module: WebSite::InterestingHeaders</title>
 
   <link rel="stylesheet" href="../rdoc.css" type="text/css" media="screen" />
 
@@ -34,8 +34,8 @@
         <div class="section-body">
           <ul>
           
-            <li><a href="../lib/wpscan/wp_target/interesting_headers_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
-              class="thickbox" title="lib/wpscan/wp_target/interesting_headers.rb">lib/wpscan/wp_target/interesting_headers.rb</a></li>
+            <li><a href="../lib/wpscan/web_site/interesting_headers_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+              class="thickbox" title="lib/wpscan/web_site/interesting_headers.rb">lib/wpscan/web_site/interesting_headers.rb</a></li>
           
           </ul>
         </div>
@@ -103,8 +103,6 @@
         <ul class="link-list">
         
           <li><a href="../WpTarget.html">WpTarget</a></li>
-        
-          <li><a href="../WpTarget/InterestingHeaders.html">WpTarget::InterestingHeaders</a></li>
         
           <li><a href="../WpTarget/Malwares.html">WpTarget::Malwares</a></li>
         
@@ -186,6 +184,12 @@
         
           <li><a href="../Terminal/Table/Style.html">Terminal::Table::Style</a></li>
         
+          <li><a href="../WebSite.html">WebSite</a></li>
+        
+          <li><a href="../WebSite/InterestingHeaders.html">WebSite::InterestingHeaders</a></li>
+        
+          <li><a href="../WebSite/RobotsTxt.html">WebSite::RobotsTxt</a></li>
+        
           <li><a href="../WpItems.html">WpItems</a></li>
         
           <li><a href="../WpItems/Detectable.html">WpItems::Detectable</a></li>
@@ -260,8 +264,6 @@
         
           <li><a href="../VersionCompare.html">VersionCompare</a></li>
         
-          <li><a href="../WebSite.html">WebSite</a></li>
-        
           <li><a href="../WpscanOptions.html">WpscanOptions</a></li>
         
         </ul>
@@ -273,7 +275,7 @@
   </div>
 
   <div id="documentation">
-    <h1 class="module">WpTarget::InterestingHeaders</h1>
+    <h1 class="module">WebSite::InterestingHeaders</h1>
 
     <div id="description" class="description">
       
@@ -310,13 +312,13 @@
 
           <div class="method-description">
             
-            <p>@return <a href="../Array.html">Array</a></p>
+            <p>@return [ <a href="../Array.html">Array</a> ]</p>
             
 
             
             <div class="method-source-code" id="known_headers-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target/interesting_headers.rb, line 18</span>
+<span class="ruby-comment"># File lib/wpscan/web_site/interesting_headers.rb, line 24</span>
 <span class="ruby-keyword">def</span> <span class="ruby-keyword">self</span>.<span class="ruby-identifier">known_headers</span>
   <span class="ruby-node">%{
     Location
@@ -330,6 +332,8 @@
     Pragma
     Vary
     Cache-Control
+    X-Pingback
+    Accept-Ranges
   }</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- known_headers-source -->
@@ -361,20 +365,26 @@
 
           <div class="method-description">
             
-            <p>Checks for interesting headers</p>
+            <p>Checks for interesting headers @return [ <a href="../Array.html">Array</a>
+] Interesting Headers</p>
             
 
             
             <div class="method-source-code" id="interesting_headers-source">
 <pre>
-<span class="ruby-comment"># File lib/wpscan/wp_target/interesting_headers.rb, line 6</span>
+<span class="ruby-comment"># File lib/wpscan/web_site/interesting_headers.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">interesting_headers</span>
   <span class="ruby-identifier">response</span> = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">head</span>(<span class="ruby-ivar">@uri</span>.<span class="ruby-identifier">to_s</span>)
   <span class="ruby-identifier">headers</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>
-  <span class="ruby-constant">InterestingHeaders</span>.<span class="ruby-identifier">known_headers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
-      <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">h</span>)
+  <span class="ruby-comment"># Header Names are case insensitve so convert them to upcase</span>
+  <span class="ruby-identifier">headers_uppercase</span> = <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">inject</span>({}) <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>, <span class="ruby-identifier">keys</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">keys</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">upcase</span>] = <span class="ruby-identifier">keys</span>[<span class="ruby-value">1</span>]
+    <span class="ruby-identifier">hash</span>
   <span class="ruby-keyword">end</span>
-  <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">sort</span>
+  <span class="ruby-constant">InterestingHeaders</span>.<span class="ruby-identifier">known_headers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">headers_uppercase</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">h</span>.<span class="ruby-identifier">upcase</span>)
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">headers_uppercase</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">sort</span>
 <span class="ruby-keyword">end</span></pre>
             </div><!-- interesting_headers-source -->
             

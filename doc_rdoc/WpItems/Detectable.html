@@ -63,9 +63,9 @@
           
           <li><a href="#method-i-item_class">#item_class</a></li>
           
-          <li><a href="#method-i-item_options">#item_options</a></li>
-          
           <li><a href="#method-i-passive_detection">#passive_detection</a></li>
+          
+          <li><a href="#method-i-passive_detection_pattern">#passive_detection_pattern</a></li>
           
           <li><a href="#method-i-progress_bar">#progress_bar</a></li>
           
@@ -119,8 +119,6 @@
         <ul class="link-list">
         
           <li><a href="../WpTarget.html">WpTarget</a></li>
-        
-          <li><a href="../WpTarget/InterestingHeaders.html">WpTarget::InterestingHeaders</a></li>
         
           <li><a href="../WpTarget/Malwares.html">WpTarget::Malwares</a></li>
         
@@ -202,6 +200,12 @@
         
           <li><a href="../Terminal/Table/Style.html">Terminal::Table::Style</a></li>
         
+          <li><a href="../WebSite.html">WebSite</a></li>
+        
+          <li><a href="../WebSite/InterestingHeaders.html">WebSite::InterestingHeaders</a></li>
+        
+          <li><a href="../WebSite/RobotsTxt.html">WebSite::RobotsTxt</a></li>
+        
           <li><a href="../WpItems.html">WpItems</a></li>
         
           <li><a href="../WpItems/Detectable.html">WpItems::Detectable</a></li>
@@ -275,8 +279,6 @@
           <li><a href="../UpdaterFactory.html">UpdaterFactory</a></li>
         
           <li><a href="../VersionCompare.html">VersionCompare</a></li>
-        
-          <li><a href="../WebSite.html">WebSite</a></li>
         
           <li><a href="../WpscanOptions.html">WpscanOptions</a></li>
         
@@ -398,7 +400,9 @@ check for vulnerable items @option options [ String ]  :exclude_content</p>
 
       <span class="ruby-keyword">if</span> <span class="ruby-identifier">target_item</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">exist_options</span>, <span class="ruby-identifier">response</span>)
         <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">results</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">target_item</span>)
-          <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target_item</span>
+          <span class="ruby-keyword">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:only_vulnerable</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">target_item</span>.<span class="ruby-identifier">vulnerable?</span>
+            <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">target_item</span>
+          <span class="ruby-keyword">end</span>
         <span class="ruby-keyword">end</span>
       <span class="ruby-keyword">end</span>
     <span class="ruby-keyword">end</span>
@@ -442,23 +446,13 @@ check for vulnerable items @option options [ String ]  :exclude_content</p>
             
             <div class="method-source-code" id="passive_detection-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 70</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 72</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">passive_detection</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span> = {})
-  <span class="ruby-identifier">results</span>      = <span class="ruby-identifier">new</span>
-  <span class="ruby-identifier">item_class</span>   = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">item_class</span>
-  <span class="ruby-identifier">type</span>         = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/Wp/</span>, <span class="ruby-string">''</span>).<span class="ruby-identifier">downcase</span>
-  <span class="ruby-identifier">response</span>     = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">url</span>)
-  <span class="ruby-identifier">item_options</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">item_options</span>(<span class="ruby-identifier">wp_target</span>)
+  <span class="ruby-identifier">results</span>  = <span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_target</span>)
+  <span class="ruby-identifier">body</span>     = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">get</span>(<span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">url</span>).<span class="ruby-identifier">body</span>
+  <span class="ruby-identifier">names</span>    = <span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">passive_detection_pattern</span>(<span class="ruby-identifier">wp_target</span>))
 
-  <span class="ruby-identifier">regex1</span> = <span class="ruby-regexp">%{(?:[^=:]+)\s?(?:=|:)\s?(?:&quot;|')[^&quot;']+\\?/}</span>
-  <span class="ruby-identifier">regex2</span> = <span class="ruby-regexp">%{\\?/}</span>
-  <span class="ruby-identifier">regex3</span> = <span class="ruby-regexp">%{\\?/([^/\\&quot;']+)\\?(?:/|&quot;|')}</span>
-
-  <span class="ruby-identifier">names</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-node">/#{regex1}#{Regexp.escape(wp_target.wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/</span>)
-
-  <span class="ruby-identifier">names</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">results</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">item_options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">name</span><span class="ruby-operator">:</span> <span class="ruby-identifier">name</span>))
-  <span class="ruby-keyword">end</span>
+  <span class="ruby-identifier">names</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">results</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">name</span>) }
 
   <span class="ruby-identifier">results</span>.<span class="ruby-identifier">sort!</span>
   <span class="ruby-identifier">results</span>
@@ -494,7 +488,7 @@ check for vulnerable items @option options [ String ]  :exclude_content</p>
             
             <div class="method-source-code" id="progress_bar-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 55</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">progress_bar</span>(<span class="ruby-identifier">targets_size</span>, <span class="ruby-identifier">options</span>)
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value">:show_progression</span>]
     <span class="ruby-constant">ProgressBar</span>.<span class="ruby-identifier">create</span>(
@@ -543,7 +537,7 @@ href="Detectable.html#attribute-i-vulns_file">vulns_file</a></p>
             
             <div class="method-source-code" id="create_item-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 159</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 152</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create_item</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">vulns_file</span> = <span class="ruby-keyword">nil</span>)
   <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(
     <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">uri</span>,
@@ -582,7 +576,7 @@ href="Detectable.html#attribute-i-vulns_file">vulns_file</a></p>
             
             <div class="method-source-code" id="item_class-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 192</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 185</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">item_class</span>
   <span class="ruby-constant">Object</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/.$/</span>, <span class="ruby-string">''</span>))
 <span class="ruby-keyword">end</span></pre>
@@ -596,12 +590,12 @@ href="Detectable.html#attribute-i-vulns_file">vulns_file</a></p>
         </div><!-- item_class-method -->
 
       
-        <div id="item_options-method" class="method-detail ">
-          <a name="method-i-item_options"></a>
+        <div id="passive_detection_pattern-method" class="method-detail ">
+          <a name="method-i-passive_detection_pattern"></a>
 
           
           <div class="method-heading">
-            <span class="method-name">item_options</span><span
+            <span class="method-name">passive_detection_pattern</span><span
               class="method-args">(wp_target)</span>
             <span class="method-click-advice">click to toggle source</span>
           </div>
@@ -611,28 +605,29 @@ href="Detectable.html#attribute-i-vulns_file">vulns_file</a></p>
             
             <p>@param [ <a href="../WpTarget.html">WpTarget</a> ] wp_target</p>
 
-<p>@return [ Hash ]</p>
+<p>@return [ Regex ]</p>
             
 
             
-            <div class="method-source-code" id="item_options-source">
+            <div class="method-source-code" id="passive_detection_pattern-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 96</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">item_options</span>(<span class="ruby-identifier">wp_target</span>)
-  {
-    <span class="ruby-identifier">wp_content_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_content_dir</span>,
-    <span class="ruby-identifier">wp_plugins_dir</span><span class="ruby-operator">:</span> <span class="ruby-identifier">wp_target</span>.<span class="ruby-identifier">wp_plugins_dir</span>,
-    <span class="ruby-identifier">vulns_file</span><span class="ruby-operator">:</span>     <span class="ruby-keyword">self</span>.<span class="ruby-identifier">vulns_file</span>
-  }
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 88</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">passive_detection_pattern</span>(<span class="ruby-identifier">wp_target</span>)
+  <span class="ruby-identifier">type</span>   = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp">/Wp/</span>, <span class="ruby-string">''</span>).<span class="ruby-identifier">downcase</span>
+  <span class="ruby-identifier">regex1</span> = <span class="ruby-regexp">%{(?:[^=:]+)\s?(?:=|:)\s?(?:&quot;|')[^&quot;']+\\?/}</span>
+  <span class="ruby-identifier">regex2</span> = <span class="ruby-regexp">%{\\?/}</span>
+  <span class="ruby-identifier">regex3</span> = <span class="ruby-regexp">%{\\?/([^/\\&quot;']+)\\?(?:/|&quot;|')}</span>
+
+  <span class="ruby-node">/#{regex1}#{Regexp.escape(wp_target.wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/</span>
 <span class="ruby-keyword">end</span></pre>
-            </div><!-- item_options-source -->
+            </div><!-- passive_detection_pattern-source -->
             
           </div>
 
           
 
           
-        </div><!-- item_options-method -->
+        </div><!-- passive_detection_pattern-method -->
 
       
         <div id="request_params-method" class="method-detail ">
@@ -656,7 +651,7 @@ href="Detectable.html#attribute-i-vulns_file">vulns_file</a></p>
             
             <div class="method-source-code" id="request_params-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 107</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 100</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">request_params</span>; { <span class="ruby-identifier">cache_ttl</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">followlocation</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span> } <span class="ruby-keyword">end</span></pre>
             </div><!-- request_params-source -->
             
@@ -691,7 +686,7 @@ options [ String ]  :file The path to the file containing the targets</p>
             
             <div class="method-source-code" id="targets_items-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 115</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 108</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_items</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">options</span> = {})
   <span class="ruby-identifier">item_class</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">item_class</span>
   <span class="ruby-identifier">vulns_file</span> = <span class="ruby-keyword">self</span>.<span class="ruby-identifier">vulns_file</span>
@@ -743,7 +738,7 @@ href="Detectable.html#method-i-item_class">item_class</a> @param [ String ]
             
             <div class="method-source-code" id="targets_items_from_file-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 175</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 168</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">targets_items_from_file</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">item_class</span>, <span class="ruby-identifier">vulns_file</span>)
   <span class="ruby-identifier">targets</span> = []
 
@@ -792,7 +787,7 @@ String ] <a href="Detectable.html#attribute-i-vulns_file">vulns_file</a></p>
             
             <div class="method-source-code" id="vulnerable_targets_items-source">
 <pre>
-<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 138</span>
+<span class="ruby-comment"># File lib/common/collections/wp_items/detectable.rb, line 131</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">vulnerable_targets_items</span>(<span class="ruby-identifier">wp_target</span>, <span class="ruby-identifier">item_class</span>, <span class="ruby-identifier">vulns_file</span>)
   <span class="ruby-identifier">targets</span> = []
   <span class="ruby-identifier">xml</span>     = <span class="ruby-identifier">xml</span>(<span class="ruby-identifier">vulns_file</span>)

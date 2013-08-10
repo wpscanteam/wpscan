@@ -90,11 +90,17 @@
     
   
     
+      <dt class="r2">Includes:</dt>
+      <dd class="r2"><span class='object_link'><a href="WebSite/InterestingHeaders.html" title="WebSite::InterestingHeaders (module)">InterestingHeaders</a></span>, <span class='object_link'><a href="WebSite/RobotsTxt.html" title="WebSite::RobotsTxt (module)">RobotsTxt</a></span></dd>
+      
+    
   
   
   
-    <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/wpscan/web_site.rb</dd>
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/wpscan/web_site.rb<span class="defines">,<br />
+  lib/wpscan/web_site/robots_txt.rb,<br /> lib/wpscan/web_site/interesting_headers.rb</span>
+</dd>
   
 </dl>
 <div class="clear"></div>
@@ -103,6 +109,16 @@
   <h2>Direct Known Subclasses</h2>
   <p class="children"><span class='object_link'><a href="WpTarget.html" title="WpTarget (class)">WpTarget</a></span></p>
 </div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="WebSite/InterestingHeaders.html" title="WebSite::InterestingHeaders (module)">InterestingHeaders</a></span>, <span class='object_link'><a href="WebSite/RobotsTxt.html" title="WebSite::RobotsTxt (module)">RobotsTxt</a></span>
+    
+  
+    
+  
+</p>
 
 
 
@@ -260,30 +276,6 @@ cache generation details.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#has_robots%3F-instance_method" title="#has_robots? (instance method)">- (Boolean) <strong>has_robots?</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Checks if a robots.txt file exists.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#has_xml_rpc%3F-instance_method" title="#has_xml_rpc? (instance method)">- (Boolean) <strong>has_xml_rpc?</strong> </a>
     
 
@@ -403,30 +395,6 @@ a string with the redirection or nil.</p>
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#robots_url-instance_method" title="#robots_url (instance method)">- (String) <strong>robots_url</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'>
-<p>Gets a robots.txt URL.</p>
-</div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
       <a href="#rss_url-instance_method" title="#rss_url (instance method)">- (Object) <strong>rss_url</strong> </a>
     
 
@@ -442,7 +410,7 @@ a string with the redirection or nil.</p>
 
   
     <span class="summary_desc"><div class='inline'>
-<p>Will try to find the rss url in the homepage Only the first one found iw
+<p>Will try to find the rss url in the homepage Only the first one found is
 returned.</p>
 </div></span>
   
@@ -518,53 +486,31 @@ href="http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3">www.hixie.ch/specs
 </li>
 
       
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#xml_rpc_url_from_body-instance_method" title="#xml_rpc_url_from_body (instance method)">- (Object) <strong>xml_rpc_url_from_body</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
-        <li class="public ">
-  <span class="summary_signature">
-    
-      <a href="#xml_rpc_url_from_headers-instance_method" title="#xml_rpc_url_from_headers (instance method)">- (Object) <strong>xml_rpc_url_from_headers</strong> </a>
-    
-
-    
-  </span>
-  
-  
-  
-  
-  
-  
-  
-
-  
-    <span class="summary_desc"><div class='inline'></div></span>
-  
-</li>
-
-      
     </ul>
   
 
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="WebSite/InterestingHeaders.html" title="WebSite::InterestingHeaders (module)">InterestingHeaders</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="WebSite/InterestingHeaders.html#interesting_headers-instance_method" title="WebSite::InterestingHeaders#interesting_headers (method)">#interesting_headers</a></span>, <span class='object_link'><a href="WebSite/InterestingHeaders.html#known_headers-class_method" title="WebSite::InterestingHeaders.known_headers (method)">known_headers</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods included from <span class='object_link'><a href="WebSite/RobotsTxt.html" title="WebSite::RobotsTxt (module)">RobotsTxt</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="WebSite/RobotsTxt.html#has_robots%3F-instance_method" title="WebSite::RobotsTxt#has_robots? (method)">#has_robots?</a></span>, <span class='object_link'><a href="WebSite/RobotsTxt.html#known_dirs-class_method" title="WebSite::RobotsTxt.known_dirs (method)">known_dirs</a></span>, <span class='object_link'><a href="WebSite/RobotsTxt.html#parse_robots_txt-instance_method" title="WebSite::RobotsTxt#parse_robots_txt (method)">#parse_robots_txt</a></span>, <span class='object_link'><a href="WebSite/RobotsTxt.html#robots_url-instance_method" title="WebSite::RobotsTxt#robots_url (method)">#robots_url</a></span></p>
 <div id="constructor_details" class="method_details_list">
   <h2>Constructor Details</h2>
   
@@ -594,12 +540,12 @@ href="http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3">www.hixie.ch/specs
       <pre class="lines">
 
 
-7
-8
-9</pre>
+12
+13
+14</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 12</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_site_url'>site_url</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='id identifier rubyid_site_url'>site_url</span>
@@ -642,12 +588,12 @@ href="http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3">www.hixie.ch/specs
       <pre class="lines">
 
 
-5
-6
-7</pre>
+10
+11
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 10</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_uri'>uri</span>
   <span class='ivar'>@uri</span>
@@ -730,13 +676,13 @@ file which can be very huge (like 2 Go)</p>
       <pre class="lines">
 
 
-133
-134
-135
-136</pre>
+109
+110
+111
+112</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_has_log?'>has_log?</span><span class='lparen'>(</span><span class='id identifier rubyid_log_url'>log_url</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_log_body'>log_body</span> <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_log_url'>log_url</span><span class='comma'>,</span> <span class='label'>headers:</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>range</span><span class='tstring_end'>'</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>bytes=0-700</span><span class='tstring_end'>'</span></span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>
@@ -812,14 +758,14 @@ cache generation details</p>
       <pre class="lines">
 
 
-85
-86
-87
-88
-89</pre>
+73
+74
+75
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 73</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_page_hash'>page_hash</span><span class='lparen'>(</span><span class='id identifier rubyid_page'>page</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_page'>page</span> <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_page'>page</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_page'>page</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'>Typhoeus</span><span class='op'>::</span><span class='const'>Response</span><span class='rparen'>)</span>
@@ -863,16 +809,16 @@ cache generation details</p>
       <pre class="lines">
 
 
-99
-100
-101
-102
-103
-104
-105</pre>
+87
+88
+89
+90
+91
+92
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_error_404_hash'>error_404_hash</span>
   <span class='kw'>unless</span> <span class='ivar'>@error_404_hash</span>
@@ -923,69 +869,15 @@ cache generation details</p>
       <pre class="lines">
 
 
-24
-25
-26</pre>
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 24</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_basic_auth?'>has_basic_auth?</span>
   <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>401</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="has_robots?-instance_method">
-  
-    - (<tt>Boolean</tt>) <strong>has_robots?</strong> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Checks if a robots.txt file exists</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-115
-116
-117</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 115</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_has_robots?'>has_robots?</span>
-  <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='id identifier rubyid_robots_url'>robots_url</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>200</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1029,15 +921,17 @@ cache generation details</p>
       <pre class="lines">
 
 
-28
-29
-30</pre>
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_has_xml_rpc?'>has_xml_rpc?</span>
-  <span class='op'>!</span><span class='id identifier rubyid_xml_rpc_url'>xml_rpc_url</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
+  <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get_and_follow_location'>get_and_follow_location</span><span class='lparen'>(</span><span class='id identifier rubyid_xml_rpc_url'>xml_rpc_url</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>XML-RPC server accepts POST requests only</span><span class='regexp_end'>}i</span></span>    
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1059,15 +953,15 @@ cache generation details</p>
       <pre class="lines">
 
 
-91
-92
-93
-94
-95
-96</pre>
+79
+80
+81
+82
+83
+84</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 79</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_homepage_hash'>homepage_hash</span>
   <span class='kw'>unless</span> <span class='ivar'>@homepage_hash</span>
@@ -1119,12 +1013,12 @@ cache generation details</p>
       <pre class="lines">
 
 
-20
-21
-22</pre>
+25
+26
+27</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 25</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_online?'>online?</span>
   <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>!=</span> <span class='int'>0</span>
@@ -1161,25 +1055,25 @@ a string with the redirection or nil</p>
       <pre class="lines">
 
 
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
 62
 63
 64
-65
-66
-67
-68
-69
-70
-71
-72
-73
-74
-75
-76
-77</pre>
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 62</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 50</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redirection'>redirection</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_redirection'>redirection</span> <span class='op'>=</span> <span class='kw'>nil</span>
@@ -1203,60 +1097,6 @@ a string with the redirection or nil</p>
 </div>
     
       <div class="method_details ">
-  <h3 class="signature " id="robots_url-instance_method">
-  
-    - (<tt>String</tt>) <strong>robots_url</strong> 
-  
-
-  
-
-  
-</h3><div class="docstring">
-  <div class="discussion">
-    
-<p>Gets a robots.txt URL</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-<p class="tag_title">Returns:</p>
-<ul class="return">
-  
-    <li>
-      
-      
-        <span class='type'>(<tt>String</tt>)</span>
-      
-      
-      
-    </li>
-  
-</ul>
-
-</div><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-122
-123
-124</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 122</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_robots_url'>robots_url</span>
-  <span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>robots.txt</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
   <h3 class="signature " id="rss_url-instance_method">
   
     - (<tt>Object</tt>) <strong>rss_url</strong> 
@@ -1268,7 +1108,7 @@ a string with the redirection or nil</p>
 </h3><div class="docstring">
   <div class="discussion">
     
-<p>Will try to find the rss url in the homepage Only the first one found iw
+<p>Will try to find the rss url in the homepage Only the first one found is
 returned</p>
 
 
@@ -1283,13 +1123,13 @@ returned</p>
       <pre class="lines">
 
 
-109
-110
-111
-112</pre>
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 97</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_rss_url'>rss_url</span>
   <span class='id identifier rubyid_homepage_body'>homepage_body</span> <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>
@@ -1315,12 +1155,12 @@ returned</p>
       <pre class="lines">
 
 
-15
-16
-17</pre>
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 15</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_url'>url</span>
   <span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -1345,12 +1185,12 @@ returned</p>
       <pre class="lines">
 
 
-11
-12
-13</pre>
+16
+17
+18</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 11</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 16</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_url='>url=</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
   <span class='ivar'>@uri</span> <span class='op'>=</span> <span class='const'>URI</span><span class='period'>.</span><span class='id identifier rubyid_parse'>parse</span><span class='lparen'>(</span><span class='id identifier rubyid_add_trailing_slash'>add_trailing_slash</span><span class='lparen'>(</span><span class='id identifier rubyid_add_http_protocol'>add_http_protocol</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
@@ -1387,103 +1227,23 @@ href="http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3">www.hixie.ch/specs
       <pre class="lines">
 
 
-33
-34
-35
-36
-37
-38</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 33</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_xml_rpc_url'>xml_rpc_url</span>
-  <span class='kw'>unless</span> <span class='ivar'>@xmlrpc_url</span>
-    <span class='ivar'>@xmlrpc_url</span> <span class='op'>=</span> <span class='id identifier rubyid_xml_rpc_url_from_headers'>xml_rpc_url_from_headers</span><span class='lparen'>(</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='id identifier rubyid_xml_rpc_url_from_body'>xml_rpc_url_from_body</span><span class='lparen'>(</span><span class='rparen'>)</span>
-  <span class='kw'>end</span>
-  <span class='ivar'>@xmlrpc_url</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="xml_rpc_url_from_body-instance_method">
-  
-    - (<tt>Object</tt>) <strong>xml_rpc_url_from_body</strong> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
-53
-54
-55
-56
-57</pre>
-    </td>
-    <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 53</span>
-
-<span class='kw'>def</span> <span class='id identifier rubyid_xml_rpc_url_from_body'>xml_rpc_url_from_body</span>
-  <span class='id identifier rubyid_body'>body</span> <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span>
-
-  <span class='id identifier rubyid_body'>body</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>%r{</span><span class='tstring_content'>&lt;link rel=&quot;pingback&quot; href=&quot;([^&quot;]+)&quot; ?\/?&gt;</span><span class='regexp_end'>}</span></span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span>
-<span class='kw'>end</span></pre>
-    </td>
-  </tr>
-</table>
-</div>
-    
-      <div class="method_details ">
-  <h3 class="signature " id="xml_rpc_url_from_headers-instance_method">
-  
-    - (<tt>Object</tt>) <strong>xml_rpc_url_from_headers</strong> 
-  
-
-  
-
-  
-</h3><table class="source_code">
-  <tr>
-    <td>
-      <pre class="lines">
-
-
+39
 40
 41
 42
 43
 44
-45
-46
-47
-48
-49
-50
-51</pre>
+45</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 40</span>
+      <pre class="code"><span class="info file"># File 'lib/wpscan/web_site.rb', line 39</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_xml_rpc_url_from_headers'>xml_rpc_url_from_headers</span>
-  <span class='id identifier rubyid_headers'>headers</span>    <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_headers_hash'>headers_hash</span>
-  <span class='id identifier rubyid_xmlrpc_url'>xmlrpc_url</span> <span class='op'>=</span> <span class='kw'>nil</span>
-
-  <span class='kw'>unless</span> <span class='id identifier rubyid_headers'>headers</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span>
-    <span class='id identifier rubyid_pingback_url'>pingback_url</span> <span class='op'>=</span> <span class='id identifier rubyid_headers'>headers</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>X-Pingback</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span>
-    <span class='kw'>unless</span> <span class='id identifier rubyid_pingback_url'>pingback_url</span><span class='period'>.</span><span class='id identifier rubyid_nil?'>nil?</span> <span class='op'>||</span> <span class='id identifier rubyid_pingback_url'>pingback_url</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
-      <span class='id identifier rubyid_xmlrpc_url'>xmlrpc_url</span> <span class='op'>=</span> <span class='id identifier rubyid_pingback_url'>pingback_url</span>
-    <span class='kw'>end</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_xml_rpc_url'>xml_rpc_url</span>
+  <span class='kw'>unless</span> <span class='ivar'>@xmlrpc_url</span>
+    <span class='ivar'>@xmlrpc_url</span> <span class='op'>=</span> <span class='ivar'>@uri</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>xmlrpc.php</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
   <span class='kw'>end</span>
-  <span class='id identifier rubyid_xmlrpc_url'>xmlrpc_url</span>
+
+  <span class='ivar'>@xmlrpc_url</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -1495,7 +1255,7 @@ href="http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3">www.hixie.ch/specs
 </div>
 
     <div id="footer">
-  Generated on Fri Jul 19 23:10:16 2013 by
+  Generated on Sat Aug 10 12:46:31 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.5.2 (ruby-1.9.3).
 </div>
