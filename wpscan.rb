@@ -105,6 +105,10 @@ def main
 
     if wp_target.has_robots?
       puts green('[+]') + " robots.txt available under '#{wp_target.robots_url}'"
+
+      wp_target.parse_robots_txt.each do |dir|
+        puts "#{green('[+]')} Interesting entry from robots.txt: #{dir}"
+      end
     end
 
     if wp_target.has_readme?
