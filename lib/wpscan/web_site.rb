@@ -1,6 +1,9 @@
 # encoding: UTF-8
 
+require 'web_site/robots_txt'
+
 class WebSite
+  include WebSite::RobotsTxt
 
   attr_reader :uri
 
@@ -92,18 +95,6 @@ class WebSite
   def rss_url
     homepage_body = Browser.get(@uri.to_s).body
     homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
-  end
-
-  # Checks if a robots.txt file exists
-  def has_robots?
-    Browser.get(robots_url).code == 200
-  end
-
-  # Gets a robots.txt URL
-  #
-  # @return [ String ]
-  def robots_url
-    @uri.merge('robots.txt').to_s
   end
 
   # Only the first 700 bytes are checked to avoid the download

@@ -6,6 +6,8 @@ describe 'WebSite' do
   let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WEB_SITE_DIR }
   subject(:web_site) { WebSite.new('http://example.localhost/') }
 
+  it_behaves_like 'WebSite::RobotsTxt'
+
   before :all do
     Browser::reset
     Browser.instance(
@@ -144,24 +146,6 @@ describe 'WebSite' do
     it "returns 'http://lamp-wp/wordpress-3.5/?feed=rss2'" do
       stub_request_to_fixture(url: web_site.url, fixture: fixtures_dir + '/rss_url/wordpress-3.5.htm')
       web_site.rss_url.should === 'http://lamp-wp/wordpress-3.5/?feed=rss2'
-    end
-  end
-
-  describe '#robots_url' do
-    it 'returns the correct url' do
-      web_site.robots_url.should === 'http://example.localhost/robots.txt'
-    end
-  end
-
-  describe '#has_robots?' do
-    it 'returns true' do
-      stub_request(:get, web_site.robots_url).to_return(status: 200)
-      web_site.has_robots?.should be_true
-    end
-
-    it 'returns false' do
-      stub_request(:get, web_site.robots_url).to_return(status: 404)
-      web_site.has_robots?.should be_false
     end
   end
 

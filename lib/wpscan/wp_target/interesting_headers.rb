@@ -4,6 +4,7 @@ class WpTarget < WebSite
   module InterestingHeaders
 
     # Checks for interesting headers
+    # @return [ Array ] Interesting Headers
     def interesting_headers
       response = Browser.head(@uri.to_s)
       headers = response.headers
@@ -15,7 +16,7 @@ class WpTarget < WebSite
 
     protected
 
-    # @return Array
+    # @return [ Array ]
     def self.known_headers
       %w{
         Location

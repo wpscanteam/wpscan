@@ -5,7 +5,7 @@ class WpTarget < WebSite
 
     # Checks to see if wp-config.php has a backup
     # See http://www.feross.org/cmsploit/
-    # return an array of backup config files url
+    # @return [ Array ] Backup config files
     def config_backup
       found       = []
       backups     = WpConfigBackup.config_backup_files
@@ -37,7 +37,7 @@ class WpTarget < WebSite
       found
     end
 
-    # @return Array
+    # @return [ Array ]
     def self.config_backup_files
       %w{
         wp-config.php~ #wp-config.php# wp-config.php.save wp-config.php.swp wp-config.php.swo wp-config.php_bak
