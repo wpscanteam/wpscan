@@ -120,8 +120,6 @@
         
           <li><a href="./WpTarget.html">WpTarget</a></li>
         
-          <li><a href="./WpTarget/InterestingHeaders.html">WpTarget::InterestingHeaders</a></li>
-        
           <li><a href="./WpTarget/Malwares.html">WpTarget::Malwares</a></li>
         
           <li><a href="./WpTarget/WpConfigBackup.html">WpTarget::WpConfigBackup</a></li>
@@ -202,6 +200,12 @@
         
           <li><a href="./Terminal/Table/Style.html">Terminal::Table::Style</a></li>
         
+          <li><a href="./WebSite.html">WebSite</a></li>
+        
+          <li><a href="./WebSite/InterestingHeaders.html">WebSite::InterestingHeaders</a></li>
+        
+          <li><a href="./WebSite/RobotsTxt.html">WebSite::RobotsTxt</a></li>
+        
           <li><a href="./WpItems.html">WpItems</a></li>
         
           <li><a href="./WpItems/Detectable.html">WpItems::Detectable</a></li>
@@ -275,8 +279,6 @@
           <li><a href="./UpdaterFactory.html">UpdaterFactory</a></li>
         
           <li><a href="./VersionCompare.html">VersionCompare</a></li>
-        
-          <li><a href="./WebSite.html">WebSite</a></li>
         
           <li><a href="./WpscanOptions.html">WpscanOptions</a></li>
         
@@ -374,8 +376,7 @@
     <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Type #{type} not defined&quot;</span>
   <span class="ruby-keyword">end</span>
   <span class="ruby-ivar">@verbose</span>  = <span class="ruby-identifier">verbose</span>
-  <span class="ruby-ivar">@browser</span>  = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">request_timeout</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>, <span class="ruby-identifier">connect_timeout</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>, <span class="ruby-identifier">max_threads</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>)
-  <span class="ruby-ivar">@hydra</span>    = <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">hydra</span>
+  <span class="ruby-ivar">@browser</span>  = <span class="ruby-constant">Browser</span>.<span class="ruby-identifier">instance</span>(<span class="ruby-identifier">request_timeout</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>, <span class="ruby-identifier">connect_timeout</span><span class="ruby-operator">:</span> <span class="ruby-value">20000</span>, <span class="ruby-identifier">max_threads</span><span class="ruby-operator">:</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">cache_ttl</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
 <span class="ruby-keyword">end</span></pre>
             </div><!-- new-source -->
             
@@ -412,7 +413,7 @@
             
             <div class="method-source-code" id="generate_full_list-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 52</span>
+<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_full_list</span>
   <span class="ruby-identifier">set_file_name</span>(<span class="ruby-value">:full</span>)
   <span class="ruby-identifier">items</span> = <span class="ruby-constant">SvnParser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@svn_url</span>).<span class="ruby-identifier">parse</span>
@@ -447,7 +448,7 @@
             
             <div class="method-source-code" id="generate_popular_list-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 58</span>
+<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 57</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">generate_popular_list</span>(<span class="ruby-identifier">pages</span>)
   <span class="ruby-identifier">set_file_name</span>(<span class="ruby-value">:popular</span>)
   <span class="ruby-identifier">items</span> = <span class="ruby-identifier">get_popular_items</span>(<span class="ruby-identifier">pages</span>)
@@ -483,46 +484,31 @@ parse the response for the names.</p>
             
             <div class="method-source-code" id="get_popular_items-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 66</span>
+<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 65</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">get_popular_items</span>(<span class="ruby-identifier">pages</span>)
   <span class="ruby-identifier">found_items</span> = []
   <span class="ruby-identifier">page_count</span> = <span class="ruby-value">1</span>
-  <span class="ruby-identifier">queue_count</span> = <span class="ruby-value">0</span>
 
   (<span class="ruby-value">1</span><span class="ruby-operator">...</span>(<span class="ruby-identifier">pages</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">page</span><span class="ruby-operator">|</span>
     <span class="ruby-comment"># First page has another URL</span>
     <span class="ruby-identifier">url</span> = (<span class="ruby-identifier">page</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>) <span class="ruby-operator">?</span> <span class="ruby-ivar">@popular_url</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@popular_url</span> <span class="ruby-operator">+</span> <span class="ruby-string">'page/'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">page</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-string">'/'</span>
-    <span class="ruby-identifier">request</span> = <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>)
-
-    <span class="ruby-identifier">queue_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-
-    <span class="ruby-identifier">request</span>.<span class="ruby-identifier">on_complete</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">response</span><span class="ruby-operator">|</span>
-      <span class="ruby-keyword">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">200</span>
-        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;Got HTTP Status #{response.code} for page #{page}. Retrying request...&quot;</span>)
-        <span class="ruby-comment"># Retry</span>
-        <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
-        <span class="ruby-keyword">next</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Parsing page #{page_count}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
-      <span class="ruby-identifier">page_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
-      <span class="ruby-identifier">found</span> = <span class="ruby-value">0</span>
-      <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@popular_regex</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
-        <span class="ruby-identifier">found_items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>]
-        <span class="ruby-identifier">found</span> = <span class="ruby-identifier">found</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
-      <span class="ruby-keyword">end</span>
-      <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Found #{found} items on page #{page}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Parsing page #{page_count}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
+    <span class="ruby-identifier">code</span> = <span class="ruby-value">0</span>
+    <span class="ruby-keyword">while</span> <span class="ruby-identifier">code</span> <span class="ruby-operator">!=</span> <span class="ruby-value">200</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-identifier">red</span>(<span class="ruby-node">&quot;[!] Retrying request for page #{page} (Code: #{code})&quot;</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">request</span> = <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">forge_request</span>(<span class="ruby-identifier">url</span>)
+      <span class="ruby-identifier">response</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">run</span>
+      <span class="ruby-identifier">code</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">code</span>
+      <span class="ruby-identifier">sleep</span>(<span class="ruby-value">5</span>) <span class="ruby-keyword">unless</span> <span class="ruby-identifier">code</span> <span class="ruby-operator">==</span> <span class="ruby-value">200</span>
     <span class="ruby-keyword">end</span>
-
-    <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">queue</span>(<span class="ruby-identifier">request</span>)
-
-    <span class="ruby-keyword">if</span> <span class="ruby-identifier">queue_count</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@browser</span>.<span class="ruby-identifier">max_threads</span>
-      <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">run</span>
-      <span class="ruby-identifier">queue_count</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">page_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+    <span class="ruby-identifier">found</span> = <span class="ruby-value">0</span>
+    <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-ivar">@popular_regex</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">found_items</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">found</span> = <span class="ruby-identifier">found</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
     <span class="ruby-keyword">end</span>
-
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;[+] Found #{found} items on page #{page}&quot;</span> <span class="ruby-keyword">if</span> <span class="ruby-ivar">@verbose</span>
   <span class="ruby-keyword">end</span>
-
-  <span class="ruby-ivar">@hydra</span>.<span class="ruby-identifier">run</span>
 
   <span class="ruby-identifier">found_items</span>.<span class="ruby-identifier">sort!</span>
   <span class="ruby-identifier">found_items</span>.<span class="ruby-identifier">uniq</span>
@@ -556,7 +542,7 @@ parse the response for the names.</p>
             
             <div class="method-source-code" id="save-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 111</span>
+<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 95</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-identifier">items</span>)
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">sort!</span>
   <span class="ruby-identifier">items</span>.<span class="ruby-identifier">uniq!</span>
@@ -593,7 +579,7 @@ parse the response for the names.</p>
             
             <div class="method-source-code" id="set_file_name-source">
 <pre>
-<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 27</span>
+<span class="ruby-comment"># File lib/wpstools/plugins/list_generator/generate_list.rb, line 26</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">set_file_name</span>(<span class="ruby-identifier">type</span>)
   <span class="ruby-keyword">case</span> <span class="ruby-ivar">@type</span>
   <span class="ruby-keyword">when</span> <span class="ruby-string">'plugin'</span>

@@ -190,6 +190,28 @@ vulnerabilities.</p>
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#vulnerable%3F-instance_method" title="#vulnerable? (instance method)">- (Boolean) <strong>vulnerable?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#vulnerable_to%3F-instance_method" title="#vulnerable_to? (instance method)">- (Boolean) <strong>vulnerable_to?</strong>(vuln) </a>
     
 
@@ -385,6 +407,58 @@ vulnerabilities</p>
 </div>
     
       <div class="method_details ">
+  <h3 class="signature " id="vulnerable?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>vulnerable?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_item/vulnerable.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_vulnerable?'>vulnerable?</span>
+  <span class='id identifier rubyid_vulnerabilities'>vulnerabilities</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='kw'>false</span> <span class='op'>:</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
   <h3 class="signature " id="vulnerable_to?-instance_method">
   
     - (<tt>Boolean</tt>) <strong>vulnerable_to?</strong>(vuln) 
@@ -443,19 +517,19 @@ vulnerabilities</p>
       <pre class="lines">
 
 
-29
-30
-31
-32
 33
 34
 35
 36
 37
-38</pre>
+38
+39
+40
+41
+42</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/models/wp_item/vulnerable.rb', line 29</span>
+      <pre class="code"><span class="info file"># File 'lib/common/models/wp_item/vulnerable.rb', line 33</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_vulnerable_to?'>vulnerable_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_vuln'>vuln</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_version'>version</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_vuln'>vuln</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_vuln'>vuln</span><span class='period'>.</span><span class='id identifier rubyid_fixed_in'>fixed_in</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_vuln'>vuln</span><span class='period'>.</span><span class='id identifier rubyid_fixed_in'>fixed_in</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span>
@@ -477,7 +551,7 @@ vulnerabilities</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jul 19 23:10:15 2013 by
+  Generated on Sat Aug 10 12:46:30 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.5.2 (ruby-1.9.3).
 </div>

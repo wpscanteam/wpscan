@@ -346,8 +346,7 @@ parse the response for the names.</p>
 22
 23
 24
-25
-26</pre>
+25</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 9</span>
@@ -367,8 +366,7 @@ parse the response for the names.</p>
     <span class='id identifier rubyid_raise'>raise</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Type </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='rbrace'>}</span><span class='tstring_content'> not defined</span><span class='tstring_end'>&quot;</span></span>
   <span class='kw'>end</span>
   <span class='ivar'>@verbose</span>  <span class='op'>=</span> <span class='id identifier rubyid_verbose'>verbose</span>
-  <span class='ivar'>@browser</span>  <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='lparen'>(</span><span class='label'>request_timeout:</span> <span class='int'>20000</span><span class='comma'>,</span> <span class='label'>connect_timeout:</span> <span class='int'>20000</span><span class='comma'>,</span> <span class='label'>max_threads:</span> <span class='int'>1</span><span class='rparen'>)</span>
-  <span class='ivar'>@hydra</span>    <span class='op'>=</span> <span class='ivar'>@browser</span><span class='period'>.</span><span class='id identifier rubyid_hydra'>hydra</span>
+  <span class='ivar'>@browser</span>  <span class='op'>=</span> <span class='const'>Browser</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='lparen'>(</span><span class='label'>request_timeout:</span> <span class='int'>20000</span><span class='comma'>,</span> <span class='label'>connect_timeout:</span> <span class='int'>20000</span><span class='comma'>,</span> <span class='label'>max_threads:</span> <span class='int'>1</span><span class='comma'>,</span> <span class='label'>cache_ttl:</span> <span class='int'>0</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -445,14 +443,14 @@ parse the response for the names.</p>
       <pre class="lines">
 
 
+52
 53
 54
 55
-56
-57</pre>
+56</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_full_list'>generate_full_list</span>
   <span class='id identifier rubyid_set_file_name'>set_file_name</span><span class='lparen'>(</span><span class='symbol'>:full</span><span class='rparen'>)</span>
@@ -479,14 +477,14 @@ parse the response for the names.</p>
       <pre class="lines">
 
 
+58
 59
 60
 61
-62
-63</pre>
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 58</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_generate_popular_list'>generate_popular_list</span><span class='lparen'>(</span><span class='id identifier rubyid_pages'>pages</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_set_file_name'>set_file_name</span><span class='lparen'>(</span><span class='symbol'>:popular</span><span class='rparen'>)</span>
@@ -525,6 +523,7 @@ parse the response for the names.</p>
       <pre class="lines">
 
 
+66
 67
 68
 69
@@ -551,66 +550,35 @@ parse the response for the names.</p>
 90
 91
 92
-93
-94
-95
-96
-97
-98
-99
-100
-101
-102
-103
-104
-105
-106
-107
-108
-109</pre>
+93</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 67</span>
+      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 66</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_popular_items'>get_popular_items</span><span class='lparen'>(</span><span class='id identifier rubyid_pages'>pages</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_found_items'>found_items</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
   <span class='id identifier rubyid_page_count'>page_count</span> <span class='op'>=</span> <span class='int'>1</span>
-  <span class='id identifier rubyid_queue_count'>queue_count</span> <span class='op'>=</span> <span class='int'>0</span>
 
   <span class='lparen'>(</span><span class='int'>1</span><span class='op'>...</span><span class='lparen'>(</span><span class='id identifier rubyid_pages'>pages</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>1</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_page'>page</span><span class='op'>|</span>
     <span class='comment'># First page has another URL
 </span>    <span class='id identifier rubyid_url'>url</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_page'>page</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@popular_url</span> <span class='op'>:</span> <span class='ivar'>@popular_url</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>page/</span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='id identifier rubyid_page'>page</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>/</span><span class='tstring_end'>'</span></span>
-    <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='ivar'>@browser</span><span class='period'>.</span><span class='id identifier rubyid_forge_request'>forge_request</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
-
-    <span class='id identifier rubyid_queue_count'>queue_count</span> <span class='op'>+=</span> <span class='int'>1</span>
-
-    <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_on_complete'>on_complete</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_response'>response</span><span class='op'>|</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span> <span class='op'>!=</span> <span class='int'>200</span>
-        <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_red'>red</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got HTTP Status </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span><span class='rbrace'>}</span><span class='tstring_content'> for page </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page'>page</span><span class='rbrace'>}</span><span class='tstring_content'>. Retrying request...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
-        <span class='comment'># Retry
-</span>        <span class='ivar'>@hydra</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
-        <span class='kw'>next</span>
-      <span class='kw'>end</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[+] Parsing page </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_count'>page_count</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@verbose</span>
-      <span class='id identifier rubyid_page_count'>page_count</span> <span class='op'>+=</span> <span class='int'>1</span>
-      <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='int'>0</span>
-      <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='ivar'>@popular_regex</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
-        <span class='id identifier rubyid_found_items'>found_items</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_found'>found</span> <span class='op'>+</span> <span class='int'>1</span>
-      <span class='kw'>end</span>
-      <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[+] Found </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_found'>found</span><span class='rbrace'>}</span><span class='tstring_content'> items on page </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page'>page</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@verbose</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[+] Parsing page </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page_count'>page_count</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@verbose</span>
+    <span class='id identifier rubyid_code'>code</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='kw'>while</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>!=</span> <span class='int'>200</span>
+      <span class='id identifier rubyid_puts'>puts</span> <span class='id identifier rubyid_red'>red</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[!] Retrying request for page </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page'>page</span><span class='rbrace'>}</span><span class='tstring_content'> (Code: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_code'>code</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='ivar'>@browser</span><span class='period'>.</span><span class='id identifier rubyid_forge_request'>forge_request</span><span class='lparen'>(</span><span class='id identifier rubyid_url'>url</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
+      <span class='id identifier rubyid_code'>code</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_code'>code</span>
+      <span class='id identifier rubyid_sleep'>sleep</span><span class='lparen'>(</span><span class='int'>5</span><span class='rparen'>)</span> <span class='kw'>unless</span> <span class='id identifier rubyid_code'>code</span> <span class='op'>==</span> <span class='int'>200</span>
     <span class='kw'>end</span>
-
-    <span class='ivar'>@hydra</span><span class='period'>.</span><span class='id identifier rubyid_queue'>queue</span><span class='lparen'>(</span><span class='id identifier rubyid_request'>request</span><span class='rparen'>)</span>
-
-    <span class='kw'>if</span> <span class='id identifier rubyid_queue_count'>queue_count</span> <span class='op'>==</span> <span class='ivar'>@browser</span><span class='period'>.</span><span class='id identifier rubyid_max_threads'>max_threads</span>
-      <span class='ivar'>@hydra</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
-      <span class='id identifier rubyid_queue_count'>queue_count</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_page_count'>page_count</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='ivar'>@popular_regex</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_item'>item</span><span class='op'>|</span>
+      <span class='id identifier rubyid_found_items'>found_items</span> <span class='op'>&lt;&lt;</span> <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_found'>found</span> <span class='op'>=</span> <span class='id identifier rubyid_found'>found</span> <span class='op'>+</span> <span class='int'>1</span>
     <span class='kw'>end</span>
-
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>[+] Found </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_found'>found</span><span class='rbrace'>}</span><span class='tstring_content'> items on page </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_page'>page</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>if</span> <span class='ivar'>@verbose</span>
   <span class='kw'>end</span>
-
-  <span class='ivar'>@hydra</span><span class='period'>.</span><span class='id identifier rubyid_run'>run</span>
 
   <span class='id identifier rubyid_found_items'>found_items</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span>
   <span class='id identifier rubyid_found_items'>found_items</span><span class='period'>.</span><span class='id identifier rubyid_uniq'>uniq</span>
@@ -646,16 +614,16 @@ parse the response for the names.</p>
       <pre class="lines">
 
 
-112
-113
-114
-115
-116
-117
-118</pre>
+96
+97
+98
+99
+100
+101
+102</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 112</span>
+      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 96</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_save'>save</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_items'>items</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span>
@@ -684,6 +652,7 @@ parse the response for the names.</p>
       <pre class="lines">
 
 
+27
 28
 29
 30
@@ -706,11 +675,10 @@ parse the response for the names.</p>
 47
 48
 49
-50
-51</pre>
+50</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 28</span>
+      <pre class="code"><span class="info file"># File 'lib/wpstools/plugins/list_generator/generate_list.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_set_file_name'>set_file_name</span><span class='lparen'>(</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='ivar'>@type</span>
@@ -746,7 +714,7 @@ parse the response for the names.</p>
 </div>
 
     <div id="footer">
-  Generated on Fri Jul 19 23:10:17 2013 by
+  Generated on Sat Aug 10 12:46:33 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.5.2 (ruby-1.9.3).
 </div>
