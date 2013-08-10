@@ -75,24 +75,29 @@ require_files_from_directory(UPDATER_LIB_DIR)
 if @updater
   REVISION = @updater.local_revision_number()
 else
-  REVISION = 'NA'
+  REVISION = nil
 end
 
 # our 1337 banner
+# v#{WPSCAN_VERSION}r#{REVISION}
 def banner
-  puts '____________________________________________________'
-  puts ' __          _______   _____                  '
-  puts ' \\ \\        / /  __ \\ / ____|                 '
-  puts '  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
-  puts '   \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
-  puts '    \\  /\\  /  | |     ____) | (__| (_| | | | |'
-  puts "     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_| v#{WPSCAN_VERSION}r#{REVISION}"
+  puts '_______________________________________________________________'
+  puts '        __          _______   _____                  '
+  puts '        \\ \\        / /  __ \\ / ____|                 '
+  puts '         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
+  puts '          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
+  puts '           \\  /\\  /  | |     ____) | (__| (_| | | | |'
+  puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
   puts
-  puts '    WordPress Security Scanner by the WPScan Team'
-  puts ' Twitter: @_WPScan_, @ethicalhack3r, @erwan_lr,'
-  puts '          @gbrindisi, @_FireFart_'
-  puts ' Sponsored by the RandomStorm Open Source Initiative'
-  puts '_____________________________________________________'
+  puts '        WordPress Security Scanner by the WPScan Team '
+  if REVISION
+    puts "                    Version v#{WPSCAN_VERSION}r#{REVISION}"
+  else
+    puts "                        Version v#{WPSCAN_VERSION}"
+  end
+  puts '     Sponsored by the RandomStorm Open Source Initiative'
+  puts ' @_WPScan_, @ethicalhack3r, @erwan_lr, @gbrindisi, @_FireFart_'
+  puts '_______________________________________________________________'
   puts
 end
 
