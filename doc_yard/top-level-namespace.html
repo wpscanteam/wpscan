@@ -285,7 +285,7 @@
         <dt id="REVISION-constant" class="">REVISION =
           
         </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>NA</span><span class='tstring_end'>'</span></span></pre></dd>
+        <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
       
     </dl>
   
@@ -747,25 +747,33 @@
 94
 95
 96
-97</pre>
+97
+98
+99
+100
+101</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 82</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_banner'>banner</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>____________________________________________________</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> __          _______   _____                  </span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> \\ \\        / /  __ \\ / ____|                 </span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  </span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>   \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ </span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>    \\  /\\  /  | |     ____) | (__| (_| | | | |</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_| v</span><span class='embexpr_beg'>#{</span><span class='const'>WPSCAN_VERSION</span><span class='rbrace'>}</span><span class='tstring_content'>r</span><span class='embexpr_beg'>#{</span><span class='const'>REVISION</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_______________________________________________________________</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>        __          _______   _____                  </span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>        \\ \\        / /  __ \\ / ____|                 </span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  </span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ </span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>           \\  /\\  /  | |     ____) | (__| (_| | | | |</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|</span><span class='tstring_end'>'</span></span>
   <span class='id identifier rubyid_puts'>puts</span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>    WordPress Security Scanner by the WPScan Team</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> Twitter: @_WPScan_, @ethicalhack3r, @erwan_lr,</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>          @gbrindisi, @_FireFart_</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> Sponsored by the RandomStorm Open Source Initiative</span><span class='tstring_end'>'</span></span>
-  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_____________________________________________________</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>        WordPress Security Scanner by the WPScan Team </span><span class='tstring_end'>'</span></span>
+  <span class='kw'>if</span> <span class='const'>REVISION</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>                    Version v</span><span class='embexpr_beg'>#{</span><span class='const'>WPSCAN_VERSION</span><span class='rbrace'>}</span><span class='tstring_content'>r</span><span class='embexpr_beg'>#{</span><span class='const'>REVISION</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>                        Version v</span><span class='embexpr_beg'>#{</span><span class='const'>WPSCAN_VERSION</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>     Sponsored by the RandomStorm Open Source Initiative</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'> @_WPScan_, @ethicalhack3r, @erwan_lr, @gbrindisi, @_FireFart_</span><span class='tstring_end'>'</span></span>
+  <span class='id identifier rubyid_puts'>puts</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>_______________________________________________________________</span><span class='tstring_end'>'</span></span>
   <span class='id identifier rubyid_puts'>puts</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -788,12 +796,12 @@
       <pre class="lines">
 
 
-99
-100
-101</pre>
+103
+104
+105</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 99</span>
+      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_colorize'>colorize</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='id identifier rubyid_color_code'>color_code</span><span class='rparen'>)</span>
   <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\e[</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_color_code'>color_code</span><span class='rbrace'>}</span><span class='tstring_content'>m</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_text'>text</span><span class='rbrace'>}</span><span class='tstring_content'>\e[0m</span><span class='tstring_end'>&quot;</span></span>
@@ -829,10 +837,6 @@
       <pre class="lines">
 
 
-123
-124
-125
-126
 127
 128
 129
@@ -853,10 +857,14 @@
 144
 145
 146
-147</pre>
+147
+148
+149
+150
+151</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 123</span>
+      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 127</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_equal_string_end'>get_equal_string_end</span><span class='lparen'>(</span><span class='id identifier rubyid_stringarray'>stringarray</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_already_found'>already_found</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
@@ -903,12 +911,12 @@
       <pre class="lines">
 
 
-107
-108
-109</pre>
+111
+112
+113</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 107</span>
+      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 111</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_green'>green</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_colorize'>colorize</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='int'>32</span><span class='rparen'>)</span>
@@ -1151,12 +1159,12 @@
       <pre class="lines">
 
 
-103
-104
-105</pre>
+107
+108
+109</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 107</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_red'>red</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_colorize'>colorize</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='int'>31</span><span class='rparen'>)</span>
@@ -1181,13 +1189,13 @@
       <pre class="lines">
 
 
-117
-118
-119
-120</pre>
+121
+122
+123
+124</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redefine_constant'>redefine_constant</span><span class='lparen'>(</span><span class='id identifier rubyid_constant'>constant</span><span class='comma'>,</span> <span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
   <span class='const'>Object</span><span class='period'>.</span><span class='id identifier rubyid_send'>send</span><span class='lparen'>(</span><span class='symbol'>:remove_const</span><span class='comma'>,</span> <span class='id identifier rubyid_constant'>constant</span><span class='rparen'>)</span>
@@ -1403,14 +1411,14 @@
       <pre class="lines">
 
 
-111
-112
-113
-114
-115</pre>
+115
+116
+117
+118
+119</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/common/common_helper.rb', line 115</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_xml'>xml</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
   <span class='const'>Nokogiri</span><span class='op'>::</span><span class='const'>XML</span><span class='lparen'>(</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_open'>open</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_config'>config</span><span class='op'>|</span>
@@ -1427,7 +1435,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sat Aug 10 12:46:29 2013 by
+  Generated on Sun Aug 11 08:57:54 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.5.2 (ruby-1.9.3).
 </div>
