@@ -40,8 +40,12 @@ class WebSite
         end
 
         entries.each do |d|
-          temp = @uri.clone
-          temp.path = d
+          begin
+            temp = @uri.clone
+            temp.path = d
+          rescue URI::Error
+            temp = d
+          end
           return_object << temp.to_s
         end
       end
