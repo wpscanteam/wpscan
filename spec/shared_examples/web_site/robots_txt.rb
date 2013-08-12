@@ -40,6 +40,16 @@ shared_examples 'WebSite::RobotsTxt' do
         @expected = []
       end
 
+      it 'returns some urls and some strings' do
+        @fixture = fixtures_dir + '/robots_txt/invalid_robots_2.txt'
+        @expected = %w(
+          /ÖÜ()=?
+          http://10.0.0.0/wp-includes/
+          http://example.localhost/asdf/
+          wooooza
+        )
+      end
+
       it 'returns an Array of urls (valid robots.txt)' do
         @fixture = fixtures_dir + '/robots_txt/robots.txt'
         @expected = %w(
