@@ -151,9 +151,14 @@ shared_examples 'WpItems::Detectable' do
     end
 
     context 'when items are present' do
-      it 'returns the excpected items' do
+      it 'returns the expected items' do
         @fixture  = fixtures_dir + '/passive_detection.html'
         @expected = expected[:passive_detection]
+      end
+
+      it 'returns the expected items' do
+        @fixture  = fixtures_dir + '/passive_detection_2.html'
+        @expected = expected[:passive_detection2]
       end
     end
   end

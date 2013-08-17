@@ -21,7 +21,9 @@ describe WpThemes do
 
         passive_detection: WpThemes.new << WpTheme.new(uri, name: 'theme1') <<
                                            WpTheme.new(uri, name: 'theme 2') <<
-                                           WpTheme.new(uri, name: 'theme-3')
+                                           WpTheme.new(uri, name: 'theme-3'),
+
+        passive_detection2: WpItems.new << WpItem.new(uri, name: 'wp-table-reloaded')
       }
     end
   end
