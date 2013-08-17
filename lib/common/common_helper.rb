@@ -149,3 +149,10 @@ def get_equal_string_end(stringarray = [''])
   end
   already_found
 end
+
+def remove_base64_images_from_html(html)
+  # remove data:image/png;base64, images
+  base64regex = %r{(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?}
+  imageregex = %r{data\s*:\s*image/[^\s;]+\s*;\s*base64\s*,\s*}
+  html.gsub(/["']\s*#{imageregex}#{base64regex}\s*["']/, '""')
+end
