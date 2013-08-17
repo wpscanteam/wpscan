@@ -90,7 +90,7 @@ class WpItems < Array
     # @return [ Regex ]
     def passive_detection_pattern(wp_target)
       type   = self.to_s.gsub(/Wp/, '').downcase
-      regex1 = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
+      regex1 = %r{(?:[^=:\(]+)\s?(?:=|:|\()\s?(?:"|')[^"']+\\?/}
       regex2 = %r{\\?/}
       regex3 = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
 
