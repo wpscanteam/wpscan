@@ -22,9 +22,8 @@ describe WpItems do
                                           WpItem.new(uri, name: 'escaped-url') <<
                                           WpItem.new(uri, name: 'link-tag') <<
                                           WpItem.new(uri, name: 'script-tag') <<
-                                          WpItem.new(uri, name: 'style-tag'),
-
-        passive_detection2: WpItems.new << WpItem.new(uri, name: 'wp-table-reloaded')
+                                          WpItem.new(uri, name: 'style-tag') <<
+                                          WpItem.new(uri, name: 'style-tag-import')
       }
     end
   end
