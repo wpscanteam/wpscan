@@ -78,6 +78,13 @@ else
   REVISION = nil
 end
 
+def version
+  if REVISION
+    return "v#{WPSCAN_VERSION}r#{REVISION}"
+  end
+  return "v#{WPSCAN_VERSION}"
+end
+
 # our 1337 banner
 def banner
   puts '_______________________________________________________________'
@@ -90,9 +97,9 @@ def banner
   puts
   puts '        WordPress Security Scanner by the WPScan Team '
   if REVISION
-    puts "                    Version v#{WPSCAN_VERSION}r#{REVISION}"
+    puts "                    Version #{version}"
   else
-    puts "                        Version v#{WPSCAN_VERSION}"
+    puts "                        Version #{version}"
   end
   puts '     Sponsored by the RandomStorm Open Source Initiative'
   puts ' @_WPScan_, @ethicalhack3r, @erwan_lr, @gbrindisi, @_FireFart_'
