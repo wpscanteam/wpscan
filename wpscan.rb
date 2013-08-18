@@ -24,6 +24,11 @@ def main
       exit(0)
     end
 
+    if wpscan_options.version
+      puts "Current version is #{version}"
+      exit(0)
+    end
+
     # Check for updates
     if wpscan_options.update
       if !@updater.nil?
