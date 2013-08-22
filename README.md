@@ -242,6 +242,10 @@ https://github.com/wpscanteam/wpscan
 
 https://github.com/wpscanteam/wpscan/issues
 
+#### DEVELOPER DOCUMENTATION
+
+http://rdoc.info/github/wpscanteam/wpscan/frames
+
 #### SPONSOR
 
 WPScan is sponsored by the [RandomStorm](http://www.randomstorm.com) Open Source Initiative.
