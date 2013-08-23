@@ -1467,6 +1467,12 @@
 
   <plugin name="download-monitor">
     <vulnerability>
+      <title>CVE-2013-5098: Download Monitor &lt; 3.3.6.2 Cross Site Scripting</title>
+      <reference>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-5098</reference>
+      <type>XSS</type>
+      <fixed_in>3.3.6.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Download Monitor &lt;= 3.3.5.7 Cross Site Scripting</title>
       <reference>http://www.reactionpenetrationtesting.co.uk/wordpress-download-monitor-xss.html</reference>
       <reference>http://secunia.com/advisories/50511/</reference>
@@ -5014,7 +5020,7 @@
 
   <plugin name="duplicator">
     <vulnerability>
-      <title>Duplicator installer.cleanup.php package Parameter XSS</title>
+      <title>CVE-2013-4625: Duplicator installer.cleanup.php package Parameter XSS</title>
       <reference>http://osvdb.org/95627</reference>
       <type>XSS</type>
       <fixed_in>0.4.5</fixed_in>
@@ -5045,6 +5051,24 @@
       <reference>http://osvdb.org/95160</reference>
       <type>XSS</type>
       <fixed_in>1.31</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="xhanch-my-twitter">
+    <vulnerability>
+      <title>CVE-2013-3253: CSRF in admin/setting.php in Xhanch</title>
+      <reference>https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2013-3253</reference>
+      <type>CSRF</type>
+      <fixed_in>2.7.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="sexybookmarks">
+    <vulnerability>
+      <title>CVE-2013-3256: CSRF in sexybookmarks</title>
+      <reference>http://wordpress.org/plugins/sexybookmarks/changelog/</reference>
+      <type>CSRF</type>
+      <fixed_in>6.1.5.0</fixed_in>
     </vulnerability>
   </plugin>
 
