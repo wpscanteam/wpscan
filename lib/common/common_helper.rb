@@ -79,10 +79,7 @@ else
 end
 
 def version
-  if REVISION
-    return "v#{WPSCAN_VERSION}r#{REVISION}"
-  end
-  return "v#{WPSCAN_VERSION}"
+  REVISION ? "v#{WPSCAN_VERSION}r#{REVISION}" : "v#{WPSCAN_VERSION}"
 end
 
 # our 1337 banner
