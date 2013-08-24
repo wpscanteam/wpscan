@@ -7,7 +7,15 @@ describe WpPlugin do
   it_behaves_like 'WpItem::Vulnerable' do
     let(:options)        { { name: 'white-rabbit' } }
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins_vulns.xml' }
-    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new('Follow me!', 'REDIRECT', ['http://ref2.com']) }
+		let(:expected_refs)  { {
+				:url => ['Ref 1', 'Ref 2'],
+				:cve => ['2011-001'],
+				:secunia => ['secunia'],
+				:osvdb => ['osvdb'],
+				:metasploit => ['exploit/ex1'],
+				:exploitdb => ['exploitdb']
+		} }
+    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new('Follow me!', 'REDIRECT', expected_refs) }
   end
 
   subject(:wp_plugin) { WpPlugin.new(uri, options) }
