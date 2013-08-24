@@ -8,9 +8,19 @@
     </xs:restriction>
   </xs:simpleType>
 
+  <xs:simpleType name="inttype">
+    <xs:restriction base="xs:positiveInteger" />
+  </xs:simpleType>
+
   <xs:simpleType name="uritype">
     <xs:restriction base="xs:anyURI">
       <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="cvetype">
+    <xs:restriction base="xs:token">
+      <xs:pattern value="[0-9]{4}-[0-9]{4,}"/>
     </xs:restriction>
   </xs:simpleType>
 
@@ -34,37 +44,50 @@
   </xs:simpleType>
 
   <xs:complexType name="itemtype">
-    <xs:sequence>
-      <xs:element name="vulnerability" type="vulntype" maxOccurs="unbounded" minOccurs="1" />
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="vulnerability" type="vulntype" />
     </xs:sequence>
     <xs:attribute type="stringtype" name="name" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="wordpresstype">
-    <xs:sequence>
-      <xs:element name="vulnerability" type="vulntype" maxOccurs="unbounded" minOccurs="1" />
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:element name="vulnerability" type="vulntype"/>
     </xs:sequence>
     <xs:attribute type="stringtype" name="version" use="required"/>
   </xs:complexType>
 
   <xs:complexType name="vulntype">
-    <xs:sequence minOccurs="1" maxOccurs="1">
-      <xs:element name="title" type="stringtype"/>
-      <xs:element name="reference" type="uritype" maxOccurs="unbounded" minOccurs="1"/>
-      <xs:element name="metasploit" type="stringtype" maxOccurs="unbounded" minOccurs="0"/>
-      <xs:element name="cve" type="stringtype" minOccurs="0" maxOccurs="unbounded"/>
-      <xs:element name="type" type="typetype"/>
-      <xs:element name="fixed_in" type="stringtype" minOccurs="0" maxOccurs="1"/>
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:choice>
+        <xs:element name="title" type="stringtype"/>
+        <xs:element name="type" type="typetype"/>
+        <xs:element name="fixed_in" type="stringtype"/>
+        <xs:element name="references" type="referencetype"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="referencetype">
+    <xs:sequence minOccurs="1" maxOccurs="unbounded">
+      <xs:choice>
+        <xs:element name="url" type="uritype" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="cve" type="cvetype" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="secunia" type="inttype" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="osvdb" type="inttype" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="metasploit" type="stringtype" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="exploitdb" type="inttype" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:choice>
     </xs:sequence>
   </xs:complexType>
 
   <xs:element name="vulnerabilities">
     <xs:complexType>
-      <xs:sequence>
+      <xs:choice>
         <xs:element name="plugin" type="itemtype" maxOccurs="unbounded" minOccurs="0"/>
         <xs:element name="theme" type="itemtype" maxOccurs="unbounded" minOccurs="0"/>
         <xs:element name="wordpress" type="wordpresstype" maxOccurs="unbounded" minOccurs="0"/>
-      </xs:sequence>
+      </xs:choice>
     </xs:complexType>
     <xs:unique name="uniquePlugin">
       <xs:selector xpath="plugin"/>

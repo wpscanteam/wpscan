@@ -13,7 +13,15 @@ describe WpItem do
   it_behaves_like 'WpItem::Vulnerable' do
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_item/vulnerable/items_vulns.xml' }
     let(:vulns_xpath)    { "//item[@name='neo']/vulnerability" }
-    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new("I'm the one", 'XSS', ['http://ref1.com']) }
+		let(:expected_refs)  { {
+				:url => ['Ref 1', 'Ref 2'],
+				:cve => ['2011-001'],
+				:secunia => ['secunia'],
+				:osvdb => ['osvdb'],
+				:metasploit => ['exploit/ex1'],
+				:exploitdb => ['exploitdb']
+		} }
+    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new("I'm the one", 'XSS', expected_refs) }
   end
 
   subject(:wp_item) { WpItem.new(uri, options) }
