@@ -23,7 +23,8 @@ describe WpPlugins do
                                             WpPlugin.new(uri, name: 'escaped-url') <<
                                             WpPlugin.new(uri, name: 'link-tag') <<
                                             WpPlugin.new(uri, name: 'script-tag') <<
-                                            WpPlugin.new(uri, name: 'style-tag')
+                                            WpPlugin.new(uri, name: 'style-tag') <<
+                                            WpPlugin.new(uri, name: 'style-tag-import')
       }
     end
   end

@@ -24,11 +24,16 @@ def main
       exit(0)
     end
 
+    if wpscan_options.version
+      puts "Current version is #{version}"
+      exit(0)
+    end
+
     # Check for updates
     if wpscan_options.update
       if !@updater.nil?
         if @updater.has_local_changes?
-          puts "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n]"
+          print "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n] "
           Readline.readline =~ /^y/i ? @updater.reset_head : raise('Update aborted')
         end
         puts @updater.update()
@@ -61,7 +66,7 @@ def main
         puts
       else
         puts "The remote host tried to redirect us to #{redirection}"
-        puts 'Do you want follow the redirection ? [y/n]'
+        print 'Do you want follow the redirection ? [y/n] '
       end
 
       if wpscan_options.follow_redirection or Readline.readline =~ /^y/i
@@ -91,7 +96,7 @@ def main
     unless wp_target.wp_plugins_dir_exists?
       puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
-      puts 'Continue? [y/n]'
+      print 'Continue? [y/n] '
       unless Readline.readline =~ /^y/i
         exit(0)
       end
@@ -105,6 +110,10 @@ def main
 
     if wp_target.has_robots?
       puts green('[+]') + " robots.txt available under '#{wp_target.robots_url}'"
+
+      wp_target.parse_robots_txt.each do |dir|
+        puts "#{green('[+]')} Interesting entry from robots.txt: #{dir}"
+      end
     end
 
     if wp_target.has_readme?
@@ -300,7 +309,7 @@ def main
 
         puts
         puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing !"
-        puts '[?] Do you want to start the brute force anyway ? [y/n]'
+        print '[?] Do you want to start the brute force anyway ? [y/n] '
 
         bruteforce = false if Readline.readline !~ /^y/i
       end

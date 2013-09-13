@@ -21,7 +21,8 @@ describe WpThemes do
 
         passive_detection: WpThemes.new << WpTheme.new(uri, name: 'theme1') <<
                                            WpTheme.new(uri, name: 'theme 2') <<
-                                           WpTheme.new(uri, name: 'theme-3')
+                                           WpTheme.new(uri, name: 'theme-3') <<
+                                           WpTheme.new(uri, name: 'style-tag-import')
       }
     end
   end

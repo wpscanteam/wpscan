@@ -73,6 +73,8 @@ class WpItems < Array
     def passive_detection(wp_target, options = {})
       results  = new(wp_target)
       body     = Browser.get(wp_target.url).body
+      # improves speed
+      body     = remove_base64_images_from_html(body)
       names    = body.scan(passive_detection_pattern(wp_target))
 
       names.flatten.uniq.each { |name| results.add(name) }
@@ -88,7 +90,7 @@ class WpItems < Array
     # @return [ Regex ]
     def passive_detection_pattern(wp_target)
       type   = self.to_s.gsub(/Wp/, '').downcase
-      regex1 = %r{(?:[^=:]+)\s?(?:=|:)\s?(?:"|')[^"']+\\?/}
+      regex1 = %r{(?:[^=:\(]+)\s?(?:=|:|\()\s?(?:"|')[^"']+\\?/}
       regex2 = %r{\\?/}
       regex3 = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
 

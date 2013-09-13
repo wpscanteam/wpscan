@@ -60,10 +60,10 @@ shared_examples 'WpItem::Vulnerable' do
     let(:version_orig) { '1.5.6' }
     let(:version_newer) { '1.6' }
     let(:version_older) { '1.0' }
-    let(:newer) { Vulnerability.new('Newer', 'XSS', ['ref'], nil, version_newer) }
-    let(:older) { Vulnerability.new('Older', 'XSS', ['ref'], nil, version_older) }
-    let(:same) { Vulnerability.new('Same', 'XSS', ['ref'], nil, version_orig) }
-    let(:no_fixed_info) { Vulnerability.new('Same', 'XSS', ['ref'], nil, nil) }
+    let(:newer) { Vulnerability.new('Newer', 'XSS', { :url => ['http://ref.com'] }, version_newer) }
+    let(:older) { Vulnerability.new('Older', 'XSS', { :url => ['http://ref.com'] }, version_older) }
+    let(:same) { Vulnerability.new('Same', 'XSS', { :url => ['http://ref.com'] }, version_orig) }
+    let(:no_fixed_info) { Vulnerability.new('Same', 'XSS', { :url => ['http://ref.com'] }, nil) }
 
     before do
       stub_request(:get, /.*\/readme\.txt/i).to_return(status: 200, body: "Stable Tag: #{version_orig}")

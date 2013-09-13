@@ -8,7 +8,15 @@ describe WpTheme do
   it_behaves_like 'WpItem::Vulnerable' do
     let(:options)        { { name: 'the-oracle' } }
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.xml' }
-    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new('I see you', 'FPD', ['http://ref.com']) }
+		let(:expected_refs)  { {
+				:url => ['Ref 1', 'Ref 2'],
+				:cve => ['2011-001'],
+				:secunia => ['secunia'],
+				:osvdb => ['osvdb'],
+				:metasploit => ['exploit/ex1'],
+				:exploitdb => ['exploitdb']
+		} }
+    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new('I see you', 'FPD', expected_refs) }
   end
 
   subject(:wp_theme)  { WpTheme.new(uri, options) }

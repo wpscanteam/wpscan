@@ -75,22 +75,32 @@ require_files_from_directory(UPDATER_LIB_DIR)
 if @updater
   REVISION = @updater.local_revision_number()
 else
-  REVISION = 'NA'
+  REVISION = nil
+end
+
+def version
+  REVISION ? "v#{WPSCAN_VERSION}r#{REVISION}" : "v#{WPSCAN_VERSION}"
 end
 
 # our 1337 banner
 def banner
-  puts '____________________________________________________'
-  puts ' __          _______   _____                  '
-  puts ' \\ \\        / /  __ \\ / ____|                 '
-  puts '  \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
-  puts '   \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
-  puts '    \\  /\\  /  | |     ____) | (__| (_| | | | |'
-  puts "     \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_| v#{WPSCAN_VERSION}r#{REVISION}"
+  puts '_______________________________________________________________'
+  puts '        __          _______   _____                  '
+  puts '        \\ \\        / /  __ \\ / ____|                 '
+  puts '         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
+  puts '          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
+  puts '           \\  /\\  /  | |     ____) | (__| (_| | | | |'
+  puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
   puts
-  puts '    WordPress Security Scanner by the WPScan Team'
-  puts ' Sponsored by the RandomStorm Open Source Initiative'
-  puts '_____________________________________________________'
+  puts '        WordPress Security Scanner by the WPScan Team '
+  if REVISION
+    puts "                    Version #{version}"
+  else
+    puts "                        Version #{version}"
+  end
+  puts '     Sponsored by the RandomStorm Open Source Initiative'
+  puts ' @_WPScan_, @ethicalhack3r, @erwan_lr, @gbrindisi, @_FireFart_'
+  puts '_______________________________________________________________'
   puts
 end
 
@@ -142,4 +152,11 @@ def get_equal_string_end(stringarray = [''])
     end
   end
   already_found
+end
+
+def remove_base64_images_from_html(html)
+  # remove data:image/png;base64, images
+  base64regex = %r{(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?}
+  imageregex = %r{data\s*:\s*image/[^\s;]+\s*;\s*base64\s*,\s*}
+  html.gsub(/["']\s*#{imageregex}#{base64regex}\s*["']/, '""')
 end

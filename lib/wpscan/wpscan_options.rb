@@ -29,7 +29,8 @@ class WpscanOptions
     :config_file,
     :exclude_content_based,
     :basic_auth,
-    :debug_output
+    :debug_output,
+    :version
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -237,7 +238,8 @@ class WpscanOptions
       ['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
       ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT],
-      ['--debug-output', GetoptLong::NO_ARGUMENT]
+      ['--debug-output', GetoptLong::NO_ARGUMENT],
+      ['--version', GetoptLong::NO_ARGUMENT]
     )
   end
 
