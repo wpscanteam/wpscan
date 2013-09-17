@@ -2794,6 +2794,15 @@
       </references>
       <type>SQLI</type>
     </vulnerability>
+    <vulnerability>
+      <title>Privilege Escalation CSRF</title>
+      <references>
+        <osvdb>96905</osvdb>
+        <cve>2013-0736</cve>
+        <secunia>47687</secunia>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="accept-signups">
@@ -6492,6 +6501,45 @@
         <osvdb>97263</osvdb>
       </references>
       <fixed_in>1.3.8</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="design-approval-system">
+    <vulnerability>
+      <title>/admin/walkthrough/walkthrough.php step Parameter Reflected XSS</title>
+      <references>
+        <url>http://seclists.org/bugtraq/2013/Sep/54</url>
+        <cve>2013-5711</cve>
+        <osvdb>97279</osvdn>
+      </references>
+      <fixed_in>3.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="event-easy-calendar">
+    <vulnerability>
+      <title>Multiple Administrator Action CSRF</title>
+      <references>
+        <osvdb>97042</osvdb>
+      </references>
+    </vulnerability>
+    <vulnerability>
+      <title>Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>97041</osvdb>
+      </references>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="">
+    <vulnerability>
+      <title></title>
+      <references>
+        <url></url>
+        <cve></cve>
+        <osvdb></osvdb>
+      </references>
+      <fixed_in></fixed_in>
     </vulnerability>
   </plugin>
 </vulnerabilities>
