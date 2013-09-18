@@ -141,8 +141,6 @@ class WpUser < WpItem
         opt      += ':UTF-8' if charset != 'UTF-8'
 
         File.open(wordlist, opt).each do |line|
-          next if line[0,1] == '#'
-
           passwords << line.strip
         end
       elsif wordlist.is_a?(Array)
