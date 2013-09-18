@@ -9,7 +9,7 @@ shared_examples 'WpUser::BruteForcable' do
   before { Browser.instance.max_threads = 1 }
 
   describe '::passwords_from_wordlist' do
-    let(:expected)  { %w{password1 pa55w0rd admin root kansei£Ô} }
+    let(:expected)  { %w{password1 pa55w0rd #comment admin root kansei£Ô} }
     let(:exception) { 'Invalid wordlist, expected String or Array' }
 
     after do
