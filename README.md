@@ -77,7 +77,7 @@ Prerequisites:
 
 *Installing on Mac OSX:*
 
-Apple Xcode, Command Line Tools and the libffi too are needed (to be able to install the FFI gem), See http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error
+Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error
 
 ```git clone https://github.com/wpscanteam/wpscan.git```
 
