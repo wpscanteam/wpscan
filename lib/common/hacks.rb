@@ -57,15 +57,6 @@ def puts(o = '')
   super(o)
 end
 
-class File
-  # @param [ String ] file_path
-  #
-  # @return [ String ] The charset of the file
-  def self.charset(file_path)
-    %x{file --mime #{file_path}}[%r{charset=([^\n]+)\n}, 1]
-  end
-end
-
 module Terminal
   class Table
     def render

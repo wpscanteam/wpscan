@@ -9,7 +9,7 @@ shared_examples 'WpUser::BruteForcable' do
   before { Browser.instance.max_threads = 1 }
 
   describe '::passwords_from_wordlist' do
-    let(:expected)  { %w{password1 pa55w0rd #comment admin root kansei£Ô} }
+    let(:expected)  { %w{password1 pa55w0rd #comment admin root} << ' spaceafterandbefore ' }
     let(:exception) { 'Invalid wordlist, expected String or Array' }
 
     after do
@@ -25,7 +25,7 @@ shared_examples 'WpUser::BruteForcable' do
         let(:wordlist) { wordlist_iso }
 
         it 'returns the expected passwords' do
-          @expected = expected
+          @expected = expected << "kansei\xA3\xD4"
         end
       end
 
@@ -33,7 +33,7 @@ shared_examples 'WpUser::BruteForcable' do
         let(:wordlist) { wordlist_utf8 }
 
         it 'returns the expected passwords' do
-          @expected = expected
+          @expected = expected << 'kansei£Ô'
         end
       end
     end

@@ -126,22 +126,15 @@ class WpUser < WpItem
     # Load the passwords from the wordlist, which can be a file path or
     # an array or passwords
     #
-    # File comments are ignored, but will miss passwords if they start with a hash...
-    #
     # @param [ String, Array<String> ] wordlist
     #
     # @return [ Array<String> ]
     def self.passwords_from_wordlist(wordlist)
       if wordlist.is_a?(String)
         passwords = []
-        charset   = File.charset(wordlist).upcase
-        opt       = "r:#{charset}"
-        # To remove warning when charset = UTF-8
-        # Ignoring internal encoding UTF-8: it is identical to external encoding utf-8
-        opt      += ':UTF-8' if charset != 'UTF-8'
 
-        File.open(wordlist, opt).each do |line|
-          passwords << line.strip
+        File.open(wordlist).each do |line|
+          passwords << line.chop
         end
       elsif wordlist.is_a?(Array)
         passwords = wordlist
