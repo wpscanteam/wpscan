@@ -160,3 +160,8 @@ def remove_base64_images_from_html(html)
   imageregex = %r{data\s*:\s*image/[^\s;]+\s*;\s*base64\s*,\s*}
   html.gsub(/["']\s*#{imageregex}#{base64regex}\s*["']/, '""')
 end
+
+# @return [ Integer ] The memory of the current process in Bytes
+def get_memory_usage
+  `ps -o rss= -p #{Process.pid}`.to_i * 1024 # ps returns the value in KB
+end

@@ -103,7 +103,8 @@ def main
     end
 
     # Output runtime data
-    start_time = Time.now
+    start_time   = Time.now
+    start_memory = get_memory_usage
     puts "| URL: #{wp_target.url}"
     puts "| Started on #{start_time.asctime}"
     puts
@@ -332,10 +333,13 @@ def main
       end
     end
 
-    stop_time = Time.now
+    stop_time   = Time.now
+    elapsed     = stop_time - start_time
+    used_memory = get_memory_usage - start_memory
+    
     puts
     puts green("[+] Finished at #{stop_time.asctime}")
-    elapsed = stop_time - start_time
+    puts green("[+] Memory Used: #{used_memory.bytes_to_human}")
     puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
     exit(0) # must exit!
 
