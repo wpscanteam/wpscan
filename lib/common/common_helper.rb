@@ -165,3 +165,11 @@ end
 def get_memory_usage
   `ps -o rss= -p #{Process.pid}`.to_i * 1024 # ps returns the value in KB
 end
+
+# Use the wc system command to count the number of lines in the file
+# instead of using File.open which will to much memory for large file (10 times the size of the file)
+#
+# @return [ Integer ] The number of lines in the given file
+def count_file_lines(file)
+  `wc -l #{file.shellescape}`.split[0].to_i
+end

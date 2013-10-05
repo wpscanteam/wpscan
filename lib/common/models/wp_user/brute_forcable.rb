@@ -13,7 +13,7 @@ class WpUser < WpItem
     # This means that while we are waiting for browser.max_threads,
     # responses, we are waiting...
     #
-    # @param [ String, Array<String> ] wordlist The wordlist path
+    # @param [ String ] wordlist The wordlist path
     # @param [ Hash ] options
     # @option options [ Boolean ] :verbose
     # @option options [ Boolean ] :show_progression
@@ -23,12 +23,13 @@ class WpUser < WpItem
     def brute_force(wordlist, options = {}, redirect_url = nil)
       browser      = Browser.instance
       hydra        = browser.hydra
-      passwords    = BruteForcable.passwords_from_wordlist(wordlist)
       queue_count  = 0
       found        = false
-      progress_bar = self.progress_bar(passwords.size, options)
+      progress_bar = self.progress_bar(count_file_lines(wordlist), options)
 
-      passwords.each do |password|
+      File.open(wordlist).each do |password|
+        password.chop!
+        
         # A successfull login will redirect us to the redirect_to parameter
         # Generate a random one on each request
         unless redirect_url
@@ -121,28 +122,6 @@ class WpUser < WpItem
       puts verbose if verbose && options[:verbose]
 
       valid || false
-    end
-
-    # Load the passwords from the wordlist, which can be a file path or
-    # an array or passwords
-    #
-    # @param [ String, Array<String> ] wordlist
-    #
-    # @return [ Array<String> ]
-    def self.passwords_from_wordlist(wordlist)
-      if wordlist.is_a?(String)
-        passwords = []
-
-        File.open(wordlist).each do |line|
-          passwords << line.chop
-        end
-      elsif wordlist.is_a?(Array)
-        passwords = wordlist
-      else
-        raise 'Invalid wordlist, expected String or Array'
-      end
-
-      passwords
     end
 
   end
