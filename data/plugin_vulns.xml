@@ -1685,6 +1685,14 @@
 
   <plugin name="sharebar">
     <vulnerability>
+      <title>Sharebar &lt;= 1.2.5 sharebar-admin.php page Parameter XSS</title>
+      <references>
+        <osvdb>98078</osvdb>
+        <url>http://packetstormsecurity.org/files/123365/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
       <title>Sharebar &lt;= 1.2.5 Button Manipulation CSRF</title>
       <references>
         <osvdb>94843</osvdb>
@@ -2752,8 +2760,6 @@
       <references>
         <exploitdb>16144</exploitdb>
       </references>
-
-
       <type>MULTI</type>
     </vulnerability>
   </plugin>
@@ -2767,14 +2773,14 @@
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>Mingle Forum plugin &lt;= 1.0.31 SQL Injection Vulnerability</title>
+      <title>Mingle Forum &lt;= 1.0.31 SQL Injection Vulnerability</title>
       <references>
         <exploitdb>17894</exploitdb>
       </references>
       <type>SQLI</type>
     </vulnerability>
     <vulnerability>
-      <title>Mingle Forum (Plugin) &lt;= 1.0.26 Multiple Vulnerabilities</title>
+      <title>Mingle Forum &lt;= 1.0.26 Multiple Vulnerabilities</title>
       <references>
         <exploitdb>15943</exploitdb>
       </references>
@@ -2795,7 +2801,7 @@
       <type>SQLI</type>
     </vulnerability>
     <vulnerability>
-      <title>Privilege Escalation CSRF</title>
+      <title>Mingle Forum 1.0.35 Privilege Escalation CSRF</title>
       <references>
         <osvdb>96905</osvdb>
         <cve>2013-0736</cve>
@@ -6540,4 +6546,25 @@
       </references>
     </vulnerability>
   </plugin>
+
+  <plugin name="social-hashtags">
+    <vulnerability>
+      <title>New Post Title Field Stored XSS</title>
+      <references>
+        <osvdb>98027</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="simple-flickr-display">
+    <vulnerability>
+      <title>Simple Flickr Display Username Field Stored XSS</title>
+      <references>
+        <osvdb>97991</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
 </vulnerabilities>
