@@ -117,13 +117,14 @@
 
   <plugin name="crayon-syntax-highlighter">
     <vulnerability>
-      <title>Crayon Syntax Highlighter Remote File Inclusion</title>
+      <title>Crayon Syntax Highlighter Remote File Inclusion Vulnerability</title>
       <references>
         <secunia>50804</secunia>
         <url>http://ceriksen.com/2012/10/15/wordpress-crayon-syntax-highlighter-remote-file-inclusion-vulnerability/
         </url>
       </references>
       <type>RFI</type>
+      <fixed_in>1.13</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4683,17 +4684,6 @@
     </vulnerability>
   </plugin>
 
-  <plugin name="crayon-syntax-hightlighter">
-    <vulnerability>
-      <title>WordPress Crayon Syntax Highlighter Plugin "wp_load" Remote File Inclusion Vulnerability</title>
-      <references>
-        <secunia>50804</secunia>
-      </references>
-      <type>RFI</type>
-      <fixed_in>1.13</fixed_in>
-    </vulnerability>
-  </plugin>
-
   <plugin name="eshop-magic">
     <vulnerability>
       <title>WordPress eShop Magic Plugin "file" Arbitrary File Disclosure Vulnerability</title>
@@ -6564,6 +6554,19 @@
         <osvdb>97991</osvdb>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="lazy-seo">
+    <vulnerability>
+      <title>Lazy SEO lazyseo.php File Upload Arbitrary Code Execution</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123349/wplazyseo-shell.txt</url>
+        <osvdb>97662</osvdb>
+        <cve>2013-5961</cve>
+        <exploitdb>28452</exploitdb>
+      </references>
+      <type>UPLOAD</type>
     </vulnerability>
   </plugin>
 
