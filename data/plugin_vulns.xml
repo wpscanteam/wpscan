@@ -1930,6 +1930,8 @@
         <url>https://github.com/wpscanteam/wpscan/issues/251</url>
         <url>http://www.securityfocus.com/archive/1/527634/30/0/threaded</url>
         <osvdb>95884</osvdb>
+        <secunia>54299</secunia>
+        <exploitdb>27290</exploitdb>
       </references>
       <type>XSS</type>
       <fixed_in>3.5.4</fixed_in>
@@ -3079,7 +3081,12 @@
     <vulnerability>
       <title>Page Flip Image Gallery &lt;= 0.2.2 Remote FD Vuln</title>
       <references>
+        <osvdb>50902</osvdb>
+        <cve>2008-5752</cve>
         <exploitdb>7543</exploitdb>
+        <secunia>33274</secunia>
+        <url>http://www.securityfocus.com/bid/32966</url>
+        <url>http://xforce.iss.net/xforce/xfdb/47568</url>
       </references>
       <type>LFI</type>
     </vulnerability>
@@ -6567,6 +6574,53 @@
         <exploitdb>28452</exploitdb>
       </references>
       <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="seo-watcher">
+    <vulnerability>
+      <title>SEO Watcher - Open Flash Chart Arbitrary File Creation Vulnerability</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123493/wpseowatcher-exec.txt</url>
+        <secunia>55162</secunia>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="all-in-one-seo-pack">
+    <vulnerability>
+      <title>All in One SEO Pack &lt;= 2.3.0 - XSS Vulnerability</title>
+      <references>
+        <url>http://archives.neohapsis.com/archives/bugtraq/2013-10/0006.html</url>
+        <secunia>55133</secunia>
+      </references>
+      <fixed_in>2.3.0.1</fixed_in>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="simple-dropbox-upload-form">
+    <vulnerability>
+      <title>Simple Dropbox Upload - Arbitrary File Upload Vulnerability</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123235/wpsdu-shell.txt</url>
+        <url>http://xforce.iss.net/xforce/xfdb/87166</url>
+        <secunia>54856</secunia>
+        <cve>2013-5963</cve>
+      </references>
+      <fixed_in>1.8.8.1</fixed_in>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-ultimate-email-marketer">
+    <vulnerability>
+      <title>WP Ultimate Email Marketer - Multiple Vulnerabilities</title>
+      <references>
+        <secunia>53170</secunia>
+      </references>
+      <type>MULTI</type>
     </vulnerability>
   </plugin>
 
