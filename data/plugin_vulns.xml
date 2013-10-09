@@ -965,9 +965,17 @@
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>WordPress Spider Catalog Plugin Multiple SQL Injection and Cross Site Scripting Vulnerabilities</title>
+      <title>Spider Catalog - Multiple SQL Injection and Cross Site Scripting Vulnerabilities</title>
       <references>
         <url>http://www.securityfocus.com/bid/60079/info</url>
+      </references>
+      <type>MULTI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog Plugin 1.4.6 - Multiple Vulnerabilities</title>
+      <references>
+        <exploitdb>25724</exploitdb>
+        <osvdb>93591</osvdb>
       </references>
       <type>MULTI</type>
     </vulnerability>
@@ -3335,16 +3343,18 @@
 
   <plugin name="wp-filemanager">
     <vulnerability>
-      <title>Wp-FileManager 1.2 Remote Upload Vulnerability</title>
+      <title>wp-FileManager 1.2 - Remote Upload Vulnerability</title>
       <references>
         <exploitdb>4844</exploitdb>
       </references>
       <type>UPLOAD</type>
     </vulnerability>
     <vulnerability>
-      <title>WordPress wp-FileManager File Download Vulnerability</title>
+      <title>wp-FileManager 1.3.0 - File Download Vulnerability</title>
       <references>
         <secunia>53421</secunia>
+        <exploitdb>25440</exploitdb>
+        <osvdb>93446</osvdb>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>1.4.0</fixed_in>
@@ -4355,7 +4365,7 @@
 
   <plugin name="w3-total-cache">
     <vulnerability>
-      <title>W3-Total-Cache Username and Hash Extract</title>
+      <title>W3 Total Cache - Username and Hash Extract</title>
       <references>
         <url>http://seclists.org/fulldisclosure/2012/Dec/242</url>
         <url>https://github.com/FireFart/W3TotalCacheExploit</url>
@@ -4365,7 +4375,7 @@
       <fixed_in>0.9.2.5</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>W3-Total-Cache Remote Code Execution</title>
+      <title>W3 Total Cache - Remote Code Execution</title>
       <references>
         <url>http://www.acunetix.com/blog/web-security-zone/wp-plugins-remote-code-execution/</url>
         <url>http://wordpress.org/support/topic/pwn3d</url>
@@ -4376,6 +4386,15 @@
       </references>
       <type>RCE</type>
       <fixed_in>0.9.2.9</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>W3 Total Cache 0.9.2.9 - PHP Code Execution</title>
+      <references>
+        <exploitdb>25137</exploitdb>
+        <cve>2013-2010</cve>
+        <osvdb>92652</osvdb>
+        <secunia>53052</secunia>
+      </references>
     </vulnerability>
   </plugin>
 
@@ -4730,11 +4749,20 @@
 
   <plugin name="spider-calendar">
     <vulnerability>
-      <title>WordPress Spider Calendar Plugin "many_sp_calendar" Cross-Site Scripting Vulnerability</title>
+      <title>Spider Calendar Plugin "many_sp_calendar" Cross-Site Scripting Vulnerability</title>
       <references>
         <secunia>50981</secunia>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Calendar 1.3.0 - Multiple Vulnerabilities</title>
+      <references>
+        <exploitdb>25723</exploitdb>
+        <osvdb>93584</osvdb>
+        <secunia>53481</secunia>
+      </references>
+      <type></type>
     </vulnerability>
   </plugin>
 
@@ -5705,11 +5733,14 @@
 
   <plugin name="wp-funeral-press">
     <vulnerability>
-      <title>WP FuneralPress - Stored XSS in Guestbook</title>
+      <title>FuneralPress 1.1.6 - Persistent XSS</title>
       <references>
+        <exploitdb>24914</exploitdb>
+        <cve>2013-3529</cve>
+        <osvdb>91868</osvdb>
         <url>http://seclists.org/fulldisclosure/2013/Mar/282</url>
       </references>
-      <type>XSS</type>
+      <type></type>
     </vulnerability>
   </plugin>
 
@@ -6365,9 +6396,10 @@
 
   <plugin name="ultimate-auction">
     <vulnerability>
-      <title>ultimate Auction Auction Creation CSRF</title>
+      <title>Ultimate Auction 1.0 - CSRF Vulnerability</title>
       <references>
         <osvdb>94407</osvdb>
+        <exploitdb>26240</exploitdb>
       </references>
       <type>CSRF</type>
     </vulnerability>
@@ -6529,6 +6561,7 @@
         <osvdb>96110</osvdb>
         <osvdb>96111</osvdb>
         <secunia>54402</secunia>
+        <exploitdb>27531</exploitdb>
       </references>
       <fixed_in>2.0.11</fixed_in>
     </vulnerability>
@@ -6543,6 +6576,7 @@
         <osvdb>96110</osvdb>
         <osvdb>96111</osvdb>
         <secunia>54402</secunia>
+        <exploitdb>27531</exploitdb>
       </references>
       <fixed_in>2.0.11</fixed_in>
     </vulnerability>
@@ -6800,6 +6834,8 @@
     <vulnerability>
       <title>NOSpamPTI 2.1 - Blind SQL Injection</title>
       <references>
+        <exploitdb>28485</exploitdb>
+        <cve>2013-5917</cve>
         <url>http://packetstormsecurity.com/files/123331/</url>
       </references>
       <type>SQLI</type>
@@ -6851,6 +6887,65 @@
       <title>Post Gallery - XSS</title>
       <references>
         <url>http://packetstormsecurity.com/files/122957/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="proplayer">
+    <vulnerability>
+      <title>ProPlayer 4.7.9.1 - SQL Injection</title>
+      <references>
+        <exploitdb>25605</exploitdb>
+        <osvdb>93564</osvdb>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="usernoise">
+    <vulnerability>
+      <title>Usernoise 3.7.8 - Persistent XSS Vulnerability</title>
+      <references>
+        <exploitdb>27403</exploitdb>
+        <osvdb>96000</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.7.9</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="booking">
+    <vulnerability>
+      <title>Booking Calendar 4.1.4 - CSRF Vulnerability</title>
+      <references>
+        <exploitdb>27399</exploitdb>
+        <osvdb>96088</osvdb>
+        <url>http://wpbookingcalendar.com/</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>4.1.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="thinkit-wp-contact-form">
+    <vulnerability>
+      <title>ThinkIT 0.1 - Multiple Vulnerabilities</title>
+      <references>
+        <exploitdb>27751</exploitdb>
+        <osvdb>96515</osvdb>
+        <url>http://packetstormsecurity.com/files/122898/</url>
+      </references>
+      <type>MULTI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="quick-contact-form">
+    <vulnerability>
+      <title>Quick Contact Form Plugin 6.0 - Persistent XSS</title>
+      <references>
+        <exploitdb>28808</exploitdb>
+        <url>http://quick-plugins.com/quick-contact-form/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
