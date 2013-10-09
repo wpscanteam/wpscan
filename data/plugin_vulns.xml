@@ -2003,11 +2003,22 @@
 
   <plugin name="bulletproof-security">
     <vulnerability>
-      <title>BulletProof Security &lt;= 0.47 Cross Site Scripting</title>
+      <title>BulletProof Security &lt;= 0.47 - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/112618/</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>BulletProof Security - Security Log Script Insertion Vulnerability</title>
+      <references>
+        <osvdb>95928</osvdb>
+        <osvdb>95929</osvdb>
+        <osvdb>95930</osvdb>
+        <cve>2013-3487</cve>
+        <secunia>53614</secunia>
+      </references>
+      <fixed_in>0.49</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -6570,10 +6581,12 @@
 
   <plugin name="sexybookmarks">
     <vulnerability>
-      <title>CSRF in sexybookmarks</title>
+      <title>SexyBookmarks - Setting Manipulation CSRF</title>
       <references>
         <url>http://wordpress.org/plugins/sexybookmarks/changelog/</url>
+        <osvdb>95908</osvdb>
         <cve>2013-3256</cve>
+        <secunia>53138</secunia>
       </references>
       <type>CSRF</type>
       <fixed_in>6.1.5.0</fixed_in>
@@ -7000,6 +7013,63 @@
         <osvdb>91623</osvdb>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="booking-system">
+    <vulnerability>
+      <title>Booking System - events_facualty_list.php eid Parameter Reflected XSS</title>
+      <references>
+        <osvdb>96740</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="js-restaurant">
+    <vulnerability>
+      <title>JS Restaurant - popup.php restuarant_id Parameter SQL Injection</title>
+      <references>
+        <osvdb>96743</osvdb>
+        <url>http://packetstormsecurity.com/files/122316/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="FlagEm">
+    <vulnerability>
+      <title>FlagEm Plugin - flagit.php cID Parameter XSS</title>
+      <references>
+        <osvdb>98226</osvdb>
+        <url>http://www.securityfocus.com/bid/61401</url>
+        <url>http://xforce.iss.net/xforce/xfdb/85925</url>
+        <url>http://packetstormsecurity.com/files/122505/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="chat">
+    <vulnerability>
+      <title>Chat - message Parameter XSS</title>
+      <references>
+        <osvdb>95984</osvdb>
+        <secunia>54403</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="shareaholic">
+    <vulnerability>
+      <title>Shareaholic - Unspecified CSRF</title>
+      <references>
+        <osvdb>96321</osvdb>
+        <secunia>54529</secunia>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>7.0.3.4/fixed_in>
     </vulnerability>
   </plugin>
 
