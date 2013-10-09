@@ -482,9 +482,12 @@
       <references>
         <url>http://packetstormsecurity.com/files/119221/</url>
         <secunia>51037</secunia>
+        <exploitdb>23856</exploitdb>
+        <osvdb>87353</osvdb>
         <metasploit>exploit/unix/webapp/wp_advanced_custom_fields_exec</metasploit>
       </references>
       <type>RFI</type>
+      <fixed_in>3.5.2</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -1611,10 +1614,14 @@
 
   <plugin name="wp-property">
     <vulnerability>
-      <title>WP-Property 1.35.0 Arbitrary File Upload</title>
+      <title>WP Property &lt;=1.35.0 - Arbitrary File Upload</title>
       <references>
         <exploitdb>18987</exploitdb>
-      </references>
+        <exploitdb>23651</exploitdb>
+        <osvdb>82656</osvdb>
+        <secunia>49394</secunia>
+        <url>http://packetstormsecurity.com/files/113274/</url>
+        </references>
       <type>UPLOAD</type>
     </vulnerability>
   </plugin>
@@ -1683,6 +1690,7 @@
       <title>Track That Stat &lt;= 1.0.8 Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/112722/</url>
+        <url>http://www.securityfocus.com/bid/53551</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -3712,6 +3720,13 @@
       </references>
       <type>SQLI</type>
     </vulnerability>
+    <vulnerability>
+      <title>VideoWhisper Video Presentation 3.17 - 'vw_upload.php' Arbitrary File Upload Vulnerability</title>
+      <references>
+        <url>http://www.securityfocus.com/bid/53851</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="facebook-opengraph-meta-plugin">
@@ -4575,7 +4590,7 @@
 
   <plugin name="events-manager">
     <vulnerability>
-      <title>Events Manager - Multiple XSS Vulnerabilities</title>
+      <title>Events Manager 5.3.3 - Multiple XSS Vulnerabilities</title>
       <references>
         <secunia>51869</secunia>
       </references>
@@ -4583,7 +4598,7 @@
       <fixed_in>5.3.4</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Events Manager - Multiple XSS Vulnerabilities</title>
+      <title>Events Manager 5.3.8 - Multiple XSS Vulnerabilities</title>
       <references>
         <url>http://www.securityfocus.com/bid/60078</url>
         <secunia>53478</secunia>
@@ -4593,8 +4608,9 @@
       <fixed_in>5.3.9</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Events Manager - Multiple Unspecified XSS Vulnerabilities</title>
+      <title>Events Manager 5.5.1 - Multiple Unspecified XSS Vulnerabilities</title>
       <references>
+        <osvdb>98198</osvdb>
         <secunia>55182</secunia>
       </references>
       <type>XSS</type>
@@ -5683,6 +5699,7 @@
       <title>Simply Poll Plugin 1.4.1 - Multiple Vulnerabilities</title>
       <references>
         <exploitdb>24850</exploitdb>
+        <osvdb>91446</osvdb>
       </references>
       <type>MULTI</type>
     </vulnerability>
@@ -5693,6 +5710,7 @@
       <title>Occasions Plugin 1.0.4 - CSRF Vulnerability</title>
       <references>
         <exploitdb>24858</exploitdb>
+        <osvdb>91490</osvdb>
       </references>
       <type>CSRF</type>
     </vulnerability>
@@ -6732,8 +6750,11 @@
     <vulnerability>
       <title>All in One SEO Pack &lt;= 2.3.0 - XSS Vulnerability</title>
       <references>
+        <osvdb>98023</osvdb>
+        <cve>2013-5988</cve>
         <url>http://archives.neohapsis.com/archives/bugtraq/2013-10/0006.html</url>
         <url>http://packetstormsecurity.com/files/123490/</url>
+        <url>http://www.securityfocus.com/bid/62784</url>
         <secunia>55133</secunia>
       </references>
       <fixed_in>2.3.0.1</fixed_in>
@@ -6938,6 +6959,34 @@
         <url>http://quick-plugins.com/quick-contact-form/</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="email-newsletter">
+    <vulnerability>
+      <title>Email Newsletter 8.0 - 'option' Parameter Information Disclosure Vulnerability</title>
+      <references>
+        <url>http://www.securityfocus.com/bid/53850</url>
+      </references>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="faqs-manager">
+    <vulnerability>
+      <title>IndiaNIC FAQs Manager Plugin 1.0 - Multiple Vulnerabilities</title>
+      <references>
+        <exploitdb>24867</exploitdb>
+        <osvdb>91625</osvdb>
+      </references>
+      <type>MULTI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>IndiaNIC FAQs Manager Plugin 1.0 - Blind SQL Injection</title>
+      <references>
+        <exploitdb>24868</exploitdb>
+        <osvdb>91623</osvdb>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
