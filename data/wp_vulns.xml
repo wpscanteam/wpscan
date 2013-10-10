@@ -16,6 +16,7 @@
         <osvdb>97211</osvdb>
       </references>
       <type>UNKNOWN</type>
+      <fixed_in>3.6.1</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>wp-includes/functions.php get_allowed_mime_types Function SWF / EXE File Upload XSS Weakness</title>
@@ -35,6 +36,7 @@
         <url>http://core.trac.wordpress.org/changeset/25323</url>
       </references>
       <type>UNKNOWN</type>
+      <fixed_in>3.6.1</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>wp-admin/includes/post.php user_ID Parameter Manipulation Post Authorship Spoofing</title>
@@ -45,6 +47,7 @@
         <url>http://core.trac.wordpress.org/changeset/25321</url>
       </references>
       <type>UNKNOWN</type>
+      <fixed_in>3.6.1</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>wp-includes/functions.php get_allowed_mime_types Function HTML File Upload XSS Weakness</title>
@@ -2090,9 +2093,19 @@
     <vulnerability>
       <title>Wordpress &lt;= 1.5.1.2 xmlrpc Interface SQL Injection Exploit</title>
       <references>
+        <osvdb>17636</osvdb>
+        <osvdb>17637</osvdb>
+        <osvdb>17638</osvdb>
+        <osvdb>17639</osvdb>
+        <osvdb>17640</osvdb>
+        <osvdb>17641</osvdb>
+        <cve>2005-2108</cve>
         <exploitdb>1077</exploitdb>
+        <secunia>15831</secunia>
+        <secunia>15898</secunia>
       </references>
       <type>SQLI</type>
+      <fixed_in>1.5.1.3</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>XMLRPC Pingback API Internal/External Port Scanning</title>
@@ -2155,6 +2168,58 @@
         <url>http://lab.onsec.ru/2013/01/wordpress-xmlrpc-pingback-additional.html</url>
       </references>
       <type>UNKNOWN</type>
+    </vulnerability>
+  </wordpress>
+
+  <wordpress version="1.5">
+    <vulnerability>
+      <title>WordPress wp-trackback.php tb_id Parameter SQL Injection</title>
+      <references>
+        <cve>2005-1687</cve>
+        <osvdb>16701</osvdb>
+        <osvdb>16702</osvdb>
+        <osvdb>16703</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.5.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress post.php p Parameter XSS</title>
+      <references>
+        <osvdb>16702</osvdb>
+        <osvdb>16701</osvdb>
+        <osvdb>16703</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.5.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress Multiple Script Direct Request Path Disclosure</title>
+      <references>
+        <cve>2005-1688</cve>
+        <osvdb>16703</osvdb>
+        <osvdb>16701</osvdb>
+        <osvdb>16702</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.5.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress Cross-Site Scripting and SQL Injection Vulnerabilities</title>
+      <references>
+        <osvdb>16478</osvdb>
+        <secunia>15324</secunia>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>1.5.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress template-functions-post.php Multiple Field XSS</title>
+      <references>
+        <cve>2005-1102</cve>
+        <osvdb>15643</osvdb>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </wordpress>
 
