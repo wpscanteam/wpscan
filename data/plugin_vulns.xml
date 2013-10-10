@@ -2201,11 +2201,29 @@
 
   <plugin name="all-in-one-event-calendar">
     <vulnerability>
-      <title>Multiple XSS vulnerabilities in All-in-One Event Calendar for WordPress</title>
+      <title>All-in-One Event Calendar 1.4 - Multiple XSS vulnerabilities</title>
       <references>
         <url>http://seclists.org/bugtraq/2012/Apr/70</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>All-in-One Event Calendar 1.9 - wp-admin/post-new.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>96271</osvdb>
+        <secunia>54038</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.10</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>All-in-One Event Calendar 1.9 - index.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>96272</osvdb>
+        <secunia>54038</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.10</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -2308,35 +2326,38 @@
 
   <plugin name="count-per-day">
     <vulnerability>
-      <title>Count per Day Plugin 3.2.5 (counter.php) - XSS Vulnerability</title>
+      <title>Count per Day 3.2.5 - counter.php XSS Vulnerability</title>
       <references>
+        <osvdb>90893</osvdb>
         <exploitdb>24859</exploitdb>
+        <secunia>52436</secunia>
+        <url>http://packetstormsecurity.com/files/120649/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>Count Per Day 3.2.3 Cross Site Scripting</title>
+      <title>Count Per Day 3.2.3 - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/115904/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>Count Per Day 3.1.1 Cross Site Scripting</title>
+      <title>Count Per Day 3.1.1 - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/114787/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>Count Per Day plugin &lt;= 3.1.1 Multiple Vulnerabilities</title>
+      <title>Count Per Day &lt;= 3.1.1 - Multiple Vulnerabilities</title>
       <references>
         <exploitdb>18355</exploitdb>
       </references>
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>Count per Day plugin &lt;= 2.17 SQL Injection Vulnerability</title>
+      <title>Count per Day &lt;= 2.17 - SQL Injection Vulnerability</title>
       <references>
         <exploitdb>17857</exploitdb>
       </references>
@@ -6580,6 +6601,7 @@
     <vulnerability>
       <title>CSRF in admin/setting.php in Xhanch</title>
       <references>
+        <osvdb>96027</osvdb>
         <secunia>53133</secunia>
         <cve>2013-3253</cve>
       </references>
@@ -7102,6 +7124,19 @@
         <osvdb>97579</osvdb>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="a-forms">
+    <vulnerability>
+      <title>A Forms 1.4.1 - Form Submission CSRF</title>
+      <references>
+        <osvdb>96381</osvdb>
+        <secunia>54489</secunia>
+        <exploitdb></exploitdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.4.2</fixed_in>
     </vulnerability>
   </plugin>
 
