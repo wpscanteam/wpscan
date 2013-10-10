@@ -1043,8 +1043,11 @@
 
   <plugin name="bbpress">
     <vulnerability>
-      <title>BBPress SQL Injection / Path Disclosure</title>
+      <title>BBPress - SQL Injection / Path Disclosure</title>
       <references>
+        <exploitdb>22396</exploitdb>
+        <osvdb>86400</osvdb>
+        <url>http://xforce.iss.net/xforce/xfdb/78244</url>
         <url>http://packetstormsecurity.com/files/116123/</url>
       </references>
       <type>MULTI</type>
@@ -1607,6 +1610,9 @@
       <title>Font Uploader 1.2.4 Arbitrary File Upload</title>
       <references>
         <exploitdb>18994</exploitdb>
+        <osvdb>82657</osvdb>
+        <cve>2012-3814</cve>
+        <url>http://www.securityfocus.com/bid/53853</url>
       </references>
       <type>UPLOAD</type>
     </vulnerability>
@@ -1656,9 +1662,10 @@
 
   <plugin name="html5avmanager">
     <vulnerability>
-      <title>HTML5 AV Manager 0.2.7 Arbitrary File Upload</title>
+      <title>HTML5 AV Manager 0.2.7 - Arbitrary File Upload</title>
       <references>
         <exploitdb>18990</exploitdb>
+        <url>http://www.securityfocus.com/bid/53804</url>
       </references>
       <type>UPLOAD</type>
     </vulnerability>
@@ -1868,6 +1875,8 @@
       <title>LeagueManager v3.8 SQL Injection</title>
       <references>
         <exploitdb>24789</exploitdb>
+        <cve>2013-1852</cve>
+        <osvdb>91442</osvdb>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -1994,11 +2003,22 @@
 
   <plugin name="bulletproof-security">
     <vulnerability>
-      <title>BulletProof Security &lt;= 0.47 Cross Site Scripting</title>
+      <title>BulletProof Security &lt;= 0.47 - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/112618/</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>BulletProof Security - Security Log Script Insertion Vulnerability</title>
+      <references>
+        <osvdb>95928</osvdb>
+        <osvdb>95929</osvdb>
+        <osvdb>95930</osvdb>
+        <cve>2013-3487</cve>
+        <secunia>53614</secunia>
+      </references>
+      <fixed_in>0.49</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4620,8 +4640,10 @@
 
   <plugin name="solvemedia">
     <vulnerability>
-      <title>WordPress SolveMedia CSRF Vulnerability</title>
+      <title>SolveMedia 1.1.0 - CSRF Vulnerability</title>
       <references>
+        <exploitdb>24364</exploitdb>
+        <osvdb>89585</osvdb>
         <url>http://1337day.com/exploit/20222</url>
         <secunia>51927</secunia>
       </references>
@@ -5720,6 +5742,8 @@
     <vulnerability>
       <title>Mathjax Latex 1.1 CSRF Vulnerability</title>
       <references>
+        <exploitdb>24889</exploitdb>
+        <osvdb>91737</osvdb>
         <url>http://1337day.com/exploit/20566</url>
       </references>
       <type>CSRF</type>
@@ -6557,10 +6581,12 @@
 
   <plugin name="sexybookmarks">
     <vulnerability>
-      <title>CSRF in sexybookmarks</title>
+      <title>SexyBookmarks - Setting Manipulation CSRF</title>
       <references>
         <url>http://wordpress.org/plugins/sexybookmarks/changelog/</url>
+        <osvdb>95908</osvdb>
         <cve>2013-3256</cve>
+        <secunia>53138</secunia>
       </references>
       <type>CSRF</type>
       <fixed_in>6.1.5.0</fixed_in>
@@ -6780,7 +6806,19 @@
     <vulnerability>
       <title>WP Ultimate Email Marketer - Multiple Vulnerabilities</title>
       <references>
+        <osvdb>97648</osvdb>
+        <osvdb>97649</osvdb>
+        <osvdb>97650</osvdb>
+        <osvdb>97651</osvdb>
+        <osvdb>97652</osvdb>
+        <osvdb>97653</osvdb>
+        <osvdb>97654</osvdb>
+        <osvdb>97655</osvdb>
+        <osvdb>97656</osvdb>
+        <cve>2013-3263</cve>
+        <cve>2013-3264</cve>
         <secunia>53170</secunia>
+        <url>http://www.securityfocus.com/bid/62621</url>
       </references>
       <type>MULTI</type>
     </vulnerability>
@@ -6956,6 +6994,7 @@
       <title>Quick Contact Form Plugin 6.0 - Persistent XSS</title>
       <references>
         <exploitdb>28808</exploitdb>
+        <url>http://packetstormsecurity.com/files/123549/</url>
         <url>http://quick-plugins.com/quick-contact-form/</url>
       </references>
       <type>XSS</type>
@@ -6987,6 +7026,73 @@
         <osvdb>91623</osvdb>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="booking-system">
+    <vulnerability>
+      <title>Booking System - events_facualty_list.php eid Parameter Reflected XSS</title>
+      <references>
+        <osvdb>96740</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="js-restaurant">
+    <vulnerability>
+      <title>JS Restaurant - popup.php restuarant_id Parameter SQL Injection</title>
+      <references>
+        <osvdb>96743</osvdb>
+        <url>http://packetstormsecurity.com/files/122316/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="FlagEm">
+    <vulnerability>
+      <title>FlagEm Plugin - flagit.php cID Parameter XSS</title>
+      <references>
+        <osvdb>98226</osvdb>
+        <url>http://www.securityfocus.com/bid/61401</url>
+        <url>http://xforce.iss.net/xforce/xfdb/85925</url>
+        <url>http://packetstormsecurity.com/files/122505/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="chat">
+    <vulnerability>
+      <title>Chat - message Parameter XSS</title>
+      <references>
+        <osvdb>95984</osvdb>
+        <secunia>54403</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="shareaholic">
+    <vulnerability>
+      <title>Shareaholic - Unspecified CSRF</title>
+      <references>
+        <osvdb>96321</osvdb>
+        <secunia>54529</secunia>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>7.0.3.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="page-showcaser-boxes">
+    <vulnerability>
+      <title>Page Showcaser Boxes - Title Field Stored XSS</title>
+      <references>
+        <osvdb>97579</osvdb>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
