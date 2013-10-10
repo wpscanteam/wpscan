@@ -29,6 +29,7 @@ WPScan comes pre-installed on the following Linux distributions:
 - [BackBox Linux](http://www.backbox.org/)
 - [BackTrack Linux](http://www.backtrack-linux.org/)
 - [Pentoo](http://www.pentoo.ch/)
+- [Kali Linux](http://www.kali.org/)
 - [SamuraiWTF](http://samurai.inguardians.com/)
 
 Prerequisites:
