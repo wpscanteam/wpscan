@@ -184,7 +184,7 @@ def main
     if wp_theme = wp_target.theme
       puts
       # Theme version is handled in #to_s
-      puts green('[+]') + " The WordPress theme in use is #{wp_theme}"
+      puts green('[+]') + " The WordPress theme in use: #{wp_theme}"
       wp_theme.output
     end
 
