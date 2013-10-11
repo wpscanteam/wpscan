@@ -25,7 +25,7 @@ def main
     end
 
     if wpscan_options.version
-      puts "Current version is #{version}"
+      puts "Current version: #{version}"
       exit(0)
     end
 
@@ -65,7 +65,7 @@ def main
         puts "Following redirection #{redirection}"
         puts
       else
-        puts "The remote host tried to redirect us to #{redirection}"
+        puts "The remote host tried to redirect us to: #{redirection}"
         print 'Do you want follow the redirection ? [y/n] '
       end
 
@@ -110,7 +110,7 @@ def main
     puts
 
     if wp_target.has_robots?
-      puts green('[+]') + " robots.txt available under '#{wp_target.robots_url}'"
+      puts green('[+]') + " robots.txt available under: '#{wp_target.robots_url}'"
 
       wp_target.parse_robots_txt.each do |dir|
         puts "#{green('[+]')} Interesting entry from robots.txt: #{dir}"
@@ -122,19 +122,19 @@ def main
     end
 
     if wp_target.has_full_path_disclosure?
-      puts red('[!]') + " Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}'"
+      puts red('[!]') + " Full Path Disclosure (FPD) in: '#{wp_target.full_path_disclosure_url}'"
     end
 
     if wp_target.has_debug_log?
-      puts red('[!]') + " Debug log file found : #{wp_target.debug_log_url}"
+      puts red('[!]') + " Debug log file found: #{wp_target.debug_log_url}"
     end
 
     wp_target.config_backup.each do |file_url|
-      puts red("[!] A wp-config.php backup file has been found '#{file_url}'")
+      puts red("[!] A wp-config.php backup file has been found in: '#{file_url}'")
     end
 
     if wp_target.search_replace_db_2_exists?
-      puts red("[!] searchreplacedb2.php has been found '#{wp_target.search_replace_db_2_url}'")
+      puts red("[!] searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
     end
 
     wp_target.interesting_headers.each do |header|
@@ -158,12 +158,12 @@ def main
     end
 
     if wp_target.has_xml_rpc?
-      puts green('[+]') + " XML-RPC Interface available under #{wp_target.xml_rpc_url}"
+      puts green('[+]') + " XML-RPC Interface available under: #{wp_target.xml_rpc_url}"
     end
 
     if wp_target.has_malwares?
       malwares = wp_target.malwares
-      puts red('[!]') + " #{malwares.size} malware(s) found :"
+      puts red('[!]') + " #{malwares.size} malware(s) found:"
 
       malwares.each do |malware_url|
         puts
@@ -184,7 +184,7 @@ def main
     if wp_theme = wp_target.theme
       puts
       # Theme version is handled in #to_s
-      puts green('[+]') + " The WordPress theme in use: #{wp_theme}"
+      puts green('[+]') + " WordPress theme in use: #{wp_theme}"
       wp_theme.output
     end
 
@@ -194,7 +194,7 @@ def main
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
-        puts "#{wp_plugins.size} plugins found :"
+        puts " |  #{wp_plugins.size} plugins found:"
 
         wp_plugins.output
       else
@@ -259,7 +259,7 @@ def main
       )
       puts
       if !wp_timthumbs.empty?
-        puts green('[+]') + " We found #{wp_timthumbs.size} timthumb file/s :"
+        puts green('[+]') + " We found #{wp_timthumbs.size} timthumb file/s:"
         puts
 
         wp_timthumbs.output
@@ -292,7 +292,7 @@ def main
           exit(1)
         end
       else
-        puts green('[+]') + " We found the following #{wp_users.size} user/s :"
+        puts green('[+]') + " We found the following #{wp_users.size} user/s:"
         wp_users.output(margin_left: ' ' * 4)
       end
 
@@ -309,7 +309,7 @@ def main
         protection_plugin = wp_target.login_protection_plugin()
 
         puts
-        puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing !"
+        puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
         print '[?] Do you want to start the brute force anyway ? [y/n] '
 
         bruteforce = false if Readline.readline !~ /^y/i
@@ -350,7 +350,7 @@ def main
       puts red(e.message)
     else
       puts red("[ERROR] #{e.message}")
-      puts red('Trace :')
+      puts red('Trace:')
       puts red(e.backtrace.join("\n"))
     end
     exit(1)
