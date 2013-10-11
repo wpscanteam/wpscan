@@ -106,7 +106,7 @@ def main
     start_time   = Time.now
     start_memory = get_memory_usage
     puts "| URL: #{wp_target.url}"
-    puts "| Started on #{start_time.asctime}"
+    puts "| Started: #{start_time.asctime}"
     puts
 
     if wp_target.has_robots?
@@ -338,8 +338,8 @@ def main
     used_memory = get_memory_usage - start_memory
     
     puts
-    puts green("[+] Finished at #{stop_time.asctime}")
-    puts green("[+] Memory Used: #{used_memory.bytes_to_human}")
+    puts green("[+] Finished: #{stop_time.asctime}")
+    puts green("[+] Memory used: #{used_memory.bytes_to_human}")
     puts green("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
     exit(0) # must exit!
 
