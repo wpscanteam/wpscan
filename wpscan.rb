@@ -198,7 +198,7 @@ def main
 
         wp_plugins.output
       else
-        puts 'No plugins found :('
+        puts 'No plugins found'
       end
     end
 
@@ -220,7 +220,7 @@ def main
 
         wp_plugins.output
       else
-        puts 'No plugins found :('
+        puts 'No plugins found'
       end
     end
 
@@ -242,7 +242,7 @@ def main
 
         wp_themes.output
       else
-        puts 'No themes found :('
+        puts 'No themes found'
       end
     end
 
@@ -267,7 +267,7 @@ def main
         puts
         puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')
       else
-        puts 'No timthumb files found :('
+        puts 'No timthumb files found'
       end
     end
 
@@ -284,7 +284,7 @@ def main
       )
 
       if wp_users.empty?
-        puts 'We did not enumerate any usernames :('
+        puts 'We did not enumerate any usernames'
 
         if wpscan_options.wordlist
           puts 'Try supplying your own username with the --username option'
