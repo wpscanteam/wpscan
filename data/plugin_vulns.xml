@@ -5,21 +5,23 @@
 
   <plugin name="content-slide">
     <vulnerability>
-      <title>Content Slide - Cross-Site Requst Forgery Vulnerability</title>
-      <type>CSRF</type>
+      <title>Content Slide &lt;=1.4.2 - Cross Site Requst Forgery Vulnerability</title>
       <references>
         <osvdb>93871</osvdb>
+        <cve>2013-2708</cve>
         <secunia>52949</secunia>
       </references>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 
   <plugin name="wordpress-simple-paypal-shopping-cart">
     <vulnerability>
-      <title>Simple Paypal Shopping Cart - Cross-Site Request Forgery Vulnerability</title>
+      <title>Simple Paypal Shopping Cart 3.5 - Cross-Site Request Forgery Vulnerability</title>
       <references>
-        <secunia>52963</secunia>
         <osvdb>93953</osvdb>
+        <cve>2013-2705</cve>
+        <secunia>52963</secunia>
       </references>
       <type>CSRF</type>
       <fixed_in>3.6</fixed_in>
@@ -28,18 +30,19 @@
 
   <plugin name="wp-sendsms">
     <vulnerability>
-      <title>WP-SendSMS - Setting Manipulation CSRF</title>
+      <title>WP-SendSMS 1.0 - Setting Manipulation CSRF</title>
       <references>
-        <secunia>53796</secunia>
         <osvdb>94209</osvdb>
+        <secunia>53796</secunia>
         <exploitdb>26124</exploitdb>
       </references>
       <type>CSRF</type>
     </vulnerability>
     <vulnerability>
-      <title>WP-SendSMS - wp-admin/admin.php Multiple Parameter XSS</title>
+      <title>WP-SendSMS 1.0 - wp-admin/admin.php Multiple Parameter XSS</title>
       <references>
         <osvdb>94210</osvdb>
+        <exploitdb>26124</exploitdb>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -149,7 +152,7 @@
 
   <plugin name="thanks-you-counter-button">
     <vulnerability>
-      <title>Thank You Counter Button - XSS</title>
+      <title>Thank You Counter Button &lt;=1.8.2 - XSS</title>
       <references>
         <secunia>50977</secunia>
       </references>
@@ -160,7 +163,7 @@
 
   <plugin name="bookings">
     <vulnerability>
-      <title>Bookings - XSS</title>
+      <title>Bookings &lt;=1.8.2 - XSS</title>
       <references>
         <secunia>50975</secunia>
       </references>
@@ -171,12 +174,13 @@
 
   <plugin name="cimy-user-manager">
     <vulnerability>
-      <title>Cimy User Manager - Arbitrary File Disclosure</title>
+      <title>Cimy User Manager &lt;=1.4.2 - Arbitrary File Disclosure</title>
       <references>
         <secunia>50834</secunia>
         <url>http://ceriksen.com/2012/10/24/wordpress-cimy-user-manager-arbitrary-file-disclosure/</url>
       </references>
       <type>UNKNOWN</type>
+      <fixed_in>1.4.4</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -204,15 +208,17 @@
 
   <plugin name="wp125">
     <vulnerability>
-      <title>WP125 - Multiple XSS</title>
+      <title>WP125 &lt;=1.4.4 - Multiple XSS</title>
       <references>
         <secunia>50976</secunia>
       </references>
       <type>XSS</type>
+      <fixed_in>1.4.5</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>WP125 - CSRF</title>
+      <title>WP125 &lt;=1.4.9 - CSRF</title>
       <references>
+        <cve>2013-2700</cve>
         <url>http://www.securityfocus.com/bid/58934</url>
       </references>
       <type>CSRF</type>
@@ -4261,6 +4267,8 @@
     <vulnerability>
       <title>Extend 1.3.7 - Shell Upload vulnerability</title>
       <references>
+        <osvdb>75638</osvdb>
+        <cve>2011-4106</cve>
         <exploitdb>17872</exploitdb>
       </references>
       <type>UPLOAD</type>
@@ -5098,7 +5106,7 @@
 
   <plugin name="gotmls">
     <vulnerability>
-      <title>Get Off Malicious Scripts Cross-Site Scripting Vulnerability</title>
+      <title>Get Off Malicious Scripts - Cross-Site Scripting Vulnerability</title>
       <references>
         <secunia>50030</secunia>
       </references>
@@ -5131,7 +5139,7 @@
 
   <plugin name="wp-explorer-gallery">
     <vulnerability>
-      <title>wp-explorer-gallery Arbitrary File Upload Vulnerability</title>
+      <title>wp-explorer-gallery - Arbitrary File Upload Vulnerability</title>
       <references>
         <url>http://www.1337day.com/exploit/20251</url>
       </references>
@@ -5141,7 +5149,7 @@
 
   <plugin name="accordion">
     <vulnerability>
-      <title>accordion Arbitrary File Upload Vulnerability</title>
+      <title>accordion - Arbitrary File Upload Vulnerability</title>
       <references>
         <url>http://www.1337day.com/exploit/20254</url>
       </references>
@@ -5151,7 +5159,7 @@
 
   <plugin name="wp-catpro">
     <vulnerability>
-      <title>wp-catpro Arbitrary File Upload Vulnerability</title>
+      <title>wp-catpro - Arbitrary File Upload Vulnerability</title>
       <references>
         <url>http://www.1337day.com/exploit/20256</url>
       </references>
@@ -5242,7 +5250,7 @@
 
   <plugin name="forumconverter">
     <vulnerability>
-      <title>ForumConverter SQL Injection Vulnerability</title>
+      <title>ForumConverter - SQL Injection Vulnerability</title>
       <references>
         <url>http://www.1337day.com/exploit/20275</url>
       </references>
@@ -5252,7 +5260,7 @@
 
   <plugin name="newsletter">
     <vulnerability>
-      <title>Newsletter SQL Injection Vulnerability</title>
+      <title>Newsletter - SQL Injection Vulnerability</title>
       <references>
         <url>http://www.1337day.com/exploit/20287</url>
       </references>
@@ -5271,7 +5279,7 @@
 
   <plugin name="commentluv">
     <vulnerability>
-      <title>Cross-Site Scripting (XSS) Vulnerability in CommentLuv WordPress Plugin</title>
+      <title>CommentLuv - Cross Site Scripting Vulnerability</title>
       <references>
         <url>https://www.htbridge.com/advisory/HTB23138</url>
         <url>http://packetstormsecurity.com/files/120090/</url>
@@ -5373,7 +5381,7 @@
 
   <plugin name="smart-flv">
     <vulnerability>
-      <title>smart-flv jwplayer.swf XSS</title>
+      <title>smart-flv - jwplayer.swf XSS</title>
       <references>
         <url>http://www.openwall.com/lists/oss-security/2013/02/24/7</url>
         <url>http://packetstormsecurity.com/files/115100/</url>
@@ -5397,7 +5405,6 @@
     <vulnerability>
       <title>PHP Shell Plugin</title>
       <references>
-
         <url>https://github.com/wpscanteam/wpscan/issues/138</url>
         <url>http://plugins.svn.wordpress.org/php-shell/trunk/shell.php</url>
       </references>
@@ -5407,7 +5414,7 @@
 
   <plugin name="marekkis-watermark">
     <vulnerability>
-      <title>Marekkis Watermark Cross Site Scripting</title>
+      <title>Marekkis Watermark - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/120378/</url>
       </references>
@@ -5417,7 +5424,7 @@
 
   <plugin name="responsive-logo-slideshow">
     <vulnerability>
-      <title>Responsive Logo Slideshow Cross Site Scripting</title>
+      <title>Responsive Logo Slideshow - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/120379/</url>
       </references>
@@ -5717,7 +5724,7 @@
 
   <plugin name="vkontakte-api">
     <vulnerability>
-      <title>vkontakte-api XSS vulnerability</title>
+      <title>vkontakte-api - XSS vulnerability</title>
       <references>
         <url>http://www.openwall.com/lists/oss-security/2013/03/11/1</url>
         <cve>2009-4168</cve>
@@ -5728,7 +5735,7 @@
 
   <plugin name="terillion-reviews">
     <vulnerability>
-      <title>Terillion Reviews Cross Site Scripting</title>
+      <title>Terillion Reviews - Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/120730/</url>
       </references>
@@ -5792,7 +5799,7 @@
 
   <plugin name="wp-banners-lite">
     <vulnerability>
-      <title>XSS vulnerability on WP-Banners-Lite</title>
+      <title>WP-Banners-Lite - XSS vulnerability</title>
       <references>
         <url>http://seclists.org/fulldisclosure/2013/Mar/209</url>
         <url>http://threatpost.com/en_us/blogs/xss-flaw-wordpress-plugin-allows-injection-malicious-code-032513
@@ -5828,7 +5835,7 @@
 
   <plugin name="chikuncount">
     <vulnerability>
-      <title>ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
+      <title>chikuncount - ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
       <references>
         <exploitdb>24492</exploitdb>
       </references>
@@ -5838,7 +5845,7 @@
 
   <plugin name="open-flash-chart-core-wordpress-plugin">
     <vulnerability>
-      <title>ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
+      <title>open-flash-chart-core - ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
       <references>
         <exploitdb>24492</exploitdb>
         <secunia>37903</secunia>
@@ -5851,7 +5858,7 @@
 
   <plugin name="spamtask">
     <vulnerability>
-      <title>ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
+      <title>spamtask - ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
       <references>
         <exploitdb>24492</exploitdb>
       </references>
@@ -5861,7 +5868,7 @@
 
   <plugin name="php-analytics">
     <vulnerability>
-      <title>ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
+      <title>php-analytics - ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
       <references>
         <exploitdb>24492</exploitdb>
       </references>
@@ -5871,7 +5878,7 @@
 
   <plugin name="seo-spy-google-wordpress-plugin">
     <vulnerability>
-      <title>ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
+      <title>seo-spy-google - ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
       <references>
         <exploitdb>24492</exploitdb>
       </references>
@@ -5881,7 +5888,7 @@
 
   <plugin name="wp-seo-spy-google">
     <vulnerability>
-      <title>ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
+      <title>wp-seo-spy-google - ofc_upload_image.php Arbitrary File Upload Vulnerability</title>
       <references>
         <exploitdb>24492</exploitdb>
       </references>
@@ -5901,7 +5908,7 @@
 
   <plugin name="fbsurveypro">
     <vulnerability>
-      <title>fbsurveypro XSS Vulnerability</title>
+      <title>fbsurveypro - XSS Vulnerability</title>
       <references>
         <url>http://1337day.com/exploit/20623</url>
       </references>
@@ -5911,7 +5918,7 @@
 
   <plugin name="timelineoptinpro">
     <vulnerability>
-      <title>timelineoptinpro XSS Vulnerability</title>
+      <title>timelineoptinpro - XSS Vulnerability</title>
       <references>
         <url>http://1337day.com/exploit/20620</url>
       </references>
@@ -5921,7 +5928,7 @@
 
   <plugin name="kioskprox">
     <vulnerability>
-      <title>kioskprox XSS Vulnerability</title>
+      <title>kioskprox - XSS Vulnerability</title>
       <references>
         <url>http://1337day.com/exploit/20624</url>
       </references>
@@ -5931,7 +5938,7 @@
 
   <plugin name="bigcontact">
     <vulnerability>
-      <title>bigcontact SQLI</title>
+      <title>bigcontact - SQLI</title>
       <references>
         <url>http://plugins.trac.wordpress.org/changeset/689798</url>
       </references>
@@ -5942,7 +5949,7 @@
 
   <plugin name="drawblog">
     <vulnerability>
-      <title>drawblog CSRF</title>
+      <title>drawblog - CSRF</title>
       <references>
         <url>http://plugins.trac.wordpress.org/changeset/691178</url>
       </references>
@@ -5953,7 +5960,7 @@
 
   <plugin name="social-media-widget">
     <vulnerability>
-      <title>social-media-widget malicious code</title>
+      <title>social-media-widget - malicious code</title>
       <references>
         <url>http://plugins.trac.wordpress.org/changeset?reponame=&amp;old=691839%40social-media-widget%2Ftrunk&amp;new=693941%40social-media-widget%2Ftrunk</url>
         <url>http://slashdot.org/submission/2592777/top-wordpress-widget-sold-off-turned-into-seo-spambot
@@ -5966,7 +5973,7 @@
 
   <plugin name="facebook-members">
     <vulnerability>
-      <title>facebook-members CSRF</title>
+      <title>facebook-members - CSRF</title>
       <references>
         <secunia>52962</secunia>
         <cve>2013-2703</cve>
@@ -5978,10 +5985,11 @@
 
   <plugin name="foursquare-checkins">
     <vulnerability>
-      <title>foursquare-checkins CSRF</title>
+      <title>foursquare-checkins - CSRF</title>
       <references>
-        <secunia>53151</secunia>
+        <osvdb>92641</osvdb>
         <cve>2013-2709</cve>
+        <secunia>53151</secunia>
       </references>
       <type>CSRF</type>
       <fixed_in>1.3</fixed_in>
@@ -5990,7 +5998,7 @@
 
   <plugin name="formidable">
     <vulnerability>
-      <title>formidable Pro Unspecified Vulnerabilities</title>
+      <title>formidable Pro - Unspecified Vulnerabilities</title>
       <references>
         <secunia>53121</secunia>
       </references>
@@ -6001,7 +6009,7 @@
 
   <plugin name="all-in-one-webmaster">
     <vulnerability>
-      <title>all-in-one-webmaster CSRF</title>
+      <title>all-in-one-webmaster - CSRF</title>
       <references>
         <secunia>52877</secunia>
         <cve>2013-2696</cve>
@@ -6043,7 +6051,7 @@
 
   <plugin name="syntaxhighlighter">
     <vulnerability>
-      <title>syntaxhighlighter clipboard.swf XSS</title>
+      <title>syntaxhighlighter - clipboard.swf XSS</title>
       <references>
         <secunia>53235</secunia>
       </references>
@@ -6065,7 +6073,7 @@
 
   <plugin name="easy-adsense-lite">
     <vulnerability>
-      <title>easy-adsense-lite CSRF</title>
+      <title>easy-adsense-lite - CSRF</title>
       <references>
         <secunia>52953</secunia>
         <cve>2013-2702</cve>
@@ -6086,7 +6094,7 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>uk-cookie CSRF</title>
+      <title>uk-cookie - CSRF</title>
       <references>
         <url>http://www.openwall.com/lists/oss-security/2013/06/06/10</url>
         <osvdb>94032</osvdb>
@@ -6098,7 +6106,7 @@
 
   <plugin name="wp-cleanfix">
     <vulnerability>
-      <title>wp-cleanfix Remote Command Execution, CSRF and XSS</title>
+      <title>wp-cleanfix - Remote Command Execution, CSRF and XSS</title>
       <references>
         <url>https://github.com/wpscanteam/wpscan/issues/186</url>
         <url>http://wordpress.org/support/topic/plugin-wp-cleanfix-remote-code-execution-warning</url>
@@ -6170,8 +6178,9 @@
 
   <plugin name="wp-print-friendly">
     <vulnerability>
-      <title>WP Print Friendly - Security Bypass Vulnerability</title>
+      <title>WP Print Friendly &lt;=0.5.2 - Security Bypass Vulnerability</title>
       <references>
+        <osvdb>93243</osvdb>
         <secunia>53371</secunia>
       </references>
       <type>UNKNOWN</type>
@@ -6246,7 +6255,7 @@
 
   <plugin name="digg-digg">
     <vulnerability>
-      <title>Digg Digg CSRF</title>
+      <title>Digg Digg - CSRF</title>
       <references>
         <url>http://wordpress.org/plugins/digg-digg/changelog/</url>
         <secunia>53120</secunia>
@@ -6261,9 +6270,9 @@
     <vulnerability>
       <title>SS Quiz - Multiple Unspecified Vulnerabilities</title>
       <references>
-        <url>http://wordpress.org/plugins/ssquiz/changelog/</url>
-        <secunia>53378</secunia>
         <osvdb>93531</osvdb>
+        <secunia>53378</secunia>
+        <url>http://wordpress.org/plugins/ssquiz/changelog/</url>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>2.0</fixed_in>
@@ -6272,7 +6281,7 @@
 
   <plugin name="funcaptcha">
     <vulnerability>
-      <title>FunCaptcha CSRF</title>
+      <title>FunCaptcha - CSRF</title>
       <references>
         <url>http://wordpress.org/extend/plugins/funcaptcha/changelog/</url>
       </references>
@@ -6283,7 +6292,7 @@
 
   <plugin name="xili-language">
     <vulnerability>
-      <title>xili-language XSS</title>
+      <title>xili-language - XSS</title>
       <references>
         <url>http://wordpress.org/plugins/xili-language/changelog/</url>
       </references>
@@ -6294,7 +6303,7 @@
 
   <plugin name="wordpress-seo">
     <vulnerability>
-      <title>Security issue which allowed any user to reset settings</title>
+      <title>wordpress-seo - Security issue which allowed any user to reset settings</title>
       <references>
         <url>http://wordpress.org/plugins/wordpress-seo/changelog/</url>
       </references>
@@ -6305,7 +6314,7 @@
 
   <plugin name="underconstruction">
     <vulnerability>
-      <title>CSRF in WordPress underConstruction plugin</title>
+      <title>Under Construction - CSRF</title>
       <references>
         <url>http://wordpress.org/plugins/underconstruction/changelog/</url>
         <secunia>52881</secunia>
@@ -6319,7 +6328,7 @@
 
   <plugin name="adif-log-search-widget">
     <vulnerability>
-      <title>ADIF Log Search Widget XSS Arbitrary Vulnerability</title>
+      <title>ADIF Log Search Widget - XSS Arbitrary Vulnerability</title>
       <references>
         <url>http://packetstormsecurity.com/files/121777/</url>
         <secunia>53599</secunia>
@@ -6354,7 +6363,7 @@
 
   <plugin name="export-to-text">
     <vulnerability>
-      <title>Remote File Inclusion Vulnerability</title>
+      <title>Export to text - Remote File Inclusion Vulnerability</title>
       <references>
         <secunia>51348</secunia>
         <osvdb>93715</osvdb>
@@ -6468,7 +6477,7 @@
 
   <plugin name="wp-maintenance-mode">
     <vulnerability>
-      <title>WP Maintenance Mode Setting Manipulation CSRF</title>
+      <title>WP Maintenance Mode - Setting Manipulation CSRF</title>
       <references>
         <osvdb>94450</osvdb>
       </references>
@@ -6489,7 +6498,7 @@
 
   <plugin name="mapsmarker">
     <vulnerability>
-      <title>Leaflet Maps Marker Tag Multiple Parameter SQL Injection</title>
+      <title>Leaflet Maps Marker - Tag Multiple Parameter SQL Injection</title>
       <references>
         <osvdb>94388</osvdb>
       </references>
@@ -6522,7 +6531,7 @@
 
   <plugin name="dropdown-menu-widget">
     <vulnerability>
-      <title>Dropdown Menu Widget Script Insertion CSRF</title>
+      <title>Dropdown Menu Widget - Script Insertion CSRF</title>
       <references>
         <osvdb>94771</osvdb>
       </references>
@@ -6532,7 +6541,7 @@
 
   <plugin name="buddypress-extended-friendship-request">
     <vulnerability>
-      <title>BuddyPress Extended Friendship Request wp-admin/admin-ajax.php friendship_request_message Parameter XSS
+      <title>BuddyPress Extended Friendship Request - wp-admin/admin-ajax.php friendship_request_message Parameter XSS
       </title>
       <references>
         <osvdb>94807</osvdb>
@@ -6544,7 +6553,7 @@
 
   <plugin name="wp-private-messages">
     <vulnerability>
-      <title>wp-private-messages /wp-admin/profile.php msgid Parameter SQL Injection</title>
+      <title>wp-private-messages - /wp-admin/profile.php msgid Parameter SQL Injection</title>
       <references>
         <osvdb>94702</osvdb>
       </references>
@@ -6554,7 +6563,7 @@
 
   <plugin name="stream-video-player">
     <vulnerability>
-      <title>Stream Video Player - - Setting Manipulation CSRF</title>
+      <title>Stream Video Player - Setting Manipulation CSRF</title>
       <references>
         <osvdb>94466</osvdb>
       </references>
@@ -6564,7 +6573,7 @@
 
   <plugin name="duplicator">
     <vulnerability>
-      <title>Duplicator installer.cleanup.php package Parameter XSS</title>
+      <title>Duplicator - installer.cleanup.php package Parameter XSS</title>
       <references>
         <osvdb>95627</osvdb>
         <cve>2013-4625</cve>
@@ -6576,7 +6585,7 @@
 
   <plugin name="citizen-space">
     <vulnerability>
-      <title>Citizen Space Script Insertion CSRF</title>
+      <title>Citizen Space - Script Insertion CSRF</title>
       <references>
         <osvdb>95570</osvdb>
       </references>
@@ -6587,7 +6596,7 @@
 
   <plugin name="spicy-blogroll">
     <vulnerability>
-      <title>Spicy Blogroll spicy-blogroll-ajax.php Multiple Parameter Remote File Inclusion</title>
+      <title>Spicy Blogroll - spicy-blogroll-ajax.php Multiple Parameter Remote File Inclusion</title>
       <references>
         <osvdb>95557</osvdb>
         <exploitdb>26804</exploitdb>
@@ -6598,7 +6607,7 @@
 
   <plugin name="pie-register">
     <vulnerability>
-      <title>Pie Register wp-login.php Multiple Parameter XSS</title>
+      <title>Pie Register - wp-login.php Multiple Parameter XSS</title>
       <references>
         <osvdb>95160</osvdb>
       </references>
@@ -6609,7 +6618,7 @@
 
   <plugin name="xhanch-my-twitter">
     <vulnerability>
-      <title>CSRF in admin/setting.php in Xhanch</title>
+      <title>Xhanch my Twitter - CSRF in admin/setting.php</title>
       <references>
         <osvdb>96027</osvdb>
         <secunia>53133</secunia>
@@ -6636,7 +6645,7 @@
 
   <plugin name="hms-testimonials">
     <vulnerability>
-      <title>CSRF in HMS Testimonials 2.0.10</title>
+      <title>HMS Testimonials 2.0.10 - CSRF</title>
       <references>
         <url>http://wordpress.org/plugins/hms-testimonials/changelog/</url>
         <cve>2013-4240</cve>
@@ -6651,7 +6660,7 @@
       <fixed_in>2.0.11</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>XSS in HMS Testimonials 2.0.10</title>
+      <title>HMS Testimonials 2.0.10 - XSS</title>
       <references>
         <url>http://wordpress.org/plugins/hms-testimonials/changelog/</url>
         <cve>2013-4241</cve>
@@ -6671,20 +6680,22 @@
     <vulnerability>
       <title>IndiaNIC Testimonial 2.2 - CSRF vulnerability</title>
       <references>
-        <url>http://seclists.org/fulldisclosure/2013/Sep/5</url>
+        <osvdb>96792</osvdb>
         <cve>2013-5672</cve>
         <exploitdb>28054</exploitdb>
         <url>http://packetstormsecurity.com/files/123036/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Sep/5</url>
       </references>
       <type>CSRF</type>
     </vulnerability>
     <vulnerability>
       <title>IndiaNIC Testimonial 2.2 - SQL Injection vulnerability</title>
       <references>
-        <url>http://seclists.org/fulldisclosure/2013/Sep/5</url>
+        <osvdb>96793</osvdb>
         <cve>2013-5673</cve>
         <exploitdb>28054</exploitdb>
         <url>http://packetstormsecurity.com/files/123036/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Sep/5</url>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -6714,7 +6725,7 @@
 
   <plugin name="platinum-seo-pack">
     <vulnerability>
-      <title>platinum_seo_pack.php s Parameter Reflected XSS</title>
+      <title>platinum_seo_pack.php - s Parameter Reflected XSS</title>
       <references>
         <osvdb>97263</osvdb>
       </references>
@@ -6792,11 +6803,11 @@
     <vulnerability>
       <title>Lazy SEO 1.1.9 - lazyseo.php File Upload Arbitrary Code Execution</title>
       <references>
-        <url>http://packetstormsecurity.com/files/123349/</url>
-        <url>http://xforce.iss.net/xforce/xfdb/87384</url>
         <osvdb>97662</osvdb>
         <cve>2013-5961</cve>
         <exploitdb>28452</exploitdb>
+        <url>http://packetstormsecurity.com/files/123349/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/87384</url>
       </references>
       <type>UPLOAD</type>
     </vulnerability>
