@@ -1502,8 +1502,11 @@
       <title>wp-gpx-max version 1.1.21 - Arbitrary File Upload</title>
       <references>
         <exploitdb>19050</exploitdb>
+        <url>http://www.securityfocus.com/bid/53909</url>
+        <url>http://packetstormsecurity.org/files/113523/</url>
       </references>
       <type>UPLOAD</type>
+      <fixed_in>1.1.23</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -1558,7 +1561,11 @@
     <vulnerability>
       <title>Plugin: Newsletter 1.5 - Remote File Disclosure Vulnerability</title>
       <references>
+        <osvdb>82703</osvdb>
+        <cve>2012-3588</cve>
+        <secunia>49464</secunia>
         <exploitdb>19018</exploitdb>
+        <url>http://packetstormsecurity.org/files/113413/</url>
       </references>
       <type>UNKNOWN</type>
     </vulnerability>
@@ -6887,10 +6894,12 @@
 
   <plugin name="wp-miniaudioplayer">
     <vulnerability>
-      <title>miniAudioPlayer - Two XSS Vulnerabilities</title>
+      <title>miniAudioPlayer 1.3.8 - maplayertinymce.php Multiple Parameter XSS</title>
       <references>
+        <osvdb>97768</osvdb>
         <secunia>54979</secunia>
         <url>http://packetstormsecurity.com/files/123372/</url>
+        <url>http://www.securityfocus.com/bid/62629</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -6898,11 +6907,14 @@
 
   <plugin name="simple-custom-website-data">
     <vulnerability>
-      <title>Custom Website Data - XSS Vulnerability</title>
+      <title>Custom Website Data 1.0 - wp-admin/admin.php ref Parameter XSS</title>
       <references>
+        <osvdb>97668</osvdb>
         <secunia>54865</secunia>
+        <url>http://www.securityfocus.com/bid/62624</url>
       </references>
       <type>XSS</type>
+      <fixed_in>1.1</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -6926,6 +6938,8 @@
     <vulnerability>
       <title>LBG Zoominoutslider - XSS Vulnerability</title>
       <references>
+        <osvdb>97887</osvdb>
+        <secunia>54983</secunia>
         <url>http://packetstormsecurity.com/files/123367/</url>
       </references>
       <type>XSS</type>
@@ -7276,6 +7290,16 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.2.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ab-categories-search-widget">
+    <vulnerability>
+      <title>AB Categories Search Widget 0.1 - s Parameter Reflected XSS</title>
+      <references>
+        <osvdb>97987</osvdb>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
