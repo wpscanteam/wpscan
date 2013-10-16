@@ -218,7 +218,9 @@
     <vulnerability>
       <title>WP125 &lt;=1.4.9 - CSRF</title>
       <references>
+        <osvdb>92113</osvdb>
         <cve>2013-2700</cve>
+        <secunia>52876</secunia>
         <url>http://www.securityfocus.com/bid/58934</url>
       </references>
       <type>CSRF</type>
@@ -445,13 +447,22 @@
 
   <plugin name="levelfourstorefront">
     <vulnerability>
-      <title>Shopping Cart - Shell Upload, SQL Injection</title>
+      <title>Shopping Cart 8.1.14 - Shell Upload, SQL Injection</title>
       <references>
         <url>http://packetstormsecurity.com/files/119217/</url>
         <secunia>51690</secunia>
       </references>
       <type>MULTI</type>
       <fixed_in>8.1.15</fixed_in>
+    </vulnerability>
+  </plugin>
+    <vulnerability>
+      <title>Level Four Storefront - levelfourstorefront/getsortmanufacturers.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>91680</osvdb>
+        <url>http://packetstormsecurity.com/files/120950/</url>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
@@ -2345,12 +2356,20 @@
 
   <plugin name="count-per-day">
     <vulnerability>
-      <title>Count per Day 3.2.5 - counter.php XSS Vulnerability</title>
+      <title>Count per Day 3.2.5 - /wp-content/wp-admin/index.php daytoshow Parameter XSS</title>
       <references>
         <osvdb>90893</osvdb>
-        <exploitdb>24859</exploitdb>
         <secunia>52436</secunia>
         <url>http://packetstormsecurity.com/files/120649/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Count per Day 3.2.5 - counter.php HTTP Referer Header XSS</title>
+      <references>
+        <osvdb>91491</osvdb>
+        <exploitdb>24859</exploitdb>
+        <url>http://packetstormsecurity.com/files/120870/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -7316,6 +7335,20 @@
       </references>
       <type>UNKNOWN</type>
       <fixed_in>0.2.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="player">
+    <vulnerability>
+      <title>Spider Video Player 2.1 - /wp-content/plugins/player/settings.php theme Parameter SQL Injection</title>
+      <references>
+        <osvdb>92264</osvdb>
+        <cve>2013-3532</cve>
+        <url>http://packetstormsecurity.com/files/121250/</url>
+        <url>http://www.securityfocus.com/bid/59021</url>
+        <url>http://xforce.iss.net/xforce/xfdb/83374</url>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
