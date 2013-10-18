@@ -6501,11 +6501,23 @@
 
   <plugin name="antivirus">
     <vulnerability>
-      <title>AntiVirus - FPD and Security bypass vulnerabilities</title>
+      <title>AntiVirus 1.0 - PHP Backdoor Detection Bypass</title>
       <references>
+        <osvdb>95134</osvdb>
+        <url>http://packetstormsecurity.com/files/121833/</url>
         <url>http://seclists.org/fulldisclosure/2013/Jun/0</url>
       </references>
-      <type>MULTI</type>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>AntiVirus 1.0 - uninstall.php Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>95135</osvdb>
+        <url>http://packetstormsecurity.com/files/121833/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Jun/0</url>
+      </references>
+      <type>FPD</type>
+      <fixed_in>1.1</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -7386,6 +7398,16 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.1.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="feed">
+    <vulnerability>
+      <title>Feed - news_dt.php nid Parameter SQL Injection</title>
+      <references>
+        <osvdb>94804</osvdb>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
