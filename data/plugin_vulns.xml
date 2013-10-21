@@ -869,6 +869,16 @@
     </vulnerability>
   </plugin>
 
+  <plugin name="wp-image-resizer">
+    <vulnerability>
+      <title>Image Resizer - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123651/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
   <plugin name="wp-levoslideshow">
     <vulnerability>
       <title>wp-levoslideshow - Arbitrary File Upload Vulnerability</title>
@@ -4774,12 +4784,19 @@
 
   <plugin name="woocommerce">
     <vulnerability>
-      <title>WooCommerce - index.php calc_shipping_state Parameter XSS</title>
+      <title>WooCommerce 2.0.12 - index.php calc_shipping_state Parameter XSS</title>
       <references>
         <osvdb>95480</osvdb>
       </references>
       <type>XSS</type>
       <fixed_in>2.0.13</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WooCommerce 2.0.17 - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123684/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -7003,8 +7020,9 @@
 
   <plugin name="nospampti">
     <vulnerability>
-      <title>NOSpamPTI 2.1 - Blind SQL Injection</title>
+      <title>NOSpamPTI 2.1 - wp-comments-post.php comment_post_ID Parameter SQL Injection</title>
       <references>
+        <osvdb>97528</osvdb>
         <exploitdb>28485</exploitdb>
         <cve>2013-5917</cve>
         <url>http://packetstormsecurity.com/files/123331/</url>
@@ -7109,6 +7127,18 @@
         <exploitdb>28808</exploitdb>
         <url>http://packetstormsecurity.com/files/123549/</url>
         <url>http://quick-plugins.com/quick-contact-form/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="quick-paypal-payments">
+    <vulnerability>
+      <title>Quick Paypal Payments 3.0 - Payment Sending Multiple Parameter XSS</title>
+      <references>
+        <osvdb>98715</osvdb>
+        <secunia>55292</secunia>
+        <url>http://packetstormsecurity.com/files/123662/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -7369,8 +7399,9 @@
 
   <plugin name="finalist">
     <vulnerability>
-      <title>Finalist - Cross Site Scripting</title>
+      <title>Finalist - /wp-content/plugins/finalist/vote.php id Parameter Reflected XSS</title>
       <references>
+        <osvdb>98665</osvdb>
         <url>http://packetstormsecurity.com/files/123597/</url>
       </references>
       <type>XSS</type>
@@ -7379,10 +7410,12 @@
 
   <plugin name="dexs-pm-system">
     <vulnerability>
-      <title>Dexs PM System Cross Site Scripting</title>
+      <title>Dexs PM System 1.0.1 - Private Message subject Parameter Stored XSS</title>
       <references>
+        <osvdb>98668</osvdb>
+        <secunia>55296</secunia>
         <exploitdb>28970</exploitdb>
-        <url>http://packetstormsecurity.com/files/123634/</url>
+        <url>http://www.securityfocus.com/bid/63021</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -7420,6 +7453,18 @@
         <osvdb>94804</osvdb>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="social-sharing-toolkit">
+    <vulnerability>
+      <title>Social Sharing Toolkit 2.2.1 - Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>98717</osvdb>
+        <cve>2013-2701</cve>
+        <secunia>52951</secunia>
+      </references>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 
