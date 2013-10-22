@@ -63,7 +63,41 @@ describe 'WpPlugins::Detectable' do
   end
 
   describe '::from_content' do
-    # TODO
+    context 'when no body' do
+      it 'returns an empty WpPlugins' do
+        stub_request(:get, url).to_return(status: 200, body: '')
+        subject.send(:from_content, wp_target).should == subject.new
+      end
+    end
+
+    context 'when body' do
+      @body = ''
+      let(:expected) { subject.new(wp_target) }
+
+      after :each do
+        stub_request(:get, url).to_return(status: 200, body: @body)
+        stub_request(:get, /readme\.txt/i).to_return(status: 404)
+        subject.send(:from_content, wp_target).should == expected
+      end
+
+        it 'returns the w3-total-cache' do
+          @body = 'w3 total cache'
+          expected.add('w3-total-cache')
+        end
+      context 'when wp-super-cache detected' do
+        it 'returns the wp-super-cache' do
+          @body = 'wp-super-cache'
+          expected.add('wp-super-cache')
+        end
+      end
+
+      context 'when all-in-one-seo-pack detected' do
+        it 'returns the all-in-one-seo-pack' do
+          @body = '<!-- All in One SEO Pack 2.0.3.1 by Michael Torbert of Semper Fi Web Design[300,342] -->'
+          expected.add('all-in-one-seo-pack', version: '2.0.3.1')
+        end
+      end
+    end
   end
 
   describe '::passive_detection' do
