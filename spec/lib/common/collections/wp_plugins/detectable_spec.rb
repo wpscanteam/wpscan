@@ -80,10 +80,13 @@ describe 'WpPlugins::Detectable' do
         subject.send(:from_content, wp_target).should == expected
       end
 
+      context 'when w3 total cache detected' do
         it 'returns the w3-total-cache' do
           @body = 'w3 total cache'
           expected.add('w3-total-cache')
         end
+      end
+
       context 'when wp-super-cache detected' do
         it 'returns the wp-super-cache' do
           @body = 'wp-super-cache'
