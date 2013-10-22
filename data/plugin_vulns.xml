@@ -869,6 +869,16 @@
     </vulnerability>
   </plugin>
 
+  <plugin name="wp-image-resizer">
+    <vulnerability>
+      <title>Image Resizer - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123651/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
   <plugin name="wp-levoslideshow">
     <vulnerability>
       <title>wp-levoslideshow - Arbitrary File Upload Vulnerability</title>
@@ -4774,12 +4784,19 @@
 
   <plugin name="woocommerce">
     <vulnerability>
-      <title>WooCommerce - index.php calc_shipping_state Parameter XSS</title>
+      <title>WooCommerce 2.0.12 - index.php calc_shipping_state Parameter XSS</title>
       <references>
         <osvdb>95480</osvdb>
       </references>
       <type>XSS</type>
       <fixed_in>2.0.13</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WooCommerce 2.0.17 - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/123684/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -6500,11 +6517,23 @@
 
   <plugin name="antivirus">
     <vulnerability>
-      <title>AntiVirus - FPD and Security bypass vulnerabilities</title>
+      <title>AntiVirus 1.0 - PHP Backdoor Detection Bypass</title>
       <references>
+        <osvdb>95134</osvdb>
+        <url>http://packetstormsecurity.com/files/121833/</url>
         <url>http://seclists.org/fulldisclosure/2013/Jun/0</url>
       </references>
-      <type>MULTI</type>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>AntiVirus 1.0 - uninstall.php Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>95135</osvdb>
+        <url>http://packetstormsecurity.com/files/121833/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Jun/0</url>
+      </references>
+      <type>FPD</type>
+      <fixed_in>1.1</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -6859,16 +6888,17 @@
 
   <plugin name="all-in-one-seo-pack">
     <vulnerability>
-      <title>All in One SEO Pack &lt;= 2.3.0 - XSS Vulnerability</title>
+      <title>All in One SEO Pack &lt;= 2.0.3 - XSS Vulnerability</title>
       <references>
         <osvdb>98023</osvdb>
         <cve>2013-5988</cve>
         <url>http://archives.neohapsis.com/archives/bugtraq/2013-10/0006.html</url>
         <url>http://packetstormsecurity.com/files/123490/</url>
         <url>http://www.securityfocus.com/bid/62784</url>
+        <url>http://seclists.org/bugtraq/2013/Oct/8</url>
         <secunia>55133</secunia>
       </references>
-      <fixed_in>2.3.0.1</fixed_in>
+      <fixed_in>2.0.3.1</fixed_in>
       <type>XSS</type>
     </vulnerability>
   </plugin>
@@ -6990,8 +7020,9 @@
 
   <plugin name="nospampti">
     <vulnerability>
-      <title>NOSpamPTI 2.1 - Blind SQL Injection</title>
+      <title>NOSpamPTI 2.1 - wp-comments-post.php comment_post_ID Parameter SQL Injection</title>
       <references>
+        <osvdb>97528</osvdb>
         <exploitdb>28485</exploitdb>
         <cve>2013-5917</cve>
         <url>http://packetstormsecurity.com/files/123331/</url>
@@ -7096,6 +7127,18 @@
         <exploitdb>28808</exploitdb>
         <url>http://packetstormsecurity.com/files/123549/</url>
         <url>http://quick-plugins.com/quick-contact-form/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="quick-paypal-payments">
+    <vulnerability>
+      <title>Quick Paypal Payments 3.0 - Payment Sending Multiple Parameter XSS</title>
+      <references>
+        <osvdb>98715</osvdb>
+        <secunia>55292</secunia>
+        <url>http://packetstormsecurity.com/files/123662/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -7252,6 +7295,7 @@
         <cve>2013-5977</cve>
         <exploitdb>28959</exploitdb>
         <secunia>55265</secunia>
+        <url>http://packetstormsecurity.com/files/123587/</url>
       </references>
       <type>CSRF</type>
       <fixed_in>1.5.1.15</fixed_in>
@@ -7262,6 +7306,7 @@
         <osvdb>98353</osvdb>
         <cve>2013-5978</cve>
         <exploitdb>28959</exploitdb>
+        <url>http://packetstormsecurity.com/files/123587/</url>
       </references>
       <type>XSS</type>
       <fixed_in>1.5.1.15</fixed_in>
@@ -7349,6 +7394,77 @@
         <url>http://xforce.iss.net/xforce/xfdb/83374</url>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="finalist">
+    <vulnerability>
+      <title>Finalist - /wp-content/plugins/finalist/vote.php id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>98665</osvdb>
+        <url>http://packetstormsecurity.com/files/123597/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="dexs-pm-system">
+    <vulnerability>
+      <title>Dexs PM System 1.0.1 - Private Message subject Parameter Stored XSS</title>
+      <references>
+        <osvdb>98668</osvdb>
+        <secunia>55296</secunia>
+        <exploitdb>28970</exploitdb>
+        <url>http://www.securityfocus.com/bid/63021</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="video-metabox">
+    <vulnerability>
+      <title>Video Metabox 1.1 - Persistent XSS Vulnerability Disclosure</title>
+      <references>
+        <osvdb>98641</osvdb>
+        <secunia>55257</secunia>
+        <url>http://www.securityfocus.com/bid/63172</url>
+        <url>http://securityundefined.com/wordpress-video-metabox-plugin-persistent-xss-vulnerability-disclosure/</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.1.1</fixed_in>
+    </vulnerability>
+  </plugin>
+  
+  <plugin name="wp-realty">
+    <vulnerability>
+      <title>Wordpress - wp-realty - MySQL Time Based Injection</title>
+      <references>
+        <exploitdb>29021</exploitdb>
+        <url>http://www.exploit-db.com/exploits/29021/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="feed">
+    <vulnerability>
+      <title>Feed - news_dt.php nid Parameter SQL Injection</title>
+      <references>
+        <osvdb>94804</osvdb>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="social-sharing-toolkit">
+    <vulnerability>
+      <title>Social Sharing Toolkit 2.2.1 - Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>98717</osvdb>
+        <cve>2013-2701</cve>
+        <secunia>52951</secunia>
+      </references>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 

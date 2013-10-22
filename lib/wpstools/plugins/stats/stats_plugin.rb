@@ -14,8 +14,10 @@ class StatsPlugin < Plugin
     if options[:stats]
       puts 'Wpscan Databse Statistics:'
       puts '--------------------------'
+      puts "[#] Total vulnerable versions: #{vuln_core_count}"
       puts "[#] Total vulnerable plugins: #{vuln_plugin_count}"
       puts "[#] Total vulnerable themes: #{vuln_theme_count}"
+      puts "[#] Total version vulnerabilities: #{version_vulns_count}"
       puts "[#] Total plugin vulnerabilities: #{plugin_vulns_count}"
       puts "[#] Total theme vulnerabilities: #{theme_vulns_count}"
       puts "[#] Total plugins to enumerate: #{total_plugins}"
@@ -24,12 +26,20 @@ class StatsPlugin < Plugin
     end
   end
 
+  def vuln_core_count(file=WP_VULNS_FILE)
+    xml(file).xpath('count(//wordpress)').to_i
+  end
+
   def vuln_plugin_count(file=PLUGINS_VULNS_FILE)
     xml(file).xpath('count(//plugin)').to_i
   end
 
   def vuln_theme_count(file=THEMES_VULNS_FILE)
     xml(file).xpath('count(//theme)').to_i
+  end
+
+  def version_vulns_count(file=WP_VULNS_FILE)
+    xml(file).xpath('count(//vulnerability)').to_i
   end
 
   def plugin_vulns_count(file=PLUGINS_VULNS_FILE)

@@ -64,6 +64,10 @@ class WpPlugins < WpItems
       wp_plugins.add('wp-super-cache') if body =~ /wp-super-cache/i
       wp_plugins.add('w3-total-cache') if body =~ /w3 total cache/i
 
+      if body =~ /<!-- all in one seo pack ([^\s]+)/i
+        wp_plugins.add('all-in-one-seo-pack', version: $1)
+      end
+
       wp_plugins
     end
 
