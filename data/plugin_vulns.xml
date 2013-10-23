@@ -1037,11 +1037,14 @@
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>Wordfence 3.8.1 - XSS</title>
+      <title>Wordfence 3.8.1 - wp-admin/admin.php whois Parameter Stored XSS</title>
       <references>
+        <osvdb>97884</osvdb>
         <url>http://packetstormsecurity.com/files/122993/</url>
+        <url>http://www.securityfocus.com/bid/62053</url>
       </references>
       <type>XSS</type>
+      <fixed_in>3.8.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -6371,12 +6374,20 @@
 
   <plugin name="wordpress-seo">
     <vulnerability>
-      <title>wordpress-seo - Security issue which allowed any user to reset settings</title>
+      <title>WordPress SEO - Security issue which allowed any user to reset settings</title>
       <references>
         <url>http://wordpress.org/plugins/wordpress-seo/changelog/</url>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>1.4.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress SEO 1.14.15 - index.php s Parameter Reflected XSS</title>
+      <references>
+        <osvdb>97885</osvdb>
+        <url>http://packetstormsecurity.com/files/123028/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -6817,10 +6828,12 @@
     <vulnerability>
       <title>Design Approval System 3.6 - XSS Vulnerability</title>
       <references>
+        <osvdb>97192</osvdb>
+        <osvdb>97279</osvdb>
+        <secunia>54704</secunia>
         <url>http://seclists.org/bugtraq/2013/Sep/54</url>
         <url>http://packetstormsecurity.com/files/123227/</url>
         <cve>2013-5711</cve>
-        <osvdb>97279</osvdb>
       </references>
       <fixed_in>3.7</fixed_in>
       <type>XSS</type>
@@ -7071,8 +7084,17 @@
 
   <plugin name="encrypted-blog">
     <vulnerability>
-      <title>Encrypted Blog 0.0.6.2 - XSS, Open Redirect</title>
+      <title>Encrypted Blog 0.0.6.2 - encrypt_blog_form.php redirect_to Parameter Arbitrary Site Redirect</title>
       <references>
+        <osvdb>97881</osvdb>
+        <url>http://packetstormsecurity.com/files/122992/</url>
+      </references>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Encrypted Blog 0.0.6.2 - encrypt_blog_form.php redirect_to Parameter Reflected XSS</title>
+      <references>
+        <osvdb>97882</osvdb>
         <url>http://packetstormsecurity.com/files/122992/</url>
       </references>
       <type>XSS</type>
@@ -7258,6 +7280,14 @@
   </plugin>
 
   <plugin name="a-forms">
+    <vulnerability>
+      <title>A Forms 1.4.0 Multiple Parameters SQL Injection</title>
+      <references>
+        <osvdb>96404</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
     <vulnerability>
       <title>A Forms 1.4.1 - Form Submission CSRF</title>
       <references>
@@ -7495,6 +7525,19 @@
         <url>http://seclists.org/bugtraq/2013/Oct/98</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="really-simple-facebook-twitter-share-buttons">
+    <vulnerability>
+      <title>Really simple Facebook Twitter share buttons 2.10.4 - Settings Page Manipulation CSRF</title>
+      <references>
+        <osvdb>97190</osvdb>
+        <secunia>54707</secunia>
+        <url>http://www.securityfocus.com/bid/62268</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>2.10.5</fixed_in>
     </vulnerability>
   </plugin>
 
