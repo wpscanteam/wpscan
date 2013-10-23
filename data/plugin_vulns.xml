@@ -4461,7 +4461,7 @@
 
   <plugin name="portable-phpmyadmin">
     <vulnerability>
-      <title>portable-phpMyAdmin - Authentication Bypass</title>
+      <title>Portable-phpMyAdmin - Authentication Bypass</title>
       <references>
         <osvdb>98766</osvdb>
         <cve>2013-4454</cve>
@@ -4479,6 +4479,23 @@
       </references>
       <type>AUTHBYPASS</type>
       <fixed_in>1.3.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Portable phpMyAdmin - /pma/phpinfo.php Direct Request System Information Disclosure</title>
+      <references>
+        <osvdb>98766</osvdb>
+        <url>http://seclists.org/oss-sec/2013/q4/138</url>
+      </references>
+    </vulnerability>
+    <vulnerability>
+      <title>Portable phpMyAdmin 1.4.1 - Multiple Script Direct Request Authentication Bypass</title>
+      <references>
+        <osvdb>98767</osvdb>
+        <cve>2013-4454</cve>
+        <secunia>55270</secunia>
+        <url>http://seclists.org/oss-sec/2013/q4/138</url>
+      </references>
+      <type>AUTHBYPASS</type>
     </vulnerability>
   </plugin>
 
@@ -4801,8 +4818,9 @@
       <fixed_in>2.0.13</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>WooCommerce 2.0.17 - Cross Site Scripting</title>
+      <title>WooCommerce 2.0.17 - hide-wc-extensions-message Parameter Reflected XSS</title>
       <references>
+        <osvdb>98754</osvdb>
         <url>http://packetstormsecurity.com/files/123684/</url>
       </references>
       <type>XSS</type>
@@ -7474,6 +7492,18 @@
         <secunia>52951</secunia>
       </references>
       <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="videowall">
+    <vulnerability>
+      <title>Videowall - index.php page_id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>98765</osvdb>
+        <url>http://packetstormsecurity.com/files/123693/</url>
+        <url>http://seclists.org/bugtraq/2013/Oct/98</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
