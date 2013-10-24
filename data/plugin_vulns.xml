@@ -2247,6 +2247,15 @@
       </references>
       <type>XSS</type>
     </vulnerability>
+    <vulnerability>
+      <title>CMS Tree Page View 1.2.4 - Page Creation CSRF</title>
+      <references>
+        <osvdb>91270</osvdb>
+        <secunia>52581</secunia>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.2.5</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="all-in-one-event-calendar">
@@ -4881,8 +4890,9 @@
 
   <plugin name="wysija-newsletters">
     <vulnerability>
-      <title>Wysija Newsletters - SQL Injection Vulnerability</title>
+      <title>Wysija Newsletters 2.2 - SQL Injection Vulnerability</title>
       <references>
+        <osvdb>89924</osvdb>
         <url>https://www.htbridge.com/advisory/HTB23140</url>
         <url>http://packetstormsecurity.com/files/120089/</url>
         <url>http://seclists.org/bugtraq/2013/Feb/29</url>
@@ -5280,7 +5290,9 @@
     <vulnerability>
       <title>Simple History - RSS Feed "rss_secret" Disclosure Weakness</title>
       <references>
+        <osvdb>89640</osvdb>
         <secunia>51998</secunia>
+        <url>http://www.securityfocus.com/bid/57628</url>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>1.0.8</fixed_in>
@@ -5358,8 +5370,9 @@
 
   <plugin name="commentluv">
     <vulnerability>
-      <title>CommentLuv - Cross Site Scripting Vulnerability</title>
+      <title>CommentLuv 2.92.3 - Cross Site Scripting Vulnerability</title>
       <references>
+        <osvdb>89925</osvdb>
         <url>https://www.htbridge.com/advisory/HTB23138</url>
         <url>http://packetstormsecurity.com/files/120090/</url>
         <url>http://seclists.org/bugtraq/2013/Feb/30</url>
@@ -5855,12 +5868,23 @@
 
   <plugin name="occasions">
     <vulnerability>
-      <title>Occasions 1.0.4 - CSRF Vulnerability</title>
+      <title>Occasions 1.0.4 - Manipulation CSRF</title>
       <references>
+        <osvdb>91489</osvdb>
         <exploitdb>24858</exploitdb>
-        <osvdb>91490</osvdb>
+        <secunia>52651</secunia>
+        <url>http://packetstormsecurity.com/files/120871/</url>
       </references>
       <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Occasions 1.0.4 - occasions/occasions.php occ_content1 Parameter XSS</title>
+      <references>
+        <osvdb>91490</osvdb>
+        <exploitdb>24858</exploitdb>
+        <url>http://packetstormsecurity.com/files/120871/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -7558,6 +7582,47 @@
         <secunia>51088</secunia>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Car Demon 1.0.1 - /wp-admin/post.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>90366</osvdb>
+        <secunia>51088</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+
+  </plugin>
+
+  <plugin name="wp-mailup">
+    <vulnerability>
+      <title>MailUp 1.3.2 - ajax.functions.php Ajax Function Call Handling XSS Weakness</title>
+      <references>
+        <osvdb>91274</osvdb>
+        <cve>2013-0731</cve>
+        <secunia>51917</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.3.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-online-store">
+    <vulnerability>
+      <title>WP Online Store 1.3.1 - index.php slug Parameter Traversal Local File Inclusion</title>
+      <references>
+        <osvdb>90243</osvdb>
+        <secunia>50836</secunia>
+      </references>
+      <type>LFI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Online Store 1.3.1 - index.php Multiple Parameter Traversal Arbitrary File Access</title>
+      <references>
+        <osvdb>90244</osvdb>
+        <secunia>50836</secunia>
+      </references>
+      <type>UNKNOWN</type>
     </vulnerability>
   </plugin>
 
