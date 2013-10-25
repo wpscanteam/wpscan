@@ -1248,9 +1248,11 @@
 
   <theme name="DailyDeal">
     <vulnerability>
-      <title>DailyDeal - Shell Upload</title>
+      <title>DailyDeal - File Upload Remote Code Execution</title>
       <references>
+        <osvdb>98924</osvdb>
         <url>http://packetstormsecurity.com/files/123748/</url>
+        <url>http://templatic.com/app-themes/daily-deal-premium-wordpress-app-theme</url>
       </references>
       <type>RCE</type>
     </vulnerability>
@@ -1730,7 +1732,7 @@
 
   <theme name="silverorchid">
     <vulnerability>
-      <title>silverOrchid - XSS Vulnerability</title>
+      <title>silverOrchid &lt;= 1.5.0 - XSS Vulnerability</title>
       <references>
         <osvdb>96723</osvdb>
         <secunia>54662</secunia>
@@ -1744,9 +1746,9 @@
     <vulnerability>
       <title>Caulk - path disclosure vulnerability</title>
       <references>
-        <osvdb>96723</osvdb>
-        <secunia>54662</secunia>
+        <osvdb>90889</osvdb>
         <url>http://packetstormsecurity.com/files/120632/</url>
+        <url>http://themeforest.net/item/caulk/76108</url>
       </references>
       <type>FPD</type>
     </vulnerability>
@@ -1759,7 +1761,7 @@
         <osvdb>98806</osvdb>
         <url>http://packetstormsecurity.com/files/123697/</url>
       </references>
-      <type>UNKNOWN</type>
+      <type>RCE</type>
     </vulnerability>
   </theme>
 
@@ -1815,6 +1817,40 @@
         <url>http://seclists.org/fulldisclosure/2013/Apr/238</url>
       </references>
       <type>FPD</type>
+    </vulnerability>
+  </theme>
+
+  <theme name="area53">
+    <vulnerability>
+      <title>AREA53 &lt;= 1.0.5 - File Upload Code Execution</title>
+      <references>
+        <osvdb>98927</osvdb>
+        <exploitdb>29068</exploitdb>
+        <url>http://www.securityfocus.com/bid/63306</url>
+        <url>http://themeforest.net/item/area53-a-responsive-html5-wordpress-theme/2538737</url>
+      </references>
+      <type>RCE</type>
+    </vulnerability>
+  </theme>
+
+  <theme name="sahifa">
+    <vulnerability>
+      <title>Sahifa 2.4.0 - Multiple Script Path Disclosure Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>88926</osvdb>
+        <url>http://packetstormsecurity.com/files/119191/</url>
+        <url>http://www.securityfocus.com/bid/57109</url>
+      </references>
+      <type>FPD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Sahifa 2.4.0 - Site Setting Reset CSRF</title>
+      <references>
+        <osvdb>88927</osvdb>
+        <url>http://packetstormsecurity.com/files/119191/</url>
+        <url>http://www.securityfocus.com/bid/57109</url>
+      </references>
+      <type>CSRF</type>
     </vulnerability>
   </theme>
 
