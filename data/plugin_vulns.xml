@@ -4688,19 +4688,23 @@
 
   <plugin name="cardoza-wordpress-poll">
     <vulnerability>
-      <title>Cardoza WordPress poll - Cross-Site Request Forgery Vulnerability</title>
+      <title>Cardoza WordPress poll 34.05 - Multiple External Function Remote Poll Manipulation</title>
       <references>
         <osvdb>89443</osvdb>
         <cve>2013-1401</cve>
         <secunia>51925</secunia>
+        <url>http://seclists.org/bugtraq/2013/Jan/86</url>
+        <url>http://packetstormsecurity.com/files/119736/</url>
       </references>
       <type>CSRF</type>
       <fixed_in>34.06</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Cardoza WordPress poll - Multiple SQL injection vulnerabilities</title>
+      <title>Cardoza WordPress poll - CWPPoll.js Multiple Method pollid Parameter SQL Injection</title>
       <references>
-        <secunia>51942</secunia>
+        <osvdb>89444</osvdb>
+        <cve>2013-1400</cve>
+        <url>http://packetstormsecurity.com/files/119736/</url>
         <url>http://www.girlinthemiddle.net/2013/01/multiple-sql-injection-vulnerabilities.html</url>
         <url>http://seclists.org/bugtraq/2013/Jan/86</url>
       </references>
@@ -7674,6 +7678,18 @@
       </references>
       <type>AUTHBYPASS</type>
       <fixed_in>1.1.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="hungred-post-thumbnail">
+    <vulnerability>
+      <title>Hungred Post Thumbnail - hpt_file_upload.php File Upload PHP Code Execution</title>
+      <references>
+        <osvdb>82830</osvdb>
+        <url>http://packetstormsecurity.com/files/113402/</url>
+        <url>http://www.securityfocus.com/bid/53898</url>
+      </references>
+      <type>RCE</type>
     </vulnerability>
   </plugin>
 
