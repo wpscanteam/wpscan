@@ -7524,10 +7524,12 @@
   
   <plugin name="wp-realty">
     <vulnerability>
-      <title>wp-realty - MySQL Time Based Injection</title>
+      <title>WP Realty - MySQL Time Based Injection</title>
       <references>
+        <osvdb>98748</osvdb>
         <exploitdb>29021</exploitdb>
-        <url>http://www.exploit-db.com/exploits/29021/</url>
+        <url>http://packetstormsecurity.com/files/123655/</url>
+        <url>http://www.securityfocus.com/bid/63217</url>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -7601,11 +7603,22 @@
 
   <plugin name="blue-wrench-videos-widget">
     <vulnerability>
-      <title>Blue Wrench Video-Widget CSRF and Persistent XSS 0day Disclosure</title>
+      <title>Blue Wrench Video Widget 1.0.2 - admin.php bw-videos Page Multiple Action CSRF</title>
       <references>
+        <osvdb>98922</osvdb>
+        <secunia>55456</secunia>
         <url>http://securityundefined.com/wordpress-plugin-blue-wrench-video-widget-csrf-persistent-xss-0day-disclosure/</url>
       </references>
-      <type>MULTI</type>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Blue-Wrench-Video-Widget 1.0.2 - admin.php bw-videos Page Multiple Parameter Stored XSS</title>
+      <references>
+        <osvdb>98923</osvdb>
+        <secunia>55456</secunia>
+        <url>http://securityundefined.com/wordpress-plugin-blue-wrench-video-widget-csrf-persistent-xss-0day-disclosure/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -7638,6 +7651,29 @@
         <secunia>50836</secunia>
       </references>
       <type>UNKNOWN</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="payment-gateways-caller-for-wp-e-commerce">
+    <vulnerability>
+      <title>Payment Gateways Caller for WP e-Commerce 0.1.0 - load_merchant Parameter Traversal Local file Inclusion</title>
+      <references>
+        <osvdb>98916</osvdb>
+        <url>http://packetstormsecurity.com/files/123744/</url>
+      </references>
+      <type>LFI</type>
+      <fixed_in>0.1.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="easy-photo-album">
+    <vulnerability>
+      <title>Easy Photo Album 1.1.5 - Album Information Disclosure</title>
+      <references>
+        <osvdb>98802</osvdb>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>1.1.6</fixed_in>
     </vulnerability>
   </plugin>
 
