@@ -46,10 +46,6 @@ def main
 
     wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)
 
-    if wp_target.wordpress_hosted?
-      raise "The WordPress URL supplied '#{wp_target.uri}' seems to be hosted on wordpress.com. This is not supported."
-    end
-
     # Remote website up?
     unless wp_target.online?
       raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
@@ -112,6 +108,10 @@ def main
     puts "| URL: #{wp_target.url}"
     puts "| Started: #{start_time.asctime}"
     puts
+
+    if wp_target.wordpress_hosted?
+      puts "#{red('[!]')} We do not support scanning *.wordpress.com hosted blogs."
+    end
 
     if wp_target.has_robots?
       puts green('[+]') + " robots.txt available under: '#{wp_target.robots_url}'"
