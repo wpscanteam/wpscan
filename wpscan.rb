@@ -47,7 +47,7 @@ def main
     wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)
 
     if wp_target.wordpress_hosted?
-      raise "The WordPress URL supplied '#{wp_target.uri}' seems to be hosted on wordpress.com This is not supported."
+      raise "The WordPress URL supplied '#{wp_target.uri}' seems to be hosted on wordpress.com. This is not supported."
     end
 
     # Remote website up?
