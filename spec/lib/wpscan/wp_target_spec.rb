@@ -99,6 +99,23 @@ describe WpTarget do
     end
   end
 
+  describe '#wordpress_hosted?' do
+    it 'returns true if target url is a wordpress.com subdomain' do
+      target = WpTarget.new('http://test.wordpress.com/')
+      target.wordpress_hosted?.should be_true
+    end
+
+    it 'returns true if target url is a wordpress.com subdomain and has querystring' do
+      target = WpTarget.new('http://test.wordpress.com/path/file.php?a=b')
+      target.wordpress_hosted?.should be_true
+    end
+
+    it 'returns false if target url is not a wordpress.com subdomain' do
+      target = WpTarget.new('http://test.example.com/')
+      target.wordpress_hosted?.should be_false
+    end
+  end
+
   describe '#redirection' do
     it 'returns nil if no redirection detected' do
       stub_request(:get, wp_target.url).to_return(status: 200, body: '')

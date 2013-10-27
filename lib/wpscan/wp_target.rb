@@ -56,6 +56,10 @@ class WpTarget < WebSite
     wordpress
   end
 
+  def wordpress_hosted?
+    @uri.to_s =~ /\.wordpress\.com/i
+  end
+
   def login_url
     url = @uri.merge('wp-login.php').to_s
 
