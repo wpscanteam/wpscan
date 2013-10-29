@@ -4547,6 +4547,10 @@
     <vulnerability>
       <title>W3 Total Cache - Username and Hash Extract</title>
       <references>
+        <osvdb>92742</osvdb>
+        <osvdb>92741</osvdb>
+        <cve>2012-6079</cve>
+        <cve>2012-6078</cve>
         <url>http://seclists.org/fulldisclosure/2012/Dec/242</url>
         <url>https://github.com/FireFart/W3TotalCacheExploit</url>
         <metasploit>auxiliary/gather/wp_w3_total_cache_hash_extract</metasploit>
@@ -7709,6 +7713,74 @@
         <url>http://www.securityfocus.com/bid/53898</url>
       </references>
       <type>RCE</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="dhtmlxspreadsheet">
+    <vulnerability>
+      <title>Spreadsheet - /dhtmlxspreadsheet/codebase/spreadsheet.php page Parameter Reflected XSS</title>
+      <references>
+        <osvdb>98831</osvdb>
+        <cve>2013-6281</cve>
+        <secunia>55396</secunia>
+        <url>http://www.securityfocus.com/bid/63256</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="tweet-blender">
+    <vulnerability>
+      <title>Tweet Blender 4.0.1 - Unspecified XSS</title>
+      <references>
+        <osvdb>98978</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="sb-uploader">
+    <vulnerability>
+      <title>WordPress SB Uploader 3.9 - Arbitrary File Upload Vulnerability</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/119159/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="connections">
+    <vulnerability>
+      <title>Connections &lt;= 0.7.1.5 - Unspecified Security Vulnerability</title>
+      <references>
+        <cve>2011-5254</cve>
+        <url>http://www.securityfocus.com/bid/51204</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.7.1.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="gallery-bank">
+    <vulnerability>
+      <title>Gallery Bank 2.0.19 - Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>99045</osvdb>
+        <secunia>55443</secunia>
+        <url>http://www.securityfocus.com/bid/63382</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.0.20</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Gallery Bank 2.0.19 - Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>99046</osvdb>
+        <secunia>55443</secunia>
+        <url>http://www.securityfocus.com/bid/63382</url>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>2.0.20</fixed_in>
     </vulnerability>
   </plugin>
 
