@@ -4612,13 +4612,11 @@
 
   <plugin name="wp-super-cache">
     <vulnerability>
-      <title>WP-Super-Cache - Remote Code Execution</title>
+      <title>WP-Super-Cache 1.3 - Remote Code Execution</title>
       <references>
         <url>http://www.acunetix.com/blog/web-security-zone/wp-plugins-remote-code-execution/</url>
         <url>http://wordpress.org/support/topic/pwn3d</url>
-        <url>
-          http://blog.sucuri.net/2013/04/update-wp-super-cache-and-w3tc-immediately-remote-code-execution-vulnerability-disclosed.html
-        </url>
+        <url>http://blog.sucuri.net/2013/04/update-wp-super-cache-and-w3tc-immediately-remote-code-execution-vulnerability-disclosed.html</url>
       </references>
       <type>RCE</type>
       <fixed_in>1.3.1</fixed_in>
@@ -6308,8 +6306,10 @@
 
   <plugin name="related-posts-by-zemanta">
     <vulnerability>
-      <title>Related Posts by Zemanta - Cross-Site Request Forgery Vulnerability</title>
+      <title>Related Posts by Zemanta 1.3.1 - Cross-Site Request Forgery Vulnerability</title>
       <references>
+        <osvdb>93364</osvdb>
+        <cve>2013-3477</cve>
         <secunia>53321</secunia>
       </references>
       <type>CSRF</type>
@@ -6319,19 +6319,22 @@
 
   <plugin name="wordpress-23-related-posts-plugin">
     <vulnerability>
-      <title>WordPress Related Posts - Cross-Site Request Forgery Vulnerability</title>
+      <title>WordPress Related Posts 2.6.1 - Cross-Site Request Forgery Vulnerability</title>
       <references>
+        <osvdb>93362</osvdb>
+        <cve>2013-3476</cve>
         <secunia>53279</secunia>
       </references>
       <type>CSRF</type>
-      <fixed_in>2.6.2</fixed_in>
+      <fixed_in>2.7.2</fixed_in>
     </vulnerability>
   </plugin>
 
   <plugin name="related-posts">
     <vulnerability>
-      <title>Related Posts - Cross-Site Request Forgery Vulnerability</title>
+      <title>Related Posts 2.7.1 - Cross-Site Request Forgery Vulnerability</title>
       <references>
+        <osvdb>93363</osvdb>
         <secunia>53122</secunia>
       </references>
       <type>CSRF</type>
@@ -6444,12 +6447,14 @@
 
   <plugin name="funcaptcha">
     <vulnerability>
-      <title>FunCaptcha - CSRF</title>
+      <title>FunCaptcha 0.3.2- Setting Manipulation CSRF</title>
       <references>
+        <osvdb>92272</osvdb>
+        <secunia>53021</secunia>
         <url>http://wordpress.org/extend/plugins/funcaptcha/changelog/</url>
       </references>
-      <type>UNKNOWN</type>
-      <fixed_in>0.33</fixed_in>
+      <type>CSRF</type>
+      <fixed_in>0.3.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -7889,6 +7894,16 @@
         <url>http://xforce.iss.net/xforce/xfdb/80141</url>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="live-comment-preview">
+    <vulnerability>
+      <title>Live Comment Preview 2.0.2 - Comment Field Preview XSS</title>
+      <references>
+        <osvdb>92944</osvdb>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
