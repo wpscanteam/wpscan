@@ -593,11 +593,12 @@
 
   <plugin name="comment-extra-field">
     <vulnerability>
-      <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
+      <title>Comment Extra Field 1.7 - CSRF / XSS</title>
       <references>
+        <url>http://packetstormsecurity.com/files/122625/</url>
         <url>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</url>
       </references>
-      <type>XSS</type>
+      <type>MULTI</type>
     </vulnerability>
   </plugin>
 
@@ -3020,11 +3021,34 @@
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>Mingle Forum 1.0.33.3 - Multiple Parameter SQL Injection</title>
+      <title>Mingle Forum 1.0.33.3 - fs-admin.php togroupusers Parameter XSS</title>
+      <references>
+        <osvdb>90432</osvdb>
+        <cve>2013-0734</cve>
+        <secunia>52167</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.34</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Mingle Forum 1.0.33.3 - wpf.class.php search_words Parameter XSS</title>
+      <references>
+        <osvdb>90433</osvdb>
+        <cve>2013-0734</cve>
+        <secunia>52167</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.34</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Mingle Forum 1.0.33.3 - wpf.class.php Multiple Parameter SQL Injection</title>
       <references>
         <osvdb>90434</osvdb>
+        <cve>2013-0735</cve>
+        <secunia>52167</secunia>
       </references>
       <type>SQLI</type>
+      <fixed_in>1.0.34</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Mingle Forum 1.0.35 - Privilege Escalation CSRF</title>
@@ -5860,8 +5884,10 @@
 
   <plugin name="terillion-reviews">
     <vulnerability>
-      <title>Terillion Reviews - Cross Site Scripting</title>
+      <title>Terillion Reviews - Profile Id Field XSS</title>
       <references>
+        <osvdb>91123</osvdb>
+        <cve>2013-1201</cve>
         <url>http://packetstormsecurity.com/files/120730/</url>
       </references>
       <type>XSS</type>
@@ -6679,6 +6705,7 @@
     <vulnerability>
       <title>Xorbin Digital Flash Clock 1.0 - Flash-based XSS</title>
       <references>
+        <url>http://packetstormsecurity.com/files/122223/</url>
         <url>http://advisory.prakharprasad.com/xorbin_dfc_wp.txt</url>
         <cve>2013-4693</cve>
       </references>
@@ -6756,6 +6783,7 @@
       <references>
         <osvdb>95557</osvdb>
         <exploitdb>26804</exploitdb>
+        <url>http://packetstormsecurity.com/files/122396/</url>
       </references>
       <type>RFI</type>
     </vulnerability>
@@ -7080,13 +7108,37 @@
 
   <plugin name="lbg_zoominoutslider">
     <vulnerability>
-      <title>LBG Zoominoutslider - XSS Vulnerability</title>
+      <title>LBG Zoominoutslider - add_banner.php name Parameter Stored XSS</title>
       <references>
         <osvdb>97887</osvdb>
         <secunia>54983</secunia>
         <url>http://packetstormsecurity.com/files/123367/</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>LBG Zoominoutslider - settings_form.php Multiple Parameter Stored XSS</title>
+      <references>
+        <osvdb>99339</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Nov/30</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>LBG Zoominoutslider - add_playlist_record.php Multiple Parameter Stored XSS</title>
+      <references>
+        <osvdb>99340</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Nov/30</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>LBG Zoominoutslider - Multiple Script Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>99341</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Nov/30</url>
+      </references>
+      <type>FPD</type>
     </vulnerability>
   </plugin>
 
@@ -7206,8 +7258,10 @@
     <vulnerability>
       <title>Booking Calendar 4.1.4 - CSRF Vulnerability</title>
       <references>
-        <exploitdb>27399</exploitdb>
         <osvdb>96088</osvdb>
+        <exploitdb>27399</exploitdb>
+        <secunia>54461</secunia>
+        <url>http://packetstormsecurity.com/files/122691/</url>
         <url>http://wpbookingcalendar.com/</url>
       </references>
       <type>CSRF</type>
@@ -7233,10 +7287,12 @@
       <references>
         <osvdb>98279</osvdb>
         <exploitdb>28808</exploitdb>
+        <secunia>55172</secunia>
         <url>http://packetstormsecurity.com/files/123549/</url>
         <url>http://quick-plugins.com/quick-contact-form/</url>
       </references>
       <type>XSS</type>
+      <fixed_in>6.1</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -7569,6 +7625,7 @@
       <title>Feed - news_dt.php nid Parameter SQL Injection</title>
       <references>
         <osvdb>94804</osvdb>
+        <url>http://packetstormsecurity.com/files/122260/</url>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -7725,6 +7782,7 @@
         <osvdb>98831</osvdb>
         <cve>2013-6281</cve>
         <secunia>55396</secunia>
+        <url>http://packetstormsecurity.com/files/123699/</url>
         <url>http://www.securityfocus.com/bid/63256</url>
       </references>
       <type>XSS</type>
@@ -7820,5 +7878,18 @@
     </vulnerability>
   </plugin>
 
+  <plugin name="timeline">
+    <vulnerability>
+      <title>Facebook Survey Pro - timeline/index.php id Parameter SQL Injection</title>
+      <references>
+        <secunia>87817</secunia>
+        <exploitdb>22853</exploitdb>
+        <url>http://packetstormsecurity.com/files/118238/</url>
+        <url>http://www.securityfocus.com/bid/56595</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80141</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
 
 </vulnerabilities>
