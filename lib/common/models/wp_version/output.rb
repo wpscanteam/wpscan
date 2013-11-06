@@ -10,7 +10,7 @@ class WpVersion < WpItem
 
       unless vulnerabilities.empty?
         puts
-        puts red('[!]') + " Identified #{vulnerabilities.size} vulnerabilities from the version number:"
+        puts red('[!]') + " #{vulnerabilities.size} vulnerabilities identified from the version number:"
 
         vulnerabilities.output
       end
