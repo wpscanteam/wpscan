@@ -48,7 +48,7 @@ Prerequisites:
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install --without test development```
+```sudo gem install bundler && bundle install --without test```
 
 *Installing on Fedora:*
 
@@ -58,7 +58,7 @@ Prerequisites:
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install --without test development```
+```sudo gem install bundler && bundle install --without test```
 
 *Installing on Archlinux:*
 
@@ -70,7 +70,7 @@ Prerequisites:
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install --without test development```
+```sudo gem install bundler && bundle install --without test```
 
 ```gem install typhoeus```
 
@@ -84,7 +84,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install --without test development```
+```sudo gem install bundler && bundle install --without test```
 
 #### KNOWN ISSUES
 
