@@ -7,7 +7,7 @@ gem "json"
 gem "terminal-table"
 gem "ruby-progressbar", ">=1.2.0"
 
-group :development, :test do
+group :test do
   gem "webmock", ">=1.9.3"
   gem "simplecov"
   gem "rspec", :require => "spec"
