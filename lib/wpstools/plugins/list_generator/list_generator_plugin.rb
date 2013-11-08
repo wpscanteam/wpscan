@@ -9,7 +9,7 @@ class ListGeneratorPlugin < Plugin
       ['--generate-plugin-list [NUMBER_OF_PAGES]', '--gpl', Integer, 'Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)'],
       ['--generate-full-plugin-list', '--gfpl', 'Generate a new full data/plugins.txt file'],
 
-      ['--generate-theme-list [NUMBER_OF_PAGES]', '--gtl', Integer, 'Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 150)'],
+      ['--generate-theme-list [NUMBER_OF_PAGES]', '--gtl', Integer, 'Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 20)'],
       ['--generate-full-theme-list', '--gftl', 'Generate a new full data/themes.txt file'],
 
       ['--generate-all', '--ga', 'Generate a new full plugins, full themes, popular plugins and popular themes list']
@@ -29,7 +29,7 @@ class ListGeneratorPlugin < Plugin
     end
 
     if options.has_key?(:generate_theme_list) || generate_all
-      most_popular('theme', options[:generate_theme_list] || 150)
+      most_popular('theme', options[:generate_theme_list] || 20)
     end
 
     if options[:generate_full_theme_list] || generate_all
