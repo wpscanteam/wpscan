@@ -27,6 +27,7 @@ begin
   require 'rbconfig'
   require 'pp'
   require 'shellwords'
+  require 'fileutils'
   # Third party libs
   require 'typhoeus'
   require 'json'
