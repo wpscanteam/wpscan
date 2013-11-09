@@ -13,7 +13,7 @@ Encoding.default_external = Encoding::UTF_8
 
 begin
   # Standard libs
-  require 'bundler/setup'
+  require 'bundler/setup' unless kali_linux?
   require 'getoptlong'
   require 'optparse' # Will replace getoptlong
   require 'uri'
