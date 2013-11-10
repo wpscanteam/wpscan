@@ -24,7 +24,7 @@ class CacheFileStore
     # File.directory? for ruby <= 1.9 otherwise,
     # it makes more sense to do Dir.exist? :/
     unless File.directory?(@storage_path)
-      Dir.mkdir(@storage_path)
+      FileUtils.mkdir_p(@storage_path)
     end
   end
 
