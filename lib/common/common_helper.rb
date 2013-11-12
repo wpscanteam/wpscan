@@ -40,7 +40,11 @@ $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
 $LOAD_PATH.unshift(MODELS_LIB_DIR)
 
 def kali_linux?
-  %x{uname -a} =~ /kali/i
+  begin
+    File.readlines("/etc/debian_version").grep(/^kali/i).any?
+  rescue
+    false
+  end
 end
 
 require 'environment'
