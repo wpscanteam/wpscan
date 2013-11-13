@@ -1,7 +1,7 @@
 # Changelog
 
 ## Version 2.2 
-Released: yyyy-m-d
+Released: 2013-11-12
 
 Added
 * Output the vulnerability fix if available

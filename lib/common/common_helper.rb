@@ -33,14 +33,18 @@ VULNS_XSD           = DATA_DIR + '/vuln.xsd'
 WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
 LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 
-WPSCAN_VERSION       = '2.1'
+WPSCAN_VERSION       = '2.2'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
 $LOAD_PATH.unshift(MODELS_LIB_DIR)
 
 def kali_linux?
-  %x{uname -a} =~ /kali/i
+  begin
+    File.readlines("/etc/debian_version").grep(/^kali/i).any?
+  rescue
+    false
+  end
 end
 
 require 'environment'
