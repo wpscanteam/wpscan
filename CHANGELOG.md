@@ -83,12 +83,12 @@ Vulnerabilities
 * Added WP vuln: 3.4 - 3.5.1 wp-admin/users.php FPD
 
 WPScan Databse Statistics:
-* Total vulnerable versions: 76, 4 are new
-* Total vulnerable plugins: 606, 197 are new
-* Total vulnerable themes: 194, 45 are new
-* Total version vulnerabilities: 274, 53 are new
-* Total plugin vulnerabilities: 764, 270 are new
-* Total theme vulnerabilities: 198, 46 are new
+* Total vulnerable versions: 76; 4 are new
+* Total vulnerable plugins: 610; 201 are new
+* Total vulnerable themes: 196; 47 are new
+* Total version vulnerabilities: 274; 53 are new
+* Total plugin vulnerabilities: 780; 286 are new
+* Total theme vulnerabilities: 204; 52 are new
 
 Add WP Fingerprints
 * WP 3.7.1 Fingerprinting
