@@ -12,7 +12,7 @@ class StatsPlugin < Plugin
 
   def run(options = {})
     if options[:stats]
-      puts 'Wpscan Databse Statistics:'
+      puts 'WPScan Database Statistics:'
       puts '--------------------------'
       puts "[#] Total vulnerable versions: #{vuln_core_count}"
       puts "[#] Total vulnerable plugins: #{vuln_plugin_count}"
