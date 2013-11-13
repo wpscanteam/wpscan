@@ -55,6 +55,11 @@ shared_examples 'WpTheme::Versionable' do
       @file = 'twentyeleven-1.3.css'
       @expected = '1.3'
     end
+
+    it 'returns the correct version' do
+      @file = 'firefart.net.css'
+      @expected = '1.0.0'
+    end
   end
 
 end
