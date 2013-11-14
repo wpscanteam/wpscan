@@ -348,7 +348,7 @@ def main
     exit(0) # must exit!
 
   rescue SystemExit, Interrupt
-    puts 'Exiting!'
+    
   rescue => e
     if e.backtrace[0] =~ /main/
       puts red(e.message)
