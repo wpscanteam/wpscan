@@ -103,7 +103,7 @@ def banner
     puts "                        Version #{version}"
   end
   puts '     Sponsored by the RandomStorm Open Source Initiative'
-  puts ' @_WPScan_, @ethicalhack3r, @erwan_lr, @gbrindisi, @_FireFart_'
+  puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
   puts '_______________________________________________________________'
   puts
 end
