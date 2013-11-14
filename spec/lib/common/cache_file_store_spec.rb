@@ -17,13 +17,13 @@ describe CacheFileStore do
 
   describe '#storage_path' do
     it 'returns the storage path given in the #new' do
-      @cache.storage_path.should == cache_dir
+      @cache.storage_path.should match(/#{cache_dir}/)
     end
   end
 
   describe '#serializer' do
     it 'should return the default serializer : Marshal' do
-      @cache.serializer.should == Marshal
+      @cache.serializer.should     == Marshal
       @cache.serializer.should_not == YAML
     end
   end
@@ -32,12 +32,12 @@ describe CacheFileStore do
     it "should remove all files from the cache dir (#{@cache_dir}" do
       # let's create some files into the directory first
       (0..5).each do |i|
-        File.new(cache_dir + "/file_#{i}.txt", File::CREAT)
+        File.new(@cache.storage_path + "/file_#{i}.txt", File::CREAT)
       end
 
-      count_files_in_dir(cache_dir, 'file_*.txt').should == 6
+      count_files_in_dir(@cache.storage_path, 'file_*.txt').should == 6
       @cache.clean
-      count_files_in_dir(cache_dir).should == 0
+      count_files_in_dir(@cache.storage_path).should == 0
     end
   end
 
@@ -69,5 +69,17 @@ describe CacheFileStore do
     end
 
     ## TODO write / read for an object
+  end
+
+  describe '#storage_dir' do
+    it 'should create a unique storage dir' do
+      storage_dirs = []
+
+      (1..5).each do |i|
+        storage_dirs << CacheFileStore.new(cache_dir).storage_path
+      end
+
+      storage_dirs.uniq.size.should == 5
+    end
   end
 end
