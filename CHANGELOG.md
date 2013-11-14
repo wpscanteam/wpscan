@@ -1,4 +1,6 @@
 # Changelog
+## Master
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.2...master)
 
 ## Version 2.2 
 Released: 2013-11-12
