@@ -44,6 +44,10 @@ def main
       exit(0)
     end
 
+    unless wpscan_options.url
+      raise 'The URL is mandatory, please supply it with --url or -u'
+    end
+
     wp_target = WpTarget.new(wpscan_options.url, wpscan_options.to_h)
 
     # Remote website up?
