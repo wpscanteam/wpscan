@@ -1603,6 +1603,7 @@
       <title>Omni Secure Files 0.1.13 - Arbitrary File Upload</title>
       <references>
         <exploitdb>19009</exploitdb>
+        <url>http://www.securityfocus.com/bid/53872</url>
       </references>
       <type>UPLOAD</type>
     </vulnerability>
@@ -1684,11 +1685,21 @@
 
   <plugin name="gallery-plugin">
     <vulnerability>
-      <title>Gallery 3.06 - Arbitrary File Upload</title>
+      <title>Gallery 3.06 - gallery-plugin/upload/php.php File Upload PHP Code Execution </title>
       <references>
+        <osvdb>82661</osvdb>
         <exploitdb>18998</exploitdb>
       </references>
       <type>UPLOAD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Gallery Plugin 3.8.3 - gallery-plugin.php filename_1 Parameter Arbitrary File Access</title>
+      <references>
+        <osvdb>89124</osvdb>
+        <url>http://packetstormsecurity.com/files/119458/</url>
+        <url>http://www.securityfocus.com/bid/57256</url>
+        <url>http://seclists.org/bugtraq/2013/Jan/45</url>
+      </references>
     </vulnerability>
   </plugin>
 
@@ -1990,6 +2001,7 @@
       <references>
         <secunia>49189</secunia>
         <url>http://packetstormsecurity.com/files/112688/</url>
+        <url>http://www.securityfocus.com/bid/53538</url>
       </references>
       <type>XSS</type>
       <fixed_in>8.1</fixed_in>
@@ -1998,10 +2010,11 @@
 
   <plugin name="soundcloud-is-gold">
     <vulnerability>
-      <title>Soundcloud Is Gold &lt;= 2.1 - Cross Site Scripting</title>
+      <title>Soundcloud Is Gold &lt;= 2.1 - 'action' Parameter Cross Site Scripting Vulnerability</title>
       <references>
         <secunia>49188</secunia>
         <url>http://packetstormsecurity.com/files/112689/</url>
+        <url>http://www.securityfocus.com/bid/53537</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -2782,11 +2795,14 @@
 
   <plugin name="adminimize">
     <vulnerability>
-      <title>adminimize 1.7.21 - Cross-Site Scripting Vulnerabilities</title>
+      <title>adminimize 1.7.21 - 'page' Parameter Cross Site Scripting Vulnerability</title>
       <references>
+        <cve>2011-4926</cve>
+        <url>http://www.securityfocus.com/bid/50745</url>
         <url>http://seclists.org/bugtraq/2011/Nov/135</url>
       </references>
       <type>XSS</type>
+      <fixed_in>1.7.22</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4938,8 +4954,9 @@
 
   <plugin name="browser-rejector">
     <vulnerability>
-      <title>browser-rejector - Remote and Local File Inclusion</title>
+      <title>Browser Rejector - Remote and Local File Inclusion</title>
       <references>
+        <osvdb>89053</osvdb>
         <secunia>51739</secunia>
       </references>
       <type>LFI</type>
@@ -6969,11 +6986,14 @@
 
   <plugin name="wp-maintenance-mode">
     <vulnerability>
-      <title>WP Maintenance Mode - Setting Manipulation CSRF</title>
+      <title>WP Maintenance Mode 1.8.7 - Setting Manipulation CSRF</title>
       <references>
         <osvdb>94450</osvdb>
+        <cve>2013-3250</cve>
+        <secunia>53125</secunia>
       </references>
       <type>CSRF</type>
+      <fixed_in>1.8.8</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -8358,6 +8378,78 @@
         <secunia>54078</secunia>
       </references>
       <type>MULTI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="taggator">
+    <vulnerability>
+      <title>TagGator - 'tagid' Parameter SQL Injection Vulnerability</title>
+      <references>
+        <url>http://www.securityfocus.com/bid/52908</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="uploadify-integration">
+    <vulnerability>
+      <title>Uploadify Integration 0.9.6 - Multiple Cross Site Scripting Vulnerabilities</title>
+      <references>
+        <url>http://www.securityfocus.com/bid/52944</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wpsc-mijnpress"
+    <vulnerability>
+      <title>WPsc MijnPress - 'rwflush' Parameter Cross Site Scripting Vulnerability</title>
+      <references>
+        <url>http://www.securityfocus.com/bid/53302</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="leaflet-maps-marker">
+    <vulnerability>
+      <title>Leaflet Maps Marker 3.5.2 - Two SQL Injection Vulnerabilities</title>
+      <references>
+        <secunia>53855</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.5.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="google-xml-sitemaps-generator">
+    <vulnerability>
+      <title>XML Sitemap Generator 3.2.8 - XML File Overwrite Arbitrary Code Execution</title>
+      <references>
+        <osvdb>89411</osvdb>
+        <url>http://packetstormsecurity.com/files/119357/</url>
+      </references>
+      <type>RCE</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="spam-free-wordpress">
+    <vulnerability>
+      <title>Spam Free Plugin 1.9.2 - Multiple Script Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>88954</osvdb>
+        <url>http://xforce.iss.net/xforce/xfdb/81007</url>
+      </references>
+      <type>FPD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spam Free Plugin 1.9.2 - IP Blocklist Restriction Bypass</title>
+      <references>
+        <osvdb>88955</osvdb>
+        <url>http://xforce.iss.net/xforce/xfdb/81006</url>
+        <url>http://packetstormsecurity.com/files/119274/</url>
+      </references>
+      <type>AUTHBYPASS</type>
     </vulnerability>
   </plugin>
 
