@@ -1025,7 +1025,7 @@
 
   <plugin name="catalog">
     <vulnerability>
-      <title>Catalog - HTML Code Injection and Cross-site scripting</title>
+      <title>Spider Catalog - HTML Code Injection and Cross-site scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/117820/</url>
         <secunia>51143</secunia>
@@ -1040,12 +1040,104 @@
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>Spider Catalog 1.4.6 - Multiple Vulnerabilities</title>
+      <title>Spider Catalog 1.4.6 - Multiple Shortcode id Parameter SQL Injection</title>
       <references>
+        <osvdb>93589</osvdb>
         <exploitdb>25724</exploitdb>
-        <osvdb>93591</osvdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
       </references>
-      <type>MULTI</type>
+      <type>SQL</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - catalog.php catalog_after_search_results Function s Parameter SQL Injection</title>
+      <references>
+        <osvdb>93590</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>SQL</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - Categories.php Multiple Function id Parameter SQL Injection</title>
+      <references>
+        <osvdb>93591</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>SQL</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - products.php Multiple Function Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>93592</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>SQL</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - Category Entry Multiple Field XSS</title>
+      <references>
+        <osvdb>93593</osvdb>
+        <exploitdb>25723</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - Categories.html.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>93594</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - Products.html.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>93595</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - spiderBox/spiderBox.js.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>93596</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - catalog.php spider_box_js_php Function Multiple Parameter XSS</title>
+      <references>
+        <osvdb>93597</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Spider Catalog 1.4.6 - Multiple Script Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>93598</osvdb>
+        <exploitdb>25724</exploitdb>
+        <secunia>53491</secunia>
+        <url>http://seclists.org/bugtraq/2013/May/79</url>
+      </references>
+      <type>FPD</type>
     </vulnerability>
   </plugin>
 
@@ -1665,9 +1757,12 @@
 
   <plugin name="tinymce-thumbnail-gallery">
     <vulnerability>
-      <title>Tinymce Thumbnail Gallery 1.0.7 - Remote File Disclosure</title>
+      <title>Tinymce Thumbnail Gallery 1.0.7 - download-image.php href Parameter Traversal Arbitrary File Access</title>
       <references>
+        <osvdb>82706</osvdb>
+        <secunia>49460</secunia>
         <exploitdb>19022</exploitdb>
+        <url>http://packetstormsecurity.org/files/113417/</url>
       </references>
       <type>UNKNOWN</type>
     </vulnerability>
@@ -2040,6 +2135,14 @@
       <type>CSRF</type>
     </vulnerability>
     <vulnerability>
+      <title>Sharebar 1.2.3 - wp-admin/options-general.php status Parameter XSS</title>
+      <references>
+        <osvdb>81465</osvdb>
+        <secunia>48908</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
       <title>Sharebar &lt;= 1.2.1 - SQL Injection / Cross Site Scripting</title>
       <references>
         <url>http://packetstormsecurity.com/files/112690/</url>
@@ -2399,12 +2502,30 @@
       <fixed_in>2.4.8</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Zingiri Web Shop &lt;= 2.4.0 - Multiple XSS Vulnerabilities</title>
+      <title>Zingiri Web Shop &lt;= 2.4.0 - zing.inc.php page Parameter XSS</title>
       <references>
+        <osvdb>81492</osvdb>
+        <cve>2012-6506</cve>
         <exploitdb>18787</exploitdb>
         <secunia>48991</secunia>
+        <url>http://www.securityfocus.com/bid/53278</url>
+        <url>http://xforce.iss.net/xforce/xfdb/75178</url>
       </references>
       <type>XSS</type>
+      <fixed_in>2.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Zingiri Web Shop &lt;= 2.4.0 - onecheckout.php notes Parameter XSS</title>
+      <references>
+        <osvdb>81493</osvdb>
+        <cve>2012-6506</cve>
+        <exploitdb>18787</exploitdb>
+        <secunia>48991</secunia>
+        <url>http://www.securityfocus.com/bid/53278</url>
+        <url>http://xforce.iss.net/xforce/xfdb/75179</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.4.2</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Zingiri Web Shop &lt;= 2.3.5 - Cross Site Scripting</title>
@@ -5742,8 +5863,10 @@
 
   <plugin name="wp-ecommerce-shop-styling">
     <vulnerability>
-      <title>WP ecommerce Shop Styling - "dompdf" Remote File Inclusion Vulnerability</title>
+      <title>WP ecommerce Shop Styling 1.7.2 - generate-pdf.php dompdf Parameter Remote File Inclusion</title>
       <references>
+        <osvdb>89921</osvdb>
+        <cve>2013-0724</cve>
         <secunia>51707</secunia>
       </references>
       <type>RFI</type>
@@ -5753,8 +5876,9 @@
 
   <plugin name="audio-player">
     <vulnerability>
-      <title>Audio Player - XSS in SWF</title>
+      <title>Audio Player - player.swf playerID Parameter XSS</title>
       <references>
+        <osvdb>89963</osvdb>
         <url>http://seclists.org/bugtraq/2013/Feb/35</url>
         <secunia>52083</secunia>
       </references>
@@ -7751,7 +7875,7 @@
 
   <plugin name="a-forms">
     <vulnerability>
-      <title>A Forms 1.4.0 - Multiple Parameters SQL Injection</title>
+      <title>A Forms 1.4.0 - a-forms.php a_form_tracking_page FunctionMultiple Parameters SQL Injection</title>
       <references>
         <osvdb>96404</osvdb>
       </references>
@@ -7759,12 +7883,66 @@
       <fixed_in>1.4.2</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>A Forms 1.4.1 - Form Submission CSRF</title>
+      <title>A Forms 1.4.0 - Form Submission CSRF</title>
       <references>
         <osvdb>96381</osvdb>
         <secunia>54489</secunia>
       </references>
       <type>CSRF</type>
+      <fixed_in>1.4.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 - a-forms.php a_form_shortcode Function Multiple Parameter XSS</title>
+      <references>
+        <osvdb>96410</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 - a-forms.php add_field_to_section Function Multiple Parameter XSS</title>
+      <references>
+        <osvdb>96810</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 - a-forms.php a_form_initial_page Function Multiple Parameter XSS</title>
+      <references>
+        <osvdb>96811</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 - a-forms.php a_form_page Function Multiple Parameter XSS</title>
+      <references>
+        <osvdb>96812</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 -  a-forms.php a_form_section_page Function message Parameter XSS</title>
+      <references>
+        <osvdb>96813</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 - a-forms.php a_form_tracking_page Function Multiple Parameter XSS</title>
+      <references>
+        <osvdb>96814</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
       <fixed_in>1.4.2</fixed_in>
     </vulnerability>
   </plugin>
@@ -8143,6 +8321,7 @@
         <osvdb>98978</osvdb>
       </references>
       <type>XSS</type>
+      <fixed_in>4.0.2</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -8450,6 +8629,58 @@
         <url>http://packetstormsecurity.com/files/119274/</url>
       </references>
       <type>AUTHBYPASS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="editorial-calendar">
+    <vulnerability>
+      <title>Editorial Calendar 2.6 - Post Title XSS</title>
+      <references>
+        <osvdb>90226</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Editorial Calendar 2.6 - Permission Verification Arbitrary Calendar Post Deletion</title>
+      <references>
+        <osvdb>90227</osvdb>
+        <secunia>52218</secunia>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Editorial Calendar 2.6 - Post Query Multiple Filter SQL Injection</title>
+      <references>
+        <osvdb>90228</osvdb>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="shareyourcart">
+    <vulnerability>
+      <title>ShareYourCart 1.6.1 - SDK Multiple Unspecified Path Disclosure</title>
+      <references>
+        <osvdb>81618</osvdb>
+        <cve>2012-4332</cve>
+        <secunia>48960</secunia>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.7.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="alo-easymail">
+    <vulnerability>
+      <title>ALO EasyMail Newsletter 2.4.7 - Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>82324</osvdb>
+        <secunia>49320</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.4.8</fixed_in>
     </vulnerability>
   </plugin>
 
