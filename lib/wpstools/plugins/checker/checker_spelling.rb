@@ -26,7 +26,7 @@ class CheckerSpelling < Plugin
           begin
             file.read.scan(/#{misspelling}/).each do |match|
               mistakes += 1
-              puts "[MISSSPELLING] File: #{file_name} Bad: #{match} Good: #{misspellings[misspelling]}"
+              puts "[MISSPELLING] File: #{file_name} Bad: #{match} Good: #{misspellings[misspelling]}"
             end
            rescue => e
            	 puts "Error in #{file_name} #{e}"
