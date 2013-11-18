@@ -81,6 +81,7 @@ class CheckerSpelling < Plugin
   	ignore << 'spec/spec_session/'
   	ignore << 'coverage/assets/'
   	ignore << 'wordlist-iso-8859-1'
+    ignore << 'log.txt'
 
   	ignore
   end
