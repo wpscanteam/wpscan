@@ -79,9 +79,12 @@ class CheckerSpelling < Plugin
   	ignore << File.basename(__FILE__)
   	ignore << 'spec/cache/'
   	ignore << 'spec/spec_session/'
-  	ignore << 'coverage/assets/'
+    ignore << 'cache/'
+  	ignore << 'coverage/'
   	ignore << 'wordlist-iso-8859-1'
     ignore << 'log.txt'
+    ignore << 'debug.log'
+    ignore << 'wordlist.txt'
 
   	ignore
   end
