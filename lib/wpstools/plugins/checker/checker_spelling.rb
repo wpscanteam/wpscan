@@ -13,13 +13,13 @@ class CheckerSpelling < Plugin
   end
 
   def spellcheck
-  	mistakes = 0
+    mistakes = 0
 
-  	puts '[+] Checking for spelling mistakes'
-  	puts
+    puts '[+] Checking for spelling mistakes'
+    puts
 
-  	files.each do |file_name|
-  	  if File.exists?(file_name)
+    files.each do |file_name|
+      if File.exists?(file_name)
         file = File.open(file_name, 'r')
 
         misspellings.each_key do |misspelling|
@@ -28,10 +28,10 @@ class CheckerSpelling < Plugin
               mistakes += 1
               puts "[MISSPELLING] File: #{file_name} Bad: #{match} Good: #{misspellings[misspelling]}"
             end
-           rescue => e
-           	 puts "Error in #{file_name} #{e}"
-             next
-           end
+          rescue => e
+            puts "Error in #{file_name} #{e}"
+            next
+          end
         end
 
         file.close
@@ -45,47 +45,47 @@ class CheckerSpelling < Plugin
   end
 
   def misspellings
-  	{
-  		  /databse/i    => 'database',
-        /whith/i      => 'with',
-        /wich/i       => 'which',
-        /verions/i    => 'versions',
-        /vulnerabilitiy/i => 'vulnerability',
-        /unkown/i     => 'unknown',
-        /recieved/i   => 'received',
-        /acheive/i    => 'achieve',
-        /wierd/i      => 'weird',
-        /untill/i     => 'until',
-        /alot/i       => 'a lot',
-        /randomstorm/ => 'RandomStorm',
-        /wpscan/      => 'WPScan',
-        /Wordpress/   => 'WordPress'
-  	}
+    {
+      /databse/i    => 'database',
+      /whith/i      => 'with',
+      /wich/i       => 'which',
+      /verions/i    => 'versions',
+      /vulnerabilitiy/i => 'vulnerability',
+      /unkown/i     => 'unknown',
+      /recieved/i   => 'received',
+      /acheive/i    => 'achieve',
+      /wierd/i      => 'weird',
+      /untill/i     => 'until',
+      /alot/i       => 'a lot',
+      /randomstorm/ => 'RandomStorm',
+      /wpscan/      => 'WPScan',
+      /Wordpress/   => 'WordPress'
+    }
   end
 
   def files
-  	files = Dir['**/*'].reject {|fn| File.directory?(fn) }
+    files = Dir['**/*'].reject {|fn| File.directory?(fn) }
 
     ignore.each do |ignore|
-  	  files.delete_if { |data| data.match(ignore) }
+      files.delete_if { |data| data.match(ignore) }
     end
 
-  	files
+    files
   end
 
   def ignore
-  	ignore = []
+    ignore = []
 
-  	ignore << File.basename(__FILE__)
-  	ignore << 'spec/cache/'
-  	ignore << 'spec/spec_session/'
+    ignore << File.basename(__FILE__)
+    ignore << 'spec/cache/'
+    ignore << 'spec/spec_session/'
     ignore << 'cache/'
-  	ignore << 'coverage/'
-  	ignore << 'wordlist-iso-8859-1'
+    ignore << 'coverage/'
+    ignore << 'wordlist-iso-8859-1'
     ignore << 'log.txt'
     ignore << 'debug.log'
     ignore << 'wordlist.txt'
 
-  	ignore
+    ignore
   end
 end
