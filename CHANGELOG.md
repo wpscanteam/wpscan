@@ -84,7 +84,7 @@ Vulnerabilities
 * Update timthumb due to Secunia #54801
 * Added WP vuln: 3.4 - 3.5.1 wp-admin/users.php FPD
 
-WPScan Databse Statistics:
+WPScan Database Statistics:
 * Total vulnerable versions: 76; 4 are new
 * Total vulnerable plugins: 610; 201 are new
 * Total vulnerable themes: 196; 47 are new
