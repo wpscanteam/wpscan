@@ -120,18 +120,14 @@ class Browser
       )
     end
 
-    if @request_timeout
-      params = params.merge(timeout: @request_timeout)
-    end
-
-    if @connect_timeout
-      params = params.merge(connecttimeout: @connect_timeout)
-    end
+    params.merge!(timeout: @request_timeout) if @request_timeout
+    params.merge!(connecttimeout: @connect_timeout) if @connect_timeout
 
     # Used to enable the cache system if :cache_ttl > 0
-    unless params.has_key?(:cache_ttl)
-      params = params.merge(cache_ttl: @cache_ttl)
-    end
+    params.merge!(cache_ttl: @cache_ttl) unless params.has_key?(:cache_ttl)
+
+    # Prevent infinite self redirection
+    params.merge!(maxredirs: 3) unless params.has_key?(:maxredirs)
 
     # Disable SSL-Certificate checks
     params.merge!(ssl_verifypeer: false)

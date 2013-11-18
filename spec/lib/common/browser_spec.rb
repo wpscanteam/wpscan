@@ -137,7 +137,8 @@ describe Browser do
         headers: { 'User-Agent' => 'SomeUA' },
         ssl_verifypeer: false, ssl_verifyhost: 0,
         cookiejar: cookie_jar, cookiefile: cookie_jar,
-        timeout: 2000, connecttimeout: 1000
+        timeout: 2000, connecttimeout: 1000,
+        maxredirs: 3
       }
     }
 
@@ -182,6 +183,14 @@ describe Browser do
 
     context 'when the cache_ttl is alreday set' do
       let(:params) { { cache_ttl: 500 } }
+
+      it 'does not override it' do
+        @expected = default_expectation.merge(params)
+      end
+    end
+
+    context 'when the maxredirs is alreday set' do
+      let(:params) { { maxredirs: 100 } }
 
       it 'does not override it' do
         @expected = default_expectation.merge(params)

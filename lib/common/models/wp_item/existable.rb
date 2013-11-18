@@ -29,7 +29,10 @@ class WpItem
     #
     # @return [ Boolean ]
     def exists_from_response?(response, options = {})
-      if [200, 401, 403].include?(response.code)
+      # 301 included as some items do a self-redirect
+      # Redirects to the 404 and homepage should be ignored (unless dynamic content is used)
+      # by the page hashes (error_404_hash & homepage_hash)
+      if [200, 401, 403, 301].include?(response.code)
         if response.has_valid_hash?(options[:error_404_hash], options[:homepage_hash])
           if options[:exclude_content]
             unless response.body.match(options[:exclude_content])
