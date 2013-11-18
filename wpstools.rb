@@ -18,7 +18,8 @@ begin
   plugins.register(
     CheckerPlugin.new,
     ListGeneratorPlugin.new,
-    StatsPlugin.new
+    StatsPlugin.new,
+    CheckerSpelling.new
   )
 
   options = option_parser.results
