@@ -53,7 +53,7 @@ shared_examples 'WpItem::Versionable' do
     context 'when the version exists' do
       it 'returns the name and the version' do
         @version  = '1.3'
-        @expected = 'some-name v1.3'
+        @expected = 'some-name - v1.3'
       end
     end
   end
