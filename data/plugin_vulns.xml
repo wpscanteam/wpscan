@@ -162,8 +162,9 @@
 
   <plugin name="bookings">
     <vulnerability>
-      <title>Bookings &lt;= 1.8.2 - XSS</title>
+      <title>Bookings &lt;= 1.8.2 - controlpanel.php error Parameter XSS</title>
       <references>
+        <osvdb>86613</osvdb>
         <secunia>50975</secunia>
       </references>
       <type>XSS</type>
@@ -344,12 +345,70 @@
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>RokBox &lt;= 2.13 - XSS,DoS,Disclosure,Upload Vulnerabilities</title>
+      <title>RokBox &lt;= 2.13 - thumb.php src Parameter Malformed Input Path Disclosure</title>
       <references>
-        <secunia>54801</secunia>
+        <osvdb>88604</osvdb>
         <url>http://packetstormsecurity.com/files/118884/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80732</url>
+        <url>http://www.securityfocus.com/bid/56953</url>
+        <url>http://seclists.org/fulldisclosure/2012/Dec/159</url>
       </references>
-      <type>MULTI</type>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>RokBox &lt;= 2.13 - thumb.php src Parameter XSS</title>
+      <references>
+        <osvdb>88605</osvdb>
+        <url>http://packetstormsecurity.com/files/118884/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80731</url>
+        <url>http://www.securityfocus.com/bid/56953</url>
+        <url>http://seclists.org/fulldisclosure/2012/Dec/159</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>RokBox &lt;= 2.13 - rokbox.php Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>88606</osvdb>
+        <url>http://packetstormsecurity.com/files/118884/</url>
+        <url>http://www.securityfocus.com/bid/56953</url>
+        <url>http://seclists.org/fulldisclosure/2012/Dec/159</url>
+      </references>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>RokBox &lt;= 2.13 - error_log Direct Request Error Log Information Disclosure</title>
+      <references>
+        <osvdb>88607</osvdb>
+        <url>http://packetstormsecurity.com/files/118884/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80761</url>
+        <url>http://www.securityfocus.com/bid/56953</url>
+        <url>http://seclists.org/fulldisclosure/2012/Dec/159</url>
+      </references>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>RokBox &lt;= 2.13 - jwplayer/jwplayer.swf abouttext Parameter XSS</title>
+      <references>
+        <osvdb>88608</osvdb>
+        <url>http://packetstormsecurity.com/files/118884/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80731</url>
+        <url>http://www.securityfocus.com/bid/56953</url>
+        <url>http://seclists.org/fulldisclosure/2012/Dec/159</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>RokBox &lt;= 2.13 - thumb.php src Parameter Arbitrary File Upload</title>
+      <references>
+        <osvdb>88609</osvdb>
+        <url>http://packetstormsecurity.com/files/118884/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80733</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80739</url>
+        <url>http://www.securityfocus.com/bid/56953</url>
+        <url>http://seclists.org/fulldisclosure/2012/Dec/159</url>
+      </references>
+      <type>UPLOAD</type>
     </vulnerability>
   </plugin>
 
@@ -679,6 +738,13 @@
         <url>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>PDW File Browser - upload.php Arbitrary File Upload Vulnerability</title>
+      <references>
+        <url>http://www.securityfocus.com/bid/53895</url>
+      </references>
+      <type>UPLOAD</type>
     </vulnerability>
   </plugin>
 
@@ -1201,14 +1267,24 @@
 
   <plugin name="bbpress">
     <vulnerability>
-      <title>BBPress - SQL Injection / Path Disclosure</title>
+      <title>BBPress - Multiple Script Malformed Input Path Disclosure</title>
       <references>
+        <osvdb>86399</osvdb>
         <exploitdb>22396</exploitdb>
-        <osvdb>86400</osvdb>
         <url>http://xforce.iss.net/xforce/xfdb/78244</url>
         <url>http://packetstormsecurity.com/files/116123/</url>
       </references>
-      <type>MULTI</type>
+      <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>BBPress - forum.php page Parameter SQL Injection</title>
+      <references>
+        <osvdb>86400</osvdb>
+        <exploitdb>22396</exploitdb>
+        <url>http://xforce.iss.net/xforce/xfdb/78244</url>
+        <url>http://packetstormsecurity.com/files/116123/</url>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
@@ -5133,9 +5209,11 @@
     <vulnerability>
       <title>Developer Formatter - CSRF and XSS Vulnerability</title>
       <references>
+        <osvdb>89475</osvdb>
+        <exploitdb>24294</exploitdb>
+        <secunia>51912</secunia>
         <url>http://illsecure.com/code/Wordpress-DevFormatter-CSRF-Vulnerability.txt</url>
         <url>http://1337day.com/exploit/20210</url>
-        <secunia>51912</secunia>
       </references>
       <type>MULTI</type>
     </vulnerability>
