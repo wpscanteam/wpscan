@@ -259,12 +259,13 @@
 
   <plugin name="floating-social-media-links">
     <vulnerability>
-      <title>Floating Social Media Links - Remote File Inclusion</title>
+      <title>Floating Social Media Links &lt;= 1.4.2 - Remote File Inclusion</title>
       <references>
         <secunia>51346</secunia>
         <url>http://ceriksen.com/2013/01/12/wordpress-floating-social-media-link-plugins-remote-file-inclusion/</url>
       </references>
       <type>RFI</type>
+      <fixed_in>1.4.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -807,12 +808,13 @@
 
   <plugin name="ultimate-tinymce">
     <vulnerability>
-      <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
+      <title>TinyMCE 3.5 - swfupload Cross-Site Scripting Vulnerability</title>
       <references>
         <url>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</url>
         <secunia>51224</secunia>
       </references>
       <type>XSS</type>
+      <fixed_in>3.6</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4638,11 +4640,15 @@
       <type>UPLOAD</type>
     </vulnerability>
     <vulnerability>
-      <title>Category Grid View Gallery - CatGridPost.php ID Parameter XSS</title>
+      <title>Category Grid View Gallery 2.3.1 - CatGridPost.php ID Parameter XSS</title>
       <references>
         <osvdb>94805</osvdb>
+        <cve>2013-4117</cve>
+        <secunia>54035</secunia>
+        <url>http://packetstormsecurity.com/files/122259/</url>
       </references>
       <type>XSS</type>
+      <fixed_in>2.3.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -5856,18 +5862,14 @@
 
   <plugin name="wp-table-reloaded">
     <vulnerability>
-      <title>wp-table-reloaded &lt;= 1.9.3 - XSS in ZeroClipboard.swf</title>
+      <title>wp-table-reloaded &lt;= 1.9.3 - zeroclipboard.swf id Parameter XSS</title>
       <references>
-        <url>http://1337day.com/exploit/20396</url>
-      </references>
-      <type>XSS</type>
-    </vulnerability>
-    <vulnerability>
-      <title>wp-table-reloaded - cross-site scripting in SWF</title>
-      <references>
-        <url>http://packetstormsecurity.com/files/119968/</url>
+        <osvdb>89754</osvdb>
+        <cve>2013-1463</cve>
         <secunia>52027</secunia>
+        <url>http://packetstormsecurity.com/files/119968/</url>
         <url>http://seclists.org/bugtraq/2013/Feb/28</url>
+        <url>http://www.securityfocus.com/bid/57664</url>
       </references>
       <type>XSS</type>
       <fixed_in>1.9.4</fixed_in>
@@ -7279,9 +7281,10 @@
 
   <plugin name="stream-video-player">
     <vulnerability>
-      <title>Stream Video Player - Setting Manipulation CSRF</title>
+      <title>Stream Video Player &lt;= 1.4.0 - Setting Manipulation CSRF</title>
       <references>
         <osvdb>94466</osvdb>
+        <secunia>52954</secunia>
       </references>
       <type>CSRF</type>
     </vulnerability>
@@ -8398,6 +8401,7 @@
       <references>
         <osvdb>98978</osvdb>
         <cve>2013-6342</cve>
+        <url>http://packetstormsecurity.com/files/124047/</url>
       </references>
       <type>XSS</type>
       <fixed_in>4.0.2</fixed_in>
