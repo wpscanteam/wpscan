@@ -4,7 +4,9 @@
 
   <xs:simpleType name="stringtype">
     <xs:restriction base="xs:string">
+      <xs:whiteSpace value="preserve" />
       <xs:minLength value="1" />
+      <xs:pattern value="[^\s].+[^\s]|[^\s]"/>
     </xs:restriction>
   </xs:simpleType>
 
