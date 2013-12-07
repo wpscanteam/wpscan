@@ -3,6 +3,8 @@
 require 'spec_helper'
 
 describe WpThemes do
+  before { stub_request(:get, /.+\/style.css$/).to_return(status: 200) }
+
   it_behaves_like 'WpItems::Detectable' do
     subject(:wp_themes) { WpThemes }
     let(:item_class)    { WpTheme }
