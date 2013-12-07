@@ -194,6 +194,16 @@ def main
       # Theme version is handled in #to_s
       puts green('[+]') + " WordPress theme in use: #{wp_theme}"
       wp_theme.output
+
+      # Check for parent Themes
+      while wp_theme.is_child_theme?
+        parent = wp_theme.get_parent_theme
+        puts
+        puts green('[+]') + " Detected parent theme: #{parent}"
+        parent.output
+        wp_theme = parent
+      end
+
     end
 
     if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
