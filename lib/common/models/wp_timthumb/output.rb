@@ -3,7 +3,7 @@
 class WpTimthumb < WpItem
   module Output
 
-    def output
+    def output(verbose = false)
       puts ' | ' + red('[!]') + " #{self}"
     end
 

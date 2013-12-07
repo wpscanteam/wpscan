@@ -3,7 +3,7 @@
 class WpVersion < WpItem
   module Output
 
-    def output
+    def output(verbose = false)
       puts green('[+]') + " WordPress version #{self.number} identified from #{self.found_from}"
 
       vulnerabilities = self.vulnerabilities

@@ -177,3 +177,10 @@ end
 def count_file_lines(file)
   `wc -l #{file.shellescape}`.split[0].to_i
 end
+
+# Truncates a string to a specific length and adds ... at the end
+def truncate(input, size, trailing = '...')
+  padded_length = size - trailing.length - 2 # ... + space + index 0
+  return input if input.nil? or size <= trailing.length or size <= 0 or input.length <= size
+  return "#{input[0...padded_length]}#{trailing}"
+end

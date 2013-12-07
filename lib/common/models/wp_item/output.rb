@@ -4,7 +4,7 @@ class WpItem
   module Output
 
     # @return [ Void ]
-    def output
+    def output(verbose = false)
       puts
       puts " | Name: #{self}" #this will also output the version number if detected
       puts " | Location: #{url}"
@@ -14,7 +14,7 @@ class WpItem
       puts " | Changelog: #{changelog_url}" if has_changelog?
 
 			if respond_to?(:additional_output)
-				additional_output
+				additional_output(verbose)
 			end
 
       vulnerabilities.output
