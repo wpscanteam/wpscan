@@ -180,7 +180,9 @@ end
 
 # Truncates a string to a specific length and adds ... at the end
 def truncate(input, size, trailing = '...')
-  padded_length = size - trailing.length - 2 # ... + space + index 0
-  return input if input.nil? or size <= trailing.length or size <= 0 or input.length <= size
-  return "#{input[0...padded_length]}#{trailing}"
+  size = size.to_i
+  trailing ||= ''
+  return input if input.nil? or size <= 0 or input.length <= size or
+      trailing.length >= input.length or size-trailing.length-1 >= input.length
+  return "#{input[0..size-trailing.length-1]}#{trailing}"
 end

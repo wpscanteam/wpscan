@@ -88,4 +88,83 @@ describe 'common_helper' do
       @expected = @html
     end
   end
+
+  describe '#truncate' do
+    after :each do
+      output = truncate(@input, @length, @trailing)
+      output.should == @expected
+    end
+
+    it 'returns nil on no input' do
+      @input = nil
+      @length = 1
+      @expected = nil
+      @trailing = '...'
+    end
+
+    it 'returns input when length > input' do
+      @input = '1234567890'
+      @length = 13
+      @expected = @input
+      @trailing = '...'
+    end
+
+    it 'truncates the input' do
+      @input = '1234567890'
+      @length = 6
+      @expected = '123...'
+      @trailing = '...'
+    end
+
+    it 'adds own trailing' do
+      @input = '1234567890'
+      @length = 7
+      @expected = '123xxxx'
+      @trailing = 'xxxx'
+    end
+
+    it 'accepts strings as length' do
+      @input = '1234567890'
+      @length = '6'
+      @expected = '123...'
+      @trailing = '...'
+    end
+
+    it 'checks if trailing is longer than input' do
+      @input = '1234567890'
+      @length = 1
+      @expected = @input
+      @trailing = 'A' * 20
+    end
+
+    it 'returns input on negative length' do
+      @input = '1234567890'
+      @length = -1
+      @expected = @input
+      @trailing = '...'
+    end
+
+    it 'returns input on length == input.length' do
+      @input = '1234567890'
+      @length = '10'
+      @expected = @input
+      @trailing = '...'
+    end
+
+    it 'returns cut string on nil trailing' do
+      @input = '1234567890'
+      @length = 9
+      @expected = '123456789'
+      @trailing = nil
+    end
+
+    it 'trailing.length > length' do
+      @input = '1234567890'
+      @length = 1
+      @expected = @input
+      @trailing = 'A' * 20
+    end
+
+  end
+
 end
