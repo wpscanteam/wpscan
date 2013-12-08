@@ -1,15 +1,17 @@
 #!/usr/bin/env ruby
 
-# ln -sf <this file> /Users/xxx/wpscan/.git/hooks/pre-commit
+# ln -sf /Users/xxx/wpscan/dev/pre-commit-hook.rb /Users/xxx/wpscan/.git/hooks/pre-commit
 
 require 'pty'
 html_path = 'rspec_results.html'
 
 begin
-	PTY.spawn( 'rspec spec --format h > rspec_results.html' ) do |stdin, stdout, pid|
+	PTY.spawn( "rspec spec --format h > #{html_path}" ) do |stdin, stdout, pid|
 		begin
 			stdin.each { |line| print line }
-		rescue Errno::EIO
+    rescue Errno::EIO => e
+      puts "Error: #{e.to.s}"
+      return 1
 		end
 	end
 rescue PTY::ChildExited
