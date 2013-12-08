@@ -3,9 +3,9 @@
 class Vulnerabilities < Array
   module Output
 
-    def output
+    def output(verbose = false)
       self.each do |v|
-        v.output
+        v.output(verbose)
       end
     end
 
