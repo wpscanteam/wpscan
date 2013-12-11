@@ -3,8 +3,8 @@
 class WpItems < Array
   module Output
 
-    def output
-      self.each { |item| item.output }
+    def output(verbose = false)
+      self.each { |item| item.output(verbose) }
     end
 
   end

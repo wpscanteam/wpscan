@@ -186,14 +186,24 @@ def main
     }
 
     if wp_version = wp_target.version(WP_VERSIONS_FILE)
-      wp_version.output
+      wp_version.output(wpscan_options.verbose)
     end
 
     if wp_theme = wp_target.theme
       puts
       # Theme version is handled in #to_s
       puts green('[+]') + " WordPress theme in use: #{wp_theme}"
-      wp_theme.output
+      wp_theme.output(wpscan_options.verbose)
+
+      # Check for parent Themes
+      while wp_theme.is_child_theme?
+        parent = wp_theme.get_parent_theme
+        puts
+        puts green('[+]') + " Detected parent theme: #{parent}"
+        parent.output(wpscan_options.verbose)
+        wp_theme = parent
+      end
+
     end
 
     if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
@@ -204,7 +214,7 @@ def main
       if !wp_plugins.empty?
         puts " |  #{wp_plugins.size} plugins found:"
 
-        wp_plugins.output
+        wp_plugins.output(wpscan_options.verbose)
       else
         puts 'No plugins found'
       end
@@ -226,7 +236,7 @@ def main
       if !wp_plugins.empty?
         puts green('[+]') + " We found #{wp_plugins.size} plugins:"
 
-        wp_plugins.output
+        wp_plugins.output(wpscan_options.verbose)
       else
         puts 'No plugins found'
       end
@@ -248,7 +258,7 @@ def main
       if !wp_themes.empty?
         puts green('[+]') + " We found #{wp_themes.size} themes:"
 
-        wp_themes.output
+        wp_themes.output(wpscan_options.verbose)
       else
         puts 'No themes found'
       end
@@ -270,7 +280,7 @@ def main
         puts green('[+]') + " We found #{wp_timthumbs.size} timthumb file/s:"
         puts
 
-        wp_timthumbs.output
+        wp_timthumbs.output(wpscan_options.verbose)
 
         puts
         puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')

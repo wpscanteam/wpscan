@@ -3,6 +3,10 @@
 require 'spec_helper'
 
 describe WpTheme do
+  before do
+    stub_request(:get, /.+\/style.css$/).to_return(status: 200)
+  end
+
   it_behaves_like 'WpTheme::Versionable'
   it_behaves_like 'WpTheme::Vulnerable'
   it_behaves_like 'WpItem::Vulnerable' do

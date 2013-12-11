@@ -7,6 +7,10 @@ describe 'WpTheme::Findable' do
   let(:uri)          { URI.parse('http://example.com/') }
 
   describe '::find_from_css_link' do
+    before do
+      stub_request(:get, /.+\/style.css$/).to_return(status: 200)
+    end
+
     after do
       @body ||= File.new(fixtures_dir + '/css_link/' + @file)
       stub_request(:get, uri.to_s).to_return(status: 200, body: @body)
@@ -51,6 +55,10 @@ describe 'WpTheme::Findable' do
   end
 
   describe '::find_from_wooframework' do
+    before do
+      stub_request(:get, /.+\/style.css$/).to_return(status: 200)
+    end
+
     after do
       @body ||= File.new(fixtures_dir + '/wooframework/' + @file)
       stub_request(:get, uri.to_s).to_return(status: 200, body: @body)
@@ -119,6 +127,7 @@ describe 'WpTheme::Findable' do
     context 'when the theme is found' do
       it 'returns it, with the :found_from set' do
         stub_all_to_nil()
+        stub_request(:get, /.+\/the-oracle\/style.css$/).to_return(status: 200)
         expected = WpTheme.new(uri, name: 'the-oracle')
 
         WpTheme.stub(:find_from_css_link).and_return(expected)
