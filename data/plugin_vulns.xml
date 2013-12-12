@@ -259,9 +259,23 @@
 
   <plugin name="floating-social-media-links">
     <vulnerability>
-      <title>Floating Social Media Links &lt;= 1.4.2 - Remote File Inclusion</title>
+      <title>Floating Social Media Links &lt;= 1.4.2 - fsml-admin.js.php wpp Parameter Remote File Inclusion</title>
       <references>
+        <osvdb>88383</osvdb>
         <secunia>51346</secunia>
+        <url>http://www.securityfocus.com/bid/56913</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80641</url>
+        <url>http://ceriksen.com/2013/01/12/wordpress-floating-social-media-link-plugins-remote-file-inclusion/</url>
+      </references>
+      <type>RFI</type>
+      <fixed_in>1.4.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Floating Social Media Links &lt;= 1.4.2 - fsml-hideshow.js.php wpp Parameter Remote File Inclusion </title>
+      <references>
+        <osvdb>88385</osvdb>
+        <secunia>51346</secunia>
+        <url>http://www.securityfocus.com/bid/56913</url>
         <url>http://ceriksen.com/2013/01/12/wordpress-floating-social-media-link-plugins-remote-file-inclusion/</url>
       </references>
       <type>RFI</type>
@@ -1571,6 +1585,16 @@
       </references>
       <type>UNKNOWN</type>
     </vulnerability>
+    <vulnerability>
+      <title>Wp-ImageZoom - zoom.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>87870</osvdb>
+        <url>http://packetstormsecurity.com/files/118371/</url>
+        <url>http://www.securityfocus.com/bid/56691</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80285</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="invit0r">
@@ -2572,6 +2596,23 @@
 
   <plugin name="zingiri-web-shop">
     <vulnerability>
+      <title>Zingiri Web Shop 2.5.0 - ajaxfilemanager.php path Parameter File Upload Arbitrary Code Execution</title>
+      <references>
+        <osvdb>87833</osvdb>
+        <url>http://packetstormsecurity.com/files/118318/</url>
+        <url>http://www.securityfocus.com/bid/56659</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80257</url>
+      </references>
+      <type>RCE</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Zingiri Web Shop 2.4.3 - Shell Upload</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/113668/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+    <vulnerability>
       <title>Zingiri Web Shop - Cookie SQL Injection Vulnerability</title>
       <references>
         <secunia>49398</secunia>
@@ -2611,13 +2652,6 @@
         <url>http://packetstormsecurity.com/files/112684/</url>
       </references>
       <type>XSS</type>
-    </vulnerability>
-    <vulnerability>
-      <title>Zingiri Web Shop 2.4.3 - Shell Upload</title>
-      <references>
-        <url>http://packetstormsecurity.com/files/113668/</url>
-      </references>
-      <type>UPLOAD</type>
     </vulnerability>
   </plugin>
 
@@ -3998,11 +4032,19 @@
 
   <plugin name="myflash">
     <vulnerability>
-      <title>plugin myflash &lt;= 1.00 - (wppath) RFI Vulnerability</title>
+      <title>Myflash &lt;= 1.00 - (wppath) RFI Vulnerability</title>
       <references>
         <exploitdb>3828</exploitdb>
       </references>
       <type>RFI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Myflash - myextractXML.php path Parameter Arbitrary File Access</title>
+      <references>
+        <osvdb>88260</osvdb>
+        <url>http://packetstormsecurity.com/files/118400/</url>
+      </references>
+      <type>LFI</type>
     </vulnerability>
   </plugin>
 
@@ -5648,6 +5690,7 @@
     <vulnerability>
       <title>HD Webplayer - Two SQL Injection Vulnerabilities</title>
       <references>
+        <osvdb>87832</osvdb>
         <secunia>50466</secunia>
       </references>
       <type>SQLI</type>
@@ -8951,6 +8994,30 @@
         <url>http://packetstormsecurity.com/files/124342/</url>
       </references>
       <type>RCE</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="zarzadzanie_kontem">
+    <vulnerability>
+      <title>Zarzadzanie Kontem - ajaxfilemanager.php File Upload Arbitrary Code Execution</title>
+      <references>
+        <osvdb>87834</osvdb>
+        <url>http://packetstormsecurity.com/files/118322/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ads-box">
+    <vulnerability>
+      <title>Ads Box - iframe_ampl.php count Parameter SQL Injection</title>
+      <references>
+        <osvdb>88257</osvdb>
+        <url>http://packetstormsecurity.com/files/118342/</url>
+        <url>http://www.securityfocus.com/bid/56681</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80256</url>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
