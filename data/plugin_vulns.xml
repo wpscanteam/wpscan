@@ -2790,7 +2790,7 @@
 
   <plugin name="count-per-day">
     <vulnerability>
-      <title>Count per Day 3.2.5 - /wp-content/wp-admin/index.php daytoshow Parameter XSS</title>
+      <title>Count per Day 3.2.5 - wp-admin/index.php daytoshow Parameter XSS</title>
       <references>
         <osvdb>90893</osvdb>
         <secunia>52436</secunia>
@@ -8195,7 +8195,7 @@
 
   <plugin name="player">
     <vulnerability>
-      <title>Spider Video Player 2.1 - /wp-content/plugins/player/settings.php theme Parameter SQL Injection</title>
+      <title>Spider Video Player 2.1 - settings.php theme Parameter SQL Injection</title>
       <references>
         <osvdb>92264</osvdb>
         <cve>2013-3532</cve>
@@ -8205,11 +8205,19 @@
       </references>
       <type>SQLI</type>
     </vulnerability>
+    <vulnerability>
+      <title>Spider Video Player 2.1 - settings.php s_v_player_id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>100848</osvdb>
+        <url>http://packetstormsecurity.com/files/124353/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="finalist">
     <vulnerability>
-      <title>Finalist - /wp-content/plugins/finalist/vote.php id Parameter Reflected XSS</title>
+      <title>Finalist - vote.php id Parameter Reflected XSS</title>
       <references>
         <osvdb>98665</osvdb>
         <url>http://packetstormsecurity.com/files/123597/</url>
@@ -8855,6 +8863,7 @@
       <title>Js-Multi-Hotel 2.2.1 - refreshDate.php roomid Parameter Reflected XSS</title>
       <references>
         <osvdb>100575</osvdb>
+        <secunia>55919</secunia>
         <url>http://packetstormsecurity.com/files/124239/</url>
         <url>http://www.securityfocus.com/bid/64045</url>
       </references>
@@ -8897,6 +8906,51 @@
         <osvdb>100663</osvdb>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="tdo-mini-forms-wordpress-plugin">
+    <vulnerability>
+      <title>TDO Mini Forms 0.13.9 - tdomf-upload-inline.php File Upload Remote Code Execution</title>
+      <references>
+        <osvdb>100847</osvdb>
+        <url>http://packetstormsecurity.com/files/124352/</url>
+      </references>
+      <type>RCE</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="huskerportfolio">
+    <vulnerability>
+      <title>HuskerPortfolio 0.3 - huskerPortfolio.php File Upload CSRF</title>
+      <references>
+        <osvdb>100845</osvdb>
+        <url>http://packetstormsecurity.com/files/124359/</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="formcraft">
+    <vulnerability>
+      <title>FormCraft - form.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>100877</osvdb>
+        <secunia>56044</secunia>
+        <url>http://packetstormsecurity.com/files/124343/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="photosmash-galleries">
+    <vulnerability>
+      <title>PhotoSmash Galleries 1.0.7 - bwbps-uploader.php File Upload Remote Code Execution</title>
+      <references>
+        <osvdb>100878</osvdb>
+        <url>http://packetstormsecurity.com/files/124342/</url>
+      </references>
+      <type>RCE</type>
     </vulnerability>
   </plugin>
 
