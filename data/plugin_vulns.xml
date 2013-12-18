@@ -5328,11 +5328,31 @@
       <fixed_in>5.3.6</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Events Manager 5.3.8 - Multiple XSS Vulnerabilities</title>
+      <title>Events Manager 5.3.8 - Event Search Form em_search Parameter XSS</title>
       <references>
+        <osvdb>93556</osvdb>
         <url>http://www.securityfocus.com/bid/60078</url>
         <secunia>53478</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>5.3.9</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Events Manager 5.3.8 - wp-admin/edit.php author Parameter XSS</title>
+      <references>
+        <osvdb>93557</osvdb>
+        <url>http://www.securityfocus.com/bid/60078</url>
+        <secunia>53478</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>5.3.9</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Events Manager 5.3.8 - Event Editing redirect_to Parameter XSS</title>
+      <references>
         <osvdb>93558</osvdb>
+        <url>http://www.securityfocus.com/bid/60078</url>
+        <secunia>53478</secunia>
       </references>
       <type>XSS</type>
       <fixed_in>5.3.9</fixed_in>
@@ -6733,8 +6753,9 @@
 
   <plugin name="all-in-one-webmaster">
     <vulnerability>
-      <title>all-in-one-webmaster - CSRF</title>
+      <title>All in one webmaster 8.2.3 - Script Insertion CSRF</title>
       <references>
+        <osvdb>92640</osvdb>
         <secunia>52877</secunia>
         <cve>2013-2696</cve>
       </references>
@@ -9018,6 +9039,27 @@
         <url>http://xforce.iss.net/xforce/xfdb/80256</url>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="broken-link-checker">
+    <vulnerability>
+      <title>Broken Link Checker 1.9.1 - Bulk Action Form URL Handling XSS</title>
+      <references>
+        <osvdb>101059</osvdb>
+        <secunia>56053</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.9.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Broken Link Checker 1.9.1 - Sort Direction Query Argument Handling XSS</title>
+      <references>
+        <osvdb>101066</osvdb>
+        <secunia>56053</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.9.2</fixed_in>
     </vulnerability>
   </plugin>
 
