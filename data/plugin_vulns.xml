@@ -3612,15 +3612,6 @@
       <type>XSS</type>
       <fixed_in>1.9.8</fixed_in>
     </vulnerability>
-    <vulnerability>
-      <title>NextGEN Gallery &lt;= 1.5.1 - XSS Vulnerability</title>
-      <references>
-        <exploitdb>12098</exploitdb>
-      </references>
-      <type>XSS</type>
-      <fixed_in>1.5.2</fixed_in>
-    </vulnerability>
-    <vulnerability>
       <title>swfupload.swf Multiple Cross Site Scripting Vulnerabilities</title>
       <references>
         <url>http://www.securityfocus.com/bid/60433</url>
@@ -3630,13 +3621,94 @@
     <vulnerability>
       <title>NextGEN Gallery 1.9.12 - Arbitrary File Upload</title>
       <references>
-        <url>http://wordpress.org/plugins/nextgen-gallery/changelog/</url>
         <osvdb>94232</osvdb>
         <cve>2013-3684</cve>
+        <url>http://wordpress.org/plugins/nextgen-gallery/changelog/</url>
       </references>
       <type>UPLOAD</type>
       <fixed_in>1.9.13</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery 1.9.11 - xml/json.php Crafted Request Parsing Path Disclosure</title>
+      <references>
+        <osvdb>90242</osvdb>
+        <cve>2013-0291</cve>
+        <secunia>52137</secunia>
+      </references>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery 1.9.5 - gallerypath Parameter Stored XSS</title>
+      <references>
+        <osvdb>97690</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.9.0 - admin/manage-galleries.php paged Parameter XSS</title>
+      <references>
+        <osvdb>78363</osvdb>
+        <secunia>47588</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.9.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.9.0 - admin/manage-images.php paged Parameter XSS</title>
+      <references>
+        <osvdb>78364</osvdb>
+        <secunia>47588</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.9.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.9.0 - admin/manage.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>78365</osvdb>
+        <secunia>47588</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.9.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.8.3 - wp-admin/admin.php search Parameter XSS</title>
+      <references>
+        <osvdb>76576</osvdb>
+        <secunia>46602</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.8.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.8.3 - Tag Deletion CSRF</title>
+      <references>
+        <osvdb>76577</osvdb>
+        <secunia>46602</secunia>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.8.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.7.3 - xml/ajax.php Path Disclosure</title>
+      <references>
+        <osvdb>72023</osvdb>
+      </references>
+      <type>FPD</type>
+      <fixed_in>1.7.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>NextGEN Gallery &lt;= 1.5.1 - xml/media-rss.php mode Parameter XSS</title>
+      <references>
+        <osvdb>63574</osvdb>
+        <exploitdb>12098</exploitdb>
+        <secunia>39341</secunia>
+        <url>http://www.securityfocus.com/bid/39250</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.5.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
   </plugin>
 
   <plugin name="cpl">
@@ -6515,20 +6587,23 @@
 
   <plugin name="mathjax-latex">
     <vulnerability>
-      <title>Mathjax Latex 1.1 - CSRF Vulnerability</title>
+      <title>Mathjax Latex 1.1 - Setting Manipulation CSRF</title>
       <references>
-        <exploitdb>24889</exploitdb>
         <osvdb>91737</osvdb>
+        <exploitdb>24889</exploitdb>
+        <url>http://packetstormsecurity.com/files/120931/</url>
         <url>http://1337day.com/exploit/20566</url>
       </references>
       <type>CSRF</type>
+      <fixed_in>1.2<fixed_in>
     </vulnerability>
   </plugin>
 
   <plugin name="wp-banners-lite">
     <vulnerability>
-      <title>WP-Banners-Lite - XSS vulnerability</title>
+      <title>WP-Banners-Lite 1.4.0 - XSS vulnerability</title>
       <references>
+        <url>http://packetstormsecurity.com/files/120928/</url>
         <url>http://seclists.org/fulldisclosure/2013/Mar/209</url>
         <url>http://threatpost.com/en_us/blogs/xss-flaw-wordpress-plugin-allows-injection-malicious-code-032513</url>
       </references>
