@@ -3,6 +3,28 @@
 <vulnerabilities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:noNamespaceSchemaLocation="vuln.xsd">
 
+  <wordpress version="3.8">
+    <vulnerability>
+      <title>wp-admin/options-writing.php Cleartext Admin Credentials Disclosure</title>
+      <references>
+        <osvdb>101101</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Dec/135</url>
+      </references>
+      <type>AUTHBYPASS</type>
+    </vulnerability>
+  </wordpress>
+
+  <wordpress version="3.7.1">
+    <vulnerability>
+      <title>wp-admin/options-writing.php Cleartext Admin Credentials Disclosure</title>
+      <references>
+        <osvdb>101101</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Dec/135</url>
+      </references>
+      <type>AUTHBYPASS</type>
+    </vulnerability>
+  </wordpress>
+
   <wordpress version="3.6">
     <vulnerability>
       <title>PHP Object Injection</title>
@@ -69,6 +91,24 @@
         <url>http://seclists.org/fulldisclosure/2013/Nov/220</url>
       </references>
       <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Multiple Script Arbitrary Site Redirect</title>
+      <references>
+        <osvdb>101181</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Dec/174</url>
+      </references>
+      <type>REDIRECT</type>
+      <fixed_in>3.6.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>wp-admin/edit-tags.php _wp_http_referer Parameter Reflected XSS</title>
+      <references>
+        <osvdb>101182</osvdb>
+        <url>http://seclists.org/fulldisclosure/2013/Dec/174</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.6.1</fixed_in>
     </vulnerability>
   </wordpress>
 
