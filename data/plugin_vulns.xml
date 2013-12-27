@@ -5,13 +5,46 @@
 
   <plugin name="content-slide">
     <vulnerability>
-      <title>Content Slide &lt;= 1.4.2 - Cross Site Requst Forgery Vulnerability</title>
+      <title>Content Slide &lt;= 1.4.2 - Cross Site Request Forgery Vulnerability</title>
       <references>
         <osvdb>93871</osvdb>
         <cve>2013-2708</cve>
         <secunia>52949</secunia>
       </references>
       <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+  
+  <plugin name="wp-cron-dashboard">
+    <vulnerability>
+      <title>WP Cron DashBoard &lt;= 1.1.5 - Cross Site Scripting</title>
+      <references>
+        <cve>2013-6991</cve>
+        <url>https://www.htbridge.com/advisory/HTB23189</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+  
+  <plugin name="askapache-firefox-adsense">
+    <vulnerability>
+      <title>AskApache Firefox Adsense &lt;= 3.0 - Cross Site Request Forgery</title>
+      <references>
+        <cve>2013-6992</cve>
+        <url>https://www.htbridge.com/advisory/HTB23188</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+  
+  <plugin name="ad-minister">
+    <vulnerability>
+      <title>Ad-Minister &lt;= 0.6 - Cross Site Scripting</title>
+      <references>
+        <cve>2013-6993</cve>
+        <url>https://www.htbridge.com/advisory/HTB23187</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
