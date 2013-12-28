@@ -73,13 +73,22 @@
 
   <plugin name="s3-video">
     <vulnerability>
-      <title>VideoJS Cross - Site Scripting Vulnerability</title>
+      <title>S3 Video &lt;= 0.97 - VideoJS Cross Site Scripting Vulnerability</title>
       <references>
         <secunia>53437</secunia>
         <url>http://seclists.org/fulldisclosure/2013/May/66</url>
       </references>
       <type>XSS</type>
       <fixed_in>0.98</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>S3 Video 0.982 - preview_video.php base Parameter XSS</title>
+      <references>
+        <osvdb>101388</osvdb>
+        <secunia>56167</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.983</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -2436,11 +2445,24 @@
 
   <plugin name="download-manager">
     <vulnerability>
-      <title>Download Manager &lt;= 2.2 - Cross Site Scripting</title>
+      <title>Download Manager 2.5.8 - Download Package file Parameter Stored XSS</title>
       <references>
+        <osvdb>101143</osvdb>
+        <secunia>55969</secunia>
+        <url>http://www.securityfocus.com/bid/64159</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.5.9</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Download Manager &lt;= 2.2.2 - admin.php cid Parameter XSS</title>
+      <references>
+        <osvdb>81449</osvdb>
+        <secunia>48927</secunia>
         <url>http://packetstormsecurity.com/files/112708/</url>
       </references>
       <type>XSS</type>
+      <fixed_in>2.2.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -3895,6 +3917,7 @@
     <vulnerability>
       <title>Page Flip Image Gallery - Remote File Upload Vulnerability</title>
       <references>
+        <osvdb>100748</osvdb>
         <url>http://packetstormsecurity.com/files/124316/</url>
       </references>
       <type>UPLOAD</type>
@@ -9033,6 +9056,7 @@
     <vulnerability>
       <title>DZS Video Gallery 3.1.3 - Remote File Disclosure</title>
       <references>
+        <osvdb>100750</osvdb>
         <url>http://packetstormsecurity.com/files/124317/</url>
       </references>
       <type>FPD</type>
@@ -9046,6 +9070,14 @@
         <osvdb>100662</osvdb>
         <cve>2013-6992</cve>
         <url>https://www.htbridge.com/advisory/HTB23188</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>AskApache Firefox Adsense 3.0 - askapache-firefox-adsense.php aafireadcode Parameter Stored XSS Weakness</title>
+      <references>
+        <osvdb>101435</osvdb>
+        <url>http://seclists.org/bugtraq/2013/Dec/142</url>
       </references>
       <type>CSRF</type>
     </vulnerability>
