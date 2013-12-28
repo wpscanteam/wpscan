@@ -5580,8 +5580,10 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>WP-PostViews - Cross-Site Request Forgery Vulnerability</title>
+      <title>WP-PostViews 1.62 - Setting Manipulation CSRF</title>
       <references>
+        <osvdb>93096</osvdb>
+        <cve>2013-3252</cve>
         <secunia>53127</secunia>
       </references>
       <type>CSRF</type>
@@ -6257,6 +6259,7 @@
     <vulnerability>
       <title>zopim-live-chat &lt;= 1.2.5 - XSS in ZeroClipboard</title>
       <references>
+        <osvdb>90374</osvdb>
         <url>http://www.openwall.com/lists/oss-security/2013/03/10/2</url>
         <url>http://1337day.com/exploit/20396</url>
         <cve>2013-1808</cve>
@@ -6280,6 +6283,7 @@
     <vulnerability>
       <title>wppygments &lt;= 0.3.2 - XSS in ZeroClipboard</title>
       <references>
+        <osvdb>90374</osvdb>
         <url>http://www.openwall.com/lists/oss-security/2013/03/10/2</url>
         <url>http://1337day.com/exploit/20396</url>
         <cve>2013-1808</cve>
@@ -6826,8 +6830,9 @@
 
   <plugin name="facebook-members">
     <vulnerability>
-      <title>facebook-members - CSRF</title>
+      <title>facebook-members 5.0.4 - Setting Manipulation CSRF</title>
       <references>
+        <osvdb>92642</osvdb>
         <secunia>52962</secunia>
         <cve>2013-2703</cve>
       </references>
@@ -8852,11 +8857,12 @@
 
   <plugin name="SearchNSave">
     <vulnerability>
-      <title>Search N Save - Path Disclosure and Cross-Site Scripting Vulnerabilities</title>
+      <title>Search N Save - SearchNSave/error_log Direct Request Path Disclosure</title>
       <references>
+        <osvdb>95196</osvdb>
         <secunia>54078</secunia>
       </references>
-      <type>MULTI</type>
+      <type>FPD</type>
     </vulnerability>
   </plugin>
 
@@ -9182,6 +9188,37 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.9.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+   <plugin name="easy-career-openings">
+    <vulnerability>
+      <title>Easy Career Openings - jobid Parameter SQL Injection</title>
+      <references>
+        <osvdb>100677</osvdb>
+        <url>http://packetstormsecurity.com/files/124309/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="q-and-a">
+    <vulnerability>
+      <title>Q and A 1.0.6.2 - Multiple Scripts Direct Request Path Disclosure </title>
+      <references>
+        <osvdb>100793</osvdb>
+      </references>
+      <type>FPD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ml-slider">
+    <vulnerability>
+      <title>Meta Slider 2.1.6 - Multiple Script Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>100794</osvdb>
+      </references>
+      <type>FPD</type>
     </vulnerability>
   </plugin>
 
