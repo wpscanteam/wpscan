@@ -1366,11 +1366,13 @@
 
   <plugin name="threewp-email-reflector">
     <vulnerability>
-      <title>ThreeWP Email Reflector 1.13 - Stored XSS</title>
+      <title>ThreeWP Email Reflector 1.13 - Subject Field XSS</title>
       <references>
+        <osvdb>85134</osvdb>
         <exploitdb>20365</exploitdb>
       </references>
       <type>XSS</type>
+      <fixed_in>1.16</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4765,18 +4767,23 @@
 
   <plugin name="mini-mail-dashboard-widget">
     <vulnerability>
-      <title>Mini Mail Dashboard Widget 1.36 - Remote File Inclusion</title>
+      <title>Mini Mail Dashboard Widget 1.36 - wp-mini-mail.php abspath Parameter Remote File Inclusion</title>
       <references>
+        <osvdb>75402</osvdb>
         <exploitdb>17868</exploitdb>
+        <secunia></secunia>
       </references>
       <type>RFI</type>
+      <fixed_in>1.37</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Mini Mail Dashboard Widget 1.42 - Stored XSS</title>
+      <title>Mini Mail Dashboard Widget 1.42 - Message Body XSS</title>
       <references>
+        <osvdb>85135</osvdb>
         <exploitdb>20358</exploitdb>
       </references>
       <type>XSS</type>
+      <fixed_in>1.43</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -5500,11 +5507,32 @@
 
   <plugin name="knews">
     <vulnerability>
-      <title>Knews - Multilingual Newsletters Cross-Site Request Forgery Vulnerability</title>
+      <title>Knews 1.2.5 - Multilingual Newsletters Cross-Site Request Forgery Vulnerability</title>
       <references>
+        <osvdb>88427</osvdb>
         <secunia>51543</secunia>
+        <url>http://www.securityfocus.com/bid/56926</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80661</url>
       </references>
       <type>CSRF</type>
+      <fixed_in>1.2.6</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Knews 1.2.5 - Unspecified XSS</title>
+      <references>
+        <osvdb>88426</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2.6</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Knews 1.1.0 - wysiwyg/fontpicker/index.php ff Parameter XSS</title>
+      <references>
+        <osvdb>83643</osvdb>
+        <secunia>49825</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.1.1</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -5906,8 +5934,18 @@
 
   <plugin name="kau-boys-backend-localization">
     <vulnerability>
-      <title>Backend Localization - Cross-Site Scripting Vulnerabilities</title>
+      <title>Backend Localization 1.6.1 - options-general.php kau-boys_backend_localization_language Parameter XSS</title>
       <references>
+        <osvdb>84418</osvdb>
+        <secunia>50099</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Backend Localization 1.6.1 - wp-login.php kau-boys_backend_localization_language Parameter XSS</title>
+      <references>
+        <osvdb>84419</osvdb>
         <secunia>50099</secunia>
       </references>
       <type>XSS</type>
@@ -9264,6 +9302,62 @@
         <osvdb>100794</osvdb>
       </references>
       <type>FPD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="custom-tables">
+    <vulnerability>
+      <title>Custom Tables 3.4.4 - iframe.php key Parameter XSS</title>
+      <references>
+        <osvdb>83646</osvdb>
+        <secunia>49823</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-socializer">
+    <vulnerability>
+      <title>WP Socializer 2.4.2 - admin/wpsr-services-selector.php val Parameter XSS</title>
+      <references>
+        <osvdb>83645</osvdb>
+        <secunia>49824</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="church-admin">
+    <vulnerability>
+      <title>church_admin 0.33.4.5 - includes/validate.php id Parameter XSS</title>
+      <references>
+        <osvdb>83644</osvdb>
+        <secunia>49827</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="phpfreechat">
+    <vulnerability>
+      <title>PHPFreeChat 0.2.8 - lib/csstidy-1.2/css_optimiser.php url Parameter XSS</title>
+      <references>
+        <osvdb>83642</osvdb>
+        <secunia>49826</secunia>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="simple-embed-code">
+    <vulnerability>
+      <title>Artiss Code Embed 2.0.1 - wp-admin/admin.php suffix Parameter XSS</title>
+      <references>
+        <osvdb>83686</osvdb>
+        <secunia>49848</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.0.2</fixed_in>
     </vulnerability>
   </plugin>
 
