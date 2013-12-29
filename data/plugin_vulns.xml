@@ -6592,12 +6592,23 @@
 
   <plugin name="simply-poll">
     <vulnerability>
-      <title>Simply Poll 1.4.1 - Multiple Vulnerabilities</title>
+      <title>Simply Poll 1.4.1 - wp-admin/admin.php question Parameter XSS</title>
       <references>
-        <exploitdb>24850</exploitdb>
         <osvdb>91446</osvdb>
+        <exploitdb>24850</exploitdb>
+        <url>http://packetstormsecurity.com/files/120833/</url>
       </references>
-      <type>MULTI</type>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Simply Poll 1.4.1 - wp-admin/admin.php Poll Manipulation CSRF</title>
+      <references>
+        <osvdb>91447</osvdb>
+        <secunia>52681</secunia>
+        <exploitdb>24850</exploitdb>
+        <url>http://packetstormsecurity.com/files/120833/</url>
+      </references>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 
@@ -6744,8 +6755,11 @@
 
   <plugin name="podpress">
     <vulnerability>
-      <title>podPress 8.8.10.13 - Cross Site Scripting</title>
+      <title>podPress 8.8.10.13 - players/1pixelout/1pixelout_player.swf playerID Parameter XSS</title>
       <references>
+        <osvdb>91129</osvdb>
+        <cve>2013-2714</cve>
+        <secunia>52544</secunia>
         <url>http://packetstormsecurity.com/files/121011/</url>
       </references>
       <type>XSS</type>
@@ -8077,20 +8091,42 @@
 
   <plugin name="faqs-manager">
     <vulnerability>
-      <title>IndiaNIC FAQs Manager 1.0 - Multiple Vulnerabilities</title>
-      <references>
-        <exploitdb>24867</exploitdb>
-        <osvdb>91625</osvdb>
-      </references>
-      <type>MULTI</type>
-    </vulnerability>
-    <vulnerability>
       <title>IndiaNIC FAQs Manager 1.0 - Blind SQL Injection</title>
       <references>
-        <exploitdb>24868</exploitdb>
         <osvdb>91623</osvdb>
+        <exploitdb>24868</exploitdb>
+        <url>http://packetstormsecurity.com/files/120911/</url>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>IndiaNIC FAQs Manager 1.0 - Ask Question Form question Parameter XSS</title>
+      <references>
+        <osvdb>91624</osvdb>
+        <exploitdb>24867</exploitdb>
+        <secunia>52780</secunia>
+        <url>http://packetstormsecurity.com/files/120910/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>IndiaNIC FAQs Manager 1.0 - CAPTCHA Value Disclosure</title>
+      <references>
+        <osvdb>91625</osvdb>
+        <exploitdb>24867</exploitdb>
+        <url>http://packetstormsecurity.com/files/120910/</url>
+      </references>
+      <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>IndiaNIC FAQs Manager 1.0 - FAQ Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>91626</osvdb>
+        <secunia>52780</secunia>
+        <exploitdb>24867</exploitdb>
+        <url>http://packetstormsecurity.com/files/120910/</url>
+      </references>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 
