@@ -36,10 +36,10 @@ class CheckerSpelling < Plugin
 
         file.close
       end
-  	end
+    end
 
-  	puts
-  	puts "[+] Found #{mistakes} spelling mistakes"
+    puts
+    puts "[+] Found #{mistakes} spelling mistakes"
 
     mistakes
   end

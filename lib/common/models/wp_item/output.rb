@@ -13,9 +13,9 @@ class WpItem
       puts " | Readme: #{readme_url}" if has_readme?
       puts " | Changelog: #{changelog_url}" if has_changelog?
 
-			if respond_to?(:additional_output)
-				additional_output(verbose)
-			end
+      if respond_to?(:additional_output)
+        additional_output(verbose)
+      end
 
       vulnerabilities.output
 

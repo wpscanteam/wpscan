@@ -7,14 +7,14 @@ describe WpVersion do
   it_behaves_like 'WpItem::Vulnerable' do
     let(:options)        { { number: '3.2' } }
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_version/vulnerable/versions_vulns.xml' }
-		let(:expected_refs)  { {
-				:url => ['Ref 1', 'Ref 2'],
-				:cve => ['2011-001'],
-				:secunia => ['secunia'],
-				:osvdb => ['osvdb'],
-				:metasploit => ['exploit/ex1'],
-				:exploitdb => ['exploitdb']
-		} }
+    let(:expected_refs)  { {
+        :url => ['Ref 1', 'Ref 2'],
+        :cve => ['2011-001'],
+        :secunia => ['secunia'],
+        :osvdb => ['osvdb'],
+        :metasploit => ['exploit/ex1'],
+        :exploitdb => ['exploitdb']
+    } }
     let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new('Here I Am', 'SQLI', expected_refs) }
   end
 
