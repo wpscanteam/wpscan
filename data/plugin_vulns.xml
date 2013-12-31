@@ -969,11 +969,42 @@
 
   <plugin name="wp-image-news-slider">
     <vulnerability>
-      <title>wp-image-news-slider - Arbitrary File Upload Vulnerability</title>
+      <title>Image News Slider 3.3 - Arbitrary File Upload Vulnerability</title>
       <references>
+        <osvdb>87375</osvdb>
         <url>http://1337day.com/exploit/20259</url>
       </references>
       <type>UPLOAD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Image News Slider 3.3 - Unspecified Vulnerabilities</title>
+      <references>
+        <osvdb>84935</osvdb>
+        <secunia>50390</secunia>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>3.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Image News Slider 3.2 - Multiple Unspecified Remote Issues</title>
+      <references>
+        <osvdb>81314</osvdb>
+        <cve>2012-4327</cve>
+        <secunia>48747</secunia>
+        <url>http://www.securityfocus.com/bid/52977</url>
+        <url>http://xforce.iss.net/xforce/xfdb/74788</url>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>3.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Image News Slider 3.1 - Multiple Unspecified Remote Issues</title>
+      <references>
+        <osvdb>80310</osvdb>
+        <secunia>48538</secunia>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>3.2</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
@@ -981,14 +1012,6 @@
         <url>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</url>
       </references>
       <type>XSS</type>
-    </vulnerability>
-    <vulnerability>
-      <title>Image News slider - Unspecified Vulnerabilities</title>
-      <references>
-        <secunia>50390</secunia>
-      </references>
-      <type>UNKNOWN</type>
-      <fixed_in>3.4</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -2717,14 +2740,6 @@
   </plugin>
 
   <plugin name="cms-tree-page-view">
-    <vulnerability>
-      <title>CMS Tree Page View - XSS vulnerability</title>
-      <references>
-        <url>https://www.htbridge.com/advisory/HTB23083</url>
-      </references>
-      <type>XSS</type>
-    </vulnerability>
-    <vulnerability>
       <title>CMS Tree Page View 1.2.4 - Page Creation CSRF</title>
       <references>
         <osvdb>91270</osvdb>
@@ -2733,6 +2748,19 @@
       <type>CSRF</type>
       <fixed_in>1.2.5</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>CMS Tree Page View 0.8.8 - XSS vulnerability</title>
+      <references>
+        <osvdb>80573</osvdb>
+        <secunia>48510</secunia>
+        <url>https://www.htbridge.com/advisory/HTB23083</url>
+        <url>http://www.securityfocus.com/bid/52708</url>
+        <url>http://xforce.iss.net/xforce/xfdb/74337</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.8.9</fixed_in>
+    </vulnerability>
+    <vulnerability>
   </plugin>
 
   <plugin name="all-in-one-event-calendar">
