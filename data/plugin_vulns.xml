@@ -17,9 +17,11 @@
   
   <plugin name="wp-cron-dashboard">
     <vulnerability>
-      <title>WP Cron DashBoard &lt;= 1.1.5 - Cross Site Scripting</title>
+      <title>WP Cron DashBoard &lt;= 1.1.5 - wp-cron-dashboard.php procname Parameter Reflected XSS</title>
       <references>
+        <osvdb>100660</osvdb>
         <cve>2013-6991</cve>
+        <url>http://packetstormsecurity.com/files/124602/</url>
         <url>https://www.htbridge.com/advisory/HTB23189</url>
       </references>
       <type>XSS</type>
@@ -2346,19 +2348,22 @@
 
   <plugin name="leaguemanager">
     <vulnerability>
-      <title>LeagueManager &lt;= 3.7 - Cross Site Scripting</title>
+      <title>LeagueManager &lt;= 3.7 - wp-admin/admin.php Multiple Parameter XSS</title>
       <references>
-        <url>http://packetstormsecurity.com/files/112698/</url>
+        <osvdb>82266</osvdb>
         <secunia>49949</secunia>
+        <url>http://packetstormsecurity.com/files/112698/</url>
+        <url>http://www.securityfocus.com/bid/53525</url>
+        <url>http://xforce.iss.net/xforce/xfdb/75629</url>
       </references>
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
       <title>LeagueManager 3.8 - SQL Injection</title>
       <references>
+        <osvdb>91442</osvdb>
         <exploitdb>24789</exploitdb>
         <cve>2013-1852</cve>
-        <osvdb>91442</osvdb>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -9445,6 +9450,28 @@
         <url>http://seclists.org/fulldisclosure/2013/Dec/209</url>
       </references>
       <type>FPD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="sem-wysiwyg">
+    <vulnerability>
+      <title>SEM WYSIWYG - Arbitrary File Upload</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/115789/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="recommend-a-friend">
+    <vulnerability>
+      <title> Recommend a friend 2.0.2 - inc/raf_form.php current_url Parameter Reflected XSS</title>
+      <references>
+        <osvdb>101487</osvdb>
+        <secunia>56209</secunia>
+        <url>http://packetstormsecurity.com/files/124587/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
