@@ -6679,19 +6679,25 @@
     <vulnerability>
       <title>snazzy-archives &lt;= 1.7.1 - XSS vulnerability</title>
       <references>
-        <url>http://www.openwall.com/lists/oss-security/2013/03/10/3</url>
+        <osvdb>91128</osvdb>
         <cve>2009-4168</cve>
+        <secunia>52527</secunia>
+        <url>http://www.openwall.com/lists/oss-security/2013/03/10/3</url>
       </references>
       <type>XSS</type>
+      <fixed_in>1.7.2</fixed_in>
     </vulnerability>
   </plugin>
 
   <plugin name="vkontakte-api">
     <vulnerability>
-      <title>vkontakte-api - XSS vulnerability</title>
+      <title>vkontakte-api - vkontakte-api/swf/tagcloud.swf tagcloud Parameter XSS</title>
       <references>
-        <url>http://www.openwall.com/lists/oss-security/2013/03/11/1</url>
+        <osvdb>91128</osvdb>
         <cve>2009-4168</cve>
+        <secunia>52539</secunia>
+        <url>http://seclists.org/oss-sec/2013/q1/616</url>
+        <url>http://www.openwall.com/lists/oss-security/2013/03/11/1</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -6801,12 +6807,45 @@
 
   <plugin name="backupbuddy">
     <vulnerability>
-      <title>Backupbuddy - sensitive data exposure in importbuddy.php</title>
+      <title>Backupbuddy - importbuddy.php Direct Request Remote Backup File Disclosure</title>
       <references>
+        <osvdb>91631</osvdb>
+        <cve>2013-2741</cve>
+        <url>http://packetstormsecurity.com/files/120923/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Mar/206</url>
+      </references>
+      <type>AUTHBYPASS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Backupbuddy - importbuddy.php step Parameter Manipulation Authentication Bypass</title>
+      <references>
+        <osvdb>91890</osvdb>
+        <cve>2013-2743</cve>
+        <url>http://packetstormsecurity.com/files/120923/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Mar/206</url>
+      </references>
+      <type>AUTHBYPASS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Backupbuddy - importbuddy.php step Parameter Remote PHP Information Disclosure</title>
+      <references>
+        <osvdb>91891</osvdb>
+        <cve>2013-2744</cve>
+        <url>http://packetstormsecurity.com/files/120923/</url>
         <url>http://seclists.org/fulldisclosure/2013/Mar/206</url>
         <url>http://archives.neohapsis.com/archives/fulldisclosure/2013-03/0205.html</url>
       </references>
       <type>UNKNOWN</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Backupbuddy - importbuddy.php Restore Operation Persistence Weakness</title>
+      <references>
+        <osvdb>91892</osvdb>
+        <cve>2013-2742</cve>
+        <url>http://packetstormsecurity.com/files/120923/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Mar/206</url>
+      </references>
+      <type>AUTHBYPASS</type>
     </vulnerability>
   </plugin>
 
@@ -9520,6 +9559,17 @@
         <secunia>53376</secunia>
         <url>http://packetstormsecurity.com/files/121588/</url>
         <url>http://xforce.iss.net/xforce/xfdb/84186</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="amazon-affiliate-link-localizer">
+    <vulnerability>
+      <title>Amazon Affiliate Link Localizer 1.8.2 - amazon_affiliate_link_localizer.php amzn_com Parameter XSS</title>
+      <references>
+        <osvdb>100783</osvdb>
+        <url>http://www.dfcode.org/code.php?id=27</url>
       </references>
       <type>XSS</type>
     </vulnerability>
