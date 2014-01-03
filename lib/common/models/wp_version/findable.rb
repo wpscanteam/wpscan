@@ -12,7 +12,7 @@ class WpVersion < WpItem
     #
     # @return [ WpVersion ]
     def find(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)
-      methods.grep(/find_from_/).each do |method|
+      methods.grep(/^find_from_/).each do |method|
 
         if method === :find_from_advanced_fingerprinting
           version = send(method, target_uri, wp_content_dir, wp_plugins_dir, versions_xml)
