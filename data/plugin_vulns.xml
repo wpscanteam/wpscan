@@ -7659,9 +7659,11 @@
 
   <plugin name="dropdown-menu-widget">
     <vulnerability>
-      <title>Dropdown Menu Widget - Script Insertion CSRF</title>
+      <title>Dropdown Menu Widget 1.9.1 - Script Insertion CSRF</title>
       <references>
         <osvdb>94771</osvdb>
+        <cve>2013-2704</cve>
+        <secunia>52958</secunia>
       </references>
       <type>CSRF</type>
     </vulnerability>
@@ -8244,13 +8246,25 @@
 
   <plugin name="thinkit-wp-contact-form">
     <vulnerability>
-      <title>ThinkIT 0.1 - Multiple Vulnerabilities</title>
+      <title>ThinkIT &lt;= 0.3 - wp-admin/admin.php Contact Form Deletion CSRF</title>
       <references>
+        <osvdb>96514</osvdb>
+        <secunia>54592</secunia>
         <exploitdb>27751</exploitdb>
-        <osvdb>96515</osvdb>
         <url>http://packetstormsecurity.com/files/122898/</url>
       </references>
-      <type>MULTI</type>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>ThinkIT &lt;= 0.2 - wp-admin/admin.php toitcf_current_id Parameter XSS</title>
+      <references>
+        <osvdb>96515</osvdb>
+        <secunia>54592</secunia>
+        <exploitdb>27751</exploitdb>
+        <url>http://packetstormsecurity.com/files/122898/</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -8648,7 +8662,7 @@
         <osvdb>98668</osvdb>
         <secunia>55296</secunia>
         <exploitdb>28970</exploitdb>
-        <url>http://packetstormsecurity.com/files/123597/</url>
+        <url>http://packetstormsecurity.com/files/123634/</url>
         <url>http://www.securityfocus.com/bid/63021</url>
       </references>
       <type>XSS</type>
@@ -8679,6 +8693,14 @@
         <url>http://www.securityfocus.com/bid/63217</url>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Realty - index_ext.php listing_id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>101583</osvdb>
+        <url>http://packetstormsecurity.com/files/124418/</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
