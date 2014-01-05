@@ -28,7 +28,7 @@ describe 'WebSite' do
     end
 
     context 'when protocol or trailing slash is missing' do
-      it 'should add the them' do
+      it 'should add them' do
         @uri      = 'example.localhost'
         @expected = 'http://example.localhost/'
       end
