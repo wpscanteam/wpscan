@@ -3238,20 +3238,13 @@
 
   <plugin name="wp-symposium">
     <vulnerability>
-      <title>WP Symposium &lt;= 0.64 - SQL Injection Vulnerability</title>
+      <title>WP Symposium 13.04 - invite.php u Parameter Arbitrary Site Redirect</title>
       <references>
-        <exploitdb>17679</exploitdb>
+        <osvdb>92274</osvdb>
+        <cve>2013-2694</cve>
+        <secunia>52925</secunia>
       </references>
-      <type>SQLI</type>
-    </vulnerability>
-    <vulnerability>
-      <title>WP Symposium &lt;= 12.12 - Multiple SQL Injection Vulnerabilities</title>
-      <references>
-        <osvdb>89455</osvdb>
-        <secunia>50674</secunia>
-        <url>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</url>
-      </references>
-      <type>SQLI</type>
+      <type>REDIRECT</type>
     </vulnerability>
     <vulnerability>
       <title>WP Symposium 13.02 - wp-symposium/invite.php u Parameter XSS</title>
@@ -3264,13 +3257,147 @@
       <fixed_in>13.04</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>WP Symposium 13.02 - invite.php u Parameter Arbitrary Site Redirect</title>
+      <title>WP Symposium &lt;= 12.09 - ajax/symposium_groups_functions.php gid Parameter SQL Injection</title>
       <references>
-        <osvdb>92274</osvdb>
-        <cve>2013-2694</cve>
-        <secunia>52925</secunia>
+        <osvdb>89455</osvdb>
+        <secunia>50674</secunia>
+        <url>http://www.securityfocus.com/bid/57478</url>
+        <url>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</url>
       </references>
-      <type>REDIRECT</type>
+      <type>SQLI</type>
+      <fixed_in>12.12</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.09 - index.php uid Parameter SQL Injection</title>
+      <references>
+        <osvdb>89456</osvdb>
+        <secunia>50674</secunia>
+        <url>http://www.securityfocus.com/bid/57478</url>
+        <url>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.12</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.09 - ajax/symposium_profile_functions.php friend_to Parameter SQL Injection</title>
+      <references>
+        <osvdb>89457</osvdb>
+        <secunia>50674</secunia>
+        <url>http://www.securityfocus.com/bid/57478</url>
+        <url>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.12</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.09 - ajax/symposium_forum_functions.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>89458</osvdb>
+        <secunia>50674</secunia>
+        <url>http://www.securityfocus.com/bid/57478</url>
+        <url>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.12</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.09 - get_album_item.php size Parameter SQL Injection</title>
+      <references>
+        <osvdb>89459</osvdb>
+        <secunia>50674</secunia>
+        <url>http://www.securityfocus.com/bid/57478</url>
+        <url>http://ceriksen.com/2013/02/18/wp-symposium-multiple-sql-injection/</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.12</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.07.07 - ajax/symposium_ajax_functions.php Authentication Bypass</title>
+      <references>
+        <osvdb>83696</osvdb>
+        <secunia>49791</secunia>
+      </references>
+      <type>AUTHBYPASS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.06.16 - ajax/symposium_forum_functions.php tid Parameter SQL Injection</title>
+      <references>
+        <osvdb>83662</osvdb>
+        <secunia>49534</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.07.01</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.06.16 - ajax/symposium_group_functions.php uid1 Parameter SQL Injection</title>
+      <references>
+        <osvdb>83663</osvdb>
+        <secunia>49534</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.07.01</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.06.16 - ajax/symposium_bar_functions.php chat_to Parameter SQL Injection</title>
+      <references>
+        <osvdb>83668</osvdb>
+        <secunia>49534</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.07.01</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 12.06.16 - ajax/symposium_mail_functions.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>83675</osvdb>
+        <secunia>49534</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>12.07.01</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 11.11.26 - uploadify/upload_admin_avatar.php File Upload Remote PHP Code Execution</title>
+      <references>
+        <osvdb>78041</osvdb>
+        <cve>2011-5051</cve>
+        <secunia>46097</secunia>
+        <url>http://xforce.iss.net/xforce/xfdb/72012</url>
+      </references>
+      <type>RCE</type>
+      <fixed_in>11.12.24</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 11.11.26 - uploadify/upload_profile_avatar.php File Upload Remote PHP Code Execution</title>
+      <references>
+        <osvdb>78042</osvdb>
+        <cve>2011-5051</cve>
+        <secunia>46097</secunia>
+        <url>http://xforce.iss.net/xforce/xfdb/72012</url>
+      </references>
+      <type>RCE</type>
+      <fixed_in>11.12.24</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 11.11.26 - uploadify/get_profile_avatar.php uid Parameter XSS</title>
+      <references>
+        <osvdb>77634</osvdb>
+        <cve>2011-3841</cve>
+        <secunia>47243</secunia>
+        <url>http://www.securityfocus.com/bid/51017</url>
+        <url>http://xforce.iss.net/xforce/xfdb/71748</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>11.12.08</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Symposium &lt;= 0.64 - uploadify/get_profile_avatar.php uid Parameter SQL Injection</title>
+      <references>
+        <osvdb>74664</osvdb>
+        <secunia>47243</secunia>
+        <exploitdb>17679</exploitdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>11.08.18</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4446,16 +4573,20 @@
 
   <plugin name="yolink-search">
     <vulnerability>
-      <title>yolink Search - "s" Cross-Site Scripting Vulnerability</title>
+      <title>yolink Search 2.5 - "s" Cross-Site Scripting Vulnerability</title>
       <references>
+        <osvdb>89756</osvdb>
         <secunia>52030</secunia>
+        <url>http://www.securityfocus.com/bid/57665</url>
       </references>
       <type>XSS</type>
       <fixed_in>2.6</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>yolink Search &lt;= 1.1.4 - SQL Injection Vulnerability</title>
+      <title>yolink Search &lt;= 1.1.4 - includes/bulkcrawl.php Multiple Parameter SQL Injection</title>
       <references>
+        <osvdb>74832</osvdb>
+        <secunia>45801</secunia>
         <exploitdb>17757</exploitdb>
       </references>
       <type>SQLI</type>
@@ -5449,15 +5580,26 @@
 
   <plugin name="devformatter">
     <vulnerability>
-      <title>Developer Formatter - CSRF and XSS Vulnerability</title>
+      <title>Developer Formatter 2013.0.1.40 - devformatter.php Multiple Action CSRF</title>
       <references>
         <osvdb>89475</osvdb>
         <exploitdb>24294</exploitdb>
         <secunia>51912</secunia>
-        <url>http://illsecure.com/code/Wordpress-DevFormatter-CSRF-Vulnerability.txt</url>
+        <url>http://packetstormsecurity.com/files/119731/</url>
+        <url>http://seclists.org/bugtraq/2013/Jan/91</url>
         <url>http://1337day.com/exploit/20210</url>
       </references>
-      <type>MULTI</type>
+      <type>CSRF</type>
+      <fixed_in>2013.0.1.41</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Developer Formatter 2013.0.1.40 - devformatter.php Multiple Field XSS</title>
+      <references>
+        <osvdb>89474</osvdb>
+        <url>http://seclists.org/bugtraq/2013/Jan/91</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2013.0.1.41</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -6127,9 +6269,10 @@
 
   <plugin name="RLSWordPressSearch">
     <vulnerability>
-      <title>RLSWordPressSearch - SQL Injection</title>
+      <title>RLSWordPressSearch - register.php agentid Parameter SQL Injection</title>
       <references>
-        <exploitdb>24440</exploitdb>
+        <osvdb>89824</osvdb>
+        <url>http://packetstormsecurity.com/files/119938/</url>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -6198,7 +6341,10 @@
     <vulnerability>
       <title>Gallery - "load" Remote File Inclusion Vulnerability</title>
       <references>
+        <osvdb>89753</osvdb>
+        <cve>2012-4919</cve>
         <secunia>51347</secunia>
+        <url>http://www.securityfocus.com/bid/57650</url>
       </references>
       <type>RFI</type>
     </vulnerability>
@@ -7851,11 +7997,11 @@
 
   <plugin name="usernoise">
     <vulnerability>
-      <title>Usernoise 3.7.8 - Persistent XSS Vulnerability</title>
+      <title>Usernoise 3.7.8 - Feedback Submission summary Field XSS</title>
       <references>
-        <url>http://wordpress.org/plugins/usernoise/changelog/</url>
-        <exploitdb>27403</exploitdb>
         <osvdb>96000</osvdb>
+        <exploitdb>27403</exploitdb>
+        <url>http://packetstormsecurity.com/files/122701/</url>
       </references>
       <type>XSS</type>
       <fixed_in>3.7.9</fixed_in>
