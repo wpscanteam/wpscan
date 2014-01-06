@@ -2,10 +2,43 @@
 ## Master
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.2...master)
 
+## Version 2.x 
+Released: 2014-xx-xx
+
+New
+* Detect and output parent theme!
+* Complete fingerprint script & hash search
+* New spell checker!
+* Added 'Total WordPress Sites in the World' statistics
+* Added separator between Name and Version in Item 
+* Added a "Work in progress" URL in the CHANGELOG
+
+Removed
+* Removed "Exiting!" sentence 
+
+General core
+* rspec-mocks version constraint released
+* Tabs replaced by spaces
+* Rspecs update
+* Indent code cleanup
+* Themes & Plugins lists regenerated
+
+Vulnerabilities
+* Update WordPress Vulnerabilities
+* Disabled some fake reported vulnerabilities
+* Fixed some duplicate vulnerabilities
+
+Add WP Fingerprints
+* WP 3.8 Fingerprinting
+
+Fixed issues
+* Fix #228, #327 Infinite loop when self-redirect 
+* Fix #201 Incorrect Paramter Parsing when no url was supplied
+
 ## Version 2.2 
 Released: 2013-11-12
 
-Added
+New
 * Output the vulnerability fix if available
 * Added 'WordPress Version Vulnerability' statistics
 * Added Kali Linux on the list of pre-installed Linux distributions
