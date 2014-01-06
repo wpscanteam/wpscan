@@ -84,7 +84,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 ```cd wpscan```
 
-```sudo gem install bundler && bundle install --without test```
+```sudo gem install bundler && sudo bundle install --without test```
 
 #### KNOWN ISSUES
 
