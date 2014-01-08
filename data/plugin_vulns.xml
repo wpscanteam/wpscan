@@ -2444,25 +2444,28 @@
 
   <plugin name="download-monitor">
     <vulnerability>
-      <title>Download Monitor &lt;= 3.3.6.1 - Cross Site Scripting</title>
+      <title>Download Monitor &lt;= 3.3.6.1 - wp-admin/admin.php Multiple Parameter XSS</title>
       <references>
-        <url>http://www.securityfocus.com/bid/61407</url>
         <osvdb>95613</osvdb>
         <cve>2013-5098</cve>
         <cve>2013-3262</cve>
         <secunia>53116</secunia>
         <url>http://www.securityfocus.com/bid/61407</url>
+        <url>http://xforce.iss.net/xforce/xfdb/85921</url>
       </references>
       <type>XSS</type>
       <fixed_in>3.3.6.2</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Download Monitor &lt;= 3.3.5.7 - Cross Site Scripting</title>
+      <title>Download Monitor &lt;= 3.3.5.7 - index.php dlsearch Parameter XSS</title>
       <references>
-        <url>http://www.reactionpenetrationtesting.co.uk/wordpress-download-monitor-xss.html</url>
+        <osvdb>85319</osvdb>
+        <cve>2012-4768</cve>
         <secunia>50511</secunia>
+        <url>http://www.reactionpenetrationtesting.co.uk/wordpress-download-monitor-xss.html</url>
       </references>
       <type>XSS</type>
+      <fixed_in>3.3.5.9</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Download Monitor &lt;= 3.3.5.4 - Cross Site Scripting</title>
@@ -2471,6 +2474,15 @@
       </references>
       <type>XSS</type>
     </vulnerability>
+    <vulnerability>
+      <title>Download Monitor 2.0.6 - wp-download_monitor/download.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>44616</osvdb>
+        <cve>2008-2034</cve>
+        <secunia>29876</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.0.8</fixed_in>
   </plugin>
 
   <plugin name="download-manager">
@@ -6000,9 +6012,11 @@
 
   <plugin name="eshop-magic">
     <vulnerability>
-      <title>eShop Magic - "file" Arbitrary File Disclosure Vulnerability</title>
+      <title>eShop Magic 0.1 - eshop-magic/download.php file Parameter Traversal Arbitrary File Access</title>
       <references>
+        <osvdb>86155</osvdb>
         <secunia>50933</secunia>
+        <url>http://xforce.iss.net/xforce/xfdb/79222</url>
       </references>
       <type>LFI</type>
       <fixed_in>0.2</fixed_in>
@@ -6011,8 +6025,9 @@
 
   <plugin name="pinterest-pin-it-button">
     <vulnerability>
-      <title>Pinterest "Pin It" Button Lite - Multiple Unspecified Vulnerabilities</title>
+      <title>Pinterest "Pin It" Button Lite 1.3.1 - Multiple Unspecified Vulnerabilities</title>
       <references>
+        <osvdb>85956</osvdb>
         <secunia>50868</secunia>
       </references>
       <type>MULTI</type>
@@ -6068,8 +6083,9 @@
 
   <plugin name="sexy-add-template">
     <vulnerability>
-      <title>Sexy Add Template - Cross-Site Request Forgery Vulnerability</title>
+      <title>Sexy Add Template 1.0 - PHP Code Execution CSRF</title>
       <references>
+        <osvdb>85730</osvdb>
         <secunia>50709</secunia>
       </references>
       <type>CSRF</type>
@@ -6103,19 +6119,31 @@
 
   <plugin name="wp-topbar">
     <vulnerability>
+      <title>WP-TopBar 4.02 - wp-topbar.php wptbbartext Parameter XSS</title>
+      <references>
+        <osvdb>85659</osvdb>
+        <secunia>50693</secunia>
+        <exploitdb>21393</exploitdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>4.03</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP-TopBar 4.02 - TopBar Message Manipulation CSRF</title>
+      <references>
+        <osvdb>85660</osvdb>
+        <secunia>50693</secunia>
+        <exploitdb>21393</exploitdb>
+      </references>
+      <type></type>
+      <fixed_in>4.03</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>wp-topbar &lt;= 3.04 - XSS in ZeroClipboard.swf</title>
       <references>
         <url>http://1337day.com/exploit/20396</url>
       </references>
       <type>XSS</type>
-    </vulnerability>
-    <vulnerability>
-      <title>WP-TopBar - Cross-Site Request Forgery Vulnerability</title>
-      <references>
-        <secunia>50693</secunia>
-      </references>
-      <type>CSRF</type>
-      <fixed_in>4.0.3</fixed_in>
     </vulnerability>
   </plugin>
 
