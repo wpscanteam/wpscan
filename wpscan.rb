@@ -109,8 +109,8 @@ def main
     # Output runtime data
     start_time   = Time.now
     start_memory = get_memory_usage
-    puts "| URL: #{wp_target.url}"
-    puts "| Started: #{start_time.asctime}"
+    puts green('[+]') + " URL: #{wp_target.url}"
+    puts green('[+]') + " Started: #{start_time.asctime}"
     puts
 
     if wp_target.wordpress_hosted?
