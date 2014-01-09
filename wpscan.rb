@@ -109,32 +109,32 @@ def main
     # Output runtime data
     start_time   = Time.now
     start_memory = get_memory_usage
-    puts green('[+]') + " URL: #{wp_target.url}"
-    puts green('[+]') + " Started: #{start_time.asctime}"
+    puts "#{green('[+]')} URL: #{wp_target.url}"
+    puts "#{green('[+]')} Started: #{start_time.asctime}"
     puts
 
     if wp_target.wordpress_hosted?
-      puts red('[!]') + " We do not support scanning *.wordpress.com hosted blogs"
+      puts "#{red('[!]')} We do not support scanning *.wordpress.com hosted blogs"
     end
 
     if wp_target.has_robots?
-      puts green('[+]') + " robots.txt available under: '#{wp_target.robots_url}'"
+      puts "#{green('[+]')} robots.txt available under: '#{wp_target.robots_url}'"
 
       wp_target.parse_robots_txt.each do |dir|
-        puts green('[+]') + " Interesting entry from robots.txt: #{dir}"
+        puts "#{green('[+]')} Interesting entry from robots.txt: #{dir}"
       end
     end
 
     if wp_target.has_readme?
-      puts red('[!]') + " The WordPress '#{wp_target.readme_url}' file exists"
+      puts "#{red('[!]')} The WordPress '#{wp_target.readme_url}' file exists"
     end
 
     if wp_target.has_full_path_disclosure?
-      puts red('[!]') + " Full Path Disclosure (FPD) in: '#{wp_target.full_path_disclosure_url}'"
+      puts "#{red('[!]')} Full Path Disclosure (FPD) in: '#{wp_target.full_path_disclosure_url}'"
     end
 
     if wp_target.has_debug_log?
-      puts red('[!]') + " Debug log file found: #{wp_target.debug_log_url}"
+      puts "#{red('[!]')} Debug log file found: #{wp_target.debug_log_url}"
     end
 
     wp_target.config_backup.each do |file_url|
@@ -146,7 +146,7 @@ def main
     end
 
     wp_target.interesting_headers.each do |header|
-      output = green('[+]') + " Interesting header: "
+      output = "#{green('[+]')} Interesting header: "
 
       if header[1].class == Array 
         header[1].each do |value|
@@ -158,20 +158,20 @@ def main
     end
 
     if wp_target.multisite?
-      puts green('[+]') + ' This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)'
+      puts "#{green('[+]')} This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)"
     end
 
     if wp_target.registration_enabled?
-      puts green('[+]') + ' User registration is enabled'
+      puts "#{green('[+]')} User registration is enabled"
     end
 
     if wp_target.has_xml_rpc?
-      puts green('[+]') + " XML-RPC Interface available under: #{wp_target.xml_rpc_url}"
+      puts "#{green('[+]')} XML-RPC Interface available under: #{wp_target.xml_rpc_url}"
     end
 
     if wp_target.has_malwares?
       malwares = wp_target.malwares
-      puts red('[!]') + " #{malwares.size} malware(s) found:"
+      puts "#{red('[!]')} #{malwares.size} malware(s) found:"
 
       malwares.each do |malware_url|
         puts
@@ -192,14 +192,14 @@ def main
     if wp_theme = wp_target.theme
       puts
       # Theme version is handled in #to_s
-      puts green('[+]') + " WordPress theme in use: #{wp_theme}"
+      puts "#{green('[+]')} WordPress theme in use: #{wp_theme}"
       wp_theme.output(wpscan_options.verbose)
 
       # Check for parent Themes
       while wp_theme.is_child_theme?
         parent = wp_theme.get_parent_theme
         puts
-        puts green('[+]') + " Detected parent theme: #{parent}"
+        puts "#{green('[+]')} Detected parent theme: #{parent}"
         parent.output(wpscan_options.verbose)
         wp_theme = parent
       end
@@ -208,7 +208,7 @@ def main
 
     if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
       puts
-      puts green('[+]') + ' Enumerating plugins from passive detection ... '
+      puts "#{green('[+]')} Enumerating plugins from passive detection ..."
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
@@ -216,14 +216,14 @@ def main
 
         wp_plugins.output(wpscan_options.verbose)
       else
-        puts green('[+]') + ' No plugins found'
+        puts "#{green('[+]')} No plugins found"
       end
     end
 
     # Enumerate the installed plugins
     if wpscan_options.enumerate_plugins or wpscan_options.enumerate_only_vulnerable_plugins or wpscan_options.enumerate_all_plugins
       puts
-      puts green('[+]') + " Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
+      puts "#{green('[+]')} Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ..."
       puts
 
       wp_plugins = WpPlugins.aggressive_detection(wp_target,
@@ -234,18 +234,18 @@ def main
       )
       puts
       if !wp_plugins.empty?
-        puts green('[+]') + " We found #{wp_plugins.size} plugins:"
+        puts "#{green('[+]')} We found #{wp_plugins.size} plugins:"
 
         wp_plugins.output(wpscan_options.verbose)
       else
-        puts green('[+]') + ' No plugins found'
+        puts "#{green('[+]')} No plugins found"
       end
     end
 
     # Enumerate installed themes
     if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes or wpscan_options.enumerate_all_themes
       puts
-      puts green('[+]') + " Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
+      puts "#{green('[+]')} Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ..."
       puts
 
       wp_themes = WpThemes.aggressive_detection(wp_target,
@@ -256,17 +256,17 @@ def main
       )
       puts
       if !wp_themes.empty?
-        puts green('[+]') + " We found #{wp_themes.size} themes:"
+        puts "#{green('[+]')} We found #{wp_themes.size} themes:"
 
         wp_themes.output(wpscan_options.verbose)
       else
-        puts green('[+]') + ' No themes found'
+        puts "#{green('[+]')} No themes found"
       end
     end
 
     if wpscan_options.enumerate_timthumbs
       puts
-      puts green('[+]') + ' Enumerating timthumb files ...'
+      puts "#{green('[+]')} Enumerating timthumb files ..."
       puts
 
       wp_timthumbs = WpTimthumbs.aggressive_detection(wp_target,
@@ -277,7 +277,7 @@ def main
       )
       puts
       if !wp_timthumbs.empty?
-        puts green('[+]') + " We found #{wp_timthumbs.size} timthumb file/s:"
+        puts "#{green('[+]')} We found #{wp_timthumbs.size} timthumb file/s:"
         puts
 
         wp_timthumbs.output(wpscan_options.verbose)
@@ -285,14 +285,14 @@ def main
         puts
         puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')
       else
-        puts green('[+]') + ' No timthumb files found'
+        puts "#{green('[+]')} No timthumb files found"
       end
     end
 
     # If we haven't been supplied a username, enumerate them...
     if !wpscan_options.username and wpscan_options.wordlist or wpscan_options.enumerate_usernames
       puts
-      puts green('[+]') + ' Enumerating usernames ...'
+      puts "#{green('[+]')} Enumerating usernames ..."
 
       wp_users = WpUsers.aggressive_detection(wp_target,
         enum_options.merge(
@@ -302,7 +302,7 @@ def main
       )
 
       if wp_users.empty?
-        puts green('[+]') + " We did not enumerate any usernames"
+        puts "#{green('[+]')} We did not enumerate any usernames"
 
         if wpscan_options.wordlist
           puts 'Try supplying your own username with the --username option'
@@ -310,7 +310,7 @@ def main
           exit(1)
         end
       else
-        puts green('[+]') + " Identified the following #{wp_users.size} user/s:"
+        puts "#{green('[+]')} Identified the following #{wp_users.size} user/s:"
         wp_users.output(margin_left: ' ' * 4)
       end
 
@@ -328,13 +328,13 @@ def main
 
         puts
         puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
-        print '[?] Do you want to start the brute force anyway ? [y/n] '
+        print "[?] Do you want to start the brute force anyway ? [y/n] "
 
         bruteforce = false if Readline.readline !~ /^y/i
       end
       puts
       if bruteforce
-        puts green('[+]') + ' Starting the password brute forcer'
+        puts "#{green('[+]')} Starting the password brute forcer"
 
         begin
           wp_users.brute_force(
@@ -347,7 +347,7 @@ def main
           wp_users.output(show_password: true, margin_left: ' ' * 2)
         end
       else
-        puts 'Brute forcing aborted'
+        puts "Brute forcing aborted"
       end
     end
 
@@ -368,7 +368,7 @@ def main
       puts red(e.message)
     else
       puts red("[ERROR] #{e.message}")
-      puts red('Trace:')
+      puts red("Trace:")
       puts red(e.backtrace.join("\n"))
     end
     exit(1)
