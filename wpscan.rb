@@ -114,14 +114,14 @@ def main
     puts
 
     if wp_target.wordpress_hosted?
-      puts "#{red('[!]')} We do not support scanning *.wordpress.com hosted blogs."
+      puts red('[!]') + " We do not support scanning *.wordpress.com hosted blogs"
     end
 
     if wp_target.has_robots?
       puts green('[+]') + " robots.txt available under: '#{wp_target.robots_url}'"
 
       wp_target.parse_robots_txt.each do |dir|
-        puts "#{green('[+]')} Interesting entry from robots.txt: #{dir}"
+        puts green('[+]') + " Interesting entry from robots.txt: #{dir}"
       end
     end
 
@@ -146,7 +146,7 @@ def main
     end
 
     wp_target.interesting_headers.each do |header|
-      output = "#{green('[+]')} Interesting header: "
+      output = green('[+]') + " Interesting header: "
 
       if header[1].class == Array 
         header[1].each do |value|
@@ -216,7 +216,7 @@ def main
 
         wp_plugins.output(wpscan_options.verbose)
       else
-        puts 'No plugins found'
+        puts green('[+]') + ' No plugins found'
       end
     end
 
@@ -238,7 +238,7 @@ def main
 
         wp_plugins.output(wpscan_options.verbose)
       else
-        puts 'No plugins found'
+        puts green('[+]') + ' No plugins found'
       end
     end
 
@@ -260,7 +260,7 @@ def main
 
         wp_themes.output(wpscan_options.verbose)
       else
-        puts 'No themes found'
+        puts green('[+]') + ' No themes found'
       end
     end
 
@@ -285,7 +285,7 @@ def main
         puts
         puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')
       else
-        puts 'No timthumb files found'
+        puts green('[+]') + ' No timthumb files found'
       end
     end
 
@@ -302,7 +302,7 @@ def main
       )
 
       if wp_users.empty?
-        puts 'We did not enumerate any usernames'
+        puts green('[+]') + " We did not enumerate any usernames"
 
         if wpscan_options.wordlist
           puts 'Try supplying your own username with the --username option'
@@ -310,7 +310,7 @@ def main
           exit(1)
         end
       else
-        puts green('[+]') + " We found the following #{wp_users.size} user/s:"
+        puts green('[+]') + " Identified the following #{wp_users.size} user/s:"
         wp_users.output(margin_left: ' ' * 4)
       end
 
