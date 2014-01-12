@@ -804,6 +804,13 @@
 
   <plugin name="smart-slide-show">
     <vulnerability>
+      <title>Smart Slideshow - upload.php Multiple File Extension Upload Arbitrary Code Execution</title>
+      <references>
+        <osvdb>87373</osvdb>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+    <vulnerability>
       <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
       <references>
         <url>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</url>
@@ -1709,8 +1716,10 @@
 
   <plugin name="sfbrowser">
     <vulnerability>
-      <title>SfBrowser Version 1.4.5 - Arbitrary File Upload Vulnerability</title>
+      <title>SFBrowser 1.4.5 - connectors/php/sfbrowser.php File Upload PHP Code Execution</title>
       <references>
+        <osvdb>82845</osvdb>
+        <secunia>49466</secunia>
         <exploitdb>19054</exploitdb>
       </references>
       <type>UPLOAD</type>
@@ -1875,9 +1884,14 @@
 
   <plugin name="rbxgallery">
     <vulnerability>
-      <title>RBX Gallery 2.1 - Arbitrary File Upload</title>
+      <title>RBX Gallery 2.1 - uploader.php File Upload PHP Code Execution</title>
       <references>
+        <osvdb>82796</osvdb>
+        <cve>2012-3575</cve>
+        <secunia>49463</secunia>
         <exploitdb>19019</exploitdb>
+        <url>http://packetstormsecurity.com/files/113414/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/76170</url>
       </references>
       <type>UPLOAD</type>
     </vulnerability>
@@ -3502,14 +3516,7 @@
     </vulnerability>
   </plugin>
 
-  <plugin name="flash-album-gallery">
-    <vulnerability>
-      <title>GRAND FlAGallery - Multiple Vulnerabilities</title>
-      <references>
-        <secunia>51100</secunia>
-      </references>
-      <type>MULTI</type>
-    </vulnerability>
+ <plugin name="flash-album-gallery">
     <vulnerability>
       <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
       <references>
@@ -3518,20 +3525,49 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
+      <title>GRAND Flash Album Gallery 2.70- "s" Cross-Site Scripting Vulnerability</title>
+      <references>
+        <osvdb>93714</osvdb>
+        <cve>2013-3261</cve>
+        <secunia>53111</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.72</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>GRAND Flash Album Gallery 2.55 - "gid" SQL Injection Vulnerability</title>
+      <references>
+        <osvdb>93087</osvdb>
+        <secunia>53356</secunia>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.56</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>GRAND Flash Album Gallery - Multiple Vulnerabilities</title>
+      <references>
+        <secunia>51100</secunia>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>2.17</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>GRAND Flash Album Gallery 1.9.0 and 2.0.0 - Multiple Vulnerabilities</title>
       <references>
+        <secunia>51601</secunia>
         <url>http://packetstormsecurity.com/files/117665/</url>
         <url>http://www.waraxe.us/advisory-94.html</url>
-        <secunia>51601</secunia>
       </references>
       <type>MULTI</type>
     </vulnerability>
     <vulnerability>
-      <title>GRAND Flash Album Gallery 0.55 - Multiple Vulnerabilities</title>
+      <title>GRAND Flash Album Gallery &lt;= 1.71 - wp-admin/admin.php skin Parameter XSS</title>
       <references>
-        <exploitdb>16947</exploitdb>
+        <osvdb>81923</osvdb>
+        <url>http://packetstormsecurity.com/files/112704/</url>
       </references>
-      <type>MULTI</type>
+      <type>XSS</type>
+      <fixed_in>1.76</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>GRAND Flash Album Gallery &lt;= 1.56 - XSS Vulnerability</title>
@@ -3541,29 +3577,22 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>GRAND Flash Album Gallery &lt;= 1.71 - XSS Vulnerability</title>
+      <title>GRAND Flash Album Gallery 0.55 - lib/hitcounter.php pid Parameter SQL Injection</title>
       <references>
-        <url>http://packetstormsecurity.com/files/112704/</url>
-      </references>
-      <type>XSS</type>
-    </vulnerability>
-    <vulnerability>
-      <title>GRAND FlAGallery - "gid" SQL Injection Vulnerability</title>
-      <references>
-        <osvdb>93087</osvdb>
-        <secunia>53356</secunia>
+        <osvdb>71072</osvdb>
+        <secunia>43648</secunia>
+        <exploitdb>16947</exploitdb>
       </references>
       <type>SQLI</type>
-      <fixed_in>2.56</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>GRAND FlAGallery - "s" Cross-Site Scripting Vulnerability</title>
+      <title>GRAND Flash Album Gallery 0.55 - admin/news.php want2Read Parameter Traversal Arbitrary File Access</title>
       <references>
-        <secunia>53111</secunia>
-        <osvdb>93714</osvdb>
+        <osvdb>71073</osvdb>
+        <secunia>43648</secunia>
+        <exploitdb>16947</exploitdb>
       </references>
-      <type>XSS</type>
-      <fixed_in>2.72</fixed_in>
+      <type>UNKNOWN</type>
     </vulnerability>
   </plugin>
 
