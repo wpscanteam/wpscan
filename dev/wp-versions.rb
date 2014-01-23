@@ -50,7 +50,7 @@ def download_and_unzip_version(version, dest)
   dest_zip = "/tmp/wp-#{version}.zip"
 
   download(wp_version_zip_url(version), dest_zip)
-  
+
   if $?.exitstatus === 0 and File.exists?(dest_zip)
     if file_md5(dest_zip) === wp_version_zip_md5(version)
       remove_dir("#{dest}/wordpress/")
@@ -63,7 +63,7 @@ def download_and_unzip_version(version, dest)
     end
   else
     raise 'Download error'
-  end 
+  end
 end
 
 def unzip(zip_path, dest)
@@ -164,7 +164,7 @@ if @update
         db_path   = Path.first_or_create(value: file_path)
         fingerprint = Fingerprint.create(path_id: db_path.id, md5_hash: hash)
 
-        
+
         db_version.fingerprints << fingerprint
       end
       db_version.save
@@ -176,9 +176,9 @@ end
 
 if @version
   if version = Version.first(number: @version)
-    repository(:default).adapter.select('SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id GROUP BY md5_hash ORDER BY path ASC').each do |f|
+    repository(:default).adapter.select('SELECT md5_hash, path_id, version_id, paths.value AS path FROM fingerprints LEFT JOIN paths ON path_id = id WHERE md5_hash NOT IN (SELECT DISTINCT md5_hash FROM fingerprints WHERE version_id != ?) ORDER BY path ASC', version.id).each do |f|
       if f.version_id == version.id
-        puts "#{f.md5_hash} #{f.path}" 
+        puts "#{f.md5_hash} #{f.path}"
       end
     end
   else
@@ -207,7 +207,7 @@ end
 
 if @target_url
   uri = URI.parse(@target_url)
-  
+
   Version.all(order: [ :number.desc ]).each do |version|
     total_urls = version.fingerprints.count
     matches    = 0
@@ -215,7 +215,7 @@ if @target_url
 
     version.fingerprints.each do |f|
       url = uri.merge(f.path.value).to_s
-      
+
       if web_page_md5(url) == f.md5_hash
         matches += 1
         puts "#{url} matches v#{version.number}" if @verbose
@@ -225,7 +225,7 @@ if @target_url
 
       print("Version #{version.number} [#{matches}/#{total_urls} #{percent}% matches]\r")
     end
-    
+
     puts
 
     if percent == 100.0
