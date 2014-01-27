@@ -1267,13 +1267,21 @@
 
   <plugin name="wordfence">
     <vulnerability>
-      <title>Wordfence 3.3.5 - XSS and IAA</title>
+      <title>Wordfence 3.8.6 - lib/IPTraf.php User-Agent Header Stored XSS</title>
       <references>
-        <url>http://seclists.org/fulldisclosure/2012/Oct/139</url>
-        <secunia>51055</secunia>
+        <osvdb>102445</osvdb>
+        <secunia>56558</secunia>
       </references>
-      <type>MULTI</type>
+      <type>XSS</type>
+      <fixed_in>3.8.7</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Wordfence 3.8.1 - lib/wordfenceClass.php isStrongPasswd Function Password Creation Restriction Bypass Weakness</title>
+      <references>
+        <osvdb>102478</osvdb>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>3.8.3</fixed_in>
     <vulnerability>
       <title>Wordfence 3.8.1 - wp-admin/admin.php whois Parameter Stored XSS</title>
       <references>
@@ -1283,6 +1291,17 @@
       </references>
       <type>XSS</type>
       <fixed_in>3.8.3</fixed_in>
+    </vulnerability>
+    </vulnerability>
+    <vulnerability>
+      <title>Wordfence 3.3.5 - XSS and IAA</title>
+      <references>
+        <osvdb>86557</osvdb>
+        <secunia>51055</secunia>
+        <url>http://seclists.org/fulldisclosure/2012/Oct/139</url>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>3.3.7</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -4945,7 +4964,7 @@
     <vulnerability>
       <title>WP-e-Commerce 3.8.9.5 - save-data.functions.php GIF File Upload</title>
       <references>
-        <osvdb>102487</osvdb>
+        <osvdb>102497</osvdb>
         <url>http://packetstormsecurity.com/files/124921/</url>
       </references>
       <type>UPLOAD</type>
@@ -8883,11 +8902,29 @@
 
   <plugin name="landing-pages">
     <vulnerability>
-      <title>Landing Pages - Unspecified SQL Injection</title>
+      <title>Landing Pages 1.2.3 - Unspecified Issue</title>
+      <references>
+        <osvdb>102442</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.3.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Landing Pages 1.2.1 - module.utils.php post Parameter SQL Injection</title>
       <references>
         <osvdb>98334</osvdb>
+        <cve>2013-6243</cve>
         <secunia>55192</secunia>
         <url>http://www.securityfocus.com/bid/62942</url>
+        <url>http://xforce.iss.net/xforce/xfdb/87803</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.2.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Landing Pages 1.2.1 - module.redirect-ab-testing.php permalink_name Parameter SQL Injection</title>
+      <references>
+        <osvdb>102407</osvdb>
       </references>
       <type>SQLI</type>
       <fixed_in>1.2.3</fixed_in>
@@ -10263,8 +10300,34 @@
 
   <plugin name="ss-downloads">
     <vulnerability>
-      <title>SS Downloads  1.4.4.1 - Multiple Cross-Site Scripting Vulnerabilities</title>
+      <title>SS Downloads  1.4.4.1 - services/getfile.php file Parameter XSS</title>
       <references>
+        <osvdb>102501</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>SS Downloads  1.4.4.1 - ss-downloads.php Multiple Variables XSS</title>
+      <references>
+        <osvdb>102502</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>SS Downloads  1.4.4.1 - templates/download.php Multiple Parameters Reflected XSS</title>
+      <references>
+        <osvdb>102503</osvdb>
+        <secunia>56428</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>SS Downloads  1.4.4.1 - templates/register.php Multiple Parameter Reflected XSS</title>
+      <references>
+        <osvdb>102504</osvdb>
         <secunia>56428</secunia>
       </references>
       <type>XSS</type>
@@ -10276,7 +10339,7 @@
     <vulnerability>
       <title>Global Flash Galleries - swfupload.php Unauthenticated Image Upload Weakness</title>
       <references>
-        <osvdb>102433</osvdb>
+        <osvdb>102423</osvdb>
         <url>http://www.securityfocus.com/bid/65060</url>
       </references>
       <type>UPLOAD</type>
@@ -10292,6 +10355,17 @@
       </references>
       <type>XSS</type>
       <fixed_in>0.10.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="let-them-unsubscribe">
+    <vulnerability>
+      <title>Let Them Unsubscribe 1.0 - let-them-unsubscribe.php Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>102500</osvdb>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>1.1</fixed_in>
     </vulnerability>
   </plugin>
 
