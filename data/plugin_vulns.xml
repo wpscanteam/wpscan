@@ -253,6 +253,7 @@
       <title>All Video Gallery - Multiple SQL Injection Vulnerabilities</title>
       <references>
         <secunia>50874</secunia>
+        <exploitdb>22427</exploitdb>
         <url>http://ceriksen.com/2012/11/04/wordpress-all-video-gallery-plugin-sql-injection/</url>
       </references>
       <type>SQLI</type>
@@ -1324,11 +1325,24 @@
 
   <plugin name="social-discussions">
     <vulnerability>
-      <title>Social Discussions - Multiple Vulnerabilities</title>
+      <title>Social Discussions 6.1.1 - Multiple Script Direct Request Path Disclosure</title>
       <references>
+        <osvdb>86730</osvdb>
+        <exploitdb>22158</exploitdb>
+        <url>http://xforce.iss.net/xforce/xfdb/79465</url>
         <url>http://www.waraxe.us/advisory-93.html</url>
       </references>
-      <type>MULTI</type>
+      <type>FPD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Social Discussions 6.1.1 - social-discussions-networkpub_ajax.php HTTP_ENV_VARS Parameter Remote File Inclusion</title>
+      <references>
+        <osvdb>86731</osvdb>
+        <exploitdb>22158</exploitdb>
+        <url>http://xforce.iss.net/xforce/xfdb/79464</url>
+        <url>http://www.waraxe.us/advisory-93.html</url>
+      </references>
+      <type>RFI</type>
     </vulnerability>
   </plugin>
 
@@ -3909,7 +3923,7 @@
 
   <plugin name="nextgen-gallery">
     <vulnerability>
-      <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
+      <title>NextGEN Gallery - SWF Vulnerable to XSS</title>
       <references>
         <url>http://brindi.si/g/blog/vulnerable-swf-bundled-in-wordpress-plugins.html</url>
         <secunia>51271</secunia>
@@ -3918,7 +3932,7 @@
       <fixed_in>1.9.8</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>swfupload.swf Multiple Cross Site Scripting Vulnerabilities</title>
+      <title>NextGEN Gallery - swfupload.swf Multiple Cross Site Scripting Vulnerabilities</title>
       <references>
         <url>http://www.securityfocus.com/bid/60433</url>
       </references>
@@ -8189,7 +8203,7 @@
 
   <plugin name="indianic-testimonial">
     <vulnerability>
-      <title>IndiaNIC Testimonial 2.2 - CSRF vulnerability</title>
+      <title>IndiaNIC Testimonial 2.2 - Setting Manipulation CSRF</title>
       <references>
         <osvdb>96792</osvdb>
         <cve>2013-5672</cve>
@@ -8200,7 +8214,7 @@
       <type>CSRF</type>
     </vulnerability>
     <vulnerability>
-      <title>IndiaNIC Testimonial 2.2 - SQL Injection vulnerability</title>
+      <title>IndiaNIC Testimonial 2.2 - testimonial.php custom_query Parameter SQL Injection</title>
       <references>
         <osvdb>96793</osvdb>
         <cve>2013-5673</cve>
@@ -8211,11 +8225,12 @@
       <type>SQLI</type>
     </vulnerability>
     <vulnerability>
-      <title>IndiaNIC Testimonial 2.2 - XSS vulnerability</title>
+      <title>IndiaNIC Testimonial 2.2 - iNIC_testimonial_save Action Multiple Parameter XSS</title>
       <references>
-        <url>http://seclists.org/fulldisclosure/2013/Sep/5</url>
+        <osvdb>96795</osvdb>
         <exploitdb>28054</exploitdb>
         <url>http://packetstormsecurity.com/files/123036/</url>
+        <url>http://seclists.org/fulldisclosure/2013/Sep/5</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -8822,6 +8837,15 @@
       <title>A Forms 1.4.0 - a-forms.php a_form_shortcode Function Multiple Parameter XSS</title>
       <references>
         <osvdb>96410</osvdb>
+        <secunia>54489</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>A Forms 1.4.0 - a-forms.php aform_css_file_selector() Function css_file_selection Parameter XSS</title>
+      <references>
+        <osvdb>96809</osvdb>
         <secunia>54489</secunia>
       </references>
       <type>XSS</type>
@@ -10512,6 +10536,18 @@
         <osvdb>102669</osvdb>
       </references>
       <type>XSS</type>
+      <fixed_in>1.6.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="webinar_plugin">
+    <vulnerability>
+      <title>Easy Webinar - get_widget.php wid Parameter SQL Injection</title>
+      <references>
+        <osvdb>86754</osvdb>
+        <exploitdb>22300</exploitdb>
+      </references>
+      <type>SQLI</type>
       <fixed_in>1.6.7</fixed_in>
     </vulnerability>
   </plugin>
