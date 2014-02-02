@@ -2620,13 +2620,22 @@
 
   <plugin name="better-wp-security">
     <vulnerability>
-      <title>Better WP Security &lt;= 3.5.3 - Stored XSS</title>
+      <title>Better WP Security 3.5.5 - inc/admin/content.php id_specialfile Parameter Stored XSS</title>
       <references>
-        <url>https://github.com/wpscanteam/wpscan/issues/251</url>
-        <url>http://www.securityfocus.com/archive/1/527634/30/0/threaded</url>
+        <osvdb>101788</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.6</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Better WP Security &lt;= 3.5.3 - inc/secure.php logevent Function URL Handling Stored XSS</title>
+      <references>
         <osvdb>95884</osvdb>
         <secunia>54299</secunia>
         <exploitdb>27290</exploitdb>
+        <url>http://packetstormsecurity.com/files/122615/</url>
+        <url>https://github.com/wpscanteam/wpscan/issues/251</url>
+        <url>http://www.securityfocus.com/archive/1/527634/30/0/threaded</url>
       </references>
       <type>XSS</type>
       <fixed_in>3.5.4</fixed_in>
@@ -8208,6 +8217,7 @@
         <osvdb>96111</osvdb>
         <secunia>54402</secunia>
         <exploitdb>27531</exploitdb>
+        <url>http://packetstormsecurity.com/files/122761/</url>
       </references>
       <fixed_in>2.0.11</fixed_in>
     </vulnerability>
@@ -8223,6 +8233,7 @@
         <osvdb>96111</osvdb>
         <secunia>54402</secunia>
         <exploitdb>27531</exploitdb>
+        <url>http://packetstormsecurity.com/files/122761/</url>
       </references>
       <fixed_in>2.0.11</fixed_in>
     </vulnerability>
@@ -8780,6 +8791,7 @@
       <title>Booking System - events_facualty_list.php eid Parameter Reflected XSS</title>
       <references>
         <osvdb>96740</osvdb>
+        <url>http://packetstormsecurity.com/files/122289/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -10607,6 +10619,36 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.5.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="comment-control">
+    <vulnerability>
+      <title>Comment Control 0.3.0 - comment-control.php type Parameter SQL Injection</title>
+      <references>
+        <osvdb>102581</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>0.3.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wptouch">
+    <vulnerability>
+      <title>WPtouch 1.9.8 - ajax/file_upload.php Crafted Content-Type File Upload Remote Code Execution</title>
+      <references>
+        <osvdb>102582</osvdb>
+      </references>
+      <type>RCE</type>
+      <fixed_in>1.9.8.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WPtouch 1.9.8 - include/submit.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>102583</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.9.8.1</fixed_in>
     </vulnerability>
   </plugin>
 
