@@ -11,7 +11,7 @@ shared_examples 'WpUser::BruteForcable' do
 
   describe '#valid_password?' do
     let(:response)     { Typhoeus::Response.new(resp_options) }
-    let(:resp_options) { {} }    
+    let(:resp_options) { {} }
 
     after do
       wp_user.valid_password?(response, 'password', redirect_url).should == @expected
@@ -79,7 +79,8 @@ shared_examples 'WpUser::BruteForcable' do
     context 'when no password is valid' do
       before do
         stub_request(:post, wp_user.login_url).
-          #with(body: { log: login }). # produces an error : undefined method `split' for {:log=>"someuser", :pwd=>"password1"}:Hash
+          # with(body: { log: login }). # produces an error : undefined method `split' for {:log=>"someuser", :pwd=>"password1"}:Hash
+          # Fixed in WebMock 1.17.2, TODO: Modify the specs
           to_return(body: 'login_error')
       end
 
@@ -104,6 +105,7 @@ shared_examples 'WpUser::BruteForcable' do
       # Due to the error with .with(body: { log: login }) above
       # We can't use it to stub the request for a specific password
       # So, the first one will be valid
+      # Fixed in WebMock 1.17.2, TODO: Modify the specs
 
       before do
         stub_request(:post, wp_user.login_url).to_return(status: 302, headers: { 'Location' => redirect_url } )
