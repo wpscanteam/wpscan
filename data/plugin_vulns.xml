@@ -2008,11 +2008,19 @@
 
   <plugin name="wp-property">
     <vulnerability>
+      <title>WP Property &lt;= 1.38.3.2 - Non-administrative User XMLI Remote Information Disclosure</title>
+      <references>
+        <osvdb>102709</osvdb>
+        </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.38.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>WP Property &lt;= 1.35.0 - Arbitrary File Upload</title>
       <references>
+        <osvdb>82656</osvdb>
         <exploitdb>18987</exploitdb>
         <exploitdb>23651</exploitdb>
-        <osvdb>82656</osvdb>
         <secunia>49394</secunia>
         <url>http://packetstormsecurity.com/files/113274/</url>
         </references>
@@ -5974,6 +5982,25 @@
     </vulnerability>
   </plugin>
 
+  <plugin name="sagepay-direct-for-woocommerce-payment-gateway">
+    <vulnerability>
+      <title>WooCommerce SagePay Direct Payment Gateway 0.1.6.6 - pages/3DCallBack.php Multiple Parameter Reflected XSS</title>
+      <references>
+        <osvdb>102746</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.1.6.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WooCommerce SagePay Direct Payment Gateway 0.1.6.6 - pages/3DComplete.php Multiple Parameter Reflected XSS</title>
+      <references>
+        <osvdb>102747</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.1.6.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
   <plugin name="woocommerce-predictive-search">
     <vulnerability>
       <title>WooCommerce Predictive Search - index.php rs Parameter XSS</title>
@@ -9734,6 +9761,13 @@
 
   <plugin name="amerisale-re">
     <vulnerability>
+      <title>Amerisale-Re - Remote Shell Upload</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/124992/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+    <vulnerability>
       <title>Amerisale-Re - netriesdetail/upload.php edit Parameter Reflected XSS</title>
       <references>
         <osvdb>100434</osvdb>
@@ -10550,6 +10584,29 @@
       </references>
       <type>SQLI</type>
       <fixed_in>1.6.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-social-invitations">
+    <vulnerability>
+      <title>WP Social Invitations &lt;=1.4.4.2 - test.php Multiple Parameter Reflected XSS</title>
+      <references>
+        <osvdb>102741</osvdb>
+        <secunia>56711</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.4.4.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="infusionsoft">
+    <vulnerability>
+      <title>Infusionsoft Gravity Forms Add-on 1.5.6 - Unspecified XSS</title>
+      <references>
+        <osvdb>102742</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.5.7</fixed_in>
     </vulnerability>
   </plugin>
 
