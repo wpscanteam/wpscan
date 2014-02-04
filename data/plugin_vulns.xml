@@ -3170,12 +3170,29 @@
 
   <plugin name="link-library">
     <vulnerability>
+      <title>Link Library 5.8.0.9 - Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>102842</osvdb>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>5.8.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Link Library 5.1.6 - link-library-ajax.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>102804</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>5.1.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Link Library 5.0.8 - wp-content/plugins/link-library/tracker.php id Parameter XSS</title>
       <references>
         <osvdb>74561</osvdb>
         <secunia>45588</secunia>
       </references>
       <type>XSS</type>
+      <fixed_in>5.0.9</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Link Library 5.0.8 - wp-content/plugins/link-library/tracker.php id Parameter SQL Injection</title>
@@ -3184,13 +3201,16 @@
         <secunia>45588</secunia>
       </references>
       <type>SQLI</type>
+      <fixed_in>5.0.9</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Link Library &lt;= 5.2.1 - SQL Injection</title>
       <references>
+        <osvdb>84579</osvdb>
         <exploitdb>17887</exploitdb>
       </references>
       <type>SQLI</type>
+      <fixed_in>5.7.9.7</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -9753,6 +9773,7 @@
       <title>Contact Form 7 3.5.2 - Crafted File Extension Upload Remote Code Execution</title>
       <references>
         <osvdb>102776</osvdb>
+        <url>http://packetstormsecurity.com/files/125018/</url>
         <url>http://seclists.org/fulldisclosure/2014/Feb/0</url>
       </references>
       <type>RCE</type>
@@ -10462,6 +10483,7 @@
       <title>Global Flash Galleries - swfupload.php Unauthenticated Image Upload Weakness</title>
       <references>
         <osvdb>102423</osvdb>
+        <url>http://packetstormsecurity.com/files/124850/</url>
         <url>http://www.securityfocus.com/bid/65060</url>
       </references>
       <type>UPLOAD</type>
@@ -10590,6 +10612,7 @@
       <title>Seo Link Rotator - pusher.php title Parameter Reflected XSS</title>
       <references>
         <osvdb>102594</osvdb>
+        <secunia>56710</secunia>
         <url>http://packetstormsecurity.com/files/124959/</url>
       </references>
       <type>XSS</type>
@@ -10602,6 +10625,7 @@
       <references>
         <osvdb>102669</osvdb>
         <cve>2014-1750</cve>
+        <secunia>56604</secunia>
       </references>
       <type>XSS</type>
       <fixed_in>1.6.7</fixed_in>
@@ -10681,6 +10705,30 @@
       </references>
       <type>CSRF</type>
       <fixed_in>1.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="very-simple-contact-form">
+    <vulnerability>
+      <title>Very Simple Contact Form 1.1 - Unspecified Issue</title>
+      <references>
+        <osvdb>102798</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="stop-user-enumeration">
+    <vulnerability>
+      <title>Stop User Enumeration 1.2.4 - POST Request Protection Bypass</title>
+      <references>
+        <osvdb>102799</osvdb>
+        <secunia>56643</secunia>
+        <url>http://packetstormsecurity.com/files/125035/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Feb/3</url>
+      </references>
+      <type>UNKNOWN</type>
     </vulnerability>
   </plugin>
 
