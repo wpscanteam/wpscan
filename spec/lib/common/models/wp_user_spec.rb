@@ -34,10 +34,6 @@ describe WpUser do
     end
   end
 
-  describe '#login_url' do
-    its(:login_url) { should == 'http://example.com/wp-login.php' }
-  end
-
   describe '#to_s' do
     after do
       subject.id = 1

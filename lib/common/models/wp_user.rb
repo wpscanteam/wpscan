@@ -23,7 +23,32 @@ class WpUser < WpItem
 
   # @return [ String ]
   def login_url
-    @uri.merge('wp-login.php').to_s
+    unless @login_url
+      @login_url = @uri.merge('wp-login.php').to_s
+
+      # Let's check if the login url is redirected (to https url for example)
+      if redirection = redirection(@login_url)
+        @login_url = redirection
+      end
+    end
+
+    @login_url
+  end
+
+  def redirection(url)
+    redirection = nil
+    response = Browser.get(url)
+
+    if response.code == 301 || response.code == 302
+      redirection = response.headers_hash['location']
+
+      # Let's check if there is a redirection in the redirection
+      if other_redirection = redirection(redirection)
+        redirection = other_redirection
+      end
+    end
+
+    redirection
   end
 
   # @return [ String ]

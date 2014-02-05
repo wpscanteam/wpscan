@@ -66,7 +66,8 @@ shared_examples 'WpUser::BruteForcable' do
   end
 
   describe '#brute_force' do
-    let(:login) { 'someuser' }
+    let(:login)     { 'someuser' }
+    let(:login_url) { uri.merge('wp-login.php').to_s }
 
     after do
       [wordlist_utf8, wordlist_iso].each do |wordlist|
@@ -78,6 +79,7 @@ shared_examples 'WpUser::BruteForcable' do
 
     context 'when no password is valid' do
       before do
+        stub_request(:get, login_url).to_return(status: 200)
         stub_request(:post, wp_user.login_url).
           # with(body: { log: login }). # produces an error : undefined method `split' for {:log=>"someuser", :pwd=>"password1"}:Hash
           # Fixed in WebMock 1.17.2, TODO: Modify the specs
@@ -93,7 +95,8 @@ shared_examples 'WpUser::BruteForcable' do
       let(:redirect_url) { nil }
 
       before do
-        stub_request(:post, wp_user.login_url).to_return(status: 302, headers: { 'Location' => 'wrong-location' } )
+        stub_request(:get, login_url).to_return(status: 200)
+        stub_request(:post, wp_user.login_url).to_return(status: 302, headers: { 'Location' => 'wrong-location' })
       end
 
       it 'does not set the @password' do
@@ -108,11 +111,27 @@ shared_examples 'WpUser::BruteForcable' do
       # Fixed in WebMock 1.17.2, TODO: Modify the specs
 
       before do
-        stub_request(:post, wp_user.login_url).to_return(status: 302, headers: { 'Location' => redirect_url } )
+        stub_request(:get, login_url).to_return(status: 200)
+        stub_request(:post, wp_user.login_url).to_return(status: 302, headers: { 'Location' => redirect_url })
       end
 
       it 'sets the @password' do
         @expected = 'password1'
+      end
+    end
+
+    context 'when the login url is redirected to https' do
+      let(:https_login_url) { 'https://example.com/wp-login.php' }
+
+      before do
+        stub_request(:any, uri.merge('wp-login.php').to_s).to_return(status: 302, headers: { 'Location' => https_login_url})
+        stub_request(:get, https_login_url).to_return(status: 200)
+        stub_request(:post, https_login_url).with(body: hash_including({ log: 'someuser', pwd: 'root'})).to_return(status: 302, headers: { 'Location' => redirect_url })
+        stub_request(:post, https_login_url).with(body: /pwd=(?!root)/).to_return(body: 'login_error')
+      end
+
+      it 'does not raise any error' do
+        @expected = 'root'
       end
     end
   end
