@@ -1464,21 +1464,24 @@
 
   <plugin name="rsvpmaker">
     <vulnerability>
-      <title>RSVPMaker 2.5.4 - Persistent XSS</title>
+      <title>RSVPMaker 2.5.4 - index.php RSVP Form Multiple Field XSS</title>
       <references>
-        <exploitdb>20474</exploitdb>
+        <osvdb>84749</osvdb>
         <secunia>50289</secunia>
+        <exploitdb>20474</exploitdb>
       </references>
       <type>XSS</type>
+      <fixed_in>2.5.5</fixed_in>
     </vulnerability>
   </plugin>
 
   <plugin name="mz-jajak">
     <vulnerability>
-      <title>Mz-jajak &lt;= 2.1 - SQL Injection Vulnerability</title>
+      <title>Mz-jajak &lt;= 2.1 - index.php id Parameter SQL Injection</title>
       <references>
-        <exploitdb>20416</exploitdb>
+        <osvdb>84698</osvdb>
         <secunia>50217</secunia>
+        <exploitdb>20416</exploitdb>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -1488,6 +1491,9 @@
     <vulnerability>
       <title>Resume Submissions Job Posting 2.5.1 - Unrestricted File Upload</title>
       <references>
+        <osvdb>83807</osvdb>
+        <secunia>49896</secunia>
+        <exploitdb>19791</exploitdb>
         <url>http://packetstormsecurity.com/files/114716/</url>
       </references>
       <type>UPLOAD</type>
@@ -1498,8 +1504,9 @@
     <vulnerability>
       <title>WP-Predict 1.0 - Blind SQL Injection</title>
       <references>
+        <osvdb>83697</osvdb>
+        <secunia>49843</secunia>
         <exploitdb>19715</exploitdb>
-
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -1507,10 +1514,11 @@
 
   <plugin name="backup">
     <vulnerability>
-      <title>Backup - Information Disclosure</title>
+      <title>Backup 2.0.1 - Information Disclosure</title>
       <references>
-        <exploitdb>19524</exploitdb>
+        <osvdb>83701</osvdb>
         <secunia>50038</secunia>
+        <exploitdb>19524</exploitdb>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>2.1</fixed_in>
@@ -1519,8 +1527,10 @@
 
   <plugin name="moodthingy-mood-rating-widget">
     <vulnerability>
-      <title>MoodThingy Widget 0.8.7 - Blind SQL Injection</title>
+      <title>MoodThingy Widget 0.8.7 - admin-ajax.php Multiple Parameter lydl_store_results Function SQL Injection</title>
       <references>
+        <osvdb>83632</osvdb>
+        <secunia>49805</secunia>
         <exploitdb>19572</exploitdb>
       </references>
       <type>SQLI</type>
@@ -1529,8 +1539,9 @@
 
   <plugin name="paid-business-listings">
     <vulnerability>
-      <title>Paid Business Listings 1.0.2 - Blind SQL Injection</title>
+      <title>Paid Business Listings 1.0.2 - Form Submission pbl_listing_pkg_id Parameter SQL Injection</title>
       <references>
+        <osvdb>83768</osvdb>
         <exploitdb>19481</exploitdb>
       </references>
       <type>SQLI</type>
@@ -1539,8 +1550,10 @@
 
   <plugin name="website-faq">
     <vulnerability>
-      <title>Website FAQ 1.0 - SQL Injection</title>
+      <title>Website FAQ 1.0 - wp-admin/admin-ajax.php category Parameter SQL injection</title>
       <references>
+        <osvdb>83265</osvdb>
+        <secunia>49682</secunia>
         <exploitdb>19400</exploitdb>
       </references>
       <type>SQLI</type>
@@ -1551,6 +1564,8 @@
     <vulnerability>
       <title>Fancy Gallery 1.2.4 - Shell Upload</title>
       <references>
+        <osvdb>83410</osvdb>
+        <exploitdb>19398</exploitdb>
         <url>http://packetstormsecurity.com/files/114114/</url>
       </references>
       <type>UPLOAD</type>
@@ -1579,8 +1594,10 @@
 
   <plugin name="schreikasten">
     <vulnerability>
-      <title>Schreikasten 0.14.13 - XSS</title>
+      <title>Schreikasten 0.14.13 - wp-admin/admin-ajax.php Multiple Parameter XSS</title>
       <references>
+        <osvdb>83152</osvdb>
+        <secunia>49600</secunia>
         <exploitdb>19294</exploitdb>
       </references>
       <type>XSS</type>
@@ -1589,11 +1606,15 @@
 
   <plugin name="wp-automatic">
     <vulnerability>
-      <title>Automatic 2.0.3 - CSRF</title>
+      <title>Automatic 2.0.3 - csv.php q Parameter SQL Injection</title>
       <references>
+        <osvdb>82971</osvdb>
+        <secunia>49573</secunia>
+        <exploitdb>19187</exploitdb>
         <url>http://packetstormsecurity.com/files/113763/</url>
       </references>
-      <type>CSRF</type>
+      <type>SQLI</type>
+      <fixed_in>2.0.4</fixed_in>
     </vulnerability>
   </plugin>
 
