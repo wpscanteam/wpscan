@@ -6064,9 +6064,19 @@
 
   <plugin name="sagepay-direct-for-woocommerce-payment-gateway">
     <vulnerability>
+      <title>WooCommerce SagePay Direct Payment Gateway 0.1.6.6 - pages/3DRedirect.php Multiple Parameter Reflected XSS</title>
+      <references>
+        <osvdb>102882</osvdb>
+        <secunia>56801</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.1.6.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>WooCommerce SagePay Direct Payment Gateway 0.1.6.6 - pages/3DCallBack.php Multiple Parameter Reflected XSS</title>
       <references>
         <osvdb>102746</osvdb>
+        <secunia>56801</secunia>
       </references>
       <type>XSS</type>
       <fixed_in>0.1.6.7</fixed_in>
@@ -6075,6 +6085,7 @@
       <title>WooCommerce SagePay Direct Payment Gateway 0.1.6.6 - pages/3DComplete.php Multiple Parameter Reflected XSS</title>
       <references>
         <osvdb>102747</osvdb>
+        <secunia>56801</secunia>
       </references>
       <type>XSS</type>
       <fixed_in>0.1.6.7</fixed_in>
@@ -10788,6 +10799,17 @@
         <url>http://seclists.org/fulldisclosure/2014/Feb/3</url>
       </references>
       <type>UNKNOWN</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="delightful-downloads">
+    <vulnerability>
+      <title>Delightful Downloads 1.3.1.1 - meta-boxes.php dedo_meta_boxes_save Function Multiple Action Authorization Bypass</title>
+      <references>
+        <osvdb>102932</osvdb>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>1.3.2</fixed_in>
     </vulnerability>
   </plugin>
 
