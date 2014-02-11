@@ -1,22 +1,30 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.2...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.3...master)
 
-## Version 2.x 
-Released: 2014-xx-xx
+## Version 2.3
+Released: 2014-02-11
 
 New
+* Brute forcing over https!
 * Detect and output parent theme!
 * Complete fingerprint script & hash search
 * New spell checker!
+* Added database modification dates in status report
 * Added 'Total WordPress Sites in the World' statistics
 * Added separator between Name and Version in Item 
 * Added a "Work in progress" URL in the CHANGELOG
 
 Removed
-* Removed "Exiting!" sentence 
+* Removed "Exiting!" sentence
+* Removed Backtrack Linux. Not maintained anymore.
 
 General core
+* Ruby 2.1.0 added to Travis
+* Updated the version of WebMock required
+* Better string concatenation in code (improves speed)
+* Some modifications in the output of an item
+* Output cosmetics
 * rspec-mocks version constraint released
 * Tabs replaced by spaces
 * Rspecs update
@@ -28,12 +36,25 @@ Vulnerabilities
 * Disabled some fake reported vulnerabilities
 * Fixed some duplicate vulnerabilities
 
+WPScan Database Statistics:
+* Total vulnerable versions: 78; 2 are new
+* Total vulnerable plugins: 693; 83 are new
+* Total vulnerable themes: 251; 55 are new
+* Total version vulnerabilities: 291 17 are new
+* Total plugin vulnerabilities: 1016; 236 are new
+* Total theme vulnerabilities: 283; 79 are new
+
 Add WP Fingerprints
+* Better fingerprints
+* WP 3.8.1 Fingerprinting
 * WP 3.8 Fingerprinting
 
 Fixed issues
-* Fix #228, #327 Infinite loop when self-redirect 
-* Fix #201 Incorrect Paramter Parsing when no url was supplied
+* Fix #404 - Brute forcing issue over https
+* Fix #398 - Removed a fake vuln in WP Super Cache
+* Fix #393 - sudo added to the bundle install cmd for Mac OSX
+* Fix #228, #327 - Infinite loop when self-redirect 
+* Fix #201 - Incorrect Paramter Parsing when no url was supplied
 
 ## Version 2.2 
 Released: 2013-11-12
