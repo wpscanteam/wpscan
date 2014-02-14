@@ -2926,11 +2926,38 @@
 
   <plugin name="buddypress">
     <vulnerability>
-      <title>Buddypress &lt;= 1.5.5 - SQL Injection</title>
+      <title>Buddypress &lt;= 1.9.1 - Privilege Escalation</title>
       <references>
+        <url>http://packetstormsecurity.com/files/125213/</url>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.9.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Buddypress &lt;= 1.9.1 - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/125212/</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.9.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Buddypress - player.swf / jwplayer.swf playerready Parameter XSS</title>
+      <references>
+        <osvdb>88886</osvdb>
+        <url>http://packetstormsecurity.com/files/119020/</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80840</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Buddypress &lt;= 1.5.4 - wp-load.php exclude Parameter SQL Injection</title>
+      <references>
+        <osvdb>80763</osvdb>
         <exploitdb>18690</exploitdb>
       </references>
       <type>SQLI</type>
+      <fixed_in>1.5.5</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -7713,7 +7740,6 @@
       <title>Advanced XML Reader 0.1.1 - XML External Entity (XXE) Data Parsing Arbitrary File Disclosure</title>
       <references>
         <osvdb>92904</osvdb>
-        <url>http://packetstormsecurity.com/files/121492/</url>
         <url>http://seclists.org/bugtraq/2013/May/5</url>
       </references>
       <type>XXE</type>
@@ -9923,6 +9949,15 @@
   </plugin>
 
   <plugin name="dzs-videogallery">
+    <vulnerability>
+      <title>DZS Video Gallery - ajax.php source Parameter Reflected XSS</title>
+      <references>
+        <osvdb>103283</osvdb>
+        <secunia>56904</secunia>
+        <url>http://packetstormsecurity.com/files/125179/</url>
+      </references>
+      <type>RCE</type>
+    </vulnerability>
     <vulnerability>
       <title>DZS Video Gallery - upload.php File Upload Remote Code Execution</title>
       <references>
