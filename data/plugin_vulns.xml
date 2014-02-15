@@ -2926,16 +2926,20 @@
 
   <plugin name="buddypress">
     <vulnerability>
-      <title>Buddypress &lt;= 1.9.1 - Privilege Escalation</title>
+      <title>Buddypress &lt;= 1.9.1 - Crafted bp_new_group_id Cookie Arbitrary Group Manipulation</title>
       <references>
+        <osvdb>103308</osvdb>
+        <cve>2014-1889</cve>
         <url>http://packetstormsecurity.com/files/125213/</url>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>1.9.2</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Buddypress &lt;= 1.9.1 - Cross Site Scripting</title>
+      <title>Buddypress &lt;= 1.9.1 - groups/create/step/group-details/ Group Name Field Stored XSS</title>
       <references>
+        <osvdb>103307</osvdb>
+        <cve>2014-1888</cve>
         <url>http://packetstormsecurity.com/files/125212/</url>
       </references>
       <type>XSS</type>
@@ -10880,6 +10884,17 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.9.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="all_in_one_carousel">
+    <vulnerability>
+      <title>all_in_one_carousel 1.2.20 - /tpl/add_carousel.php id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>103351</osvdb>
+        <url>http://seclists.org/bugtraq/2014/Feb/38</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
