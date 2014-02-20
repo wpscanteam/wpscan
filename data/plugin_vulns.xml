@@ -4086,6 +4086,8 @@
     <vulnerability>
       <title>NextGEN Gallery 2.0.0 - Directory Traversal</title>
       <references>
+        <osvdb>103473</osvdb>
+        <url>http://seclists.org/fulldisclosure/2014/Feb/171</url>
         <url>https://security.dxw.com/advisories/directory-traversal-in-nextgen-gallery-2-0-0/</url>
       </references>
       <type>UNKNOWN</type>
@@ -9245,6 +9247,33 @@
 
   <plugin name="bp-group-documents">
     <vulnerability>
+      <title>Group Documents 1.2.1 - Document Upload Multiple Field Stored XSS</title>
+      <references>
+        <osvdb>103475</osvdb>
+        <url>http://seclists.org/fulldisclosure/2014/Feb/170</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Group Documents 1.2.1 - bp-group-documents-settings.php file Parameter Remote Path Traversal File Location Manipulation</title>
+      <references>
+        <osvdb>103476</osvdb>
+        <url>http://seclists.org/fulldisclosure/2014/Feb/170</url>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.2.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Group Documents 1.2.1 - Document Property Manipulation CSRF</title>
+      <references>
+        <osvdb>103477</osvdb>
+        <url>http://seclists.org/fulldisclosure/2014/Feb/170</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.2.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Group Documents 1.2 - File Uploading Multiple Parameter Stored XSS</title>
       <references>
         <osvdb>98246</osvdb>
@@ -10963,6 +10992,17 @@
         <exploitdb>31570</exploitdb>
       </references>
       <type>RCE</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-security-scan">
+    <vulnerability>
+      <title>Acunetix WP Security 4.0.3 - /wp-admin/admin.php wps-database Page Backup Generation CSRF Weakness</title>
+      <references>
+        <osvdb>103467</osvdb>
+        <url>http://packetstormsecurity.com/files/125218/</url>
+      </references>
+      <type>CSRF</type>
     </vulnerability>
   </plugin>
 
