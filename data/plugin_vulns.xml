@@ -3834,11 +3834,36 @@
 
   <plugin name="forum-server">
     <vulnerability>
-      <title>WP Forum Server 1.6.5 - SQL Injection Vulnerability</title>
+      <title>WP Forum Server &lt;= 1.7.3 - wpf-insert.php edit_post_id Parameter SQL Injection</title>
       <references>
-        <exploitdb>16235</exploitdb>
+        <osvdb>75463</osvdb>
+        <cve>2012-6625</cve>
+        <secunia>45974</secunia>
+        <url>http://packetstormsecurity.com/files/112703/</url>
       </references>
       <type>SQLI</type>
+      <fixed_in>1.7.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Forum Server &lt;= 1.7.3 - fs-admin/wpf-add-forum.php groupid Parameter XSS</title>
+      <references>
+        <osvdb>102185</osvdb>
+        <secunia>49167</secunia>
+        <url>http://packetstormsecurity.com/files/112703/</url>
+        <url>http://www.securityfocus.com/bid/65215</url>
+        <cve>2012-6622</cve>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Forum Server &lt;= 1.7.3 - fs-admin/fs-admin.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>81914</osvdb>
+        <secunia>49155</secunia>
+        <url>http://packetstormsecurity.com/files/112703/</url>
+        <cve>2012-6622</cve>
+      </references>
+      <type>XSS</type>
     </vulnerability>
     <vulnerability>
       <title>WP Forum Server &lt;= 1.7 - SQL Injection Vulnerability</title>
@@ -3848,13 +3873,27 @@
       <type>SQLI</type>
     </vulnerability>
     <vulnerability>
-      <title>WP Forum Server &lt;= 1.7.3 - SQL Injection / XSS Vulnerabilities</title>
+      <title>WP Forum Server 1.6.5 - feed.php topic Parameter SQL Injection</title>
       <references>
-        <url>http://packetstormsecurity.com/files/112703/</url>
-        <cve>2012-6622</cve>
-        <cve>2012-6625</cve>
+        <osvdb>70994</osvdb>
+        <cve>2011-1047</cve>
+        <secunia>43306</secunia>
+        <exploitdb>16235</exploitdb>
+        <url>http://www.securityfocus.com/bid/46360</url>
+        <url>http://www.securityfocus.com/bid/46362</url>
       </references>
-      <type>MULTI</type>
+      <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Forum Server 1.6.5 - index.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>70993</osvdb>
+        <cve>2011-1047</cve>
+        <secunia>43306</secunia>
+        <exploitdb>16235</exploitdb>
+        <url>http://www.securityfocus.com/bid/46362</url>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
