@@ -4,7 +4,7 @@ class WpTimthumb < WpItem
   module Output
 
     def output(verbose = false)
-      puts ' | ' + red('[!]') + " #{self}"
+      puts " | #{vulnerable? ? red('[!] Vulnerable') : green('[i] Not Vulnerable')} #{self}"
     end
 
   end
