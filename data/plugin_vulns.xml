@@ -5526,15 +5526,16 @@
 
   <plugin name="adrotate">
     <vulnerability>
-      <title>AdRotate &lt;= 3.6.5 - SQL Injection Vulnerability</title>
+      <title>AdRotate &lt;= 3.9.4 - clicktracker.php track Parameter SQL Injection</title>
       <references>
-        <osvdb>77507</osvdb>
-        <cve>2011-4671</cve>
-        <exploitdb>17888</exploitdb>
-        <url>http://unconciousmind.blogspot.com/2011/09/wordpress-adrotate-plugin-365-sql.html</url>
-      </references>
+        <osvdb>103578</osvdb>
+        <cve>2014-1854</cve>
+        <secunia>57079</secunia>
+        <exploitdb>31834</exploitdb>
+        <url>http://packetstormsecurity.com/files/125330/</url>
+       </references>
       <type>SQLI</type>
-      <fixed_in>3.6.8</fixed_in>
+      <fixed_in>3.9.5</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>AdRotate &lt;= 3.6.6 - SQL Injection Vulnerability</title>
@@ -5545,6 +5546,18 @@
         <exploitdb>18114</exploitdb>
       </references>
       <type>SQLI</type>
+      <fixed_in>3.6.8</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>AdRotate &lt;= 3.6.5 - SQL Injection Vulnerability</title>
+      <references>
+        <osvdb>77507</osvdb>
+        <cve>2011-4671</cve>
+        <exploitdb>17888</exploitdb>
+        <url>http://unconciousmind.blogspot.com/2011/09/wordpress-adrotate-plugin-365-sql.html</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.6.8</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -11053,6 +11066,17 @@
       </references>
       <type>FPD</type>
       <fixed_in>2.0.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-jquery-spam">
+    <vulnerability>
+      <title>WP jQuery Spam 1.1 - dynamic.php id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>103579</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2</fixed_in>
     </vulnerability>
   </plugin>
 
