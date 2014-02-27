@@ -97,7 +97,12 @@ def banner
   puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
   puts
   puts '        WordPress Security Scanner by the WPScan Team '
-  puts "                    Version #{version}"
+  # Alignment of the version (w & w/o the Revision)
+  if REVISION
+    puts "                    Version #{version}"
+  else
+    puts "                        Version #{version}"
+  end
   puts '     Sponsored by the RandomStorm Open Source Initiative'
   puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
   puts '_______________________________________________________________'
