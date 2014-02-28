@@ -30,7 +30,8 @@ class WpscanOptions
     :exclude_content_based,
     :basic_auth,
     :debug_output,
-    :version
+    :version,
+    :useragent
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -227,6 +228,7 @@ class WpscanOptions
       ['--wordlist', '-w', GetoptLong::REQUIRED_ARGUMENT],
       ['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
       ['--force', '-f', GetoptLong::NO_ARGUMENT],
+      ['--useragent', '-a', GetoptLong::REQUIRED_ARGUMENT],
       ['--help', '-h', GetoptLong::NO_ARGUMENT],
       ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
       ['--proxy', GetoptLong::REQUIRED_ARGUMENT],
