@@ -94,6 +94,10 @@ def help
   puts '--wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.'
   puts '--threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)'
   puts '--username | -U <username>  Only brute force the supplied username.'
+  puts '--cache-ttl <cache-ttl>  Typhoeus cache TTL'
+  puts '--request-timeout <request-timeout>  Request Timeout'
+  puts '--connect-timeout <connect-timeout>  Connect Timeout'
+  puts '--max-threads <max-threads>  Maximum Threads'
   puts '--help     | -h This help screen.'
   puts '--verbose  | -v Verbose output.'
   puts
