@@ -29,7 +29,9 @@ class Browser
   def initialize(options = {})
     @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
 
+    # sets browser defaults
     browser_defaults
+    # overrides defaults with user supplied values
     override_config(options)
 
     unless @hydra
@@ -63,9 +65,12 @@ class Browser
   #
   def browser_defaults
     @max_threads = 20
-    @cache_ttl = 600 # 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
-    @request_timeout = 2000 # 2s
-    @connect_timeout = 1000 # 1s
+    # 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
+    @cache_ttl = 600
+    # 2s
+    @request_timeout = 2000
+    # 1s
+    @connect_timeout = 1000
     @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
   end
 

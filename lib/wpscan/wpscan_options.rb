@@ -32,7 +32,11 @@ class WpscanOptions
     :debug_output,
     :version,
     :user_agent,
-    :random_agent
+    :random_agent,
+    :cache_ttl,
+    :request_timeout,
+    :connect_timeout,
+    :max_threads
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -138,7 +142,7 @@ class WpscanOptions
     !to_h.empty?
   end
 
-  def random_agent=(a)
+  def random_agent=(useless)
     @user_agent = get_random_user_agent
   end
 
@@ -246,7 +250,11 @@ class WpscanOptions
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
       ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT],
       ['--debug-output', GetoptLong::NO_ARGUMENT],
-      ['--version', GetoptLong::NO_ARGUMENT]
+      ['--version', GetoptLong::NO_ARGUMENT],
+      ['--cache_ttl', GetoptLong::REQUIRED_ARGUMENT],
+      ['--request_timeout', GetoptLong::REQUIRED_ARGUMENT],
+      ['--connect_timeout', GetoptLong::REQUIRED_ARGUMENT],
+      ['--max_threads', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 
