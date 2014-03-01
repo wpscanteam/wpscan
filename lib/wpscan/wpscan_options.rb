@@ -31,7 +31,8 @@ class WpscanOptions
     :basic_auth,
     :debug_output,
     :version,
-    :useragent
+    :user_agent,
+    :random_agent
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -137,6 +138,10 @@ class WpscanOptions
     !to_h.empty?
   end
 
+  def random_agent=(a)
+    @user_agent = get_random_user_agent
+  end
+
   # return Hash
   def to_h
     options = {}
@@ -228,7 +233,8 @@ class WpscanOptions
       ['--wordlist', '-w', GetoptLong::REQUIRED_ARGUMENT],
       ['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
       ['--force', '-f', GetoptLong::NO_ARGUMENT],
-      ['--useragent', '-a', GetoptLong::REQUIRED_ARGUMENT],
+      ['--user-agent', '-a', GetoptLong::REQUIRED_ARGUMENT],
+      ['--random-agent', '-r', GetoptLong::NO_ARGUMENT],
       ['--help', '-h', GetoptLong::NO_ARGUMENT],
       ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
       ['--proxy', GetoptLong::REQUIRED_ARGUMENT],
@@ -237,7 +243,6 @@ class WpscanOptions
       ['--follow-redirection', GetoptLong::NO_ARGUMENT],
       ['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
       ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
-      ['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
       ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT],
       ['--debug-output', GetoptLong::NO_ARGUMENT],

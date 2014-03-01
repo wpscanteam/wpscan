@@ -12,7 +12,7 @@ describe Browser do
   }
   let(:options) { {} }
   let(:instance_vars_to_check) {
-    ['useragent', 'proxy',
+    ['user-agent', 'random-agent', 'proxy',
      'max_threads', 'cache_ttl', 'request_timeout', 'connect_timeout']
   }
 
@@ -76,7 +76,7 @@ describe Browser do
     }
 
     after :each do
-      browser.useragent = 'SomeUA'
+      browser.user_agent = 'SomeUA'
       browser.cache_ttl = 250
 
       browser.merge_request_params(params).should == @expected

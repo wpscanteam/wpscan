@@ -5,7 +5,7 @@ class Browser
 
     attr_accessor :cache_ttl, :request_timeout, :connect_timeout
     attr_reader   :basic_auth, :proxy, :proxy_auth
-    attr_writer   :useragent
+    attr_writer   :user_agent
 
     # Sets the Basic Authentification credentials
     # Accepted format:

@@ -82,7 +82,8 @@ def help
   puts
   puts '--exclude-content-based "<regexp or string>" Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied'
   puts '                                             You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)'
-  puts '--config-file | -c <config file> Use the specified config file'
+  puts '--user-agent | -a <User-Agent> Use the specified User-Agent'
+  puts '--random-agent | -r Use a random User-Agent'
   puts '--follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not'
   puts '--wp-content-dir <wp content dir>  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed'
   puts '--wp-plugins-dir <wp plugins dir>  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed'
