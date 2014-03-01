@@ -12,7 +12,7 @@ class Browser
     :basic_auth,
     :cache_ttl,
     :max_threads,
-    :useragent,
+    :user_agent,
     :proxy,
     :proxy_auth,
     :request_timeout,
@@ -66,7 +66,7 @@ class Browser
     @cache_ttl = 600 # 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
     @request_timeout = 2000 # 2s
     @connect_timeout = 1000 # 1s
-    @useragent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+    @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
   end
 
   # @param [ String ] url
@@ -84,7 +84,7 @@ class Browser
     params = Browser.append_params_header_field(
       params,
       'User-Agent',
-      @useragent
+      @user_agent
     )
 
     if @proxy
