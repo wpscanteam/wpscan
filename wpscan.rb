@@ -70,7 +70,7 @@ def main
         puts
       else
         puts "The remote host tried to redirect us to: #{redirection}"
-        print 'Do you want follow the redirection ? [y/n] '
+        print '[?] Do you want follow the redirection ? [y/n] '
       end
 
       if wpscan_options.follow_redirection or Readline.readline =~ /^y/i
@@ -100,7 +100,7 @@ def main
     unless wp_target.wp_plugins_dir_exists?
       puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
-      print 'Continue? [y/n] '
+      print '[?] Continue? [y/n] '
       unless Readline.readline =~ /^y/i
         exit(0)
       end
@@ -327,7 +327,7 @@ def main
         protection_plugin = wp_target.login_protection_plugin()
 
         puts
-        puts "The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
+        puts "#{red('[!]')} The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
         print "[?] Do you want to start the brute force anyway ? [y/n] "
 
         bruteforce = false if Readline.readline !~ /^y/i
@@ -347,7 +347,7 @@ def main
           wp_users.output(show_password: true, margin_left: ' ' * 2)
         end
       else
-        puts "Brute forcing aborted"
+        puts "#{red('[!]')} Brute forcing aborted"
       end
     end
 
