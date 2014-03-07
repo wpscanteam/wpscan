@@ -96,7 +96,7 @@ def banner
   puts '           \\  /\\  /  | |     ____) | (__| (_| | | | |'
   puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
   puts
-  puts '        WordPress Security Scanner by the WPScan Team '
+  puts bold('        WordPress Security Scanner by the WPScan Team ')
   # Alignment of the version (w & w/o the Revision)
   if REVISION
     puts "                    Version #{version}"
@@ -113,12 +113,24 @@ def colorize(text, color_code)
   "\e[#{color_code}m#{text}\e[0m"
 end
 
+def bold(text)
+  colorize(text, 1)
+end
+
 def red(text)
   colorize(text, 31)
 end
 
 def green(text)
   colorize(text, 32)
+end
+
+def amber(text)
+  colorize(text, 33)
+end
+
+def blue(text)
+  colorize(text, 34)
 end
 
 def xml(file)

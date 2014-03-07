@@ -38,8 +38,8 @@ def main
         end
         puts @updater.update()
       else
-        puts 'Svn / Git not installed, or wpscan has not been installed with one of them.'
-        puts 'Update aborted'
+        puts '[i] Svn / Git not installed, or wpscan has not been installed with one of them.'
+        puts "#{red('[!]')} Update aborted"
       end
       exit(0)
     end
@@ -69,15 +69,15 @@ def main
         puts "Following redirection #{redirection}"
         puts
       else
-        puts "The remote host tried to redirect us to: #{redirection}"
-        print '[?] Do you want follow the redirection ? [y/n] '
+        puts "#{blue('[i]')} The remote host tried to redirect to: #{redirection}"
+        print "[?] Do you want follow the redirection ? [y/n] "
       end
 
       if wpscan_options.follow_redirection or Readline.readline =~ /^y/i
         wpscan_options.url = redirection
         wp_target = WpTarget.new(redirection, wpscan_options.to_h)
       else
-        puts 'Scan aborted'
+        puts "#{red('[!]')} Scan aborted"
         exit(0)
       end
     end
@@ -138,7 +138,7 @@ def main
     end
 
     wp_target.config_backup.each do |file_url|
-      puts red("[!] A wp-config.php backup file has been found in: '#{file_url}'")
+      puts "#{red('[!]')} A wp-config.php backup file has been found in: '#{file_url}'"
     end
 
     if wp_target.search_replace_db_2_exists?
@@ -212,7 +212,7 @@ def main
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
-        puts " |  #{wp_plugins.size} plugins found:"
+        puts " |  Plugins found: #{wp_plugins.size}"
 
         wp_plugins.output(wpscan_options.verbose)
       else
