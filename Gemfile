@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "typhoeus", ">=0.6.3"
+gem "typhoeus", "=0.6.7"
 gem "nokogiri"
 gem "json"
 gem "terminal-table"
