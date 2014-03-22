@@ -3,10 +3,8 @@
 class Browser
   module Options
 
-    USER_AGENT_MODES = %w{ static semi-static random }
-
-    attr_accessor :available_user_agents, :cache_ttl, :request_timeout, :connect_timeout
-    attr_reader   :basic_auth, :user_agent_mode, :proxy, :proxy_auth
+    attr_accessor :cache_ttl, :request_timeout, :connect_timeout
+    attr_reader   :basic_auth, :proxy, :proxy_auth
     attr_writer   :user_agent
 
     # Sets the Basic Authentification credentials
@@ -39,42 +37,6 @@ class Browser
       else
         raise 'max_threads must be an Integer > 0'
       end
-    end
-
-    # Sets the user_agent_mode, which can be one of the following:
-    #   static:      The UA is defined by the user, and will be the same in each requests
-    #   semi-static: The UA is randomly chosen at the first request, and will not change
-    #   random:      UA randomly chosen each request
-    #
-    # UA are from @available_user_agents
-    #
-    # @param [ String ] ua_mode
-    #
-    # @return [ void ]
-    def user_agent_mode=(ua_mode)
-      ua_mode ||= 'static'
-
-      if USER_AGENT_MODES.include?(ua_mode)
-        @user_agent_mode = ua_mode
-        # For semi-static user agent mode, the user agent has to
-        # be nil the first time (it will be set with the getter)
-        @user_agent = nil if ua_mode === 'semi-static'
-      else
-        raise "Unknow user agent mode : '#{ua_mode}'"
-      end
-    end
-
-    # @return [ String ] The user agent, according to the user_agent_mode
-    def user_agent
-      case @user_agent_mode
-      when 'semi-static'
-        unless @user_agent
-          @user_agent = @available_user_agents.sample
-        end
-      when 'random'
-        @user_agent = @available_user_agents.sample
-      end
-      @user_agent
     end
 
     # Sets the proxy

@@ -12,7 +12,7 @@ describe 'WebSite' do
   before :all do
     Browser::reset
     Browser.instance(
-      config_file: SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
+      config_file: SPEC_FIXTURES_CONF_DIR + '/browser.conf.json',
       cache_ttl: 0
     )
   end

@@ -4750,6 +4750,7 @@
         <exploitdb>4593</exploitdb>
       </references>
       <type>RFI</type>
+      <fixed_in>0.4.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -6036,8 +6037,18 @@
 
   <plugin name="wp-slimstat">
     <vulnerability>
-      <title>wp-slimstat - XSS</title>
+      <title>WP SlimStat 3.5.5 - Overview URI Stored XSS</title>
       <references>
+        <osvdb>104428</osvdb>
+        <secunia>57305</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.6</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP SlimStat 2.8.4 - wp-content/plugins/wp-slimstat/admin/view/panel1.php s Parameter XSS</title>
+      <references>
+        <osvdb>89052</osvdb>
         <secunia>51721</secunia>
       </references>
       <type>XSS</type>
@@ -7036,6 +7047,7 @@
       <title>CommentLuv 2.92.3 - Cross Site Scripting Vulnerability</title>
       <references>
         <osvdb>89925</osvdb>
+        <cve>2013-1409</cve>
         <url>https://www.htbridge.com/advisory/HTB23138</url>
         <url>http://packetstormsecurity.com/files/120090/</url>
         <url>http://seclists.org/bugtraq/2013/Feb/30</url>
@@ -11035,7 +11047,10 @@
       <title>Contus Video Gallery - index.php playid Parameter SQL Injection</title>
       <references>
         <osvdb>93369</osvdb>
+        <cve>2013-3478</cve>
         <secunia>51344</secunia>
+        <url>http://www.securityfocus.com/bid/59845</url>
+        <url>http://xforce.iss.net/xforce/xfdb/84239</url>
       </references>
       <type>SQLI</type>
     </vulnerability>
@@ -11444,6 +11459,161 @@
         <url>http://seclists.org/fulldisclosure/2013/Dec/192</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="LayerSlider">
+    <vulnerability>
+      <title>LayerSlider 4.6.1 - wp-admin/admin.php Style Editing CSRF</title>
+      <references>
+        <osvdb>104393</osvdb>
+        <secunia>57930</secunia>
+        <url>http://packetstormsecurity.com/files/125637/</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>LayerSlider 4.6.1 - LayerSlider/editor.php skin Parameter Remote Path Traversal File Access</title>
+      <references>
+        <osvdb>104394</osvdb>
+        <url>http://packetstormsecurity.com/files/125637/</url>
+      </references>
+      <type>AUTHBYPASS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="xcloner-backup-and-restore">
+    <vulnerability>
+      <title>XCloner 3.1.0 - Multiple Actions CSRF</title>
+      <references>
+        <osvdb>104402</osvdb>
+        <url>https://www.htbridge.com/advisory/HTB23206</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>3.1.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="guiform">
+    <vulnerability>
+      <title>GuiForm 1.4.10 - class/class-ajax.php Entry Saving CSRF</title>
+      <references>
+        <osvdb>104399</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.5.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="clickdesk-live-support-chat-plugin">
+    <vulnerability>
+      <title>ClickDesk - Live Chat Widget Multiple Field XSS</title>
+      <references>
+        <osvdb>104037</osvdb>
+        <url>http://packetstormsecurity.com/files/125528/</url>
+        <url>http://www.securityfocus.com/bid/65971</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="duplicate-post">
+    <vulnerability>
+      <title>Duplicate Post 2.5 - duplicate-post-admin.php User Login Cookie Value SQL Injection</title>
+      <references>
+        <osvdb>104669</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.6</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Duplicate Post 2.5 - options-general.php post Parameter Reflected XSS</title>
+      <references>
+        <osvdb>104670</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="mtouch-quiz">
+    <vulnerability>
+      <title>mTouch Quiz 3.0.6 - question.php quiz Parameter Reflected XSS</title>
+      <references>
+        <osvdb>104667</osvdb>
+        <url>http://www.securityfocus.com/bid/66306</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.0.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>mTouch Quiz 3.0.6 - question.php quiz Parameter SQL Injection</title>
+      <references>
+        <osvdb>104668</osvdb>
+        <url>http://www.securityfocus.com/bid/66306</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.0.7</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="simple-retail-menus">
+    <vulnerability>
+      <title>Simple Retail Menus 4.0.1 - includes/actions.php targetmenu Parameter SQL Injection</title>
+      <references>
+        <osvdb>104680</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>4.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Simple Retail Menus 4.0.1 - includes/mode-edit.php targetmenu Parameter SQL Injection</title>
+      <references>
+        <osvdb>104682</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>4.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="user-domain-whitelist">
+    <vulnerability>
+      <title>User Domain Whitelist 1.4 - user-domain-whitelist.php domain_whitelist Parameter Stored XSS</title>
+      <references>
+        <osvdb>104681</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>User Domain Whitelist 1.4 -  user-domain-whitelist.php Domain Whitelisting Manipulation CSRF</title>
+      <references>
+        <osvdb>104683</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="subscribe-to-comments-reloaded">
+    <vulnerability>
+      <title>Subscribe To Comments Reloaded 140204 - options/index.php manager_page Parameter Stored XSS Weakness</title>
+      <references>
+        <osvdb>104698</osvdb>
+        <secunia>57015</secunia>
+        <url>http://www.securityfocus.com/bid/66288</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>140219</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Subscribe To Comments Reloaded 140204 - options/index.php Admin Settings Manipulation CSRF</title>
+      <references>
+        <osvdb>104699</osvdb>
+        <secunia>57015</secunia>
+        <url>http://www.securityfocus.com/bid/66288</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>140219</fixed_in>
     </vulnerability>
   </plugin>
 

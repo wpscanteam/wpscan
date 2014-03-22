@@ -30,7 +30,13 @@ class WpscanOptions
     :exclude_content_based,
     :basic_auth,
     :debug_output,
-    :version
+    :version,
+    :user_agent,
+    :random_agent,
+    :cache_ttl,
+    :request_timeout,
+    :connect_timeout,
+    :max_threads
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -136,6 +142,10 @@ class WpscanOptions
     !to_h.empty?
   end
 
+  def random_agent=(useless)
+    @user_agent = get_random_user_agent
+  end
+
   # return Hash
   def to_h
     options = {}
@@ -227,6 +237,8 @@ class WpscanOptions
       ['--wordlist', '-w', GetoptLong::REQUIRED_ARGUMENT],
       ['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
       ['--force', '-f', GetoptLong::NO_ARGUMENT],
+      ['--user-agent', '-a', GetoptLong::REQUIRED_ARGUMENT],
+      ['--random-agent', '-r', GetoptLong::NO_ARGUMENT],
       ['--help', '-h', GetoptLong::NO_ARGUMENT],
       ['--verbose', '-v', GetoptLong::NO_ARGUMENT],
       ['--proxy', GetoptLong::REQUIRED_ARGUMENT],
@@ -239,7 +251,11 @@ class WpscanOptions
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
       ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT],
       ['--debug-output', GetoptLong::NO_ARGUMENT],
-      ['--version', GetoptLong::NO_ARGUMENT]
+      ['--version', GetoptLong::NO_ARGUMENT],
+      ['--cache_ttl', GetoptLong::REQUIRED_ARGUMENT],
+      ['--request_timeout', GetoptLong::REQUIRED_ARGUMENT],
+      ['--connect_timeout', GetoptLong::REQUIRED_ARGUMENT],
+      ['--max_threads', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 

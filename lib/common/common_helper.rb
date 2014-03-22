@@ -32,6 +32,7 @@ LOCAL_FILES_FILE    = DATA_DIR + '/local_vulnerable_files.xml'
 VULNS_XSD           = DATA_DIR + '/vuln.xsd'
 WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
 LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
+USER_AGENTS_FILE    = DATA_DIR + '/user-agents.txt'
 
 WPSCAN_VERSION       = '2.3'
 
@@ -198,4 +199,20 @@ def truncate(input, size, trailing = '...')
   return input if input.nil? or size <= 0 or input.length <= size or
       trailing.length >= input.length or size-trailing.length-1 >= input.length
   return "#{input[0..size-trailing.length-1]}#{trailing}"
+end
+
+# Gets a random User-Agent
+#
+# @return [ String ] A random user-agent from data/user-agents.txt
+def get_random_user_agent
+  user_agents = []
+  f = File.open(USER_AGENTS_FILE, 'r')
+  f.each_line do |line|
+    # ignore comments
+    next if line.empty? or line =~ /^\s*(#|\/\/)/
+    user_agents << line.strip
+  end
+  f.close
+  # return ransom user-agent
+  user_agents.sample
 end
