@@ -31,7 +31,10 @@ class Browser
 
     # sets browser defaults
     browser_defaults
-    # overrides defaults with user supplied values
+    # load config file
+    conf = options[:config_file]
+    load_config(conf) if conf
+    # overrides defaults with user supplied values (overwrite values from config)
     override_config(options)
 
     unless @hydra
@@ -72,6 +75,24 @@ class Browser
     # 1s
     @connect_timeout = 1000
     @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+  end
+
+  #
+  # If an option was set but is not in the new config_file
+  # it's value is kept
+  #
+  # @param [ String ] config_file
+  #
+  # @return [ void ]
+  def load_config(config_file = nil)
+
+    if File.symlink?(config_file)
+      raise '[ERROR] Config file is a symlink.'
+    else
+      data = JSON.parse(File.read(config_file))
+    end
+
+    override_config(data)
   end
 
   # @param [ String ] url

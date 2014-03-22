@@ -154,6 +154,8 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     --exclude-content-based '<regexp or string>'  Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied
                                                   You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)
 
+    --config-file | -c <config file> Use the specified config file
+
     --user-agent | -a <User-Agent> Use the specified User-Agent
 
     --random-agent | -r Use a random User-Agent

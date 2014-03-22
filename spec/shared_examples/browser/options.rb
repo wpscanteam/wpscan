@@ -122,7 +122,7 @@ shared_examples 'Browser::Options' do
         end
 
         context 'valid format' do
-           it 'sets the auth' do
+          it 'sets the auth' do
             @proxy_auth = 'username:passwd'
             @expected   = @proxy_auth
           end

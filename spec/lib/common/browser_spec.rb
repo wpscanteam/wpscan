@@ -6,6 +6,10 @@ describe Browser do
   it_behaves_like 'Browser::Actions'
   it_behaves_like 'Browser::Options'
 
+  CONFIG_FILE_WITHOUT_PROXY       = SPEC_FIXTURES_CONF_DIR + '/browser.conf.json'
+  CONFIG_FILE_WITH_PROXY          = SPEC_FIXTURES_CONF_DIR + '/browser.conf_proxy.json'
+  #CONFIG_FILE_WITH_PROXY_AND_AUTH = SPEC_FIXTURES_CONF_DIR + '/browser.conf_proxy_auth.json'
+
   subject(:browser) {
     Browser.reset
     Browser.instance(options)
@@ -15,10 +19,73 @@ describe Browser do
     ['user-agent', 'random-agent', 'proxy',
      'max_threads', 'cache_ttl', 'request_timeout', 'connect_timeout']
   }
+  let(:json_config_without_proxy) { JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY)) }
+  let(:json_config_with_proxy)    { JSON.parse(File.read(CONFIG_FILE_WITH_PROXY)) }
+
+  def check_instance_variables(browser, json_expected_vars)
+    json_expected_vars['max_threads'] ||= 1 # max_thread can not be nil
+
+    instance_vars_to_check.each do |variable_name|
+      browser.send(:"#{variable_name}").should === json_expected_vars[variable_name]
+    end
+  end
 
   describe 'Singleton' do
     it 'should not allow #new' do
       expect { Browser.new }.to raise_error
+    end
+  end
+
+  describe '::instance' do
+    after { check_instance_variables(browser, @json_expected_vars) }
+
+    context "when default config_file = #{CONFIG_FILE_WITHOUT_PROXY}" do
+      it 'will check the instance vars' do
+        @json_expected_vars = json_config_without_proxy
+      end
+    end
+
+    context "when :config_file = #{CONFIG_FILE_WITH_PROXY}" do
+      let(:options) { { config_file: CONFIG_FILE_WITH_PROXY } }
+
+      it 'will check the instance vars' do
+        @json_expected_vars = json_config_with_proxy
+      end
+    end
+
+    context 'when options[:cache_dir]' do
+      let(:cache_dir) { CACHE_DIR + '/somewhere' }
+      let(:options) { { cache_dir: cache_dir } }
+
+      after { subject.cache_dir.should == cache_dir }
+
+      it 'sets @cache_dir' do
+        @json_expected_vars = json_config_without_proxy
+      end
+    end
+  end
+
+  describe '#load_config' do
+    context 'when config_file is a symlink' do
+      let(:config_file) { './rspec_symlink' }
+
+      it 'raises an error' do
+        File.symlink('./testfile', config_file)
+        expect { browser.load_config(config_file) }.to raise_error("[ERROR] Config file is a symlink.")
+        File.unlink(config_file)
+      end
+    end
+
+    context 'otherwise' do
+      after do
+        browser.load_config(@config_file)
+        check_instance_variables(browser, @expected)
+      end
+
+      it 'sets the correct variables' do
+        @config_file = CONFIG_FILE_WITH_PROXY
+        @expected    = json_config_without_proxy.merge(json_config_with_proxy)
+      end
     end
   end
 

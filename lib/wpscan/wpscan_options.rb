@@ -247,6 +247,7 @@ class WpscanOptions
       ['--follow-redirection', GetoptLong::NO_ARGUMENT],
       ['--wp-content-dir', GetoptLong::REQUIRED_ARGUMENT],
       ['--wp-plugins-dir', GetoptLong::REQUIRED_ARGUMENT],
+      ['--config-file', '-c', GetoptLong::REQUIRED_ARGUMENT],
       ['--exclude-content-based', GetoptLong::REQUIRED_ARGUMENT],
       ['--basic-auth', GetoptLong::REQUIRED_ARGUMENT],
       ['--debug-output', GetoptLong::NO_ARGUMENT],
