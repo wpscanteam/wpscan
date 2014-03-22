@@ -16,14 +16,13 @@ describe Browser do
   }
   let(:options) { {} }
   let(:instance_vars_to_check) {
-    ['user-agent', 'random-agent', 'proxy',
-     'max_threads', 'cache_ttl', 'request_timeout', 'connect_timeout']
+    ['proxy', 'max_threads', 'cache_ttl', 'request_timeout', 'connect_timeout']
   }
   let(:json_config_without_proxy) { JSON.parse(File.read(CONFIG_FILE_WITHOUT_PROXY)) }
   let(:json_config_with_proxy)    { JSON.parse(File.read(CONFIG_FILE_WITH_PROXY)) }
 
   def check_instance_variables(browser, json_expected_vars)
-    json_expected_vars['max_threads'] ||= 1 # max_thread can not be nil
+    json_expected_vars['max_threads'] ||= 20 # max_thread can not be nil
 
     instance_vars_to_check.each do |variable_name|
       browser.send(:"#{variable_name}").should === json_expected_vars[variable_name]
@@ -38,12 +37,6 @@ describe Browser do
 
   describe '::instance' do
     after { check_instance_variables(browser, @json_expected_vars) }
-
-    context "when default config_file = #{CONFIG_FILE_WITHOUT_PROXY}" do
-      it 'will check the instance vars' do
-        @json_expected_vars = json_config_without_proxy
-      end
-    end
 
     context "when :config_file = #{CONFIG_FILE_WITH_PROXY}" do
       let(:options) { { config_file: CONFIG_FILE_WITH_PROXY } }
