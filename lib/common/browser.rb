@@ -92,7 +92,13 @@ class Browser
       data = JSON.parse(File.read(config_file))
     end
 
-    override_config(data)
+    OPTIONS.each do |option|
+      option_name = option.to_s
+      unless data[option_name].nil?
+        self.send(:"#{option_name}=", data[option_name])
+      end
+    end
+
   end
 
   # @param [ String ] url

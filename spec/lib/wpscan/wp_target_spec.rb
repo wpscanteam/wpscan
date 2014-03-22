@@ -9,7 +9,7 @@ describe WpTarget do
   let(:login_url)     { wp_target.uri.merge('wp-login.php').to_s }
   let(:options)       {
     {
-      config_file:    SPEC_FIXTURES_CONF_DIR + '/browser/browser.conf.json',
+      config_file:    SPEC_FIXTURES_CONF_DIR + '/browser.conf.json',
       cache_ttl:      0,
       wp_content_dir: 'wp-content',
       wp_plugins_dir: 'wp-content/plugins'
