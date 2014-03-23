@@ -9,12 +9,10 @@ class Browser
   include Browser::Options
 
   OPTIONS = [
-    :available_user_agents,
     :basic_auth,
     :cache_ttl,
     :max_threads,
     :user_agent,
-    :user_agent_mode,
     :proxy,
     :proxy_auth,
     :request_timeout,
@@ -23,16 +21,20 @@ class Browser
 
   @@instance = nil
 
-  attr_reader :hydra, :config_file, :cache_dir
+  attr_reader :hydra, :cache_dir
 
   # @param [ Hash ] options
   #
   # @return [ Browser ]
   def initialize(options = {})
-    @config_file = options[:config_file] || CONF_DIR + '/browser.conf.json'
     @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
 
-    load_config
+    # sets browser defaults
+    browser_defaults
+    # load config file
+    conf = options[:config_file]
+    load_config(conf) if conf
+    # overrides defaults with user supplied values (overwrite values from config)
     override_config(options)
 
     unless @hydra
@@ -62,6 +64,20 @@ class Browser
   end
 
   #
+  # sets browser default values
+  #
+  def browser_defaults
+    @max_threads = 20
+    # 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
+    @cache_ttl = 600
+    # 2s
+    @request_timeout = 2000
+    # 1s
+    @connect_timeout = 1000
+    @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+  end
+
+  #
   # If an option was set but is not in the new config_file
   # it's value is kept
   #
@@ -69,21 +85,20 @@ class Browser
   #
   # @return [ void ]
   def load_config(config_file = nil)
-    @config_file = config_file || @config_file
 
-    if File.symlink?(@config_file)
+    if File.symlink?(config_file)
       raise '[ERROR] Config file is a symlink.'
     else
-      data = JSON.parse(File.read(@config_file))
+      data = JSON.parse(File.read(config_file))
     end
 
     OPTIONS.each do |option|
       option_name = option.to_s
-
       unless data[option_name].nil?
         self.send(:"#{option_name}=", data[option_name])
       end
     end
+
   end
 
   # @param [ String ] url
@@ -101,7 +116,7 @@ class Browser
     params = Browser.append_params_header_field(
       params,
       'User-Agent',
-      self.user_agent
+      @user_agent
     )
 
     if @proxy

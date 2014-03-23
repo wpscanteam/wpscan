@@ -71,69 +71,6 @@ shared_examples 'Browser::Options' do
     end
   end
 
-  describe '#user_agent_mode= & #user_agent_mode' do
-    # Testing all valid modes
-    Browser::USER_AGENT_MODES.each do |user_agent_mode|
-      it "sets & returns #{user_agent_mode}" do
-        browser.user_agent_mode = user_agent_mode
-        browser.user_agent_mode.should === user_agent_mode
-      end
-    end
-
-    it 'sets the mode to "static" if nil is given' do
-      browser.user_agent_mode = nil
-      browser.user_agent_mode.should === 'static'
-    end
-
-    it 'raises an error if the mode is not valid' do
-      expect { browser.user_agent_mode = 'invalid-mode' }.to raise_error
-    end
-  end
-
-  describe '#user_agent= & #user_agent' do
-    let(:available_user_agents) { %w{ ua-1 ua-2 ua-3 ua-4 ua-6 ua-7 ua-8 ua-9 ua-10 ua-11 ua-12 ua-13 ua-14 ua-15 ua-16 ua-17 } }
-
-    context 'when static mode' do
-      it 'returns the same user agent' do
-        browser.user_agent      = 'fake UA'
-        browser.user_agent_mode = 'static'
-
-        (1..3).each do
-          browser.user_agent.should === 'fake UA'
-        end
-      end
-    end
-
-    context 'when semi-static mode' do
-      it 'chooses a random user_agent in the available_user_agents array and always return it' do
-        browser.available_user_agents = available_user_agents
-        browser.user_agent            = 'Firefox 11.0'
-        browser.user_agent_mode       = 'semi-static'
-
-        user_agent = browser.user_agent
-        user_agent.should_not === 'Firefox 11.0'
-        available_user_agents.include?(user_agent).should be_true
-
-        (1..3).each do
-          browser.user_agent.should === user_agent
-        end
-      end
-    end
-
-    context 'when random' do
-      it 'returns a random user agent each time' do
-        browser.available_user_agents = available_user_agents
-        browser.user_agent_mode       = 'random'
-
-        ua_1 = browser.user_agent
-        ua_2 = browser.user_agent
-        ua_3 = browser.user_agent
-
-        fail if ua_1 === ua_2 and ua_2 === ua_3
-      end
-    end
-  end
-
   describe 'proxy=' do
     let(:exception) { 'Invalid proxy format. Should be [protocol://]host:port.' }
 
@@ -185,7 +122,7 @@ shared_examples 'Browser::Options' do
         end
 
         context 'valid format' do
-           it 'sets the auth' do
+          it 'sets the auth' do
             @proxy_auth = 'username:passwd'
             @expected   = @proxy_auth
           end

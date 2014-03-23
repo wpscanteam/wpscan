@@ -15,7 +15,7 @@ SPEC_FIXTURES_CONF_DIR        = SPEC_FIXTURES_DIR + '/conf' # FIXME Remove it
 SPEC_FIXTURES_WP_VERSIONS_DIR = SPEC_FIXTURES_DIR + '/wp_versions'
 
 redefine_constant(:CACHE_DIR, SPEC_DIR + '/cache')
-redefine_constant(:CONF_DIR, SPEC_FIXTURES_DIR + '/conf/browser') # FIXME Remove the /browser
+redefine_constant(:CONF_DIR, SPEC_FIXTURES_DIR + '/conf')
 
 MODELS_FIXTURES = SPEC_FIXTURES_DIR + '/common/models'
 COLLECTIONS_FIXTURES = SPEC_FIXTURES_DIR + '/common/collections'

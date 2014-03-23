@@ -142,6 +142,10 @@ ryandewhurst at gmail
 
 --config-file | -c <config file> Use the specified config file
 
+--user-agent | -a <User-Agent> Use the specified User-Agent
+
+--random-agent | -r Use a random User-Agent
+
 --follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not
 
 --wp-content-dir <wp content dir>  WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it. Subdirectories are allowed
@@ -160,6 +164,14 @@ ryandewhurst at gmail
 --threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)
 
 --username | -U <username>  Only brute force the supplied username.
+
+--cache-ttl <cache-ttl>  Typhoeus cache TTL
+
+--request-timeout <request-timeout>  Request Timeout
+
+--connect-timeout <connect-timeout>  Connect Timeout
+
+--max-threads <max-threads>  Maximum Threads
 
 --help     | -h This help screen.
 
