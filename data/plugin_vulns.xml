@@ -8433,6 +8433,14 @@
 
   <plugin name="eelv-newsletter">
     <vulnerability>
+      <title>EELV Newsletter 3.4.3 - lettreinfo.php Unspecified XSS</title>
+      <references>
+        <osvdb>104875</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>EELV Newsletter - Cross-Site Scripting Vulnerability</title>
       <references>
         <secunia>53546</secunia>
@@ -11030,6 +11038,13 @@
 
   <plugin name="global-flash-galleries">
     <vulnerability>
+      <title>Global Flash Galleries - popup.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>104907</osvdb>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
       <title>Global Flash Galleries - swfupload.php Unauthenticated Image Upload Weakness</title>
       <references>
         <osvdb>102423</osvdb>
@@ -11697,6 +11712,61 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.2.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="the-events-calendar">
+    <vulnerability>
+      <title>The Events Calendar 3.0 - lib/template-classes/month.php tribe-bar-search Parameter Reflected XSS</title>
+      <references>
+        <osvdb>104785</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="form-maker">
+    <vulnerability>
+      <title>Form Maker 1.6.4 - front_end_form_maker.php Unspecified XSS</title>
+      <references>
+        <osvdb>104870</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.6.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="1-jquery-photo-gallery-slideshow-flash">
+    <vulnerability>
+      <title>ZooEffect 1.08 - wp-1pluginjquery.php HTTP Referer Header Reflected XSS</title>
+      <references>
+        <osvdb>104876</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.09</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="google-analytics-dashboard">
+    <vulnerability>
+      <title>Google Analytics Dashboard 2.0.4 - gad-admin-pages-posts.php pid Parameter SQL Injection</title>
+      <references>
+        <osvdb>104877</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.0.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="blogvault-real-time-backup">
+    <vulnerability>
+      <title>blogVault 1.05 - admin.php blogVault Key Setting CSRF</title>
+      <references>
+        <osvdb>104906</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.06</fixed_in>
     </vulnerability>
   </plugin>
 
