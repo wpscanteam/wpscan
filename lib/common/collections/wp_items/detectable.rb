@@ -17,6 +17,7 @@ class WpItems < Array
       hydra            = browser.hydra
       targets          = targets_items(wp_target, options)
       progress_bar     = progress_bar(targets.size, options)
+      queue_count      = 0
       exist_options    = {
         error_404_hash:  wp_target.error_404_hash,
         homepage_hash:   wp_target.homepage_hash,
@@ -43,8 +44,16 @@ class WpItems < Array
         end
 
         hydra.queue(request)
+        queue_count += 1
+
+        if queue_count >= browser.max_threads
+          hydra.run
+          queue_count = 0
+          puts "Sent #{browser.max_threads} requests ..." if options[:verbose]
+        end
       end
 
+      # run the remaining requests
       hydra.run
       results.sort!
       results # can't just return results.sort because the #sort returns an array, and we want a WpItems
