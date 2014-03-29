@@ -11814,13 +11814,122 @@
 
   <plugin name="wp-html-sitemap">
     <vulnerability>
-      <title>CSRF vulnerability in WP HTML Sitemap 1.2</title>
+      <title>WP HTML Sitemap 1.2 - wp-html-sitemap.html Sitemap Deletion CSRF</title>
       <references>
+        <osvdb>105084</osvdb>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/400</url>
         <url>https://security.dxw.com/advisories/csrf-vulnerability-in-wp-html-sitemap-1-2/</url>
       </references>
       <type>CSRF</type>
     </vulnerability>
   </plugin>
 
+  <plugin name="groups">
+    <vulnerability>
+      <title>Groups 1.4.5 - Negated Role Capability Handling Elevated Privilege Issue</title>
+      <references>
+        <osvdb>104940</osvdb>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>1.4.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="html5-jquery-audio-player">
+    <vulnerability>
+      <title>HTML5 jQuery Audio Player 2.3 - playlist/add_playlist.php Multiple Parameter Stored XSS Weakness</title>
+      <references>
+        <osvdb>104951</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>HTML5 jQuery Audio Player 2.3 - playlist/add_playlist.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>104952</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="shrimptest">
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - plugins/metric-conversion.php Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>104956</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - plugins/plugin-notification.php Unspecified XSS</title>
+      <references>
+        <osvdb>104957</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - plugins/variant-shortcode.php Unspecified XSS</title>
+      <references>
+        <osvdb>104958</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - admin/experiments.php Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>104959</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - admin/experiment-new.php Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>104960</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="activehelper-livehelp">
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/import/status.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104990</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/import/tracker.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104991</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/import/javascript.php Multiple Vector SQL Injection</title>
+      <references>
+        <osvdb>104992</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/frames.php DEPARTMENT Parameter SQL Injection</title>
+      <references>
+        <osvdb>104993</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+  </plugin>
 
 </vulnerabilities>
