@@ -2438,21 +2438,45 @@
 
   <plugin name="wp-easy-gallery">
     <vulnerability>
-      <title>WP Easy Gallery &lt;= 1.7 - Cross Site Scripting</title>
-      <references>
-        <secunia>49190</secunia>
-        <url>http://packetstormsecurity.com/files/112687/</url>
-      </references>
-      <type>XSS</type>
-      <fixed_in>2.7.3</fixed_in>
-    </vulnerability>
-    <vulnerability>
       <title>WP Easy Gallery &lt;= 2.7 - CSRF</title>
       <references>
         <secunia>49190</secunia>
         <url>https://plugins.trac.wordpress.org/changeset?reponame=&amp;old=669527@wp-easy-gallery&amp;new=669527@wp-easy-gallery</url>
       </references>
       <type>CSRF</type>
+      <fixed_in>2.7.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery 2.7 - admin/overview.php galleryId Parameter SQL Injection</title>
+      <references>
+        <osvdb>105012</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.7.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery 2.7 - admin/add-images.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>105013</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.7.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery 2.7 - Multiple Admin Function CSRF</title>
+      <references>
+        <osvdb>105014</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>2.7.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery &lt;= 1.7 - Cross Site Scripting</title>
+      <references>
+        <secunia>49190</secunia>
+        <url>http://packetstormsecurity.com/files/112687/</url>
+      </references>
+      <type>XSS</type>
       <fixed_in>2.7.3</fixed_in>
     </vulnerability>
   </plugin>
@@ -11931,6 +11955,28 @@
       </references>
       <type>SQLI</type>
       <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="springboard-video-quick-publish">
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.4 - Unspecified Issue</title>
+      <references>
+        <osvdb>105007</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>0.2.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ignitiondeck">
+    <vulnerability>
+      <title>IgnitionDeck 1.1 - Purchase Form Unspecified XSS</title>
+      <references>
+        <osvdb>105008</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2</fixed_in>
     </vulnerability>
   </plugin>
 
