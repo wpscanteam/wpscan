@@ -3041,6 +3041,14 @@
 
   <plugin name="zingiri-tickets">
     <vulnerability>
+      <title>Zingiri Tickets 2.1.2 - Unspecified Issue</title>
+      <references>
+        <osvdb>105015</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>2.1.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Zingiri Tickets - File Disclosure</title>
       <references>
         <url>http://packetstormsecurity.com/files/111904/</url>
@@ -5322,19 +5330,33 @@
 
   <plugin name="wp-filebase">
     <vulnerability>
-      <title>WP-Filebase Download Manager &lt;= 0.2.9 - SQL Injection Vulnerability</title>
+      <title>WP-Filebase Download Manager 0.3.0.02 - class/Admin.php GetFileHash Function Remote Command Execution</title>
       <references>
-        <exploitdb>17808</exploitdb>
+        <osvdb>105039</osvdb>
+        <secunia>57456</secunia>
+        <url>http://www.securityfocus.com/bid/66341</url>
       </references>
       <type>SQLI</type>
+      <fixed_in>0.3.0.03</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>WP-Filebase - Unspecified Vulnerabilities</title>
+      <title>WP-Filebase 0.2.9.24- Unspecified Vulnerabilities</title>
       <references>
+        <osvdb>87294</osvdb>
         <secunia>51269</secunia>
+        <url>http://xforce.iss.net/xforce/xfdb/80034</url>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>0.2.9.25</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP-Filebase Download Manager &lt;= 0.2.9 - wpfb-ajax.php base Parameter SQL Injection</title>
+      <references>
+        <osvdb>75308</osvdb>
+        <secunia>45931</secunia>
+        <exploitdb>17808</exploitdb>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
@@ -5784,15 +5806,30 @@
 
   <plugin name="gd-star-rating">
     <vulnerability>
-      <title>XSS, CSRF and blind SQL injection in GD Star Rating 1.9.22</title>
+      <title>GD Star Rating 1.9.22 - gd-star-rating-stats.php s Parameter SQL Injection</title>
       <references>
+        <osvdb>105085</osvdb>
+        <url>http://packetstormsecurity.com/files/125932/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/399</url>
         <url>https://security.dxw.com/advisories/xss-csrf-and-blind-sql-injection-in-gd-star-rating-1-9-22/</url>
       </references>
-      <type>MULTI</type>
+      <type>SQLI</type>
     </vulnerability>
     <vulnerability>
-      <title>GD Star Rating - Export Security Bypass Security Issue</title>
+      <title>GD Star Rating 1.9.22 - gd-star-rating-stats.php Setting Manipulation CSRF</title>
       <references>
+        <osvdb>105086</osvdb>
+        <secunia>57667</secunia>
+        <url>http://packetstormsecurity.com/files/125932/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/399</url>
+        <url>https://security.dxw.com/advisories/xss-csrf-and-blind-sql-injection-in-gd-star-rating-1-9-22/</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>GD Star Rating 1.9.18 - Export Security Bypass Security Issue</title>
+      <references>
+        <osvdb>105086</osvdb>
         <secunia>49850</secunia>
       </references>
       <type>AUTHBYPASS</type>
@@ -5806,11 +5843,21 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>GD Star Rating &lt;= 1.9.10 - SQL Injection</title>
+      <title>GD Star Rating &lt;= 1.9.10 - gd-star-rating/export.php de Parameter SQL Injection</title>
       <references>
+        <osvdb>83466</osvdb>
         <exploitdb>17973</exploitdb>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>GD Star Rating 1.9.7 - gd-star-rating/widgets/widget_top.php wpfn Parameter XSS</title>
+      <references>
+        <osvdb>71060</osvdb>
+        <secunia>43403</secunia>
+        <url>http://seclists.org/bugtraq/2011/Feb/219</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -11843,6 +11890,7 @@
       <title>WP HTML Sitemap 1.2 - wp-html-sitemap.html Sitemap Deletion CSRF</title>
       <references>
         <osvdb>105084</osvdb>
+        <url>http://packetstormsecurity.com/files/125933/</url>
         <url>http://seclists.org/fulldisclosure/2014/Mar/400</url>
         <url>https://security.dxw.com/advisories/csrf-vulnerability-in-wp-html-sitemap-1-2/</url>
       </references>
@@ -11977,6 +12025,18 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ajax-pagination">
+    <vulnerability>
+      <title>Ajax Pagination 1.1 - wp-admin/admin-ajax.php loop Parameter Local File Inclusion</title>
+      <references>
+        <osvdb>105087</osvdb>
+        <url>http://packetstormsecurity.com/files/125929/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/398</url>
+      </references>
+      <type>LFI</type>
     </vulnerability>
   </plugin>
 
