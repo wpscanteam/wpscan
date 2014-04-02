@@ -70,15 +70,17 @@ def main
         puts
       else
         puts "The remote host tried to redirect us to: #{redirection}"
-        print '[?] Do you want follow the redirection ? [y/n] '
+        print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N] '
       end
 
-      if wpscan_options.follow_redirection or Readline.readline =~ /^y/i
+      if wpscan_options.follow_redirection or (input = Readline.readline) =~ /^y/i
         wpscan_options.url = redirection
         wp_target = WpTarget.new(redirection, wpscan_options.to_h)
       else
-        puts 'Scan aborted'
-        exit(0)
+        if input =~ /^a/i
+          puts 'Scan aborted'
+          exit(0)
+        end
       end
     end
 
@@ -100,7 +102,7 @@ def main
     unless wp_target.wp_plugins_dir_exists?
       puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
-      print '[?] Continue? [y/n] '
+      print '[?] Continue? [Y]es [N]o, default: [N] '
       unless Readline.readline =~ /^y/i
         exit(0)
       end
@@ -148,7 +150,7 @@ def main
     wp_target.interesting_headers.each do |header|
       output = "#{green('[+]')} Interesting header: "
 
-      if header[1].class == Array 
+      if header[1].class == Array
         header[1].each do |value|
           puts output + "#{header[0]}: #{value}"
         end
@@ -328,7 +330,7 @@ def main
 
         puts
         puts "#{red('[!]')} The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
-        print "[?] Do you want to start the brute force anyway ? [y/n] "
+        print '[?] Do you want to start the brute force anyway ? [Y]es [N]o, default: [N] '
 
         bruteforce = false if Readline.readline !~ /^y/i
       end
@@ -354,7 +356,7 @@ def main
     stop_time   = Time.now
     elapsed     = stop_time - start_time
     used_memory = get_memory_usage - start_memory
-    
+
     puts
     puts green("[+] Finished: #{stop_time.asctime}")
     puts green("[+] Memory used: #{used_memory.bytes_to_human}")
@@ -362,7 +364,7 @@ def main
     exit(0) # must exit!
 
   rescue SystemExit, Interrupt
-    
+
   rescue => e
     if e.backtrace[0] =~ /main/
       puts red(e.message)
