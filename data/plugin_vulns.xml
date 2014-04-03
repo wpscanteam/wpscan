@@ -7510,6 +7510,14 @@
 
   <plugin name="slidedeck2">
     <vulnerability>
+      <title>slidedeck2 2.3.3 - Unspecified File Inclusion</title>
+      <references>
+        <osvdb>105132</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>2.3.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>slidedeck2 &lt;= 2.1.20130228 - XSS in ZeroClipboard</title>
       <references>
         <url>http://www.openwall.com/lists/oss-security/2013/03/10/2</url>
@@ -12071,6 +12079,58 @@
         <url>http://seclists.org/fulldisclosure/2014/Mar/398</url>
       </references>
       <type>LFI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="tt-guest-post-submit">
+    <vulnerability>
+      <title>TT Guest Post Submit 1.0.0 - tt-guest-post-submit-submit.php rootpath Parameter Remote File Inclusion</title>
+      <references>
+        <osvdb>105120</osvdb>
+      </references>
+      <type>RFI</type>
+      <fixed_in>1.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="salesforce-wordpress-to-lead">
+    <vulnerability>
+      <title>WordPress-to-Lead for Salesforce CRM 1.0.4 - ov_plugin_tools.php textinput Function XSS</title>
+      <references>
+        <osvdb>105146</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress-to-Lead for Salesforce CRM 1.0.1 - salesforce.php salesforce_form_shortcode Function Error Message Handling XSS</title>
+      <references>
+        <osvdb>105148</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress-to-Lead for Salesforce CRM 1.0 - salesforce.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>105147</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="disable-comments">
+    <vulnerability>
+      <title>Disable Comments 1.0.3 - disable_comments_settings.php Comment Status Manipulation CSRF</title>
+      <references>
+        <osvdb>105245</osvdb>
+        <cve>2014-2550</cve>
+        <secunia>57613</secunia>
+        <url>http://www.securityfocus.com/bid/66564</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.0.4</fixed_in>
     </vulnerability>
   </plugin>
 
