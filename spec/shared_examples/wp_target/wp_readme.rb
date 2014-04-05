@@ -27,7 +27,6 @@ shared_examples 'WpTarget::WpReadme' do
       @expected = true
     end
 
-    # http://code.google.com/p/wpscan/issues/detail?id=108
     it 'returns true even if the readme.html is not in english' do
       @stub     = { status: 200, body: File.new(fixtures_dir + '/readme-3.3.2-fr.html') }
       @expected = true

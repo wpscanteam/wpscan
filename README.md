@@ -90,7 +90,6 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
   - Typhoeus segmentation fault
 
       Update cURL to version => 7.21 (may have to install from source)
-      See http://code.google.com/p/wpscan/issues/detail?id=81
 
   - Proxy not working
 
