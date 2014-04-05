@@ -366,11 +366,11 @@ def main
   rescue SystemExit, Interrupt
 
   rescue => e
-    if e.backtrace[0] =~ /main/
-      puts red(e.message)
-    else
-      puts red("[ERROR] #{e.message}")
-      puts red("Trace:")
+    puts
+    puts red(e.message)
+
+    if wpscan_options.verbose
+      puts red('Trace:')
       puts red(e.backtrace.join("\n"))
     end
     exit(1)
