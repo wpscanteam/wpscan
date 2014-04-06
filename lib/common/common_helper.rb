@@ -65,7 +65,7 @@ end
 require_files_from_directory(COMMON_LIB_DIR, '**/*.rb')
 
 # Hook to check if the target if down during the scan
-# The target is considered down after 10 request with status = 0
+# The target is considered down after 10 requests with status = 0
 down = 0
 Typhoeus.on_complete do |response|
   down += 1 if response.code == 0
