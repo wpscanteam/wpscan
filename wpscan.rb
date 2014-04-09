@@ -369,7 +369,7 @@ def main
     puts
     puts red(e.message)
 
-    if wpscan_options.verbose
+    if wpscan_options && wpscan_options.verbose
       puts red('Trace:')
       puts red(e.backtrace.join("\n"))
     end
