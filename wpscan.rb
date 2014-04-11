@@ -70,16 +70,18 @@ def main
         puts
       else
         puts "The remote host tried to redirect us to: #{redirection}"
-        print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N] '
+        puts '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
       end
 
-      if wpscan_options.follow_redirection or (input = Readline.readline) =~ /^y/i
-        wpscan_options.url = redirection
-        wp_target = WpTarget.new(redirection, wpscan_options.to_h)
-      else
-        if input =~ /^a/i
-          puts 'Scan aborted'
-          exit(0)
+      unless wpscan_options.batch
+        if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
+          wpscan_options.url = redirection
+          wp_target = WpTarget.new(redirection, wpscan_options.to_h)
+        else
+          if input =~ /^a/i
+            puts 'Scan aborted'
+            exit(0)
+          end
         end
       end
     end
@@ -102,8 +104,8 @@ def main
     unless wp_target.wp_plugins_dir_exists?
       puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
-      print '[?] Continue? [Y]es [N]o, default: [N] '
-      unless Readline.readline =~ /^y/i
+      puts '[?] Continue? [Y]es [N]o, default: [N]'
+      if wpscan_options.batch || Readline.readline !~ /^y/i
         exit(0)
       end
     end
@@ -330,11 +332,11 @@ def main
 
         puts
         puts "#{red('[!]')} The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!"
-        print '[?] Do you want to start the brute force anyway ? [Y]es [N]o, default: [N] '
+        puts '[?] Do you want to start the brute force anyway ? [Y]es [N]o, default: [N]'
 
-        bruteforce = false if Readline.readline !~ /^y/i
+        bruteforce = false if wpscan_options.batch || Readline.readline !~ /^y/i
       end
-      puts
+
       if bruteforce
         puts "#{green('[+]')} Starting the password brute forcer"
 

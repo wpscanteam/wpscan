@@ -3,6 +3,7 @@
 class WpscanOptions
 
   ACCESSOR_OPTIONS = [
+    :batch,
     :enumerate_plugins,
     :enumerate_only_vulnerable_plugins,
     :enumerate_all_plugins,
@@ -255,7 +256,8 @@ class WpscanOptions
       ['--cache-ttl', GetoptLong::REQUIRED_ARGUMENT],
       ['--request-timeout', GetoptLong::REQUIRED_ARGUMENT],
       ['--connect-timeout', GetoptLong::REQUIRED_ARGUMENT],
-      ['--max-threads', GetoptLong::REQUIRED_ARGUMENT]
+      ['--max-threads', GetoptLong::REQUIRED_ARGUMENT],
+      ['--batch', GetoptLong::NO_ARGUMENT]
     )
   end
 
