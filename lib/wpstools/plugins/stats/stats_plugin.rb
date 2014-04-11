@@ -20,7 +20,6 @@ class StatsPlugin < Plugin
 
       puts "WPScan Database Statistics:"
       puts "---------------------------"
-      puts "[#] Total WordPress Sites in the World: #{get_wp_installations}"
       puts
       puts "[#] Total vulnerable versions: #{vuln_core_count}"
       puts "[#] Total vulnerable plugins:  #{vuln_plugin_count}"
@@ -77,11 +76,6 @@ class StatsPlugin < Plugin
 
   def lines_in_file(file)
     IO.readlines(file).size
-  end
-
-  def get_wp_installations()
-    page = Nokogiri::HTML(Typhoeus.get('http://en.wordpress.com/stats/').body)
-    page.css('span[class="stats-flipper-number"]').text
   end
 
 end
