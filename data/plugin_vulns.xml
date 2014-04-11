@@ -11812,6 +11812,7 @@
       <title>User Domain Whitelist 1.4 - user-domain-whitelist.php domain_whitelist Parameter Stored XSS</title>
       <references>
         <osvdb>104681</osvdb>
+        <secunia>57490</secunia>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -11819,6 +11820,7 @@
       <title>User Domain Whitelist 1.4 -  user-domain-whitelist.php Domain Whitelisting Manipulation CSRF</title>
       <references>
         <osvdb>104683</osvdb>
+        <secunia>57490</secunia>
       </references>
       <type>CSRF</type>
       <fixed_in>1.5</fixed_in>
@@ -12143,8 +12145,9 @@
   
   <plugin name="wp-business-intelligence-lite">
     <vulnerability>
-      <title>Wordpress Plugin "wp-business-intelligence-lite" - Remote Code Execution Exploit</title>
+      <title>WP Business intelligence lite &lt;= 1.0.6 - Remote Code Execution Exploit</title>
       <references>
+        <secunia>57590</secunia>
         <url>http://packetstormsecurity.com/files/125927/</url>
         <url>http://cxsecurity.com/issue/WLB-2014030243</url>
       </references>
@@ -12175,13 +12178,35 @@
 
   <plugin name="jetpack">
     <vulnerability>
-      <title>Jetpack 2.9.3: Critical Security Update</title>
+      <title>Jetpack 2.9.3 - Critical Security Update</title>
       <references>
         <url>http://jetpack.me/2014/04/10/jetpack-security-update/</url>
         <cve>2014-0173</cve>
       </references>
       <type>BYPASS</type>
       <fixed_in>2.9.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="lazyest-gallery">
+    <vulnerability>
+      <title>Lazyest Gallery &lt;= 1.1.20 - EXIF Script Insertion Vulnerability</title>
+      <references>
+        <secunia>57746</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.1.21</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="post-expirator">
+    <vulnerability>
+      <title>Post Expirator &lt;= 2.1.1 - Cross-Site Request Forgery Vulnerability</title>
+      <references>
+        <secunia>57503</secunia>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>2.1.2</fixed_in>
     </vulnerability>
   </plugin>
 
