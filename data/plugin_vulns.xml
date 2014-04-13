@@ -11627,6 +11627,13 @@
       </references>
       <type>XSS</type>
     </vulnerability>
+    <vulnerability>
+      <title>Zedity 2.4 - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/125402/</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="wp-post-to-pdf">
@@ -11727,6 +11734,7 @@
       <references>
         <cve>2014-2340</cve>
         <osvdb>104402</osvdb>
+        <exploitdb>32701</exploitdb>
         <url>http://packetstormsecurity.com/files/125991/</url>
         <url>https://www.htbridge.com/advisory/HTB23206</url>
       </references>
@@ -12094,6 +12102,7 @@
       <title>Ajax Pagination 1.1 - wp-admin/admin-ajax.php loop Parameter Local File Inclusion</title>
       <references>
         <osvdb>105087</osvdb>
+        <exploitdb>32622</exploitdb>
         <url>http://packetstormsecurity.com/files/125929/</url>
         <url>http://seclists.org/fulldisclosure/2014/Mar/398</url>
       </references>
@@ -12207,6 +12216,14 @@
       <type>XSS</type>
       <fixed_in>1.1.21</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Lazyest Gallery 1.1.7 - Crafted Folder Name Unspecified Issue</title>
+      <references>
+        <osvdb>105728</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.1.8</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="post-expirator">
@@ -12241,6 +12258,30 @@
       </references>
       <type>MULTI</type>
       <fixed_in>3.3.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="hk-exif-tags">
+    <vulnerability>
+      <title>HK Exif Tags 1.11 - hk_exif_tags.php hk_exif_tags_images_process Function EXIF Tags Handling Stored XSS</title>
+      <references>
+        <osvdb>105725</osvdb>
+        <secunia>57753</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.12</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="unconfirmed">
+    <vulnerability>
+      <title>Unconfirmed &lt;= 1.2.4 - unconfirmed.php s Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105722</osvdb>
+        <secunia>57838</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2.5</fixed_in>
     </vulnerability>
   </plugin>
 
