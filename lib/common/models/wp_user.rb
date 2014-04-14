@@ -54,8 +54,8 @@ class WpUser < WpItem
   # @return [ String ]
   def to_s
     s  = "#{id}"
-    s += " | #{login}" if login
-    s += " | #{display_name}" if display_name
+    s << " | #{login}" if login
+    s << " | #{display_name}" if display_name
     s
   end
 
