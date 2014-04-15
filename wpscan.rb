@@ -63,17 +63,15 @@ def main
       end
     end
 
-    redirection = wp_target.redirection
-    if redirection
+    if (redirection = wp_target.redirection)
       if wpscan_options.follow_redirection
         puts "Following redirection #{redirection}"
-        puts
       else
-        puts "The remote host tried to redirect us to: #{redirection}"
+        puts "The remote host redirects to: #{redirection}"
         puts '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
       end
 
-      unless wpscan_options.batch
+      if wpscan_options.follow_redirection || !wpscan_options.batch
         if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
           wpscan_options.url = redirection
           wp_target = WpTarget.new(redirection, wpscan_options.to_h)
