@@ -99,7 +99,7 @@ class WpTarget < WebSite
   end
   # :nocov:
 
-  # The version is not yet considerated
+  # The version is not yet considered
   #
   # @param [ String ] name
   # @param [ String ] version
