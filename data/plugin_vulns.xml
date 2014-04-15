@@ -3120,6 +3120,7 @@
       <references>
         <osvdb>103308</osvdb>
         <cve>2014-1889</cve>
+        <secunia>56950</secunia>
         <exploitdb>31571</exploitdb>
         <url>http://packetstormsecurity.com/files/125213/</url>
       </references>
@@ -3131,6 +3132,7 @@
       <references>
         <osvdb>103307</osvdb>
         <cve>2014-1888</cve>
+        <secunia>56950</secunia>
         <url>http://packetstormsecurity.com/files/125212/</url>
       </references>
       <type>XSS</type>
@@ -11503,6 +11505,7 @@
       <title>all_in_one_carousel 1.2.20 - /tpl/add_carousel.php id Parameter Reflected XSS</title>
       <references>
         <osvdb>103351</osvdb>
+        <secunia>56962</secunia>
         <url>http://seclists.org/bugtraq/2014/Feb/38</url>
       </references>
       <type>XSS</type>
@@ -11738,6 +11741,7 @@
       <references>
         <cve>2014-2340</cve>
         <osvdb>104402</osvdb>
+        <secunia>57362</secunia>
         <exploitdb>32701</exploitdb>
         <url>http://packetstormsecurity.com/files/125991/</url>
         <url>https://www.htbridge.com/advisory/HTB23206</url>
@@ -12257,12 +12261,25 @@
 
   <plugin name="twitget">
     <vulnerability>
-      <title>Twitget 3.3.1 - CSRF/XSS vulnerability</title>
+      <title>Twitget 3.3.1 - twitget.php Twitter Setting Manipulation CSRF</title>
       <references>
-        <url>https://security.dxw.com/advisories/csrfxss-vulnerability-in-twitget-3-3-1/</url>
+        <osvdb>105705</osvdb>
         <cve>2014-2559</cve>
+        <exploitdb>32868</exploitdb>
+        <url>https://security.dxw.com/advisories/csrfxss-vulnerability-in-twitget-3-3-1/</url>
       </references>
-      <type>MULTI</type>
+      <type>CSRF</type>
+      <fixed_in>3.3.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Twitget 3.3.1 - twitget.php twitget_consumer_key Parameter Stored XSS</title>
+      <references>
+        <osvdb>105704</osvdb>
+        <cve>2014-2559</cve>
+        <exploitdb>32868</exploitdb>
+        <url>https://security.dxw.com/advisories/csrfxss-vulnerability-in-twitget-3-3-1/</url>
+      </references>
+      <type>XSS</type>
       <fixed_in>3.3.3</fixed_in>
     </vulnerability>
   </plugin>
