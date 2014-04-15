@@ -39,6 +39,11 @@ class WpTarget < WebSite
 
     response = Browser.get_and_follow_location(@uri.to_s)
 
+    # Note: in the future major WPScan version, change the user-agent to see
+    # if the response is a 200 ?
+    fail "The target is responding with a 403, this might be due to a WAF or a plugin\n" \
+          'You should try to supply a valid user-agent via the --user-agent option' if response.code == 403
+
     if response.body =~ /["'][^"']*\/wp-content\/[^"']*["']/i
       wordpress = true
     else

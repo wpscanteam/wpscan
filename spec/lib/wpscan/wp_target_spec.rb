@@ -97,6 +97,14 @@ describe WpTarget do
         wp_target.should_not be_wordpress
       end
     end
+
+    context 'when the response is a 403' do
+      before { stub_request(:any, /.*/).to_return(status: 403) }
+
+      it 'raises an error' do
+        expect { wp_target.wordpress? }.to raise_error
+      end
+    end
   end
 
   describe '#wordpress_hosted?' do
