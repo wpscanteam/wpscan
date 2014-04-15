@@ -131,7 +131,8 @@ describe Browser do
         ssl_verifypeer: false, ssl_verifyhost: 0,
         cookiejar: cookie_jar, cookiefile: cookie_jar,
         timeout: 2000, connecttimeout: 1000,
-        maxredirs: 3
+        maxredirs: 3,
+        referer: nil
       }
     }
 

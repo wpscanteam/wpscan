@@ -29,6 +29,7 @@ class WpTarget < WebSite
     @multisite      = nil
 
     Browser.instance(options.merge(:max_threads => options[:threads]))
+    Browser.instance.referer = url
   end
 
   # check if the target website is
