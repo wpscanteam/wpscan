@@ -296,6 +296,11 @@ def main
       puts
       puts "#{green('[+]')} Enumerating usernames ..."
 
+      if wp_target.has_plugin?('stop-user-enumeration')
+        puts "#{red('[!]')} Stop User Enumeration plugin detected, results might be empty. " \
+             "However a bypass exists, see stop_user_enumeration_bypass.rb in #{File.expand_path(File.dirname(__FILE__))}"
+      end
+
       wp_users = WpUsers.aggressive_detection(wp_target,
         enum_options.merge(
           range: wpscan_options.enumerate_usernames_range,
