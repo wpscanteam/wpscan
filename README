@@ -39,17 +39,17 @@ ryandewhurst at gmail
   Prerequisites:
 
    * Windows not supported
-   * Ruby >= 1.9.2 - Recommended: 1.9.3
+   * Ruby >= 1.9.2 - Recommended: 1.9.3 
    * Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
    * RubyGems      - Recommended: latest
    * Git
 
-  -> Installing on Debian/Ubuntu:
+  -> Installing on Debian Wheezy/Ubuntu:
 
-    sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
+    sudo apt-get install bundler libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
-    sudo gem install bundler && bundle install --without test
+    sudo bundle install --without test
 
   -> Installing on Fedora:
 
