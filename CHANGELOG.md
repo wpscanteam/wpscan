@@ -3,7 +3,7 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.4...master)
 
 ## Version 2.4
-Released: 2014-mm-dd
+Released: 2014-04-17
 
 New
 * '--batch' switch option added - Fix #454
@@ -67,7 +67,7 @@ New
 * New spell checker!
 * Added database modification dates in status report
 * Added 'Total WordPress Sites in the World' statistics
-* Added separator between Name and Version in Item 
+* Added separator between Name and Version in Item
 * Added a "Work in progress" URL in the CHANGELOG
 
 Removed
@@ -108,10 +108,10 @@ Fixed issues
 * Fix #404 - Brute forcing issue over https
 * Fix #398 - Removed a fake vuln in WP Super Cache
 * Fix #393 - sudo added to the bundle install cmd for Mac OSX
-* Fix #228, #327 - Infinite loop when self-redirect 
+* Fix #228, #327 - Infinite loop when self-redirect
 * Fix #201 - Incorrect Paramter Parsing when no url was supplied
 
-## Version 2.2 
+## Version 2.2
 Released: 2013-11-12
 
 New

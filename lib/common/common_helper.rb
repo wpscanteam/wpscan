@@ -34,7 +34,7 @@ WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
 LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
 USER_AGENTS_FILE    = DATA_DIR + '/user-agents.txt'
 
-WPSCAN_VERSION       = '2.3'
+WPSCAN_VERSION       = '2.4'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
