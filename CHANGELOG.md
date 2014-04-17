@@ -3,7 +3,7 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.4...master)
 
 ## Version 2.4
-Released: 2014-xx-xx
+Released: 2014-mm-dd
 
 New
 * '--batch' switch option added - Fix #454
@@ -33,6 +33,7 @@ General core
 WordPress Fingerprints
 * WP 3.8.2 & 3.7.2 Fingerprints added - Fix #448
 * WP 3.8.3 & 3.7.3 fingerprints
+* WP 3.9 fingerprints
 
 Fixed issues
 * Fix #380 - Redirects in WP 3.6-3.0
@@ -49,7 +50,12 @@ Vulnerabilities
 * Fixed some duplicate vulnerabilities
 
 WPScan Database Statistics:
-
+* Total vulnerable versions: 79; 1 is new
+* Total vulnerable plugins: 748; 55 are new
+* Total vulnerable themes: 292; 41 are new
+* Total version vulnerabilities: 617; 326 are new
+* Total plugin vulnerabilities: 1162; 146 are new
+* Total theme vulnerabilities: 330; 47 are new
 
 ## Version 2.3
 Released: 2014-02-11
