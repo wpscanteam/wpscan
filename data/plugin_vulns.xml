@@ -12093,6 +12093,30 @@
 
   <plugin name="springboard-video-quick-publish">
     <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.6 - videolist.php paged Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105992</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.6 - springboardvideo.php video_id Parameter XSS</title>
+      <references>
+        <osvdb>105993</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.6 - sb_search.php paged Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105994</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Springboard Video Quick Publish 0.2.4 - Unspecified Issue</title>
       <references>
         <osvdb>105007</osvdb>
@@ -12242,6 +12266,14 @@
       <type>UNKNOWN</type>
       <fixed_in>1.1.8</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Lazyest Gallery 0.10.4.3 - Multiple File/Directory Insecure Permissions Local Content Manipulation</title>
+      <references>
+        <osvdb>105818</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>0.10.4.4</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="post-expirator">
@@ -12257,13 +12289,14 @@
 
   <plugin name="quick-pagepost-redirect-plugin">
     <vulnerability>
-      <title>Quick Page Post Redirect - CSRF and stored XSS</title>
+      <title>Quick Page Post Redirect 5.0.5- CSRF and stored XSS</title>
       <references>
-        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-quick-pagepost-redirect-plugin/</url>
         <cve>2014-2598</cve>
+        <secunia>57883</secunia>
+        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-quick-pagepost-redirect-plugin/</url>
       </references>
       <type>MULTI</type>
-      <fixed_in>5.0.5</fixed_in>
+      <fixed_in>5.0.6</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -12313,6 +12346,30 @@
       </references>
       <type>XSS</type>
       <fixed_in>1.2.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="liveoptim">
+    <vulnerability>
+      <title>LiveOptim 1.4.3 - Configuration Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>105986</osvdb>
+        <secunia>57990</secunia>
+        <url>http://www.securityfocus.com/bid/66939</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.4.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-conditional-captcha">
+    <vulnerability>
+      <title>Conditional CAPTCHA 3.6 - wp-conditional-captcha.php Settings Page CSRF</title>
+      <references>
+        <osvdb>106014</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>3.6.1</fixed_in>
     </vulnerability>
   </plugin>
 
