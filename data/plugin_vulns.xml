@@ -326,12 +326,17 @@
 
   <plugin name="zingiri-forum">
     <vulnerability>
-      <title>Zingiri Forum - Arbitrary File Disclosure</title>
+      <title>Zingiri Forum 1.4.2 - forum.php zing_forum_output Function url Parameter XSS</title>
       <references>
+        <osvdb>89069</osvdb>
+        <cve>2012-4920</cve>
         <secunia>50833</secunia>
+        <url>http://www.securityfocus.com/bid/57224</url>
+        <url>http://xforce.iss.net/xforce/xfdb/81156</url>
         <url>http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/</url>
       </references>
-      <type>UNKNOWN</type>
+      <type>XSS</type>
+      <fixed_in>1.4.4</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -620,6 +625,7 @@
       <title>Uploader 1.0.4 - notify.php blog Parameter XSS</title>
       <references>
         <osvdb>90840</osvdb>
+        <cve>2013-2287</cve>
         <secunia>52465</secunia>
       </references>
       <type>XSS</type>
@@ -8493,10 +8499,11 @@
 
   <plugin name="qtranslate">
     <vulnerability>
-      <title>qTranslate - Cross-Site Request Forgery Vulnerability</title>
+      <title>qTranslate 2.5.34 - Setting Manipulation CSRF</title>
       <references>
-        <secunia>53126</secunia>
         <osvdb>93873</osvdb>
+        <cve>2013-3251</cve>
+        <secunia>53126</secunia>
       </references>
       <type>CSRF</type>
     </vulnerability>
@@ -8733,6 +8740,7 @@
       <title>Stream Video Player &lt;= 1.4.0 - Setting Manipulation CSRF</title>
       <references>
         <osvdb>94466</osvdb>
+        <cve>2013-2706</cve>
         <secunia>52954</secunia>
       </references>
       <type>CSRF</type>
