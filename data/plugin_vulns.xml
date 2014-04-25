@@ -12289,14 +12289,30 @@
 
   <plugin name="quick-pagepost-redirect-plugin">
     <vulnerability>
-      <title>Quick Page Post Redirect 5.0.5- CSRF and stored XSS</title>
+      <title>Quick Page Post Redirect 5.0.4 - redirect-updates.php quickppr_redirects Parameter Stored XSS</title>
       <references>
+        <osvdb>105707</osvdb>
         <cve>2014-2598</cve>
         <secunia>57883</secunia>
+        <exploitdb>32867</exploitdb>
+        <url>http://www.securityfocus.com/bid/66790</url>
         <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-quick-pagepost-redirect-plugin/</url>
       </references>
-      <type>MULTI</type>
-      <fixed_in>5.0.6</fixed_in>
+      <type>XSS</type>
+      <fixed_in>5.0.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Quick Page Post Redirect 5.0.4 - redirect-updates.php Multiple Admin Function CSRF</title>
+      <references>
+        <osvdb>105708</osvdb>
+        <cve>2014-2598</cve>
+        <secunia>57883</secunia>
+        <exploitdb>32867</exploitdb>
+        <url>http://www.securityfocus.com/bid/66790</url>
+        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-quick-pagepost-redirect-plugin/</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>5.0.5</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -12370,6 +12386,18 @@
       </references>
       <type>CSRF</type>
       <fixed_in>3.6.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-js-external-link-info">
+    <vulnerability>
+      <title>JS External Link Info 1.21 - redirect.php blog Parameter XSS</title>
+      <references>
+        <osvdb>106125</osvdb>
+        <url>http://packetstormsecurity.com/files/126238/</url>
+        <url>http://www.securityfocus.com/bid/66999</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
