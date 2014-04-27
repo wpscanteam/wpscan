@@ -1,6 +1,61 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.3...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.4...master)
+
+## Version 2.4
+Released: 2014-04-17
+
+New
+* '--batch' switch option added - Fix #454
+* Add random-agent
+* Added more CLI options
+* Switch over to nist - Fix #301
+* New choice added when a redirection is detected - Fix #438
+
+
+Removed
+* Removed 'Total WordPress Sites in the World' counter from stats
+* Old wpscan repo links removed - Fix #440
+* Fingerprinting Dev script removed
+* Useless code removed
+
+General core
+* Rspecs update
+* Forcing Travis notify the team
+* Ruby 2.1.1 added to Travis
+* Equal output layout for interaction questions
+* Only output error trace if verbose if enabled
+* Memory improvements during wp-items enumerations
+* Fixed broken link checker, fixed some broken links
+* Couple more 404s fixed
+* Themes & Plugins list updated
+
+WordPress Fingerprints
+* WP 3.8.2 & 3.7.2 Fingerprints added - Fix #448
+* WP 3.8.3 & 3.7.3 fingerprints
+* WP 3.9 fingerprints
+
+Fixed issues
+* Fix #380 - Redirects in WP 3.6-3.0
+* Fix #413 - Check the version of the Timthumbs files found
+* Fix #429 - Error WpScan Cache Browser
+* Fix #431 - Version number comparison between '2.3.3' and '0.42b'
+* Fix #439 - Detect if the target goes down during the scan
+* Fix #451 - Do not rely only on files in wp-content for fingerprinting
+* Fix #453 - Documentation or inplemention of option parameters
+* Fix #455 - Fails with a message if the target returns a 403 during the wordpress check
+
+Vulnerabilities
+* Update WordPress Vulnerabilities
+* Fixed some duplicate vulnerabilities
+
+WPScan Database Statistics:
+* Total vulnerable versions: 79; 1 is new
+* Total vulnerable plugins: 748; 55 are new
+* Total vulnerable themes: 292; 41 are new
+* Total version vulnerabilities: 617; 326 are new
+* Total plugin vulnerabilities: 1162; 146 are new
+* Total theme vulnerabilities: 330; 47 are new
 
 ## Version 2.3
 Released: 2014-02-11
@@ -12,7 +67,7 @@ New
 * New spell checker!
 * Added database modification dates in status report
 * Added 'Total WordPress Sites in the World' statistics
-* Added separator between Name and Version in Item 
+* Added separator between Name and Version in Item
 * Added a "Work in progress" URL in the CHANGELOG
 
 Removed
@@ -44,7 +99,7 @@ WPScan Database Statistics:
 * Total plugin vulnerabilities: 1016; 236 are new
 * Total theme vulnerabilities: 283; 79 are new
 
-Add WP Fingerprints
+WordPress Fingerprints
 * Better fingerprints
 * WP 3.8.1 Fingerprinting
 * WP 3.8 Fingerprinting
@@ -53,10 +108,10 @@ Fixed issues
 * Fix #404 - Brute forcing issue over https
 * Fix #398 - Removed a fake vuln in WP Super Cache
 * Fix #393 - sudo added to the bundle install cmd for Mac OSX
-* Fix #228, #327 - Infinite loop when self-redirect 
+* Fix #228, #327 - Infinite loop when self-redirect
 * Fix #201 - Incorrect Paramter Parsing when no url was supplied
 
-## Version 2.2 
+## Version 2.2
 Released: 2013-11-12
 
 New

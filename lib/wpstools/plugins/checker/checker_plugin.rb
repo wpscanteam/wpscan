@@ -32,9 +32,11 @@ class CheckerPlugin < Plugin
       xml = xml(vuln_ref_file)
 
       urls = []
-      xml.xpath('//reference').each { |node| urls << node.text }
+      xml.xpath('//references/url').each { |node| urls << node.text }
 
       urls.uniq!
+
+      puts "[!] No URLs found in #{vuln_ref_file}!" if urls.empty?
 
       dead_urls       = []
       queue_count     = 0

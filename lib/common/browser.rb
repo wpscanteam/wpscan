@@ -23,6 +23,8 @@ class Browser
 
   attr_reader :hydra, :cache_dir
 
+  attr_accessor :referer
+
   # @param [ Hash ] options
   #
   # @return [ Browser ]
@@ -135,6 +137,7 @@ class Browser
       )
     end
 
+    params.merge!(referer: referer)
     params.merge!(timeout: @request_timeout) if @request_timeout
     params.merge!(connecttimeout: @connect_timeout) if @connect_timeout
 

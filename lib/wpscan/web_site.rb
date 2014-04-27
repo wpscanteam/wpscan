@@ -32,7 +32,7 @@ class WebSite
 
   def has_xml_rpc?
     response = Browser.get_and_follow_location(xml_rpc_url)
-    response.body =~ %r{XML-RPC server accepts POST requests only}i    
+    response.body =~ %r{XML-RPC server accepts POST requests only}i
   end
 
   # See http://www.hixie.ch/specs/pingback/pingback-1.0#TOC2.3
@@ -71,7 +71,7 @@ class WebSite
   #
   # @return [ String ] The MD5 hash of the page
   def self.page_hash(page)
-    page = Browser.get(page) unless page.is_a?(Typhoeus::Response)
+    page = Browser.get(page, { followlocation: true, cache_ttl: 0 }) unless page.is_a?(Typhoeus::Response)
 
     Digest::MD5.hexdigest(page.body.gsub(/<!--.*?-->/m, ''))
   end

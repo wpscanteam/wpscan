@@ -43,8 +43,6 @@ class WpTheme < WpItem
       end
     end
 
-    # http://code.google.com/p/wpscan/issues/detail?id=141
-    #
     # @param [ URI ] target_uri
     #
     # @return [ WpTheme ]

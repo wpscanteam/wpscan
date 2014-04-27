@@ -190,8 +190,6 @@ class WpVersion < WpItem
 
     # Attempts to find the WordPress version from the sitemap.xml file.
     #
-    # See: http://code.google.com/p/wpscan/issues/detail?id=109
-    #
     # @param [ URI ] target_uri
     #
     # @return [ String ] The version number

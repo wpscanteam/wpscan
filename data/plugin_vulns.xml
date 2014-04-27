@@ -179,6 +179,7 @@
         <osvdb>103778</osvdb>
         <url>http://packetstormsecurity.com/files/125397/</url>
         <url>http://www.securityfocus.com/bid/65805</url>
+        <cve>2014-2315</cve>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -286,9 +287,12 @@
 
   <plugin name="post-views">
     <vulnerability>
-      <title>post-views - XSS</title>
+      <title>Post views 2.6.1 - wp-content/plugins/post-views/post-views.php search_input Parameter XSS</title>
       <references>
+        <osvdb>87349</osvdb>
         <secunia>50982</secunia>
+        <url>http://www.securityfocus.com/bid/56555</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80076</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -322,12 +326,17 @@
 
   <plugin name="zingiri-forum">
     <vulnerability>
-      <title>Zingiri Forum - Arbitrary File Disclosure</title>
+      <title>Zingiri Forum 1.4.2 - forum.php zing_forum_output Function url Parameter XSS</title>
       <references>
+        <osvdb>89069</osvdb>
+        <cve>2012-4920</cve>
         <secunia>50833</secunia>
+        <url>http://www.securityfocus.com/bid/57224</url>
+        <url>http://xforce.iss.net/xforce/xfdb/81156</url>
         <url>http://ceriksen.com/2013/01/12/wordpress-zingiri-forums-arbitrary-file-disclosure/</url>
       </references>
-      <type>UNKNOWN</type>
+      <type>XSS</type>
+      <fixed_in>1.4.4</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -378,7 +387,7 @@
     </vulnerability>
   </plugin>
 
-  <plugin name="contest/OpenInviter">
+  <plugin name="openinviter-for-wordpress">
     <vulnerability>
       <title>OpenInviter - Information Disclosure</title>
       <references>
@@ -616,6 +625,7 @@
       <title>Uploader 1.0.4 - notify.php blog Parameter XSS</title>
       <references>
         <osvdb>90840</osvdb>
+        <cve>2013-2287</cve>
         <secunia>52465</secunia>
       </references>
       <type>XSS</type>
@@ -1372,7 +1382,7 @@
     <vulnerability>
       <title>ABtest - Directory Traversal</title>
       <references>
-        <url>http://scott-herbert.com/blog/2012/10/11/wordpress-plugin-abtest-vulnerable-to-a-directory-traversal-attack-1110</url>
+        <url>http://scott-herbert.com/?p=140</url>
       </references>
       <type>UNKNOWN</type>
     </vulnerability>
@@ -1832,7 +1842,6 @@
       <title>Wp-ImageZoom - zoom.php id Parameter SQL Injection</title>
       <references>
         <osvdb>87870</osvdb>
-        <url>http://packetstormsecurity.com/files/118371/</url>
         <url>http://www.securityfocus.com/bid/56691</url>
         <url>http://xforce.iss.net/xforce/xfdb/80285</url>
       </references>
@@ -2438,21 +2447,45 @@
 
   <plugin name="wp-easy-gallery">
     <vulnerability>
+      <title>WP Easy Gallery &lt;= 2.7 - CSRF</title>
+      <references>
+        <secunia>49190</secunia>
+        <url>https://plugins.trac.wordpress.org/changeset?reponame=&amp;old=669527@wp-easy-gallery&amp;new=669527@wp-easy-gallery</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>2.7.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery 2.7 - admin/overview.php galleryId Parameter SQL Injection</title>
+      <references>
+        <osvdb>105012</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.7.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery 2.7 - admin/add-images.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>105013</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.7.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP Easy Gallery 2.7 - Multiple Admin Function CSRF</title>
+      <references>
+        <osvdb>105014</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>2.7.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>WP Easy Gallery &lt;= 1.7 - Cross Site Scripting</title>
       <references>
         <secunia>49190</secunia>
         <url>http://packetstormsecurity.com/files/112687/</url>
       </references>
       <type>XSS</type>
-      <fixed_in>2.7.3</fixed_in>
-    </vulnerability>
-    <vulnerability>
-      <title>WP Easy Gallery &lt;= 2.7 - CSRF</title>
-      <references>
-        <secunia>49190</secunia>
-        <url>http://plugins.trac.wordpress.org/changeset?reponame=&amp;old=669527%40wp-easy-gallery&amp;new=669527%40wp-easy-gallery</url>
-      </references>
-      <type>CSRF</type>
       <fixed_in>2.7.3</fixed_in>
     </vulnerability>
   </plugin>
@@ -2673,7 +2706,7 @@
 
   <plugin name="download-monitor">
     <vulnerability>
-      <title>Download Monitor &lt;= 3.3.6.1 - wp-admin/admin.php Multiple Parameter XSS</title>
+      <title>Download Monitor &lt;= 3.3.6.1 - wp-admin/admin.php Multiple Parameter XSS (Note: This plugin changed its version numbering, this may produce false positive)</title>
       <references>
         <osvdb>95613</osvdb>
         <cve>2013-5098</cve>
@@ -2686,7 +2719,7 @@
       <fixed_in>3.3.6.2</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Download Monitor &lt;= 3.3.5.7 - index.php dlsearch Parameter XSS</title>
+      <title>Download Monitor &lt;= 3.3.5.7 - index.php dlsearch Parameter XSS (Note: This plugin changed its version numbering, this may produce false positive)</title>
       <references>
         <osvdb>85319</osvdb>
         <cve>2012-4768</cve>
@@ -2697,14 +2730,14 @@
       <fixed_in>3.3.5.9</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>Download Monitor &lt;= 3.3.5.4 - Cross Site Scripting</title>
+      <title>Download Monitor &lt;= 3.3.5.4 - Cross Site Scripting (Note: This plugin changed its version numbering, this may produce false positive)</title>
       <references>
         <url>http://packetstormsecurity.com/files/112707/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>Download Monitor 2.0.6 - wp-download_monitor/download.php id Parameter SQL Injection</title>
+      <title>Download Monitor 2.0.6 - wp-download_monitor/download.php id Parameter SQL Injection (Note: This plugin changed its version numbering, this may produce false positive)</title>
       <references>
         <osvdb>44616</osvdb>
         <cve>2008-2034</cve>
@@ -3017,6 +3050,14 @@
 
   <plugin name="zingiri-tickets">
     <vulnerability>
+      <title>Zingiri Tickets 2.1.2 - Unspecified Issue</title>
+      <references>
+        <osvdb>105015</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>2.1.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Zingiri Tickets - File Disclosure</title>
       <references>
         <url>http://packetstormsecurity.com/files/111904/</url>
@@ -3085,6 +3126,7 @@
       <references>
         <osvdb>103308</osvdb>
         <cve>2014-1889</cve>
+        <secunia>56950</secunia>
         <exploitdb>31571</exploitdb>
         <url>http://packetstormsecurity.com/files/125213/</url>
       </references>
@@ -3096,10 +3138,67 @@
       <references>
         <osvdb>103307</osvdb>
         <cve>2014-1888</cve>
+        <secunia>56950</secunia>
         <url>http://packetstormsecurity.com/files/125212/</url>
       </references>
       <type>XSS</type>
       <fixed_in>1.9.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-activity-classes.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104761</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-blogs-classes.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104761</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-friends/bp-friends-classes.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104760</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-core/bp-core-classes.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104759</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-core/bp-core-functions.php page_ids Parameter SQL Injection</title>
+      <references>
+        <osvdb>104758</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-core/bp-core-filters.php user_ids Parameter SQL Injection</title>
+      <references>
+        <osvdb>104757</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.7.1 - bp-core/bp-core-cache.php object_ids Parameter SQL Injection</title>
+      <references>
+        <osvdb>104755</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.7.2</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Buddypress - player.swf / jwplayer.swf playerready Parameter XSS</title>
@@ -3118,6 +3217,14 @@
       </references>
       <type>SQLI</type>
       <fixed_in>1.5.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>BuddyPress 1.2.9 - groups/test-group/activity/ activity_ids Parameter SQL Injection</title>
+      <references>
+        <osvdb>104756</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.2.10</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -3516,11 +3623,12 @@
 
   <plugin name="allow-php-in-posts-and-pages">
     <vulnerability>
-      <title>Allow PHP in Posts and Pages &lt;= 2.0.0.RC1 - SQL Injection Vulnerability</title>
+      <title>Allow PHP in Posts and Pages &lt;= 2.0.0.RC2 - SQL Injection Vulnerability</title>
       <references>
         <exploitdb>17688</exploitdb>
       </references>
       <type>SQLI</type>
+      <fixed_in>2.1.0</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -3819,7 +3927,7 @@
     </vulnerability>
   </plugin>
 
- <plugin name="flash-album-gallery">
+  <plugin name="flash-album-gallery">
     <vulnerability>
       <title>SWF Vulnerable to XSS Bundled in Many WordPress Plugins</title>
       <references>
@@ -5233,19 +5341,33 @@
 
   <plugin name="wp-filebase">
     <vulnerability>
-      <title>WP-Filebase Download Manager &lt;= 0.2.9 - SQL Injection Vulnerability</title>
+      <title>WP-Filebase Download Manager 0.3.0.02 - class/Admin.php GetFileHash Function Remote Command Execution</title>
       <references>
-        <exploitdb>17808</exploitdb>
+        <osvdb>105039</osvdb>
+        <secunia>57456</secunia>
+        <url>http://www.securityfocus.com/bid/66341</url>
       </references>
       <type>SQLI</type>
+      <fixed_in>0.3.0.03</fixed_in>
     </vulnerability>
     <vulnerability>
-      <title>WP-Filebase - Unspecified Vulnerabilities</title>
+      <title>WP-Filebase 0.2.9.24- Unspecified Vulnerabilities</title>
       <references>
+        <osvdb>87294</osvdb>
         <secunia>51269</secunia>
+        <url>http://xforce.iss.net/xforce/xfdb/80034</url>
       </references>
       <type>UNKNOWN</type>
       <fixed_in>0.2.9.25</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP-Filebase Download Manager &lt;= 0.2.9 - wpfb-ajax.php base Parameter SQL Injection</title>
+      <references>
+        <osvdb>75308</osvdb>
+        <secunia>45931</secunia>
+        <exploitdb>17808</exploitdb>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
@@ -5695,8 +5817,30 @@
 
   <plugin name="gd-star-rating">
     <vulnerability>
-      <title>GD Star Rating - Export Security Bypass Security Issue</title>
+      <title>GD Star Rating 1.9.22 - gd-star-rating-stats.php s Parameter SQL Injection</title>
       <references>
+        <osvdb>105085</osvdb>
+        <url>http://packetstormsecurity.com/files/125932/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/399</url>
+        <url>https://security.dxw.com/advisories/xss-csrf-and-blind-sql-injection-in-gd-star-rating-1-9-22/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>GD Star Rating 1.9.22 - gd-star-rating-stats.php Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>105086</osvdb>
+        <secunia>57667</secunia>
+        <url>http://packetstormsecurity.com/files/125932/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/399</url>
+        <url>https://security.dxw.com/advisories/xss-csrf-and-blind-sql-injection-in-gd-star-rating-1-9-22/</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+    <vulnerability>
+      <title>GD Star Rating 1.9.18 - Export Security Bypass Security Issue</title>
+      <references>
+        <osvdb>105086</osvdb>
         <secunia>49850</secunia>
       </references>
       <type>AUTHBYPASS</type>
@@ -5710,11 +5854,21 @@
       <type>XSS</type>
     </vulnerability>
     <vulnerability>
-      <title>GD Star Rating &lt;= 1.9.10 - SQL Injection</title>
+      <title>GD Star Rating &lt;= 1.9.10 - gd-star-rating/export.php de Parameter SQL Injection</title>
       <references>
+        <osvdb>83466</osvdb>
         <exploitdb>17973</exploitdb>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>GD Star Rating 1.9.7 - gd-star-rating/widgets/widget_top.php wpfn Parameter XSS</title>
+      <references>
+        <osvdb>71060</osvdb>
+        <secunia>43403</secunia>
+        <url>http://seclists.org/bugtraq/2011/Feb/219</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -6413,6 +6567,16 @@
 
   <plugin name="woocommerce">
     <vulnerability>
+      <title>WooCommerce 2.0.17 - hide-wc-extensions-message Parameter Reflected XSS</title>
+      <references>
+        <osvdb>98754</osvdb>
+        <url>http://packetstormsecurity.com/files/123684/</url>
+        <url>http://www.securityfocus.com/bid/63228</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.0.17</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>WooCommerce 2.0.12 - index.php calc_shipping_state Parameter XSS</title>
       <references>
         <osvdb>95480</osvdb>
@@ -6421,15 +6585,6 @@
       </references>
       <type>XSS</type>
       <fixed_in>2.0.13</fixed_in>
-    </vulnerability>
-    <vulnerability>
-      <title>WooCommerce 2.0.17 - hide-wc-extensions-message Parameter Reflected XSS</title>
-      <references>
-        <osvdb>98754</osvdb>
-        <url>http://packetstormsecurity.com/files/123684/</url>
-        <url>http://www.securityfocus.com/bid/63228</url>
-      </references>
-      <type>XSS</type>
     </vulnerability>
   </plugin>
 
@@ -6489,6 +6644,7 @@
       <title>Wysija Newsletters 2.2 - SQL Injection Vulnerability</title>
       <references>
         <osvdb>89924</osvdb>
+        <cve>2013-1408</cve>
         <url>https://www.htbridge.com/advisory/HTB23140</url>
         <url>http://packetstormsecurity.com/files/120089/</url>
         <url>http://seclists.org/bugtraq/2013/Feb/29</url>
@@ -6657,6 +6813,7 @@
     <vulnerability>
       <title>ABC Test - "id" Cross-Site Scripting Vulnerability</title>
       <references>
+        <url>http://scott-herbert.com/?p=142</url>
         <osvdb>85773</osvdb>
         <secunia>50608</secunia>
       </references>
@@ -7197,6 +7354,7 @@
       <title>Responsive Logo Slideshow - URL and Image Field XSS</title>
       <references>
         <osvdb>90406</osvdb>
+        <cve>2013-1759</cve>
         <url>http://packetstormsecurity.com/files/120379/</url>
         <url>http://seclists.org/bugtraq/2013/Feb/84</url>
       </references>
@@ -7363,6 +7521,14 @@
   </plugin>
 
   <plugin name="slidedeck2">
+    <vulnerability>
+      <title>slidedeck2 2.3.3 - Unspecified File Inclusion</title>
+      <references>
+        <osvdb>105132</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>2.3.5</fixed_in>
+    </vulnerability>
     <vulnerability>
       <title>slidedeck2 &lt;= 2.1.20130228 - XSS in ZeroClipboard</title>
       <references>
@@ -7820,7 +7986,7 @@
     <vulnerability>
       <title>Social Media Widget - malicious code</title>
       <references>
-        <url>http://plugins.trac.wordpress.org/changeset?reponame=&amp;old=691839%40social-media-widget%2Ftrunk&amp;new=693941%40social-media-widget%2Ftrunk</url>
+        <url>https://plugins.trac.wordpress.org/changeset?reponame=&amp;old=691839@social-media-widget/trunk&amp;new=693941@social-media-widget/trunk</url>
         <url>http://slashdot.org/submission/2592777/top-wordpress-widget-sold-off-turned-into-seo-spambot</url>
       </references>
       <type>UNKNOWN</type>
@@ -8333,10 +8499,11 @@
 
   <plugin name="qtranslate">
     <vulnerability>
-      <title>qTranslate - Cross-Site Request Forgery Vulnerability</title>
+      <title>qTranslate 2.5.34 - Setting Manipulation CSRF</title>
       <references>
-        <secunia>53126</secunia>
         <osvdb>93873</osvdb>
+        <cve>2013-3251</cve>
+        <secunia>53126</secunia>
       </references>
       <type>CSRF</type>
     </vulnerability>
@@ -8368,6 +8535,14 @@
   </plugin>
 
   <plugin name="eelv-newsletter">
+    <vulnerability>
+      <title>EELV Newsletter 3.4.3 - lettreinfo.php Unspecified XSS</title>
+      <references>
+        <osvdb>104875</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.0</fixed_in>
+    </vulnerability>
     <vulnerability>
       <title>EELV Newsletter - Cross-Site Scripting Vulnerability</title>
       <references>
@@ -8472,12 +8647,34 @@
 
   <plugin name="mapsmarker">
     <vulnerability>
+      <title>Leaflet Maps Marker - Multiple security issues</title>
+      <references>
+        <secunia>49845</secunia>
+        <url>http://www.mapsmarker.com/2012/06/06/leaflet-maps-marker-v2-4-is-available/</url>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>2.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Leaflet Maps Marker - Tag Multiple Parameter SQL Injection</title>
       <references>
         <osvdb>94388</osvdb>
+        <secunia>53855</secunia>
+        <url>http://www.mapsmarker.com/2013/05/24/v3-5-4-with-lots-of-translation-updates-bugfixes-is-available/</url>
       </references>
       <type>SQLI</type>
       <fixed_in>3.5.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="leaflet-maps-marker-pro">
+    <vulnerability>
+      <title>Leaflet Maps Marker Pro - SQLI, XSS, Shell Upload, file delete</title>
+      <references>
+        <url>http://www.mapsmarker.com/2014/03/26/pro-v1-5-8-with-wordpress-3-9-compatibility-improvements-based-on-a-security-audit-by-the-city-of-vienna-is-available/</url>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>1.5.8</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -8485,7 +8682,7 @@
     <vulnerability>
       <title>Xorbin Analog Flash Clock 1.0 - Flash-based XSS</title>
       <references>
-        <url>http://advisory.prakharprasad.com/xorbin_afc_wp.txt</url>
+        <url>http://packetstormsecurity.com/files/122222/</url>
         <cve>2013-4692</cve>
       </references>
       <type>XSS</type>
@@ -8497,7 +8694,6 @@
       <title>Xorbin Digital Flash Clock 1.0 - Flash-based XSS</title>
       <references>
         <url>http://packetstormsecurity.com/files/122223/</url>
-        <url>http://advisory.prakharprasad.com/xorbin_dfc_wp.txt</url>
         <cve>2013-4693</cve>
       </references>
       <type>XSS</type>
@@ -8544,6 +8740,7 @@
       <title>Stream Video Player &lt;= 1.4.0 - Setting Manipulation CSRF</title>
       <references>
         <osvdb>94466</osvdb>
+        <cve>2013-2706</cve>
         <secunia>52954</secunia>
       </references>
       <type>CSRF</type>
@@ -8619,7 +8816,6 @@
     <vulnerability>
       <title>SexyBookmarks - Setting Manipulation CSRF</title>
       <references>
-        <url>http://wordpress.org/plugins/sexybookmarks/changelog/</url>
         <osvdb>95908</osvdb>
         <cve>2013-3256</cve>
         <secunia>53138</secunia>
@@ -10198,6 +10394,15 @@
 
   <plugin name="contact-form-7">
     <vulnerability>
+      <title>Contact Form 7 &lt;= 3.7.1 - Security Bypass Vulnerability</title>
+      <references>
+        <cve>2014-2265</cve>
+        <url>http://www.securityfocus.com/bid/66381/</url>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>3.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Contact Form 7 3.5.3 - Crafted File Extension Upload Remote Code Execution</title>
       <references>
         <osvdb>102776</osvdb>
@@ -10261,7 +10466,44 @@
 
   <plugin name="js-multihotel">
     <vulnerability>
-      <title>Js-Multi-Hotel 2.2.1 - refreshDate.php roomid Parameter Reflected XSS</title>
+      <title>JS MultiHotel 2.2.1 - includes/show_image.php file Parameter Remote File Inclusion DoS</title>
+      <references>
+        <osvdb>105185</osvdb>
+        <url>http://packetstormsecurity.com/files/125959/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/428</url>
+      </references>
+      <type>RFI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>JS MultiHotel 2.2.1 - includes/delete_img.php path Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105186</osvdb>
+        <url>http://packetstormsecurity.com/files/125959/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/428</url>
+        <url>http://www.securityfocus.com/bid/66529</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>JS MultiHotel 2.2.1 - Multiple Script Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>105187</osvdb>
+        <url>http://packetstormsecurity.com/files/125959/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/428</url>
+      </references>
+      <type>FPD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>JS MultiHotel 2.2.1 - includes/timthumb.php src Parameter Direct Request Path Disclosure</title>
+      <references>
+        <osvdb>105119</osvdb>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/413</url>
+        <url>http://www.securityfocus.com/bid/66529</url>
+      </references>
+      <type>FPD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>JS MultiHotel 2.2.1 - refreshDate.php roomid Parameter Reflected XSS</title>
       <references>
         <osvdb>100575</osvdb>
         <secunia>55919</secunia>
@@ -10415,7 +10657,7 @@
     </vulnerability>
   </plugin>
 
-   <plugin name="easy-career-openings">
+  <plugin name="easy-career-openings">
     <vulnerability>
       <title>Easy Career Openings - jobid Parameter SQL Injection</title>
       <references>
@@ -10966,6 +11208,13 @@
 
   <plugin name="global-flash-galleries">
     <vulnerability>
+      <title>Global Flash Galleries - popup.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>104907</osvdb>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
       <title>Global Flash Galleries - swfupload.php Unauthenticated Image Upload Weakness</title>
       <references>
         <osvdb>102423</osvdb>
@@ -11264,6 +11513,7 @@
       <title>all_in_one_carousel 1.2.20 - /tpl/add_carousel.php id Parameter Reflected XSS</title>
       <references>
         <osvdb>103351</osvdb>
+        <secunia>56962</secunia>
         <url>http://seclists.org/bugtraq/2014/Feb/38</url>
       </references>
       <type>XSS</type>
@@ -11319,6 +11569,7 @@
       <title>Media File Renamer v1.7.0 - Persistent XSS</title>
       <references>
         <cve>2014-2040</cve>
+        <url>http://packetstormsecurity.com/files/125378/</url>
         <url>http://www.vapid.dhs.org/advisories/wordpress/plugins/MediaFileRenamer-1.7.0/</url>
       </references>
       <type>XSS</type>
@@ -11353,6 +11604,7 @@
       <references>
         <osvdb>103831</osvdb>
         <secunia>57203</secunia>
+        <url>http://packetstormsecurity.com/files/125421/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -11373,6 +11625,7 @@
         <osvdb>103718</osvdb>
         <secunia>56802</secunia>
         <url>http://www.securityfocus.com/bid/65765</url>
+        <cve>2014-2316</cve>
       </references>
       <type>SQLI</type>
       <fixed_in>7.0.3</fixed_in>
@@ -11386,6 +11639,13 @@
         <osvdb>103789</osvdb>
         <secunia>57026</secunia>
         <url>http://www.securityfocus.com/bid/65799</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Zedity 2.4 - Cross Site Scripting</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/125402/</url>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -11476,6 +11736,7 @@
       <title>LayerSlider 4.6.1 - LayerSlider/editor.php skin Parameter Remote Path Traversal File Access</title>
       <references>
         <osvdb>104394</osvdb>
+        <secunia>57309</secunia>
         <url>http://packetstormsecurity.com/files/125637/</url>
       </references>
       <type>AUTHBYPASS</type>
@@ -11486,7 +11747,11 @@
     <vulnerability>
       <title>XCloner 3.1.0 - Multiple Actions CSRF</title>
       <references>
+        <cve>2014-2340</cve>
         <osvdb>104402</osvdb>
+        <secunia>57362</secunia>
+        <exploitdb>32701</exploitdb>
+        <url>http://packetstormsecurity.com/files/125991/</url>
         <url>https://www.htbridge.com/advisory/HTB23206</url>
       </references>
       <type>CSRF</type>
@@ -11581,6 +11846,7 @@
       <title>User Domain Whitelist 1.4 - user-domain-whitelist.php domain_whitelist Parameter Stored XSS</title>
       <references>
         <osvdb>104681</osvdb>
+        <secunia>57490</secunia>
       </references>
       <type>XSS</type>
     </vulnerability>
@@ -11588,6 +11854,7 @@
       <title>User Domain Whitelist 1.4 -  user-domain-whitelist.php Domain Whitelisting Manipulation CSRF</title>
       <references>
         <osvdb>104683</osvdb>
+        <secunia>57490</secunia>
       </references>
       <type>CSRF</type>
       <fixed_in>1.5</fixed_in>
@@ -11614,6 +11881,523 @@
       </references>
       <type>CSRF</type>
       <fixed_in>140219</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="analytics360">
+    <vulnerability>
+      <title>Analytics360 1.2.1 - analytics360.php Multiple Action CSRF</title>
+      <references>
+        <osvdb>104743</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.2.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Analytics360 1.2 - analytics360.php a360_error Parameter Reflected XSS</title>
+      <references>
+        <osvdb>104744</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="the-events-calendar">
+    <vulnerability>
+      <title>The Events Calendar 3.0 - lib/template-classes/month.php tribe-bar-search Parameter Reflected XSS</title>
+      <references>
+        <osvdb>104785</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="form-maker">
+    <vulnerability>
+      <title>Form Maker 1.6.4 - front_end_form_maker.php Unspecified XSS</title>
+      <references>
+        <osvdb>104870</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.6.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="1-jquery-photo-gallery-slideshow-flash">
+    <vulnerability>
+      <title>ZooEffect 1.08 - wp-1pluginjquery.php HTTP Referer Header Reflected XSS</title>
+      <references>
+        <osvdb>104876</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.09</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="google-analytics-dashboard">
+    <vulnerability>
+      <title>Google Analytics Dashboard 2.0.4 - gad-admin-pages-posts.php pid Parameter SQL Injection</title>
+      <references>
+        <osvdb>104877</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.0.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="blogvault-real-time-backup">
+    <vulnerability>
+      <title>blogVault 1.05 - admin.php blogVault Key Setting CSRF</title>
+      <references>
+        <osvdb>104906</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.06</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="captcha">
+    <vulnerability>
+      <title>Captcha 2.12-3.8.1 - captcha bypass</title>
+      <references>
+        <url>http://www.antoine-cervoise.fr/2014/03/27/contournement-du-plugin-captcha-pour-wordpress-v-3-8-1-et-anterieures/</url>
+        <url>https://github.com/cervoise/pentest-scripts/blob/master/web/cms/captcha-bypass/wordpress-plugins/captcha/bypass-3.8.1-and-previous.php</url>
+      </references>
+      <type>BYPASS</type>
+      <fixed_in>3.8.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-html-sitemap">
+    <vulnerability>
+      <title>WP HTML Sitemap 1.2 - wp-html-sitemap.html Sitemap Deletion CSRF</title>
+      <references>
+        <osvdb>105084</osvdb>
+        <url>http://packetstormsecurity.com/files/125933/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/400</url>
+        <url>https://security.dxw.com/advisories/csrf-vulnerability-in-wp-html-sitemap-1-2/</url>
+      </references>
+      <type>CSRF</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="groups">
+    <vulnerability>
+      <title>Groups 1.4.5 - Negated Role Capability Handling Elevated Privilege Issue</title>
+      <references>
+        <osvdb>104940</osvdb>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>1.4.6</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="html5-jquery-audio-player">
+    <vulnerability>
+      <title>HTML5 jQuery Audio Player 2.3 - playlist/add_playlist.php Multiple Parameter Stored XSS Weakness</title>
+      <references>
+        <osvdb>104951</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>2.4</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>HTML5 jQuery Audio Player 2.3 - playlist/add_playlist.php id Parameter SQL Injection</title>
+      <references>
+        <osvdb>104952</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>2.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="shrimptest">
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - plugins/metric-conversion.php Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>104956</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - plugins/plugin-notification.php Unspecified XSS</title>
+      <references>
+        <osvdb>104957</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - plugins/variant-shortcode.php Unspecified XSS</title>
+      <references>
+        <osvdb>104958</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - admin/experiments.php Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>104959</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ShrimpTest 1.0b2 - admin/experiment-new.php Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>104960</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0b3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="activehelper-livehelp">
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/import/status.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104990</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/import/tracker.php Multiple Parameter SQL Injection</title>
+      <references>
+        <osvdb>104991</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/import/javascript.php Multiple Vector SQL Injection</title>
+      <references>
+        <osvdb>104992</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>ActiveHelper LiveHelp Server 3.2.2 - server/frames.php DEPARTMENT Parameter SQL Injection</title>
+      <references>
+        <osvdb>104993</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.4.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="springboard-video-quick-publish">
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.6 - videolist.php paged Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105992</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.6 - springboardvideo.php video_id Parameter XSS</title>
+      <references>
+        <osvdb>105993</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.6 - sb_search.php paged Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105994</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.7</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Springboard Video Quick Publish 0.2.4 - Unspecified Issue</title>
+      <references>
+        <osvdb>105007</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>0.2.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ignitiondeck">
+    <vulnerability>
+      <title>IgnitionDeck 1.1 - Purchase Form Unspecified XSS</title>
+      <references>
+        <osvdb>105008</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="ajax-pagination">
+    <vulnerability>
+      <title>Ajax Pagination 1.1 - wp-admin/admin-ajax.php loop Parameter Local File Inclusion</title>
+      <references>
+        <osvdb>105087</osvdb>
+        <exploitdb>32622</exploitdb>
+        <url>http://packetstormsecurity.com/files/125929/</url>
+        <url>http://seclists.org/fulldisclosure/2014/Mar/398</url>
+      </references>
+      <type>LFI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="tt-guest-post-submit">
+    <vulnerability>
+      <title>TT Guest Post Submit 1.0.0 - tt-guest-post-submit-submit.php rootpath Parameter Remote File Inclusion</title>
+      <references>
+        <osvdb>105120</osvdb>
+      </references>
+      <type>RFI</type>
+      <fixed_in>1.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="salesforce-wordpress-to-lead">
+    <vulnerability>
+      <title>WordPress-to-Lead for Salesforce CRM 1.0.4 - ov_plugin_tools.php textinput Function XSS</title>
+      <references>
+        <osvdb>105146</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress-to-Lead for Salesforce CRM 1.0.1 - salesforce.php salesforce_form_shortcode Function Error Message Handling XSS</title>
+      <references>
+        <osvdb>105148</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WordPress-to-Lead for Salesforce CRM 1.0 - salesforce.php Multiple Parameter XSS</title>
+      <references>
+        <osvdb>105147</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.0.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="disable-comments">
+    <vulnerability>
+      <title>Disable Comments 1.0.3 - disable_comments_settings.php Comment Status Manipulation CSRF</title>
+      <references>
+        <osvdb>105245</osvdb>
+        <cve>2014-2550</cve>
+        <secunia>57613</secunia>
+        <url>http://www.securityfocus.com/bid/66564</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.0.4</fixed_in>
+    </vulnerability>
+  </plugin>
+  
+  <plugin name="wp-business-intelligence-lite">
+    <vulnerability>
+      <title>WP Business intelligence lite &lt;= 1.0.6 - Remote Code Execution Exploit</title>
+      <references>
+        <secunia>57590</secunia>
+        <url>http://packetstormsecurity.com/files/125927/</url>
+        <url>http://cxsecurity.com/issue/WLB-2014030243</url>
+      </references>
+      <type>RCE</type>
+      <fixed_in>1.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="barclaycart">
+    <vulnerability>
+      <title>Barclaycart - Shell Upload</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/125552/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="Premium_Gallery_Manager">
+    <vulnerability>
+      <title>Premium Gallery Manager - Shell Upload</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/125586/</url>
+      </references>
+      <type>UPLOAD</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="jetpack">
+    <vulnerability>
+      <title>Jetpack 2.9.3 - class.jetpack.php XML-RPC Access Control Bypass</title>
+      <references>
+        <osvdb>105714</osvdb>
+        <cve>2014-0173</cve>
+        <secunia>57729</secunia>
+        <url>http://jetpack.me/2014/04/10/jetpack-security-update/</url>
+      </references>
+      <type>BYPASS</type>
+      <fixed_in>2.9.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="lazyest-gallery">
+    <vulnerability>
+      <title>Lazyest Gallery &lt;= 1.1.20 - EXIF Script Insertion Vulnerability</title>
+      <references>
+        <secunia>57746</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.1.21</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Lazyest Gallery 1.1.7 - Crafted Folder Name Unspecified Issue</title>
+      <references>
+        <osvdb>105728</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.1.8</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Lazyest Gallery 0.10.4.3 - Multiple File/Directory Insecure Permissions Local Content Manipulation</title>
+      <references>
+        <osvdb>105818</osvdb>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>0.10.4.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="post-expirator">
+    <vulnerability>
+      <title>Post Expirator &lt;= 2.1.1 - Cross-Site Request Forgery Vulnerability</title>
+      <references>
+        <secunia>57503</secunia>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>2.1.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="quick-pagepost-redirect-plugin">
+    <vulnerability>
+      <title>Quick Page Post Redirect 5.0.4 - redirect-updates.php quickppr_redirects Parameter Stored XSS</title>
+      <references>
+        <osvdb>105707</osvdb>
+        <cve>2014-2598</cve>
+        <secunia>57883</secunia>
+        <exploitdb>32867</exploitdb>
+        <url>http://www.securityfocus.com/bid/66790</url>
+        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-quick-pagepost-redirect-plugin/</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>5.0.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Quick Page Post Redirect 5.0.4 - redirect-updates.php Multiple Admin Function CSRF</title>
+      <references>
+        <osvdb>105708</osvdb>
+        <cve>2014-2598</cve>
+        <secunia>57883</secunia>
+        <exploitdb>32867</exploitdb>
+        <url>http://www.securityfocus.com/bid/66790</url>
+        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-quick-pagepost-redirect-plugin/</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>5.0.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="twitget">
+    <vulnerability>
+      <title>Twitget 3.3.1 - twitget.php Twitter Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>105705</osvdb>
+        <cve>2014-2559</cve>
+        <exploitdb>32868</exploitdb>
+        <url>https://security.dxw.com/advisories/csrfxss-vulnerability-in-twitget-3-3-1/</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>3.3.3</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Twitget 3.3.1 - twitget.php twitget_consumer_key Parameter Stored XSS</title>
+      <references>
+        <osvdb>105704</osvdb>
+        <cve>2014-2559</cve>
+        <exploitdb>32868</exploitdb>
+        <url>https://security.dxw.com/advisories/csrfxss-vulnerability-in-twitget-3-3-1/</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.3.3</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="hk-exif-tags">
+    <vulnerability>
+      <title>HK Exif Tags 1.11 - hk_exif_tags.php hk_exif_tags_images_process Function EXIF Tags Handling Stored XSS</title>
+      <references>
+        <osvdb>105725</osvdb>
+        <secunia>57753</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.12</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="unconfirmed">
+    <vulnerability>
+      <title>Unconfirmed &lt;= 1.2.4 - unconfirmed.php s Parameter Reflected XSS</title>
+      <references>
+        <osvdb>105722</osvdb>
+        <secunia>57838</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>1.2.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="liveoptim">
+    <vulnerability>
+      <title>LiveOptim 1.4.3 - Configuration Setting Manipulation CSRF</title>
+      <references>
+        <osvdb>105986</osvdb>
+        <secunia>57990</secunia>
+        <url>http://www.securityfocus.com/bid/66939</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.4.4</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-conditional-captcha">
+    <vulnerability>
+      <title>Conditional CAPTCHA 3.6 - wp-conditional-captcha.php Settings Page CSRF</title>
+      <references>
+        <osvdb>106014</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>3.6.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-js-external-link-info">
+    <vulnerability>
+      <title>JS External Link Info 1.21 - redirect.php blog Parameter XSS</title>
+      <references>
+        <osvdb>106125</osvdb>
+        <url>http://packetstormsecurity.com/files/126238/</url>
+        <url>http://www.securityfocus.com/bid/66999</url>
+      </references>
+      <type>XSS</type>
     </vulnerability>
   </plugin>
 

@@ -12,7 +12,7 @@ class WpUser < WpItem
   # @return [ Array<Symbol> ]
   def allowed_options; [:id, :login, :display_name, :password] end
 
-  # @return [ URI ] The uri to the auhor page
+  # @return [ URI ] The uri to the author page
   def uri
     if id
       return @uri.merge("?author=#{id}")
@@ -54,8 +54,8 @@ class WpUser < WpItem
   # @return [ String ]
   def to_s
     s  = "#{id}"
-    s += " | #{login}" if login
-    s += " | #{display_name}" if display_name
+    s << " | #{login}" if login
+    s << " | #{display_name}" if display_name
     s
   end
 

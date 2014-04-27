@@ -3,6 +3,46 @@
 <vulnerabilities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:noNamespaceSchemaLocation="vuln.xsd">
 
+  <wordpress version="3.8.1">
+    <vulnerability>
+      <title>Administrator-exploitable blind SQLi in WordPress 1.0 - 3.8.1</title>
+      <references>
+        <url>https://security.dxw.com/advisories/sqli-in-wordpress-3-6-1/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Potential Authentication Cookie Forgery</title>
+      <references>
+        <osvdb>105620</osvdb>
+        <url>https://labs.mwrinfosecurity.com/blog/2014/04/11/wordpress-auth-cookie-forgery/</url>
+        <url>https://github.com/WordPress/WordPress/commit/78a915e0e5927cf413aa6c2cef2fca3dc587f8be</url>
+        <cve>2014-0166</cve>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>3.8.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Privilege escalation: contributors publishing posts</title>
+      <references>
+        <osvdb>105630</osvdb>
+        <url>https://github.com/wpscanteam/wpscan/wiki/CVE-2014-0165</url>
+        <cve>2014-0165</cve>
+      </references>
+      <type>BYPASS</type>
+      <fixed_in>3.8.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>105622</osvdb>
+        <secunia>57769</secunia>
+      </references>
+      <type>BYPASS</type>
+      <fixed_in>3.8.2</fixed_in>
+    </vulnerability>
+  </wordpress>
+
   <wordpress version="3.8">
     <vulnerability>
       <title>wp-admin/options-writing.php Cleartext Admin Credentials Disclosure</title>
@@ -16,12 +56,41 @@
 
   <wordpress version="3.7.1">
     <vulnerability>
+      <title>Potential Authentication Cookie Forgery</title>
+      <references>
+        <osvdb>105620</osvdb>
+        <url>https://github.com/WordPress/WordPress/commit/78a915e0e5927cf413aa6c2cef2fca3dc587f8be</url>
+        <cve>2014-0166</cve>
+      </references>
+      <type>AUTHBYPASS</type>
+      <fixed_in>3.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Privilege escalation: contributors publishing posts</title>
+      <references>
+        <osvdb>105630</osvdb>
+        <url>https://github.com/wpscanteam/wpscan/wiki/CVE-2014-0165</url>
+        <cve>2014-0165</cve>
+      </references>
+      <type>BYPASS</type>
+      <fixed_in>3.7.2</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>wp-admin/options-writing.php Cleartext Admin Credentials Disclosure</title>
       <references>
         <osvdb>101101</osvdb>
         <url>http://seclists.org/fulldisclosure/2013/Dec/135</url>
       </references>
       <type>AUTHBYPASS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>105622</osvdb>
+        <secunia>57769</secunia>
+      </references>
+      <type>BYPASS</type>
+      <fixed_in>3.7.2</fixed_in>
     </vulnerability>
   </wordpress>
 
@@ -288,6 +357,30 @@
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Shortcodes / Post Content Multiple Unspecified XSS</title>
+      <references>
+        <osvdb>89576</osvdb>
+        <cve>2013-0236</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57554</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
+    </vulnerability>
   </wordpress>
 
   <wordpress version="3.4.2">
@@ -352,6 +445,18 @@
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
+    </vulnerability>
   </wordpress>
 
   <wordpress version="3.4.1">
@@ -408,6 +513,18 @@
       </references>
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
     </vulnerability>
   </wordpress>
 
@@ -466,6 +583,18 @@
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
+    </vulnerability>
   </wordpress>
 
   <wordpress version="3.4-beta4">
@@ -511,6 +640,18 @@
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
+    </vulnerability>
   </wordpress>
 
   <wordpress version="3.3.3">
@@ -548,6 +689,18 @@
       </references>
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
     </vulnerability>
   </wordpress>
 
@@ -624,6 +777,18 @@
       </references>
       <type>REDIRECT</type>
       <fixed_in>3.6.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Plupload Unspecified XSS</title>
+      <references>
+        <osvdb>89577</osvdb>
+        <cve>2013-0237</cve>
+        <secunia>51967</secunia>
+        <url>http://www.securityfocus.com/bid/57555</url>
+        <url>http://securitytracker.com/id?1028045</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.5.1</fixed_in>
     </vulnerability>
   </wordpress>
 
@@ -1658,6 +1823,7 @@
     <vulnerability>
       <title>wp-includes/comment.php bypass intended spam restrictions via a crafted URL</title>
       <references>
+        <osvdb>104693</osvdb>
         <cve>2010-5293</cve>
       </references>
       <type>UNKNOWN</type>
@@ -1792,10 +1958,11 @@
     <vulnerability>
       <title>When a Multisite installation is used, permanently retains the "site administrators can add users" option once changed, which might allow remote authenticated administrators to bypass intended access restrictions in opportunistic circumstances via an add action after a temporary change.</title>
       <references>
+        <osvdb>104691</osvdb>
         <cve>2010-5297</cve>
       </references>
       <type>AUTHBYPASS</type>
-      <fixed_in>3.0</fixed_in>
+      <fixed_in>3.0.1</fixed_in>
     </vulnerability>
     <vulnerability>
       <title>Crafted String URL Redirect Restriction Bypass</title>
@@ -1838,6 +2005,7 @@
     <vulnerability>
       <title>wp-includes/comment.php bypass intended spam restrictions via a crafted URL</title>
       <references>
+        <osvdb>104693</osvdb>
         <cve>2010-5293</cve>
       </references>
       <type>UNKNOWN</type>

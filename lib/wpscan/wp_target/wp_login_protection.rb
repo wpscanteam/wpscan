@@ -12,7 +12,6 @@ class WpTarget < WebSite
     end
 
     # Checks if a login protection plugin is enabled
-    # http://code.google.com/p/wpscan/issues/detail?id=111
     # return a WpPlugin object or nil if no one is found
     def login_protection_plugin
       unless @login_protection_plugin
