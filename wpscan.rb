@@ -67,7 +67,6 @@ def main
       if wpscan_options.follow_redirection
         puts "Following redirection #{redirection}"
       else
-<<<<<<< HEAD
         puts "#{blue('[i]')} The remote host tried to redirect to: #{redirection}"
         print "[?] Do you want follow the redirection ? [y/n] "
       end
@@ -78,7 +77,6 @@ def main
       else
         puts "#{red('[!]')} Scan aborted"
         exit(0)
-=======
         puts "The remote host redirects to: #{redirection}"
         puts '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
       end
@@ -93,7 +91,6 @@ def main
             exit(0)
           end
         end
->>>>>>> master
       end
     end
 
