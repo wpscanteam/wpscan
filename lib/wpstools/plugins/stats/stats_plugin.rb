@@ -6,7 +6,7 @@ class StatsPlugin < Plugin
     super(author: 'WPScanTeam - Christian Mehlmauer')
 
     register_options(
-        ['--stats', '--s', 'Show WpScan Database statistics']
+        ['--stats', '-s', 'Show WpScan Database statistics.']
     )
   end
 

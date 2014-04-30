@@ -131,7 +131,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 #### WPSCAN ARGUMENTS
 
-    --update  Update to the latest revision
+    --update   Update to the latest revision
 
     --url   | -u <target url>  The WordPress URL/domain to scan.
 
@@ -148,13 +148,13 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
         t        themes
         vt       only vulnerable themes
         at       all themes (can take a long time)
-    Multiple values are allowed : '-e tt,p' will enumerate timthumbs and plugins
-    If no option is supplied, the default is 'vt,tt,u,vp'
+      Multiple values are allowed : "-e tt,p" will enumerate timthumbs and plugins
+      If no option is supplied, the default is "vt,tt,u,vp"
 
-    --exclude-content-based '<regexp or string>'  Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied
-                                                  You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)
+    --exclude-content-based "<regexp or string>" Used with the enumeration option, will exclude all occurrences based on the regexp or string supplied
+                                                 You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)
 
-    --config-file | -c <config file> Use the specified config file
+    --config-file | -c <config file> Use the specified config file, see the example.conf.json
 
     --user-agent | -a <User-Agent> Use the specified User-Agent
 
@@ -166,30 +166,33 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     --wp-plugins-dir <wp plugins dir>  Same thing than --wp-content-dir but for the plugins directory. If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed
 
-    --proxy <[protocol://]host:port>  Supply a proxy (will override the one from conf/browser.conf.json).
-                                      HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used
+    --proxy <[protocol://]host:port> Supply a proxy (will override the one from conf/browser.conf.json).
+                                     HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used
 
-    --proxy-auth <username:password>  Supply the proxy login credentials (will override the one from conf/browser.conf.json).
+    --proxy-auth <username:password>  Supply the proxy login credentials.
 
-    --basic-auth <username:password>  Set the HTTP Basic authentication
+    --basic-auth <username:password>  Set the HTTP Basic authentication.
 
     --wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.
 
-    --threads  | -t <number of threads>  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)
+    --threads  | -t <number of threads>  The number of threads to use when multi-threading requests.
 
     --username | -U <username>  Only brute force the supplied username.
 
-    --cache-ttl <cache-ttl>  Typhoeus cache TTL
+    --cache-ttl <cache-ttl>  Typhoeus cache TTL.
 
-    --request-timeout <request-timeout>  Request Timeout
+    --request-timeout <request-timeout>  Request Timeout.
 
-    --connect-timeout <connect-timeout>  Connect Timeout
+    --connect-timeout <connect-timeout>  Connect Timeout.
 
-    --max-threads <max-threads>  Maximum Threads
+    --max-threads <max-threads>  Maximum Threads.
 
     --help     | -h This help screen.
 
     --verbose  | -v Verbose output.
+
+    --batch Never ask for user input, use the default behaviour.
+
 
 #### WPSCAN EXAMPLES
 
@@ -227,18 +230,23 @@ Debug output...
 
 #### WPSTOOLS ARGUMENTS
 
-    --help    | -h   This help screen.
-    --Verbose | -v   Verbose output.
-    --update  | -u   Update to the latest revision.
-    --generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
-    --gpl  Alias for --generate_plugin_list
-    --check-local-vulnerable-files | --clvf <local directory>  Perform a recursive scan in the <local directory> to find vulnerable files or shells
+    -v, --verbose                                                Verbose output
+        --check-vuln-ref-urls, --cvru                            Check all the vulnerabilities reference urls for 404
+        --check-local-vulnerable-files, --clvf LOCAL_DIRECTORY   Perform a recursive scan in the LOCAL_DIRECTORY to find vulnerable files or shells
+        --generate-plugin-list, --gpl [NUMBER_OF_PAGES]          Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
+        --generate-full-plugin-list, --gfpl                      Generate a new full data/plugins.txt file
+        --generate-theme-list, --gtl [NUMBER_OF_PAGES]           Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 20)
+        --generate-full-theme-list, --gftl                       Generate a new full data/themes.txt file
+        --generate-all, --ga                                     Generate a new full plugins, full themes, popular plugins and popular themes list
+    -s, --stats                                                  Show WpScan Database statistics.
+        --spellcheck, --sc                                       Check all files for common spelling mistakes.
+
 
 #### WPSTOOLS EXAMPLES
 
 Generate a new 'most popular' plugin list, up to 150 pages...
 
-```ruby wpstools.rb --generate_plugin_list 150```
+```ruby wpstools.rb --generate-plugin-list 150```
 
 Locally scan a wordpress installation for vulnerable files or shells :
 ```ruby wpstools.rb --check-local-vulnerable-files /var/www/wordpress/```
