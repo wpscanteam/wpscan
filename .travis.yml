@@ -5,6 +5,9 @@ rvm:
   - 2.0.0
   - 2.1.0
   - 2.1.1
+matrix:
+  allow_failures:
+    - rvm: 2.1.0
 script: bundle exec rspec --format documentation
 notifications:
   email:
