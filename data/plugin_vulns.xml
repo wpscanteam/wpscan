@@ -6422,12 +6422,20 @@
 
   <plugin name="solvemedia">
     <vulnerability>
-      <title>SolveMedia 1.1.0 - CSRF Vulnerability</title>
+      <title>SolveMedia 1.1.0 - plugins.php API Key Manipulation CSRF</title>
       <references>
-        <exploitdb>24364</exploitdb>
         <osvdb>89585</osvdb>
-        <url>http://1337day.com/exploit/20222</url>
         <secunia>51927</secunia>
+        <exploitdb>24364</exploitdb>
+        <url>http://1337day.com/exploit/20222</url>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.1.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>SolveMedia 1.1.0 -  solvemedia.admin.inc Admin Options Page CSRF</title>
+      <references>
+        <osvdb>106320</osvdb>
       </references>
       <type>CSRF</type>
       <fixed_in>1.1.1</fixed_in>
@@ -12398,6 +12406,44 @@
         <url>http://www.securityfocus.com/bid/66999</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="simple-fields">
+    <vulnerability>
+      <title>Simple Fields 1.1.6 - inc-admin-options.php Admin Functions CSRF</title>
+      <references>
+        <osvdb>106316</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.2</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="work-the-flow-file-upload">
+    <vulnerability>
+      <title>Work The Flow File Upload 1.2.1 - wp-admin/admin-ajax.php accept_file_types Parameter Manipulation File Upload Restriction Bypass</title>
+      <references>
+        <osvdb>106366</osvdb>
+        <secunia>58216</secunia>
+        <url>http://www.securityfocus.com/bid/67083</url>
+        <url>http://packetstormsecurity.com/files/126333/</url>
+      </references>
+      <type>RCE</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="file-gallery">
+    <vulnerability>
+      <title>File Gallery 1.7.9 - Settings Page create_function Function Remote Command Execution</title>
+      <references>
+        <osvdb>106417</osvdb>
+        <cve>2014-2558</cve>
+        <secunia>58216</secunia>
+        <url>http://www.securityfocus.com/bid/67120</url>
+      </references>
+      <type>RCE</type>
+      <fixed_in>1.7.9.2</fixed_in>
     </vulnerability>
   </plugin>
 
