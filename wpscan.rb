@@ -63,24 +63,14 @@ def main
       end
     end
 
+    # Remote website has a redirection?
     if (redirection = wp_target.redirection)
       if wpscan_options.follow_redirection
         puts "Following redirection #{redirection}"
       else
         puts "#{blue('[i]')} The remote host tried to redirect to: #{redirection}"
-        print "[?] Do you want follow the redirection ? [y/n] "
+        print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
       end
-
-      if wpscan_options.follow_redirection or Readline.readline =~ /^y/i
-        wpscan_options.url = redirection
-        wp_target = WpTarget.new(redirection, wpscan_options.to_h)
-      else
-        puts "#{red('[!]')} Scan aborted"
-        exit(0)
-        puts "The remote host redirects to: #{redirection}"
-        puts '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
-      end
-
       if wpscan_options.follow_redirection || !wpscan_options.batch
         if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
           wpscan_options.url = redirection
@@ -101,7 +91,7 @@ def main
     # Remote website is wordpress?
     unless wpscan_options.force
       unless wp_target.wordpress?
-        raise 'The remote website is up, but does not seem to be running WordPress.'
+        raise "#{red('[!]')} The remote website is up, but does not seem to be running WordPress."
       end
     end
 
@@ -194,7 +184,7 @@ def main
 
     enum_options = {
       show_progression: true,
-      exclude_content:  wpscan_options.exclude_content_based
+      exclude_content: wpscan_options.exclude_content_based
     }
 
     if wp_version = wp_target.version(WP_VERSIONS_FILE)
@@ -224,7 +214,7 @@ def main
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
-        puts " |  Plugins found: #{wp_plugins.size}"
+        puts " | #{wp_plugins.size} plugins found:"
 
         wp_plugins.output(wpscan_options.verbose)
       else
