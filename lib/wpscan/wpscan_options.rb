@@ -13,6 +13,7 @@ class WpscanOptions
     :enumerate_timthumbs,
     :enumerate_usernames,
     :enumerate_usernames_range,
+    :no_color,
     :proxy,
     :proxy_auth,
     :threads,
@@ -257,7 +258,8 @@ class WpscanOptions
       ['--request-timeout', GetoptLong::REQUIRED_ARGUMENT],
       ['--connect-timeout', GetoptLong::REQUIRED_ARGUMENT],
       ['--max-threads', GetoptLong::REQUIRED_ARGUMENT],
-      ['--batch', GetoptLong::NO_ARGUMENT]
+      ['--batch', GetoptLong::NO_ARGUMENT],
+      ['--no-color', GetoptLong::NO_ARGUMENT]
     )
   end
 

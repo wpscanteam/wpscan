@@ -18,6 +18,9 @@ def main
       raise('No argument supplied')
     end
 
+    # Define a global variable
+    $COLORSWITCH = wpscan_options.no_color
+
     if wpscan_options.help
       help()
       usage()

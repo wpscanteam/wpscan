@@ -95,31 +95,13 @@ def version
   REVISION ? "v#{WPSCAN_VERSION}r#{REVISION}" : "v#{WPSCAN_VERSION}"
 end
 
-# our 1337 banner
-def banner
-  puts '_______________________________________________________________'
-  puts '        __          _______   _____                  '
-  puts '        \\ \\        / /  __ \\ / ____|                 '
-  puts '         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
-  puts '          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
-  puts '           \\  /\\  /  | |     ____) | (__| (_| | | | |'
-  puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
-  puts
-  puts bold('        WordPress Security Scanner by the WPScan Team ')
-  # Alignment of the version (w & w/o the Revision)
-  if REVISION
-    puts "                    Version #{version}"
-  else
-    puts "                        Version #{version}"
-  end
-  puts '     Sponsored by the RandomStorm Open Source Initiative'
-  puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
-  puts '_______________________________________________________________'
-  puts
-end
-
+# Define colors
 def colorize(text, color_code)
-  "\e[#{color_code}m#{text}\e[0m"
+  if $COLORSWITCH
+    "#{text}"
+  else
+    "\e[#{color_code}m#{text}\e[0m"
+  end
 end
 
 def bold(text)
@@ -140,6 +122,29 @@ end
 
 def blue(text)
   colorize(text, 34)
+end
+
+# our 1337 banner
+def banner
+  puts '_______________________________________________________________'
+  puts '        __          _______   _____                  '
+  puts '        \\ \\        / /  __ \\ / ____|                 '
+  puts '         \\ \\  /\\  / /| |__) | (___   ___  __ _ _ __  '
+  puts '          \\ \\/  \\/ / |  ___/ \\___ \\ / __|/ _` | \'_ \\ '
+  puts '           \\  /\\  /  | |     ____) | (__| (_| | | | |'
+  puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
+  puts
+  puts '        WordPress Security Scanner by the WPScan Team '
+  # Alignment of the version (w & w/o the Revision)
+  if REVISION
+    puts "                    Version #{version}"
+  else
+    puts "                        Version #{version}"
+  end
+  puts '     Sponsored by the RandomStorm Open Source Initiative'
+  puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
+  puts '_______________________________________________________________'
+  puts
 end
 
 def xml(file)
