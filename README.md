@@ -193,6 +193,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     --batch Never ask for user input, use the default behaviour.
 
+    --no-color Do not use colors in the output.
 
 #### WPSCAN EXAMPLES
 
