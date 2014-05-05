@@ -26,8 +26,13 @@ class StatsPlugin < Plugin
       puts "[#] Total vulnerable themes:   #{vuln_theme_count}"
       puts
       puts "[#] Total version vulnerabilities: #{version_vulns_count}"
+      puts "[#] Total fixed vulnerabilities:   #{fix_version_count}"
+      puts
       puts "[#] Total plugin vulnerabilities:  #{plugin_vulns_count}"
+      puts "[#] Total fixed vulnerabilities:   #{fix_plugin_count}"
+      puts
       puts "[#] Total theme vulnerabilities:   #{theme_vulns_count}"
+      puts "[#] Total fixed vulnerabilities:   #{fix_theme_count}"
       puts
       puts "[#] Total plugins to enumerate:  #{total_plugins}"
       puts "[#] Total themes to enumerate:   #{total_themes}"
@@ -57,13 +62,24 @@ class StatsPlugin < Plugin
   def version_vulns_count(file=WP_VULNS_FILE)
     xml(file).xpath('count(//vulnerability)').to_i
   end
+  def fix_version_count(file=WP_VULNS_FILE)
+    xml(file).xpath('count(//fixed_in)').to_i
+  end
 
   def plugin_vulns_count(file=PLUGINS_VULNS_FILE)
     xml(file).xpath('count(//vulnerability)').to_i
   end
 
+  def fix_plugin_count(file=PLUGINS_VULNS_FILE)
+    xml(file).xpath('count(//fixed_in)').to_i
+  end
+
   def theme_vulns_count(file=THEMES_VULNS_FILE)
     xml(file).xpath('count(//vulnerability)').to_i
+  end
+
+  def fix_theme_count(file=THEMES_VULNS_FILE)
+    xml(file).xpath('count(//fixed_in)').to_i
   end
 
   def total_plugins(file=PLUGINS_FULL_FILE)
