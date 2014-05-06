@@ -3662,11 +3662,40 @@
 
   <plugin name="wp-ds-faq">
     <vulnerability>
-      <title>WP DS FAQ &lt;= 1.3.2 - SQL Injection Vulnerability</title>
+      <title>WP DS FAQ &lt;= 1.3.2 - ajax.php id Parameter SQL Injection</title>
       <references>
+        <osvdb>74574</osvdb>
+        <secunia>45640</secunia>
         <exploitdb>17683</exploitdb>
       </references>
       <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-ds-faq-plus">
+    <vulnerability>
+      <title>WP DS FAQ Plus 1.0.12 - Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>106614</osvdb>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>1.0.13</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP DS FAQ Plus 1.0.11 - Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>106615</osvdb>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>1.0.12</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP DS FAQ Plus 1.0.3 - Multiple Unspecified CSRF</title>
+      <references>
+        <osvdb>106618</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.0.3</fixed_in>
     </vulnerability>
   </plugin>
 
@@ -8104,6 +8133,14 @@
 
   <plugin name="syntaxhighlighter">
     <vulnerability>
+      <title>SyntaxHighlighter Evolved 3.1.9 - Unspecified XSS</title>
+      <references>
+        <osvdb>106587</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.1.10</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>SyntaxHighlighter Evolved 3.1.5 - clipboard.swf Unspecified XSS</title>
       <references>
         <osvdb>92848</osvdb>
@@ -10051,6 +10088,14 @@
   </plugin>
 
   <plugin name="connections">
+    <vulnerability>
+      <title>Connections Business Directory 0.7.9.3 - includes/template/class.template-parts.php Pagination URL Handling XSS</title>
+      <references>
+        <osvdb>106558</osvdb>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.7.9.4</fixed_in>
+    </vulnerability>
     <vulnerability>
       <title>Connections &lt;= 0.7.1.5 - Unspecified Security Vulnerability</title>
       <references>
@@ -12426,6 +12471,14 @@
       <type>CSRF</type>
       <fixed_in>1.2</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Simple Fields 0.3.5 - simple_fields.php wp_abspath Parameter Remote File Inclusion</title>
+      <references>
+        <osvdb>106622</osvdb>
+      </references>
+      <type>RFI</type>
+      <fixed_in>0.3.6</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="work-the-flow-file-upload">
@@ -12475,6 +12528,17 @@
         <url>http://packetstormsecurity.com/files/126424/</url>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="query-interface">
+    <vulnerability>
+      <title>Query Interface 1.1 - Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>106642</osvdb>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>1.2</fixed_in>
     </vulnerability>
   </plugin>
 
