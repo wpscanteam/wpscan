@@ -77,3 +77,38 @@ describe 'Well formed XML checks' do
     @file = LOCAL_FILES_FILE
   end
 end
+
+describe 'XML content' do
+  before :all do
+    @vuln_plugins = xml(PLUGINS_VULNS_FILE)
+    @vuln_themes = xml(THEMES_VULNS_FILE)
+  end
+
+  after :each do
+    @result.should have(0).items, "Items:\n#{@result.join("\n")}"
+  end
+
+  it 'each plugin vuln needs a type node' do
+    @result = @vuln_plugins.xpath('//vulnerability[not(type)]/title/text()').map(&:text)
+  end
+
+  it 'each theme vuln needs a type node' do
+    @result = @vuln_themes.xpath('//vulnerability[not(type)]/title/text()').map(&:text)
+  end
+
+  it 'each plugin vuln needs a title node' do
+    @result = @vuln_plugins.xpath('//vulnerability[not(title)]/../@name').map(&:text)
+  end
+
+  it 'each theme vuln needs a title node' do
+    @result = @vuln_themes.xpath('//vulnerability[not(title)]/../@name').map(&:text)
+  end
+
+  it 'each plugin vuln needs a references node' do
+    @result = @vuln_plugins.xpath('//vulnerability[not(references)]/title/text()').map(&:text)
+  end
+
+  it 'each theme vuln needs a references node' do
+    @result = @vuln_themes.xpath('//vulnerability[not(references)]/title/text()').map(&:text)
+  end
+end
