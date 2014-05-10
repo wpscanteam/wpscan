@@ -29,7 +29,7 @@ class WpUser < WpItem
 
       File.open(wordlist).each do |password|
         password.chop!
-        
+
         # A successfull login will redirect us to the redirect_to parameter
         # Generate a random one on each request
         unless redirect_url

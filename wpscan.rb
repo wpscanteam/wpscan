@@ -382,6 +382,11 @@ def main
       puts red(e.backtrace.join("\n"))
     end
     exit(1)
+  ensure
+    # Ensure a clean abort of Hydra
+    # See https://github.com/wpscanteam/wpscan/issues/461#issuecomment-42735615
+    Browser.instance.hydra.abort
+    Browser.instance.hydra.run
   end
 end
 
