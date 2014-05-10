@@ -3701,6 +3701,14 @@
       <type>CSRF</type>
       <fixed_in>1.0.3</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>WP DS FAQ Plus - Unspecified SQL Injection</title>
+      <references>
+        <osvdb>106724</osvdb>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>1.0.0</fixed_in>
+    </vulnerability>
   </plugin>
 
   <plugin name="odihost-newsletter-plugin">
@@ -11682,6 +11690,14 @@
 
   <plugin name="search-everything">
     <vulnerability>
+      <title>Search Everything 8.1.0 - options.php Unspecified CSRF</title>
+      <references>
+        <osvdb>106733</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>8.1.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
       <title>Search Everything 7.0.4 - Unspecified Issue</title>
       <references>
         <osvdb>104058</osvdb>
@@ -12553,8 +12569,9 @@
   
   <plugin name="photo-gallery">
     <vulnerability>
-      <title>Photo-Gallery - Cross Site Request Forgery</title>
+      <title>Photo-Gallery - UploadHandler.php File Upload CSRF</title>
       <references>
+        <osvdb>106732</osvdb>
         <url>http://packetstormsecurity.com/files/126521/</url>
       </references>
       <type>CSRF</type>
@@ -12571,5 +12588,19 @@
       <fixed_in>3.9.002</fixed_in>
     </vulnerability>
   </plugin>
+
+  <plugin name="acumbamail-signup-forms">
+    <vulnerability>
+     <title>Acumbamail 1.0.4  - acumbamail.class.php callAPI() Function MitM Information Disclosure</title>
+      <references>
+        <osvdb>106711</osvdb>
+        <secunia>67220</secunia>
+        <url>http://www.securityfocus.com/bid/67220</url>
+      </references>
+      <type>UNKNOWN</type>
+      <fixed_in>1.0.4.1</fixed_in>
+    </vulnerability>
+  </plugin>
+
 
 </vulnerabilities>
