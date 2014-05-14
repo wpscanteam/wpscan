@@ -51,7 +51,7 @@ end
 def puts(o = '')
   # remove color for logging
   if o.respond_to?(:gsub)
-    temp = o.gsub(/\e\[\d+m(.*)?\e\[0m/, '\1')
+    temp = o.gsub(/\e\[\d+m/, '')
     File.open(LOG_FILE, 'a+') { |f| f.puts(temp) }
   end
   super(o)
