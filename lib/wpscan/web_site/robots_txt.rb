@@ -12,9 +12,7 @@ class WebSite
     # Gets a robots.txt URL
     # @return [ String ]
     def robots_url
-      temp = @uri.clone
-      temp.path = '/robots.txt'
-      temp.to_s
+      @uri.clone.merge('robots.txt').to_s
     end
 
 
