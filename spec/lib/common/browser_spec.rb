@@ -190,6 +190,15 @@ describe Browser do
         @expected = default_expectation.merge(params)
       end
     end
+
+    context 'when @cookie' do
+      let(:cookie) { 'foor=bar;bar=foo' }
+      before       { browser.cookie = cookie }
+
+      it 'sets the cookie' do
+        @expected = default_expectation.merge(cookie: cookie)
+      end
+    end
   end
 
   describe '#forge_request' do

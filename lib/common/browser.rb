@@ -16,14 +16,15 @@ class Browser
     :proxy,
     :proxy_auth,
     :request_timeout,
-    :connect_timeout
+    :connect_timeout,
+    :cookie
   ]
 
   @@instance = nil
 
   attr_reader :hydra, :cache_dir
 
-  attr_accessor :referer
+  attr_accessor :referer, :cookie
 
   # @param [ Hash ] options
   #
@@ -153,6 +154,7 @@ class Browser
 
     params.merge!(cookiejar: @cache_dir + '/cookie-jar')
     params.merge!(cookiefile: @cache_dir + '/cookie-jar')
+    params.merge!(cookie: @cookie) if @cookie
 
     params
   end

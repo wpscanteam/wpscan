@@ -29,6 +29,7 @@ class WpscanOptions
     :wp_plugins_dir,
     :help,
     :config_file,
+    :cookie,
     :exclude_content_based,
     :basic_auth,
     :debug_output,
@@ -259,7 +260,8 @@ class WpscanOptions
       ['--connect-timeout', GetoptLong::REQUIRED_ARGUMENT],
       ['--max-threads', GetoptLong::REQUIRED_ARGUMENT],
       ['--batch', GetoptLong::NO_ARGUMENT],
-      ['--no-color', GetoptLong::NO_ARGUMENT]
+      ['--no-color', GetoptLong::NO_ARGUMENT],
+      ['--cookie', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 
