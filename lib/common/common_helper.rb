@@ -1,38 +1,38 @@
 # encoding: UTF-8
 
-LIB_DIR              = File.expand_path(File.dirname(__FILE__) + '/..')
-ROOT_DIR             = File.expand_path(LIB_DIR + '/..') # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
-DATA_DIR             = ROOT_DIR + '/data'
-CONF_DIR             = ROOT_DIR + '/conf'
-CACHE_DIR            = ROOT_DIR + '/cache'
-WPSCAN_LIB_DIR       = LIB_DIR + '/wpscan'
-WPSTOOLS_LIB_DIR     = LIB_DIR + '/wpstools'
-UPDATER_LIB_DIR      = LIB_DIR + '/updater'
-COMMON_LIB_DIR       = LIB_DIR + '/common'
-MODELS_LIB_DIR       = COMMON_LIB_DIR + '/models'
-COLLECTIONS_LIB_DIR  = COMMON_LIB_DIR + '/collections'
+LIB_DIR              = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+DATA_DIR             = File.join(ROOT_DIR, 'data')
+CONF_DIR             = File.join(ROOT_DIR, 'conf')
+CACHE_DIR            = File.join(ROOT_DIR, 'cache')
+WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan')
+WPSTOOLS_LIB_DIR     = File.join(LIB_DIR, 'wpstools')
+UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater')
+COMMON_LIB_DIR       = File.join(LIB_DIR, 'common')
+MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
+COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections')
 
-LOG_FILE             = ROOT_DIR + '/log.txt'
+LOG_FILE             = File.join(ROOT_DIR, 'log.txt')
 
 # Plugins directories
-COMMON_PLUGINS_DIR   = COMMON_LIB_DIR + '/plugins'
-WPSCAN_PLUGINS_DIR   = WPSCAN_LIB_DIR + '/plugins' # Not used ATM
-WPSTOOLS_PLUGINS_DIR = WPSTOOLS_LIB_DIR + '/plugins'
+COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
+WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM
+WPSTOOLS_PLUGINS_DIR = File.join(WPSTOOLS_LIB_DIR, 'plugins')
 
 # Data files
-PLUGINS_FILE        = DATA_DIR + '/plugins.txt'
-PLUGINS_FULL_FILE   = DATA_DIR + '/plugins_full.txt'
-PLUGINS_VULNS_FILE  = DATA_DIR + '/plugin_vulns.xml'
-THEMES_FILE         = DATA_DIR + '/themes.txt'
-THEMES_FULL_FILE    = DATA_DIR + '/themes_full.txt'
-THEMES_VULNS_FILE   = DATA_DIR + '/theme_vulns.xml'
-WP_VULNS_FILE       = DATA_DIR + '/wp_vulns.xml'
-WP_VERSIONS_FILE    = DATA_DIR + '/wp_versions.xml'
-LOCAL_FILES_FILE    = DATA_DIR + '/local_vulnerable_files.xml'
-VULNS_XSD           = DATA_DIR + '/vuln.xsd'
-WP_VERSIONS_XSD     = DATA_DIR + '/wp_versions.xsd'
-LOCAL_FILES_XSD     = DATA_DIR + '/local_vulnerable_files.xsd'
-USER_AGENTS_FILE    = DATA_DIR + '/user-agents.txt'
+PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.txt')
+PLUGINS_FULL_FILE   = File.join(DATA_DIR, 'plugins_full.txt')
+PLUGINS_VULNS_FILE  = File.join(DATA_DIR, 'plugin_vulns.xml')
+THEMES_FILE         = File.join(DATA_DIR, 'themes.txt')
+THEMES_FULL_FILE    = File.join(DATA_DIR, 'themes_full.txt')
+THEMES_VULNS_FILE   = File.join(DATA_DIR, 'theme_vulns.xml')
+WP_VULNS_FILE       = File.join(DATA_DIR, 'wp_vulns.xml')
+WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml')
+LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml')
+VULNS_XSD           = File.join(DATA_DIR, 'vuln.xsd')
+WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd')
+LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
+USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt')
 
 WPSCAN_VERSION       = '2.4.1'
 

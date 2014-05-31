@@ -18,7 +18,7 @@ class CacheFileStore
   # YAML is Human Readable, contrary to Marshal which store in a binary format
   # Marshal does not need any "require"
   def initialize(storage_path, serializer = Marshal)
-    @storage_path = File.expand_path(storage_path + '/' + storage_dir)
+    @storage_path = File.expand_path(File.join(storage_path, storage_dir))
     @serializer   = serializer
 
     # File.directory? for ruby <= 1.9 otherwise,
