@@ -1,5 +1,6 @@
 # encoding: UTF-8
 
+require 'rspec/its'
 require 'webmock/rspec'
 # Code Coverage (only works with ruby >= 1.9)
 require 'simplecov' if RUBY_VERSION >= '1.9'
