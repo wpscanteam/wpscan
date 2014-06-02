@@ -18,13 +18,13 @@ describe 'WebSite' do
   end
 
   describe "#new" do
-    its(:url) { should  === 'http://example.localhost/' }
+    its(:url) { is_expected.to  be === 'http://example.localhost/' }
   end
 
   describe '#url=' do
     after :each do
       web_site.url = @uri
-      web_site.url.should === @expected
+      expect(web_site.url).to be === @expected
     end
 
     context 'when protocol or trailing slash is missing' do
@@ -45,30 +45,30 @@ describe 'WebSite' do
   describe '#online?' do
     it 'should not be considered online if the status code is 0' do
       stub_request(:get, web_site.url).to_return(status: 0)
-      web_site.should_not be_online
+      expect(web_site).not_to be_online
     end
 
     it 'should be considered online if the status code is != 0' do
       stub_request(:get, web_site.url).to_return(status: 200)
-      web_site.should be_online
+      expect(web_site).to be_online
     end
   end
 
   describe '#has_basic_auth?' do
     it 'should detect that the wpsite is basic auth protected' do
       stub_request(:get, web_site.url).to_return(status: 401)
-      web_site.should have_basic_auth
+      expect(web_site).to have_basic_auth
     end
 
     it 'should not have a basic auth for a 200' do
       stub_request(:get, web_site.url).to_return(status: 200)
-      web_site.should_not have_basic_auth
+      expect(web_site).not_to have_basic_auth
     end
   end
 
   describe '#xml_rpc_url' do
     it 'returns the xmlrpc url' do
-      web_site.xml_rpc_url.should === "http://example.localhost/xmlrpc.php"
+      expect(web_site.xml_rpc_url).to be === "http://example.localhost/xmlrpc.php"
     end
   end
 
@@ -77,17 +77,17 @@ describe 'WebSite' do
       stub_request(:get, web_site.xml_rpc_url).
         to_return(status: 200, body: "XML-RPC server accepts POST requests only")
 
-      web_site.should have_xml_rpc
+      expect(web_site).to have_xml_rpc
     end
 
     it 'returns false' do
       stub_request(:get, web_site.xml_rpc_url).to_return(status: 200)
-      web_site.should_not have_xml_rpc
+      expect(web_site).not_to have_xml_rpc
     end
   end
 
   describe '#page_hash' do
-    after { WebSite.page_hash(page).should == Digest::MD5.hexdigest(@expected) }
+    after { expect(WebSite.page_hash(page)).to eq Digest::MD5.hexdigest(@expected) }
 
     context 'when the page is an url' do
       let(:page) { 'http://e.localhost/somepage.php' }
@@ -125,7 +125,7 @@ describe 'WebSite' do
       body = 'Hello World'
 
       stub_request(:get, web_site.url).to_return(body: body)
-      web_site.homepage_hash.should === Digest::MD5.hexdigest(body)
+      expect(web_site.homepage_hash).to be === Digest::MD5.hexdigest(body)
     end
   end
 
@@ -134,19 +134,19 @@ describe 'WebSite' do
       stub_request(:any, /.*/).
         to_return(status: 404, body: '404 page !')
 
-      web_site.error_404_hash.should === Digest::MD5.hexdigest('404 page !')
+      expect(web_site.error_404_hash).to be === Digest::MD5.hexdigest('404 page !')
     end
   end
 
   describe '#rss_url' do
     it 'returns nil if the url is not found' do
       stub_request(:get, web_site.url).to_return(body: 'No RSS link in this body !')
-      web_site.rss_url.should be_nil
+      expect(web_site.rss_url).to be_nil
     end
 
     it "returns 'http://lamp-wp/wordpress-3.5/?feed=rss2'" do
       stub_request_to_fixture(url: web_site.url, fixture: fixtures_dir + '/rss_url/wordpress-3.5.htm')
-      web_site.rss_url.should === 'http://lamp-wp/wordpress-3.5/?feed=rss2'
+      expect(web_site.rss_url).to be === 'http://lamp-wp/wordpress-3.5/?feed=rss2'
     end
   end
 
@@ -156,7 +156,7 @@ describe 'WebSite' do
 
     after do
       stub_request_to_fixture(url: log_url, fixture: fixtures_dir + "/has_log/#{@file}")
-      WebSite.has_log?(log_url, pattern).should == @expected
+      expect(WebSite.has_log?(log_url, pattern)).to eq @expected
     end
 
     context 'when the pattern does not match' do

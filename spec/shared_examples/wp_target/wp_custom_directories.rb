@@ -12,7 +12,7 @@ shared_examples 'WpTarget::WpCustomDirectories' do
       stub_request(:get, /.*\/wp-content\/?$/).to_return(:status => 200, :body => '') # default dir request
       stub_request(:get, /.*\.html$/).to_return(:status => 200, :body => '') # 404 hash request
 
-      @wp_target.wp_content_dir.should === @expected
+      expect(@wp_target.wp_content_dir).to be === @expected
     end
 
     it 'returns the string set in the initialize method' do
@@ -80,7 +80,7 @@ shared_examples 'WpTarget::WpCustomDirectories' do
       @wp_target = WpTarget.new('http://lamp.localhost/')
       stub_request(:get, @wp_target.url).to_return(:status => 200, :body => 'homepage') # homepage request
 
-      @wp_target.default_wp_content_dir_exists?.should === @expected
+      expect(@wp_target.default_wp_content_dir_exists?).to be === @expected
     end
 
     it 'returns false if wp-content returns an invalid response code' do
@@ -110,7 +110,7 @@ shared_examples 'WpTarget::WpCustomDirectories' do
 
   describe '#wp_plugins_dir' do
     after :each do
-      @wp_target.wp_plugins_dir.should === @expected
+      expect(@wp_target.wp_plugins_dir).to be === @expected
     end
 
     it 'returns the string set in the initialize method' do
@@ -131,12 +131,12 @@ shared_examples 'WpTarget::WpCustomDirectories' do
 
     it 'returns true' do
       stub_request(:get, url).to_return(status: 200)
-      wp_target.wp_plugins_dir_exists?.should == true
+      expect(wp_target.wp_plugins_dir_exists?).to eq true
     end
 
     it 'returns false' do
       stub_request(:get, url).to_return(status: 404)
-      wp_target.wp_plugins_dir_exists?.should == false
+      expect(wp_target.wp_plugins_dir_exists?).to eq false
     end
   end
 

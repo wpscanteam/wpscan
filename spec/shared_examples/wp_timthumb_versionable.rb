@@ -6,7 +6,7 @@ shared_examples 'WpTimthumb::Versionable' do
     after do
       stub_request(:get, subject.url).to_return(status: 200, body: @body)
 
-      subject.version.should === @expected
+      expect(subject.version).to be === @expected
     end
 
     context 'when a version is already set' do
@@ -32,7 +32,7 @@ shared_examples 'WpTimthumb::Versionable' do
   end
 
   describe '#to_s' do
-    after { subject.to_s.should == @expected }
+    after { expect(subject.to_s).to eq @expected }
 
     context 'when there is a version' do
       it 'returns it with the url' do
@@ -43,7 +43,7 @@ shared_examples 'WpTimthumb::Versionable' do
 
     context 'when there is not a version' do
       it 'returns only the url' do
-        subject.stub(:version).and_return(nil)
+        allow(subject).to receive(:version).and_return(nil)
         @expected = uri.merge(options[:path]).to_s
       end
     end

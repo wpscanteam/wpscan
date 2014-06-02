@@ -11,7 +11,7 @@ describe GitUpdater do
   describe '#is_installed?' do
     after :each do
       stub_system_command(@git_updater, /^git .* status/, @stub_value)
-      @git_updater.is_installed?.should === @expected
+      expect(@git_updater.is_installed?).to be === @expected
     end
 
     it 'should return false if the command is not found' do
@@ -28,7 +28,7 @@ describe GitUpdater do
   describe '#local_revision_number' do
     after :each do
       stub_system_command(@git_updater, /^git .* log/, @stub_value)
-      @git_updater.local_revision_number.should === @expected
+      expect(@git_updater.local_revision_number).to be === @expected
     end
 
     it 'should return 79c01f3' do
@@ -43,14 +43,14 @@ describe GitUpdater do
   describe '#update' do
     it 'should do nothing xD' do
       stub_system_command(@git_updater, /^git .* pull/, 'Already up-to-date.')
-      @git_updater.update().should === 'Already up-to-date.'
+      expect(@git_updater.update()).to be === 'Already up-to-date.'
     end
   end
 
   describe '#has_local_changes?' do
     after :each do
       stub_system_command(@git_updater, /^git .* diff --exit-code 2>&1/, @stub_value)
-      @git_updater.has_local_changes?.should === @expected
+      expect(@git_updater.has_local_changes?).to be === @expected
     end
 
     it 'should return true if there are local changes' do
@@ -67,7 +67,7 @@ describe GitUpdater do
   describe '#reset_head' do
     it 'should reset the local repo' do
       stub_system_command(@git_updater, /^git .* reset --hard HEAD/, 'HEAD is now at')
-      @git_updater.reset_head.should match(/^HEAD is now at/)
+      expect(@git_updater.reset_head).to match(/^HEAD is now at/)
     end
   end
 

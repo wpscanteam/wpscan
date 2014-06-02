@@ -4,7 +4,7 @@ shared_examples 'WpTarget::WpLoginProtection' do
 
   let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/wp_login_protection' }
 
-  before { wp_target.stub(:wp_plugins_dir).and_return('wp-content/plugins') }
+  before { allow(wp_target).to receive(:wp_plugins_dir).and_return('wp-content/plugins') }
 
   # It will test all protected methods has_.*_protection with each fixtures to be sure that
   # there is not false positive : for example the login-lock must not be detected as login-lockdown
@@ -33,7 +33,7 @@ shared_examples 'WpTarget::WpLoginProtection' do
         stub_request(:get, wp_target.send(special_plugin_call_url_symbol).to_s).to_return(status: status_code)
       end
 
-      wp_target.send(@symbol_to_call).should === @expected
+      expect(wp_target.send(@symbol_to_call)).to be === @expected
     end
 
     self.protected_instance_methods.grep(pattern).each do |symbol_to_call|
@@ -63,8 +63,8 @@ shared_examples 'WpTarget::WpLoginProtection' do
       stub_request(:get, wp_target.send(:limit_login_attempts_url).to_s).to_return(status: 404)
       stub_request(:get, wp_target.send(:bluetrait_event_viewer_url).to_s).to_return(status: 404)
 
-      wp_target.login_protection_plugin().should == @plugin_expected
-      wp_target.has_login_protection?.should === @has_protection_expected
+      expect(wp_target.login_protection_plugin()).to eq @plugin_expected
+      expect(wp_target.has_login_protection?).to be === @has_protection_expected
     end
 
     it 'returns nil if no protection is present' do

@@ -24,7 +24,7 @@ describe WpVersion do
 
   describe '#allowed_options' do
     [:number, :found_from].each do |sym|
-      its(:allowed_options) { should include sym }
+      its(:allowed_options) { is_expected.to include sym }
     end
   end
 

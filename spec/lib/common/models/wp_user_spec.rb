@@ -12,10 +12,10 @@ describe WpUser do
 
   describe '#allowed_options' do
     [:id, :login, :display_name, :password].each do |sym|
-      its(:allowed_options) { should include sym }
+      its(:allowed_options) { is_expected.to include sym }
     end
 
-    its(:allowed_options) { should_not include :name }
+    its(:allowed_options) { is_expected.not_to include :name }
   end
 
   describe '#uri' do
@@ -29,7 +29,7 @@ describe WpUser do
       it 'returns the uri to the auhor page' do
         wp_user.id = 2
 
-        wp_user.uri.should == uri.merge('?author=2')
+        expect(wp_user.uri).to eq uri.merge('?author=2')
       end
     end
   end
@@ -37,7 +37,7 @@ describe WpUser do
   describe '#to_s' do
     after do
       subject.id = 1
-      subject.to_s.should == @expected
+      expect(subject.to_s).to eq @expected
     end
 
     it 'returns @id' do
@@ -67,20 +67,20 @@ describe WpUser do
       wp_user.id = 1
       other      = WpUser.new(uri, id: 3)
 
-      wp_user.<=>(other).should === 1.<=>(3)
+      expect(wp_user.<=>(other)).to be === 1.<=>(3)
     end
   end
 
   describe '#===, #==' do
     context 'when the :id and :login are the same' do
       it 'is ===, and ==' do
-        WpUser.new(uri, id: 1, name: 'yo').should == WpUser.new(uri, id: 1, name: 'yo')
+        expect(WpUser.new(uri, id: 1, name: 'yo')).to eq WpUser.new(uri, id: 1, name: 'yo')
       end
     end
 
     context 'when :id and :login are different' do
       it 'is not === or ==' do
-        WpUser.new(uri, id: 1, name: 'yo').should_not == WpUser.new(uri, id: 2, name:'yo')
+        expect(WpUser.new(uri, id: 1, name: 'yo')).not_to eq WpUser.new(uri, id: 2, name:'yo')
       end
     end
   end

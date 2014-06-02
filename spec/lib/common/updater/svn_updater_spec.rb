@@ -11,7 +11,7 @@ describe SvnUpdater do
   describe '#is_installed?' do
     after :each do
       stub_system_command(@svn_updater, /^svn info/, @stub_value)
-      @svn_updater.is_installed?.should === @expected
+      expect(@svn_updater.is_installed?).to be === @expected
     end
 
     it 'should return false if the svn command is not found' do
@@ -50,7 +50,7 @@ describe SvnUpdater do
   describe '#local_revision_number' do
     after :each do
       stub_system_command(@svn_updater, /^svn info/, @stub_value)
-      @svn_updater.local_revision_number.should === @expected
+      expect(@svn_updater.local_revision_number).to be === @expected
     end
 
     it 'should return 399' do
@@ -79,7 +79,7 @@ describe SvnUpdater do
   describe '#update' do
     it 'should do nothing xD' do
       stub_system_command(@svn_updater, /^svn up/, 'At revision 425.')
-      @svn_updater.update().should === 'At revision 425.'
+      expect(@svn_updater.update()).to be === 'At revision 425.'
     end
   end
 

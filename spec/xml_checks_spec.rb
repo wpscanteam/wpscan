@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'XSD checks' do
 
   after :each do
-    FileTest.exists?(@file).should be_true
+    expect(FileTest.exists?(@file)).to be_truthy
 
     xsd = Nokogiri::XML::Schema(File.read(@xsd))
     doc = Nokogiri::XML(File.read(@file))
@@ -48,7 +48,7 @@ end
 
 describe 'Well formed XML checks' do
   after :each do
-    FileTest.exists?(@file).should be_true
+    expect(FileTest.exists?(@file)).to be_truthy
 
     begin
       Nokogiri::XML(File.open(@file)) { |config| config.options = Nokogiri::XML::ParseOptions::STRICT }
@@ -85,7 +85,7 @@ describe 'XML content' do
   end
 
   after :each do
-    @result.should have(0).items, "Items:\n#{@result.join("\n")}"
+    expect(@result.size).to eq(0), "Items:\n#{@result.join("\n")}"
   end
 
   it 'each plugin vuln needs a type node' do

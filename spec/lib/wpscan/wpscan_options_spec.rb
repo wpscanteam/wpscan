@@ -11,7 +11,7 @@ describe 'WpscanOptions' do
   describe '#initialize' do
     it 'should set all options to nil' do
       WpscanOptions::ACCESSOR_OPTIONS.each do |option|
-        @wpscan_options.send(option).should === nil
+        expect(@wpscan_options.send(option)).to be === nil
       end
     end
   end
@@ -24,27 +24,27 @@ describe 'WpscanOptions' do
 
     it 'should add the http protocol if not present' do
       @wpscan_options.url = 'example.com'
-      @wpscan_options.url.should === 'http://example.com'
+      expect(@wpscan_options.url).to be === 'http://example.com'
     end
 
     it "should not add the http protocol if it's already present" do
       url = 'http://example.com'
       @wpscan_options.url = url
-      @wpscan_options.url.should === url
+      expect(@wpscan_options.url).to be === url
     end
   end
 
   describe '#threads=' do
     it 'should convert an integer in a string into an integr' do
       @wpscan_options.threads = '10'
-      @wpscan_options.threads.should be_an Integer
-      @wpscan_options.threads.should === 10
+      expect(@wpscan_options.threads).to be_an Integer
+      expect(@wpscan_options.threads).to be === 10
     end
 
     it 'should set to correct number of threads' do
       @wpscan_options.threads = 15
-      @wpscan_options.threads.should be_an Integer
-      @wpscan_options.threads.should === 15
+      expect(@wpscan_options.threads).to be_an Integer
+      expect(@wpscan_options.threads).to be === 15
     end
   end
 
@@ -57,7 +57,7 @@ describe 'WpscanOptions' do
       wordlist_file = "#{SPEC_FIXTURES_WPSCAN_WPSCAN_OPTIONS_DIR}/wordlist.txt"
 
       @wpscan_options.wordlist = wordlist_file
-      @wpscan_options.wordlist.should === wordlist_file
+      expect(@wpscan_options.wordlist).to be === wordlist_file
     end
   end
 
@@ -69,7 +69,7 @@ describe 'WpscanOptions' do
     it 'should not raise an error' do
       proxy = '127.0.0.1:3038'
       @wpscan_options.proxy = proxy
-      @wpscan_options.proxy.should === proxy
+      expect(@wpscan_options.proxy).to be === proxy
     end
   end
 
@@ -81,7 +81,7 @@ describe 'WpscanOptions' do
     it 'should not raise en error' do
       proxy_auth = 'user:pass'
       @wpscan_options.proxy_auth = proxy_auth
-      @wpscan_options.proxy_auth.should === proxy_auth
+      expect(@wpscan_options.proxy_auth).to be === proxy_auth
     end
   end
 
@@ -97,7 +97,7 @@ describe 'WpscanOptions' do
       @wpscan_options.enumerate_only_vulnerable_plugins = false
       @wpscan_options.enumerate_plugins = true
 
-      @wpscan_options.enumerate_plugins.should be_true
+      expect(@wpscan_options.enumerate_plugins).to be_truthy
     end
   end
 
@@ -113,7 +113,7 @@ describe 'WpscanOptions' do
       @wpscan_options.enumerate_only_vulnerable_themes = false
       @wpscan_options.enumerate_themes = true
 
-      @wpscan_options.enumerate_themes.should be_true
+      expect(@wpscan_options.enumerate_themes).to be_truthy
     end
   end
 
@@ -129,7 +129,7 @@ describe 'WpscanOptions' do
       @wpscan_options.enumerate_plugins = false
       @wpscan_options.enumerate_only_vulnerable_plugins = true
 
-      @wpscan_options.enumerate_only_vulnerable_plugins.should be_true
+      expect(@wpscan_options.enumerate_only_vulnerable_plugins).to be_truthy
     end
   end
 
@@ -145,7 +145,7 @@ describe 'WpscanOptions' do
       @wpscan_options.enumerate_themes = false
       @wpscan_options.enumerate_only_vulnerable_themes = true
 
-      @wpscan_options.enumerate_only_vulnerable_themes.should be_true
+      expect(@wpscan_options.enumerate_only_vulnerable_themes).to be_truthy
     end
   end
 
@@ -161,7 +161,7 @@ describe 'WpscanOptions' do
       @wpscan_options.enumerate_themes = false
       @wpscan_options.enumerate_all_themes = true
 
-      @wpscan_options.enumerate_all_themes.should be_true
+      expect(@wpscan_options.enumerate_all_themes).to be_truthy
     end
   end
 
@@ -177,7 +177,7 @@ describe 'WpscanOptions' do
       @wpscan_options.enumerate_plugins = false
       @wpscan_options.enumerate_all_plugins = true
 
-      @wpscan_options.enumerate_all_plugins.should be_true
+      expect(@wpscan_options.enumerate_all_plugins).to be_truthy
     end
   end
 
@@ -193,39 +193,39 @@ describe 'WpscanOptions' do
     context 'valid format' do
       it "should add the 'Basic' word and do the encode64. See RFC 2617" do
         @wpscan_options.basic_auth = 'Aladdin:open sesame'
-        @wpscan_options.basic_auth.should == 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
+        expect(@wpscan_options.basic_auth).to eq 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
       end
     end
   end
 
   describe '#has_options?' do
     it 'should return false' do
-      @wpscan_options.has_options?.should be_false
+      expect(@wpscan_options.has_options?).to be_falsey
     end
 
     it 'should return true' do
       @wpscan_options.verbose = false
-      @wpscan_options.has_options?.should be_true
+      expect(@wpscan_options.has_options?).to be_truthy
     end
   end
 
   describe '#to_h' do
     it 'should return an empty hash' do
-      @wpscan_options.to_h.should be_a Hash
-      @wpscan_options.to_h.should be_empty
+      expect(@wpscan_options.to_h).to be_a Hash
+      expect(@wpscan_options.to_h).to be_empty
     end
 
     it 'should return a hash with :verbose = true' do
       expected = {verbose: true}
       @wpscan_options.verbose = true
 
-      @wpscan_options.to_h.should === expected
+      expect(@wpscan_options.to_h).to be === expected
     end
   end
 
   describe '#clean_option' do
     after :each do
-      WpscanOptions.clean_option(@option).should === @expected
+      expect(WpscanOptions.clean_option(@option)).to be === @expected
     end
 
     it "should return 'url'" do
@@ -246,7 +246,7 @@ describe 'WpscanOptions' do
 
   describe '#option_to_instance_variable_setter' do
     after :each do
-      WpscanOptions.option_to_instance_variable_setter(@argument).should === @expected
+      expect(WpscanOptions.option_to_instance_variable_setter(@argument)).to be === @expected
     end
 
     it 'should return :url=' do
@@ -277,12 +277,12 @@ describe 'WpscanOptions' do
 
   describe '#is_long_option?' do
     it 'should return true' do
-      WpscanOptions.is_long_option?('--url').should be_true
+      expect(WpscanOptions.is_long_option?('--url')).to be_truthy
     end
 
     it 'should return false' do
-      WpscanOptions.is_long_option?('hello').should be_false
-      WpscanOptions.is_long_option?('--enumerate').should be_false
+      expect(WpscanOptions.is_long_option?('hello')).to be_falsey
+      expect(WpscanOptions.is_long_option?('--enumerate')).to be_falsey
     end
   end
 
@@ -291,7 +291,7 @@ describe 'WpscanOptions' do
       if @argument
         wpscan_options = WpscanOptions.new
         wpscan_options.enumerate_options_from_string(@argument)
-        wpscan_options.to_h.should === @expected_hash
+        expect(wpscan_options.to_h).to be === @expected_hash
       end
     end
 
@@ -341,20 +341,20 @@ describe 'WpscanOptions' do
 
     it 'should set @url to example.com' do
       @wpscan_options.set_option_from_cli('--url', 'example.com')
-      @wpscan_options.url.should === 'http://example.com'
+      expect(@wpscan_options.url).to be === 'http://example.com'
     end
 
     it 'should set @enumerate_plugins to true' do
       @wpscan_options.set_option_from_cli('--enumerate', 'p')
-      @wpscan_options.enumerate_plugins.should be_true
-      @wpscan_options.enumerate_only_vulnerable_plugins.should be_nil
+      expect(@wpscan_options.enumerate_plugins).to be_truthy
+      expect(@wpscan_options.enumerate_only_vulnerable_plugins).to be_nil
     end
 
     it 'should set @enumerate_only_vulnerable_plugins, @enumerate_timthumbs and @enumerate_usernames to true if no argument is given' do
       @wpscan_options.set_option_from_cli('--enumerate', '')
-      @wpscan_options.enumerate_only_vulnerable_plugins.should be_true
-      @wpscan_options.enumerate_timthumbs.should be_true
-      @wpscan_options.enumerate_usernames.should be_true
+      expect(@wpscan_options.enumerate_only_vulnerable_plugins).to be_truthy
+      expect(@wpscan_options.enumerate_timthumbs).to be_truthy
+      expect(@wpscan_options.enumerate_usernames).to be_truthy
     end
   end
 
@@ -362,7 +362,7 @@ describe 'WpscanOptions' do
     after :each do
       set_argv(@argv)
       wpscan_options = WpscanOptions.load_from_arguments
-      wpscan_options.to_h.should === @expected_hash
+      expect(wpscan_options.to_h).to be === @expected_hash
     end
 
     it 'should return {}' do

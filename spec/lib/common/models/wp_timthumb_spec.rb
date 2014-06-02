@@ -13,17 +13,19 @@ describe WpTimthumb do
   describe '#==' do
     context 'when both url are equal' do
       it 'returns true' do
-        WpTimthumb.new(uri, path: 'timtuhumb.php').
-        should ==
+        expect(WpTimthumb.new(uri, path: 'timtuhumb.php')).
+        to eq(
         WpTimthumb.new(uri, path: 'timtuhumb.php')
+        )
       end
     end
 
     context 'when urls are different' do
       it 'returns false' do
-        WpTimthumb.new(uri, path: 'hello/timtuhumb.php').
-        should_not ==
+        expect(WpTimthumb.new(uri, path: 'hello/timtuhumb.php')).
+        not_to eq(
         WpTimthumb.new(uri, path: 'some-dir/timtuhumb.php')
+        )
       end
     end
   end

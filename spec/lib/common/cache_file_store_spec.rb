@@ -17,14 +17,14 @@ describe CacheFileStore do
 
   describe '#storage_path' do
     it 'returns the storage path given in the #new' do
-      @cache.storage_path.should match(/#{cache_dir}/)
+      expect(@cache.storage_path).to match(/#{cache_dir}/)
     end
   end
 
   describe '#serializer' do
     it 'should return the default serializer : Marshal' do
-      @cache.serializer.should     == Marshal
-      @cache.serializer.should_not == YAML
+      expect(@cache.serializer).to     eq Marshal
+      expect(@cache.serializer).not_to eq YAML
     end
   end
 
@@ -35,15 +35,15 @@ describe CacheFileStore do
         File.new(@cache.storage_path + "/file_#{i}.txt", File::CREAT)
       end
 
-      count_files_in_dir(@cache.storage_path, 'file_*.txt').should == 6
+      expect(count_files_in_dir(@cache.storage_path, 'file_*.txt')).to eq 6
       @cache.clean
-      count_files_in_dir(@cache.storage_path).should == 0
+      expect(count_files_in_dir(@cache.storage_path)).to eq 0
     end
   end
 
   describe '#read_entry (nonexistent entry)' do
     it 'should return nil' do
-      @cache.read_entry(Digest::SHA1.hexdigest('hello world')).should be_nil
+      expect(@cache.read_entry(Digest::SHA1.hexdigest('hello world'))).to be_nil
     end
   end
 
@@ -51,7 +51,7 @@ describe CacheFileStore do
 
     after :each do
       @cache.write_entry(@key, @data, @timeout)
-      @cache.read_entry(@key).should === @expected
+      expect(@cache.read_entry(@key)).to be === @expected
     end
 
     it 'should get the correct entry (string)' do
@@ -79,7 +79,7 @@ describe CacheFileStore do
         storage_dirs << CacheFileStore.new(cache_dir).storage_path
       end
 
-      storage_dirs.uniq.size.should == 5
+      expect(storage_dirs.uniq.size).to eq 5
     end
   end
 end

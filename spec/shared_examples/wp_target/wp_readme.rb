@@ -6,7 +6,7 @@ shared_examples 'WpTarget::WpReadme' do
 
   describe '#readme_url' do
     it 'returns http://example.localhost/readme.html' do
-      wp_target.readme_url.should === "#{wp_target.uri}readme.html"
+      expect(wp_target.readme_url).to be === "#{wp_target.uri}readme.html"
     end
   end
 
@@ -14,7 +14,7 @@ shared_examples 'WpTarget::WpReadme' do
     after do
       stub_request(:get, wp_target.readme_url).to_return(@stub)
 
-      wp_target.has_readme?.should === @expected
+      expect(wp_target.has_readme?).to be === @expected
     end
 
     it 'returns false on a 404' do

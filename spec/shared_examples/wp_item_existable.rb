@@ -8,19 +8,19 @@ shared_examples 'WpItem::Existable' do
       let(:response) { Typhoeus::Response.new }
 
       it 'does not create a request' do
-        Browser.should_not_receive(:get)
-        subject.stub(:exists_from_response?).and_return(true)
+        expect(Browser).not_to receive(:get)
+        allow(subject).to receive(:exists_from_response?).and_return(true)
 
-        subject.exists?({}, response).should be_true
+        expect(subject.exists?({}, response)).to be_truthy
       end
     end
 
     context 'when the response is not supplied' do
       it 'creates a request' do
-        Browser.should_receive(:get)
-        subject.stub(:exists_from_response?).and_return(false)
+        expect(Browser).to receive(:get)
+        allow(subject).to receive(:exists_from_response?).and_return(false)
 
-        subject.exists?.should be_false
+        expect(subject.exists?).to be_falsey
       end
     end
   end
@@ -31,7 +31,7 @@ shared_examples 'WpItem::Existable' do
 
     after do
       response = Typhoeus::Response.new(@resp_opt)
-      subject.send(:exists_from_response?, response, exists_options).should == @expected
+      expect(subject.send(:exists_from_response?, response, exists_options)).to eq @expected
     end
 
     context 'when invalid response.code' do

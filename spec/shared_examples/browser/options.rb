@@ -8,7 +8,7 @@ shared_examples 'Browser::Options' do
     after do
       if @expected
         browser.basic_auth = @auth
-        browser.basic_auth.should == @expected
+        expect(browser.basic_auth).to eq @expected
       else
         expect { browser.basic_auth = @auth }.to raise_error(exception)
       end
@@ -47,7 +47,7 @@ shared_examples 'Browser::Options' do
     after do
       if @expected
         browser.max_threads = @max_threads
-        browser.max_threads.should == @expected
+        expect(browser.max_threads).to eq @expected
       else
         expect { browser.max_threads = @max_threads }.to raise_error(exception)
       end
@@ -77,7 +77,7 @@ shared_examples 'Browser::Options' do
     after do
       if @expected
         browser.proxy = @proxy
-        browser.proxy.should == @expected
+        expect(browser.proxy).to eq @expected
       else
         expect { browser.proxy = @proxy }.to raise_error(exception)
       end
@@ -101,7 +101,7 @@ shared_examples 'Browser::Options' do
     after :each do
       if @expected
         browser.proxy_auth = @proxy_auth
-        browser.proxy_auth.should === @expected
+        expect(browser.proxy_auth).to be === @expected
       else
         expect { browser.proxy_auth = @proxy_auth }.to raise_error
       end
@@ -163,7 +163,7 @@ shared_examples 'Browser::Options' do
       let(:override_options) { { max_threads: nil } }
 
       it 'does not set it' do
-        browser.should_not_receive(:max_threads=)
+        expect(browser).not_to receive(:max_threads=)
       end
     end
 
@@ -171,7 +171,7 @@ shared_examples 'Browser::Options' do
       let(:override_options) { { not_allowed: 'owned' } }
 
       it 'does not set it' do
-        browser.should_not_receive(:not_allowed=)
+        expect(browser).not_to receive(:not_allowed=)
       end
     end
 
@@ -179,7 +179,7 @@ shared_examples 'Browser::Options' do
       let(:override_options) { { max_threads: 30 } }
 
       it 'sets it' do
-        browser.should_receive(:max_threads=).with(30)
+        expect(browser).to receive(:max_threads=).with(30)
       end
     end
 
@@ -189,9 +189,9 @@ shared_examples 'Browser::Options' do
       }
 
       it 'sets @max_threads, @proxy' do
-        browser.should_not_receive(:not_allowed=)
-        browser.should_receive(:max_threads=).with(10)
-        browser.should_receive(:proxy=).with('host:port')
+        expect(browser).not_to receive(:not_allowed=)
+        expect(browser).to receive(:max_threads=).with(10)
+        expect(browser).to receive(:proxy=).with('host:port')
       end
     end
   end

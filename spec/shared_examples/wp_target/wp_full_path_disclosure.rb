@@ -6,7 +6,7 @@ shared_examples 'WpTarget::WpFullPathDisclosure' do
 
   describe '#full_path_disclosure_url' do
     it 'returns http://example.localhost/wp-includes/rss-functions.php' do
-      wp_target.full_path_disclosure_url.should === 'http://example.localhost/wp-includes/rss-functions.php'
+      expect(wp_target.full_path_disclosure_url).to be === 'http://example.localhost/wp-includes/rss-functions.php'
     end
   end
 
@@ -15,7 +15,7 @@ shared_examples 'WpTarget::WpFullPathDisclosure' do
       stub_request(:get, wp_target.full_path_disclosure_url).
         to_return(@stub)
 
-      wp_target.has_full_path_disclosure?.should === @expected
+      expect(wp_target.has_full_path_disclosure?).to be === @expected
     end
 
     it 'returns false on a 404' do

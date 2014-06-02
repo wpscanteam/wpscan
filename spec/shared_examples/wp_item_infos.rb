@@ -8,7 +8,7 @@ shared_examples 'WpItem::Infos' do
   #  let(:error_log_url) { }
 
   describe '#readme_url' do
-    after { subject.readme_url.should === @expected }
+    after { expect(subject.readme_url).to be === @expected }
 
     it 'returns nil' do
       stub_request(:get, /.*/).to_return(status: 404)
@@ -30,8 +30,8 @@ shared_examples 'WpItem::Infos' do
 
   describe '#has_readme?' do
     after do
-      subject.stub(readme_url: @stub)
-      subject.has_readme?.should === @expected
+      allow(subject).to receive_messages(readme_url: @stub)
+      expect(subject.has_readme?).to be === @expected
     end
 
     context 'when readme_url is nil'
@@ -49,14 +49,14 @@ shared_examples 'WpItem::Infos' do
 
   describe '#changelog_url' do
     it 'returns the correct url' do
-      subject.changelog_url.should == changelog_url
+      expect(subject.changelog_url).to eq changelog_url
     end
   end
 
   describe '#has_changelog?' do
     after :each do
       stub_request(:get, subject.changelog_url).to_return(status: @status)
-      subject.has_changelog?.should === @expected
+      expect(subject.has_changelog?).to be === @expected
     end
 
     it 'returns true on a 200' do
@@ -73,7 +73,7 @@ shared_examples 'WpItem::Infos' do
   describe '#has_directory_listing?' do
     after do
       stub_request(:get, subject.uri.to_s).to_return(@stub_return)
-      subject.has_directory_listing?.should === @expected
+      expect(subject.has_directory_listing?).to be === @expected
     end
 
     context 'when the body contains <title>Index of' do
@@ -96,14 +96,14 @@ shared_examples 'WpItem::Infos' do
 
   describe '#error_log_url' do
     it 'returns the correct url' do
-      subject.error_log_url.should == error_log_url
+      expect(subject.error_log_url).to eq error_log_url
     end
   end
 
   describe '#has_error_log?' do
     after do
       stub_request(:get, subject.error_log_url).to_return(@stub_return)
-      subject.has_error_log?.should === @expected
+      expect(subject.has_error_log?).to be === @expected
     end
 
     it 'returns true if the pattern is detected' do

@@ -15,7 +15,7 @@ describe CustomOptionParser do
       if @exception
         expect { CustomOptionParser::option_to_symbol(@option) }.to raise_error(@exception)
       else
-        CustomOptionParser::option_to_symbol(@option).should === @expected
+        expect(CustomOptionParser::option_to_symbol(@option)).to be === @expected
       end
     end
 
@@ -100,7 +100,7 @@ describe CustomOptionParser do
       parser.add_option(['-v', '--verbose'])
       parser.add_option(['--url TARGET_URL'])
 
-      parser.symbols_used.sort.should === [:url, :verbose]
+      expect(parser.symbols_used.sort).to be === [:url, :verbose]
     end
 
     context 'parsing' do
@@ -118,7 +118,7 @@ describe CustomOptionParser do
 
       it 'should retrieve the correct argument' do
         parser.parse!(['-u', 'iam_the_target'])
-        parser.results.should === { url: 'iam_the_target' }
+        expect(parser.results).to be === { url: 'iam_the_target' }
       end
     end
   end
@@ -134,8 +134,8 @@ describe CustomOptionParser do
 
     context 'single option' do
       it 'should add the :url option, and retrieve the correct argument' do
-        parser.symbols_used.should === [:url]
-        parser.results(['-u', 'target.com']).should === { url: 'target.com' }
+        expect(parser.symbols_used).to be === [:url]
+        expect(parser.results(['-u', 'target.com'])).to be === { url: 'target.com' }
       end
     end
 
@@ -146,8 +146,8 @@ describe CustomOptionParser do
           ['--test [TEST_NUMBER]']
         ])
 
-        parser.symbols_used.sort.should === [:test, :url, :verbose]
-        parser.results(['-u', 'wp.com', '-v', '--test']).should === { test: nil, url: 'wp.com', verbose: true }
+        expect(parser.symbols_used.sort).to be === [:test, :url, :verbose]
+        expect(parser.results(['-u', 'wp.com', '-v', '--test'])).to be === { test: nil, url: 'wp.com', verbose: true }
       end
     end
   end

@@ -10,7 +10,7 @@ shared_examples 'WpTheme::Versionable' do
         stub_request(:get, subject.style_url).to_return(status: 200, body: body)
       end
 
-      subject.version.should == @expected
+      expect(subject.version).to eq @expected
     end
 
     context 'the version is already set' do
@@ -35,7 +35,7 @@ shared_examples 'WpTheme::Versionable' do
 
       context 'from both style & readme' do
         it 'returns nil' do
-          subject.stub(readme_url: readme_url)
+          allow(subject).to receive_messages(readme_url: readme_url)
           stub_request(:get, readme_url).to_return(status: 404)
 
           @file     = file

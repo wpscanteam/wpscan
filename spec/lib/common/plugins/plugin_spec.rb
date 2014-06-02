@@ -10,7 +10,7 @@ describe Plugin do
       subject(:plugin) { Plugin.new(infos) }
       let(:infos) { { author: 'John' } }
 
-      its(:author) { should === infos[:author] }
+      its(:author) { is_expected.to be === infos[:author] }
     end
   end
 
@@ -26,7 +26,7 @@ describe Plugin do
         expect { plugin.register_options(*@options) }.to raise_error(@exception)
       else
         plugin.register_options(*@options)
-        plugin.registered_options.sort.should === @expected.sort
+        expect(plugin.registered_options.sort).to be === @expected.sort
       end
     end
 

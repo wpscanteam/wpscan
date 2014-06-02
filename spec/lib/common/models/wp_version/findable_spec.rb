@@ -26,7 +26,7 @@ describe 'WpVersion::Findable' do
         fixture = fixtures_dir + dir_name + @fixture
         stub_request_to_fixture(url: url, fixture: fixture)
 
-        WpVersion.send(method, uri).should == @expected
+        expect(WpVersion.send(method, uri)).to eq @expected
       end
 
       context 'when generator not found' do
@@ -81,7 +81,7 @@ describe 'WpVersion::Findable' do
         :find_from_advanced_fingerprinting,
         uri, wp_content_dir, wp_plugins_dir, versions_xml
       )
-      version.should == @expected
+      expect(version).to eq @expected
     end
 
     context 'when' do
@@ -108,7 +108,7 @@ describe 'WpVersion::Findable' do
       fixture = fixtures_dir + 'readme' + @fixture
       stub_request_to_fixture(url: url, fixture: fixture)
 
-      WpVersion.send(:find_from_readme, uri).should == @expected
+      expect(WpVersion.send(:find_from_readme, uri)).to eq @expected
     end
 
     context 'when version not found' do
@@ -138,7 +138,7 @@ describe 'WpVersion::Findable' do
       fixture = fixtures_dir + 'links_opml' + @fixture
       stub_request_to_fixture(url: url, fixture: fixture)
 
-      WpVersion.send(:find_from_links_opml, uri).should == @expected
+      expect(WpVersion.send(:find_from_links_opml, uri)).to eq @expected
     end
 
     it 'returns 3.4.2' do
@@ -158,7 +158,7 @@ describe 'WpVersion::Findable' do
     # Stub all WpVersion::find_from_* to return nil
     def stub_all_to_nil
       WpVersion.methods.grep(/^find_from_/).each do |method|
-        WpVersion.stub(method).and_return(nil)
+        allow(WpVersion).to receive(method).and_return(nil)
       end
     end
 
@@ -170,9 +170,9 @@ describe 'WpVersion::Findable' do
       stub_request(:get, /#{uri.to_s}.*/).to_return(status: 0)
 
       version = WpVersion.find(uri, wp_content_dir, wp_plugins_dir, version_xml)
-      version.should == @expected
+      expect(version).to eq @expected
       if @expected
-        version.found_from.should == @found_from
+        expect(version.found_from).to eq @found_from
       end
     end
 
@@ -191,7 +191,7 @@ describe 'WpVersion::Findable' do
         it "returns the correct WpVersion" do
           stub_all_to_nil()
 
-          WpVersion.stub(method).and_return(number)
+          allow(WpVersion).to receive(method).and_return(number)
 
           @expected = WpVersion.new(uri, number: number)
           @found_from = found_from

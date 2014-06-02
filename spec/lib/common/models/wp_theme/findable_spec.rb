@@ -18,9 +18,9 @@ describe 'WpTheme::Findable' do
       wp_theme = WpTheme.send(:find_from_css_link, uri)
 
       if @expected
-        wp_theme.should be_a WpTheme
+        expect(wp_theme).to be_a WpTheme
       end
-      wp_theme.should == @expected
+      expect(wp_theme).to eq @expected
     end
 
     context 'when theme is not present' do
@@ -66,9 +66,9 @@ describe 'WpTheme::Findable' do
       wp_theme = WpTheme.send(:find_from_wooframework, uri)
 
       if @expected
-        wp_theme.should be_a WpTheme
+        expect(wp_theme).to be_a WpTheme
       end
-      wp_theme.should == @expected
+      expect(wp_theme).to eq @expected
     end
 
     context 'when theme is not present' do
@@ -96,7 +96,7 @@ describe 'WpTheme::Findable' do
     # Stub all WpTheme::find_from_* to return nil
     def stub_all_to_nil
       WpTheme.methods.grep(/^find_from_/).each do |method|
-        WpTheme.stub(method).and_return(nil)
+        allow(WpTheme).to receive(method).and_return(nil)
       end
     end
 
@@ -120,7 +120,7 @@ describe 'WpTheme::Findable' do
       it 'returns nil' do
         stub_all_to_nil()
 
-        WpTheme.find(uri).should be_nil
+        expect(WpTheme.find(uri)).to be_nil
       end
     end
 
@@ -130,12 +130,12 @@ describe 'WpTheme::Findable' do
         stub_request(:get, /.+\/the-oracle\/style.css$/).to_return(status: 200)
         expected = WpTheme.new(uri, name: 'the-oracle')
 
-        WpTheme.stub(:find_from_css_link).and_return(expected)
+        allow(WpTheme).to receive(:find_from_css_link).and_return(expected)
         wp_theme = WpTheme.find(uri)
 
-        wp_theme.should be_a WpTheme
-        wp_theme.should == expected
-        wp_theme.found_from.should === 'css link'
+        expect(wp_theme).to be_a WpTheme
+        expect(wp_theme).to eq expected
+        expect(wp_theme.found_from).to be === 'css link'
       end
     end
 

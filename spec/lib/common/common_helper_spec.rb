@@ -7,7 +7,7 @@ describe 'common_helper' do
     after :each do
       output = get_equal_string_end(@input)
 
-      output.should == @expected
+      expect(output).to eq @expected
     end
 
     it 'returns an empty string' do
@@ -75,7 +75,7 @@ describe 'common_helper' do
   describe '#remove_base64_images_from_html' do
     after :each do
       output = remove_base64_images_from_html(@html)
-      output.should == @expected
+      expect(output).to eq @expected
     end
 
     it 'removes the valid base64 image' do
@@ -92,7 +92,7 @@ describe 'common_helper' do
   describe '#truncate' do
     after :each do
       output = truncate(@input, @length, @trailing)
-      output.should == @expected
+      expect(output).to eq @expected
     end
 
     it 'returns nil on no input' do

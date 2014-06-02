@@ -64,5 +64,5 @@ end
 #  :` for `` or %x
 #  :system for system()
 def stub_system_command(object, command, return_value, system_method = :`)
-  object.should_receive(system_method).with(command).and_return(return_value)
+  expect(object).to receive(system_method).with(command).and_return(return_value)
 end

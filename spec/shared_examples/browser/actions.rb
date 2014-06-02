@@ -15,8 +15,8 @@ shared_examples 'Browser::Actions' do
         #body: { login: 'master', password: 'hello' } # It's should be this line, but it fails
       )
 
-      response.should be_a Typhoeus::Response
-      response.body.should == 'Welcome Master'
+      expect(response).to be_a Typhoeus::Response
+      expect(response.body).to eq 'Welcome Master'
     end
   end
 
@@ -29,8 +29,8 @@ shared_examples 'Browser::Actions' do
 
       response = Browser.get(url)
 
-      response.should be_a Typhoeus::Response
-      response.body.should == 'Hello World !'
+      expect(response).to be_a Typhoeus::Response
+      expect(response.body).to eq 'Hello World !'
     end
   end
 

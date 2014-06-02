@@ -14,19 +14,19 @@ shared_examples 'WpItems::Detectable' do
 
   before do
     if class_vulns_file = subject.vulns_file
-      class_vulns_file.should == expected[:vulns_file]
+      expect(class_vulns_file).to eq expected[:vulns_file]
     end
 
-    subject.stub(:vulns_file).and_return(vulns_file)
+    allow(subject).to receive(:vulns_file).and_return(vulns_file)
 
     unless subject.item_xpath
-      subject.stub(:item_xpath).and_return('//item')
+      allow(subject).to receive(:item_xpath).and_return('//item')
     end
   end
 
   describe '::request_params' do
     it 'returns the default params' do
-      subject.send(:request_params).should == expected[:request_params]
+      expect(subject.send(:request_params)).to eq expected[:request_params]
     end
   end
 
@@ -34,8 +34,8 @@ shared_examples 'WpItems::Detectable' do
     it 'returns the correct item class' do
       klass = subject.send(:item_class)
 
-      klass.should be_a Class
-      klass.should == item_class
+      expect(klass).to be_a Class
+      expect(klass).to eq item_class
     end
   end
 
@@ -43,11 +43,11 @@ shared_examples 'WpItems::Detectable' do
     after do
       results = subject.send(:targets_items_from_file, file, wp_target, item_class, vulns_file)
 
-      results.map { |i| i.name }.should == @expected.map { |i| i.name }
+      expect(results.map { |i| i.name }).to eq @expected.map { |i| i.name }
 
       unless results.empty?
         results.each do |item|
-          item.should be_a item_class
+          expect(item).to be_a item_class
         end
       end
     end
@@ -73,11 +73,11 @@ shared_examples 'WpItems::Detectable' do
     after do
       results = subject.send(:vulnerable_targets_items, wp_target, item_class, vulns_file)
 
-      results.map { |i| i.name }.should == @expected.map { |i| i.name }
+      expect(results.map { |i| i.name }).to eq @expected.map { |i| i.name }
 
       unless results.empty?
         results.each do |item|
-          item.should be_a item_class
+          expect(item).to be_a item_class
         end
       end
     end
@@ -104,7 +104,7 @@ shared_examples 'WpItems::Detectable' do
       if @expected
         results = subject.send(:targets_items, wp_target, options)
 
-        results.sort.map { |i| i.name }.should == @expected.sort.map { |i| i.name }
+        expect(results.sort.map { |i| i.name }).to eq @expected.sort.map { |i| i.name }
       end
     end
 
@@ -139,8 +139,8 @@ shared_examples 'WpItems::Detectable' do
 
       results = subject.passive_detection(wp_target)
 
-      results.should be_a subject
-      results.map { |i| i.name }.should == @expected.sort.map { |i| i.name }
+      expect(results).to be_a subject
+      expect(results.map { |i| i.name }).to eq @expected.sort.map { |i| i.name }
     end
 
     context 'when the page is empty' do
@@ -160,7 +160,7 @@ shared_examples 'WpItems::Detectable' do
 
   describe '::aggressive_detection' do
     def stub_targets_dont_exist(targets)
-      targets.each { |t| t.stub(:exists?).and_return(false) }
+      targets.each { |t| allow(t).to receive(:exists?).and_return(false) }
     end
 
     let(:options) { {} }
@@ -170,8 +170,8 @@ shared_examples 'WpItems::Detectable' do
 
       result = subject.aggressive_detection(wp_target, options)
 
-      result.should be_a subject
-      result.sort.map { |i| i.name }.should == @expected.sort.map { |i| i.name }
+      expect(result).to be_a subject
+      expect(result.sort.map { |i| i.name }).to eq @expected.sort.map { |i| i.name }
     end
 
     context 'when :only_vulnerable' do
@@ -185,21 +185,21 @@ shared_examples 'WpItems::Detectable' do
 
         stub_targets_dont_exist(targets)
 
-        vulnerable_target.stub(:exists?).and_return(true)
-        vulnerable_target.stub(:vulnerable?).and_return(true)
+        allow(vulnerable_target).to receive(:exists?).and_return(true)
+        allow(vulnerable_target).to receive(:vulnerable?).and_return(true)
 
-        fixed_target.stub(:exists?).and_return(true)
-        fixed_target.stub(:vulnerable?).and_return(false)
+        allow(fixed_target).to receive(:exists?).and_return(true)
+        allow(fixed_target).to receive(:vulnerable?).and_return(false)
 
         @expected = subject.new << vulnerable_target
 
-        subject.should_receive(:targets_items).and_return(targets)
+        expect(subject).to receive(:targets_items).and_return(targets)
       end
 
       context 'when all targets dont exist' do
         it 'returns an empty WpItems' do
           stub_targets_dont_exist(targets)
-          subject.should_receive(:targets_items).and_return(targets)
+          expect(subject).to receive(:targets_items).and_return(targets)
           @expected = subject.new
         end
       end
@@ -213,10 +213,10 @@ shared_examples 'WpItems::Detectable' do
         @expected = expected[:passive_detection] << target
 
         stub_targets_dont_exist(targets)
-        target.stub(:exists?).and_return(true)
+        allow(target).to receive(:exists?).and_return(true)
 
-        subject.should_receive(:targets_items).and_return(targets)
-        subject.should_receive(:passive_detection).and_return(expected[:passive_detection])
+        expect(subject).to receive(:targets_items).and_return(targets)
+        expect(subject).to receive(:passive_detection).and_return(expected[:passive_detection])
       end
 
       context 'when all targets dont exist' do
@@ -224,8 +224,8 @@ shared_examples 'WpItems::Detectable' do
           @expected = expected[:passive_detection]
 
           stub_targets_dont_exist(targets)
-          subject.should_receive(:targets_items).and_return(targets)
-          subject.should_receive(:passive_detection).and_return(@expected)
+          expect(subject).to receive(:targets_items).and_return(targets)
+          expect(subject).to receive(:passive_detection).and_return(@expected)
         end
       end
     end

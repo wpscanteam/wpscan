@@ -23,18 +23,18 @@ describe Plugins do
 
   describe '#new' do
     context 'without argument' do
-      its(:option_parser) { should be_a CustomOptionParser }
+      its(:option_parser) { is_expected.to be_a CustomOptionParser }
 
       it 'should be an Array' do
-        plugins.should be_an Array
+        expect(plugins).to be_an Array
       end
     end
 
     context 'with an option_parser argument' do
       subject(:plugin) { Plugins.new(CustomOptionParser.new('the banner')) }
 
-      its(:option_parser) { should be_a CustomOptionParser }
-      its('option_parser.banner') { should === 'the banner' }
+      its(:option_parser) { is_expected.to be_a CustomOptionParser }
+      its('option_parser.banner') { is_expected.to be === 'the banner' }
 
       it 'should raise an eror if the parser is not an instance of CustomOptionParser' do
         expect { Plugins.new(OptionParser.new) }.to raise_error('The parser must be an instance of CustomOptionParser, OptionParser supplied')
@@ -48,8 +48,8 @@ describe Plugins do
         expect { plugins.register_plugin(@plugin) }.to raise_error(@exception)
       else
         plugins.register_plugin(@plugin)
-        plugins.should include(@plugin)
-        plugins.should === @expected
+        expect(plugins).to include(@plugin)
+        expect(plugins).to be === @expected
       end
     end
 
@@ -78,11 +78,11 @@ describe Plugins do
       plugins.register(*@plugins_to_register)
 
       @plugins_to_register.each do |plugin|
-        plugins.should include(plugin)
+        expect(plugins).to include(plugin)
       end
 
       # For the correct order
-      plugins.should === @plugins_to_register
+      expect(plugins).to be === @plugins_to_register
     end
 
     it 'should register 1 plugin' do

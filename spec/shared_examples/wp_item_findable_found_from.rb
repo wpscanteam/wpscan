@@ -5,7 +5,7 @@ shared_examples 'WpItem::Findable#Found_From=' do
   describe '#found_from=' do
     after do
       subject.found_from = @method
-      subject.found_from.should == @expected
+      expect(subject.found_from).to eq @expected
     end
     context 'when the pattern is not found' do
       it 'returns nil' do

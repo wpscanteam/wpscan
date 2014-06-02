@@ -15,7 +15,7 @@ describe 'WpPlugins::Detectable' do
     context 'when no header' do
       it 'returns an empty WpPlugins' do
         stub_request(:get, url).to_return(status: 200)
-        subject.send(:from_header, wp_target).should == subject.new
+        expect(subject.send(:from_header, wp_target)).to eq subject.new
       end
     end
 
@@ -25,7 +25,7 @@ describe 'WpPlugins::Detectable' do
 
       after :each do
         stub_request(:get, url).to_return(status: 200, headers: headers, body: '')
-        subject.send(:from_header, wp_target).should == expected
+        expect(subject.send(:from_header, wp_target)).to eq expected
       end
 
       context 'when w3-total-cache detected' do
@@ -66,7 +66,7 @@ describe 'WpPlugins::Detectable' do
     context 'when no body' do
       it 'returns an empty WpPlugins' do
         stub_request(:get, url).to_return(status: 200, body: '')
-        subject.send(:from_content, wp_target).should == subject.new
+        expect(subject.send(:from_content, wp_target)).to eq subject.new
       end
     end
 
@@ -77,7 +77,7 @@ describe 'WpPlugins::Detectable' do
       after :each do
         stub_request(:get, url).to_return(status: 200, body: @body)
         stub_request(:get, /readme\.txt/i).to_return(status: 404)
-        subject.send(:from_content, wp_target).should == expected
+        expect(subject.send(:from_content, wp_target)).to eq expected
       end
 
       context 'when w3 total cache detected' do

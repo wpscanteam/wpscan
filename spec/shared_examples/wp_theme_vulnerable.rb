@@ -3,7 +3,7 @@
 shared_examples 'WpTheme::Vulnerable' do
 
   describe '#vulns_file' do
-    after { subject.vulns_file.should == @expected }
+    after { expect(subject.vulns_file).to eq @expected }
 
     context 'when :vulns_file is not set' do
       it 'returns the default one' do
@@ -20,7 +20,7 @@ shared_examples 'WpTheme::Vulnerable' do
   end
 
   describe '#vulns_xpath' do
-    its(:vulns_xpath) { should == "//theme[@name='theme-name']/vulnerability" }
+    its(:vulns_xpath) { is_expected.to eq "//theme[@name='theme-name']/vulnerability" }
   end
 
 end

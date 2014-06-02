@@ -37,7 +37,7 @@ describe WpTarget do
     it 'returns the login url of the target' do
       stub_request(:get, login_url).to_return(status: 200, body: '')
 
-      wp_target.login_url.should === login_url
+      expect(wp_target.login_url).to be === login_url
     end
 
     it 'returns the redirection url if there is one (ie: for https)' do
@@ -46,7 +46,7 @@ describe WpTarget do
       stub_request(:get, login_url).to_return(status: 302, headers: { location: https_login_url })
       stub_request(:get, https_login_url).to_return(status: 200)
 
-      wp_target.login_url.should === https_login_url
+      expect(wp_target.login_url).to be === https_login_url
     end
   end
 
@@ -57,7 +57,7 @@ describe WpTarget do
         to_return(status: 200, body: '', headers: { 'X-Pingback' => wp_target.uri.merge('xmlrpc.php')})
 
       # Preventing redirection check from login_url()
-      wp_target.stub(redirection: nil)
+      allow(wp_target).to receive_messages(redirection: nil)
 
       [wp_target.login_url, wp_target.xml_rpc_url].each do |url|
         stub_request(:get, url).to_return(status: 404, body: '')
@@ -67,25 +67,25 @@ describe WpTarget do
     it 'returns true if there is a /wp-content/ detected in the index page source' do
       stub_request_to_fixture(url: wp_target.url, fixture: fixtures_dir + '/wp_content_dir/wordpress-3.4.1.htm')
 
-      wp_target.should be_wordpress
+      expect(wp_target).to be_wordpress
     end
 
     it 'returns true if the xmlrpc is found' do
       stub_request(:get, wp_target.xml_rpc_url).
         to_return(status: 200, body: File.new(fixtures_dir + '/xmlrpc.php'))
 
-      wp_target.should be_wordpress
+      expect(wp_target).to be_wordpress
     end
 
     it 'returns true if the wp-login is found and is a valid wordpress one' do
       stub_request(:get, wp_target.login_url).
         to_return(status: 200, body: File.new(fixtures_dir + '/wp-login.php'))
 
-      wp_target.should be_wordpress
+      expect(wp_target).to be_wordpress
     end
 
     it 'returns false if both files are not found (404)' do
-      wp_target.should_not be_wordpress
+      expect(wp_target).not_to be_wordpress
     end
 
     context 'when the url contains "wordpress" and is a 404' do
@@ -94,7 +94,7 @@ describe WpTarget do
       it 'returns false' do
         stub_request(:get, wp_target.login_url).to_return(status: 404, body: 'The requested URL /wordpress-3.5. was not found on this server.')
 
-        wp_target.should_not be_wordpress
+        expect(wp_target).not_to be_wordpress
       end
     end
 
@@ -110,17 +110,17 @@ describe WpTarget do
   describe '#wordpress_hosted?' do
     it 'returns true if target url is a wordpress.com subdomain' do
       target = WpTarget.new('http://test.wordpress.com/')
-      target.wordpress_hosted?.should be_true
+      expect(target.wordpress_hosted?).to be_truthy
     end
 
     it 'returns true if target url is a wordpress.com subdomain and has querystring' do
       target = WpTarget.new('http://test.wordpress.com/path/file.php?a=b')
-      target.wordpress_hosted?.should be_true
+      expect(target.wordpress_hosted?).to be_truthy
     end
 
     it 'returns false if target url is not a wordpress.com subdomain' do
       target = WpTarget.new('http://test.example.com/')
-      target.wordpress_hosted?.should be_false
+      expect(target.wordpress_hosted?).to be_falsey
     end
   end
 
@@ -128,7 +128,7 @@ describe WpTarget do
     it 'returns nil if no redirection detected' do
       stub_request(:get, wp_target.url).to_return(status: 200, body: '')
 
-      wp_target.redirection.should be_nil
+      expect(wp_target.redirection).to be_nil
     end
 
     [301, 302].each do |status_code|
@@ -140,7 +140,7 @@ describe WpTarget do
 
         stub_request(:get, new_location).to_return(status: 200)
 
-        wp_target.redirection.should === 'http://new-location.com'
+        expect(wp_target.redirection).to be === 'http://new-location.com'
       end
     end
 
@@ -153,15 +153,15 @@ describe WpTarget do
         stub_request(:get, first_redirection).to_return(status: 302, headers: { location: last_redirection })
         stub_request(:get, last_redirection).to_return(status: 200)
 
-        wp_target.redirection.should === last_redirection
+        expect(wp_target.redirection).to be === last_redirection
       end
     end
   end
 
   describe '#debug_log_url' do
     it "returns 'http://example.localhost/wp-content/debug.log" do
-      wp_target.stub(wp_content_dir: 'wp-content')
-      wp_target.debug_log_url.should === 'http://example.localhost/wp-content/debug.log'
+      allow(wp_target).to receive_messages(wp_content_dir: 'wp-content')
+      expect(wp_target.debug_log_url).to be === 'http://example.localhost/wp-content/debug.log'
     end
   end
 
@@ -169,9 +169,9 @@ describe WpTarget do
     let(:fixtures_dir) { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR + '/debug_log' }
 
     after :each do
-      wp_target.stub(wp_content_dir: 'wp-content')
+      allow(wp_target).to receive_messages(wp_content_dir: 'wp-content')
       stub_request_to_fixture(url: wp_target.debug_log_url(), fixture: @fixture)
-      wp_target.has_debug_log?.should === @expected
+      expect(wp_target.has_debug_log?).to be === @expected
     end
 
     it 'returns false' do
@@ -192,24 +192,24 @@ describe WpTarget do
 
   describe '#search_replace_db_2_url' do
     it 'returns the correct url' do
-      wp_target.search_replace_db_2_url.should == 'http://example.localhost/searchreplacedb2.php'
+      expect(wp_target.search_replace_db_2_url).to eq 'http://example.localhost/searchreplacedb2.php'
     end
   end
 
   describe '#search_replace_db_2_exists?' do
     it 'returns true' do
       stub_request(:any, wp_target.search_replace_db_2_url).to_return(status: 200, body: 'asdf by interconnect asdf')
-      wp_target.search_replace_db_2_exists?.should be_true
+      expect(wp_target.search_replace_db_2_exists?).to be_truthy
     end
 
     it 'returns false' do
       stub_request(:any, wp_target.search_replace_db_2_url).to_return(status: 500)
-      wp_target.search_replace_db_2_exists?.should be_false
+      expect(wp_target.search_replace_db_2_exists?).to be_falsey
     end
 
     it 'returns false' do
       stub_request(:any, wp_target.search_replace_db_2_url).to_return(status: 500, body: 'asdf by interconnect asdf')
-      wp_target.search_replace_db_2_exists?.should be_false
+      expect(wp_target.search_replace_db_2_exists?).to be_falsey
     end
   end
 

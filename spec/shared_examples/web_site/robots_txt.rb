@@ -5,19 +5,19 @@ shared_examples 'WebSite::RobotsTxt' do
 
   describe '#robots_url' do
     it 'returns the correct url' do
-      web_site.robots_url.should === 'http://example.localhost/robots.txt'
+      expect(web_site.robots_url).to be === 'http://example.localhost/robots.txt'
     end
   end
 
   describe '#has_robots?' do
     it 'returns true' do
       stub_request(:get, web_site.robots_url).to_return(status: 200)
-      web_site.has_robots?.should be_true
+      expect(web_site.has_robots?).to be_truthy
     end
 
     it 'returns false' do
       stub_request(:get, web_site.robots_url).to_return(status: 404)
-      web_site.has_robots?.should be_false
+      expect(web_site.has_robots?).to be_falsey
     end
   end
 
@@ -27,7 +27,7 @@ shared_examples 'WebSite::RobotsTxt' do
       after :each do
         stub_request_to_fixture(url: web_site.robots_url, fixture: @fixture)
         robots = web_site.parse_robots_txt
-        robots.should =~ @expected
+        expect(robots).to match_array @expected
       end
 
       it 'returns an empty Array (empty robots.txt)' do
@@ -74,14 +74,14 @@ shared_examples 'WebSite::RobotsTxt' do
           )
         stub_request_to_fixture(url: web_site_sub.robots_url, fixture: fixture)
         robots = web_site_sub.parse_robots_txt
-        robots.should =~ expected
+        expect(robots).to match_array expected
       end
     end
   end
 
   describe '#known_dirs' do
     it 'does not contain duplicates' do
-      known_dirs.flatten.uniq.length.should == known_dirs.length
+      expect(known_dirs.flatten.uniq.length).to eq known_dirs.length
     end
   end
 

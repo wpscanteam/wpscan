@@ -11,37 +11,37 @@ describe 'StatsPlugin' do
 
   describe '#vuln_plugin_count' do
     it 'returns the correct number' do
-      stats.vuln_plugin_count(plugins_vulns).should == 2
+      expect(stats.vuln_plugin_count(plugins_vulns)).to eq 2
     end
   end
 
   describe '#vuln_theme_count' do
     it 'returns the correct number' do
-      stats.vuln_theme_count(themes_vulns).should == 2
+      expect(stats.vuln_theme_count(themes_vulns)).to eq 2
     end
   end
 
   describe '#plugin_vulns_count' do
     it 'returns the correct number' do
-      stats.plugin_vulns_count(plugins_vulns).should == 3
+      expect(stats.plugin_vulns_count(plugins_vulns)).to eq 3
     end
   end
 
   describe '#theme_vulns_count' do
     it 'returns the correct number' do
-      stats.theme_vulns_count(themes_vulns).should == 3
+      expect(stats.theme_vulns_count(themes_vulns)).to eq 3
     end
   end
 
   describe '#total_plugins' do
     it 'returns the correct numer' do
-      stats.total_plugins(plugins_file).should == 3
+      expect(stats.total_plugins(plugins_file)).to eq 3
     end
   end
 
   describe '#total_themes' do
     it 'returns the correct numer' do
-      stats.total_themes(themes_file).should == 3
+      expect(stats.total_themes(themes_file)).to eq 3
     end
   end
 end

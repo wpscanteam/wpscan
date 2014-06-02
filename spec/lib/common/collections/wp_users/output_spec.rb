@@ -25,7 +25,7 @@ describe 'WpUsers::Output' do
       subject.push(@input)
       subject.flatten!
       subject.remove_junk_from_display_names
-      subject.should === @expected
+      expect(subject).to be === @expected
     end
 
     it 'should return an empty array' do

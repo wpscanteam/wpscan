@@ -22,13 +22,13 @@ describe 'WpUsers::Detectable' do
 
   describe '::request_params' do
     it 'return an empty Hash' do
-      subject.request_params.should === {}
+      expect(subject.request_params).to be === {}
     end
   end
 
   describe '::passive_detection' do
     it 'return an empty WpUsers' do
-      subject.passive_detection(wp_target).should == subject.new
+      expect(subject.passive_detection(wp_target)).to eq subject.new
     end
   end
 
@@ -36,7 +36,7 @@ describe 'WpUsers::Detectable' do
     after do
       targets = subject.send(:targets_items, wp_target, options)
 
-      targets.should == @expected
+      expect(targets).to eq @expected
     end
 
     context 'when no :range' do

@@ -23,7 +23,7 @@ describe WpPlugin do
   let(:options)       { { name: 'plugin-name' } }
 
   describe '#forge_uri' do
-    its('uri.to_s') { should == 'http://example.com/wp-content/plugins/plugin-name/' }
+    its('uri.to_s') { is_expected.to eq 'http://example.com/wp-content/plugins/plugin-name/' }
   end
 
 end

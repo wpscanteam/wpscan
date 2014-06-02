@@ -17,7 +17,7 @@ shared_examples 'WpTarget::WpConfigBackup' do
     end
 
     it 'shoud return an empty array if no config backup is present' do
-      wp_target.config_backup.should be_empty
+      expect(wp_target.config_backup).to be_empty
     end
 
     it 'returns an array with 1 backup file' do
@@ -31,8 +31,8 @@ shared_examples 'WpTarget::WpConfigBackup' do
       end
 
       wp_config_backup = wp_target.config_backup
-      wp_config_backup.should_not be_empty
-      wp_config_backup.should === expected
+      expect(wp_config_backup).not_to be_empty
+      expect(wp_config_backup).to be === expected
     end
 
     # Is there a way to factorise that one with the previous test ?
@@ -47,14 +47,14 @@ shared_examples 'WpTarget::WpConfigBackup' do
       end
 
       wp_config_backup = wp_target.config_backup
-      wp_config_backup.should_not be_empty
-      wp_config_backup.sort.should === expected.sort
+      expect(wp_config_backup).not_to be_empty
+      expect(wp_config_backup.sort).to be === expected.sort
     end
   end
 
   describe '#config_backup_files' do
     it 'does not contain duplicates' do
-      config_backup_files.flatten.uniq.length.should == config_backup_files.length
+      expect(config_backup_files.flatten.uniq.length).to eq config_backup_files.length
     end
   end
 

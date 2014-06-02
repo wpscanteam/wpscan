@@ -25,7 +25,7 @@ describe Browser do
     json_expected_vars['max_threads'] ||= 20 # max_thread can not be nil
 
     instance_vars_to_check.each do |variable_name|
-      browser.send(:"#{variable_name}").should === json_expected_vars[variable_name]
+      expect(browser.send(:"#{variable_name}")).to be === json_expected_vars[variable_name]
     end
   end
 
@@ -50,7 +50,7 @@ describe Browser do
       let(:cache_dir) { CACHE_DIR + '/somewhere' }
       let(:options) { { cache_dir: cache_dir } }
 
-      after { subject.cache_dir.should == cache_dir }
+      after { expect(subject.cache_dir).to eq cache_dir }
 
       it 'sets @cache_dir' do
         @json_expected_vars = json_config_without_proxy
@@ -84,11 +84,11 @@ describe Browser do
 
   describe '::append_params_header_field' do
     after :each do
-      Browser.append_params_header_field(
+      expect(Browser.append_params_header_field(
         @params,
         @field,
         @field_value
-      ).should === @expected
+      )).to be === @expected
     end
 
     context 'when there is no headers' do
@@ -140,7 +140,7 @@ describe Browser do
       browser.user_agent = 'SomeUA'
       browser.cache_ttl = 250
 
-      browser.merge_request_params(params).should == @expected
+      expect(browser.merge_request_params(params)).to eq @expected
     end
 
     it 'sets the User-Agent header field and cache_ttl' do
@@ -205,12 +205,12 @@ describe Browser do
     let(:url) { 'http://example.localhost' }
 
     it 'returns the correct Typhoeus::Request' do
-      subject.stub(merge_request_params: { cache_ttl: 10 })
+      allow(subject).to receive_messages(merge_request_params: { cache_ttl: 10 })
 
       request = subject.forge_request(url)
-      request.should be_a Typhoeus::Request
-      request.url.should == url
-      request.cache_ttl.should == 10
+      expect(request).to be_a Typhoeus::Request
+      expect(request.url).to eq url
+      expect(request.cache_ttl).to eq 10
     end
 
   end
@@ -225,7 +225,7 @@ describe Browser do
       response1 = Browser.get(url)
       response2 = Browser.get(url)
 
-      response1.body.should == response2.body
+      expect(response1.body).to eq response2.body
       #WebMock.should have_requested(:get, url).times(1) # This one fail, dunno why :s (but it works without mock)
     end
   end

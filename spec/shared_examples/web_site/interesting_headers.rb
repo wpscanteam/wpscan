@@ -9,26 +9,26 @@ shared_examples 'WebSite::InterestingHeaders' do
     it 'returns MyTestHeader' do
       stub_request(:head, web_site.url).
           to_return(status: 200, headers: { 'Mytestheader' => 'Mytestheadervalue' })
-      web_site.interesting_headers.should =~ [ [ 'MYTESTHEADER', 'Mytestheadervalue' ] ]
+      expect(web_site.interesting_headers).to match_array [ [ 'MYTESTHEADER', 'Mytestheadervalue' ] ]
     end
 
     it 'removes known headers' do
       stub_request(:head, web_site.url).
           to_return(status: 200, headers: { 'Location' => 'a', 'Connection' => 'Close' })
-      web_site.interesting_headers.should be_empty
+      expect(web_site.interesting_headers).to be_empty
     end
 
     it 'returns nothing' do
       stub_request(:head, web_site.url).
           to_return(status: 200, headers: { })
-      web_site.interesting_headers.should be_empty
+      expect(web_site.interesting_headers).to be_empty
     end
 
   end
 
   describe '#known_headers' do
     it 'does not contain duplicates' do
-      known_headers.flatten.uniq.length.should == known_headers.length
+      expect(known_headers.flatten.uniq.length).to eq known_headers.length
     end
   end
 

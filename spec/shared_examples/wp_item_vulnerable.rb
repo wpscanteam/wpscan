@@ -22,8 +22,8 @@ shared_examples 'WpItem::Vulnerable' do
       subject.vulns_xpath = vulns_xpath if defined?(vulns_xpath)
 
       result = subject.vulnerabilities
-      result.should be_a Vulnerabilities
-      result.should == @expected
+      expect(result).to be_a Vulnerabilities
+      expect(result).to eq @expected
     end
 
     context 'when the vulns_file is empty' do
@@ -41,8 +41,8 @@ shared_examples 'WpItem::Vulnerable' do
 
   describe '#vulnerable?' do
     after do
-      subject.stub(:vulnerabilities).and_return(@stub)
-      subject.vulnerable?.should == @expected
+      allow(subject).to receive(:vulnerabilities).and_return(@stub)
+      expect(subject.vulnerable?).to eq @expected
     end
 
     it 'returns false when no vulnerabilities' do
@@ -72,23 +72,23 @@ shared_examples 'WpItem::Vulnerable' do
 
     context 'check basic version comparing' do
       it 'returns true because checked version is newer' do
-        subject.version.should == version_orig
-        subject.vulnerable_to?(newer).should be_true
+        expect(subject.version).to eq version_orig
+        expect(subject.vulnerable_to?(newer)).to be_truthy
       end
 
       it 'returns false because checked version is older' do
-        subject.version.should == version_orig
-        subject.vulnerable_to?(older).should be_false
+        expect(subject.version).to eq version_orig
+        expect(subject.vulnerable_to?(older)).to be_falsey
       end
 
       it 'returns false because checked version is the fixed version' do
-        subject.version.should == version_orig
-        subject.vulnerable_to?(same).should be_false
+        expect(subject.version).to eq version_orig
+        expect(subject.vulnerable_to?(same)).to be_falsey
       end
 
       it 'returns true because no fixed_in version is provided' do
-        subject.version.should == version_orig
-        subject.vulnerable_to?(no_fixed_info).should be_true
+        expect(subject.version).to eq version_orig
+        expect(subject.vulnerable_to?(no_fixed_info)).to be_truthy
       end
     end
 
@@ -99,9 +99,9 @@ shared_examples 'WpItem::Vulnerable' do
       end
 
       it 'returns true because no version can be detected' do
-        subject.vulnerable_to?(newer).should be_true
-        subject.vulnerable_to?(older).should be_true
-        subject.vulnerable_to?(same).should be_true
+        expect(subject.vulnerable_to?(newer)).to be_truthy
+        expect(subject.vulnerable_to?(older)).to be_truthy
+        expect(subject.vulnerable_to?(same)).to be_truthy
       end
     end
   end

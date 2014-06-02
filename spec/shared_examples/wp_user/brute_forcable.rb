@@ -14,7 +14,7 @@ shared_examples 'WpUser::BruteForcable' do
     let(:resp_options) { {} }
 
     after do
-      wp_user.valid_password?(response, 'password', redirect_url).should == @expected
+      expect(wp_user.valid_password?(response, 'password', redirect_url)).to eq @expected
     end
 
     context 'when 302 and valid return_to parameter' do
@@ -73,7 +73,7 @@ shared_examples 'WpUser::BruteForcable' do
       [wordlist_utf8, wordlist_iso].each do |wordlist|
         wp_user.login = login
         wp_user.brute_force(wordlist, {}, redirect_url)
-        wp_user.password.should == @expected
+        expect(wp_user.password).to eq @expected
       end
     end
 

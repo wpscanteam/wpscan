@@ -6,7 +6,7 @@ describe 'wpscan main checks' do
 
   it 'should check for errors on running the mainscript' do
     a = %x[ruby #{ROOT_DIR}/wpscan.rb]
-    a.should =~ /No argument supplied/
+    expect(a).to match /No argument supplied/
   end
 
   it 'should check for valid syntax' do

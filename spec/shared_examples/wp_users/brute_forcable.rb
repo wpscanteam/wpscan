@@ -10,7 +10,7 @@ shared_examples 'WpUsers::BruteForcable' do
     it 'calls #brute_force on each wp_user' do
       range.each do |id|
         wp_user = WpUser.new(uri, id: id)
-        wp_user.should_receive(:brute_force).with(wordlist, brute_force_opt)
+        expect(wp_user).to receive(:brute_force).with(wordlist, brute_force_opt)
 
         wp_users << wp_user
       end

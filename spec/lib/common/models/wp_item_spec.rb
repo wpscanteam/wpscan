@@ -30,30 +30,30 @@ describe WpItem do
 
   describe '#new' do
     context 'with no options' do
-      its(:wp_content_dir) { should == 'wp-content' }
-      its(:wp_plugins_dir) { should == 'wp-content/plugins' }
-      its(:uri) { should be uri }
+      its(:wp_content_dir) { is_expected.to eq 'wp-content' }
+      its(:wp_plugins_dir) { is_expected.to eq 'wp-content/plugins' }
+      its(:uri) { is_expected.to be uri }
     end
 
     context 'with :wp_content_dir' do
       let(:options) { { wp_content_dir: 'custom' } }
 
-      its(:wp_content_dir) { should == 'custom' }
-      its(:wp_plugins_dir) { should == 'custom/plugins' }
+      its(:wp_content_dir) { is_expected.to eq 'custom' }
+      its(:wp_plugins_dir) { is_expected.to eq 'custom/plugins' }
     end
 
     context 'with :wp_plugins_dir' do
       let(:options) { { wp_plugins_dir: 'c-plugins' } }
 
-      its(:wp_content_dir) { should == 'wp-content' }
-      its(:wp_plugins_dir) { should == 'c-plugins' }
+      its(:wp_content_dir) { is_expected.to eq 'wp-content' }
+      its(:wp_plugins_dir) { is_expected.to eq 'c-plugins' }
     end
   end
 
   describe '#set_options' do
     context 'no an allowed option' do
       it 'ignores the option' do
-        wp_item.should_not_receive(:not_allowed=)
+        expect(wp_item).not_to receive(:not_allowed=)
 
         wp_item.send(:set_options, { not_allowed: 'owned' })
       end
@@ -61,7 +61,7 @@ describe WpItem do
 
     context 'allowed option, w/o setter method' do
       it 'raises an error' do
-        wp_item.stub(:allowed_options).and_return([:no_setter])
+        allow(wp_item).to receive(:allowed_options).and_return([:no_setter])
 
         expect {
           wp_item.send(:set_options, { no_setter: 'hello' })
@@ -73,7 +73,7 @@ describe WpItem do
   describe '#path=' do
     after do
       wp_item.path = @path
-      wp_item.path.should == @expected
+      expect(wp_item.path).to eq @expected
     end
 
     context 'with default variable value' do
@@ -90,8 +90,8 @@ describe WpItem do
 
     context 'whith custom variable values' do
       before {
-        wp_item.stub(:wp_content_dir).and_return('custom-content')
-        wp_item.stub(:wp_plugins_dir).and_return('plugins')
+        allow(wp_item).to receive(:wp_content_dir).and_return('custom-content')
+        allow(wp_item).to receive(:wp_plugins_dir).and_return('plugins')
       }
 
       it 'replaces $wp-content$ by custom-content' do
@@ -117,7 +117,7 @@ describe WpItem do
         path         = 'somedir/somefile.php'
         wp_item.path = path
 
-        wp_item.uri.should == uri.merge(path)
+        expect(wp_item.uri).to eq uri.merge(path)
       end
     end
   end
@@ -127,7 +127,7 @@ describe WpItem do
       wp_item.name = 'a-name'
       other = WpItem.new(uri, name: 'other-name')
 
-      wp_item.<=>(other).should === 'a-name'.<=>('other-name')
+      expect(wp_item.<=>(other)).to be === 'a-name'.<=>('other-name')
     end
   end
 
@@ -137,7 +137,7 @@ describe WpItem do
         wp_item.name = 'some-name'
         other = WpItem.new(uri, name: 'some-name')
 
-        wp_item.should == other
+        expect(wp_item).to eq other
       end
     end
 
@@ -146,7 +146,7 @@ describe WpItem do
         wp_item.name = 'Test'
         other = WpItem.new(uri, name: 'hello')
 
-        wp_item.should_not == other
+        expect(wp_item).not_to eq other
       end
     end
   end
@@ -156,13 +156,13 @@ describe WpItem do
 
     context 'when the :name and :version are the same' do
       it 'is ===' do
-        WpItem.new(uri, options).should === WpItem.new(uri.merge('yo'), options)
+        expect(WpItem.new(uri, options)).to be === WpItem.new(uri.merge('yo'), options)
       end
     end
 
     context 'otherwise' do
       it 'is not ===' do
-        WpItem.new(uri, options).should_not === WpItem.new(uri, options.merge(version: '1.0'))
+        expect(WpItem.new(uri, options)).not_to be === WpItem.new(uri, options.merge(version: '1.0'))
       end
     end
   end

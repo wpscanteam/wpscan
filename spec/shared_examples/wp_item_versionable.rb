@@ -9,14 +9,14 @@ shared_examples 'WpItem::Versionable' do
     context 'when the version is already set' do
       it 'returns it' do
         subject.version = '1.2'
-        subject.version.should == '1.2'
+        expect(subject.version).to eq '1.2'
       end
     end
 
     context 'otherwise' do
       after do
         stub_request_to_fixture(url: readme_url, fixture: fixtures_dir + @file)
-        subject.version.should == @expected
+        expect(subject.version).to eq @expected
       end
 
       context 'when version is "trunk"' do
@@ -37,10 +37,10 @@ shared_examples 'WpItem::Versionable' do
 
   describe '#to_s' do
     after do
-      subject.stub(:version).and_return(@version)
+      allow(subject).to receive(:version).and_return(@version)
       subject.name = 'some-name'
 
-      subject.to_s.should == @expected
+      expect(subject.to_s).to eq @expected
     end
 
     context 'when the version does not exist' do

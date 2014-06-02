@@ -5,11 +5,11 @@ shared_examples 'WpTarget::WpRegistrable' do
   let(:signup_url) { wp_target.uri.merge('wp-signup.php').to_s }
 
   describe '#registration_url' do
-    after { wp_target.registration_url.should === @expected }
+    after { expect(wp_target.registration_url).to be === @expected }
 
     context 'when multisite' do
       it 'returns the signup url' do
-        wp_target.stub(:multisite?).and_return(true)
+        allow(wp_target).to receive(:multisite?).and_return(true)
 
         @expected = signup_url
       end
@@ -17,7 +17,7 @@ shared_examples 'WpTarget::WpRegistrable' do
 
     context 'when not multisite' do
       it 'returns the login url with ?action=register' do
-        wp_target.stub(:multisite?).and_return(false)
+        allow(wp_target).to receive(:multisite?).and_return(false)
 
         @expected = login_url + '?action=register'
       end
@@ -26,10 +26,10 @@ shared_examples 'WpTarget::WpRegistrable' do
 
   describe '#registration_enabled?' do
     after do
-      wp_target.stub(:multisite?).and_return(multisite)
+      allow(wp_target).to receive(:multisite?).and_return(multisite)
       stub_request(:get, wp_target.registration_url).to_return(@stub)
 
-      wp_target.registration_enabled?.should === @expected
+      expect(wp_target.registration_enabled?).to be === @expected
     end
 
     context 'when multisite' do
@@ -69,7 +69,7 @@ shared_examples 'WpTarget::WpRegistrable' do
     after do
       stub_request(:get, signup_url).to_return(@stub)
 
-      wp_target.multisite?.should === @expected
+      expect(wp_target.multisite?).to be === @expected
     end
 
     it 'returns false' do

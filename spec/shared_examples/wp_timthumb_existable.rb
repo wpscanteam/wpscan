@@ -5,7 +5,7 @@ shared_examples 'WpTimthumb::Existable' do
   describe 'exists_from_response?' do
     after do
       response = Typhoeus::Response.new(@resp_opt)
-      subject.send(:exists_from_response?, response).should == @expected
+      expect(subject.send(:exists_from_response?, response)).to eq @expected
     end
 
     context 'when the status is not a 400' do

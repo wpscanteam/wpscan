@@ -6,7 +6,7 @@ describe UpdaterFactory do
 
   describe '#available_updaters_classes' do
     after :each do
-      UpdaterFactory.available_updaters_classes.sort.should === @expected.sort
+      expect(UpdaterFactory.available_updaters_classes.sort).to be === @expected.sort
     end
 
     it 'should return [:GitUpdater, :SvnUpdater]' do

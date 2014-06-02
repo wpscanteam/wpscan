@@ -6,7 +6,7 @@ shared_examples 'WpUser::Existable' do
 
   describe '::login_from_author_pattern' do
     after do
-      mod.login_from_author_pattern(@text).should == @expected
+      expect(mod.login_from_author_pattern(@text)).to eq @expected
     end
 
     context 'when no trailing slash' do
@@ -32,13 +32,13 @@ shared_examples 'WpUser::Existable' do
   end
 
   describe '::login_from_body' do
-    after { mod.login_from_body(body).should == @expected }
+    after { expect(mod.login_from_body(body)).to eq @expected }
 
     context 'when the author pattern is in the body' do
       let(:body) { '/author/admin' }
 
       it 'returns it' do
-        mod.stub(:login_from_body).with(body).and_return('admin')
+        allow(mod).to receive(:login_from_body).with(body).and_return('admin')
         @expected = 'admin'
       end
     end
@@ -53,7 +53,7 @@ shared_examples 'WpUser::Existable' do
   end
 
   describe '::display_name_from_body' do
-    after { mod.display_name_from_body(@body).should == @expected }
+    after { expect(mod.display_name_from_body(@body)).to eq @expected }
 
     context 'when pattern not found' do
       it 'returns nil' do
@@ -110,8 +110,8 @@ shared_examples 'WpUser::Existable' do
       response = Typhoeus::Response.new(@resp_opt || resp_opt)
       subject.send(:load_from_response, response)
 
-      subject.login.should == @login
-      subject.display_name.should == @display_name
+      expect(subject.login).to eq @login
+      expect(subject.display_name).to eq @display_name
     end
 
     context 'with a 301' do
@@ -147,7 +147,7 @@ shared_examples 'WpUser::Existable' do
   describe '#exists_from_response?' do
     after do
       response = Typhoeus::Response.new(@resp_opt || resp_opt)
-      subject.exists_from_response?(response).should == @expected
+      expect(subject.exists_from_response?(response)).to eq @expected
     end
 
     context 'login not found' do

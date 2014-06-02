@@ -38,7 +38,7 @@ describe 'WpTimthumbs::Detectable' do
 
   describe '::passive_detection' do
     it 'returns an empty WpTimthumbs' do
-      subject.passive_detection(wp_target).should == subject.new
+      expect(subject.passive_detection(wp_target)).to eq subject.new
     end
   end
 
@@ -46,7 +46,7 @@ describe 'WpTimthumbs::Detectable' do
     after do
       targets = subject.send(:targets_items_from_file, file, wp_target)
 
-      targets.map { |t| t.url }.should == @expected.map { |t| t.url }
+      expect(targets.map { |t| t.url }).to eq @expected.map { |t| t.url }
     end
 
     context 'when an empty file' do
@@ -71,7 +71,7 @@ describe 'WpTimthumbs::Detectable' do
       theme   = 'hello-world'
       targets = subject.send(:theme_timthumbs, theme, wp_target)
 
-      targets.map { |t| t.url }.should == expected_targets_from_theme(theme).map { |t| t.url }
+      expect(targets.map { |t| t.url }).to eq expected_targets_from_theme(theme).map { |t| t.url }
     end
   end
 
@@ -81,7 +81,7 @@ describe 'WpTimthumbs::Detectable' do
     after do
       targets = subject.send(:targets_items, wp_target, options)
 
-      targets.map { |t| t.url }.should == @expected.sort.map { |t| t.url }
+      expect(targets.map { |t| t.url }).to eq @expected.sort.map { |t| t.url }
     end
 
     context 'when no :theme_name' do
