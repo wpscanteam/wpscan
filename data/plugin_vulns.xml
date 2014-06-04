@@ -9091,12 +9091,22 @@
 
   <plugin name="all-in-one-seo-pack">
     <vulnerability>
-      <title>All in One SEO Pack &lt;= 2.1.5 - Privilege escalation and XSS Vulnerability</title>
+      <title>All in One SEO Pack &lt;= 2.1.5 - aioseop_functions.php new_meta Parameter XSS</title>
       <references>
+        <osvdb>107640</osvdb>
         <url>http://blog.sucuri.net/2014/05/vulnerability-found-in-the-all-in-one-seo-pack-wordpress-plugin.html</url>
       </references>
       <fixed_in>2.1.6</fixed_in>
-      <type>MULTI</type>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
+      <title>All in One SEO Pack &lt;= 2.1.5 - Unspecified Privilege Escalation</title>
+      <references>
+        <osvdb>107641</osvdb>
+        <url>http://blog.sucuri.net/2014/05/vulnerability-found-in-the-all-in-one-seo-pack-wordpress-plugin.html</url>
+      </references>
+      <fixed_in>2.1.6</fixed_in>
+      <type>AUTHBYPASS</type>
     </vulnerability>
     <vulnerability>
       <title>All in One SEO Pack &lt;= 2.0.3 - XSS Vulnerability</title>
@@ -12394,6 +12404,13 @@
       <type>UNKNOWN</type>
       <fixed_in>0.10.4.4</fixed_in>
     </vulnerability>
+    <vulnerability>
+      <title>Lazyest Gallery 0.4.2 - Multiple Unspecified Issues</title>
+      <references>
+        <osvdb>107400</osvdb>
+      </references>
+      <type>MULTI</type>
+    </vulnerability>
   </plugin>
 
   <plugin name="post-expirator">
@@ -12807,6 +12824,30 @@
       </references>
       <type>CSRF</type>
       <fixed_in>1.9</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="gtranslate">
+    <vulnerability>
+     <title>GTranslate 1.0.12 - gtranslate.php Widget Code Editing CSRF</title>
+      <references>
+        <osvdb>107399</osvdb>
+      </references>
+      <type>CSRF</type>
+      <fixed_in>1.0.13</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="world-of-warcraft-armory-table">
+    <vulnerability>
+     <title>World of Warcraft Armory Table 0.2.5 - WoWArmoryTable.php page Parameter Reflected XSS</title>
+      <references>
+        <osvdb>107479</osvdb>
+        <secunia>58596</secunia>
+        <url>http://www.securityfocus.com/bid/67628</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>0.2.6</fixed_in>
     </vulnerability>
   </plugin>
 
