@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-# ln -sf /Users/xxx/wpscan/dev/pre-commit-hook.rb /Users/xxx/wpscan/.git/hooks/pre-commit
+# from the top level dir:
+# ln -sf ../../dev/pre-commit-hook.rb .git/hooks/pre-commit
 
 require 'pty'
 html_path = 'rspec_results.html'
