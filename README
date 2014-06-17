@@ -47,10 +47,18 @@ ryandewhurst at gmail
 
   -> Installing on Debian/Ubuntu:
 
-    sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
+    Before Ubuntu 14.04:
+
+        sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
+
+    From Ubuntu 14.04:
+
+        sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev
+
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler && bundle install --without test
+
 
   -> Installing on Fedora:
 
@@ -88,9 +96,9 @@ ryandewhurst at gmail
     rvm install 2.1.2
     rvm use 2.1.2 --default
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+    gem install bundler
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
-    gem install bundler
     bundle install --without test
 
 ==KNOWN ISSUES==
