@@ -40,55 +40,66 @@ Prerequisites:
 - RubyGems      - Recommended: latest
 - Git
 
-*Installing on Debian/Ubuntu:*
+####Installing on Debian/Ubuntu:
 
 Before Ubuntu 14.04:
-```sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev```
+```
+sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
+```
 
 From Ubuntu 14.04:
-```sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev```
+```
+sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev
+git clone https://github.com/wpscanteam/wpscan.git
+cd wpscan
+sudo gem install bundler && bundle install --without test
+```
 
-```git clone https://github.com/wpscanteam/wpscan.git```
+####Installing on Fedora:
 
-```cd wpscan```
+```
+sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel
+git clone https://github.com/wpscanteam/wpscan.git
+cd wpscan
+sudo gem install bundler && bundle install --without test
+```
 
-```sudo gem install bundler && bundle install --without test```
+####Installing on Archlinux:
 
-*Installing on Fedora:*
+```
+pacman -Syu ruby
+pacman -Syu libyaml
+git clone https://github.com/wpscanteam/wpscan.git
+cd wpscan
+sudo gem install bundler && bundle install --without test
+gem install typhoeus
+gem install nokogiri
+```
 
-```sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel```
-
-```git clone https://github.com/wpscanteam/wpscan.git```
-
-```cd wpscan```
-
-```sudo gem install bundler && bundle install --without test```
-
-*Installing on Archlinux:*
-
-```pacman -Syu ruby```
-
-```pacman -Syu libyaml```
-
-```git clone https://github.com/wpscanteam/wpscan.git```
-
-```cd wpscan```
-
-```sudo gem install bundler && bundle install --without test```
-
-```gem install typhoeus```
-
-```gem install nokogiri```
-
-*Installing on Mac OSX:*
+####Installing on Mac OSX:
 
 Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error
 
-```git clone https://github.com/wpscanteam/wpscan.git```
+```
+git clone https://github.com/wpscanteam/wpscan.git
+cd wpscan
+sudo gem install bundler && sudo bundle install --without test
+```
 
-```cd wpscan```
-
-```sudo gem install bundler && sudo bundle install --without test```
+####Installing with RVM
+```
+cd ~
+curl -sSL https://get.rvm.io | bash -s stable
+source ~/.rvm/scripts/rvm
+echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+rvm install 2.1.2
+rvm use 2.1.2 --default
+echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+git clone https://github.com/wpscanteam/wpscan.git
+cd wpscan
+gem install bundler
+bundle install --without test
+```
 
 #### KNOWN ISSUES
 
