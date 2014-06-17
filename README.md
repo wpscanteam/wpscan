@@ -86,7 +86,7 @@ cd wpscan
 sudo gem install bundler && sudo bundle install --without test
 ```
 
-####Installing with RVM
+####Installing with RVM:
 ```
 cd ~
 curl -sSL https://get.rvm.io | bash -s stable
