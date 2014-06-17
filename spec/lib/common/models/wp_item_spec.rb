@@ -21,7 +21,7 @@ describe WpItem do
         :metasploit => ['exploit/ex1'],
         :exploitdb => ['exploitdb']
     } }
-    let(:expected_vulns) { Vulnerabilities.new << Vulnerability.new("I'm the one", 'XSS', expected_refs) }
+    let(:expected_vulns) { Vulnerabilities.new(1, Vulnerability.new("I'm the one", 'XSS', expected_refs)) }
   end
 
   subject(:wp_item) { WpItem.new(uri, options) }
