@@ -50,6 +50,9 @@ sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev lib
 From Ubuntu 14.04:
 ```
 sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev
+```
+
+```
 git clone https://github.com/wpscanteam/wpscan.git
 cd wpscan
 sudo gem install bundler && bundle install --without test
@@ -95,9 +98,9 @@ echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
 rvm install 2.1.2
 rvm use 2.1.2 --default
 echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+gem install bundler
 git clone https://github.com/wpscanteam/wpscan.git
 cd wpscan
-gem install bundler
 bundle install --without test
 ```
 
