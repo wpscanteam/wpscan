@@ -5,7 +5,7 @@
 #### LICENSE
 
 WPScan - WordPress Security Scanner
-Copyright (C), 2011-2013 The WPScan Team
+Copyright (C), 2011-2014 The WPScan Team
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,11 +34,12 @@ WPScan comes pre-installed on the following Linux distributions:
 
 Prerequisites:
 
-- Windows not supported
 - Ruby >= 1.9.2 - Recommended: 1.9.3
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
+
+Windows is not supported.
 
 ####Installing on Debian/Ubuntu:
 
