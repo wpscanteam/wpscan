@@ -167,7 +167,7 @@ def main
     end
 
     if wp_target.registration_enabled?
-      puts "#{green('[+]')} User registration is enabled: #{wp_target.registration_url}"
+      puts "#{amber('[+]')} Registration is enabled: #{wp_target.registration_url}"
     end
 
     if wp_target.has_xml_rpc?
