@@ -5,11 +5,24 @@
 
   <plugin name="login-rebuilder">
     <vulnerability>
-      <title>login-rebuilder &lt;= 1.2.0 - Cross Site Request Forgery Vulnerability</title>
+      <title>Login Rebuilder &lt; 1.2.0 - Cross Site Request Forgery Vulnerability</title>
       <references>
         <cve>2014-3882</cve>
       </references>
       <type>CSRF</type>
+      <fixed_in>1.2.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="simple-share-buttons-adder">
+    <vulnerability>
+      <title>Simple Share Buttons Adder 4.4 - Stored XSS &amp; Cross Site Request Forgery Vulnerabilities</title>
+      <references>
+        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-simple-share-buttons-adder/</url>
+        <cve>2014-3882</cve>
+      </references>
+      <type>MULTI</type>
+      <fixed_in>4.5</fixed_in>
     </vulnerability>
   </plugin>
 
