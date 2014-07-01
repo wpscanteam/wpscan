@@ -4,7 +4,10 @@ class WpTimthumb < WpItem
   module Output
 
     def output(verbose = false)
-      puts " | #{vulnerable? ? red('[!] Vulnerable') : green('[i] Not Vulnerable')} #{self}"
+      puts
+      puts "#{green('[+]')} #{self}" #this will also output the version number if detected
+
+      vulnerabilities.output
     end
 
   end

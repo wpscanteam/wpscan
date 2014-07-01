@@ -283,12 +283,8 @@ def main
       puts
       if !wp_timthumbs.empty?
         puts "#{green('[+]')} We found #{wp_timthumbs.size} timthumb file/s:"
-        puts
 
         wp_timthumbs.output(wpscan_options.verbose)
-
-        puts
-        puts red(' * Reference: http://www.exploit-db.com/exploits/17602/')
       else
         puts "#{green('[+]')} No timthumb files found"
       end
