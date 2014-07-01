@@ -15,7 +15,7 @@ class WpTimthumb < WpItem
     end
 
     def check_rce_132
-      return rce_132_vuln unless VersionCompare.is_newer_or_same?('1.34', version)
+      return rce_132_vuln unless VersionCompare.is_newer_or_same?('1.33', version)
     end
 
     # Vulnerable versions : >= 2.0 and < 2.8.14
