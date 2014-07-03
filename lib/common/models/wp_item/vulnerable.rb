@@ -32,7 +32,7 @@ class WpItem
     # @return [ Boolean ]
     def vulnerable_to?(vuln)
       if version && vuln && vuln.fixed_in && !vuln.fixed_in.empty?
-        unless VersionCompare::is_newer_or_same?(vuln.fixed_in, version)
+        unless VersionCompare::lesser_or_equal?(vuln.fixed_in, version)
           return true
         end
       else

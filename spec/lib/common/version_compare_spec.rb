@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe 'VersionCompare' do
-  describe '::is_newer_or_same?' do
+  describe '::lesser_or_equal?' do
     context 'version checked is newer' do
-      after { expect(VersionCompare::is_newer_or_same?(@version1, @version2)).to be_truthy }
+      after { expect(VersionCompare::lesser_or_equal?(@version1, @version2)).to be_truthy }
 
       it 'returns true' do
         @version1 = '1.0'
@@ -39,7 +39,7 @@ describe 'VersionCompare' do
     end
 
     context 'version checked is older' do
-      after { expect(VersionCompare::is_newer_or_same?(@version1, @version2)).to be_falsey }
+      after { expect(VersionCompare::lesser_or_equal?(@version1, @version2)).to be_falsey }
 
       it 'returns false' do
         @version1 = '1'
@@ -63,7 +63,7 @@ describe 'VersionCompare' do
     end
 
     context 'version checked is the same' do
-      after { expect(VersionCompare::is_newer_or_same?(@version1, @version2)).to be_truthy }
+      after { expect(VersionCompare::lesser_or_equal?(@version1, @version2)).to be_truthy }
 
       it 'returns true' do
         @version1 = '1'
@@ -78,7 +78,7 @@ describe 'VersionCompare' do
     end
 
     context 'version number causes Gem::Version new Exception' do
-      after { expect(VersionCompare::is_newer_or_same?(@version1, @version2)).to be_falsey }
+      after { expect(VersionCompare::lesser_or_equal?(@version1, @version2)).to be_falsey }
 
       it 'returns false' do
         @version1 = 'a'
@@ -87,7 +87,7 @@ describe 'VersionCompare' do
     end
 
     context 'one version number is not set' do
-      after { expect(VersionCompare::is_newer_or_same?(@version1, @version2)).to be_falsey }
+      after { expect(VersionCompare::lesser_or_equal?(@version1, @version2)).to be_falsey }
 
       it 'returns false (version2 nil)' do
         @version1 = '1'

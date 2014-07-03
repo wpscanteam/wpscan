@@ -2,14 +2,14 @@
 
 class VersionCompare
 
-  # Compares two version strings. Returns true if version1 is equal to version2
-  # or when version1 is older than version2
+  # Compares two version strings. Returns true if version1 <= version2
+  # and false otherwise
   #
   # @param [ String ] version1
   # @param [ String ] version2
   #
   # @return [ Boolean ]
-  def self.is_newer_or_same?(version1, version2)
+  def self.lesser_or_equal?(version1, version2)
     return true if (version1 == version2)
     # Both versions must be set
     return false unless (version1 and version2)

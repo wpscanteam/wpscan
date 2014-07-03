@@ -15,12 +15,12 @@ class WpTimthumb < WpItem
     end
 
     def check_rce_132
-      return rce_132_vuln unless VersionCompare.is_newer_or_same?('1.33', version)
+      return rce_132_vuln unless VersionCompare.lesser_or_equal?('1.33', version)
     end
 
     # Vulnerable versions : > 1.35 (or >= 2.0) and < 2.8.14
     def check_rce_webshot
-      return if VersionCompare.is_newer_or_same?('2.8.14', version) || VersionCompare.is_newer_or_same?(version, '1.35')
+      return if VersionCompare.lesser_or_equal?('2.8.14', version) || VersionCompare.lesser_or_equal?(version, '1.35')
 
       response = Browser.get(uri.merge('?webshot=1&src=http://' + default_allowed_domains.sample))
 
