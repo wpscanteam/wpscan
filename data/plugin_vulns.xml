@@ -3,6 +3,17 @@
 <vulnerabilities xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                  xsi:noNamespaceSchemaLocation="vuln.xsd">
 
+  <plugin name="theme-my-login">
+    <vulnerability>
+      <title>Theme My Login 6.3.9 - Local File Inclusion</title>
+      <references>
+        <url>http://seclists.org/fulldisclosure/2014/Jun/172</url>
+      </references>
+      <type>LFI</type>
+      <fixed_in>6.3.10</fixed_in>
+    </vulnerability>
+  </plugin>
+
   <plugin name="login-rebuilder">
     <vulnerability>
       <title>Login Rebuilder &lt; 1.2.0 - Cross Site Request Forgery Vulnerability</title>
