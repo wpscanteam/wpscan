@@ -4452,6 +4452,15 @@
   </plugin>
 
   <plugin name="nextgen-gallery">
+  <vulnerability>
+      <title>NextGEN Gallery &amp; 2.0.66 - Arbitrary File Upload (the user must have upload privileges)</title>
+      <references>
+        <url>http://packetstormsecurity.com/files/127340/wpnextgen2063-shell.txt</url>
+      </references>
+      <type>UPLOAD</type>
+      <!-- The 2.0.65 has a bypass, properly fixed in 2.0.66 -->
+      <fixed_in>2.0.66</fixed_in>
+    </vulnerability>
     <vulnerability>
       <title>NextGEN Gallery 2.0.0 - Directory Traversal</title>
       <references>
