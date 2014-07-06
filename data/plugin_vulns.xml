@@ -18,6 +18,7 @@
     <vulnerability>
       <title>Login Rebuilder &lt; 1.2.0 - Cross Site Request Forgery Vulnerability</title>
       <references>
+        <osvdb>108364</osvdb>
         <cve>2014-3882</cve>
       </references>
       <type>CSRF</type>
@@ -27,12 +28,26 @@
 
   <plugin name="simple-share-buttons-adder">
     <vulnerability>
-      <title>Simple Share Buttons Adder 4.4 - Stored XSS &amp; Cross Site Request Forgery Vulnerabilities</title>
+      <title>Simple Share Buttons Adder 4.4 - options-general.php Multiple Admin Actions CSRF</title>
       <references>
+        <osvdb>108444</osvdb>
+        <cve>2014-4717</cve>
+        <exploitdb>33896</exploitdb>
         <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-simple-share-buttons-adder/</url>
-        <cve>2014-3882</cve>
+        <url>http://packetstormsecurity.com/files/127238/</url>
       </references>
-      <type>MULTI</type>
+      <type>CSRF</type>
+      <fixed_in>4.5</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Simple Share Buttons Adder 4.4 - options-general.php ssba_share_text Parameter Stored XSS Weakness</title>
+      <references>
+        <osvdb>108445</osvdb>
+        <exploitdb>33896</exploitdb>
+        <url>https://security.dxw.com/advisories/csrf-and-stored-xss-in-simple-share-buttons-adder/</url>
+        <url>http://packetstormsecurity.com/files/127238/</url>
+      </references>
+      <type>XSS</type>
       <fixed_in>4.5</fixed_in>
     </vulnerability>
   </plugin>
@@ -13183,6 +13198,29 @@
      <title>Verification Code for Comments 2.1.0 - vcc.js.php Multiple Parameter Reflected XSS</title>
       <references>
         <osvdb>108313</osvdb>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wpcb">
+    <vulnerability>
+     <title>wpcb 2.4.8 - facture.php id Parameter Reflected XSS</title>
+      <references>
+        <osvdb>108407</osvdb>
+        <cve>2014-4581</cve>
+        <url>http://www.securityfocus.com/bid/68357</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-app-maker">
+    <vulnerability>
+     <title>WP App Maker 1.0.16.4 - icons-launcher.php uid Parameter Reflected XSS</title>
+      <references>
+        <osvdb>108408</osvdb>
+        <cve>2014-4578</cve>
       </references>
       <type>XSS</type>
     </vulnerability>
