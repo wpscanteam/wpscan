@@ -7,7 +7,10 @@
     <vulnerability>
       <title>Theme My Login 6.3.9 - Local File Inclusion</title>
       <references>
+        <osvdb>108517</osvdb>
+        <url>http://packetstormsecurity.com/files/127302/</url>
         <url>http://seclists.org/fulldisclosure/2014/Jun/172</url>
+        <url>http://www.securityfocus.com/bid/68254</url>
       </references>
       <type>LFI</type>
       <fixed_in>6.3.10</fixed_in>
@@ -10940,6 +10943,15 @@
 
   <plugin name="ml-slider">
     <vulnerability>
+      <title>Meta Slider 2.5 - metaslider.php id Parameter XSS</title>
+      <references>
+        <osvdb>108611</osvdb>
+        <url>http://packetstormsecurity.com/files/127288/</url>
+        <url>http://www.securityfocus.com/bid/68283</url>
+      </references>
+      <type>XSS</type>
+    </vulnerability>
+    <vulnerability>
       <title>Meta Slider 2.1.6 - Multiple Script Direct Request Path Disclosure</title>
       <references>
         <osvdb>100794</osvdb>
@@ -13223,6 +13235,27 @@
         <cve>2014-4578</cve>
       </references>
       <type>XSS</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="wp-amasin-the-amazon-affiliate-shop">
+    <vulnerability>
+     <title>wp-amasin-the-amazon-affiliate-shop 0.9.6 - reviews.php url Parameter Local File Inclusion</title>
+      <references>
+        <osvdb>108501</osvdb>
+        <cve>2014-4577</cve>
+      </references>
+      <type>LFI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="cross-rss">
+    <vulnerability>
+     <title>Cross RSS 1.7 - proxy.php rss Parameter Local File Inclusion</title>
+      <references>
+        <osvdb>108502</osvdb>
+      </references>
+      <type>LFI</type>
     </vulnerability>
   </plugin>
 
