@@ -68,7 +68,10 @@ class WpUser < WpItem
         # &amp; are not decoded with Nokogiri
         title_tag.sub!('&amp;', '&')
 
-        name = title_tag[%r{([^|«]+) }, 1]
+        # replace UTF chars like  &#187; with dummy character
+        title_tag.sub!(/&#(\d+);/, '|')
+
+        name = title_tag[%r{([^|«»]+) }, 1]
 
         return name.strip if name
       end
