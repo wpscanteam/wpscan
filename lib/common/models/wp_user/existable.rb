@@ -66,10 +66,10 @@ class WpUser < WpItem
         title_tag.force_encoding('UTF-8') if title_tag.encoding == Encoding::ASCII_8BIT
         title_tag = Nokogiri::HTML::DocumentFragment.parse(title_tag).to_s
         # &amp; are not decoded with Nokogiri
-        title_tag.sub!('&amp;', '&')
+        title_tag.gsub!('&amp;', '&')
 
         # replace UTF chars like  &#187; with dummy character
-        title_tag.sub!(/&#(\d+);/, '|')
+        title_tag.gsub!(/&#(\d+);/, '|')
 
         name = title_tag[%r{([^|«»]+) }, 1]
 
