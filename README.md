@@ -55,7 +55,9 @@ sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-d
 
 ```
 git clone https://github.com/wpscanteam/wpscan.git
+
 cd wpscan
+
 sudo gem install bundler && bundle install --without test
 ```
 
