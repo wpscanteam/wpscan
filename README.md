@@ -270,7 +270,7 @@ Locally scan a wordpress installation for vulnerable files or shells :
 
 #### PROJECT HOME
 
-(http://www.wpscan.org)
+[http://www.wpscan.org](http://www.wpscan.org)
 
 #### GIT REPOSITORY
 
