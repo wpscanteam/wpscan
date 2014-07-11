@@ -45,7 +45,7 @@ wpscanteam at gmail.com
    * RubyGems      - Recommended: latest
    * Git
 
-  -> Installing on Debian/Ubuntu:
+  -> Installing on Ubuntu:
 
     Before Ubuntu 14.04:
 
@@ -59,6 +59,13 @@ wpscanteam at gmail.com
     cd wpscan
     sudo gem install bundler && bundle install --without test
 
+  -> Installing on Debian:
+
+    sudo apt-get install git ruby ruby-dev libcurl4-gnutls-dev
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler
+    bundle install --without test --path vendor/bundle
 
   -> Installing on Fedora:
 
