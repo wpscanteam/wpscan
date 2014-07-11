@@ -81,7 +81,7 @@ From Ubuntu 14.04:
 
 ####Installing on Mac OSX:
 
-Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error
+Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See [http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error](http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error)
 
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
@@ -134,7 +134,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
         make install
       ```
 
-      See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
+      See [http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/](http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/) for more details
 
   - no such file to load -- rubygems
 
@@ -142,7 +142,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
       And select your ruby version
 
-      See https://github.com/wpscanteam/wpscan/issues/148
+      See [https://github.com/wpscanteam/wpscan/issues/148](https://github.com/wpscanteam/wpscan/issues/148)
 
 #### WPSCAN ARGUMENTS
 
@@ -274,15 +274,15 @@ Locally scan a wordpress installation for vulnerable files or shells :
 
 #### GIT REPOSITORY
 
-https://github.com/wpscanteam/wpscan
+[https://github.com/wpscanteam/wpscan](https://github.com/wpscanteam/wpscan)
 
 #### ISSUES
 
-https://github.com/wpscanteam/wpscan/issues
+[https://github.com/wpscanteam/wpscan/issues](https://github.com/wpscanteam/wpscan/issues)
 
 #### DEVELOPER DOCUMENTATION
 
-http://rdoc.info/github/wpscanteam/wpscan/frames
+[http://rdoc.info/github/wpscanteam/wpscan/frames](http://rdoc.info/github/wpscanteam/wpscan/frames)
 
 #### SPONSOR
 
