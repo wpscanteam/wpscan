@@ -56,7 +56,7 @@ From Ubuntu 14.04:
 
 ####Installing on Debian:
 
-```
+```bash
 sudo apt-get install git ruby ruby-dev libcurl4-gnutls-dev
 git clone https://github.com/wpscanteam/wpscan.git
 cd wpscan
