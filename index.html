@@ -60,7 +60,7 @@
         <script>
           <!-- Get README.md from Github API using JSONP. Turn the markdown into HTML. -->
           function content(response) {
-            var data = atob(response.data.content);
+            var data = atob(response.data.content.replace(/\s/g, ''));
             preview.innerHTML = markdown.toHTML(data);
             return data;
           }
