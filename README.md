@@ -1,4 +1,4 @@
-![alt text](http://dvwa.co.uk/images/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
+![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
 
 [![Build Status](https://travis-ci.org/wpscanteam/wpscan.png?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
 
@@ -44,76 +44,62 @@ Windows is not supported.
 ####Installing on Ubuntu:
 
 Before Ubuntu 14.04:
-```
-sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
-```
+
+    sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
 
 From Ubuntu 14.04:
-```
-sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essentials
-```
 
-```
-git clone https://github.com/wpscanteam/wpscan.git
-cd wpscan
-sudo gem install bundler && bundle install --without test
-```
+    sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essentials
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler && bundle install --without test
 
 ####Installing on Debian:
 
-```
-sudo apt-get install git ruby ruby-dev libcurl4-gnutls-dev
-git clone https://github.com/wpscanteam/wpscan.git
-cd wpscan
-sudo gem install bundler
-bundle install --without test --path vendor/bundle
-```
+    sudo apt-get install git ruby ruby-dev libcurl4-gnutls-dev
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler
+    bundle install --without test --path vendor/bundle
 
 ####Installing on Fedora:
 
-```
-sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel
-git clone https://github.com/wpscanteam/wpscan.git
-cd wpscan
-sudo gem install bundler && bundle install --without test
-```
+    sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler && bundle install --without test
 
 ####Installing on Archlinux:
 
-```
-pacman -Syu ruby
-pacman -Syu libyaml
-git clone https://github.com/wpscanteam/wpscan.git
-cd wpscan
-sudo gem install bundler && bundle install --without test
-gem install typhoeus
-gem install nokogiri
-```
+    pacman -Syu ruby
+    pacman -Syu libyaml
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler && bundle install --without test
+    gem install typhoeus
+    gem install nokogiri
 
 ####Installing on Mac OSX:
 
-Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error
+Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See [http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error](http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error)
 
-```
-git clone https://github.com/wpscanteam/wpscan.git
-cd wpscan
-sudo gem install bundler && sudo bundle install --without test
-```
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler && sudo bundle install --without test
 
 ####Installing with RVM:
-```
-cd ~
-curl -sSL https://get.rvm.io | bash -s stable
-source ~/.rvm/scripts/rvm
-echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-rvm install 2.1.2
-rvm use 2.1.2 --default
-echo "gem: --no-ri --no-rdoc" > ~/.gemrc
-gem install bundler
-git clone https://github.com/wpscanteam/wpscan.git
-cd wpscan
-bundle install --without test
-```
+
+    cd ~
+    curl -sSL https://get.rvm.io | bash -s stable
+    source ~/.rvm/scripts/rvm
+    echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+    rvm install 2.1.2
+    rvm use 2.1.2 --default
+    echo "gem: --no-ri --no-rdoc" > ~/.gemrc
+    gem install bundler
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    bundle install --without test
 
 #### KNOWN ISSUES
 
@@ -126,7 +112,7 @@ bundle install --without test
       Update cURL to version => 7.21.7 (may have to install from source).
 
       Installation from sources :
-      ```
+      
         Grab the sources from http://curl.haxx.se/download.html
         Decompress the archive
         Open the folder with the extracted files
@@ -134,21 +120,21 @@ bundle install --without test
         Run make
         Run sudo make install
         Run sudo ldconfig
-      ```
+      
 
   - cannot load such file -- readline:
 
-      ```sudo aptitude install libreadline5-dev libncurses5-dev```
+        sudo aptitude install libreadline5-dev libncurses5-dev
 
       Then, open the directory of the readline gem (you have to locate it)
-      ```
+      
         cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
         ruby extconf.rb
         make
         make install
-      ```
+      
 
-      See http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/ for more details
+      See [http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/](http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/) for more details
 
   - no such file to load -- rubygems
 
@@ -156,7 +142,7 @@ bundle install --without test
 
       And select your ruby version
 
-      See https://github.com/wpscanteam/wpscan/issues/148
+      See [https://github.com/wpscanteam/wpscan/issues/148](https://github.com/wpscanteam/wpscan/issues/148)
 
 #### WPSCAN ARGUMENTS
 
@@ -284,19 +270,19 @@ Locally scan a wordpress installation for vulnerable files or shells :
 
 #### PROJECT HOME
 
-www.wpscan.org
+[http://www.wpscan.org](http://www.wpscan.org)
 
 #### GIT REPOSITORY
 
-https://github.com/wpscanteam/wpscan
+[https://github.com/wpscanteam/wpscan](https://github.com/wpscanteam/wpscan)
 
 #### ISSUES
 
-https://github.com/wpscanteam/wpscan/issues
+[https://github.com/wpscanteam/wpscan/issues](https://github.com/wpscanteam/wpscan/issues)
 
 #### DEVELOPER DOCUMENTATION
 
-http://rdoc.info/github/wpscanteam/wpscan/frames
+[http://rdoc.info/github/wpscanteam/wpscan/frames](http://rdoc.info/github/wpscanteam/wpscan/frames)
 
 #### SPONSOR
 
