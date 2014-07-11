@@ -1,4 +1,4 @@
-![alt text](http://dvwa.co.uk/images/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
+![alt text](wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
 
 [![Build Status](https://travis-ci.org/wpscanteam/wpscan.png?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
 
