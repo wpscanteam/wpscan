@@ -50,7 +50,7 @@ sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev lib
 
 From Ubuntu 14.04:
 ```
-sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev
+sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essentials
 ```
 
 ```
