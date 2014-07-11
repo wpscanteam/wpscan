@@ -56,257 +56,30 @@
 
       </header>
       <section>
-        <p><img src="wpscan_logo_407x80.png" alt="alt text" title="WPScan - WordPress Security Scanner"></p>
 
-<h4>INSTALL</h4>
+        <script>
+          <!-- Get README.md from Github API using JSONP. Turn the markdown into HTML. -->
+          function content(response) {
+            var data = atob(response.data.content);
+            preview.innerHTML = markdown.toHTML(data);
+            return data;
+          }
 
-<p>WPScan comes pre-installed on the following Linux distributions:</p>
+          var script = document.createElement('script');
+          script.src = 'https://api.github.com/repos/wpscanteam/wpscan/contents/README.md?callback=content';
 
-<ul>
-  <li><a href="http://www.backbox.org/">BackBox Linux</a></li>
-  <li><a href="http://www.kali.org/">Kali Linux</a></li>
-  <li><a href="http://www.pentoo.ch/">Pentoo</a></li>
-  <li><a href="http://samurai.inguardians.com/">SamuraiWTF</a></li>
-  <li><a href="https://archassault.org/">ArchAssault</a></li>
+          document.getElementsByTagName('head')[0].appendChild(script);
+        </script>
 
-</ul>
+        <div id="preview"> </div>
 
-<p>Prerequisites:</p>
-
-<ul>
-  <li>Windows not supported</li>
-  <li>Ruby => 1.9</li>
-  <li>RubyGems</li>
-  <li>Git</li>
-</ul>
-
-<p><em>Installing on Debian/Ubuntu:</em></p>
-
-<p>Before Ubuntu 14.04:</p>
-
-<p><code>sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev</code></p>
-
-<p>From Ubuntu 14.04:</p>
-
-<p><code>sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev</code></p>
-
-<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
-
-<p><code>cd wpscan</code></p>
-
-<p><code>sudo gem install bundler &amp;&amp; bundle install --without test development</code></p>
-
-<p><em>Installing on Fedora:</em></p>
-
-<p><code>sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel</code></p>
-
-<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
-
-<p><code>cd wpscan</code></p>
-
-<p><code>sudo gem install bundler &amp;&amp; bundle install --without test development</code></p>
-
-<p><em>Installing on Archlinux:</em></p>
-
-<p><code>pacman -Syu ruby</code></p>
-<p><code>pacman -Syu libyaml</code></p>
-
-<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
-
-<p><code>cd wpscan</code></p>
-
-<p><code>sudo gem install bundler &amp;&amp; bundle install --without test development</code></p>
-
-<p><code>gem install typhoeus</code></p>
-
-<p><code>gem install nokogiri</code></p>
-
-<p><em>Installing on Mac OSX:</em></p>
-
-<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
-
-<p><code>cd wpscan</code></p>
-
-<p><code>sudo gem install bundler &amp;&amp; bundle install --without test development</code></p>
-
-<p><em>Installing with RVM:</em></p>
-
-<p><code>cd ~</code></p>
-
-<p><code>curl -sSL https://get.rvm.io | bash -s stable</code></p>
-
-<p><code>source ~/.rvm/scripts/rvm</code></p>
-
-<p><code>echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc</code></p>
-
-<p><code>rvm install 2.1.2</code></p>
-
-<p><code>rvm use 2.1.2 --default</code></p>
-
-<p><code>echo "gem: --no-ri --no-rdoc" > ~/.gemrc</code></p>
-
-<p><code>git clone https://github.com/wpscanteam/wpscan.git</code></p>
-
-<p><code>cd wpscan</code></p>
-
-<p><code>gem install bundler</code></p>
-
-<p><code>bundle install --without test</code></p>
-
-
-<h4>KNOWN ISSUES</h4>
-
-<ul>
-  <li>
-    <p>
-      Typhoeus segmentation fault
-      Update curl to at least v7.21 (may have to install from source)
-      See <a href="http://code.google.com/p/wpscan/issues/detail?id=81">http://code.google.com/p/wpscan/issues/detail?id=81</a>
-    </p>
-  </li>
-  <li>
-    <p>
-      Proxy not working
-      Update cURL to version =&gt; 7.21.7 (may have to install from source).<br />
-
-      Installation from sources :
-      <ul>
-        <li>Grab the sources from http://curl.haxx.se/download.html</li>
-        <li>Decompress the archive</li>
-        <li>Open the folder with the extracted files</li>
-        <li>Run ./configure</li>
-        <li>Run make</li>
-        <li>Run sudo make install</li>
-        <li>Run sudo ldconfig</li>
-      </ul>
-    </p>
-  </li>
-  <li>
-    <p>cannot load such file -- readline</p>
-    <p>Run sudo aptitude install libreadline5-dev libncurses5-dev</p>
-    <p>Then, open the directory of readline gem (you have to locate it first)</p>
-
-    <pre>
-      <code>
-        cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
-        ruby extconf.rb
-        make
-        make install
-      </code>
-    </pre>
-
-    <p>See <a href="http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/">here</a> for more details</p>
-  </li>
-</ul>
-
-<h4>WPSCAN ARGUMENTS</h4>
-
-<pre><code>--url   | -u &lt;target url&gt;  The WordPress URL/domain to scan.
-
---force | -f Forces WPScan to not check if the remote site is running WordPress.
-
---enumerate | -e [option(s)]  Enumeration.
-  option :
-    u        usernames from id 1 to 10
-    u[10-20] usernames from id 10 to 20 (you must write [] chars)
-    p        plugins
-    vp       only vulnerable plugins
-    ap       all plugins (can take a long time)
-    tt       timthumbs
-    t        themes
-    vt       only vulnerable themes
-    at       all themes (can take a long time)
-  Multiple values are allowed : '-e tt,p' will enumerate timthumbs and plugins
-  If no option is supplied, the default is 'vt,tt,u,vp'
-
---exclude-content-based '&lt;regexp or string&gt;'  Used with the enumeration option, will exclude all occurence based on the regexp or string supplied
-                                                    You do not need to provide the regexp delimiters, but you must write the quotes (simple or double)
-
---config-file | -c &lt;config file&gt; Use the specified config file
-
---follow-redirection  If the target url has a redirection, it will be followed without asking if you wanted to do so or not
-
---proxy &lt;[protocol://]host:port&gt;  Supply a proxy (will override the one from conf/browser.conf.json).
-                                        HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported. If no protocol is given (format host:port), HTTP will be used
-
---proxy-auth &lt;username:password&gt;  Supply the proxy login credentials (will override the one from conf/browser.conf.json).
-
---basic-auth &lt;username:password&gt;  Set the HTTP basic authentification
-
---wordlist | -w &lt;wordlist&gt;  Supply a wordlist for the password bruter and do the brute.
-
---threads  | -t &lt;number of threads&gt;  The number of threads to use when multi-threading requests. (will override the value from conf/browser.conf.json)
-
---username | -U &lt;username&gt;  Only brute force the supplied username.
-
---help     | -h This help screen.
-
---verbose  | -v Verbose output.
-</code></pre>
-
-<h4>WPSCAN EXAMPLES</h4>
-
-<p>Do 'non-intrusive' checks...</p>
-
-<p><code>ruby wpscan.rb --url www.example.com</code></p>
-
-<p>Do wordlist password brute force on enumerated users using 50 threads...</p>
-
-<p><code>ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --threads 50</code></p>
-
-<p>Do wordlist password brute force on the 'admin' username only...</p>
-
-<p><code>ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --username admin</code></p>
-
-<p>Enumerate installed plugins...</p>
-
-<p><code>ruby wpscan.rb --url www.example.com --enumerate p</code></p>
-
-<p>Run all enumeration tools...</p>
-
-<p><code>ruby wpscan.rb --url www.example.com --enumerate</code></p>
-
-<p>Update WPScan...</p>
-
-<p><code>ruby wpscan.rb --update</code></p>
-
-<h4>WPSTOOLS ARGUMENTS</h4>
-
-<pre><code>--help    | -h   This help screen.
---Verbose | -v   Verbose output.
---update  | -u   Update to the latest revision.
---generate_plugin_list [number of pages]  Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
---gpl  Alias for --generate_plugin_list
-</code></pre>
-
-<h4>WPSTOOLS EXAMPLES</h4>
-
-<p>Generate a new 'most popular' plugin list, up to 150 pages...</p>
-
-<p><code>ruby wpstools.rb --generate_plugin_list 150</code></p>
-
-<h4>PROJECT HOME</h4>
-
-<p><a href="http://www.wpscan.org">www.wpscan.org</a></p>
-
-<h4>GIT REPOSITORY</h4>
-
-<p><a href="https://github.com/wpscanteam/wpscan">https://github.com/wpscanteam/wpscan</a></p>
-
-<h4>ISSUES</h4>
-
-<p><a href="https://github.com/wpscanteam/wpscan/issues">https://github.com/wpscanteam/wpscan/issues</a></p>
-
-<h4>SPONSOR</h4>
-
-<p>WPScan is sponsored by the <a href="http://www.randomstorm.com">RandomStorm</a> Open Source Initiative.</p>
-
- </section>
+      </section>
       <footer>
         <p>This project is maintained by the <a href="https://github.com/wpscanteam">WPScan Team</a> which comprises of <a href="http://www.twitter.com/@erwan_lr">@erwan_lr</a>, <a href="https://github.com/pvdl">pvdl</a>, <a href="http://www.twitter.com/@_FireFart_">@_FireFart_</a> & <a href="http://www.twitter.com/@ethicalhack3r">@ethicalhack3r</a>.</p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/markdown-browser-0.6.0-beta1/markdown.min.js"></script>
 
   </body>
 </html>
