@@ -44,14 +44,12 @@ Windows is not supported.
 ####Installing on Ubuntu:
 
 Before Ubuntu 14.04:
-```
-sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
-```
+
+```sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev```
 
 From Ubuntu 14.04:
-```
-sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essentials
-```
+
+```sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essentials```
 
 ```git clone https://github.com/wpscanteam/wpscan.git```
 
