@@ -15,9 +15,9 @@ class WpTheme < WpItem
   include WpTheme::Output
   include WpTheme::Childtheme
 
-  attr_accessor :additional_url
+  attr_accessor :referenced_url
 
-  def allowed_options; super << :additional_url end
+  def allowed_options; super << :referenced_url end
 
   def initialize(*args)
     super(*args)
@@ -36,7 +36,7 @@ class WpTheme < WpItem
 
   # @return [ String ] The url to the theme stylesheet
   def style_url
-    uri.merge('style.css').to_s
+    @uri.merge('style.css').to_s
   end
 
 end

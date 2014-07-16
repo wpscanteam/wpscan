@@ -55,7 +55,7 @@ describe 'WpTheme::Findable' do
     context 'when other style.css is referenced' do
       it 'returns the WpTheme' do
         @file = 'yootheme.html'
-        @expected = WpTheme.new(uri, name: 'yoo_solar_wp')
+        @expected = WpTheme.new(uri, name: 'yoo_solar_wp', referenced_url: '/wp-content/themes/yoo_solar_wp/styles/wood/css/style.css')
       end
     end
 

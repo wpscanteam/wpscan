@@ -36,7 +36,7 @@ class WpTheme < WpItem
           target_uri,
           {
             name:           matches[2],
-            additional_url: matches[0],
+            referenced_url: matches[0],
             wp_content_dir: matches[1]
           }
         )

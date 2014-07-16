@@ -29,7 +29,7 @@ describe WpTheme do
   let(:theme_path)    { 'wp-content/themes/theme-name/' }
 
   describe '#allowed_options' do
-    its(:allowed_options) { is_expected.to include :additional_url }
+    its(:allowed_options) { is_expected.to include :referenced_url }
   end
 
   describe '#forge_uri' do

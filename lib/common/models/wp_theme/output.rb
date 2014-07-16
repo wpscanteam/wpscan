@@ -7,7 +7,7 @@ class WpTheme
     def additional_output(verbose = false)
       theme_desc = verbose ? @theme_description : truncate(@theme_description, 100)
       puts " |  Style URL: #{style_url}"
-      puts " |  Additional URL: #{additional_url}" if additional_url
+      puts " |  Referenced style.css: #{referenced_url}" if referenced_url && referenced_url != style_url
       puts " |  Theme Name: #@theme_name" if @theme_name
       puts " |  Theme URI: #@theme_uri" if @theme_uri
       puts " |  Description: #{theme_desc}"
