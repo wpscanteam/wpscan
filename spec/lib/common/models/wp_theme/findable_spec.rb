@@ -52,6 +52,13 @@ describe 'WpTheme::Findable' do
       end
     end
 
+    context 'when other style.css is referenced' do
+      it 'returns the WpTheme' do
+        @file = 'yootheme.html'
+        @expected = WpTheme.new(uri, name: 'yoo_solar_wp')
+      end
+    end
+
   end
 
   describe '::find_from_wooframework' do

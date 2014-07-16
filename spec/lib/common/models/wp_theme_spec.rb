@@ -29,24 +29,11 @@ describe WpTheme do
   let(:theme_path)    { 'wp-content/themes/theme-name/' }
 
   describe '#allowed_options' do
-    its(:allowed_options) { is_expected.to include :style_url }
+    its(:allowed_options) { is_expected.to include :additional_url }
   end
 
   describe '#forge_uri' do
     its(:uri) { is_expected.to eq uri.merge(theme_path) }
-  end
-
-  describe '#style_url' do
-    its(:style_url) { is_expected.to eq uri.merge(theme_path + '/style.css').to_s }
-
-    context 'when its already set' do
-      it 'returns it instead of the default one' do
-        url                = uri.merge(theme_path + '/custom.css').to_s
-        wp_theme.style_url = url
-
-        expect(wp_theme.style_url).to eq url
-      end
-    end
   end
 
 end

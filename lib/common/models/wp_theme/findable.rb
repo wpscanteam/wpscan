@@ -30,13 +30,13 @@ class WpTheme < WpItem
       response = Browser.get_and_follow_location(target_uri.to_s)
 
       # https + domain is optional because of relative links
-      matches = %r{(?:https?://[^"']+)?/([^/]+)/themes/([^"']+)/style.css}i.match(response.body)
+      matches = /(?:https?:\/\/[^"']+)?\/([^\/]+)\/themes\/([^"'\/]+)[^"']*\/style.css/i.match(response.body)
       if matches
         return new(
           target_uri,
           {
             name:           matches[2],
-            style_url:      matches[0],
+            additional_url: matches[0],
             wp_content_dir: matches[1]
           }
         )
