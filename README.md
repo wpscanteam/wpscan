@@ -264,9 +264,11 @@ Generate a new 'most popular' plugin list, up to 150 pages...
 
 ```ruby wpstools.rb --generate-plugin-list 150```
 
-Locally scan a wordpress installation for vulnerable files or shells :
+Locally scan a wordpress installation for vulnerable files or shells:
+
 ```ruby wpstools.rb --check-local-vulnerable-files /var/www/wordpress/```
 
+Or check [pyfiscan](https://github.com/fgeek/pyfiscan) project.
 
 #### PROJECT HOME
 
