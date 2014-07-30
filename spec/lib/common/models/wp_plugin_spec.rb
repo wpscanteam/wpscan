@@ -6,7 +6,7 @@ describe WpPlugin do
   it_behaves_like 'WpPlugin::Vulnerable'
   it_behaves_like 'WpItem::Vulnerable' do
     let(:options)        { { name: 'white-rabbit' } }
-    let(:vulns_file)     { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins_vulns.xml' }
+    let(:vulns_file)     { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins_vulns.json' }
     let(:expected_refs)  { {
         :url => ['Ref 1', 'Ref 2'],
         :cve => ['2011-001'],

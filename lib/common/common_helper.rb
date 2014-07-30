@@ -22,14 +22,14 @@ WPSTOOLS_PLUGINS_DIR = File.join(WPSTOOLS_LIB_DIR, 'plugins')
 # Data files
 PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.txt')
 PLUGINS_FULL_FILE   = File.join(DATA_DIR, 'plugins_full.txt')
-PLUGINS_VULNS_FILE  = File.join(DATA_DIR, 'plugin_vulns.xml')
+PLUGINS_VULNS_FILE  = File.join(DATA_DIR, 'plugin_vulns.json')
 THEMES_FILE         = File.join(DATA_DIR, 'themes.txt')
 THEMES_FULL_FILE    = File.join(DATA_DIR, 'themes_full.txt')
-THEMES_VULNS_FILE   = File.join(DATA_DIR, 'theme_vulns.xml')
-WP_VULNS_FILE       = File.join(DATA_DIR, 'wp_vulns.xml')
+THEMES_VULNS_FILE   = File.join(DATA_DIR, 'theme_vulns.json')
+WP_VULNS_FILE       = File.join(DATA_DIR, 'wp_vulns.json')
 WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml')
 LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml')
-VULNS_XSD           = File.join(DATA_DIR, 'vuln.xsd')
+# VULNS_XSD           = File.join(DATA_DIR, 'vuln.xsd')
 WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd')
 LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
 USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt')
@@ -54,7 +54,7 @@ require 'environment'
 def require_files_from_directory(absolute_dir_path, files_pattern = '*.rb')
   files = Dir[File.join(absolute_dir_path, files_pattern)]
 
-  # Files in the root dir are loaded first, then thoses in the subdirectories
+  # Files in the root dir are loaded first, then those in the subdirectories
   files.sort_by { |file| [file.count("/"), file] }.each do |f|
     f = File.expand_path(f)
     #puts "require #{f}" # Used for debug
@@ -150,6 +150,16 @@ end
 def xml(file)
   Nokogiri::XML(File.open(file)) do |config|
     config.noblanks
+  end
+end
+
+def json(file)
+  content = File.open(file).read
+
+  begin
+    JSON.parse(content)
+  rescue => e
+    puts "[ERROR] In JSON file parsing #{e} #{e.backtrace}"
   end
 end
 

@@ -3,7 +3,7 @@
 require WPSCAN_LIB_DIR + '/wp_target'
 
 shared_examples 'WpItems::Detectable' do
-  let(:vulns_file)         { fixtures_dir + '/vulns.xml' }
+  let(:vulns_file)         { fixtures_dir + '/vulns.json' }
   let(:targets_items_file) { fixtures_dir + '/targets.txt' }
   let(:wp_content_dir)     { 'wp-content' }
   let(:wp_plugins_dir)     { wp_content_dir + '/plugins' }

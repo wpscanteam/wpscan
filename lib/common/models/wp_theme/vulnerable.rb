@@ -12,9 +12,14 @@ class WpTheme < WpItem
     end
 
     # @return [ String ]
-    def vulns_xpath
-      "//theme[@name='#{@name}']/vulnerability"
-    end
+    def identifier
+      @name
+    end    
+
+    # @return [ String ]
+    # def vulns_xpath
+    #   "//theme[@name='#{@name}']/vulnerability"
+    # end
 
   end
 end

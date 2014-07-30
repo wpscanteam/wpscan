@@ -4,8 +4,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../../wpstools_helper')
 
 describe 'StatsPlugin' do
   subject(:stats)     { StatsPlugin.new }
-  let(:plugins_vulns) { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins_vulns.xml' }
-  let(:themes_vulns)  { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.xml' }
+  let(:plugins_vulns) { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins_vulns.json' }
+  let(:themes_vulns)  { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.json' }
   let(:plugins_file)  { COLLECTIONS_FIXTURES + '/wp_plugins/detectable/targets.txt' }
   let(:themes_file)   { COLLECTIONS_FIXTURES + '/wp_themes/detectable/targets.txt'}
 
