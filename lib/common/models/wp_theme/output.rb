@@ -5,6 +5,8 @@ class WpTheme
 
     # @return [ Void ]
     def additional_output(verbose = false)
+      parse_style
+      
       theme_desc = verbose ? @theme_description : truncate(@theme_description, 100)
       puts " |  Style URL: #{style_url}"
       puts " |  Referenced style.css: #{referenced_url}" if referenced_url && referenced_url != style_url

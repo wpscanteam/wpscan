@@ -19,12 +19,6 @@ class WpTheme < WpItem
 
   def allowed_options; super << :referenced_url end
 
-  def initialize(*args)
-    super(*args)
-
-    parse_style
-  end
-
   # Sets the @uri
   #
   # @param [ URI ] target_base_uri The URI of the wordpress blog
