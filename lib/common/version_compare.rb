@@ -10,6 +10,10 @@ class VersionCompare
   #
   # @return [ Boolean ]
   def self.lesser_or_equal?(version1, version2)
+    # Prepend a '0' if the version starts with a '.'
+    version1 = "0#{version1}" if version1 && version1[0,1] == '.'
+    version2 = "0#{version2}" if version2 && version2[0,1] == '.'
+
     return true if (version1 == version2)
     # Both versions must be set
     return false unless (version1 and version2)
