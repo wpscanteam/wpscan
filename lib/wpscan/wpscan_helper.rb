@@ -108,3 +108,11 @@ def help
   puts '--verbose  | -v                     Verbose output.'
   puts
 end
+
+# Hook to check if the target if down during the scan
+# The target is considered down after 10 requests with status = 0
+down = 0
+Typhoeus.on_complete do |response|
+  down += 1 if response.code == 0
+  fail 'The target seems to be down' if down >= 10
+end

@@ -64,14 +64,6 @@ end
 
 require_files_from_directory(COMMON_LIB_DIR, '**/*.rb')
 
-# Hook to check if the target if down during the scan
-# The target is considered down after 10 requests with status = 0
-down = 0
-Typhoeus.on_complete do |response|
-  down += 1 if response.code == 0
-  fail 'The target seems to be down' if down >= 10
-end
-
 # Add protocol
 def add_http_protocol(url)
   url =~ /^https?:/ ? url : "http://#{url}"
