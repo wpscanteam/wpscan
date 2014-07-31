@@ -13466,6 +13466,9 @@
      <title>Cross RSS 1.7 - proxy.php rss Parameter Local File Inclusion</title>
       <references>
         <osvdb>108502</osvdb>
+        <cve>2014-4941</cve>
+        <url>http://www.securityfocus.com/bid/68555</url>
+        <url>http://codevigilant.com/disclosure/wp-plugin-cross-rss-local-file-inclusion/</url>
       </references>
       <type>LFI</type>
     </vulnerability>
@@ -13726,7 +13729,7 @@
       <title>BannerMan 0.2.4 - XSS in wp-admin/options-general.php via bannerman_background parameter</title>
       <references>
         <osvdb>108682</osvdb>
-        <cve>2014-4945</cve>
+        <cve>2014-4845</cve>
         <url>http://packetstormsecurity.com/files/127289/</url>
       </references>
       <type>XSS</type>
@@ -13738,7 +13741,7 @@
       <title>Random Banner 1.1.2.1 - random-banner/random-banner.php buffercode_RBanner_url_banner1 Parameter XSS</title>
       <references>
         <osvdb>108627</osvdb>
-        <cve>2014-4947</cve>
+        <cve>2014-4847</cve>
         <url>http://packetstormsecurity.com/files/127292/</url>
         <url>http://www.securityfocus.com/bid/68280</url>
       </references>
@@ -13751,7 +13754,7 @@
       <title>Blogstand Smart Banner 1.0 - blogstand-banner.php bs_blog_id Parameter XSS</title>
       <references>
         <osvdb>108625</osvdb>
-        <cve>2014-4948</cve>
+        <cve>2014-4848</cve>
         <url>http://packetstormsecurity.com/files/127290/</url>
         <url>http://www.securityfocus.com/bid/68282</url>
       </references>
@@ -13764,7 +13767,7 @@
       <title>Construction Mode 1.8 - under-construction.php wuc_logo Parameter XSS</title>
       <references>
         <osvdb>108630</osvdb>
-        <cve>2014-4954</cve>
+        <cve>2014-4854</cve>
         <secunia>58932</secunia>
         <url>http://packetstormsecurity.com/files/127287/</url>
         <url>http://www.securityfocus.com/bid/68287</url>
@@ -13778,7 +13781,7 @@
       <title>Polylang 1.5.1 - User Description Handling Stored XSS</title>
       <references>
         <osvdb>108634</osvdb>
-        <cve>2014-4955</cve>
+        <cve>2014-4855</cve>
         <secunia>59357</secunia>
         <url>http://www.securityfocus.com/bid/68509</url>
       </references>
@@ -13792,6 +13795,43 @@
       </references>
       <type>MULTI</type>
       <fixed_in>1.5</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="enl-newsletter">
+    <vulnerability>
+      <title>ENL Newsletter 1.0.1 - wp-admin/admin.php enl-add-new Page id Parameter SQL Injection</title>
+      <references>
+        <osvdb>109027</osvdb>
+        <cve>2014-4939</cve>
+        <url>http://codevigilant.com/disclosure/wp-plugin-enl-newsletter-a1-injection/</url>
+      </references>
+      <type>SQLI</type>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="tera-charts">
+    <vulnerability>
+      <title>Tera Charts 0.1 - charts/zoomabletreemap.php fn Parameter Remote Path Traversal File Disclosure</title>
+      <references>
+        <osvdb>109029</osvdb>
+        <cve>2014-4940</cve>
+        <url>http://www.securityfocus.com/bid/68662</url>
+        <url>http://codevigilant.com/disclosure/wp-plugin-tera-chart-local-file-inclusion/</url>
+      </references>
+      <type>FPD</type>
+      <fixed_in>1.0</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>Tera Charts 0.1 - charts/treemap.php fn Parameter Remote Path Traversal File Disclosure</title>
+      <references>
+        <osvdb>109028</osvdb>
+        <cve>2014-4940</cve>
+        <url>http://www.securityfocus.com/bid/68662</url>
+        <url>http://codevigilant.com/disclosure/wp-plugin-tera-chart-local-file-inclusion/</url>
+      </references>
+      <type>FPD</type>
+      <fixed_in>1.0</fixed_in>
     </vulnerability>
   </plugin>
 
