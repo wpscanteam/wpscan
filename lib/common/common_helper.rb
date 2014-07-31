@@ -159,7 +159,7 @@ def json(file)
   begin
     JSON.parse(content)
   rescue => e
-    #puts "[ERROR] In JSON file parsing #{e} #{e.backtrace}"
+    puts "[ERROR] In JSON file parsing #{e} #{e.backtrace}"
   end
 end
 
