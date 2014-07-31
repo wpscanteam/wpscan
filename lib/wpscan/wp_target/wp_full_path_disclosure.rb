@@ -9,7 +9,7 @@ class WpTarget < WebSite
     def has_full_path_disclosure
       response = Browser.get(full_path_disclosure_url())
       if (response.body[%r{Fatal error}i])
-         then return response.body.scan(/in <b>([^\s]*?)<\/b> on/)[0]
+         then return response.body.scan(/in <b>([^\s]*?)<\/b> on/)[0][0]
          else return false
       end
     end

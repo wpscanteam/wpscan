@@ -136,7 +136,7 @@ def main
 
     has_full_path_disclosure = wp_target.has_full_path_disclosure
     if has_full_path_disclosure
-      puts "#{red('[!]')} Full Path Disclosure (FPD): '#{has_full_path_disclosure[0]}'"
+      puts "#{red('[!]')} Full Path Disclosure (FPD): '#{has_full_path_disclosure}'"
     end
 
     if wp_target.has_debug_log?

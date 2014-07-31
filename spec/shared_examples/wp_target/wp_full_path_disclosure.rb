@@ -28,7 +28,7 @@ shared_examples 'WpTarget::WpFullPathDisclosure' do
       @expected = false
     end
 
-    it 'returns true' do
+    it 'returns path' do
       @stub     = { status: 200, body: File.new(fixtures_dir + '/rss-functions-disclosure.php') }
       @expected = '/home/web/www/blog/wordpress/wp-includes/rss-functions.php'
     end
