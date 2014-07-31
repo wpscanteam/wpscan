@@ -10,7 +10,7 @@ shared_examples 'WpTarget::WpFullPathDisclosure' do
     end
   end
 
-  describe '#has_full_path_disclosure?' do
+  describe '#has_full_path_disclosure' do
     after do
       stub_request(:get, wp_target.full_path_disclosure_url).
         to_return(@stub)
@@ -30,7 +30,7 @@ shared_examples 'WpTarget::WpFullPathDisclosure' do
 
     it 'returns true' do
       @stub     = { status: 200, body: File.new(fixtures_dir + '/rss-functions-disclosure.php') }
-      @expected = true
+      @expected = '/home/web/www/blog/wordpress/wp-includes/rss-functions.php'
     end
   end
 
