@@ -5580,22 +5580,6 @@
 
   <plugin name="wp-e-commerce">
     <vulnerability>
-      <title>WP e-Commerce 3.8.6 - wpsc-cart_widget.php cart_messages Parameter XSS</title>
-      <references>
-        <osvdb>74295</osvdb>
-        <secunia>45513</secunia>
-      </references>
-      <type>XSS</type>
-      <fixed_in>3.8.8</fixed_in>
-    </vulnerability>
-    <vulnerability>
-      <title>WP e-Commerce &lt;= 3.8.6 - SQL Injection Vulnerability</title>
-      <references>
-        <exploitdb>17832</exploitdb>
-      </references>
-      <type>SQLI</type>
-    </vulnerability>
-    <vulnerability>
       <title>WP-e-Commerce 3.8.9.5 - Cross Site Scripting Vulnerability</title>
       <references>
         <url>http://1337day.com/exploit/20517</url>
@@ -5633,6 +5617,42 @@
         <url>http://packetstormsecurity.com/files/124921/</url>
       </references>
       <type>UPLOAD</type>
+    </vulnerability>
+    <vulnerability>
+      <title>WP-e-Commerce 3.8.9 - purchase-log-list-table-class.php m Parameter XSS</title>
+      <references>
+        <osvdb>88231</osvdb>
+        <url>http://www.securityfocus.com/bid/56499</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80048</url>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.8.9.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP-e-Commerce 3.8.9 - purchaselogs.class.php view_purchlogs_by_status Parameter SQL Injection</title>
+      <references>
+        <osvdb>88232</osvdb>
+        <url>http://www.securityfocus.com/bid/56499</url>
+        <url>http://xforce.iss.net/xforce/xfdb/80042</url>
+      </references>
+      <type>SQLI</type>
+      <fixed_in>3.8.9.1</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP e-Commerce 3.8.6 - wpsc-cart_widget.php cart_messages Parameter XSS</title>
+      <references>
+        <osvdb>74295</osvdb>
+        <secunia>45513</secunia>
+      </references>
+      <type>XSS</type>
+      <fixed_in>3.8.8</fixed_in>
+    </vulnerability>
+    <vulnerability>
+      <title>WP e-Commerce &lt;= 3.8.6 - SQL Injection Vulnerability</title>
+      <references>
+        <exploitdb>17832</exploitdb>
+      </references>
+      <type>SQLI</type>
     </vulnerability>
   </plugin>
 
