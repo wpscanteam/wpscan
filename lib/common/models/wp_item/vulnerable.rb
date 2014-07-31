@@ -46,10 +46,4 @@ class WpItem
       return false
     end
   end
-
-  # @return [ String ]
-  def identifier
-    @name
-  end
-
 end

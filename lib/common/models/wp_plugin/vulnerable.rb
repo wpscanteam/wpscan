@@ -11,5 +11,10 @@ class WpPlugin < WpItem
       @vulns_file
     end
 
+    # @return [ String ]
+    def identifier
+      @name
+    end
+
   end
 end

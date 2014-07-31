@@ -10,6 +10,10 @@ class WpTheme < WpItem
       end
       @vulns_file
     end
-    
+
+    # @return [ String ]
+    def identifier
+      @name
+    end
   end
 end
