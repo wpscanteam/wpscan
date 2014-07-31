@@ -20,24 +20,9 @@ describe 'XSD checks' do
     end
   end
 
-  it 'check plugin_vulns.xml for syntax errors' do
-    @file = PLUGINS_VULNS_FILE
-    @xsd  = VULNS_XSD
-  end
-
-  it 'check theme_vulns.xml for syntax errors' do
-    @file = THEMES_VULNS_FILE
-    @xsd  = VULNS_XSD
-  end
-
   it 'check wp_versions.xml for syntax errors' do
     @file = WP_VERSIONS_FILE
     @xsd  = WP_VERSIONS_XSD
-  end
-
-  it 'check wp_vulns.xml for syntax errors' do
-    @file = WP_VULNS_FILE
-    @xsd  = VULNS_XSD
   end
 
   it 'check local_vulnerable_files.xml for syntax errors' do
@@ -57,58 +42,11 @@ describe 'Well formed XML checks' do
     end
   end
 
-  it 'check plugin_vulns.xml for syntax errors' do
-    @file = PLUGINS_VULNS_FILE
-  end
-
-  it 'check theme_vulns.xml for syntax errors' do
-    @file = THEMES_VULNS_FILE
-  end
-
   it 'check wp_versions.xml for syntax errors' do
     @file = WP_VERSIONS_FILE
   end
 
-  it 'check wp_vulns.xml for syntax errors' do
-    @file = WP_VULNS_FILE
-  end
-
   it 'check local_vulnerable_files.xml for syntax errors' do
     @file = LOCAL_FILES_FILE
-  end
-end
-
-describe 'XML content' do
-  before :all do
-    @vuln_plugins = xml(PLUGINS_VULNS_FILE)
-    @vuln_themes = xml(THEMES_VULNS_FILE)
-  end
-
-  after :each do
-    expect(@result.size).to eq(0), "Items:\n#{@result.join("\n")}"
-  end
-
-  it 'each plugin vuln needs a type node' do
-    @result = @vuln_plugins.xpath('//vulnerability[not(type)]/title/text()').map(&:text)
-  end
-
-  it 'each theme vuln needs a type node' do
-    @result = @vuln_themes.xpath('//vulnerability[not(type)]/title/text()').map(&:text)
-  end
-
-  it 'each plugin vuln needs a title node' do
-    @result = @vuln_plugins.xpath('//vulnerability[not(title)]/../@name').map(&:text)
-  end
-
-  it 'each theme vuln needs a title node' do
-    @result = @vuln_themes.xpath('//vulnerability[not(title)]/../@name').map(&:text)
-  end
-
-  it 'each plugin vuln needs a references node' do
-    @result = @vuln_plugins.xpath('//vulnerability[not(references)]/title/text()').map(&:text)
-  end
-
-  it 'each theme vuln needs a references node' do
-    @result = @vuln_themes.xpath('//vulnerability[not(references)]/title/text()').map(&:text)
   end
 end

@@ -60,26 +60,27 @@ class StatsPlugin < Plugin
   end
 
   def version_vulns_count(file=WP_VULNS_FILE)
-    xml(file).xpath('count(//vulnerability)').to_i
+    asset_vulns_count(json(file))
   end
+
   def fix_version_count(file=WP_VULNS_FILE)
-    xml(file).xpath('count(//fixed_in)').to_i
+    asset_fixed_in_count(json(file))
   end
 
   def plugin_vulns_count(file=PLUGINS_VULNS_FILE)
-    json(file).xpath('count(//vulnerability)').to_i
+    asset_vulns_count(json(file))
   end
 
   def fix_plugin_count(file=PLUGINS_VULNS_FILE)
-    xml(file).xpath('count(//fixed_in)').to_i
+    asset_fixed_in_count(json(file))
   end
 
   def theme_vulns_count(file=THEMES_VULNS_FILE)
-    xml(file).xpath('count(//vulnerability)').to_i
+    asset_vulns_count(json(file))
   end
 
   def fix_theme_count(file=THEMES_VULNS_FILE)
-    xml(file).xpath('count(//fixed_in)').to_i
+    asset_fixed_in_count(json(file))
   end
 
   def total_plugins(file=PLUGINS_FULL_FILE)
@@ -92,6 +93,14 @@ class StatsPlugin < Plugin
 
   def lines_in_file(file)
     IO.readlines(file).size
+  end
+
+  def asset_vulns_count(json)
+    json.map { |asset| asset[asset.keys.inject]['vulnerabilities'].size }.inject(:+)
+  end
+
+  def asset_fixed_in_count(json)
+    json.map { |asset| asset[asset.keys.inject]['vulnerabilities'].map {|a| a['fixed_in'].nil? ? 0 : 1 }.inject(:+) }.inject(:+)
   end
 
 end
