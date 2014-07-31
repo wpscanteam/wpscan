@@ -151,7 +151,7 @@ def json(file)
   begin
     JSON.parse(content)
   rescue => e
-    fail "In JSON file parsing #{file} #{e}"
+    puts "[ERROR] In JSON file parsing #{file} #{e}"
     raise
   end
 end
