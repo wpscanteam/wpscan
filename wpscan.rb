@@ -134,8 +134,9 @@ def main
       puts "#{red('[!]')} The WordPress '#{wp_target.readme_url}' file exists"
     end
 
-    if wp_target.has_full_path_disclosure?
-      puts "#{red('[!]')} Full Path Disclosure (FPD) in: '#{wp_target.full_path_disclosure_url}'"
+    has_full_path_disclosure = wp_target.has_full_path_disclosure
+    if has_full_path_disclosure
+      puts "#{red('[!]')} Full Path Disclosure (FPD): '#{has_full_path_disclosure}'"
     end
 
     if wp_target.has_debug_log?

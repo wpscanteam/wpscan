@@ -6,9 +6,12 @@ class WpTarget < WebSite
     # Check for Full Path Disclosure (FPD)
     #
     # @return [ Boolean ]
-    def has_full_path_disclosure?
+    def has_full_path_disclosure
       response = Browser.get(full_path_disclosure_url())
-      response.body[%r{Fatal error}i] ? true : false
+      if (response.body[%r{Fatal error}i])
+         then return response.body.scan(/in <b>([^\s]*?)<\/b> on/)[0][0]
+         else return false
+      end
     end
 
     # @return [ String ]
