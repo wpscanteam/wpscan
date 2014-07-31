@@ -15,7 +15,7 @@ shared_examples 'WpTarget::WpFullPathDisclosure' do
       stub_request(:get, wp_target.full_path_disclosure_url).
         to_return(@stub)
 
-      expect(wp_target.has_full_path_disclosure?).to be === @expected
+      expect(wp_target.has_full_path_disclosure).to be === @expected
     end
 
     it 'returns false on a 404' do
