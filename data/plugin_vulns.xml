@@ -5677,11 +5677,7 @@
     <vulnerability>
       <title>TheCartPress 1.1.1 - Remote File Inclusion</title>
       <references>
-        <osvdb>75615</osvdb>
         <osvdb>75616</osvdb>
-        <osvdb>75617</osvdb>
-        <osvdb>75618</osvdb>
-        <osvdb>75619</osvdb>
         <exploitdb>17860</exploitdb>
       </references>
       <fixed_in>1.1.2</fixed_in>
@@ -5735,8 +5731,10 @@
     <vulnerability>
       <title>Mailing List 1.3.2 - Remote File Inclusion</title>
       <references>
+        <osvdb>75617</osvdb>
         <exploitdb>17866</exploitdb>
       </references>
+      <fixed_in>1.3.4</fixed_in>
       <type>RFI</type>
     </vulnerability>
     <vulnerability>
@@ -13832,6 +13830,16 @@
       </references>
       <type>FPD</type>
       <fixed_in>1.0</fixed_in>
+    </vulnerability>
+  </plugin>
+
+  <plugin name="starbox-voting">
+    <vulnerability>
+      <title>Starbox Voting - ajax.php Full Path Disclosure vulnerability</title>
+      <references>
+        <url>http://seclists.org/bugtraq/2011/Feb/222</url>
+      </references>
+      <type>FPD</type>
     </vulnerability>
   </plugin>
 
