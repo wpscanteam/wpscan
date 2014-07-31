@@ -151,7 +151,8 @@ def json(file)
   begin
     JSON.parse(content)
   rescue => e
-    raise "[ERROR] In JSON file parsing #{file} #{e} #{e.backtrace}"
+    fail "[ERROR] In JSON file parsing #{file} #{e}"
+    raise
   end
 end
 
