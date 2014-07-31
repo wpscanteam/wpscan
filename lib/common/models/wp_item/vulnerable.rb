@@ -9,7 +9,6 @@ class WpItem
     #
     # @return [ Vulnerabilities ]
     def vulnerabilities
-      # xml             = xml(vulns_file)
       json            = json(vulns_file)
       vulnerabilities = Vulnerabilities.new
 
@@ -23,13 +22,6 @@ class WpItem
           end
         end
       end
-
-      # xml.xpath(vulns_xpath).each do |node|
-      #   vuln = Vulnerability.load_from_xml_node(node)
-      #   if vulnerable_to?(vuln)
-      #     vulnerabilities << vuln
-      #   end
-      # end
 
       vulnerabilities
     end
@@ -53,6 +45,11 @@ class WpItem
       end
       return false
     end
+  end
+
+  # @return [ String ]
+  def identifier
+    @name
   end
 
 end

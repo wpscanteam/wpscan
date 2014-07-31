@@ -11,15 +11,5 @@ class WpPlugin < WpItem
       @vulns_file
     end
 
-    # @return [ String ]
-    def identifier
-      @name
-    end
-
-    # # @return [ String ]
-    # def vulns_xpath
-    #   "//plugin[@name='#{@name}']/vulnerability"
-    # end
-
   end
 end

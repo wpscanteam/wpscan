@@ -143,27 +143,15 @@ class WpItems < Array
     def vulnerable_targets_items(wp_target, item_class, vulns_file)
       targets = []
       json    = json(vulns_file)
-      # xml     = xml(vulns_file)
 
-      unless json.nil? || json == ''
-        json.each do |item|
-          targets << create_item(
-            item_class,
-            item.keys.inject,
-            wp_target,
-            vulns_file
-          )
-        end
+      [*json].each do |item|
+        targets << create_item(
+          item_class,
+          item.keys.inject,
+          wp_target,
+          vulns_file
+        )
       end
-
-      # xml.xpath(item_xpath).each do |node|
-      #   targets << create_item(
-      #     item_class,
-      #     node.attribute('name').text,
-      #     wp_target,
-      #     vulns_file
-      #   )
-      # end
 
       targets
     end
