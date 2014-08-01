@@ -13,14 +13,14 @@ shared_examples 'WpVersion::Vulnerable' do
 
     context 'when the :vulns_file is already set' do
       it 'returns it' do
-        @expected          = 'test.xml'
+        @expected          = 'test.json'
         subject.vulns_file = @expected
       end
     end
   end
 
-  describe '#vulns_xpath' do
-    its(:vulns_xpath) { is_expected.to eq "//wordpress[@version='1.2']/vulnerability" }
+  describe '#identifier' do
+    its(:identifier) { is_expected.to eq '1.2' }
   end
 
 end

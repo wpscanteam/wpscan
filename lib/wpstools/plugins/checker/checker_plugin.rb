@@ -29,11 +29,18 @@ class CheckerPlugin < Plugin
     puts '[+] Checking vulnerabilities reference urls'
 
     vuln_ref_files.each do |vuln_ref_file|
-      xml = xml(vuln_ref_file)
+      json = json(vuln_ref_file)
 
       urls = []
-      xml.xpath('//references/url').each { |node| urls << node.text }
-
+      json.each do |asset|
+        asset[asset.keys.inject]['vulnerabilities'].each do |url|
+          unless url['url'].nil?
+            url['url'].split(',').each do |url|
+              urls << url
+            end
+          end
+        end
+      end
       urls.uniq!
 
       puts "[!] No URLs found in #{vuln_ref_file}!" if urls.empty?

@@ -9,9 +9,9 @@ class WpPlugins < WpItems
     end
 
     # @return [ String ]
-    def item_xpath
-      '//plugin'
-    end
+    # def item_xpath
+    #   '//plugin'
+    # end
 
     # @param [ WpTarget ] wp_target
     # @param [ Hash ] options

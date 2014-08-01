@@ -2,22 +2,27 @@
 
 class WpItem
   module Vulnerable
-    attr_accessor :vulns_file, :vulns_xpath
+    attr_accessor :vulns_file, :identifier
 
     # Get the vulnerabilities associated to the WpItem
     # Filters out already fixed vulnerabilities
     #
     # @return [ Vulnerabilities ]
     def vulnerabilities
-      xml             = xml(vulns_file)
+      json            = json(vulns_file)
       vulnerabilities = Vulnerabilities.new
 
-      xml.xpath(vulns_xpath).each do |node|
-        vuln = Vulnerability.load_from_xml_node(node)
-        if vulnerable_to?(vuln)
-          vulnerabilities << vuln
+      json.each do |item|
+        asset = item[identifier]
+
+        if asset
+          asset['vulnerabilities'].each do |vulnerability|
+            vulnerability = Vulnerability.load_from_json_item(vulnerability)
+            vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
+          end
         end
       end
+
       vulnerabilities
     end
 
@@ -41,5 +46,4 @@ class WpItem
       return false
     end
   end
-
 end

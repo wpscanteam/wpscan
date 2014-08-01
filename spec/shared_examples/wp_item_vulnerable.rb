@@ -10,7 +10,7 @@ shared_examples 'WpItem::Vulnerable' do
   #   let(:vulns_xpath)    { }
 
   describe '#vulnerabilities' do
-    let(:empty_file) { MODELS_FIXTURES + '/wp_item/vulnerable/empty.xml' }
+    let(:empty_file) { MODELS_FIXTURES + '/wp_item/vulnerable/empty.json' }
 
     before do
       stub_request(:get, /.*\/readme\.txt/i)
@@ -19,7 +19,7 @@ shared_examples 'WpItem::Vulnerable' do
 
     after do
       subject.vulns_file  = @vulns_file
-      subject.vulns_xpath = vulns_xpath if defined?(vulns_xpath)
+      subject.identifier = identifier if defined?(identifier)
 
       result = subject.vulnerabilities
       expect(result).to be_a Vulnerabilities

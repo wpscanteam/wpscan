@@ -7,7 +7,7 @@ describe WpTheme do
   it_behaves_like 'WpTheme::Vulnerable'
   it_behaves_like 'WpItem::Vulnerable' do
     let(:options)        { { name: 'the-oracle' } }
-    let(:vulns_file)     { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.xml' }
+    let(:vulns_file)     { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.json' }
     let(:expected_refs)  { {
         :url => ['Ref 1', 'Ref 2'],
         :cve => ['2011-001'],

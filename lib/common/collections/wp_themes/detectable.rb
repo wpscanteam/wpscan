@@ -9,9 +9,9 @@ class WpThemes < WpItems
     end
 
     # @return [ String ]
-    def item_xpath
-      '//theme'
-    end
+    # def item_xpath
+    #   '//theme'
+    # end
 
   end
 end

@@ -142,16 +142,17 @@ class WpItems < Array
     # @return [ Array<WpItem> ]
     def vulnerable_targets_items(wp_target, item_class, vulns_file)
       targets = []
-      xml     = xml(vulns_file)
+      json    = json(vulns_file)
 
-      xml.xpath(item_xpath).each do |node|
+      [*json].each do |item|
         targets << create_item(
           item_class,
-          node.attribute('name').text,
+          item.keys.inject,
           wp_target,
           vulns_file
         )
       end
+
       targets
     end
 
@@ -190,6 +191,7 @@ class WpItems < Array
           )
         end
       end
+
       targets
     end
 
