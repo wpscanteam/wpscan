@@ -65,26 +65,35 @@ class GenerateList
   # parse the response for the names.
   def get_popular_items(pages)
     found_items = []
-    page_count = 1
+    page_count  = 1
+    retries     = 0
 
     (1...(pages.to_i + 1)).each do |page|
       # First page has another URL
       url = (page == 1) ? @popular_url : @popular_url + 'page/' + page.to_s + '/'
       puts "[+] Parsing page #{page_count}" if @verbose
       code = 0
-      while code != 200
+
+      while code != 200 && retries <= 3
         puts red("[!] Retrying request for page #{page} (Code: #{code})") unless code == 0
-        request = @browser.forge_request(url)
+
+        request  = @browser.forge_request(url)
         response = request.run
-        code = response.code
+        code     = response.code
+
         sleep(5) unless code == 200
+        retries += 1
       end
+
       page_count += 1
       found = 0
+
       response.body.scan(@popular_regex).each do |item|
         found_items << item[0]
         found = found + 1
       end
+
+      retries = 0
       puts "[+] Found #{found} items on page #{page}" if @verbose
     end
 
@@ -96,6 +105,7 @@ class GenerateList
   def save(items)
     items.sort!
     items.uniq!
+
     puts "[*] We have parsed #{items.length} #{@type}s"
     File.open(@file_name, 'w') { |f| f.puts(items) }
     puts "New #@file_name file created"
