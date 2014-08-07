@@ -171,6 +171,10 @@ def main
       puts "#{green('[+]')} This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)"
     end
 
+    if wp_target.has_must_use_plugins?
+      puts "#{green('[+]')} This site has must use plugins (http://codex.wordpress.org/Must_Use_Plugins)"
+    end
+
     if wp_target.registration_enabled?
       puts "#{amber('[+]')} Registration is enabled: #{wp_target.registration_url}"
     end
