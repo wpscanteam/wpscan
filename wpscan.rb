@@ -14,8 +14,13 @@ def main
     wpscan_options = WpscanOptions.load_from_arguments
 
     unless wpscan_options.has_options?
-      usage()
-      raise('No argument supplied')
+      # first parameter only url?
+      if ARGV.length == 1
+        wpscan_options.url = ARGV[0]
+      else
+        usage()
+        raise('No argument supplied')
+      end
     end
 
     # Define a global variable
