@@ -152,7 +152,7 @@ def main
     end
 
     if wp_target.search_replace_db_2_exists?
-      puts red("[!] searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
+      puts "#{red('[!]')} searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'"
     end
 
     wp_target.interesting_headers.each do |header|
