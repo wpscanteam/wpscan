@@ -37,6 +37,7 @@ class WpUser < WpItem
     #
     # @return [ String ] The login
     def self.login_from_author_pattern(text)
+      text = String.new if text.nil?
       text[%r{/author/([^/\b]+)/?}i, 1]
     end
 

@@ -29,6 +29,14 @@ shared_examples 'WpUser::Existable' do
         @expected = nil
       end
     end
+
+    context 'when text is nil' do
+      it 'proceedes without exception' do
+        @text     = nil
+        @expected = nil
+      end
+    end
+
   end
 
   describe '::login_from_body' do
