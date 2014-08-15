@@ -22,6 +22,8 @@ class WpUser < WpItem
       if response.code == 301 # login in location?
         location = response.headers_hash['Location']
 
+        return unless location
+
         @login        = Existable.login_from_author_pattern(location)
         @display_name = Existable.display_name_from_body(
           Browser.get(location).body

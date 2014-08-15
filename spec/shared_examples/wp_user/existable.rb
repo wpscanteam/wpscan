@@ -124,6 +124,15 @@ shared_examples 'WpUser::Existable' do
         @login        = 'admin'
         @display_name = 'admin name'
       end
+
+      context 'when the location is nil' do
+        let(:location) { nil }
+
+        it 'returns nil' do
+          @login        = nil
+          @display_name = nil
+        end
+      end
     end
 
     context 'with a 200' do
