@@ -133,6 +133,15 @@ shared_examples 'WpUser::Existable' do
           @display_name = nil
         end
       end
+
+      context 'when the location is empty' do
+        let(:location) { '' }
+
+        it 'returns nil' do
+          @login        = nil
+          @display_name = nil
+        end
+      end
     end
 
     context 'with a 200' do
