@@ -39,7 +39,7 @@ begin
 
   fail "#{red('The target URL must be supplied')}\n\n#{parser}" unless ARGV[0]
 
-  uri = URI.parse(add_trailing_slash(add_http_protocol(ARGV[0])))
+  uri = URI.parse(add_trailing_slash(add_http_protocol(ARGV[0]))).to_s
 
   request_params = {
     proxy: @opts[:proxy],
@@ -55,7 +55,9 @@ begin
   @opts[:ids].each do |user_id|
     user = WpUser.new(uri, id: user_id)
 
-    if user.exists_from_response?(Typhoeus.post(uri, request_params.merge(body: { author: user_id })))
+    if user.exists_from_response?(
+      Typhoeus.post(uri, request_params.merge(body: { author: user_id }))
+    )
       detected_users << user
     end
   end
