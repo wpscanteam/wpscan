@@ -16,6 +16,11 @@ class WpItem
 
       additional_output(verbose) if respond_to?(:additional_output)
 
+      if version.nil? && vulnerabilities.length > 0
+        puts
+        puts "#{amber('[+]')} We could not determine a version so all vulnerabilities are printed out"
+      end
+
       vulnerabilities.output
     end
   end
