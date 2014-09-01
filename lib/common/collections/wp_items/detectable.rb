@@ -80,13 +80,31 @@ class WpItems < Array
     #
     # @return [ WpItems ]
     def passive_detection(wp_target, options = {})
-      results  = new(wp_target)
-      body     = Browser.get(wp_target.url).body
+      results = new(wp_target)
       # improves speed
-      body     = remove_base64_images_from_html(body)
-      names    = body.scan(passive_detection_pattern(wp_target))
+      body    = remove_base64_images_from_html(Browser.get(wp_target.url).body)
+      page    = Nokogiri::HTML(remove_conditional_comments(body))
+      names   = []
 
-      names.flatten.uniq.each { |name| results.add(name) }
+      page.css('link,script,style').each do |tag|
+        %w(href src).each do |attribute|
+          attr_value = tag.attribute(attribute).to_s
+          next unless attr_value
+
+          names << Regexp.last_match[1] if attr_value.match(attribute_pattern(wp_target))
+        end
+
+        next unless tag.name == 'script' || tag.name == 'style'
+
+        code = tag.text.to_s
+        next if code.empty?
+
+        code.scan(code_pattern(wp_target)).flatten.uniq.each do |item_name|
+          names << item_name
+        end
+      end
+
+      names.uniq.each { |name| results.add(name) }
 
       results.sort!
       results
@@ -97,13 +115,29 @@ class WpItems < Array
     # @param [ WpTarget ] wp_target
     #
     # @return [ Regex ]
-    def passive_detection_pattern(wp_target)
-      type   = self.to_s.gsub(/Wp/, '').downcase
-      regex1 = %r{(?:[^=:\(]+)\s?(?:=|:|\()\s?(?:"|')[^"']+\\?/}
-      regex2 = %r{\\?/}
-      regex3 = %r{\\?/([^/\\"']+)\\?(?:/|"|')}
+    def item_pattern(wp_target)
+      type = to_s.gsub(/Wp/, '').downcase
+      wp_content_dir = wp_target.wp_content_dir
+      wp_content_url = wp_target.uri.merge(wp_content_dir).to_s
 
-      /#{regex1}#{Regexp.escape(wp_target.wp_content_dir)}#{regex2}#{Regexp.escape(type)}#{regex3}/i
+      url = /#{wp_content_url.gsub(%r{\A(?:http|https)}, 'https?').gsub('/', '\\\\\?\/')}/i
+      content_dir = %r{(?:#{url}|\\?\/\\?\/?#{wp_content_dir})}i
+
+      %r{#{content_dir}\\?/#{type}\\?/}
+    end
+
+    # @param [ WpTarget ] wp_target
+    #
+    # @return [ Regex ]
+    def attribute_pattern(wp_target)
+      /\A#{item_pattern(wp_target)}([^\/]+)/i
+    end
+
+    # @param [ WpTarget ] wp_target
+    #
+    # @return [ Regex ]
+    def code_pattern(wp_target)
+      /["'\(]#{item_pattern(wp_target)}([^\\\/\)"']+)/i
     end
 
     # The default request parameters

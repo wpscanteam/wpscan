@@ -19,8 +19,7 @@ describe WpPlugins do
         vulnerable_targets_items:         [ WpPlugin.new(uri, name: 'mr-smith'),
                                             WpPlugin.new(uri, name: 'neo')],
 
-        passive_detection: WpPlugins.new << WpPlugin.new(uri, name: 'js-source') <<
-                                            WpPlugin.new(uri, name: 'escaped-url') <<
+        passive_detection: WpPlugins.new << WpPlugin.new(uri, name: 'escaped-url') <<
                                             WpPlugin.new(uri, name: 'link-tag') <<
                                             WpPlugin.new(uri, name: 'script-tag') <<
                                             WpPlugin.new(uri, name: 'style-tag') <<
