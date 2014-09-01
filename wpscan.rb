@@ -201,6 +201,9 @@ def main
 
     if wp_version = wp_target.version(WP_VERSIONS_FILE)
       wp_version.output(wpscan_options.verbose)
+    else
+      puts
+      puts "#{blue('[i]')} WordPress version can not be detected"
     end
 
     if wp_theme = wp_target.theme
