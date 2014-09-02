@@ -73,10 +73,6 @@ def add_trailing_slash(url)
   url =~ /\/$/ ? url : "#{url}/"
 end
 
-def remove_conditional_comments(text)
-  text.gsub(/\<\!--\[if[^>]+>(.*?)\<\!\[end[^>]+>/im, '\1')
-end
-
 # loading the updater
 require_files_from_directory(UPDATER_LIB_DIR)
 @updater = UpdaterFactory.get_updater(ROOT_DIR)

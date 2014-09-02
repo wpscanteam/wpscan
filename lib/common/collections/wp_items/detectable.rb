@@ -83,7 +83,7 @@ class WpItems < Array
       results = new(wp_target)
       # improves speed
       body    = remove_base64_images_from_html(Browser.get(wp_target.url).body)
-      page    = Nokogiri::HTML(remove_conditional_comments(body))
+      page    = Nokogiri::HTML(body)
       names   = []
 
       page.css('link,script,style').each do |tag|
