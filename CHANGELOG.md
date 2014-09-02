@@ -2,6 +2,58 @@
 ## Master
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.4...master)
 
+## Version 2.x
+Released: 2014-xx-xx
+
+New
+* Be more verbose when no version can be detected
+* Added detection for Yoast Wordpress SEO plugin
+* Also ensure to not process empty Location headers
+* Ensures a nil location is not processed when enumerating usernames
+* Fix #626 - Detect 'Must_Use_Plugins'
+* better username extraction
+* Add a --cookie option. Ref #485
+* Add a --no-color option
+* Output: Give 'Fixed in' an informational tag
+* Added ArchAssault distro - WPScan comes pre-installed with this distro
+* Layout changes with new colors
+
+General core
+* Ensures to give a string to Typhoeus
+* Fix wpstools check-vuln-ref-urls
+* Fix rspecs for new json
+* Only output if different from style_url
+* Add exception so 'ruby wpscan.rb http://domain.com' is detected
+* Added make to Debian installation, which is needed in minimal installation.
+* Add build-essentials requirement to Ubuntu > 14.04
+* Updated installation instr. for GNU/Linux Debian.
+* Changes VersionCompare#is_newer_or_same? by lesser_or_equal?
+* Fixes the location of the robots.txt check
+* Updates the recommended ruby version
+* Rspec 3.0 support
+* Adds ruby 2.1.2 to Travis
+* Updated ruby-progressbar to 1.5.0
+
+WordPress Fingerprints
+* Adds WP 3.9.2, 3.8.4 & 3.7.4 fingerprints - Ref #652
+* Adds 3.9.1 fingerprints
+
+Fixed issues
+* Fix #674 - Improves the Plugins & Themes passive detection
+* Fix #673 - Problem with the output
+* Fix #661 - Don't hash directories named like a file
+* Fix #653 - Fix for infinite loop in wpstools
+* Fix #625 - Only parse styles when needed
+* Fix #481 - Fix for Jetpack plugin false positive
+* Fix #480 - Properly removes the colour sequence from log
+* Fix #472 - WPScan stops after redirection if not WordPress website
+* Fix #464 - Readmes updated to reflect recent changes about the config file & batch mode
+
+Vulnerabilities
+* geoplaces4 also uses name GeoPlaces4beta
+* Added metasploit module's
+* Added some timthumb detections
+
 ## Version 2.4
 Released: 2014-04-17
 
