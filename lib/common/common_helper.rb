@@ -74,7 +74,7 @@ def add_trailing_slash(url)
 end
 
 def remove_conditional_comments(text)
-  text.gsub(/<!--\[if[^>]+>(.*)<!\[end[^>]+>/im, '\1')
+  text.gsub(/\<\!--\[if[^>]+>(.*?)\<\!\[end[^>]+>/im, '\1')
 end
 
 # loading the updater
