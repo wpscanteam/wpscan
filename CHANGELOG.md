@@ -19,6 +19,7 @@ New
 * Layout changes with new colors
 
 General core
+* Fixes the remove_conditional_comments function 
 * Ensures to give a string to Typhoeus
 * Fix wpstools check-vuln-ref-urls
 * Fix rspecs for new json
@@ -35,6 +36,7 @@ General core
 * Updated ruby-progressbar to 1.5.0
 
 WordPress Fingerprints
+* Adds WP 4.0 fingerprints
 * Adds WP 3.9.2, 3.8.4 & 3.7.4 fingerprints - Ref #652
 * Adds 3.9.1 fingerprints
 
@@ -53,6 +55,14 @@ Vulnerabilities
 * geoplaces4 also uses name GeoPlaces4beta
 * Added metasploit module's
 * Added some timthumb detections
+
+WPScan Database Statistics:
+* Total vulnerable versions: 79
+* Total vulnerable plugins: 824
+* Total vulnerable themes: 295
+* Total version vulnerabilities: 617
+* Total plugin vulnerabilities: 1303
+* Total theme vulnerabilities: 335
 
 ## Version 2.4
 Released: 2014-04-17
