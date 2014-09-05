@@ -124,7 +124,12 @@ class WpTarget < WebSite
 
   # @return [ String ]
   def debug_log_url
-    @uri.merge("#{wp_content_dir()}/debug.log").to_s
+    @uri.merge("#{wp_content_dir}/debug.log").to_s
+  end
+
+  # @return [ String ]
+  def upload_dir_url
+    @uri.merge("#{wp_content_dir}/uploads/").to_s
   end
 
   # Script for replacing strings in wordpress databases
@@ -140,5 +145,9 @@ class WpTarget < WebSite
   def search_replace_db_2_exists?
     resp = Browser.get(search_replace_db_2_url)
     resp.code == 200 && resp.body[%r{by interconnect}i]
+  end
+
+  def upload_directory_listing_enabled?
+    directory_listing_enabled?(upload_dir_url)
   end
 end

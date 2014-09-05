@@ -232,3 +232,10 @@ def get_random_user_agent
   # return ransom user-agent
   user_agents.sample
 end
+
+# Directory listing enabled on url?
+#
+# @return [ Boolean ]
+def directory_listing_enabled?(url)
+  Browser.get(url.to_s).body[%r{<title>Index of}] ? true : false
+end

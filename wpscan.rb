@@ -183,6 +183,10 @@ def main
       puts "#{green('[+]')} XML-RPC Interface available under: #{wp_target.xml_rpc_url}"
     end
 
+    if wp_target.upload_directory_listing_enabled?
+      puts "#{red('[!]')} Upload directory has directory listing enabled: #{wp_target.upload_dir_url}"
+    end
+
     if wp_target.has_malwares?
       malwares = wp_target.malwares
       puts "#{red('[!]')} #{malwares.size} malware(s) found:"
