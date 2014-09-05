@@ -40,7 +40,7 @@ class WpItem
 
     # @return [ Boolean ]
     def has_directory_listing?
-      Browser.get(@uri.to_s).body[%r{<title>Index of}] ? true : false
+      directory_listing_enabled?(@uri)
     end
 
     # Discover any error_log files created by WordPress
