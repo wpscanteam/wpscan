@@ -39,10 +39,6 @@ def main
 
     # Check for updates
     if wpscan_options.update
-      puts 'Updating the DB ...'
-      DbUpdater.new(DATA_DIR).update
-      puts 'Done.'
-
       if !@updater.nil?
         if @updater.has_local_changes?
           print "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n] "
@@ -53,6 +49,11 @@ def main
         puts '[i] Svn / Git not installed, or wpscan has not been installed with one of them.'
         puts "#{red('[!]')} Update aborted"
       end
+
+      puts 'Updating the DB ...'
+      DbUpdater.new(DATA_DIR).update
+      puts 'Done.'
+
       exit(0)
     end
 
