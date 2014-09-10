@@ -39,11 +39,9 @@ def main
 
     # Check for updates
     if wpscan_options.update
-      puts 'Updating the DB ..'
+      puts 'Updating the DB ...'
       DbUpdater.new(DATA_DIR).update
       puts 'Done.'
-
-      exit # remove me
 
       if !@updater.nil?
         if @updater.has_local_changes?

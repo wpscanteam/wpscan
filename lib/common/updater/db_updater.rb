@@ -28,11 +28,11 @@ class DbUpdater < Updater
 
   # @return [ String ] The checksum of the associated remote filename
   def remote_file_checksum(filename)
-    url = "#{remote_file_url(filename)}.sha2"
+    url = "#{remote_file_url(filename)}.sha512"
 
     res = Browser.get(url, request_params)
     fail "Unable to get #{url}" unless res && res.code == 200
-    res.body.chomp
+    res.body
   end
 
   def local_file_path(filename)
@@ -49,6 +49,7 @@ class DbUpdater < Updater
   end
 
   def restore_backup(filename)
+    return unless File.exist?(backup_file_path(filename))
     FileUtils.cp(backup_file_path(filename), local_file_path(filename))
   end
 
@@ -65,7 +66,7 @@ class DbUpdater < Updater
     fail "Error while downloading #{file_url}" unless res && res.code == 200
     File.write(file_path, res.body.chomp)
 
-    Digest::MD5.file(file_path).hexdigest
+    Digest::SHA512.file(file_path).hexdigest
   end
 
   def update
@@ -73,13 +74,11 @@ class DbUpdater < Updater
       begin
         create_backup(filename)
         checksum = download(filename)
-        # p checksum
 
-        # unless checksum == remote_file_checksum(filename)
-        #  fail "#{filename}: checksums do not match"
-        # end
+        unless checksum == remote_file_checksum(filename)
+          fail "#{filename}: checksums do not match"
+        end
       rescue => e
-        # p e
         restore_backup(filename)
         raise e
       ensure
