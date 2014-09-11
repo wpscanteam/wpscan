@@ -35,11 +35,9 @@ class CacheFileStore
   end
 
   def read_entry(key)
-    entry_file_path = get_entry_file_path(key)
-
-    if File.exists?(entry_file_path)
-      return @serializer.load(File.read(entry_file_path))
-    end
+    @serializer.load(File.read(get_entry_file_path(key)))
+  rescue
+    nil
   end
 
   def write_entry(key, data_to_store, cache_ttl)

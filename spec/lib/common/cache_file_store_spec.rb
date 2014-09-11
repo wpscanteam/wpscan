@@ -41,9 +41,25 @@ describe CacheFileStore do
     end
   end
 
-  describe '#read_entry (nonexistent entry)' do
-    it 'should return nil' do
-      expect(@cache.read_entry(Digest::SHA1.hexdigest('hello world'))).to be_nil
+  describe '#read_entry' do
+    after { expect(@cache.read_entry(key)).to eq @expected }
+
+    context 'when the entry does not exist' do
+      let(:key) { Digest::SHA1.hexdigest('hello world') }
+
+      it 'should return nil' do
+        @expected = nil
+      end
+    end
+
+    context 'when the file exist but is empty (marshal data too short error)' do
+      let(:key) { 'empty-file' }
+
+      it 'returns nil' do
+        File.new(File.join(@cache.storage_path, key), File::CREAT)
+
+        @expected = nil
+      end
     end
   end
 
