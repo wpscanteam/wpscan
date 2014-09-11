@@ -52,8 +52,12 @@ class WebSite
     url ||= @uri.to_s
     response = Browser.get(url)
 
+    redirected_uri = URI.parse(add_trailing_slash(add_http_protocol(url)))
     if response.code == 301 || response.code == 302
       redirection = response.headers_hash['location']
+      if redirection[0] == '/'
+        redirection = "#{redirected_uri.scheme}://#{redirected_uri.host}#{redirection}"
+      end
 
       # Let's check if there is a redirection in the redirection
       if other_redirection = redirection(redirection)
