@@ -124,40 +124,6 @@ describe WpTarget do
     end
   end
 
-  describe '#redirection' do
-    it 'returns nil if no redirection detected' do
-      stub_request(:get, wp_target.url).to_return(status: 200, body: '')
-
-      expect(wp_target.redirection).to be_nil
-    end
-
-    [301, 302].each do |status_code|
-      it "returns http://new-location.com if the status code is #{status_code}" do
-        new_location = 'http://new-location.com'
-
-        stub_request(:get, wp_target.url).
-          to_return(status: status_code, headers: { location: new_location })
-
-        stub_request(:get, new_location).to_return(status: 200)
-
-        expect(wp_target.redirection).to be === 'http://new-location.com'
-      end
-    end
-
-    context 'when multiple redirections' do
-      it 'returns the last redirection' do
-        first_redirection  = 'www.redirection.com'
-        last_redirection   = 'redirection.com'
-
-        stub_request(:get, wp_target.url).to_return(status: 301, headers: { location: first_redirection })
-        stub_request(:get, first_redirection).to_return(status: 302, headers: { location: last_redirection })
-        stub_request(:get, last_redirection).to_return(status: 200)
-
-        expect(wp_target.redirection).to be === last_redirection
-      end
-    end
-  end
-
   describe '#debug_log_url' do
     it "returns 'http://example.localhost/wp-content/debug.log" do
       allow(wp_target).to receive_messages(wp_content_dir: 'wp-content')
