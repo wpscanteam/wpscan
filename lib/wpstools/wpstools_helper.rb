@@ -12,14 +12,14 @@ def usage
   puts
   puts 'Examples:'
   puts
-  puts "- Generate a new 'most popular' plugin list, up to 150 pages ..."
-  puts "ruby #{script_name} --generate-plugin-list 150"
+  puts "- Generate a new 'most popular' plugin list, up to 1500 items ..."
+  puts "ruby #{script_name} --generate-plugin-list 1500"
   puts
   puts '- Generate a new full plugin list'
   puts "ruby #{script_name} --generate-full-plugin-list"
   puts
-  puts "- Generate a new 'most popular' theme list, up to 150 pages ..."
-  puts "ruby #{script_name} --generate-theme-list 150"
+  puts "- Generate a new 'most popular' theme list, up to 1500 items ..."
+  puts "ruby #{script_name} --generate-theme-list 1500"
   puts
   puts '- Generate a new full theme list'
   puts "ruby #{script_name} --generate-full-theme-list"

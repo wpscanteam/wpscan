@@ -6,10 +6,10 @@ class ListGeneratorPlugin < Plugin
     super(author: 'WPScanTeam - @FireFart')
 
     register_options(
-      ['--generate-plugin-list [NUMBER_OF_PAGES]', '--gpl', Integer, 'Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)'],
+      ['--generate-plugin-list [NUMBER_OF_ITEMS]', '--gpl', Integer, 'Generate a new data/plugins.txt file. (supply number of *items* to parse, default : 1500)'],
       ['--generate-full-plugin-list', '--gfpl', 'Generate a new full data/plugins.txt file'],
 
-      ['--generate-theme-list [NUMBER_OF_PAGES]', '--gtl', Integer, 'Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 20)'],
+      ['--generate-theme-list [NUMBER_OF_ITEMS]', '--gtl', Integer, 'Generate a new data/themes.txt file. (supply number of *items* to parse, default : 200)'],
       ['--generate-full-theme-list', '--gftl', 'Generate a new full data/themes.txt file'],
 
       ['--generate-all', '--ga', 'Generate a new full plugins, full themes, popular plugins and popular themes list']
@@ -21,7 +21,7 @@ class ListGeneratorPlugin < Plugin
     generate_all = options[:generate_all] || false
 
     if options.has_key?(:generate_plugin_list) || generate_all
-      most_popular('plugin', options[:generate_plugin_list] || 150)
+      most_popular('plugin', options[:generate_plugin_list] || 1500)
     end
 
     if options[:generate_full_plugin_list] || generate_all
@@ -29,7 +29,7 @@ class ListGeneratorPlugin < Plugin
     end
 
     if options.has_key?(:generate_theme_list) || generate_all
-      most_popular('theme', options[:generate_theme_list] || 20)
+      most_popular('theme', options[:generate_theme_list] || 200)
     end
 
     if options[:generate_full_theme_list] || generate_all
@@ -39,10 +39,10 @@ class ListGeneratorPlugin < Plugin
 
   private
 
-  def most_popular(type, number_of_pages)
-    puts "[+] Generating new most popular #{type} list"
+  def most_popular(type, number_of_items)
+    puts "[+] Generating new most popular #{type} list (#{number_of_items} items)"
     puts
-    GenerateList.new(type + 's', @verbose).generate_popular_list(number_of_pages)
+    GenerateList.new(type + 's', @verbose).generate_popular_list(number_of_items)
   end
 
   def full(type)

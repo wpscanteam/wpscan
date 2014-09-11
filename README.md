@@ -252,9 +252,9 @@ Debug output...
     -v, --verbose                                                Verbose output
         --check-vuln-ref-urls, --cvru                            Check all the vulnerabilities reference urls for 404
         --check-local-vulnerable-files, --clvf LOCAL_DIRECTORY   Perform a recursive scan in the LOCAL_DIRECTORY to find vulnerable files or shells
-        --generate-plugin-list, --gpl [NUMBER_OF_PAGES]          Generate a new data/plugins.txt file. (supply number of *pages* to parse, default : 150)
+        --generate-plugin-list, --gpl [NUMBER_OF_ITEMS]          Generate a new data/plugins.txt file. (supply number of *items* to parse, default : 1500)
         --generate-full-plugin-list, --gfpl                      Generate a new full data/plugins.txt file
-        --generate-theme-list, --gtl [NUMBER_OF_PAGES]           Generate a new data/themes.txt file. (supply number of *pages* to parse, default : 20)
+        --generate-theme-list, --gtl [NUMBER_OF_ITEMS]           Generate a new data/themes.txt file. (supply number of *items* to parse, default : 200)
         --generate-full-theme-list, --gftl                       Generate a new full data/themes.txt file
         --generate-all, --ga                                     Generate a new full plugins, full themes, popular plugins and popular themes list
     -s, --stats                                                  Show WpScan Database statistics.
@@ -263,9 +263,9 @@ Debug output...
 
 #### WPSTOOLS EXAMPLES
 
-Generate a new 'most popular' plugin list, up to 150 pages...
+Generate a new 'most popular' plugin list, up to 1500 items...
 
-```ruby wpstools.rb --generate-plugin-list 150```
+```ruby wpstools.rb --generate-plugin-list 1500```
 
 Locally scan a wordpress installation for vulnerable files or shells:
 
