@@ -4,7 +4,12 @@ require 'common/updater/updater'
 
 # Updater for the Database (currently only 3 .json)
 class DbUpdater < Updater
-  FILES = %w(plugin_vulns.json theme_vulns.json wp_vulns.json)
+  FILES = %w(
+    local_vulnerable_files.xml local_vulnerable_files.xsd malwares.txt
+    plugins_full.txt plugins.txt themes_full.txt themes.txt
+    timthumbs.txt user-agents.txt wp_versions.xml wp_versions.xsd
+    plugin_vulns.json theme_vulns.json wp_vulns.json
+  )
 
   attr_reader :repo_directory
 
