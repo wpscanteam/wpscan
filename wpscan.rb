@@ -37,6 +37,16 @@ def main
       exit(0)
     end
 
+    # Initialize the browser to allow the db update
+    # to be done over a proxy if set
+    Browser.instance(
+      wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
+    )
+
+    update_db if wpscan_options.update || missing_db_file?
+
+    exit
+
     # Check for updates
     if wpscan_options.update
       if !@updater.nil?
@@ -49,10 +59,6 @@ def main
         puts '[i] Svn / Git not installed, or wpscan has not been installed with one of them.'
         puts "#{red('[!]')} Update aborted"
       end
-
-      puts 'Updating the DB ...'
-      DbUpdater.new(DATA_DIR).update
-      puts 'Done.'
 
       exit(0)
     end

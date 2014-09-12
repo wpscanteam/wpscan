@@ -4,13 +4,16 @@ require 'common/updater/updater'
 
 # Updater for the Database (currently only 3 .json)
 class DbUpdater < Updater
-  FILENAMES = %w(plugin_vulns theme_vulns wp_vulns)
+  # FILENAMES = %w(plugin_vulns theme_vulns wp_vulns)
+  FILES = %w(plugin_vulns.json theme_vulns.json wp_vulns.json)
 
   attr_reader :repo_directory
 
   def initialize(repo_directory)
     @repo_directory = repo_directory
-    fail "#{repo_directory} is not writable" unless Pathname.new(repo_directory).writable?
+
+    fail "#{repo_directory} is not writable" unless \
+      Pathname.new(repo_directory).writable?
   end
 
   # @return [ Hash ] The params for Typhoeus::Request
@@ -23,7 +26,7 @@ class DbUpdater < Updater
 
   # @return [ String ] The raw file URL associated with the given filename
   def remote_file_url(filename)
-    "https://raw.githubusercontent.com/wpscanteam/vulndb/master/#{filename}.json"
+    "https://raw.githubusercontent.com/wpscanteam/vulndb/master/#{filename}"
   end
 
   # @return [ String ] The checksum of the associated remote filename
@@ -31,16 +34,20 @@ class DbUpdater < Updater
     url = "#{remote_file_url(filename)}.sha512"
 
     res = Browser.get(url, request_params)
-    fail "Unable to get #{url}" unless res && res.code == 200
+    fail "Unable to get #{url}" unless res.code == 200
     res.body
   end
 
   def local_file_path(filename)
-    File.join(repo_directory, "#{filename}.json")
+    File.join(repo_directory, "#{filename}")
+  end
+
+  def local_file_checksum(filename)
+    Digest::SHA512.file(local_file_path(filename)).hexdigest
   end
 
   def backup_file_path(filename)
-    File.join(repo_directory, "#{filename}.back.json")
+    File.join(repo_directory, "#{filename}.back")
   end
 
   def create_backup(filename)
@@ -62,20 +69,26 @@ class DbUpdater < Updater
     file_path = local_file_path(filename)
     file_url  = remote_file_url(filename)
 
-    res = Browser.get(file_url)
-    fail "Error while downloading #{file_url}" unless res && res.code == 200
+    res = Browser.get(file_url, request_params)
+    fail "Error while downloading #{file_url}" unless res.code == 200
     File.write(file_path, res.body.chomp)
 
-    Digest::SHA512.file(file_path).hexdigest
+    local_file_checksum(filename)
   end
 
   def update
-    FILENAMES.each do |filename|
+    FILES.each do |filename|
       begin
-        create_backup(filename)
-        checksum = download(filename)
+        db_checksum = remote_file_checksum(filename)
 
-        unless checksum == remote_file_checksum(filename)
+        # Checking if the file needs to be updated
+        next if File.exist?(local_file_path(filename)) &&
+                db_checksum == local_file_checksum(filename)
+
+        create_backup(filename)
+        dl_checksum = download(filename)
+
+        unless dl_checksum == db_checksum
           fail "#{filename}: checksums do not match"
         end
       rescue => e

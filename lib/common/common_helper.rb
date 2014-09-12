@@ -87,6 +87,19 @@ def version
   REVISION ? "v#{WPSCAN_VERSION}r#{REVISION}" : "v#{WPSCAN_VERSION}"
 end
 
+def missing_db_file?
+  DbUpdater::FILES.each do |db_file|
+    return true unless File.exist?(File.join(DATA_DIR, db_file))
+  end
+  false
+end
+
+def update_db
+  print 'Updating the DB ...'
+  DbUpdater.new(DATA_DIR).update
+  puts ' Done.'
+end
+
 # Define colors
 def colorize(text, color_code)
   if $COLORSWITCH
