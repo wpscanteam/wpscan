@@ -65,7 +65,7 @@ class DbUpdater < Updater
   end
 
   def delete_backup(filename)
-    FileUtils.rm(backup_file_path(filename), force: true)
+    FileUtils.rm(backup_file_path(filename))
   end
 
   # @return [ String ] The checksum of the downloaded file
@@ -75,31 +75,42 @@ class DbUpdater < Updater
 
     res = Browser.get(file_url, request_params)
     fail "Error while downloading #{file_url}" unless res.code == 200
-    File.write(file_path, res.body.chomp)
+    File.write(file_path, res.body)
 
     local_file_checksum(filename)
   end
 
-  def update
+  def update(verbose = false)
     FILES.each do |filename|
       begin
+        puts "[+] Checking #{filename}" if verbose
         db_checksum = remote_file_checksum(filename)
 
         # Checking if the file needs to be updated
-        next if File.exist?(local_file_path(filename)) &&
-                db_checksum == local_file_checksum(filename)
+        if File.exist?(local_file_path(filename)) && db_checksum == local_file_checksum(filename)
+          puts '  [i] Already Up-To-Date' if verbose
+          next
+        end
 
+        puts '  [i] Needs to be updated' if verbose
         create_backup(filename)
+        puts '  [i] Backup Created' if verbose
+        puts '  [i] Downloading new file'
         dl_checksum = download(filename)
+        puts "  [i] Downloaded File Checksum: #{dl_checksum}" if verbose
 
         unless dl_checksum == db_checksum
           fail "#{filename}: checksums do not match"
         end
       rescue => e
+        puts '  [i] Restoring Backup due to error' if verbose
         restore_backup(filename)
         raise e
       ensure
-        delete_backup(filename)
+        if File.exist?(backup_file_path(filename))
+          puts '  [i] Deleting Backup' if verbose
+          delete_backup(filename)
+        end
       end
     end
   end

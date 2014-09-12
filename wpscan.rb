@@ -43,7 +43,11 @@ def main
       wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
     )
 
-    update_db if wpscan_options.update || missing_db_file?
+    if wpscan_options.update || missing_db_file?
+      puts 'Updating the DB ...'
+      DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
+      puts 'Done.'
+    end
 
     # Check for updates
     if wpscan_options.update

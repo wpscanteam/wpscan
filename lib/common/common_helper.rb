@@ -94,12 +94,6 @@ def missing_db_file?
   false
 end
 
-def update_db
-  print 'Updating the DB ...'
-  DbUpdater.new(DATA_DIR).update
-  puts ' Done.'
-end
-
 # Define colors
 def colorize(text, color_code)
   if $COLORSWITCH
