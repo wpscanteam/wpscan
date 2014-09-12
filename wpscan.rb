@@ -45,8 +45,6 @@ def main
 
     update_db if wpscan_options.update || missing_db_file?
 
-    exit
-
     # Check for updates
     if wpscan_options.update
       if !@updater.nil?
