@@ -6,6 +6,7 @@
 Released: 2014-xx-xx
 
 New
+* Detect directory listing in upload folder
 * Be more verbose when no version can be detected
 * Added detection for Yoast Wordpress SEO plugin
 * Also ensure to not process empty Location headers
@@ -19,6 +20,7 @@ New
 * Layout changes with new colors
 
 General core
+* Re-build redirection url if begin with slash '/'
 * Fixes the remove_conditional_comments function 
 * Ensures to give a string to Typhoeus
 * Fix wpstools check-vuln-ref-urls
@@ -41,6 +43,10 @@ WordPress Fingerprints
 * Adds 3.9.1 fingerprints
 
 Fixed issues
+* Fix #657 - generate method
+* Fix #685 - Potenial fix for 'marshal data too short' error
+* Fix #686 - Adds specs for relative URI in Location headers
+* Fix #435 - Update license
 * Fix #674 - Improves the Plugins & Themes passive detection
 * Fix #673 - Problem with the output
 * Fix #661 - Don't hash directories named like a file
