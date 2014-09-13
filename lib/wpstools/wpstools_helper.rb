@@ -12,21 +12,6 @@ def usage
   puts
   puts 'Examples:'
   puts
-  puts "- Generate a new 'most popular' plugin list, up to 150 pages ..."
-  puts "ruby #{script_name} --generate-plugin-list 150"
-  puts
-  puts '- Generate a new full plugin list'
-  puts "ruby #{script_name} --generate-full-plugin-list"
-  puts
-  puts "- Generate a new 'most popular' theme list, up to 150 pages ..."
-  puts "ruby #{script_name} --generate-theme-list 150"
-  puts
-  puts '- Generate a new full theme list'
-  puts "ruby #{script_name} --generate-full-theme-list"
-  puts
-  puts '- Generate all list'
-  puts "ruby #{script_name} --generate-all"
-  puts
   puts 'Locally scan a wordpress installation for vulnerable files or shells'
   puts "ruby #{script_name} --check-local-vulnerable-files /var/www/wordpress/"
   puts

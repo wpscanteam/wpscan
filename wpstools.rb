@@ -17,7 +17,6 @@ begin
   plugins = Plugins.new(option_parser)
   plugins.register(
     CheckerPlugin.new,
-    ListGeneratorPlugin.new,
     StatsPlugin.new,
     CheckerSpelling.new
   )
