@@ -95,7 +95,7 @@ class DbUpdater < Updater
         puts '  [i] Needs to be updated' if verbose
         create_backup(filename)
         puts '  [i] Backup Created' if verbose
-        puts '  [i] Downloading new file'
+        puts '  [i] Downloading new file' if verbose
         dl_checksum = download(filename)
         puts "  [i] Downloaded File Checksum: #{dl_checksum}" if verbose
 
