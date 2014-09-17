@@ -33,23 +33,20 @@ def main
     end
 
     if wpscan_options.version
-      puts "Current version: #{version}"
+      puts "Current version: #{WPSCAN_VERSION}"
       exit(0)
     end
 
-    # Check for updates
-    if wpscan_options.update
-      if !@updater.nil?
-        if @updater.has_local_changes?
-          print "#{red('[!]')} Local file changes detected, an update will override local changes, do you want to continue updating? [y/n] "
-          Readline.readline =~ /^y/i ? @updater.reset_head : raise('Update aborted')
-        end
-        puts @updater.update()
-      else
-        puts '[i] Svn / Git not installed, or wpscan has not been installed with one of them.'
-        puts "#{red('[!]')} Update aborted"
-      end
-      exit(0)
+    # Initialize the browser to allow the db update
+    # to be done over a proxy if set
+    Browser.instance(
+      wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
+    )
+
+    if wpscan_options.update || missing_db_file?
+      puts 'Updating the DB ...'
+      DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
+      puts 'Done.'
     end
 
     unless wpscan_options.url

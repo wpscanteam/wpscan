@@ -46,7 +46,7 @@ def usage
   puts '-Use custom plugins directory ...'
   puts "ruby #{script_name} -u www.example.com --wp-plugins-dir wp-content/custom-plugins"
   puts
-  puts '-Update ...'
+  puts '-Update the DB ...'
   puts "ruby #{script_name} --update"
   puts
   puts '-Debug output ...'
@@ -62,7 +62,7 @@ def help
   puts
   puts 'Some values are settable in a config file, see the example.conf.json'
   puts
-  puts '--update                            Update to the latest revision.'
+  puts '--update                            Update to the database to the latest version.'
   puts '--url       | -u <target url>       The WordPress URL/domain to scan.'
   puts '--force     | -f                    Forces WPScan to not check if the remote site is running WordPress.'
   puts '--enumerate | -e [option(s)]        Enumeration.'
