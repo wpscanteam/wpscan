@@ -44,9 +44,9 @@ def main
     )
 
     if wpscan_options.update || missing_db_file?
-      puts 'Updating the DB ...'
+      puts "#{blue('[i]')} Updating the Database ..."
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
-      puts 'Done.'
+      puts "#{blue('[i]')} Update completed."
     end
 
     unless wpscan_options.url
