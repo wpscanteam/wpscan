@@ -47,8 +47,8 @@ def main
       puts "#{blue('[i]')} Updating the Database ..."
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
       puts "#{blue('[i]')} Update completed."
-      # Exit program if only one option --update is used
-      exit(0) if wpscan_options.to_h.count == 1 && wpscan_options.update
+      # Exit program if only option --update is used
+      exit(0) unless wpscan_options.url
     end
 
     unless wpscan_options.url
