@@ -73,20 +73,6 @@ def add_trailing_slash(url)
   url =~ /\/$/ ? url : "#{url}/"
 end
 
-# loading the updater
-require_files_from_directory(UPDATER_LIB_DIR)
-@updater = UpdaterFactory.get_updater(ROOT_DIR)
-
-if @updater
-  REVISION = @updater.local_revision_number()
-else
-  REVISION = nil
-end
-
-def version
-  REVISION ? "v#{WPSCAN_VERSION}r#{REVISION}" : "v#{WPSCAN_VERSION}"
-end
-
 def missing_db_file?
   DbUpdater::FILES.each do |db_file|
     return true unless File.exist?(File.join(DATA_DIR, db_file))
@@ -134,12 +120,7 @@ def banner
   puts '            \\/  \\/   |_|    |_____/ \\___|\\__,_|_| |_|'
   puts
   puts '        WordPress Security Scanner by the WPScan Team '
-  # Alignment of the version (w & w/o the Revision)
-  if REVISION
-    puts "                    Version #{version}"
-  else
-    puts "                        Version #{version}"
-  end
+  puts "                       Version #{WPSCAN_VERSION}"
   puts '     Sponsored by the RandomStorm Open Source Initiative'
   puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
   puts '_______________________________________________________________'

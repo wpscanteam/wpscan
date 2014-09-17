@@ -1,9 +1,7 @@
 # encoding: UTF-8
 
-require 'common/updater/updater'
-
-# Updater for the Database (currently only 3 .json)
-class DbUpdater < Updater
+# DB Updater
+class DbUpdater
   FILES = %w(
     local_vulnerable_files.xml local_vulnerable_files.xsd malwares.txt
     plugins_full.txt plugins.txt themes_full.txt themes.txt
