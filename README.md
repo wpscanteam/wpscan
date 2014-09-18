@@ -149,7 +149,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 #### WPSCAN ARGUMENTS
 
-    --update   Update to the latest revision
+    --update   Update the databases.
 
     --url   | -u <target url>  The WordPress URL/domain to scan.
 
@@ -239,7 +239,7 @@ Use custom content directory...
 
 ```ruby wpscan.rb -u www.example.com --wp-content-dir custom-content```
 
-Update WPScan...
+Update WPScan's databases...
 
 ```ruby wpscan.rb --update```
 
