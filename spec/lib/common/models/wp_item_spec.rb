@@ -14,6 +14,7 @@ describe WpItem do
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_item/vulnerable/items_vulns.json' }
     let(:identifier)    { 'neo' }
     let(:expected_refs)  { {
+        :id  => ['2993'],
         :url => ['Ref 1', 'Ref 2'],
         :cve => ['2011-001'],
         :secunia => ['secunia'],

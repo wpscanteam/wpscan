@@ -8,6 +8,7 @@ describe WpVersion do
     let(:options)        { { number: '3.2' } }
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_version/vulnerable/versions_vulns.json' }
     let(:expected_refs)  { {
+        :id => ['2993'],
         :url => ['Ref 1', 'Ref 2'],
         :cve => ['2011-001'],
         :secunia => ['secunia'],
