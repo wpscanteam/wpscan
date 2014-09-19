@@ -28,6 +28,7 @@ begin
   require 'pp'
   require 'shellwords'
   require 'fileutils'
+  require 'pathname'
   # Third party libs
   require 'typhoeus'
   require 'json'
