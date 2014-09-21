@@ -14,12 +14,12 @@ describe WpItem do
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_item/vulnerable/items_vulns.json' }
     let(:identifier)    { 'neo' }
     let(:expected_refs)  { {
-        :url => ['Ref 1', 'Ref 2'],
-        :cve => ['2011-001'],
-        :secunia => ['secunia'],
-        :osvdb => ['osvdb'],
-        :metasploit => ['exploit/ex1'],
-        :exploitdb => ['exploitdb']
+        'url' => ['Ref 1,Ref 2'],
+        'cve' => ['2011-001'],
+        'secunia' => ['secunia'],
+        'osvdb' => ['osvdb'],
+        'metasploit' => ['exploit/ex1'],
+        'exploitdb' => ['exploitdb']
     } }
     let(:expected_vulns) { Vulnerabilities.new(1, Vulnerability.new("I'm the one", 'XSS', expected_refs)) }
   end
