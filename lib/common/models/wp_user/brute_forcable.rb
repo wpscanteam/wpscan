@@ -103,19 +103,19 @@ class WpUser < WpItem
     # @return [ Boolean ]
     def valid_password?(response, password, redirect_url, options = {})
       if response.code == 302 && response.headers_hash && response.headers_hash['Location'] == redirect_url
-        progression = "#{green('[SUCCESS]')} Login : #{login} Password : #{password}\n\n"
+        progression = "#{info('[SUCCESS]')} Login : #{login} Password : #{password}\n\n"
         valid       = true
       elsif response.body =~ /login_error/i
         verbose = "\n  Incorrect login and/or password."
       elsif response.timed_out?
-        progression = "#{red('ERROR:')} Request timed out."
+        progression = "#{critical('ERROR:')} Request timed out."
       elsif response.code == 0
-        progression = "#{red('ERROR:')} No response from remote server. WAF/IPS?"
+        progression = "#{critical('ERROR:')} No response from remote server. WAF/IPS?"
       elsif response.code.to_s =~ /^50/
-        progression = "#{red('ERROR:')} Server error, try reducing the number of threads."
+        progression = "#{critical('ERROR:')} Server error, try reducing the number of threads."
       else
-        progression = "#{red('ERROR:')} We received an unknown response for #{password}..."
-        verbose     = red("    Code: #{response.code}\n    Body: #{response.body}\n")
+        progression = "#{critical('ERROR:')} We received an unknown response for #{password}..."
+        verbose     = critical("    Code: #{response.code}\n    Body: #{response.body}\n")
       end
 
       puts "\n  " + progression if progression && options[:show_progression]

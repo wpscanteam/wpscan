@@ -109,6 +109,22 @@ def blue(text)
   colorize(text, 34)
 end
 
+def critical(text)
+  red(text)
+end
+
+def warning(text)
+  amber(text)
+end
+
+def info(text)
+  green(text)
+end
+
+def notice(text)
+  blue(text)
+end
+
 # our 1337 banner
 def banner
   puts '_______________________________________________________________'

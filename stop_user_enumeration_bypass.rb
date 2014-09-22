@@ -37,7 +37,7 @@ end
 begin
   parser.parse!
 
-  fail "#{red('The target URL must be supplied')}\n\n#{parser}" unless ARGV[0]
+  fail "#{critical('The target URL must be supplied')}\n\n#{parser}" unless ARGV[0]
 
   uri = URI.parse(add_trailing_slash(add_http_protocol(ARGV[0]))).to_s
 
@@ -68,8 +68,8 @@ rescue => e
   puts e.message
 
   if @opts[:verbose]
-    puts red('Trace:')
-    puts red(e.backtrace.join("\n"))
+    puts critical('Trace:')
+    puts critical(e.backtrace.join("\n"))
   end
   exit(1)
 end
