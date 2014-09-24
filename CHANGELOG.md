@@ -3,9 +3,10 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.4...master)
 
 ## Version 2.x
-Released: 2014-xx-xx
+Released: 2014-xx-xx (@ BruCON 2014)
 
 New
+* Exit program after --update
 * Detect directory listing in upload folder
 * Be more verbose when no version can be detected
 * Added detection for Yoast Wordpress SEO plugin
@@ -19,7 +20,15 @@ New
 * Added ArchAssault distro - WPScan comes pre-installed with this distro
 * Layout changes with new colors
 
+Removed
+* Removes the source code updaters
+* Removes the ListGenerator plugin from WPStools
+* Removes all files from data/
+
 General core
+* Update docs to reflect new updating logic
+* Little output change and coloring
+* Adds a missing verbose output
 * Re-build redirection url if begin with slash '/'
 * Fixes the remove_conditional_comments function 
 * Ensures to give a string to Typhoeus
@@ -43,6 +52,9 @@ WordPress Fingerprints
 * Adds 3.9.1 fingerprints
 
 Fixed issues
+* Fix #689 - Adds config file to check
+* Fix #694 - Output Arrays
+* Fix #693 - Adds pathname require statement
 * Fix #657 - generate method
 * Fix #685 - Potenial fix for 'marshal data too short' error
 * Fix #686 - Adds specs for relative URI in Location headers
@@ -63,12 +75,12 @@ Vulnerabilities
 * Added some timthumb detections
 
 WPScan Database Statistics:
-* Total vulnerable versions: 79
-* Total vulnerable plugins: 824
-* Total vulnerable themes: 295
-* Total version vulnerabilities: 617
-* Total plugin vulnerabilities: 1303
-* Total theme vulnerabilities: 335
+* Total vulnerable versions: 87
+* Total vulnerable plugins: 854
+* Total vulnerable themes: 303
+* Total version vulnerabilities: 752
+* Total plugin vulnerabilities: 1351
+* Total theme vulnerabilities: 345
 
 ## Version 2.4
 Released: 2014-04-17
@@ -79,7 +91,6 @@ New
 * Added more CLI options
 * Switch over to nist - Fix #301
 * New choice added when a redirection is detected - Fix #438
-
 
 Removed
 * Removed 'Total WordPress Sites in the World' counter from stats
