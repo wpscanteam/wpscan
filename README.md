@@ -277,6 +277,10 @@ Or check [pyfiscan](https://github.com/fgeek/pyfiscan) project.
 
 [http://www.wpscan.org](http://www.wpscan.org)
 
+#### VULNERABILITY DATABASE
+
+[https://www.wpvulndb.com](https://www.wpvulndb.com)
+
 #### GIT REPOSITORY
 
 [https://github.com/wpscanteam/wpscan](https://github.com/wpscanteam/wpscan)
