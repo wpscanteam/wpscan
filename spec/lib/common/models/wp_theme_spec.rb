@@ -9,6 +9,7 @@ describe WpTheme do
     let(:options)        { { name: 'the-oracle' } }
     let(:vulns_file)     { MODELS_FIXTURES + '/wp_theme/vulnerable/themes_vulns.json' }
     let(:expected_refs)  { {
+        'id' => [2993],
         'url' => ['Ref 1,Ref 2'],
         'cve' => ['2011-001'],
         'secunia' => ['secunia'],
