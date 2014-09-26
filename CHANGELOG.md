@@ -1,9 +1,9 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.4...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.5...master)
 
-## Version 2.x
-Released: 2014-xx-xx (@ BruCON 2014)
+## Version 2.5
+Released: 2014-09-26 (@ BruCON 2014)
 
 New
 * Exit program after --update
