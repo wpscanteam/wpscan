@@ -35,7 +35,7 @@ class CheckerPlugin < Plugin
       json.each do |asset|
         asset[asset.keys.inject]['vulnerabilities'].each do |url|
           unless url['url'].nil?
-            url['url'].split(',').each do |url|
+            url['url'].each do |url|
               urls << url
             end
           end
