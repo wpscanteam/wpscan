@@ -1,6 +1,11 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.5...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.5.1...master)
+
+## Version 2.5.1
+Released: 2014-09-29
+
+Fixes reference URL to WPVDB
 
 ## Version 2.5
 Released: 2014-09-26 (@ BruCON 2014)
@@ -30,7 +35,7 @@ General core
 * Little output change and coloring
 * Adds a missing verbose output
 * Re-build redirection url if begin with slash '/'
-* Fixes the remove_conditional_comments function 
+* Fixes the remove_conditional_comments function
 * Ensures to give a string to Typhoeus
 * Fix wpstools check-vuln-ref-urls
 * Fix rspecs for new json
