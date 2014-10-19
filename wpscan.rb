@@ -333,6 +333,9 @@ def main
       else
         puts "#{info('[+]')} Identified the following #{wp_users.size} user/s:"
         wp_users.output(margin_left: ' ' * 4)
+        if wp_users[0].login == "admin"
+           puts "#{warning('[!]')} Default first WordPress username 'admin' is still used"
+        end
       end
 
     else
