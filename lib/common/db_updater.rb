@@ -73,7 +73,7 @@ class DbUpdater
 
     res = Browser.get(file_url, request_params)
     fail "Error while downloading #{file_url}" unless res.code == 200
-    File.write(file_path, res.body)
+    File.open(file_path, 'wb') { |f| f.write(res.body) }
 
     local_file_checksum(filename)
   end
