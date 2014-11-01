@@ -135,7 +135,7 @@ def main
     end
 
     if wp_target.has_readme?
-      puts "#{warning('[!]')} The WordPress '#{wp_target.readme_url}' file exists"
+      puts "#{warning('[!]')} The WordPress '#{wp_target.readme_url}' file exists exposing a version number"
     end
 
     if wp_target.has_full_path_disclosure?
