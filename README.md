@@ -47,6 +47,7 @@ Prerequisites:
 - Git
 
 Windows is not supported.
+If installed from Github update the code base with ```git pull```. The databases are updated with ```wpscan.rb --update```.
 
 ####Installing on Ubuntu:
 
