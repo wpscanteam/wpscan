@@ -95,6 +95,12 @@ def main
       raise 'Basic authentication is required, please provide it with --basic-auth <login:password>'
     end
 
+    # test for valid credentials
+    unless wpscan_options.basic_auth.nil?
+      res = Browser.get_and_follow_location(wp_target.url)
+      raise 'Invalid credentials supplied' if res && res.code == 401
+    end
+
     # Remote website is wordpress?
     unless wpscan_options.force
       unless wp_target.wordpress?
