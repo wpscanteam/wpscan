@@ -23,10 +23,7 @@ class WpItems < Array
         homepage_hash:   wp_target.homepage_hash,
         exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
-
-      # If we only want the vulnerable ones, the passive detection is ignored
-      # Otherwise, a passive detection is performed, and results will be merged
-      results = options[:only_vulnerable] ? new : passive_detection(wp_target, options)
+      results          = passive_detection(wp_target, options)
 
       targets.each do |target_item|
         request = browser.forge_request(target_item.url, request_params)
@@ -55,8 +52,11 @@ class WpItems < Array
 
       # run the remaining requests
       hydra.run
+
+      results.select!(&:vulnerable?) if options[:only_vulnerable]
       results.sort!
-      results # can't just return results.sort because the #sort returns an array, and we want a WpItems
+
+      results  # can't just return results.sort as it would return an array, and we want a WpItems
     end
 
     # @param [ Integer ] targets_size
