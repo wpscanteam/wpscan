@@ -106,6 +106,7 @@ def help
   puts '--max-threads     <max-threads>     Maximum Threads.'
   puts '--help     | -h                     This help screen.'
   puts '--verbose  | -v                     Verbose output.'
+  puts '--version                           Output the current version and exit.'
   puts
 end
 
