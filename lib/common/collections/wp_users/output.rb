@@ -38,6 +38,7 @@ class WpUsers < WpItems
       junk = get_equal_string_end(display_names)
       unless junk.nil? or junk.empty?
         self.each do |u|
+          u.display_name ||= ''
           u.display_name = u.display_name.sub(/#{Regexp.escape(junk)}$/, '')
         end
       end

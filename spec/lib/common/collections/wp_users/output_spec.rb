@@ -25,19 +25,19 @@ describe 'WpUsers::Output' do
       subject.push(@input)
       subject.flatten!
       subject.remove_junk_from_display_names
-      expect(subject).to be === @expected
+      expect(subject).to eq @expected
     end
 
-    it 'should return an empty array' do
+    it 'returns an empty array' do
       @expected = @input
     end
 
-    it 'should return input object' do
+    it 'returns input object' do
       @input.push(WpUser.new(nil))
       @expected = @input
     end
 
-    it 'should return input object' do
+    it 'returns input object' do
       @input.push(WpUser.new(''))
       @expected = @input
     end
@@ -50,23 +50,37 @@ describe 'WpUsers::Output' do
       @expected.push(WpUser.new('', login: '', id: 2, display_name: 'ijrjd'))
     end
 
-    it 'should return unmodified input object' do
+    it 'returns unmodified input object' do
       @input.push(WpUser.new('', login: '', id: 1, display_name: 'lkjh asdfa'))
       @input.push(WpUser.new('', login: '', id: 2, display_name: 'ijrjd asdf'))
       @expected = @input
     end
 
-    it 'should return input object' do
+    it 'returns input object' do
       @input.push(WpUser.new('', login: '', id: 1, display_name: 'lkjh asdf'))
       @expected = @input
     end
 
-    it 'should return an empty display_name' do
+    it 'returns an empty display_name' do
       @input.push(WpUser.new('', login: '', id: 1, display_name: 'lkhj asdf'))
       @input.push(WpUser.new('', login: '', id: 2, display_name: 'lkhj asdf'))
       @expected = WpUsers.new(0)
       @expected.push(WpUser.new('', login: '', id: 1, display_name: ''))
       @expected.push(WpUser.new('', login: '', id: 2, display_name: ''))
+    end
+
+    context 'when a user has no display_name' do
+      it 'returns an empty display_name' do
+        @input.push(WpUser.new('', login: '', id: 1, display_name: 'lkhj asdf'))
+        @input.push(WpUser.new('', login: '', id: 2, display_name: 'lkhj asdf'))
+        @input.push(WpUser.new('', login: '', id: 3))
+
+        @expected = WpUsers.new(0)
+
+        (1..3).each do |id|
+          @expected.push(WpUser.new('', login: '', id: id, display_name: ''))
+        end
+      end
     end
   end
 end
