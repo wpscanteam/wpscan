@@ -101,18 +101,6 @@ class WpVersion < WpItem
     end
 
     # Attempts to find the WordPress version from,
-    # the generator tag in the RSS2 feed source.
-    #
-    # Have not been able to find an example of this - Ryan
-    #def find_from_rss2_generator(target_uri)
-    #  scan_url(
-    #    target_uri,
-    #    %r{<generator>http://wordpress.org/?v=(#{WpVersion.version_pattern})</generator>}i,
-    #    'feed/rss/'
-    #  )
-    #end
-
-    # Attempts to find the WordPress version from,
     # the generator tag in the Atom source.
     #
     # @param [ URI ] target_uri
@@ -125,18 +113,6 @@ class WpVersion < WpItem
         'feed/atom/'
       )
     end
-
-    # Attempts to find the WordPress version from,
-    # the generator tag in the comment rss source.
-    #
-    # Have not been able to find an example of this - Ryan
-    #def find_from_comments_rss_generator(target_uri)
-    # scan_url(
-    # target_uri,
-    # %r{<!-- generator="WordPress/#{WpVersion.version_pattern}" -->}i,
-    # 'comments/feed/'
-    # )
-    #end
 
     # Uses data/wp_versions.xml to try to identify a
     # wordpress version.
