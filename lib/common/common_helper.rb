@@ -137,7 +137,7 @@ def banner
   puts
   puts '        WordPress Security Scanner by the WPScan Team '
   puts "                       Version #{WPSCAN_VERSION}"
-  puts '              Sponsored by Sucuri - sucuri.net'
+  puts '          Sponsored by Sucuri - https://sucuri.net'
   puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
   puts '_______________________________________________________________'
   puts
