@@ -66,7 +66,7 @@ def main
       proxy_response = Browser.get(wp_target.url)
 
       unless WpTarget::valid_response_codes.include?(proxy_response.code)
-        raise "Proxy Error :\r\n#{proxy_response.headers}"
+        raise "Proxy Error :\r\nResponse Code: #{proxy_response.code}\r\nResponse Headers: #{proxy_response.headers}"
       end
     end
 
