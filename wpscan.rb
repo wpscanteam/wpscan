@@ -222,7 +222,10 @@ def main
       wp_theme.output(wpscan_options.verbose)
 
       # Check for parent Themes
-      while wp_theme.is_child_theme?
+      parent_theme_count = 0
+      while wp_theme.is_child_theme? && parent_theme_count <= wp_theme.parent_theme_limit
+        parent_theme_count += 1
+
         parent = wp_theme.get_parent_theme
         puts
         puts "#{info('[+]')} Detected parent theme: #{parent}"

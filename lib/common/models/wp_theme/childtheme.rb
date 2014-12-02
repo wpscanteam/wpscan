@@ -3,6 +3,10 @@
 class WpTheme < WpItem
   module Childtheme
 
+    def parent_theme_limit
+      3
+    end
+
     def is_child_theme?
       return true unless @theme_template.nil?
       false
