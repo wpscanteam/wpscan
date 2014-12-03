@@ -3,7 +3,7 @@
 # DB Updater
 class DbUpdater
   FILES = %w(
-    local_vulnerable_files.xml local_vulnerable_files.xsd malwares.txt
+    local_vulnerable_files.xml local_vulnerable_files.xsd
     plugins_full.txt plugins.txt themes_full.txt themes.txt
     timthumbs.txt user-agents.txt wp_versions.xml wp_versions.xsd
     plugin_vulns.json theme_vulns.json wp_vulns.json

@@ -18,7 +18,6 @@ describe WpTarget do
 
   before { Browser::reset }
 
-  it_behaves_like 'WpTarget::Malwares'
   it_behaves_like 'WpTarget::WpReadme'
   it_behaves_like 'WpTarget::WpRegistrable'
   it_behaves_like 'WpTarget::WpConfigBackup'
