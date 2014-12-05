@@ -13,7 +13,7 @@ class WpItem
         # This check is needed because readme_url can return nil
         if has_readme?
           response = Browser.get(readme_url)
-          @version = response.body[%r{stable tag: #{WpVersion.version_pattern}}i, 1]
+          @version = response.body[%r{(?:stable tag|version): #{WpVersion.version_pattern}}i, 1]
         end
       end
       @version

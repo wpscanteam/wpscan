@@ -27,9 +27,18 @@ shared_examples 'WpItem::Versionable' do
       end
 
       context 'when the version is valid' do
-        it 'returns it' do
-          @file     = '/simple-login-lockdown-0.4.txt'
-          @expected = '0.4'
+        context 'when leaked from the stable tag' do
+          it 'returns it' do
+            @file     = '/simple-login-lockdown-0.4.txt'
+            @expected = '0.4'
+          end
+        end
+
+        context 'when leaked from the version' do
+          it 'returns it' do
+            @file     = '/wp-photo-plus-5.1.15.txt'
+            @expected = '5.1.15'
+          end
         end
       end
     end
