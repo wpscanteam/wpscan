@@ -12,7 +12,7 @@ class WpItem
 
     # @return [ String,nil ] The url to the readme file, nil if not found
     def readme_url
-      %w{readme.txt README.txt ReadMe.txt README.TXT Readme.txt ReadME.txt}.each do |readme|
+      %w{readme.txt README.txt ReadMe.txt README.TXT Readme.txt ReadME.txt Readme.TXT readme.TXT}.each do |readme|
         url = @uri.merge(readme).to_s
         return url if url_is_200?(url)
       end
