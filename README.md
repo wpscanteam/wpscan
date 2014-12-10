@@ -123,7 +123,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
       Update cURL to version => 7.21.7 (may have to install from source).
 
       Installation from sources :
-      
+
         Grab the sources from http://curl.haxx.se/download.html
         Decompress the archive
         Open the folder with the extracted files
@@ -131,19 +131,19 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
         Run make
         Run sudo make install
         Run sudo ldconfig
-      
+
 
   - cannot load such file -- readline:
 
         sudo aptitude install libreadline5-dev libncurses5-dev
 
       Then, open the directory of the readline gem (you have to locate it)
-      
+
         cd ~/.rvm/src/ruby-1.9.2-p180/ext/readline
         ruby extconf.rb
         make
         make install
-      
+
 
       See [http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/](http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/) for more details
 
@@ -199,11 +199,13 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     --basic-auth <username:password>  Set the HTTP Basic authentication.
 
-    --wordlist | -w <wordlist>  Supply a wordlist for the password bruter and do the brute.
+    --wordlist | -w <wordlist>  Supply a wordlist (with a newline at the end) for the password brute forcer.
 
     --threads  | -t <number of threads>  The number of threads to use when multi-threading requests.
 
     --username | -U <username>  Only brute force the supplied username.
+
+    --usernames  <path-to-file>  Only brute force the usernames from the file (which need to have a newline at the end).
 
     --cache-ttl <cache-ttl>  Typhoeus cache TTL.
 
