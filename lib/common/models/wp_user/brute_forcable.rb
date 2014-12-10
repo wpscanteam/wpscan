@@ -63,6 +63,7 @@ class WpUser < WpItem
 
       # run all of the remaining requests
       hydra.run
+      puts if options[:show_progression] # mandatory to avoid the output of the progressbar to be overriden
     end
 
     # @param [ Integer ] targets_size
