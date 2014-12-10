@@ -303,8 +303,8 @@ def main
       end
     end
 
-    # If we haven't been supplied a username, enumerate them...
-    if !wpscan_options.username and wpscan_options.wordlist or wpscan_options.enumerate_usernames
+    # If we haven't been supplied a username/usernames list, enumerate them...
+    if !wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist || wpscan_options.enumerate_usernames
       puts
       puts "#{info('[+]')} Enumerating usernames ..."
 
@@ -337,8 +337,15 @@ def main
       end
 
     else
-      # FIXME : Change the .username to .login (and also the --username in the CLI)
-      wp_users = WpUsers.new << WpUser.new(wp_target.uri, login: wpscan_options.username)
+      wp_users = WpUsers.new
+
+      if wpscan_options.usernames
+        File.open(wpscan_options.usernames).each do |username|
+          wp_users << WpUser.new(wp_target.uri, login: username.chomp)
+        end
+      else
+        wp_users << WpUser.new(wp_target.uri, login: wpscan_options.username)
+      end
     end
 
     # Start the brute forcer

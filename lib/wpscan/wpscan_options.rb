@@ -23,6 +23,7 @@ class WpscanOptions
     :update,
     :verbose,
     :username,
+    :usernames,
     :password,
     :follow_redirection,
     :wp_content_dir,
@@ -66,6 +67,12 @@ class WpscanOptions
     else
       raise "The file #{wordlist} does not exist"
     end
+  end
+
+  def usernames=(file)
+    fail "The file #{file} does not exist" unless File.exists?(file)
+
+    @usernames = file
   end
 
   def proxy=(proxy)
@@ -237,6 +244,7 @@ class WpscanOptions
       ['--url', '-u', GetoptLong::REQUIRED_ARGUMENT],
       ['--enumerate', '-e', GetoptLong::OPTIONAL_ARGUMENT],
       ['--username', '-U', GetoptLong::REQUIRED_ARGUMENT],
+      ['--usernames', GetoptLong::REQUIRED_ARGUMENT],
       ['--wordlist', '-w', GetoptLong::REQUIRED_ARGUMENT],
       ['--threads', '-t', GetoptLong::REQUIRED_ARGUMENT],
       ['--force', '-f', GetoptLong::NO_ARGUMENT],

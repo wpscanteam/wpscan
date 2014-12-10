@@ -99,6 +99,7 @@ def help
   puts '--basic-auth <username:password>    Set the HTTP Basic authentication.'
   puts '--wordlist | -w <wordlist>          Supply a wordlist for the password bruter and do the brute.'
   puts '--username | -U <username>          Only brute force the supplied username.'
+  puts '--usernames     <path-to-file>      Only brute force the usernames from the file.'
   puts '--threads  | -t <number of threads> The number of threads to use when multi-threading requests.'
   puts '--cache-ttl       <cache-ttl>       Typhoeus cache TTL.'
   puts '--request-timeout <request-timeout> Request Timeout.'
