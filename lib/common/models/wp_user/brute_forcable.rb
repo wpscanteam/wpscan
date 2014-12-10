@@ -28,7 +28,7 @@ class WpUser < WpItem
       progress_bar = self.progress_bar(count_file_lines(wordlist), options)
 
       File.open(wordlist).each do |password|
-        password.chop!
+        password.choomp!
 
         # A successfull login will redirect us to the redirect_to parameter
         # Generate a random one on each request
