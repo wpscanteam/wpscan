@@ -8,7 +8,7 @@ shared_examples 'WpItem::Infos' do
   #  let(:error_log_url) { }
 
   describe '#readme_url' do
-    after { expect(subject.readme_url).to be === @expected }
+    after { expect(subject.readme_url).to eql @expected }
 
     it 'returns nil' do
       stub_request(:get, /.*/).to_return(status: 404)
@@ -16,7 +16,7 @@ shared_examples 'WpItem::Infos' do
     end
 
     context 'when the file exists' do
-      %w{readme.txt README.txt}.each do |readme|
+      %w{readme.txt README.TXT}.each do |readme|
         it 'returns the correct url' do
           url       = uri.merge(readme).to_s
           @expected = url
@@ -31,7 +31,7 @@ shared_examples 'WpItem::Infos' do
   describe '#has_readme?' do
     after do
       allow(subject).to receive_messages(readme_url: @stub)
-      expect(subject.has_readme?).to be === @expected
+      expect(subject.has_readme?).to eql @expected
     end
 
     context 'when readme_url is nil'
@@ -56,7 +56,7 @@ shared_examples 'WpItem::Infos' do
   describe '#has_changelog?' do
     after :each do
       stub_request(:get, subject.changelog_url).to_return(status: @status)
-      expect(subject.has_changelog?).to be === @expected
+      expect(subject.has_changelog?).to eql @expected
     end
 
     it 'returns true on a 200' do
@@ -73,7 +73,7 @@ shared_examples 'WpItem::Infos' do
   describe '#has_directory_listing?' do
     after do
       stub_request(:get, subject.uri.to_s).to_return(@stub_return)
-      expect(subject.has_directory_listing?).to be === @expected
+      expect(subject.has_directory_listing?).to eql @expected
     end
 
     context 'when the body contains <title>Index of' do
@@ -103,11 +103,11 @@ shared_examples 'WpItem::Infos' do
   describe '#has_error_log?' do
     after do
       stub_request(:get, subject.error_log_url).to_return(@stub_return)
-      expect(subject.has_error_log?).to be === @expected
+      expect(subject.has_error_log?).to eql @expected
     end
 
     it 'returns true if the pattern is detected' do
-      @stub_return = { status: 200, body: File.new( MODELS_FIXTURES + '/wp_item/error_log') }
+      @stub_return = { status: 200, body: File.new(MODELS_FIXTURES + '/wp_item/error_log') }
       @expected    = true
     end
 

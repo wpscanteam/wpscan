@@ -12,7 +12,9 @@ class WpItem
 
     # @return [ String,nil ] The url to the readme file, nil if not found
     def readme_url
-      %w{readme.txt README.txt}.each do |readme|
+      # See https://github.com/wpscanteam/wpscan/pull/737#issuecomment-66375445
+      # for any question about the order
+      %w{readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT}.each do |readme|
         url = @uri.merge(readme).to_s
         return url if url_is_200?(url)
       end
