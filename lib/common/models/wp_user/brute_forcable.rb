@@ -25,7 +25,7 @@ class WpUser < WpItem
       hydra        = browser.hydra
       queue_count  = 0
       found        = false
-      progress_bar = self.progress_bar(count_file_lines(wordlist), options)
+      progress_bar = self.progress_bar(count_file_lines(wordlist)+1, options)
 
       File.open(wordlist).each do |password|
         password.chomp!

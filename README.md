@@ -199,13 +199,13 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     --basic-auth <username:password>  Set the HTTP Basic authentication.
 
-    --wordlist | -w <wordlist>  Supply a wordlist (with a newline at the end) for the password brute forcer.
+    --wordlist | -w <wordlist>  Supply a wordlist for the password brute forcer.
 
     --threads  | -t <number of threads>  The number of threads to use when multi-threading requests.
 
     --username | -U <username>  Only brute force the supplied username.
 
-    --usernames  <path-to-file>  Only brute force the usernames from the file (which need to have a newline at the end).
+    --usernames  <path-to-file>  Only brute force the usernames from the file.
 
     --cache-ttl <cache-ttl>  Typhoeus cache TTL.
 
