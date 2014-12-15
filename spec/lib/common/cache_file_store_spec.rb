@@ -30,14 +30,15 @@ describe CacheFileStore do
 
   describe '#clean' do
     it "should remove all files from the cache dir (#{@cache_dir}" do
-      # let's create some files into the directory first
-      (0..5).each do |i|
-        File.new(@cache.storage_path + "/file_#{i}.txt", File::CREAT)
-      end
-
-      expect(count_files_in_dir(@cache.storage_path, 'file_*.txt')).to eq 6
+      # clean is executed by other tests before
+      before = count_files_in_dir(@cache.cache_dir)
+      test_dir = File.expand_path("#{@cache.cache_dir}/test")
+      Dir.mkdir test_dir
+      #change the modification date
+      %x[ touch -t 200701310846.26 #{test_dir} ]
+      expect(count_files_in_dir(@cache.cache_dir)).to eq (before + 1)
       @cache.clean
-      expect(count_files_in_dir(@cache.storage_path)).to eq 0
+      expect(count_files_in_dir(@cache.cache_dir)).to eq before
     end
   end
 
