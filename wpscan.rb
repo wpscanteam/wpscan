@@ -11,9 +11,9 @@ def main
   begin
     wpscan_options = WpscanOptions.load_from_arguments
 
-    @log = wpscan_options.log
+    $log = wpscan_options.log
 
-    banner() # called after @log instance variable set
+    banner() # called after $log set
 
     unless wpscan_options.has_options?
       # first parameter only url?
