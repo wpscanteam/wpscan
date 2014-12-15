@@ -30,7 +30,7 @@ class Browser
   #
   # @return [ Browser ]
   def initialize(options = {})
-    @cache_dir   = options[:cache_dir]   || CACHE_DIR + '/browser'
+    @cache_dir   = options[:cache_dir] || CACHE_DIR + '/browser'
 
     # sets browser defaults
     browser_defaults

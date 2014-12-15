@@ -14,6 +14,7 @@ class WpscanOptions
     :enumerate_usernames,
     :enumerate_usernames_range,
     :no_color,
+    :log,
     :proxy,
     :proxy_auth,
     :threads,
@@ -269,7 +270,8 @@ class WpscanOptions
       ['--max-threads', GetoptLong::REQUIRED_ARGUMENT],
       ['--batch', GetoptLong::NO_ARGUMENT],
       ['--no-color', GetoptLong::NO_ARGUMENT],
-      ['--cookie', GetoptLong::REQUIRED_ARGUMENT]
+      ['--cookie', GetoptLong::REQUIRED_ARGUMENT],
+      ['--log', GetoptLong::NO_ARGUMENT]
     )
   end
 

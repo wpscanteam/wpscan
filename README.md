@@ -223,6 +223,8 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     --no-color Do not use colors in the output.
 
+    --log Save STDOUT to log.txt
+
 #### WPSCAN EXAMPLES
 
 Do 'non-intrusive' checks...

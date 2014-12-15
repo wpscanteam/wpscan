@@ -8,10 +8,12 @@ def main
   # delete old logfile, check if it is a symlink first.
   File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
-  banner()
-
   begin
     wpscan_options = WpscanOptions.load_from_arguments
+
+    @log = wpscan_options.log
+
+    banner() # called after @log instance variable set
 
     unless wpscan_options.has_options?
       # first parameter only url?
