@@ -9,6 +9,7 @@
 #
 
 require 'yaml'
+require 'fileutils'
 
 class CacheFileStore
   attr_reader :storage_path, :serializer
@@ -18,6 +19,7 @@ class CacheFileStore
   # YAML is Human Readable, contrary to Marshal which store in a binary format
   # Marshal does not need any "require"
   def initialize(storage_path, serializer = Marshal)
+    @storage_dir  = File.expand_path(storage_path)
     @storage_path = File.expand_path(File.join(storage_path, storage_dir))
     @serializer   = serializer
 
@@ -29,15 +31,23 @@ class CacheFileStore
   end
 
   def clean
-    Dir[File.join(@storage_path, '*')].each do |f|
-      File.delete(f) unless File.symlink?(f)
+    # clean old directories
+    Dir[File.join(@storage_dir, '*')].each do |f|
+      if File.directory?(f)
+        # delete directory if create time is older than 4 hours
+        FileUtils.rm_rf(f) if File.mtime(f) < (Time.now - (60*240))
+      else
+        File.delete(f) unless File.symlink?(f)
+      end
     end
   end
 
   def read_entry(key)
-    @serializer.load(File.read(get_entry_file_path(key)))
-  rescue
-    nil
+    begin
+      @serializer.load(File.read(get_entry_file_path(key)))
+    rescue
+      nil
+    end
   end
 
   def write_entry(key, data_to_store, cache_ttl)
