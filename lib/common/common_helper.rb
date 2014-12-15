@@ -243,11 +243,3 @@ end
 def directory_listing_enabled?(url)
   Browser.get(url.to_s).body[%r{<title>Index of}] ? true : false
 end
-
-def log
-  @log
-end
-
-def log=(log)
-  @log = log
-end
