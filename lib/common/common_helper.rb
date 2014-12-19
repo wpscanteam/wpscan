@@ -34,7 +34,7 @@ WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd')
 LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
 USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt')
 
-WPSCAN_VERSION       = '2.5.1'
+WPSCAN_VERSION       = '2.6'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)

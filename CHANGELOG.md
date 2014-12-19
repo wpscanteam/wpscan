@@ -3,7 +3,7 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.6...master)
 
 ## Version 2.6
-Released: 2014-12-??
+Released: 2014-12-19
 
 New
 * Updates the readmes to reflect the new --usernames option
