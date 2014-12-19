@@ -274,8 +274,6 @@ Locally scan a wordpress installation for vulnerable files or shells:
 
 ```ruby wpstools.rb --check-local-vulnerable-files /var/www/wordpress/```
 
-Or check [pyfiscan](https://github.com/fgeek/pyfiscan) project.
-
 #### PROJECT HOME
 
 [http://www.wpscan.org](http://www.wpscan.org)
