@@ -1,6 +1,9 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.5.1...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.6...master)
+
+## Version 2.6
+Released: 2014-12-??
 
 ## Version 2.5.1
 Released: 2014-09-29
