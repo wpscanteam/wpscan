@@ -5,6 +5,39 @@
 ## Version 2.6
 Released: 2014-12-??
 
+New
+* Updates the readmes to reflect the new --usernames option
+* Improves plugin/theme version detection by looking at the "Version:"
+* Solution to avoid mandatory blank newline at the end of the wordlist
+* Add check for valid credentials
+* Add Sucuri sponsor to banner
+* Add protocol to sucuri url in banner
+* Add response code to proxy error output
+* Add a statement about mendatory newlines at the end of list
+* Give warning if default username 'admin' is still used
+* License amendment to make it more clear about value added usage
+
+Removed
+* remove malwares
+* remove malware folder
+* Removes the theme version check from the readme, unrealistic scenario
+
+General core
+* Update to Ruby 2.1.5 and travis
+* Prevent parent theme infinite loop
+* Fixes the progressbar being overriden by next brute forcing attempts
+
+Fixed issues
+* Fix UTF-8 encode on security db file download
+* Fix #703 - Disable logging by default. Implement log option.
+* Fix #705 - Installation instructions for Ubuntu < 14.04 apparently incomplete
+* Fix #717 - Expand on readme.html finding output
+* Fix #716 - Adds the --version in the help
+* Fix #715 - Add new updating info to docs
+* Fix #727 - WpItems detection: Perform the passive check and filter only vulnerable results at the end if required
+* Fix #737 - Adds some readme files to check for plugin versions
+* Fix #739 - Adds the --usernames option
+
 WPScan Database Statistics:
 * Total vulnerable versions: 88
 * Total vulnerable plugins: 901
