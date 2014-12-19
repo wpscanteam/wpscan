@@ -294,6 +294,6 @@ Locally scan a wordpress installation for vulnerable files or shells:
 
 [http://rdoc.info/github/wpscanteam/wpscan/frames](http://rdoc.info/github/wpscanteam/wpscan/frames)
 
-#### SPONSOR
+#### SPECIAL THANKS
 
-WPScan is sponsored by the [RandomStorm](http://www.randomstorm.com) Open Source Initiative.
+[RandomStorm](https://www.randomstorm.com)
