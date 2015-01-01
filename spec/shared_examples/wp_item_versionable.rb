@@ -40,6 +40,13 @@ shared_examples 'WpItem::Versionable' do
             @expected = '5.1.15'
           end
         end
+
+        context 'when version is in a release date format' do
+          it 'detects and returns it' do
+            @file     = '/s2member.txt'
+            @expected = '141007'
+          end
+        end
       end
     end
   end
