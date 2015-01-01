@@ -47,6 +47,13 @@ shared_examples 'WpItem::Versionable' do
             @expected = '141007'
           end
         end
+
+        context 'when version contains letters' do
+          it 'returns it' do
+            @file     = '/beta1.txt'
+            @expected = '2.0.0-beta1'
+          end
+        end
       end
     end
   end
