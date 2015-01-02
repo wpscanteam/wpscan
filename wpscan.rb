@@ -179,7 +179,7 @@ def main
     end
 
     if wp_target.has_must_use_plugins?
-      puts "#{info('[+]')} This site has must use plugins (http://codex.wordpress.org/Must_Use_Plugins)"
+      puts "#{info('[+]')} This site has 'Must Use Plugins' (http://codex.wordpress.org/Must_Use_Plugins)"
     end
 
     if wp_target.registration_enabled?
