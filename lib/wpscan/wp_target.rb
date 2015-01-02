@@ -21,6 +21,7 @@ class WpTarget < WebSite
   attr_reader :verbose
 
   def initialize(target_url, options = {})
+    raise Exception.new('target_url can not be nil or empty') if target_url.nil? || target_url == ''
     super(target_url)
 
     @verbose        = options[:verbose]

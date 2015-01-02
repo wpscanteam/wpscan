@@ -53,7 +53,7 @@ class WpscanOptions
   end
 
   def url=(url)
-    raise 'Empty URL given' if !url
+    raise  Exception.new('Empty URL given') if url.nil? || url == ''
 
     @url = URI.parse(add_http_protocol(url)).to_s
   end
