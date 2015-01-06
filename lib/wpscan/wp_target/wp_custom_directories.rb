@@ -25,7 +25,7 @@ class WpTarget < WebSite
       response = Browser.get(@uri.merge('wp-content').to_s)
 
       if WpTarget.valid_response_codes.include?(response.code)
-        hash = Digest::MD5.hexdigest(response.body)
+        hash = WebSite.page_hash(response)
         return true if hash != error_404_hash and hash != homepage_hash
       end
 
