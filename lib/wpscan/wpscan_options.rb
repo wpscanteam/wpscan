@@ -55,6 +55,8 @@ class WpscanOptions
   def url=(url)
     raise  Exception.new('Empty URL given') if url.nil? || url == ''
 
+    url = Addressable::URI.parse(url).normalize.to_s unless url.ascii_only?
+
     @url = URI.parse(add_http_protocol(url)).to_s
   end
 
