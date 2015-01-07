@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'typhoeus', '~>0.6.8'
 gem 'nokogiri'
+gem 'addressable'
 gem 'json'
 gem 'terminal-table'
 gem 'ruby-progressbar', '>=1.6.0'
