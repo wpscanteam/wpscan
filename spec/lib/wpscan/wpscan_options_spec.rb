@@ -32,6 +32,11 @@ describe 'WpscanOptions' do
       @wpscan_options.url = url
       expect(@wpscan_options.url).to be === url
     end
+
+    it 'should encode IDN' do
+      @wpscan_options.url = 'http://пример.испытание/'
+      expect(@wpscan_options.url).to be === 'http://xn--e1afmkfd.xn--80akhbyknj4f/'
+    end
   end
 
   describe '#threads=' do

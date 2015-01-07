@@ -23,9 +23,9 @@ class WpTarget < WebSite
     # @return [ Boolean ]
     def default_wp_content_dir_exists?
       response = Browser.get(@uri.merge('wp-content').to_s)
-      hash = Digest::MD5.hexdigest(response.body)
 
       if WpTarget.valid_response_codes.include?(response.code)
+        hash = WebSite.page_hash(response)
         return true if hash != error_404_hash and hash != homepage_hash
       end
 
