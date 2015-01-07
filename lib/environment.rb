@@ -35,6 +35,7 @@ begin
   require 'nokogiri'
   require 'terminal-table'
   require 'ruby-progressbar'
+  require 'addressable/uri'
   # Custom libs
   require 'common/browser'
   require 'common/custom_option_parser'
