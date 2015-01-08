@@ -117,7 +117,7 @@ class WpVersion < WpItem
     def find_from_stylesheets_numbers(target_uri)
       wp_versions = WpVersion.all
       found       = {}
-      pattern     = /ver=([0-9\.]+)/i
+      pattern     = /\bver=([0-9\.]+)/i
 
       Nokogiri::HTML(Browser.get(target_uri.to_s).body).css('link,script').each do |tag|
         %w(href src).each do |attribute|
@@ -138,7 +138,8 @@ class WpVersion < WpItem
       found.delete_if { |v, _| !wp_versions.include?(v) }
 
       best_guess = found.sort_by(&:last).last
-      best_guess ? best_guess[0] : nil
+      # best_guess[0]: version number, [1] numbers of occurences
+      best_guess && best_guess[1] > 1 ? best_guess[0] : nil
     end
 
     # Uses data/wp_versions.xml to try to identify a
