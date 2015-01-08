@@ -120,7 +120,7 @@ class WpVersion < WpItem
       pattern     = /ver=([0-9\.]+)/i
 
       Nokogiri::HTML(Browser.get(target_uri.to_s).body).css('link,script').each do |tag|
-        %w(herf src).each do |attribute|
+        %w(href src).each do |attribute|
           attr_value = tag.attribute(attribute).to_s
 
           next if attr_value.nil? || attr_value.empty?
