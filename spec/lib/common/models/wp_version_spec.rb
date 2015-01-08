@@ -29,4 +29,12 @@ describe WpVersion do
     end
   end
 
+  describe '#all' do
+    let(:versions_file) { File.join(MODELS_FIXTURES, 'wp_version', 'findable', 'advanced_fingerprinting', 'wp_versions.xml') }
+
+    it 'returns the array containign the two versions' do
+      expect(WpVersion.all(versions_file)).to eq ['3.2.1', '3.2']
+    end
+  end
+
 end

@@ -23,4 +23,11 @@ class WpVersion < WpItem
     number == other.number
   end
 
+  # @return [ Array<String> ] All the stable versions from version_file
+  def self.all(versions_file = WP_VERSIONS_FILE)
+    Nokogiri.XML(File.open(versions_file)).css('version').reduce([]) do |a, node|
+      a << node.text.to_s
+    end
+  end
+
 end
