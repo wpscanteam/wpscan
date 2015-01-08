@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'typhoeus', '~>0.6.8'
+gem 'typhoeus', '~>0.7.0'
 gem 'nokogiri'
 gem 'addressable'
 gem 'json'
