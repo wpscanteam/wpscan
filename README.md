@@ -219,7 +219,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     --verbose  | -v Verbose output.
 
-    --batch Never ask for user input, use the default behaviour.
+    --batch Never ask for user input, use the default behavior.
 
     --no-color Do not use colors in the output.
 
