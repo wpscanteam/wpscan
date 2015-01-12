@@ -82,8 +82,8 @@ From Ubuntu 14.04:
 
 ####Installing on Archlinux:
 
-    pacman -Syu ruby
-    pacman -Syu libyaml
+    pacman -S ruby
+    pacman -S libyaml
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler && bundle install --without test
