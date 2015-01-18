@@ -147,7 +147,6 @@ describe Browser do
       @expected = default_expectation
     end
 
-
     context 'when @proxy' do
       let(:proxy) { '127.0.0.1:9050' }
       let(:proxy_expectation) { default_expectation.merge(proxy: proxy) }
@@ -166,11 +165,19 @@ describe Browser do
       end
     end
 
+    context 'when @request_timeout' do
+      it 'gives an Integer' do
+        browser.request_timeout = '10'
+
+        @expected = default_expectation.merge(timeout: 10)
+      end
+    end
+
     context 'when @basic_auth' do
       it 'appends the basic_auth' do
         browser.basic_auth  = 'user:pass'
         @expected           = default_expectation.merge(
-          headers: default_expectation[:headers].merge('Authorization' => 'Basic '+Base64.encode64('user:pass').chomp)
+          headers: default_expectation[:headers].merge('Authorization' => 'Basic ' + Base64.encode64('user:pass').chomp)
         )
       end
     end

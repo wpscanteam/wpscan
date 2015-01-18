@@ -82,7 +82,7 @@ class Browser
     #
     # @return [ void ]
     def request_timeout=(timeout)
-      @request_timeout = timeout
+      @request_timeout = timeout.to_i
     end
 
     # Sets the connect timeout
@@ -90,7 +90,7 @@ class Browser
     #
     # @return [ void ]
     def connect_timeout=(timeout)
-      @connect_timeout = timeout
+      @connect_timeout = timeout.to_i
     end
 
     protected
