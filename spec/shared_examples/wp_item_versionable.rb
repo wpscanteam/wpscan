@@ -68,6 +68,27 @@ shared_examples 'WpItem::Versionable' do
             @expected = '2.64'
           end
         end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/nextgen_gallery.txt'
+            @expected = '2.0.66.33'
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/wp_user_frontend.txt'
+            @expected = '1.2.3'
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/my_calendar.txt'
+            @expected = '2.1.5'
+          end
+        end
       end
     end
   end
