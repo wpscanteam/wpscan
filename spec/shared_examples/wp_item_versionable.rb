@@ -61,6 +61,13 @@ shared_examples 'WpItem::Versionable' do
             @expected = '1.3'
           end
         end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/wp_polls.txt'
+            @expected = '2.64'
+          end
+        end
       end
     end
   end
