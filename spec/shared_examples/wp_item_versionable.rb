@@ -54,6 +54,13 @@ shared_examples 'WpItem::Versionable' do
             @expected = '2.0.0-beta1'
           end
         end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/changelog_version.txt'
+            @expected = '1.3'
+          end
+        end
       end
     end
   end

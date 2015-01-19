@@ -1,0 +1,70 @@
+=== Like This ===
+Contributors: RosemarieP
+Tags: karma, likes, post
+Requires at least: 3.0
+Tested up to: 3.1
+Stable tag: trunk
+
+A simple 'I like this' plugin inspired by the facebook 'like' functionality.
+
+== Description ==
+A simple 'I like this' plugin inspired by the facebook 'like' functionality.  For visitors who don't want to bother with commenting.
+http://lifeasrose.ca/2011/03/wordpress-plugin-i-like-this
+has a blog entry all about it :)
+
+A big thanks to Dong (ddliuhb@gmail.com) for finding a syntactical error that was causing problems for some people.  And thanks to Raphael (ressoosnowdon@googlemail.com) for noticing this error and working hard to figure out what it was.
+
+== Installation ==
+
+1. Upload the files into a folder named `roses-like-this` to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Place `<?php printLikes(get_the_ID()); ?>` in 'the loop' of your posts wherever you want the 'like this' link to appear.
+
+
+IMPORTANT!!!!
+PLEASE MAKE SURE THAT YOUR THEME HAS THE FOLLOWING LINE IN ITS HEADER FILE:
+`<?php wp_print_scripts(); ?>`
+
+...Most high quality themes should have this already but if you're writing your own theme or using a custom theme that doesn't include this line, please make sure you include it in header.php, somewhere between `<head>` and `</head>`
+
+== Frequently Asked Questions ==
+
+= How can I make the 'like this' link look prettier? =
+
+With CSS :) Here is the code that I use:
+`a.done {
+background:url("http://yoururl.com/wordpress/plugins/roses-like-this/action_check.png") bottom right no-repeat;
+padding-right:18px;
+color:#8bcb46;
+}`
+
+= The javascript is not working! =
+
+IMPORTANT!!!!
+PLEASE MAKE SURE THAT YOUR THEME HAS THE FOLLOWING LINE IN ITS HEADER FILE:
+`<?php wp_print_scripts(); ?>`
+
+= The javascript is STILL not working!!! =
+Do you call get_header() in your theme?  This is also needed, although almost certainly there anyway.
+
+= The javascript is STILL not working AGAIN!!! =
+The plugin expects to find the javascript file in a folder called `roses-like-this` under /plugins.  So if you have named the folder something else, you're probably getting a 404 error!
+
+To fix, you can either rename your folder `roses-like-this`  OR you can edit the `likethis.php` file and edit line `112` roses-like-this/ to yourfoldername/
+
+== Changelog ==
+
+= 1.0 =
+* The very first version of this plugin :)
+
+= 1.01 =
+* Made a small change for those of you installing directly from wordpress.org.  This changes the default directory from `likeThis` to `roses-like-this` in order to coincide with what wordpress will install.  Should lead to less confusion!
+
+= 1.1 =
+* Major bug fix! :) Anyone having an issue where the likeThis link clicking wasn't saving in the database should find it fixed.
+
+= 1.2 =
+* Bug Fix for those having issues with cookies not being saved correctly.
+
+= 1.3 =
+* Added sidebar widget for displaying most liked posts
