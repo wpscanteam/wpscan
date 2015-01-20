@@ -89,6 +89,55 @@ shared_examples 'WpItem::Versionable' do
             @expected = '2.1.5'
           end
         end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/nextgen_gallery_2.txt'
+            @expected = '1.9.13'
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/advanced-most-recent-posts-mod.txt'
+            @expected = '1.6.5.2'
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/a-lead-capture-contact-form-and-tab-button-by-awebvoicecom.txt'
+            @expected = '3.1'
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/aa-health-calculator.txt'
+            @expected = nil
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/all-in-one-facebook.txt'
+            @expected = nil
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/backup-scheduler.txt'
+            @expected = '1.5.9'
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/blog-reordering.txt'
+            @expected = nil
+          end
+        end
       end
     end
   end

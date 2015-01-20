@@ -1,0 +1,215 @@
+=== Advanced Most Recent Posts Mod ===
+Contributors: yakuphan, trepmal
+Tags: Advanced, recent, recent posts, most recent, category posts, thumbnail
+Donate link: http://kaileylampert.com/donate/
+Requires at least: 2.8
+Tested up to: 3.2.1
+Stable tag: trunk
+
+Based off the Advanced Most Recent Posts plugin by Yakup GÃ–VLER. Display most recent posts from selected categories or current category or all categories with thumbnail images (optional).
+
+== Description ==
+Advanced Most Recent Posts Widget displays your recent posts with thumbnail images (optional). It gets posts from selected categories or current category or all categories. When your visitors are at home, it gets posts from all posts or selected category. If you set 'Get posts from current category', when visitors see single post, widget lists posts in the same category of single post or when visitors click a category link, it gets posts from current category.
+
+Check out a brand new plugin inspired by this one: [Mini Loops](http://wordpress.org/extend/plugins/mini-loops/)
+
+I'm bad at support (not intentionally). If you have questions: check the forums, then check [my blog post's comment thread](http://trepmal.com/plugins/advanced-most-recent-posts-mod/#comments). If that doesn't work, post to the forums (there are awesome volunteers out there!) and get my attention by pinging me on twitter [@trepmal](http://twitter.com/trepmal).
+
+== Installation ==
+
+= Installation =
+1. Make sure you are running WordPress version 2.8 or better. It won't work with older versions.
+2. Download the zip file and extract the contents.
+3. Upload the 'advanced-most-recent-posts' folder (wp-content/plugins/).
+4. Activate the plugin through the 'plugins' page in WP.
+5. See 'Appearance'->'Widgets' to place it on your sidebar. Set the settings.
+
+== Frequently Asked Questions ==
+
+= How can I set it to get posts from current category? =
+Select checkbox on widget's settings called 'Get posts from current category'.
+
+= I want to display only the posts in two categories. =
+You have to write their category's ids -separated with a comma- to 'Categories' textbox.
+
+= I don't use Widgets. How can use this widget? =
+
+template tag: `yg_recentposts( $args )`
+shortcode: `[amrp]` with args
+Original author's [website](http://www.yakupgovler.com/?p=1033).
+
+= .... Image alignment .... =
+
+If you need serious customization, please go learn CSS. I will not provide extensive CSS support. (Sorry - there are just far too many variations, and I do all this in my spare time)
+
+The most frequest request I get has to do with aligning the image to the right or left. To get started with customization, create a file called amrp-styles.php (really, any name will do) and upload it to `wp-content/mu-plugins` (you may need to create this directory).
+
+In that file, paste the following
+`<?php
+/*
+  AMRP Styles
+*/
+
+add_action('wp_head', 'amrp_styles');
+function amrp_styles() {
+  ?>
+  <style type="text/css">
+  .advanced-recent-posts {
+    /* remove bullet points */
+    list-style-type: none;
+  }
+  .advanced-recent-posts li {
+  }
+  .advanced-recent-posts li a {
+  }
+  .advanced-recent-posts li img {
+    float: right; /* change to left if you'd prefer */
+    margin: 3px;
+  }
+  </style>
+  <?php
+}`
+
+Of course, if you have the skills, feel free to relocate that CSS.
+
+== Screenshots ==
+
+1. Widget's screenshot in 'Appearance'->'Widgets'
+2. (original version) Widget's screenshot in 'Appearance'->'Widgets'
+
+== Options ==
+
+Widget's options allow you to change your recent posts list displaying.
+
+= Title: =
+Your recent posts widget's title on your sidebar.
+
+= Title Link: =
+The page the title should link to.
+
+= Hide Post Title: =
+Check to hide post title in output. useful for thumbnail-only displays
+
+= Separator: =
+The character to use to separate the title from the excerpt.
+
+= After Excerpt: =
+What should appear after the excerpt
+
+= After Excerpt Link: =
+should the 'after excerpt' text link to the post? useful if 'after excerpt' read like "read more..."
+
+= Show: =
+The post type to be displayed.
+
+= Number of posts to show: =
+How many posts to display
+
+= Excerpt length (letters) =
+You know that
+
+= Thumbnail Custom Field Name =
+If you want to display the thumbnail of your posts via a custom field, write its name.
+
+= Height - Width =
+Images size.
+
+= Get first image of post =
+If you don't want to use custom field, plugin will get first image from your post content.
+
+= Get first attached image of post =
+Plugin gets first attached image of post.
+
+= Default image =
+If post has no image, plugin display this image. Ex: http://www.yakupgovler.com/default-image.png
+
+
+Notice: If you use three options, plugin uses custom field image firstly. If the post has no custom field, it gets first image from content. At last it gets first attached image. I suggest not to use "Get first image of post" for performance. It queries much more.
+
+= Show Author =
+If checked, shows author next to title
+
+= Show Post Timestamp =
+If checked, shows post timestamp
+
+= Time format =
+The format to be used when displaying the timestamp
+
+= Put time =
+A placement option for the post timestamp
+
+= Categories =
+Plugin gets posts in these categories. (Category IDs, separated by commas.)
+
+= Get posts from current category: =
+Posts will be get from current category (single post's category or current category).
+
+
+== Upgrade Notice ==
+
+= 1.6.5 =
+bugfix: 'after excerpt' now appears as it should even if the link option is unchecked
+Have you tried [Mini Loops](http://wordpress.org/extend/plugins/mini-loops/)?
+
+= 1.6.4 =
+moved image outside of title so it won't disappear if 'hide title' is checked
+undefined variable bug fix
+
+= 1.6.3 =
+fixed after-excerpt-link bug
+
+= 1.6 =
+Future updates will assume you have at least this release.
+
+== Changelog ==
+
+= 1.6.5.2 =
+* it title is empty, show nothing not default
+
+= 1.6.5.1 =
+* updated POT file
+
+= 1.6.5 =
+* bugfix: 'after excerpt' now appears as it should even if the link option is unchecked
+
+= 1.6.4 =
+* moved image outside of title so it won't disappear if 'hide title' is checked
+* undefined variable bug fix
+
+= 1.6.3 =
+* fixed after-excerpt-link bug
+
+= 1.6.2 =
+* shortcode fixes for 'limit' (really should be 'shownum' - now both work) and height/width
+
+= 1.6.1 =
+* author fix
+
+= 1.6 =
+* remove 20 post limit
+* option to display posts in reverse order
+* excerpt by *word* count option
+* post-offset option
+
+= 1.5 =
+* *dev release*
+* option to hide post title
+* option to specify the '...' after excerpt
+
+= 1.4.1 =
+* fixed double echo issue
+
+= 1.4 =
+* added support for shortcodes, show author option and post-type choice
+
+= 1.3 =
+* fixed timestamp bug, added timestamp placement option
+
+= 1.2 =
+* added support for setting a title link, choosing a title/content separator, and displaying post timestamp
+
+= 1.1 =
+* (original plugin) Fixed a bug. If you don't set image dimensions, it displays thumbnail wrong.
+
+= Version 1.0 =
+* Initial release version.
