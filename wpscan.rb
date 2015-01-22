@@ -312,7 +312,7 @@ def main
 
       if wp_target.has_plugin?('stop-user-enumeration')
         puts "#{warning('[!]')} Stop User Enumeration plugin detected, results might be empty. " \
-             "However a bypass exists, see stop_user_enumeration_bypass.rb in #{File.expand_path(File.dirname(__FILE__))}"
+             "However a bypass exists for v1.2.8 and below, see stop_user_enumeration_bypass.rb in #{File.expand_path(File.dirname(__FILE__))}"
       end
 
       wp_users = WpUsers.aggressive_detection(wp_target,
