@@ -388,6 +388,7 @@ def main
 
     puts
     puts info("[+] Finished: #{stop_time.asctime}")
+    puts info("[+] Requests Done: #{@total_requests_done}")
     puts info("[+] Memory used: #{used_memory.bytes_to_human}")
     puts info("[+] Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
     exit(0) # must exit!
