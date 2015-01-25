@@ -99,5 +99,12 @@ class WpTarget < WebSite
       plugin_url('bluetrait-event-viewer')
     end
 
+    # https://wordpress.org/plugins/security-protection/
+    def has_security_protection_protection?
+      Nokogiri::HTML(Browser.get(login_url).body).css('script').each do |node|
+        return true if node['src'] =~ /security-protection.js/i
+      end
+      false
+    end
   end
 end
