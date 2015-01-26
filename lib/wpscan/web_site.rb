@@ -59,6 +59,8 @@ class WebSite
         redirection = "#{redirected_uri.scheme}://#{redirected_uri.host}#{redirection}"
       end
 
+      return redirection if url == redirection # prevents infinite loop
+
       # Let's check if there is a redirection in the redirection
       if other_redirection = redirection(redirection)
         redirection = other_redirection
