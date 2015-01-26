@@ -71,9 +71,7 @@ class WpTarget < WebSite
 
     # Let's check if the login url is redirected (to https url for example)
     redirection = redirection(url)
-    if redirection
-      url = redirection
-    end
+    url = redirection if redirection
 
     url
   end
