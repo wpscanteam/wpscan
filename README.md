@@ -155,8 +155,8 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
     echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-    rvm install 2.1.4
-    rvm use 2.1.4 --default
+    rvm install 2.2.0
+    rvm use 2.2.0 --default
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
     gem install bundler
     git clone https://github.com/wpscanteam/wpscan.git
