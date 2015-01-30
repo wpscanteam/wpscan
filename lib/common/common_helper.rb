@@ -199,8 +199,19 @@ def remove_base64_images_from_html(html)
   html.gsub(/["']\s*#{imageregex}#{base64regex}\s*["']/, '""')
 end
 
+class WindowsMemoryStub < BasicObject
+    def bytes_to_human
+        'unknown'
+    end
+    
+    def -( _ )
+        self
+    end
+end
+
 # @return [ Integer ] The memory of the current process in Bytes
 def get_memory_usage
+  return WindowsMemoryStub.new if Gem.win_platform?
   `ps -o rss= -p #{Process.pid}`.to_i * 1024 # ps returns the value in KB
 end
 

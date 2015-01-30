@@ -97,7 +97,7 @@ Prerequisites:
 - RubyGems      - Recommended: latest
 - Git
 
-Windows is not supported.
+Windows is not supported, but may work on your system.
 If installed from Github update the code base with ```git pull```. The databases are updated with ```wpscan.rb --update```.
 
 ####Installing on Ubuntu:
@@ -162,6 +162,25 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     bundle install --without test
+    
+####Experimental: Installing on Windows
+Does not work using cmd.exe; see known issues
+Tested on Windows 8.1 64-bit using Powershell as posh~git (comes with Github for Windows)
+- `2.0.0p247 x64`: Exit code 0 **works**
+- `2.1.3p242 x64`: Exit code 0 **works**
+- `2.1.5p273 x64`: Exit code 0 **works**
+- `jruby 1.7.18 (1.9.3p551) on 1.7.0_25-b17 +jit x64`: Exit code 0 **works** (but pretty print is ugly)
+
+Make sure you have DevKit installed (64bit version for 64bit ruby and 32bit version for 32bit ruby)
+Make sure your ruby is at least 2.1.5
+
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    gem install bundler
+    bundle install --without test
+    
+For any gem that fails (so that it will invoke the devkit)
+    gem install FAILING_GEM -v VERSION
 
 #### KNOWN ISSUES
 
@@ -205,6 +224,10 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
       And select your ruby version
 
       See [https://github.com/wpscanteam/wpscan/issues/148](https://github.com/wpscanteam/wpscan/issues/148)
+      
+   - No such file or directory - ps -o rss= -p NUMBER
+        
+        On windows you can't run using cmd.exe (not even in Administrator mode). You will need a shell that has hooks to support UNIX calls such as PowerShell
 
 #### WPSCAN ARGUMENTS
 
