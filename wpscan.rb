@@ -188,7 +188,7 @@ def main
 
     if wp_target.has_xml_rpc?
       puts "#{info('[+]')} XML-RPC Interface available under: #{wp_target.xml_rpc_url}"
-      puts "#{warning('[!]')} This may allow the GHOST vulnerability to be exploited, please see http://blog.spiderlabs.com/2015/01/ghost-gethostbyname-heap-overflow-in-glibc-cve-2015-0235.html for a PoC"
+      puts "#{warning('[!]')} This may allow the GHOST vulnerability to be exploited, please see: https://www.rapid7.com/db/modules/auxiliary/scanner/http/wordpress_ghost_scanner"
     end
 
     if wp_target.upload_directory_listing_enabled?
