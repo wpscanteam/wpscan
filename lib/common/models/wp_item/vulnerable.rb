@@ -15,12 +15,14 @@ class WpItem
       json.each do |item|
         asset = item[identifier]
 
-        if asset
-          asset['vulnerabilities'].each do |vulnerability|
-            vulnerability = Vulnerability.load_from_json_item(vulnerability)
-            vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
-          end
+        next unless asset
+
+        asset['vulnerabilities'].each do |vulnerability|
+          vulnerability = Vulnerability.load_from_json_item(vulnerability)
+          vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
         end
+
+        break # No need to iterate any further
       end
 
       vulnerabilities
