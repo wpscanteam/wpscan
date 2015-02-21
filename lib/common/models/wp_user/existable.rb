@@ -51,7 +51,7 @@ class WpUser < WpItem
 
       unless login
         # No Permalinks
-        login = body[%r{<body class="archive author author-([^\s]+) author-(\d+)}i, 1]
+        login = body[%r{<body class="archive author author-([^\s]+)[ "]}i, 1]
       end
 
       login
