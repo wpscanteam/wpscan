@@ -4,6 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
 
 describe WpTarget do
   subject(:wp_target) { WpTarget.new(target_url, options) }
+  subject(:wp_target_custom) { WpTarget.new(target_url, options_custom) }
   let(:target_url)    { 'http://example.localhost/' }
   let(:fixtures_dir)  { SPEC_FIXTURES_WPSCAN_WP_TARGET_DIR }
   let(:login_url)     { wp_target.uri.merge('wp-login.php').to_s }
@@ -13,6 +14,14 @@ describe WpTarget do
       cache_ttl:      0,
       wp_content_dir: 'wp-content',
       wp_plugins_dir: 'wp-content/plugins'
+    }
+  }
+  let(:options_custom)       {
+    {
+      config_file:    SPEC_FIXTURES_CONF_DIR + '/browser.conf.json',
+      cache_ttl:      0,
+      wp_content_dir: 'custom-content',
+      wp_plugins_dir: 'custom-content/plugins'
     }
   }
 
@@ -67,6 +76,11 @@ describe WpTarget do
       stub_request_to_fixture(url: wp_target.url, fixture: fixtures_dir + '/wp_content_dir/wordpress-3.4.1.htm')
 
       expect(wp_target).to be_wordpress
+    end
+
+    it 'returns true if a custom content directory is detected' do
+      stub_request_to_fixture(url: wp_target_custom.url, fixture: fixtures_dir + '/wp_content_dir/wordpress-3.4.1-custom.htm')
+      expect(wp_target_custom).to be_wordpress
     end
 
     it 'returns true if the xmlrpc is found' do
