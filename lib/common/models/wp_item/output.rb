@@ -16,12 +16,12 @@ class WpItem
 
       additional_output(verbose) if respond_to?(:additional_output)
 
-      if version.nil? && vulnerabilities.length > 0
+      if version.nil? && vulnerabilities.length > 0 && verbose.nil?
         puts
-        puts "#{warning('[+]')} We could not determine a version so all vulnerabilities are printed out"
+        puts "#{warning('[+]')} We could not determine a version number. To view all vulnerabilities regardless use the --verbose flag."
+      else
+        vulnerabilities.output
       end
-
-      vulnerabilities.output
     end
   end
 end
