@@ -1,6 +1,47 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.6...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.7...master)
+
+## Version 2.7
+Released: 2015-03-16
+
+New
+* Detects version in release date format
+* Copyrights updated
+* WP version detection from stylesheets
+* New license
+* Global HTTP request counter
+* Add security-protection plugin detection
+* Add GHOST warning if XMLRPC enabled
+* Update databases from wpvulndb.com
+* Enumerate usernames from WP <= 3.0 (thanks berotti3)
+
+Removed
+* README.txt
+
+General core
+* Update to Ruby 2.2.1
+* Update to Ruby 2.2.0
+* Add addressable gem
+* Update Typhoeus gem to 0.7.0
+* IDN support: encode non-ascii domain names (thanks dctabuyz)
+* Improve page hash calculation (thanks dctabuyz)
+* Version detection regex improved
+
+Fixed issues
+* Fix #745 - Plugin version pattern in readme.txt file not detected
+* Fix #746 - Add a global counter for all active requests to server.
+* Fix #747 - Add 'security-protection' plugin to wp_login_protection module
+* Fix #753 - undefined method `round' for "10":String for request or connect timeouts
+* Fix #760 - typhoeus issue (infinite loop) 
+
+WPScan Database Statistics:
+* Total vulnerable versions: 89
+* Total vulnerable plugins:  953
+* Total vulnerable themes:   329
+* Total version vulnerabilities: 1070
+* Total plugin vulnerabilities:  1451
+* Total theme vulnerabilities:   378
 
 ## Version 2.6
 Released: 2014-12-19
