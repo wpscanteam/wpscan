@@ -11,6 +11,8 @@ rvm:
   - 2.1.5
   - 2.2.0
   - 2.2.1
+before_install:
+  - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
 script: bundle exec rspec
 notifications:
   email:
