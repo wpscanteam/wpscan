@@ -20,3 +20,7 @@ notifications:
 matrix:
   allow_failures:
     - rvm: 1.9.2
+# do not build gh-pages branch
+branches:
+  except:
+    - gh-pages
