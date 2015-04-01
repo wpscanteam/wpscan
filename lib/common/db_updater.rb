@@ -36,7 +36,7 @@ class DbUpdater
     url = "#{remote_file_url(filename)}.sha512"
 
     res = Browser.get(url, request_params)
-    fail "Unable to get #{url}" unless res.code == 200
+    fail "Unable to get #{url} (return code #{res.code})" unless res.code == 200
     res.body
   end
 
@@ -72,7 +72,7 @@ class DbUpdater
     file_url  = remote_file_url(filename)
 
     res = Browser.get(file_url, request_params)
-    fail "Error while downloading #{file_url}" unless res.code == 200
+    fail "Error while downloading #{file_url} (return code #{res.code})" unless res.code == 200
     File.open(file_path, 'wb') { |f| f.write(res.body) }
 
     local_file_checksum(filename)
