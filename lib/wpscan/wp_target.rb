@@ -47,7 +47,7 @@ class WpTarget < WebSite
     if wp_content_dir
       dir = wp_content_dir
     else
-      dir = 'wp-content'
+      dir = 'wp-content'
     end
 
     if response.body =~ /["'][^"']*\/#{Regexp.escape(dir)}\/[^"']*["']/i
