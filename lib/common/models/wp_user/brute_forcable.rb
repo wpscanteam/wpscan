@@ -111,7 +111,7 @@ class WpUser < WpItem
       elsif response.timed_out?
         progression = "#{critical('ERROR:')} Request timed out."
       elsif response.code == 0
-        progression = "#{critical('ERROR:')} No response from remote server. WAF/IPS?"
+        progression = "#{critical('ERROR:')} No response from remote server. WAF/IPS? (#{response.return_message})"
       elsif response.code.to_s =~ /^50/
         progression = "#{critical('ERROR:')} Server error, try reducing the number of threads."
       else
