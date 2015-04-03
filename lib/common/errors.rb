@@ -10,7 +10,13 @@ class HttpError < StandardError
 
   def failure_details
     msg = response.effective_url
-    msg += response.code == 0 ? " (#{response.return_message})" : " (status: #{response.code})"
+
+    if response.code == 0 || response.timed_out?
+      msg += " (#{response.return_message})"
+    else
+      msg += " (status: #{response.code})"
+    end
+
     msg
   end
 
