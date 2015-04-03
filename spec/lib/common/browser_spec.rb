@@ -130,7 +130,7 @@ describe Browser do
         headers: { 'User-Agent' => 'SomeUA' },
         ssl_verifypeer: false, ssl_verifyhost: 0,
         cookiejar: cookie_jar, cookiefile: cookie_jar,
-        timeout: 4, connecttimeout: 2,
+        timeout: 60, connecttimeout: 5,
         maxredirs: 3,
         referer: nil
       }

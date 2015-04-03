@@ -73,8 +73,8 @@ class Browser
     @max_threads = 20
     # 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
     @cache_ttl = 600
-    @request_timeout = 4 # 4s
-    @connect_timeout = 2 # 2s
+    @request_timeout = 60 # 60s
+    @connect_timeout = 5 # 5s
     @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
   end
 
