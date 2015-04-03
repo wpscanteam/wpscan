@@ -98,6 +98,7 @@ class DbUpdater
         puts '  [i] Downloading new file' if verbose
         dl_checksum = download(filename)
         puts "  [i] Downloaded File Checksum: #{dl_checksum}" if verbose
+	puts "  [i] Database File Checksum  : #{db_checksum}" if verbose 	
 
         unless dl_checksum == db_checksum
           fail "#{filename}: checksums do not match"
