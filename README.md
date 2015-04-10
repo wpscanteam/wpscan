@@ -311,21 +311,6 @@ Debug output...
 
 ```ruby wpscan.rb --url www.example.com --debug-output 2>debug.log```
 
-#### WPSTOOLS ARGUMENTS
-
-    -v, --verbose                                                Verbose output
-        --check-vuln-ref-urls, --cvru                            Check all the vulnerabilities reference urls for 404
-        --check-local-vulnerable-files, --clvf LOCAL_DIRECTORY   Perform a recursive scan in the LOCAL_DIRECTORY to find vulnerable files or shells
-    -s, --stats                                                  Show WpScan Database statistics.
-        --spellcheck, --sc                                       Check all files for common spelling mistakes.
-
-
-#### WPSTOOLS EXAMPLES
-
-Locally scan a wordpress installation for vulnerable files or shells:
-
-```ruby wpstools.rb --check-local-vulnerable-files /var/www/wordpress/```
-
 #### PROJECT HOME
 
 [http://www.wpscan.org](http://www.wpscan.org)
