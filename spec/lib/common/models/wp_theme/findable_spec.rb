@@ -17,9 +17,7 @@ describe 'WpTheme::Findable' do
 
       wp_theme = WpTheme.send(:find_from_css_link, uri)
 
-      if @expected
-        expect(wp_theme).to be_a WpTheme
-      end
+      expect(wp_theme).to be_a WpTheme if @expected
       expect(wp_theme).to eq @expected
     end
 
@@ -59,6 +57,13 @@ describe 'WpTheme::Findable' do
       end
     end
 
+    # This one might introduce FP btw
+    context 'when leaked from comments' do
+      it 'returns the WpTheme' do
+        @file = 'comments.html'
+        @expected = WpTheme.new(uri, name: 'debug')
+      end
+    end
   end
 
   describe '::find_from_wooframework' do

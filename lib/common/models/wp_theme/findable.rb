@@ -30,17 +30,14 @@ class WpTheme < WpItem
       response = Browser.get_and_follow_location(target_uri.to_s)
 
       # https + domain is optional because of relative links
-      matches = /(?:https?:\/\/[^"']+)?\/([^\/]+)\/themes\/([^"'\/]+)[^"']*\/style.css/i.match(response.body)
-      if matches
-        return new(
-          target_uri,
-          {
-            name:           matches[2],
-            referenced_url: matches[0],
-            wp_content_dir: matches[1]
-          }
-        )
-      end
+      return unless response.body =~ %r{(?:https?://[^"']+)?/?([^/\s]+)/themes/([^"'/]+)[^"']*/style.css}i
+
+      new(
+        target_uri,
+        name:           Regexp.last_match[2],
+        referenced_url: Regexp.last_match[0],
+        wp_content_dir: Regexp.last_match[1]
+      )
     end
 
     # @param [ URI ] target_uri
@@ -50,7 +47,6 @@ class WpTheme < WpItem
       body = Browser.get(target_uri.to_s).body
       regexp = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?" />\s+<meta name="generator" content="WooFramework\s?([^"]+)?" />}
 
-
       if matches = regexp.match(body)
         woo_theme_name = matches[1]
         woo_theme_version = matches[2]
@@ -58,10 +54,8 @@ class WpTheme < WpItem
 
         return new(
           target_uri,
-          {
-            name:    woo_theme_name,
-            version: woo_theme_version
-          }
+          name:    woo_theme_name,
+          version: woo_theme_version
         )
       end
     end
