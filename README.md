@@ -162,6 +162,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     gem install bundler
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
+    gem install bundler
     bundle install --without test
 
 #### KNOWN ISSUES
