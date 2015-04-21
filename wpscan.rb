@@ -232,8 +232,11 @@ def main
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
-        puts " | #{wp_plugins.size} plugins found:"
-
+        if wp_plugins.size == 1
+          puts " | #{wp_plugins.size} plugin found:"
+        else
+          puts " | #{wp_plugins.size} plugins found:"
+        end
         wp_plugins.output(wpscan_options.verbose)
       else
         puts "#{info('[+]')} No plugins found"
