@@ -318,7 +318,7 @@ Debug output...
 
 #### VULNERABILITY DATABASE
 
-[https://www.wpvulndb.com](https://www.wpvulndb.com)
+[https://wpvulndb.com](https://wpvulndb.com)
 
 #### GIT REPOSITORY
 
