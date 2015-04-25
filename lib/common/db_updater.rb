@@ -37,7 +37,7 @@ class DbUpdater
 
     res = Browser.get(url, request_params)
     fail DownloadError, res if res.timed_out? || res.code != 200
-    res.body
+    res.body.chomp
   end
 
   def local_file_path(filename)
