@@ -38,7 +38,7 @@ Example cases which do not require a commercial license, and thus fall under the
  - Using WPScan to test your own systems.
  - Any non-commercial use of WPScan.
 
-If you need to purchase a commercial license or are unsure whether you need to purchase a commercial license contact us - wpscanteam@gmail.com. 
+If you need to purchase a commercial license or are unsure whether you need to purchase a commercial license contact us - wpscanteam@gmail.com.
 
 We may grant commercial licenses at no monetary cost at our own discretion if the commercial usage is deemed by the WPScan Team to significantly benefit WPScan.
 
@@ -105,21 +105,21 @@ If installed from Github update the code base with ```git pull```. The databases
 
 Before Ubuntu 14.04:
 
-    sudo apt-get install libcurl4-gnutls-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
+    sudo apt-get install libcurl4-openssl-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler && bundle install --without test
 
 From Ubuntu 14.04:
 
-    sudo apt-get install libcurl4-gnutls-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential
+    sudo apt-get install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler && bundle install --without test
 
 ####Installing on Debian:
 
-    sudo apt-get install git ruby ruby-dev libcurl4-gnutls-dev make
+    sudo apt-get install git ruby ruby-dev libcurl4-openssl-dev make
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler
