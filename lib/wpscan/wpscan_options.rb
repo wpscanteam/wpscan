@@ -41,7 +41,8 @@ class WpscanOptions
     :cache_ttl,
     :request_timeout,
     :connect_timeout,
-    :max_threads
+    :max_threads,
+    :no_banner
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -273,7 +274,8 @@ class WpscanOptions
       ['--batch', GetoptLong::NO_ARGUMENT],
       ['--no-color', GetoptLong::NO_ARGUMENT],
       ['--cookie', GetoptLong::REQUIRED_ARGUMENT],
-      ['--log', GetoptLong::NO_ARGUMENT]
+      ['--log', GetoptLong::NO_ARGUMENT],
+      ['--no-banner', GetoptLong::NO_ARGUMENT]
     )
   end
 

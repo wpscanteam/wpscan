@@ -13,7 +13,7 @@ def main
 
     $log = wpscan_options.log
 
-    banner() # called after $log set
+    banner() unless wpscan_options.no_banner # called after $log set
 
     unless wpscan_options.has_options?
       # first parameter only url?
