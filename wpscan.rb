@@ -46,7 +46,8 @@ def main
     )
 
     # check if db file needs upgrade and we are not running in batch mode
-    if update_required? && !wpscan_options.batch
+    # also no need to check if the user supplied the --update switch
+    if update_required? && !wpscan_options.batch && !wpscan_options.update
       puts "#{notice('[i]')} It seems like you have not updated the database for some time."
       print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N]'
       if (input = Readline.readline) =~ /^y/i
