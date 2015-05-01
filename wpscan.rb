@@ -45,6 +45,18 @@ def main
       wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
     )
 
+    # check if db file needs upgrade and we are not running in batch mode
+    if update_required? && !wpscan_options.batch
+      puts "#{notice('[i]')} It seems like you have not updated the database for some time."
+      print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N]'
+      if (input = Readline.readline) =~ /^y/i
+        wpscan_options.update = true
+      elsif input =~ /^a/i
+        puts 'Scan aborted'
+        exit(0)
+      end
+    end
+
     if wpscan_options.update || missing_db_file?
       puts "#{notice('[i]')} Updating the Database ..."
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)

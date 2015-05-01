@@ -53,7 +53,7 @@ def puts(o = '')
     temp = o.gsub(/\e\[\d+m/, '') # remove color for logging
     File.open(LOG_FILE, 'a+') { |f| f.puts(temp) }
   end
-  
+
   super(o)
 end
 
@@ -104,5 +104,18 @@ class Numeric
     e = (Math.log(self)/Math.log(1024)).floor
     s = "%.3f" % (to_f / 1024**e)
     s.sub(/\.?0*$/, ' ' + units[e])
+  end
+end
+
+# time calculations
+class Fixnum
+  SECONDS_IN_DAY = 24 * 60 * 60
+
+  def days
+    self * SECONDS_IN_DAY
+  end
+
+  def ago
+    Time.now - self
   end
 end

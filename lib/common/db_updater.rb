@@ -112,5 +112,8 @@ class DbUpdater
         end
       end
     end
+
+    # write last_update date to file
+    File.write(LAST_UPDATE_FILE, Time.now)
   end
 end

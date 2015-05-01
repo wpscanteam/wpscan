@@ -31,6 +31,7 @@ LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml')
 WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd')
 LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
 USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt')
+LAST_UPDATE_FILE    = File.join(DATA_DIR, '.last_update')
 
 WPSCAN_VERSION       = '2.7'
 
@@ -76,6 +77,13 @@ def missing_db_file?
     return true unless File.exist?(File.join(DATA_DIR, db_file))
   end
   false
+end
+
+def update_required?
+  return true unless File.exist?(LAST_UPDATE_FILE)
+  content = File.read(LAST_UPDATE_FILE)
+  date = Time.parse(content) rescue Time.parse("2000-01-01")
+  return date < 5.days.ago
 end
 
 # Define colors
