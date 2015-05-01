@@ -30,7 +30,7 @@ class WpTheme < WpItem
       response = Browser.get_and_follow_location(target_uri.to_s)
 
       # https + domain is optional because of relative links
-      return unless response.body =~ %r{(?:https?://[^"']+)?/?([^/\s]+)/themes/([^"'/]+)[^"']*/style.css}i
+      return unless response.body =~ %r{(?:https?://[^"']+/)?([^/\s]+)/themes/([^"'/]+)[^"']*/style.css}i
 
       new(
         target_uri,

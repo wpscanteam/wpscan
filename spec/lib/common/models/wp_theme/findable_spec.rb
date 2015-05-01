@@ -19,6 +19,7 @@ describe 'WpTheme::Findable' do
 
       expect(wp_theme).to be_a WpTheme if @expected
       expect(wp_theme).to eq @expected
+      expect(wp_theme.wp_content_dir).to eql 'wp-content' if @expected
     end
 
     context 'when theme is not present' do
@@ -101,7 +102,6 @@ describe 'WpTheme::Findable' do
         @expected = WpTheme.new(uri, name: 'Editorial', version: '1.3.5')
       end
     end
-
   end
 
   describe '::find' do
@@ -114,7 +114,6 @@ describe 'WpTheme::Findable' do
 
     context 'when a method is named s_find_from_s' do
       it 'does not call it' do
-
         class WpTheme
           module Findable
             extend self
