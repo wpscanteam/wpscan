@@ -87,20 +87,24 @@ def main
 
     # Remote website has a redirection?
     if (redirection = wp_target.redirection)
-      if wpscan_options.follow_redirection
-        puts "Following redirection #{redirection}"
+      if redirection =~ /\/wp-admin\/install\.php$/
+        puts "#{critical('[!]')} The Website is not fully configured and currently in install mode. Call it to create a new admin user."
       else
-        puts "#{notice('[i]')} The remote host tried to redirect to: #{redirection}"
-        print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
-      end
-      if wpscan_options.follow_redirection || !wpscan_options.batch
-        if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
-          wpscan_options.url = redirection
-          wp_target = WpTarget.new(redirection, wpscan_options.to_h)
+        if wpscan_options.follow_redirection
+          puts "Following redirection #{redirection}"
         else
-          if input =~ /^a/i
-            puts 'Scan aborted'
-            exit(0)
+          puts "#{notice('[i]')} The remote host tried to redirect to: #{redirection}"
+          print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
+        end
+        if wpscan_options.follow_redirection || !wpscan_options.batch
+          if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
+            wpscan_options.url = redirection
+            wp_target = WpTarget.new(redirection, wpscan_options.to_h)
+          else
+            if input =~ /^a/i
+              puts 'Scan aborted'
+              exit(0)
+            end
           end
         end
       end
