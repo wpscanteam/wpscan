@@ -76,7 +76,11 @@ class WpUser < WpItem
         # replace UTF chars like  &#187; with dummy character
         title_tag.gsub!(/&#(\d+);/, '|')
 
-        name = title_tag[%r{([^|«»]+) }, 1]
+	# matches "username &lquo; some text" and "some text &rquo; username"
+        name = title_tag[%r{(.+)«}, 1]
+        unless name
+          name = title_tag[%r{.+» (.+)}, 1]
+        end
 
         return name.strip if name
       end
