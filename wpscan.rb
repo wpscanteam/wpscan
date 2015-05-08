@@ -338,6 +338,7 @@ def main
       wp_users = WpUsers.aggressive_detection(wp_target,
         enum_options.merge(
           range: wpscan_options.enumerate_usernames_range,
+          display_name: wpscan_options.enumerate_usernames_display_name,
           show_progression: false
         )
       )
