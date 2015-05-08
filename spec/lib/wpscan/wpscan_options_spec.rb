@@ -324,16 +324,26 @@ describe 'WpscanOptions' do
       @expected_hash = {enumerate_usernames: true}
     end
 
+    it 'should set enumerate_usernames and enumerate_usernames_display_name to true' do
+	@argument = 'ud'
+	@expected_hash = {enumerate_usernames: true, enumerate_usernames_display_name: true}
+    end
+
     it 'should set enumerate_usernames to true and enumerate_usernames_range to (1..20)' do
       @argument = 'u[1-20]'
       @expected_hash = {enumerate_usernames: true, enumerate_usernames_range: (1..20)}
     end
 
+    it 'should set enumerate_usernames and enumerate_usernames_display_name to true and enumerate_usernames_range to (1..20)' do
+      @argument = 'ud[1-20]'
+      @expected_hash = {enumerate_usernames: true, enumerate_usernames_display_name: true, enumerate_usernames_range: (1..20)}
+    end
+
     # Let's try some multiple choices
-    it 'should set enumerate_timthumbs to true, enumerate_usernames to true, enumerate_usernames_range to (1..2)' do
-      @argument = 'u[1-2],tt'
+    it 'should set enumerate_timthumbs to true, enumerate_usernames and enumerate_usernames_display_name to true, enumerate_usernames_range to (1..2)' do
+      @argument = 'ud[1-2],tt'
       @expected_hash = {
-        enumerate_usernames: true, enumerate_usernames_range: (1..2),
+        enumerate_usernames: true, enumerate_usernames_display_name: true, enumerate_usernames_range: (1..2),
         enumerate_timthumbs: true
       }
     end
