@@ -5,7 +5,7 @@ shared_examples 'WebSite::RobotsTxt' do
 
   describe '#robots_url' do
     it 'returns the correct url' do
-      expect(web_site.robots_url).to be === 'http://example.localhost/robots.txt'
+      expect(web_site.robots_url).to eql 'http://example.localhost/robots.txt'
     end
   end
 
@@ -57,6 +57,7 @@ shared_examples 'WebSite::RobotsTxt' do
           http://example.localhost/wordpress/wp-admin/
           http://example.localhost/wordpress/secret/
           http://example.localhost/Wordpress/wp-admin/
+          http://example.localhost/wp-admin/tralling-space/
           http://example.localhost/asdf/
         )
       end
@@ -70,6 +71,7 @@ shared_examples 'WebSite::RobotsTxt' do
             http://example.localhost/wordpress/admin/
             http://example.localhost/wordpress/secret/
             http://example.localhost/Wordpress/wp-admin/
+            http://example.localhost/wp-admin/tralling-space/
             http://example.localhost/asdf/
           )
         stub_request_to_fixture(url: web_site_sub.robots_url, fixture: fixture)
