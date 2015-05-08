@@ -68,6 +68,7 @@ def help
   puts '--enumerate | -e [option(s)]        Enumeration.'
   puts '  option :'
   puts '    u        usernames from id 1 to 10'
+  puts '    ud	     usernames from id 1 to 10 (display name only too)'
   puts '    u[10-20] usernames from id 10 to 20 (you must write [] chars)'
   puts '    p        plugins'
   puts '    vp       only vulnerable plugins'
