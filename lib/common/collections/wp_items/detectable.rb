@@ -31,7 +31,7 @@ class WpItems < Array
         request.on_complete do |response|
           progress_bar.progress += 1 if options[:show_progression]
 
-          if target_item.exists?(exist_options, response) or options[:display_name]
+          if target_item.exists?(exist_options, response) or (target_item.class.to_s == 'WpUser' and options[:display_name])
             if !results.include?(target_item)
               if !options[:only_vulnerable] || options[:only_vulnerable] && target_item.vulnerable?
                 results << target_item
