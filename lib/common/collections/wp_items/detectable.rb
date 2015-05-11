@@ -19,9 +19,9 @@ class WpItems < Array
       progress_bar     = progress_bar(targets.size, options)
       queue_count      = 0
       exist_options    = {
-        error_404_hash:  wp_target.error_404_hash,
-        homepage_hash:   wp_target.homepage_hash,
-        exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
+          error_404_hash:  wp_target.error_404_hash,
+          homepage_hash:   wp_target.homepage_hash,
+          exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
       results          = passive_detection(wp_target, options)
 
@@ -31,7 +31,7 @@ class WpItems < Array
         request.on_complete do |response|
           progress_bar.progress += 1 if options[:show_progression]
 
-          if target_item.exists?(exist_options, response) or (target_item.class.to_s == 'WpUser' and options[:display_name])
+          if target_item.exists?(exist_options, response) or (target_item.kind_of? WpUser and options[:display_name])
             unless results.include?(target_item)
               if !options[:only_vulnerable] || options[:only_vulnerable] && target_item.vulnerable?
                 results << target_item
@@ -67,9 +67,9 @@ class WpItems < Array
     def progress_bar(targets_size, options)
       if options[:show_progression]
         ProgressBar.create(
-          format: '%t %a <%B> (%c / %C) %P%% %e',
-          title: '  ', # Used to craete a left margin
-          total: targets_size
+            format: '%t %a <%B> (%c / %C) %P%% %e',
+            title: '  ', # Used to craete a left margin
+            total: targets_size
         )
       end
     end
@@ -180,10 +180,10 @@ class WpItems < Array
 
       [*json].each do |item|
         targets << create_item(
-          item_class,
-          item.keys.inject,
-          wp_target,
-          vulns_file
+            item_class,
+            item.keys.inject,
+            wp_target,
+            vulns_file
         )
       end
 
@@ -198,11 +198,11 @@ class WpItems < Array
     # @return [ WpItem ]
     def create_item(klass, name, wp_target, vulns_file = nil)
       klass.new(
-        wp_target.uri,
-        name:           name,
-        vulns_file:     vulns_file,
-        wp_content_dir: wp_target.wp_content_dir,
-        wp_plugins_dir: wp_target.wp_plugins_dir
+          wp_target.uri,
+          name:           name,
+          vulns_file:     vulns_file,
+          wp_content_dir: wp_target.wp_content_dir,
+          wp_plugins_dir: wp_target.wp_plugins_dir
       )
     end
 
@@ -218,10 +218,10 @@ class WpItems < Array
       File.open(file, 'r') do |f|
         f.readlines.collect do |item_name|
           targets << create_item(
-            item_class,
-            item_name.strip,
-            wp_target,
-            vulns_file
+              item_class,
+              item_name.strip,
+              wp_target,
+              vulns_file
           )
         end
       end
