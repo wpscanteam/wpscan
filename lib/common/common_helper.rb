@@ -116,12 +116,12 @@ def blue(text)
 end
 
 def critical(text)
-  $exit_code += 1
+  $exit_code += 1 if defined?($exit_code) # hack for undefined var via rspec
   "#{red('[!]')} #{text}"
 end
 
 def warning(text)
-  $exit_code += 1
+  $exit_code += 1 if defined?($exit_code) # hack for undefined var via rspec
   "#{amber('[!]')} #{text}"
 end
 
