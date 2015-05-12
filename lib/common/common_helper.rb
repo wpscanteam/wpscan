@@ -116,19 +116,21 @@ def blue(text)
 end
 
 def critical(text)
-  red(text)
+  $exit_code += 1
+  "#{red('[!]')} #{text}"
 end
 
 def warning(text)
-  amber(text)
+  $exit_code += 1
+  "#{amber('[!]')} #{text}"
 end
 
 def info(text)
-  green(text)
+  "#{green('[+]')} #{text}"
 end
 
 def notice(text)
-  blue(text)
+  "#{blue('[i]')} #{text}"
 end
 
 # our 1337 banner

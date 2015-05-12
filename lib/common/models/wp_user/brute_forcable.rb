@@ -109,13 +109,13 @@ class WpUser < WpItem
       elsif response.body =~ /login_error/i
         verbose = "\n  Incorrect login and/or password."
       elsif response.timed_out?
-        progression = "#{critical('ERROR:')} Request timed out."
+        progression = critical('ERROR: Request timed out.')
       elsif response.code == 0
-        progression = "#{critical('ERROR:')} No response from remote server. WAF/IPS? (#{response.return_message})"
+        progression = critical("ERROR: No response from remote server. WAF/IPS? (#{response.return_message})")
       elsif response.code.to_s =~ /^50/
-        progression = "#{critical('ERROR:')} Server error, try reducing the number of threads."
+        progression = critical('ERROR: Server error, try reducing the number of threads.')
       else
-        progression = "#{critical('ERROR:')} We received an unknown response for #{password}..."
+        progression = critical("ERROR: We received an unknown response for #{password}...")
         verbose     = critical("    Code: #{response.code}\n    Body: #{response.body}\n")
       end
 

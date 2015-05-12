@@ -5,7 +5,7 @@ class WpTimthumb < WpItem
 
     def output(verbose = false)
       puts
-      puts "#{info('[+]')} #{self}" #this will also output the version number if detected
+      puts info("#{self}") #this will also output the version number if detected
 
       vulnerabilities.output
     end
