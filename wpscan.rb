@@ -412,7 +412,6 @@ def main
     puts info("Requests Done: #{@total_requests_done}")
     puts info("Memory used: #{used_memory.bytes_to_human}")
     puts info("Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
-    puts $exit_code
     exit($exit_code) # must exit!
 
   rescue SystemExit, Interrupt
