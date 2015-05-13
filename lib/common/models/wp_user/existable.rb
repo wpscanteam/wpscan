@@ -8,7 +8,7 @@ class WpUser < WpItem
     #
     # @return [ Boolean ]
     def exists_from_response?(response, options = {})
-      load_from_response(response)
+      load_from_response(response, options)
 
       @login ? true : false
     end
@@ -18,7 +18,7 @@ class WpUser < WpItem
     # @param [ Typhoeus::Response ] response
     #
     # @return [ void ]
-    def load_from_response(response)
+    def load_from_response(response, options)
       if response.code == 301 # login in location?
         location = response.headers_hash['Location']
 
@@ -26,11 +26,12 @@ class WpUser < WpItem
 
         @login        = Existable.login_from_author_pattern(location)
         @display_name = Existable.display_name_from_body(
-          Browser.get(location).body
+          Browser.get(location).body,
+          options[:error_404_title]
         )
       elsif response.code == 200 # login in body?
         @login        = Existable.login_from_body(response.body)
-        @display_name = Existable.display_name_from_body(response.body)
+        @display_name = Existable.display_name_from_body(response.body, options[:error_404_title])
       end
     end
     private :load_from_response
@@ -66,7 +67,7 @@ class WpUser < WpItem
     # @param [ String ] body
     #
     # @return [ String ] The display_name
-    def self.display_name_from_body(body)
+    def self.display_name_from_body(body, error_404_title = nil)
       if title_tag = body[%r{<title>([^<]+)</title>}i, 1]
         title_tag.force_encoding('UTF-8') if title_tag.encoding == Encoding::ASCII_8BIT
         title_tag = Nokogiri::HTML::DocumentFragment.parse(title_tag).to_s
@@ -76,9 +77,28 @@ class WpUser < WpItem
         # replace UTF chars like  &#187; with dummy character
         title_tag.gsub!(/&#(\d+);/, '|')
 
-        name = title_tag[%r{.+» (.+)}, 1]
-        unless name
-          name = title_tag[%r{([^|«]+) }, 1]
+        name = title_tag
+        unless error_404_title.nil?
+          size = name.size <= error_404_title.size ? name.size : error_404_title.size
+          common = ''
+          (0..size).each { |i|
+              if (c = name[i, 1]) == error_404_title[i, 1]
+                common << c
+              else
+                break
+              end
+          }
+          name = name.sub(common, '') unless common.empty?
+
+          common = ''
+          (0..size).each { |i|
+            if (c = name[name.size - i, 1]) == error_404_title[error_404_title.size - i, 1]
+              common = c << common
+            else
+              break
+            end
+          }
+          name = name.sub(common, '') unless common.empty?
         end
 
         return name.strip if name

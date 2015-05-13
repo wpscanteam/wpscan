@@ -25,6 +25,17 @@ class WpItems < Array
       }
       results          = passive_detection(wp_target, options)
 
+      if self == WpUsers
+        inexistent_user = WpUser.new(wp_target.uri, id: 9999999999)
+        request = browser.forge_request(inexistent_user.url, request_params)
+        request.on_complete do |response|
+          error_404_title = WpUser::Existable.display_name_from_body(response.body)
+          exist_options[:error_404_title] = error_404_title if error_404_title
+        end
+        hydra.queue(request)
+        hydra.run
+      end
+
       targets.each do |target_item|
         request = browser.forge_request(target_item.url, request_params)
 
