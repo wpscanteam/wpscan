@@ -82,7 +82,7 @@ class WpUser < WpItem
           size = name.size <= error_404_title.size ? name.size : error_404_title.size
           common = ''
           (0..size).each { |i|
-              if (c = name[i, 1]) == error_404_title[i, 1]
+              if (c = name[i]) == error_404_title[i]
                 common << c
               else
                 break
@@ -91,8 +91,9 @@ class WpUser < WpItem
           name = name.sub(common, '') unless common.empty?
 
           common = ''
-          (0..size).each { |i|
-            if (c = name[name.size - i, 1]) == error_404_title[error_404_title.size - i, 1]
+          size = name.size <= error_404_title.size ? name.size : error_404_title.size
+          (1..(size + 1)).each { |i|
+            if (c = name[-i]) == error_404_title[-i]
               common = c << common
             else
               break
