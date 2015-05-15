@@ -203,8 +203,6 @@ def get_equal_string_end(stringarray = [''])
       already_found = "#{character if character}#{already_found}"
       counter -= 1
     end
-  elsif stringarray.length == 1
-    already_found = stringarray.first[%r{.+([,|«»].*)}, 1] or ''
   end
   already_found
 end
