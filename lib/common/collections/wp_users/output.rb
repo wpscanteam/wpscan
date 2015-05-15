@@ -28,18 +28,10 @@ class WpUsers < WpItems
     end
 
     def remove_junk_from_display_names
-      display_names = []
       self.each do |u|
-        display_name = u.display_name
-        unless display_name == 'empty'
-          display_names << display_name
-        end
-      end
-      junk = get_equal_string_end(display_names)
-      unless junk.nil? or junk.empty?
-        self.each do |u|
-          u.display_name ||= ''
-          u.display_name = u.display_name.sub(/#{Regexp.escape(junk)}$/, '')
+        unless u.display_name == 'empty'
+          cleaned = u.display_name[%r{(.+)[ ,|«»].*}, 1]
+          u.display_name = cleaned unless cleaned.nil?
         end
       end
     end
