@@ -77,7 +77,7 @@ class WpUser < WpItem
         # replace UTF chars like  &#187; with dummy character
         title_tag.gsub!(/&#(\d+);/, '|')
 
-        name = title_tag
+        name = title_tag.strip
         unless error_404_title.nil?
           size = name.size <= error_404_title.size ? name.size : error_404_title.size
           common = ''
@@ -102,7 +102,7 @@ class WpUser < WpItem
           name = name.sub(common, '') unless common.empty?
         end
 
-        return name.strip if name
+        return name if name
       end
     end
 
