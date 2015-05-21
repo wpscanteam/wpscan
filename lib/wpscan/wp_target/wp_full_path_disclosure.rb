@@ -11,6 +11,11 @@ class WpTarget < WebSite
       response.body[%r{Fatal error}i] ? true : false
     end
 
+    def full_path_disclosure_data
+      return nil unless has_full_path_disclosure?
+      Browser.get(full_path_disclosure_url()).body[%r{<b>([^<]+\.php)</b>}, 1]
+    end
+
     # @return [ String ]
     def full_path_disclosure_url
       @uri.merge('wp-includes/rss-functions.php').to_s

@@ -167,7 +167,7 @@ def main
     end
 
     if wp_target.has_full_path_disclosure?
-      puts warning("Full Path Disclosure (FPD) in: '#{wp_target.full_path_disclosure_url}'")
+      puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
     end
 
     if wp_target.has_debug_log?
