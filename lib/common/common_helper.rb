@@ -85,12 +85,12 @@ def last_update
     content = File.read(LAST_UPDATE_FILE)
     date = Time.parse(content) rescue nil
   end
-  return date
+  date
 end
 
 def update_required?
-  date = last_update() or Time.parse('2000-01-01')
-  return date < 5.days.ago
+  date = last_update or Time.parse('2000-01-01')
+  date < 5.days.ago
 end
 
 # Define colors
