@@ -58,10 +58,13 @@ def main
       elsif input =~ /^a/i
         puts 'Scan aborted'
         exit(1)
+      else
+        puts critical('You can not run a scan without any databases.') if missing_db_file?
+        exit(1)
       end
     end
 
-    if wpscan_options.update || missing_db_file?
+    if wpscan_options.update
       puts notice('Updating the Database ...')
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
       puts notice('Update completed.')
