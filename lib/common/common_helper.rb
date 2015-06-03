@@ -89,8 +89,8 @@ def last_update
 end
 
 def update_required?
-  date = last_update or Time.parse('2000-01-01')
-  date < 5.days.ago
+  date = last_update
+  (true if date.nil?) or (date < 5.days.ago)
 end
 
 # Define colors
