@@ -59,8 +59,10 @@ def main
         puts 'Scan aborted'
         exit(1)
       else
-        puts critical('You can not run a scan without any databases.') if missing_db_file?
-        exit(1)
+        if missing_db_file?
+          puts critical('You can not run a scan without any databases.') 
+          exit(1)
+        end
       end
     end
 
