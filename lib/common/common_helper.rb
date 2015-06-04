@@ -79,11 +79,18 @@ def missing_db_file?
   false
 end
 
+def last_update
+  date = nil
+  if File.exists?(LAST_UPDATE_FILE)
+    content = File.read(LAST_UPDATE_FILE)
+    date = Time.parse(content) rescue nil
+  end
+  date
+end
+
 def update_required?
-  return true unless File.exist?(LAST_UPDATE_FILE)
-  content = File.read(LAST_UPDATE_FILE)
-  date = Time.parse(content) rescue Time.parse("2000-01-01")
-  return date < 5.days.ago
+  date = last_update
+  (true if date.nil?) or (date < 5.days.ago)
 end
 
 # Define colors

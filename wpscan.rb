@@ -39,6 +39,8 @@ def main
 
     if wpscan_options.version
       puts "Current version: #{WPSCAN_VERSION}"
+      date = last_update
+      puts "Last DB update: #{date.strftime('%Y-%m-%d')}" unless date.nil?
       exit(0)
     end
 
