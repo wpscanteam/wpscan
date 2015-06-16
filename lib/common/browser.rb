@@ -24,7 +24,7 @@ class Browser
 
   attr_reader :hydra, :cache_dir
 
-  attr_accessor :referer, :cookie
+  attr_accessor :referer, :cookie, :virtualHost
 
   # @param [ Hash ] options
   #
@@ -135,7 +135,15 @@ class Browser
         @basic_auth
       )
     end
-
+    
+    if virtualHost
+      params = Browser.append_params_header_field(
+        params,
+        'Host',
+        virtualHost
+      )
+    end
+    
     params.merge!(referer: referer)
     params.merge!(timeout: @request_timeout) if @request_timeout
     params.merge!(connecttimeout: @connect_timeout) if @connect_timeout
