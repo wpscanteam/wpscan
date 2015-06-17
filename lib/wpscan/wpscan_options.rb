@@ -19,6 +19,7 @@ class WpscanOptions
     :proxy_auth,
     :threads,
     :url,
+    :virtualHost,
     :wordlist,
     :force,
     :update,
