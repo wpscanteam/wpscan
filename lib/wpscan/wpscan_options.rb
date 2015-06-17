@@ -251,6 +251,7 @@ class WpscanOptions
   def self.get_opt_long
     GetoptLong.new(
       ['--url', '-u', GetoptLong::REQUIRED_ARGUMENT],
+      ['--virtualHost',GetoptLong::OPTIONAL_ARGUMENT],
       ['--enumerate', '-e', GetoptLong::OPTIONAL_ARGUMENT],
       ['--username', '-U', GetoptLong::REQUIRED_ARGUMENT],
       ['--usernames', GetoptLong::REQUIRED_ARGUMENT],
