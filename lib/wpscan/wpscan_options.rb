@@ -62,6 +62,10 @@ class WpscanOptions
     @url = URI.parse(add_http_protocol(url)).to_s
   end
 
+  def virtualHost=(virtualhost)
+    @virtualHost = virtualhost
+  end
+
   def threads=(threads)
     @threads = threads.is_a?(Integer) ? threads : threads.to_i
   end
