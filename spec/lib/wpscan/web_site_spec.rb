@@ -116,12 +116,24 @@ describe 'WebSite' do
 
         expect(web_site.redirection).to eql absolute_location
       end
+
+      context 'when starts with a ?' do
+        it 'returns the absolute URI' do
+          relative_location = '?p=blog'
+          absolute_location = web_site.uri.merge(relative_location).to_s
+
+          stub_request(:get, web_site.url).to_return(status: 301, headers: { location: relative_location })
+          stub_request(:get, absolute_location)
+
+          expect(web_site.redirection).to eql absolute_location
+        end
+      end
     end
 
     context 'when multiple redirections' do
       it 'returns the last redirection' do
-        first_redirection  = 'www.redirection.com'
-        last_redirection   = 'redirection.com'
+        first_redirection  = 'http://www.redirection.com'
+        last_redirection   = 'http://redirection.com'
 
         stub_request(:get, web_site.url).to_return(status: 301, headers: { location: first_redirection })
         stub_request(:get, first_redirection).to_return(status: 302, headers: { location: last_redirection })

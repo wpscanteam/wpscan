@@ -54,10 +54,7 @@ class WebSite
 
     redirected_uri = URI.parse(add_trailing_slash(add_http_protocol(url)))
     if response.code == 301 || response.code == 302
-      redirection = response.headers_hash['location']
-      if redirection[0] == '/'
-        redirection = "#{redirected_uri.scheme}://#{redirected_uri.host}#{redirection}"
-      end
+      redirection = redirected_uri.merge(response.headers_hash['location']).to_s
 
       return redirection if url == redirection # prevents infinite loop
 

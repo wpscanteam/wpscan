@@ -5,6 +5,8 @@ require 'webmock/rspec'
 # Code Coverage (only works with ruby >= 1.9)
 require 'simplecov' if RUBY_VERSION >= '1.9'
 
+RSpec::Expectations.configuration.warn_about_potential_false_positives = false
+
 require File.expand_path(File.dirname(__FILE__) + '/../lib/common/common_helper')
 
 SPEC_DIR                      = ROOT_DIR + '/spec'
