@@ -15,7 +15,7 @@ class WpUser < WpItem
   # @return [ URI ] The uri to the author page
   def uri
     if id
-      return @uri.merge("?author=#{id}")
+      @uri.merge("?author=#{id}")
     else
       raise 'The id is nil'
     end

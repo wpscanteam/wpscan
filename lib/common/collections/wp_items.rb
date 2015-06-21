@@ -14,7 +14,7 @@ class WpItems < Array
     self.wp_target = wp_target
   end
 
-  # @param [String] argv
+  # @param [String] args
   #
   # @return [ void ]
   def add(*args)

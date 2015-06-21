@@ -32,7 +32,7 @@ class WpItems < Array
           progress_bar.progress += 1 if options[:show_progression]
 
           if target_item.exists?(exist_options, response)
-            if !results.include?(target_item)
+            unless results.include?(target_item)
               if !options[:only_vulnerable] || options[:only_vulnerable] && target_item.vulnerable?
                 results << target_item
               end

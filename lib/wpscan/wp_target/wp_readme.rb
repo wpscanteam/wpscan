@@ -10,7 +10,7 @@ class WpTarget < WebSite
     #
     # @return [ Boolean ]
     def has_readme?
-      response = Browser.get(readme_url())
+      response = Browser.get(readme_url)
 
       unless response.code == 404
         return response.body =~ %r{wordpress}i ? true : false

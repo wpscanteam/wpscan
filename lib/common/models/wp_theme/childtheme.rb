@@ -14,7 +14,7 @@ class WpTheme < WpItem
 
     def get_parent_theme_style_url
       if is_child_theme?
-        return style_url.sub("/#{name}/style.css", "/#@theme_template/style.css")
+        return style_url.sub("/#{name}/style.css", "/#{@theme_template}/style.css")
       end
       nil
     end

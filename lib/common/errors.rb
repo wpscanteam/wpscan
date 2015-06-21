@@ -3,7 +3,7 @@
 class HttpError < StandardError
   attr_reader :response
 
-  # @param [ Typhoeus::Response ] res
+  # @param [ Typhoeus::Response ] response
   def initialize(response)
     @response = response
   end

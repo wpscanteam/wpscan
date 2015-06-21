@@ -23,7 +23,7 @@ end
 html = open(html_path).read
 examples = html.match(/(\d+) examples/)[0].to_i rescue 0
 errors = html.match(/(\d+) errors/)[0].to_i rescue 0
-if errors == 0 then
+if errors == 0
   errors = html.match(/(\d+) failure/)[0].to_i rescue 0
 end
 pending = html.match(/(\d+) pending/)[0].to_i rescue 0

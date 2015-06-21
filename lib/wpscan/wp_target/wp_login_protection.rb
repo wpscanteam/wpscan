@@ -8,7 +8,7 @@ class WpTarget < WebSite
     @login_protection_plugin = nil
 
     def has_login_protection?
-      !login_protection_plugin().nil?
+      !login_protection_plugin.nil?
     end
 
     # Checks if a login protection plugin is enabled
@@ -74,7 +74,7 @@ class WpTarget < WebSite
 
     # http://wordpress.org/extend/plugins/login-security-solution/
     def has_login_security_solution_protection?
-      Browser.get(login_security_solution_url()).code != 404
+      Browser.get(login_security_solution_url).code != 404
     end
 
     def login_security_solution_url

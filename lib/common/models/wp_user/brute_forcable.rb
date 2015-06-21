@@ -34,7 +34,7 @@ class WpUser < WpItem
         # Generate a random one on each request
         unless redirect_url
           random = (0...8).map { 65.+(rand(26)).chr }.join
-          redirect_url = "#@uri#{random}/"
+          redirect_url = "#{@uri}#{random}/"
         end
 
         request = login_request(password, redirect_url)
@@ -66,7 +66,7 @@ class WpUser < WpItem
       puts if options[:show_progression] # mandatory to avoid the output of the progressbar to be overriden
     end
 
-    # @param [ Integer ] targets_size
+    # @param [ Integer ] passwords_size
     # @param [ Hash ] options
     #
     # @return [ ProgressBar ]

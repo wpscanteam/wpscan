@@ -40,7 +40,7 @@ shared_examples 'WpTarget::WpRegistrable' do
       end
 
       it 'returns true' do
-        @stub     = { status: 200, body: %{<form id="setupform" method="post" action="wp-signup.php">} }
+        @stub     = { status: 200, body: '<form id="setupform" method="post" action="wp-signup.php">'}
         @expected = true
       end
     end
@@ -54,7 +54,7 @@ shared_examples 'WpTarget::WpRegistrable' do
       end
 
       it 'returns true' do
-        @stub     = { status: 200, body: %{<form name="registerform" id="registerform" action="wp-login.php"} }
+        @stub     = { status: 200, body: '<form name="registerform" id="registerform" action="wp-login.php"'}
         @expected = true
       end
 

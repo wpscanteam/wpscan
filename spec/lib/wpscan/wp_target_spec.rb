@@ -149,7 +149,7 @@ describe WpTarget do
 
     after :each do
       allow(wp_target).to receive_messages(wp_content_dir: 'wp-content')
-      stub_request_to_fixture(url: wp_target.debug_log_url(), fixture: @fixture)
+      stub_request_to_fixture(url: wp_target.debug_log_url, fixture: @fixture)
       expect(wp_target.has_debug_log?).to be === @expected
     end
 

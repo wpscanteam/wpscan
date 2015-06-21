@@ -78,7 +78,7 @@ module Terminal
 
     class Style
       @@defaults = {
-        :border_x => "-", :border_y => "|", :border_i => "+",
+        :border_x => '-', :border_y => '|', :border_i => '+',
         :padding_left => 1, :padding_right => 1,
         :margin_left => '',
         :width => nil, :alignment => nil
@@ -102,7 +102,7 @@ class Numeric
   def bytes_to_human
     units = %w{B KB MB GB TB}
     e = (Math.log(self)/Math.log(1024)).floor
-    s = "%.3f" % (to_f / 1024**e)
+    s = '%.3f' % (to_f / 1024**e)
     s.sub(/\.?0*$/, ' ' + units[e])
   end
 end

@@ -7,13 +7,13 @@ class WpTarget < WebSite
     #
     # @return [ Boolean ]
     def has_full_path_disclosure?
-      response = Browser.get(full_path_disclosure_url())
+      response = Browser.get(full_path_disclosure_url)
       response.body[%r{Fatal error}i] ? true : false
     end
 
     def full_path_disclosure_data
       return nil unless has_full_path_disclosure?
-      Browser.get(full_path_disclosure_url()).body[%r{<b>([^<]+\.php)</b>}, 1]
+      Browser.get(full_path_disclosure_url).body[%r{<b>([^<]+\.php)</b>}, 1]
     end
 
     # @return [ String ]

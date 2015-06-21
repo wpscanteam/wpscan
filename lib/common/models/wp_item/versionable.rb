@@ -22,7 +22,7 @@ class WpItem
     # @return [ String ]
     def to_s
       item_version = self.version
-      "#@name#{' - v' + item_version.strip if item_version}"
+      "#{@name}#{' - v' + item_version.strip if item_version}"
     end
 
     # Extracts the version number from a given string/body

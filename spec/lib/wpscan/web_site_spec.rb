@@ -17,7 +17,7 @@ describe 'WebSite' do
     )
   end
 
-  describe "#new" do
+  describe '#new' do
     its(:url) { is_expected.to  be === 'http://example.localhost/' }
   end
 
@@ -68,14 +68,14 @@ describe 'WebSite' do
 
   describe '#xml_rpc_url' do
     it 'returns the xmlrpc url' do
-      expect(web_site.xml_rpc_url).to be === "http://example.localhost/xmlrpc.php"
+      expect(web_site.xml_rpc_url).to be === 'http://example.localhost/xmlrpc.php'
     end
   end
 
   describe '#has_xml_rpc?' do
     it 'returns true' do
       stub_request(:get, web_site.xml_rpc_url).
-        to_return(status: 200, body: "XML-RPC server accepts POST requests only")
+        to_return(status: 200, body: 'XML-RPC server accepts POST requests only')
 
       expect(web_site).to have_xml_rpc
     end

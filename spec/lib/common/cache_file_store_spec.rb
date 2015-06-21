@@ -92,7 +92,7 @@ describe CacheFileStore do
     it 'should create a unique storage dir' do
       storage_dirs = []
 
-      (1..5).each do |i|
+      (1..5).each do |_|
         storage_dirs << CacheFileStore.new(cache_dir).storage_path
       end
 

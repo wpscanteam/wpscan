@@ -121,7 +121,7 @@ describe 'WpTheme::Findable' do
           end
         end
 
-        stub_all_to_nil()
+        stub_all_to_nil
 
         expect { WpTheme.find(uri) }.to_not raise_error
       end
@@ -129,7 +129,7 @@ describe 'WpTheme::Findable' do
 
     context 'when the theme is not found' do
       it 'returns nil' do
-        stub_all_to_nil()
+        stub_all_to_nil
 
         expect(WpTheme.find(uri)).to be_nil
       end
@@ -137,7 +137,7 @@ describe 'WpTheme::Findable' do
 
     context 'when the theme is found' do
       it 'returns it, with the :found_from set' do
-        stub_all_to_nil()
+        stub_all_to_nil
         stub_request(:get, /.+\/the-oracle\/style.css$/).to_return(status: 200)
         expected = WpTheme.new(uri, name: 'the-oracle')
 
