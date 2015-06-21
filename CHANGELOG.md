@@ -1,6 +1,52 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.7...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.8...master)
+
+## Version 2.8
+Released: 2015-06-XX
+
+New
+* Warn the user to update his DB files
+* Added last db update to --version option (see #815)
+* Add db checksum to verbose logging during update
+* Option to hide banner
+* Continue if user chooses not to update + db exists
+* Don't update if user chooses default + no DBs exist
+* Updates request timeout values to realistic ones (and in seconds)
+
+Removed
+* Removed `Time.parse('2000-01-01')` expedient
+* Removed unnecessary 'return' and '()'
+* Removed debug output
+* Removed wpstools
+
+General core
+* Update to Ruby 2.2.2
+* Switch to mitre
+* Install bundler gem README
+* Switch from gnutls to openssl
+
+Fixed issues
+* Fix #789 - Add blackarch to readme
+* Fix #790 - Consider the target down after 30 requests timed out requests instead of 10
+* Fix #791 - Rogue character causing the scan of non-wordpress site to crash
+* Fix #792 - Adds the HttpError exception
+* Fix #795 - Remove GHOST warning
+* Fix #796 - Do not swallow exit code
+* Fix #797 - Increases the timeout values
+* Fix #801 - Forces UTF-8 encoding when enumerating usernames
+* Fix #803 - Increases default connect-timeout to 10s
+* Fix #804 - Updates the Theme detection pattern
+* Fix #816 - Ignores potential non version chars in theme version detection
+* Fix #819 - Removes potential spaces in robots.txt entries
+
+WPScan Database Statistics:
+* Total vulnerable versions: 98
+* Total vulnerable plugins:  1076
+* Total vulnerable themes:   361
+* Total version vulnerabilities: 1104
+* Total plugin vulnerabilities:  1763
+* Total theme vulnerabilities:   443
 
 ## Version 2.7
 Released: 2015-03-16

@@ -39,6 +39,8 @@ def main
 
     if wpscan_options.version
       puts "Current version: #{WPSCAN_VERSION}"
+      date = last_update
+      puts "Last DB update: #{date.strftime('%Y-%m-%d')}" unless date.nil?
       exit(0)
     end
 
@@ -58,10 +60,15 @@ def main
       elsif input =~ /^a/i
         puts 'Scan aborted'
         exit(1)
+      else
+        if missing_db_file?
+          puts critical('You can not run a scan without any databases.') 
+          exit(1)
+        end
       end
     end
 
-    if wpscan_options.update || missing_db_file?
+    if wpscan_options.update
       puts notice('Updating the Database ...')
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
       puts notice('Update completed.')
