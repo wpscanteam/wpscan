@@ -41,7 +41,7 @@ $LOAD_PATH.unshift(MODELS_LIB_DIR)
 
 def kali_linux?
   begin
-    File.readlines('/etc/debian_version').grep(/^kali/i).any?
+    File.readlines("/etc/debian_version").grep(/^kali/i).any?
   rescue
     false
   end
@@ -54,7 +54,7 @@ def require_files_from_directory(absolute_dir_path, files_pattern = '*.rb')
   files = Dir[File.join(absolute_dir_path, files_pattern)]
 
   # Files in the root dir are loaded first, then those in the subdirectories
-  files.sort_by { |file| [file.count('/'), file] }.each do |f|
+  files.sort_by { |file| [file.count("/"), file] }.each do |f|
     f = File.expand_path(f)
     #puts "require #{f}" # Used for debug
     require f
@@ -79,11 +79,18 @@ def missing_db_file?
   false
 end
 
+def last_update
+  date = nil
+  if File.exists?(LAST_UPDATE_FILE)
+    content = File.read(LAST_UPDATE_FILE)
+    date = Time.parse(content) rescue nil
+  end
+  date
+end
+
 def update_required?
-  return true unless File.exist?(LAST_UPDATE_FILE)
-  content = File.read(LAST_UPDATE_FILE)
-  date = Time.parse(content) rescue Time.parse('2000-01-01')
-  return date < 5.days.ago
+  date = last_update
+  (true if date.nil?) or (date < 5.days.ago)
 end
 
 # Define colors
