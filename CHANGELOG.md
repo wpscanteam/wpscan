@@ -3,7 +3,7 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.8...master)
 
 ## Version 2.8
-Released: 2015-06-XX
+Released: 2015-06-22
 
 New
 * Warn the user to update his DB files
