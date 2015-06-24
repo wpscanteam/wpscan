@@ -14,12 +14,6 @@ class WpVersion < WpItem
     # @return [ String ]
     def identifier
       @number
-    end  
-
-    # @return [ String ]
-    # def vulns_xpath
-    #   "//wordpress[@version='#{@number}']/vulnerability"
-    # end
-
+    end
   end
 end

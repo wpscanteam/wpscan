@@ -12,6 +12,7 @@ class WpVersion < WpItem
 
   # The version number
   attr_accessor :number
+  alias_method :version, :number # Needed to have the right behaviour in Vulnerable#vulnerable_to?
 
   # @return [ Array ]
   def allowed_options; super << :number << :found_from end
@@ -29,5 +30,4 @@ class WpVersion < WpItem
       a << node.text.to_s
     end
   end
-
 end
