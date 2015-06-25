@@ -28,11 +28,11 @@ class WpTarget < WebSite
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
     @multisite      = nil
-    @virtualHost = options[:virtualHost]
+    @vhost = options[:vhost]
 
     Browser.instance.referer = url
-    if @virtualHost
-      Browser.instance.virtualHost = @virtualHost
+    if @vhost
+      Browser.instance.vhost = @vhost
     end
 
   end
