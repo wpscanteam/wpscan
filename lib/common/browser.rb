@@ -24,7 +24,7 @@ class Browser
 
   attr_reader :hydra, :cache_dir
 
-  attr_accessor :referer, :cookie, :virtualHost
+  attr_accessor :referer, :cookie, :vhost
 
   # @param [ Hash ] options
   #
@@ -136,11 +136,11 @@ class Browser
       )
     end
     
-    if virtualHost
+    if vhost
       params = Browser.append_params_header_field(
         params,
         'Host',
-        virtualHost
+        vhost
       )
     end
     
