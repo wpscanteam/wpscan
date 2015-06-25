@@ -19,7 +19,7 @@ class WpscanOptions
     :proxy_auth,
     :threads,
     :url,
-    :virtualHost,
+    :vhost,
     :wordlist,
     :force,
     :update,
@@ -62,8 +62,8 @@ class WpscanOptions
     @url = URI.parse(add_http_protocol(url)).to_s
   end
 
-  def virtualHost=(virtualhost)
-    @virtualHost = virtualhost
+  def vhost=(vhost)
+    @vhost = vhost
   end
 
   def threads=(threads)
@@ -251,7 +251,7 @@ class WpscanOptions
   def self.get_opt_long
     GetoptLong.new(
       ['--url', '-u', GetoptLong::REQUIRED_ARGUMENT],
-      ['--virtualHost',GetoptLong::OPTIONAL_ARGUMENT],
+      ['--vhost',GetoptLong::OPTIONAL_ARGUMENT],
       ['--enumerate', '-e', GetoptLong::OPTIONAL_ARGUMENT],
       ['--username', '-U', GetoptLong::REQUIRED_ARGUMENT],
       ['--usernames', GetoptLong::REQUIRED_ARGUMENT],
