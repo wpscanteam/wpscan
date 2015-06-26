@@ -28,8 +28,13 @@ class WpTarget < WebSite
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
     @multisite      = nil
+    @vhost = options[:vhost]
 
     Browser.instance.referer = url
+    if @vhost
+      Browser.instance.vhost = @vhost
+    end
+
   end
 
   # check if the target website is
