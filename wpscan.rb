@@ -133,7 +133,7 @@ def main
     # Remote website is wordpress?
     unless wpscan_options.force
       unless wp_target.wordpress?
-        raise critical('The remote website is up, but does not seem to be running WordPress.')
+        raise 'The remote website is up, but does not seem to be running WordPress.'
       end
     end
 
