@@ -60,7 +60,7 @@ def require_files_from_directory(absolute_dir_path, files_pattern = '*.rb')
   # Files in the root dir are loaded first, then those in the subdirectories
   files.sort_by { |file| [file.count('/'), file] }.each do |f|
     f = File.expand_path(f)
-    puts "require #{f}" # Used for debug
+    # puts "require #{f}" # Used for debug
     require f
   end
 end
