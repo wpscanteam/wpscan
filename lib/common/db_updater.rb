@@ -22,7 +22,8 @@ class DbUpdater
   def request_params
     {
       ssl_verifyhost: 2,
-      ssl_verifypeer: true
+      ssl_verifypeer: true,
+      accept_encoding: 'gzip, deflate'
     }
   end
 
