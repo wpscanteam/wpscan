@@ -178,7 +178,7 @@ class WpItems < Array
       when :all
         item_names = [*json].map { |item| item['name'] }
       else
-        raise "Known type #{type}"
+        raise "Unknown type #{type}"
       end
 
       item_names.each do |item_name|
