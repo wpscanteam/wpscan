@@ -29,6 +29,13 @@ shared_examples 'WpUser::Existable' do
         @expected = nil
       end
     end
+
+    context 'when no author given' do
+      it 'returns nil' do
+        @text     = '<a href="http://wp.lab/author/" class="btn btn-default">See Posts</a>'
+        @expected = nil
+      end
+    end
   end
 
   describe '::login_from_body' do

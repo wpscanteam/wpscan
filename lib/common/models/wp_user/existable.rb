@@ -39,7 +39,7 @@ class WpUser < WpItem
     #
     # @return [ String ] The login
     def self.login_from_author_pattern(text)
-      return unless text =~ %r{/author/([^/\b]+)/?}i
+      return unless text =~ %r{/author/([^/\b"']+)/?}i
 
       Regexp.last_match[1].force_encoding('UTF-8')
     end
