@@ -7,6 +7,8 @@ class WpItem
     def output(verbose = false)
       puts
       puts info("Name: #{self}") #this will also output the version number if detected
+      puts " |  Latest version:"
+      puts " |  Last updated:"
       puts " |  Location: #{url}"
       #puts " | WordPress: #{wordpress_url}" if wordpress_org_item?
       puts " |  Readme: #{readme_url}" if has_readme?

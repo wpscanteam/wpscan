@@ -6,7 +6,7 @@ class WpPlugin < WpItem
     # @return [ String ] The path to the file containing vulnerabilities
     def vulns_file
       unless @vulns_file
-        @vulns_file = PLUGINS_VULNS_FILE
+        @vulns_file = PLUGINS_FILE
       end
       @vulns_file
     end

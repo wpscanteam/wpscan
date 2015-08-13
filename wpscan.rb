@@ -273,15 +273,29 @@ def main
     # Enumerate the installed plugins
     if wpscan_options.enumerate_plugins or wpscan_options.enumerate_only_vulnerable_plugins or wpscan_options.enumerate_all_plugins
       puts
-      puts info("Enumerating installed plugins #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_plugins} ...")
+      if wpscan_options.enumerate_only_vulnerable_plugins
+        puts info('Enumerating installed plugins (only ones with known vulnerabilities) ...')
+        plugin_enumeration_type = :vulnerable
+      end
+
+      if wpscan_options.enumerate_plugins
+        puts info('Enumerating installed plugins (only ones marked as popular) ...')
+        plugin_enumeration_type = :popular
+      end
+
+      if wpscan_options.enumerate_all_plugins
+        puts info('Enumerating all plugins (may take a while and use a lot of system resources) ...')
+        plugin_enumeration_type = :all
+      end
       puts
 
       wp_plugins = WpPlugins.aggressive_detection(wp_target,
         enum_options.merge(
-          file: wpscan_options.enumerate_all_plugins ? PLUGINS_FULL_FILE : PLUGINS_FILE,
-          only_vulnerable: wpscan_options.enumerate_only_vulnerable_plugins || false
+          file: PLUGINS_FILE,
+          type: plugin_enumeration_type
         )
       )
+
       puts
       if !wp_plugins.empty?
         puts info("We found #{wp_plugins.size} plugins:")
@@ -295,13 +309,26 @@ def main
     # Enumerate installed themes
     if wpscan_options.enumerate_themes or wpscan_options.enumerate_only_vulnerable_themes or wpscan_options.enumerate_all_themes
       puts
-      puts info("Enumerating installed themes #{'(only vulnerable ones)' if wpscan_options.enumerate_only_vulnerable_themes} ...")
+      if wpscan_options.enumerate_only_vulnerable_themes
+        puts info('Enumerating installed themes (only ones with known vulnerabilities) ...')
+        theme_enumeration_type = :vulnerable
+      end
+
+      if wpscan_options.enumerate_themes
+        puts info('Enumerating installed themes (only ones marked as popular) ...')
+        theme_enumeration_type = :popular
+      end
+
+      if wpscan_options.enumerate_all_themes
+        puts info('Enumerating all themes (may take a while and use a lot of system resources) ...')
+        theme_enumeration_type = :all
+      end
       puts
 
       wp_themes = WpThemes.aggressive_detection(wp_target,
         enum_options.merge(
-          file: wpscan_options.enumerate_all_themes ? THEMES_FULL_FILE : THEMES_FILE,
-          only_vulnerable: wpscan_options.enumerate_only_vulnerable_themes || false
+          file: THEMES_FILE,
+          type: theme_enumeration_type
         )
       )
       puts

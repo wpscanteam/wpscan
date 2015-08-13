@@ -155,15 +155,7 @@ class WpItems < Array
       item_class = self.item_class
       vulns_file = self.vulns_file
 
-      targets = vulnerable_targets_items(wp_target, item_class, vulns_file)
-
-      unless options[:only_vulnerable]
-        unless options[:file]
-          raise 'A file must be supplied'
-        end
-
-        targets += targets_items_from_file(options[:file], wp_target, item_class, vulns_file)
-      end
+      targets = target_items(wp_target, item_class, vulns_file, options[:type])
 
       targets.uniq! { |t| t.name }
       targets.sort_by { rand }
@@ -174,14 +166,25 @@ class WpItems < Array
     # @param [ String ] vulns_file
     #
     # @return [ Array<WpItem> ]
-    def vulnerable_targets_items(wp_target, item_class, vulns_file)
+    def target_items(wp_target, item_class, vulns_file, type)
       targets = []
       json    = json(vulns_file)
 
-      [*json].each do |item|
+      case type
+      when :vulnerable
+        item_names = json.select { |item| !item['vulnerabilities'].empty? }.map {|item| item['name'] }
+      when :popular
+        item_names = json.select { |item| item['popular'] == true }.map {|item| item['name'] }
+      when :all
+        item_names = [*json].map { |item| item['name'] }
+      else
+        raise "Known type #{type}"
+      end
+
+      item_names.each do |item_name|
         targets << create_item(
           item_class,
-          item.keys.inject,
+          item_name,
           wp_target,
           vulns_file
         )
@@ -233,6 +236,5 @@ class WpItems < Array
     def item_class
       Object.const_get(self.to_s.gsub(/.$/, ''))
     end
-
   end
 end

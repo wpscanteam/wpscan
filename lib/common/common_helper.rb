@@ -18,20 +18,15 @@ COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
 WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM
 
 # Data files
-PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.txt')
-PLUGINS_FULL_FILE   = File.join(DATA_DIR, 'plugins_full.txt')
-PLUGINS_VULNS_FILE  = File.join(DATA_DIR, 'plugin_vulns.json')
-THEMES_FILE         = File.join(DATA_DIR, 'themes.txt')
-THEMES_FULL_FILE    = File.join(DATA_DIR, 'themes_full.txt')
-THEMES_VULNS_FILE   = File.join(DATA_DIR, 'theme_vulns.json')
-WP_VULNS_FILE       = File.join(DATA_DIR, 'wp_vulns.json')
-WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml')
-LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml')
-# VULNS_XSD           = File.join(DATA_DIR, 'vuln.xsd')
-WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd')
-LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
-USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt')
-LAST_UPDATE_FILE    = File.join(DATA_DIR, '.last_update')
+WORDPRESSES_FILE  = File.join(DATA_DIR, 'wordpresses.json')
+PLUGINS_FILE      = File.join(DATA_DIR, 'plugins.json')
+THEMES_FILE       = File.join(DATA_DIR, 'themes.json')
+WP_VERSIONS_FILE  = File.join(DATA_DIR, 'wp_versions.xml')
+LOCAL_FILES_FILE  = File.join(DATA_DIR, 'local_vulnerable_files.xml')
+WP_VERSIONS_XSD   = File.join(DATA_DIR, 'wp_versions.xsd')
+LOCAL_FILES_XSD   = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
+USER_AGENTS_FILE  = File.join(DATA_DIR, 'user-agents.txt')
+LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
 
 WPSCAN_VERSION       = '2.8'
 

@@ -2,16 +2,10 @@
 
 class WpPlugins < WpItems
   module Detectable
-
     # @return [ String ]
     def vulns_file
-      PLUGINS_VULNS_FILE
+      PLUGINS_FILE
     end
-
-    # @return [ String ]
-    # def item_xpath
-    #   '//plugin'
-    # end
 
     # @param [ WpTarget ] wp_target
     # @param [ Hash ] options

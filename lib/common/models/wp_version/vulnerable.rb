@@ -6,7 +6,7 @@ class WpVersion < WpItem
     # @return [ String ] The path to the file containing vulnerabilities
     def vulns_file
       unless @vulns_file
-        @vulns_file = WP_VULNS_FILE
+        @vulns_file = WORDPRESSES_FILE
       end
       @vulns_file
     end
