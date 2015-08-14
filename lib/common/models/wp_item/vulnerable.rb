@@ -8,8 +8,8 @@ class WpItem
     # Filters out already fixed vulnerabilities
     #
     # @return [ Vulnerabilities ]
-    def vulnerabilities
-      json            = json(vulns_file).select { |item| !item['vulnerabilities'].empty? }
+    def vulnerabilities      
+      json = json(vulns_file).select { |item| !item['vulnerabilities'].empty? }
       vulnerabilities = Vulnerabilities.new
 
       json.each do |item|

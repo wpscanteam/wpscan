@@ -7,7 +7,7 @@ shared_examples 'WpPlugin::Vulnerable' do
 
     context 'when :vulns_file is no set' do
       it 'returns the default one' do
-        @expected = PLUGINS_VULNS_FILE
+        @expected = PLUGINS_FILE
       end
     end
 

@@ -7,7 +7,7 @@ shared_examples 'WpVersion::Vulnerable' do
 
     context 'when :vulns_file is no set' do
       it 'returns the default one' do
-        @expected = WP_VULNS_FILE
+        @expected = WORDPRESSES_FILE
       end
     end
 

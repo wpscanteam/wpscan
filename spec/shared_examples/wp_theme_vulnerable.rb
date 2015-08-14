@@ -7,7 +7,7 @@ shared_examples 'WpTheme::Vulnerable' do
 
     context 'when :vulns_file is not set' do
       it 'returns the default one' do
-        @expected = THEMES_VULNS_FILE
+        @expected = THEMES_FILE
       end
     end
 

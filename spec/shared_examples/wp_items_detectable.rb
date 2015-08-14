@@ -70,9 +70,9 @@ shared_examples 'WpItems::Detectable' do
     end
   end
 
-  describe '::vulnerable_targets_items' do
+  describe '::target_items' do
     after do
-      results = subject.send(:vulnerable_targets_items, wp_target, item_class, vulns_file)
+      results = subject.send(:target_items, wp_target, item_class, vulns_file, :all)
 
       expect(results.map { |i| i.name }).to eq @expected.map { |i| i.name }
 
@@ -100,7 +100,7 @@ shared_examples 'WpItems::Detectable' do
   end
 
   describe '::targets_items' do
-    let(:options) { {} }
+    let(:options) { { type: :all } }
 
     after do
       if @expected
@@ -111,26 +111,10 @@ shared_examples 'WpItems::Detectable' do
     end
 
     context 'when :only_vulnerable' do
-      let(:options) { { only_vulnerable: true } }
+      let(:options) { { type: :vulnerable } }
 
       it 'returns the expected Array of WpItem' do
         @expected = expected[:vulnerable_targets_items]
-      end
-    end
-
-    context 'when not :only_vulnerable' do
-      context 'when no :file' do
-        it 'raises an error' do
-          expect { subject.send(:targets_items, wp_target, options) }.to raise_error('A file must be supplied')
-        end
-      end
-
-      context 'when :file' do
-        let(:options) { { file: targets_items_file } }
-
-        it 'returns the expected Array of WpItem' do
-          @expected = (expected[:targets_items_from_file] + expected[:vulnerable_targets_items]).uniq {|t| t.name }
-        end
       end
     end
   end
