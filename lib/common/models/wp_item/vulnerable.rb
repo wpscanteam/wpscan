@@ -9,14 +9,13 @@ class WpItem
     #
     # @return [ Vulnerabilities ]
     def vulnerabilities      
-      json = json(vulns_file).select { |item| !item['vulnerabilities'].empty? }
+      json = json(vulns_file)
       vulnerabilities = Vulnerabilities.new
 
       json.each do |item|
-        asset = item['version'][identifier] if item['version']
-        asset = item['name'][identifier] if item['name']
+        asset = item['version'] || item['name']
 
-        next unless asset
+        next unless asset == identifier
 
         item['vulnerabilities'].each do |vulnerability|
           vulnerability = Vulnerability.load_from_json_item(vulnerability)
