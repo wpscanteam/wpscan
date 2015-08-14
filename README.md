@@ -88,7 +88,6 @@ WPScan comes pre-installed on the following Linux distributions:
 - [Kali Linux](http://www.kali.org/)
 - [Pentoo](http://www.pentoo.ch/)
 - [SamuraiWTF](http://samurai.inguardians.com/)
-- [ArchAssault](https://archassault.org/)
 - [BlackArch](http://blackarch.org/)
 
 Prerequisites:
