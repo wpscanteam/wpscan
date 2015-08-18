@@ -28,6 +28,7 @@ class WebSite
       if entries
         entries.flatten!
         entries.compact.sort!
+        entries.uniq!
         wordpress_path = @uri.path
         RobotsTxt.known_dirs.each do |d|
           entries.delete(d)

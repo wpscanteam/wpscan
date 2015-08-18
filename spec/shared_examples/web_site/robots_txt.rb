@@ -61,6 +61,24 @@ shared_examples 'WebSite::RobotsTxt' do
           http://example.localhost/asdf/
         )
       end
+
+      it 'removes duplicate entries from robots.txt test 1' do
+        @fixture = fixtures_dir + '/robots_txt/robots_duplicate_1.txt'
+        @expected = %w(
+          http://example.localhost/wordpress/
+          http://example.localhost/wordpress/admin/
+          http://example.localhost/wordpress/wp-admin/
+          http://example.localhost/wordpress/secret/
+          http://example.localhost/Wordpress/wp-admin/
+          http://example.localhost/wp-admin/tralling-space/
+          http://example.localhost/asdf/
+        )
+      end
+
+      it 'removes duplicate entries from robots.txt test 2' do
+        @fixture = fixtures_dir + '/robots_txt/robots_duplicate_2.txt'
+        @expected = nil
+      end
     end
 
     context 'installed in sub directory' do
