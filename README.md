@@ -92,7 +92,7 @@ WPScan comes pre-installed on the following Linux distributions:
 
 Prerequisites:
 
-- Ruby >= 1.9.2 - Recommended: 2.2.2
+- Ruby >= 1.9.2 - Recommended: 2.2.3
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
@@ -155,8 +155,8 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
     echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-    rvm install 2.2.2
-    rvm use 2.2.2 --default
+    rvm install 2.2.3
+    rvm use 2.2.3 --default
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
     gem install bundler
     git clone https://github.com/wpscanteam/wpscan.git
