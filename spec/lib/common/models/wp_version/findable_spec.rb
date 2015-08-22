@@ -65,6 +65,11 @@ describe 'WpVersion::Findable' do
           @fixture  = '/3.5_minified.html'
           @expected = '3.5'
         end
+
+        it 'returns 3.5.1' do
+          @fixture  = '/3.5.1_mobile.html'
+          @expected = '3.5.1'
+        end
       end
 
     end

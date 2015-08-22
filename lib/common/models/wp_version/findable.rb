@@ -31,7 +31,7 @@ class WpVersion < WpItem
     #
     # @return [ String ]
     def version_pattern
-      '([^\r\n"\']+\.[^\r\n"\']+)'
+      '([^\r\n"\',]+\.[^\r\n"\',]+)'
     end
 
     protected
@@ -68,7 +68,7 @@ class WpVersion < WpItem
     def find_from_meta_generator(target_uri)
       scan_url(
         target_uri,
-        %r{name="generator" content="wordpress #{version_pattern}"}i
+        %r{name="generator" content="wordpress #{version_pattern}.*"}i
       )
     end
 
