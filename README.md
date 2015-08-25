@@ -218,6 +218,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     --enumerate | -e [option(s)]  Enumeration.
       option :
         u        usernames from id 1 to 10
+	ud	 usernames from id 1 to 10 (display name only too)
         u[10-20] usernames from id 10 to 20 (you must write [] chars)
         p        plugins
         vp       only vulnerable plugins

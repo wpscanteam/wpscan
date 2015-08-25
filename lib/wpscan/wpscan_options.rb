@@ -13,6 +13,7 @@ class WpscanOptions
     :enumerate_timthumbs,
     :enumerate_usernames,
     :enumerate_usernames_range,
+    :enumerate_usernames_display_name,
     :no_color,
     :log,
     :proxy,
@@ -235,8 +236,9 @@ class WpscanOptions
 
     self.enumerate_all_themes = true if value.include?('at')
 
-    value.grep(/^u/) do |username_enum_value|
+    value.grep(/^ud?/) do |username_enum_value|
       @enumerate_usernames = true
+      @enumerate_usernames_display_name = true if username_enum_value.match /^ud/
       # Check for usernames range
       matches = %r{\[([\d]+)-([\d]+)\]}.match(username_enum_value)
       if matches
