@@ -8,21 +8,15 @@ class WpItem
     # Filters out already fixed vulnerabilities
     #
     # @return [ Vulnerabilities ]
-    def vulnerabilities      
+    def vulnerabilities
       json = json(vulns_file)
       vulnerabilities = Vulnerabilities.new
 
-      json.each do |item|
-        asset = item['version'] || item['name']
+      return vulnerabilities if json.empty?
 
-        next unless asset == identifier
-
-        item['vulnerabilities'].each do |vulnerability|
-          vulnerability = Vulnerability.load_from_json_item(vulnerability)
-          vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
-        end
-
-        break # No need to iterate any further
+      json[identifier]['vulnerabilities'].each do |vulnerability|
+        vulnerability = Vulnerability.load_from_json_item(vulnerability)
+        vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
       end
 
       vulnerabilities
