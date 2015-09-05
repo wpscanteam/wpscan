@@ -30,7 +30,6 @@ class WpItem
   #
   # @return [ WpItem ]
   def initialize(target_base_uri, options = {})
-
     options[:wp_content_dir] ||= 'wp-content'
     options[:wp_plugins_dir] ||= options[:wp_content_dir] + '/plugins'
 
