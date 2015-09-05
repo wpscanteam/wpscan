@@ -172,11 +172,11 @@ class WpItems < Array
 
       case type
       when :vulnerable
-        items = json.select { |item| !json[item]['vulnerabilities'].empty? }
+        items = json.select { |item| !json[item]['vulnerabilities'].empty? }.keys
       when :popular
-        items = json.select { |item| json[item]['popular'] == true }
+        items = json.select { |item| json[item]['popular'] == true }.keys
       when :all
-        items = [*json]
+        items = json.keys
       else
         raise "Unknown type #{type}"
       end
@@ -184,7 +184,7 @@ class WpItems < Array
       items.each do |item|
         targets << create_item(
           item_class,
-          item[0],
+          item,
           wp_target,
           vulns_file
         )
