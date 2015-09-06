@@ -32,11 +32,7 @@ class WpItems < Array
           progress_bar.progress += 1 if options[:show_progression]
 
           if target_item.exists?(exist_options, response)
-            unless results.include?(target_item)
-              if !options[:only_vulnerable] || options[:only_vulnerable] && target_item.vulnerable?
-                results << target_item
-              end
-            end
+            results << target_item unless results.include?(target_item)
           end
         end
 
@@ -53,7 +49,7 @@ class WpItems < Array
       # run the remaining requests
       hydra.run
 
-      results.select!(&:vulnerable?) if options[:only_vulnerable]
+      results.select!(&:vulnerable?) if options[:type] == :vulnerable
       results.sort!
 
       results  # can't just return results.sort as it would return an array, and we want a WpItems
@@ -155,7 +151,7 @@ class WpItems < Array
       item_class = self.item_class
       vulns_file = self.vulns_file
 
-      targets = target_items(wp_target, item_class, vulns_file, options[:type])
+      targets = target_items_from_type(wp_target, item_class, vulns_file, options[:type])
 
       targets.uniq! { |t| t.name }
       targets.sort_by { rand }
@@ -166,7 +162,7 @@ class WpItems < Array
     # @param [ String ] vulns_file
     #
     # @return [ Array<WpItem> ]
-    def target_items(wp_target, item_class, vulns_file, type)
+    def target_items_from_type(wp_target, item_class, vulns_file, type)
       targets = []
       json    = json(vulns_file)
 
