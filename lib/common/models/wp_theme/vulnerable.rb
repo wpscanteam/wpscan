@@ -2,13 +2,9 @@
 
 class WpTheme < WpItem
   module Vulnerable
-
     # @return [ String ] The path to the file containing vulnerabilities
     def vulns_file
-      unless @vulns_file
-        @vulns_file = THEMES_FILE
-      end
-      @vulns_file
+      @vulns_file ||= THEMES_FILE
     end
 
     # @return [ String ]
