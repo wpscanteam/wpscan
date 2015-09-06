@@ -1,10 +1,6 @@
 # encoding: UTF-8
 
-require 'wp_plugin/vulnerable'
-
 class WpPlugin < WpItem
-  include WpPlugin::Vulnerable
-
   # Sets the @uri
   #
   # @param [ URI ] target_base_uri The URI of the wordpress blog
@@ -14,4 +10,7 @@ class WpPlugin < WpItem
     @uri = target_base_uri.merge(URI.encode(wp_plugins_dir + '/' + name + '/'))
   end
 
+  def db_file
+    @db_file ||= PLUGINS_FILE
+  end
 end

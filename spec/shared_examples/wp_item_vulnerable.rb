@@ -3,8 +3,8 @@
 shared_examples 'WpItem::Vulnerable' do
 
   # 2 variables have to be set in the described class or subject:
-  #   let(:vulns_file)     { }
-  #   let(:expected_vulns) { } The expected Vulnerabilities when using vulns_file and vulns_xpath
+  #   let(:db_file)     { }
+  #   let(:expected_vulns) { } The expected Vulnerabilities when using db_file and vulns_xpath
   #
   # 1 variable is optional, used if supplied, otherwise subject.vulns_xpath is used
   #   let(:vulns_xpath)    { }
@@ -18,7 +18,7 @@ shared_examples 'WpItem::Vulnerable' do
     end
 
     after do
-      subject.vulns_file  = @vulns_file
+      subject.db_file    = @db_file
       subject.identifier = identifier if defined?(identifier)
 
       result = subject.vulnerabilities
@@ -26,16 +26,16 @@ shared_examples 'WpItem::Vulnerable' do
       expect(result).to eq @expected
     end
 
-    context 'when the vulns_file is empty' do
+    context 'when the db_file is empty' do
       it 'returns an empty Vulnerabilities' do
-        @vulns_file = empty_file
-        @expected   = Vulnerabilities.new
+        @db_file  = empty_file
+        @expected = Vulnerabilities.new
       end
     end
 
     it 'returns the expected vulnerabilities' do
-      @vulns_file = vulns_file
-      @expected   = expected_vulns
+      @db_file   = db_file
+      @expected  = expected_vulns
     end
   end
 

@@ -22,7 +22,7 @@ class WpItem
   # @return [ Array ]
   # Make it private ?
   def allowed_options
-    [:name, :wp_content_dir, :wp_plugins_dir, :path, :version, :vulns_file]
+    [:name, :wp_content_dir, :wp_plugins_dir, :path, :version, :db_file]
   end
 
   # @param [ URI ] target_base_uri
@@ -35,6 +35,27 @@ class WpItem
 
     set_options(options)
     forge_uri(target_base_uri)
+  end
+
+  def identifier
+    @identifier ||= name
+  end
+
+  # @return [ Hash ]
+  def db_data
+    @db_data ||= json(db_file)[identifier] || {}
+  end
+
+  def latest_version
+    db_data['latest_version']
+  end
+
+  def last_updated
+    db_data['last_ipdated']
+  end
+
+  def popular?
+    db_data['popular']
   end
 
   # @param [ Hash ] options

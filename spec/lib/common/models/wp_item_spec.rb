@@ -11,7 +11,7 @@ describe WpItem do
   end
   it_behaves_like 'WpItem::Versionable'
   it_behaves_like 'WpItem::Vulnerable' do
-    let(:vulns_file)     { MODELS_FIXTURES + '/wp_item/vulnerable/items_vulns.json' }
+    let(:db_file)       { MODELS_FIXTURES + '/wp_item/vulnerable/items_vulns.json' }
     let(:identifier)    { 'neo' }
     let(:expected_refs)  { {
         'id'  => [2993],

@@ -5,8 +5,8 @@ require 'spec_helper'
 describe WpPlugin do
   it_behaves_like 'WpPlugin::Vulnerable'
   it_behaves_like 'WpItem::Vulnerable' do
-    let(:options)        { { name: 'white-rabbit' } }
-    let(:vulns_file)     { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins.json' }
+    let(:options) { { name: 'white-rabbit' } }
+    let(:db_file) { MODELS_FIXTURES + '/wp_plugin/vulnerable/plugins.json' }
     let(:expected_refs)  { {
         'id'  => [2993],
         'url' => ['Ref 1', 'Ref 2'],
