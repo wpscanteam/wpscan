@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'typhoeus', '~>0.7.0'
 gem 'nokogiri'
 gem 'addressable'
-gem 'json'
+gem 'yajl-ruby' # Better JSON parser regarding memory usage
 gem 'terminal-table', '~>1.4.5'
 gem 'ruby-progressbar', '>=1.6.0'
 

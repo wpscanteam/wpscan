@@ -31,7 +31,7 @@ begin
   require 'pathname'
   # Third party libs
   require 'typhoeus'
-  require 'json'
+  require 'yajl/json_gem'
   require 'nokogiri'
   require 'terminal-table'
   require 'ruby-progressbar'
