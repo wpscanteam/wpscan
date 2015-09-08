@@ -10,11 +10,6 @@ class WpItem
       !readme_url.nil?
     end
 
-    # @return [ Boolean ]
-    def outdated?(installed_version, latest_version)
-      installed_version < latest_version
-    end
-
     # @return [ String,nil ] The url to the readme file, nil if not found
     def readme_url
       # See https://github.com/wpscanteam/wpscan/pull/737#issuecomment-66375445
