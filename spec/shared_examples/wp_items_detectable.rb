@@ -39,68 +39,8 @@ shared_examples 'WpItems::Detectable' do
     end
   end
 
-  describe '::targets_items_from_file' do
-    after do
-      results = subject.send(:targets_items_from_file, file, wp_target, item_class, vulns_file)
-
-      expect(results.map { |i| i.name }).to eq @expected.map { |i| i.name }
-
-      unless results.empty?
-        results.each do |item|
-          expect(item).to be_a item_class
-        end
-      end
-    end
-
-    # should raise error.
-    # context 'when an empty file' do
-    #   let(:file) { empty_file }
-
-    #   it 'returns an empty Array' do
-    #     @expected = []
-    #   end
-    # end
-
-    context 'when a file' do
-      let(:file) { targets_items_file }
-
-      it 'returns the expected Array of WpItem' do
-        @expected = expected[:targets_items_from_file]
-      end
-    end
-  end
-
-  describe '::vulnerable_targets_items' do
-    after do
-      results = subject.send(:vulnerable_targets_items, wp_target, item_class, vulns_file)
-
-      expect(results.map { |i| i.name }).to eq @expected.map { |i| i.name }
-
-      unless results.empty?
-        results.each do |item|
-          expect(item).to be_a item_class
-        end
-      end
-    end
-
-    # should raise error.
-    # context 'when an empty file' do
-    #   let(:file) { empty_file }
-
-    #   it 'returns an empty Array' do
-    #     @expected = []
-    #   end
-    # end
-
-    context 'when a file' do
-      it 'returns the expected Array of WpItem' do
-        @expected = expected[:vulnerable_targets_items]
-      end
-    end
-  end
-
   describe '::targets_items' do
-    let(:options) { {} }
+    let(:options) { { type: :all } }
 
     after do
       if @expected
@@ -110,27 +50,11 @@ shared_examples 'WpItems::Detectable' do
       end
     end
 
-    context 'when :only_vulnerable' do
-      let(:options) { { only_vulnerable: true } }
+    context 'when :type = :vulnerable' do
+      let(:options) { { type: :vulnerable } }
 
       it 'returns the expected Array of WpItem' do
         @expected = expected[:vulnerable_targets_items]
-      end
-    end
-
-    context 'when not :only_vulnerable' do
-      context 'when no :file' do
-        it 'raises an error' do
-          expect { subject.send(:targets_items, wp_target, options) }.to raise_error('A file must be supplied')
-        end
-      end
-
-      context 'when :file' do
-        let(:options) { { file: targets_items_file } }
-
-        it 'returns the expected Array of WpItem' do
-          @expected = (expected[:targets_items_from_file] + expected[:vulnerable_targets_items]).uniq {|t| t.name }
-        end
       end
     end
   end
@@ -176,8 +100,8 @@ shared_examples 'WpItems::Detectable' do
       expect(result.sort.map { |i| i.name }).to eq @expected.sort.map { |i| i.name }
     end
 
-    context 'when :only_vulnerable' do
-      let(:options) { { only_vulnerable: true } }
+    context 'when :type = :vulnerable' do
+      let(:options) { { type: :vulnerable } }
       let(:targets) { expected[:vulnerable_targets_items] }
 
       it 'only checks and return vulnerable targets' do
@@ -207,7 +131,7 @@ shared_examples 'WpItems::Detectable' do
       end
     end
 
-    context 'when no :only_vulnerable' do
+    context 'when no :type = :vulnerable' do
       let(:targets) { (expected[:vulnerable_targets_items] + expected[:targets_items_from_file]).uniq { |t| t.name } }
 
       it 'checks all targets, and merge the results with passive_detection' do

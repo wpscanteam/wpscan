@@ -13,7 +13,7 @@ describe WpThemes do
     let(:expected) do
       {
         request_params:                  { cache_ttl: 0, followlocation: true },
-        vulns_file:                      THEMES_VULNS_FILE,
+        vulns_file:                      THEMES_FILE,
         targets_items_from_file:         [ WpTheme.new(uri, name: '3colours'),
                                            WpTheme.new(uri, name:'42k'),
                                            WpTheme.new(uri, name: 'a-ri')],

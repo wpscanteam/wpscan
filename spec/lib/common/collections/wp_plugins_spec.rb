@@ -11,7 +11,7 @@ describe WpPlugins do
     let(:expected) do
       {
         request_params:                   { cache_ttl: 0, followlocation: true },
-        vulns_file:                       PLUGINS_VULNS_FILE,
+        vulns_file:                       PLUGINS_FILE,
         targets_items_from_file:          [ WpPlugin.new(uri, name: 'plugin1'),
                                             WpPlugin.new(uri, name:'plugin-2'),
                                             WpPlugin.new(uri, name: 'mr-smith')],

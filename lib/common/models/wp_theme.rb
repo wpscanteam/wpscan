@@ -2,7 +2,6 @@
 
 require 'wp_theme/findable'
 require 'wp_theme/versionable'
-require 'wp_theme/vulnerable'
 require 'wp_theme/info'
 require 'wp_theme/output'
 require 'wp_theme/childtheme'
@@ -10,7 +9,6 @@ require 'wp_theme/childtheme'
 class WpTheme < WpItem
   extend WpTheme::Findable
   include WpTheme::Versionable
-  include WpTheme::Vulnerable
   include WpTheme::Info
   include WpTheme::Output
   include WpTheme::Childtheme
@@ -33,4 +31,7 @@ class WpTheme < WpItem
     @uri.merge('style.css').to_s
   end
 
+  def db_file
+    @db_file ||= THEMES_FILE
+  end
 end

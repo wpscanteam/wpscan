@@ -2,30 +2,23 @@
 
 class WpItem
   module Vulnerable
-    attr_accessor :vulns_file, :identifier
+    attr_accessor :db_file, :identifier
 
     # Get the vulnerabilities associated to the WpItem
     # Filters out already fixed vulnerabilities
     #
     # @return [ Vulnerabilities ]
     def vulnerabilities
-      json            = json(vulns_file)
-      vulnerabilities = Vulnerabilities.new
+      return @vulnerabilities if @vulnerabilities
 
-      json.each do |item|
-        asset = item[identifier]
+      @vulnerabilities = Vulnerabilities.new
 
-        next unless asset
-
-        asset['vulnerabilities'].each do |vulnerability|
-          vulnerability = Vulnerability.load_from_json_item(vulnerability)
-          vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
-        end
-
-        break # No need to iterate any further
+      [*db_data['vulnerabilities']].each do |vulnerability|
+        vulnerability = Vulnerability.load_from_json_item(vulnerability)
+        @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
       end
 
-      vulnerabilities
+      @vulnerabilities
     end
 
     def vulnerable?

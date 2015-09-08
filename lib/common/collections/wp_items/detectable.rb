@@ -32,11 +32,7 @@ class WpItems < Array
           progress_bar.progress += 1 if options[:show_progression]
 
           if target_item.exists?(exist_options, response)
-            unless results.include?(target_item)
-              if !options[:only_vulnerable] || options[:only_vulnerable] && target_item.vulnerable?
-                results << target_item
-              end
-            end
+            results << target_item unless results.include?(target_item)
           end
         end
 
@@ -53,7 +49,7 @@ class WpItems < Array
       # run the remaining requests
       hydra.run
 
-      results.select!(&:vulnerable?) if options[:only_vulnerable]
+      results.select!(&:vulnerable?) if options[:type] == :vulnerable
       results.sort!
 
       results  # can't just return results.sort as it would return an array, and we want a WpItems
@@ -155,15 +151,7 @@ class WpItems < Array
       item_class = self.item_class
       vulns_file = self.vulns_file
 
-      targets = vulnerable_targets_items(wp_target, item_class, vulns_file)
-
-      unless options[:only_vulnerable]
-        unless options[:file]
-          raise 'A file must be supplied'
-        end
-
-        targets += targets_items_from_file(options[:file], wp_target, item_class, vulns_file)
-      end
+      targets = target_items_from_type(wp_target, item_class, vulns_file, options[:type])
 
       targets.uniq! { |t| t.name }
       targets.sort_by { rand }
@@ -174,14 +162,25 @@ class WpItems < Array
     # @param [ String ] vulns_file
     #
     # @return [ Array<WpItem> ]
-    def vulnerable_targets_items(wp_target, item_class, vulns_file)
+    def target_items_from_type(wp_target, item_class, vulns_file, type)
       targets = []
       json    = json(vulns_file)
 
-      [*json].each do |item|
+      case type
+      when :vulnerable
+        items = json.select { |item| !json[item]['vulnerabilities'].empty? }.keys
+      when :popular
+        items = json.select { |item| json[item]['popular'] == true }.keys
+      when :all
+        items = json.keys
+      else
+        raise "Unknown type #{type}"
+      end
+
+      items.each do |item|
         targets << create_item(
           item_class,
-          item.keys.inject,
+          item,
           wp_target,
           vulns_file
         )
@@ -233,6 +232,5 @@ class WpItems < Array
     def item_class
       Object.const_get(self.to_s.gsub(/.$/, ''))
     end
-
   end
 end

@@ -5,13 +5,7 @@ class WpThemes < WpItems
 
     # @return [ String ]
     def vulns_file
-      THEMES_VULNS_FILE
+      THEMES_FILE
     end
-
-    # @return [ String ]
-    # def item_xpath
-    #   '//theme'
-    # end
-
   end
 end
