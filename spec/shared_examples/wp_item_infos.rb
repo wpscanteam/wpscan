@@ -53,6 +53,22 @@ shared_examples 'WpItem::Infos' do
     end
   end
 
+  describe '#outdated?' do
+    it 'returns true if outdated' do
+      latest_version = '1.0'
+      installed_version = '0.1'
+
+      expect(subject.outdated?(installed_version, latest_version)).to be true
+    end
+
+    it 'returns false if not outdated' do
+      latest_version = '1.0'
+      installed_version = '1.0'
+
+      expect(subject.outdated?(installed_version, latest_version)).to be false
+    end
+  end
+
   describe '#has_changelog?' do
     after :each do
       stub_request(:get, subject.changelog_url).to_return(status: @status)
