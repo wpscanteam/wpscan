@@ -9,7 +9,7 @@ class WpItem
 
       puts
       puts info("Name: #{self}") #this will also output the version number if detected
-      puts " |  Latest version: #{latest_version} (up to date)" if latest_version && !outdated
+      puts " |  Latest version: #{latest_version} #{'(up to date)' if version}" if latest_version && !outdated
       puts " |  Last updated: #{last_updated}" if last_updated
       puts " |  Location: #{url}"
       puts " |  Readme: #{readme_url}" if has_readme?
