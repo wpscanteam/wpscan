@@ -44,6 +44,7 @@ class Browser
     #
     # @return [ Typhoeus::Response ]
     def process(url, params)
+      Browser.instance.throttle!
       Typhoeus::Request.new(url, Browser.instance.merge_request_params(params)).run
     end
 

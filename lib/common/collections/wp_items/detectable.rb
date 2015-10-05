@@ -43,6 +43,8 @@ class WpItems < Array
           hydra.run
           queue_count = 0
           puts "Sent #{browser.max_threads} requests ..." if options[:verbose]
+
+          browser.throttle!
         end
       end
 
