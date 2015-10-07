@@ -17,7 +17,8 @@ class Browser
     :proxy_auth,
     :request_timeout,
     :connect_timeout,
-    :cookie
+    :cookie,
+    :throttle
   ]
 
   @@instance = nil
@@ -76,6 +77,7 @@ class Browser
     @request_timeout = 60 # 60s
     @connect_timeout = 10 # 10s
     @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+    @throttle = 0
   end
 
   #
@@ -135,7 +137,7 @@ class Browser
         @basic_auth
       )
     end
-    
+
     if vhost
       params = Browser.append_params_header_field(
         params,
@@ -143,7 +145,7 @@ class Browser
         vhost
       )
     end
-    
+
     params.merge!(referer: referer)
     params.merge!(timeout: @request_timeout) if @request_timeout
     params.merge!(connecttimeout: @connect_timeout) if @connect_timeout
@@ -163,6 +165,14 @@ class Browser
     params.merge!(cookie: @cookie) if @cookie
 
     params
+  end
+
+  def throttle=(val)
+    @throttle = val.to_i / 1000.0
+  end
+
+  def throttle!
+    sleep @throttle
   end
 
   private
