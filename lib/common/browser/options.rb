@@ -98,10 +98,6 @@ class Browser
       @throttle = throttle.to_i.abs / 1000.0
     end
 
-    def throttle!
-      sleep @throttle if @throttle > 0
-    end
-
     protected
 
     def invalid_proxy_auth_format

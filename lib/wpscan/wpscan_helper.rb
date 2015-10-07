@@ -105,7 +105,7 @@ def help
   puts '--request-timeout <request-timeout> Request Timeout.'
   puts '--connect-timeout <connect-timeout> Connect Timeout.'
   puts '--max-threads     <max-threads>     Maximum Threads.'
-  puts '--throttle        <milliseconds>    Milliseconds to wait before doing another web request. If used, the --max-threads will have no effect and should be assumed to be 1.'
+  puts '--throttle        <milliseconds>    Milliseconds to wait before doing another web request. If used, the --threads should be set to 1.'
   puts '--help     | -h                     This help screen.'
   puts '--verbose  | -v                     Verbose output.'
   puts '--version                           Output the current version and exit.'
