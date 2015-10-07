@@ -40,7 +40,7 @@ class WpTarget < WebSite
     # @return [ Array ]
     def self.config_backup_files
       %w{
-        wp-config.php~ #wp-config.php# wp-config.php.save .wp-config.php.swp wp-config.php.swp wp-config.php.swo 
+        wp-config.php~ #wp-config.php# wp-config.php.save .wp-config.php.swp wp-config.php.swp wp-config.php.swo
         wp-config.php_bak wp-config.bak wp-config.php.bak wp-config.save wp-config.old wp-config.php.old
         wp-config.php.orig wp-config.orig wp-config.php.original wp-config.original wp-config.txt
       } # thanks to Feross.org for these

@@ -4,7 +4,7 @@ class Browser
   module Options
 
     attr_accessor :cache_ttl, :request_timeout, :connect_timeout
-    attr_reader   :basic_auth, :proxy, :proxy_auth
+    attr_reader   :basic_auth, :proxy, :proxy_auth, :throttle
     attr_writer   :user_agent
 
     # Sets the Basic Authentification credentials
@@ -93,6 +93,15 @@ class Browser
       @connect_timeout = timeout.to_i
     end
 
+    # @param [ String, Integer ] throttle
+    def throttle=(throttle)
+      @throttle = throttle.to_i.abs / 1000.0
+    end
+
+    def throttle!
+      sleep @throttle if @throttle > 0
+    end
+
     protected
 
     def invalid_proxy_auth_format
@@ -110,6 +119,5 @@ class Browser
         end
       end
     end
-
   end
 end

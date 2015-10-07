@@ -17,7 +17,8 @@ class Browser
     :proxy_auth,
     :request_timeout,
     :connect_timeout,
-    :cookie
+    :cookie,
+    :throttle
   ]
 
   @@instance = nil
@@ -70,12 +71,14 @@ class Browser
   # sets browser default values
   #
   def browser_defaults
-    @max_threads = 20
-    # 10 minutes, at this time the cache is cleaned before each scan. If this value is set to 0, the cache will be disabled
-    @cache_ttl = 600
+    @max_threads     = 20
+    # 10 minutes, at this time the cache is cleaned before each scan.
+    # If this value is set to 0, the cache will be disabled
+    @cache_ttl       = 600
     @request_timeout = 60 # 60s
     @connect_timeout = 10 # 10s
-    @user_agent = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+    @user_agent      = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
+    @throttle        = 0
   end
 
   #
@@ -86,7 +89,6 @@ class Browser
   #
   # @return [ void ]
   def load_config(config_file = nil)
-
     if File.symlink?(config_file)
       raise '[ERROR] Config file is a symlink.'
     else
@@ -99,7 +101,6 @@ class Browser
         self.send(:"#{option_name}=", data[option_name])
       end
     end
-
   end
 
   # @param [ String ] url
@@ -121,11 +122,8 @@ class Browser
     )
 
     if @proxy
-      params = params.merge(proxy: @proxy)
-
-      if @proxy_auth
-        params = params.merge(proxyauth: @proxy_auth)
-      end
+      params.merge!(proxy: @proxy)
+      params.merge!(proxyauth: @proxy_auth) if @proxy_auth
     end
 
     if @basic_auth
@@ -135,7 +133,7 @@ class Browser
         @basic_auth
       )
     end
-    
+
     if vhost
       params = Browser.append_params_header_field(
         params,
@@ -143,16 +141,16 @@ class Browser
         vhost
       )
     end
-    
+
     params.merge!(referer: referer)
     params.merge!(timeout: @request_timeout) if @request_timeout
     params.merge!(connecttimeout: @connect_timeout) if @connect_timeout
 
     # Used to enable the cache system if :cache_ttl > 0
-    params.merge!(cache_ttl: @cache_ttl) unless params.has_key?(:cache_ttl)
+    params.merge!(cache_ttl: @cache_ttl) unless params.key?(:cache_ttl)
 
     # Prevent infinite self redirection
-    params.merge!(maxredirs: 3) unless params.has_key?(:maxredirs)
+    params.merge!(maxredirs: 3) unless params.key?(:maxredirs)
 
     # Disable SSL-Certificate checks
     params.merge!(ssl_verifypeer: false)
@@ -180,5 +178,4 @@ class Browser
     end
     params
   end
-
 end
