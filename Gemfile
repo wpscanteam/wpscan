@@ -4,6 +4,8 @@ gem 'typhoeus', '~>0.8.0'
 gem 'nokogiri'
 gem 'addressable'
 gem 'yajl-ruby' # Better JSON parser regarding memory usage
+# TODO: update the below when terminal-table 1.5.3+ is released.
+# (and delete the Terminal module in lib/common/hacks.rb)
 gem 'terminal-table', '~>1.4.5'
 gem 'ruby-progressbar', '>=1.6.0'
 
