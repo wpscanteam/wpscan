@@ -149,7 +149,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
     cd wpscan
     sudo gem install bundler && sudo bundle install --without test
 
-####Installing with RVM:
+####Installing with RVM (recommended):
 
     cd ~
     curl -sSL https://get.rvm.io | bash -s stable
