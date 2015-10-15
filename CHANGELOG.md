@@ -1,6 +1,43 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.8...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.9...master)
+
+## Version 2.9
+Released: 2015-10-15
+
+New
+* GZIP Encoding in updater
+* Adds --throttle option to throttle requests
+* Uses new API and local database file structure
+* Adds last updated and latest version to plugins and themes
+
+Removed
+* ArchAssault from README
+* APIv1 local databases
+
+General core
+* Update to Ruby 2.2.3
+* Use yajl-ruby as JSON parser
+* New dependancy for Ubuntu 14.04 (libgmp-dev)
+* Use Travis container based infra and caching
+
+Fixed issues
+* Fix #835 - Readme requests to wp root dir
+* Fix #836 - Critical icon output twice when the site is not running WP
+* Fix #839 - Terminal-table dependency is broken
+* Fix #841 - error: undefined method `cells' for #<Array:0x000000029cc2f8>
+* Fix #852 - GZIP Encoding in updater
+* Fix #853 - APIv2 integration
+* Fix #858 - Detection FP
+* Fix #873 - false positive "site has Must Use Plugins"
+
+WPScan Database Statistics:
+* Total vulnerable versions: 132
+* Total vulnerable plugins:  1170
+* Total vulnerable themes:   368
+* Total version vulnerabilities: 1476
+* Total plugin vulnerabilities:  1913
+* Total theme vulnerabilities:   450
 
 ## Version 2.8
 Released: 2015-06-22
@@ -79,7 +116,7 @@ Fixed issues
 * Fix #746 - Add a global counter for all active requests to server.
 * Fix #747 - Add 'security-protection' plugin to wp_login_protection module
 * Fix #753 - undefined method `round' for "10":String for request or connect timeouts
-* Fix #760 - typhoeus issue (infinite loop) 
+* Fix #760 - typhoeus issue (infinite loop)
 
 WPScan Database Statistics:
 * Total vulnerable versions: 89
