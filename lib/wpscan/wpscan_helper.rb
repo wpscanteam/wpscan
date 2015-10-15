@@ -62,7 +62,7 @@ def help
   puts
   puts 'Some values are settable in a config file, see the example.conf.json'
   puts
-  puts '--update                            Update to the database to the latest version.'
+  puts '--update                            Update the database to the latest version.'
   puts '--url       | -u <target url>       The WordPress URL/domain to scan.'
   puts '--force     | -f                    Forces WPScan to not check if the remote site is running WordPress.'
   puts '--enumerate | -e [option(s)]        Enumeration.'

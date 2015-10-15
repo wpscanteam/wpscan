@@ -209,7 +209,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 #### WPSCAN ARGUMENTS
 
-    --update                            Update to the database to the latest version.
+    --update                            Update the database to the latest version.
     --url       | -u <target url>       The WordPress URL/domain to scan.
     --force     | -f                    Forces WPScan to not check if the remote site is running WordPress.
     --enumerate | -e [option(s)]        Enumeration.
