@@ -3,8 +3,8 @@
 class Browser
   module Options
 
-    attr_accessor :cache_ttl, :request_timeout, :connect_timeout
-    attr_reader   :basic_auth, :proxy, :proxy_auth, :throttle
+    attr_accessor :request_timeout, :connect_timeout
+    attr_reader   :basic_auth, :cache_ttl, :proxy, :proxy_auth, :throttle
     attr_writer   :user_agent
 
     # Sets the Basic Authentification credentials
@@ -23,6 +23,10 @@ class Browser
       else
        raise 'Invalid basic authentication format, "login:password" or "Basic base_64_encoded" expected'
      end
+    end
+
+    def cache_ttl=(ttl)
+      @cache_ttl = ttl.to_i
     end
 
     # @return [ Integer ]
