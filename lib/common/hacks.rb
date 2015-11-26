@@ -101,8 +101,8 @@ end
 class Numeric
   def bytes_to_human
     units = %w{B KB MB GB TB}
-    e = (Math.log(self)/Math.log(1024)).floor
-    s = '%.3f' % (to_f / 1024**e)
+    e = (Math.log(abs)/Math.log(1024)).floor
+    s = '%.3f' % (abs.to_f / 1024**e)
     s.sub(/\.?0*$/, ' ' + units[e])
   end
 end
