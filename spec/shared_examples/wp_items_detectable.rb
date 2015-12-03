@@ -7,7 +7,8 @@ shared_examples 'WpItems::Detectable' do
   let(:targets_items_file) { fixtures_dir + '/targets.txt' }
   let(:wp_content_dir)     { 'wp-content' }
   let(:wp_plugins_dir)     { wp_content_dir + '/plugins' }
-  let(:wp_target)          { WpTarget.new(url, wp_content_dir: wp_content_dir, wp_plugins_dir: wp_plugins_dir) }
+  let(:wp_local_dir)       { SPEC_FIXTURES_DIR + '/wpscan/wp_local_dir' }
+  let(:wp_target)          { WpTarget.new(url, wp_content_dir: wp_content_dir, wp_plugins_dir: wp_plugins_dir, wp_local_dir: wp_local_dir) }
   let(:url)                { 'http://example.com/' }
   let(:uri)                { URI.parse(url) }
   let(:empty_file)         { SPEC_FIXTURES_DIR + '/empty-file' }
@@ -58,7 +59,7 @@ shared_examples 'WpItems::Detectable' do
       end
     end
   end
-
+  
   describe '::passive_detection' do
     after do
       stub_request_to_fixture(url: wp_target.url, fixture: @fixture)
@@ -153,6 +154,35 @@ shared_examples 'WpItems::Detectable' do
           expect(subject).to receive(:targets_items).and_return(targets)
           expect(subject).to receive(:passive_detection).and_return(@expected)
         end
+      end
+    end
+
+  end
+
+  describe '::directory_detection' do
+    let(:options) { {} }
+
+    after do
+      stub_request(:get, /.*/).to_return(status: 404)
+
+      result = subject.directory_detection(wp_target, options)
+
+      expect(result).to be_a subject
+      expect(result.sort.map { |i| i.name }).to eq @expected.sort.map { |i| i.name }
+    end
+
+    context 'when :type = :vulnerable' do
+      let(:options) { { type: :vulnerable } }
+      let(:targets) { expected[:directory_detection] }
+      
+      it 'scans and returns vulnerable items from sample directory' do
+        vulnerable_target = targets[0]
+
+        allow(vulnerable_target).to receive(:vulnerable?).and_return(true)
+      
+        @expected = subject.new << vulnerable_target
+      
+        expect(subject).to receive(:targets_items).and_return(targets)
       end
     end
   end

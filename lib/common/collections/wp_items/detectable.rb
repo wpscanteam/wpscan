@@ -23,6 +23,7 @@ class WpItems < Array
         homepage_hash:   wp_target.homepage_hash,
         exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
+
       results          = passive_detection(wp_target, options)
 
       targets.each do |target_item|
@@ -53,6 +54,26 @@ class WpItems < Array
       results.sort!
 
       results  # can't just return results.sort as it would return an array, and we want a WpItems
+    end
+    
+    # @param [ WpTarget ] wp_target
+    # @param [ Hash ] options
+    # @option options [ Boolean ] :only_vulnerable   Only check for vulnerable items
+    #
+    # @return [ WpItems ]
+    def directory_detection(wp_target, options)
+      results       = passive_detection(wp_target, options)
+      targets       = targets_items(wp_target, options)
+      
+      targets.each do |target_item|
+        if target_item.exists_from_path?
+          results << target_item unless results.include?(target_item)
+        end
+      end
+      
+      results.select!(&:vulnerable?) if options[:type] == :vulnerable
+      results.sort!
+      results
     end
 
     # @param [ Integer ] targets_size
@@ -201,7 +222,8 @@ class WpItems < Array
         name:           name,
         vulns_file:     vulns_file,
         wp_content_dir: wp_target.wp_content_dir,
-        wp_plugins_dir: wp_target.wp_plugins_dir
+        wp_plugins_dir: wp_target.wp_plugins_dir,
+        wp_local_dir:   wp_target.wp_local_dir
       )
     end
 

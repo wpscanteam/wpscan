@@ -18,7 +18,9 @@ describe WpItems do
         vulnerable_targets_items: [ WpItem.new(uri, name: 'mr-smith'),
                                     WpItem.new(uri, name: 'neo')],
 
-        passive_detection: (1..13).reduce(WpItems.new) { |o, i| o << WpItem.new(uri, name: "detect-me-#{i}") }
+        passive_detection: (1..13).reduce(WpItems.new) { |o, i| o << WpItem.new(uri, name: "detect-me-#{i}") },
+        
+        directory_detection:      [ WpPlugin.new(uri, name: 'mr-smith', wp_local_dir: wp_local_dir) ]
       }
     end
   end

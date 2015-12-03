@@ -17,12 +17,12 @@ class WpItem
   include WpItem::Output
 
   attr_reader   :path
-  attr_accessor :name, :wp_content_dir, :wp_plugins_dir
+  attr_accessor :name, :wp_content_dir, :wp_plugins_dir, :wp_local_dir
 
   # @return [ Array ]
   # Make it private ?
   def allowed_options
-    [:name, :wp_content_dir, :wp_plugins_dir, :path, :version, :db_file]
+    [:name, :wp_content_dir, :wp_plugins_dir, :wp_local_dir, :path, :version, :db_file]
   end
 
   # @param [ URI ] target_base_uri
@@ -32,6 +32,7 @@ class WpItem
   def initialize(target_base_uri, options = {})
     options[:wp_content_dir] ||= 'wp-content'
     options[:wp_plugins_dir] ||= options[:wp_content_dir] + '/plugins'
+    options[:wp_local_dir]   ||= ''
 
     set_options(options)
     forge_uri(target_base_uri)

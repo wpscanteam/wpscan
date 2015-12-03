@@ -53,7 +53,8 @@ class WpItems < Array
       attrs.merge(
         name: name,
         wp_content_dir: wp_target.wp_content_dir,
-        wp_plugins_dir: wp_target.wp_plugins_dir
+        wp_plugins_dir: wp_target.wp_plugins_dir,
+        wp_local_dir: wp_target.wp_local_dir
       ) { |key, oldval, newval| oldval }
     )
   end
