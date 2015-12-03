@@ -29,6 +29,7 @@ class WpscanOptions
     :follow_redirection,
     :wp_content_dir,
     :wp_plugins_dir,
+    :wp_local_dir,
     :help,
     :config_file,
     :cookie,
@@ -282,7 +283,8 @@ class WpscanOptions
       ['--cookie', GetoptLong::REQUIRED_ARGUMENT],
       ['--log', GetoptLong::NO_ARGUMENT],
       ['--no-banner', GetoptLong::NO_ARGUMENT],
-      ['--throttle', GetoptLong::REQUIRED_ARGUMENT]
+      ['--throttle', GetoptLong::REQUIRED_ARGUMENT],
+      ['--wp-local-dir', GetoptLong::REQUIRED_ARGUMENT],
     )
   end
 

@@ -3,7 +3,11 @@ source 'https://rubygems.org'
 gem 'typhoeus', '~>0.8.0'
 gem 'nokogiri', '~>1.6.6.4'
 gem 'addressable'
-gem 'yajl-ruby' # Better JSON parser regarding memory usage
+if defined?(JRUBY_VERSION)
+  gem 'json'
+else
+  gem 'yajl-ruby' # Better JSON parser regarding memory usage
+end
 # TODO: update the below when terminal-table 1.5.3+ is released.
 # (and delete the Terminal module in lib/common/hacks.rb)
 gem 'terminal-table', '~>1.4.5'

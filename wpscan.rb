@@ -288,13 +288,23 @@ def main
         plugin_enumeration_type = :all
       end
       puts
-
-      wp_plugins = WpPlugins.aggressive_detection(wp_target,
-        enum_options.merge(
-          file: PLUGINS_FILE,
-          type: plugin_enumeration_type
+      
+      if wpscan_options.wp_local_dir
+        puts info("Using local WordPress directory for enumeration")
+        wp_plugins = WpPlugins.directory_detection(wp_target,
+          enum_options.merge(
+            file: PLUGINS_FILE,
+            type: plugin_enumeration_type
+          )
         )
-      )
+      else
+        wp_plugins = WpPlugins.aggressive_detection(wp_target,
+          enum_options.merge(
+            file: PLUGINS_FILE,
+            type: plugin_enumeration_type
+          )
+        )
+      end
 
       puts
       if !wp_plugins.empty?

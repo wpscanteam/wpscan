@@ -72,7 +72,8 @@ class WpTimthumbs < WpItems
     def create_item(wp_target, path = nil)
       options = {
         wp_content_dir: wp_target.wp_content_dir,
-        wp_plugins_dir: wp_target.wp_plugins_dir
+        wp_plugins_dir: wp_target.wp_plugins_dir,
+        wp_local_dir: wp_target.wp_local_dir
       }
 
       options.merge!(path: path) if path

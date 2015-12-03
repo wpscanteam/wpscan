@@ -27,6 +27,7 @@ class WpTarget < WebSite
     @verbose        = options[:verbose]
     @wp_content_dir = options[:wp_content_dir]
     @wp_plugins_dir = options[:wp_plugins_dir]
+    @wp_local_dir   = File.expand_path(options[:wp_local_dir].to_s)
     @multisite      = nil
     @vhost = options[:vhost]
 
@@ -35,6 +36,11 @@ class WpTarget < WebSite
       Browser.instance.vhost = @vhost
     end
 
+  end
+  
+  # @return [ String ] The local directory of a WP install
+  def wp_local_dir
+    @wp_local_dir
   end
 
   # check if the target website is

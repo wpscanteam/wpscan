@@ -240,6 +240,9 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
                                         Subdirectories are allowed.
     --wp-plugins-dir <wp plugins dir>   Same thing than --wp-content-dir but for the plugins directory.
                                         If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed
+    --wp-local-dir <wp local dir>       Optional local path of WordPress installation. If this is
+                                        specified it can skip doing HTTP checks for enumeration and
+                                        check directly in the FS.
     --proxy <[protocol://]host:port>    Supply a proxy. HTTP, SOCKS4 SOCKS4A and SOCKS5 are supported.
                                         If no protocol is given (format host:port), HTTP will be used.
     --proxy-auth <username:password>    Supply the proxy login credentials.
