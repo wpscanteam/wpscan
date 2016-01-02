@@ -126,7 +126,7 @@ From Ubuntu 14.04:
 
 ####Installing on Fedora:
 
-    sudo yum install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel patch
+    sudo dnf install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel patch rpm-build
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler && bundle install --without test
@@ -151,6 +151,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 ####Installing with RVM (recommended):
 
+    # Install all prerequisites for your OS (look above)
     cd ~
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
