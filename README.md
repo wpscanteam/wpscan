@@ -118,7 +118,7 @@ From Ubuntu 14.04:
 
 ####Installing on Debian:
 
-    sudo apt-get install git ruby ruby-dev libcurl4-openssl-dev make
+    sudo apt-get install git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler
