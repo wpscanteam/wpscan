@@ -42,6 +42,11 @@ def kali_linux?
   end
 end
 
+# Determins if installed on Windows OS
+def windows?
+  Gem.win_platform?
+end
+
 require 'environment'
 
 def escape_glob(s)
@@ -223,7 +228,11 @@ end
 #
 # @return [ Integer ] The number of lines in the given file
 def count_file_lines(file)
-  `wc -l #{file.shellescape}`.split[0].to_i
+  if windows?
+    `findstr /R /N "^" #{file.shellescape} | find /C ":"`.split[0].to_i
+  else
+    `wc -l #{file.shellescape}`.split[0].to_i
+  end
 end
 
 # Truncates a string to a specific length and adds ... at the end

@@ -152,7 +152,7 @@ def main
 
     # Output runtime data
     start_time   = Time.now
-    start_memory = get_memory_usage
+    start_memory = get_memory_usage unless windows?
     puts info("URL: #{wp_target.url}")
     puts info("Started: #{start_time.asctime}")
     puts
@@ -440,12 +440,12 @@ def main
 
     stop_time   = Time.now
     elapsed     = stop_time - start_time
-    used_memory = get_memory_usage - start_memory
+    used_memory = get_memory_usage - start_memory unless windows?
 
     puts
     puts info("Finished: #{stop_time.asctime}")
     puts info("Requests Done: #{@total_requests_done}")
-    puts info("Memory used: #{used_memory.bytes_to_human}")
+    puts info("Memory used: #{used_memory.bytes_to_human}") unless windows?
     puts info("Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
 
   rescue Interrupt
