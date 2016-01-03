@@ -81,7 +81,7 @@ describe 'WpTimthumbs::Detectable' do
     after do
       targets = subject.send(:targets_items, wp_target, options)
 
-      expect(targets.map { |t| t.url }).to eq @expected.sort.map { |t| t.url }
+      targets.map { |t| t.url }.should =~ @expected.sort.map { |t| t.url }
     end
 
     context 'when no :theme_name' do
