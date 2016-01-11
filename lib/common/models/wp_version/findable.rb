@@ -114,34 +114,6 @@ class WpVersion < WpItem
       )
     end
 
-    def find_from_stylesheets_numbers(target_uri)
-      wp_versions = WpVersion.all
-      found       = {}
-      pattern     = /\bver=([0-9\.]+)/i
-
-      Nokogiri::HTML(Browser.get(target_uri.to_s).body).css('link,script').each do |tag|
-        %w(href src).each do |attribute|
-          attr_value = tag.attribute(attribute).to_s
-
-          next if attr_value.nil? || attr_value.empty?
-
-          uri = Addressable::URI.parse(attr_value)
-          next unless uri.query && uri.query.match(pattern)
-
-          version = Regexp.last_match[1].to_s
-
-          found[version] ||= 0
-          found[version] += 1
-        end
-      end
-
-      found.delete_if { |v, _| !wp_versions.include?(v) }
-
-      best_guess = found.sort_by(&:last).last
-      # best_guess[0]: version number, [1] numbers of occurences
-      best_guess && best_guess[1] > 1 ? best_guess[0] : nil
-    end
-
     # Uses data/wp_versions.xml to try to identify a
     # wordpress version.
     #
@@ -218,5 +190,32 @@ class WpVersion < WpItem
       )
     end
 
+    def find_from_stylesheets_numbers(target_uri)
+      wp_versions = WpVersion.all
+      found       = {}
+      pattern     = /\bver=([0-9\.]+)/i
+
+      Nokogiri::HTML(Browser.get(target_uri.to_s).body).css('link,script').each do |tag|
+        %w(href src).each do |attribute|
+          attr_value = tag.attribute(attribute).to_s
+
+          next if attr_value.nil? || attr_value.empty?
+
+          uri = Addressable::URI.parse(attr_value)
+          next unless uri.query && uri.query.match(pattern)
+
+          version = Regexp.last_match[1].to_s
+
+          found[version] ||= 0
+          found[version] += 1
+        end
+      end
+
+      found.delete_if { |v, _| !wp_versions.include?(v) }
+
+      best_guess = found.sort_by(&:last).last
+      # best_guess[0]: version number, [1] numbers of occurences
+      best_guess && best_guess[1] > 1 ? best_guess[0] : nil
+    end
   end
 end
