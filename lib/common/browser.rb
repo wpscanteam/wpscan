@@ -153,8 +153,8 @@ class Browser
     params.merge!(maxredirs: 3) unless params.key?(:maxredirs)
 
     # Disable SSL-Certificate checks
-    params.merge!(ssl_verifypeer: false)
-    params.merge!(ssl_verifyhost: 0)
+    params.merge!(ssl_verifypeer: false) unless params.key?(:ssl_verifypeer)
+    params.merge!(ssl_verifyhost: 0) unless params.key?(:ssl_verifyhost)
 
     params.merge!(cookiejar: @cache_dir + '/cookie-jar')
     params.merge!(cookiefile: @cache_dir + '/cookie-jar')
