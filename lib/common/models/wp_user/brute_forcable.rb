@@ -3,6 +3,8 @@
 class WpUser < WpItem
   module BruteForcable
 
+    attr_reader :progress_bar
+
     # Brute force the user with the wordlist supplied
     #
     # It can take a long time to queue 2 million requests,
@@ -25,7 +27,8 @@ class WpUser < WpItem
       hydra        = browser.hydra
       queue_count  = 0
       found        = false
-      progress_bar = self.progress_bar(count_file_lines(wordlist)+1, options)
+
+      create_progress_bar(count_file_lines(wordlist)+1, options)
 
       File.open(wordlist).each do |password|
         password.chomp!
@@ -42,7 +45,7 @@ class WpUser < WpItem
         request.on_complete do |response|
           progress_bar.progress += 1 if options[:show_progression] && !found
 
-          puts "\n  Trying Username : #{login} Password : #{password}" if options[:verbose]
+          progress_bar.log("  Trying Username: #{login} Password: #{password}") if options[:verbose]
 
           if valid_password?(response, password, redirect_url, options)
             found         = true
@@ -57,7 +60,7 @@ class WpUser < WpItem
         if queue_count >= browser.max_threads
           hydra.run
           queue_count = 0
-          puts "Sent #{browser.max_threads} requests ..." if options[:verbose]
+          progress_bar.log("  Sent #{browser.max_threads} request/s ...") if options[:verbose]
         end
       end
 
@@ -71,9 +74,9 @@ class WpUser < WpItem
     #
     # @return [ ProgressBar ]
     # :nocov:
-    def progress_bar(passwords_size, options)
+    def create_progress_bar(passwords_size, options)
       if options[:show_progression]
-        ProgressBar.create(
+        @progress_bar = ProgressBar.create(
           format: '%t %a <%B> (%c / %C) %P%% %e',
           title: "  Brute Forcing '#{login}'",
           total: passwords_size
@@ -107,20 +110,20 @@ class WpUser < WpItem
         progression = "#{info('[SUCCESS]')} Login : #{login} Password : #{password}\n\n"
         valid       = true
       elsif response.body =~ /login_error/i
-        verbose = "\n  Incorrect login and/or password."
+        verbose = "Incorrect login and/or password."
       elsif response.timed_out?
         progression = critical('ERROR: Request timed out.')
       elsif response.code == 0
         progression = critical("ERROR: No response from remote server. WAF/IPS? (#{response.return_message})")
       elsif response.code.to_s =~ /^50/
-        progression = critical('ERROR: Server error, try reducing the number of threads.')
+        progression = critical('ERROR: Server error, try reducing the number of threads or use the --throttle option.')
       else
         progression = critical("ERROR: We received an unknown response for #{password}...")
-        verbose     = critical("    Code: #{response.code}\n    Body: #{response.body}\n")
+        verbose     = critical("  Code: #{response.code}\n    Body: #{response.body}\n")
       end
 
-      puts "\n  " + progression if progression && options[:show_progression]
-      puts verbose if verbose && options[:verbose]
+      progress_bar.log("  #{progression}") if progression && options[:show_progression]
+      progress_bar.log("  #{verbose}") if verbose && options[:verbose]
 
       valid || false
     end
