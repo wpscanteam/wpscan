@@ -28,7 +28,7 @@ class DbUpdater
 
   # @return [ String ] The raw file URL associated with the given filename
   def remote_file_url(filename)
-    "https://wpvulndb.com/data/#{filename}"
+    "https://data.wpscan.org/#{filename}"
   end
 
   # @return [ String ] The checksum of the associated remote filename

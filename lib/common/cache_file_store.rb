@@ -51,7 +51,7 @@ class CacheFileStore
   end
 
   def write_entry(key, data_to_store, cache_ttl)
-    if cache_ttl > 0
+    if cache_ttl && cache_ttl > 0
       File.open(get_entry_file_path(key), 'w') do |f|
         begin
           f.write(@serializer.dump(data_to_store))

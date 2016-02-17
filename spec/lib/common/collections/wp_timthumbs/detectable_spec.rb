@@ -26,10 +26,10 @@ describe 'WpTimthumbs::Detectable' do
 
   def expected_targets_from_theme(theme_name)
     expected = []
-    %w{
+    %w(
       timthumb.php lib/timthumb.php inc/timthumb.php includes/timthumb.php
       scripts/timthumb.php tools/timthumb.php functions/timthumb.php
-    }.each do |file|
+    ).each do |file|
       path = "$wp-content$/themes/#{theme_name}/#{file}"
       expected << WpTimthumb.new(uri, path: path)
     end
@@ -46,7 +46,7 @@ describe 'WpTimthumbs::Detectable' do
     after do
       targets = subject.send(:targets_items_from_file, file, wp_target)
 
-      expect(targets.map { |t| t.url }).to eq @expected.map { |t| t.url }
+      expect(targets.map(&:url)).to eq @expected.map(&:url)
     end
 
     context 'when an empty file' do
@@ -71,7 +71,7 @@ describe 'WpTimthumbs::Detectable' do
       theme   = 'hello-world'
       targets = subject.send(:theme_timthumbs, theme, wp_target)
 
-      expect(targets.map { |t| t.url }).to eq expected_targets_from_theme(theme).map { |t| t.url }
+      expect(targets.map(&:url)).to eq expected_targets_from_theme(theme).map(&:url)
     end
   end
 
@@ -81,7 +81,7 @@ describe 'WpTimthumbs::Detectable' do
     after do
       targets = subject.send(:targets_items, wp_target, options)
 
-      targets.map { |t| t.url }.should =~ @expected.sort.map { |t| t.url }
+      expect(targets.map(&:url)).to match_array(@expected.map(&:url))
     end
 
     context 'when no :theme_name' do
@@ -101,7 +101,7 @@ describe 'WpTimthumbs::Detectable' do
     end
 
     context 'when :theme_name' do
-      let(:theme)   { 'theme-name'}
+      let(:theme) { 'theme-name' }
 
       context 'when no :file' do
         let(:options) { { theme_name: theme } }
