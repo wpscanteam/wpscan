@@ -1,16 +1,20 @@
-WPScan Public Source License
+#### LICENSE
+
+#### WPScan Public Source License
 
 The WPScan software (henceforth referred to simply as "WPScan") is dual-licensed - Copyright 2011-2016 WPScan Team.
 
 Cases that include commercialization of WPScan require a commercial, non-free license. Otherwise, WPScan can be used without charge under the terms set out below.
 
-1. Definitions
+##### 1. Definitions
 
-1.1 “License” means this document.
-1.2 “Contributor” means each individual or legal entity that creates, contributes to the creation of, or owns WPScan.
-1.3 “WPScan Team” means WPScan’s core developers, an updated list of whom can be found within the CREDITS file.
+1.1 "License" means this document.
 
-2. Commercialization
+1.2 "Contributor" means each individual or legal entity that creates, contributes to the creation of, or owns WPScan.
+
+1.3 "WPScan Team" means WPScan’s core developers, an updated list of whom can be found within the CREDITS file.
+
+##### 2. Commercialization
 
 A commercial use is one intended for commercial advantage or monetary compensation.
 
@@ -33,7 +37,7 @@ We may grant commercial licenses at no monetary cost at our own discretion if th
 
 Free-use Terms and Conditions;
 
-3. Redistribution
+##### 3. Redistribution
 
 Redistribution is permitted under the following conditions:
 
@@ -41,30 +45,30 @@ Redistribution is permitted under the following conditions:
  - Unmodified Copyright notices are provided with WPScan.
  - Does not conflict with the commercialization clause.
 
-4. Copying
+##### 4. Copying
 
 Copying is permitted so long as it does not conflict with the Redistribution clause.
 
-5. Modification
+##### 5. Modification
 
 Modification is permitted so long as it does not conflict with the Redistribution clause.
 
-6. Contributions
+##### 6. Contributions
 
 Any Contributions assume the Contributor grants the WPScan Team the unlimited, non-exclusive right to reuse, modify and relicense the Contributor's content.
 
-7. Support
+##### 7. Support
 
 WPScan is provided under an AS-IS basis and without any support, updates or maintenance. Support, updates and maintenance may be given according to the sole discretion of the WPScan Team.
 
-8. Disclaimer of Warranty
+##### 8. Disclaimer of Warranty
 
 WPScan is provided under this License on an “as is” basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the WPScan is free of defects, merchantable, fit for a particular purpose or non-infringing.
 
-9. Limitation of Liability
+##### 9. Limitation of Liability
 
 To the extent permitted under Law, WPScan is provided under an AS-IS basis. The WPScan Team shall never, and without any limit, be liable for any damage, cost, expense or any other payment incurred as a result of WPScan's actions, failure, bugs and/or any other interaction between WPScan and end-equipment, computers, other software or any 3rd party, end-equipment, computer or services.
 
-10. Disclaimer
+##### 10. Disclaimer
 
 Running WPScan against websites without prior mutual consent may be illegal in your country. The WPScan Team accept no liability and are not responsible for any misuse or damage caused by WPScan.
