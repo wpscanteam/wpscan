@@ -105,11 +105,6 @@ describe WpItem do
         @expected = 'plugins/readme.txt'
       end
     end
-
-    it 'also encodes chars' do
-      @path     = 'some dir with spaces'
-      @expected = 'some%20dir%20with%20spaces'
-    end
   end
 
   describe '#uri' do

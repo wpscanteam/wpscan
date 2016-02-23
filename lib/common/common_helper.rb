@@ -266,3 +266,7 @@ end
 def directory_listing_enabled?(url)
   Browser.get(url.to_s).body[%r{<title>Index of}] ? true : false
 end
+
+def url_encode(str)
+  CGI.escape(str).gsub("+", "%20")
+end

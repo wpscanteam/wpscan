@@ -10,7 +10,7 @@ shared_examples 'WpTarget::WpConfigBackup' do
     # set all @config_backup_files to point to a 404
     before :each do
       config_backup_files.each do |backup_file|
-        file_url = wp_target.uri.merge(URI.escape(backup_file)).to_s
+        file_url = wp_target.uri.merge(url_encode(backup_file)).to_s
 
         stub_request(:get, file_url).to_return(status: 404)
       end
@@ -24,7 +24,7 @@ shared_examples 'WpTarget::WpConfigBackup' do
       expected = []
 
       config_backup_files.sample(1).each do |backup_file|
-        file_url = wp_target.uri.merge(URI.escape(backup_file)).to_s
+        file_url = wp_target.uri.merge(url_encode(backup_file)).to_s
         expected << file_url
 
         stub_request_to_fixture(url: file_url, fixture: fixtures_dir + '/wp-config.php')
@@ -40,7 +40,7 @@ shared_examples 'WpTarget::WpConfigBackup' do
       expected = []
 
       config_backup_files.sample(2).each do |backup_file|
-        file_url = wp_target.uri.merge(URI.escape(backup_file)).to_s
+        file_url = wp_target.uri.merge(url_encode(backup_file)).to_s
         expected << file_url
 
         stub_request_to_fixture(url: file_url, fixture: fixtures_dir + '/wp-config.php')

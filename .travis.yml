@@ -2,8 +2,6 @@ language: ruby
 sudo: false
 cache: bundler
 rvm:
-  - 1.9.2
-  - 1.9.3
   - 2.0.0
   - 2.1.0
   - 2.1.1
@@ -23,9 +21,6 @@ script: bundle exec rspec
 notifications:
   email:
     - team@wpscan.org
-matrix:
-  allow_failures:
-    - rvm: 1.9.2
 # do not build gh-pages branch
 branches:
   except:

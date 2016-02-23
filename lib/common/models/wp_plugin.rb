@@ -7,7 +7,7 @@ class WpPlugin < WpItem
   #
   # @return [ void ]
   def forge_uri(target_base_uri)
-    @uri = target_base_uri.merge(URI.encode(wp_plugins_dir + '/' + name + '/'))
+    @uri = target_base_uri.merge("#{wp_plugins_dir}/#{url_encode(name)}/")
   end
 
   def db_file

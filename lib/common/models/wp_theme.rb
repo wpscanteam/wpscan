@@ -23,7 +23,7 @@ class WpTheme < WpItem
   #
   # @return [ void ]
   def forge_uri(target_base_uri)
-    @uri = target_base_uri.merge(URI.encode(wp_content_dir + '/themes/' + name + '/'))
+    @uri = target_base_uri.merge("#{wp_content_dir}/themes/#{url_encode(name)}/")
   end
 
   # @return [ String ] The url to the theme stylesheet

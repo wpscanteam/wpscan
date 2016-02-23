@@ -14,7 +14,7 @@ class WpTarget < WebSite
       queue_count = 0
 
       backups.each do |file|
-        file_url = @uri.merge(URI.escape(file)).to_s
+        file_url = @uri.merge(url_encode(file)).to_s
         request = browser.forge_request(file_url)
 
         request.on_complete do |response|
