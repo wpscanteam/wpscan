@@ -28,7 +28,9 @@ LOCAL_FILES_XSD   = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
 USER_AGENTS_FILE  = File.join(DATA_DIR, 'user-agents.txt')
 LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
 
-WPSCAN_VERSION       = '2.9'
+MIN_RUBY_VERSION = '2.1.8'
+
+WPSCAN_VERSION = '2.9'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
