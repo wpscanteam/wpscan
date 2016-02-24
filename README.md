@@ -92,7 +92,7 @@ WPScan comes pre-installed on the following Linux distributions:
 
 Prerequisites:
 
-- Ruby >= 2.0.0 - Recommended: 2.3.0
+- Ruby >= 2.1.0 - Recommended: 2.3.0
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
