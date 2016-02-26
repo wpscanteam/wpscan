@@ -23,9 +23,7 @@ class CacheFileStore
     @storage_path = File.expand_path(File.join(storage_path, storage_dir))
     @serializer   = serializer
 
-    # File.directory? for ruby <= 1.9 otherwise,
-    # it makes more sense to do Dir.exist? :/
-    unless File.directory?(@storage_path)
+    unless Dir.exist?(@storage_path)
       FileUtils.mkdir_p(@storage_path)
     end
   end

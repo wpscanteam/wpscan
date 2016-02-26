@@ -130,8 +130,6 @@ class WpVersion < WpItem
     def find_from_advanced_fingerprinting(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)
       xml     = xml(versions_xml)
 
-      # This wp_item will take care of encoding the path
-      # and replace variables like $wp-content$ & $wp-plugins$
       wp_item = WpItem.new(target_uri,
                            wp_content_dir: wp_content_dir,
                            wp_plugins_dir: wp_plugins_dir)

@@ -1,35 +1,5 @@
 # encoding: UTF-8
 
-# Since ruby 1.9.2, URI::escape is obsolete
-# See http://rosettacode.org/wiki/URL_encoding#Ruby and http://www.ruby-forum.com/topic/207489
-if RUBY_VERSION >= '1.9.2'
-  module URI
-    extend self
-
-    def escape(str)
-      URI::Parser.new.escape(str)
-    end
-    alias :encode :escape
-
-  end
-end
-
-if RUBY_VERSION < '1.9'
-  class Array
-    # Fix for grep with symbols in ruby <= 1.8.7
-    def _grep_(regexp)
-      matches = []
-      self.each do |value|
-        value = value.to_s
-        matches << value if value.match(regexp)
-      end
-      matches
-    end
-
-    alias_method :grep, :_grep_
-  end
-end
-
 # This is used in WpItem::Existable
 module Typhoeus
   class Response

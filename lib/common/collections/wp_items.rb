@@ -67,7 +67,7 @@ class WpItems < Array
   end
 
   protected
-  
+
   # @return [ Class ]
   def item_class
     Object.const_get(self.class.to_s.gsub(/.$/, ''))

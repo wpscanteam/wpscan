@@ -100,9 +100,7 @@ class WpItem
   #
   # @return [ void ]
   def path=(path)
-    @path = URI.encode(
-      path.gsub(/\$wp-plugins\$/i, wp_plugins_dir).gsub(/\$wp-content\$/i, wp_content_dir)
-    )
+    @path = path.gsub(/\$wp-plugins\$/i, wp_plugins_dir).gsub(/\$wp-content\$/i, wp_content_dir)
   end
 
   # @param [ WpItem ] other
