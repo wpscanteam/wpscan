@@ -30,6 +30,7 @@ begin
   require 'shellwords'
   require 'fileutils'
   require 'pathname'
+  require 'cgi'
   # Third party libs
   require 'typhoeus'
   require 'yajl/json_gem'
