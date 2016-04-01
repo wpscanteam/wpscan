@@ -143,8 +143,8 @@ class Browser
     end
 
     params.merge!(referer: referer)
-    params.merge!(timeout: @request_timeout) if @request_timeout
-    params.merge!(connecttimeout: @connect_timeout) if @connect_timeout
+    params.merge!(timeout: @request_timeout) if @request_timeout && !params.key?(:timeout)
+    params.merge!(connecttimeout: @connect_timeout) if @connect_timeout && !params.key?(:connecttimeout)
 
     # Used to enable the cache system if :cache_ttl > 0
     params.merge!(cache_ttl: @cache_ttl) unless params.key?(:cache_ttl)

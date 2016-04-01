@@ -22,7 +22,9 @@ class DbUpdater
     {
       ssl_verifyhost: 2,
       ssl_verifypeer: true,
-      accept_encoding: 'gzip, deflate'
+      accept_encoding: 'gzip, deflate',
+      timeout: 120,
+      connecttimeout: 20
     }
   end
 
