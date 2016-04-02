@@ -28,7 +28,7 @@ LOCAL_FILES_XSD   = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
 USER_AGENTS_FILE  = File.join(DATA_DIR, 'user-agents.txt')
 LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
 
-MIN_RUBY_VERSION = '2.1.8'
+MIN_RUBY_VERSION = '2.1.9'
 
 WPSCAN_VERSION = '2.9'
 
