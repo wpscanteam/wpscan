@@ -38,7 +38,7 @@ class WpVersion < WpItem
 
   # @return [ Hash ] Metadata for specific WP version from WORDPRESSES_FILE
   def metadata(version)
-    json = json(WORDPRESSES_FILE)
+    json = json(db_file)
 
     metadata = {}
     metadata[:release_date]  = json[version]['release_date']
