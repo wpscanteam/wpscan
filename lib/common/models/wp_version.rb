@@ -36,7 +36,7 @@ class WpVersion < WpItem
     end
   end
 
-  # @return [ Hash ] All metadata from version_file
+  # @return [ Hash ] All metadata from WORDPRESSES_FILE
   def metadata(version)
     json = json(WORDPRESSES_FILE)
 
