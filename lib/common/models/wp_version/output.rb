@@ -4,8 +4,12 @@ class WpVersion < WpItem
   module Output
 
     def output(verbose = false)
+      metadata = self.metadata(self.number)
+
       puts
       puts info("WordPress version #{self.number} identified from #{self.found_from}")
+      puts " | Released: #{metadata[:release_date]}"
+      puts " | Changelog: #{metadata[:changelog_url]}"
 
       vulnerabilities = self.vulnerabilities
 
