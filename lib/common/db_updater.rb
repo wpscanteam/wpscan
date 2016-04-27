@@ -101,7 +101,7 @@ class DbUpdater
         puts "  [i] Database File Checksum  : #{db_checksum}" if verbose
 
         unless dl_checksum == db_checksum
-          fail "#{filename}: checksums do not match"
+          fail "#{filename}: checksums do not match (local: #{dl_checksum} remote: #{db_checksum})"
         end
       rescue => e
         puts '  [i] Restoring Backup due to error' if verbose
