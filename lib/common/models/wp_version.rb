@@ -8,7 +8,7 @@ class WpVersion < WpItem
   include WpVersion::Output
 
   # The version number
-  attr_accessor :number
+  attr_accessor :number, :metadata
   alias_method :version, :number # Needed to have the right behaviour in Vulnerable#vulnerable_to?
 
   # @return [ Array ]
@@ -34,5 +34,15 @@ class WpVersion < WpItem
     Nokogiri.XML(File.open(versions_file)).css('version').reduce([]) do |a, node|
       a << node.text.to_s
     end
+  end
+
+  # @return [ Hash ] Metadata for specific WP version from WORDPRESSES_FILE
+  def metadata(version)
+    json = json(db_file)
+
+    metadata = {}
+    metadata[:release_date]  = json[version]['release_date']
+    metadata[:changelog_url] = json[version]['changelog_url']
+    metadata
   end
 end
