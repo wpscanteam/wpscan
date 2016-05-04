@@ -221,6 +221,10 @@ def main
       puts warning("Upload directory has directory listing enabled: #{wp_target.upload_dir_url}")
     end
 
+    if wp_target.include_directory_listing_enabled?
+      puts warning("Includes directory has directory listing enabled: #{wp_target.includes_dir_url}")
+    end
+
     enum_options = {
       show_progression: true,
       exclude_content: wpscan_options.exclude_content_based

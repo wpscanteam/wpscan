@@ -135,6 +135,11 @@ class WpTarget < WebSite
     @uri.merge("#{wp_content_dir}/uploads/").to_s
   end
 
+  # @return [ String ]
+  def includes_dir_url
+    @uri.merge("wp-includes/").to_s
+  end
+
   # Script for replacing strings in wordpress databases
   # reveals database credentials after hitting submit
   # http://interconnectit.com/124/search-and-replace-for-wordpress-databases/
@@ -152,5 +157,9 @@ class WpTarget < WebSite
 
   def upload_directory_listing_enabled?
     directory_listing_enabled?(upload_dir_url)
+  end
+
+  def include_directory_listing_enabled?
+    directory_listing_enabled?(includes_dir_url)
   end
 end
