@@ -8,8 +8,16 @@ Released: 2016-05-06
 * Update to Ruby 2.3.1, drop older ruby support
 * New data file location
 * Added experimental Windows support
-* Display Wordpress metadata on the detected version
+* Display WordPress metadata on the detected version
 * Several small fixes
+
+WPScan Database Statistics:
+* Total vulnerable versions: 156
+* Total vulnerable plugins:  1331
+* Total vulnerable themes:   376
+* Total version vulnerabilities: 2001
+* Total plugin vulnerabilities:  2168
+* Total theme vulnerabilities:   457
 
 ## Version 2.9
 Released: 2015-10-15
