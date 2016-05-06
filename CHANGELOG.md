@@ -13,11 +13,11 @@ Released: 2016-05-06
 
 WPScan Database Statistics:
 * Total vulnerable versions: 156
-* Total vulnerable plugins:  1323
+* Total vulnerable plugins:  1324
 * Total vulnerable themes:   376
-* Total version vulnerabilities: 2001
-* Total plugin vulnerabilities:  2168
-* Total theme vulnerabilities:   457
+* Total version vulnerabilities: 1998
+* Total plugin vulnerabilities:  2057
+* Total theme vulnerabilities:   449
 
 ## Version 2.9
 Released: 2015-10-15
