@@ -41,8 +41,11 @@ class WpVersion < WpItem
     json = json(db_file)
 
     metadata = {}
-    metadata[:release_date]  = json[version]['release_date']
-    metadata[:changelog_url] = json[version]['changelog_url']
+    temp = json[version]
+    if !temp.nil?
+      metadata[:release_date]  = temp['release_date']
+      metadata[:changelog_url] = temp['changelog_url']
+    end
     metadata
   end
 end
