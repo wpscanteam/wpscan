@@ -12,7 +12,7 @@ class WpVersion < WpItem
         puts " | Released: #{metadata[:release_date]}"
         puts " | Changelog: #{metadata[:changelog_url]}"
       else
-        puts info("WordPress version #{self.number} identified from #{self.found_from} #{"(Released on #{metadata[:release_date]})" if metadata[:release_date]}")
+        puts info("WordPress version #{self.number} #{"(Released on #{metadata[:release_date]}) identified from #{self.found_from}" if metadata[:release_date]}")
       end
 
       vulnerabilities = self.vulnerabilities
