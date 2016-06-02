@@ -9,8 +9,7 @@ class WpItem
   #
   # @return [ void ]
   def found_from=(method)
-    found       = method[%r{find_from_(.*)}, 1]
-    @found_from = found.gsub('_', ' ') if found
+    @found_from = method.to_s.gsub(/find_from_/, '').gsub(/_/, ' ')
   end
 
   module Findable

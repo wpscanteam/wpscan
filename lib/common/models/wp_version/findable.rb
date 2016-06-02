@@ -12,6 +12,7 @@ class WpVersion < WpItem
     #
     # @return [ WpVersion ]
     def find(target_uri, wp_content_dir, wp_plugins_dir, versions_xml)
+      versions = {}
       methods.grep(/^find_from_/).each do |method|
 
         if method === :find_from_advanced_fingerprinting
@@ -21,9 +22,21 @@ class WpVersion < WpItem
         end
 
         if version
-          return new(target_uri, number: version, found_from: method)
+          if versions.key?(version)
+            versions[version] << method.to_s
+          else
+            versions[version] = [ method.to_s ]
+          end
         end
       end
+
+      if versions.length > 0
+        determined_version = versions.max_by { |k, v| v.length }
+        if determined_version
+          return new(target_uri, number: determined_version[0], found_from: determined_version[1].join(', '))
+        end
+      end
+
       nil
     end
 

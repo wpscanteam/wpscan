@@ -11,7 +11,7 @@ class WpTheme < WpItem
     def find(target_uri)
       methods.grep(/^find_from_/).each do |method|
         if wp_theme = self.send(method, target_uri)
-          wp_theme.found_from = method
+          wp_theme.found_from = method.to_s
 
           return wp_theme
         end
