@@ -311,7 +311,3 @@ Debug output...
 #### DEVELOPER DOCUMENTATION
 
 [http://rdoc.info/github/wpscanteam/wpscan/frames](http://rdoc.info/github/wpscanteam/wpscan/frames)
-
-#### SPECIAL THANKS
-
-[RandomStorm](https://www.randomstorm.com)
