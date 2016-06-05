@@ -33,7 +33,12 @@ begin
   require 'cgi'
   # Third party libs
   require 'typhoeus'
-  require 'yajl/json_gem'
+  begin
+    require 'yajl/json_gem'
+  rescue LoadError
+    # Require basic json library if yajl is not available
+    require 'json'
+  end
   require 'nokogiri'
   require 'terminal-table'
   require 'ruby-progressbar'
