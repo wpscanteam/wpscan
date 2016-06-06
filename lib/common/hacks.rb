@@ -27,47 +27,6 @@ def puts(o = '')
   super(o)
 end
 
-module Terminal
-  class Table
-    def render
-      separator = Separator.new(self)
-      buffer = [separator]
-      unless @title.nil?
-        buffer << Row.new(self, [title_cell_options])
-        buffer << separator
-      end
-      unless @headings.cells.empty?
-        buffer << @headings
-        buffer << separator
-      end
-      buffer += @rows
-      buffer << separator
-      buffer.map { |r| style.margin_left + r.render }.join("\n")
-    end
-    alias :to_s :render
-
-    class Style
-      @@defaults = {
-        :border_x => '-', :border_y => '|', :border_i => '+',
-        :padding_left => 1, :padding_right => 1,
-        :margin_left => '',
-        :width => nil, :alignment => nil
-      }
-
-      attr_accessor :margin_left
-      attr_accessor :border_x
-      attr_accessor :border_y
-      attr_accessor :border_i
-
-      attr_accessor :padding_left
-      attr_accessor :padding_right
-
-      attr_accessor :width
-      attr_accessor :alignment
-    end
-  end
-end
-
 class Numeric
   def bytes_to_human
     units = %w{B KB MB GB TB}
