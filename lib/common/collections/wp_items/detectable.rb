@@ -95,6 +95,10 @@ class WpItems < Array
         code = tag.text.to_s
         next if code.empty?
 
+        if ! code.valid_encoding?
+          code = code.encode('UTF-16be', :invalid => :replace, :replace => '?').encode('UTF-8')
+        end
+
         code.scan(code_pattern(wp_target)).flatten.uniq.each do |item_name|
           names << item_name
         end
