@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'typhoeus', '>=0.8.0'
+gem 'typhoeus', '>=1.0.0'
 gem 'nokogiri', '>=1.6.7.2'
 gem 'addressable'
 gem 'yajl-ruby' # Better JSON parser regarding memory usage
