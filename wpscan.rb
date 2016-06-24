@@ -88,7 +88,7 @@ def main
 
     # Remote website up?
     unless wp_target.online?
-      raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down."
+      raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down. Maybe the site is blocking wpscan so you can try the --random-agent parameter."
     end
 
     if wpscan_options.proxy
