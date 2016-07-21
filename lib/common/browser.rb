@@ -71,13 +71,13 @@ class Browser
   # sets browser default values
   #
   def browser_defaults
+    @user_agent      = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
     @max_threads     = 20
     # 10 minutes, at this time the cache is cleaned before each scan.
     # If this value is set to 0, the cache will be disabled
     @cache_ttl       = 600
     @request_timeout = 60 # 60s
     @connect_timeout = 10 # 10s
-    @user_agent      = "WPScan v#{WPSCAN_VERSION} (http://wpscan.org)"
     @throttle        = 0
   end
 
@@ -115,11 +115,7 @@ class Browser
   #
   # @return [ Hash ]
   def merge_request_params(params = {})
-    params = Browser.append_params_header_field(
-      params,
-      'User-Agent',
-      @user_agent
-    )
+    Typhoeus::Config.user_agent = @user_agent
 
     if @proxy
       params.merge!(proxy: @proxy)
