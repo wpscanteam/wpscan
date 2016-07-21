@@ -3,9 +3,8 @@
 class Browser
   module Options
 
-    attr_accessor :request_timeout, :connect_timeout
+    attr_accessor :request_timeout, :connect_timeout, :user_agent, :disable_accept_header, :disable_referer
     attr_reader   :basic_auth, :cache_ttl, :proxy, :proxy_auth, :throttle
-    attr_writer   :user_agent
 
     # Sets the Basic Authentification credentials
     # Accepted format:

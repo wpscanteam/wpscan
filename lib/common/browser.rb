@@ -18,7 +18,9 @@ class Browser
     :request_timeout,
     :connect_timeout,
     :cookie,
-    :throttle
+    :throttle,
+    :disable_accept_header,
+    :disable_referer
   ]
 
   @@instance = nil
@@ -68,6 +70,7 @@ class Browser
   end
 
   # Override for setting the User-Agent
+  # @param [ String ] user_agent
   def user_agent=(user_agent)
     Typhoeus::Config.user_agent = user_agent
   end
@@ -158,6 +161,8 @@ class Browser
     params.merge!(cookiejar: @cache_dir + '/cookie-jar')
     params.merge!(cookiefile: @cache_dir + '/cookie-jar')
     params.merge!(cookie: @cookie) if @cookie
+    params = Browser.remove_params_header_field(params, 'Accept') if @disable_accept_header
+    params = Browser.remove_params_header_field(params, 'Referer') if @disable_referer
 
     params
   end
@@ -174,6 +179,20 @@ class Browser
       params = params.merge(:headers => { field => field_value })
     elsif !params[:headers].has_key?(field)
       params[:headers][field] = field_value
+    end
+    params
+  end
+
+  # @param [ Hash ] params
+  # @param [ String ] field
+  # @param [ Mixed ] field_value
+  #
+  # @return [ Array ]
+  def self.remove_params_header_field(params = {}, field)
+    if !params.has_key?(:headers)
+      params = params.merge(:headers => { field => nil })
+    elsif !params[:headers].has_key?(field)
+      params[:headers][field] = nil
     end
     params
   end
