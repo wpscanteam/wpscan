@@ -28,7 +28,7 @@ describe 'WpTimthumbs::Detectable' do
     expected = []
     %w(
       timthumb.php lib/timthumb.php inc/timthumb.php includes/timthumb.php
-      scripts/timthumb.php tools/timthumb.php functions/timthumb.php
+      scripts/timthumb.php tools/timthumb.php functions/timthumb.php thumb.php
     ).each do |file|
       path = "$wp-content$/themes/#{theme_name}/#{file}"
       expected << WpTimthumb.new(uri, path: path)
