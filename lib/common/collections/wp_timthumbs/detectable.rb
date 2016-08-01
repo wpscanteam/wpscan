@@ -41,7 +41,7 @@ class WpTimthumbs < WpItems
 
       %w{
         timthumb.php lib/timthumb.php inc/timthumb.php includes/timthumb.php
-        scripts/timthumb.php tools/timthumb.php functions/timthumb.php
+        scripts/timthumb.php tools/timthumb.php functions/timthumb.php thumb.php
       }.each do |path|
         wp_timthumb.path = "$wp-content$/themes/#{theme_name}/#{path}"
 
