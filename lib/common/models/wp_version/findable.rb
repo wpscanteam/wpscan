@@ -212,7 +212,12 @@ class WpVersion < WpItem
 
           next if attr_value.nil? || attr_value.empty?
 
-          uri = Addressable::URI.parse(attr_value)
+          begin
+            uri = Addressable::URI.parse(attr_value)
+          rescue Addressable::URI::InvalidURIError
+            next
+          end
+
           next unless uri.query && uri.query.match(pattern)
 
           version = Regexp.last_match[1].to_s

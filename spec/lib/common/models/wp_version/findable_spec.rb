@@ -159,6 +159,22 @@ describe 'WpVersion::Findable' do
     end
   end
 
+  describe '::find_from_stylesheets_numbers' do
+    after do
+      fixture = fixtures_dir + 'stylesheet_numbers' + @fixture
+      stub_request_to_fixture(url: uri, fixture: fixture)
+
+      expect(WpVersion.send(:find_from_stylesheets_numbers, uri)).to eq @expected
+    end
+
+    context 'invalid url' do
+      it 'returns nil' do
+        @fixture = '/invalid_url.html'
+        @expected = nil
+      end
+    end
+  end
+
   describe '::find' do
     # Stub all WpVersion::find_from_* to return nil
     def stub_all_to_nil
