@@ -45,7 +45,8 @@ class WpscanOptions
     :no_banner,
     :throttle,
     :disable_accept_header,
-    :disable_referer
+    :disable_referer,
+    :cache_dir
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -288,7 +289,8 @@ class WpscanOptions
       ['--no-banner', GetoptLong::NO_ARGUMENT],
       ['--throttle', GetoptLong::REQUIRED_ARGUMENT],
       ['--disable-accept-header', GetoptLong::NO_ARGUMENT],
-      ['--disable-referer', GetoptLong::NO_ARGUMENT]
+      ['--disable-referer', GetoptLong::NO_ARGUMENT],
+      ['--cache-dir', GetoptLong::REQUIRED_ARGUMENT]
     )
   end
 
