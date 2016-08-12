@@ -461,9 +461,11 @@ def main
     puts e.file[0..500]
     puts '.........'
     puts
-    puts critical('Cloudflare Info:')
-    puts e.cloudflare_info
-    puts
+    if e.cloudflare_info
+      puts critical('Cloudflare Info:')
+      puts e.cloudflare_info
+      puts
+    end
     puts critical('Please submit this info as an Github issue')
   rescue => e
     puts
