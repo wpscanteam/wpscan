@@ -452,21 +452,28 @@ def main
     puts info("Memory used: #{used_memory.bytes_to_human}") unless windows?
     puts info("Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
 
+  # do nothing on interrupt
   rescue Interrupt
-    # do nothing on interrupt
+    exit(1)
   # Error on Updating
   rescue ChecksumError => e
     puts critical(e.message)
-    puts critical('Downloaded File Content:')
-    puts e.file[0..500]
-    puts '.........'
-    puts
+
+    if e.file
+      puts critical('Downloaded File Content:')
+      puts e.file[0..500]
+      puts '.........'
+      puts
+    end
+
     if e.cloudflare_info
       puts critical('Cloudflare Info:')
       puts e.cloudflare_info
       puts
     end
+
     puts critical('Please submit this info as an Github issue')
+    exit(1)
   rescue => e
     puts
     puts critical(e.message)
