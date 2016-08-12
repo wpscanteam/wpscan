@@ -151,6 +151,9 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
 ####Installing with RVM (recommended):
 
+If you are using GNOME Terminal, there are some steps required before executing the commands. See here for more information:
+https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
+
     # Install all prerequisites for your OS (look above)
     cd ~
     curl -sSL https://rvm.io/mpapis.asc | gpg --import -
