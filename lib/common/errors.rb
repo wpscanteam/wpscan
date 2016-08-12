@@ -31,3 +31,12 @@ class DownloadError < HttpError
     "Unable to get #{failure_details}"
   end
 end
+
+class ChecksumError < StandardError
+  attr_reader :file, :cloudflare_info
+
+  def initialize(file, cloudflare_info)
+    @file = file
+    @cloudflare_info = cloudflare_info
+  end
+end

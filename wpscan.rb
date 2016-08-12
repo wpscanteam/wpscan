@@ -454,6 +454,17 @@ def main
 
   rescue Interrupt
     # do nothing on interrupt
+  # Error on Updating
+  rescue ChecksumError => e
+    puts critical(e.message)
+    puts critical('Downloaded File Content:')
+    puts e.file[0..500]
+    puts '.........'
+    puts
+    puts critical('Cloudflare Info:')
+    puts e.cloudflare_info
+    puts
+    puts critical('Please submit this info as an Github issue')
   rescue => e
     puts
     puts critical(e.message)
