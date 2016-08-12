@@ -153,6 +153,7 @@ Apple Xcode, Command Line Tools and the libffi are needed (to be able to install
 
     # Install all prerequisites for your OS (look above)
     cd ~
+    curl -sSL https://rvm.io/mpapis.asc | gpg --import -
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
     echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
