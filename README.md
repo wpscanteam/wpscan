@@ -170,7 +170,7 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     bundle install --without test
 
 #### DOCKER
-Pull the repo with docker pull wpscanteam/wpscan
+Pull the repo with `docker pull wpscanteam/wpscan`
 
 ##### Start WPScan
 
