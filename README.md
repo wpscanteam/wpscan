@@ -169,6 +169,19 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     gem install bundler
     bundle install --without test
 
+#### DOCKER
+Pull the repo with docker pull wpscanteam/wpscan
+
+##### Start WPScan
+
+```
+docker run --rm wpscanteam/wpscan -u http://yourblog.com [options]
+```
+
+For the available Options, please see https://github.com/wpscanteam/wpscan#wpscan-arguments
+
+Published on https://hub.docker.com/r/wpscanteam/wpscan/
+
 #### KNOWN ISSUES
 
   - Typhoeus segmentation fault
