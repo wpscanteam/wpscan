@@ -5,15 +5,15 @@
 [![Code Climate](https://img.shields.io/codeclimate/github/wpscanteam/wpscan.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
 [![Dependency Status](https://img.shields.io/gemnasium/wpscanteam/wpscan.svg)](https://gemnasium.com/wpscanteam/wpscan)
 
-#### LICENSE
+# LICENSE
 
-#### WPScan Public Source License
+## WPScan Public Source License
 
 The WPScan software (henceforth referred to simply as "WPScan") is dual-licensed - Copyright 2011-2016 WPScan Team.
 
 Cases that include commercialization of WPScan require a commercial, non-free license. Otherwise, WPScan can be used without charge under the terms set out below.
 
-##### 1. Definitions
+### 1. Definitions
 
 1.1 "License" means this document.
 
@@ -21,7 +21,7 @@ Cases that include commercialization of WPScan require a commercial, non-free li
 
 1.3 "WPScan Team" means WPScan’s core developers, an updated list of whom can be found within the CREDITS file.
 
-##### 2. Commercialization
+### 2. Commercialization
 
 A commercial use is one intended for commercial advantage or monetary compensation.
 
@@ -44,7 +44,7 @@ We may grant commercial licenses at no monetary cost at our own discretion if th
 
 Free-use Terms and Conditions;
 
-##### 3. Redistribution
+### 3. Redistribution
 
 Redistribution is permitted under the following conditions:
 
@@ -52,35 +52,35 @@ Redistribution is permitted under the following conditions:
  - Unmodified Copyright notices are provided with WPScan.
  - Does not conflict with the commercialization clause.
 
-##### 4. Copying
+### 4. Copying
 
 Copying is permitted so long as it does not conflict with the Redistribution clause.
 
-##### 5. Modification
+### 5. Modification
 
 Modification is permitted so long as it does not conflict with the Redistribution clause.
 
-##### 6. Contributions
+### 6. Contributions
 
 Any Contributions assume the Contributor grants the WPScan Team the unlimited, non-exclusive right to reuse, modify and relicense the Contributor's content.
 
-##### 7. Support
+### 7. Support
 
 WPScan is provided under an AS-IS basis and without any support, updates or maintenance. Support, updates and maintenance may be given according to the sole discretion of the WPScan Team.
 
-##### 8. Disclaimer of Warranty
+### 8. Disclaimer of Warranty
 
 WPScan is provided under this License on an “as is” basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the WPScan is free of defects, merchantable, fit for a particular purpose or non-infringing.
 
-##### 9. Limitation of Liability
+### 9. Limitation of Liability
 
 To the extent permitted under Law, WPScan is provided under an AS-IS basis. The WPScan Team shall never, and without any limit, be liable for any damage, cost, expense or any other payment incurred as a result of WPScan's actions, failure, bugs and/or any other interaction between WPScan and end-equipment, computers, other software or any 3rd party, end-equipment, computer or services.
 
-##### 10. Disclaimer
+### 10. Disclaimer
 
 Running WPScan against websites without prior mutual consent may be illegal in your country. The WPScan Team accept no liability and are not responsible for any misuse or damage caused by WPScan.
 
-#### INSTALL
+# INSTALL
 
 WPScan comes pre-installed on the following Linux distributions:
 
@@ -90,66 +90,37 @@ WPScan comes pre-installed on the following Linux distributions:
 - [SamuraiWTF](http://samurai.inguardians.com/)
 - [BlackArch](http://blackarch.org/)
 
-Prerequisites:
+Windows is not supported
+
+## Prerequisites
 
 - Ruby >= 2.1.9 - Recommended: 2.3.1
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
 
-Windows is not supported.
-If installed from Github update the code base with ```git pull```. The databases are updated with ```wpscan.rb --update```.
-
-####Installing on Ubuntu:
-
-Before Ubuntu 14.04:
-
-    sudo apt-get install libcurl4-openssl-dev libopenssl-ruby libxml2 libxml2-dev libxslt1-dev ruby-dev
-    git clone https://github.com/wpscanteam/wpscan.git
-    cd wpscan
-    sudo gem install bundler && bundle install --without test
-
-From Ubuntu 14.04:
+### Installing dependencies on Ubuntu
 
     sudo apt-get install libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev
-    git clone https://github.com/wpscanteam/wpscan.git
-    cd wpscan
-    sudo gem install bundler && bundle install --without test
 
-####Installing on Debian:
+### Installing dependencies on Debian
 
     sudo apt-get install git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev
-    git clone https://github.com/wpscanteam/wpscan.git
-    cd wpscan
-    sudo gem install bundler
-    bundle install --without test --path vendor/bundle
 
-####Installing on Fedora:
+### Installing dependencies on Fedora
 
     sudo dnf install gcc ruby-devel libxml2 libxml2-devel libxslt libxslt-devel libcurl-devel patch rpm-build
-    git clone https://github.com/wpscanteam/wpscan.git
-    cd wpscan
-    sudo gem install bundler && bundle install --without test
 
-####Installing on Archlinux:
+### Installing dependencies on Arch Linux
 
     pacman -Syu ruby
     pacman -Syu libyaml
-    git clone https://github.com/wpscanteam/wpscan.git
-    cd wpscan
-    sudo gem install bundler && bundle install --without test
-    gem install typhoeus
-    gem install nokogiri
 
-####Installing on Mac OSX:
+### Installing dependencies on Mac OSX
 
 Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See [http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error](http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error)
 
-    git clone https://github.com/wpscanteam/wpscan.git
-    cd wpscan
-    sudo gem install bundler && sudo bundle install --without test
-
-####Installing with RVM (recommended):
+## Installing with RVM (recommended)
 
 If you are using GNOME Terminal, there are some steps required before executing the commands. See here for more information:
 https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
@@ -169,10 +140,16 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     gem install bundler
     bundle install --without test
 
-#### DOCKER
+## Installing manually (not recommended)
+
+    git clone https://github.com/wpscanteam/wpscan.git
+    cd wpscan
+    sudo gem install bundler && bundle install --without test
+
+# DOCKER
 Pull the repo with `docker pull wpscanteam/wpscan`
 
-##### Start WPScan
+## Start WPScan
 
 ```
 docker run --rm wpscanteam/wpscan -u http://yourblog.com [options]
@@ -182,7 +159,7 @@ For the available Options, please see https://github.com/wpscanteam/wpscan#wpsca
 
 Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
-#### KNOWN ISSUES
+# KNOWN ISSUES
 
   - Typhoeus segmentation fault
 
@@ -225,7 +202,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
       See [https://github.com/wpscanteam/wpscan/issues/148](https://github.com/wpscanteam/wpscan/issues/148)
 
-#### WPSCAN ARGUMENTS
+# WPSCAN ARGUMENTS
 
     --update                            Update the database to the latest version.
     --url       | -u <target url>       The WordPress URL/domain to scan.
@@ -275,7 +252,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     --verbose  | -v                     Verbose output.
     --version                           Output the current version and exit.
 
-#### WPSCAN EXAMPLES
+# WPSCAN EXAMPLES
 
 Do 'non-intrusive' checks...
 
@@ -309,22 +286,22 @@ Debug output...
 
 ```ruby wpscan.rb --url www.example.com --debug-output 2>debug.log```
 
-#### PROJECT HOME
+# PROJECT HOME
 
 [http://www.wpscan.org](http://www.wpscan.org)
 
-#### VULNERABILITY DATABASE
+# VULNERABILITY DATABASE
 
 [https://wpvulndb.com](https://wpvulndb.com)
 
-#### GIT REPOSITORY
+# GIT REPOSITORY
 
 [https://github.com/wpscanteam/wpscan](https://github.com/wpscanteam/wpscan)
 
-#### ISSUES
+# ISSUES
 
 [https://github.com/wpscanteam/wpscan/issues](https://github.com/wpscanteam/wpscan/issues)
 
-#### DEVELOPER DOCUMENTATION
+# DEVELOPER DOCUMENTATION
 
 [http://rdoc.info/github/wpscanteam/wpscan/frames](http://rdoc.info/github/wpscanteam/wpscan/frames)
