@@ -160,6 +160,11 @@ describe 'VersionCompare' do
         @version1 = '.47'
         @version2 = '.50.3'
       end
+
+      it 'returns true' do
+        @version1 = '2.5.9'
+        @version2 = '2.5.10'
+      end
     end
 
     context 'version checked is older' do
