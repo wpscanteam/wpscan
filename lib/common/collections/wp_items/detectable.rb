@@ -120,7 +120,7 @@ class WpItems < Array
       wp_content_dir = wp_target.wp_content_dir
       wp_content_url = wp_target.uri.merge(wp_content_dir).to_s
 
-      url = /#{wp_content_url.gsub(%r{\A(?:http|https)}, 'https?').gsub('/', '\\\\\?\/')}/i
+      url = wp_content_url.gsub(%r{\A(?:http|https)://}, '(?:https?:)?//').gsub('/', '\\\\\?\/')
       content_dir = %r{(?:#{url}|\\?\/\\?\/?#{wp_content_dir})}i
 
       %r{#{content_dir}\\?/#{type}\\?/}
