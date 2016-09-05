@@ -20,7 +20,8 @@ class Browser
     :cookie,
     :throttle,
     :disable_accept_header,
-    :disable_referer
+    :disable_referer,
+    :disable_tls_checks
   ]
 
   @@instance = nil
@@ -155,8 +156,12 @@ class Browser
     params.merge!(maxredirs: 3) unless params.key?(:maxredirs)
 
     # Disable SSL-Certificate checks
-    params.merge!(ssl_verifypeer: false) unless params.key?(:ssl_verifypeer)
-    params.merge!(ssl_verifyhost: 0) unless params.key?(:ssl_verifyhost)
+    if @disable_tls_checks
+      # Cert validity check
+      params.merge!(ssl_verifypeer: 0) unless params.key?(:ssl_verifypeer)
+      # Cert hostname check
+      params.merge!(ssl_verifyhost: 0) unless params.key?(:ssl_verifyhost)
+    end
 
     params.merge!(cookiejar: @cache_dir + '/cookie-jar')
     params.merge!(cookiefile: @cache_dir + '/cookie-jar')

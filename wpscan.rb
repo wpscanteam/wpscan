@@ -86,6 +86,10 @@ def main
       raise 'We do not support scanning *.wordpress.com hosted blogs'
     end
 
+    if wp_target.ssl_error?
+      raise "The target site returned an SSL/TLS error. You can try again using the --disable-tls-checks option.\nError: #{wp_target.get_root_path_return_code}\nSee here for a detailed explanation of the error: http://www.rubydoc.info/github/typhoeus/ethon/Ethon/Easy:return_code"
+    end
+
     # Remote website up?
     unless wp_target.online?
       raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down. Maybe the site is blocking wpscan so you can try the --random-agent parameter."

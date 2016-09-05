@@ -46,7 +46,8 @@ class WpscanOptions
     :throttle,
     :disable_accept_header,
     :disable_referer,
-    :cache_dir
+    :cache_dir,
+    :disable_tls_checks
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -290,7 +291,8 @@ class WpscanOptions
       ['--throttle', GetoptLong::REQUIRED_ARGUMENT],
       ['--disable-accept-header', GetoptLong::NO_ARGUMENT],
       ['--disable-referer', GetoptLong::NO_ARGUMENT],
-      ['--cache-dir', GetoptLong::REQUIRED_ARGUMENT]
+      ['--cache-dir', GetoptLong::REQUIRED_ARGUMENT],
+      ['--disable-tls-checks', GetoptLong::NO_ARGUMENT],
     )
   end
 

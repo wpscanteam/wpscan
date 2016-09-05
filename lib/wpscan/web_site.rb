@@ -21,6 +21,29 @@ class WebSite
     @uri.to_s
   end
 
+  # Checks if the remote website has ssl errors
+  def ssl_error?
+    return false unless @uri.scheme == 'https'
+    c = get_root_path_return_code
+    # http://www.rubydoc.info/github/typhoeus/ethon/Ethon/Easy:return_code
+    return (
+      c == :ssl_connect_error ||
+      c == :peer_failed_verification ||
+      c == :ssl_certproblem ||
+      c == :ssl_cipher ||
+      c == :ssl_cacert ||
+      c == :ssl_cacert_badfile ||
+      c == :ssl_issuer_error ||
+      c == :ssl_crl_badfile ||
+      c == :ssl_engine_setfailed ||
+      c == :ssl_engine_notfound
+    )
+  end
+
+  def get_root_path_return_code
+    Browser.get(@uri.to_s).return_code
+  end
+
   # Checks if the remote website is up.
   def online?
     Browser.get(@uri.to_s).code != 0
