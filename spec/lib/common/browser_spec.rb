@@ -128,7 +128,6 @@ describe Browser do
     let(:default_expectation) {
       {
         cache_ttl: 250,
-        ssl_verifypeer: false, ssl_verifyhost: 0,
         cookiejar: cookie_jar, cookiefile: cookie_jar,
         timeout: 60, connecttimeout: 10,
         maxredirs: 3,
@@ -213,6 +212,13 @@ describe Browser do
 
       it 'sets the cookie' do
         @expected = default_expectation.merge(cookie: cookie)
+      end
+    end
+
+    context 'when @disable_tls_checks' do
+      it 'disables tls checks' do
+        browser.disable_tls_checks = true
+        @expected = default_expectation.merge(ssl_verifypeer: 0, ssl_verifyhost: 0)
       end
     end
   end
