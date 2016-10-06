@@ -5,7 +5,8 @@ $: << '.'
 
 $exit_code = 0
 
-require File.dirname(__FILE__) + '/lib/wpscan/wpscan_helper'
+wpscan_helper_path = File.join(File.realdirpath(__dir__), 'lib', 'wpscan', 'wpscan_helper')
+require wpscan_helper_path
 
 def main
   # delete old logfile, check if it is a symlink first.
