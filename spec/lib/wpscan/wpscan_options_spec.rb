@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-require File.expand_path(File.dirname(__FILE__) + '/wpscan_helper')
+require File.expand_path(File.join(__dir__, 'wpscan_helper'))
 
 describe 'WpscanOptions' do
 

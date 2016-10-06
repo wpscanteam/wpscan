@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-LIB_DIR              = File.expand_path(File.join(File.dirname(__FILE__), '..'))
+LIB_DIR              = File.expand_path(File.join(__dir__, '..'))
 ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
 DATA_DIR             = File.join(ROOT_DIR, 'data')
 CONF_DIR             = File.join(ROOT_DIR, 'conf')

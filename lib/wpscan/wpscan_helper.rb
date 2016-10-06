@@ -1,6 +1,6 @@
 # encoding: UTF-8
 
-require File.expand_path(File.dirname(__FILE__) + '/../common/common_helper')
+require File.expand_path(File.join(__dir__, '..', 'common', 'common_helper'))
 
 require_files_from_directory(WPSCAN_LIB_DIR, '**/*.rb')
 

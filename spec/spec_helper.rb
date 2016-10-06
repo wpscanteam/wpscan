@@ -7,7 +7,7 @@ require 'simplecov' if RUBY_VERSION >= '1.9'
 
 RSpec::Expectations.configuration.warn_about_potential_false_positives = false
 
-require File.expand_path(File.dirname(__FILE__) + '/../lib/common/common_helper')
+require File.expand_path(File.join(__dir__, '..', 'lib', 'common', 'common_helper'))
 
 SPEC_DIR                      = ROOT_DIR + '/spec'
 SPEC_LIB_DIR                  = SPEC_DIR + '/lib'

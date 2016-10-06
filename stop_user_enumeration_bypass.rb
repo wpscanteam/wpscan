@@ -4,7 +4,7 @@
 #
 # Script based on http://seclists.org/fulldisclosure/2014/Feb/3
 
-require File.join(File.dirname(__FILE__), 'lib/wpscan/wpscan_helper')
+require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 
 @opts = {
   ids: 1..10,

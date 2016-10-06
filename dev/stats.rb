@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
 
-require File.dirname(__FILE__) + '/../lib/wpscan/wpscan_helper'
+require File.expand_path(File.join(__dir__, '..', 'lib', 'wpscan', 'wpscan_helper'))
 
 wordpress_json = json(WORDPRESSES_FILE)
 plugins_json = json(PLUGINS_FILE)
