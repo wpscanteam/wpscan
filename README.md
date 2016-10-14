@@ -236,7 +236,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     --follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not
     --batch                             Never ask for user input, use the default behaviour.
     --no-color                          Do not use colors in the output.
-    --wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it.
+    --wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specify it.
                                         Subdirectories are allowed.
     --wp-plugins-dir <wp plugins dir>   Same thing than --wp-content-dir but for the plugins directory.
                                         If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed
