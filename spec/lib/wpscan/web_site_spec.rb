@@ -176,6 +176,17 @@ describe 'WebSite' do
         @expected = "yolo\n\n\nworld!"
       end
     end
+
+    context 'when there are scripts' do
+      let(:page) {
+        body = "yolo\n\n<script type=\"text/javascript\">alert('Hi');</script>\nworld!"
+        Typhoeus::Response.new(body: body)
+      }
+
+      it 'removes them' do
+        @expected = "yolo\n\n\nworld!"
+      end
+    end
   end
 
   describe '#homepage_hash' do
