@@ -89,7 +89,7 @@ def help
   puts '--follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not'
   puts '--batch                             Never ask for user input, use the default behaviour.'
   puts '--no-color                          Do not use colors in the output.'
-  puts '--wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it.'
+  puts '--wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specify it.'
   puts '                                    Subdirectories are allowed.'
   puts '--wp-plugins-dir <wp plugins dir>   Same thing than --wp-content-dir but for the plugins directory.'
   puts '                                    If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed'

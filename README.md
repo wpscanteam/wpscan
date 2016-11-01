@@ -81,7 +81,7 @@ To the extent permitted under Law, WPScan is provided under an AS-IS basis. The 
 
 Running WPScan against websites without prior mutual consent may be illegal in your country. The WPScan Team accept no liability and are not responsible for any misuse or damage caused by WPScan.
 
-11. Trademark
+### 11. Trademark
 
 The "wpscan" term is a registered trademark. This License does not grant the use of the "wpscan" trademark or the use of the WPScan logo.
 
@@ -236,7 +236,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     --follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not
     --batch                             Never ask for user input, use the default behaviour.
     --no-color                          Do not use colors in the output.
-    --wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specified it.
+    --wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specify it.
                                         Subdirectories are allowed.
     --wp-plugins-dir <wp plugins dir>   Same thing than --wp-content-dir but for the plugins directory.
                                         If not supplied, WPScan will use wp-content-dir/plugins. Subdirectories are allowed

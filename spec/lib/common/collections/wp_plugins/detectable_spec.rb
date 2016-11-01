@@ -100,6 +100,13 @@ describe 'WpPlugins::Detectable' do
           expected.add('all-in-one-seo-pack', version: '2.0.3.1')
         end
       end
+
+      context 'when google-universal-analytics detected' do
+        it 'returns google-universal-analytics' do
+          @body = '<!-- Google Universal Analytics for WordPress v2.4.2 -->'
+          expected.add('google-universal-analytics', version: '2.4.2')
+        end
+      end
     end
   end
 
