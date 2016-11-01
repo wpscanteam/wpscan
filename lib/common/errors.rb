@@ -33,10 +33,9 @@ class DownloadError < HttpError
 end
 
 class ChecksumError < StandardError
-  attr_reader :file, :cloudflare_info
+  attr_reader :file
 
-  def initialize(file, cloudflare_info)
+  def initialize(file)
     @file = file
-    @cloudflare_info = cloudflare_info
   end
 end

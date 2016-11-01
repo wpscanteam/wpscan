@@ -80,15 +80,6 @@ class DbUpdater
     local_file_checksum(filename)
   end
 
-  def get_cloudflare_info
-    begin
-      res = Browser.get(remote_file_url('/cdn-cgi/trace'), request_params)
-      res.body
-    rescue
-      nil
-    end
-  end
-
   def update(verbose = false)
     FILES.each do |filename|
       begin
@@ -110,7 +101,7 @@ class DbUpdater
         puts "  [i] Database File Checksum  : #{db_checksum}" if verbose
 
         unless dl_checksum == db_checksum
-          raise ChecksumError.new(File.read(local_file_path(filename)), get_cloudflare_info), "#{filename}: checksums do not match (local: #{dl_checksum} remote: #{db_checksum})"
+          raise ChecksumError.new(File.read(local_file_path(filename))), "#{filename}: checksums do not match (local: #{dl_checksum} remote: #{db_checksum})"
         end
       rescue => e
         puts '  [i] Restoring Backup due to error' if verbose
