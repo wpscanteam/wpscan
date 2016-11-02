@@ -18,7 +18,7 @@ RUN bundle install --without test
 RUN chown -R wpscan:wpscan /wpscan
 
 USER wpscan
-RUN /wpscan/wpscan.rb --update --verbose
+RUN /wpscan/wpscan.rb --update --verbose --no-color
 
 ENTRYPOINT ["/wpscan/wpscan.rb"]
 CMD ["--help"]
