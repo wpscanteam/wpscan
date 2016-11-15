@@ -10,6 +10,10 @@ Released: 2016-XX-XX
 * Fix error when detecting a WordPress version not in our database
 * Added some additional clarification on error messages
 * Upgrade terminal-table gem
+* Add --cache-dir option
+* Add --disable-tls-checks options
+* Improve/add additional plugin passive detections
+* Remove scripts when calculating page hashes
 
 ## Version 2.9.1
 Released: 2016-05-06
