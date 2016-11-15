@@ -3,7 +3,7 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.9.2...master)
 
 ## Version 2.9.2
-Released: 2016-XX-XX
+Released: 2016-11-15
 
 * Fixed error when detecting plugins with UTF-8 characters
 * Use all possible finders to verify a detected version
