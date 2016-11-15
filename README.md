@@ -231,11 +231,16 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
                                         You do not need to provide the regexp delimiters, but you must write the quotes (simple or double).
     --config-file  | -c <config file>   Use the specified config file, see the example.conf.json.
     --user-agent   | -a <User-Agent>    Use the specified User-Agent.
-    --cookie <String>                   String to read cookies from.
+    --cookie <string>                   String to read cookies from.
     --random-agent | -r                 Use a random User-Agent.
     --follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not
     --batch                             Never ask for user input, use the default behaviour.
     --no-color                          Do not use colors in the output.
+    --log                               Creates a log.txt file with WPScan's output.
+    --no-banner                         Prevents the WPScan banner from being displayed.
+    --disable-accept-header             Prevents WPScan sending the Accept HTTP header.
+    --disable-referer                   Prevents setting the Referer header.
+    --disable-tls-checks                Disables SSL/TLS certificate verification.
     --wp-content-dir <wp content dir>   WPScan try to find the content directory (ie wp-content) by scanning the index page, however you can specify it.
                                         Subdirectories are allowed.
     --wp-plugins-dir <wp plugins dir>   Same thing than --wp-content-dir but for the plugins directory.
@@ -247,10 +252,11 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     --wordlist | -w <wordlist>          Supply a wordlist for the password brute forcer.
     --username | -U <username>          Only brute force the supplied username.
     --usernames     <path-to-file>      Only brute force the usernames from the file.
-    --threads  | -t <number of threads> The number of threads to use when multi-threading requests.
+    --cache-dir       <cache-directory> Set the cache directory.
     --cache-ttl       <cache-ttl>       Typhoeus cache TTL.
     --request-timeout <request-timeout> Request Timeout.
     --connect-timeout <connect-timeout> Connect Timeout.
+    --threads  | -t <number of threads> The number of threads to use when multi-threading requests.
     --max-threads     <max-threads>     Maximum Threads.
     --throttle        <milliseconds>    Milliseconds to wait before doing another web request. If used, the --threads should be set to 1.
     --help     | -h                     This help screen.
