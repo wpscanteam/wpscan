@@ -15,6 +15,17 @@ Released: 2016-XX-XX
 * Improve/add additional plugin passive detections
 * Remove scripts when calculating page hashes
 
+WPScan Database Statistics:
+* Total tracked wordpresses: 194
+* Total tracked plugins: 63703
+* Total tracked themes: 13835
+* Total vulnerable wordpresses: 177
+* Total vulnerable plugins: 1382
+* Total vulnerable themes: 379
+* Total wordpress vulnerabilities: 2617
+* Total plugin vulnerabilities: 2190
+* Total theme vulnerabilities: 452
+
 ## Version 2.9.1
 Released: 2016-05-06
 
