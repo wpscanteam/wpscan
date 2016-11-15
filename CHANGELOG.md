@@ -14,6 +14,7 @@ Released: 2016-11-15
 * Add --disable-tls-checks options
 * Improve/add additional plugin passive detections
 * Remove scripts when calculating page hashes
+* Many other small bug fixes.
 
 WPScan Database Statistics:
 * Total tracked wordpresses: 194
