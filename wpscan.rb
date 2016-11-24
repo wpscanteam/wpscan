@@ -528,11 +528,9 @@ def main
     match_log['request_count'] = @total_requests_done
 
     if wpscan_options.json_file and !wpscan_options.json_file.strip.empty?
-      ::File.open(wpscan_options.json_file,'w+') {|j| j.write(match_log.to_json)}
+      ::File.open(wpscan_options.json_file,'w+') {|j| j.write(JSON.pretty_generate(match_log))}
     elsif wpscan_options.verbose
-      puts info("JSON output:\n\n")
-      pp match_log.to_json
-      puts info("\n\n")
+      puts info("JSON output:\n\n#{JSON.pretty_generate(match_log)}\n\n")
     end
 
     puts
