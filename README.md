@@ -110,7 +110,7 @@ Windows is not supported
 
 ### Installing dependencies on Debian
 
-    sudo apt-get install git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev
+    sudo apt-get install gcc git ruby ruby-dev libcurl4-openssl-dev make zlib1g-dev
 
 ### Installing dependencies on Fedora
 
