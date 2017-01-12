@@ -1,23 +1,17 @@
-FROM ruby:2.3-slim
+FROM alpine:3.4
 MAINTAINER WPScan Team <team@wpscan.org>
 
-RUN DEBIAN_FRONTEND=noninteractive && \
-  rm -rf /var/lib/apt/lists/* && \
-  apt-get update && \
-  apt-get --no-install-recommends -qq -y install curl git ca-certificates openssl libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev build-essential procps
-
-RUN useradd -d /wpscan wpscan
-RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
 RUN mkdir /wpscan
-
-COPY . /wpscan
-
 WORKDIR /wpscan
 
-RUN bundle install --without test
-RUN chown -R wpscan:wpscan /wpscan
+RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
+COPY Gemfile /wpscan
 
-USER wpscan
+RUN apk add --no-cache ruby libcurl ruby-dev ruby-bundler libffi-dev make gcc musl-dev zlib-dev procps && \
+  bundle install --without test && \
+  apk del --purge ruby-dev libffi-dev make gcc musl-dev zlib-dev
+
+COPY . /wpscan
 RUN /wpscan/wpscan.rb --update --verbose --no-color
 
 ENTRYPOINT ["/wpscan/wpscan.rb"]
