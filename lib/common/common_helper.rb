@@ -96,7 +96,9 @@ end
 
 def update_required?
   date = last_update
-  (true if date.nil?) or (date < 5.days.ago)
+  day_seconds = 24 * 60 * 60
+  five_days_ago = Time.now - (5 * day_seconds)
+  (true if date.nil?) or (date < five_days_ago)
 end
 
 # Define colors

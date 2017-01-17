@@ -1,4 +1,4 @@
-FROM ruby:2.3-slim
+FROM ruby:2.4-slim
 MAINTAINER WPScan Team <team@wpscan.org>
 
 RUN DEBIAN_FRONTEND=noninteractive && \
