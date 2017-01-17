@@ -6,7 +6,11 @@ gem 'addressable'
 gem 'yajl-ruby' # Better JSON parser regarding memory usage
 gem 'terminal-table', '>=1.6.0'
 gem 'ruby-progressbar', '>=1.6.0'
-gem 'xmlrpc'
+
+# needed from ruby 2.4 onwards
+install_if -> { Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.4") } do
+  gem 'xmlrpc'
+end
 
 group :test do
   gem 'webmock', '>=1.17.2'
