@@ -15,6 +15,7 @@ rvm:
   - 2.4.0
 before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
+  - "gem install bundler"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
 script: bundle exec rspec
