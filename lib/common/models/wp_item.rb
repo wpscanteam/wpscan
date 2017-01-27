@@ -51,7 +51,7 @@ class WpItem
   end
 
   def last_updated
-    db_data['last_ipdated']
+    db_data['last_updated']
   end
 
   def popular?
