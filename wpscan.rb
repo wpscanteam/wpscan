@@ -371,7 +371,7 @@ def main
     end
 
     # If we haven't been supplied a username/usernames list, enumerate them...
-    if !wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist || wpscan_options.enumerate_usernames
+    if !wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist
       puts
       puts info('Enumerating usernames ...')
 
