@@ -13,8 +13,8 @@ install_if -> { Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.4") } do
 end
 
 group :test do
-  gem 'webmock', '>=2.3.2'
-  gem 'simplecov', '>=0.13.0'
-  gem 'rspec', '>=3.5.0'
-  gem 'rspec-its', '>=1.2.0'
+  gem 'webmock'
+  gem 'simplecov'
+  gem 'rspec'
+  gem 'rspec-its'
 end
