@@ -21,7 +21,6 @@ begin
   require 'uri'
   require 'time'
   require 'resolv'
-  require 'xmlrpc/client'
   require 'digest/md5'
   require 'digest/sha1'
   require 'base64'
