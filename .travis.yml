@@ -20,8 +20,6 @@ before_install:
   - "bundler --version"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
-install:
-  - "bundle install --jobs=3 --retry=3"
 script:
   - "bundle exec rspec"
 notifications:
