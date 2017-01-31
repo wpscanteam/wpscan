@@ -17,10 +17,11 @@ before_install:
   - "env"
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - "gem install bundler"
+  - "bundler --version"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
 install:
-  - "bundle install -f --jobs=3 --retry=3"
+  - "bundle install --jobs=3 --retry=3"
 script:
   - "bundle exec rspec"
 notifications:
