@@ -9,7 +9,7 @@ gem 'ruby-progressbar', '>=1.8.1'
 
 # needed from ruby 2.4 onwards
 install_if -> { Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("2.4") } do
-  gem 'xmlrpc'
+  gem 'xmlrpc', :require => false
 end
 
 group :test do

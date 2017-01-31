@@ -16,7 +16,7 @@ rvm:
 before_install:
   - "env"
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
-  - "gem install bundler -v 1.13.7"
+  - "gem install bundler"
   - "bundler --version"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
