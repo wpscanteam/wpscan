@@ -16,10 +16,13 @@ rvm:
 before_install:
   - "env"
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
-  - "gem install bundler -v 1.13.7"
+  - "gem install bundler"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
-script: bundle exec rspec
+install:
+  - "bundle install -f --jobs=3 --retry=3"
+script:
+  - "bundle exec rspec"
 notifications:
   email:
     - team@wpscan.org
