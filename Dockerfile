@@ -10,14 +10,15 @@ RUN useradd -d /wpscan wpscan
 RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
 RUN mkdir /wpscan
 
-COPY . /wpscan
-
+COPY Gemfile /wpscan
 WORKDIR /wpscan
+RUN bundle install --system --without test
 
-RUN bundle install --without test
+COPY . /wpscan
 RUN chown -R wpscan:wpscan /wpscan
 
 USER wpscan
+
 RUN /wpscan/wpscan.rb --update --verbose --no-color
 
 ENTRYPOINT ["/wpscan/wpscan.rb"]
