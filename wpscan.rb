@@ -470,7 +470,10 @@ def main
       puts
     end
 
-    puts critical('Please submit this info as an Github issue')
+    puts critical('Some hints to help you with this issue:')
+    puts critical('-) Try updating again')
+    puts critical('-) If you see SSL/TLS related error messages you have to fix your local TLS setup')
+    puts critical('-) Windows is still not supported')
     exit(1)
   rescue => e
     puts
