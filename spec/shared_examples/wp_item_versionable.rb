@@ -5,6 +5,7 @@ shared_examples 'WpItem::Versionable' do
   describe '#version' do
     let(:fixtures_dir) { MODELS_FIXTURES + '/wp_item/versionable' }
     let(:readme_url)   { subject.uri.merge('readme.txt').to_s }
+    let(:changelog_url)   { subject.uri.merge('changelog.txt').to_s }
 
     context 'when the version is already set' do
       it 'returns it' do
@@ -16,6 +17,7 @@ shared_examples 'WpItem::Versionable' do
     context 'otherwise' do
       after do
         stub_request_to_fixture(url: readme_url, fixture: fixtures_dir + @file)
+        stub_request_to_fixture(url: changelog_url, fixture: fixtures_dir + '/blank.txt')
         expect(subject.version).to eq @expected
       end
 
@@ -136,6 +138,13 @@ shared_examples 'WpItem::Versionable' do
           it 'returns it' do
             @file     = '/blog-reordering.txt'
             @expected = nil
+          end
+        end
+
+        context 'when parsing the changelog for version numbers' do
+          it 'returns it' do
+            @file     = '/js_composer_changes.txt'
+            @expected = '5.0.1'
           end
         end
       end

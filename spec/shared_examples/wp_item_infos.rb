@@ -49,13 +49,17 @@ shared_examples 'WpItem::Infos' do
 
   describe '#changelog_url' do
     it 'returns the correct url' do
-      expect(subject.changelog_url).to eq changelog_url
+      stub_request(:get, changelog_urls.first).to_return(status: 404)
+      stub_request(:get, changelog_urls.last).to_return(status: 200)
+      expect(subject.changelog_url).to eq changelog_urls.last
     end
   end
 
   describe '#has_changelog?' do
     after :each do
-      stub_request(:get, subject.changelog_url).to_return(status: @status)
+      changelog_urls.each do |url|
+        stub_request(:get, url).to_return(status: @status)
+      end
       expect(subject.has_changelog?).to eql @expected
     end
 

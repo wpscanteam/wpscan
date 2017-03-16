@@ -6,7 +6,7 @@ describe WpItem do
   it_behaves_like 'WpItem::Existable'
   it_behaves_like 'WpItem::Findable#Found_From='
   it_behaves_like 'WpItem::Infos' do
-    let(:changelog_url) { uri.merge('changelog.txt').to_s }
+    let(:changelog_urls) { %w(changelog.txt changes.txt changelog.md).map { |name| uri.merge(name).to_s } }
     let(:error_log_url) { uri.merge('error_log').to_s }
   end
   it_behaves_like 'WpItem::Versionable'
