@@ -157,10 +157,20 @@ Pull the repo with `docker pull wpscanteam/wpscan`
 ## Start WPScan
 
 ```
-docker run --rm wpscanteam/wpscan -u http://yourblog.com [options]
+docker run --rm wpscanteam/wpscan -u https://yourblog.com [options]
 ```
 
 For the available Options, please see https://github.com/wpscanteam/wpscan#wpscan-arguments
+
+## Examples
+
+Mount a local wordlist to the docker container and start a bruteforce attack for user admin
+
+```
+docker run --rm -v ~/wordlists:/wordlists wpscan/dev --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
+```
+
+(This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
 
 Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
