@@ -167,7 +167,7 @@ For the available Options, please see https://github.com/wpscanteam/wpscan#wpsca
 Mount a local wordlist to the docker container and start a bruteforce attack for user admin
 
 ```
-docker run --rm -v ~/wordlists:/wordlists wpscan/dev --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
+docker run --rm -v ~/wordlists:/wordlists wpscanteam/wpscan --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
 ```
 
 (This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
