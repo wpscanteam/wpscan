@@ -118,7 +118,7 @@ class WpUser < WpItem
       elsif response.code.to_s =~ /^50/
         progression = critical('ERROR: Server error, try reducing the number of threads or use the --throttle option.')
       else
-        progression = critical("ERROR: We received an unknown response for #{password}...")
+        progression = critical("ERROR: We received an unknown response for login: #{login} and password: #{password}")
         verbose     = critical("  Code: #{response.code}\n    Body: #{response.body}\n")
       end
 
