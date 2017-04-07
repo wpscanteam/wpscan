@@ -75,10 +75,10 @@ class WpscanOptions
   end
 
   def wordlist=(wordlist)
-    if File.exists?(wordlist)
+    if File.exists?(wordlist) || system("#{wordlist.partition(" ").first}")
       @wordlist = wordlist
     else
-      raise "The file #{wordlist} does not exist"
+      raise "The file #{wordlist} does not exist or is not a command"
     end
   end
 

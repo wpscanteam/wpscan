@@ -28,9 +28,19 @@ class WpUser < WpItem
       queue_count  = 0
       found        = false
 
-      create_progress_bar(count_file_lines(wordlist)+1, options)
+      if File.file?(wordlist)
+        wordlist = File.readlines(wordlist)
+      else
+        command = wordlist
+        wordlist = []
+        IO.popen(command).each do |line|
+          wordlist << line.chomp
+        end
+      end
 
-      File.open(wordlist).each do |password|
+      create_progress_bar(wordlist.length+1, options)
+
+      wordlist.each do |password|
         password.chomp!
 
         # A successfull login will redirect us to the redirect_to parameter
