@@ -29,14 +29,17 @@ class WpUser < WpItem
       found        = false
 
       if wordlist == '-'
-        wordlist = $stdin.readlines
+        words = ARGF
+        passwords_size = nil
+        options[:starting_at] = 1
       else
-        wordlist = File.readlines(wordlist)
+        words = File.open(wordlist)
+        passwords_size = count_file_lines(wordlist)+1
       end
 
-      create_progress_bar(wordlist.length+1, options)
+      create_progress_bar(passwords_size, options)
 
-      wordlist.each do |password|
+      words.each do |password|
         password.chomp!
 
         # A successfull login will redirect us to the redirect_to parameter
@@ -85,7 +88,8 @@ class WpUser < WpItem
         @progress_bar = ProgressBar.create(
           format: '%t %a <%B> (%c / %C) %P%% %e',
           title: "  Brute Forcing '#{login}'",
-          total: passwords_size
+          total: passwords_size,
+          starting_at: options[:starting_at]
         )
       end
     end
