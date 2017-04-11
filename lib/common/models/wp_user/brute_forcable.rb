@@ -54,7 +54,8 @@ class WpUser < WpItem
         request.on_complete do |response|
           if options[:show_progression] && !found
             progress_bar.progress += 1
-            if progress_bar.progress.fdiv(progress_bar.total) >= 0.8
+            percentage = progress_bar.progress.fdiv(progress_bar.total)
+            if options[:starting_at] && percentage >= 0.8
               progress_bar.total *= 2
             end
           end
