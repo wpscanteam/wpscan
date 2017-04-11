@@ -30,8 +30,8 @@ class WpUser < WpItem
 
       if wordlist == '-'
         words = ARGF
-        passwords_size = nil
-        options[:starting_at] = 1
+        passwords_size = 10
+        options[:starting_at] = 0
       else
         words = File.open(wordlist)
         passwords_size = count_file_lines(wordlist)+1
@@ -60,6 +60,8 @@ class WpUser < WpItem
             found         = true
             self.password = password
             return
+          elsif progress_bar.progress.fdiv(progress_bar.total) >= 0.5
+            progress_bar.total *= 2
           end
         end
 
