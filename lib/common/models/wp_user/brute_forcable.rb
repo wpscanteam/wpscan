@@ -60,7 +60,7 @@ class WpUser < WpItem
             found         = true
             self.password = password
             return
-          elsif progress_bar.progress.fdiv(progress_bar.total) >= 0.5
+          elsif progress_bar.progress.fdiv(progress_bar.total) >= 0.8
             progress_bar.total *= 2
           end
         end
