@@ -20,7 +20,7 @@ class Browser
       elsif auth =~ /\ABasic [a-zA-Z0-9=]+\z/
         @basic_auth = auth
       else
-       raise 'Invalid basic authentication format, "login:password" or "Basic base_64_encoded" expected'
+        raise "Invalid basic authentication format, \"login:password\" or \"Basic base_64_encoded\" expected. Your input: #{auth}"
      end
     end
 

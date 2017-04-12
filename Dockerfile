@@ -1,6 +1,8 @@
 FROM ruby:2.4-slim
 MAINTAINER WPScan Team <team@wpscan.org>
 
+ARG BUNDLER_ARGS="--system --jobs=8 --without test"
+
 RUN DEBIAN_FRONTEND=noninteractive && \
   rm -rf /var/lib/apt/lists/* && \
   apt-get update && \
@@ -12,7 +14,7 @@ RUN mkdir /wpscan
 
 COPY Gemfile /wpscan
 WORKDIR /wpscan
-RUN bundle install --system --without test
+RUN bundle install $BUNDLER_ARGS
 
 COPY . /wpscan
 RUN chown -R wpscan:wpscan /wpscan
