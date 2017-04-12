@@ -12,6 +12,7 @@ cd $DIR/../
 # always rebuild and include all GEMs
 docker build --build-arg "BUNDLER_ARGS=--system --jobs=8" -t wpscan:rspec .
 # update all gems (this updates Gemfile.lock on the host)
+touch $DIR/../Gemfile.lock 
 docker run --rm -u root -v $DIR/../Gemfile.lock:/wpscan/Gemfile.lock --entrypoint "" wpscan:rspec bundle update
 # rebuild image with latest GEMs
 docker build --build-arg "BUNDLER_ARGS=--system --jobs=8" -t wpscan:rspec .
