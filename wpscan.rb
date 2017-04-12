@@ -7,6 +7,21 @@ $exit_code = 0
 
 require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 
+def ivars_to_hash(obj)
+  ret = {}
+  obj.instance_variables.map do |v|
+    val = obj.instance_variable_get(v)
+    if v == :@vulnerabilities
+      ret[v.to_s[1..-1]] = val.map {|e| ivars_to_hash(e)}
+    elsif val.is_a?(Hash)
+      ret[v.to_s[1..-1]] = val
+    else
+      ret[v.to_s[1..-1]] = val.to_s
+    end
+  end
+  ret
+end
+
 def main
   # delete old logfile, check if it is a symlink first.
   File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
@@ -152,21 +167,30 @@ def main
     unless wp_target.wp_plugins_dir_exists?
       puts "The plugins directory '#{wp_target.wp_plugins_dir}' does not exist."
       puts 'You can specify one per command line option (don\'t forget to include the wp-content directory if needed)'
-      puts '[?] Continue? [Y]es [N]o, default: [N]'
-      if wpscan_options.batch || Readline.readline !~ /^y/i
-        exit(1)
-      end
+      #puts '[?] Continue? [Y]es [N]o, default: [N]'
+      #if wpscan_options.batch || Readline.readline !~ /^y/i
+      #  exit(1)
+      #end
     end
 
     # Output runtime data
     start_time   = Time.now
     start_memory = get_memory_usage unless windows?
+    match_log     = {
+      'start_time' => start_time.to_f,
+      'start_memory' => start_memory
+    }
+    match_log.merge(ivars_to_hash(wp_target))
+    
     puts info("URL: #{wp_target.url}")
     puts info("Started: #{start_time.asctime}")
     puts
 
     if wp_target.has_robots?
       puts info("robots.txt available under: '#{wp_target.robots_url}'")
+      match_log['robots'] = {}
+      match_log['robots']['url'] = wp_target.robots_url
+      match_log['robots']['entries'] = wp_target.parse_robots_txt
 
       wp_target.parse_robots_txt.each do |dir|
         puts info("Interesting entry from robots.txt: #{dir}")
@@ -175,26 +199,34 @@ def main
 
     if wp_target.has_readme?
       puts warning("The WordPress '#{wp_target.readme_url}' file exists exposing a version number")
+      match_log['readme_url'] = wp_target.readme_url
     end
 
     if wp_target.has_full_path_disclosure?
       puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
+      match_log['full_path_disclosure_url'] = wp_target.full_path_disclosure_data
     end
 
     if wp_target.has_debug_log?
       puts critical("Debug log file found: #{wp_target.debug_log_url}")
+      match_log['debug_log_url'] = wp_target.debug_log_url
     end
 
     wp_target.config_backup.each do |file_url|
+      match_log['config_backup'] ||= []
+      match_log['config_backup'] << file_url
       puts critical("A wp-config.php backup file has been found in: '#{file_url}'")
     end
 
     if wp_target.search_replace_db_2_exists?
       puts critical("searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
+      match_log['search_replace_db_2_url'] = wp_target.search_replace_db_2_url
     end
 
     wp_target.interesting_headers.each do |header|
       output = info('Interesting header: ')
+      match_log['interesting_headers'] ||= []
+      match_log['interesting_headers'] << header
 
       if header[1].class == Array
         header[1].each do |value|
@@ -229,13 +261,22 @@ def main
       puts warning("Includes directory has directory listing enabled: #{wp_target.includes_dir_url}")
     end
 
+    %w{multisite? has_must_use_plugins? registration_enabled?
+    has_xml_rpc? upload_directory_listing_enabled?
+    include_directory_listing_enabled?}.map do |bool|
+      match_log[bool] = wp_target.send(bool.to_sym) === true
+    end
+
     enum_options = {
       show_progression: true,
       exclude_content: wpscan_options.exclude_content_based
     }
 
+    match_log['enum_options'] = enum_options.dup
+
     if wp_version = wp_target.version(WP_VERSIONS_FILE)
       wp_version.output(wpscan_options.verbose)
+      match_log['wp_version'] = wp_version.number
     else
       puts
       puts notice('WordPress version can not be detected')
@@ -247,6 +288,12 @@ def main
       puts info("WordPress theme in use: #{wp_theme}")
       wp_theme.output(wpscan_options.verbose)
 
+      match_log['wp_theme'] = ivars_to_hash(wp_theme)      
+
+      if wp_theme.is_child_theme?
+        match_log['wp_theme']['parent_theme'] = {}
+      end
+
       # Check for parent Themes
       parent_theme_count = 0
       while wp_theme.is_child_theme? && parent_theme_count <= wp_theme.parent_theme_limit
@@ -257,6 +304,11 @@ def main
         puts info("Detected parent theme: #{parent}")
         parent.output(wpscan_options.verbose)
         wp_theme = parent
+
+        eval "match_log#{"['parent_theme']" * parent_theme_count} ||= {}"
+        wp_theme.instance_variables.map do |v| 
+          eval "match_log#{"['parent_theme']" * parent_theme_count}['#{v.to_s[1..-1]}'] = '#{wp_theme.instance_variable_get(v).to_s}'"
+        end
       end
 
     end
@@ -266,6 +318,7 @@ def main
       puts info('Enumerating plugins from passive detection ...')
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
+      match_log['plugin_enumeration_type'] = 'passive'
       if !wp_plugins.empty?
         if wp_plugins.size == 1
           puts " | #{wp_plugins.size} plugin found:"
@@ -273,6 +326,7 @@ def main
           puts " | #{wp_plugins.size} plugins found:"
         end
         wp_plugins.output(wpscan_options.verbose)
+        match_log['wp_plugins'] = wp_plugins.map {|w| ivars_to_hash(w)}
       else
         puts info('No plugins found')
       end
@@ -295,6 +349,8 @@ def main
         puts info('Enumerating all plugins (may take a while and use a lot of system resources) ...')
         plugin_enumeration_type = :all
       end
+
+      match_log['plugin_enumeration_type'] = plugin_enumeration_type.to_s
       puts
 
       wp_plugins = WpPlugins.aggressive_detection(wp_target,
@@ -309,6 +365,7 @@ def main
         puts info("We found #{wp_plugins.size} plugins:")
 
         wp_plugins.output(wpscan_options.verbose)
+        match_log['wp_plugins'] = wp_plugins.map {|w| ivars_to_hash(w)}
       else
         puts info('No plugins found')
       end
@@ -331,6 +388,8 @@ def main
         puts info('Enumerating all themes (may take a while and use a lot of system resources) ...')
         theme_enumeration_type = :all
       end
+
+      match_log['theme_enumeration_type'] = theme_enumeration_type.to_s
       puts
 
       wp_themes = WpThemes.aggressive_detection(wp_target,
@@ -344,6 +403,7 @@ def main
         puts info("We found #{wp_themes.size} themes:")
 
         wp_themes.output(wpscan_options.verbose)
+        match_log['wp_themes'] = wp_themes.map {|w| ivars_to_hash(w)}
       else
         puts info('No themes found')
       end
@@ -365,17 +425,24 @@ def main
         puts info("We found #{wp_timthumbs.size} timthumb file/s:")
 
         wp_timthumbs.output(wpscan_options.verbose)
+        match_log['wp_timthumbs'] = wp_timthumbs.map {|w| ivars_to_hash(w)}
       else
         puts info('No timthumb files found')
       end
+      match_log['enumerate_timthumbs'] = true
+    else
+      match_log['enumerate_timthumbs'] = false
     end
 
     # If we haven't been supplied a username/usernames list, enumerate them...
     if !wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist || wpscan_options.enumerate_usernames
+      match_log['wordlist'] = wpscan_options.wordlist
+      match_log['enumerate_usernames'] = wpscan_options.enumerate_usernames
       puts
       puts info('Enumerating usernames ...')
 
       if wp_target.has_plugin?('stop-user-enumeration')
+        match_log['stop_user_enumeration'] = true
         puts warning("Stop User Enumeration plugin detected, results might be empty. However a bypass exists for v1.2.8 and below, see stop_user_enumeration_bypass.rb in #{__dir__}")
       end
 
@@ -397,6 +464,9 @@ def main
       else
         puts info("Identified the following #{wp_users.size} user/s:")
         wp_users.output(margin_left: ' ' * 4)
+
+        match_log['wp_users'] = wp_users.map {|w| ivars_to_hash(w)}
+
         if wp_users[0].login == "admin"
            puts warning("Default first WordPress username 'admin' is still used")
         end
@@ -421,6 +491,8 @@ def main
 
         protection_plugin = wp_target.login_protection_plugin()
 
+        match_log['login_protection_plugin'] = ivars_to_hash(protection_plugin)
+
         puts
         puts warning("The plugin #{protection_plugin.name} has been detected. It might record the IP and timestamp of every failed login and/or prevent brute forcing altogether. Not a good idea for brute forcing!")
         puts '[?] Do you want to start the brute force anyway ? [Y]es [N]o, default: [N]'
@@ -440,6 +512,7 @@ def main
         ensure
           puts
           wp_users.output(show_password: true, margin_left: ' ' * 2)
+          match_log['wp_users'] = wp_users.map {|w| ivars_to_hash(w)}
         end
       else
         puts critical('Brute forcing aborted')
@@ -449,6 +522,16 @@ def main
     stop_time   = Time.now
     elapsed     = stop_time - start_time
     used_memory = get_memory_usage - start_memory unless windows?
+
+    match_log['stop_time'] = stop_time.to_f
+    match_log['used_memory'] = used_memory
+    match_log['request_count'] = @total_requests_done
+
+    if wpscan_options.json_file and !wpscan_options.json_file.strip.empty?
+      ::File.open(wpscan_options.json_file,'w+') {|j| j.write(JSON.pretty_generate(match_log))}
+    elsif wpscan_options.verbose
+      puts info("JSON output:\n\n#{JSON.pretty_generate(match_log)}\n\n")
+    end
 
     puts
     puts info("Finished: #{stop_time.asctime}")

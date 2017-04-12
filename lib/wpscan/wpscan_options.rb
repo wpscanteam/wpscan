@@ -47,7 +47,8 @@ class WpscanOptions
     :disable_accept_header,
     :disable_referer,
     :cache_dir,
-    :disable_tls_checks
+    :disable_tls_checks,
+    :json_file
   ]
 
   attr_accessor *ACCESSOR_OPTIONS
@@ -155,6 +156,10 @@ class WpscanOptions
   def basic_auth=(basic_auth)
     raise 'Invalid basic authentication format, login:password expected' if basic_auth.index(':').nil?
     @basic_auth = "Basic #{Base64.encode64(basic_auth).chomp}"
+  end
+
+  def json_file=(json_file)
+    @json_file = File.expand_path(json_file)
   end
 
   def debug_output=(debug_output)
@@ -293,6 +298,7 @@ class WpscanOptions
       ['--disable-referer', GetoptLong::NO_ARGUMENT],
       ['--cache-dir', GetoptLong::REQUIRED_ARGUMENT],
       ['--disable-tls-checks', GetoptLong::NO_ARGUMENT],
+      ['--json-file',  GetoptLong::REQUIRED_ARGUMENT],
     )
   end
 
