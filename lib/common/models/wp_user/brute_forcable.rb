@@ -28,9 +28,18 @@ class WpUser < WpItem
       queue_count  = 0
       found        = false
 
-      create_progress_bar(count_file_lines(wordlist)+1, options)
+      if wordlist == '-'
+        words = ARGF
+        passwords_size = 10
+        options[:starting_at] = 0
+      else
+        words = File.open(wordlist)
+        passwords_size = count_file_lines(wordlist)+1
+      end
 
-      File.open(wordlist).each do |password|
+      create_progress_bar(passwords_size, options)
+
+      words.each do |password|
         password.chomp!
 
         # A successfull login will redirect us to the redirect_to parameter
@@ -43,7 +52,13 @@ class WpUser < WpItem
         request = login_request(password, redirect_url)
 
         request.on_complete do |response|
-          progress_bar.progress += 1 if options[:show_progression] && !found
+          if options[:show_progression] && !found
+            progress_bar.progress += 1
+            percentage = progress_bar.progress.fdiv(progress_bar.total)
+            if options[:starting_at] && percentage >= 0.8
+              progress_bar.total *= 2
+            end
+          end
 
           progress_bar.log("  Trying Username: #{login} Password: #{password}") if options[:verbose]
 
@@ -79,7 +94,8 @@ class WpUser < WpItem
         @progress_bar = ProgressBar.create(
           format: '%t %a <%B> (%c / %C) %P%% %e',
           title: "  Brute Forcing '#{login}'",
-          total: passwords_size
+          total: passwords_size,
+          starting_at: options[:starting_at]
         )
       end
     end
@@ -118,7 +134,7 @@ class WpUser < WpItem
       elsif response.code.to_s =~ /^50/
         progression = critical('ERROR: Server error, try reducing the number of threads or use the --throttle option.')
       else
-        progression = critical("ERROR: We received an unknown response for #{password}...")
+        progression = critical("ERROR: We received an unknown response for login: #{login} and password: #{password}")
         verbose     = critical("  Code: #{response.code}\n    Body: #{response.body}\n")
       end
 

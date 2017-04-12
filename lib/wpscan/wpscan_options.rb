@@ -75,7 +75,7 @@ class WpscanOptions
   end
 
   def wordlist=(wordlist)
-    if File.exists?(wordlist)
+    if File.exists?(wordlist) || wordlist == '-'
       @wordlist = wordlist
     else
       raise "The file #{wordlist} does not exist"

@@ -260,6 +260,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     --proxy-auth <username:password>    Supply the proxy login credentials.
     --basic-auth <username:password>    Set the HTTP Basic authentication.
     --wordlist | -w <wordlist>          Supply a wordlist for the password brute forcer.
+                                        If the "-" option is supplied, the wordlist is expected via STDIN.
     --username | -U <username>          Only brute force the supplied username.
     --usernames     <path-to-file>      Only brute force the usernames from the file.
     --cache-dir       <cache-directory> Set the cache directory.
@@ -282,6 +283,10 @@ Do 'non-intrusive' checks...
 Do wordlist password brute force on enumerated users using 50 threads...
 
 ```ruby wpscan.rb --url www.example.com --wordlist darkc0de.lst --threads 50```
+
+Do wordlist password brute force on enumerated users using STDIN as the wordlist...
+
+```crunch 5 13 -f charset.lst mixalpha | ruby wpscan.rb --url www.example.com --wordlist -```
 
 Do wordlist password brute force on the 'admin' username only...
 
