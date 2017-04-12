@@ -186,23 +186,6 @@ describe 'WpscanOptions' do
     end
   end
 
-  describe '#basic_auth=' do
-    context 'invalid format' do
-      it 'should raise an error if the : is missing' do
-        expect { @wpscan_options.basic_auth = 'helloworld' }.to raise_error(
-          RuntimeError, 'Invalid basic authentication format, login:password expected'
-        )
-      end
-    end
-
-    context 'valid format' do
-      it "should add the 'Basic' word and do the encode64. See RFC 2617" do
-        @wpscan_options.basic_auth = 'Aladdin:open sesame'
-        expect(@wpscan_options.basic_auth).to eq 'Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ=='
-      end
-    end
-  end
-
   describe '#has_options?' do
     it 'should return false' do
       expect(@wpscan_options.has_options?).to be_falsey

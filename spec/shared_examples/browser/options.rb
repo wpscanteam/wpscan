@@ -3,14 +3,14 @@
 shared_examples 'Browser::Options' do
 
   describe '#basic_auth=' do
-    let(:exception) { 'Invalid basic authentication format, "login:password" or "Basic base_64_encoded" expected' }
+    let(:exception) { /^Invalid basic authentication format, "login:password" or "Basic base_64_encoded" expected. Your input: .+$/ }
 
     after do
       if @expected
         browser.basic_auth = @auth
         expect(browser.basic_auth).to eq @expected
       else
-        expect { browser.basic_auth = @auth }.to raise_error(exception)
+        expect { browser.basic_auth = @auth }.to raise_error(RuntimeError, exception)
       end
     end
 
