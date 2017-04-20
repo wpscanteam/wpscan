@@ -99,7 +99,7 @@ Windows is not supported
 
 ## Prerequisites
 
-- Ruby >= 2.1.9 - Recommended: 2.3.3
+- Ruby >= 2.1.9 - Recommended: 2.4.0
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
@@ -136,10 +136,9 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
     echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-    rvm install 2.3.3
-    rvm use 2.3.3 --default
+    rvm install 2.4.0
+    rvm use 2.4.0 --default
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
-    gem install bundler
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     gem install bundler
