@@ -1,20 +1,19 @@
-FROM ruby:2.4-slim
+FROM ruby:2.4-alpine
 MAINTAINER WPScan Team <team@wpscan.org>
 
-ARG BUNDLER_ARGS="--system --jobs=8 --without test"
+ARG BUNDLER_ARGS="--jobs=8 --without test"
 
-RUN DEBIAN_FRONTEND=noninteractive && \
-  rm -rf /var/lib/apt/lists/* && \
-  apt-get update && \
-  apt-get --no-install-recommends -qq -y install curl git ca-certificates openssl libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev build-essential procps
-
-RUN useradd -d /wpscan wpscan
+RUN adduser -h /wpscan -g WPScan -D wpscan
 RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
-RUN mkdir /wpscan
 
 COPY Gemfile /wpscan
-WORKDIR /wpscan
-RUN bundle install $BUNDLER_ARGS
+
+# runtime dependecies
+RUN apk add --no-cache libcurl procps && \
+  # build dependecies
+  apk add --no-cache --virtual build-deps libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps && \
+  bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
+  apk del --no-cache build-deps
 
 COPY . /wpscan
 RUN chown -R wpscan:wpscan /wpscan

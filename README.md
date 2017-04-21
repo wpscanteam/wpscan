@@ -97,6 +97,35 @@ WPScan comes pre-installed on the following Linux distributions:
 
 Windows is not supported
 
+We suggest you use our official Docker image from https://hub.docker.com/r/wpscanteam/wpscan/ to avoid installation problems.
+
+# DOCKER
+Pull the repo with `docker pull wpscanteam/wpscan`
+
+## Start WPScan
+
+```
+docker run -it --rm wpscanteam/wpscan -u https://yourblog.com [options]
+```
+
+For the available Options, please see https://github.com/wpscanteam/wpscan#wpscan-arguments
+
+If you run the git version of wpscan we included some binstubs in ./bin for easier start of wpscan.
+
+## Examples
+
+Mount a local wordlist to the docker container and start a bruteforce attack for user admin
+
+```
+docker run -it --rm -v ~/wordlists:/wordlists wpscanteam/wpscan --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
+```
+
+(This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
+
+Published on https://hub.docker.com/r/wpscanteam/wpscan/
+
+# Manual install
+
 ## Prerequisites
 
 - Ruby >= 2.1.9 - Recommended: 2.4.0
@@ -125,7 +154,7 @@ Windows is not supported
 
 Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See [http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error](http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error)
 
-## Installing with RVM (recommended)
+## Installing with RVM (recommended when doing a manual install)
 
 If you are using GNOME Terminal, there are some steps required before executing the commands. See here for more information:
 https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
@@ -149,29 +178,6 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
     sudo gem install bundler && bundle install --without test
-
-# DOCKER
-Pull the repo with `docker pull wpscanteam/wpscan`
-
-## Start WPScan
-
-```
-docker run --rm wpscanteam/wpscan -u https://yourblog.com [options]
-```
-
-For the available Options, please see https://github.com/wpscanteam/wpscan#wpscan-arguments
-
-## Examples
-
-Mount a local wordlist to the docker container and start a bruteforce attack for user admin
-
-```
-docker run --rm -v ~/wordlists:/wordlists wpscanteam/wpscan --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
-```
-
-(This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
-
-Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
 # KNOWN ISSUES
 

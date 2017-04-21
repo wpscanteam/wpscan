@@ -10,5 +10,5 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 cd $DIR/../
 docker build -q -t wpscan:git .
-docker run --rm wpscan:git "$@"
+docker run -it --rm wpscan:git "$@"
 
