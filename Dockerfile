@@ -7,6 +7,7 @@ RUN adduser -h /wpscan -g WPScan -D wpscan
 RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
 
 COPY Gemfile /wpscan
+COPY Gemfile.lock /wpscan
 
 # runtime dependencies
 RUN apk add --no-cache libcurl procps && \
