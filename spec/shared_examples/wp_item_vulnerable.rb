@@ -15,6 +15,7 @@ shared_examples 'WpItem::Vulnerable' do
     before do
       stub_request(:get, /.*\/readme\.txt/i)
       stub_request(:get, /.*\/style\.css/i)
+      stub_request(:get, /.*\/changelog\.txt/i)
     end
 
     after do
@@ -68,6 +69,7 @@ shared_examples 'WpItem::Vulnerable' do
     before do
       stub_request(:get, /.*\/readme\.txt/i).to_return(status: 200, body: "Stable Tag: #{version_orig}")
       stub_request(:get, /.*\/style\.css/i).to_return(status: 200, body: "Version: #{version_orig}")
+      stub_request(:get, /.*\/changelog\.txt/i)
     end
 
     context 'check basic version comparing' do

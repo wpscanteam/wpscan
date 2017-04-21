@@ -14,16 +14,12 @@ class WpItem
     def readme_url
       # See https://github.com/wpscanteam/wpscan/pull/737#issuecomment-66375445
       # for any question about the order
-      %w{readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT}.each do |readme|
-        url = @uri.merge(readme).to_s
-        return url if url_is_200?(url)
-      end
-      nil
+      get_best_url(%w{readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT})
     end
 
     # @return [ Boolean ]
     def has_changelog?
-      url_is_200?(changelog_url)
+      !changelog_url.nil?
     end
 
     # Checks if the url status code is 200
@@ -35,9 +31,9 @@ class WpItem
       Browser.get(url).code == 200
     end
 
-    # @return [ String ] The url to the changelog file
+    # @return [ String ] The url to the changelog file, nil if not found
     def changelog_url
-      @uri.merge('changelog.txt').to_s
+      get_best_url(%w{changelog.txt changelog.md changes.txt})
     end
 
     # @return [ Boolean ]
@@ -59,6 +55,17 @@ class WpItem
     # @return [ String ] The url to the error_log file
     def error_log_url
       @uri.merge('error_log').to_s
+    end
+
+    private
+
+    # @return [ String,nil ] Returns the first url that is found, nil if none are found
+    def get_best_url(urls)
+      urls.each do |url|
+        url = @uri.merge(url).to_s
+        return url if url_is_200?(url)
+      end
+      nil
     end
 
   end
