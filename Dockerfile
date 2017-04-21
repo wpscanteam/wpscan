@@ -8,9 +8,9 @@ RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
 
 COPY Gemfile /wpscan
 
-# runtime dependecies
+# runtime dependencies
 RUN apk add --no-cache libcurl procps && \
-  # build dependecies
+  # build dependencies
   apk add --no-cache --virtual build-deps libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps && \
   bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
   apk del --no-cache build-deps
