@@ -12,7 +12,7 @@ COPY Gemfile.lock /wpscan
 # runtime dependencies
 RUN apk add --no-cache libcurl procps && \
   # build dependencies
-  apk add --no-cache --virtual build-deps libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps && \
+  apk add --no-cache --virtual build-deps alpine-sdk ruby-dev libffi-dev zlib-dev && \
   bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
   apk del --no-cache build-deps
 
@@ -22,6 +22,8 @@ RUN chown -R wpscan:wpscan /wpscan
 USER wpscan
 
 RUN /wpscan/wpscan.rb --update --verbose --no-color
+
+WORKDIR /wpscan
 
 ENTRYPOINT ["/wpscan/wpscan.rb"]
 CMD ["--help"]

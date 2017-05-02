@@ -10,11 +10,12 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 cd $DIR/../
 # always rebuild and include all GEMs
-docker build --build-arg "BUNDLER_ARGS=--system --jobs=8" -t wpscan:rspec .
+docker build --build-arg "BUNDLER_ARGS=--jobs=8" -t wpscan:rspec .
 # update all gems (this updates Gemfile.lock on the host)
-docker run --rm -u root -v $DIR/../Gemfile.lock:/wpscan/Gemfile.lock --entrypoint "" wpscan:rspec bundle update
+# this also needs some build dependencies
+docker run --rm -u root -v $DIR/../Gemfile.lock:/wpscan/Gemfile.lock --entrypoint "" wpscan:rspec sh -c 'apk add --no-cache alpine-sdk ruby-dev libffi-dev zlib-dev && bundle update'
 # rebuild image with latest GEMs
-docker build --build-arg "BUNDLER_ARGS=--system --jobs=8" -t wpscan:rspec .
+docker build --build-arg "BUNDLER_ARGS=--jobs=8" -t wpscan:rspec .
 # run spec
 docker run --rm -v $DIR/../:/wpscan --entrypoint "" wpscan:rspec rspec
 
