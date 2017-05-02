@@ -31,7 +31,7 @@ class WpItem
     def extract_version(body)
       version = body[/\b(?:stable tag|version):\s*(?!trunk)([0-9a-z\.-]+)/i, 1]
       if version.nil? || version !~ /[0-9]+/
-        extracted_versions = body.scan(/[=]+\s+(?:v(?:ersion)?\s*)?([0-9\.-]+)[ \ta-z0-9\(\)\.-]*[=]+/i)
+        extracted_versions = body.scan(/[=]+\s+(?:v(?:ersion)?\s*)?([0-9\.-]+)\s[ \ta-z0-9\/\(\)\.-]*[=]+/i)
         return if extracted_versions.nil? || extracted_versions.length == 0
         extracted_versions.flatten!
         # must contain at least one number

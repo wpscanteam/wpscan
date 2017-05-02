@@ -138,6 +138,13 @@ shared_examples 'WpItem::Versionable' do
             @expected = nil
           end
         end
+
+         context 'when parsing the changelog for version numbers with dates' do
+          it 'returns it' do
+            @file     = '/wp-maintenance-mode.txt'
+            @expected = '2.0.9'
+          end
+        end
       end
     end
   end
