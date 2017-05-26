@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
-DEBUG = true
 
 $: << '.'
 
@@ -9,11 +8,10 @@ $exit_code = 0
 require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 
 def main
-  # delete old logfile, check if it is a symlink first.
-  #File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
   begin
     wpscan_options = WpscanOptions.load_from_arguments
+    # ugly global variable for the put overide moved from the hacks file
     @opts = wpscan_options
 
     if wpscan_options.log_file.nil?
