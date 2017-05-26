@@ -17,16 +17,6 @@ module Typhoeus
   end
 end
 
-# Override for puts to enable logging
-def puts(o = '')
-  if $log && o.respond_to?(:gsub)
-    temp = o.gsub(/\e\[\d+m/, '') # remove color for logging
-    File.open(LOG_FILE, 'a+') { |f| f.puts(temp) }
-  end
-
-  super(o)
-end
-
 class Numeric
   def bytes_to_human
     units = %w{B KB MB GB TB}

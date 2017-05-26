@@ -89,7 +89,7 @@ def help
   puts '--follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not'
   puts '--batch                             Never ask for user input, use the default behaviour.'
   puts '--no-color                          Do not use colors in the output.'
-  puts '--log                               Creates a log.txt file with WPScan\'s output.'
+  puts '--log-file     | -l                 Creates the specified log file with WPScan\'s output.'
   puts '--no-banner                         Prevents the WPScan banner from being displayed.'
   puts '--disable-accept-header             Prevents WPScan sending the Accept HTTP header.'
   puts '--disable-referer                   Prevents setting the Referer header.'

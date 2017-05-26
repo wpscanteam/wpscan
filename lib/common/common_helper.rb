@@ -11,8 +11,6 @@ COMMON_LIB_DIR       = File.join(LIB_DIR, 'common')
 MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
 COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections')
 
-LOG_FILE             = File.join(ROOT_DIR, 'log.txt')
-
 # Plugins directories
 COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
 WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM

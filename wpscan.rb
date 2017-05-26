@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 # encoding: UTF-8
+DEBUG = true
 
 $: << '.'
 
@@ -9,12 +10,27 @@ require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 
 def main
   # delete old logfile, check if it is a symlink first.
-  File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
+  #File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
 
   begin
     wpscan_options = WpscanOptions.load_from_arguments
+    @opts = wpscan_options
 
-    $log = wpscan_options.log
+    if wpscan_options.log_file.nil?
+      @logging = false
+    else
+      @logging = true
+    end
+
+    # Override for puts to enable logging
+    def puts(o = '')
+      if @logging && o.respond_to?(:gsub)
+        temp = o.gsub(/\e\[\d+m/, '') # remove color for logging
+        File.open(@opts.log_file, 'a+') { |f| f.puts(temp) }
+      end
+
+      super(o)
+    end
 
     banner() unless wpscan_options.no_banner # called after $log set
 
