@@ -120,6 +120,13 @@ Mount a local wordlist to the docker container and start a bruteforce attack for
 docker run -it --rm -v ~/wordlists:/wordlists wpscanteam/wpscan --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
 ```
 
+Use logfile option
+```
+# the file must exist prior to starting the container, otherwise docker will create a directory with the filename
+touch ~/FILENAME
+docker run -it --rm -v ~/FILENAME:/wpscan/output.txt wpscanteam/wpscan --url https://yourblog.com --log /wpscan/output.txt
+```
+
 (This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
 
 Published on https://hub.docker.com/r/wpscanteam/wpscan/
@@ -251,7 +258,7 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     --follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not
     --batch                             Never ask for user input, use the default behaviour.
     --no-color                          Do not use colors in the output.
-    --log                               Creates a log.txt file with WPScan's output.
+    --log [filename]                    Creates a log.txt file with WPScan's output if no filename is supplied. Otherwise the filename is used for logging.
     --no-banner                         Prevents the WPScan banner from being displayed.
     --disable-accept-header             Prevents WPScan sending the Accept HTTP header.
     --disable-referer                   Prevents setting the Referer header.
