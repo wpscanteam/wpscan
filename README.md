@@ -4,7 +4,7 @@
 [![Build Status](https://travis-ci.org/wpscanteam/wpscan.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
 [![Code Climate](https://img.shields.io/codeclimate/github/wpscanteam/wpscan.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
 [![Dependency Status](https://img.shields.io/gemnasium/wpscanteam/wpscan.svg)](https://gemnasium.com/wpscanteam/wpscan)
-[![Docker Pulls](https://img.shields.io/docker/pulls/wpscanteam/wpscan.svg)](https://hub.docker.com/r/wpscanteam/wpscan/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/wpscanteam/wpscan.svg)](https://hub.docker.com/r/wpscanteam/wpscan/) [![](https://images.microbadger.com/badges/image/wpscanteam/wpscan.svg)](https://microbadger.com/images/wpscanteam/wpscan "Get your own image badge on microbadger.com")
 
 # LICENSE
 
@@ -343,3 +343,4 @@ Debug output...
 # DEVELOPER DOCUMENTATION
 
 [http://rdoc.info/github/wpscanteam/wpscan/frames](http://rdoc.info/github/wpscanteam/wpscan/frames)
+ 
