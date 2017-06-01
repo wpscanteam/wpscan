@@ -403,8 +403,9 @@ def main
       end
     end
 
-    # If we haven't been supplied a username/usernames list, enumerate them...
-    if !wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist || wpscan_options.enumerate_usernames
+    # If we haven't been supplied a username/usernames list but a wordlist is provided, enumerate users...
+    # If previous condition isn't true, enumerate users
+    if (!wpscan_options.username && !wpscan_options.usernames && wpscan_options.wordlist) || wpscan_options.enumerate_usernames
       puts
       puts info('Enumerating usernames ...')
 
@@ -434,8 +435,10 @@ def main
            puts warning("Default first WordPress username 'admin' is still used")
         end
       end
+    end
 
-    else
+    # If user provides username / username list, use that for brute forcing
+    if wpscan_options.username || wpscan_options.usernames
       wp_users = WpUsers.new
 
       if wpscan_options.usernames
