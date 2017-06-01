@@ -420,6 +420,10 @@ def main
       )
 
       if wp_users.empty?
+        wp_users = WpUsers.REST_enumeration(wp_target)
+      end
+
+      if wp_users.empty?
         puts info('We did not enumerate any usernames')
 
         if wpscan_options.wordlist
