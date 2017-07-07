@@ -95,6 +95,8 @@ WPScan comes pre-installed on the following Linux distributions:
 - [SamuraiWTF](http://samurai.inguardians.com/)
 - [BlackArch](http://blackarch.org/)
 
+On macOS WPScan is packaged by [Homebrew](https://brew.sh/) as [`wpscan`](http://braumeister.org/formula/wpscan).
+
 Windows is not supported
 
 We suggest you use our official Docker image from https://hub.docker.com/r/wpscanteam/wpscan/ to avoid installation problems.
@@ -157,7 +159,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     pacman -Syu ruby
     pacman -Syu libyaml
 
-### Installing dependencies on Mac OSX
+### Installing dependencies on macOS
 
 Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See [http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error](http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error)
 
