@@ -192,4 +192,27 @@ describe WpTarget do
     end
   end
 
+  describe '#emergency_url' do
+    it 'returns the correct url' do
+      expect(wp_target.emergency_url).to eq 'http://example.localhost/emergency.php'
+    end
+  end
+
+  describe '#emergency_exists?' do
+    it 'returns true' do
+      stub_request(:any, wp_target.emergency_url).to_return(status: 200, body: 'enter your password here')
+      expect(wp_target.emergency_exists?).to be_truthy
+    end
+
+    it 'returns false' do
+      stub_request(:any, wp_target.emergency_url).to_return(status: 500)
+      expect(wp_target.emergency_exists?).to be_falsey
+    end
+
+    it 'returns false' do
+      stub_request(:any, wp_target.emergency_url).to_return(status: 500, body: 'enter your password here')
+      expect(wp_target.emergency_exists?).to be_falsey
+    end
+  end
+
 end

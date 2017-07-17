@@ -226,6 +226,10 @@ def main
       puts critical("searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
     end
 
+    if wp_target.emergency_exists?
+      puts critical("emergency.php has been found in: '#{wp_target.emergency_url}'")
+    end
+
     wp_target.interesting_headers.each do |header|
       output = info('Interesting header: ')
 
