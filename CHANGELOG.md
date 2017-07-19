@@ -12,6 +12,17 @@ Released: 2017-07-19
 * Improved version detection regexes
 * Added an optional paramter to --log to specify a filename
 
+WPScan Database Statistics:
+* Total tracked wordpresses: 251
+* Total tracked plugins: 68818
+* Total tracked themes: 15132
+* Total vulnerable wordpresses: 243
+* Total vulnerable plugins: 1527
+* Total vulnerable themes: 280
+* Total wordpress vulnerabilities: 5263
+* Total plugin vulnerabilities: 2406
+* Total theme vulnerabilities: 349
+
 ## Version 2.9.2
 Released: 2016-11-15
 
