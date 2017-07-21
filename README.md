@@ -122,14 +122,14 @@ Mount a local wordlist to the docker container and start a bruteforce attack for
 docker run -it --rm -v ~/wordlists:/wordlists wpscanteam/wpscan --url https://yourblog.com --wordlist /wordlists/crackstation.txt --username admin
 ```
 
+(This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
+
 Use logfile option
 ```
 # the file must exist prior to starting the container, otherwise docker will create a directory with the filename
 touch ~/FILENAME
 docker run -it --rm -v ~/FILENAME:/wpscan/output.txt wpscanteam/wpscan --url https://yourblog.com --log /wpscan/output.txt
 ```
-
-(This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
 
 Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
