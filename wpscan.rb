@@ -8,13 +8,46 @@ $exit_code = 0
 require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 
 def main
-  # delete old logfile, check if it is a symlink first.
-  File.delete(LOG_FILE) if File.exist?(LOG_FILE) and !File.symlink?(LOG_FILE)
-
   begin
     wpscan_options = WpscanOptions.load_from_arguments
 
     $log = wpscan_options.log
+
+    # some sanity checks
+    if $log
+      if $log.empty?
+        $log = DEFAULT_LOG_FILE
+      end
+
+      # translate to full path if no starting / detected
+      if $log !~ /^#{File::SEPARATOR}/
+        $log = File.join(ROOT_DIR, $log)
+      end
+
+      # check if file exists and has a size greater zero
+      if File.exist?($log) && File.size?($log)
+        puts notice("The supplied log file #{$log} already exists. If you continue the new output will be appended.")
+        print '[?] Do you want to continue? [Y]es [N]o, default: [N]'
+        if Readline.readline !~ /^y/i
+          # unset logging so puts will try to log to the file
+          $log = nil
+          puts notice('Scan aborted')
+          exit(1)
+        end
+      end
+
+      # check if we can write the file
+      begin
+        File.open($log, 'a')
+      rescue SystemCallError => e
+        # unset logging so puts will try to log to the file
+        temp = $log
+        $log = nil
+        puts critical("Error with logfile #{temp}:")
+        puts critical(e)
+        exit(1)
+      end
+    end
 
     banner() unless wpscan_options.no_banner # called after $log set
 
@@ -191,6 +224,10 @@ def main
 
     if wp_target.search_replace_db_2_exists?
       puts critical("searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
+    end
+
+    if wp_target.emergency_exists?
+      puts critical("emergency.php has been found in: '#{wp_target.emergency_url}'")
     end
 
     wp_target.interesting_headers.each do |header|

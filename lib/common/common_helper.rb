@@ -11,7 +11,7 @@ COMMON_LIB_DIR       = File.join(LIB_DIR, 'common')
 MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
 COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections')
 
-LOG_FILE             = File.join(ROOT_DIR, 'log.txt')
+DEFAULT_LOG_FILE     = File.join(ROOT_DIR, 'log.txt')
 
 # Plugins directories
 COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
@@ -30,7 +30,7 @@ LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
 
 MIN_RUBY_VERSION = '2.1.9'
 
-WPSCAN_VERSION = '2.9.2'
+WPSCAN_VERSION = '2.9.3'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)

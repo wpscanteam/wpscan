@@ -95,6 +95,8 @@ WPScan comes pre-installed on the following Linux distributions:
 - [SamuraiWTF](http://samurai.inguardians.com/)
 - [BlackArch](http://blackarch.org/)
 
+On macOS WPScan is packaged by [Homebrew](https://brew.sh/) as [`wpscan`](http://braumeister.org/formula/wpscan).
+
 Windows is not supported
 
 We suggest you use our official Docker image from https://hub.docker.com/r/wpscanteam/wpscan/ to avoid installation problems.
@@ -122,13 +124,20 @@ docker run -it --rm -v ~/wordlists:/wordlists wpscanteam/wpscan --url https://yo
 
 (This mounts the host directory `~/wordlists` to the container in the path `/wordlists`)
 
+Use logfile option
+```
+# the file must exist prior to starting the container, otherwise docker will create a directory with the filename
+touch ~/FILENAME
+docker run -it --rm -v ~/FILENAME:/wpscan/output.txt wpscanteam/wpscan --url https://yourblog.com --log /wpscan/output.txt
+```
+
 Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
 # Manual install
 
 ## Prerequisites
 
-- Ruby >= 2.1.9 - Recommended: 2.4.0
+- Ruby >= 2.1.9 - Recommended: 2.4.1
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
@@ -150,7 +159,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
     pacman -Syu ruby
     pacman -Syu libyaml
 
-### Installing dependencies on Mac OSX
+### Installing dependencies on macOS
 
 Apple Xcode, Command Line Tools and the libffi are needed (to be able to install the FFI gem), See [http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error](http://stackoverflow.com/questions/17775115/cant-setup-ruby-environment-installing-fii-gem-error)
 
@@ -165,8 +174,8 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
     echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-    rvm install 2.4.0
-    rvm use 2.4.0 --default
+    rvm install 2.4.1
+    rvm use 2.4.1 --default
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
@@ -251,7 +260,7 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     --follow-redirection                If the target url has a redirection, it will be followed without asking if you wanted to do so or not
     --batch                             Never ask for user input, use the default behaviour.
     --no-color                          Do not use colors in the output.
-    --log                               Creates a log.txt file with WPScan's output.
+    --log [filename]                    Creates a log.txt file with WPScan's output if no filename is supplied. Otherwise the filename is used for logging.
     --no-banner                         Prevents the WPScan banner from being displayed.
     --disable-accept-header             Prevents WPScan sending the Accept HTTP header.
     --disable-referer                   Prevents setting the Referer header.

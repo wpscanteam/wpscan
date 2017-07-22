@@ -155,6 +155,21 @@ class WpTarget < WebSite
     resp.code == 200 && resp.body[%r{by interconnect}i]
   end
 
+  # Script used to recover locked out admin users
+  # http://yoast.com/emergency-wordpress-access/
+  # https://codex.wordpress.org/User:MichaelH/Orphaned_Plugins_needing_Adoption/Emergency
+  #
+  # @return [ String ]
+  def emergency_url
+    @uri.merge('emergency.php').to_s
+  end
+
+  # @return [ Boolean ]
+  def emergency_exists?
+    resp = Browser.get(emergency_url)
+    resp.code == 200 && resp.body[%r{password}i]
+  end
+
   def upload_directory_listing_enabled?
     directory_listing_enabled?(upload_dir_url)
   end
