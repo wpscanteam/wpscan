@@ -501,6 +501,7 @@ def main
     puts critical(e.message)
 
     if e.file
+      puts critical("Current Version: #{WPSCAN_VERSION}")
       puts critical('Downloaded File Content:')
       puts e.file[0..500] # print first 500 chars
       puts '.........'

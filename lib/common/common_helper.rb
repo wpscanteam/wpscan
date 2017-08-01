@@ -30,7 +30,7 @@ LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
 
 MIN_RUBY_VERSION = '2.1.9'
 
-WPSCAN_VERSION = '2.9.3'
+WPSCAN_VERSION = '2.9.4-dev'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
