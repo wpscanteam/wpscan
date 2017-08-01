@@ -498,13 +498,14 @@ def main
 
     if e.file
       puts critical('Downloaded File Content:')
-      puts e.file[0..500]
+      puts e.file[0..500] # print first 500 chars
       puts '.........'
+      puts e.file[-500..-1] || e.file # print last 500 chars or the whole file if it's < 500
       puts
     end
 
     puts critical('Some hints to help you with this issue:')
-    puts critical('-) Try updating again')
+    puts critical('-) Try updating again using --verbose')
     puts critical('-) If you see SSL/TLS related error messages you have to fix your local TLS setup')
     puts critical('-) Windows is still not supported')
     exit(1)
