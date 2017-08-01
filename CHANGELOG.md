@@ -1,6 +1,27 @@
 # Changelog
 ## Master
-[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.9.2...master)
+[Work in progress](https://github.com/wpscanteam/wpscan/compare/2.9.3...master)
+
+## Version 2.9.3
+Released: 2017-07-19
+
+* Updated dependencies and required ruby version
+* Made some changes so wpscan works in ruby 2.4
+* Added a Gemfile.lock to lock all dependencies
+* You can now pass a wordlist from stdin via "--wordlist -"
+* Improved version detection regexes
+* Added an optional paramter to --log to specify a filename
+
+WPScan Database Statistics:
+* Total tracked wordpresses: 251
+* Total tracked plugins: 68818
+* Total tracked themes: 15132
+* Total vulnerable wordpresses: 243
+* Total vulnerable plugins: 1527
+* Total vulnerable themes: 280
+* Total wordpress vulnerabilities: 5263
+* Total plugin vulnerabilities: 2406
+* Total theme vulnerabilities: 349
 
 ## Version 2.9.2
 Released: 2016-11-15
