@@ -16,7 +16,7 @@ shared_examples 'WpItem::Infos' do
     end
 
     context 'when the file exists' do
-      %w{readme.txt README.TXT}.each do |readme|
+      %w{readme.txt readme.md}.each do |readme|
         it 'returns the correct url' do
           url       = uri.merge(readme).to_s
           @expected = url
