@@ -190,39 +190,6 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
 
 # KNOWN ISSUES
 
-  - Typhoeus segmentation fault
-
-      Update cURL to version => 7.21 (may have to install from source)
-
-  - Proxy not working
-
-      Update cURL to version => 7.21.7 (may have to install from source).
-
-      Installation from sources :
-
-        Grab the sources from http://curl.haxx.se/download.html
-        Decompress the archive
-        Open the folder with the extracted files
-        Run ./configure
-        Run make
-        Run sudo make install
-        Run sudo ldconfig
-
-
-  - cannot load such file -- readline:
-
-        sudo aptitude install libreadline5-dev libncurses5-dev
-
-      Then, open the directory of the readline gem (you have to locate it)
-
-        cd ~/.rvm/src/ruby-XXXX/ext/readline
-        ruby extconf.rb
-        make
-        make install
-
-
-      See [http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/](http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/) for more details
-
   - no such file to load -- rubygems
 
       ```update-alternatives --config ruby```
