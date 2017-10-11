@@ -1,4 +1,4 @@
-# encoding: UTF-8
+ # encoding: UTF-8
 
 LIB_DIR              = File.expand_path(File.join(__dir__, '..'))
 ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
@@ -161,7 +161,7 @@ def banner
   puts '        WordPress Security Scanner by the WPScan Team '
   puts "                       Version #{WPSCAN_VERSION}"
   puts '          Sponsored by Sucuri - https://sucuri.net'
-  puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
+  puts '      @_WPScan_, @ethicalhack3r, @erwan_lr, @_FireFart_'
   puts '_______________________________________________________________'
   puts
 end
