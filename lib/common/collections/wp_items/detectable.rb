@@ -19,8 +19,7 @@ class WpItems < Array
       progress_bar     = progress_bar(targets.size, options)
       queue_count      = 0
       exist_options    = {
-        error_404_hash:  wp_target.error_404_hash,
-        homepage_hash:   wp_target.homepage_hash,
+        error_404_hash_set:  wp_target.error_404_hash_set,
         exclude_content: options[:exclude_content] ? %r{#{options[:exclude_content]}} : nil
       }
       results          = passive_detection(wp_target, options)

@@ -113,12 +113,12 @@ class WebSite
   end
 
   # Return the MD5 hash of a 404 page
-  def error_404_hash
-    unless @error_404_hash
+  def site_404_hash
+    unless @site_404_hash
       non_existant_page = Digest::MD5.hexdigest(rand(999_999_999).to_s) + '.html'
-      @error_404_hash   = WebSite.page_hash(@uri.merge(non_existant_page).to_s)
+      @site_404_hash    = WebSite.page_hash(@uri.merge(non_existant_page).to_s)
     end
-    @error_404_hash
+    @site_404_hash
   end
 
   # Will try to find the rss url in the homepage

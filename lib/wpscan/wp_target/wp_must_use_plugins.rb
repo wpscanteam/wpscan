@@ -10,7 +10,7 @@ class WpTarget < WebSite
 
       if response && [200, 401, 403].include?(response.code)
         hash = WebSite.page_hash(response)
-        return true if hash != error_404_hash && hash != homepage_hash
+        return true if hash != site_404_hash && hash != homepage_hash
       end
 
       false

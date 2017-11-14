@@ -198,12 +198,12 @@ describe 'WebSite' do
     end
   end
 
-  describe '#error_404_hash' do
+  describe '#site_404_hash' do
     it 'returns the md5sum of the 404 page' do
       stub_request(:any, /.*/).
         to_return(status: 404, body: '404 page !')
 
-      expect(web_site.error_404_hash).to be === Digest::MD5.hexdigest('404 page !')
+      expect(web_site.site_404_hash).to be === Digest::MD5.hexdigest('404 page !')
     end
   end
 

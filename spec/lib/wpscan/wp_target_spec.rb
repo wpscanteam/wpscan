@@ -215,4 +215,16 @@ describe WpTarget do
     end
   end
 
+  describe '#error_404_hash_set' do
+    it 'returns a set of error 404 pages' do
+      allow(wp_target).to receive_messages(:site_404_hash => Digest::MD5.hexdigest('site 404'))
+      stub_request(:any, %r{wp-content/[^/]+.html}).to_return(status: 200, body: 'wp-content 404')
+      stub_request(:any, %r{wp-content/plugins/[^/]+.html}).to_return(status: 200, body: 'plugin 404')
+      stub_request(:any, %r{wp-content/themes/[^/]+.html}).to_return(status: 200, body: 'theme 404')
+
+      expected = ['site 404', 'wp-content 404', 'plugin 404', 'theme 404'].map{ |body| Digest::MD5.hexdigest(body) }.to_set
+      expect(wp_target.error_404_hash_set).to eq expected
+    end
+  end
+
 end
