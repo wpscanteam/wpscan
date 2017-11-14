@@ -249,7 +249,6 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     --request-timeout <request-timeout> Request Timeout.
     --connect-timeout <connect-timeout> Connect Timeout.
     --threads  | -t <number of threads> The number of threads to use when multi-threading requests.
-    --max-threads     <max-threads>     Maximum Threads.
     --throttle        <milliseconds>    Milliseconds to wait before doing another web request. If used, the --threads should be set to 1.
     --help     | -h                     This help screen.
     --verbose  | -v                     Verbose output.
