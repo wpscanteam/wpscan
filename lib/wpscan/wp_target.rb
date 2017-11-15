@@ -190,9 +190,9 @@ class WpTarget < WebSite
     unless @error_404_hash_set
       hash_set = Set.new([site_404_hash])
 
-      non_existant_page = Digest::MD5.hexdigest(rand(999_999_999).to_s) + '.html'
+      non_existent_page = Digest::MD5.hexdigest(rand(999_999_999).to_s) + '.html'
       [wp_content_dir, wp_plugins_dir, wp_themes_dir].each do |dir|
-        hash_set << WebSite.page_hash(@uri.merge("#{dir}/#{non_existant_page}"))
+        hash_set << WebSite.page_hash(@uri.merge("#{dir}/#{non_existent_page}"))
       end
       @error_404_hash_set = hash_set.freeze
     end
