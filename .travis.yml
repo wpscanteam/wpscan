@@ -18,6 +18,7 @@ before_install:
   - "env"
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - "gem install bundler"
+  - "gem regenerate_binstubs"
   - "bundler --version"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
