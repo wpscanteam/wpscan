@@ -10,7 +10,7 @@
 
 ## WPScan Public Source License
 
-The WPScan software (henceforth referred to simply as "WPScan") is dual-licensed - Copyright 2011-2016 WPScan Team.
+The WPScan software (henceforth referred to simply as "WPScan") is dual-licensed - Copyright 2011-2017 WPScan Team.
 
 Cases that include commercialization of WPScan require a commercial, non-free license. Otherwise, WPScan can be used without charge under the terms set out below.
 
@@ -137,7 +137,7 @@ Published on https://hub.docker.com/r/wpscanteam/wpscan/
 
 ## Prerequisites
 
-- Ruby >= 2.1.9 - Recommended: 2.4.1
+- Ruby >= 2.1.9 - Recommended: 2.4.2
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 - Git
@@ -174,8 +174,8 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     curl -sSL https://get.rvm.io | bash -s stable
     source ~/.rvm/scripts/rvm
     echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
-    rvm install 2.4.1
-    rvm use 2.4.1 --default
+    rvm install 2.4.2
+    rvm use 2.4.2 --default
     echo "gem: --no-ri --no-rdoc" > ~/.gemrc
     git clone https://github.com/wpscanteam/wpscan.git
     cd wpscan
@@ -189,39 +189,6 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     sudo gem install bundler && bundle install --without test
 
 # KNOWN ISSUES
-
-  - Typhoeus segmentation fault
-
-      Update cURL to version => 7.21 (may have to install from source)
-
-  - Proxy not working
-
-      Update cURL to version => 7.21.7 (may have to install from source).
-
-      Installation from sources :
-
-        Grab the sources from http://curl.haxx.se/download.html
-        Decompress the archive
-        Open the folder with the extracted files
-        Run ./configure
-        Run make
-        Run sudo make install
-        Run sudo ldconfig
-
-
-  - cannot load such file -- readline:
-
-        sudo aptitude install libreadline5-dev libncurses5-dev
-
-      Then, open the directory of the readline gem (you have to locate it)
-
-        cd ~/.rvm/src/ruby-XXXX/ext/readline
-        ruby extconf.rb
-        make
-        make install
-
-
-      See [http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/](http://vvv.tobiassjosten.net/ruby-on-rails/fixing-readline-for-the-ruby-on-rails-console/) for more details
 
   - no such file to load -- rubygems
 
@@ -282,7 +249,6 @@ https://rvm.io/integration/gnome-terminal#integrating-rvm-with-gnome-terminal
     --request-timeout <request-timeout> Request Timeout.
     --connect-timeout <connect-timeout> Connect Timeout.
     --threads  | -t <number of threads> The number of threads to use when multi-threading requests.
-    --max-threads     <max-threads>     Maximum Threads.
     --throttle        <milliseconds>    Milliseconds to wait before doing another web request. If used, the --threads should be set to 1.
     --help     | -h                     This help screen.
     --verbose  | -v                     Verbose output.

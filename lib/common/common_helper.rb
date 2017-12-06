@@ -30,7 +30,7 @@ LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
 
 MIN_RUBY_VERSION = '2.1.9'
 
-WPSCAN_VERSION = '2.9.3'
+WPSCAN_VERSION = '2.9.4-dev'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
@@ -161,7 +161,7 @@ def banner
   puts '        WordPress Security Scanner by the WPScan Team '
   puts "                       Version #{WPSCAN_VERSION}"
   puts '          Sponsored by Sucuri - https://sucuri.net'
-  puts '   @_WPScan_, @ethicalhack3r, @erwan_lr, pvdl, @_FireFart_'
+  puts '      @_WPScan_, @ethicalhack3r, @erwan_lr, @_FireFart_'
   puts '_______________________________________________________________'
   puts
 end

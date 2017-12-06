@@ -16,7 +16,7 @@ shared_examples 'WpItem::Infos' do
     end
 
     context 'when the file exists' do
-      %w{readme.txt README.TXT}.each do |readme|
+      %w{readme.txt readme.md}.each do |readme|
         it 'returns the correct url' do
           url       = uri.merge(readme).to_s
           @expected = url
@@ -48,25 +48,42 @@ shared_examples 'WpItem::Infos' do
   end
 
   describe '#changelog_url' do
-    it 'returns the correct url' do
-      expect(subject.changelog_url).to eq changelog_url
+    after { expect(subject.changelog_url).to eql @expected }
+
+    it 'returns nil' do
+      stub_request(:get, /.*/).to_return(status: 404)
+      @expected = nil
+    end
+
+    context 'when the file exists' do
+      %w{changelog.txt CHANGELOG.md}.each do |changelog|
+        it 'returns the correct url' do
+          url       = uri.merge(changelog).to_s
+          @expected = url
+
+          stub_request(:get, %r{^(?!#{url})}).to_return(status: 404)
+          stub_request(:get, url).to_return(status: 200)
+        end
+      end
     end
   end
 
   describe '#has_changelog?' do
-    after :each do
-      stub_request(:get, subject.changelog_url).to_return(status: @status)
+    after do
+      allow(subject).to receive_messages(changelog_url: @stub)
       expect(subject.has_changelog?).to eql @expected
     end
 
-    it 'returns true on a 200' do
-      @status   = 200
-      @expected = true
+    context 'when changelog_url is nil'
+    it 'returns false' do
+      @stub     = nil
+      @expected = false
     end
 
-    it 'returns false otherwise' do
-      @status   = 404
-      @expected = false
+    context 'when changelog_url is not nil'
+    it 'returns true' do
+      @stub     = uri.merge('changelog.txt').to_s
+      @expected = true
     end
   end
 

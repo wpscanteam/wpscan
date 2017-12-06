@@ -13,11 +13,13 @@ rvm:
   - 2.3.2
   - 2.3.3
   - 2.4.1
+  - 2.4.2
 before_install:
   - "env"
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
   - "gem install bundler"
-  - "bundler --version"
+  - "gem regenerate_binstubs"
+  - "bundle --version"
 before_script:
   - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
 script:

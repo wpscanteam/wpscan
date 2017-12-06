@@ -206,10 +206,6 @@ def main
       end
     end
 
-    if wp_target.has_readme?
-      puts warning("The WordPress '#{wp_target.readme_url}' file exists exposing a version number")
-    end
-
     if wp_target.has_full_path_disclosure?
       puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
     end
@@ -271,7 +267,11 @@ def main
       exclude_content: wpscan_options.exclude_content_based
     }
 
-    if wp_version = wp_target.version(WP_VERSIONS_FILE)
+    if (wp_version = wp_target.version(WP_VERSIONS_FILE))
+      if wp_target.has_readme? && VersionCompare::lesser_or_equal?(wp_version.identifier, '4.8')
+        puts warning("The WordPress '#{wp_target.readme_url}' file exists exposing a version number")
+      end
+      
       wp_version.output(wpscan_options.verbose)
     else
       puts
@@ -501,14 +501,16 @@ def main
     puts critical(e.message)
 
     if e.file
+      puts critical("Current Version: #{WPSCAN_VERSION}")
       puts critical('Downloaded File Content:')
-      puts e.file[0..500]
+      puts e.file[0..500] # print first 500 chars
       puts '.........'
+      puts e.file[-500..-1] || e.file # print last 500 chars or the whole file if it's < 500
       puts
     end
 
     puts critical('Some hints to help you with this issue:')
-    puts critical('-) Try updating again')
+    puts critical('-) Try updating again using --verbose')
     puts critical('-) If you see SSL/TLS related error messages you have to fix your local TLS setup')
     puts critical('-) Windows is still not supported')
     exit(1)

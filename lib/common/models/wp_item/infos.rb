@@ -5,27 +5,6 @@ class WpItem
   # @uri is used instead of #uri to avoid the presence of the :path into it
   module Infos
 
-    # @return [ Boolean ]
-    def has_readme?
-      !readme_url.nil?
-    end
-
-    # @return [ String,nil ] The url to the readme file, nil if not found
-    def readme_url
-      # See https://github.com/wpscanteam/wpscan/pull/737#issuecomment-66375445
-      # for any question about the order
-      %w{readme.txt README.txt Readme.txt ReadMe.txt README.TXT readme.TXT}.each do |readme|
-        url = @uri.merge(readme).to_s
-        return url if url_is_200?(url)
-      end
-      nil
-    end
-
-    # @return [ Boolean ]
-    def has_changelog?
-      url_is_200?(changelog_url)
-    end
-
     # Checks if the url status code is 200
     #
     # @param [ String ] url
@@ -35,9 +14,34 @@ class WpItem
       Browser.get(url).code == 200
     end
 
+    # @return [ Boolean ]
+    def has_readme?
+      !readme_url.nil?
+    end
+
+    # @return [ String,nil ] The url to the readme file, nil if not found
+    def readme_url
+      # See https://github.com/wpscanteam/wpscan/pull/737#issuecomment-66375445
+      # for any question about the order
+      %w{readme.txt README.txt README.md readme.md Readme.txt}.each do |readme|
+        url = @uri.merge(readme).to_s
+        return url if url_is_200?(url)
+      end
+      nil
+    end
+
+    # @return [ Boolean ]
+    def has_changelog?
+      !changelog_url.nil?
+    end
+
     # @return [ String ] The url to the changelog file
     def changelog_url
-      @uri.merge('changelog.txt').to_s
+      %w{changelog.txt CHANGELOG.md changelog.md}.each do |changelog|
+        url = @uri.merge(changelog).to_s
+        return url if url_is_200?(url)
+      end
+      nil
     end
 
     # @return [ Boolean ]

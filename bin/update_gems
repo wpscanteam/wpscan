@@ -9,4 +9,4 @@ done
 DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 cd $DIR/../
-docker run -it --rm -v "$DIR/../":/wpscan -w /wpscan ruby:2.4 bundle update
+docker run -it --rm -v "$DIR/../":/wpscan -w /wpscan ruby:2.4 /bin/bash -c "gem install bundler; bundle update"

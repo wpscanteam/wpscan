@@ -13,7 +13,7 @@ shared_examples 'WpItem::Vulnerable' do
     let(:empty_file) { MODELS_FIXTURES + '/wp_item/vulnerable/empty.json' }
 
     before do
-      stub_request(:get, /.*\/readme\.txt/i)
+      stub_request(:get, /.*\/readme\.(?:txt|md)/i)
       stub_request(:get, /.*\/style\.css/i)
     end
 
@@ -94,7 +94,7 @@ shared_examples 'WpItem::Vulnerable' do
 
     context 'no version found in wp_item' do
       before do
-        stub_request(:get, /.*\/readme\.txt/i).to_return(status: 404)
+        stub_request(:get, /.*\/readme\.(?:txt|md)/i).to_return(status: 404)
         stub_request(:get, /.*\/style\.css/i).to_return(status: 404)
       end
 
