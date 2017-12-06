@@ -126,7 +126,7 @@ class Browser
   def merge_request_params(params = {})
     if @proxy
       params.merge!(proxy: @proxy)
-      params.merge!(proxyauth: @proxy_auth) if @proxy_auth
+      params.merge!(proxyuserpwd: @proxy_auth) if @proxy_auth
     end
 
     if @basic_auth
