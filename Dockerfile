@@ -1,4 +1,4 @@
-FROM ruby:2.4-alpine
+FROM ruby:2.5-alpine
 MAINTAINER WPScan Team <team@wpscan.org>
 
 ARG BUNDLER_ARGS="--jobs=8 --without test"
