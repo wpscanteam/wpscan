@@ -102,6 +102,10 @@ Windows is not supported
 We suggest you use our official Docker image from https://hub.docker.com/r/wpscanteam/wpscan/ to avoid installation problems.
 
 # DOCKER
+## Install Docker
+[https://docs.docker.com/engine/installation/](https://docs.docker.com/engine/installation/)
+
+## Get the image
 Pull the repo with `docker pull wpscanteam/wpscan`
 
 ## Start WPScan
