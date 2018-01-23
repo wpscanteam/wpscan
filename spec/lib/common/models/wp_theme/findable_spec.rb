@@ -45,9 +45,18 @@ describe 'WpTheme::Findable' do
 
     # FIXME: the style_url should be checked in WpTheme for absolute / relative
     context 'when relative url is used' do
-      it 'returns the WpTheme' do
-        @file = 'relative_urls.html'
-        @expected = WpTheme.new(uri, name: 'theme_name')
+      context 'when leading slash' do
+        it 'returns the WpTheme' do
+          @file = 'relative_urls.html'
+          @expected = WpTheme.new(uri, name: 'theme_name')
+        end
+      end
+
+      context 'when no leading slash' do
+        it 'returns the WpTheme' do
+          @file = 'relative_urls_missing_slash.html'
+          @expected = WpTheme.new(uri, name: 'theme_name')
+        end
       end
     end
 

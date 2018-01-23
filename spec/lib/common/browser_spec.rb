@@ -168,7 +168,7 @@ describe Browser do
         it 'sets the proxy_auth' do
           browser.proxy      = proxy
           browser.proxy_auth = 'user:pass'
-          @expected          = proxy_expectation.merge(proxyauth: 'user:pass')
+          @expected          = proxy_expectation.merge(proxyuserpwd: 'user:pass')
         end
       end
     end
