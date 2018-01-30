@@ -168,11 +168,14 @@ class WpVersion < WpItem
     #
     # @return [ String ] The version number
     def find_from_readme(target_uri)
-      scan_url(
+      version = scan_url(
         target_uri,
         %r{<br />\sversion #{version_pattern}}i,
         'readme.html'
       )
+
+      # Since WP >= 4.7, the Readme only contains the major version
+      VersionCompare.lesser?(version, '4.7') ? version : nil
     end
 
     # Attempts to find the WordPress version from the sitemap.xml file.

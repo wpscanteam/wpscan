@@ -134,6 +134,13 @@ describe 'WpVersion::Findable' do
       @fixture  = '/3.3.2.html'
       @expected = '3.3.2'
     end
+
+    context 'when version >= 4.7' do
+      it 'returns nil' do
+        @fixture  = '/4.7.2.html'
+        @expected = nil
+      end
+    end
   end
 
   describe '::find_from_links_opml' do

@@ -268,10 +268,10 @@ def main
     }
 
     if (wp_version = wp_target.version(WP_VERSIONS_FILE))
-      if wp_target.has_readme? && VersionCompare::lesser_or_equal?(wp_version.identifier, '4.8')
+      if wp_target.has_readme? && VersionCompare::lesser?(wp_version.identifier, '4.7')
         puts warning("The WordPress '#{wp_target.readme_url}' file exists exposing a version number")
       end
-      
+
       wp_version.output(wpscan_options.verbose)
     else
       puts
