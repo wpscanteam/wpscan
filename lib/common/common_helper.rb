@@ -103,7 +103,7 @@ end
 
 # Define colors
 def colorize(text, color_code)
-  if $COLORSWITCH
+  if $COLORSWITCH or not $stdout.isatty
     "#{text}"
   else
     "\e[#{color_code}m#{text}\e[0m"
