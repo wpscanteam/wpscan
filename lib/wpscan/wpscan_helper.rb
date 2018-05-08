@@ -28,8 +28,11 @@ def usage
   puts '-Enumerate installed themes ...'
   puts "ruby #{script_name} --url www.example.com --enumerate t"
   puts
-  puts '-Enumerate users ...'
+  puts '-Enumerate users (from 1 - 10)...'
   puts "ruby #{script_name} --url www.example.com --enumerate u"
+  puts
+  puts '-Enumerate users (from 1 - 20)...'
+  puts "ruby #{script_name} --url www.example.com --enumerate u[1-20]"
   puts
   puts '-Enumerate installed timthumbs ...'
   puts "ruby #{script_name} --url www.example.com --enumerate tt"
