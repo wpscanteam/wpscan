@@ -219,6 +219,14 @@ def main
       end
     end
 
+    if wp_target.has_security?
+      puts info("security.txt available under: #{wp_target.security_url}")
+
+      wp_target.parse_security_txt.each do |dir|
+        puts info("Interesting entry from security.txt: #{dir}")
+      end
+    end
+
     if wp_target.has_full_path_disclosure?
       puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
     end
