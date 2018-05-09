@@ -346,7 +346,8 @@ def main
 
       puts
       if !wp_plugins.empty?
-        puts info("We found #{wp_plugins.size} plugins:")
+        grammar = wp_themes.size.equals == 1 ? "" : "s"
+        puts info("We found #{wp_plugins.size} plugin#{grammar}:")
 
         wp_plugins.output(wpscan_options.verbose)
       else
@@ -381,7 +382,8 @@ def main
       )
       puts
       if !wp_themes.empty?
-        puts info("We found #{wp_themes.size} themes:")
+        grammar = wp_themes.size.equals == 1 ? "" : "s"
+        puts info("We found #{wp_themes.size} theme#{grammar}:")
 
         wp_themes.output(wpscan_options.verbose)
       else
@@ -402,7 +404,8 @@ def main
       )
       puts
       if !wp_timthumbs.empty?
-        puts info("We found #{wp_timthumbs.size} timthumb file/s:")
+        grammar = wp_timthumbs.size.equals == 1 ? "" : "s"
+        puts info("We found #{wp_timthumbs.size} timthumb file#{grammar}:")
 
         wp_timthumbs.output(wpscan_options.verbose)
       else
@@ -435,7 +438,8 @@ def main
           exit(1)
         end
       else
-        puts info("Identified the following #{wp_users.size} user/s:")
+        grammar = wp_users.size.equals == 1 ? "" : "s"
+        puts info("We identified the following #{wp_users.size} user#{grammar}:")
         wp_users.output(margin_left: ' ' * 4)
         if wp_users[0].login == "admin"
            puts warning("Default first WordPress username 'admin' is still used")
