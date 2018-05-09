@@ -95,6 +95,7 @@ def last_update
   date
 end
 
+# Was it 5 days ago?
 def update_required?
   date = last_update
   day_seconds = 24 * 60 * 60

@@ -85,9 +85,10 @@ def main
       wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
     )
 
-    # check if db file needs upgrade and we are not running in batch mode
-    # also no need to check if the user supplied the --update switch
+    # Check if db file needs upgrade (older than 5 days) and we are not running in --batch mode
+    # Also no need to check if the user supplied the --update switch
     if update_required? && !wpscan_options.batch && !wpscan_options.update
+      puts
       puts notice('It seems like you have not updated the database for some time.')
       puts notice("Last database update: #{date.strftime('%Y-%m-%d')}") unless date.nil?
       print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N] > '
@@ -98,7 +99,7 @@ def main
         exit(1)
       else
         if missing_db_file?
-          puts critical('You can not run a scan without any databases. Extract the data.zip file.')
+          puts critical('You can not run a scan without any databases. Manually extract the data.zip file.')
           exit(1)
         end
       end

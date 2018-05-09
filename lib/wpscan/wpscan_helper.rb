@@ -49,7 +49,7 @@ def usage
   puts '-Use custom plugins directory ...'
   puts "ruby #{script_name} -u www.example.com --wp-plugins-dir wp-content/custom-plugins"
   puts
-  puts '-Update the DB ...'
+  puts '-Update the Database ...'
   puts "ruby #{script_name} --update"
   puts
   puts '-Debug output ...'
