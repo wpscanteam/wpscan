@@ -10,6 +10,7 @@ require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 def main
   begin
     wpscan_options = WpscanOptions.load_from_arguments
+    date = last_update
 
     $log = wpscan_options.log
 
@@ -74,8 +75,7 @@ def main
 
     if wpscan_options.version
       puts "Current version: #{WPSCAN_VERSION}"
-      date = last_update
-      puts "Last DB update: #{date.strftime('%Y-%m-%d')}" unless date.nil?
+      puts "Last database update: #{date.strftime('%Y-%m-%d')}" unless date.nil?
       exit(0)
     end
 
@@ -90,6 +90,7 @@ def main
     if update_required? && !wpscan_options.batch && !wpscan_options.update
       puts notice('It seems like you have not updated the database for some time.')
       print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N]'
+      puts notice("Last database update: #{date.strftime('%Y-%m-%d')}") unless date.nil?
       if (input = Readline.readline) =~ /^y/i
         wpscan_options.update = true
       elsif input =~ /^a/i
