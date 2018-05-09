@@ -211,6 +211,14 @@ def main
       end
     end
 
+    if wp_target.has_humans?
+      puts info("humans.txt available under: #{wp_target.humans_url}")
+
+      wp_target.parse_humans_txt.each do |dir|
+        puts info("Interesting entry from humans.txt: #{dir}")
+      end
+    end
+
     if wp_target.has_full_path_disclosure?
       puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
     end

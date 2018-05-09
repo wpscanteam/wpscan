@@ -1,10 +1,12 @@
 # encoding: UTF-8
 
 require 'web_site/robots_txt'
+require 'web_site/humans_txt'
 require 'web_site/interesting_headers'
 
 class WebSite
   include WebSite::RobotsTxt
+  include WebSite::HumansTxt
   include WebSite::InterestingHeaders
 
   attr_reader :uri
