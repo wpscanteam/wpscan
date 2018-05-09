@@ -54,6 +54,8 @@ def main
     unless wpscan_options.has_options?
       # first parameter only url?
       if ARGV.length == 1
+        puts
+        puts notice("Please use '-u #{ARGV[0]}' next time")
         wpscan_options.url = ARGV[0]
       else
         usage()
