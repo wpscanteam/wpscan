@@ -89,7 +89,7 @@ def main
     # Also no need to check if the user supplied the --update switch
     if update_required? && !wpscan_options.batch && !wpscan_options.update
       puts
-      puts notice('It seems like you have not updated the database for some time.')
+      puts notice('It seems like you have not updated the database for some time')
       puts notice("Last database update: #{date.strftime('%Y-%m-%d')}") unless date.nil?
       print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N] > '
       if (input = Readline.readline) =~ /^y/i
@@ -108,7 +108,7 @@ def main
     if wpscan_options.update
       puts notice('Updating the Database ...')
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
-      puts notice('Update completed.')
+      puts notice('Update completed')
       # Exit program if only option --update is used
       exit(0) unless wpscan_options.url
     end
@@ -124,7 +124,7 @@ def main
     end
 
     if wp_target.ssl_error?
-      raise "The target site returned an SSL/TLS error. You can try again using the --disable-tls-checks option.\nError: #{wp_target.get_root_path_return_code}\nSee here for a detailed explanation of the error: http://www.rubydoc.info/github/typhoeus/ethon/Ethon/Easy:return_code"
+      raise "The target site returned an SSL/TLS error. You can try again using the --disable-tls-checks option\nError: #{wp_target.get_root_path_return_code}\nSee here for a detailed explanation of the error: http://www.rubydoc.info/github/typhoeus/ethon/Ethon/Easy:return_code"
     end
 
     # Remote website up?
