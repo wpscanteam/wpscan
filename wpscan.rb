@@ -28,7 +28,7 @@ def main
       # check if file exists and has a size greater zero
       if File.exist?($log) && File.size?($log)
         puts notice("The supplied log file #{$log} already exists. If you continue the new output will be appended.")
-        print '[?] Do you want to continue? [Y]es [N]o, default: [N]'
+        print '[?] Do you want to continue? [Y]es [N]o, default: [N] >'
         if Readline.readline !~ /^y/i
           # unset logging so puts will try to log to the file
           $log = nil
@@ -89,8 +89,8 @@ def main
     # also no need to check if the user supplied the --update switch
     if update_required? && !wpscan_options.batch && !wpscan_options.update
       puts notice('It seems like you have not updated the database for some time.')
-      print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N]'
       puts notice("Last database update: #{date.strftime('%Y-%m-%d')}") unless date.nil?
+      print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N] > '
       if (input = Readline.readline) =~ /^y/i
         wpscan_options.update = true
       elsif input =~ /^a/i
@@ -148,7 +148,7 @@ def main
           puts "Following redirection #{redirection}"
         else
           puts notice("The remote host tried to redirect to: #{redirection}")
-          print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
+          print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N] >'
         end
         if wpscan_options.follow_redirection || !wpscan_options.batch
           if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
