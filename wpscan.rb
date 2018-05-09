@@ -524,10 +524,13 @@ def main
     end
     exit(1)
   ensure
-    # Ensure a clean abort of Hydra
-    # See https://github.com/wpscanteam/wpscan/issues/461#issuecomment-42735615
-    Browser.instance.hydra.abort
-    Browser.instance.hydra.run
+    # Make sure there was an argument
+    if ARGV.length != 0
+      # Ensure a clean abort of Hydra
+      # See https://github.com/wpscanteam/wpscan/issues/461#issuecomment-42735615
+      Browser.instance.hydra.abort
+      Browser.instance.hydra.run
+    end
   end
 end
 
