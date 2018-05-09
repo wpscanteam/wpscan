@@ -204,7 +204,7 @@ def main
     puts
 
     if wp_target.has_robots?
-      puts info("robots.txt available under: '#{wp_target.robots_url}'")
+      puts info("robots.txt available under: #{wp_target.robots_url}")
 
       wp_target.parse_robots_txt.each do |dir|
         puts info("Interesting entry from robots.txt: #{dir}")
@@ -220,15 +220,15 @@ def main
     end
 
     wp_target.config_backup.each do |file_url|
-      puts critical("A wp-config.php backup file has been found in: '#{file_url}'")
+      puts critical("A wp-config.php backup file has been found in: #{file_url}")
     end
 
     if wp_target.search_replace_db_2_exists?
-      puts critical("searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
+      puts critical("searchreplacedb2.php has been found in: #{wp_target.search_replace_db_2_url}")
     end
 
     if wp_target.emergency_exists?
-      puts critical("emergency.php has been found in: '#{wp_target.emergency_url}'")
+      puts critical("emergency.php has been found in: #{wp_target.emergency_url}")
     end
 
     wp_target.interesting_headers.each do |header|
