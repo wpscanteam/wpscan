@@ -200,7 +200,7 @@ def main
     start_memory = get_memory_usage unless windows?
     puts info("URL: #{wp_target.url}")
     puts info("Started: #{start_time.asctime}")
-    puts info("User-Agent: #{wpscan_options.user_agent}") if wpscan_options.verbose
+    puts info("User-Agent: #{wpscan_options.user_agent}") if wpscan_options.verbose and wpscan_options.user_agent
     puts
 
     if wp_target.has_robots?
