@@ -255,6 +255,11 @@ end
 # @return [ String ] A random user-agent from data/user-agents.txt
 def get_random_user_agent
   user_agents = []
+
+  unless File.exist?(USER_AGENTS_FILE)
+    raise('[ERROR] Missing user-agent data. Please re-run with --update.')
+  end
+
   f = File.open(USER_AGENTS_FILE, 'r')
   f.each_line do |line|
     # ignore comments
