@@ -21,6 +21,7 @@ WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM
 WORDPRESSES_FILE  = File.join(DATA_DIR, 'wordpresses.json')
 PLUGINS_FILE      = File.join(DATA_DIR, 'plugins.json')
 THEMES_FILE       = File.join(DATA_DIR, 'themes.json')
+TIMTHUMBS_FILE    = File.join(DATA_DIR, 'timthumbs.txt')
 WP_VERSIONS_FILE  = File.join(DATA_DIR, 'wp_versions.xml')
 LOCAL_FILES_FILE  = File.join(DATA_DIR, 'local_vulnerable_files.xml')
 WP_VERSIONS_XSD   = File.join(DATA_DIR, 'wp_versions.xsd')

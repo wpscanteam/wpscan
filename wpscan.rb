@@ -399,7 +399,7 @@ def main
 
       wp_timthumbs = WpTimthumbs.aggressive_detection(wp_target,
         enum_options.merge(
-          file: DATA_DIR + '/timthumbs.txt',
+          file: TIMTHUMBS_FILE,
           theme_name: wp_theme ? wp_theme.name : nil
         )
       )
