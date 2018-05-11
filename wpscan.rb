@@ -85,30 +85,56 @@ def main
       wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
     )
 
-    # Check if db file needs upgrade (older than 5 days) and we are not running in --batch mode
+    # Check if database needs upgrade (if its older than 5 days) and we are not running in --batch mode
     # Also no need to check if the user supplied the --update switch
-    if update_required? && !wpscan_options.batch && !wpscan_options.update
+    if update_required? and  not wpscan_options.batch and not wpscan_options.update
+      # Banner
       puts
       puts notice('It seems like you have not updated the database for some time')
       puts notice("Last database update: #{date.strftime('%Y-%m-%d')}") unless date.nil?
+
+      # User prompt
       print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N] > '
-      if (input = Readline.readline) =~ /^y/i
-        wpscan_options.update = true
-      elsif input =~ /^a/i
+      if (input = Readline.readline) =~ /^a/i
         puts 'Scan aborted'
         exit(1)
-      else
-        if missing_db_file?
-          puts critical('You can not run a scan without any databases. Manually extract the data.zip file.')
-          exit(1)
-        end
+      elsif input =~ /^y/i
+        wpscan_options.update = true
+      end
+
+      # Is there a database to go on with?
+      if missing_db_files? and not wpscan_options.update
+        puts critical('You can not run a scan without any databases')
+        exit(1)
       end
     end
 
+    # Should we update?
     if wpscan_options.update
-      puts notice('Updating the Database ...')
-      DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
-      puts notice('Update completed')
+      online_update = true
+
+      # Check for data.zip
+      if has_db_zip?
+        # User prompt
+        print '[?] Use the latest on-line database? Or use the off-line version? [O]n-line O[f]f-line [A]bort, default: [O] > '
+        if (input = Readline.readline) =~ /^a/i
+          puts 'Scan aborted'
+          exit(1)
+        elsif input =~ /^f/i
+          online_update = false
+        end
+      end
+
+      if online_update
+        puts notice('Updating the Database ...')
+        DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
+        puts notice('Update completed')
+      else
+        puts notice('Extracting the Database ...')
+        extract_db_zip
+        puts notice('Extraction completed')
+      end
+
       # Exit program if only option --update is used
       exit(0) unless wpscan_options.url
     end

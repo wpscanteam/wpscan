@@ -6,6 +6,7 @@ gem 'addressable', '>=2.5.0'
 gem 'yajl-ruby', '>=1.3.0' # Better JSON parser regarding memory usage
 gem 'terminal-table', '>=1.6.0'
 gem 'ruby-progressbar', '>=1.8.1'
+gem 'rubyzip', '>=1.2.1'
 
 group :test do
   gem 'webmock', '>=2.3.2'

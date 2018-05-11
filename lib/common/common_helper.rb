@@ -12,6 +12,7 @@ MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
 COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections')
 
 DEFAULT_LOG_FILE     = File.join(ROOT_DIR, 'log.txt')
+DATA_FILE            = File.join(ROOT_DIR, 'data.zip') # wpscan/data.zip
 
 # Plugins directories
 COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
@@ -79,11 +80,28 @@ def add_trailing_slash(url)
   url =~ /\/$/ ? url : "#{url}/"
 end
 
-def missing_db_file?
+def missing_db_files?
   DbUpdater::FILES.each do |db_file|
     return true unless File.exist?(File.join(DATA_DIR, db_file))
   end
   false
+end
+
+# Find data.zip?
+def has_db_zip?
+  return File.exist?(DATA_FILE)? true : false
+end
+
+# Extract data.zip
+def extract_db_zip
+  puts DATA_FILE
+  Zip::File.open(DATA_FILE) do |zip_file|
+    zip_file.each do |f|
+      f_path = File.join(DATA_DIR, f.name)
+      FileUtils.mkdir_p(File.dirname(f_path))
+      zip_file.extract(f, f_path)
+    end
+  end
 end
 
 def last_update
