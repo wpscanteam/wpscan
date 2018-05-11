@@ -235,6 +235,18 @@ def main
     puts info("User-Agent: #{wpscan_options.user_agent}") if wpscan_options.verbose and wpscan_options.user_agent
     puts
 
+    wp_target.interesting_headers.each do |header|
+      output = info('Interesting header: ')
+
+      if header[1].class == Array
+        header[1].each do |value|
+          puts output + "#{header[0]}: #{value}"
+        end
+      else
+        puts output + "#{header[0]}: #{header[1]}"
+      end
+    end
+
     if wp_target.has_robots?
       puts info("robots.txt available under: #{wp_target.robots_url}")
 
@@ -259,10 +271,6 @@ def main
       end
     end
 
-    if wp_target.has_full_path_disclosure?
-      puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
-    end
-
     if wp_target.has_debug_log?
       puts critical("Debug log file found: #{wp_target.debug_log_url}")
     end
@@ -279,28 +287,12 @@ def main
       puts critical("emergency.php has been found in: #{wp_target.emergency_url}")
     end
 
-    wp_target.interesting_headers.each do |header|
-      output = info('Interesting header: ')
-
-      if header[1].class == Array
-        header[1].each do |value|
-          puts output + "#{header[0]}: #{value}"
-        end
-      else
-        puts output + "#{header[0]}: #{header[1]}"
-      end
-    end
-
     if wp_target.multisite?
       puts info('This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)')
     end
 
     if wp_target.has_must_use_plugins?
       puts info("This site has 'Must Use Plugins' (http://codex.wordpress.org/Must_Use_Plugins)")
-    end
-
-    if wp_target.registration_enabled?
-      puts warning("Registration is enabled: #{wp_target.registration_url}")
     end
 
     if wp_target.has_xml_rpc?
