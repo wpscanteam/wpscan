@@ -1,34 +1,35 @@
 # encoding: UTF-8
 
-LIB_DIR              = File.expand_path(File.join(__dir__, '..'))
-ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
-DATA_DIR             = File.join(ROOT_DIR, 'data')
-CONF_DIR             = File.join(ROOT_DIR, 'conf')
-CACHE_DIR            = File.join(ROOT_DIR, 'cache')
-WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan')
-UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater')
-COMMON_LIB_DIR       = File.join(LIB_DIR, 'common')
-MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
-COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections')
+LIB_DIR              = File.expand_path(File.join(__dir__, '..')) # wpscan/lib/
+ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # wpscan/ - expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+USER_DIR             = File.expand_path(Dir.home) # ~/
+CACHE_DIR            = File.join(USER_DIR, '.wpscan/cache') # ~/.wpscan/cache/
+DATA_DIR             = File.join(USER_DIR, '.wpscan/data') # ~/.wpscan/data/
+CONF_DIR             = File.join(ROOT_DIR, 'conf') # wpscan/conf/
+COMMON_LIB_DIR       = File.join(LIB_DIR, 'common') # wpscan/lib/common/
+UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater') # wpscan/lib/updater/ -  Not used ATM
+WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan') # wpscan/lib/wpscan/
+COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections') # wpscan/lib/common/collections/ -  Not used ATM
+MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models') # wpscan/lib/common/models/
 
-DEFAULT_LOG_FILE     = File.join(ROOT_DIR, 'log.txt')
+DEFAULT_LOG_FILE     = File.join(USER_DIR, '.wpscan/log.txt')  # ~/.wpscan/log.txt
 DATA_FILE            = File.join(ROOT_DIR, 'data.zip') # wpscan/data.zip
 
 # Plugins directories
-COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
-WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM
+COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins') # wpscan/lib/common/plugins/ -  Not used ATM
+WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # wpscan/lib/common/plugins/ -  Not used ATM
 
-# Data files
-WORDPRESSES_FILE  = File.join(DATA_DIR, 'wordpresses.json')
-PLUGINS_FILE      = File.join(DATA_DIR, 'plugins.json')
-THEMES_FILE       = File.join(DATA_DIR, 'themes.json')
-TIMTHUMBS_FILE    = File.join(DATA_DIR, 'timthumbs.txt')
-WP_VERSIONS_FILE  = File.join(DATA_DIR, 'wp_versions.xml')
-LOCAL_FILES_FILE  = File.join(DATA_DIR, 'local_vulnerable_files.xml')
-WP_VERSIONS_XSD   = File.join(DATA_DIR, 'wp_versions.xsd')
-LOCAL_FILES_XSD   = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
-USER_AGENTS_FILE  = File.join(DATA_DIR, 'user-agents.txt')
-LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
+# Data files (data.zip)
+LAST_UPDATE_FILE    = File.join(DATA_DIR, '.last_update') # ~/.wpscan/data/.last_update
+LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml') # ~/.wpscan/data/local_vulnerable_files.xml -  Not used ATM
+LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd') # ~/.wpscan/data/local_vulnerable_files.xsd -  Not used ATM
+PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.json') # ~/.wpscan/data/plugins.json
+THEMES_FILE         = File.join(DATA_DIR, 'themes.json') # ~/.wpscan/data/themes.json
+TIMTHUMBS_FILE      = File.join(DATA_DIR, 'timthumbs.txt') # ~/.wpscan/data/timthumbs.txt
+USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt') # ~/.wpscan/data/user-agents.txt
+WORDPRESSES_FILE    = File.join(DATA_DIR, 'wordpresses.json') # ~/.wpscan/data/wordpresses.json
+WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml') # ~/.wpscan/data/wp_versions.xml
+WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd') # ~/.wpscan/data/wp_versions.xsd -  Not used ATM
 
 MIN_RUBY_VERSION = '2.1.9'
 
@@ -52,6 +53,7 @@ def windows?
 end
 
 require 'environment'
+require 'zip'
 
 def escape_glob(s)
   s.gsub(/[\\\{\}\[\]\*\?]/) { |x| '\\' + x }
