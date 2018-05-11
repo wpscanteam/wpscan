@@ -1,25 +1,29 @@
 # encoding: UTF-8
 
+# Location directories
 LIB_DIR              = File.expand_path(File.join(__dir__, '..')) # wpscan/lib/
 ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # wpscan/ - expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
 USER_DIR             = File.expand_path(Dir.home) # ~/
+
+# Core WPScan directories
 CACHE_DIR            = File.join(USER_DIR, '.wpscan/cache') # ~/.wpscan/cache/
 DATA_DIR             = File.join(USER_DIR, '.wpscan/data') # ~/.wpscan/data/
-CONF_DIR             = File.join(ROOT_DIR, 'conf') # wpscan/conf/
+CONF_DIR             = File.join(ROOT_DIR, '.wpscan/conf') # ~/.wpscan/conf/
 COMMON_LIB_DIR       = File.join(LIB_DIR, 'common') # wpscan/lib/common/
 UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater') # wpscan/lib/updater/ -  Not used ATM
 WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan') # wpscan/lib/wpscan/
 COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections') # wpscan/lib/common/collections/ -  Not used ATM
 MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models') # wpscan/lib/common/models/
 
+# Core WPScan files
 DEFAULT_LOG_FILE     = File.join(USER_DIR, '.wpscan/log.txt')  # ~/.wpscan/log.txt
 DATA_FILE            = File.join(ROOT_DIR, 'data.zip') # wpscan/data.zip
 
-# Plugins directories
+# WPScan Plugins directories
 COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins') # wpscan/lib/common/plugins/ -  Not used ATM
 WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # wpscan/lib/common/plugins/ -  Not used ATM
 
-# Data files (data.zip)
+# WPScan Data files (data.zip)
 LAST_UPDATE_FILE    = File.join(DATA_DIR, '.last_update') # ~/.wpscan/data/.last_update
 LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml') # ~/.wpscan/data/local_vulnerable_files.xml -  Not used ATM
 LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd') # ~/.wpscan/data/local_vulnerable_files.xsd -  Not used ATM
