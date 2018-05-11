@@ -304,3 +304,11 @@ end
 def url_encode(str)
   CGI.escape(str).gsub("+", "%20")
 end
+
+# Check valid JSON?
+def valid_json?(json)
+    JSON.parse(json)
+    return true
+  rescue JSON::ParserError => e
+    return false
+end

@@ -299,6 +299,21 @@ def main
       puts info("XML-RPC Interface available under: #{wp_target.xml_rpc_url}")
     end
 
+    if wp_target.has_api?(wp_target.json_url)
+      puts info("API exposed: #{wp_target.json_url}")
+
+      if wp_target.has_api?(wp_target.json_users_url)
+        puts warning("Users exposed via API: #{wp_target.json_users_url}")
+
+        # Print users from JSON
+        wp_target.json_get_users(wp_target.json_users_url)
+      end
+    end
+
+    if wp_target.has_full_path_disclosure?
+      puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
+    end
+
     if wp_target.upload_directory_listing_enabled?
       puts warning("Upload directory has directory listing enabled: #{wp_target.upload_dir_url}")
     end
