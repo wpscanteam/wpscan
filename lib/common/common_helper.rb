@@ -102,7 +102,7 @@ end
 def extract_db_zip
   Zip::File.open(DATA_FILE) do |zip_file|
     zip_file.each do |f|
-      f_path = File.join(DATA_DIR, f.name)
+      f_path = File.join(DATA_DIR, File.basename(f.name))
       FileUtils.mkdir_p(File.dirname(f_path))
       zip_file.extract(f, f_path)
     end
