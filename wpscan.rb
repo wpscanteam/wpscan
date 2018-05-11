@@ -233,7 +233,7 @@ def main
     puts info("URL: #{wp_target.url}")
     puts info("Started: #{start_time.asctime}")
     puts info("User-Agent: #{wpscan_options.user_agent}") if wpscan_options.verbose and wpscan_options.user_agent
-    puts
+    spacer()
 
     wp_target.interesting_headers.each do |header|
       output = info('Interesting header: ')
@@ -245,8 +245,8 @@ def main
       else
         puts output + "#{header[0]}: #{header[1]}"
       end
-      puts "    - - - - -"
     end
+    spacer()
 
     if wp_target.has_robots?
       puts info("robots.txt available under: #{wp_target.robots_url}")
@@ -254,7 +254,7 @@ def main
       wp_target.parse_robots_txt.each do |dir|
         puts info("Interesting entry from robots.txt: #{dir}")
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_humans?
@@ -263,7 +263,7 @@ def main
       wp_target.parse_humans_txt.each do |dir|
         puts info("Interesting entry from humans.txt: #{dir}")
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_security?
@@ -272,42 +272,42 @@ def main
       wp_target.parse_security_txt.each do |dir|
         puts info("Interesting entry from security.txt: #{dir}")
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_debug_log?
       puts critical("Debug log file found: #{wp_target.debug_log_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     wp_target.config_backup.each do |file_url|
       puts critical("A wp-config.php backup file has been found in: #{file_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.search_replace_db_2_exists?
       puts critical("searchreplacedb2.php has been found in: #{wp_target.search_replace_db_2_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.emergency_exists?
       puts critical("emergency.php has been found in: #{wp_target.emergency_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.multisite?
       puts info('This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)')
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_must_use_plugins?
       puts info("This site has 'Must Use Plugins' (http://codex.wordpress.org/Must_Use_Plugins)")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_xml_rpc?
       puts info("XML-RPC Interface available under: #{wp_target.xml_rpc_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_api?(wp_target.json_url)
@@ -319,22 +319,22 @@ def main
         # Print users from JSON
         wp_target.json_get_users(wp_target.json_users_url)
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.has_full_path_disclosure?
       puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.upload_directory_listing_enabled?
       puts warning("Upload directory has directory listing enabled: #{wp_target.upload_dir_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     if wp_target.include_directory_listing_enabled?
       puts warning("Includes directory has directory listing enabled: #{wp_target.includes_dir_url}")
-      puts "    - - - - -"
+      spacer()
     end
 
     enum_options = {
@@ -352,7 +352,7 @@ def main
       puts
       puts notice('WordPress version can not be detected')
     end
-    puts "    - - - - -"
+    spacer()
 
     if wp_theme = wp_target.theme
       puts
@@ -371,7 +371,7 @@ def main
         parent.output(wpscan_options.verbose)
         wp_theme = parent
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
@@ -389,7 +389,7 @@ def main
       else
         puts info('No plugins found')
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     # Enumerate the installed plugins
@@ -427,7 +427,7 @@ def main
       else
         puts info('No plugins found')
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     # Enumerate installed themes
@@ -464,7 +464,7 @@ def main
       else
         puts info('No themes found')
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     if wpscan_options.enumerate_timthumbs
@@ -487,7 +487,7 @@ def main
       else
         puts info('No timthumb files found')
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     # If we haven't been supplied a username/usernames list, enumerate them...
@@ -533,7 +533,7 @@ def main
       else
         wp_users << WpUser.new(wp_target.uri, login: wpscan_options.username)
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     # Start the brute forcer
@@ -566,7 +566,7 @@ def main
       else
         puts critical('Brute forcing aborted')
       end
-      puts "    - - - - -"
+      spacer()
     end
 
     stop_time   = Time.now
