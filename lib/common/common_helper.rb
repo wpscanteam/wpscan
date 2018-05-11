@@ -100,7 +100,6 @@ end
 
 # Extract data.zip
 def extract_db_zip
-  puts DATA_FILE
   Zip::File.open(DATA_FILE) do |zip_file|
     zip_file.each do |f|
       f_path = File.join(DATA_DIR, f.name)
