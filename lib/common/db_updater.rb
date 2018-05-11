@@ -13,8 +13,13 @@ class DbUpdater
   def initialize(repo_directory)
     @repo_directory = repo_directory
 
-    fail "#{repo_directory} is not writable" unless \
-      Pathname.new(repo_directory).writable?
+    unless Dir.exist?(@repo_directory)
+      FileUtils.mkdir_p(@repo_directory)
+    end
+
+    unless Pathname.new(@repo_directory).writable?
+      fail "#{@repo_directory} is not writable"
+    end
   end
 
   # @return [ Hash ] The params for Typhoeus::Request

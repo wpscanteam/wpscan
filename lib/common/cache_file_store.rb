@@ -26,6 +26,10 @@ class CacheFileStore
     unless Dir.exist?(@storage_path)
       FileUtils.mkdir_p(@storage_path)
     end
+
+    unless Pathname.new(@storage_path).writable?
+      fail "#{@storage_path} is not writable"
+    end
   end
 
   def clean
