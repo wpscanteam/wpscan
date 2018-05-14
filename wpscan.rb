@@ -268,7 +268,8 @@ def main
     end
 
     if wp_target.has_security?
-      puts info("security.txt available under: #{wp_target.security_url}")
+      code = get_http_status(wp_target.humans_url)
+      puts info("security.txt available under: #{wp_target.security_url}   [HTTP #{code}]")
 
       wp_target.parse_security_txt.each do |dir|
         puts info("Interesting entry from security.txt: #{dir}")

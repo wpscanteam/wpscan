@@ -8,7 +8,7 @@ USER_DIR             = File.expand_path(Dir.home) # ~/
 # Core WPScan directories
 CACHE_DIR            = File.join(USER_DIR, '.wpscan/cache') # ~/.wpscan/cache/
 DATA_DIR             = File.join(USER_DIR, '.wpscan/data') # ~/.wpscan/data/
-CONF_DIR             = File.join(ROOT_DIR, '.wpscan/conf') # ~/.wpscan/conf/
+CONF_DIR             = File.join(USER_DIR, '.wpscan/conf') # ~/.wpscan/conf/
 COMMON_LIB_DIR       = File.join(LIB_DIR, 'common') # wpscan/lib/common/
 UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater') # wpscan/lib/updater/ -  Not used ATM
 WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan') # wpscan/lib/wpscan/
@@ -103,14 +103,14 @@ def extract_db_zip
   Zip::File.open(DATA_FILE) do |zip_file|
     zip_file.each do |f|
       # Feedback to the user
-      puts "[+] Extracting: #{File.basename(f.name)}" if verbose
+      #puts "[+] Extracting: #{File.basename(f.name)}"
       f_path = File.join(DATA_DIR, File.basename(f.name))
 
       # Create folder
       FileUtils.mkdir_p(File.dirname(f_path))
 
       # Delete if already there
-      puts "[+] Deleting: #{File.basename(f.name)}" if verbose and File.exist?(f_path)
+      #puts "[+] Deleting: #{File.basename(f.name)}" if File.exist?(f_path)
       FileUtils.rm(f_path) if File.exist?(f_path)
 
       # Extract

@@ -66,14 +66,15 @@ class WpTarget < WebSite
         users << row
       end
 
-      # Sort and uniq
-      users = users.sort.uniq
+      if users
+        # Sort and uniq
+        users = users.sort.uniq
 
-      # Print results
-      table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],
-                                  rows: users)
-      puts table
+        # Print results
+        table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],
+                                    rows: users)
+        puts table
+      end
     end
-
   end
 end

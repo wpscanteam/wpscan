@@ -18,11 +18,12 @@ class WebSite
     # Parse humans.txt
     # @return [ Array ] URLs generated from humans.txt
     def parse_humans_txt
-      return unless has_humans?
-
       return_object = []
       response = Browser.get(humans_url.to_s)
-      entries = response.body.split(/\n/)
+      body = response.body
+
+      entries = body.split(/\n/)
+
       if entries
         entries.flatten!
         entries.uniq!

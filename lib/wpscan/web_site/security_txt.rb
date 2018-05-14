@@ -18,11 +18,13 @@ class WebSite
     # Parse security.txt
     # @return [ Array ] URLs generated from security.txt
     def parse_security_txt
-      return unless has_security?
-
       return_object = []
       response = Browser.get(security_url.to_s)
-      entries = response.body.split(/\n/)
+      body = response.body
+
+      # Get all non-comments
+      entries = body.split(/\n/)
+
       if entries
         entries.flatten!
         entries.uniq!

@@ -1,16 +1,16 @@
 # encoding: UTF-8
 
-require 'web_site/robots_txt'
 require 'web_site/humans_txt'
-require 'web_site/security_txt'
 require 'web_site/interesting_headers'
+require 'web_site/robots_txt'
+require 'web_site/security_txt'
 require 'web_site/sitemap'
 
 class WebSite
-  include WebSite::RobotsTxt
   include WebSite::HumansTxt
-  include WebSite::SecurityTxt
   include WebSite::InterestingHeaders
+  include WebSite::RobotsTxt
+  include WebSite::SecurityTxt
   include WebSite::Sitemap
 
   attr_reader :uri

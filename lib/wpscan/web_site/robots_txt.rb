@@ -18,16 +18,18 @@ class WebSite
     # Parse robots.txt
     # @return [ Array ] URLs generated from robots.txt
     def parse_robots_txt
-      return unless has_robots?
-
       return_object = []
+
+      # Make request
       response = Browser.get(robots_url.to_s)
       body = response.body
 
       # Get all allow and disallow urls
       entries = body.scan(/^(?:dis)?allow:\s*(.*)$/i)
+
+      # Did we get something?
       if entries
-        #extract elements
+        # Extract elements
         entries.flatten!
         # Remove any leading/trailing spaces
         entries.collect{|x| x.strip || x }
@@ -77,6 +79,5 @@ class WebSite
         /wp-content/
       }
     end
-
   end
 end
