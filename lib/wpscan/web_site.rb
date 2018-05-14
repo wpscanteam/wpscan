@@ -125,13 +125,6 @@ class WebSite
     @error_404_hash
   end
 
-  # Will try to find the rss url in the homepage
-  # Only the first one found is returned
-  def rss_url
-    homepage_body = Browser.get(@uri.to_s).body
-    homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
-  end
-
   # Only the first 700 bytes are checked to avoid the download
   # of the whole file which can be very huge (like 2 Go)
   #

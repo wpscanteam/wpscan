@@ -9,6 +9,7 @@ require 'wp_target/wp_login_protection'
 require 'wp_target/wp_must_use_plugins'
 require 'wp_target/wp_readme'
 require 'wp_target/wp_registrable'
+require 'wp_target/wp_rss'
 
 class WpTarget < WebSite
   include WpTarget::WpAPI
@@ -19,6 +20,7 @@ class WpTarget < WebSite
   include WpTarget::WpMustUsePlugins
   include WpTarget::WpReadme
   include WpTarget::WpRegistrable
+  include WpTarget::WpRSS
 
   attr_reader :verbose
 

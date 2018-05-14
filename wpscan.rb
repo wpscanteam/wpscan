@@ -323,6 +323,18 @@ def main
       spacer()
     end
 
+    # Get RSS
+    rss = wp_target.rss_url
+    if rss
+      # Feedback
+      puts info("RSS Feed: #{rss}")
+
+      # Print users from RSS feed
+      wp_target.rss_authors(rss)
+
+      spacer()
+    end
+
     if wp_target.has_full_path_disclosure?
       puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
       spacer()
