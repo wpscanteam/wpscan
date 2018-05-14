@@ -9,7 +9,7 @@ class WpUsers < WpItems
     # @return [ void ]
     def output(options = {})
       rows     = []
-      headings = ['Id', 'Login', 'Name']
+      headings = ['ID', 'Login', 'Name']
       headings << 'Password' if options[:show_password]
 
       remove_junk_from_display_names

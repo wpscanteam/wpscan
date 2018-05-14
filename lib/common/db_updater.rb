@@ -88,7 +88,7 @@ class DbUpdater
   def update(verbose = false)
     FILES.each do |filename|
       begin
-        puts "[+] Checking #{filename}" if verbose
+        puts "[+] Checking: #{filename}" if verbose
         db_checksum = remote_file_checksum(filename)
 
         # Checking if the file needs to be updated

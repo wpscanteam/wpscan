@@ -116,10 +116,9 @@ def main
       # Check for data.zip
       if has_db_zip?
         # User prompt
-        print '[?] Use the latest on-line database? Or use the off-line version? [O]n-line O[f]f-line [A]bort, default: [O] > '
+        print '[?] Use the latest on-line database? Or use the off-line copy? [O]n-line  O[f]f-line  [A]bort update, default: [O] > '
         if (input = Readline.readline) =~ /^a/i
-          puts 'Scan aborted'
-          exit(1)
+          puts 'Update aborted'
         elsif input =~ /^f/i
           online_update = false
         end
@@ -310,9 +309,11 @@ def main
       spacer()
     end
 
+    # Test to see if MAIN API URL gives anything back
     if wp_target.has_api?(wp_target.json_url)
       puts info("API exposed: #{wp_target.json_url}")
 
+      # Test to see if USER API URL gives anything back
       if wp_target.has_api?(wp_target.json_users_url)
         puts warning("Users exposed via API: #{wp_target.json_users_url}")
 
