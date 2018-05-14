@@ -153,6 +153,25 @@ def full_uri(entries)
   return return_object
 end
 
+# Parse humans.txt
+# @return [ Array ] URLs generated from humans.txt
+def parse_txt(url)
+  return_object = []
+  response = Browser.get(url.to_s)
+  body = response.body
+
+  # Get all non-comments
+  entries = body.split(/\n/)
+
+  # Did we get something?
+  if entries
+    # Remove any rubbish
+    entries = clean_uri(entries)
+  end
+  return return_object
+end
+
+
 # Hook to check if the target if down during the scan
 # And have the number of requests performed to display at the end of the scan
 # The target is considered down after 30 requests with status = 0

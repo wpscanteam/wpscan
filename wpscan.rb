@@ -248,7 +248,7 @@ def main
     end
 
     if wp_target.has_sitemap?
-      code = get_http_status(wp_target.robots_url)
+      code = get_http_status(wp_target.sitemap_url)
       puts info("Sitemap found: #{wp_target.sitemap_url}   [HTTP #{code}]")
 
       wp_target.parse_sitemap.each do |dir|
@@ -262,8 +262,8 @@ def main
     if code == 200
       puts info("humans.txt available under: #{wp_target.humans_url}   [HTTP #{code}]")
 
-      wp_target.parse_humans_txt.each do |dir|
-        puts info("Interesting entry from humans.txt: #{dir}")
+      wp_target.parse_txt(humans_url).each do |dir|
+        puts info("Entry from humans.txt: #{dir}")
       end
       spacer()
     end
@@ -272,8 +272,8 @@ def main
     if code == 200
       puts info("security.txt available under: #{wp_target.security_url}   [HTTP #{code}]")
 
-      wp_target.parse_security_txt.each do |dir|
-        puts info("Interesting entry from security.txt: #{dir}")
+      wp_target.parse_txt(security_url).each do |dir|
+        puts info("Entry from security.txt: #{dir}")
       end
       spacer()
     end
