@@ -42,6 +42,9 @@ class WpTarget < WebSite
 
     # @return [ String ] The API/JSON URL to show users
     def json_get_users(url)
+      # Variables
+      users = []
+
       # Make the request
       response = Browser.get(url)
 
@@ -57,9 +60,19 @@ class WpTarget < WebSite
       # If not HTTP 200, return false
       return false if response.code != 200
 
+      # Add to array
       data.each do |child|
-        puts notice("ID: #{child['id']}   |   Name: #{child['name']}")
+        row = [ child['id'], child['name'], child['link'] ]
+        users << row
       end
+
+      # Sort and uniq
+      users = users.sort.uniq
+
+      # Print results
+      table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],
+                                  rows: users)
+      puts table
     end
 
   end
