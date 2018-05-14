@@ -23,20 +23,32 @@ class WebSite
       return_object = []
       response = Browser.get(robots_url.to_s)
       body = response.body
+
       # Get all allow and disallow urls
       entries = body.scan(/^(?:dis)?allow:\s*(.*)$/i)
       if entries
+        #extract elements
         entries.flatten!
+        # Remove any leading/trailing spaces
+        entries.collect{|x| x.strip || x }
+        # End Of Line issues
+        entries.collect{|x| x.chomp! || x }
+        # Remove nil's and sort
         entries.compact.sort!
+        # Unique values only
         entries.uniq!
+        # Wordpress URL
         wordpress_path = @uri.path
+
+        # Each "boring" value as defined below, remove
         RobotsTxt.known_dirs.each do |d|
           entries.delete(d)
-          # also delete when wordpress is installed in subdir
+          # Also delete when wordpress is installed in subdir
           dir_with_subdir = "#{wordpress_path}/#{d}".gsub(/\/+/, '/')
           entries.delete(dir_with_subdir)
         end
 
+        # Each value now, try and make it a full URL
         entries.each do |d|
           begin
             temp = @uri.clone
@@ -46,17 +58,21 @@ class WebSite
           end
           return_object << temp.to_s
         end
+
       end
       return_object
     end
 
     protected
 
+    # Useful ~ "function do_robots()" -> https://github.com/WordPress/WordPress/blob/master/wp-includes/functions.php
+    #
     # @return [ Array ]
     def self.known_dirs
       %w{
         /
         /wp-admin/
+        /wp-admin/admin-ajax.php
         /wp-includes/
         /wp-content/
       }
