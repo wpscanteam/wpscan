@@ -240,7 +240,7 @@ def main
       puts info("robots.txt available under: #{wp_target.robots_url}")
 
       wp_target.parse_robots_txt.each do |dir|
-        puts info("Interesting entry from robots.txt: #{dir}")
+        wp_target.header_robots_txt(dir)
       end
       spacer()
     end

@@ -15,6 +15,12 @@ class WebSite
       @uri.clone.merge('robots.txt').to_s
     end
 
+    # Check status code for each robots.txt entry
+    def header_robots_txt(url)
+      code = Browser.get(url).code
+      puts info("Interesting entry from robots.txt: #{url}   [HTTP #{code}]")
+    end
+
     # Parse robots.txt
     # @return [ Array ] URLs generated from robots.txt
     def parse_robots_txt
