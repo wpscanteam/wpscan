@@ -43,11 +43,12 @@ class WpTarget < WebSite
       end
 
       if users
-        # Feedback
-        puts warning("Detected users from RSS feed:")
-
         # Sort and uniq
         users = users.sort_by { |user| user.to_s.downcase }.uniq
+
+        # Feedback
+        grammar = grammar_s(users.size)
+        puts warning("Detected #{users.size} user#{grammar} from RSS feed:")
 
         # Print results
         table = Terminal::Table.new(headings: ['Name'],

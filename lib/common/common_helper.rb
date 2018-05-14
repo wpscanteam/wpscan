@@ -294,18 +294,25 @@ end
 def get_random_user_agent
   user_agents = []
 
-  unless File.exist?(USER_AGENTS_FILE)
-    raise('[ERROR] Missing user-agent data. Please re-run with --update.')
-  end
+  # If we can't access the file, die
+  raise('[ERROR] Missing user-agent data. Please re-run with just --update.') unless File.exist?(USER_AGENTS_FILE)
 
+  # Read in file
   f = File.open(USER_AGENTS_FILE, 'r')
+
+  # Read every line in the file
   f.each_line do |line|
-    # ignore comments
+    # Remove any End of Line issues, and leading/trailing spaces
+    line = line.strip.chomp
+    # Ignore empty files and comments
     next if line.empty? or line =~ /^\s*(#|\/\/)/
+    # Add to array
     user_agents << line.strip
   end
+  # Close file handler
   f.close
-  # return ransom user-agent
+
+  # Return random user-agent
   user_agents.sample
 end
 
@@ -331,4 +338,9 @@ end
 # Get the HTTP response code
 def get_http_status(url)
   Browser.get(url.to_s).code
+end
+
+# Check to see if we need a "s"
+def grammar_s(size)
+  size.to_i >= 1 ? "s" : ""
 end

@@ -3,12 +3,6 @@
 class WebSite
   module HumansTxt
 
-    # Checks if a humans.txt file exists
-    # @return [ Boolean ]
-    def has_humans?
-      Browser.get(humans_url).code == 200
-    end
-
     # Gets a humans.txt URL
     # @return [ String ]
     def humans_url
@@ -22,18 +16,15 @@ class WebSite
       response = Browser.get(humans_url.to_s)
       body = response.body
 
+      # Get all non-comments
       entries = body.split(/\n/)
 
+      # Did we get something?
       if entries
-        entries.flatten!
-        entries.uniq!
-
-        entries.each do |d|
-          temp = d.strip
-          return_object << temp.to_s
-        end
+        # Remove any rubbish
+        entries = clean_uri(entries)
       end
-      return_object
+      return return_object
     end
 
   end

@@ -95,7 +95,7 @@ class WpItems < Array
         code = tag.text.to_s
         next if code.empty?
 
-        if ! code.valid_encoding?
+        if !code.valid_encoding?
           code = code.encode('UTF-16be', :invalid => :replace, :replace => '?').encode('UTF-8')
         end
 

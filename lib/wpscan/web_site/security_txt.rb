@@ -3,12 +3,6 @@
 class WebSite
   module SecurityTxt
 
-    # Checks if a security.txt file exists
-    # @return [ Boolean ]
-    def has_security?
-      Browser.get(security_url).code == 200
-    end
-
     # Gets a security.txt URL
     # @return [ String ]
     def security_url
@@ -25,16 +19,12 @@ class WebSite
       # Get all non-comments
       entries = body.split(/\n/)
 
+      # Did we get something?
       if entries
-        entries.flatten!
-        entries.uniq!
-
-        entries.each do |d|
-          temp = d.strip
-          return_object << temp.to_s
-        end
+        # Remove any rubbish
+        entries = clean_uri(entries)
       end
-      return_object
+      return return_object
     end
 
   end

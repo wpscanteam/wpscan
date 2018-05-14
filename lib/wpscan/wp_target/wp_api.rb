@@ -17,13 +17,15 @@ class WpTarget < WebSite
         data = JSON.parse(response.body)
 
         # If there is nothing there, return false
-        return false if data.empty?
-
+        if data.empty?
+          return false
         # WAF/API disabled response
-        return false if data.include?('message') and data['message'] =~ /Only authenticated users can access the REST API/
-
+        elsif data.include?('message') and data['message'] =~ /Only authenticated users can access the REST API/
+          return false
         # Success!
-        return true if response.code == 200
+        elsif response.code == 200
+          return true
+        end
       end
 
       # Something went wrong
@@ -69,6 +71,10 @@ class WpTarget < WebSite
       if users
         # Sort and uniq
         users = users.sort.uniq
+
+        # Feedback
+        grammar = grammar_s(users.size)
+        puts warning("#{users.size} user#{grammar} exposed via API: #{json_users_url}")
 
         # Print results
         table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],

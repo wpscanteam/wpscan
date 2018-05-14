@@ -248,7 +248,8 @@ def main
     end
 
     if wp_target.has_sitemap?
-      puts info("Sitemap found: #{wp_target.sitemap_url}")
+      code = get_http_status(wp_target.robots_url)
+      puts info("Sitemap found: #{wp_target.sitemap_url}   [HTTP #{code}]")
 
       wp_target.parse_sitemap.each do |dir|
         code = get_http_status(dir)
@@ -257,8 +258,8 @@ def main
       spacer()
     end
 
-    if wp_target.has_humans?
-      code = get_http_status(wp_target.humans_url)
+    code = get_http_status(wp_target.humans_url)
+    if code == 200
       puts info("humans.txt available under: #{wp_target.humans_url}   [HTTP #{code}]")
 
       wp_target.parse_humans_txt.each do |dir|
@@ -267,8 +268,8 @@ def main
       spacer()
     end
 
-    if wp_target.has_security?
-      code = get_http_status(wp_target.humans_url)
+    code = get_http_status(wp_target.security_url)
+    if code == 200
       puts info("security.txt available under: #{wp_target.security_url}   [HTTP #{code}]")
 
       wp_target.parse_security_txt.each do |dir|
@@ -308,18 +309,18 @@ def main
     end
 
     if wp_target.has_xml_rpc?
-      puts info("XML-RPC Interface available under: #{wp_target.xml_rpc_url}")
+      code = get_http_status(wp_target.xml_rpc_url)
+      puts info("XML-RPC Interface available under: #{wp_target.xml_rpc_url}   [HTTP #{code}]")
       spacer()
     end
 
     # Test to see if MAIN API URL gives anything back
     if wp_target.has_api?(wp_target.json_url)
-      puts info("API exposed: #{wp_target.json_url}")
+      code = get_http_status(wp_target.json_url)
+      puts info("API exposed: #{wp_target.json_url}   [HTTP #{code}]")
 
       # Test to see if USER API URL gives anything back
       if wp_target.has_api?(wp_target.json_users_url)
-        puts warning("Users exposed via API: #{wp_target.json_users_url}")
-
         # Print users from JSON
         wp_target.json_get_users(wp_target.json_users_url)
       end
@@ -360,6 +361,7 @@ def main
       exclude_content: wpscan_options.exclude_content_based
     }
 
+    puts info('Enumerating WordPress version ...')
     if (wp_version = wp_target.version(WP_VERSIONS_FILE))
       if wp_target.has_readme? && VersionCompare::lesser?(wp_version.identifier, '4.7')
         puts warning("The WordPress '#{wp_target.readme_url}' file exists exposing a version number")
@@ -398,14 +400,11 @@ def main
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
-        if wp_plugins.size == 1
-          puts " | #{wp_plugins.size} plugin found:"
-        else
-          puts " | #{wp_plugins.size} plugins found:"
-        end
+        grammar = grammar_s(wp_plugins.size)
+        puts " | #{wp_plugins.size} plugin#{grammar} found:"
         wp_plugins.output(wpscan_options.verbose)
       else
-        puts info('No plugins found')
+        puts info('No plugins found passively')
       end
       spacer()
     end
@@ -438,7 +437,7 @@ def main
 
       puts
       if !wp_plugins.empty?
-        grammar = wp_themes.size == 1 ? "" : "s"
+        grammar = grammar_s(wp_plugins.size)
         puts info("We found #{wp_plugins.size} plugin#{grammar}:")
 
         wp_plugins.output(wpscan_options.verbose)
@@ -475,7 +474,7 @@ def main
       )
       puts
       if !wp_themes.empty?
-        grammar = wp_themes.size == 1 ? "" : "s"
+        grammar = grammar_s(wp_themes.size)
         puts info("We found #{wp_themes.size} theme#{grammar}:")
 
         wp_themes.output(wpscan_options.verbose)
@@ -498,7 +497,7 @@ def main
       )
       puts
       if !wp_timthumbs.empty?
-        grammar = wp_timthumbs.size == 1 ? "" : "s"
+        grammar = grammar_s(wp_timthumbs.size)
         puts info("We found #{wp_timthumbs.size} timthumb file#{grammar}:")
 
         wp_timthumbs.output(wpscan_options.verbose)
@@ -533,7 +532,7 @@ def main
           exit(1)
         end
       else
-        grammar = wp_users.size == 1 ? "" : "s"
+        grammar = grammar_s(wp_users.size)
         puts info("We identified the following #{wp_users.size} user#{grammar}:")
         wp_users.output(margin_left: ' ' * 4)
         if wp_users[0].login == "admin"
@@ -544,21 +543,21 @@ def main
     else
       wp_users = WpUsers.new
 
+      # Username file?
       if wpscan_options.usernames
         File.open(wpscan_options.usernames).each do |username|
           wp_users << WpUser.new(wp_target.uri, login: username.chomp)
         end
+      # Single username?
       else
         wp_users << WpUser.new(wp_target.uri, login: wpscan_options.username)
       end
-      spacer()
     end
 
     # Start the brute forcer
     bruteforce = true
     if wpscan_options.wordlist
       if wp_target.has_login_protection?
-
         protection_plugin = wp_target.login_protection_plugin()
 
         puts

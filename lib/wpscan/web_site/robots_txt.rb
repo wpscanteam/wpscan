@@ -29,16 +29,12 @@ class WebSite
 
       # Did we get something?
       if entries
-        # Extract elements
-        entries.flatten!
-        # Remove any leading/trailing spaces
-        entries.collect{|x| x.strip || x }
-        # End Of Line issues
-        entries.collect{|x| x.chomp! || x }
-        # Remove nil's and sort
-        entries.compact.sort!
-        # Unique values only
-        entries.uniq!
+        # Remove any rubbish
+        entries = clean_uri(entries)
+
+        # Sort
+        entries.sort!
+
         # Wordpress URL
         wordpress_path = @uri.path
 
@@ -50,19 +46,10 @@ class WebSite
           entries.delete(dir_with_subdir)
         end
 
-        # Each value now, try and make it a full URL
-        entries.each do |d|
-          begin
-            temp = @uri.clone
-            temp.path = d.strip
-          rescue URI::Error
-            temp = d.strip
-          end
-          return_object << temp.to_s
-        end
-
+        # Convert to full URIs
+        return_object = full_uri(entries)
       end
-      return_object
+      return return_object
     end
 
     protected

@@ -120,6 +120,39 @@ def help
   puts
 end
 
+
+def clean_uri(entries)
+  # Extract elements
+  entries.flatten!
+  # Remove any leading/trailing spaces
+  entries.collect{|x| x.strip || x }
+  # End Of Line issues
+  entries.collect{|x| x.chomp! || x }
+  # Remove nil's
+  entries.compact
+  # Unique values only
+  entries.uniq!
+
+  return entries
+end
+
+# Return the full URL
+def full_uri(entries)
+  return_object = []
+  # Each value now, try and make it a full URL
+  entries.each do |d|
+    begin
+      temp = @uri.clone
+      temp.path = d.strip
+    rescue URI::Error
+      temp = d.strip
+    end
+    return_object << temp.to_s
+  end
+
+  return return_object
+end
+
 # Hook to check if the target if down during the scan
 # And have the number of requests performed to display at the end of the scan
 # The target is considered down after 30 requests with status = 0
@@ -138,3 +171,4 @@ Typhoeus.on_complete do |response|
 
   sleep(Browser.instance.throttle)
 end
+
