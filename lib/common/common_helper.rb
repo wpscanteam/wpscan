@@ -102,8 +102,18 @@ end
 def extract_db_zip
   Zip::File.open(DATA_FILE) do |zip_file|
     zip_file.each do |f|
+      # Feedback to the user
+      puts "[+] Extracting: #{File.basename(f.name)}" if verbose
       f_path = File.join(DATA_DIR, File.basename(f.name))
+
+      # Create folder
       FileUtils.mkdir_p(File.dirname(f_path))
+
+      # Delete if already there
+      puts "[+] Deleting: #{File.basename(f.name)}" if verbose and File.exist?(f_path)
+      FileUtils.rm(f_path) if File.exist?(f_path)
+
+      # Extract
       zip_file.extract(f, f_path)
     end
   end
