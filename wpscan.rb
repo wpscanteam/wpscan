@@ -237,16 +237,29 @@ def main
     spacer()
 
     if wp_target.has_robots?
-      puts info("robots.txt available under: #{wp_target.robots_url}")
+      code = get_http_status(wp_target.robots_url)
+      puts info("robots.txt available under: #{wp_target.robots_url}   [HTTP #{code}]")
 
       wp_target.parse_robots_txt.each do |dir|
-        wp_target.header_robots_txt(dir)
+        code = get_http_status(dir)
+        puts info("Interesting entry from robots.txt: #{dir}   [HTTP #{code}]")
+      end
+      spacer()
+    end
+
+    if wp_target.has_sitemap?
+      puts info("Sitemap found: #{wp_target.sitemap_url}")
+
+      wp_target.parse_sitemap.each do |dir|
+        code = get_http_status(dir)
+        puts info("Sitemap entry: #{dir}   [HTTP #{code}]")
       end
       spacer()
     end
 
     if wp_target.has_humans?
-      puts info("humans.txt available under: #{wp_target.humans_url}")
+      code = get_http_status(wp_target.humans_url)
+      puts info("humans.txt available under: #{wp_target.humans_url}   [HTTP #{code}]")
 
       wp_target.parse_humans_txt.each do |dir|
         puts info("Interesting entry from humans.txt: #{dir}")
@@ -315,8 +328,10 @@ def main
     # Get RSS
     rss = wp_target.rss_url
     if rss
+      code = get_http_status(rss)
+
       # Feedback
-      puts info("RSS Feed: #{rss}")
+      puts info("Found an RSS Feed: #{rss}   [HTTP #{code}]")
 
       # Print users from RSS feed
       wp_target.rss_authors(rss)

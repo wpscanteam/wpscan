@@ -327,3 +327,8 @@ def valid_json?(json)
   rescue JSON::ParserError => e
     return false
 end
+
+# Get the HTTP response code
+def get_http_status(url)
+  Browser.get(url.to_s).code
+end
