@@ -25,7 +25,7 @@ class WpTarget < WebSite
       users = []
 
       # Make the request
-      response = Browser.get(url)
+      response = Browser.get(url, followlocation: true)
 
       # Valid repose to view? HTTP 200?
       return false unless response.code == 200
