@@ -36,16 +36,19 @@ class WpTarget < WebSite
       # Read in RSS/XML
       xml = Nokogiri::XML(data)
 
-      # Look for <dc:creator> item
-      xml.xpath('//item/dc:creator').each do |node|
-        #Format: <dc:creator><![CDATA[.*]]></dc:creator>
-        users << [%r{.*}i.match(node).to_s]
+      begin
+        # Look for <dc:creator> item
+        xml.xpath('//item/dc:creator').each do |node|
+          #Format: <dc:creator><![CDATA[.*]]></dc:creator>
+          users << [%r{.*}i.match(node).to_s]
+        end
+      rescue
       end
 
-      if users
-        # Sort and uniq
-        users = users.sort_by { |user| user.to_s.downcase }.uniq
+      # Sort and uniq
+      users = users.sort_by { |user| user.to_s.downcase }.uniq
 
+      if users and users.size > 1
         # Feedback
         grammar = grammar_s(users.size)
         puts warning("Detected #{users.size} user#{grammar} from RSS feed:")

@@ -262,7 +262,7 @@ def main
     if code == 200
       puts info("humans.txt available under: #{wp_target.humans_url}   [HTTP #{code}]")
 
-      wp_target.parse_txt(humans_url).each do |dir|
+      parse_txt(wp_target.humans_url).each do |dir|
         puts info("Entry from humans.txt: #{dir}")
       end
       spacer()
@@ -272,7 +272,7 @@ def main
     if code == 200
       puts info("security.txt available under: #{wp_target.security_url}   [HTTP #{code}]")
 
-      wp_target.parse_txt(security_url).each do |dir|
+      parse_txt(wp_target.security_url).each do |dir|
         puts info("Entry from security.txt: #{dir}")
       end
       spacer()

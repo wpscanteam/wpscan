@@ -68,10 +68,10 @@ class WpTarget < WebSite
         users << row
       end
 
-      if users
-        # Sort and uniq
-        users = users.sort.uniq
+      # Sort and uniq
+      users = users.sort.uniq
 
+      if users and users.size > 1
         # Feedback
         grammar = grammar_s(users.size)
         puts warning("#{users.size} user#{grammar} exposed via API: #{json_users_url}")
