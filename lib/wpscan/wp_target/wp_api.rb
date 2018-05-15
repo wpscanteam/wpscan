@@ -80,9 +80,7 @@ class WpTarget < WebSite
         table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],
                                     rows: users)
         puts table
-        return true
       end
-      return false
     end
   end
 end

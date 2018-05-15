@@ -62,9 +62,7 @@ class WpTarget < WebSite
         table = Terminal::Table.new(headings: ['Name'],
                                     rows: users)
         puts table
-        return true
       end
-      return false
     end
   end
 end

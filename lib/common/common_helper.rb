@@ -336,5 +336,5 @@ end
 
 # Check to see if we need a "s"
 def grammar_s(size)
-  size.to_i >= 1 ? "s" : ""
+  size.to_i >= 2 ? "s" : ""
 end
