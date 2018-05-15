@@ -207,18 +207,6 @@ describe 'WebSite' do
     end
   end
 
-  describe '#rss_url' do
-    it 'returns nil if the url is not found' do
-      stub_request(:get, web_site.url).to_return(body: 'No RSS link in this body !')
-      expect(web_site.rss_url).to be_nil
-    end
-
-    it "returns 'http://lamp-wp/wordpress-3.5/?feed=rss2'" do
-      stub_request_to_fixture(url: web_site.url, fixture: fixtures_dir + '/rss_url/wordpress-3.5.htm')
-      expect(web_site.rss_url).to be === 'http://lamp-wp/wordpress-3.5/?feed=rss2'
-    end
-  end
-
   describe '::has_log?' do
     let(:log_url) { web_site.uri.merge('log.txt').to_s }
     let(:pattern) { %r{PHP Fatal error} }

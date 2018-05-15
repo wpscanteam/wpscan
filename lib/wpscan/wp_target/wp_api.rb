@@ -46,21 +46,18 @@ class WpTarget < WebSite
     def json_get_users(url)
       # Variables
       users = []
-      data = ""
 
       # Make the request
       response = Browser.get(url)
 
       # If not HTTP 200, return false
-      return false if response.code != 200
+      return false unless response.code == 200
 
       # Able to view the output?
-      if valid_json?(response.body)
-        # Read in JSON
-        data = JSON.parse(response.body)
-      else
-        return false
-      end
+      return false unless valid_json?(response.body)
+
+      # Read in JSON
+      data = JSON.parse(response.body)
 
       # If there is nothing there, return false
       return false if data.empty?
@@ -83,9 +80,9 @@ class WpTarget < WebSite
         table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],
                                     rows: users)
         puts table
-      else
-        return false
+        return true
       end
+      return false
     end
   end
 end
