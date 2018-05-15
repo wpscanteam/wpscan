@@ -8,6 +8,7 @@ USER_DIR             = File.expand_path(Dir.home) # ~/
 # Core WPScan directories
 CACHE_DIR            = File.join(USER_DIR, '.wpscan/cache') # ~/.wpscan/cache/
 DATA_DIR             = File.join(USER_DIR, '.wpscan/data') # ~/.wpscan/data/
+CONF_DIR             = File.join(USER_DIR, '.wpscan/conf') # ~/.wpscan/conf/ - Not used ATM (only ref via ./spec/ for travis)
 COMMON_LIB_DIR       = File.join(LIB_DIR, 'common') # wpscan/lib/common/
 WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan') # wpscan/lib/wpscan/
 MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models') # wpscan/lib/common/models/
