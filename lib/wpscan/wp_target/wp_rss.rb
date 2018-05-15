@@ -33,6 +33,9 @@ class WpTarget < WebSite
       # Get output
       data = response.body
 
+      # If there is nothing there, return false
+      return false if data.empty?
+
       # Read in RSS/XML
       xml = Nokogiri::XML(data)
 
@@ -43,12 +46,14 @@ class WpTarget < WebSite
           users << [%r{.*}i.match(node).to_s]
         end
       rescue
+        puts critical("Missing Author field. Maybe non-standard WordPress RSS feed?")
+        return false
       end
 
       # Sort and uniq
       users = users.sort_by { |user| user.to_s.downcase }.uniq
 
-      if users and users.size > 1
+      if users and users.size >= 1
         # Feedback
         grammar = grammar_s(users.size)
         puts warning("Detected #{users.size} user#{grammar} from RSS feed:")
@@ -57,6 +62,8 @@ class WpTarget < WebSite
         table = Terminal::Table.new(headings: ['Name'],
                                     rows: users)
         puts table
+      else
+        return false
       end
     end
   end

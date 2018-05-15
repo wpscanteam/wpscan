@@ -46,21 +46,24 @@ class WpTarget < WebSite
     def json_get_users(url)
       # Variables
       users = []
+      data = ""
 
       # Make the request
       response = Browser.get(url)
 
-      # Able to view the output?
-      return false if not valid_json?(response.body)
+      # If not HTTP 200, return false
+      return false if response.code != 200
 
-      # Read in JSON
-      data = JSON.parse(response.body)
+      # Able to view the output?
+      if valid_json?(response.body)
+        # Read in JSON
+        data = JSON.parse(response.body)
+      else
+        return false
+      end
 
       # If there is nothing there, return false
       return false if data.empty?
-
-      # If not HTTP 200, return false
-      return false if response.code != 200
 
       # Add to array
       data.each do |child|
@@ -71,7 +74,7 @@ class WpTarget < WebSite
       # Sort and uniq
       users = users.sort.uniq
 
-      if users and users.size > 1
+      if users and users.size >= 1
         # Feedback
         grammar = grammar_s(users.size)
         puts warning("#{users.size} user#{grammar} exposed via API: #{json_users_url}")
@@ -80,6 +83,8 @@ class WpTarget < WebSite
         table = Terminal::Table.new(headings: ['ID', 'Name', 'URL'],
                                     rows: users)
         puts table
+      else
+        return false
       end
     end
   end
