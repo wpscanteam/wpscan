@@ -10,6 +10,7 @@ require File.join(__dir__, 'lib', 'wpscan', 'wpscan_helper')
 def main
   begin
     wpscan_options = WpscanOptions.load_from_arguments
+    date = last_update
 
     $log = wpscan_options.log
 
@@ -27,7 +28,7 @@ def main
       # check if file exists and has a size greater zero
       if File.exist?($log) && File.size?($log)
         puts notice("The supplied log file #{$log} already exists. If you continue the new output will be appended.")
-        print '[?] Do you want to continue? [Y]es [N]o, default: [N]'
+        print '[?] Do you want to continue? [Y]es [N]o, default: [N] >'
         if Readline.readline !~ /^y/i
           # unset logging so puts will try to log to the file
           $log = nil
@@ -54,6 +55,8 @@ def main
     unless wpscan_options.has_options?
       # first parameter only url?
       if ARGV.length == 1
+        puts
+        puts notice("Please use '-u #{ARGV[0]}' next time")
         wpscan_options.url = ARGV[0]
       else
         usage()
@@ -72,8 +75,7 @@ def main
 
     if wpscan_options.version
       puts "Current version: #{WPSCAN_VERSION}"
-      date = last_update
-      puts "Last DB update: #{date.strftime('%Y-%m-%d')}" unless date.nil?
+      puts "Last database update: #{date.strftime('%Y-%m-%d')}" unless date.nil?
       exit(0)
     end
 
@@ -83,28 +85,44 @@ def main
       wpscan_options.to_h.merge(max_threads: wpscan_options.threads)
     )
 
-    # check if db file needs upgrade and we are not running in batch mode
-    # also no need to check if the user supplied the --update switch
-    if update_required? && !wpscan_options.batch && !wpscan_options.update
-      puts notice('It seems like you have not updated the database for some time.')
-      print '[?] Do you want to update now? [Y]es [N]o [A]bort, default: [N]'
-      if (input = Readline.readline) =~ /^y/i
+    # Check if database needs upgrade (if its older than 5 days) and we are not running in --batch mode
+    # Also no need to check if the user supplied the --update switch
+    if update_required? and not wpscan_options.batch and not wpscan_options.update
+      # Banner
+      puts
+      puts notice('It seems like you have not updated the database for some time')
+      puts notice("Last database update: #{date.strftime('%Y-%m-%d')}") unless date.nil?
+
+      # User prompt
+      print '[?] Do you want to update now? [Y]es  [N]o  [A]bort update, default: [N] > '
+      if (input = Readline.readline) =~ /^a/i
+        puts 'Update aborted'
+      elsif input =~ /^y/i
         wpscan_options.update = true
-      elsif input =~ /^a/i
-        puts 'Scan aborted'
-        exit(1)
-      else
-        if missing_db_file?
-          puts critical('You can not run a scan without any databases. Extract the data.zip file.')
+      end
+
+      # Is there a database to go on with?
+      if missing_db_files? and not wpscan_options.update
+        # Check for data.zip
+        if has_db_zip?
+          puts notice('Extracting the Database ...')
+          # Extract data.zip
+          extract_db_zip
+          puts notice('Extraction completed')
+        # Missing, so can't go on!
+        else
+          puts critical('You can not run a scan without any databases')
           exit(1)
         end
       end
     end
 
+    # Should we update?
     if wpscan_options.update
       puts notice('Updating the Database ...')
       DbUpdater.new(DATA_DIR).update(wpscan_options.verbose)
-      puts notice('Update completed.')
+      puts notice('Update completed')
+
       # Exit program if only option --update is used
       exit(0) unless wpscan_options.url
     end
@@ -120,12 +138,18 @@ def main
     end
 
     if wp_target.ssl_error?
-      raise "The target site returned an SSL/TLS error. You can try again using the --disable-tls-checks option.\nError: #{wp_target.get_root_path_return_code}\nSee here for a detailed explanation of the error: http://www.rubydoc.info/github/typhoeus/ethon/Ethon/Easy:return_code"
+      raise "The target site returned an SSL/TLS error. You can try again using --disable-tls-checks\nError: #{wp_target.get_root_path_return_code}\nSee here for a detailed explanation of the error: http://www.rubydoc.info/github/typhoeus/ethon/Ethon/Easy:return_code"
     end
 
     # Remote website up?
     unless wp_target.online?
-      raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down. Maybe the site is blocking wpscan so you can try the --random-agent parameter."
+      if wpscan_options.user_agent
+        puts info("User-Agent: #{wpscan_options.user_agent}")
+        raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down. Maybe the site is blocking the user-agent?"
+      else
+        raise "The WordPress URL supplied '#{wp_target.uri}' seems to be down. Maybe the site is blocking the wpscan user-agent, so you can try --random-agent"
+      end
+
     end
 
     if wpscan_options.proxy
@@ -145,7 +169,7 @@ def main
           puts "Following redirection #{redirection}"
         else
           puts notice("The remote host tried to redirect to: #{redirection}")
-          print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N]'
+          print '[?] Do you want follow the redirection ? [Y]es [N]o [A]bort, default: [N] >'
         end
         if wpscan_options.follow_redirection || !wpscan_options.batch
           if wpscan_options.follow_redirection || (input = Readline.readline) =~ /^y/i
@@ -174,7 +198,7 @@ def main
     # Remote website is wordpress?
     unless wpscan_options.force
       unless wp_target.wordpress?
-        raise 'The remote website is up, but does not seem to be running WordPress.'
+        raise 'The remote website is up, but does not seem to be running WordPress. If you are sure, use --force'
       end
     end
 
@@ -196,35 +220,8 @@ def main
     start_memory = get_memory_usage unless windows?
     puts info("URL: #{wp_target.url}")
     puts info("Started: #{start_time.asctime}")
-    puts
-
-    if wp_target.has_robots?
-      puts info("robots.txt available under: '#{wp_target.robots_url}'")
-
-      wp_target.parse_robots_txt.each do |dir|
-        puts info("Interesting entry from robots.txt: #{dir}")
-      end
-    end
-
-    if wp_target.has_full_path_disclosure?
-      puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
-    end
-
-    if wp_target.has_debug_log?
-      puts critical("Debug log file found: #{wp_target.debug_log_url}")
-    end
-
-    wp_target.config_backup.each do |file_url|
-      puts critical("A wp-config.php backup file has been found in: '#{file_url}'")
-    end
-
-    if wp_target.search_replace_db_2_exists?
-      puts critical("searchreplacedb2.php has been found in: '#{wp_target.search_replace_db_2_url}'")
-    end
-
-    if wp_target.emergency_exists?
-      puts critical("emergency.php has been found in: '#{wp_target.emergency_url}'")
-    end
+    puts info("User-Agent: #{wpscan_options.user_agent}") if wpscan_options.verbose and wpscan_options.user_agent
+    spacer()
 
     wp_target.interesting_headers.each do |header|
       output = info('Interesting header: ')
@@ -237,29 +234,126 @@ def main
         puts output + "#{header[0]}: #{header[1]}"
       end
     end
+    spacer()
+
+    if wp_target.has_robots?
+      code = get_http_status(wp_target.robots_url)
+      puts info("robots.txt available under: #{wp_target.robots_url}   [HTTP #{code}]")
+
+      wp_target.parse_robots_txt.each do |dir|
+        code = get_http_status(dir)
+        puts info("Interesting entry from robots.txt: #{dir}   [HTTP #{code}]")
+      end
+      spacer()
+    end
+
+    if wp_target.has_sitemap?
+      code = get_http_status(wp_target.sitemap_url)
+      puts info("Sitemap found: #{wp_target.sitemap_url}   [HTTP #{code}]")
+
+      wp_target.parse_sitemap.each do |dir|
+        code = get_http_status(dir)
+        puts info("Sitemap entry: #{dir}   [HTTP #{code}]")
+      end
+      spacer()
+    end
+
+    code = get_http_status(wp_target.humans_url)
+    if code == 200
+      puts info("humans.txt available under: #{wp_target.humans_url}   [HTTP #{code}]")
+
+      parse_txt(wp_target.humans_url).each do |dir|
+        puts info("Entry from humans.txt: #{dir}")
+      end
+      spacer()
+    end
+
+    code = get_http_status(wp_target.security_url)
+    if code == 200
+      puts info("security.txt available under: #{wp_target.security_url}   [HTTP #{code}]")
+
+      parse_txt(wp_target.security_url).each do |dir|
+        puts info("Entry from security.txt: #{dir}")
+      end
+      spacer()
+    end
+
+    if wp_target.has_debug_log?
+      puts critical("Debug log file found: #{wp_target.debug_log_url}")
+      spacer()
+    end
+
+    wp_target.config_backup.each do |file_url|
+      puts critical("A wp-config.php backup file has been found in: #{file_url}")
+      spacer()
+    end
+
+    if wp_target.search_replace_db_2_exists?
+      puts critical("searchreplacedb2.php has been found in: #{wp_target.search_replace_db_2_url}")
+      spacer()
+    end
+
+    if wp_target.emergency_exists?
+      puts critical("emergency.php has been found in: #{wp_target.emergency_url}")
+      spacer()
+    end
 
     if wp_target.multisite?
       puts info('This site seems to be a multisite (http://codex.wordpress.org/Glossary#Multisite)')
+      spacer()
     end
 
     if wp_target.has_must_use_plugins?
       puts info("This site has 'Must Use Plugins' (http://codex.wordpress.org/Must_Use_Plugins)")
-    end
-
-    if wp_target.registration_enabled?
-      puts warning("Registration is enabled: #{wp_target.registration_url}")
+      spacer()
     end
 
     if wp_target.has_xml_rpc?
-      puts info("XML-RPC Interface available under: #{wp_target.xml_rpc_url}")
+      code = get_http_status(wp_target.xml_rpc_url)
+      puts info("XML-RPC Interface available under: #{wp_target.xml_rpc_url}   [HTTP #{code}]")
+      spacer()
+    end
+
+    # Test to see if MAIN API URL gives anything back
+    if wp_target.has_api?(wp_target.json_url)
+      code = get_http_status(wp_target.json_url)
+      puts info("API exposed: #{wp_target.json_url}   [HTTP #{code}]")
+
+      # Test to see if USER API URL gives anything back
+      if wp_target.has_api?(wp_target.json_users_url)
+        # Print users from JSON
+        wp_target.json_get_users(wp_target.json_users_url)
+      end
+      spacer()
+    end
+
+    # Get RSS
+    rss = wp_target.rss_url
+    if rss
+      code = get_http_status(rss)
+
+      # Feedback
+      puts info("Found an RSS Feed: #{rss}   [HTTP #{code}]")
+
+      # Print users from RSS feed
+      wp_target.rss_authors(rss)
+
+      spacer()
+    end
+
+    if wp_target.has_full_path_disclosure?
+      puts warning("Full Path Disclosure (FPD) in '#{wp_target.full_path_disclosure_url}': #{wp_target.full_path_disclosure_data}")
+      spacer()
     end
 
     if wp_target.upload_directory_listing_enabled?
       puts warning("Upload directory has directory listing enabled: #{wp_target.upload_dir_url}")
+      spacer()
     end
 
     if wp_target.include_directory_listing_enabled?
       puts warning("Includes directory has directory listing enabled: #{wp_target.includes_dir_url}")
+      spacer()
     end
 
     enum_options = {
@@ -267,6 +361,7 @@ def main
       exclude_content: wpscan_options.exclude_content_based
     }
 
+    puts info('Enumerating WordPress version ...')
     if (wp_version = wp_target.version(WP_VERSIONS_FILE))
       if wp_target.has_readme? && VersionCompare::lesser?(wp_version.identifier, '4.7')
         puts warning("The WordPress '#{wp_target.readme_url}' file exists exposing a version number")
@@ -277,6 +372,7 @@ def main
       puts
       puts notice('WordPress version can not be detected')
     end
+    spacer()
 
     if wp_theme = wp_target.theme
       puts
@@ -295,7 +391,7 @@ def main
         parent.output(wpscan_options.verbose)
         wp_theme = parent
       end
-
+      spacer()
     end
 
     if wpscan_options.enumerate_plugins == nil and wpscan_options.enumerate_only_vulnerable_plugins == nil
@@ -304,15 +400,13 @@ def main
 
       wp_plugins = WpPlugins.passive_detection(wp_target)
       if !wp_plugins.empty?
-        if wp_plugins.size == 1
-          puts " | #{wp_plugins.size} plugin found:"
-        else
-          puts " | #{wp_plugins.size} plugins found:"
-        end
+        grammar = grammar_s(wp_plugins.size)
+        puts " | #{wp_plugins.size} plugin#{grammar} found:"
         wp_plugins.output(wpscan_options.verbose)
       else
-        puts info('No plugins found')
+        puts info('No plugins found passively')
       end
+      spacer()
     end
 
     # Enumerate the installed plugins
@@ -343,12 +437,14 @@ def main
 
       puts
       if !wp_plugins.empty?
-        puts info("We found #{wp_plugins.size} plugins:")
+        grammar = grammar_s(wp_plugins.size)
+        puts info("We found #{wp_plugins.size} plugin#{grammar}:")
 
         wp_plugins.output(wpscan_options.verbose)
       else
         puts info('No plugins found')
       end
+      spacer()
     end
 
     # Enumerate installed themes
@@ -378,12 +474,14 @@ def main
       )
       puts
       if !wp_themes.empty?
-        puts info("We found #{wp_themes.size} themes:")
+        grammar = grammar_s(wp_themes.size)
+        puts info("We found #{wp_themes.size} theme#{grammar}:")
 
         wp_themes.output(wpscan_options.verbose)
       else
         puts info('No themes found')
       end
+      spacer()
     end
 
     if wpscan_options.enumerate_timthumbs
@@ -393,18 +491,20 @@ def main
 
       wp_timthumbs = WpTimthumbs.aggressive_detection(wp_target,
         enum_options.merge(
-          file: DATA_DIR + '/timthumbs.txt',
+          file: TIMTHUMBS_FILE,
           theme_name: wp_theme ? wp_theme.name : nil
         )
       )
       puts
       if !wp_timthumbs.empty?
-        puts info("We found #{wp_timthumbs.size} timthumb file/s:")
+        grammar = grammar_s(wp_timthumbs.size)
+        puts info("We found #{wp_timthumbs.size} timthumb file#{grammar}:")
 
         wp_timthumbs.output(wpscan_options.verbose)
       else
         puts info('No timthumb files found')
       end
+      spacer()
     end
 
     # If we haven't been supplied a username/usernames list, enumerate them...
@@ -432,7 +532,8 @@ def main
           exit(1)
         end
       else
-        puts info("Identified the following #{wp_users.size} user/s:")
+        grammar = grammar_s(wp_users.size)
+        puts info("We identified the following #{wp_users.size} user#{grammar}:")
         wp_users.output(margin_left: ' ' * 4)
         if wp_users[0].login == "admin"
            puts warning("Default first WordPress username 'admin' is still used")
@@ -442,10 +543,12 @@ def main
     else
       wp_users = WpUsers.new
 
+      # Username file?
       if wpscan_options.usernames
         File.open(wpscan_options.usernames).each do |username|
           wp_users << WpUser.new(wp_target.uri, login: username.chomp)
         end
+      # Single username?
       else
         wp_users << WpUser.new(wp_target.uri, login: wpscan_options.username)
       end
@@ -455,7 +558,6 @@ def main
     bruteforce = true
     if wpscan_options.wordlist
       if wp_target.has_login_protection?
-
         protection_plugin = wp_target.login_protection_plugin()
 
         puts
@@ -481,6 +583,7 @@ def main
       else
         puts critical('Brute forcing aborted')
       end
+      spacer()
     end
 
     stop_time   = Time.now
@@ -489,9 +592,9 @@ def main
 
     puts
     puts info("Finished: #{stop_time.asctime}")
-    puts info("Requests Done: #{@total_requests_done}")
-    puts info("Memory used: #{used_memory.bytes_to_human}") unless windows?
     puts info("Elapsed time: #{Time.at(elapsed).utc.strftime('%H:%M:%S')}")
+    puts info("Requests made: #{@total_requests_done}")
+    puts info("Memory used: #{used_memory.bytes_to_human}") unless windows?
 
   # do nothing on interrupt
   rescue Interrupt

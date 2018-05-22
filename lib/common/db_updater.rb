@@ -13,8 +13,13 @@ class DbUpdater
   def initialize(repo_directory)
     @repo_directory = repo_directory
 
-    fail "#{repo_directory} is not writable" unless \
-      Pathname.new(repo_directory).writable?
+    unless Dir.exist?(@repo_directory)
+      FileUtils.mkdir_p(@repo_directory)
+    end
+
+    unless Pathname.new(@repo_directory).writable?
+      fail "#{@repo_directory} is not writable"
+    end
   end
 
   # @return [ Hash ] The params for Typhoeus::Request
@@ -83,7 +88,7 @@ class DbUpdater
   def update(verbose = false)
     FILES.each do |filename|
       begin
-        puts "[+] Checking #{filename}" if verbose
+        puts "[+] Checking: #{filename}" if verbose
         db_checksum = remote_file_checksum(filename)
 
         # Checking if the file needs to be updated
@@ -95,7 +100,7 @@ class DbUpdater
         puts '  [i] Needs to be updated' if verbose
         create_backup(filename)
         puts '  [i] Backup Created' if verbose
-        puts '  [i] Downloading new file' if verbose
+        puts "  [i] Downloading new file: #{remote_file_url(filename)}" if verbose
         dl_checksum = download(filename)
         puts "  [i] Downloaded File Checksum: #{dl_checksum}" if verbose
         puts "  [i] Database File Checksum  : #{db_checksum}" if verbose

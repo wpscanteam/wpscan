@@ -24,7 +24,7 @@ before_install:
   - "gem regenerate_binstubs"
   - "bundle --version"
 before_script:
-  - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $TRAVIS_BUILD_DIR"
+  - "unzip -o $TRAVIS_BUILD_DIR/data.zip -d $HOME/.wpscan/"
 script:
   - "bundle exec rspec"
 notifications:

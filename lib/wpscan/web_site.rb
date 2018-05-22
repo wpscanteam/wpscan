@@ -1,11 +1,17 @@
 # encoding: UTF-8
 
-require 'web_site/robots_txt'
+require 'web_site/humans_txt'
 require 'web_site/interesting_headers'
+require 'web_site/robots_txt'
+require 'web_site/security_txt'
+require 'web_site/sitemap'
 
 class WebSite
-  include WebSite::RobotsTxt
+  include WebSite::HumansTxt
   include WebSite::InterestingHeaders
+  include WebSite::RobotsTxt
+  include WebSite::SecurityTxt
+  include WebSite::Sitemap
 
   attr_reader :uri
 
@@ -119,13 +125,6 @@ class WebSite
       @error_404_hash   = WebSite.page_hash(@uri.merge(non_existant_page).to_s)
     end
     @error_404_hash
-  end
-
-  # Will try to find the rss url in the homepage
-  # Only the first one found is returned
-  def rss_url
-    homepage_body = Browser.get(@uri.to_s).body
-    homepage_body[%r{<link .* type="application/rss\+xml" .* href="([^"]+)" />}, 1]
   end
 
   # Only the first 700 bytes are checked to avoid the download

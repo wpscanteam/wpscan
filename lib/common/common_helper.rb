@@ -1,32 +1,30 @@
 # encoding: UTF-8
 
-LIB_DIR              = File.expand_path(File.join(__dir__, '..'))
-ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
-DATA_DIR             = File.join(ROOT_DIR, 'data')
-CONF_DIR             = File.join(ROOT_DIR, 'conf')
-CACHE_DIR            = File.join(ROOT_DIR, 'cache')
-WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan')
-UPDATER_LIB_DIR      = File.join(LIB_DIR, 'updater')
-COMMON_LIB_DIR       = File.join(LIB_DIR, 'common')
-MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models')
-COLLECTIONS_LIB_DIR  = File.join(COMMON_LIB_DIR, 'collections')
+# Location directories
+LIB_DIR              = File.expand_path(File.join(__dir__, '..')) # wpscan/lib/
+ROOT_DIR             = File.expand_path(File.join(LIB_DIR, '..')) # wpscan/ - expand_path is used to get "wpscan/" instead of "wpscan/lib/../"
+USER_DIR             = File.expand_path(Dir.home) # ~/
 
-DEFAULT_LOG_FILE     = File.join(ROOT_DIR, 'log.txt')
+# Core WPScan directories
+CACHE_DIR            = File.join(USER_DIR, '.wpscan/cache') # ~/.wpscan/cache/
+DATA_DIR             = File.join(USER_DIR, '.wpscan/data') # ~/.wpscan/data/
+CONF_DIR             = File.join(USER_DIR, '.wpscan/conf') # ~/.wpscan/conf/ - Not used ATM (only ref via ./spec/ for travis)
+COMMON_LIB_DIR       = File.join(LIB_DIR, 'common') # wpscan/lib/common/
+WPSCAN_LIB_DIR       = File.join(LIB_DIR, 'wpscan') # wpscan/lib/wpscan/
+MODELS_LIB_DIR       = File.join(COMMON_LIB_DIR, 'models') # wpscan/lib/common/models/
 
-# Plugins directories
-COMMON_PLUGINS_DIR   = File.join(COMMON_LIB_DIR, 'plugins')
-WPSCAN_PLUGINS_DIR   = File.join(WPSCAN_LIB_DIR, 'plugins') # Not used ATM
+# Core WPScan files
+DEFAULT_LOG_FILE     = File.join(USER_DIR, '.wpscan/log.txt')  # ~/.wpscan/log.txt
+DATA_FILE            = File.join(ROOT_DIR, 'data.zip') # wpscan/data.zip
 
-# Data files
-WORDPRESSES_FILE  = File.join(DATA_DIR, 'wordpresses.json')
-PLUGINS_FILE      = File.join(DATA_DIR, 'plugins.json')
-THEMES_FILE       = File.join(DATA_DIR, 'themes.json')
-WP_VERSIONS_FILE  = File.join(DATA_DIR, 'wp_versions.xml')
-LOCAL_FILES_FILE  = File.join(DATA_DIR, 'local_vulnerable_files.xml')
-WP_VERSIONS_XSD   = File.join(DATA_DIR, 'wp_versions.xsd')
-LOCAL_FILES_XSD   = File.join(DATA_DIR, 'local_vulnerable_files.xsd')
-USER_AGENTS_FILE  = File.join(DATA_DIR, 'user-agents.txt')
-LAST_UPDATE_FILE  = File.join(DATA_DIR, '.last_update')
+# WPScan Data files (data.zip)
+LAST_UPDATE_FILE    = File.join(DATA_DIR, '.last_update') # ~/.wpscan/data/.last_update
+PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.json') # ~/.wpscan/data/plugins.json
+THEMES_FILE         = File.join(DATA_DIR, 'themes.json') # ~/.wpscan/data/themes.json
+TIMTHUMBS_FILE      = File.join(DATA_DIR, 'timthumbs.txt') # ~/.wpscan/data/timthumbs.txt
+USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt') # ~/.wpscan/data/user-agents.txt
+WORDPRESSES_FILE    = File.join(DATA_DIR, 'wordpresses.json') # ~/.wpscan/data/wordpresses.json
+WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml') # ~/.wpscan/data/wp_versions.xml
 
 MIN_RUBY_VERSION = '2.1.9'
 
@@ -50,6 +48,7 @@ def windows?
 end
 
 require 'environment'
+require 'zip'
 
 def escape_glob(s)
   s.gsub(/[\\\{\}\[\]\*\?]/) { |x| '\\' + x }
@@ -78,11 +77,37 @@ def add_trailing_slash(url)
   url =~ /\/$/ ? url : "#{url}/"
 end
 
-def missing_db_file?
+def missing_db_files?
   DbUpdater::FILES.each do |db_file|
     return true unless File.exist?(File.join(DATA_DIR, db_file))
   end
   false
+end
+
+# Find data.zip?
+def has_db_zip?
+  return File.exist?(DATA_FILE)
+end
+
+# Extract data.zip
+def extract_db_zip
+  # Create data folder
+  FileUtils.mkdir_p(DATA_DIR)
+
+  Zip::File.open(DATA_FILE) do |zip_file|
+    zip_file.each do |f|
+      # Feedback to the user
+      #puts "[+] Extracting: #{File.basename(f.name)}"
+      f_path = File.join(DATA_DIR, File.basename(f.name))
+
+      # Delete if already there
+      #puts "[+] Deleting: #{File.basename(f.name)}" if File.exist?(f_path)
+      FileUtils.rm(f_path) if File.exist?(f_path)
+
+      # Extract
+      zip_file.extract(f, f_path)
+    end
+  end
 end
 
 def last_update
@@ -94,6 +119,7 @@ def last_update
   date
 end
 
+# Was it 5 days ago?
 def update_required?
   date = last_update
   day_seconds = 24 * 60 * 60
@@ -164,6 +190,11 @@ def banner
   puts '      @_WPScan_, @ethicalhack3r, @erwan_lr, @_FireFart_'
   puts '_______________________________________________________________'
   puts
+end
+
+# Space out sections
+def spacer
+  puts "    - - - - -"
 end
 
 def xml(file)
@@ -253,14 +284,26 @@ end
 # @return [ String ] A random user-agent from data/user-agents.txt
 def get_random_user_agent
   user_agents = []
+
+  # If we can't access the file, die
+  raise('[ERROR] Missing user-agent data. Please re-run with just --update.') unless File.exist?(USER_AGENTS_FILE)
+
+  # Read in file
   f = File.open(USER_AGENTS_FILE, 'r')
+
+  # Read every line in the file
   f.each_line do |line|
-    # ignore comments
+    # Remove any End of Line issues, and leading/trailing spaces
+    line = line.strip.chomp
+    # Ignore empty files and comments
     next if line.empty? or line =~ /^\s*(#|\/\/)/
+    # Add to array
     user_agents << line.strip
   end
+  # Close file handler
   f.close
-  # return ransom user-agent
+
+  # Return random user-agent
   user_agents.sample
 end
 
@@ -273,4 +316,22 @@ end
 
 def url_encode(str)
   CGI.escape(str).gsub("+", "%20")
+end
+
+# Check valid JSON?
+def valid_json?(json)
+    JSON.parse(json)
+    return true
+  rescue JSON::ParserError => e
+    return false
+end
+
+# Get the HTTP response code
+def get_http_status(url)
+  Browser.get(url.to_s).code
+end
+
+# Check to see if we need a "s"
+def grammar_s(size)
+  size.to_i >= 2 ? "s" : ""
 end
