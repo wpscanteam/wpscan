@@ -18,7 +18,7 @@ class WebSite
       return false
     end
 
-    # Gets a robots.txt URL
+    # Get the robots.txt URL
     # @return [ String ]
     def sitemap_url
       @uri.clone.merge('robots.txt').to_s

@@ -19,15 +19,12 @@ DATA_FILE            = File.join(ROOT_DIR, 'data.zip') # wpscan/data.zip
 
 # WPScan Data files (data.zip)
 LAST_UPDATE_FILE    = File.join(DATA_DIR, '.last_update') # ~/.wpscan/data/.last_update
-LOCAL_FILES_FILE    = File.join(DATA_DIR, 'local_vulnerable_files.xml') # ~/.wpscan/data/local_vulnerable_files.xml -  Not ref ATM
-LOCAL_FILES_XSD     = File.join(DATA_DIR, 'local_vulnerable_files.xsd') # ~/.wpscan/data/local_vulnerable_files.xsd -  Not ref ATM
 PLUGINS_FILE        = File.join(DATA_DIR, 'plugins.json') # ~/.wpscan/data/plugins.json
 THEMES_FILE         = File.join(DATA_DIR, 'themes.json') # ~/.wpscan/data/themes.json
 TIMTHUMBS_FILE      = File.join(DATA_DIR, 'timthumbs.txt') # ~/.wpscan/data/timthumbs.txt
 USER_AGENTS_FILE    = File.join(DATA_DIR, 'user-agents.txt') # ~/.wpscan/data/user-agents.txt
 WORDPRESSES_FILE    = File.join(DATA_DIR, 'wordpresses.json') # ~/.wpscan/data/wordpresses.json
 WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml') # ~/.wpscan/data/wp_versions.xml
-WP_VERSIONS_XSD     = File.join(DATA_DIR, 'wp_versions.xsd') # ~/.wpscan/data/wp_versions.xsd -  Not ref ATM
 
 MIN_RUBY_VERSION = '2.1.9'
 
@@ -89,19 +86,19 @@ end
 
 # Find data.zip?
 def has_db_zip?
-  return File.exist?(DATA_FILE)? true : false
+  return File.exist?(DATA_FILE)
 end
 
 # Extract data.zip
 def extract_db_zip
+  # Create data folder
+  FileUtils.mkdir_p(DATA_DIR)
+
   Zip::File.open(DATA_FILE) do |zip_file|
     zip_file.each do |f|
       # Feedback to the user
       #puts "[+] Extracting: #{File.basename(f.name)}"
       f_path = File.join(DATA_DIR, File.basename(f.name))
-
-      # Create folder
-      FileUtils.mkdir_p(File.dirname(f_path))
 
       # Delete if already there
       #puts "[+] Deleting: #{File.basename(f.name)}" if File.exist?(f_path)
