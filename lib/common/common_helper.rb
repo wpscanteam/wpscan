@@ -192,11 +192,6 @@ def banner
   puts
 end
 
-# Space out sections
-def spacer
-  puts "    - - - - -"
-end
-
 def xml(file)
   Nokogiri::XML(File.open(file)) do |config|
     config.noblanks

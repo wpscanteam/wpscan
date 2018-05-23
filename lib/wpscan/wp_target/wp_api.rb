@@ -12,7 +12,7 @@ class WpTarget < WebSite
       response = Browser.get(url)
 
       # Able to view the output?
-      if valid_json?(response.body)
+      if valid_json?(response.body) && response.body != ''
         # Read in JSON
         data = JSON.parse(response.body)
 
