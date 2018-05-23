@@ -23,7 +23,7 @@ class WpItem
 
       if version.nil? && vulnerabilities.length > 0
         puts
-        puts warning('We could not determine the plugin version. All of the plugin\'s past known vulnerabilities will be output to allow you to do your own manual investigation.')
+        puts warning('We could not determine the version installed. All of the past known vulnerabilities will be output to allow you to do your own manual investigation.')
       end
 
       vulnerabilities.output
