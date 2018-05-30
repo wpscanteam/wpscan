@@ -28,7 +28,7 @@ WP_VERSIONS_FILE    = File.join(DATA_DIR, 'wp_versions.xml') # ~/.wpscan/data/wp
 
 MIN_RUBY_VERSION = '2.1.9'
 
-WPSCAN_VERSION = '2.9.4-dev'
+WPSCAN_VERSION = '2.9.4'
 
 $LOAD_PATH.unshift(LIB_DIR)
 $LOAD_PATH.unshift(WPSCAN_LIB_DIR)
