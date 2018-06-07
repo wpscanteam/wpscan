@@ -255,6 +255,12 @@ def main
       end
     end
 
+    unless wp_target.sql_file_export.empty?
+      wp_target.sql_file_export.each do |file|
+        puts critical("SQL export file found: #{file}")
+      end
+    end
+
     code = get_http_status(wp_target.humans_url)
     if code == 200
       puts info("humans.txt available under: #{wp_target.humans_url}   [HTTP #{code}]")

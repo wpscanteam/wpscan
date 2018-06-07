@@ -5,6 +5,7 @@ require 'web_site/interesting_headers'
 require 'web_site/robots_txt'
 require 'web_site/security_txt'
 require 'web_site/sitemap'
+require 'web_site/sql_file_export'
 
 class WebSite
   include WebSite::HumansTxt
@@ -12,6 +13,7 @@ class WebSite
   include WebSite::RobotsTxt
   include WebSite::SecurityTxt
   include WebSite::Sitemap
+  include WebSite::SqlFileExport
 
   attr_reader :uri
 
