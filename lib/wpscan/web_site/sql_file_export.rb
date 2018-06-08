@@ -23,7 +23,7 @@ class WebSite
       host  = @uri.host[/(^[\w|-]+)/,1]
 
       files = ["#{host}.sql", "#{host}.sql.gz", "#{host}.zip", 'db.sql', 'site.sql', 'database.sql', 
-        'data.sql', 'backup.sql','dump.sql', 'db_backup.sql', 'dbdump.sql', 'wordpress.sql', 'mysql.sql']
+        'data.sql', 'backup.sql', 'dump.sql', 'db_backup.sql', 'dbdump.sql', 'wordpress.sql', 'mysql.sql']
 
       files.each do |file|
         urls << @uri.clone.merge(file).to_s
