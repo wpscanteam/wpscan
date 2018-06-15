@@ -3,7 +3,7 @@
 [Work in progress](https://github.com/wpscanteam/wpscan/compare/2.9.4...master)
 
 ## Version 2.9.4
-Released: 2018-05-30
+Released: 2018-06-15
 
 * Updated dependencies and required ruby version
 * Improved CLI output
@@ -18,16 +18,17 @@ Released: 2018-05-30
 * Check HTTP status of each value in /robots.txt (Thank you @g0tmi1k!)
 * Follow any redirections (e.g. http -> https) (Thank you @g0tmi1k!)
 * Lots of other enhancements by @g0tmi1k & WPScan Team
+* Database export file enumeration.
 
 WPScan Database Statistics:
 * Total tracked wordpresses: 319
-* Total tracked plugins: 74611
-* Total tracked themes: 16606
+* Total tracked plugins: 74896
+* Total tracked themes: 16666
 * Total vulnerable wordpresses: 305
-* Total vulnerable plugins: 1643
+* Total vulnerable plugins: 1645
 * Total vulnerable themes: 286
 * Total wordpress vulnerabilities: 8327
-* Total plugin vulnerabilities: 2597
+* Total plugin vulnerabilities: 2603
 * Total theme vulnerabilities: 352
 
 ## Version 2.9.3
