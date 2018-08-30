@@ -1,10 +1,11 @@
 ![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
 
-
 [![Build Status](https://travis-ci.org/wpscanteam/wpscan.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
 [![Code Climate](https://img.shields.io/codeclimate/github/wpscanteam/wpscan.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
 [![Docker Pulls](https://img.shields.io/docker/pulls/wpscanteam/wpscan.svg)](https://hub.docker.com/r/wpscanteam/wpscan/)
 [![Patreon Donate](https://img.shields.io/badge/patreon-donate-green.svg)](https://www.patreon.com/wpscan)
+
+![alt text](https://wpscan.org/images/tty.gif "WPScan Screen Recording")
 
 # LICENSE
 
