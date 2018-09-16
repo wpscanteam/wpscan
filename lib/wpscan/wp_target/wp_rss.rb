@@ -36,8 +36,13 @@ class WpTarget < WebSite
       # If there is nothing there, return false
       return false if data.empty?
 
-      # Read in RSS/XML
-      xml = Nokogiri::XML(data)
+      begin
+        # Read in RSS/XML
+        xml = Nokogiri::XML(data)
+      rescue
+        puts critical("Missformed XML")
+        return false
+      end
 
       begin
         # Look for <dc:creator> item
