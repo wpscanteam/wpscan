@@ -4,14 +4,16 @@
 module Typhoeus
   class Response
 
-    # Compare the body hash to error_404_hash and homepage_hash
-    # returns true if they are different, false otherwise
+    # Compare the body hash to error_404_hash_set and homepage_hash
+    # returns true if it does not match known hashes, false otherwise
     #
     # @return [ Boolean ]
-    def has_valid_hash?(error_404_hash, homepage_hash)
+    def has_valid_hash?(error_404_hash_set, homepage_hash)
       body_hash = WebSite.page_hash(self)
 
-      body_hash != error_404_hash && body_hash != homepage_hash
+      return false if error_404_hash_set && error_404_hash_set.include?(body_hash)
+      return false if body_hash == homepage_hash
+      return true
     end
 
   end

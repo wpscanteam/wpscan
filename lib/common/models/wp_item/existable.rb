@@ -23,7 +23,7 @@ class WpItem
     # @param [ Typhoeus::Response ] response
     # @param [ options ] options
     #
-    # @option options [ Hash ] :error_404_hash  The hash of the error 404 page
+    # @option options [ Hash ] :error_404_hash_set  The set of the hash of 404 pages
     # @option options [ Hash ] :homepage_hash   The hash of the homepage
     # @option options [ Hash ] :exclude_content A regexp with the pattern to exclude from the body of the response
     #
@@ -31,9 +31,9 @@ class WpItem
     def exists_from_response?(response, options = {})
       # 301 included as some items do a self-redirect
       # Redirects to the 404 and homepage should be ignored (unless dynamic content is used)
-      # by the page hashes (error_404_hash & homepage_hash)
+      # by the page hashes (error_404_hash_set & homepage_hash)
       if [200, 401, 403, 301].include?(response.code)
-        if response.has_valid_hash?(options[:error_404_hash], options[:homepage_hash])
+        if response.has_valid_hash?(options[:error_404_hash_set], options[:homepage_hash])
           if options[:exclude_content]
             unless response.body.match(options[:exclude_content])
               return true

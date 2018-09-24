@@ -41,8 +41,17 @@ shared_examples 'WpItem::Existable' do
       end
     end
 
-    context 'when the body hash = homepage_hash or error_404_hash' do
+    context 'when the body hash = homepage_hash' do
       let(:exists_options) { { homepage_hash: Digest::MD5.hexdigest(body) } }
+
+      it 'returns false' do
+        @resp_opt = { code: 200, body: body }
+        @expected = false
+      end
+    end
+
+    context 'when the body hash is included in error_404_hash_set' do
+      let(:exists_options) { { error_404_hash_set: Set.new([Digest::MD5.hexdigest(body)]) } }
 
       it 'returns false' do
         @resp_opt = { code: 200, body: body }

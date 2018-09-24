@@ -1,5 +1,6 @@
 # encoding: UTF-8
 
+require 'set'
 require 'web_site'
 require 'wp_target/wp_api'
 require 'wp_target/wp_config_backup'
@@ -180,5 +181,25 @@ class WpTarget < WebSite
 
   def include_directory_listing_enabled?
     directory_listing_enabled?(includes_dir_url)
+  end
+
+  # Return the set of 404 error page hash for wp-content directories.
+  #
+  # This set is useful to check if a plugin or a theme is installed
+  # because 404 error pages for non-existent items can be different from
+  # target's default because of some plugin(i.e. IP Geo Block).
+  #
+  # @return [ Set<String> ]
+  def error_404_hash_set
+    unless @error_404_hash_set
+      hash_set = Set.new([site_404_hash])
+
+      non_existent_page = Digest::MD5.hexdigest(rand(999_999_999).to_s) + '.html'
+      [wp_content_dir, wp_plugins_dir, wp_themes_dir].each do |dir|
+        hash_set << WebSite.page_hash(@uri.merge("#{dir}/#{non_existent_page}"))
+      end
+      @error_404_hash_set = hash_set.freeze
+    end
+    @error_404_hash_set
   end
 end

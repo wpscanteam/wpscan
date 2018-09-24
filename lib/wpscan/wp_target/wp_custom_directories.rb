@@ -26,7 +26,7 @@ class WpTarget < WebSite
 
       if WpTarget.valid_response_codes.include?(response.code)
         hash = WebSite.page_hash(response)
-        return true if hash != error_404_hash and hash != homepage_hash
+        return true if hash != site_404_hash and hash != homepage_hash
       end
 
       false
@@ -43,6 +43,14 @@ class WpTarget < WebSite
     # @return [ Boolean ]
     def wp_plugins_dir_exists?
       Browser.get(@uri.merge(wp_plugins_dir).to_s).code != 404
+    end
+
+    # @return [ String ] The wp-themes directory
+    def wp_themes_dir
+      unless @wp_themes_dir
+        @wp_themes_dir = "#{wp_content_dir}/themes"
+      end
+      @wp_themes_dir
     end
 
   end

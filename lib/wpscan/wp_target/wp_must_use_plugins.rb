@@ -9,8 +9,7 @@ class WpTarget < WebSite
       response = Browser.get(must_use_url)
 
       if response && [200, 401, 403].include?(response.code)
-        hash = WebSite.page_hash(response)
-        return true if hash != error_404_hash && hash != homepage_hash
+        return true if response.has_valid_hash?(error_404_hash_set, homepage_hash)
       end
 
       false
