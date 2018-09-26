@@ -1,0 +1,9 @@
+
+<% if @users.empty? -%>
+<%= notice_icon %> No Valid Passwords Found.
+<% else -%>
+<%= notice_icon %> Valid Combinations Found:
+<% @users.each do |user| -%>
+ | Username: <%= user.username %>, Password: <%= user.password %>
+<% end -%>
+<% end %>

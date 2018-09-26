@@ -1,0 +1,32 @@
+<%= render('@wp_item', wp_item: @theme) %>,
+"style_url": <%= @theme.style_url.to_json %>,
+"style_name": <%= @theme.style_name.to_json %>,
+"style_uri": <%= @theme.style_uri.to_json %>,
+"description": <%= @theme.description.to_json %>,
+"author": <%= @theme.author.to_json %>,
+"author_uri": <%= @theme.author_uri.to_json %>,
+"template": <%= @theme.template.to_json %>,
+"license": <%= @theme.license.to_json %>,
+"license_uri": <%= @theme.license_uri.to_json %>,
+"tags": <%= @theme.tags.to_json %>,
+"text_domain": <%= @theme.text_domain.to_json %>,
+<%= render('@finding', item: @theme) -%>,
+<% if @theme.version -%>
+"version": {
+  "number": <%= @theme.version.number.to_json %>,
+  "confidence": <%= @theme.version.confidence.to_json %>,
+  <%= render('@finding', item: @theme.version) -%>
+},
+<% else -%>
+"version": null,
+<% end -%>
+"parents": [
+<% if @show_parents && !(parents = @theme.parent_themes).empty? -%>
+<% last_index = parents.size - 1 -%>
+  <% parents.each_with_index do |parent, index| -%>
+  {
+    <%= render('@theme', theme: parent, show_parents: false) -%>
+  }<% unless index == last_index -%>,<% end -%>
+  <% end -%>
+<% end -%>
+]

@@ -1,0 +1,132 @@
+********************************************************************************
+DUPLICATOR INSTALL-LOG
+STEP1 START @ 04:10:42
+NOTICE: Do NOT post to public sites or forums
+********************************************************************************
+VERSION:  0.5.12
+PHP:    5.3.3-7+squeeze19 | SAPI: apache2handler
+SERVER:   Apache/2.2.16 (Debian)
+DOC ROOT: /var/www/wp-test
+DOC ROOT 755: true
+LOG FILE 644: true
+BUILD NAME: 20150115_wordpress41_54b7e2602a0a35837150115155304
+REQUEST URL:  http://wp.lab/wp-test/installer.php
+
+********************************************************************************
+ARCHIVE SETUP
+********************************************************************************
+NAME: 20150115_wordpress41_54b7e2602a0a35837150115155304_archive.zip
+SIZE: 7.23MB
+ZIP:  Enabled (ZipArchive Support)
+EXTRACTING
+ZipArchive Object
+(
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 1395
+    [filename] => /var/www/wp-test/20150115_wordpress41_54b7e2602a0a35837150115155304_archive.zip
+    [comment] =>
+)
+COMPLETE: true
+
+WEB SERVER CONFIGURATION FILE RESET:
+- Backup of .htaccess/web.config made to .orig
+- Reset of .htaccess/web.config files
+
+UPDATED FILES:
+- SQL FILE:  '/var/www/wp-test/installer-data.sql'
+- WP-CONFIG: '/var/www/wp-test/wp-config.php'
+
+ARCHIVE RUNTIME: 0.2253 sec.
+
+
+********************************************************************************
+DATABASE-ROUTINES
+********************************************************************************
+--------------------------------------
+SERVER ENVIROMENT
+--------------------------------------
+MYSQL VERSION:  5.1.73-1
+TIMEOUT:  5000
+MAXPACK:  16777216
+--------------------------------------
+DATABASE RESULTS
+--------------------------------------
+ERRORS FOUND: 0
+DROP TABLE:
+QUERIES RAN:  168
+
+wp_commentmeta: (0)
+wp_comments: (1)
+wp_duplicator_packages: (1)
+wp_links: (0)
+wp_options: (129)
+wp_postmeta: (1)
+wp_posts: (3)
+wp_term_relationships: (1)
+wp_term_taxonomy: (1)
+wp_terms: (1)
+wp_usermeta: (15)
+wp_users: (1)
+Removed '28' cache/transient rows
+
+SECTION RUNTIME: 0.0685 sec.
+
+********************************************************************************
+STEP1 COMPLETE @ 04:10:43 - TOTAL RUNTIME: 0.2973 sec.
+********************************************************************************
+
+
+
+********************************************************************************
+DUPLICATOR INSTALL-LOG
+STEP2 START @ 04:11:09
+NOTICE: Do not post to public sites or forums
+********************************************************************************
+CHARSET SERVER: latin1
+CHARSET CLIENT:  utf8
+
+--------------------------------------
+SERIALIZER ENGINE
+[*] scan every column
+[~] scan only text columns
+[^] no searchable columns
+--------------------------------------
+wp_commentmeta^ (0)
+wp_comments~ (1)
+wp_duplicator_packages^ (0)
+wp_links^ (0)
+wp_options~ (99)
+wp_postmeta~ (1)
+wp_posts~ (3)
+wp_term_relationships~ (1)
+wp_term_taxonomy~ (1)
+wp_terms~ (1)
+wp_usermeta~ (15)
+wp_users~ (1)
+--------------------------------------
+SEARCH1:  'http://wp.lab/wordpress-4.1'
+REPLACE1: 'http://wp.lab/wp-test'
+SEARCH2:  '/var/www/wordpress-4.1/'
+REPLACE2: '/var/www/wp-test/'
+SCANNED:  Tables:12 | Rows:123 | Cells:567
+UPDATED:  Tables:1 | Rows:5 |Cells:6
+ERRORS:   0
+RUNTIME:  0.037100 sec
+
+********************************************************************************
+START FINAL CLEANUP: 04:11:10
+********************************************************************************
+UPDATE `wp_blogs` SET domain = 'wp.lab' WHERE domain = 'wp.lab'
+
+--------------------------------------
+WARNINGS
+--------------------------------------
+No Warnings Found
+
+
+WEB SERVER CONFIGURATION FILE BASIC SETUP:
+created basic .htaccess file.  If using IIS web.config this process will need to be done manually.
+********************************************************************************
+STEP 2 COMPLETE @ 04:11:10 - TOTAL RUNTIME: 0.0411 sec.
+********************************************************************************

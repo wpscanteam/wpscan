@@ -1,0 +1,9 @@
+"slug": <%= @wp_item.slug.to_json %>,
+"location": <%= @wp_item.url.to_json %>,
+"latest_version": <%= @wp_item.latest_version ? @wp_item.latest_version.number.to_json : nil.to_json %>,
+"last_updated": <%= @wp_item.last_updated.to_json %>,
+"outdated": <%= @wp_item.outdated?.to_json %>,
+"readme_url": <%= @wp_item.readme_url.to_json %>,
+"changelog_url": <%= @wp_item.changelog_url.to_json %>,
+"directory_listing": <%= @wp_item.directory_listing?.to_json %>,
+"error_log_url": <% if @wp_item.error_log? %><%= @wp_item.url('error_log').to_json %><% else %>null<% end %>

@@ -1,0 +1,10 @@
+"medias": {
+<% unless @medias.empty? -%>
+<% last_index = @medias.size - 1 -%>
+<% @medias.each_with_index do |media, index| -%>
+  <%= media.url.to_json %>: {
+    <%= render('@finding', item: media) -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

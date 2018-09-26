@@ -1,0 +1,83 @@
+-----------------------------------------------------------
+1.4.10
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+-----------------------------------------------------------
+1.4.9
+	- Fixed a PHP fatal error which can occur on the feeds page if the Zoho account user does not have permission to access the contacts or leads modules.
+
+-----------------------------------------------------------
+1.4.8
+	- Fixed the settings page not showing an error when the maximum number of allowed auth tokens has been exceeded.
+
+-----------------------------------------------------------
+1.4.7
+	- Fixed an issue with the response code logging statement.
+
+-----------------------------------------------------------
+1.4.6
+	- Updated module field map to allow for custom fields to be used.
+
+-----------------------------------------------------------
+1.4.5
+	- Updated strings for translations
+
+-----------------------------------------------------------
+1.4.4
+	- Fixed an issue with a few strings using the wrong text domain for translations
+
+-----------------------------------------------------------
+1.4.3
+	- Fixed an issue which prevented files being sent to Zoho.
+
+-----------------------------------------------------------
+1.4.2
+	- Fixed owner not being set on the created contact/lead.
+
+-----------------------------------------------------------
+1.4.1
+    - Fixed an issue retrieving the ID of the created contact from the API response which also caused contact task creation to fail.
+
+-----------------------------------------------------------
+1.4
+	- Updated contact, lead and task creation error reporting.
+	- Fixed module fields not importing in certain scenarios.
+	- Fixed strings for translations.
+
+-----------------------------------------------------------
+1.3
+	- Added hook to allow API URL to be changed.
+    - Updated not to force standard fields to be required. The required state of the field on the feed will match the required state of the field in the Zoho account.
+	- Fixed issue where checking for duplicate leads did not correctly update duplicate leads.
+    - Fixed an issue where Zoho was unable to parse the XML data if the value contained special characters.
+    - Fixed an issue with the request failed message if a WP_Error occurs.
+
+-----------------------------------------------------------
+1.2
+    - Added support for configuring a task description.
+	- Added feed duplication support.
+	- Added support for delaying feed processing until payment by PayPal Standard is successfully completed.
+	- Added some additional logging.
+    - Updated the task due date setting to support merge tags. The merge tag value must be numeric for the due date to be set.
+    - Updated to display an error for the password field on the settings page if Zoho returns a WEB_LOGIN_REQUIRED error.
+    - Fixed an issue with the request failed message if a WP_Error occurs.
+    - Fixed an issue with the text domain for some of the translatable strings.
+    - Fixed an issue with how multiple choices in multiselect and checkbox type field values are separated when being sent to Zoho.
+	- Fixed module field choices return "Array" as an option.
+	- Fixed fatal error that occurs during 1.1.5 upgrade routine.
+	- Fixed contacts and leads not being created when Zoho CRM account language is not set to English.
+	- Fixed module field loading to support foreign languages.
+
+-----------------------------------------------------------
+1.1
+	- Added authentication option for third party services (Google Apps, Facebook, Yahoo).
+	- Added options to allow for duplicate contacts and feeds.
+	- Added option to manually clear custom fields cache.
+	- Changed custom fields cache from 24 hours to 12 hours.
+	- Fixed an issue where only some of the uploaded files were attached.
+	- Updated available field types for mapping to the contact/lead email.
+
+-----------------------------------------------------------
+1.0
+	- It's all new!

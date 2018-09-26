@@ -1,0 +1,34 @@
+{
+  "name": "tarosky/kuroneko-pay",
+  "description": "Add Kuroneko Web Payment Gateway to WooCommerce",
+  "version": "1.2.1",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "test": "phpunit",
+    "cs": [
+      "phpcs --config-set installed_paths $(pwd)/vendor/wp-coding-standards/wpcs",
+      "phpcs --standard=phpcs.ruleset.xml $(find ./app -name '*.php')"
+    ]
+  },
+  "authors": [
+    {
+      "name": "Yamato Financial",
+      "email": "yamatofinancial@tarosky.co.jp"
+    }
+  ],
+  "autoload": {
+    "psr-0": {
+      "KuronekoYamato\\KuronekoPay": "app/"
+    }
+  },
+  "require": {
+    "php": ">=5.4",
+    "hametuha/hametwoo": "~0.8"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.8",
+    "squizlabs/php_codesniffer": "~2.8",
+    "wp-coding-standards/wpcs": "~0.11"
+  },
+  "minimum-stability": "stable"
+}

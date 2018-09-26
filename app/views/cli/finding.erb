@@ -1,0 +1,32 @@
+ | Detected By: <%= @item.found_by %>
+<% @item.interesting_entries.each do |entry| -%>
+ |  - <%= entry %>
+<% end -%>
+<% unless (confirmed = @item.confirmed_by).empty? -%>
+<% if confirmed.size == 1 -%>
+ | Confirmed By: <%= confirmed.first.found_by %>
+<% confirmed.first.interesting_entries.each do |entry| -%>
+ |  - <%= entry %>
+<% end -%>
+<% else -%>
+ | Confirmed By:
+<% confirmed.each do |c| -%>
+ |  <%= c.found_by %>
+<% c.interesting_entries.each do |entry| -%>
+ |   - <%= entry %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% end -%>
+<% if @item.respond_to?(:vulnerabilities) && !(vulns = @item.vulnerabilities).empty? -%>
+<% vulns_size = vulns.size -%>
+ |
+ | <%= critical_icon %> <%= vulns_size %> <%= vulns_size == 1 ? 'vulnerability' : 'vulnerabilities' %> identified:
+ |
+<% vulns.each_with_index do |vulnerability, index| -%>
+<%= render('@vulnerability', v: vulnerability) -%>
+<% if index != vulns_size -1 -%>
+ |
+<% end -%>
+<% end -%>
+<% end -%>

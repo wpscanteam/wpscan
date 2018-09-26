@@ -1,0 +1,40 @@
+{
+	"name": "dgxpco",
+	"description": "Update security for WordPress",
+	"version": "1.2.0",
+	"type": "wordpress-plugin",
+	"keywords": ["secure", "update", "upgrade"],
+	"homepage": "https://github.com/displacetech/dgxpco",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Eric Mann",
+			"email": "eric@eamann.com",
+			"homepage": "https://eamann.com",
+			"role": "Developer"
+		}
+	],
+    "minimum-stability": "stable",
+	"require": {
+		"php": ">=5.6",
+		"paragonie/sodium_compat": "^1.6"
+	},
+  "require-dev": {
+    "doctrine/instantiator": ">=1.0, <1.1",
+    "phpdocumentor/reflection-docblock": "<3.2.3",
+    "phpunit/php-token-stream": "^1.4",
+    "phpunit/phpunit": "^5.7",
+    "symfony/console": "3.4.4",
+    "symfony/config": "3.4.4",
+    "symfony/debug": "3.4.4",
+    "symfony/filesystem": "3.4.4",
+    "symfony/stopwatch": "3.4.4",
+    "symfony/yaml": "3.4.4",
+    "satooshi/php-coveralls": "^1.0"
+  },
+	"autoload": {
+		"files": [
+			"includes/functions.php"
+		]
+	}
+}

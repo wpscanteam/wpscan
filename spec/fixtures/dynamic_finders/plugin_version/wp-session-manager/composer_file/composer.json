@@ -1,0 +1,34 @@
+{
+	"name"             : "ericmann/wp-session-manager",
+	"description"      : "Prototype session management for WordPress.",
+	"version"          : "3.0.0",
+	"type"             : "wordpress-plugin",
+	"keywords"         : ["session"],
+	"homepage"         : "https://github.com/ericmann/wp-session-manager",
+	"license"          : "GPLv2.0+",
+	"minimum-stability": "dev",
+	"authors"          : [
+		{
+			"name"    : "Eric Mann",
+			"email"   : "eric@eamann.com",
+			"homepage": "https://eamann.com",
+			"role"    : "Developer"
+		}
+	],
+	"require-dev"      : {},
+	"require"          : {
+		"php": ">=5.6",
+		"ericmann/sessionz": "^0.3.0"
+	},
+	"autoload": {
+		"classmap": [
+			"includes/SessionHandler.php",
+			"includes/DatabaseHandler.php",
+			"includes/Option.php",
+			"includes/OptionsHandler.php"
+		],
+		"files": [
+			"includes/deprecated.php"
+		]
+	}
+}

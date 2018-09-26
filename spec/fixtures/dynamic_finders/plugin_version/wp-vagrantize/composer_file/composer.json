@@ -1,0 +1,40 @@
+{
+	"name" : "amekusa/wp-vagrantize",
+	"authors" : [{
+			"name" : "amekusa",
+			"email" : "post@amekusa.com"
+		}
+	],
+	"version" : "1.2.0",
+	"repositories" : [{
+			"type" : "vcs",
+			"url" : "https://github.com/amekusa/ReWP.git"
+		}
+	],
+	"require" : {
+		"php" : ">=5.3.3",
+		"amekusa/ReWP" : "1.*",
+		"mustangostang/spyc" : ">=0.5.1",
+		"ifsnop/mysqldump-php" : "1.*",
+		"codeless/ziparchiveex": "~1.0"
+	},
+	"require-dev" : {
+		"phpunit/phpunit" : "4.5.*"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"amekusa\\WPVagrantize\\" : "src/"
+		},
+		"files" : [
+			"wp-vagrantize.php"
+		]
+	},
+	"type" : "wordpress-plugin",
+	"keywords" : [
+		"wordpress",
+		"vagrant"
+	],
+	"config" : {
+		"vendor-dir" : "lib/composer"
+	}
+}

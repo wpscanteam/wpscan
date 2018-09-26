@@ -1,0 +1,28 @@
+  <!-- plugins that should not be detected -->
+  http://wp.lab/wp-content/plugins/this-should-not-match/sub.css
+  href="http://wp.lab/wp-content/plugins/this-should-not-match/sub.css"
+  /wp-content/plugins/this-should-not-match/sub.css
+  //wp-content/plugins/this-should-not-match/sub.css
+  src='/wp-content/plugins/this-should-not-match/sub.css'
+
+  <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="https://wp.lab/wp-content/plugins/should-not-be-reported/" />
+  <![endif]-->
+
+  <script type="text/javascript">
+    var TB_pluginPath = 'http://www.welovebug.com/wp-content/plugins/js-source';
+    var TB_config = { 'widget_show_photos': true }
+  </script>
+
+  <script type='text/javascript'>
+  /* <![CDATA[ */
+  var poll3 = {"ajax_url": "\/\/g.com/wp-content\/plugins\/wp-polls\/wp-polls.php", "text_wait": "Please wait a while ..."};
+  /* ]]> */
+</script>
+
+
+<style type="text/css" media="all">
+  /* <![CDATA[ */
+  @import url(//g.com/wp-content/plugins/datatables/css/datatables.css?ver=1.9.4);
+  /* ]]> */
+</style>

@@ -1,0 +1,34 @@
+{
+  "name": "bccampus/pressbooks-openstax-import",
+  "description": "Imports OpenStax zip files into Pressbooks",
+  "type": "wordpress-plugin",
+  "version": "0.1.3",
+  "homepage": "https://github.com/bccampus/pressbooks-openstax-import",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Brad Payne",
+      "email": "brad@bradpayne.ca",
+      "homepage": "https://bradpayne.ca"
+    },
+    {
+      "name": "aparedes",
+      "email": "aparedes@bccampus.ca"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^5.7",
+    "humanmade/coding-standards": "^0.2.1"
+  },
+  "require": {
+    "collizo4sky/persist-admin-notices-dismissal": "^1.3"
+  },
+  "scripts": {
+    "test": [
+      "@standards"
+    ],
+    "standards": [
+      "vendor/bin/phpcs --standard=phpcs.ruleset.xml *.php ."
+    ]
+  }
+}

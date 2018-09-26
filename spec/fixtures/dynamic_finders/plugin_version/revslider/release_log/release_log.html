@@ -1,0 +1,878 @@
+<div class="slider-revolution-update-list">
+  <h3 class="version-number">Version 4.6.5 SkyWood (02nd December 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed Compatibility of Sandboxed GreenSock engine</li>
+    <li>Fixed Compatibility issues with W3C Total Cache Minifying engine</li>
+    <li>Fixed Static Layer Disappearing Issue</li>
+    <li>Fixed Lazy Loading and Preloading issues (Distorted images in FireFox)</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.6.4 SkyWood (27th November 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Added option to show only the Preview Image of a video on mobile, disabling the video</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Min. Height now gone if Fullscreen is selected</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed an issue where the Parallax Effect if Mouse already hovered on the Slider in Firefox was not working well</li>
+    <li>Fixed an issue where exports can have wrong styles in it</li>
+    <li>Fixed Firefox HTML5 Video Playback</li>
+    <li>Fixed Thumbnail Vertical Offset Positions in Resized Screens</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.6.3 SkyWood (21th October 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed an issue where the Slide Link was not working correctly</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.6.2 SkyWood (18th October 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Added "revkill" as method to remove the Slider from the page silently if needed</li>
+    <li>Added "slideatend" event that triggers if the slide is at the end</li>
+    <li>Changed import function for compatibility with some Windows Server machines (thanks to ThemeFuzz)</li>
+    <li>Improved Slider import function for theme authors to make it more easy to insert demo slider through scripts</li>
+    <li>Added scripts so that a Slider can be loaded in Essential Grid at Ajax loading (Essential Grid version 1.5 or later needed)</li>
+    <li>Added new Custom Controls for HTML5 Video Player to avoid Chrome "unclickable" buttons issue</li>
+    <li>Added Rotating Loop Animation on Layers</li>
+    <li>Spinner can now be disabled in the Slider Settings</li>
+    <li>New fallback options for iOS4 and IE8 added in the Slider Settings (Alternative Image and/or simplyfied output)</li>
+    <li>Added option to redraw Slider on browser tab focus</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>More changes on exporting Sliders for further compatibility</li>
+    <li>Activating the plugin a second time will now no longer add default fonts again</li>
+    <li>Saving CSS / a new CSS class through the style editor will now sanitize the classname</li>
+    <li>Setting the single slide setting in the Slide Editor to off will now set the values Arrows Type and Bullets Type to none</li>
+    <li>Improved minifying support</li>
+    <li>Easy auto settings for single loop option</li>
+    <li>Videos on mobile devices available again</li>
+    <li>Minimized the styling output</li>
+    <li>Improved output validation (style attribute scoped)</li>
+    <li>Changed backend icon of static layers to avoid confusion</li>
+    <li>Removed console=1 from the YouTube default settings (only works for new added YouTube video layers)</li>
+    <li>Google Fonts will no longer be inserted after multiple plugin activation/deactivation</li>
+    <li>Improved compatibility with databases</li>
+    <li>Enabled unlimited speed parameter</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>WPML Slides will now be exported properly and can be imported again</li>
+    <li>Improved the size and style handling of Layers in Slide Editor (resizing, rotating and lost values of parameters)</li>
+    <li>IE8 - line height "auto" broke the fullscreen slider. In case "auto" is set, the font size +4px will be calculated for line height</li>
+    <li>z-index bug for first layer in case dotted overlay exists fixed</li>
+    <li>SSL compatibility with Vimeo videos in the backend added</li>
+    <li>Chrome's max-width fallback from % to px. Slides accepting now only px values!</li>
+    <li>Transition speed had no influence on real transitions</li>
+    <li>Max transition can now have the same value as the max delay of the Slide</li>
+    <li>Fixed missing Box Slide, Paper Cut and Box Fade transitions</li>
+    <li>Further export compatibility for multisites</li>
+    <li>Fix of Lists in Captions - Formatting and Display issues</li>
+    <li>Link to Another Slide in Random Mode Bug linked to the wrong Slide Bug is fixed</li>
+    <li>Undefined poster image on HTML5 videos fixed</li>
+    <li>Fixed Vimeo/YouTube timings (delaying issues)</li>
+    <li>Fixed KenBurn dotted overlay</li>
+    <li>Fixed problem with loop animations</li>
+    <li>Fixed navigation style issues</li>
+    <li>Fixed Pan Zoom for mobile issues</li>
+    <li>Fixed a bug where videos restarted on resize</li>
+    <li>Fixed HTML5 video markup output</li>
+    <li>Fixed a bug where hide slider on mobile did not work on certain devices</li>
+    <li>Fixed a bug with speed parameters</li>
+    <li>Fixed a bug where caption naming in layers list was not updating anymore</li>
+    <li>Further IE8 compatibility by changing CSS styles</li>
+    <li>Fixed boxfade and boxslide animations</li>
+    <li>Fixed a bug where the first layer z-index was always placed behind the dotted overlay</li>
+    <li>SSL compatibility with Vimeo API in the backend added</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.6 SkyWood (25th August 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Option to disable each video on mobile</li>
+    <li>Option to disable Pan Zoom on Mobile</li>
+    <li>Option to disable Parallax on Mobile</li>
+    <li>Randomized Animation from the Selected Animations available now</li>
+    <li>New Offset option for the  Scroll Below Function</li>
+    <li>New Option to set Slider Min Height - Content will be vertical centered in case content container is smaller then min height of Slider</li>
+    <li>New Loop Options for HTML5 Videos: none, loop and stop Slider Timer or Loop till Progress Bar reaches the End</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Alternative First Slide wins now, even if Random Slides is enabled</li>
+    <li>Vimeo, YouTube and HTML5 Video can be added now via options on demand instead of preadding iFrames.  This will avoid Preloads delays, and slow site loadings</li>
+    <li>Using now tp-videolayer class for Videos to identificate Video Layers better</li>
+    <li>Class "current-sr-slide-visible" added to the Slide "li" tag which is currently Visible</li>
+    <li>Swipe Engine Change</li>
+    <li>Swipe Treshold Option Default 75 - The number of pixels that the user must move their finger by before it is considered a swipe.</li>
+    <li>Swipe Min Finger Default 1 -  Min Finger (touch) used for swipe</li>
+    <li>Drag Block Vertical Default false - Scroll Auto below Slider on Vertical Swipe on Slider</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>YouTube Force Rewind fix</li>
+    <li>YouTube Mute in Second Loop fix</li>
+    <li>Added backwards compatibility for inline CSS with WordPress versions under 3.7</li>
+    <li>Ken Burns Dotted Overlay was not visible</li>
+    <li>IE8 Console Group Issue - Slider was not visible in IE8</li>
+    <li>Looping Issues if Slides has been manually hanged after Loop Stopped</li>
+    <li>Browser Tab Change  -> Broken ELements fixed. Option for Slide Change on Blur Tab / Browser also available.</li>
+    <li>Navigation Style Preview1- Preview4 Styling issues</li>
+    <li>Power2 Error at some Animation</li>
+    <li>Mouse Over on Loaded PArallax Slider issue - Slider will always play parallax effect, even if Mouse was already hovering the slider at laod</li>
+    <li>IE8 and other Old MObile Devices Fall Back on simple Transitions. CAn be forced now</li>
+    <li>HTML5, YouTube and Vimeo Video Playback fixes</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.96 SkyWood (24th July 2014)</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Parallax Mouse Hover acting only in Horizontal Direction if Parallax Scroll is defined</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.95 SkyWood (16th July 2014)</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Changed Animation Engine, improved Animation technology. Reduced file size, and added Timeline based transitions</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed Flickering effects on mobile devices</li>
+    <li>Fixed stuttering on animation with many layers</li>
+    <li>Fixed Ken Burn animation failures after few Transition types</li>
+    <li>Added Safari 3d Back to Transitions</li>
+    <li>Fixed some broken Slide Transitions</li>
+    <li>Fixed IE8 transition failres, fall back always on Fade</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.9 SkyWood (7th July 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Drag and Rotate the Layer Content to set a 2D Rotation per element</li>
+    <li>Drag and Resize Elements, images, Contents for better text breaks, and more flexibility</li>
+    <li>Now also Split Animated Text content can be Rotated</li>
+    <li>Added feature to allow Looped Animation and Rotated Content</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Reenabled Link ID, Class, Title and Rel in Slide Editor</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed Vimeo First Auto Play issue</li>
+    <li>Fixed unseletable elements in Locked Mode</li>
+    <li>Fixed Output Failure if Rotated and Looped Animation has been selected</li>
+    <li>Various Bug fix in Drag And Drop Editor</li>
+    <li>Fix of Background Image if Screen size less Then Grid Width, postion of Elements and BG backend and frontend looked different</li>
+    <li>Various Fixes for Mobile Styling.  Broken Transitions, bad performance on Mobile devices</li>
+    <li>Bug with Rotated Layers on Backend fixed</li>
+    <li>Bug with MAx Width and Max Height of elements was not visible in Backend</li>
+    <li>White Space Bugs - Backend was not displaying settings of White Spaces</li>
+    <li>Ken Burn Images on backend was distorted if Window has been resized</li>
+  </ul>
+
+  <h3 class="version-number">Version 4.5.8 SkyWood (4th July 2014)</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Reenabled Link ID, Class, Title and Rel in Slide Editor</li>
+  </ul>
+
+
+
+  <h3 class="version-number">Version 4.5.7 SkyWood (2nd July 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New Options in Global Settings, like Disable/Enable Hammer.js Plugin</li>
+    <li>New Developer Option to Disable via the theme the Hammer.js Plugin (Avada Requests)</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Minimized Style Output in the Document, only used Layer Styles are really loaded</li>
+    <li>Changed the Aq_Resize name to prevend conflicts with other themes that also use it and modified code in it</li>
+    <li>Updated GreenSock Engine to 12.1 </li>
+    <li>Protected Mode for GreenSock for ThemePunch Plugins added. No more conflict between any other plugins / themes and ThemePunch Tools</li>
+    <li>Lag Smoothing Enabled</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Bug fixed where Parallax Mode for Mobile Disabled breaks the 2nd and further Slider Positions</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.6 SkyWood (25th June 2014)</h3>
+
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New developer option to disable all notifications and the activation area. More information at <a href="http://www.themepunch.com/home/plugins/set-revolution-slider-as-theme/" target="_blank">http://www.themepunch.com/home/plugins/set-revolution-slider-as-theme/</a></li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Added missing fonts from Punch Fonts into the CSS Editor Font Family dropdown</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fullscreen Layout Without Offset Heights got the Wrong Height</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.5 SkyWood (24th June 2014)</h3>
+
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Option to disable parallax on mobile added</li>
+    <li>Option to add an offset in px or % to FullScreen Slider</li>
+    <li>Two new Slide transitions: Parallax Vertical and Parallax Horizontal</li>
+    <li>Export Slider into HTML. Option availble first when Feature enabled under Global Settings</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Static Layers now have to be enable in each Slider for usage (can be found in General Settings tab)</li>
+    <li>onChange Event delivers the Slide Index and the Slide jQuery Object now</li>
+    <li>Global option JavaScript into footer now also adds the revslider calls into the footer</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Lazy Loading bug in combination with Static Layers fixed</li>
+    <li>"Hide Slider Under" option did not redraw the Layers after Resize. Bug is fixed</li>
+    <li>YouTube Video Bug with Overlay Image on Mobile Devices.</li>
+    <li>IE8 and IE9 Slide Link Bug Fixed</li>
+    <li>Output Filters Protection fix for "By Compressing Output"</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.4 SkyWood (16th June 2014)</h3>
+
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Static Layers added. Can be found under Slide List (new button called "Edit Static Layers")</li>
+    <li>Possibility added to insert id, class, attr and i.e. own data attributes to each specific Slide</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Inline CSS compressed/minimized now in output</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Layers sometimes not fading out fixed</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.3 SkyWood (12th June 2014)</h3>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>IE jQuery bugfix</li>
+    <li>Responsive Through All Levels fixed where checkbox would be always checked on each element after reload of Slide Editor</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.2 SkyWood (10th June 2014)</h3>
+
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>data-parallaxoffset attribute is now available and updated on Scroll.  This value can be interesting for Developers to read current Parallax Offsets of the elements with the jQuery selector .tp-parallax-container  (Possible usage for Blur, Fade, Rotation effects based on the values)</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Thumbnail is not Showing has been fixed</li>
+    <li>Choosen Global Settings now correctly set again</li>
+    <li>Shortcode dropdown selector will now insert the right shortcode</li>
+    <li>Auto Play only First Time on Videos (YouTube and Vimeo) did not work well.</li>
+    <li>Imported layers will be stripped of slashes now</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.01 SkyWood (06th June 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed a bug where new Slider & Template Slider button is missing</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.5.0 SkyWood (05th June 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Improved Backend Functionality</li>
+    <li>Added a timeline based editor for better & easier handling of layer times</li>
+    <li>Loop Effect now available. Choose between four loop types for each layer in the Slide Editor under "Layer Animations"</li>
+    <li>Parallax Effect now available. Enable it in Slider Settings in the Parallax Tab and set your desired level of each layer in Slide Settings</li>
+    <li>Parallax on Mouse Movement Added</li>
+    <li>Parallax on Scroll Added with Background fixed or Scrolled Options</li>
+    <li>PArallax on Mobile Device Tilt</li>
+    <li>qTranslate is now supported in layers</li>
+    <li>Added filter hook called 'revslider_get_posts' that can be used to manipulate the WP_Query array</li>
+    <li>New Grid/Snap functionality in Slide Editor for better positioning of elements</li>
+    <li>Punch Fonts are now included. This should now be used if google fonts need to be loaded through the Slider Revolution plugin</li>
+    <li>Option added to not load the Slider on Mobile devices</li>
+    <li>2D rotation options added to layers in Slide Editor</li>
+    <li>New navigation types called preview1, preview2, preview3, preview4 and custom</li>
+    <li>Custom CSS and JavaScript can now be added directly in each Slider</li>
+    <li>Placeholder of Slider at Page load will be auto generated. No more Jump Vertically during Slider is loading</li>
+    <li>Added Performance Boost optional, where Outgoing Layers first animated before next slide is played. Helps if many layers added to one Slide</li>
+    <li>Reburn of Pan Zoom Effect on FullScreen, FullWidth and Boxed layout with a complete new Engine</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Check if more then one instance of Slider Revolution exists.</li>
+    <li>Added support for spaces in putRevSlider("newslider2014","2,10") like putRevSlider("newslider2014","2, homepage")</li>
+    <li>Added check if hammer.js is already included</li>
+    <li>Added allowfullscreen="true" into YouTube video iFrame output</li>
+    <li>Using now Aqua Resizer for thumbnail generation</li>
+    <li>Pagination added to the Slide Overview page</li>
+    <li>Added Sorting of Slides based on names or Shortcode in Slider Overview page</li>
+    <li>Video ID of YouTube and Vimeo can now be changed on editing a layer</li>
+    <li>Added notification on post based slider if the template slider does not have any slides created</li>
+    <li>Removed the JavaScript inside of the href attribute of buttons from the Slide Editor</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed a bug where Template Sliders would change to normal Sliders</li>
+    <li>Fixed a bug where layer positions in slide editor where not correctly calculated if the layer had a padding or margin.</li>
+    <li>white-space and max-width/max-height are now correctly shown in Slide Editor</li>
+    <li>Fix for importing where \n was translated to n</li>
+    <li>Visible Last slide at Loading fixed</li>
+    <li>Visible Navigation Elements on Load fixed</li>
+  </ul>
+
+
+
+  <h3 class="version-number">Version 4.3.8 SkyWood (27th April 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>BugFix for Shortcode Selector in WordPress 3.9 that happens on toggle between text & visual button</li>
+    <li>added px to height css in fullwidth Sliders</li>
+  </ul>
+
+
+  <h3 class="version-number">Version 4.3.7 SkyWood (17th April 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Select ShortCodes are now back in Posts on WordPress 3.9</li>
+    <li>Ken Burns Dobble Start after changing the slide</li>
+  </ul>
+
+  <h3 class="version-number">Version 4.3.6 SkyWood (14th April 2014)</h3>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Ken Burns and Pan Zoom Effect Engine Change. Animation based on Img rotations and Zooms, Transitions instead of Background animation. Due this change the Aniamtions become really Smooth and Clean.</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed some compability issues with custom captions</li>
+  </ul>
+
+  <h3 class="version-number">Version 4.3.5 SkyWood (09th April 2014)</h3>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Decreased Loading Time of Styles due loading styles Inline in Header (based on WordPress Best Practices)</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed Click and Taps bugs on Elements in Slider viewing Slider in Mobile Devices</li>
+    <li>Fixed Positions of Videos after leaving Fullscreen Video Playback</li>
+    <li>Fixed Element Transitions by clicking Next/previous Slider before Elements has been shown. Currently Not Visible Elements will not show up suddenly any more.</li>
+  </ul>
+
+  <hr>
+
+
+  <h3 class="version-number">Version 4.3.4 SkyWood (07th April 2014)</h3>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Changed Backend Style of Style Editor</li>
+    <li>Added Swipe Up & Down to scroll below or above the slider on Mobile Devices</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed Color Picker in Backend Editor</li>
+  </ul>
+
+  <hr>
+
+
+  <h3 class="version-number">Version 4.3.3 SkyWood (27th March 2014)</h3>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Changed the validation process to meet the envato requirements</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>KenBurn effect "End Position" fix if percentage is choosen</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.3.2 SkyWood (25th March 2014)</h3>
+
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Added Option keyboardNavigation to allow Navigation with left/right arrows</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Removed video-js plugin and added Browser Native HTML5 Video Player</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Added stripslashes to the import process to the layers</li>
+    <li>Added multisite custom css fix</li>
+    <li>Fixed HTML5 Video Loading issues</li>
+    <li>Fixed Android Device Swipe Feature</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.3.1 SkyWood (21th March 2014)</h3>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Changed the activation text</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fix for Thumbnail generating on some installations</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.3 SkyWood (18th March 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fix if Slider does not load after Touch Option is Disabled</li>
+    <li>MultiSite export fix on some installations.</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.7 SkyWood (18th March 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Added Options like Swipe Velocity, Swipe Min/Max Touches</li>
+    <li>Added Drag Block Vertical option to prevent verticall scroll if needed. Default (false)</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>BugFix for FireFox Timer Line - Visibilty of Timer was ignored in Firefox and IE</li>
+    <li>BugFix for checking for new updates</li>
+    <li>BugFix for event manager, dates will now be correctly translated if they are not english</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.6 SkyWood (17th March 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New Slider Setting option: Hide Mobile Nav After in Mobile Visibility Tab</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Calculation of forceFullScreenAlign Positions. Resized Positions are More exact</li>
+    <li>Replacement of rel=0 in youtube video layer disabled</li>
+    <li>Added Hide Slider under "window width" for all type of Slider Layouts. Slider is stopped / started depends on the Window size also</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Hide Timer Bug has been fixed</li>
+    <li>Small multisite export/import adjustments</li>
+    <li>Small general export/import adjustments</li>
+    <li>Missing static-captions.css text in console on slider preview removed</li>
+    <li>YouTube: Hide Controls do now work</li>
+    <li>YouTube/Vimeo allow now to insert direct URL or ID</li>
+    <li>YouTube rel=0 fix</li>
+    <li>YouTube iOS Fix for Replaying videos on 2nd Call</li>
+    <li>StopOnHover set to 1 Bug has been fixed</li>
+    <li>Backend Speed improvements on some hosters</li>
+
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.5 SkyWood (12th March 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Slide Link zIndex issues and Slide Link Resizing issues fixed</li>
+    <li>Individual Slide Timer has been fixed. Broken since version 4.2.4</li>
+  </ul>
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.4 SkyWood (10th March 2014)</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Updated Russian Translation / Language Pack</li>
+    <li>Improved Plugin Processes, Removed Script Intervals and Timers for Better CPU Management (30-50% less CPU Usage)</li>
+  </ul>
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.3 SkyWood (3th March 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>BugFix in Russian Language causing the error "setting layer_caption not found"</li>
+  </ul>
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.2 SkyWood (28th February 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>In case HTML5 Video Js Loads later then Meta of Video will not fire the Auto Play Option</li>
+    <li>Changed update check. In some situations user will not see that a new update is available.</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2.1 SkyWood (27th February 2014)</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed YouTube Api, changed youtube api load to permanent Https</li>
+    <li>Fixed HTML5 Video Preload. A Waiting process added for Video JS and Stream preloads</li>
+    <li>Fixed Vimeo API Preloads</li>
+    <li>Fixed "Unclickable" Notice for Auto Updates and Premium Support</li>
+  </ul>
+
+  <hr>
+
+  <h3 class="version-number">Version 4.2 SkyWood (25th February 2014)</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New Activation process added</li>
+    <li>New Automatic Updates process added</li>
+    <li>Added Char, Word and Line Based Text animation to improve the Visual Experience on the Layer Animations</li>
+    <li>Added 5 Different Loader Spinner with Live Preview Selector</li>
+    <li>Added a new Shortcode type. Now [rev_slider slider_alias] and also [rev_slider alias="slider_alias"] works.</li>
+    <li>Added polish language thanks to Dawid Dudek (www.supportitc.pl)</li>
+    <li>Meta Box for RevSlider now available in all Custom Post Types</li>
+    <li>Added remove Thumbnail in Slide Editor</li>
+    <li>Added white-space, maxwidth and maxheight options</li>
+  </ul>
+
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Improved Loading Speed. Slider loads over 1-2 sec quicker than before.</li>
+    <li>Improved Lazy Loading, to load Images and Layer images on demand. Intelligent Preloading of next slide Elements.</li>
+    <li>Removed function mysql_insert_id() that will be deprecated in php version 5.5.x</li>
+    <li>Auto Thumbnail Function, small copy of Slider Image, or Colorer BG used as Default.</li>
+  </ul>
+
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed YouTube Api</li>
+    <li>CSS editor bugfix where custom styles were set into other choosen layers</li>
+    <li>Added missing argument for WPML, this enables WPML functionality in using the specific post feature</li>
+    <li>Small adjustment for css editor that caused problems on some installations</li>
+    <li>Check if ssl on external jquery library & css include</li>
+    <li>Fixed Overlapping layers if Mixed Align Mode used in Slide</li>
+    <li>Fixed Pause/Resume function if Navigation elements has been hovered.</li>
+    <li>MultiSite Style Settings -  Minor Workaround added till next Major Release</li>
+  </ul>
+
+  <hr>
+
+
+
+  <h3 class="version-number">Version 4.1.5 SkyWood</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Added Chinese translation thanks to lastme (http://www.lastme.com/)</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Removed function mysql_insert_id() that will be deprecated in php version 5.5.x</li>
+  </ul>
+
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.1.4 SkyWood</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>ID, Class, Title & Rel attribute for Links on images added</li>
+    <li>Added files so that google does not index internal files</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>German language files recreated</li>
+    <li>instead of a fatal error, the none existence of ZipArchive will now give a more gently message</li>
+  </ul>
+
+
+
+
+    <hr>
+
+
+  <h3 class="version-number">Version 4.1.3 SkyWood</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Imported images through slider import create now also the thumbnails</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>stripslashes problem in global styles at slider imports fixed</li>
+    <li>multisite import of slider now correctly imports images</li>
+    <li>selecting thumbnails/video overlays now work on multisites</li>
+  </ul>
+
+
+
+  <hr>
+
+
+  <h3 class="version-number">Version 4.1.2 SkyWood</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Deleting Posts inside a Post Slider will now trash instead of deleting them</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed a z-index issue where the-events-calendar set the jquery-ui-dialog overlay over the Slider Revolution Dialogs</li>
+    <li>Http / Https loading of APIâ€™S in the right format depending on the current URL</li>
+    <li>Issue solved with the HTML5 Video Sizing</li>
+    <li>YouTube Api does not work without the origin=http://yourdomain any more !!
+       <ul>
+          <li>The slider adds this now automatically on every YouTube video.</li>
+          <li>NOTE: Please note that this only works on live servers and not local installations.</li>
+        <li>For example: autoplay will not work on local machines but on your live servers</li>
+       </ul>
+    </li>
+  </ul>
+
+
+    <hr>
+
+
+
+  <h3 class="version-number">Version 4.1.1 SkyWood</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New API Method: rev redraw for Redrawing the current Slide in case, slider is included some animated container.</li>
+    <li>New tab in Slider Settings: Reset Options.
+      <ul>
+        <li>Reset all Transitions of this Slider to a choosen one</li>
+        <li>Reset all Transition Durations of this Slider to a choosen one</li>
+        <li>New Dropdown on Post/Pages for revslider Shortcodes (found in Visual mode of Editor)</li>
+      </ul>
+    </li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>New button in Slide Edit mode to go back to Slide List of Slider</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Remove of Aspect Ratio and Dotted Overlay if Cover was not choosen in HTML5 Videos</li>
+    <li>Fixed a bug on import of Slider where custom arrows might break</li>
+    <li>Fixed a bug for Missing static-layers.css </li>
+    <li>Fixed FF and IE10 Animation issues</li>
+    <li>Fixed Wrong calculated Center positions if Caption has CSS3 Animations associated </li>
+  </ul>
+
+
+  <hr>
+
+
+
+  <h3 class="version-number">Version 4.1 SkyWood</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>Ken Burns Effect (align start/end) bg Fit (start/end), Speed and easing</li>
+    <li>Min Height for Fullscreen Sliders</li>
+    <li>Fullscreen HTML5 Videos with new functions</li>
+    <li>Cover the whole HTML5 Videoscreen (no black borders)</li>
+    <li>Dotted overlays on HTML5 Videos with cover & slide backgrounds</li>
+    <li>Dotted Overlay on Background Images (global setting)</li>
+    <li>Mute option on Videos</li>
+    <li>Force Rewind of Videos on slideview</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Fallback to old export if zip extension is not installed on server</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Post meta tag fix for plugin: Types - Complete Solution for Custom Fields and Types</li>
+  </ul>
+
+
+
+
+  <hr>
+
+
+  <h3 class="version-number">Version 4.0.6 SkyWood</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Force Fullwidth Offsets</li>
+    <li>Added FF Protection for 3d Animated Elements</li>
+    <li>Update GreenSock Engine with Protection for FF25 Animations</li>
+    <li>IE8 HALO Effect Solved</li>
+  </ul>
+
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.0.5 SkyWood</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New Background-Image options in slider settings under Appearance Tab</li>
+    <li>Usage of placeholder %link% and %meta:somemeta% for Slide Link in General Slide Settings</li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Added fallback for dynamic-layers.css (if not writable, load layers.php instead)</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>Fixed a bug where no layers could be added to Slides</li>
+    <li>Fixed a bug where Post Sliders do not show the correct thumbnails in navigation</li>
+    <li>Fixed a few texts for better multilanguage support</li>
+  </ul>
+
+
+    <hr>
+
+
+
+  <h3 class="version-number">Version 4.0.4 SkyWood</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>inserted two missing functions</li>
+  </ul>
+
+  <hr>
+
+
+  <h3 class="version-number">Version 4.0.3 SkyWood</h3>
+  <div class="change">CHNAGES</div>
+  <ul>
+    <li>the option Responsive Through All Levels in layers is now checked as default</li>
+    <li>set default background-position of main slide image to center top</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>bug in interpreting the css fixed</li>
+    <li>fixed a bug that occures on some video layers and that may brake the edit slide page</li>
+    <li>fixed a bug with Post Sliders not being shown with the template Slider styles</li>
+  </ul>
+
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.0.2 SkyWood</h3>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>WPML was not working correctly, fixed "Wrong Request" bug</li>
+  </ul>
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.0.1 SkyWood</h3>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>add revision to css/js files to prevent caching issues</li>
+  </ul>
+
+
+
+  <hr>
+
+  <h3 class="version-number">Version 4.0 SkyWood</h3>
+  <div class="newfeature"><strong style="font-weight:700">NEW FEATURES</strong></div>
+  <ul>
+    <li>New Live Style Editor (Simple and Advanced)</li>
+    <li>Custom Caption Creator</li>
+    <li>Live Caption Animation Viewer in Editor</li>
+    <li>Export Feature (with Images and Static/Dynamic Styles and with Custom Animations)</li>
+    <li>New Main Image Aligns, Repeating and Sizing (like center,center, repeat-x,y,no, cover and container and many more)</li>
+    <li>New Layout Viewer ( to see differences between, fullwidth, fullscreen, custom) </li>
+    <li>Only Styles are loaded which used in Current Slides</li>
+    <li>template slider for post slider added</li>
+    <li>allow external images as slide backgrounds</li>
+    <li>new options for videos</li>
+    <li>many other new options added</li>
+    <li>added relpace url's neer export / import slider</li>
+    <li>new options for hiding thumbs/bullets/arrows on mobile</li>
+    <li>new option force fill width in autoresponsive mode</li>
+    <li>id, class, rel tag can be set for each element</li>
+    <li>alt tag for images can be set</li>
+    <li>layers can now be locked</li>
+    <li>layer images can now be resized</li>
+    <li>Added new Flat Transitions</li>
+    <li>Added FullScreen and FullWidth Forcing in Boxed Themes</li>
+    <li>Added Thumbnail for Videos</li>
+    <li>Tooltip for Titles</li>
+    <li>Shadow Prelayouts</li>
+    <li>Move Tabs to Change Slide Order</li>
+    <li>Published / Unpublished Slides also Date / Time Dependent</li>
+    <li>Loop and Controlless HTML5 Videos</li>
+    <li>Play Video only First Time, then Hold</li>
+    <li>Linear Resizing of Thumbs</li>
+    <li>Unlimited Containers for Offsetting Fullscreen Height </li>
+  </ul>
+  <div class="change"><strong style="font-weight:700">CHANGES</strong></div>
+  <ul>
+    <li>Style of Backend in Flat Style</li>
+    <li>Much cleaner interface</li>
+    <li>Load Plugins and Revolution Slider splitter, dependent on Other Plugins </li>
+    <li>Jquery.themepunch.revolution.min.js loads now in the footer (Optional)</li>
+    <li>Main transitions are now listed in flat and premium transitions</li>
+  </ul>
+  <div class="bugfix"><strong style="font-weight:700">BUGFIXES</strong></div>
+  <ul>
+    <li>many small/mayor bug fixes</li>
+    <li>added error messages on some situations in slider by post view.</li>
+    <li>fixed css bug that made the screens overlap with wordpress error messages</li>
+    <li>fixed image positioning in edit layers js file</li>
+    <li>fixed images url's output in https websites</li>
+  </ul>
+</div>

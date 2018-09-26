@@ -1,0 +1,6 @@
+<% if @version -%>
+<%= info_icon %> WordPress version <%= @version.number %> identified.
+<%= render('@finding', item: @version) -%>
+<% else -%>
+<%= notice_icon %> The WordPress version could not be detected.
+<% end %>

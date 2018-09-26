@@ -1,0 +1,45 @@
+{
+  "name": "amazon-block",
+  "version": "0.2.1",
+  "description": "A WordPress plugin that provides 'Amazon' block for Gutenberg editor.",
+  "main": "index.js",
+  "scripts": {
+    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack --config webpack.prod.js",
+    "dev": "cross-env BABEL_ENV=default webpack --watch --config webpack.dev.js",
+    "lint": "eslint .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.3",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.13.1",
+    "eslint-config-wordpress": "^2.0.0",
+    "eslint-plugin-jest": "^21.5.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "uglifyjs-webpack-plugin": "^1.1.6",
+    "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.1"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryo-utsunomiya/amazon-block.git"
+  },
+  "keywords": [
+    "WordPress",
+    "Gutenberg"
+  ],
+  "author": "Ryo Utsunomiya",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/ryo-utsunomiya/amazon-block/issues"
+  },
+  "homepage": "https://github.com/ryo-utsunomiya/amazon-block"
+}

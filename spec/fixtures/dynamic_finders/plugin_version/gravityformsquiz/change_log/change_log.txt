@@ -1,0 +1,163 @@
+---------------------------------------------------------------------
+Version 3.1.7
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+---------------------------------------------------------------------
+Version 3.1.6
+	- Fixed an issue with the {all_quiz_results} output when the answer explanation setting is enabled on the Quiz field.
+
+---------------------------------------------------------------------
+Version 3.1.5
+	- Added alt text to instant feedback images for better accessibility.
+
+---------------------------------------------------------------------
+Version 3.1.4
+	- Fixed issue where navigating an instant-feedback-enabled quiz field via the keyboard would automatically evaluate the answer.
+
+---------------------------------------------------------------------
+Version 3.1.3
+	- Fixed an issue decoding the correct value which, if the value contained certain characters, could cause an incorrect result to be displayed by the instant feedback.
+
+---------------------------------------------------------------------
+Version 3.1.2
+	- Removed localize_results_scripts function because the one in the framework is used instead
+	- Updated strings for translations
+
+---------------------------------------------------------------------
+Version 3.1.1
+    - Fixed an issue with the locations the gform_merge_tags hook was being used to include the merge tags.
+
+---------------------------------------------------------------------
+Version 3.1
+    - Updated field general settings label classes for consistency with GF2.0+.
+    - Updated the instant feedback to add the gquiz-incorrect-choice class to the choice label.
+    - Updated GF_Quiz::get_form_meta() method to only fetch and cache the requested form (rather than all forms).
+    - Fixed some strings that were not translatable.
+    - Fixed an issue which could prevent the entry detail meta box being added with Gravity Forms 2.0 if an update was available or for locales other than English.
+
+---------------------------------------------------------------------
+Version 3.0
+    - Added GF_Field_Quiz.
+    - Fixed some untranslatable strings.
+    - Fixed the quiz results appearing in the print footer when the form doesn't use quiz fields.
+
+---------------------------------------------------------------------
+Version 2.4.5
+    - Fixed an issue with the JS for the display quiz confirmation setting on the quiz settings page.
+
+---------------------------------------------------------------------
+Version 2.4.4
+    - Fixed php notice on entries list page.
+
+---------------------------------------------------------------------
+Version 2.4.3
+    - Updated minimum Gravity Forms version to 1.9.10.
+    - Updated to use objection notation when interacting with field object.
+    - Fixed an issue with the select type field placeholder choice being duplicated on validation failure.
+
+---------------------------------------------------------------------
+Version 2.4.2
+    - Increased width of input boxes for weighted score values
+
+---------------------------------------------------------------------
+Version 2.4.1
+    - Fixed an issue which caused quiz merge tags to be replaced during form render.
+
+---------------------------------------------------------------------
+Version 2.4
+	- Fixed a low severity security vulnerability.
+
+---------------------------------------------------------------------
+Version 2.3
+	- Added function gf_quiz to easily get a Quiz instance.
+	- Added text domain/path to header.
+	- Added support for Gravity Forms 1.9 form editor drag and drop.
+	- Updated protected functions to be public.
+	- Updated to have the file class-gf-quiz.php and organized code into this file and quiz.php.
+	- Updated version to use a variable.
+
+---------------------------------------------------------------------
+Version 2.2
+	- Added {quiz_score:id=FIELD_ID} merge tag which renders the score for a single field
+	- Fixed issue with Javascript causing the "Display Quiz Confirmation" textarea to not get displayed.
+
+---------------------------------------------------------------------
+Version 2.1
+
+	- Updated the weighted scores field setting to award scores regardless of whether the response is correct or incorrect.
+	- Fixed an issue in the form editor which can result in the corruption of choice settings in other fields on the form
+    - Fixed the field title in the Form Editor
+    - Fixed issue with some merge tags not being rendered properly when resending notifications.
+    - Fixed an issue which prevented shuffled fields from retaining their order between pages of multi-page forms
+
+---------------------------------------------------------------------
+Version 2.0
+
+    - Added Add-On Framework integration.
+    - Added support for the Gravity Forms AWeber Add-On. Entry meta (score info) can be mapped to AWeber fields and choice values will be converted to choice labels before sending to AWeber.
+    - Added support for the Campaign Monitor Add-On.
+    - Added support for the Zapier Add-On.
+    - Added gform_quiz_show_choice_values filter to allow the choice values to be modified in the editor. Warning: editing the values after entries have been submitted will affect the integrity of the results. Delete all entries for the form before editing the values.
+    - Added 'weighted scores' setting to allow complex scoring systems where each choice is given a different score.
+        IMPORTANT:
+            1. Negative weightings are allowed for choices but the total score for the quiz will not be allowed to go below zero.
+            2. Changing this setting after entries have been submitted will result in inaccurate data on the entry detail page and entry list. The results page, however, will recalculate all the results according to the new score weightings.
+    - Added a form setting to control whether to display the quiz confirmation after submission.
+    - Added score, percentage, pass/fail and grade to the conditional logic for form confirmations and notifications.
+
+    - Updated the Drop Down Quiz field to display the "Select one" option at the top of the list instead of the bottom.
+    - Updated entry meta filters available on the results page to hide filters according to form settings.
+    - Update styles on settings and results page
+
+    - Fixed issue with merge tags not being rendered properly when resending notifications.
+    - Fixed Strict notices under PHP 5.4.
+    - Fixed innacurate permissions for settings pages.
+    - Fixed an issue where quiz merge tags would appear in the list of merge tags available during pre-submission.
+    - Fixed some non localized strings.
+    - Fixed choice re-ordering.
+    - Fixed a PHP warning when overriding a page redirect with the Quiz confirmation message.
+    - Fixed the quiz dropdown field value to retain selected value after failed validation.
+    - Fixed an issue with results not being displayed when double quotes were inside field choices labels.
+    - Fixed an issue with results not being displayed in no conflict mode.
+    - Fixed an issue with instant feedback where the the correct answer may not be highlighted after an incorrect selection for fields which have been created by duplicating another field.
+
+    - Removed some deprecated filters.
+
+------------------------------------------------------------
+Version 1.1.1
+    - Added support for the Contacts Add-On: contact detail tab displaying entries for contact
+
+------------------------------------------------------------
+Version 1.1
+    - Added gform_form_pre_results filter so the form object can be manipulated before the results are calculated for the admin results page
+    - Fixed quiz confirmation messages not appearing below the form confirmation in ajax forms
+
+------------------------------------------------------------
+Version 1.0
+    - Changed confirmation behaviour to ignore a confirmation redirect when grading setting is pass/fail or letter.
+    - Fixed a display issue with confirmation message for multipage and ajax enabled forms
+    - Fixed instant feedback for multipage, ajax enabled forms
+    - Fixed the way the form action submenu works with 1.7
+    - Added tooltips to the results page
+    - Added support for the Gravity Forms MailChimp Add-On. Entry meta (score info) can be mapped to MailChimp fields.
+
+------------------------------------------------------------
+Version 1.0.beta2
+    - Added Quiz Results page with aggregate results and filters
+    - Added a form setting to shuffle quiz fields
+    - Added a form setting to give instant feedback
+    - Added two new filters gquiz_correct_indicator and gquiz_incorrect_indicator
+    Example usage:
+    add_filter( 'gquiz_correct_indicator', 'gquiz_correct_indicator');
+    function gquiz_correct_indicator ($correct_answer_indicator_url){
+        $correct_answer_indicator_url = "http://mydomain.com/correct.png";
+        return $correct_answer_indicator_url;
+    }
+    add_filter( 'gquiz_incorrect_indicator', 'gquiz_incorrect_indicator');
+    function gquiz_incorrect_indicator ($incorrect_answer_indicator_url){
+        $incorrect_answer_indicator_url = "http://mydomain.com/incorrect.png";
+        return $incorrect_answer_indicator_url;
+    }
+    - Fixed an issue with the grades not saving
+    - Added form settings page ready for 1.7

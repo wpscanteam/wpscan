@@ -1,0 +1,83 @@
+-----------------------------------------------------------
+Version 1.8.1
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+-----------------------------------------------------------
+Version 1.8
+	- Added support for Gravity Forms 2.3.
+	- Fixed security vulnerabilities.
+	- Fixed strings for translations
+
+-----------------------------------------------------------
+Version 1.7
+    - Updated minimum Gravity Forms version to 1.9.14.
+    - Updated to prevent feed processing if honeypot validation has failed or when the partial entries add-on triggers validation on a heartbeat.
+    - Updated implementation of gform_enable_entry_info_payment_details to use add_filter instead of add_action.
+    - Updated GFFormsModel::update_lead() usages to GFAPI::update_entry().
+    - Fixed an issue with the billing address values being empty when the Address field copy values feature is enabled and the source field has a value.
+    - Fixed PHP notice on plugins page due to undefined constant RG_CURRENT_PAGE.
+    - Fixed PHP notice on entry detail page.
+
+-----------------------------------------------------------
+Version 1.6
+    - Fixed an issue with the payment details panel on the entry detail page.
+    - Fixed a PHP notice related to logging.
+    - Fixed a PHP notice related to how the billing address country code is retrieved when using Gravity Forms 1.9.
+
+-----------------------------------------------------------
+Version 1.5
+    - Added text domain/path to header
+    - Added .pot file
+    - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+	- Fixed the functions used by the mwp_premium_update_notification and mwp_premium_perform_update hooks so that the new_version element in the array returns the plugin's version instead of Gravity Forms'
+    - Fixed issue causing inaccurate logging information for paypal pro query string
+
+-----------------------------------------------------------
+Version 1.4
+	- Added PayPal partner integration
+    - Fixed issue with gform_paypalpro_fulfillment hook not getting called when appropriate
+
+-----------------------------------------------------------
+Version 1.3
+    - Updated IPN verification script to use HTTP 1.1 in response to PayPal's change
+
+-----------------------------------------------------------
+Version 1.2
+    - Fixed issue causing duplicate notifications to be sent
+    - Fixed issue with PayPal payment method being displayed.
+
+-----------------------------------------------------------
+Version 1.0
+    - Updated AJAX URL to resolve conflict when site is running under SSL
+    - Commented out code that was globally deactivating post creation
+    - Updated transaction response variable so that it is public, making it available during notifications and confirmations
+    - Updated AJAX URL to resolve conflict when site is running under SSL
+    - Added product description to single payment
+    - Fixed issue when processing single-payment IPNs
+    - Updated GFPayPalPro::$transaction_response to include config ID to guarantee correct config ID is used when saving to entry meta
+    - Fixed issue with initial amount value not being included correctly
+    - Added support for feed by feed API credentials
+    - Added support for Manage WP
+    - Added logging
+	- Fixed notice when referencing $product["options"]
+	- Added gform_paypalpro_query hook so the querystring sent to PayPal can be modified
+
+------------------------------------------------------------
+Version 1.0.beta4
+    - Fixed issue where calculated products were not being sent to PayPal correctly
+    - Fixed issue where entry wasn't marked as Approved when payment was $0.00
+    - Fixed issue with setup fee and trial field drop down being empty when creating a new feed
+
+------------------------------------------------------------
+Version 1.0.beta3
+    - Fixed warning message when creating initial transaction because of invalid number of arguments
+
+------------------------------------------------------------
+Version 1.0.beta2
+    - Fixed issue with credit card field incorrectly failing validation on multi-page forms
+    - Fixed issue with products hidden by conditional logic being sent to PayPal
+    - Fixed issue with extra (blank) item being added to PayPal details
+    - Fixed issue with refund transactions not being processed by the IPN
+
+

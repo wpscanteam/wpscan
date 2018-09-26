@@ -1,0 +1,58 @@
+# 2.0.5 | 2018-02-05
+	- Added "gform_dropbox_shareable_link_settings" filter to modify settings when generating a shareable Dropbox link.
+
+# 2.0.4 | 2018-01-31
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+# 2.0.3 | 2017-10-20
+   - Updated included version of Dropbox PHP SDK.
+
+# 2.0.2 | 2017-08-25
+   - Fixed Dropbox PHP SDK not being included in the 2.0.1 build.
+
+# 2.0.1 | 2017-08-22
+   - Fixed the file extensions list used to initialize the Dropbox Chooser.
+
+# 2.0 | 2017-06-16
+   - Added minimum requirements needed to use Dropbox Add-On.
+   - Updated Dropbox API calls to use latest version of Dropbox API.
+   - Updated Dropbox authentication process.
+   - Updated background feed processing request to not verify SSL by default.
+
+# 1.3 | 2017-03-15
+   - Fixed an issue with the Dropbox Upload field value on the entry list page.
+   - Fixed an issue with the processing of the File Upload field.
+   - Fixed PHP warning which could occur during validation of the Dropbox Upload field if no files were chosen.
+   - Fixed an issue with notifications for events other than form_submission not being processed after the last feed is processed.
+   - Fixed CSRF token error when authorizing with Dropbox.
+   - Fixed file extension validation for Dropbox Upload form field.
+   - Updated strings for translations.
+   - Updated installation instructions to show only domain for Chooser/Saver domain.
+
+# 1.2 | 2016-03-31
+   - Added feed duplication support.
+   - Added "gform_dropbox_post_upload" action that fires after a feed has been processed. See https://www.gravityhelp.com/documentation/article/gform_dropbox_post_upload/
+   - Added "gform_dropbox_ssl_compatibility" filter to override SSL compatibility test.
+   - Fixed a fatal error which could occur if the request used to validate the app secret key fails.
+   - Fixed a redirect loop issue when processing Dropbox feeds.
+   - Fixed default label for Dropbox Upload field.
+   - Fixed PHP fatal error when initializing API.
+   - Fixed Update Settings button being hidden on plugin settings pages.
+   - Modified execution order of "gform_dropbox_post_upload".
+   - Updated plugin compatibility check to verify existence of "openssl_random_pseudo_bytes" and "mcrypt_create_iv" functions.
+   - Updated SSL compatibility check to allow for 404 response codes.
+
+# 1.1 | 2015-11-02
+   - Added error message for versions of PHP that do not support 64-bit integers.
+   - Added some additional logging statements.
+   - Added SSL compatibility check to prevent plugin from running when SSL is not available.
+   - Fixed Dropbox PHP SDK autoloader from being included when if autoloader class already exists.
+   - Fixed Dropbox Upload field being included if custom app key and secret were not provided.
+   - Fixed files uploaded through the Dropbox Upload field not uploading to remote Dropbox.
+   - Removed debugging output from plugin settings page.
+   - Updated plugin settings with a more streamlined install process.
+   - Updated save URL functions to use WordPress API functions.
+
+# 1.0 | 2015-08-13
+   - It’s all new!

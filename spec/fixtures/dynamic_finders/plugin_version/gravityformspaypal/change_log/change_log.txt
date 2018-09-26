@@ -1,0 +1,302 @@
+Version 2.9.1
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+---------------------------------------------------------------------
+Version 2.9
+	- Added compatibility with Gravity Forms 2.3.
+	- Fixed an issue where PayPal can display an error instead of the cart if the option labels exceed 64 characters.
+
+---------------------------------------------------------------------
+Version 2.8
+    - Added Chinese translation. Credit: Edi Michael.
+	- Updated strings for translations.
+	- Updated string for configuring settings to be consistent with other add-ons.
+	- Deprecated the delayed Notifications setting (Send notifications for the 'Form is submitted' event only when payment is received) in favor of the "Payment Received" notification event.
+	- Fixed typo causing PayPal to not load properly.
+    - Fixed an issue with the delay notification feature where a notification could continue to be delayed even when it is no longer assigned to the form submission event.
+    - Fixed an issue where a note would be added to the entry indicating payment details where updated when editing the entry even though the payment details had not changed.
+
+---------------------------------------------------------------------
+Version 2.7
+    - Updated options settings so the choices are available to the gform_addon_feed_settings_fields filter in GF2.0.
+    - Updated IPN processing to abort earlier if the IPN does not contain the custom field.
+    - Fixed an issue which could cause notifications from other events to be sent when processing the delayed form submission notifications.
+    - Fixed an issue which could prevent the payment details being edited on the entry detail page for sites where Gravity Forms is using a non-English translation.
+    - Fixed a fatal error which could occur if the IPN verification response contained a WP_Error object.
+
+---------------------------------------------------------------------
+Version 2.6
+    - Added support for sending notifications on payment/subscription events. Configured on the edit notification page using the 'Event' setting.
+    - Added the gform_paypal_sslverify filter to allow sslverify be modified before sending requests.
+        Example - turn off SSL verification:
+            add_filter( 'gform_paypal_sslverify', '__return_false' );
+    - Updated the installation process to activate sslverify by default for all new installations.
+    - Updated tooltip and label for the notifications setting on the feed to indicate it only affects notifications for the 'Form is submitted' event.
+    - Fixed an issue in redirect_url() where the entry currency was not being used.
+
+---------------------------------------------------------------------
+Version 2.5.1
+    - Fixed a fatal error which could occur if the IPN request check added in v2.5 returned a WP_Error object.
+
+---------------------------------------------------------------------
+Version 2.5
+	- Added IPN request check to try to detect incompatibility between webserver and new PayPal SSL standards
+	- Added filter to allow return url to be changed in cases where proxy prevents it from being created correctly.
+    - Added $submission_data as the fifth parameter of the gform_paypal_query and gform_paypal_request filters.
+    - Updated $form parameter on 'gform_paypal_get_payment_feed' hook to always pass a form object even if one is not provided to the parent function
+    - Updated entry detail page to allow editing of payment details when original status is Processing or Pending.
+    - Updated minimum Gravity Forms version to 1.9.3.
+    - Updated max values for the billing cycle and trial period drop downs. D = 90, W = 52, M = 24, Y = 5.
+    - Updated logging to show when IPN processing is aborted due to the entry being marked as spam.
+    - Fixed an issue with IPN validation if the PayPal response body did not contain VERIFIED or INVALID.
+    - Fixed an issue with the upgrade routine which caused it run even if a pre-framework version hadn't been installed.
+
+---------------------------------------------------------------------
+Version 2.4
+    - Added gform_paypal_return_url_port hook to allow the port to be changed for the return_url
+    	add_filter( 'gform_paypal_return_url_port', 'change_port' );
+		function change_port(){
+		  return '81';
+		}
+    - Updated logging statements.
+    - Updated database upgrade routine to remove redundant code that ensured feeds were copied over. Root of the issue was fixed in Gravity Forms core.
+    - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+    - Fixed an issue with IPN processing which could cause the duplicate callback check to prevent the entry being updated for some transactions.
+	- Fixed issue on IPN processing that could potentially prevent PayPal from re-trying failed IPNs on certain scenarios.
+    - Fixed an issue with the delay notifications list on the feed including notifications from all events instead of just the form_submission event.
+	- Fixed deprecation notices related to getting the country and us state codes in Gravity Forms 1.9.
+	- Fixed a fatal error if GFAPI::get_entry returned a WP_Error object during IPN validation.
+
+------------------------------------------------------------
+Version 2.3
+	- Added Spanish translation file.
+	- Updated strings that were not able to be translated.
+	- Updated POT file.
+	- Fixed a fatal error introduced in 2.2.4 preventing the redirect to PayPal.
+	- Fixed issue that, under a specific scenario, causes PayPal to be executed on forms without a PayPal feed.
+	- Fixed translation domain on several strings.
+	- Fixed issue that when editing an entry after previously editing payment status for that same entry, caused duplicate notes and notifications to be sent.
+
+------------------------------------------------------------
+Version 2.2
+	- Added function gf_paypal() to easily get a PayPal instance.
+    - Added "gform_paypal_get_payment_feed" for backwards compatibility with the "gform_paypal_get_feeds" hook.
+	- Added function gf_paypal to easily get a PayPal instance.
+    - Added "gform_paypal_feed_settings_fields" hook to allow adding custom settings field via hooks.
+	- Added hook to allow PayPal business email to be set during IPN email verification. This will allow secondary PayPal email addresses to be configured in the feed.
+	- Updated protected functions to be public.
+	- Fixed issue with IPN page returning a 500 error on IPN messages not directed to Gravity Forms.
+	- Fixed issue with feeds not being copied over.
+
+------------------------------------------------------------
+Version 2.1
+	- Added function to ensure feeds get copied over from legacy tables
+	- Added hooks to display payment information (edit mode) in payment info box
+	- Added paypal_fulfillment function overriding base class so that fulfillment is ignored for PayPal feeds.
+	- Fixed issue with post not getting created when manually setting payment status to 'Paid'
+	- Fixed issue with sales page displaying an error.
+
+------------------------------------------------------------
+Version 2.0.3
+	- Fixed issue where payment didn't go to paypal when certain coupons were used.
+
+------------------------------------------------------------
+Version 2.0.2
+    - Added $feed as fourth parameter to "gform_paypal_query" and "gform_paypal_request"
+
+------------------------------------------------------------
+Version 2.0.1
+	- Added logging.
+	- Updated feed transfer logic to reduce changes of feeds not getting moved over.
+
+------------------------------------------------------------
+Version 2.0
+	- Added PayPal partner integration.
+	- Updated to use the Add-On Framework.
+	- Updated single payment status to "Paid" ( from "Approved" ).
+	- Updated feed condition to support full conditional logic.
+	- Updated payment amount so that it can be associated with a specific field in the form.
+	- Updated trial amount so that it can be associated with a specific field in the form.
+
+------------------------------------------------------------
+Version 1.9.4
+	- Updated the number of recurring times maximum from 30 to 52 per PayPal documentation
+
+------------------------------------------------------------
+Version 1.9.3
+    - Fixed issue where floating point comparision was failing in GFPayPal::is_valid_initial_payment_amount()
+
+------------------------------------------------------------
+Version 1.9.2
+    - Added new hook: 'gform_paypal_ipn_{transaction_type}'; allows users to easily hook into the specific IPN transactions they need
+
+------------------------------------------------------------
+Version 1.9.1
+	- Fixed issue with notifications not being sent when setting "only show notifications when payment is received" is enabled and payment is $0.00
+
+------------------------------------------------------------
+Version 1.9
+	- Fixed notice message
+	- Fixed issue where upgrade class was not always included when PayPal details are written on the plugins page
+	- Updated IPN verification script to use HTTP 1.1 in response to PayPal's change
+
+------------------------------------------------------------
+Version 1.8
+    - Updated automatic upgrade so that it caches remote requests for 12 hours (even on plugin's page)
+    - Fixed issue with redirecting back from PayPal that takes users to the wrong confirmation page on some occasions
+
+------------------------------------------------------------
+Version 1.7
+	- Fixed issue where submission still went to PayPal regardless of the feed being inactive
+	- Fixed issue where changing the form on an existing feed did not save the change
+    - Fixed error on entry info box (entry detail page) when editing entries
+    - Fixed issue that ignored discounts when total (product + discount) added up to zero.
+    - Fixed notice message
+
+------------------------------------------------------------
+Version 1.6
+    - Updated "return mode" parameter so that it is a redirect for non-secure pages to avoid security warning message when returning from PayPal to the site
+    - Added gform_paypal_request filter to allow entire request to PayPal to be filtered
+    - Fixed issue where null responses from upgrader resulted in several notices
+    - Updated ajax calls to not send a cookie to prevent calls to admin-ajax.php being aborted for some users
+    - Added support for new notification structure (for delayed notification setting) in preparation for Gravity Forms 1.7 release while maintaining backwards compatibility with current released version
+    - Fixed issue which caused the admin IPN setting to not always remain checked/unchecked
+    - Fixed issue with feed creating throwing javascript errors and displaying the wrong notification UI
+    - Updated URL to ajax page so that it uses the built-in WordPress ajaxurl variable
+    - Fixed issue with detecting if page is under SSL which caused return URL to be invalid.
+    - Updated process to correctly save the config ID used to process the entry in the entry meta
+    - Updated process to retrieve config by entry
+    - Added amount validation as an extra IPN security check. Entry will only be marked as Approved/Active if payment amount matches product/subscription amount
+    - Fixed issue where orders with discounts greater than the total were still being sent to PayPal
+    - Added additional logging for reasons why the transaction wasn't sent to PayPal (no config, $0 price)
+    - Fixed issue with tooltip script being included in every page
+
+------------------------------------------------------------
+Version 1.5
+    - Added support for negative line items.
+    - Fixed error message which still referred to Donation fields
+    - Added new hook: "gform_paypal_get_feeds", allows the filtering of return configuration feeds
+    - Updated logging to use the GF Logging plugin
+    - Fixed issue with "business" variable not being sent via the IPN message
+	- Added new conditional logic options (greater than, less than, contains starts with, ends with) and support for other conditional fields
+    - Fixed notices
+    - Added ability to edit payment status when not set to Approved and not a subscription
+    - Added ability to edit payment details (amount, transaction id, date) for all payments types
+
+------------------------------------------------------------
+Version 1.4
+    - Added additional log messages
+    - Increased timeout value used when sending IPN message to PayPal for validation
+    - Added feed_id and gateway type to entry meta to facilitate integration with other Add-Ons
+    - Fixed notice
+    - Added logging support
+    - Added support for multiple feeds to be created for a form. Feed to be executed will be determined by the configured Feed Condition when the form is submitted
+    - Fixed issue where RG_CURRENT_PAGE constant was not available when GF is deactivated
+    - Updated get_product_query_string() to include quantity when calculating the total
+    - Fixed issue with drop down values being displayed on PayPal pages, instead of text
+    - Added function rgars() if it does not already exist
+
+------------------------------------------------------------
+Version 1.3.1
+    - Added function rgars() if it does not already exist
+
+------------------------------------------------------------
+Version 1.3
+    - Fixed issue with delay notification and delay post settings not behaving correctly when paypal condition is not met
+    - Fixed notice messages
+    - Changed PayPal request to add charset=UTF-8 variable
+    - Added currency.js file to remove dependency on script from Gravity Forms
+    - Fixed issue on validation that failed when emails had extra blank spaces
+    - Added support for sending product fields to PayPal when feed is a donation
+    - Added support for using Form Total as an option for the recurring amount
+    - Changed CURL's setting to disable SSL peer validation
+    - Fixed UI issue on feeds page that displayed the "Add New" button when PayPal was not configured
+    - Fixed issue with notification settings not displaying the saved values correctly
+
+------------------------------------------------------------
+Version 1.2
+    - Cleaned up notices
+    - Fixed issue when using condition on a field with multiple single quote characters in the label
+    - Fixed issue when creating a feed using forms with HTML markup in field labels
+    - Fixed database index error when upgrading plugin
+
+------------------------------------------------------------
+Version 1.1.1
+    - Cleaned up Notice debug messages
+
+------------------------------------------------------------
+Version 1.1
+    - Fixed issue with delay notification hooks causing emails to be sent in the wrong time when the "send email after payment is received" option is enabled
+
+------------------------------------------------------------
+Version 1.0.beta6.2
+    - Added "gform_paypal_config_validation" hook to validate custom options created for the PayPal feed
+    - Updated PayPal config validation code to support muliple validation errors
+    - Renamed "gforms_paypal_save_config" to "gform_paypal_save_config"
+    - Removed extraneous code
+
+------------------------------------------------------------
+Version 1.0.beta6.1
+    - Added a hook to allow users to modify the query string sent to PayPal: gform_paypal_query
+    add_filter("gform_paypal_query_12", "update_paypal_query", 10, 3);
+    function update_paypal_query($query_string, $form, $entry){
+        return $query_string;
+    }
+    - Added "Cancel" button to the Edit page
+
+------------------------------------------------------------
+Version 1.0.beta6
+    - Fixed issue with thank you page displaying "Oops, could not locate your form" message when coming back from Paypal.
+    - Fixed issue with IPN not locating entry properly
+
+------------------------------------------------------------
+Version 1.0.beta5
+    - Fixed issue where recurring times were not reflecting changes made to PayPal feed
+    - Defaulting invoice id to blank. It can be specified if needed via the gform_paypal_invoice hook
+    - Fixed issue where recurring times were not getting sent to paypal
+
+------------------------------------------------------------
+Version 1.0.beta4
+    - Changed invoice number so that is has a unique number appended to it.
+    - Added a hook to allow users to change the invoice number
+    add_filter("gform_paypal_invoice", "change_invoice", 10, 3);
+    function change_invoice($invoice_id, $form, $entry){
+        return $entry["id"];
+    }
+
+-----------------------------------------------------------
+Version 1.0.beta3
+    - Added javascript form object as a parameter for the "paypalFormSelected" jQuery action
+
+-----------------------------------------------------------
+Version 1.0.beta2
+    - Added condition so that PayPal can be bypassed based on selected values in the form
+    - Bypassing PayPal if there are no products selected
+
+-----------------------------------------------------------
+Version 0.9
+    - displaying summary boxes even when graph is empty
+    - added disclaimer for free trials and no payments
+    - fixed issue with double fulfillment for subscriptions with paid trials
+
+-----------------------------------------------------------
+Version 0.8
+    - added transaction table and modified graph to pull data from it
+
+-----------------------------------------------------------
+Version 0.7
+    - added suppport for shipping field
+
+-----------------------------------------------------------
+Version 0.6
+    - added option to change post status after subscription is cancelled
+
+-----------------------------------------------------------
+Version 0.5
+    - added graphical stats page
+    - added link to entries page
+-----------------------------------------------------------
+Version 0.4
+    - added tooltips to admin page
+    - implemented confirmation when returning from paypal

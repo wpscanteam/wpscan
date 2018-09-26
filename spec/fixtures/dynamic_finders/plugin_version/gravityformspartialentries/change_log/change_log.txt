@@ -1,0 +1,38 @@
+# 1.1.1 | 2018-02-22
+	- Fixed an issue preventing automatic upgrades.
+
+# 1.1 | 2018-01-29
+	- Added Author URI to plugin header.
+    - Added support for Gravity Forms 2.3.
+    - Updated Plugin URI in plugin header to be https.
+    - Updated the feed conditional logic progress choices to support the "is" operator.
+    - Updated the "Complete" choice of the "Progress" entry meta item to support the "is not" operator.
+    - Updated text "Enable Condition" to "Enable" in making Add-Ons consistent
+    - Updated partial-entries.js to include heartbeat.js as a dependency.
+    - Fixed the handling of the "No Duplicates" field setting where validation fails on submission if a partial entry contains a duplicate value. The "No Duplicates" setting is now ignored when saving partial entries. Partial entries are now ignored when checking for duplicates on final submission - only complete entries are checked.
+    - Fixed a PHP notice while viewing the entry list with WordPress 4.8.3.
+    - Fixed a PHP notice during partial entry creation if the form includes a fileupload type field.
+
+
+# 1.0 | 2016-09-23
+   - Added the gform_partialentries_post_{$event} hook enabling custom actions to be performed once a partial entry has been saved or updated. See https://www.gravityhelp.com/documentation/article/gform_partialentries_post_event/
+   - Updated to set entry meta (e.g. Quiz Score Total) when a partial entry is saved/updated.
+   - Fixed issues with saving partial entries and with submitting the form when one of the fields has the "No Duplicates" setting enabled.
+   - Fixed an issue with the form submission where previously saved values are not deleted when subsequently hidden by conditional logic.
+   - Fixed an issue which caused the form to be validated twice during page changes.
+   - Fixed an issue which caused GFFormDisplay::is_last_page() to return an incorrect result causing payment add-ons to perform credit card field validation on the wrong page.
+
+
+# 1.0-beta-2 | 2016-03-30
+   - Added support for Gravity Forms 2.0-beta-2
+   - Added the Last Saved date and link to the entry detail page.
+   - Added the gform_pre_render filter before creating the partial entry.
+   - Added support for notification events (sending notifications when the partial entry is saved and updated).
+   - Added logging statements.
+   - Fixed PHP warning on notifications list and edit pages.
+   - Fixed an issue with the warning message.
+   - Fixed the text domains used for some of the translatable strings.
+
+
+# 1.0-beta-1 | 2016-03-17
+    All new!

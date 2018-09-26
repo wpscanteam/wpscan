@@ -1,0 +1,46 @@
+{
+  "name": "bccampus/pressbooks-textbook",
+  "description": "Adds functionality to Pressbooks to make it easier to author textbooks",
+  "type": "wordpress-plugin",
+  "version": "3.1.6",
+  "homepage": "https://github.com/bccampus/pressbooks-textbook",
+  "authors": [
+    {
+      "name": "Brad Payne",
+      "email": "brad@bradpayne.ca",
+      "homepage": "https://bradpayne.ca"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^5.7",
+    "humanmade/coding-standards": "^0.2.1"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/hypothesis/wp-hypothesis"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/lumenlearning/candela-citation.git"
+    }
+  ],
+  "extra": {
+    "installer-paths": {
+      "vendor/lumenlearning": ["lumenlearning/candela-citation"],
+      "vendor/hypothesis": ["hypothesis/hypothesis"]
+    }
+  },
+  "require": {
+    "hypothesis/hypothesis": "^0.5.0",
+    "lumenlearning/candela-citation": "^0.2.2"
+  },
+  "scripts": {
+    "test": [
+      "@standards"
+    ],
+    "standards": [
+      "vendor/bin/phpcs --standard=phpcs.ruleset.xml *.php ."
+    ]
+  }
+}

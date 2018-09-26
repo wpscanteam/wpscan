@@ -1,0 +1,20 @@
+
+<% if @plugins.empty? -%>
+<%= notice_icon %> No plugins Found.
+<% else -%>
+<%= notice_icon %> Plugin(s) Identified:
+<% @plugins.each do |plugin| -%>
+
+<%= info_icon %> <%= plugin %>
+<%= render('@wp_item', wp_item: plugin) -%>
+ |
+<%= render('@finding', item: plugin) -%>
+ |
+<% if plugin.version -%>
+ | Version: <%= plugin.version %> (<%= plugin.version.confidence %>% confidence)
+<%= render('@finding', item: plugin.version) -%>
+<% else -%>
+ | The version could not be determined.
+<% end -%>
+<% end -%>
+<% end %>

@@ -1,0 +1,60 @@
+-----------------------------------------------------------
+1.4.4
+	- Added GPL to plugin header
+	- Update Plugin URI and Author URI to use https
+
+-----------------------------------------------------------
+1.4.3
+	- Fixed strings for translations
+
+-----------------------------------------------------------
+1.4.2
+	- Fixed strings for translations
+
+-----------------------------------------------------------
+1.4.1
+    - Fixed PHP notice when editing a feed when no ActiveCampaign forms are available.
+    - Updated feed list to prevent feed creation when valid API URL is not provided.
+
+-----------------------------------------------------------
+1.4
+    - Added the gform_activecampaign_contact_pre_sync filter for overriding the contact properties before sending them to ActiveCampaign.
+	- Added feed duplication support.
+	- Updated API library naming to prevent conflicts with third-party ActiveCampaign API libraries.
+    - Fixed an issue with the request failed message if a WP_Error occurs.
+
+-----------------------------------------------------------
+1.3.1
+    - Fixed PHP warning related to Double Opt-In Form setting.
+
+-----------------------------------------------------------
+1.3
+    - Added support for delaying feed processing until payment by PayPal Standard is successfully completed.
+    - Updated 'Opt-In Condition' setting label to 'Conditional Logic'.
+    - Updated admin stylesheet to use minified file by default unless SCRIPT_DEBUG is active or query param gform_debug is set. e.g. domain.com/?gform_debug
+
+-----------------------------------------------------------
+1.2
+    - Added merge tags support for contact tags.
+    - Added the 'gform_activecampaign_tags' filter. See https://www.gravityhelp.com/documentation/article/gform_activecampaign_tags/
+    - Removed the 'gform_activecampaign_enable_tag_mapping' filter, the tags setting is now permanently displayed.
+
+-----------------------------------------------------------
+1.1.2
+    - Added additional logging statement to process_feed().
+    - Updated the form field drop down for the Email Address to include hidden fields.
+    - Updated feed processing to abort if value of mapped Email Address field is invalid or empty.
+
+-----------------------------------------------------------
+1.1.1
+    - Added gf_activecampaign() for easily getting an ActiveCampaign instance.
+    - Fixed PHP warnings during feed processing.
+
+-----------------------------------------------------------
+1.1
+	- Added Double Opt-In support.
+	- Added Spanish (es_ES) translation.
+  
+-----------------------------------------------------------
+1.0
+	- It's all new!

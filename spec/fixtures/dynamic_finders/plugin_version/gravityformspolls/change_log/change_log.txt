@@ -1,0 +1,159 @@
+---------------------------------------------------------------------
+Version 3.1.4
+	- Added GPL to plugin header
+	- Added Plugin URI to plugin header
+	- Updated Author URI to use https
+
+---------------------------------------------------------------------
+Version 3.1.3
+	- Fixed deprecation notice under Gravity Forms 2.3.
+
+---------------------------------------------------------------------
+Version 3.1.2
+	- Fixed strings for translations
+
+---------------------------------------------------------------------
+Version 3.1.1
+    - Fixed an issue with the locations the gform_merge_tags hook was being used to include the merge tags.
+
+---------------------------------------------------------------------
+Version 3.1
+    - Updated field general settings label classes for consistency with GF2.0+.
+    - Fixed an issue with the "other" choice feature on the radio type field when saving the form.
+    - Fixed a layout issue in the form editor when the 'Randomize order of choices' setting is enabled.
+
+---------------------------------------------------------------------
+Version 3.0
+    - Added support for Gravity Forms 2.0.0
+    - Added GF_Field_Poll.
+    - Fixed an issue with the AWeber integration.
+
+------------------------------------------------------------
+Version 2.4
+    - Updated minimum Gravity Forms version to 1.9.
+    - Fixed some PHP warnings which could appear when using the polls shortcode action with a form that doesn't have any poll fields.
+    - Fixed an issue with the calculation of results which can lead to inconsistent results being displayed in certain situations on sites with high volume. Props: Antonis Zachopoulos.
+    - Fixed a notice in WP4.3 with Widget constructor deprecation.
+    - Fixed an issue with the placeholder for the select type poll field.
+    - Fixed an issue which caused poll merge tags to be replaced during form render.
+
+------------------------------------------------------------
+Version 2.3
+    - Added spanish (es_ES) translation.
+    - Added support for rendering polls in admin pages. Requires Gravity Forms 1.9.
+    - Added support for the shortcode builder.
+	- Fixed issue where "Other" choice displayed twice in front-end poll results
+	- Fixed a low severity security vulnerability.
+	- Fixed defaults for the shortcode builder
+	- Fixed issue where confirmation text wasn't getting displayed on AJAX forms.
+
+------------------------------------------------------------
+Version 2.2
+	- Added support for Gravity Forms 1.9 form editor drag and drop.
+	- Added function gf_polls to easily get a Poll instance.
+	- Added text domain/path to header.
+	- Updated protected functions to be public.
+	- Updated to have the file class-gf-polls.php and organized code into this file and polls.php.
+	- Updated version to use a variable.
+	- Fixed notices.
+
+------------------------------------------------------------
+Version 2.1
+    - Fixed the field title in the Form Editor
+    - Fixed a PHP warning when overriding a page redirect with the Poll results.
+    - Fixed an issue with the resending of notifications from the entry detail page where the choice values were being displayed instead of the choice text
+	- Updated a few text strings so they may be translated
+	- Updated POT file
+	- Fixed translation text domain in several instances to be gravityformspolls
+
+------------------------------------------------------------
+Version 2.0
+
+    - Added integration with the Campaign Monitor Add-On, MailChimp Add-On, AWeber Add-On and Zapier Add-On.
+    - Added Add-On Framework integration.
+    - Added support for the poll entries tab in the Contacts Add-On.
+    - Added the gform_polls_percentage_precision hook so the percentages on the front-end results can be rounded to a custom number of decimal digits.
+
+    - Updated label of some form settings items.
+    - Updated Drop Down Poll field to display the "Select one" option at the top of the list instead of the bottom.
+    - Updated GFPolls::merge_tag_filter() to public static.
+
+    - Fixed view results link for forms with no entries.
+    - Fixed an issue where poll merge tags would appear in the list of merge tags available during pre-submission.
+    - Fixed Strict notices under PHP 5.4.
+    - Fixed permissions for settings pages.
+
+------------------------------------------------------------
+Version 1.5
+    - Requires Gravity Forms > 1.7.4.2
+    - Added a "Select one" option to the dropdown poll field
+    - Added the gform_polls_cron_schedule filter so the frequency of the cron job can be modified
+            Notes:  The wp_cron job will take over the calculation of the results if 5 seconds is not long enough at the time of form submission/update.
+                    The default schedule is set to hourly to avoid heavy loads on the server but the frequency can be changed by using the gform_polls_cron_schedule filter.
+                    The format follows the same format required by the WordPress cron_schedules filter. http://codex.wordpress.org/Function_Reference/wp_get_schedules
+
+                    ** Important: the Polls Add-On must be deactivated and reactivated in order to reschedule the task.
+            Example usage:
+                add_filter( 'gform_polls_cron_schedule', 'cron_add_twice_hourly' );
+                function cron_add_twice_hourly() {
+                  // Adds once weekly to the existing schedules.
+                  $schedule['twicehourly'] = array(
+                      'interval' => 1800, // number of seconds in the interval
+                      'display' => __( 'Twice Hourly' )
+                  );
+                  return $schedule;
+                }
+    - Changed the calculation of the cookie expiration to take into account the browser's timezone if possible
+    - Fixed an issue with results not being displayed when double quotes were inside field choices labels
+    - Fixed an issue with results not being displayed in no conflict mode
+    - Fixed an issue with poll submissions taking too long or timing out when there are already a large number of entries. When the results calculation takes more than 5 seconds then a cached version of the results will be displayed until the background process has finished calculating the new results.
+    - Fixed issue with repeat voting when the poll shortcode cookie attribute is not used.
+    - Removed some deprecated jQuery calls
+
+------------------------------------------------------------
+Version 1.4
+    - Added gform_form_pre_results filter so the form object can be manipulated before the results are calculated for the admin results page
+    - Added gform_polls_form_pre_results so the form object can be manipulated before the results are calculated for the front and and entry detail page
+    - Fixed poll form settings appearing on the form settings tab
+    - Fixed poll results not appearing below the confirmation in ajax forms
+
+------------------------------------------------------------
+Version 1.3
+    - Changed confirmation behaviour to ignore a confirmation redirect when "display results" is selected.
+    - Fixed a display issue with confirmation message for multipage and ajax enabled forms
+    - Fixed display issues in the confirmation when the confirmation is empty
+    - Fixed issue with boolean form settings in imported forms
+    - Added form settings tab ready for 1.7
+    - Added results page
+    - Updated load_plugin_textdomain() call to be outside the is_admin() block so that front end strings can be translated
+    - Changed the calculation of the ratio of each choice to use the number of entries for each field rather than the number of entries for the form. This fixes support for conditional logic.
+    - Changed the poll results to display only the submitted poll fields. This fixes support for conditional logic.
+    - Fixed poll results on entry detail
+    - Removed the "Display Confirmation" form setting. The confirmation will be displayed unless the widget or shortcode overrides.
+	- Fixed css conflict with other add-ons on the preview page
+    - Added poll settings to the form settings. The widget and shortcode are now only needed for the Results display mode.
+    - Removed poll settings from the widget by default and added gpoll_widget_override filter to display the option to override
+    	Example usage:
+    	add_filter('gpoll_widget_override' , 'gpoll_widget_override');
+		function gpoll_widget_override($form_ids){
+			 array_push($form_ids, 7, 9);
+			 return $form_ids;
+		}
+    - Added support for legacy widgets by overriding form settings automatically and providing an option to use the form settings
+    - Added support for legacy shortcodes by overriding form settings
+    - Added checksum to shortcodes and widgets to make sure the settings aren't not interfered with.
+    - Changed form selector in the widget to display only the forms with poll fields.
+    - Fixed performance issue in the display_entries_field_value() function
+
+------------------------------------------------------------
+Version 1.2
+    - Fixed an issue with the display of special characters when random choice order is selected for a field. Fixed randomize choice order support for drop-down input types.
+	- Fixed an issue with the tabindex in the widget
+    - Changed the way the repeating voting mechanism works to play better with caching plugins. Results are now displayed via ajax if the cookie option is set and the visitor has already voted.
+    - Fixed an issue with multiple instances of the same form on the page
+    - Fixed an issue displaying checkbox values en entry detail and export
+	- Fixed an issue in the email notification where Disable Auto-formatting is not selected
+------------------------------------------------------------
+Version 1.1
+	- Fixed an issue where results were being displayed when the cookie is set and display_results=false
+	- Fixed an issue during the export process

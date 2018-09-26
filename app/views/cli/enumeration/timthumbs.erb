@@ -1,0 +1,18 @@
+
+<% if @timthumbs.empty? -%>
+<%= notice_icon %> No Timthumbs Found.
+<% else -%>
+<%= notice_icon %> Timthumb(s) Identified:
+<% @timthumbs.each do |timthumb| -%>
+
+<%= info_icon %> <%= timthumb %>
+<%= render('@finding', item: timthumb) -%>
+ |
+<% if timthumb.version -%>
+ | Version: <%= timthumb.version %>
+<%= render('@finding', item: timthumb.version) -%>
+<% else -%>
+ | The version could not be determined.
+<% end -%>
+<% end -%>
+<% end %>

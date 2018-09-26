@@ -1,0 +1,22 @@
+ | Location: <%= @wp_item.url %>
+<% if @wp_item.latest_version && !@wp_item.outdated? -%>
+ | Latest Version: <%= @wp_item.latest_version %><% if @wp_item.version %> (up to date)<% end %>
+<% end -%>
+<% if @wp_item.last_updated -%>
+ | Last Updated: <%= @wp_item.last_updated %>
+<% end -%>
+<% if @wp_item.readme_url -%>
+ | Readme: <%= @wp_item.readme_url %>
+<% end -%>
+<% if @wp_item.changelog_url -%>
+ | Changelog: <%= @wp_item.changelog_url %>
+<% end -%>
+<% if @wp_item.latest_version && @wp_item.outdated? -%>
+ | <%= warning_icon %> The version is out of date, the latest version is <%= @wp_item.latest_version %>
+<% end -%>
+<% if @wp_item.directory_listing? -%>
+ | <%= critical_icon %> Directory listing is enabled
+<% end -%>
+<% if @wp_item.error_log? -%>
+ | <%= critical_icon %> An error log file has been found: <%= @wp_item.url('error_log') %>
+<% end -%>

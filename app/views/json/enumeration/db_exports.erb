@@ -1,0 +1,10 @@
+"db_exports": {
+<% unless @db_exports.empty? -%>
+<% last_index = @db_exports.size - 1 -%>
+<% @db_exports.each_with_index do |db_export, index| -%>
+  <%= db_export.url.to_json %>: {
+    <%= render('@finding', item: db_export) -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

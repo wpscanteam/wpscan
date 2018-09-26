@@ -1,0 +1,77 @@
+# 2.3.1 | 2018-01-31
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+
+# 2.3 | 2018-01-26
+   - Added support for Gravity Forms 2.3.
+   - Fixed a PHP notice which would occur when sending a request to PayPal.
+
+
+# 2.2 | 2017-04-28
+   - Added security enhancements.
+   - Added translations.
+
+
+# 2.1.1 | 2016-12-01
+   - Fixed strings for translations
+
+
+# 2.1 | 2016-08-31
+   - Updated logging statements.
+   - Updated to abort authorize()/subscribe() before sending request to PayPal if card number not provided.
+   - Fixed an issue with the API override settings.
+   - Fixed an issue with check_status() not passing the $action['type'] for use with the related hooks in the framework.
+
+
+# 2.0 | 2016-02-24
+   - Completed Add-On Framework migration.
+   - Added the $submission_data, $feed, and $entry parameters to the gform_paypalpaymentspro_args_before_payment and gform_paypalpaymentspro_args_before_subscription filters.
+   - Added support for sending notifications on payment/subscription events. Configured on the edit notification page using the 'Event' setting.
+
+
+# 1.7 | 2014-12-10
+   - Updated to change the frequency of when process_renewal function will run to prevent performance issues.
+
+
+# 1.6 | 2014-11-05
+   - Fixed a notice in the logging tab with the logging add-on enabled.
+   - Fixed issue with initial setup up fee amount not being charged for subscription profiles.
+   - Updated POT file
+
+
+# 1.5 | 2014-09-05
+   - Updated the Password entry in the settings page to hide the value of password from the browser when inspecting the element.
+   - Fixed invalid function call.
+
+
+# 1.4 | 2014-09-03
+   - Added PayPal partner integration.
+   - Added post product payment hook; gform_paypalpaymentspro_post_capture.
+   - Updated to perform extra check for array response returned by PayPal.
+   - Updated to perform a single Sale transaction for Products and Services. Authorization transaction has been eliminated for Product and Services.
+   - Updated to perform credit card authorization as part of Profile Creation for Subscriptions. Authorization of $0.00 will still show in PayPal Payments Pro for Subscriptions.
+   - Updated logging for clarity.
+   - Updated to remove URL encoding for Name Value Pair info sent to PayPal per API docs.
+
+
+# 1.3 | 2014-02-20
+   - Updated the Password entry in the feed's override settings to be a password input so it is not visible as typed
+
+
+# 1.2 | 2014-02-17
+   - Updated the Password entry on the Settings page to be a password input so it is not visible as typed
+
+
+# 1.1
+   - Updated to perform a Sale transaction rather than a DelayedCapture transaction for product and services so that funds are captured immediately after the   Authorization transaction.
+   - Updated to not encode email address before it is sent to PayPal.
+
+
+# 1.0 | 2013-11-07
+   - Updated to include Vendor and Partner variables to connect to API.
+   - Fixed account authorization issue when password included special charcaters (i.e. !).
+   - Updated to void initial authorization transaction.
+
+
+

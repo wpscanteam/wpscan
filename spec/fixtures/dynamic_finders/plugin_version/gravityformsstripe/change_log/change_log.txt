@@ -1,0 +1,135 @@
+# 2.4.1 | 2018-02-13
+   - Fixed subscriptions not being processed when using Stripe API version 2018-02-05 or newer.
+   - Updated Stripe API library to version 5.9.2.
+
+
+# 2.4 | 2018-02-05
+   - Added GPL to plugin header.
+   - Added the "gform_stripe_subscription_params_pre_update_customer" filter allowing the subscription parameters to be overridden before the customer is subscribed to the plan.
+   - Added support for webhook signing secrets.
+   - Updated Plugin URI and Author URI to use https.
+   - Updated webhook processing to use the API mode specified in the received event.
+   - Updated Stripe API library to version 5.1.3.
+   - Fixed API mode used to retrieve webhook event when signing secret is configured.
+   - Fixed the card type validation message containing "false" in some situations.
+
+
+# 2.3 | 2017-04-28
+   - Added the gform_stripe_charge_pre_create filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_charge_pre_create/
+   - Added translations.
+   - Fixed spinner appearing when the previous button on the last page of a multi-page non-AJAX form is clicked.
+   - Fixed Stripe.js request being made when the previous button on the last page of a multi-page form is clicked.
+   - Fixed a fatal error which could occur if an older version of the Stripe API library is loaded by another plugin.
+
+
+# 2.2 | 2017-01-05
+   - Added $meta_key as the fifth parameter of the gform_stripe_field_value filter, containing the custom meta key currently being processed.
+   - Updated string "Stripe Receipt" so it could be translated.
+   - Updated Stripe API library to version 4.3.0.
+
+
+# 2.1 | 2016-09-23
+   - Added the gform_stripe_subscription_cancel_at_period_end filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_subscription_cancel_at_period_end/
+   - Added the gform_stripe_charge_authorization_only filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_charge_authorization_only/
+   - Added the gform_stripe_customer_id filter. See https://www.gravityhelp.com/documentation/article/gform_stripe_customer_id/
+   - Added logging of error retrieving Stripe Event object.
+   - Added the 'gform_stripe_customer_after_create' hook allowing custom actions to be performed between the customer being created and subscribed to the plan. See https://www.gravityhelp.com/documentation/article/gform_stripe_customer_after_create/
+   - Updated included Stripe API library to latest version.
+   - Updated subscription process to define subscription when customer is created if 'gform_stripe_customer_after_create' filter is not defined.
+   - Updated to only repopulate the card field within the last four digits on successful form submission.
+   - Fixed a JavaScript error which occurred when the frontend scripts were included when the form had an active feed but no credit card field.
+   - Fixed an issue where entry ID was not correctly populated in charge metadata.
+   - Fixed an issue where entry ID was not correctly populated in customer metadata (for subscription feeds).
+   - Fixed an issue which caused the credit card field required indicator to be missing when the form is displayed after a validation failure.
+   - Fixed an issue with the card type validation.
+   - Fixed an issue with the trial property from the $submission_data not being used.
+   - Fixed an issue with the trial property from the $submission_data not being used when generating the plan id.
+   - Fixed issue when sending empty meta data.
+   - Fixed issue which could occur when saving an incomplete submission.
+
+
+# 2.0 | 2016-01-07
+   - Added support for sending notifications on payment/subscription events. Configured on the edit notification page using the 'Event' setting.
+   - Added the gform_stripe_api_mode filter e.g.
+        add_filter( 'gform_stripe_api_mode', function ( $api_mode ) {
+            return 'live';
+        } );
+   - Added support for mapping a Coupon field when configuring a subscription feed.
+   - Updated minimum Gravity Forms version to 1.9.14.17.
+   - Updated billing cycle to include days.
+   - Fixed an issue with zero decimal currencies.
+   - Fixed an issue with the validation messages.
+   - Fixed an issue with validation not returning an error if the stripe js response is empty or doesn’t contain an id.
+   - Fixed an issue in authorize_product() and subscribe() where the entry currency was not being used.
+
+
+# 1.9 | 2015-10-09
+   - Updated feed list and edit pages to display configure settings message if the api keys for the selected mode are invalid.
+   - Fixed an issue with credit card field validation when the field is marked as required.
+
+
+# 1.8 | 2015-08-06
+   - Updated Stripe Receipt drop down to only list email or hidden type fields.
+   - Updated to use object notation when accessing $field.
+   - Updated minimum Gravity Forms version to 1.9.10.19.
+   - Fixed an issue which allowed feeds to be created with only partially configured metadata.
+   - Fixed PHP notice related to the Metadata setting on the feed edit page.
+   - Fixed php notice when saving a feed without any custom metadata.
+
+
+# 1.7 | 2015-06-23
+   - Added the ability to pass custom metadata to Stripe.
+   - Added logging of API key validation failure (key is obfuscated).
+   - Added $feed as the fifth parameter of the gform_stripe_charge_description filter.
+   - Updated instructions on the settings tab for configuring Stripe webhooks.
+   - Updated form submission to ensure form is only submitted once.
+
+
+# 1.6 | 2015-04-20
+   - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+   - Fixed issue where jQuery JSON library wasn't getting included.
+   - Fixed issue that caused credit card field to get validated even when payment amount was zero.
+
+
+# 1.5 | 2014-11-19
+   - Added capability support and Member plugin integration.
+   - Updated POT file.
+   - Added Spanish (es_ES) translation.
+   - Fixed a text domain typo in class-gf-stripe.php
+   - Fixed issue that prevents the form from being submitted if jQuery is put into no-conflict mode by subsequent plugins.
+   - Created POT file
+   - Updated translation strings to using gravityformsstripe instead of gravityforms
+
+
+# 1.4 | 2014-10-16
+   - Added text domain/path to header.
+   - Added function gf_stripe to easily get a Stripe instance.
+   - Updated to have the file class-gf-stripe.php and organized code into this file and stripe.php.
+   - Updated protected functions to be public.
+   - Updated key validation so that is is more forgiving with conflicts by trimming response before using it.
+
+
+# 1.3 | 2014-09-24
+   - Fixed conflict with the PayPal Add-On
+   - Fixed issue with email receipt feature displaying a warning when 'Do not send receipt' option was selected
+   - Fixed Notice message
+
+
+# 1.2 | 2014-08-06
+   - Fixed issue when validating the live publishable key
+
+
+# 1.1 | 2014-07-29
+   - Added receipt email feature so that Stripe receipts can be sent.
+   - Updated key validation so that keys are trimmed before being validated and saved.
+   - Updated API include statement so that it checks if API has already been included.
+   - Fixed scripts from being output on every page of admin.
+   - Fixed issue where credit card field generated validation error when navigating form.
+   - Fixed issue with javascript error caused by the admin.js not being enqueued.
+   - Fixed issue causing notification and confirmation to be sent blank.
+   - Fixed issue with credit card validation.
+   - Fixed issue where credit card was failing validation even when feed condition was not met.
+
+
+# 1.0 | 2014-05-28
+   - Initial release

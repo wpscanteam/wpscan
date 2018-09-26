@@ -1,0 +1,84 @@
+# 2.1.5 | 2018-01-31
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+# 2.1.4 | 2017-10-02
+   - Fixed feeds not running when the form is embedded in an admin page or a front-end page via an Ajax request.
+
+# 2.1.3 | 2017-05-09
+   - Added security enhacements.
+   - Fixed code styles.
+
+# 2.1.2 | 2017-04-26
+   - Added support for the Gravity Forms 2.2+ System Status page.
+
+# 2.1.1 | 2017-03-12
+   - Added the gform_zapier_use_stored_body filter.
+
+# 2.1 | 2017-01-05
+   - Added support for the gform_is_delayed_pre_process_feed filter.
+   - Updated strings for translations.
+   - Updated Zapier Feeds table to be responsive.
+   - Fixed issue where Zapier did not appear alphabetical in the Settings list.
+
+
+# 2.0 | 2016-08-31
+   - Added the gform_zapier_sample_field_value filter for overriding the sample data sent when configuring the zap or updating the form.
+   - Updated to format entry date.
+   - Fixed an issue with the 'Use Admin Labels' setting on new zaps appearing to reset when saving a valid zap.
+   - Fixed PHP warning which could occur if the multiselect field only had one choice configured.
+
+
+# 1.9 | 2016-07-01
+   - Added support for sending the field admin label to Zapier, if available.
+   - Added GFZapier::process_feed( $feed, $entry, $form ) for processing a single feed.
+   - Updated to send the form title, entry id, entry date, user ip and source url.
+   - Updated minimum Gravity Forms version to 1.9.10.
+   - Updated to send dummy values to Zapier when saving the feed/form instead of empty values.
+   - Updated to skip display only fields when preparing the zap body array.
+   - Updated to use the field title when preparing the zap body if the field doesn't have a label.
+   - Updated minimum Gravity Forms version to 1.9.
+   - Updated to support Gravity Forms 2.0 changes to the PayPal Standard integration.
+   - Fixed an issue where field values in the body array would be overridden if another field used the same label.
+   - Fixed PHP notices on the edit feed page related to the conditional logic field and value settings.
+   - Fixed an issue with the feed conditional logic value drop down for choice based fields.
+   - Fixed GF_Field array access/object notation notice with Gravity Forms 2.0.
+   - Fixed an issue with the PayPal Standard integration.
+
+
+# 1.8 | 2015-08-18
+   - Added the 'gform_zapier_feed_conditional_logic' filter enabling the feed conditional logic rule to be overridden during submission, allowing multiple rules to be defined.
+   
+
+# 1.7 | 2015-04-20
+   - Added text domain/path to header.
+   - Fixed an issue with multi-input fields and the dummy data sent to Zapier when first configuring a zap or updating the form.
+   - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+   - Fixed an issue with conditional logic evaluation when processing feeds delayed by the PayPal Standard add-on.
+
+
+# 1.6 | 2015-03-30
+   - Added Spanish (es_ES) translation.
+   - Added ability to delay sending to Zapier until a payment is received if PayPal Standard is also being used.
+   - Updated POT file.
+   - Updated to not send entries marked as spam to Zapier.
+   - Fixed an issue with the zap body being prepared even if the form does not have a feed.
+   - Fixed a warning for multi-row Likert fields when the zap body is being prepared.
+   - Fixed a warning related to how Gravity Forms 1.9 handles inputs for fields such Email, Date and Time.
+   - Fixed notice thrown when using extract in certain PHP versions.
+   - Fixed the functions used by the mwp_premium_update_notification and mwp_premium_perform_update hooks so that the new_version element in the array returns Zapier's version instead of Gravity Forms'.
+   - Fixed strict notice thrown when viewing the list of Zaps for a form.
+
+
+# 1.4 | 2014-02-03
+   - Added POT file.
+   - Added entry meta to field list.
+   - Added the gform_zapier_field_value hook so the value can be modified before sending to Zapier.
+   - Fixed issue where the anti-spam honeypot being active was causing data to not be passed to Zapier.
+   - Fixed notices.
+
+
+# 1.1 | 2013-08-14
+   - Updated how multi-input fields (checkboxes, name, address) are handled so that users can map to the "parent" field (in addition to being able to map to the individual inputs).
+
+

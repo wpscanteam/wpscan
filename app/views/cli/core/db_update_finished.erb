@@ -1,0 +1,8 @@
+<% if @verbose && !@updated.empty? -%>
+<%= notice_icon %> File(s) Updated:
+<% @updated.each do |file| -%>
+ |  <%= file %>
+<% end -%>
+<% end -%>
+<%= notice_icon %> Update completed.
+

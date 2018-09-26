@@ -1,0 +1,179 @@
+{
+  "name": "game-users-share-buttons",
+  "version": "1.2.0",
+  "description": "Game Users Share Buttons",
+  "main": "js/option-bundle.min.js",
+  "scripts": {
+    "build": "webpack --display-error-details",
+    "webpack:watch": "webpack --watch",
+    "browser-sync:init": "browser-sync init",
+    "browser-sync:start": "browser-sync start --config bs-config.js",
+    "watch": "run-p browser-sync:start webpack:watch",
+    "size": "webpack --json | webpack-bundle-size-analyzer",
+    "compress:clean": "rimraf ./release/compression",
+    "compress:mkdir:json": "mkdirp ./release/compression/game-users-share-buttons/json",
+    "compress:mkdir:languages": "mkdirp ./release/compression/game-users-share-buttons/languages",
+    "compress:mkdir:themes": "mkdirp ./release/compression/game-users-share-buttons/themes",
+    "compress:copy:css": "cpx ./css/**/ ./release/compression/game-users-share-buttons/css",
+    "compress:copy:img": "cpx ./img/**/ ./release/compression/game-users-share-buttons/img",
+    "compress:copy:js": "cpx ./js/**/*.{js,jsx} ./release/compression/game-users-share-buttons/js",
+    "compress:copy:lib": "cpx ./lib/**/ ./release/compression/game-users-share-buttons/lib",
+    "compress:copy:modules": "cpx ./modules/**/ ./release/compression/game-users-share-buttons/modules",
+    "compress:copy:php": "cpx ./php/**/ ./release/compression/game-users-share-buttons/php",
+    "compress:copy:views": "cpx ./views/**/ ./release/compression/game-users-share-buttons/views",
+    "compress:copy:editorconfig": "cpx ./.editorconfig ./release/compression/game-users-share-buttons",
+    "compress:copy:gitignore": "cpx ./.gitignore ./release/compression/game-users-share-buttons",
+    "compress:copy:game-users-share-buttons.php": "cpx ./game-users-share-buttons.php ./release/compression/game-users-share-buttons",
+    "compress:copy:package.json": "cpx ./package.json ./release/compression/game-users-share-buttons",
+    "compress:copy:package-lock.json": "cpx ./package-lock.json ./release/compression/game-users-share-buttons",
+    "compress:copy:readme.txt": "cpx ./readme.txt ./release/compression/game-users-share-buttons",
+    "compress:copy:webpack.config.js": "cpx ./webpack.config.js ./release/compression/game-users-share-buttons",
+    "compress:zip": "bestzip ./release/compression/game-users-share-buttons.zip ./release/compression/game-users-share-buttons/*",
+    "compress:build": "webpack && run-s compress:clean && run-p compress:mkdir:* compress:copy:* && run-s compress:zip",
+    "svn:clean:trunk": "rimraf ./release/svn/game-users-share-buttons/trunk",
+    "svn:copy:all": "cpx ./release/compression/game-users-share-buttons/**/ ./release/svn/game-users-share-buttons/trunk --include-empty-dirs",
+    "svn:copy:editorconfig": "cpx ./.editorconfig ./release/svn/game-users-share-buttons/trunk",
+    "svn:copy:gitignore": "cpx ./.gitignore ./release/svn/game-users-share-buttons/trunk",
+    "svn:build": "run-s compress:build svn:clean:trunk svn:copy:*"
+  },
+  "homepage": "https://gameusers.org/app/share-buttons",
+  "author": {
+    "name": "Game Users"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gameusers/share-buttons"
+  },
+  "bugs": {
+    "url": "https://github.com/gameusers/share-buttons/issues"
+  },
+  "license": "GPL2",
+  "babel": {
+    "presets": [
+      "react",
+      "env"
+    ],
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "alias": {
+            "alias-node-modules": "./node_modules"
+          }
+        }
+      ],
+      "transform-async-to-generator",
+      [
+        "transform-runtime",
+        {
+          "helpers": false,
+          "polyfill": false,
+          "regenerator": true,
+          "moduleName": "babel-runtime"
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "jquery": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true,
+        "jsx": true
+      }
+    },
+    "extends": "airbnb",
+    "rules": {
+      "comma-dangle": 0,
+      "func-names": 0,
+      "max-len": 0,
+      "no-multiple-empty-lines": [
+        2,
+        {
+          "max": 20
+        }
+      ],
+      "consistent-return": 0,
+      "no-undef": 0,
+      "padded-blocks": 0,
+      "no-unneeded-ternary": 0,
+      "class-methods-use-this": 0,
+      "import/no-named-as-default": 0,
+      "import/no-named-as-default-member": 0,
+      "function-paren-newline": 0,
+      "react/no-danger": 0,
+      "react/prefer-stateless-function": 0,
+      "jsx-a11y/anchor-is-valid": 0,
+      "prefer-destructuring": 0
+    },
+    "settings": {
+      "import/resolver": {
+        "babel-module": {}
+      }
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "comment-whitespace-inside": null,
+      "comment-empty-line-before": null,
+      "max-empty-lines": null
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "dependencies": {
+    "es6-promise-promise": "^1.0.0",
+    "file-saver": "^1.3.3",
+    "immutable": "^3.8.2",
+    "izitoast": "^1.2.0",
+    "jszip": "^3.1.5",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.32.0",
+    "react-color": "^2.13.8",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router-dom": "^4.2.2",
+    "redux": "^3.7.2",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-plugin-transform-async-generator-functions": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "bestzip": "^1.1.4",
+    "browser-sync": "^2.23.5",
+    "cpx": "^1.5.0",
+    "eslint": "^4.15.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "mkdirp": "^0.5.1",
+    "npm-run-all": "^4.1.2",
+    "postcss-loader": "^2.0.10",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.19.1",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0",
+    "webpack": "^3.10.0",
+    "webpack-bundle-size-analyzer": "^2.7.0"
+  }
+}

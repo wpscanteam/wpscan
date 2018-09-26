@@ -1,0 +1,26 @@
+{
+  "name":        "CC-MU-Plugins-Loader",
+  "description": "This plugin automatically loads Must Use Plugins from WPMU_PLUGIN_DIR subdirectories.",
+  "type":        "wordpress-muplugin",
+  "version":     "1.0.0",
+  "keywords":    ["wordpress", "mu-plugins", "must use plugins", "MU Plugins", "Plugins", "loader", "load", "autoload", "autoloading", "clearcode", "piotrpress"],
+  "license":     "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Clearcode",
+      "homepage": "https://clearcode.cc"
+    },
+    {
+      "name": "Piotr Niewiadomski",
+      "homepage": "http://piotr.press"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "php -r \"rename('loader.php', '../loader.php');\""
+    ]
+  }
+}

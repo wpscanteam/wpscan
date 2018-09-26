@@ -1,0 +1,20 @@
+"plugins": {
+<% unless @plugins.empty? -%>
+<% last_index = @plugins.size - 1 -%>
+<% @plugins.each_with_index do |plugin, index| -%>
+  <%= plugin.slug.to_json %>: {
+    <%= render('@wp_item', wp_item: plugin) %>,
+    <%= render('@finding', item: plugin) -%>,
+    <% if plugin.version -%>
+    "version": {
+      "number": <%= plugin.version.number.to_json %>,
+      "confidence": <%= plugin.version.confidence.to_json %>,
+      <%= render('@finding', item: plugin.version) -%>
+    }
+    <% else -%>
+    "version": null
+    <% end -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

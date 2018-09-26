@@ -1,0 +1,124 @@
+/* Cresta Posts Box Version 1.1.3 */
+.crestaPostsBoxContent:before,
+.crestaPostsBoxContent:after {
+	content: "";
+	display: table;
+}
+.crestaPostsBoxContent:after {
+	clear: both;
+}
+.crestaPostsBox {
+	position: fixed;
+    max-height: 600px;
+	padding: 20px;
+	background: #ffffff;
+	color: #5b5b5b;
+	overflow: hidden;
+	text-rendering: optimizeLegibility;
+	-webkit-box-sizing: border-box !important;
+    -moz-box-sizing: border-box !important;
+    box-sizing: border-box !important;
+	-o-transition: all .5s ease-in-out;
+    -moz-transition: all .5s ease-in-out;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out;
+}
+.crestaPostsBox a {
+	color: #6eb48c;
+}
+.crestaPostsBoxExcerpt:before,
+.crestaCloseBox:before,
+.crestaCloseBox:after,
+.crestaPostsBox .crestaPostsBoxCredit {
+	background: #5b5b5b;
+}
+.crestaPostsBox .crestaPostsBoxCredit a {
+	color: #ffffff;
+}
+.crestaBoxName {
+	margin-bottom: 10px;
+    display: block;
+    font-weight: bold;
+}
+.crestaCloseBox {
+    display: block;
+    position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.crestaCloseBox:before, .crestaCloseBox:after {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #000000;
+    content: "";
+}
+.crestaCloseBox:before {
+	top: 8px;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.crestaCloseBox:after {
+	bottom: 9px;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+.crestaBoxImage {
+	float: left;
+	margin-right: 20px;
+	overflow: hidden;
+}
+.crestaBoxImage img {
+	display: block;
+	max-width: 100%;
+}
+.crestaPostsBoxExcerpt {
+	position: relative;
+	margin-top: 10px;
+	font-weight: normal;
+}
+.crestaPostsBoxExcerpt:before {
+	content: "";
+    position: absolute;
+    height: 2px;
+    width: 40px;
+    background: #000000;
+    top: -6px;
+}
+.cresta-nav-previous {
+	font-weight: bold;
+}
+.crestaPostsBox.hide {
+	display: none !important;
+	visibility: hidden !important;
+}
+.crestaPostsBox .crestaPostsBoxCredit {
+	position: absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 10px;
+    line-height: 10px;
+    padding: 3px;
+}
+@media all and (max-width: 767px) {
+	.crestaPostsBox {
+		max-height: 400px;
+		width: 100% !important;
+		bottom: 0 !important;
+	}
+}
+/*--------------------------------------------------------------
+Print Style
+--------------------------------------------------------------*/
+@media print {
+	.crestaPostsBox {
+		display: none !important;
+	}
+}

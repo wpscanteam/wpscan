@@ -1,0 +1,26 @@
+"found_by": <%= @item.found_by.to_json %>,
+"confidence": <%= @item.confidence.to_json %>,
+"interesting_entries": <%= @item.interesting_entries.to_json %>,
+"confirmed_by": {
+<% unless (confirmed = @item.confirmed_by).empty? -%>
+<% last_index = @item.confirmed_by.size - 1 -%>
+<% @item.confirmed_by.each_with_index do |c, index| -%>
+  <%= c.found_by.to_json %>: {
+    "confidence": <%= c.confidence.to_json %>,
+    "interesting_entries": <%= c.interesting_entries.to_json %>
+  }<% unless index == last_index %>,<% end -%>
+<% end -%>
+<% end -%>
+},
+"vulnerabilities": [
+<% if @item.respond_to?(:vulnerabilities) && !(vulns = @item.vulnerabilities).empty? -%>
+  <% last_index = vulns.size - 1 -%>
+  <% vulns.each_with_index do |v, index| -%>
+  {
+    "title": <%= v.title.to_json %>,
+    "fixed_in": <%= v.fixed_in.to_json %>,
+    "references": <%= v.references.to_json %>
+  }<% unless index == last_index -%>,<% end -%>
+  <% end -%>
+<% end -%>
+]

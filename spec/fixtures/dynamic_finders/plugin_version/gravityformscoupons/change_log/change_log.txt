@@ -1,0 +1,114 @@
+# 2.6.2 | 2018-01-30
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+	
+# 2.6.1 | 2017-08-23
+   - Fixed Euro currency formatting of the flat amount when the edit coupon page is displayed.
+
+
+# 2.6 | 2017-04-26
+   - Added security enhancement.
+   - Added translations.
+   - Fixed code style.
+
+
+# 2.5 | 2017-02-22
+   - Added security enhancement.
+   - Added 'isCoupon' flag when adding coupons to order summary; allows 3rd parties to more reliable identify coupons in the order summary.
+
+
+# 2.4 | 2017-01-05
+   - Added gform_coupons_is_valid_code to override coupon code alphanumeric checking in Gravity Forms 2.2.2.
+   - Updated coupons.js to use the gform_product_total filter with a later priority.
+   - Updated how default label for new fields is set.
+   - Fixed wrong domain for translating the "Coupon" button.
+   - Fixed an issue with the formatting of the percentage coupon amount when a decimal comma based currency is in use.
+
+
+# 2.3 | 2016-07-29
+   - Added Dutch translation (nl_NL).  Credit: Maarten Emmerink
+   - Updated gform_coupon_script dependencies to include gform_gravityforms.
+   - Updated Coupon Code validation to only allow alphanumeric characters.
+   - Updated bulk actions and feed action links.
+   - Fixed issue where "undefined" was output before coupon markup when applying a coupon
+   - Fixed front-end JS error when attempting to remove an applied coupon if the coupon code includes special characters.
+
+
+# 2.2 | 2015-07-27
+   - Added GF_Field_Coupon::get_value_export() to return entry value formatted as {couponName} ({couponCode}: {discount}). Multiple codes will be comma separated e.g. $50 OFF (50OFF: -$50.00), 25% OFF (25OFF: -$10.00). Used for entry exports and some framework based add-ons since GF 1.9.12.4.
+   - Added required and custom validation message settings.
+   - Updated Spanish (es_ES) translation.
+   - Updated minimum Gravity Forms version to 1.9.5.
+   - Updated scripts and stylesheets to use minified files by default unless SCRIPT_DEBUG is active or query param gform_debug is set. e.g. domain.com/?gform_debug
+   - Updated to alert if a Total field is not present when adding the Coupon field.
+   - Fixed an issue with one of the field validation messages not being translatable.
+   - Fixed an issue with the coupons not being included in the product info when notifications are sent after submission.
+   - Fixed an issue with duplicate coupon codes being allowed to be created.
+   - Fixed an issue with the coupon field where removed coupons were not removed from the hidden coupon detail input resulting in the appearance that the coupon was reapplied when returning to the page containing the coupon field.
+   - Fixed an issue with the upgrade routine which caused it run even if a pre-framework version hadn't been installed.
+
+
+# 2.1 | 2015-04-20
+   - Added Spanish (es_ES) translation.
+   - Updated gform_coupon_script deps to include gform_json.
+   - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+
+
+# 2.0 | 2015-03-30
+   - Added Addon Framework integration.
+   - Added support for using the coupon field with conditional logic.
+   - Added support for placeholders.
+   - Added POT file.
+   - Added a bulk action to the feed page for resetting the coupon usage count.
+   - Added the visibility setting to the fields advanced tab.
+   - Added the capability to view the plugin page.
+   - Added text domain/path to header.
+   - Added 'gform_coupons_discount_amount' PHP hook to support modifying the discount amount.
+        add_filter( 'gform_coupons_discount_amount', 'add_logged_in_user_bonus_discount', 10, 3 );
+        function add_logged_in_user_bonus_discount( $discount, $coupon, $price ) {
+            if( is_user_logged_in() ) {
+                $discount += 5;
+            }
+            return $discount;
+        }
+   - Added 'gform_coupons_discount_amount' JS hook.
+        gform.addFilter( 'gform_coupons_discount_amount', function( discount, couponType, couponAmount, price, totalDiscount ) {
+            // you would need to write your own JS-version of is_user_logged_in()
+            if( is_user_logged_in() ) {
+                discount += 5;
+            }
+            return discount;
+        } );
+
+   - Fixed an issue with the ajax request for applying coupons not functioning for logged out users.
+   - Fixed an issue with feed processing which in some situations could prevent the coupon usage count being updated.
+   - Fixed an issue with the field label for attribute.
+   - Fixed an issue with the usage count being lost when updating an existing coupon.
+   - Fixed an issue where pasting the coupon code using right-click caused the Apply button to not enable.
+   - Fixed issue where existing coupon code was not saved when editing an entry.
+   - Fixed issue with some translation text domain strings being misspelled.
+
+
+# 1.1 | 2014-09-24
+   - Updated plugin updated method so that it takes advantage of proxy manager to get around the blacklisted IP issue.
+   - Updated several instances of domain used for translations from gravityformscoupon to the correct domain of gravityformscoupons.
+   - Updated javascript in DisableApplyButton function since the button remained disabled for some users.
+   - Fixed issue with product info cache not including coupon on certain situations.
+   - Fixed issue with text domain of some strings.
+   - Fixed another issue with duplicate coupon codes being allowed to be created.
+   - Fixed issue with duplicate coupon codes being allowed to be created.
+   - Fixed fatal error when plugin is activated without Gravity Forms active.
+   - Fixed issue where existing coupon code was not saved when editing an entry.
+   - Fixed issue with start and expiration date not taking the configured WP timezone into account.
+   - Fixed issue where translations were not being applied on the front end.
+   - Fixed issue with coupon not being applied when form failed validation.
+   - Fixed issue with coupon being marked as "undefined" after a submission when clicking the back browser button.
+
+
+# 1.0 | 2014-07-15
+   - Fixed issue with applying fixed amount coupon code with currencies other than US dollar
+   - Fixed issue where changing an existing coupon from being form specific to 'any form' resulted in an 'Invalid coupon.' message on any form other than the original.
+
+
+

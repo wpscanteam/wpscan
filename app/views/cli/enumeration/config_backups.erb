@@ -1,0 +1,11 @@
+
+<% if @config_backups.empty? -%>
+<%= notice_icon %> No Config Backups Found.
+<% else -%>
+<%= notice_icon %> Config Backup(s) Identified:
+<% @config_backups.each do |config_backup| -%>
+
+<%= info_icon %> <%= config_backup %>
+<%= render('@finding', item: config_backup) -%>
+<% end -%>
+<% end %>

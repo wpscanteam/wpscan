@@ -1,0 +1,86 @@
+# 2.4.4 | 2018-01-31
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+
+# 2.4.3 | 2017-11-20
+   - Fixed warning regarding the number of characters allowed for a message to display 1600 instead of 160.
+
+# 2.4.2 | 2017-11-13
+   - Updated Twilio PHP SDK.
+
+
+# 2.4.1 | 2017-08-02
+   - Fixed Twilio PHP SDK not being included with final build.
+
+
+# 2.4 | 2017-08-02
+   - Added "gform_twilio_message" filter to modify the SMS message arguments before it is sent.
+   - Added support for using merge tags in the To Number feed setting.
+   - Added support for using test Twilio credentials.
+   - Fixed a PHP warning for the From setting on the edit feed page if the API request for the numbers returned an error.
+   - Fixed URLs not shortening in message if multiple merge tags are used.
+   - Updated Twilio PHP SDK.
+   - Updated URL shortened to use latest Bitly API.
+
+
+# 2.3 | 2017-04-28
+   - Added security enhancements.
+   - Added translations.
+
+
+# 2.2 | 2016-08-31
+   - Added conditional logic support to the feed settings.
+   - Updated to use the newer /Messages endpoint instead of /SMS/Messages.
+   - Updated feed From Number setting to use the select_custom field type allowing use of Alphanumeric sender IDs (Not supported by all countries: https://www.twilio.com/help/faq/sms/what-countries-does-twilio-support-alphanumeric-sender-id).
+   - Updated minimum Gravity Forms version to 1.9.11.
+   - Fixed an issue with the upgrade routine which caused it run even if a pre-framework version hadn't been installed.
+
+
+# 2.1 | 2015-04-20
+   - Updated the gform_twilio_set_to_phone_number filter to include $feed_id as the third parameter.
+   - Updated logging.
+   - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+   - Fixed an issue with URLs from processed merge tags not being shortened.
+   - Fixed an issue with merge tag replacement in the message.
+   - Fixed issue when shorten urls is checked and urls with spaces cause the Bitly url to be incomplete
+   - Fixed issue where a validated Twilio number was required even for non-trial Twilio accounts
+   - Fixed issue where a Bitly key was required in order to create a feed. Now feeds can be created without a Bitly key, but the "shorten URL" option requires it.
+
+
+# 2.0 | 2014-12-11
+   - Added integration with Add-On Framework
+   - Added text domain/path to header
+   - Updated POT file
+   - Updated required version of Gravity Forms to 1.8.17
+   - Updated code to new standards
+
+
+# 1.1 | 2014-03-11
+   - Added new filter "gform_twilio_set_to_phone_number" to modify the TO phone number set in the admin
+        add_filter("gform_twilio_set_to_phone_number", "change_to_number", 10, 2);
+		function change_to_number($to, $entry){
+			//grab phone number out of field 2, sample format "+17571234567"
+			$phone = !rgblank($entry["2"]) ? $entry["2"] : $to;
+			return $phone;
+		}
+   - Added logging
+   - Updated to not send entries marked as spam
+   - Updated the URL to Bitly's API to use api.bit.ly instead of api.j.mp so the default short domain in the user's Bitly setting is used
+   - Fixed issue where RG_CURRENT_PAGE constant was not available when GF is deactivated
+   - Fixed issue on feed page that displayed only the first Twilio incoming phone number
+   - Fixed notices
+   - Fixed issue with merge tags with new lines on feed page.
+   - Cleaned up extra parse_request add_hook with function that didn't exist
+
+
+# 1.0 | 2011-11-01
+   - Added URL shortening support
+   - Changed Bitly short URL to http://j.mp
+   - Removing formatting characters from TO number when sending request to Twilio
+
+
+# 0.2 | 2011-03-31
+   - Added feedback on settings page
+   - Added integration with PayPal so that SMS messages can be sent only when payment is received.
+   - Added helper text and tooltips

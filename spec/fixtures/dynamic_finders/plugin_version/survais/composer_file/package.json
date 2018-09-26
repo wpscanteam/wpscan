@@ -1,0 +1,30 @@
+{
+  "name": "survais-wordpress",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+   
+    "build": "npm run copy && npm run cleanfiles && npm run minappjs && npm run minappcss && npm run zipproject",
+
+    "copy": "cpx ** build && cpx .* build && cd build && imagemin images/* --out-dir=images/ && cd .. && npm run cleanfiles",
+    
+    "cleanfiles": "cd build && del-cli package.json && del-cli **/*.psd && del-cli *.sql && del-cli **/tests && cd ..",
+
+    "minappjs": "cd build/js && uglifyjs --compress --mangle --timings survais.js -o survais.js && cd ../..",
+    
+    "minappcss": "cd build/css && cleancss survais.css -o survais.css && cd ../..",
+
+    "zipproject": "cd build && cpx ** survais && cpx .* survais && mkdir temp && move survais temp && rname temp survais && cd survais && 7z a survais.zip && move survais.zip ../.. && cd ../.. && rname survais.zip \"{{cd|HHMMss}}_{{cd|dd-mm-yyyy}}_{{f}}\" && rmdir build /s /Q"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/shanehoban/survais.material.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/shanehoban/survais.material#readme"
+}
+

@@ -1,0 +1,136 @@
+Version 3.4.1
+	- Added GPL to plugin header
+    - Updated Plugin URI and Author URI to use https
+
+-------------------------------------------------------------------------------------------------------------------
+Version 3.4
+	- Added compatibility with Gravity Forms 2.3.
+	- Updated IeModalFix init option to only be set for IE browsers; fixes issue with FireFox with 3+ paths on a signature.
+	- Fixed a JavaScript error which could occur in the form editor with Gravity Forms 2.3-beta.
+	- Fixed an issue where the field could be populated with the value from another form on the same page if both fields have the same ID.
+	- Fixed an issue where the signature file could remain after the entry was permanently deleted.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 3.3
+	- Updated initialization options for signature to set different values based on MAC or PC to fix issues with touch not working
+
+-------------------------------------------------------------------------------------------------------------------
+Version 3.2
+    - Updated field appearance settings label classes for consistency with GF2.0+.
+    - Fixed issue where signing with more than three lines corrupted the signature.
+    - Fixed a fatal error if Html2RGB() has already been defined by the theme or another plugin.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 3.1
+    - Added the gform_signature_init_options filter. See https://www.gravityhelp.com/documentation/article/gform_signature_init_options/
+    - Updated to include the ss_orig.js script in the footer.
+    - Updated the signature container markup to use the height from the init options.
+    - Updated script to be initialized via get_form_inline_script_on_page_render() rather than inline with the input markup.
+	- Fixed an issue when signing on a Windows touch machine with chrome.
+    - Fixed an issue with the required field validation when updating an existing entry outside the entry detail context e.g. from a Gravity Flow user input step.
+    - Fixed a JavaScript error which could occur when the signature init script is included on a page and the field input is not e.g. the Gravity Flow user input step when the field is not editable.
+    - Fixed an issue with the border width style in the admin and on the front-end for old IE.
+    - Fixed a JavaScript issue which affected multi-page AJAX enabled forms when loading the next page.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 3.0
+    - Added support for Gravity Forms 2.0
+    - Added GF_Field_Signature.
+    - Updated SuperSignature to version 1.5.0.8.
+    - Fixed an issue where the old signature file was not deleted when using the 'sign again' link.
+    - Fixed an issue where the signature files would remain when permanently deleting all the entries for a form.
+    - Fixed an issue which prevented the signature canvas being displayed after deleting the existing signature when editing an entry.
+    - Fixed some strings in the form editor which were untranslatable.
+    - Fixed an issue with the borderStyle setting.
+    - Updated to only include the deleteSignature script on the entry detail edit page.
+    - Updated location of Signature field settings so they are now located on the Appearance tab.
+    - Updated SuperSignature; fixing a vertical offset issue with the touch point/capture location when the WP admin bar is present on a mobile device.
+    - Removed Browser.php.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 2.4
+    - Added drag and drop support to the field button in the form editor (GF 1.9).
+	- Added Spanish (es_ES) translation.
+	- Updated POT file.
+	- Updated GFSignature::maybe_save_signature() to public
+	- Updated signature script to latest version.
+    - Fixed a fatal error if Browser.php was already included by another plugin.
+	- Fixed an issue with the delete signature confirmation message.
+	- Fixed signature appearing as a black image in some email clients.
+	- Fixed issue a JavaScript error in the form editor in some languages.
+	- Fixed issue with causing mixed content warning when Force SSL was enabled in the admin.
+	- Fixed issue when multiple Html2RGB() functions were defined.
+	- Fixed issue with folder path causing signature not to be saved correctly on same servers.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 2.3
+	- Added function gf_signature to easily get a Signature instance.
+	- Added text domain/path to header.
+	- Added support for save and continue in Gravity Forms 1.9.
+    - Added new filter: gform_signature_show_in_all_fields
+        add_filter( 'gform_signature_show_in_all_fields', '__return_false' );
+	- Updated protected functions to be public.
+	- Updated to have the file class-gf-signature.php and organized code into this file and signature.php.
+	- Updated version to use a variable.
+    - Updated to display signature image in {all_fields} tag.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 2.2
+    - Updated Super Signature script to latest to resolve issues with Kindle Fire HD.
+    - Fixed issue with IE11 when using the latest version of the Super Signature script
+
+-------------------------------------------------------------------------------------------------------------------
+Version 2.1
+    - Downgraded super signature script to previous version due to an issue with IE11
+
+-------------------------------------------------------------------------------------------------------------------
+Version 2.0
+
+    - Added Add-On Framework integration.
+
+    - Updated super signature script to 1.5.0.2.
+    - Updated masked input JS library to 1.3.1.
+
+    - Fixed issue creating signature image when output buffer wasn't empty.
+	- Fixed issue with signature being deleted when editing the entry.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.3
+    - Fixed issue with signature file name being displayed on the print page instead of the signature image
+    - Updated signature script to version 1.3.0.0
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.2
+	- Added ability to add a signature in the entry detail page when a signature does not already exist
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.1
+    - Fixed issue with custom validation message not getting displayed.
+    - Fixed issue with signature URL not being created correctly when resending notifications
+    - Fixed conflict with IE8
+    - Fixed issues when signing on IE9
+    - Fixed issue where editing entry resulted in removal of signature from lead
+    - Updated edit entry functionality to support previewing, downloading and deleting signature from lead
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0
+    - Fixed issue when signing on IE 9
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0.beta2
+    - Fixed issue with jQuery being included in the ss_orig.js file
+    - Added support for ManageWP
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0.beta1.1
+    - Fixed issue with signature files not being deleted when lead is deleted
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0.beta1
+    - Fixed duplicate field size setting
+    - Updated field size setting to an open text input instead of a drop down
+    - Fixed conflict with datepicker field
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0.alpha2
+    - Fixed issue with multi-page forms where signature was not maintaining its value from page to page

@@ -1,0 +1,34 @@
+{
+    "autoload": {
+        "psr-4": {
+            "CF\\": "src/"
+        }
+    }, 
+    "description": "A Cloudflare plugin for WordPress", 
+    "license": "BSD-3-Clause", 
+    "name": "cloudflare/wordpress-plugin", 
+    "require": {
+        "cloudflare/cf-ip-rewrite": "^1.0.0", 
+        "cloudflare/cloudflare-plugin-backend": "^1.1", 
+        "symfony/yaml": "~2.6"
+    }, 
+    "require-dev": {
+        "johnkary/phpunit-speedtrap": "1.0.1", 
+        "php-mock/php-mock-phpunit": "^1.1", 
+        "phpunit/phpunit": "4.8.*", 
+        "squizlabs/php_codesniffer": "2.*", 
+        "wimg/php-compatibility": "*", 
+        "simplyadmire/composer-plugins": "@dev"
+    }, 
+    "scripts": {
+        "format": "php vendor/squizlabs/php_codesniffer/scripts/phpcs -n --standard=phpcs.xml", 
+        "test": "php vendor/phpunit/phpunit/phpunit", 
+        "post-install-cmd": "@php-compatibility-install", 
+        "post-update-cmd": "@php-compatibility-install", 
+        "php-compatibility-install": "rm -rf vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility; cp -rp vendor/wimg/php-compatibility vendor/squizlabs/php_codesniffer/CodeSniffer/Standards/PHPCompatibility"
+    }, 
+    "_comment": [
+        "php-compatibility-install comes from https://github.com/wimg/PHPCompatibility/issues/102#issuecomment-255778195"
+    ], 
+    "version": "3.3.2"
+}

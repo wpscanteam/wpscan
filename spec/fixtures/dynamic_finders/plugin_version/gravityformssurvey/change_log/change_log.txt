@@ -1,0 +1,149 @@
+# 3.2.2 | 2018-01-31
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+
+# 3.2.1 | 2017-05-23
+   - Added "value" modifier to Likert field merge tag to return column text only.
+
+
+# 3.2 | 2017-05-16
+   - Added Chinese (China) translation. Credit: Edi Michael.
+   - Updated minimum Gravity Forms version to 2.0.
+   - Updated strings for translations.
+   - Updated Likert CSS for better mobile display.
+   - Updated low resolution PNG icons with scaleable vector graphics (SVG).
+   - Fixed Survey field settings referencing incorrect icon URLs.
+   - Fixed an issue with the Likert field markup.
+   - Updated inline image in rank field so that it is applied via CSS instead.
+   - Fixed an issue with the locations the gform_merge_tags hook was being used to include the merge tags.
+
+
+# 3.1 | 2016-08-31
+   - Fixed an issue with Likert field column labels which contain HTML displaying the HTML markup for mobile devices.
+   - Fixed issue exporting Likert field values if the row label included trailing spaces.
+   - Fixed an issue validating/saving the multi-row Likert field which could occur if the field has had ten or more rows defined and then one or more rows removed causing a mismatch between the ids used in the front-end input name attributes and the ids in the field inputs property.
+   - Fixed an issue with how the empty Likert field value was handled in the {all_fields} output.
+   - Fixed an issue which caused the Likert field value to be lost when editing the entry.
+   - Fixed an issue which could prevent field values of 0 being displayed on the entry detail page.
+
+
+# 3.0 | 2016-04-14
+   - Added support for Gravity Forms v2.0
+   - Added GF_Field_Rating.
+   - Added GF_Field_Rank.
+   - Added GF_Field_Survey.
+   - Added GF_Field_Likert.
+   - Added DocBlocks.
+   - Added support for using the Rating type field with conditional logic.
+   - Added support for exporting the choice text when using the 2015 batch & future feed add-ons. Requires Gravity Forms 1.9.15.12.
+   - Added label and description placement setting to the Survey field.
+
+   - Updated minimum Gravity Forms version to 1.9.17.
+   - Updated to use object notation when accessing the field object.
+   - Updated the styles to adapt better to different screen sizes.
+   - Updated the score merge tag to support returning the Likert row score e.g. {score:id=1.5} would return the score for field 1 row 5.
+   - Updated Likert field preview in form editor to display only the first five rows.
+   - Increased width of input boxes for weighted score values
+
+   - Fixed an issue with the tooltip in the rank field where text can get cut off if certain special characters are included in the choice label.
+   - Fixed an issue with the merge tag values in the query string of a redirect confirmation.
+   - Fixed an issue with empty Likert fields being displayed on the entry detail page when 'show empty fields' is not selected.
+   - Fixed a typo in the Rank type fourth choice string.
+   - Fixed an issue with the Likert field in entry exports when the field rows are changed after entries are saved.
+   - Fixed an issue with some untranslatable strings.
+   - Fixed an issue with the display of Likert field values for some entries on the entry list when the field rows are changed after entries are saved.
+   - Fixed an issue with the Likert field label for attribute.
+
+
+# 2.6 | 2015-10-08
+   - Fixed an issue with the input ID attributes for the Likert and Rating type fields.
+   - Fixed an issue in the form editor where removing a likert row didn't remove the corresponding input property.
+   - Fixed an issue which caused survey merge tags to be replaced during form render.
+   - Fixed an issue with the Likert field row specific merge tag which caused all the rows to be included in the output instead of just the specified row.
+
+
+# 2.5 | 2015-02-16
+   - Added support on the results page for score averages by row in multi-row Likert fields. (requires Gravity Forms 1.9)
+   - Added Spanish (es_ES) translation.
+   - Updated front-end script dependency to include jquery-touch-punch on mobile devices enabling touch support for the Rank field.
+   - Updated POT file.
+   - Fixed an issue with the processing of merge tags for multi-row Likert fields which would prevent the field being included in notifications/confirmations when using Gravity Forms 1.9.
+   - Fixed two untranslatable strings in the form editor.
+   - Fixed a notice in the entry detail page for imported forms.
+   - Fixed an issue under PHP 5.2 where score for multi-row likert field was not displayed correctly in email notification if any row was not answered.
+   - Fixed an issue where score for multi-row likert field was not displayed correctly in email notification if any row was not answered
+
+
+# 2.4 | 2014-10-16
+   - Added function gf_survey to easily get a Survey instance
+   - Added text domain/path to header
+   - Added support for Gravity Forms 1.9 form editor drag and drop.
+   - Updated protected functions to be public
+   - Updated to have the file class-gf-survey.php and organized code into this file and survey.php
+   - Updated version to use a variable
+
+
+# 2.3 | 2014-09-24
+   - Adding tabbing support for likert fields
+   - Updated the ratings field UI in the form editor to display the choices in the more natural order of worst at the top to best at the bottom instead of the reverse. The front-end UI is not affected.
+   - Fixed issue where score for multi-row likert field was always 0 if any row was not answered
+   - Fixed the field title in the Form Editor
+   - Fixed a strict notice preventing the results to be displayed in PHP 5.4+
+   - Fixed an issue with the dynamic population parameter names for multi-row Likert fields reverting to default values after re-opening the field settings.
+   - Fixed an issue with the resending of notifications from the entry detail page where the choice values were being displayed instead of the choice text
+
+
+# 2.1 | 2014-02-28
+   - Fixed issue when exporting entries
+
+
+# 2.0 | 2014-02-11
+   - Added integration with the Add-On Framework.
+   - Added integration with the Campaign Monitor Add-On, MailChimp Add-On, AWeber Add-On and Zapier Add-On.
+   - Fixed entries tab for the Contacts Add-On.
+   - Fixed entry editor; scripts and styles now loaded.
+
+
+# 1.0.4
+   - Added support for survey entries tab in the Contacts Add-On
+   - Fixed an issue where survey merge tags would appear in the list of merge tags available during pre-submission
+   - Added support for decimal score values in the Likert field
+
+
+# 1.0.3
+   - Added total score to entry meta
+   - Added total score entry meta to the results filters and to the conditional logic filters for notifications and confirmations. Only available for likert fields with scoring enabled.
+
+
+# 1.0.2
+   - Requires Gravity Forms version 1.7.6.6+
+   - Implemented the Add-On Framework
+   - Added weighted scoring for likert fields
+   - Added score merge tags
+
+
+# 1.0.1 | 2013-06-21
+   - Fixed an issue with multi-row likert fields having more than 9 rows. The submitted value for every tenth row would not be saved.
+
+
+# 1.0 | 2013-06-12
+   - Changed the validation of required multi-row likert fields to require responses for all rows
+   - Fixed an issue with entries export where the choice value could be exported instead of the label
+   - Fixed an issue with results not being displayed when double quotes are inside field choices labels
+   - Fixed an issue with results not being displayed in no conflict mode
+   - Fixed an issue with multi-row likert fields and rank fields not retaining selected values when stepping back a page on multi-page forms
+   - Fixed an issue with multi-row likert fields not importing correctly
+   - Fixed an issue with rank fields not working on some pages of multi-page ajax-enabled forms
+
+
+# 1.0.beta2
+   - Added gform_form_pre_results filter so the form object can be manipulated before the results are calculated for the admin results page
+   - Added required field setting to likert and rating fields
+   - Added tooltips for the field settings
+   - Fixed an issue where the plugin couldn't be activated on servers with shorttags disabled
+   - Fixed merge tags for likert multple rows and rating fields
+
+
+# 1.0.beta1
+   - initial version

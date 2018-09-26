@@ -1,0 +1,182 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Monkeyman Rewrite Analyzer v1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2011-03-26 21:02+0000\n"
+"Last-Translator: Jan Fabry <jan.fabry@monkeyman.be>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: Dutch\n"
+"X-Poedit-Country: NETHERLANDS\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: include/rewrite-analyzer.php:44
+#@ monkeyman-rewrite-analyzer
+msgid "Show rewrite rules"
+msgstr "Toon herschrijfregels"
+
+#: include/rewrite-analyzer.php:24
+#: ui/rewrite-analyzer.php:2
+#@ monkeyman-rewrite-analyzer
+msgid "Rewrite analyzer"
+msgstr "Analyse herschrijfregels"
+
+#: ui/rewrite-analyzer.php:23
+#: ui/rewrite-analyzer.php:29
+#@ monkeyman-rewrite-analyzer
+msgid "Pattern"
+msgstr "Patroon"
+
+#: ui/rewrite-analyzer.php:24
+#: ui/rewrite-analyzer.php:30
+#@ monkeyman-rewrite-analyzer
+msgid "Substitution"
+msgstr "Vervanging"
+
+#: ui/rewrite-analyzer.php:63
+#@ monkeyman-rewrite-analyzer
+msgid "Can't get your rewrite rules like you want them? Ask for help on <a href=\"%s\">the WordPress Stack Exchange</a>!"
+msgstr "Krijg je je herschrijfregels niet aan de praat? Vraag hulp op <a href=\"%s\">de WordPress Stack Exchange</a>!"
+
+#. translators: plugin header field 'Description'
+#: rewrite-analyzer.php:0
+#@ monkeyman-rewrite-analyzer
+msgid "Making sense of the rewrite mess"
+msgstr "Een gids door herschrijfland"
+
+#. translators: plugin header field 'Author'
+#: rewrite-analyzer.php:0
+#@ monkeyman-rewrite-analyzer
+msgid "Jan Fabry"
+msgstr "Jan Fabry"
+
+#: ui/rewrite-analyzer.php:40
+#, php-format
+#@ monkeyman-rewrite-analyzer
+msgid "Error parsing regex: %s"
+msgstr "Fout bij ontleden reguliere expressie: %s"
+
+#: ui/rewrite-analyzer.php:49
+#@ monkeyman-rewrite-analyzer
+msgid "This query variable is not public and will not be saved"
+msgstr "Deze query-variabele is niet publiek en zal niet worden bewaard"
+
+#: ui/rewrite-analyzer.php:13
+#@ monkeyman-rewrite-analyzer
+msgid "Test URL: "
+msgstr "Test URL: "
+
+#: include/rewrite-analyzer.php:202
+#, php-format
+#@ monkeyman-rewrite-analyzer
+msgid "This page displays the currently active rewrite patterns and their substitutions. You can refresh them at <a href=\"%s\">the Permalinks settings page</a>."
+msgstr "Deze pagina toont de huidige actieve herschrijfpatronen en hun vervangingen. Je kan ze verversen op de <a href=\"%s\">de Permalinks-pagina</a>."
+
+#: include/rewrite-analyzer.php:205
+#, php-format
+#@ monkeyman-rewrite-analyzer
+msgid "On the left side you see the regular expression patterns to which the incoming URL will be matched. The first match in the list \"wins\". On the left side you see the query variables that this match will set. By hovering over a captured URL part you see the corresponding variable highlighted, and vice-versa. Query variables that are <a href=\"%s\">not defined as public</a> (and will not be passed on to the query object) are <tt class=\"queryvar-unread\">striked out</tt>."
+msgstr "Aan de linkerkant zie je de reguliere expressie-patronen waartegen de inkomende URL wordt gematcht. De eerste overeenkomt in de lijst \"wint\". Aan de linkerkant ziet u de query-variabelen die door deze overeenkomst worden ingesteld. Door met de muis over een subpatroon te gaan wordt het corresponderende variabele gemarkeerd, en vice-versa. Query-variabelen die <a href=\"%s\">niet als publiek gedefinieerd zijn</a> (en die niet zullen worden doorgegeven aan het query-object) zijn <tt class=\"queryvar-unread\">doorstreept</tt>."
+
+#: include/rewrite-analyzer.php:208
+#@ monkeyman-rewrite-analyzer
+msgid "You can test a URL by typing it in the \"Test URL\" textbox. Only matching rules will be displayed, with the corresponding query vars filled in. Clear the box to display all rules again."
+msgstr "Je kan een URL testen door het in te geven in het \"Test URL\" tekstvak. Enkel overeenkomende regels worden weergegeven, met de respectievelijke query-variabelen ingevuld. Maak het vak leeg om alle regels terug weer te geven."
+
+#: include/rewrite-analyzer.php:210
+#@ monkeyman-rewrite-analyzer
+msgid "Click to show a quick syntax reference for the most common elements"
+msgstr "Klik om een korte syntax-handleiding met de meest voorkomende elementen weer te geven"
+
+#: include/rewrite-analyzer.php:214
+#@ monkeyman-rewrite-analyzer
+msgid "The regular expressions follow <a href=\"http://php.net/pcre\">the PCRE syntax</a>. A <code>^</code> is appended in front to match the start of the string, and the full regex is wrapped in <code>#</code>."
+msgstr "De reguliere expressies volgen <a href=\"http://php.net/pcre\">de PCRE syntax</a>. Er wordt een <code>^</code> in het begin toegevoegd om de start van de tekenreeks te matchen, en de volledige expressie wordt tussen <code>#</code> gezet."
+
+#: include/rewrite-analyzer.php:219
+#@ monkeyman-rewrite-analyzer
+msgid "<code>()</code>"
+msgstr "<code>()</code>"
+
+#: include/rewrite-analyzer.php:220
+#@ monkeyman-rewrite-analyzer
+msgid "A <em>subpattern</em>. Everything between the parentheses will be saved and can be used later in the substituted URL."
+msgstr "Een <em>subpatroon</em>. Alles tussen de haakjes wordt bijgehouden en kan later gebruikt worden in de vervangende URL."
+
+#: include/rewrite-analyzer.php:222
+#@ monkeyman-rewrite-analyzer
+msgid "<code>|</code>"
+msgstr "<code>|</code>"
+
+#: include/rewrite-analyzer.php:223
+#@ monkeyman-rewrite-analyzer
+msgid "A vertical bar indicates <em>alternative</em> patterns. For example, <code>(feed|rdf|rss)</code> matches either <code>feed</code>, <code>rdf</code> or <code>rss</code>."
+msgstr "Een verticale streep duidt <em>alternatieven</em> aan. Zo zal <code>(feed|rdf|rss)</code> bijvoorbeeld zowel <code>feed</code>, <code>rdf</code> als <code>rss</code> matchen."
+
+#: include/rewrite-analyzer.php:225
+#@ monkeyman-rewrite-analyzer
+msgid "<code>[]</code>"
+msgstr "<code>[]</code>"
+
+#: include/rewrite-analyzer.php:226
+#@ monkeyman-rewrite-analyzer
+msgid "A <em>character class</em>. Any character specified in this class may appear. If the first character is a <code>^</code>, the class is inverted: none of the specified characters may appear. The characters are sometimes specified as <em>ranges</em>: for example, <code>[0-9]</code> matches any digit, <code>[a-z]</code> any lowercase character. You can combine them: <code>[0-9a-zA-Z]</code> matches any digit or character. A common pattern is <code>[^/]</code>: anything that is not a forward slash."
+msgstr "Een <em>teken-klasse</em>. Elk teken dat in deze klasse opgegeven wordt mag voorkomen. Als het eerste teken een <code>^</code> is, wordt de klasse ge-inverteerd: geen enkele van opgegeven tekens mag dan voorkomen. De tekens worden soms als <em>reeksen</em> opgegeven: zo zal <code>[0-9]</code> elk cijfer matchen, en <code>[a-z]</code> elke kleine letter. Ze kunnen ook gecombineerd worden: <code>[0-9a-zA-Z]</code> matcht elk cijfer, hoofd- of kleine letter. Een veelvoorkomend patroon is <code>[^/]</code>: alles behalve een schuine streep."
+
+#: include/rewrite-analyzer.php:228
+#@ monkeyman-rewrite-analyzer
+msgid "<code>{n,m}</code>"
+msgstr "<code>{n,m}</code>"
+
+#: include/rewrite-analyzer.php:229
+#@ monkeyman-rewrite-analyzer
+msgid "A <em>repetition</em> of the previous item (character, character class, subpattern, ...). The numbers indicate the minimum and maximum number of occurrences. If you only specify one number (without a comma) it indicates an exact number of occurrences. If you specify one number before the comma it indicates the minimum number and no maximum. To help you understand the target of the repetition, it will be highlighted when you hover it. Adding a <code>?</code> after a repetition makes it <em>non-greedy</em>, meaning it will match the shortest possible string that still makes the whole pattern match."
+msgstr "Een <em>herhaling</em> van het voorgaande item (teken, teken-klasse, subpatroon, ...). De cijfers duiden het minimum en maximum aantal herhalingen aan. Als er één nummer (zonder komma) staat betekent dit een exact aantal herhalingen. Als er één nummer voor de komma en geen erna staat betekent dit een minimum zonder maximum. Om te helpen wordt het doel van de herhaling gemarkeerd als je met de muis over de herhaling gaat. Door een <code>?</code> na een herhaling te plaatsen wordt ze <em>non-greedy</em>, wat betekent dat de kortste tekenreeks wordt gebruikt die het volledig patroon nog doet matchen."
+
+#: include/rewrite-analyzer.php:231
+#@ monkeyman-rewrite-analyzer
+msgid "<code>*</code>, <code>+</code> and <code>?</code>"
+msgstr "<code>*</code>, <code>+</code> en <code>?</code>"
+
+#: include/rewrite-analyzer.php:232
+#@ monkeyman-rewrite-analyzer
+msgid "A shorthand for <code>{0,}</code> (zero or more), <code>{1,}</code> (one or more) and <code>{0,1}</code> (zero or one), respectively."
+msgstr "Een verkorte notatie voor respectievelijk <code>{0,}</code> (nul of meer), <code>{1,}</code> (één of meer) en <code>{0,1}</code> (nul of één)."
+
+#: include/rewrite-analyzer.php:234
+#@ monkeyman-rewrite-analyzer
+msgid "<code>.</code>"
+msgstr "<code>.</code>"
+
+#: include/rewrite-analyzer.php:235
+#@ monkeyman-rewrite-analyzer
+msgid "A metacharacter that matches <em>any character</em>."
+msgstr "Een meta-teken dat <em>elk teken</em> matcht."
+
+#. translators: plugin header field 'Name'
+#: rewrite-analyzer.php:0
+#@ monkeyman-rewrite-analyzer
+msgid "Monkeyman Rewrite Analyzer"
+msgstr "Monkeyman Rewrite Analyzer"
+
+#: ui/rewrite-analyzer.php:5
+#, php-format
+#@ monkeyman-rewrite-analyzer
+msgid "Pretty permalinks are disabled, you can change this on <a href=\"%s\">the Permalinks settings page</a>."
+msgstr "Mooie permalinks zijn uitgeschakeld, je kan dit aanpassen op <a href=\"%s\">de Permalinks-pagina</a>."
+
+#. translators: plugin header field 'Version'
+#: rewrite-analyzer.php:0
+#@ monkeyman-rewrite-analyzer
+msgid "1.0"
+msgstr "1.0"
+

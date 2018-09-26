@@ -1,0 +1,239 @@
+#  POT (Portable Object Template)
+#
+#  This file is part of the WordPress Varnish Modified plugin for WordPress.
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: wpvm 2.0.7\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-26 11:47+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: wpvm.php:87
+msgid "Settings"
+msgstr ""
+
+#: wpvm-settings.php:225
+msgid "WPVM options saved"
+msgstr ""
+
+#: wpvm-settings.php:238
+msgid "WPVM options were reset to defaults"
+msgstr ""
+
+#: wpvm-admin-panel.php:68
+msgid "WPVM"
+msgstr ""
+
+#: wpvm-admin-panel.php:69
+msgid "WPVM (WordPress Varnish Modified) purges pages from Varnish caching servers either automatically as content is updated or on demand."
+msgstr ""
+
+#: wpvm-admin-panel.php:90 wpvm-admin-panel.php:250
+msgid "Varnish Settings"
+msgstr ""
+
+#: wpvm-admin-panel.php:91 wpvm-admin-panel.php:526
+msgid "Varnish"
+msgstr ""
+
+#: wpvm-admin-panel.php:117
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: wpvm-admin-panel.php:132
+msgid "Successfully purged URL:"
+msgstr ""
+
+#: wpvm-admin-panel.php:137
+msgid "Successfully purged URL group!"
+msgstr ""
+
+#: wpvm-admin-panel.php:142
+msgid "Successfully purged robots.txt!"
+msgstr ""
+
+#: wpvm-admin-panel.php:147
+msgid "Successfully purged all cache!"
+msgstr ""
+
+#: wpvm-admin-panel.php:255
+msgid "Varnish Servers"
+msgstr ""
+
+#: wpvm-admin-panel.php:256
+msgid "Here you can enter the connection settings, such as the IP address and port, for each of your Varnish servers. The secret is only used for authentication if you are connecting to the Varnish admin port."
+msgstr ""
+
+#: wpvm-admin-panel.php:263
+msgid "Varnish Server IP Address"
+msgstr ""
+
+#: wpvm-admin-panel.php:264
+msgid "Varnish Server Port"
+msgstr ""
+
+#: wpvm-admin-panel.php:265
+msgid "Varnish Admin Socket Secret"
+msgstr ""
+
+#: wpvm-admin-panel.php:273
+msgid "Add one more server"
+msgstr ""
+
+#: wpvm-admin-panel.php:281 wpvm-admin-panel.php:284
+msgid "Connection Timeout"
+msgstr ""
+
+#: wpvm-admin-panel.php:287
+msgid "Enter the connection timeout in seconds (Default is 5 seconds)."
+msgstr ""
+
+#: wpvm-admin-panel.php:295 wpvm-admin-panel.php:298
+msgid "Use Admin Port"
+msgstr ""
+
+#: wpvm-admin-panel.php:301
+msgid "Connect to the admin port of the Varnish server. Make sure the correct port and secret have been set in the connection settings above."
+msgstr ""
+
+#: wpvm-admin-panel.php:309 wpvm-admin-panel.php:312
+msgid "Extended Object Purge"
+msgstr ""
+
+#: wpvm-admin-panel.php:315
+msgid "If selected, apart from the object page, all related pages, such as archives, feeds, homepage, sitemap, are also purged."
+msgstr ""
+
+#: wpvm-admin-panel.php:323 wpvm-admin-panel.php:326
+msgid "Extended Archive Purge"
+msgstr ""
+
+#: wpvm-admin-panel.php:329
+msgid "If selected, all pages of the archive will be purged, otherwise only the first page of the archive is purged."
+msgstr ""
+
+#: wpvm-admin-panel.php:337 wpvm-admin-panel.php:340
+msgid "Extended Comment Purge"
+msgstr ""
+
+#: wpvm-admin-panel.php:343
+msgid "If selected, all comment pages for a specific object are purged, otherwise only the first comment page is purged."
+msgstr ""
+
+#: wpvm-admin-panel.php:351 wpvm-admin-panel.php:354
+msgid "Purge command"
+msgstr ""
+
+#: wpvm-admin-panel.php:361
+msgid "If you connect to the Varnish admin port, this option refers to the command that should be used to purge cached objects. For Varnish v2, please select <code>purge</code>. For Varnish v3 or newer please select <code>ban</code>. If you do not connect to the admin port, then <code>BAN</code> HTTP requests with a URI containing regular expressions are sent to the Varnish servers."
+msgstr ""
+
+#: wpvm-admin-panel.php:369 wpvm-admin-panel.php:372
+msgid "Purge key"
+msgstr ""
+
+#: wpvm-admin-panel.php:374
+msgid "If the invalidation of cached objects takes place with <code>BAN</code> or <code>PURGE</code> HTTP requests (this happens when you don't use the admin port), it is possible to define a custom HTTP header name and value to be sent to the Varnish servers, where the header should be verified before accepting the <code>BAN</code> or <code>PURGE</code> request. This is an extra security measure you can take in addition to IP address ACLs. Please note that there are no defaults. Both of the following fields need to be filled before the HTTP header is actually sent."
+msgstr ""
+
+#: wpvm-admin-panel.php:376
+msgid "HTTP header name"
+msgstr ""
+
+#: wpvm-admin-panel.php:381
+msgid "Enter a name for the HTTP header, such as: <code>X-Purge-Key</code>"
+msgstr ""
+
+#: wpvm-admin-panel.php:385
+msgid "HTTP header value"
+msgstr ""
+
+#: wpvm-admin-panel.php:390
+msgid "Enter a value for the HTTP header. It is recommended to use a combination of alphabetic and numeric characters (maximum: 255)."
+msgstr ""
+
+#: wpvm-admin-panel.php:400 wpvm-admin-panel.php:403
+msgid "Logging"
+msgstr ""
+
+#: wpvm-admin-panel.php:405
+msgid "Here you can enable the recording of the purged URLs to a log file."
+msgstr ""
+
+#: wpvm-admin-panel.php:407
+msgid "Enable logging"
+msgstr ""
+
+#: wpvm-admin-panel.php:411
+msgid "If checked, specific events, such as purged URLs or errors, are recorded in a log file at the location specified below."
+msgstr ""
+
+#: wpvm-admin-panel.php:415
+msgid "Log file path"
+msgstr ""
+
+#: wpvm-admin-panel.php:419
+msgid "Enter the path to the log file. If left blank, no logging activity will occur, even if logging has been enabled."
+msgstr ""
+
+#: wpvm-admin-panel.php:429 wpvm-admin-panel.php:432
+msgid "URL Group"
+msgstr ""
+
+#: wpvm-admin-panel.php:434
+msgid "Here you can enter a list of custom paths (one per line) which can be purged using the tool buttons below or from the WordPress admin bar."
+msgstr ""
+
+#: wpvm-admin-panel.php:440
+msgid "For instance, you can enter URLs of pages not generated by WordPress or files not served by WordPress."
+msgstr ""
+
+#: wpvm-admin-panel.php:458
+msgid "Save Changes"
+msgstr ""
+
+#: wpvm-admin-panel.php:463
+msgid "Reset to defaults"
+msgstr ""
+
+#: wpvm-admin-panel.php:472
+msgid "Tools"
+msgstr ""
+
+#: wpvm-admin-panel.php:473
+msgid "Use these tools for quick purges."
+msgstr ""
+
+#: wpvm-admin-panel.php:479
+msgid "Enter a custom URL and press the <em>Purge</em> button to purge."
+msgstr ""
+
+#: wpvm-admin-panel.php:482 wpvm-admin-panel.php:487 wpvm-admin-panel.php:491
+#: wpvm-admin-panel.php:495
+msgid "Purge"
+msgstr ""
+
+#: wpvm-admin-panel.php:486
+msgid "Press the <em>Purge</em> button to purge the URL group that has been defined in the settings above."
+msgstr ""
+
+#: wpvm-admin-panel.php:490
+msgid "Press the <em>Purge</em> button to purge the <code>robots.txt</code> file."
+msgstr ""
+
+#: wpvm-admin-panel.php:494
+msgid "Press the <em>Purge</em> button to purge all cached content. In big web sites with high traffic this can cause a significant increase in the application server load, until the content is cached again."
+msgstr ""
+
+#: wpvm-admin-panel.php:530
+msgid "Varnish Cache Purging"
+msgstr ""

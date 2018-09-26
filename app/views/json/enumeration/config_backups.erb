@@ -1,0 +1,10 @@
+"config_backups": {
+<% unless @config_backups.empty? -%>
+<% last_index = @config_backups.size - 1 -%>
+<% @config_backups.each_with_index do |config_backup, index| -%>
+  <%= config_backup.url.to_json %>: {
+    <%= render('@finding', item: config_backup) -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

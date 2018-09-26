@@ -1,0 +1,19 @@
+"timthumbs": {
+<% unless @timthumbs.empty? -%>
+<% last_index = @timthumbs.size - 1 -%>
+<% @timthumbs.each_with_index do |timthumb, index| -%>
+  <%= timthumb.url.to_json %>: {
+    <%= render('@finding', item: timthumb) -%>,
+    <% if timthumb.version -%>
+    "version": {
+      "number": <%= timthumb.version.number.to_json %>,
+      "confidence": <%= timthumb.version.confidence.to_json %>,
+      <%= render('@finding', item: timthumb.version) -%>
+    }
+    <% else -%>
+    "version": null
+    <% end -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

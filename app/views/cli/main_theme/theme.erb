@@ -1,0 +1,6 @@
+<% if @theme -%>
+<%= info_icon %> WordPress theme in use: <%= @theme %>
+<%= render('@theme', theme: @theme, show_parents: true) -%>
+<% else -%>
+<%= notice_icon %> The main theme could not be detected.
+<% end %>

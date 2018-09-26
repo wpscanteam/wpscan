@@ -1,0 +1,49 @@
+<%= render('@wp_item', wp_item: @theme) -%>
+ | Style URL: <%= @theme.style_url %>
+<% if @theme.style_name -%>
+ | Style Name: <%= @theme.style_name %>
+<% end -%>
+<% if @theme.style_uri -%>
+ | Style URI: <%= @theme.style_uri %>
+<% end -%>
+<% if @theme.description -%>
+ | Description: <%= @verbose ? @theme.description : @theme.description[0, 100] + '...' %>
+<% end -%>
+<% if @theme.author -%>
+ | Author: <%= @theme.author %>
+<% end -%>
+<% if @theme.author_uri -%>
+ | Author URI: <%= @theme.author_uri %>
+<% end -%>
+<% if @theme.template && @verbose -%>
+ | Template: <%= @theme.template %>
+<% end -%>
+<% if @theme.license && @verbose -%>
+ | License: <%= @theme.license %>
+<% end -%>
+<% if @theme.license_uri && @verbose -%>
+ | License URI: <%= @theme.license_uri %>
+<% end -%>
+<% if @theme.tags && @verbose -%>
+ | Tags: <%= @theme.tags %>
+<% end -%>
+<% if @theme.text_domain && @verbose -%>
+ | Text Domain: <%= @theme.text_domain %>
+<% end -%>
+ |
+<%= render('@finding', item: @theme) -%>
+ |
+<% if @theme.version -%>
+ | Version: <%= @theme.version %> (<%= @theme.version.confidence %>% confidence)
+<%= render('@finding', item: @theme.version) -%>
+<% else -%>
+ | The version could not be determined.
+<% end -%>
+<% if @show_parents && !(parents = @theme.parent_themes).empty? -%>
+ |
+ | Parent Theme(s):
+<% parents.each do |parent| -%>
+ |
+<%= render('@theme', theme: parent, show_parents: false) -%>
+<% end -%>
+<% end -%>

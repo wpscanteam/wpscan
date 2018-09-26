@@ -1,0 +1,11 @@
+"users": {
+<% unless @users.empty? -%>
+<% last_index = @users.size - 1 -%>
+<% @users.each_with_index do |user, index| -%>
+  <%= user.username.to_json %>: {
+    "id": <%= user.id.to_json %>,
+    <%= render('@finding', item: user) -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

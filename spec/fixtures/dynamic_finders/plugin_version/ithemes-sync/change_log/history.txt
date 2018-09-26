@@ -1,0 +1,190 @@
+1.0.0 - 2013-11-11 - Chris Jean
+	iThemes Sync launch!
+1.1.0 - 2013-11-20 - Chris Jean
+	Enhancement: Added ability to handle desync user requests from the Sync server.
+	Enhancement: Now avoids plugin conflicts that caused plugins and themes to not be properly reported and which prevented updates from being successfully applied.
+	Enhancement: Now supports update reporting for and updating of plugins with updater code that only works with pre-3.0 versions of WordPress.
+	Enhancement: Now supports sending local server status information back to the Sync server.
+1.1.1 - 2013-11-20 - Chris Jean
+	Bug Fix: Requests for the plugin settings would return the authentications data. Now, the authentications data must be explicitly requested in order to be retrieved.
+1.1.2 - 2013-11-20 - Chris Jean
+	Enhancement: By default, pulling update details will not force a flush of all the cached update data. Instead, this can now be specifically requested by the server.
+1.1.3 - 2013-11-22 - Chris Jean
+	Enhancement: The server will now receive a listing of the supported verbs with a status check. This will help the Sync Dashboard determine if the plugin needs to be upgraded in order to access specific features.
+1.1.4 - 2013-11-26 - Chris Jean
+	Bug Fix: Removed call to the mysqli_get_server_info() function when pulling server details as it would trigger errors on some systems.
+	Bug Fix: Removed the /etc/passwd check when pulling server details. This was used to try to count the number of users on the system. It was removed since it triggered hacking attempt notices in the Wordfence plugin.
+1.1.5 - 2013-12-02 - Chris Jean
+	Bug Fix: Users that are not recognized by the Sync server can now be unsynced. This prevents the issue where users that are unsynced on the server when the site cannot be communicated with (or when the plugin is inactive) cannot be removed from the site.
+1.1.6 - 2013-12-09 - Chris Jean
+	Bug Fix: Fixed issue that can cause failure to load plugin details on sites that have a different url and wpurl.
+1.1.7 - 2013-12-12 - Chris Jean
+	Enhancement: Updated the styling to work better with WordPress 3.8.
+1.1.8 - 2013-12-13 - Packaging Bot (lib/updater)
+	Enhancement: Recently updated plugins and themes no longer report that an update is available.
+	Enhancement: Added alternate line styling to the listings on the licensing page.
+	Enhancement: Products with iThemes in the name will now properly capitalize the name.
+	Enhancement: The updater and licensing system now handle iThemes server outages without causing long page delays or by reporting confusing error messages.
+1.1.9 - 2013-12-13 - Chris Jean
+	Enhancement: The Sync server can now create requests that force the iThemes updater system to refresh itself.
+1.1.10 - 2013-12-16 - Chris Jean
+	Enhancement: Added user security privileges when handling requests from the Sync server. This helps avoid issues with some security plugins.
+1.1.11 - 2013-12-18 - Packaging Bot (lib/updater)
+	Bug Fix: Removed unneeded check on package-info.ithemes.com which was causing performance issues on some sites.
+1.1.12 - 2013-12-19 - Chris Jean
+	Enhancement: Improved the get-status request so that the Sync server can request only the specific data it needs, causing less load and faster Sync responses.
+1.1.13 - 2013-12-19 - Packaging Bot (lib/updater)
+	Bug Fix: Licensing will now be universal across all sites of a multisite network. This means that you will only need to license on one site to have the license apply across the entire network.
+1.2.0 - 2014-01-20 - Chris Jean
+	Enhancement: Added the ability to manage plugins and themes.
+	Enhancement: get-status requests now support variable display elements.
+1.3.0 - 2014-01-29 - Chris Jean
+	Enhancement: Added the ability to install plugins and themes.
+	Bug Fix: Active plugins will be deactivated before uninstalling.
+1.3.1 - 2014-02-03 - Packaging Bot (lib/updater)
+	Bug Fix: Licensing on SSL-enabled sites now works properly.
+1.3.2 - 2014-02-18 - Chris Jean
+	Enhancement: Adding ?ithemes-sync-force-display=1 to an admin page URL while logged in as a user that has manage-options privileges will force a site that has Sync hidden to display Sync temporarily for that user.
+	Enhancement: Data sent back for update requests now includes more data to help identify systems that don't accurately report if the update was successful or not.
+	Enhancement: Improved error messages for issues communicating with the Sync server.
+	Enhancement: Added a compatibility check to ensure that Gravity Forms's updates are showing and able to be applied.
+	Enhancement: Added checks to provide informational messages if more than one iThemes Sync plugin is active on a site.
+	Enhancement: Improved styling of admin notices on the Settings > iThemes Sync page.
+	Bug Fix: Increased the amount of time that the plugin will wait for responses from the Sync server when authenticating and deauthenting. This fixes the issue where some servers could not sync or unsync users due to server communication time outs.
+1.3.3 - 2014-02-19 - Chris Jean
+	Bug Fix: Changed code that caused compatibility issues with some servers.
+1.3.4 - 2014-02-21 - Chris Jean
+	Bug Fix: Compatibility fix for plugins that corrupt the data sent back to the Sync server.
+1.3.5 - 2014-03-07 - Chris Jean
+	Enhancement: Valid requests from the Sync server will cause the plugin pretend to be an Administrator user. This is to avoid compatibility issues with some security plugins.
+1.4.0 - 2014-03-28 - Chris Jean
+	Bug Fix: Updating a WordPress multisite will now properly apply the network upgrade after updating.
+	Enhancement: Users that are not recognized by the server are now identified on the Settings > iThemes Sync page.
+	New Feature: Plugins and themes can now send notices to Sync. Details in api.txt.
+1.4.1 - 2014-04-04 - Chris Jean
+	Enhancement: The notice feature now supports more options, making it ready for use.
+1.4.2 - 2014-04-15 - Chris Jean
+	Enhancement: Made small adjustments to prepare for WordPress 3.9.
+	Bug Fix: The WordPress version is now correctly sent back to the Sync server, even when a plugin or other modification modifies the version number. This fixes issues with WordPress updates consistently being available, even when it is up-to-date.
+1.5.0 - 2014-05-20 - Chris Jean
+	Enhancement: Improved feedback when installing themes and plugins.
+	Enhancement: Added the ability to install and activate a plugin or theme in one request.
+	Bug Fix: Notices generated by mysql_get_server_info() and mysqli_get_server_info() are now hidden and will not fill error logs.
+1.5.1 - 2014-06-26 - Chris Jean
+	Bug Fix: Users can now properly be synced on sites that report the WordPress version incorrectly.
+1.6.0 - 2014-07-01 - Chris Jean
+	Enhancement: Added ability to manage comments, roles, and users.
+1.6.1 - 2014-07-11 - Chris Jean
+	Bug Fix: Servers that have strict disable_functions settings that also stop PHP execution when a disabled function is called will no longer cause Sync requests to fail.
+1.6.2 - 2014-07-23 - Chris Jean
+	Enhancement: Additional user details, such as first name and last name can be requested from the site.
+1.6.3 - 2014-08-22 - Chris Jean
+	Bug Fix: Caching plugins no longer prevent Sync from reporting and installing available updates.
+1.6.4 - 2014-08-25 - Chris Jean
+	Bug Fix: Fixed compatibility issue with the Duo Two-Factor Authentication plugin.
+1.6.5 - 2014-10-08 - Chris Jean
+	Enhancement: Syncing users now uses the new authentication system.
+	Bug Fix: Fixed warning messages being generated when unauthenticated requests are received.
+1.6.6 - 2014-10-23 - Aaron D. Campbell
+	Enhancement: Add get-meta, set-meta, and delete-meta actions to manage-users verb
+	Enhancement: Client Dashboard
+1.6.7 - 2014-10-23 - Chris Jean
+	Bug Fix: Fixed compatibility issues with functions blacklisted by Suhosin's suhosin.executor.func.blacklist ini setting.
+1.6.8 - 2014-10-28 - Chris Jean
+	Bug Fix: Fixed infinite loop issue that caused pages for logged in users to fail to load on some sites.
+1.6.9 - 2014-10-31 - Aaron D. Campbell
+	Bug Fix: Actual fix for possible infinite loop caused by child nodes with no valid parent in admin bar
+1.6.10 - 2014-11-10 - Aaron D. Campbell
+	Enhancement: Updates to Gravity Forms's verb to allow pagination and proper labeling on Sync side
+1.6.11 - 2014-11-10 - Chris Jean
+	Enhancement: Added an alternate contaction method using admin-ajax.php in order to avoid communication issues on some systems.
+	Enhancement: Improved system memory statistics for some Linux systems.
+	Bug Fix: Corrected a timing issue that prevented updates for some plugins from appearing in the Sync dashboard.
+1.6.12 - 2014-11-14 - Packaging Bot (lib/updater)
+	Enhancement: Reduced caching to allow updates to appear more quickly.
+	Enhancement: Authenticating users now uses the new authentication system.
+1.7.0 - 2014-11-18 - Chris Jean
+	Enhancement: Added the ability to manage iThemes product licenses.
+1.7.1 - 2014-11-24 - Chris Jean
+	Bug Fix: Data containing non-ASCII characters is now properly parsed.
+1.7.4 - 2015-03-05 - Aaron D. Campbell
+	Enhancement: Add get-posts and manage-options verbs
+	Enhancement: Added ability to integrate social sharing
+1.7.5 - 2015-04-22 - Aaron D. Campbell
+	Bug Fix: Client Dashboard shouldn't hide the hamburger icon used for responsive admin
+1.7.6 - 2015-04-23 - Packaging Bot (lib/updater)
+	Compatibility Fix: Updated plugin and theme update data format to match changes in WordPress 4.2.
+1.7.7 - 2015-06-22 Chris Jean
+	Bug Fix: Resolved a fatal error situation that could happen when WordPress attempts to display an error message during plugin or theme upgrades.
+1.7.8 - 2015-07-14 - Packaging Bot (lib/updater)
+	Enhancement: Updated link to iThemes support.
+1.7.9 - 2015-07-21 - Chris Jean
+	Bug Fix: An error is no longer sent when a plugin or theme updates to a newer version than the one reported.
+1.8.0 - 2015-08-18 - Chris Jean
+	Enhancement: Added support for translations being located outside the plugin.
+	Compatibility Fix: Later priorities for Sync dashboard admin menu filtering to work with certain edge-case plugins.
+	Bug Fix: Changed path sent to load_plugin_textdomain() in order to properly load translations.
+1.8.1 - 2015-08-24 - Chris Jean
+	Compatibility Fix: Added support for a define to disable a feature of Sync that sets the WP_ADMIN define to true when handling an authenticated request from the Sync server. This feature exists to prevent compatibility issues with some security plugins yet can also cause a conflict with some plugins. To disable this feature, add the following to the site's wp-config.php file: define( 'ITHEMES_SYNC_SKIP_SET_IS_ADMIN_TO_TRUE', true );
+1.8.2 - 2015-09-25 - Chris Jean
+	Compatibility Fix: Updated method that the Client Dashboard uses to read admin menu details. This avoids conflicts with some plugins that modify the admin menu later than expected.
+1.8.3 - 2015-11-05 - Chris Jean
+	Bug Fix: Data from plugins, themes, and other sources that contain non-UTF-8 data are now properly parsed into UTF-8 encoding. This prevents problems communicating between the site and the Sync server when such data are present.
+1.9.0 - 2016-04-22 - Lew Ayotte, Ty Carlson
+	Enhancement: Adding Core, Plugin, and Theme notices
+	Enhacnement: Adding more information with Plugin and Theme verbs
+	Compatibility Fix: Automatically add Sync Server IPs to iThemes Security whitelist
+	Bug Fix: Handle reporting properly when site is synced to multiple profiles
+1.10.0 - 2016-06-21 - Lew Ayotte
+	Enhancement: Code efficiency updates
+	Bug Fix: Fixing invalid path reference
+1.11.0 - 2016-07-28 - Lew Ayotte
+	Enhancement: Pre-Release to new Whitelabelled Reporting Verbs
+	Bug Fix: Stop sending empty security notices
+1.12.0 - 2016-08-24 - Lew Ayotte
+	Enhancement: Federated Login
+1.12.1 - 2016-08-25 - Lew Ayotte
+	Bug Fix: Removing debug code not needed in live code
+1.13.0 - 2016-08-25 - Lew Ayotte
+	Enhancement: Extending Federated Login functionality to other User Accounts
+1.14.0 - 2016-08-29 - Lew Ayotte
+	Improvement: Reduce amount of BackupBuddy noise being sent through to Urgent Notices.
+1.14.1 - 2016-08-29 - Lew Ayotte
+	Bug Fix: Typo in last commit prevent some BuB notices that are needed
+1.15.0 - 2016-09-02 - Lew Ayotte
+	Improvement: Extending Federated Login functionality to include subpages to wp-admin
+1.16.0 - 2016-09-28 - Lew Ayotte
+	Improvement: Extending comment functionality
+1.16.1 - 2016-09-29 - Lew Ayotte
+	Committing missing code change, no affect on code but needs to be included
+1.17.0 - 2016-11-08 - Lew Ayotte
+	Improvement: Posts/Pages and Yoast SEO functionality
+1.17.1 - 2016-11-08 - Lew Ayotte
+	Bug Fix: Removing improper action priority.
+1.17.2 - 2016-11-09 - Lew Ayotte
+	Bug Fix: Try to set admin user as synced user for activity actions
+1.171.2 - 2016-11-09 - Lew Ayotte
+	Tagging Version Number Bug
+1.172.0 - 2016-11-14 - Lew Ayotte, Glenn Ansley
+	Enhancement: Duplicate Posts
+	Enhancement: Delete Post Revisions
+1.172.1 - 2016-11-28 - Glenn Ansley
+	Enhancement: Database Optimizations
+1.172.2 - 2016-12-01 - Glenn Ansley
+	Bug Fix: Workaround to download reports when fopen or openssl are disabled.
+1.173.0 - 2017-01-05 - Lew Ayotte
+	Enhancement: Google Search Console/Webmaster Tools functionality
+1.173.1 - 2017-01-05 - Lew Ayotte
+	Enhancement: Change how we store google verification option for Search Console/Webmaster Tools
+1.174.0 - 2017-02-15 - Lew Ayotte, Glenn Ansley
+	Bug Fix: Fix error when itsec sends data in WP_Error format
+1.175.0 - 2017-02-15 - Glenn Ansley
+	Enhancement: Add ability to read and set most options found Settings pages.
+2.0.0 - 2017-06-01 - Lew Ayotte
+	Initial release to WordPress.org
+2.0.1 - 2017-06-21 - Lew Ayotte
+	Bug Fix: Adding code to get-authentication-token verb to set the scheme to https by default if it should be
+2.0.3 - 2017-09-26 - Glenn Ansley
+	Improvement: Refactored verbs to improve add-site function from Sync Dashboard.
+2.0.4 - 2017-12-21 - Lew Ayotte
+	Bug Fix: Ignored Language Pack Updates when updating Core/Plugins/Themes, for now

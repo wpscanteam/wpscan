@@ -1,0 +1,14 @@
+<link rel='stylesheet' href='http://wp.lab/wp-content/themes/dl-1/style.css?ver=4.1.1' type='text/css' media='all'>
+
+<img src="http://wp.lab/wp-content/themes/image.png" alt="Should not be detected" />
+
+<style type="text/css">
+  #fancybox-loading.fancybox-ie div {
+    background: transparent;
+    filter: AlphaImageLoader(src='http://wp.lab/wp-content/themes/dc-1/fancybox/fancy_loading.png', sizingMethod='scale');
+  }
+</style>
+
+<img src='http://wp.lab/wp-content/themes/dl-1/fancybox/fancy_loading.png' /> <!-- should not be reported with uniq = true -->
+
+<!--[if IE 8]><link rel="stylesheet" type="text/css" href="https://wp.lab/ie8.css" /><![endif]-->

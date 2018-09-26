@@ -1,0 +1,61 @@
+-----------------------------------------------------------
+1.7.2
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+-----------------------------------------------------------
+1.7.1
+    - Fixed entry URL containing HTML entities in message.
+
+-----------------------------------------------------------
+1.7
+    - Removed "Select a Channel" option from Channels feed setting when inviting to team.
+	- Updated initial authentication process.
+
+-----------------------------------------------------------
+1.6
+    - Added "gform_slack_invite" filter for modifying invite user parameters.
+	- Added support for auto-inviting to specific channels when inviting users to team.
+	- Added support for mapping first and last name when inviting users to team.
+	- Fixed strings for translations.
+    - Fixed an issue with the request failed message when a WP_Error occurs.
+
+-----------------------------------------------------------
+1.5
+    - Added upgrade routine to automatically define team name when a valid authentication token exists.
+    - Updated team name plugin setting to automatically add team name when adding a valid authentication token.
+    - Updated invite to team feature to only be available when API user is an admin.
+    - Updated wording from IM to Direct Message within the feed settings.
+    - Removed duplicate conditional logic setting.
+
+-----------------------------------------------------------
+1.4
+    - Added ability to invite users to team.
+    - Added conditional logic to feed settings.
+    - Added default feed name when creating a new Slack feed.
+	- Added feed duplication support.
+	- Added the 'gform_slack_process_message_shortcodes' filter for enabling the processing of shortcodes placed in the message. See https://www.gravityhelp.com/documentation/article/gform_slack_process_message_shortcodes/
+	- Added visual icon to "Send To" feed settings field.
+	- Updated API library naming to prevent conflicts with third-party Slack API libraries.
+
+-----------------------------------------------------------
+1.3
+	- Added support for custom message usernames using "gform_slack_username" hook. (https://www.gravityhelp.com/documentation/article/gform_slack_username/)
+	- Added support for delaying feed processing until payment by PayPal Standard is successfully completed.
+	- Fixed PHP warning related to attachments.
+
+-----------------------------------------------------------
+1.2
+	- Added support for attaching images to messages.
+    - Added gf_slack() for easily getting a Slack instance.
+	- Added support for custom message icons.
+
+-----------------------------------------------------------
+1.1
+	- Added support for sending messages to private groups and users.
+	- Added Spanish (es_ES) translation.
+	- Prevent empty messages from being posted to room.
+
+-----------------------------------------------------------
+1.0
+	- It's all new!

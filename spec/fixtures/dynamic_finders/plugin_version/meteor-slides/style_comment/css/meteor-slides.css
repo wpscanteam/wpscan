@@ -1,0 +1,207 @@
+/*  Stylesheet for the Meteor Slides 1.5.6 slideshow
+	
+	Copy "meteor-slides.css" from "/meteor-slides/css/" to your theme's directory to replace
+	the plugin's default stylesheet.
+	
+	If you have navigation enabled, be sure to copy the "buttons.png", "next.png",
+	and "prev.png" files to your theme's images folder and update the image paths below,
+	or create new graphics to replace them.
+	
+	Learn more about customizing the stylesheet for Meteor Slides: 
+	http://www.jleuze.com/plugins/meteor-slides/customizing-the-stylesheet/
+*/
+
+/* =Slideshow
+-------------------------------------------------------------- */
+
+div.meteor-slides {
+	clear: both;
+	float: none;
+    height: auto !important;
+	line-height: 0;
+	margin: 0;
+	max-width: 100%;
+	overflow: visible !important;
+	padding: 0;
+	position: relative;
+	z-index: 1;
+}
+div.meteor-slides.meteor-left {
+	clear: none;
+	float: left;
+	margin: 0 20px 20px 0;
+}
+div.meteor-slides.meteor-right {
+	clear: none;
+	float: right;
+	margin: 0 0 20px 20px;
+}
+div.meteor-slides.meteor-center {
+	margin: 0 auto;
+}
+div.meteor-slides.navpaged,
+div.meteor-slides.navboth {
+	margin-bottom: 20px;
+}
+.meteor-slides .meteor-clip {
+	line-height: 0;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+	width: 100%;
+}
+.meteor-slides .meteor-shim {
+	border: 0;
+	height: auto !important;
+	margin: 0;
+	max-width: 100%;
+	padding: 0;
+	width: auto\9; /* IE8 */
+}
+.meteor-slides a:focus {
+	outline: none;
+}
+
+/* =Slide
+-------------------------------------------------------------- */
+
+.meteor-slides .mslide {
+	display: none;
+	height: auto !important;
+	margin: 0;
+	max-width: 100%;
+	padding: 0;
+}
+.single-slide .mslide {
+	display: block;
+}
+.meteor-slides .mslide a {
+	border: 0;
+	margin: 0;
+	padding: 0;
+}
+.meteor-slides .mslide img {
+	border: 0;
+	box-shadow: none !important;
+	display: block;
+	height: auto !important;
+	margin: auto !important;
+	max-width: 100%;
+	padding: 0 !important;
+	width: auto\9; /* IE8 */
+}
+.meteor-slides .mslide img[src$='.png'] {
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF)"; /* IE8 */   
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#00FFFFFF,endColorstr=#00FFFFFF); /* IE7 */
+	zoom: 1;	
+}
+
+/* =Previous/Next Navigation
+-------------------------------------------------------------- */
+
+.meteor-slides ul.meteor-nav {
+	display: none;
+	list-style: none;
+    height: auto;
+	margin: 0 !important;
+	padding: 0;
+}
+.meteor-slides.navhover ul.meteor-nav {
+	display: inline;
+}
+ul.meteor-nav li {
+	display: inline;
+    height: auto;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.meteor-nav .prev a {
+	left: 0px;
+}
+.meteor-nav .next a {
+	right: 0px;
+}
+.meteor-slides .meteor-nav a {
+	border: none;
+	box-shadow: none;
+	display: block;
+	outline: none;
+	position: absolute;
+	text-indent: -9999px;
+	width: 27px;
+    height: 100%;
+    transition: all 0s ease 0s;
+	z-index: 998;
+}	
+.meteor-nav .prev a {
+	background: url('../images/prev.png') no-repeat center right;
+}
+.meteor-nav .prev a:hover {
+	background: url('../images/prev.png') no-repeat center left;
+}
+.meteor-nav .next a {
+	background: url('../images/next.png') no-repeat center left;
+}
+.meteor-nav .next a:hover {
+	background: url('../images/next.png') no-repeat center right;
+}	
+* html .meteor-nav .prev a {
+	background: url('../images/prev.gif') no-repeat center right; /* IE6 */
+}
+* html .meteor-nav .prev a:hover {
+	background: url('../images/prev.gif') no-repeat center left; /* IE6 */
+}
+* html .meteor-nav .next a {
+	background: url('../images/next.gif') no-repeat center left; /* IE6 */
+}
+* html .meteor-nav .next a:hover {
+	background: url('../images/next.gif') no-repeat center right; /* IE6 */
+}
+
+/* =Paged Navigation
+-------------------------------------------------------------- */
+
+.meteor-slides .meteor-buttons {
+    bottom: -15px;
+	box-sizing: initial;
+    height: 9px;
+    left: 0;
+    margin: 0;
+    padding: 6px 0 0;
+    position: absolute;
+    width: 100%;
+    z-index: 999;
+}
+header#branding .meteor-buttons {
+	left: 5px; /* A little nudge for Twenty Eleven */
+}
+.meteor-slides .meteor-buttons a {
+	background: url('../images/buttons.png') no-repeat bottom left;
+	border: none;
+	box-shadow: none;
+	display: block;
+	float: left;
+	width: 9px;
+	height: 9px;
+	margin: 0 3px 0 0 !important;
+	outline: none;
+	text-indent: -9999px;
+    transition: all 0s ease 0s;
+}
+.meteor-buttons a:hover {
+	background: url('../images/buttons.png') no-repeat bottom right;
+}
+.meteor-buttons a.activeSlide {
+	background: url('../images/buttons.png') no-repeat bottom right;
+}
+* html .meteor-buttons a {
+	background: url('../images/buttons.gif') no-repeat bottom left; /* IE6 */
+}
+* html .meteor-buttons a:hover {
+	background: url('../images/buttons.gif') no-repeat bottom right; /* IE6 */
+}
+* html .meteor-buttons a.activeSlide {
+	background: url('../images/buttons.gif') no-repeat bottom right; /* IE6 */
+}

@@ -1,0 +1,30 @@
+{
+  "name": "bccampus/pressbooks-cc-export",
+  "description": "Common Cartridge Export file for Pressbooks",
+  "type": "wordpress-plugin",
+  "version": "0.1.0",
+  "homepage": "https://github.com/bccampus/pressbooks-cc-export",
+  "license": "GPL-3.0+",
+  "authors": [
+    {
+      "name": "Brad Payne",
+      "email": "brad@bradpayne.ca"
+    },
+    {
+      "name": "aparedes",
+      "email": "aparedes@bccampus.ca"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^5.7",
+    "humanmade/coding-standards": "^0.2.1"
+  },
+  "scripts": {
+    "test": [
+      "@standards"
+    ],
+    "standards": [
+      "vendor/bin/phpcs --standard=phpcs.ruleset.xml *.php ."
+    ]
+  }
+}

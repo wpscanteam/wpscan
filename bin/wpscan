@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require 'wpscan'
+
+WPScan::Scan.new do |s|
+  s.controllers <<
+    WPScan::Controller::CustomDirectories.new <<
+    WPScan::Controller::InterestingFindings.new <<
+    WPScan::Controller::WpVersion.new <<
+    WPScan::Controller::MainTheme.new <<
+    WPScan::Controller::Enumeration.new <<
+    WPScan::Controller::PasswordAttack.new <<
+    WPScan::Controller::Aliases.new
+
+  s.run
+end

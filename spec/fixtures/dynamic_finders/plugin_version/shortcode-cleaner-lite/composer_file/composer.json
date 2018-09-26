@@ -1,0 +1,50 @@
+{
+    "name": "jozoor/shortcode-cleaner-lite",
+    "description": "Clean your WordPress content from unused broken shortcodes.",
+    "version": "1.0.0",
+    "keywords": ["wordpress", "shortcodes", "cleaner", "shortcode tags", "unused", "broken"],
+    "type": "wordpress-plugin",
+    "homepage": "https://plugins.jozoor.com/shortcode-cleaner",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "jozoor",
+            "email": "info@jozoor.com",
+            "homepage": "https://jozoor.com/",
+            "role": "Developer"
+        },
+        {
+            "name": "Mohamed Abd Elhalim",
+            "email": "mohamdiod@gmail.com",
+            "homepage": "https://mohamd.io/",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "codestar/codestar": "dev-dist",
+        "codestar/custom-styles": "dev-dist",
+        "jozoor/wp-plugin-action-links": "dev-dist"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:mohamdio/codestar.git",
+            "no-api": true
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:mohamdio/codestar-custom-styles.git",
+            "no-api": true
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.com:mohamdio/wp-plugin-action-links.git",
+            "no-api": true
+        }
+    ],
+    "autoload": {
+        "psr-4": { "JO\\ShortcodeCleaner\\": "includes/" }
+    },
+    "scripts": {}
+}

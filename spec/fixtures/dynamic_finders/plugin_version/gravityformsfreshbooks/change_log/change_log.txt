@@ -1,0 +1,112 @@
+# 2.5.2 | 2018-01-23
+	- Added License GPL to the plugin header
+	- Updated Plugin URI and Author URI to https in plugin header
+
+
+# 2.5.1 | 2017-05-15
+   - Fixed a PHP notice which would occur when sending a request to Freshbooks.
+
+
+# 2.5 | 2017-04-28
+   - Added security enhancements.
+   - Added translations.
+
+
+# 2.4 | 2016-12-06
+   - Renamed to Freshbooks Classic.
+
+
+# 2.3.1 | 2016-11-30
+   - Fixed strings for translations
+
+
+# 2.3 | 2016-08-31
+   - Added $feed as the fourth parameter of the gform_freshbooks_args_pre_create filter.
+   - Added tax fields back in API code so the hook gform_freshbooks_args_pre_create can be used to pass tax names/percentages
+   - Fixed notices thrown in API code when tax fields do not exist
+   - Fixed an issue with the upgrade routine which caused it run even if a pre-framework version hadn't been installed.
+
+
+# 2.2 | 2015-04-20
+   - Fixed a low severity security vulnerability in the admin area which could be exploited by authenticated users with form administration permissions.
+
+
+# 2.1 | 2015-02-26
+   - Added option to mark invoice as Paid. Only available for Product and Services type payment feeds. When enabled and a compatible payment feed runs, if the payment is successfully completed, a payment will be created in Freshbooks, updating the invoice status to paid. sendByEmail will also be delayed until after the payment has been created.
+   - Added note to entry upon successful invoice/estimate creation.
+   - Added merge tag support to the client & invoice/estimate Notes.
+   - Added the 'gform_freshbooks_args_pre_create' filter so the invoice/estimate field values can be overridden.
+        add_filter( 'gform_freshbooks_args_pre_create', function ( $args, $form, $entry ) {
+            // do stuff with the $args
+            return $args;
+        }, 10, 3 );
+   - Updated feed settings page so Client and Invoice/Estimate settings are organised into their own sections.
+   - Updated gravityformsfreshbooks.pot
+   - Updated Organization so that it is not required when mapping fields (since Freshbooks does not require it).
+   - Updated logging statements.
+
+
+# 2.0 | 2014-12-15
+   - Added validation to discount to make sure it is between 0 and 100 percent.
+   - Added ability to have invoice automatically emailed to the client, instead of remaining in Draft status in FreshBooks.
+   - Added text domain/path to header.
+   - Updated PO Number to truncate at 25 characters because FreshBooks will not create an invoice/estimate if the value if more than 25 characters.
+   - Updated "Update existing client" option to filter by email to improve performance.
+   - Updated POT file.
+   - Updated to send Item Name instead of Item ID when using Fixed Costs or Dynamic Fields. To continue sending the Item Id, use the hook:
+		add_filter( 'gform_freshbooks_send_item_id_for_fixed_dynamic', 'send_item_id' );
+		function send_item_id(){
+			return true;
+		}
+   - Updated required version of Gravity Forms to 1.8.17.
+   - Updated to not process entries marked as spam.
+   - Updated to have the file class-gf-freshbooks.php and organized code into this file and freshbooks.php.
+   - Integrated with Addon Framework.
+
+
+# 1.4.4
+   - Fixed issue when returning more than 100 line items from Freshbooks.
+
+
+# 1.4.3 | 2013-06-21
+   - Increased line item page size
+
+
+# 1.4.2 | 2013-05-22
+   - Fixed issue with pricing message being displayed even when pricing option isn't selected
+
+
+# 1.4.1 | 2013-05-22
+   - Fixed issue with line item paging
+   - Fixed issue with default line item field mapping type
+   - Added hook to enable option for dynamic field mapping
+        ex: add_filter("gform_freshbooks_enable_dynamic_field_mapping", __return_true);
+
+# 1.4 | 2013-03-07
+   - Updated AJAX URL to resolve conflict when site is running under SSL
+   - Fixed a notice message
+
+
+# 1.3 | 2012-06-27
+   - Added new conditional logic options (greater than, less than, contains starts with, ends with) and support for other conditional fields
+   - Fixed notices
+   - Added support for logging
+   - Added support for Manage WP
+
+
+# 1.2 | 2012-02-07
+   - Added support for pricing fields
+   - Fixed notices
+   - Fixed issue where RG_CURRENT_PAGE constant was not available when GF is deactivated
+   - Added "Cancel" button to Edit page
+   - Updated List page to display the correct message when user doesn't have any feeds configured
+
+
+# 1.1 | 2010-12-15
+   - Fixed issue with automatic upgrade on WP 3.0
+
+
+# 1.0 | 2010-12-15
+   - Fixed issue with export condition that was only accurate after save button was clicked
+   - Changed submit button label to "Save Feed" for new feeds and "Update Feed" for existing feeds
+   - Fixed issue with multiple feeds being created

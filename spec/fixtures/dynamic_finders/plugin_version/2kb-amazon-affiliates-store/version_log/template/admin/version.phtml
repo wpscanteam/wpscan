@@ -1,0 +1,156 @@
+<div class="row" id="kb-amz-version">
+    <div class="col-sm-12">
+        <h4>2.1.1</h4>
+        <ul style="list-style-type: disc;">
+            <li>
+                Security fix, thanks to Ricardo
+            </li>
+        </ul>
+        <h4>2.0.2</h4>
+        <h4>2.1.0</h4>
+        <ul style="list-style-type: disc;">
+            <li>
+                Maintenance release
+            </li>
+        </ul>
+        <h4>2.0.2</h4>
+        <ul style="list-style-type: disc;">
+            <li>
+                Css fixes
+            </li>
+        </ul>
+        <h4>2.0.1</h4>
+        <ul style="list-style-type: disc;">
+            <li>
+                Import optimization
+            </li>
+        </ul>
+        <h4>2.0.0</h4>
+        <ul style="list-style-type: disc;">
+            <li>
+                Product Variants and Product Versions are here!<br/>
+                Examples added.<br/>
+                2kb Amazon Network for products fast sync<br/>
+            </li>
+        </ul>
+
+        <h4>1.2.0</h4>
+        <ul style="list-style-type: disc;">
+            <li>
+                Usability changes:<br/>
+                Delay between requests option added to reduce Amazon API warnings<br/>
+                Last cron run label on dashboard added<br/>
+                <br/><br/>
+                Programming changes:<br/>
+                Many hooks added<br/>
+                Default no item image accepts attributes<br/>
+                Similar Products warning fixed
+            </li>
+        </ul>
+        <h4>1.1.8</h4>
+        <ul style="list-style-type: disc;">
+            <li>Bug fix - Mobile layout for listing.</li>
+        </ul>
+        <h4>1.1.6, 1.1.7</h4>
+        <ul style="list-style-type: disc;">
+            <li>Bugs fixing</li>
+        </ul>
+        <h4>1.1.5</h4>
+        <ul style="list-style-type: disc;">
+            <li>New Option - delete product(post) on quantity = 0</li>
+            <li>New Action - Delete All Products That Have post_status = pending And KbAmzOfferSummary.TotalNew <= 0'</li>
+            <li>Added Default Product Image in the listings.</li>
+            <li>Added Popover on checkout button: if product is not sellable with the affiliate program, direct product link will be provided.</li>
+            <li>Added Plugin Experience Program (Optional)</li>
+        </ul>
+        <h4>1.1.4</h4>
+        <ul style="list-style-type: disc;">
+            <li>Fixed bug when listing products with no quantity left. kb_amz_list_products now lists only products (posts) with post_status = publish be default, which can be changed.</li>
+        </ul>
+        <h4>1.1.3</h4>
+        <ul style="list-style-type: disc;">
+            <li>Fixed bug for creating multiple checkout pages.</li>
+            <li>Fixed bug with listing price option. Now showing listing price and discounted price.</li>
+            <li>Admin widgets css update.</li>
+            <li><a href="?page=kbAmz&kbAction=info">Documentation</a> added.</li>
+        </ul>
+        <h4>1.1.2</h4>
+        <ul style="list-style-type: disc;">
+            <li>Listing price add when 'Show the original price of the product.' options is enabled.</li>
+            <li>Disabled store widgets filters on product post page.</li>
+        </ul>
+        <h4>1.1.1</h4>
+        <ul style="list-style-type: disc;">
+            <li>Amazon Iframe Reviews added. You can test and provide feedback to complete this functionality.</li>
+            <li>Fixed bug when using product images directly from Amazon and not displaying outside the product page. Thanks to alamandeh for reporting it.</li>
+            <li>Fixed bug when pagination is disabled for one listing on multiple product listings.</li>
+            <li>Fixed admin import search form same parameters after submit bug.</li>
+            <li>Fixed bug for custom themes when having thumbnail size (class) on the listing page.</li>
+        </ul>
+        <h4>1.1.0</h4>
+        <ul style="list-style-type: disc;">
+            <li>Import timeout increased from default 30sec. to 90 sec.</li>
+            <li>Added pagination on the <a href="?page=kbAmz&kbAction=importBySearch">search page</a>.</li>
+        </ul>
+        <h4>1.0.9</h4>
+        <ul style="list-style-type: disc;">
+            <li>kb_amz_list_products shortcode accept short code parameters with php code. Ex. [kb_amz_list_products attribute_value="<? date('Y-m-d', time() - 3600); ?>"].</li>
+        </ul>
+        <h4>1.0.8</h4>
+        <ul style="list-style-type: disc;">
+            <li>India is added to the import categories list thanks to Mr.Parmar.</li>
+        </ul>
+        <h4>1.0.7</h4>
+        <ul style="list-style-type: disc;">
+            <li>Short Codes bug fixed - all shortcodes use '_' instead of '-'.</li>
+            <li>Added option for featured content in [kb_amz_list_products featured="Yes" featured_content_length="150"]. Content is loaded from the_excerpt or the product description.</li>
+            <li>Bug fixed when using [kb_amz_list_products] in product shortcode content. (product is excluded from the query).</li>
+        </ul>
+        <h4>1.0.6</h4>
+        <ul style="list-style-type: disc;">
+            <li>Category accept functions in [kb_amz_list_products] and items_per_row added.</li>
+            <li>Dashboard published products  message added.</li>
+        </ul>
+        <h4>1.0.5</h4>
+        <ul style="list-style-type: disc;">
+            <li>Category fix in [kb_amz_list_products]</li>
+        </ul>
+        <h4>1.0.4</h4>
+        <ul style="list-style-type: disc;">
+            <li>Some bugs got fixed. Thank you for your support.</li>
+        </ul>
+        <h4>1.0.3</h4>
+        <ul style="list-style-type: disc;">
+            <li>New Option = Download Images. This option allows you to store only the link of product`s images. This will save you space and time to import.</li>
+            <li>Maintenance fixes.</li>
+            <li>lib/KbAmazonImage</li>
+            <li>lib/KbAmazonImages</li>
+        </ul>
+    </div>
+    <div class="col-sm-12">
+        <h4>1.0.2</h4>
+        <ul style="list-style-type: disc;">
+            <li>Dashboard info update - products counts, products to download, products to sync, time to sync.</li>
+        </ul>
+    </div>
+    <div class="col-sm-12">
+        <h4>1.0.1</h4>
+        <ul style="list-style-type: disc;">
+            <li>Front scripts are no longer loaded in admin.</li>
+            <li>Products -> Short Codes, restore default content shortcodes. Option to replace content shortcode with the product content insuring better SEO and editability.</li>
+        </ul>
+    </div>
+    <div class="col-sm-12">
+        <h4>1.0.0</h4>
+        <ul style="list-style-type: disc;">
+            <li>First public version of the plugin</li>
+            <li>Import products by amazon - ASIN, Search, Url Import (beta)</li>
+            <li>Product attributes management and attributes restriction</li>
+            <li>All products short codes management</li>
+            <li>Cron job for similar products import and price update</li>
+            <li><a href="?page=kbAmz&kbAction=productsShortCodes">Shortcodes</a></li>
+            <li>Widgets for products filtering - Slider and Attributes filter</li>
+            <li>Automatic products growing. Using similar products, this plugin will download products without you need to do anything.</li>
+        </ul>
+    </div>
+</div>

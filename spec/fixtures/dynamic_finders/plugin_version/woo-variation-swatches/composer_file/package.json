@@ -1,0 +1,28 @@
+{
+  "package": "Woo Variation Swatches",
+  "name": "woo-variation-swatches",
+  "version": "1.0.0",
+  "author": "Emran Ahmed <emran.bd.08@gmail.com>",
+  "contact": "emran.bd.08@gmail.com",
+  "license": "GNU General Public License v3",
+  "private": true,
+  "scripts": {
+    "webpack": "cross-env NODE_ENV=development node_modules/.bin/webpack --progress --hide-modules --config=node_modules/wp-mix/setup/webpack.config.js",
+    "dev": "npm run webpack -- --watch",
+    "build": "cross-env NODE_ENV=production node_modules/.bin/webpack --progress --hide-modules --config=node_modules/wp-mix/setup/webpack.config.js",
+    "bundle": "npm run webpack && npm run build",
+    "package:bundle": "cross-env NODE_ENV=package node_modules/.bin/webpack --progress --hide-modules --config=node_modules/wp-mix/setup/webpack.config.js",
+    "package": "npm run bundle && npm run package:bundle"
+  },
+  "devDependencies": {
+    "cli-color": "^1.2.0",
+    "emojic": "^1.1.12",
+    "extend": "^3.0.1",
+    "fs-extra": "^5.0.0",
+    "sanitize-html": "^1.16.3",
+    "sprintf-js": "^1.1.1"
+  },
+  "dependencies": {
+    "wp-mix": "^1.0.5"
+  }
+}

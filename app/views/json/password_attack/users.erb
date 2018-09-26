@@ -1,0 +1,10 @@
+"password_attack": {
+<% unless @users.empty? -%>
+<% last_index = @users.size - 1 -%>
+<% @users.each_with_index do |user, index| -%>
+  <%= user.username.to_json %>: {
+    "password": <%= user.password.to_json %>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

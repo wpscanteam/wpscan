@@ -1,0 +1,11 @@
+
+<% if @themes.empty? -%>
+<%= notice_icon %> No themes Found.
+<% else -%>
+<%= notice_icon %> Theme(s) Identified:
+<% @themes.each do |theme| -%>
+
+<%= info_icon %> <%= theme %>
+<%= render('@theme', theme: theme, show_parents: false) -%>
+<% end -%>
+<% end %>

@@ -1,0 +1,10 @@
+"themes": {
+<% unless @themes.empty? -%>
+<% last_index = @themes.size - 1 -%>
+<% @themes.each_with_index do |theme, index| -%>
+  <%= theme.slug.to_json %>: {
+    <%= render('@theme', theme: theme) -%>
+  }<% unless index == last_index -%>,<% end -%>
+<% end -%>
+<% end -%>
+},

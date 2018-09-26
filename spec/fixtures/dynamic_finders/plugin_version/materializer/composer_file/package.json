@@ -1,0 +1,32 @@
+{
+    "name": "materializer",
+    "version": "0.2.0",
+    "description": "Material Design Components for Wordpress",
+    "authors": [
+        "Cody Reichert <codyreichert@gmail.com>"
+    ],
+    "scripts": {
+        "move": "mv ./node_modules ./scripts/src",
+        "clean": "rm -r ./scripts/src/node_modules",
+        "deps": "npm install && npm run move",
+        "webpack": "node ./scripts/src/node_modules/webpack/bin/webpack --config='./scripts/src/webpack.config.js' --optimize-minimize",
+        "webpack-watch": "node ./scripts/src/node_modules/webpack/bin/webpack --config='./scripts/src/webpack.config.js' --watch",
+        "build-all": "npm run deps && npm run webpack"
+    },
+    "private": true,
+    "dependencies": {
+        "babel-core": "^5.4.7",
+        "babel-loader": "^5.1.3",
+        "bootstrap-sass": "^3.3.4",
+        "css-loader": "^0.9.1",
+        "extract-text-webpack-plugin": "0.8.1",
+        "file-loader": "0.8.4",
+        "hammerjs": "2.0.4",
+        "jquery": "2.1.4",
+        "materialize-css": "git://github.com/Dogfalo/materialize#v0.96.1",
+        "sass-loader": "^1.0.2",
+        "style-loader": "^0.8.3",
+        "url-loader": "0.5.6",
+        "webpack": "^1.9.8"
+    }
+}

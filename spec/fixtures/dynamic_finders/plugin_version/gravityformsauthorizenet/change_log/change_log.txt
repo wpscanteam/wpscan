@@ -1,0 +1,182 @@
+-----------------------------------------------------------------------------
+Version 2.4.2
+	- Fixed a fatal error which could occur if the subscription object was not returned by the gform_authorizenet_subscription_pre_create or gform_authorizenet_before_start_subscription filters.
+
+-----------------------------------------------------------------------------
+Version 2.4.1
+	- Added GPL to plugin header
+	- Updated Plugin URI and Author URI to use https
+
+-----------------------------------------------------------------------------
+Version 2.4
+	- Added support for Gravity Forms 2.3.
+	- Added "Automatic Retry is turned on in my Authorize.Net account" checkbox to Settings Page. This feature is required for ARB.
+	- Added additional error messages.
+	- Updated "Override Default Settings" so it can be translated
+	- Fixed an issue with logging a message when the error_message array in the response object was empty.
+    - Fixed strings for translations
+	- Fixed a test description appearing on the add-on settings page with Gravity Forms 2.2+.
+
+-----------------------------------------------------------------------------
+Version 2.3
+    - Added logging statements.
+    - Updated Authorize.net API library.
+    - Fixed an issue with check_status() not connecting to the correct Authorize.net account when local api settings differed from main api settings.
+    - Fixed an issue with cancel_subscription() not connecting to the correct Authorize.net account when local api settings differed from main api settings.
+    - Fixed an issue with the subscription start date not showing the correct date in the entry detail page when the subscription start date is set for a day different than the current day.
+
+-----------------------------------------------------------------------------
+Version 2.2.2
+    - Fixed an issue with the subscription object billToAddress property.
+
+-----------------------------------------------------------------------------
+Version 2.2.1
+    - Added support for the line item taxable status being set using the gform_submission_data_pre_process_payment filter e.g. $line_item['taxable'] = 'N'.
+
+-----------------------------------------------------------------------------
+Version 2.2
+    - Added logging of response to subscription cancellation request.
+    - Added support for sending notifications on payment/subscription events. Configured on the edit notification page using the 'Event' setting.
+    - Added phone to the billing information fields available for mapping on the feed.
+    - Added Spanish translation (es_ES).
+    - Added logging of api key validation failure.
+    - Updated the gform_authorizenet_transaction_pre_capture, gform_authorizenet_amount_pre_authorize, gform_authorizenet_transaction_pre_capture_setup_fee and gform_authorizenet_subscription_pre_create filters to include the $entry as an available parameter.
+    - Updated to only add notification events if the form has a relevant feed.
+    - Updated minimum Gravity Forms version to 1.9.12.
+    - Updated to use can_create_feed() to determine if feeds can be created/edited.
+    - Fixed an issue creating the subscription if the form title being assigned to the order description contains special characters.
+    - Fixed an issue with the timestamp for logging statements recorded after the subscription startDate is set.
+    - Fixed PHP notice related to the parameters of the gform_authorizenet_post_capture hook.
+    - Fixed PHP notice which could occur if an authorize and capture transaction failed.
+    - Fixed an issue with check_status() not passing the $action['type'] for use with the related hooks in the framework.
+    - Fixed an issue with a logging statement.
+    - Fixed an issue with the display of the payment details panel on the entry detail page for entries processed by the pre-framework version.
+    - Fixed php notices related to the 'gform_authorizenet_post_capture' hook when running an auth only transaction.
+    - Fixed an issue with the phone field.
+    - Removed potentially sensitive data from logging statements.
+
+-----------------------------------------------------------------------------
+Version 2.1
+    - Updated logging statements.
+    - Fixed PHP notice when form returns with a validation error.
+    - Fixed an issue with the upgrade routine which could prevent the add-on settings being migrated.
+
+-----------------------------------------------------------------------------
+Version 2.0
+	- Migration to Add-On Framework.
+	- Updated subscription so that extra "voided" transaction is not created.
+
+-----------------------------------------------------------------------------
+Version 1.6.1
+	- Updated POT file
+
+-----------------------------------------------------------------------------
+Version 1.6
+    - Added custom validation for the credit card field on cardholder's name.
+    - Added support for Pound Sterling and Euro.
+    - Added hook to allow authorization amount to be changed.
+    - Added ability to cancel product payment capture. This will allow customers that want only the CC authorization process to take place and not the actual payment capture.
+    - Added form title as subscription's order description to be consistent with initial authorize only transaction.
+    - Updated cron to hourly and removed process_renewals() function from init.
+    - Updated credit card number so that spaces are removed prior to sending it to Authorize.net.
+    - Fixed issue where product names with tab, newlines, and/or return characters would break transaction in Authorize.net.
+    - Fixed issue where field labels with newlines may break the edit feed UI.
+    - Fixed PHP warnings for some unsaved feed settings.
+    - Fixed issue where setup fee could not have decimal values (i.e. 49.99).
+	- Fixed issue with Manage WP integration.
+
+-----------------------------------------------------------------------------
+Version 1.5
+    - Added POT file
+    - Fixed issue with setup() running too late in the process and creating an error when first installed
+	- Fixed notice
+    - Fixed issue with subscriptions failing to be cancelled. Subscription id was being recorded in DB with incorrect value (transaction id).
+
+-----------------------------------------------------------------------------
+Version 1.4
+    - Added hook to allow the entry id to be saved as part of the Authorize.net transaction, in the Invoice Number field.
+        add_filter("gform_authorizenet_save_entry_id", "__return_true");
+    - Updated flow so that an authorization is done during validation and the capture operation is done during form submission.
+    - Updated subscription so that trial are captured as part of the recurring profile and not as a separate AIM transaction
+    - Updated hooks and filters
+    - Fixed function authorizenet_commit_transaction to return entry object when no transaction response exists so entry is returned to gform_entry_post_save filter, otherwise lead is empty
+    - Fixed issue with subscriptions failing to be created when only one name is entered in the cardholder name field.
+
+-----------------------------------------------------------------------------
+Version 1.3.3
+    - Fixed issue where the "Send Authorize.Net email receipt" setting was not correctly saved to database
+
+-----------------------------------------------------------------------------
+Version 1.3.2
+    - Updated AJAX URL to resolve conflict with sites running under SSL
+
+-----------------------------------------------------------------------------
+Version 1.3.1
+    - Updated transaction response variable so that it is public, making it available during notifications and confirmations
+
+-----------------------------------------------------------------------------
+Version 1.3
+    - Added support for Manage WP
+    - Fixed issue with cancel subscription button not showing up correctly
+    - Added support for setup fee
+    - Added support for changing API on a feed by feed basis
+    - Added some hooks and filters
+    - Fixed notice messages
+    - Fixed typo on settings page
+
+-----------------------------------------------------------------------------
+Version 1.2.1
+    - Fixed issue with invoice number exceeding max character limit
+
+-----------------------------------------------------------------------------
+Version 1.2
+    - Added support for negative product prices (i.e. discounts)
+    - Added random invoice number to prevent duplicate subscription problem
+
+-----------------------------------------------------------------------------
+Version 1.1.1
+    - Fixed issue with failed transactions due to the length of product names and product descriptions.
+
+-----------------------------------------------------------------------------
+Version 1.1
+    - Fixed issue with calculation fields not being included in payment info sent to Authorize.net
+    - Added payment_gateway meta information
+    - Added new conditional logic options (greater than, less than, contains starts with, ends with) and support for other conditional fields
+    - Fixed notices
+    - Fixed setting the payment gateway
+    - Updated logging to use the GF Logging plugin
+    - Fixed issue with ARB not sending appropriate address information
+
+-----------------------------------------------------------------------------
+Version 1.0
+    - Updated line item logic so that it truncates line item names to 31 characters and descriptions to 255 characters
+    - Updated verbiage and added tooltips to settings page
+
+-----------------------------------------------------------------------------
+Version 1.0.beta2
+    - Fixed issue with expiration date being sent with an invalid format
+    - Fixed issue where product & option fields hidden via conditional logic were being applied to order total
+    - Fixed issue where product options were not being added to line item product price
+
+-----------------------------------------------------------------------------
+Version 1.0.beta1.1
+    - Fixed issue with trial amount not accepting currency symbols
+
+-----------------------------------------------------------------------------
+Version 1.0.beta1
+    - Added logging functionality to Authorize.net transactions
+    - Fixed issue with hidden product field
+    - Fixed issue with line items not being sent property to Authorize.net
+    - Updated request to Authorize.net so that validate peer is disabled (to help with failed connections)
+    - Updated single product field so that it's quantity is defaulted to 1 when the quantity field is disabled
+
+-----------------------------------------------------------------------------
+Version 1.0.alpha2
+    - Fixed validation issue on multi-page forms.
+    - Added support for multiple feeds to be configured using the same form and executed based on condition.
+    - Fixed issue with validation when credit card field was hidden by conditional logic
+
+-----------------------------------------------------------------------------
+Version 1.0.alpha1
+    - Added ability to specify mode (Production or Test) on settings page
+

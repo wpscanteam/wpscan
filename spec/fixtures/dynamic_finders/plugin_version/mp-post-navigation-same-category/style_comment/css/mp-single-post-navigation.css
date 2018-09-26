@@ -1,0 +1,59 @@
+/*
+	Plugin: MP Post Navigation - Stylesheet
+	Version: 2.0
+	Author: Benjamin Oliveira
+	Author URI: https://manipovore.com
+*/
+
+/* Container
+------------------------------------------------------------ */
+.mpn-container {
+	display: flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+
+/* Prev & Next Links Style
+------------------------------------------------------------ */
+#mpn-nextpost,
+#mpn-prevpost {
+	display: flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	width: 50%;
+	margin: 15px 0 15px;
+}
+#mpn-nextpost {
+	justify-content: flex-end;
+	-webkit-justify-content: flex-end;
+}
+#mpn-prevpost {
+	justify-content: flex-start;
+	-webkit-justify-content: flex-start;
+}
+#mpn-nextpost a,
+#mpn-prevpost a {
+	padding-bottom: 15px;
+	font-size: 0.95em;
+	width: 120px;
+	height: auto;
+	text-align: center;
+}
+#mpn-nextpost span,
+#mpn-prevpost span {
+	display: block;
+	font-size: 5em;
+	background: -moz-radial-gradient(center, ellipse cover, rgba(106,107,107,1) 46%, rgba(255,255,255,0) 67%);
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(106,107,107,1) 46%,rgba(255,255,255,0) 67%);
+	background: radial-gradient(ellipse at center, rgba(106,107,107,1) 46%,rgba(255,255,255,0) 67%);
+}
+#mpn-nextpost a:hover,
+#mpn-prevpost a:hover {
+	color: rgba(0, 0, 0, 0.38);
+	text-decoration: none;
+	transition: 1s;
+}

@@ -1,0 +1,62 @@
+require 'spec_helper'
+
+describe WPScan::Finders::Users::AuthorIdBruteForcing do
+  subject(:finder) { described_class.new(target) }
+  let(:target)     { WPScan::Target.new(url) }
+  let(:url)        { 'http://wp.lab/' }
+  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'users', 'author_id_brute_forcing') }
+
+  describe '#aggressive' do
+    xit
+  end
+
+  describe '#target_urls' do
+    it 'returns the correct URLs' do
+      expect(finder.target_urls(range: (1..2))).to eql(
+        url + '?author=1' => 1,
+        url + '?author=2' => 2
+      )
+    end
+  end
+
+  describe '#potential_username' do
+    [
+      '4.1.1', '4.1.1-permalink',
+      '3.0', '3.0-permalink',
+      '2.9.2', '2.9.2-permalink'
+    ].each do |file|
+      it "returns 'admin' from #{file}.html" do
+        body = File.read(File.join(fixtures, "#{file}.html"))
+        res = Typhoeus::Response.new(body: body)
+
+        expect(finder.username_from_response(res)).to eql 'admin'
+      end
+    end
+  end
+
+  describe '#display_name_from_body' do
+    context 'when display name' do
+      [
+        '4.1.1', '4.1.1-permalink',
+        '3.0', '3.0-permalink',
+        '2.9.2', '2.9.2-permalink'
+      ].each do |file|
+        it "returns 'admin display_name' from #{file}.html" do
+          body = File.read(File.join(fixtures, "#{file}.html"))
+
+          expect(finder.display_name_from_body(body)).to eql 'admin display_name'
+        end
+      end
+    end
+
+    context 'when no display_name' do
+      ['4.1.1', '3.0', '2.9.2'].each do |file|
+        it "returns nil for #{file}-empty.html" do
+          body = File.read(File.join(fixtures, "#{file}-empty.html"))
+
+          expect(finder.display_name_from_body(body)).to eql nil
+        end
+      end
+    end
+  end
+end
