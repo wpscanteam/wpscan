@@ -1,8 +1,8 @@
-![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner") v3 BETA
+![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
 
 [![Gem Version](https://badge.fury.io/rb/wpscan.svg)](https://badge.fury.io/rb/wpscan)
-[![Build Status](https://travis-ci.org/wpscanteam/wpscan-v3.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan-v3)
-[![Code Climate](https://codeclimate.com/github/wpscanteam/wpscan-v3/badges/gpa.svg)](https://codeclimate.com/github/wpscanteam/wpscan-v3)
+[![Build Status](https://travis-ci.org/wpscanteam/wpscan.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan-v3)
+[![Code Climate](https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
 [![Patreon Donate](https://img.shields.io/badge/patreon-donate-green.svg)](https://www.patreon.com/wpscan)
 
 # INSTALL
@@ -24,7 +24,7 @@ gem install wpscan
 Prerequisites: Git
 
 ```
-git clone https://github.com/wpscanteam/wpscan-v3 wpscan
+git clone https://github.com/wpscanteam/wpscan
 
 cd wpscan/
 
@@ -33,7 +33,7 @@ bundle install && rake install
 
 # Docker
 
-Pull the repo with ```docker pull wpscanteam/wpscan-v3```
+Pull the repo with ```docker pull wpscanteam/wpscan```
 
 # Usage
 
