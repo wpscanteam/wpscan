@@ -17,7 +17,13 @@ module WPScan
 
             begin
               res.xml.xpath('//item/dc:creator').each do |node|
-                potential_usernames << node.text.to_s unless node.text.to_s.length > 40
+                potential_username = node.text.to_s
+
+                # Ignoring potential username longer than 60 characters and containing accents
+                # as they are considered invalid. See https://github.com/wpscanteam/wpscan/issues/1215
+                next if potential_username.length > 60 || potential_username =~ /[^\x00-\x7F]/
+
+                potential_usernames << potential_username
               end
             rescue Nokogiri::XML::XPath::SyntaxError
               next

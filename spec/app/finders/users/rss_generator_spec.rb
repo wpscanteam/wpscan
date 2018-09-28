@@ -32,7 +32,7 @@ describe WPScan::Finders::Users::RSSGenerator do
             found_by: 'Rss Generator (Aggressive Detection)'
           ),
           CMSScanner::User.new(
-            'Aa Días-Gildés',
+            'Aa Dias-Gildes',
             confidence: 50,
             found_by: 'Rss Generator (Aggressive Detection)'
           )
@@ -53,7 +53,7 @@ describe WPScan::Finders::Users::RSSGenerator do
             found_by: 'Rss Generator (Passive Detection)'
           ),
           CMSScanner::User.new(
-            'Aa Días-Gildés',
+            'Aa Dias-Gildes',
             confidence: 50,
             found_by: 'Rss Generator (Passive Detection)'
           )
@@ -71,7 +71,7 @@ describe WPScan::Finders::Users::RSSGenerator do
               found_by: 'Rss Generator (Aggressive Detection)'
             ),
             CMSScanner::User.new(
-              'Aa Días-Gildés',
+              'Aa Dias-Gildes',
               confidence: 50,
               found_by: 'Rss Generator (Aggressive Detection)'
             )
@@ -90,7 +90,7 @@ describe WPScan::Finders::Users::RSSGenerator do
               found_by: 'Rss Generator (Aggressive Detection)'
             ),
             CMSScanner::User.new(
-              'Aa Días-Gildés',
+              'Aa Dias-Gildes',
               confidence: 50,
               found_by: 'Rss Generator (Aggressive Detection)'
             )
