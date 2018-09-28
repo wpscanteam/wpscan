@@ -16,41 +16,12 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://wpscan.org/'
   s.license               = 'Dual'
 
-  s.files                 = Dir.glob('**/*').reject do |file|
-    file =~ %r{^(?:
-      spec\/.*
-      |Gemfile
-      |Rakefile
-      |Dockerfile
-      |coverage\/.*
-      |.+\.gem
-      |.+\.rbc
-      |\.bundle
-      |\.config
-      |pkg\/.*
-      |rdoc\/.*
-      |Gemfile\.lock
-      |.yardoc\/.*
-      |_yardoc\/.*
-      |doc\/.*
-      |wpscan\.gemspec
-      |\.rspec
-      |\.gitignore
-      |\.gitlab-ci.yml
-      |\.rubocop.yml
-      |\.travis.yml
-      |\.ruby-gemset
-      |\.ruby-version
-      |\.dockerignore
-      |.*\.sublime\-.*
-      |bin\/wpscan-docker.*
-      )$}x
-  end
+  s.files                 = Dir.glob('lib/**/*') + Dir.glob('app/**/*')
   s.test_files            = []
-  s.executables           = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  s.require_path          = 'lib'
+  s.executables           = ['wpscan']
+  s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.0.40'
+  s.add_dependency 'cms_scanner', '~> 0.0.40.1'
 
   # Already required by CMSScanner, so version restrictions loosen
   s.add_dependency 'activesupport', '~> 5.2'
