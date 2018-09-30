@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.homepage              = 'https://wpscan.org/'
   s.license               = 'Dual'
 
-  s.files                 = Dir.glob('lib/**/*') + Dir.glob('app/**/*')
+  s.files                 = Dir.glob('lib/**/*') + Dir.glob('app/**/*') + %w[LICENSE README.md]
   s.test_files            = []
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
