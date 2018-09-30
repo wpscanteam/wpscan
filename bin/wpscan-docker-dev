@@ -10,7 +10,7 @@ DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
 
 cd $DIR/../
 if [[ -n "$WPSCAN_BUILD" ]]; then
-  docker build -q -t wpscanv3:git .
+  docker build -q -t wpscan:git .
 fi
 docker run -it --rm -v $DIR/../:/wpscan wpscan:git "$@"
 
