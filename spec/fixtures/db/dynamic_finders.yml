@@ -491,6 +491,12 @@ plugins:
       path: css/parallax.css
       pattern: !ruby/regexp /\*\* [^\s]+ \- V(?<v>\d+\.[\.\d]+)/i
       version: true
+  adbutler:
+    QueryParameter:
+      files:
+      - js/adbutler_hb_init.js
+      - js/adbutler_hb_final.js
+      version: true
   add-amazon-block:
     ComposerFile:
       class: ConfigParser
@@ -4949,6 +4955,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  cosmic-carousel:
+    QueryParameter:
+      files:
+      - public/css/cosmic-public.css
+      - public/js/cosmic-public.js
+      version: true
   coupon-reveal-button:
     QueryParameter:
       files:
@@ -6846,6 +6858,12 @@ plugins:
       - assets/js/frontend.js
       - assets/js/jAlert-v3.js
       version: true
+  expivi:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/expivi.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Expivi (?<v>\d+\.[\.\d]+)/i'
+      version: true
   explanatory-dictionary:
     QueryParameter:
       files:
@@ -6885,6 +6903,12 @@ plugins:
       class: BodyPattern
       path: languages/extensive-vc.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Extensive VC (?<v>\d+\.[\.\d]+)/i
+      version: true
+  extra-blocks:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/extra-blocks.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Extra Blocks (?<v>\d+\.[\.\d]+)/i'
       version: true
   extra-privacy-for-elementor:
     QueryParameter:
@@ -8771,6 +8795,12 @@ plugins:
       files:
       - guardian_headlines.css
       version: true
+  guten-editor-blocks:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/guten-editor-blocks.pot
+      pattern: !ruby/regexp /"v(?<v>\d+\.[\.\d]+)/i
+      version: true
   gutenbee:
     ComposerFile:
       class: ConfigParser
@@ -9229,6 +9259,13 @@ plugins:
       path: languages/ico-lw.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ ICO List Widget (?<v>\d+\.[\.\d]+)/i
       version: true
+  iconpress-lite:
+    QueryParameter:
+      files:
+      - assets/css/iconpress.css
+      - assets/css/panel.css
+      - assets/js/iconpress.min.js
+      version: true
   ics-button:
     JavascriptVar:
       class: BodyPattern
@@ -9276,6 +9313,18 @@ plugins:
     MetaTag:
       class: Xpath
       xpath: //meta[@name="IE9 Pinned Site"]/@content
+      version: true
+  ifthengive:
+    QueryParameter:
+      files:
+      - public/css/datatables/jquery.dataTables.css
+      - public/css/datatables/dataTables.responsive.css
+      - includes/css/alertify/alertify.css
+      - public/css/ifthengive-public.css
+      - includes/css/alertify/alertify.min.js
+      - public/js/ifthengive-public.js
+      - public/js/datatables/jquery.dataTables.min.js
+      - public/js/datatables/dataTables.responsive.js
       version: true
   ifttt-instagram-gallery:
     QueryParameter:
@@ -10642,6 +10691,12 @@ plugins:
       path: lang/lead-to-clio.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ lead_to_clio (?<v>\d+\.[\.\d]+)/i
       version: true
+  leader:
+    QueryParameter:
+      files:
+      - public/css/leader-public.css
+      - public/js/leader-public.js
+      version: true
   leaflet-map:
     QueryParameter:
       files:
@@ -10980,6 +11035,12 @@ plugins:
       path: languages/livepress.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ livepress (?<v>\d+\.[\.\d]+)/i
       version: true
+  livestream-notice:
+    QueryParameter:
+      files:
+      - livestream-notice.css
+      - livestream-notice.js
+      version: true
   loanthru-calculator:
     QueryParameter:
       files:
@@ -11067,6 +11128,12 @@ plugins:
       files:
       - public/js/ajax-methods.min.js
       - public/css/display.css
+      version: true
+  login-and-logout-redirect:
+    QueryParameter:
+      files:
+      - public/css/login-and-logout-redirect-public.css
+      - public/js/login-and-logout-redirect-public.js
       version: true
   login-customizer:
     ChangeLog:
@@ -11270,6 +11337,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/frontend/main.css
+      version: true
+  luckywp-cookie-notice-gdpr:
+    QueryParameter:
+      files:
+      - front/assets/main.min.css
+      - front/assets/main.min.js
       version: true
   lukas-tripster:
     TranslationFile:
@@ -12659,6 +12732,12 @@ plugins:
       - naver-map.css
       - naver-map.js
       version: true
+  nbsp-french:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/nbsp-french.pot
+      pattern: !ruby/regexp /s Non\-Breaking Space for French Content (?<v>\d+\.[\.\d]+)/i
+      version: true
   nearby-locations:
     QueryParameter:
       files:
@@ -13201,6 +13280,12 @@ plugins:
       xpath: //meta[@name="omniads"]/@content
       version: true
       pattern: !ruby/regexp /omniads\/(?<v>\d+\.[\.\d]+)/i
+  onc-master:
+    QueryParameter:
+      files:
+      - public/css/onc_master-public.css
+      - public/js/onc_master-public.js
+      version: true
   one-click-demo-import:
     TranslationFile:
       class: BodyPattern
@@ -13503,6 +13588,24 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  page-builder-by-azexo:
+    QueryParameter:
+      files:
+      - css/swiper.css
+      - css/animate.css
+      - css/magnific-popup.css
+      - css/frontend.css
+      - js/isotope.pkgd.js
+      - js/jquery.waypoints.js
+      - js/jquery.countdown.js
+      - js/jquery.maskedinput.js
+      - js/swiper.js
+      - js/jquery.magnific-popup.js
+      - js/scrollReveal.js
+      - js/parallax.js
+      - js/rellax.js
+      - js/frontend.js
       version: true
   page-builder-sandwich:
     QueryParameter:
@@ -15502,6 +15605,12 @@ plugins:
       files:
       - public/css/reframer-public.min.css
       - public/js/reframer-public.min.js
+      version: true
+  registration-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/registration-for-woocommerce.pot
+      pattern: !ruby/regexp '/d\-Version: Registration For WooCommerce (?<v>\d+\.[\.\d]+)/i'
       version: true
   registrations-for-the-events-calendar:
     QueryParameter:
@@ -19586,6 +19695,11 @@ plugins:
       files:
       - js/ttt-devices.js
       version: true
+  ttv-easy-embed-player:
+    QueryParameter:
+      files:
+      - public/js/twitch-player-public.js
+      version: true
   tumblr-crosspostr:
     TranslationFile:
       class: BodyPattern
@@ -20461,6 +20575,13 @@ plugins:
       class: BodyPattern
       path: languages/voice-search.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Voice Search (?<v>\d+\.[\.\d]+)/i
+      version: true
+  vowels-contact-form-with-drag-and-drop:
+    QueryParameter:
+      files:
+      - css/styles.css
+      - js/vowels.js
+      - js/jquery.vowels.js
       version: true
   voxpress:
     Comment:
@@ -23047,6 +23168,11 @@ plugins:
       - public/js/wfwc-uploadfile.min.js
       - public/js/wfwc-public.js
       version: true
+  wp-film-studio:
+    QueryParameter:
+      files:
+      - assets/js/popper.min.js
+      version: true
   wp-flexible-map:
     QueryParameter:
       files:
@@ -25024,6 +25150,11 @@ plugins:
       - public/css/wpmerchant-public.css
       - public/js/wpmerchant-public.js
       version: true
+  wpmk-faq:
+    QueryParameter:
+      files:
+      - assets/js/wpmk-script.js
+      version: true
   wpmk-portfolio:
     QueryParameter:
       files:
@@ -25344,6 +25475,12 @@ plugins:
       files:
       - public/css/wt-advanced-woocommerce-report-public.css
       - public/js/wt-advanced-woocommerce-report-public.js
+      version: true
+  wt-pocket-navigator:
+    QueryParameter:
+      files:
+      - public/css/wtpn-pocket-nav-public.css
+      - public/js/wtpn-pocket-nav-public.js
       version: true
   wt-smart-coupons-for-woocommerce:
     QueryParameter:
