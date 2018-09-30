@@ -12,5 +12,5 @@ cd $DIR/../
 if [[ -n "$WPSCAN_BUILD" ]]; then
   docker build -q -t wpscanv3:git .
 fi
-docker run -it --rm -v $DIR/../:/wpscan wpscanv3:git "$@"
+docker run -it --rm -v $DIR/../:/wpscan wpscan:git "$@"
 
