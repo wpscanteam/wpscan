@@ -1,4 +1,4 @@
-![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/wpscan_logo_407x80.png "WPScan - WordPress Security Scanner")
+![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png "WPScan - WordPress Security Scanner")
 
 [![Gem Version](https://badge.fury.io/rb/wpscan.svg)](https://badge.fury.io/rb/wpscan)
 [![Build Status](https://travis-ci.org/wpscanteam/wpscan.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
