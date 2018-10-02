@@ -9,10 +9,8 @@ RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
 COPY . /wpscan
 RUN chown -R wpscan:wpscan /wpscan
 
-# runtime dependencies
-RUN apk add --no-cache libcurl procps sqlite-libs && \
-  # build dependencies
-  apk add --no-cache --virtual build-deps git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
+# build dependencies
+RUN apk add --no-cache --virtual build-deps git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
   bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
   apk del --no-cache build-deps
 
