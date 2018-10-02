@@ -10,9 +10,8 @@ COPY . /wpscan
 RUN chown -R wpscan:wpscan /wpscan
 
 # build dependencies
-RUN apk add --no-cache --virtual build-deps git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
-  bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
-  apk del --no-cache build-deps
+RUN apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
+  bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS
 
 WORKDIR /wpscan
 RUN rake install --trace
