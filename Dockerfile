@@ -1,5 +1,5 @@
-FROM ruby:2.5-alpine
-MAINTAINER WPScan Team <team@wpscan.org>
+FROM ruby:2.5-alpine AS builder
+LABEL maintainer="WPScan Team <team@wpscan.org>"
 
 ARG BUNDLER_ARGS="--jobs=8 --without test development"
 
@@ -19,9 +19,20 @@ RUN apk add --no-cache libcurl procps sqlite-libs && \
 WORKDIR /wpscan
 RUN rake install --trace
 
+FROM ruby:2.5-alpine
+LABEL maintainer="WPScan Team <team@wpscan.org>, Mostafa Hussein <mostafa.hussein91@gmail.com>"
+
+RUN adduser -h /wpscan -g WPScan -D wpscan
+
+COPY --from=builder /usr/local/bundle /usr/local/bundle
+COPY --from=builder /wpscan /wpscan
+RUN chown -R wpscan:wpscan /wpscan
+
+# runtime dependencies
+RUN apk add --no-cache libcurl procps sqlite-libs
+
 USER wpscan
 RUN /usr/local/bundle/bin/wpscan --update --verbose
 
 ENTRYPOINT ["/usr/local/bundle/bin/wpscan"]
 CMD ["--help"]
-
