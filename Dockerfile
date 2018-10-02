@@ -20,7 +20,7 @@ WORKDIR /wpscan
 RUN rake install --trace
 
 FROM ruby:2.5-alpine
-LABEL maintainer="WPScan Team <team@wpscan.org>, Mostafa Hussein <mostafa.hussein91@gmail.com>"
+LABEL maintainer="WPScan Team <team@wpscan.org>"
 
 RUN adduser -h /wpscan -g WPScan -D wpscan
 
