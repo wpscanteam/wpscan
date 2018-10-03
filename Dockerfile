@@ -8,7 +8,9 @@ RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
 COPY . /wpscan
 
 RUN apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
-  bundle install --system --gemfile=/wpscan/Gemfile $BUNDLER_ARGS
+  bundle install --system --clean --no-cache --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
+  # temp fix for https://github.com/bundler/bundler/issues/6680
+  rm -rf /usr/local/bundle/cache
 
 WORKDIR /wpscan
 RUN rake install --trace
