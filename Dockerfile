@@ -1,4 +1,4 @@
-FROM ruby:2.5-alpine AS builder
+FROM ruby:2.5.1-alpine AS builder
 LABEL maintainer="WPScan Team <team@wpscan.org>"
 
 ARG BUNDLER_ARGS="--jobs=8 --without test development"
