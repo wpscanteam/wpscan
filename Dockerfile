@@ -15,6 +15,10 @@ RUN apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-de
 WORKDIR /wpscan
 RUN rake install --trace
 
+# needed so non superusers can read gems
+RUN chmod -R a+r /usr/local/bundle
+
+
 FROM ruby:2.5-alpine
 LABEL maintainer="WPScan Team <team@wpscan.org>"
 
@@ -26,7 +30,6 @@ RUN chown -R wpscan:wpscan /wpscan
 # runtime dependencies
 RUN apk add --no-cache libcurl procps sqlite-libs
 
-RUN chmod -R a+r /usr/local/bundle
 
 USER wpscan
 RUN /usr/local/bundle/bin/wpscan --update --verbose
