@@ -1978,6 +1978,12 @@ plugins:
       path: languages/plugin-name.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ TODO (?<v>\d+\.[\.\d]+)/i
       version: true
+  backstage:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/backstage.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Backstage (?<v>\d+\.[\.\d]+)/i'
+      version: true
   backupbuddy:
     HistoryLog:
       class: BodyPattern
@@ -3617,6 +3623,12 @@ plugins:
       - include/js/custom-list.js
       - include/js/custom-owlCarousel-detail.js
       version: true
+  catch-breadcrumb:
+    QueryParameter:
+      files:
+      - public/css/catch-breadcrumb-public.css
+      - public/js/catch-breadcrumb-public.js
+      version: true
   catch-infinite-scroll:
     QueryParameter:
       files:
@@ -5066,6 +5078,12 @@ plugins:
       - assets/css/cryptocoins.css
       - assets/js/jquery.stockticker.min.js
       version: true
+  cryptocurrency-price-widget:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/crcpw-cryptocurrency-price-widget.pot
+      pattern: !ruby/regexp '/Id\-Version: Cryptocurrency Price Widget (?<v>\d+\.[\.\d]+)/i'
+      version: true
   cryptocurrency-widgets-pack:
     QueryParameter:
       files:
@@ -5571,6 +5589,17 @@ plugins:
       class: Xpath
       xpath: //meta[@name="generator"]/@content
       pattern: !ruby/regexp /WordPress Download Manager (?<v>\d+\.[\.\d]+)/i
+      version: true
+  download-media-file:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/download-media-file.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: Download Media File (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   download-monitor:
     TranslationFile:
@@ -7636,6 +7665,12 @@ plugins:
       files:
       - css/foxyshop.css
       version: true
+  front-editor-for-woocommerce:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   front-end-pm:
     TranslationFile:
       class: BodyPattern
@@ -8954,6 +8989,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/hero-social-style.css
+      version: true
+  hidden-contents:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/hidden-contents-fa_IR.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Hide Content (?<v>\d+\.[\.\d]+)/i'
       version: true
   hidden-login:
     QueryParameter:
@@ -10902,6 +10943,7 @@ plugins:
       - includes/assets/limelight-traffic-attribution.min.js
       - includes/assets/main.js
       - classes/assets/limelight-traffic-attribution.min.js
+      - assets/js/limelight-traffic-attribution.min.js
       version: true
     JavascriptVar:
       xpath: //script[not(@src) and contains(., "limelightTracker")]
@@ -11484,6 +11526,12 @@ plugins:
       files:
       - css/magic-slider.css
       - bxslider/jquery.bxslider.min.js
+      version: true
+  mailcamp:
+    QueryParameter:
+      files:
+      - public/css/mailcamp-public.css
+      - public/js/mailcamp-public.js
       version: true
   mailchimp-for-wp:
     ChangeLog:
@@ -12792,6 +12840,12 @@ plugins:
       class: BodyPattern
       path: languages/nepali-calendar.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Nepali Calendar (?<v>\d+\.[\.\d]+)/i
+      version: true
+  neptune-business:
+    QueryParameter:
+      files:
+      - public/css/neptune-busines-public.css
+      - public/js/neptune-busines-public.js
       version: true
   neptune-style-element:
     Comment:
@@ -14342,6 +14396,11 @@ plugins:
       class: BodyPattern
       path: languages/portfolio-toolkit.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Portfolio Toolkit (?<v>\d+\.[\.\d]+)/i
+      version: true
+  poshtiban:
+    QueryParameter:
+      files:
+      - assets/js/poshtiban-public.js
       version: true
   post-and-page-builder:
     QueryParameter:
@@ -16568,6 +16627,12 @@ plugins:
       path: languages/algolia.pot
       pattern: !ruby/regexp /Algolia [^\s]+ Instant & Relevant results (?<v>\d+\.[\.\d]+)/i
       version: true
+  search-cloud-one:
+    QueryParameter:
+      files:
+      - public/css/sc1-search-public.css
+      - public/js/sc1-search-public.js
+      version: true
   search-everything:
     JavascriptVar:
       pattern: !ruby/regexp /window\._se_plugin_version = '(?<v>\d+\.[\.\d]+)';/i
@@ -18119,6 +18184,12 @@ plugins:
       class: BodyPattern
       path: languages/son-of-gifv.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Son of GIFV (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  sophia-twitter-auto-post:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/sophia-post-to-twitter.pot
+      pattern: !ruby/regexp '/ct\-Id\-Version: Sophia Twitter Auto Post (?<v>\d+\.[\.\d]+)/i'
       version: true
   source-affix:
     QueryParameter:
@@ -20765,6 +20836,12 @@ plugins:
       - public/css/wc-guest-checkout-single-product-public.css
       - public/js/wc-guest-checkout-single-product-public.js
       version: true
+  wc-min-max-quantities:
+    TranslationFile:
+      class: BodyPattern
+      path: i18n/languages/wc-min-max-quantities.pot
+      pattern: !ruby/regexp '/oject\-Id\-Version: WC Min Max Quantities (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wc-moldovaagroindbank:
     TranslationFile:
       class: BodyPattern
@@ -21406,6 +21483,11 @@ plugins:
       path: package.json
       key: version
       version: true
+  woo-ajax-loginregister:
+    QueryParameter:
+      files:
+      - css/style.css
+      version: true
   woo-align-buttons:
     QueryParameter:
       files:
@@ -21425,6 +21507,12 @@ plugins:
       class: BodyPattern
       path: cs-framework/languages/bn_BD.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: Codestar Framework (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  woo-apuspayments:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woocommerce-apuspayments.pot
+      pattern: !ruby/regexp '/ct\-Id\-Version: WooCommerce ApusPayments (?<v>\d+\.[\.\d]+)/i'
       version: true
   woo-authorize-net:
     QueryParameter:
@@ -21507,6 +21595,12 @@ plugins:
       - public/css/simplegrid.min.css
       - public/css/r_wev_search-public.css
       - public/js/r_wev_search-public.js
+      version: true
+  woo-estimated-shipping-date:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wcesd.pot
+      pattern: !ruby/regexp '/on: WooCommerce Estimated Shipping Date (?<v>\d+\.[\.\d]+)/i'
       version: true
   woo-extra-cart-fee:
     QueryParameter:
@@ -22652,6 +22746,12 @@ plugins:
       - css/style.css
       - js/jsgrid/jsgrid.min.js
       version: true
+  wp-charts-and-graphs:
+    QueryParameter:
+      files:
+      - assets/js/pantherius_wp_charts.js
+      - assets/js/pantherius_wp_charts_init.js
+      version: true
   wp-child-theme-generator:
     TranslationFile:
       class: BodyPattern
@@ -23413,6 +23513,11 @@ plugins:
       class: BodyPattern
       path: languages/kuaza_pic_up_lang-tr_TR.po
       pattern: !ruby/regexp /sgid "<strong>Plugin version:<\/strong> v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  wp-insurance:
+    QueryParameter:
+      files:
+      - assets/js/popper.min.js
       version: true
   wp-inventory-manager:
     QueryParameter:
