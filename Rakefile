@@ -12,9 +12,9 @@ rescue LoadError
 end
 
 begin
-  require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new(:spec)
-  exec << :spec
+  #require 'rspec/core/rake_task'
+  #RSpec::Core::RakeTask.new(:spec)
+  #exec << :spec
 rescue LoadError
 end
 

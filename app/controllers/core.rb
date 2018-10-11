@@ -5,15 +5,15 @@ module WPScan
       # @return [ Array<OptParseValidator::Opt> ]
       def cli_options
         [OptURL.new(['--url URL', 'The URL of the blog to scan'],
-                    required_unless: %i[update help version], default_protocol: 'http')] +
+                    required_unless: %i[update help hh version], default_protocol: 'http')] +
           super.drop(1) + # delete the --url from CMSScanner
           [
             OptChoice.new(['--server SERVER', 'Force the supplied server module to be loaded'],
                           choices: %w[apache iis nginx],
-                          normalize: %i[downcase to_sym]),
+                          normalize: %i[downcase to_sym],
+                          advanced: true),
             OptBoolean.new(['--force', 'Do not check if the target is running WordPress']),
-            OptBoolean.new(['--[no-]update', 'Wether or not to update the Database'],
-                           required_unless: %i[url help version])
+            OptBoolean.new(['--[no-]update', 'Whether or not to update the Database'])
           ]
       end
 

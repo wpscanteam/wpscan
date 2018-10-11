@@ -13,7 +13,7 @@ module WPScan
       def cli_enum_choices
         [
           OptMultiChoices.new(
-            ['--enumerate [OPTS]', '-e', 'Enumeration Process'],
+            ['-e', '--enumerate [OPTS]', 'Enumeration Process'],
             choices: {
               vp:  OptBoolean.new(['--vulnerable-plugins']),
               ap:  OptBoolean.new(['--all-plugins']),
@@ -45,7 +45,7 @@ module WPScan
       # @return [ Array<OptParseValidator::OptBase> ]
       def cli_plugins_opts
         [
-          OptSmartList.new(['--plugins-list LIST', 'List of plugins to enumerate']),
+          OptSmartList.new(['--plugins-list LIST', 'List of plugins to enumerate'], advanced: true),
           OptChoice.new(
             ['--plugins-detection MODE',
              'Use the supplied mode to enumerate Plugins, instead of the global (--detection-mode) mode.'],
@@ -54,7 +54,8 @@ module WPScan
           OptBoolean.new(
             ['--plugins-version-all',
              'Check all the plugins version locations according to the choosen mode (--detection-mode, ' \
-             '--plugins-detection and --plugins-version-detection)']
+             '--plugins-detection and --plugins-version-detection)'],
+            advanced: true
           ),
           OptChoice.new(
             ['--plugins-version-detection MODE',
@@ -68,22 +69,23 @@ module WPScan
       # @return [ Array<OptParseValidator::OptBase> ]
       def cli_themes_opts
         [
-          OptSmartList.new(['--themes-list LIST', 'List of themes to enumerate']),
+          OptSmartList.new(['--themes-list LIST', 'List of themes to enumerate'], advanced: true),
           OptChoice.new(
             ['--themes-detection MODE',
              'Use the supplied mode to enumerate Themes, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           ),
           OptBoolean.new(
             ['--themes-version-all',
              'Check all the themes version locations according to the choosen mode (--detection-mode, ' \
-             '--themes-detection and --themes-version-detection)']
+             '--themes-detection and --themes-version-detection)'],
+            advanced: true
           ),
           OptChoice.new(
             ['--themes-version-detection MODE',
              'Use the supplied mode to check themes versions instead of the --detection-mode ' \
              'or --themes-detection modes.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
@@ -93,12 +95,12 @@ module WPScan
         [
           OptFilePath.new(
             ['--timthumbs-list FILE-PATH', 'List of timthumbs\' location to use'],
-            exists: true, default: File.join(DB_DIR, 'timthumbs-v3.txt')
+            exists: true, default: File.join(DB_DIR, 'timthumbs-v3.txt'), advanced: true
           ),
           OptChoice.new(
             ['--timthumbs-detection MODE',
              'Use the supplied mode to enumerate Timthumbs, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
@@ -108,12 +110,12 @@ module WPScan
         [
           OptFilePath.new(
             ['--config-backups-list FILE-PATH', 'List of config backups\' filenames to use'],
-            exists: true, default: File.join(DB_DIR, 'config_backups.txt')
+            exists: true, default: File.join(DB_DIR, 'config_backups.txt'), advanced: true
           ),
           OptChoice.new(
             ['--config-backups-detection MODE',
              'Use the supplied mode to enumerate Config Backups, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
@@ -123,12 +125,12 @@ module WPScan
         [
           OptFilePath.new(
             ['--db-exports-list FILE-PATH', 'List of DB exports\' paths to use'],
-            exists: true, default: File.join(DB_DIR, 'db_exports.txt')
+            exists: true, default: File.join(DB_DIR, 'db_exports.txt'), advanced: true
           ),
           OptChoice.new(
             ['--db-exports-detection MODE',
              'Use the supplied mode to enumerate DB Exports, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
@@ -139,7 +141,7 @@ module WPScan
           OptChoice.new(
             ['--medias-detection MODE',
              'Use the supplied mode to enumerate Medias, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
@@ -149,12 +151,13 @@ module WPScan
         [
           OptSmartList.new(
             ['--users-list LIST',
-             'List of users to check during the users enumeration from the Login Error Messages']
+             'List of users to check during the users enumeration from the Login Error Messages'],
+            advanced: true
           ),
           OptChoice.new(
             ['--users-detection MODE',
              'Use the supplied mode to enumerate Users, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end

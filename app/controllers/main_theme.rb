@@ -7,8 +7,7 @@ module WPScan
           OptChoice.new(
             ['--main-theme-detection MODE',
              'Use the supplied mode for the Main theme detection, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive],
-            normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
