@@ -146,7 +146,10 @@ module WPScan
       def enum_medias
         opts = default_opts('medias').merge(range: parsed_options[:enumerate][:medias])
 
-        output('@info', msg: 'Enumerating Medias') if user_interaction?
+        if user_interaction?
+          output('@info', msg: 'Enumerating Medias (Permalink setting must be set to "Plain" for those to be detected)')
+        end
+
         output('medias', medias: target.medias(opts))
       end
 

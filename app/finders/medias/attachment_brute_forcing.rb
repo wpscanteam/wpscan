@@ -1,7 +1,7 @@
 module WPScan
   module Finders
     module Medias
-      # Medias Finder
+      # Medias Finder, see https://github.com/wpscanteam/wpscan/issues/172
       class AttachmentBruteForcing < CMSScanner::Finders::Finder
         include CMSScanner::Finders::Finder::Enumerator
 
