@@ -9,7 +9,7 @@
 
 ## Prerequisites:
 
-- Ruby >= 2.2.2 - Recommended: 2.3.3
+- Ruby >= 2.3 - Recommended: latest
 - Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
 - RubyGems      - Recommended: latest
 
