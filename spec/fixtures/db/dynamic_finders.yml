@@ -1005,6 +1005,11 @@ plugins:
       path: language/ajaxify-filters-en_US.po
       pattern: !ruby/regexp /Project\-Id\-Version:\ Ajaxify filters (?<v>\d+\.[\.\d]+)/i
       version: true
+  ak-menu-icons-lite:
+    QueryParameter:
+      files:
+      - css/font-awesome.min.css
+      version: true
   aklamator-popup:
     QueryParameter:
       files:
@@ -1226,6 +1231,12 @@ plugins:
       files:
       - css/style.css
       version: true
+  animation-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   ank-simplified-ga:
     Comment:
       xpath: //comment()[contains(., "GA Tracking")]
@@ -1374,6 +1385,12 @@ plugins:
       - public/css/appypie-web-to-app-public.css
       - public/js/appypie-web-to-app-public.js
       version: true
+  apx-link-status:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/apx-link-status.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: APx Link Status (?<v>\d+\.[\.\d]+)/i'
+      version: true
   arabic-webfonts:
     Comment:
       xpath: //comment()[contains(., "arabic-webfonts")]
@@ -1480,6 +1497,11 @@ plugins:
       - css/style.css
       - css/font-awesome/css/font-awesome.min.css
       - js/amo.js
+      version: true
+  art-decoration-shortcode:
+    QueryParameter:
+      files:
+      - assets/css/style-front.min.css
       version: true
   art-picture-gallery:
     QueryParameter:
@@ -2867,6 +2889,12 @@ plugins:
       class: BodyPattern
       path: languages/bowe-codes.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ Bowe Codes (?<v>\d+\.[\.\d]+)/i
+      version: true
+  boxtal-connect:
+    TranslationFile:
+      class: BodyPattern
+      path: Boxtal/BoxtalConnectWoocommerce/translation/boxtal-connect-fr_FR.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Boxtal connect (?<v>\d+\.[\.\d]+)/i'
       version: true
   bp-activity-share:
     QueryParameter:
@@ -6652,6 +6680,13 @@ plugins:
       path: languages/eu-opt-in-compliance-for-mailchimp.pot
       pattern: !ruby/regexp /ion:\ eu\-opt\-in\-compliance\-for\-mailchimp (?<v>\d+\.[\.\d]+)/i
       version: true
+  event-calendar-by-hg:
+    QueryParameter:
+      files:
+      - assets/css/front.min.css
+      - assets/js/front.min.js
+      version: true
+      pattern: !ruby/regexp /v\=(?<v>\d+\.[\.\d]+)/
   event-calendar-wd:
     QueryParameter:
       files:
@@ -7793,6 +7828,12 @@ plugins:
       - template/masonry.js
       - template/main.js
       version: true
+  gallerya:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   game-showcase:
     QueryParameter:
       files:
@@ -8861,6 +8902,16 @@ plugins:
       - assets/css/font-awesome.css
       - assets/css/animate.min.css
       version: true
+  halloween-woocommerce:
+    QueryParameter:
+      files:
+      - styles.css
+      - assets/js/cookie.js
+      - main.js
+      - assets/js/jquery.vibrate.js
+      - assets/js/vibrationoptions.js
+      - assets/js/random-image.js
+      version: true
   hammy:
     QueryParameter:
       files:
@@ -9052,6 +9103,22 @@ plugins:
       - _inc/hints.js
       pattern: !ruby/regexp /(?<v>[\d\.]+[a-z])/i
       version: true
+  hivepress:
+    QueryParameter:
+      files:
+      - assets/css/fontawesome/fontawesome.min.css
+      - assets/css/fontawesome/solid.min.css
+      - assets/css/fancybox.min.css
+      - assets/css/slick.min.css
+      - assets/css/grid.min.css
+      - assets/css/frontend.min.css
+      - assets/js/jquery.iframe-transport.min.js
+      - assets/js/jquery.fileupload.min.js
+      - assets/js/jquery.fancybox.min.js
+      - assets/js/slick.min.js
+      - assets/js/jquery.sticky-sidebar.min.js
+      - assets/js/frontend.min.js
+      version: true
   hjyl-comment-spam:
     TranslationFile:
       class: BodyPattern
@@ -9181,6 +9248,12 @@ plugins:
       - assets/css/video-style.css
       - assets/css/magnific-popup.css
       - assets/js/video.js
+      version: true
+  http-to-https:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/http-to-https.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: HTTP to HTTPS (?<v>\d+\.[\.\d]+)/i'
       version: true
   hubwoo-deal-per-order-lite:
     TranslationFile:
@@ -10302,6 +10375,7 @@ plugins:
       - css/wpkqcg-pkg.css
       - assets/qrcode.js
       - js/wpkqcg-pkg.js
+      - assets/qrcode-v2.js
       version: true
   kb-support:
     QueryParameter:
@@ -10738,6 +10812,17 @@ plugins:
       - public/css/leader-public.css
       - public/js/leader-public.js
       version: true
+  leadgeneration:
+    QueryParameter:
+      files:
+      - assets/vendors/fontawesome/css/fontawesome-all.min.css
+      version: true
+  leadkit-pro:
+    QueryParameter:
+      files:
+      - public/css/leadkitpro-public.css
+      - public/js/leadkitpro-public.js
+      version: true
   leaflet-map:
     QueryParameter:
       files:
@@ -11170,6 +11255,7 @@ plugins:
       files:
       - public/js/ajax-methods.min.js
       - public/css/display.css
+      - public/css/display.min.css
       version: true
   login-and-logout-redirect:
     QueryParameter:
@@ -11703,6 +11789,12 @@ plugins:
       xpath: //meta[@name="generator"]/@content
       version: true
       pattern: !ruby/regexp /Margarita v(?<v>\d+\.[\.\d]+) \- https:\/\/emdplugins\.com/i
+  marketplace-taxes:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/marketplace-taxes.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Marketplace Taxes (?<v>\d+\.[\.\d]+)/i'
+      version: true
   masburti-flickr-gallery:
     TranslationFile:
       class: BodyPattern
@@ -11735,6 +11827,12 @@ plugins:
     QueryParameter:
       files:
       - assets/rating/rating.js
+      version: true
+  mastalab-comments:
+    QueryParameter:
+      files:
+      - public/css/mastalab_comments-public.css
+      - public/js/mastalab_comments-public.js
       version: true
   master-modal-login-lite:
     Comment:
@@ -11981,6 +12079,12 @@ plugins:
     QueryParameter:
       files:
       - css/extra.min.css
+      version: true
+  menu-item-duplicator:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/menu-item-duplicator.pot
+      pattern: !ruby/regexp '/roject\-Id\-Version: Menu Item Duplicator (?<v>\d+\.[\.\d]+)/i'
       version: true
   menu-manager:
     QueryParameter:
@@ -13566,6 +13670,14 @@ plugins:
     Comment:
       pattern: !ruby/regexp /OSM plugin V(?<v>\d+\.[\.\d]+)/i
       version: true
+  osmapper:
+    QueryParameter:
+      files:
+      - assets/css/ba_map_renderer.css
+      - assets/css/ba_map_styles.css
+      - assets/js/leaflet.js
+      - assets/js/ba_map_renderer.js
+      version: true
   oss-upload:
     TranslationFile:
       class: BodyPattern
@@ -14439,6 +14551,11 @@ plugins:
       files:
       - styles/default-styles.css
       version: true
+  post-deadlines:
+    QueryParameter:
+      files:
+      - assets/script.js
+      version: true
   post-display:
     QueryParameter:
       files:
@@ -14790,6 +14907,12 @@ plugins:
       key: version
       version: true
   pressbooks-mpdf:
+    ComposerFile:
+      class: ConfigParser
+      path: composer.json
+      key: version
+      version: true
+  pressbooks-openstax-import:
     ComposerFile:
       class: ConfigParser
       path: composer.json
@@ -15838,6 +15961,12 @@ plugins:
       - css/responsiveimgslider.css
       - js/jquery.slides.min.js
       version: true
+  responsive-horizontal-vertical-and-accordion-tabs:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wp-best-responsive-tabs.pot
+      pattern: !ruby/regexp /horizontal vertical and accordion Tabs (?<v>\d+\.[\.\d]+)/i
+      version: true
   responsive-jquery-slider:
     TranslationFile:
       class: BodyPattern
@@ -16198,6 +16327,12 @@ plugins:
       files:
       - assets/js/owl.carousel.min.js
       - assets/js/rolo.js
+      version: true
+  rontar-blog-retargeting:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/rontar-blog-retargeting.pot
+      pattern: !ruby/regexp '/ect\-Id\-Version: Rontar Blog Retargeting (?<v>\d+\.[\.\d]+)/i'
       version: true
   roost-for-bloggers:
     Comment:
@@ -17435,6 +17570,12 @@ plugins:
       - public/css/exxica-simple-sharing-public.css
       - public/js/exxica-simple-sharing-public.js
       version: true
+  simple-shortcode-block:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/simple-shortcode-block.pot
+      pattern: !ruby/regexp '/ject\-Id\-Version: Simple Shortcode Block (?<v>\d+\.[\.\d]+)/i'
+      version: true
   simple-sidebar-manager:
     TranslationFile:
       class: BodyPattern
@@ -17656,6 +17797,12 @@ plugins:
       path: languages/sitewit-engagement-analytics.pot
       pattern: !ruby/regexp '/ect\-Id\-Version: Search Engine Marketing (?<v>\d+\.[\.\d]+)/i'
       version: true
+  siwecos:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/siwecos-de_DE.po
+      pattern: !ruby/regexp '/\# Version:     (?<v>\d+\.[\.\d]+)/i'
+      version: true
   sj-cornerstone-addon:
     QueryParameter:
       files:
@@ -17837,6 +17984,7 @@ plugins:
       files:
       - smart-overlay.js
       - assets/smart-overlay.js
+      - assets/smart-overlay.css
       version: true
   smart-post-like:
     QueryParameter:
@@ -20494,6 +20642,12 @@ plugins:
       files:
       - css/very-simple-slider.css
       version: true
+  vessel:
+    QueryParameter:
+      files:
+      - css/vessel.css
+      - js/vessel.js
+      version: true
   viavi-wp-timeline:
     TranslationFile:
       class: BodyPattern
@@ -20778,6 +20932,12 @@ plugins:
     QueryParameter:
       files:
       - frontend/js/min/wbounce.min.js
+      version: true
+  wc-18app:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/it_IT.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WC 18app (?<v>\d+\.[\.\d]+)/i'
       version: true
   wc-affiliate-new-window:
     QueryParameter:
@@ -21620,6 +21780,12 @@ plugins:
       path: languages/ced-fruugo-en_US.po
       pattern: !ruby/regexp '/ject\-Id\-Version: Woo Fruugo Integration (?<v>\d+\.[\.\d]+)/i'
       version: true
+  woo-gateway-payger:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/PT_pt.po
+      pattern: !ruby/regexp /\-payger\.pot \(Woocommerce Gateway Payger (?<v>\d+\.[\.\d]+)/i
+      version: true
   woo-gift-cards-lite:
     TranslationFile:
       class: BodyPattern
@@ -22391,6 +22557,12 @@ plugins:
       class: BodyPattern
       path: langs/wordpresscom-stats-smiley-remover-fr_FR.po
       pattern: !ruby/regexp '/on: WordPress\.com Stats Smiley Remover v(?<v>\d+\.[\.\d]+)/i'
+      version: true
+  workshop-butler:
+    QueryParameter:
+      files:
+      - public/css/styles.1.0.2.min.css
+      - public/css/fontawesome-all.min.css
       version: true
   world-cup-predictor:
     TranslationFile:
@@ -23183,6 +23355,18 @@ plugins:
       xpath: //comment()[contains(., "Facebook Like Send")]
       pattern: !ruby/regexp /Facebook Like Send & Open Graph Meta v(?<v>\d+\.[\.\d]+)/i
       version: true
+  wp-facebook-review-showcase-lite:
+    QueryParameter:
+      files:
+      - assets/frontend/css/frontend-style.css
+      - assets/frontend/css/font-awesome/font-awesome.min.css
+      - assets/frontend/css/elegant-icons/elegant-icons.css
+      - assets/frontend/css/flat-star-icon/flaticon.css
+      - assets/frontend/css/jquery.bxslider.css
+      - assets/frontend/js/jquery.bxslider.js
+      - assets/frontend/js/wow.js
+      - assets/frontend/js/frontend-script.js
+      version: true
   wp-facebook-reviews:
     QueryParameter:
       files:
@@ -23297,6 +23481,12 @@ plugins:
     QueryParameter:
       files:
       - font-awesome/css/font-awesome.min.css
+      version: true
+  wp-force-logout:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wp-force-logout.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WPForce Logout (?<v>\d+\.[\.\d]+)/i'
       version: true
   wp-foundation-shortcodes:
     QueryParameter:
@@ -25025,6 +25215,11 @@ plugins:
       files:
       - public/css/wp30-by-who-public.css
       - public/js/wp30-by-who-public.js
+      version: true
+  wpac-like-system:
+    QueryParameter:
+      files:
+      - assets/js/ajax.js
       version: true
   wpadverts:
     TranslationFile:
