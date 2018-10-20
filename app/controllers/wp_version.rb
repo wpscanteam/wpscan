@@ -4,13 +4,12 @@ module WPScan
     class WpVersion < CMSScanner::Controller::Base
       def cli_options
         [
-          OptBoolean.new(['--wp-version-all', 'Check all the version locations']),
+          OptBoolean.new(['--wp-version-all', 'Check all the version locations'], advanced: true),
           OptChoice.new(
             ['--wp-version-detection MODE',
              'Use the supplied mode for the WordPress version detection, ' \
              'instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive],
-            normalize: :to_sym
+            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end

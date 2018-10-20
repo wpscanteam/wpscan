@@ -50,5 +50,10 @@ module WPScan
 
       @vulnerabilities
     end
+
+    # @return [ String ]
+    def release_date
+      @release_date ||= db_data['release_date']
+    end
   end
 end
