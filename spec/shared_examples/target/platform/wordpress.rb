@@ -37,5 +37,11 @@ shared_examples WPScan::Target::Platform::WordPress do
 
       its(:wordpress_hosted?) { should be true }
     end
+
+    context 'when the target host doesn\'t matches' do
+      let(:url) { 'http://ex-wordpress.com' }
+
+      its(:wordpress_hosted?) { should be false }
+    end
   end
 end
