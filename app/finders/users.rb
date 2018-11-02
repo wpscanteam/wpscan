@@ -4,6 +4,7 @@ require_relative 'users/oembed_api'
 require_relative 'users/rss_generator'
 require_relative 'users/author_id_brute_forcing'
 require_relative 'users/login_error_messages'
+require_relative 'users/yoast_seo_author_sitemap.rb'
 
 module WPScan
   module Finders
@@ -19,6 +20,7 @@ module WPScan
             Users::WpJsonApi.new(target) <<
             Users::OembedApi.new(target) <<
             Users::RSSGenerator.new(target) <<
+            Users::YoastSeoAuthorSitemap.new(target) <<
             Users::AuthorIdBruteForcing.new(target) <<
             Users::LoginErrorMessages.new(target)
         end
