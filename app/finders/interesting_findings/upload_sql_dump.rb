@@ -12,7 +12,7 @@ module WPScan
 
           return unless res.code == 200 && res.body =~ SQL_PATTERN
 
-          WPScan::InterestingFinding.new(
+          WPScan::UploadSQLDump.new(
             url,
             confidence: 100,
             found_by: DIRECT_ACCESS

@@ -23,7 +23,7 @@ describe WPScan::Finders::InterestingFindings::DebugLog do
       let(:body) { File.read(File.join(fixtures, 'debug.log')) }
 
       it 'returns the InterestingFinding' do
-        expect(finder.aggressive).to eql WPScan::InterestingFinding.new(
+        expect(finder.aggressive).to eql WPScan::DebugLog.new(
           log_url,
           confidence: 100,
           found_by: described_class::DIRECT_ACCESS

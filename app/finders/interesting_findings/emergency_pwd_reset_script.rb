@@ -10,7 +10,7 @@ module WPScan
 
           return unless res.code == 200 && !target.homepage_or_404?(res)
 
-          WPScan::InterestingFinding.new(
+          WPScan::EmergencyPwdResetScript.new(
             url,
             confidence: res.body =~ /password/i ? 100 : 40,
             found_by: DIRECT_ACCESS,

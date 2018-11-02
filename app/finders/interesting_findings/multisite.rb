@@ -15,7 +15,7 @@ module WPScan
 
           target.multisite = true
 
-          WPScan::InterestingFinding.new(
+          WPScan::Multisite.new(
             url,
             confidence: 100,
             found_by: DIRECT_ACCESS,

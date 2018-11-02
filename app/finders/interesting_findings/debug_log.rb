@@ -9,7 +9,7 @@ module WPScan
 
           return unless target.debug_log?(path)
 
-          WPScan::InterestingFinding.new(
+          WPScan::DebugLog.new(
             target.url(path),
             confidence: 100, found_by: DIRECT_ACCESS
           )

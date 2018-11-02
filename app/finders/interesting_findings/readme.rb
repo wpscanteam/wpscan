@@ -10,7 +10,7 @@ module WPScan
             res = Browser.get(url)
 
             if res.code == 200 && res.body =~ /wordpress/i
-              return WPScan::InterestingFinding.new(url, confidence: 100, found_by: DIRECT_ACCESS)
+              return WPScan::Readme.new(url, confidence: 100, found_by: DIRECT_ACCESS)
             end
           end
           nil

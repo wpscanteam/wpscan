@@ -11,7 +11,7 @@ module WPScan
 
           url = target.url(path)
 
-          WPScan::InterestingFinding.new(
+          WPScan::UploadDirectoryListing.new(
             url,
             confidence: 100,
             found_by: DIRECT_ACCESS,

@@ -38,7 +38,7 @@ describe WPScan::Finders::InterestingFindings::UploadSQLDump do
         let(:fixture) { 'dump.sql' }
 
         it 'returns the interesting findings' do
-          @expected = WPScan::InterestingFinding.new(
+          @expected = WPScan::UploadSQLDump.new(
             finder.dump_url,
             confidence: 100,
             found_by: described_class::DIRECT_ACCESS
