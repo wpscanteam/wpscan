@@ -1,4 +1,4 @@
 # Version
 module WPScan
-  VERSION = '3.3.2'.freeze
+  VERSION = '3.3.3'.freeze
 end
