@@ -60,12 +60,11 @@ module WPScan
       end
 
       # @return [ Hash ] The params for Typhoeus::Request
+      # @note Those params can't be overriden by CLI options
       def request_params
         {
-          ssl_verifyhost: 2,
-          ssl_verifypeer: true,
-          timeout: 300,
-          connecttimeout: 120,
+          timeout: 600,
+          connecttimeout: 300,
           accept_encoding: 'gzip, deflate',
           cache_ttl: 0
         }
