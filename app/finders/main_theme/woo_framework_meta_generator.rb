@@ -3,9 +3,9 @@ module WPScan
     module MainTheme
       # From the WooFramework meta generators
       class WooFrameworkMetaGenerator < CMSScanner::Finders::Finder
-        THEME_PATTERN     = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?"\s+/?>}
-        FRAMEWORK_PATTERN = %r{<meta name="generator" content="WooFramework\s?([^"]+)?"\s+/?>}
-        PATTERN           = /#{THEME_PATTERN}\s+#{FRAMEWORK_PATTERN}/i
+        THEME_PATTERN     = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?"\s+/?>}.freeze
+        FRAMEWORK_PATTERN = %r{<meta name="generator" content="WooFramework\s?([^"]+)?"\s+/?>}.freeze
+        PATTERN           = /#{THEME_PATTERN}\s+#{FRAMEWORK_PATTERN}/i.freeze
 
         def passive(opts = {})
           return unless target.homepage_res.body =~ PATTERN

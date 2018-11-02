@@ -9,7 +9,7 @@ module WPScan
       module WordPress
         include CMSScanner::Target::Platform::PHP
 
-        WORDPRESS_PATTERN = %r{/(?:(?:wp-content/(?:themes|(?:mu\-)?plugins|uploads))|wp-includes)/}i
+        WORDPRESS_PATTERN = %r{/(?:(?:wp-content/(?:themes|(?:mu\-)?plugins|uploads))|wp-includes)/}i.freeze
 
         # These methods are used in the associated interesting_findings finders
         # to keep the boolean state of the finding rather than re-check the whole thing again

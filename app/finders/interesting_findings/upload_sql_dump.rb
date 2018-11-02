@@ -3,7 +3,7 @@ module WPScan
     module InterestingFindings
       # UploadSQLDump finder
       class UploadSQLDump < CMSScanner::Finders::Finder
-        SQL_PATTERN = /(?:(?:(?:DROP|CREATE) TABLE)|INSERT INTO)/
+        SQL_PATTERN = /(?:(?:(?:DROP|CREATE) TABLE)|INSERT INTO)/.freeze
 
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
