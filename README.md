@@ -35,6 +35,17 @@ bundle install && rake install
 
 Pull the repo with ```docker pull wpscanteam/wpscan```
 
+Enumerating usernames
+```
+docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u
+```
+
+Enumerating a range of usernames
+```
+docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u1-100
+```
+** replace u1-100 with a range of your choice.
+
 # Usage
 
 ```wpscan --url blog.tld``` This will scan the blog using default options with a good compromise between speed and accuracy. For example, the plugins will be checked passively but their version with a mixed detection mode (passively + aggressively). Potential config backup files will also be checked, along with other interesting findings. If a more stealthy approach is required, then ```wpscan --stealthy --url blog.tld``` can be used.
@@ -68,6 +79,19 @@ url: 'http://target.tld'
 ```
 
 Running ```wpscan``` in the current directory (pwd), is the same as ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
+
+
+Enumerating usernames
+```
+wpscan --url https://target.tld/ --enumerate u
+```
+
+Enumerating a range of usernames
+```
+wpscan --url https://target.tld/ --enumerate u1-100
+```
+** replace u1-100 with a range of your choice.
+
 
 # PROJECT HOME
 
