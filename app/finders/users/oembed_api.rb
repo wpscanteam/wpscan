@@ -14,29 +14,35 @@ module WPScan
 
         # @param [ Hash ] opts
         #
-        # TODO: make this code pretty :x
-        #
         # @return [ Array<User> ]
         def aggressive(_opts = {})
-          found        = []
-          found_by_msg = 'Oembed API - %s (Aggressive Detection)'
-
           oembed_data = JSON.parse(Browser.get(api_url).body)
+          details     = user_details_from_oembed_data(oembed_data)
+
+          return [] unless details
+
+          [CMSScanner::User.new(details[0],
+                                found_by: format(found_by_msg, details[1]),
+                                confidence: details[2],
+                                interesting_entries: [api_url])]
+        rescue JSON::ParserError
+          []
+        end
+
+        def user_details_from_oembed_data(oembed_data)
+          return unless oembed_data
 
           if oembed_data['author_url'] =~ %r{/author/([^/]+)/?\z}
             details = [Regexp.last_match[1], 'Author URL', 90]
           elsif oembed_data['author_name'] && !oembed_data['author_name'].empty?
-            details = [oembed_data['author_name'].delete(' '), 'Author Name', 70]
+            details = [oembed_data['author_name'], 'Author Name', 70]
           end
 
-          return unless details
+          details
+        end
 
-          found << CMSScanner::User.new(details[0],
-                                        found_by: format(found_by_msg, details[1]),
-                                        confidence: details[2],
-                                        interesting_entries: [api_url])
-        rescue JSON::ParserError
-          found
+        def found_by_msg
+          'Oembed API - %s (Aggressive Detection)'
         end
 
         # @return [ String ] The URL of the API listing the Users

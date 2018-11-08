@@ -8,7 +8,6 @@ describe WPScan::Finders::Users::WpJsonApi do
 
   describe '#aggressive' do
     before do
-      # allow(target).to receive(:content_dir).and_return('wp-content')
       allow(target).to receive(:sub_dir).and_return(false)
       stub_request(:get, finder.api_url).to_return(body: body)
     end
