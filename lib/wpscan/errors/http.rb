@@ -1,6 +1,6 @@
 module WPScan
   # HTTP Error
-  class HTTPError < StandardError
+  class HTTPError < Error
     attr_reader :response
 
     # @param [ Typhoeus::Response ] res
