@@ -92,4 +92,10 @@ describe WPScan::WpVersion do
 
     its(:release_date) { should eql '2014-01-23' }
   end
+
+  describe '#status' do
+    subject(:version) { described_class.new('3.8.1') }
+
+    its(:status) { should eql 'outdated' }
+  end
 end

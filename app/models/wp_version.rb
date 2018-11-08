@@ -55,5 +55,10 @@ module WPScan
     def release_date
       @release_date ||= db_data['release_date']
     end
+
+    # @return [ String ]
+    def status
+      @status ||= db_data['status']
+    end
   end
 end

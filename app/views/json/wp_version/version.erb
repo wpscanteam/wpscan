@@ -2,6 +2,7 @@
 "version": {
   "number": <%= @version.number.to_json %>,
   "release_date": <%= @version.release_date.to_json %>,
+  "status": <%= @version.status.to_json %>,
   <%= render('@finding', item: @version) -%>
 },
 <% else -%>
