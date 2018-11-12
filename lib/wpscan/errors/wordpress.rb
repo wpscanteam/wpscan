@@ -1,7 +1,4 @@
 module WPScan
-  class Error < StandardError
-  end
-
   # WordPress hosted (*.wordpress.com)
   class WordPressHostedError < Error
     def to_s
