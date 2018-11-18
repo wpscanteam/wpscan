@@ -336,6 +336,12 @@ plugins:
       path: languages/accordion-for-wp.pot
       pattern: !ruby/regexp '/ect\-Id\-Version: Accordion for WordPress (?<v>\d+\.[\.\d]+)/i'
       version: true
+  acf-conditional-logic-advanced:
+    ComposerFile:
+      class: ConfigParser
+      path: composer.json
+      key: version
+      version: true
   acf-content-analysis-for-yoast-seo:
     ComposerFile:
       class: ConfigParser
@@ -4374,6 +4380,12 @@ plugins:
       files:
       - public/css/ct.css
       version: true
+  clio-grow-form:
+    QueryParameter:
+      files:
+      - assets/css/frontend.css
+      - assets/js/frontend.min.js
+      version: true
   closify-maestro-image-uploader-gallery-builder:
     QueryParameter:
       files:
@@ -5339,6 +5351,12 @@ plugins:
       class: BodyPattern
       path: lang/cwl-es_ES.po
       pattern: !ruby/regexp /t\-Id\-Version:\ Free WooCommerce Wishlist (?<v>\d+\.[\.\d]+)/i
+      version: true
+  custom-wp-rest-api:
+    QueryParameter:
+      files:
+      - public/css/customwprest-public.css
+      - public/js/customwprest-public.js
       version: true
   customer-area:
     ComposerFile:
@@ -7581,6 +7599,13 @@ plugins:
       path: languages/flush-opcache.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ WP OPcache (?<v>\d+\.[\.\d]+)/i
       version: true
+  flytedesk-digital:
+    QueryParameter:
+      files:
+      - public/css/flytedesk-digital-public.css
+      - public/js/flytedesk-digital-public.js
+      pattern: !ruby/regexp /ver=(?<v>[\d]+)/i
+      version: true
   fobi-chatbot:
     QueryParameter:
       files:
@@ -7875,6 +7900,12 @@ plugins:
       - includes/css/fusion-bootstrap.css
       - includes/css/fusion-core.css
       - includes/js/fusion-core.js
+      version: true
+  futurio-extra:
+    QueryParameter:
+      files:
+      - css/style.css
+      - js/futurio-extra.js
       version: true
   ga-germanized:
     QueryParameter:
@@ -9313,6 +9344,11 @@ plugins:
       files:
       - js/webappdesign_hover_product_details.js
       version: true
+  ht-event:
+    QueryParameter:
+      files:
+      - assets/js/htevent-widgets-active.js
+      version: true
   html-forms:
     QueryParameter:
       files:
@@ -9377,6 +9413,12 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  hurrytimer:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/hurrytimer.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: HurryTimer (?<v>\d+\.[\.\d]+)/i'
       version: true
   hybrid-gallery:
     QueryParameter:
@@ -10650,6 +10692,12 @@ plugins:
       files:
       - index.js
       version: true
+  klaro-consent-manager:
+    QueryParameter:
+      files:
+      - js/klaro-config.js
+      - js/klaro.min.js
+      version: true
   kletterpartner-suche:
     QueryParameter:
       files:
@@ -11569,6 +11617,12 @@ plugins:
       - assets/css/frontend/main.css
       version: true
   luckywp-cookie-notice-gdpr:
+    QueryParameter:
+      files:
+      - front/assets/main.min.css
+      - front/assets/main.min.js
+      version: true
+  luckywp-table-of-contents:
     QueryParameter:
       files:
       - front/assets/main.min.css
@@ -13502,6 +13556,12 @@ plugins:
       - public/assets/css/public.css
       - public/assets/js/public.js
       version: true
+  official-facebook-pixel:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/official-facebook-pixel-ja_JP.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Facebook Pixel (?<v>\d+\.[\.\d]+)/i'
+      version: true
   official-mailerlite-sign-up-forms:
     QueryParameter:
       files:
@@ -14718,6 +14778,11 @@ plugins:
       path: lang/post-length-indicator-en_GB.po
       pattern: !ruby/regexp /ject\-Id\-Version:\ Post Length Indicator v(?<v>\d+\.[\.\d]+)/i
       version: true
+  post-likedislike:
+    QueryParameter:
+      files:
+      - assests/js/ajax.js
+      version: true
   post-likerator:
     QueryParameter:
       files:
@@ -15063,6 +15128,12 @@ plugins:
       class: BodyPattern
       path: languages/PriceByRoleLite.pot
       pattern: !ruby/regexp '/ct\-Id\-Version: Prices By User Role Lite (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  primer-by-chloedigital:
+    QueryParameter:
+      files:
+      - public/css/primer-by-chloedigital-public.css
+      - public/js/primer-by-chloedigital-public.js
       version: true
   printedly:
     QueryParameter:
@@ -16226,6 +16297,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  rest-xmlrpc-data-checker:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/rest-xmlrpc-data-checker.pot
+      pattern: !ruby/regexp '/t\-Id\-Version: REST XML\-RPC Data Checker (?<v>\d+\.[\.\d]+)/i'
+      version: true
   restaurant-reservations:
     TranslationFile:
       class: BodyPattern
@@ -16755,6 +16832,11 @@ plugins:
       - public/css/sassy-social-share-public.css
       - admin/css/sassy-social-share-svg.css
       - public/js/sassy-social-share-public.js
+      version: true
+  save-page-to-pdf:
+    QueryParameter:
+      files:
+      - api2pdf.js
       version: true
   sb-login:
     TranslationFile:
@@ -18137,6 +18219,12 @@ plugins:
       files:
       - css/skin1.css
       - js/smartfaq.min.js
+      version: true
+  smart-image-resize:
+    QueryParameter:
+      files:
+      - public/css/plugpix-smart-image-resize-public.css
+      - public/js/plugpix-smart-image-resize-public.js
       version: true
   smart-logo-showcase-lite:
     QueryParameter:
@@ -19990,6 +20078,12 @@ plugins:
       path: languages/track-package.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: TODO (?<v>\d+\.[\.\d]+)/i'
       version: true
+  trackingmore-woocommerce-tracking:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/trackingmore-zh_TW.po
+      pattern: !ruby/regexp '/on: TrackingMore \- WooCommerce Tracking (?<v>\d+\.[\.\d]+)/i'
+      version: true
   tractis-identity-verifications:
     QueryParameter:
       files:
@@ -20457,6 +20551,16 @@ plugins:
       - public/css/ultimeter-public.css
       - public/js/ultimeter-public.js
       version: true
+  ultra-coupons-cashbacks:
+    QueryParameter:
+      files:
+      - assets/css/jquery.dataTables.min.css
+      - assets/css/style.css
+      - assets/js/clipboard.min.js
+      - assets/js/jquery.countdown.min.js
+      - assets/js/jquery.dataTables.min.js
+      - assets/js/main.js
+      version: true
   um-events-lite-for-ultimate-member:
     QueryParameter:
       files:
@@ -20473,6 +20577,12 @@ plugins:
       - prop/print.css
       - prop/medium.css
       - prop/small.css
+      version: true
+  um-story-lite:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/um-story-lite.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: UM Story Lite (?<v>\d+\.[\.\d]+)/i'
       version: true
   um-user-switching:
     TranslationFile:
@@ -21981,6 +22091,11 @@ plugins:
       - public/css/pikaday.css
       - public/js/woocommerce-delivery-scheduler-public.js
       version: true
+  woo-earn-sharing:
+    QueryParameter:
+      files:
+      - public/css/woo-earn-sharing-public.css
+      version: true
   woo-easy-view:
     QueryParameter:
       files:
@@ -22914,6 +23029,11 @@ plugins:
     QueryParameter:
       files:
       - javascript/wp-advertize-it.js
+      version: true
+  wp-affiliate-disclosure:
+    QueryParameter:
+      files:
+      - assets/css/core.css
       version: true
   wp-affiliate-linker:
     TranslationFile:
@@ -24026,6 +24146,12 @@ plugins:
       - js/popup.js
       - js/swfobject.js
       version: true
+  wp-kiosk-slides:
+    QueryParameter:
+      files:
+      - public/css/kiosk-slides-public.css
+      - public/js/kiosk-slides-public.js
+      version: true
   wp-last-seen:
     QueryParameter:
       files:
@@ -24467,6 +24593,11 @@ plugins:
       - assets/js/libs/soundmanager/soundmanager2.js
       - assets/js/wp-player.js
       version: true
+  wp-politic:
+    QueryParameter:
+      files:
+      - assets/js/popper.min.js
+      version: true
   wp-polls:
     QueryParameter:
       files:
@@ -24495,6 +24626,17 @@ plugins:
     QueryParameter:
       files:
       - js/wp-post-likes.js
+      version: true
+  wp-post-nav:
+    QueryParameter:
+      files:
+      - public/css/wp-post-nav-public.php
+      version: true
+  wp-post-rating:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   wp-postratings:
     QueryParameter:
@@ -25452,6 +25594,13 @@ plugins:
       path: package.json
       key: version
       version: true
+  wp-youtube-embed:
+    QueryParameter:
+      files:
+      - public/css/cws-youtube-pro-public.css
+      - shortcodes/pro/lib/slick/slick.css
+      - shortcodes/pro/lib/slick/slick-theme.css
+      version: true
   wp247-extension-notification-client:
     TranslationFile:
       class: BodyPattern
@@ -25553,6 +25702,17 @@ plugins:
       path: composer.json
       key: version
       version: true
+  wpcl-beaver-extender:
+    QueryParameter:
+      files:
+      - assets/css/public.css
+      - src/scripts/public.js
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   wpcomplete:
     QueryParameter:
       files:
@@ -25570,6 +25730,21 @@ plugins:
       class: BodyPattern
       path: wpDirectory-es_ES.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: wpDirectory (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  wpdrift-io-worker:
+    QueryParameter:
+      files:
+      - public/js/wpdrift-worker-public.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wpdrift-worker.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: WPdrift IO \- Worker (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   wpebanover:
     TranslationFile:
@@ -26108,6 +26283,12 @@ plugins:
       files:
       - assets/style.css
       version: true
+  xllentech-salat-timings:
+    QueryParameter:
+      files:
+      - public/css/xllentech-salat-timings-public.css
+      - public/js/xllentech-salat-timings-public.js
+      version: true
   xo-event-calendar:
     QueryParameter:
       files:
@@ -26250,6 +26431,23 @@ plugins:
       - public/css/youCruitPositions-public.css
       - public/js/youCruitPositions-public.min.js
       version: true
+  your-idea-counts:
+    QueryParameter:
+      files:
+      - css/style.css
+      - css/font-awesome.min.css
+      - css/yic_autocomplete.css
+      - css/sumoselect.min.css
+      - css/multi-select-tag-css/jquery.flexdatalist.css
+      - css/wp-editor-css/content.inline.min.css
+      - css/wp-editor-css/content.min.css
+      - css/wp-editor-css/skin.ie7.min.css
+      - css/wp-editor-css/skin.min.css
+      - css/admin-toolbar-bar-icons.css
+      - js/jquery.sumoselect.min.js
+      - js/multi-select-tag-js/jquery.flexdatalist.js
+      - js/function.js
+      version: true
   youtube-channel:
     QueryParameter:
       files:
@@ -26296,6 +26494,12 @@ plugins:
       class: BodyPattern
       path: lang/youversion.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: YouVersion (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  yt-no-cookie-embed:
+    QueryParameter:
+      files:
+      - public/css/yt-no-cookie-embed-public.css
+      - public/js/yt-no-cookie-embed-public.js
       version: true
   ytshare:
     QueryParameter:
