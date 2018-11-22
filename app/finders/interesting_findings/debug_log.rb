@@ -11,7 +11,8 @@ module WPScan
 
           WPScan::DebugLog.new(
             target.url(path),
-            confidence: 100, found_by: DIRECT_ACCESS
+            confidence: 100, found_by: DIRECT_ACCESS,
+            references: { url: 'https://codex.wordpress.org/Debugging_in_WordPress' }
           )
         end
       end
