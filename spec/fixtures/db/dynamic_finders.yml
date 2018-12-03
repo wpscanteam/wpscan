@@ -2614,6 +2614,18 @@ plugins:
       - assets/css/animate.min.css
       - assets/css/styles.css
       version: true
+  blossom-recipe-maker:
+    QueryParameter:
+      files:
+      - public/css/blossom-recipe-public.css
+      - public/js/blossom-recipe-public.js
+      - public/js/blossom-adjust-ingredients.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/blossom-recipe-maker.pot
+      pattern: !ruby/regexp '/roject\-Id\-Version: Blossom Recipe Maker (?<v>\d+\.[\.\d]+)/i'
+      version: true
   blossomthemes-email-newsletter:
     TranslationFile:
       class: BodyPattern
@@ -5468,6 +5480,23 @@ plugins:
       files:
       - js/jquery.ui.totop.min.js
       version: true
+  deep-free-plus:
+    QueryParameter:
+      files:
+      - assets/dist/css/frontend/header-builder/header-builder.css
+      - admin/header-builder/assets/src/frontend/whb-jquery-plugins.js
+      - admin/header-builder/assets/src/frontend/whb-frontend.js
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: admin/theme-options/ReduxCore/inc/themecheck/lang/themeforest-check.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: ThemeForest\-Check (?<v>\d+\.[\.\d]+)/i'
+      version: true
   deeper-comments:
     QueryParameter:
       files:
@@ -5675,6 +5704,12 @@ plugins:
       class: BodyPattern
       path: languages/dokan-invoice.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ Dokan \- PDF Invoice (?<v>\d+\.[\.\d]+)/i
+      version: true
+  dolibarr-rest-api:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   donate-visa:
     QueryParameter:
@@ -7448,6 +7483,12 @@ plugins:
       path: lang/flat-twitter-en_EN.po
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Flat Twitter (?<v>\d+\.[\.\d]+)/i
       version: true
+  flc-forma-lms-connector:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/flc-forma-lms-connector-it_IT.po
+      pattern: !ruby/regexp '/ect\-Id\-Version: FLC forma\.lms connector (?<v>\d+\.[\.\d]+)/i'
+      version: true
   flex-posts:
     QueryParameter:
       files:
@@ -9007,6 +9048,12 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/i
       confidence: 90
+      version: true
+  gvsoft-photobox:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/gvsoft-photobox-ru_RU.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: gvphotobox (?<v>\d+\.[\.\d]+)/i'
       version: true
   h5p:
     QueryParameter:
@@ -10811,6 +10858,12 @@ plugins:
       - js/select2.js
       - js/options.js
       version: true
+  laboratory-menu-rest-endpoints:
+    QueryParameter:
+      files:
+      - src/css/laboratory-menu-api-public.css
+      - src/js/laboratory-menu-api-public.js
+      version: true
   lana-breadcrumb:
     QueryParameter:
       files:
@@ -10925,6 +10978,11 @@ plugins:
     QueryParameter:
       files:
       - assets/js/lazyload-all.js
+      version: true
+  lazy-load-optimizer:
+    QueryParameter:
+      files:
+      - assets/frontend/js/lazysizes.min.js
       version: true
   lazy-widget-loader:
     QueryParameter:
@@ -13329,6 +13387,12 @@ plugins:
       - includes/prettyphoto/prettyphoto.js
       - includes/prettyphoto/nimble-prettyPhoto.js
       version: true
+  ninja-gutenberg-blocks-gutenberg-blocks-collection:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   nitek-carousel-cool-transitions:
     QueryParameter:
       files:
@@ -13351,6 +13415,12 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  nodeinfo:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/nodeinfo.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: NodeInfo (?<v>\d+\.[\.\d]+)/i'
       version: true
   nofollow-for-external-link-tap:
     TranslationFile:
@@ -14419,6 +14489,15 @@ plugins:
       files:
       - placester-search/js/jquery.address.js
       - placester-search/js/listings.js
+      version: true
+  planaday-api:
+    QueryParameter:
+      files:
+      - css/planaday-fa.css
+      - css/fullcalendar.min.css
+      - css/planaday-style.css
+      - js/moment.min.js
+      - js/fullcalendar.min.js
       version: true
   platinum-seo-pack:
     Comment:
@@ -17167,6 +17246,13 @@ plugins:
       path: i18n/languages/seo-engine.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: SEO Engine (?<v>\d+\.[\.\d]+)/i'
       version: true
+  seo-landing-page-generator:
+    QueryParameter:
+      files:
+      - public/css/issslpg-public.css
+      - public/js/issslpg-public.js
+      - public/plugins/flexslider/jquery.flexslider-min.js
+      version: true
   seo-searchterms-admin:
     QueryParameter:
       files:
@@ -17378,6 +17464,17 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  shopcode-menu-horizontal-woocommerce:
+    QueryParameter:
+      files:
+      - assets/css/main.css
+      version: true
+  shopcode-owl-carousel-woocommerce-widget:
+    QueryParameter:
+      files:
+      - assets/css/main.css
+      - assets/js/main.js
       version: true
   shortcake-bakery:
     TranslationFile:
@@ -20004,6 +20101,14 @@ plugins:
       - style.css
       - js/top_up-min.js
       version: true
+  total-gdpr-compliance-lite:
+    QueryParameter:
+      files:
+      - assets/css/frontend-style.css
+      - assets/css/jquery.mCustomScrollbar.css
+      - assets/js/frontend-script.js
+      - assets/js/jquery.mCustomScrollbar.js
+      version: true
   total-team-lite:
     QueryParameter:
       files:
@@ -22139,6 +22244,12 @@ plugins:
       path: languages/woocommerce_gift_cards_lite-en_US.po
       pattern: !ruby/regexp '/Id\-Version: Woocommerce Gift Cards Lite (?<v>\d+\.[\.\d]+)/i'
       version: true
+  woo-idpay-gateway:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woo-idpay-gateway.pot
+      pattern: !ruby/regexp '/: IDPay payment gateway for Woocommerce (?<v>\d+\.[\.\d]+)/i'
+      version: true
   woo-infoplus-connect:
     TranslationFile:
       class: BodyPattern
@@ -23640,6 +23751,15 @@ plugins:
       path: langs/wp-editor-widget-sv_SE.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: WP Editor Widget (?<v>\d+\.[\.\d]+)/i'
       version: true
+  wp-education:
+    QueryParameter:
+      files:
+      - assets/js/popper.min.js
+      - assets/js/jquery.counterup.js
+      - assets/js/jquery.countdown.js
+      - assets/js/maps.js
+      - assets/js/maps-address.js
+      version: true
   wp-ehesive:
     QueryParameter:
       files:
@@ -24043,6 +24163,12 @@ plugins:
       - assets/css/public.css
       - assets/css/font-awesome.min.css
       version: true
+  wp-html5-outliner:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wp-html5-outliner.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WP HTML5 Outliner (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wp-image-embeds:
     TranslationFile:
       class: BodyPattern
@@ -24077,6 +24203,13 @@ plugins:
       class: BodyPattern
       path: languages/kuaza_pic_up_lang-tr_TR.po
       pattern: !ruby/regexp /sgid "<strong>Plugin version:<\/strong> v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  wp-imageviewer:
+    QueryParameter:
+      files:
+      - imageviewer/imageviewer.css
+      - imageviewer/imageviewer.js
+      - wp-imageviewer-init.js
       version: true
   wp-insurance:
     QueryParameter:
@@ -24385,6 +24518,17 @@ plugins:
       - css/frontend/frontend.css
       - css//font-awesome/font-awesome.min.css
       - css/icomoon/icomoon.css
+      version: true
+  wp-media-stories:
+    QueryParameter:
+      files:
+      - assets/css/media-stories.min.css
+      - assets/js/media-stories.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wp-media-stories.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WP Media Stories (?<v>\d+\.[\.\d]+)/i'
       version: true
   wp-megamenu:
     QueryParameter:
@@ -24828,6 +24972,8 @@ plugins:
       files:
       - public/css/wp-responsive-table-styles.css
       - public/js/wp-responsive-table-public.js
+      - assets/frontend/css/wprt-styles.css
+      - assets/frontend/js/wprt-script.js
       version: true
   wp-rest-theme-mod-endpoint:
     QueryParameter:
@@ -25600,6 +25746,15 @@ plugins:
       - public/css/cws-youtube-pro-public.css
       - shortcodes/pro/lib/slick/slick.css
       - shortcodes/pro/lib/slick/slick-theme.css
+      version: true
+  wp-zillow-review-slider:
+    QueryParameter:
+      files:
+      - public/css/wpzillow_w3.css
+      - public/css/wprs_unslider.css
+      - public/css/wprs_unslider-dots.css
+      - public/js/wprev-public.js
+      - public/js/wprs-unslider-min.js
       version: true
   wp247-extension-notification-client:
     TranslationFile:
