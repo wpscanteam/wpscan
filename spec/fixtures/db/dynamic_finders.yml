@@ -25024,6 +25024,11 @@ plugins:
     Comment:
       xpath: //comment()[contains(., "WP Rocket")]
       pattern: !ruby/regexp /Performance optimized by WP Rocket/i
+    TranslationFile:
+      class: BodyPattern
+      path: languages/rocket.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: WP Rocket (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wp-roster:
     QueryParameter:
       files:
