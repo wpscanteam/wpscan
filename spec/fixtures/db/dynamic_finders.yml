@@ -202,6 +202,12 @@ plugins:
       path: languages/404-to-301.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: 404 to 301 (?<v>\d+\.[\.\d]+)/i'
       version: true
+  4nton-extensions:
+    JavascriptFile:
+      class: BodyPattern
+      path: assets/js/script.js
+      pattern: !ruby/regexp '/Version: (?<v>\d+\.[\.\d]+)/i'
+      version: true
   8-degree-availability-calendar:
     QueryParameter:
       files:
@@ -1178,6 +1184,12 @@ plugins:
       files:
       - public/css/amazonpolly-public.css
       - public/js/amazonpolly-public.js
+      version: true
+  amazon-product-in-a-post-plugin:
+    CssFile:
+      class: BodyPattern
+      path: css/amazon-default-plugin-styles.css
+      pattern: !ruby/regexp /plugin version (?<v>\d+\.[\.\d]+)/i
       version: true
   amazonjs:
     QueryParameter:
