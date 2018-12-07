@@ -248,6 +248,11 @@ plugins:
       xpath: //script[contains(@src, "abc-notation/abcjs_basic_midi_")]/@src
       pattern: !ruby/regexp /abcjs_basic_midi_(?<v>\d+\.[\.\d]+)\-min\.js/i
       version: true
+  abcsubmit:
+    QueryParameter:
+      files:
+      - "/assets/css/admin.css"
+      version: true
   above-the-fold-optimization:
     StyleComment:
       class: Xpath
@@ -2007,6 +2012,12 @@ plugins:
       files:
       - style.css
       version: true
+  b2binpay-payments-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/b2binpay-payments-for-woocommerce.pot
+      pattern: !ruby/regexp '/sion: B2BinPay Payments for WooCommerce (?<v>\d+\.[\.\d]+)/i'
+      version: true
   b2i-investor-tools:
     QueryParameter:
       files:
@@ -2860,6 +2871,12 @@ plugins:
       class: BodyPattern
       path: languages/bookingcom-official-searchbox-ru_RU.po
       pattern: !ruby/regexp /on:\ Booking\.com Official Search box ver (?<v>\d+\.[\.\d]+)/i
+      version: true
+  bookingcom-product-helper:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/bookingcom-product-helper-en_US.po
+      pattern: !ruby/regexp '/\-Id\-Version: Booking\.com Product Helper (?<v>\d+\.[\.\d]+)/i'
       version: true
   bookly-responsive-appointment-booking-tool:
     QueryParameter:
@@ -6303,6 +6320,12 @@ plugins:
       - assets/css/edd-ajax-search.min.css
       - assets/js/edd-ajax-search.min.js
       version: true
+  edd-blocks:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   edd-card:
     TranslationFile:
       class: BodyPattern
@@ -8600,7 +8623,19 @@ plugins:
       files:
       - js/jquery.sparkline.js
       version: true
+  gosign-advanced-separator-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   gosign-masonry-post-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+  gosign-simple-teaser-block:
     ComposerFile:
       class: ConfigParser
       path: package.json
@@ -13457,6 +13492,12 @@ plugins:
       path: package-lock.json
       key: version
       version: true
+  nnsmarttooltip:
+    QueryParameter:
+      files:
+      - plugin-assets/public.css
+      - plugin-assets/public.bundle.js
+      version: true
   no-copy:
     QueryParameter:
       files:
@@ -13527,6 +13568,12 @@ plugins:
     QueryParameter:
       files:
       - js/notifyme.js
+      version: true
+  novarum-json-importer:
+    QueryParameter:
+      files:
+      - public/css/novarumimporter-public.css
+      - public/js/novarumimporter-public.js
       version: true
   novelist:
     QueryParameter:
@@ -17292,6 +17339,15 @@ plugins:
       - public/js/issscr-public.js
       - public/plugins/flexslider/jquery.flexslider-min.js
       version: true
+  seo-dynamic-pages:
+    QueryParameter:
+      files:
+      - public/css/seo-dynamic-pages-public.css
+      - public/css/bootstrap-grid.min.css
+      - public/css/bootstrap-helpers.css
+      - public/css/seo-dynamic-pages-public-custom.css
+      - public/js/seo-dynamic-pages-public.js
+      version: true
   seo-engine:
     TranslationFile:
       class: BodyPattern
@@ -17523,6 +17579,12 @@ plugins:
       - assets/css/main.css
       version: true
   shopcode-owl-carousel-woocommerce-widget:
+    QueryParameter:
+      files:
+      - assets/css/main.css
+      - assets/js/main.js
+      version: true
+  shopcode-popup-profile-builder:
     QueryParameter:
       files:
       - assets/css/main.css
@@ -19930,6 +19992,12 @@ plugins:
       files:
       - css/wptpsa-frontend.css
       version: true
+  themeregion-companion:
+    QueryParameter:
+      files:
+      - public/css/themeregion-companion-public.css
+      - public/js/themeregion-companion-public.js
+      version: true
   themify-builder-lite:
     QueryParameter:
       files:
@@ -21311,6 +21379,11 @@ plugins:
       path: languages/voice-search.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Voice Search (?<v>\d+\.[\.\d]+)/i
       version: true
+  voting-for-a-photo:
+    QueryParameter:
+      files:
+      - assets/frontend/js/voting-for-photo.js
+      version: true
   vowels-contact-form-with-drag-and-drop:
     QueryParameter:
       files:
@@ -22333,6 +22406,12 @@ plugins:
     QueryParameter:
       files:
       - js/frontend.js
+      version: true
+  woo-mega-search:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   woo-mobile-bottom-bar:
     QueryParameter:
@@ -23598,6 +23677,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/public.css
+      version: true
+  wp-contact-form7-email-spam-blocker:
+    QueryParameter:
+      files:
+      - public/css/contact-form-7-email-spam-blocker-public.css
+      - public/js/contact-form-7-email-spam-blocker-public.js
       version: true
   wp-cookie-law-info:
     QueryParameter:
@@ -25638,6 +25723,12 @@ plugins:
       - public/js/owl.carousel.js
       - public/js/wpte-gallery-public.js
       - public/js/wp-travel-engine-travelers-number.js
+      version: true
+  wp-travel-mapquest:
+    TranslationFile:
+      class: BodyPattern
+      path: i18n/languages/wp-travel-mapquest.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WP Travel MapQuest (?<v>\d+\.[\.\d]+)/i'
       version: true
   wp-travelermap:
     QueryParameter:
