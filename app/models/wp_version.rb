@@ -53,12 +53,12 @@ module WPScan
 
     # @return [ String ]
     def release_date
-      @release_date ||= db_data['release_date']
+      @release_date ||= db_data['release_date'] || 'Unknown'
     end
 
     # @return [ String ]
     def status
-      @status ||= db_data['status']
+      @status ||= db_data['status'] || 'Unknown'
     end
   end
 end

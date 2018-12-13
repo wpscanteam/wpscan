@@ -91,11 +91,23 @@ describe WPScan::WpVersion do
     subject(:version) { described_class.new('3.8.1') }
 
     its(:release_date) { should eql '2014-01-23' }
+
+    context 'when the version is not in the DB' do
+      subject(:version) { described_class.new('3.8.2') }
+
+      its(:release_date) { should eql 'Unknown' }
+    end
   end
 
   describe '#status' do
     subject(:version) { described_class.new('3.8.1') }
 
     its(:status) { should eql 'outdated' }
+
+    context 'when the version is not in the DB' do
+      subject(:version) { described_class.new('3.8.2') }
+
+      its(:release_date) { should eql 'Unknown' }
+    end
   end
 end
