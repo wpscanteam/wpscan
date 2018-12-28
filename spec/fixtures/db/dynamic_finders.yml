@@ -18259,6 +18259,7 @@ plugins:
       version: true
   simple-posts-ticker:
     Comment:
+      xpath: //comment()[contains(., "Simple Posts Ticker")]
       pattern: !ruby/regexp /te uses the Simple Posts Ticker plugin v(?<v>\d+\.[\.\d]+)/i
       version: true
   simple-responsive-images:
@@ -25239,6 +25240,7 @@ plugins:
       version: true
   wp-performance:
     Comment:
+      xpath: //comment()[contains(., "by WP Performance")]
       pattern: !ruby/regexp /Optimized by WP Performance (?<v>\d+\.[\.\d]+)/i
       version: true
   wp-performance-score-booster:
