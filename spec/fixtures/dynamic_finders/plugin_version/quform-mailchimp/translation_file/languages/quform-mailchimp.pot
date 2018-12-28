@@ -1,0 +1,936 @@
+# Copyright (C) 2018 ThemeCatcher
+# This file is distributed under the same license as the Quform Mailchimp plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Quform Mailchimp 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/quform-mailchimp\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-12-21T16:21:10+00:00\n"
+"PO-Revision-Date: 2018-12-21T16:21:10+00:00\n"
+"X-Generator: WP-CLI 2.0.1\n"
+"X-Domain: quform-mailchimp\n"
+
+#. Plugin Name of the plugin
+msgid "Quform Mailchimp"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://www.quform.com"
+msgstr ""
+
+#. Description of the plugin
+msgid "Easily add contacts to Mailchimp from Quform forms."
+msgstr ""
+
+#. Author of the plugin
+msgid "ThemeCatcher"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.themecatcher.net"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Controller.php:98
+#: library/Quform/Mailchimp/Admin/Page/Controller.php:99
+msgid "Mailchimp"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Add.php:15
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:106
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:77
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:68
+msgid "You have unsaved changes."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:70
+msgid "Integration saved"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:71
+msgid "Error saving the integration"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:72
+msgid "Please correct the highlighted fields and save the integration again"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:73
+#: library/templates/admin/integrations/edit.php:55
+msgid "Please select"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:74
+msgid "Select a Mailchimp tag"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:75
+msgid "Please select a form first"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:76
+msgid "Please select a list first"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:79
+msgid "Run this integration"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:80
+msgid "Do not run this integration"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:81
+msgid "if all of these rules match"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:82
+msgid "if any of these rules match"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:83
+msgid "There are no elements available to use for logic rules."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:84
+msgid "There are no logic rules yet, click \"Add logic rule\" to add one."
+msgstr ""
+
+#. translators: %1$s = element admin label, %2$s = element unique ID
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:86
+#: library/Quform/Mailchimp/Integration/Builder.php:403
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#. translators: %1$s = element admin label, %2$s = element unique ID
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:87
+msgid "is"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:88
+msgid "is not"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:89
+msgid "is empty"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:90
+msgid "is not empty"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:91
+msgid "is greater than"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:92
+msgid "is less than"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:93
+msgid "contains"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:94
+msgid "starts with"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:95
+msgid "ends with"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:96
+msgid "Enter a value"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:110
+msgid "You attempted to edit an item that doesn't exist. Perhaps it was deleted?"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:114
+msgid "You can't edit this item because it is in the Trash. Please restore it and try again."
+msgstr ""
+
+#. translators: %1$s = open link tag, %2$s = close link tag
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:124
+msgid "The integration will not function until a Mailchimp API key is verified on the %1$splugin settings page%2$s."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:141
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:153
+msgid "Edit Mailchimp Integration"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:171
+msgid "Add new logic rule"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/Edit.php:172
+msgid "Remove logic rule"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:63
+msgid "Are you sure you want to delete this integration? All saved settings will be lost and this cannot be undone."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:64
+msgid "Are you sure you want to delete these integrations? All saved settings will be lost and this cannot be undone."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:67
+msgid "An error occurred adding the integration"
+msgstr ""
+
+#. translators: %1$s = open link tag, %2$s = close link tag
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:89
+#: library/Quform/Mailchimp/Integration/Builder.php:334
+#: library/Quform/Mailchimp/Integration/Builder.php:581
+#: library/Quform/Mailchimp/Integration/Builder.php:725
+msgid "Please verify a Mailchimp API key on the %1$splugin settings page%2$s."
+msgstr ""
+
+#. translators: %s the number of integrations
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:392
+msgid "%s integration activated"
+msgid_plural "%s integrations activated"
+msgstr[0] ""
+
+#. translators: %s the number of integrations
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:398
+msgid "%s integration deactivated"
+msgid_plural "%s integrations deactivated"
+msgstr[0] ""
+
+#. translators: %s the number of integrations
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:404
+msgid "%s integration duplicated"
+msgid_plural "%s integrations duplicated"
+msgstr[0] ""
+
+#. translators: %s the number of integrations
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:410
+msgid "%s integration moved to the Trash"
+msgid_plural "%s integrations moved to the Trash"
+msgstr[0] ""
+
+#. translators: %s the number of integrations
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:416
+msgid "%s integration restored"
+msgid_plural "%s integrations restored"
+msgstr[0] ""
+
+#. translators: %s the number of integrations
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:422
+msgid "%s integration deleted"
+msgid_plural "%s integrations deleted"
+msgstr[0] ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:427
+msgid "Bad request."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:430
+msgid "You do not have permission to do this."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:433
+msgid "Nonce check failed."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:459
+#: library/Quform/Mailchimp/Admin/Page/Integrations/List.php:471
+msgid "Mailchimp Integrations"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:52
+msgid "Settings saved"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:53
+msgid "An error occurred saving the settings."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:54
+msgid "Please wait, verification in progress"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:56
+msgid "An error occurred verifying the license key."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:57
+#: library/templates/admin/settings.php:50
+msgid "Verified"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:58
+#: library/templates/admin/settings.php:50
+msgid "Unverified"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:59
+msgid "Are you sure you want to uninstall the Quform Mailchimp plugin?"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:62
+msgid "An error occurred uninstalling the plugin."
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:87
+#: library/Quform/Mailchimp/Admin/Page/Settings.php:99
+msgid "Mailchimp Settings"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page.php:20
+msgid "Integrations"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page.php:27
+msgid "Settings"
+msgstr ""
+
+#: library/Quform/Mailchimp/Admin/Page.php:34
+#: library/templates/admin/integrations/list.php:69
+msgid "Add Integration"
+msgstr ""
+
+#: library/Quform/Mailchimp/Dispatcher.php:55
+msgid "Please update the Quform plugin to version 2.6.0 or later to use the Quform Mailchimp addon."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:58
+#: library/Quform/Mailchimp/Integration/List/Settings.php:45
+msgid "This field is required"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:65
+msgid "The integration name must be no longer than 64 characters"
+msgstr ""
+
+#. translators: %1$s = open link tag, %2$s = close link tag
+#: library/Quform/Mailchimp/Integration/Builder.php:80
+msgid "Failed to insert into database, check the %1$serror log%2$s for more information"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:101
+#: library/Quform/Mailchimp/Integration/Builder.php:173
+#: library/Quform/Mailchimp/Integration/Builder.php:426
+#: library/Quform/Mailchimp/Integration/Builder.php:464
+#: library/Quform/Mailchimp/Integration/Builder.php:784
+#: library/Quform/Mailchimp/Integration/Builder.php:865
+#: library/Quform/Mailchimp/Integration/List/Settings.php:25
+#: library/Quform/Mailchimp/Settings.php:90
+#: library/Quform/Mailchimp/Settings.php:121
+#: library/Quform/Mailchimp/Settings.php:150
+#: library/Quform/Mailchimp/Uninstaller.php:73
+msgid "Bad request"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:108
+#: library/Quform/Mailchimp/Integration/Builder.php:180
+#: library/Quform/Mailchimp/Integration/Builder.php:323
+#: library/Quform/Mailchimp/Integration/Builder.php:433
+#: library/Quform/Mailchimp/Integration/Builder.php:471
+#: library/Quform/Mailchimp/Integration/Builder.php:791
+#: library/Quform/Mailchimp/Integration/Builder.php:872
+#: library/Quform/Mailchimp/Settings.php:97
+#: library/Quform/Mailchimp/Settings.php:157
+#: library/Quform/Mailchimp/Uninstaller.php:80
+msgid "Insufficient permissions"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:115
+#: library/Quform/Mailchimp/Integration/Builder.php:187
+#: library/Quform/Mailchimp/Integration/List/Settings.php:32
+#: library/Quform/Mailchimp/Settings.php:104
+#: library/Quform/Mailchimp/Settings.php:164
+#: library/Quform/Mailchimp/Uninstaller.php:87
+msgid "Nonce check failed"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:150
+msgid "Malformed integration configuration"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:275
+msgid "Please enter a name for the integration."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:282
+msgid "Please select a form."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:289
+msgid "Please select a list."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:296
+msgid "Please select an Email address field."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:304
+msgid "Please select a merge field Mailchimp tag."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:309
+msgid "Please select a merge field value."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:376
+#: library/Quform/Mailchimp/Integration/Builder.php:769
+msgid "An error occurred fetching the lists"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:392
+#: library/Quform/Mailchimp/Integration/Builder.php:489
+#: library/Quform/Mailchimp/Integration/Builder.php:890
+msgid "Form not found"
+msgstr ""
+
+#. translators: %1$s = element admin label, %2$s = name of the part
+#: library/Quform/Mailchimp/Integration/Builder.php:516
+msgid "%1$s [%2$s]"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:547
+msgid "Prefix"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:550
+msgid "First"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:553
+msgid "Middle"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:556
+msgid "Last"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:559
+msgid "Suffix"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:602
+#: library/Quform/Mailchimp/Integration/Builder.php:611
+#: library/Quform/Mailchimp/Integration/Builder.php:620
+msgid "The response from the Mailchimp API was invalid"
+msgstr ""
+
+#. translators: %1$s = merge field name, %2$s = merge field tag
+#: library/Quform/Mailchimp/Integration/Builder.php:628
+msgctxt "mailchimp merge field label"
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:652
+msgid "Select a value"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:653
+msgid "Insert variable..."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:657
+msgid "Add new merge field"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:658
+msgid "Remove merge field"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:673
+msgid "General"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:675
+msgid "Form URL"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:676
+msgid "Referring URL"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:677
+msgid "Post ID"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:678
+msgid "Post Title"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:679
+msgid "Custom Field"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:680
+msgid "Date"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:681
+msgid "Time"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:682
+msgid "DateTime"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:683
+msgid "Site Title"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:684
+msgid "Site Description"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:685
+msgid "Entry ID"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:686
+msgid "Form Name"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:687
+msgid "All Form Data"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:688
+msgid "Default Email Address"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:689
+msgid "Default Email Name"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:690
+msgid "Default \"From\" Email Address"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:691
+msgid "Default \"From\" Email Name"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:692
+msgid "Admin Email"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:696
+msgid "User"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:698
+msgid "IP Address"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:699
+msgid "User Agent"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:700
+msgid "Display Name"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:701
+msgid "Email"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:702
+msgid "Login"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:703
+msgid "User Metadata"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/Builder.php:837
+msgid "An error occurred fetching the groups"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Settings.php:52
+msgid "Value must be numeric"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Settings.php:61
+msgid "Value must be greater than 1"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Settings.php:68
+msgid "Value must be less than 1000000"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:126
+msgid "All"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:134
+#: library/Quform/Mailchimp/Integration/List/Table.php:178
+#: library/templates/admin/integrations/edit.php:40
+msgid "Active"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:142
+msgid "Inactive"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:150
+#: library/Quform/Mailchimp/Integration/List/Table.php:296
+msgid "Trash"
+msgstr ""
+
+#. translators: %s = the search query
+#: library/Quform/Mailchimp/Integration/List/Table.php:158
+msgid "Search results for &#8220;%s&#8221;"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:175
+#: library/templates/admin/integrations/edit.php:30
+msgid "Name"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:176
+#: library/templates/admin/integrations/edit.php:51
+msgid "Form"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:177
+#: library/templates/admin/integrations/edit.php:68
+msgid "List"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:179
+msgid "Last modified"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:209
+#: library/Quform/Mailchimp/Integration/List/Table.php:243
+msgid "Edit integration &#8220;%s&#8221;"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:244
+msgid "Edit"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:257
+msgid "Deactivate integration &#8220;%s&#8221;"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:258
+#: library/Quform/Mailchimp/Integration/List/Table.php:409
+msgid "Deactivate"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:268
+msgid "Activate integration &#8220;%s&#8221;"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:269
+#: library/Quform/Mailchimp/Integration/List/Table.php:408
+msgid "Activate"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:282
+msgid "Duplicate integration &#8220;%s&#8221;"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:283
+#: library/Quform/Mailchimp/Integration/List/Table.php:413
+msgid "Duplicate"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:295
+msgid "Move integration &#8220;%s&#8221; to the Trash"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:308
+msgid "Restore integration &#8220;%s&#8221; from the Trash"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:309
+#: library/Quform/Mailchimp/Integration/List/Table.php:403
+msgid "Restore"
+msgstr ""
+
+#. translators: %s = the integration name
+#: library/Quform/Mailchimp/Integration/List/Table.php:319
+msgid "Delete integration &#8220;%s&#8221; permanently"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:320
+#: library/Quform/Mailchimp/Integration/List/Table.php:404
+msgid "Delete permanently"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:336
+#: library/Quform/Mailchimp/Integration/List/Table.php:347
+msgid "(not configured)"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:358
+msgid "Yes"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:358
+msgid "No"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:417
+msgid "Move to Trash"
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:429
+msgid "Your search did not match any integrations."
+msgstr ""
+
+#. translators: %1$s = open link tag, %2$s = close link tag
+#: library/Quform/Mailchimp/Integration/List/Table.php:434
+msgid "No integrations found, %1$sclick here%2$s to create one."
+msgstr ""
+
+#: library/Quform/Mailchimp/Integration/List/Table.php:439
+msgid "No integrations found."
+msgstr ""
+
+#. translators: %s = the original integration name
+#: library/Quform/Mailchimp/Integration/Repository.php:451
+msgctxt "integration name duplicate"
+msgid "%s duplicate"
+msgstr ""
+
+#: library/Quform/Mailchimp/Permissions.php:17
+msgid "List Integrations"
+msgstr ""
+
+#: library/Quform/Mailchimp/Permissions.php:18
+msgid "Add Integrations"
+msgstr ""
+
+#: library/Quform/Mailchimp/Permissions.php:19
+msgid "Edit Integrations"
+msgstr ""
+
+#: library/Quform/Mailchimp/Permissions.php:20
+msgid "Delete Integrations"
+msgstr ""
+
+#: library/Quform/Mailchimp/Permissions.php:21
+msgid "Edit Settings"
+msgstr ""
+
+#: library/Quform/Mailchimp/Settings.php:57
+msgid "The API key was successfully verified"
+msgstr ""
+
+#: library/Quform/Mailchimp/Settings.php:78
+msgid "An error occurred verifying the API key"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:15
+#: library/templates/admin/settings.php:16
+msgid "Please enable JavaScript to use this page"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:24
+#: library/templates/admin/integrations/edit.php:195
+#: library/templates/admin/settings.php:24
+#: library/templates/admin/settings.php:158
+msgid "Save"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:34
+msgid "Enter a name to help you identify the integration."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:45
+msgid "Activate or deactivate this integration."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:60
+msgid "Choose the form to add contacts from."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:67
+msgid "Refresh the available lists"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:79
+msgid "Choose the Mailchimp list to add contacts to."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:86
+msgid "Refresh the available email address fields"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:87
+msgid "Email address field"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:98
+msgid "Choose the email address form field."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:104
+msgid "Double opt-in"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:109
+msgid "Send contacts an opt-in confirmation email when they subscribe to your list."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:116
+msgid "Refresh the available merge field elements and tags"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:117
+msgid "Merge fields"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:118
+msgid "Add merge field"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:126
+msgid "There are no merge fields yet, click \"Add merge field\" to add one."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:128
+msgid "Save additional information about the contact."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:135
+msgid "Refresh the available groups"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:136
+msgid "Groups"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:142
+msgid "Choose groups"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:147
+msgid "Choose the groups to add the contact to."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:153
+msgid "Enable conditional logic"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:158
+msgid "Create rules to determine whether or not to run this integration based on the values of form fields."
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:165
+msgid "Refresh the available elements"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:166
+msgid "Logic rules"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:168
+msgid "Add logic rule"
+msgstr ""
+
+#: library/templates/admin/integrations/edit.php:183
+msgid "Submitted Form Value"
+msgstr ""
+
+#: library/templates/admin/integrations/list.php:17
+msgid "Search"
+msgstr ""
+
+#: library/templates/admin/integrations/list.php:27
+msgid "Table options"
+msgstr ""
+
+#: library/templates/admin/integrations/list.php:31
+msgid "Integrations per page"
+msgstr ""
+
+#: library/templates/admin/integrations/list.php:56
+msgid "Create an integration"
+msgstr ""
+
+#: library/templates/admin/integrations/list.php:57
+msgid "Enter a name to help you identify the integration"
+msgstr ""
+
+#: library/templates/admin/integrations/list.php:62
+msgid "e.g. Contact form to Newsletter"
+msgstr ""
+
+#: library/templates/admin/settings.php:29
+msgid "Enable Mailchimp integrations"
+msgstr ""
+
+#: library/templates/admin/settings.php:32
+msgid "Enabled"
+msgstr ""
+
+#: library/templates/admin/settings.php:37
+msgid "Enable or disable all Mailchimp integrations."
+msgstr ""
+
+#: library/templates/admin/settings.php:42
+msgid "Mailchimp API key"
+msgstr ""
+
+#: library/templates/admin/settings.php:45
+msgid "API key status"
+msgstr ""
+
+#: library/templates/admin/settings.php:58
+msgid "Enter API key"
+msgstr ""
+
+#: library/templates/admin/settings.php:61
+msgid "Verify"
+msgstr ""
+
+#. translators: %1$s = open link tag, %2$s = close link tag
+#: library/templates/admin/settings.php:69
+msgid "Please enter your Mailchimp API key, you can get the key on %1$sthis page%2$s."
+msgstr ""
+
+#: library/templates/admin/settings.php:79
+msgid "Permissions"
+msgstr ""
+
+#: library/templates/admin/settings.php:81
+msgid "These options allow you to give permissions for other Roles to access parts of the plugin."
+msgstr ""
+
+#: library/templates/admin/settings.php:118
+msgid "Uninstall Quform Mailchimp"
+msgstr ""
+
+#: library/templates/admin/settings.php:123
+msgid "Confirm uninstall"
+msgstr ""
+
+#: library/templates/admin/settings.php:131
+msgid "Confirm that you want to delete all Mailchimp integrations and plugin settings, and deactivate the plugin. You can delete the plugin afterwards from the Plugins page."
+msgstr ""
+
+#: library/templates/admin/settings.php:144
+msgid "WARNING: All Mailchimp integrations and plugin settings will be deleted cannot be recovered unless you have a backup of the database."
+msgstr ""
+
+#: library/templates/admin/settings.php:148
+msgid "Uninstall"
+msgstr ""
