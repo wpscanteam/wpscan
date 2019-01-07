@@ -24,7 +24,8 @@ rvm:
   - ruby-head
 before_install:
   - "echo 'gem: --no-ri --no-rdoc' > ~/.gemrc"
-  - "gem update --system"
+  - gem update --system
+  - gem install bundler
 matrix:
   allow_failures:
     - rvm: ruby-head
