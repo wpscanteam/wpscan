@@ -105,7 +105,7 @@ wpscan --url https://target.tld/ --enumerate u1-100
 
 ## WPScan Public Source License
 
-The WPScan software (henceforth referred to simply as "WPScan") is dual-licensed - Copyright 2011-2018 WPScan Team.
+The WPScan software (henceforth referred to simply as "WPScan") is dual-licensed - Copyright 2011-2019 WPScan Team.
 
 Cases that include commercialization of WPScan require a commercial, non-free license. Otherwise, WPScan can be used without charge under the terms set out below.
 
@@ -115,7 +115,7 @@ Cases that include commercialization of WPScan require a commercial, non-free li
 
 1.2 "Contributor" means each individual or legal entity that creates, contributes to the creation of, or owns WPScan.
 
-1.3 "WPScan Team" means WPScan’s core developers, an updated list of whom can be found within the CREDITS file.
+1.3 "WPScan Team" means WPScan’s core developers.
 
 ### 2. Commercialization
 
@@ -135,8 +135,6 @@ Example cases which do not require a commercial license, and thus fall under the
  - Any non-commercial use of WPScan.
 
 If you need to purchase a commercial license or are unsure whether you need to purchase a commercial license contact us - team@wpscan.org.
-
-We may grant commercial licenses at no monetary cost at our own discretion if the commercial usage is deemed by the WPScan Team to significantly benefit WPScan.
 
 Free-use Terms and Conditions;
 
