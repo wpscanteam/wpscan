@@ -2028,6 +2028,12 @@ plugins:
       files:
       - style.css
       version: true
+  azw-woocommerce-file-uploads:
+    QueryParameter:
+      files:
+      - public/css/azwwfu-woocommerce-file-uploads-public.css
+      - public/js/azwwfu-woocommerce-file-uploads-public.js
+      version: true
   b2binpay-payments-for-woocommerce:
     TranslationFile:
       class: BodyPattern
@@ -2294,6 +2300,7 @@ plugins:
       - lib/beepress.css
       - lib/beepress-pro.js
       - lib/player.js
+      - lib/beepress-front.js
       version: true
   before-after-image-slider-lite:
     QueryParameter:
@@ -2629,6 +2636,12 @@ plugins:
       - public/css/block-fancy-list-item-public.css
       - public/js/block-fancy-list-item-public.js
       version: true
+  block-gallery:
+    QueryParameter:
+      files:
+      - dist/js//block-gallery-masonry.min.js
+      - dist/js/vendors/flickity.min.js
+      version: true
   block-spammers:
     TranslationFile:
       class: BodyPattern
@@ -2645,6 +2658,12 @@ plugins:
       class: BodyPattern
       path: locale/blockq.pot
       pattern: !ruby/regexp /nslation of the WordPress plugin BlockQ (?<v>\d+\.[\.\d]+)/i
+      version: true
+  blocks-export-import:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   blocks-ultimate:
     ComposerFile:
@@ -3556,6 +3575,12 @@ plugins:
       class: BodyPattern
       path: lang/lbfa-pl_PL.po
       pattern: !ruby/regexp /n Widget for FontAwesome by LIKE\.agency (?<v>\d+\.[\.\d]+)/i
+      version: true
+  buttons-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   buttons-with-style:
     QueryParameter:
@@ -4963,11 +4988,31 @@ plugins:
       files:
       - css/form_style.css
       version: true
+  contact-form-redux:
+    QueryParameter:
+      files:
+      - includes/css/styles.css
+      - includes/js/scripts.js
+      version: true
   contact-form-x:
     QueryParameter:
       files:
       - js/cookies.js
       - js/frontend.js
+      version: true
+  contact-form-z:
+    QueryParameter:
+      files:
+      - css/jquery.datetimepicker.css
+      - css/custom-file-input/normalize.css
+      - css/jquery-confirm.min.css
+      - public/css/contact-form-z-public-preload.css
+      - css/contact-form-z.css
+      - js/jquery.mask.min.js
+      - js/jquery.datetimepicker.full.min.js
+      - js/jquery-confirm.min.js
+      - public/js/contact-form-z-public.js
+      - js/CFileInput.js
       version: true
   contact-list:
     QueryParameter:
@@ -5134,6 +5179,12 @@ plugins:
       class: BodyPattern
       path: langs/cookiebot.pot
       pattern: !ruby/regexp /"(?<v>\d+\.[\.\d]+)/i
+      version: true
+  cookiepro:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wpcookiepro.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: wpcookiepro (?<v>\d+\.[\.\d]+)/i'
       version: true
   cool-eform:
     QueryParameter:
@@ -9595,6 +9646,12 @@ plugins:
       files:
       - assets/js/htevent-widgets-active.js
       version: true
+  ht-instagram:
+    QueryParameter:
+      files:
+      - assests/css/ht-instagramfeed.css
+      - assests/css/font-awesome.min.css
+      version: true
   html-forms:
     QueryParameter:
       files:
@@ -11114,6 +11171,11 @@ plugins:
       class: BodyPattern
       path: languages/woocommerce-luoc.pot
       pattern: !ruby/regexp /Last Users Order Column for WooCommerce (?<v>\d+\.[\.\d]+)/i
+      version: true
+  lastweets:
+    QueryParameter:
+      files:
+      - assets/css/theme.css
       version: true
   latest-custom-post-type-updates:
     QueryParameter:
@@ -12877,6 +12939,12 @@ plugins:
       - public/js/vendor/element-queries/ElementQueries.js
       - public/js/molongui-authorship.4995.min.js
       version: true
+  molongui-bump-offer:
+    TranslationFile:
+      class: BodyPattern
+      path: fw/i18n/molongui-common-framework.pot
+      pattern: !ruby/regexp '/t\-Id\-Version: molongui\-common\-framework (?<v>\d+\.[\.\d]+)/i'
+      version: true
   momoyoga-integration:
     QueryParameter:
       files:
@@ -13097,6 +13165,14 @@ plugins:
       - assets/css/style.css
       - assets/js/respond.min.js
       version: true
+  mtpl-insurance:
+    QueryParameter:
+      files:
+      - public/css/sljar_mtpl_public_css.css
+      - public/css/sljar_mtpl_media.css
+      - public/js/vue.min.js
+      - public/js/sljar_mtpl_public_js.js
+      version: true
   mudslideshow:
     TranslationFile:
       class: BodyPattern
@@ -13292,6 +13368,12 @@ plugins:
     QueryParameter:
       files:
       - js/mystickymenu.min.js
+      version: true
+  myticket-events:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   mz-newsticker:
     QueryParameter:
@@ -15443,6 +15525,12 @@ plugins:
       xpath: //meta[@name="generator"]/@content[contains(., "Press Events")]
       version: true
       pattern: !ruby/regexp /Press Events (?<v>\d+\.[\.\d]+)/i
+  press-release-distribution:
+    QueryParameter:
+      files:
+      - inc/frontend/css/prwirepro-press_release_distribution-frontend.css
+      - inc/frontend/js/prwirepro-press_release_distribution-frontend.js
+      version: true
   press-tube:
     TranslationFile:
       class: BodyPattern
@@ -16409,6 +16497,12 @@ plugins:
       - styles/default/style.css
       - js/jquery.easing.1.3.js
       - js/cf5.rps.js
+      version: true
+  related-posts-with-slider:
+    QueryParameter:
+      files:
+      - public/css/tm-related-posts-public.css
+      - public/js/bootstrap.min.js
       version: true
   related-products-slider-for-woocommerce:
     QueryParameter:
@@ -20749,6 +20843,12 @@ plugins:
       - public/css/turbo-widgets-public.css
       - public/js/turbo-widgets-public.js
       version: true
+  turitop-booking-system:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/turitop-booking-system.pot
+      pattern: !ruby/regexp '/ject\-Id\-Version: Turitop Booking System (?<v>\d+\.[\.\d]+)/i'
+      version: true
   tutorial-blocks-gutenberg-blocks-collection:
     QueryParameter:
       files:
@@ -21004,6 +21104,11 @@ plugins:
       files:
       - assets/css/slick.css
       - assets/css/ccs-news-style.css
+      version: true
+  ultimate-notice:
+    QueryParameter:
+      files:
+      - "/assets/css/main.css"
       version: true
   ultimate-page-builder:
     MetaTag:
@@ -22313,6 +22418,12 @@ plugins:
       files:
       - whats-new.css
       version: true
+  white-label-branding-elementor:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/elementor-white-label-branding.pot
+      pattern: !ruby/regexp '/Version: Elementor White Label Branding (?<v>\d+\.[\.\d]+)/i'
+      version: true
   whizz:
     TranslationFile:
       class: BodyPattern
@@ -22650,6 +22761,12 @@ plugins:
       - public/css/woocommerce-correios-calculo-de-frete-na-pagina-do-produto-public.css
       - public/js/woocommerce-correios-calculo-de-frete-na-pagina-do-produto-public.js
       version: true
+  woo-coupon-url:
+    QueryParameter:
+      files:
+      - public/css/woo-coupon-url-public.css
+      - public/js/woo-coupon-url-public.js
+      version: true
   woo-csv-price:
     TranslationFile:
       class: BodyPattern
@@ -22983,6 +23100,12 @@ plugins:
       class: BodyPattern
       path: language/woocod-load-more-post.pot
       pattern: !ruby/regexp '/oject\-Id\-Version: Woocod load more post (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  woocollections-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woocollections-for-woocommerce.pot
+      pattern: !ruby/regexp '/t\-Id\-Version: WooCommerce \- Collections (?<v>\d+\.[\.\d]+)/i'
       version: true
   woocom-cc-invoice:
     QueryParameter:
@@ -24153,6 +24276,12 @@ plugins:
       class: BodyPattern
       path: languages/wp-dev-dashboard.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: WP Dev Dashboard (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  wp-developer-support:
+    QueryParameter:
+      files:
+      - inc/frontend/css/wpdevcs-admin-developer-support-frontend.css
+      - inc/frontend/js/wpdevcs-admin-developer-support-frontend.js
       version: true
   wp-dialog:
     QueryParameter:

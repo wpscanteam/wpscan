@@ -1,0 +1,29 @@
+{
+	"name": "blocks-export-import",
+	"version": "1.0.0",
+	"description": "Export and Import Gutenberg Blocks",
+	"scripts": {
+		"build": "cross-env BABEL_ENV=default NODE_ENV=production webpack",
+		"dev": "cross-env BABEL_ENV=default NODE_ENV=development webpack --watch",
+		"lint": "eslint blocks/*/*.js store/*.js"
+	},
+	"engines": {
+		"node": ">=8.0.0",
+		"npm": ">=6.0.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.1.6",
+		"@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+		"@babel/plugin-transform-async-to-generator": "^7.1.0",
+		"@babel/plugin-transform-react-jsx": "^7.1.6",
+		"@babel/preset-env": "^7.1.6",
+		"babel-loader": "^8.0.4",
+		"cross-env": "3.2.4",
+		"eslint": "^5.7.0",
+		"eslint-config-wordpress": "^2.0.0",
+		"eslint-loader": "^2.1.1",
+		"eslint-plugin-react": "^7.11.1",
+		"webpack": "^4.25.1",
+		"webpack-cli": "^3.1.2"
+	}
+}
