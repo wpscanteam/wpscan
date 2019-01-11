@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Timthumb do
   subject(:timthumb) { described_class.new(url, opts) }
   let(:url)          { 'http://wp.lab/wp-content/timthumb.php' }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Browser do
   subject(:browser) { described_class.instance(options) }
   before            { described_class.reset }

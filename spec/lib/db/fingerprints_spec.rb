@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::DB::Fingerprints do
   describe '#unique_fingerprints' do
     # Handled in #wp_unique_fingerprints

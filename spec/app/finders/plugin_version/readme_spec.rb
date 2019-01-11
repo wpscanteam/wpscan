@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::PluginVersion::Readme do
   subject(:finder) { described_class.new(plugin) }
   let(:plugin)     { WPScan::Plugin.new('spec', target) }

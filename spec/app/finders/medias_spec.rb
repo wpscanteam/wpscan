@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::Medias::Base do
   subject(:media) { described_class.new(target) }
   let(:target)    { WPScan::Target.new(url) }

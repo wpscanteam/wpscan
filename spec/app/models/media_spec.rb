@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Media do
   subject(:media) { described_class.new(url) }
   let(:url)       { 'http://e.oeg/?attachment_id=2' }

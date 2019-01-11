@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::Timthumbs::Base do
   subject(:timthumb) { described_class.new(target) }
   let(:target)       { WPScan::Target.new(url) }

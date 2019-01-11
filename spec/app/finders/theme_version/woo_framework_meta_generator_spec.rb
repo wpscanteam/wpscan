@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::ThemeVersion::WooFrameworkMetaGenerator do
   subject(:finder) { described_class.new(theme) }
   let(:theme)      { WPScan::Theme.new(slug, target) }

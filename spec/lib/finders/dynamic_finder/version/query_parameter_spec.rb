@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::DynamicFinder::Version::QueryParameter do
   module WPScan
     module Finders

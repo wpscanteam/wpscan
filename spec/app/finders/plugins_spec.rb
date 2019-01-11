@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::Plugins::Base do
   subject(:plugins) { described_class.new(target) }
   let(:target)      { WPScan::Target.new(url) }

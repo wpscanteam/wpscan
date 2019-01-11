@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Target do
   subject(:target) { described_class.new(url) }
   let(:url)        { 'http://ex.lo' }

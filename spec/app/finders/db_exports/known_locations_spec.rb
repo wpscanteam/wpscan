@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::DbExports::KnownLocations do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }

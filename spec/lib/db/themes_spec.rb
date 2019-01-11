@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::DB::Themes do
   subject(:themes) { described_class }
 

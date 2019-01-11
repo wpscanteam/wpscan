@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::WpItem do
   subject(:wp_item)  { described_class.new(slug, blog, opts) }
   let(:slug)         { 'test_item' }

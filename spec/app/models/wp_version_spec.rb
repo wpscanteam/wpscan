@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::WpVersion do
   describe '#new' do
     context 'when invalid number' do

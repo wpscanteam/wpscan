@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::DB::Plugins do
   subject(:plugins) { described_class }
 

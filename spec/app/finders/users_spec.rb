@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::Users::Base do
   subject(:user) { described_class.new(target) }
   let(:target)   { WPScan::Target.new(url) }

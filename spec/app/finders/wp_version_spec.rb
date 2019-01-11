@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 # If this file is tested alone (rspec path-to-this-file), then there will be an error about
 # constants not being intilialized. This is due to the Dynamic Finders.
 

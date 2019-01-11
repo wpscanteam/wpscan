@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Plugin do
   subject(:plugin) { described_class.new(slug, blog, opts) }
   let(:slug)       { 'spec' }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 expected_all = df_expected_all['wordpress']
 
 WPScan::DB::DynamicFinders::Wordpress.create_versions_finders

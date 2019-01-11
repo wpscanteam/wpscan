@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::TimthumbVersion::Base do
   subject(:timthumb_version) { described_class.new(target) }
   let(:target)               { WPScan::Timthumb.new(url) }

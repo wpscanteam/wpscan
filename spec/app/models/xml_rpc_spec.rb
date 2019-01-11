@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::XMLRPC do
   subject(:xml_rpc) { described_class.new('http//e.org/xmlrpc.php') }
 

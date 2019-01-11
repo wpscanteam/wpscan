@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::Themes::Base do
   subject(:themes) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }

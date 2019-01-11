@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::ThemeVersion::Base do
   subject(:theme_version) { described_class.new(theme) }
   let(:theme)             { WPScan::Plugin.new(slug, target) }

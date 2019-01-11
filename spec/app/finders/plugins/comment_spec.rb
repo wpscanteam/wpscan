@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::Plugins::Comment do
   it_behaves_like WPScan::Finders::DynamicFinder::WpItems::Finder do
     subject(:finder) { described_class.new(target) }

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Finders::InterestingFindings::Base do
   subject(:files) { described_class.new(target) }
   let(:target)    { WPScan::Target.new(url) }

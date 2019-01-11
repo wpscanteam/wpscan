@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe WPScan::Controller::PasswordAttack do
   subject(:controller) { described_class.new }
   let(:target_url)     { 'http://ex.lo/' }
