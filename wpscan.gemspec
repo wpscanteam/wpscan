@@ -21,18 +21,14 @@ Gem::Specification.new do |s|
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.0.41.1'
-
-  # Already required by CMSScanner, so version restrictions loosen
-  s.add_dependency 'activesupport', '~> 5.1'
-  s.add_dependency 'yajl-ruby', '~> 1.4'
+  s.add_dependency 'cms_scanner', '~> 0.0.41.2'
 
   s.add_development_dependency 'bundler',   '>= 1.6'
   s.add_development_dependency 'coveralls', '~> 0.8.0'
   s.add_development_dependency 'rake', '~> 12.3'
   s.add_development_dependency 'rspec', '~> 3.8.0'
   s.add_development_dependency 'rspec-its', '~> 1.2.0'
-  s.add_development_dependency 'rubocop', '~> 0.61.1'
+  s.add_development_dependency 'rubocop', '~> 0.62.0'
   s.add_development_dependency 'simplecov', '~> 0.16.1'
   s.add_development_dependency 'webmock', '~> 3.5.1'
 end
