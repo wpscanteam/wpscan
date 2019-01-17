@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake', '~> 12.3'
   s.add_development_dependency 'rspec', '~> 3.8.0'
   s.add_development_dependency 'rspec-its', '~> 1.2.0'
-  s.add_development_dependency 'rubocop', '~> 0.62.0'
+  s.add_development_dependency 'rubocop', '~> 0.63.0'
   s.add_development_dependency 'simplecov', '~> 0.16.1'
   s.add_development_dependency 'webmock', '~> 3.5.1'
 end
