@@ -364,6 +364,12 @@ plugins:
       path: languages/accordion-for-wp.pot
       pattern: !ruby/regexp '/ect\-Id\-Version: Accordion for WordPress (?<v>\d+\.[\.\d]+)/i'
       version: true
+  ace-twilio-for-woocommerce:
+    QueryParameter:
+      files:
+      - public/css/ace-twilio-for-woocommerce%20-public.css
+      - public/js/ace-twilio-for-woocommerce%20-public.js
+      version: true
   acf-conditional-logic-advanced:
     ComposerFile:
       class: ConfigParser
@@ -1088,6 +1094,12 @@ plugins:
     QueryParameter:
       files:
       - js/ald-script.js
+      version: true
+  alerts-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   align-text-edge:
     QueryParameter:
@@ -1927,6 +1939,11 @@ plugins:
     QueryParameter:
       files:
       - css/hf-main.css
+      version: true
+  awesome-slider:
+    QueryParameter:
+      files:
+      - assets/css/style.css
       version: true
   awesome-slider-lite:
     QueryParameter:
@@ -3712,6 +3729,12 @@ plugins:
       files:
       - assets/css/pushlabs-callbutton.css
       version: true
+  call-to-action-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   callme-form:
     TranslationFile:
       class: BodyPattern
@@ -4498,6 +4521,18 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  clicksports-maps:
+    QueryParameter:
+      files:
+      - includes/mapbox/mapbox-gl.css
+      - public/css/clicksports-maps-public.css
+      - public/js/clicksports-maps-public.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/clicksports-maps.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Clicksports Maps v(?<v>\d+\.[\.\d]+)/i'
       version: true
   clicky-analytics:
     Comment:
@@ -9868,6 +9903,12 @@ plugins:
       - public/css/wp-ie-check-public.css
       - public/js/wp-ie-check-public.js
       version: true
+  ie-insert-toc:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/ie-insert-toc-ja.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: ie\-insert\-toc ver(?<v>\d+\.[\.\d]+)/i'
+      version: true
   ie9-pinned-site:
     Comment:
       xpath: //comment()[contains(., "IE9 Pinned")]
@@ -10899,6 +10940,12 @@ plugins:
       key: version
       version: true
   kenzap-steps:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+  kenzap-timeline:
     ComposerFile:
       class: ConfigParser
       path: package.json
@@ -15761,6 +15808,12 @@ plugins:
       files:
       - public/css/style.css
       version: true
+  progress-bar-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   progressive-images:
     QueryParameter:
       files:
@@ -16147,6 +16200,11 @@ plugins:
       files:
       - "/css/ecmqt-admin-styles.css"
       - "/js/ecmqt-scripts.js"
+      version: true
+  quicklink:
+    QueryParameter:
+      files:
+      - "/quicklink.min.js"
       version: true
   quickseo-by-squirrly:
     Comment:
@@ -17391,6 +17449,12 @@ plugins:
       path: languages/scheduled-pages-dashboard-widget-en_GB.po
       pattern: !ruby/regexp '/sion: Scheduled Pages Dashboard Widget v(?<v>\d+\.[\.\d]+)/i'
       version: true
+  scheduled-products-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woo-scheduled-products.pot
+      pattern: !ruby/regexp '/Version: WooCommerce Scheduled Products (?<v>\d+\.[\.\d]+)/i'
+      version: true
   schema:
     Comment:
       pattern: !ruby/regexp /te is optimized with the Schema plugin v(?<v>\d+\.[\.\d]+)/i
@@ -18294,6 +18358,12 @@ plugins:
       files:
       - css/jquery.fancybox.min.css
       - js/jquery.fancybox.min.js
+      version: true
+  simple-faq-manager:
+    QueryParameter:
+      files:
+      - "/assets/styles/simple_faq.css"
+      - "/assets/js/simple_faq.js"
       version: true
   simple-featured-image-finder:
     TranslationFile:
@@ -22065,6 +22135,12 @@ plugins:
       - public/css/wc-guest-checkout-single-product-public.css
       - public/js/wc-guest-checkout-single-product-public.js
       version: true
+  wc-hide-shipping-methods-except-pont:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wc-hide-shipping-methods-ex-pont-hu_HU.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wc-min-max-quantities:
     TranslationFile:
       class: BodyPattern
@@ -22209,6 +22285,11 @@ plugins:
       - assets/dist/css/we-the-people.css
       - assets/dist/css/twentyfifteen.css
       - assets/dist/js/we-the-people.js
+      version: true
+  weart-category-posts-widget:
+    QueryParameter:
+      files:
+      - css/style.css
       version: true
   weather-atlas:
     QueryParameter:
@@ -25472,6 +25553,7 @@ plugins:
     QueryParameter:
       files:
       - assets/js/popper.min.js
+      - assets/js/jquery.magnific-popup.min.js
       version: true
   wp-polls:
     QueryParameter:
@@ -25767,6 +25849,12 @@ plugins:
       files:
       - public/css/wp-rewords-public.css
       - public/js/wp-rewords-public.js
+      version: true
+  wp-robots-warning:
+    QueryParameter:
+      files:
+      - public/css/a3-robots-warning-public.css
+      - public/js/a3-robots-warning-public.js
       version: true
   wp-rocket:
     Comment:
@@ -26148,6 +26236,11 @@ plugins:
       class: BodyPattern
       path: languages/wp-table-reloaded-de_DE.po
       pattern: !ruby/regexp /"Project\-Id\-Version:\ WP\-Table Reloaded v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  wp-tag-manager-event:
+    QueryParameter:
+      files:
+      - js/wp-tag-manager-event.js
       version: true
   wp-tax-price:
     QueryParameter:
