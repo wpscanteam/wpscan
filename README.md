@@ -10,7 +10,9 @@
 ## Prerequisites:
 
 - Ruby >= 2.3 - Recommended: latest
-- Curl >= 7.21  - Recommended: latest - FYI the 7.29 has a segfault
+  - Ruby 2.5.0 to 2.5.3 can cause an 'undefined symbol: rmpd_util_str_to_d' error in some systems, see https://github.com/wpscanteam/wpscan/issues/1283
+- Curl >= 7.21  - Recommended: latest
+  - The 7.29 has a segfault.
 - RubyGems      - Recommended: latest
 
 ### From RubyGems:
