@@ -9,19 +9,22 @@
 
 ## Prerequisites:
 
+- (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
 - Ruby >= 2.3 - Recommended: latest
-  - Ruby 2.5.0 to 2.5.3 can cause an 'undefined symbol: rmpd_util_str_to_d' error in some systems, see https://github.com/wpscanteam/wpscan/issues/1283
+  - Ruby 2.5.0 to 2.5.3 can cause an 'undefined symbol: rmpd_util_str_to_d' error in some systems, see [#1283](https://github.com/wpscanteam/wpscan/issues/1283)
 - Curl >= 7.21  - Recommended: latest
-  - The 7.29 has a segfault.
+  - The 7.29 has a segfault
 - RubyGems      - Recommended: latest
 
-### From RubyGems:
+### From RubyGems (Recommended):
 
 ```
 gem install wpscan
 ```
 
-### From sources:
+On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's System Integrity Protection (SIP), either install RVM and install wpscan again, or run ```sudo gem install -n /usr/local/bin wpscan``` (see [#1286](https://github.com/wpscanteam/wpscan/issues/1286))
+
+### From sources (NOT Recommended):
 
 Prerequisites: Git
 
@@ -32,6 +35,12 @@ cd wpscan/
 
 bundle install && rake install
 ```
+
+# Updating
+
+You can update the local database by using ```wpscan --update```
+
+Updating WPScan itself is either done via ```gem update wpscan``` or the packages manager (this is quite important for distributions such as in Kali Linux: ```apt-get update && apt-get upgrade```) depending how WPScan was (pre)installed
 
 # Docker
 
