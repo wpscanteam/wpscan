@@ -4,6 +4,7 @@ module WPScan
       # WP JSON API
       #
       # Since 4.7 - Need more investigation as it seems WP 4.7.1 reduces the exposure, see https://github.com/wpscanteam/wpscan/issues/1038)
+      # For the pagination, see https://github.com/wpscanteam/wpscan/issues/1285
       #
       class WpJsonApi < CMSScanner::Finders::Finder
         MAX_PER_PAGE = 100 # See https://developer.wordpress.org/rest-api/using-the-rest-api/pagination/
@@ -18,8 +19,7 @@ module WPScan
           loop do
             current_page += 1
 
-            res = Typhoeus.get(api_url,
-                               params: { per_page: MAX_PER_PAGE, page: current_page })
+            res = Typhoeus.get(api_url, params: { per_page: MAX_PER_PAGE, page: current_page })
 
             total_pages ||= res.headers['X-WP-TotalPages'].to_i
 
