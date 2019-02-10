@@ -71,7 +71,7 @@ module WPScan
           exit(WPScan::ExitCode::VULNERABLE)
         end
 
-        raise NotWordPressError unless target.wordpress? || parsed_options[:force]
+        raise NotWordPressError unless target.wordpress?(parsed_options[:detection_mode]) || parsed_options[:force]
       end
 
       # Loads the related server module in the target

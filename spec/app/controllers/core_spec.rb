@@ -165,7 +165,7 @@ describe WPScan::Controller::Core do
 
         before do
           expect(core).to receive(:load_server_module)
-          expect(core.target).to receive(:wordpress?).and_return(true)
+          expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
         end
 
         it 'calls the formatter when started and finished to update the db' do
@@ -208,7 +208,7 @@ describe WPScan::Controller::Core do
 
         context 'when wordpress' do
           it 'does not raise an error' do
-            expect(core.target).to receive(:wordpress?).and_return(true)
+            expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
 
             expect { core.before_scan }.to_not raise_error
           end
@@ -216,7 +216,7 @@ describe WPScan::Controller::Core do
 
         context 'when not wordpress' do
           it 'raises an error' do
-            expect(core.target).to receive(:wordpress?).and_return(false)
+            expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false)
 
             expect { core.before_scan }.to raise_error(WPScan::NotWordPressError)
           end
@@ -237,7 +237,7 @@ describe WPScan::Controller::Core do
     context 'when wordpress' do
       before do
         expect(core).to receive(:load_server_module)
-        expect(core.target).to receive(:wordpress?).and_return(true)
+        expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
       end
 
       it 'does not raise any error' do
@@ -248,7 +248,7 @@ describe WPScan::Controller::Core do
     context 'when not wordpress' do
       before do
         expect(core).to receive(:load_server_module)
-        expect(core.target).to receive(:wordpress?).and_return(false)
+        expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false)
       end
 
       context 'when no --force' do

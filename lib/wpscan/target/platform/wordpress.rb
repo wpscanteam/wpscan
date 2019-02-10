@@ -18,10 +18,10 @@ module WPScan
         alias registration_enabled? registration_enabled
         alias mu_plugins? mu_plugins
 
+        # @param [ Symbol ] detection_mode
+        #
         # @return [ Boolean ]
-        def wordpress?
-          # res = Browser.get(url)
-
+        def wordpress?(detection_mode)
           in_scope_urls(homepage_res) do |url|
             return true if Addressable::URI.parse(url).path.match(WORDPRESS_PATTERN)
           end
@@ -31,6 +31,14 @@ module WPScan
           end
 
           return true unless comments_from_page(/wordpress/i, homepage_res).empty?
+
+          if %i[mixed aggressive].include?(detection_mode)
+            %w[wp-admin/install.php wp-login.php].each do |path|
+              in_scope_urls(Browser.get_and_follow_location(url(path))).each do |url|
+                return true if Addressable::URI.parse(url).path.match(WORDPRESS_PATTERN)
+              end
+            end
+          end
 
           false
         end
