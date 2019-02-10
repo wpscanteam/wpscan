@@ -14,10 +14,11 @@ describe WPScan::Controller::Enumeration do
   end
 
   describe '#enum_message' do
-    after { expect(controller.enum_message(type)).to eql @expected }
+    after { expect(controller.enum_message(type, detection_mode)).to eql @expected }
 
     context 'when type argument is incorrect' do
-      let(:type) { 'spec' }
+      let(:type)           { 'spec' }
+      let(:detection_mode) { :mixed }
 
       it 'returns nil' do
         @expected = nil
@@ -26,29 +27,32 @@ describe WPScan::Controller::Enumeration do
 
     %w[plugins themes].each do |t|
       context "type = #{t}" do
-        let(:type) { t }
+        let(:type)           { t }
+        let(:detection_mode) { :mixed }
 
         context 'when vulnerable' do
           let(:cli_args) { "#{super()} -e v#{type[0]}" }
 
           it 'returns the expected string' do
-            @expected = "Enumerating Vulnerable #{type.capitalize}"
+            @expected = "Enumerating Vulnerable #{type.capitalize} (via Passive and Aggressive Methods)"
           end
         end
 
         context 'when all' do
-          let(:cli_args) { "#{super()} -e a#{type[0]}" }
+          let(:cli_args)       { "#{super()} -e a#{type[0]}" }
+          let(:detection_mode) { :passive }
 
           it 'returns the expected string' do
-            @expected = "Enumerating All #{type.capitalize}"
+            @expected = "Enumerating All #{type.capitalize} (via Passive Methods)"
           end
         end
 
         context 'when most popular' do
-          let(:cli_args) { "#{super()} -e #{type[0]}" }
+          let(:cli_args)       { "#{super()} -e #{type[0]}" }
+          let(:detection_mode) { :aggressive }
 
           it 'returns the expected string' do
-            @expected = "Enumerating Most Popular #{type.capitalize}"
+            @expected = "Enumerating Most Popular #{type.capitalize} (via Aggressive Methods)"
           end
         end
       end

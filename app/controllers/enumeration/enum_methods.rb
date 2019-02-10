@@ -3,9 +3,10 @@ module WPScan
     # Enumeration Methods
     class Enumeration < CMSScanner::Controller::Base
       # @param [ String ] type (plugins or themes)
+      # @param [ Symbol ] detection_mode
       #
       # @return [ String ] The related enumration message depending on the parsed_options and type supplied
-      def enum_message(type)
+      def enum_message(type, detection_mode)
         return unless %w[plugins themes].include?(type)
 
         details = if parsed_options[:enumerate][:"vulnerable_#{type}"]
@@ -16,7 +17,20 @@ module WPScan
                     'Most Popular'
                   end
 
-        "Enumerating #{details} #{type.capitalize}"
+        "Enumerating #{details} #{type.capitalize} #{enum_detection_message(detection_mode)}"
+      end
+
+      # @param [ Symbol ] detection_mode
+      #
+      # @return [ String ]
+      def enum_detection_message(detection_mode)
+        detection_method = if detection_mode == :mixed
+                             'Passive and Aggressive'
+                           else
+                             detection_mode.to_s.capitalize
+                           end
+
+        "(via #{detection_method} Methods)"
       end
 
       # @param [ String ] type (plugins, themes etc)
@@ -49,12 +63,15 @@ module WPScan
           sort: true
         )
 
-        output('@info', msg: enum_message('plugins')) if user_interaction?
+        output('@info', msg: enum_message('plugins', opts[:mode])) if user_interaction?
         # Enumerate the plugins & find their versions to avoid doing that when #version
         # is called in the view
         plugins = target.plugins(opts)
 
-        output('@info', msg: 'Checking Plugin Versions') if user_interaction? && !plugins.empty?
+        if user_interaction? && !plugins.empty?
+          output('@info',
+                 msg: "Checking Plugin Versions #{enum_detection_message(opts[:version_detection][:mode])}")
+        end
 
         plugins.each(&:version)
 
@@ -92,12 +109,15 @@ module WPScan
           sort: true
         )
 
-        output('@info', msg: enum_message('themes')) if user_interaction?
+        output('@info', msg: enum_message('themes', opts[:mode])) if user_interaction?
         # Enumerate the themes & find their versions to avoid doing that when #version
         # is called in the view
         themes = target.themes(opts)
 
-        output('@info', msg: 'Checking Theme Versions') if user_interaction? && !themes.empty?
+        if user_interaction? && !themes.empty?
+          output('@info',
+                 msg: "Checking Theme Versions #{enum_detection_message(opts[:version_detection][:mode])}")
+        end
 
         themes.each(&:version)
 
@@ -125,21 +145,21 @@ module WPScan
       def enum_timthumbs
         opts = default_opts('timthumbs').merge(list: parsed_options[:timthumbs_list])
 
-        output('@info', msg: 'Enumerating Timthumbs') if user_interaction?
+        output('@info', msg: "Enumerating Timthumbs #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('timthumbs', timthumbs: target.timthumbs(opts))
       end
 
       def enum_config_backups
         opts = default_opts('config_backups').merge(list: parsed_options[:config_backups_list])
 
-        output('@info', msg: 'Enumerating Config Backups') if user_interaction?
+        output('@info', msg: "Enumerating Config Backups #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('config_backups', config_backups: target.config_backups(opts))
       end
 
       def enum_db_exports
         opts = default_opts('db_exports').merge(list: parsed_options[:db_exports_list])
 
-        output('@info', msg: 'Enumerating DB Exports') if user_interaction?
+        output('@info', msg: "Enumerating DB Exports #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('db_exports', db_exports: target.db_exports(opts))
       end
 
@@ -147,7 +167,9 @@ module WPScan
         opts = default_opts('medias').merge(range: parsed_options[:enumerate][:medias])
 
         if user_interaction?
-          output('@info', msg: 'Enumerating Medias (Permalink setting must be set to "Plain" for those to be detected)')
+          output('@info',
+                 msg: "Enumerating Medias #{enum_detection_message(opts[:mode])} "\
+                      '(Permalink setting must be set to "Plain" for those to be detected)')
         end
 
         output('medias', medias: target.medias(opts))
@@ -166,7 +188,7 @@ module WPScan
           list: parsed_options[:users_list]
         )
 
-        output('@info', msg: 'Enumerating Users') if user_interaction?
+        output('@info', msg: "Enumerating Users #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('users', users: target.users(opts))
       end
 
