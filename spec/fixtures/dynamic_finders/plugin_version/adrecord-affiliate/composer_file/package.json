@@ -1,0 +1,20 @@
+{
+  "name": "adrecord-affiliate",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-toggle-component": "^1.0.5",
+    "react-wp-scripts": "0.2.0",
+    "styled-components": "^4.1.3"
+  },
+  "scripts": {
+    "start": "react-wp-scripts start",
+    "build": "react-scripts build",
+    "make-pot": "wp i18n make-pot . --exclude=src,build --debug",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "zip": "zip ../adrecord-affiliate.zip -r build src public adrecord-affiliate.php react-wp-scripts.php readme.txt yarn.lock languages php package.json build-tools.md"
+  }
+}

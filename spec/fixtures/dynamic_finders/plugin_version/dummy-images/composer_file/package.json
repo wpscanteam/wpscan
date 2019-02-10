@@ -1,0 +1,19 @@
+{
+	"name": "DummyImages",
+	"version": "1.0.0",
+	"description": "This plugin is a generator of customizable dummy images.",
+	"license": "ISC",
+	"author": "mbelchev",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mbelchev/dummy-images.git"
+	},
+	"scripts": {
+		"build-css": "node-sass assets/sass/dummy-images.scss assets/css/dummy-images.min.css --output-style compressed",
+		"build-js": "uglifyjs assets/js/src/dummy-images.js --output assets/js/dist/dummy-images.min.js --mangle --compress"
+	},
+	"devDependencies": {
+		"node-sass": "^4.11.0",
+		"uglify-js": "^3.4.9"
+	}
+}
