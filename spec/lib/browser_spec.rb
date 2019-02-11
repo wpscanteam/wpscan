@@ -5,7 +5,7 @@ describe WPScan::Browser do
 
   describe '#user_agents_list' do
     context 'when not set' do
-      its(:user_agents_list) { should eql File.join(WPScan::DB_DIR, 'user-agents.txt') }
+      its(:user_agents_list) { should eql WPScan::DB_DIR.join('user-agents.txt').to_s }
     end
 
     context 'when set' do

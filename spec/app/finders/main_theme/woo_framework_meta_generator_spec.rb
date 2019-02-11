@@ -2,11 +2,11 @@ describe WPScan::Finders::MainTheme::WooFrameworkMetaGenerator do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'main_theme', 'woo_framework_meta_generator') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'woo_framework_meta_generator') }
 
   describe '#passive' do
     after do
-      stub_request(:get, url).to_return(body: File.read(File.join(fixtures, @file)))
+      stub_request(:get, url).to_return(body: File.read(fixtures.join(@file)))
 
       expect(finder.passive).to eql @expected
     end

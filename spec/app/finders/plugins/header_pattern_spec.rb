@@ -2,7 +2,7 @@ describe WPScan::Finders::Plugins::HeaderPattern do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(DYNAMIC_FINDERS_FIXTURES, 'plugin_version') }
+  let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('plugin_version') }
 
   def plugin(slug)
     WPScan::Plugin.new(slug, target)
@@ -29,7 +29,7 @@ describe WPScan::Finders::Plugins::HeaderPattern do
     context 'when headers' do
       before { expect(target).to receive(:content_dir).and_return('wp-content') }
 
-      let(:headers) { JSON.parse(File.read(File.join(fixtures, 'header_pattern_passive_all.html'))) }
+      let(:headers) { JSON.parse(File.read(fixtures.join('header_pattern_passive_all.html'))) }
 
       it 'returns the expected plugins' do
         @expected = []

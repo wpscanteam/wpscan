@@ -2,7 +2,7 @@ describe WPScan::Finders::PluginVersion::Readme do
   subject(:finder) { described_class.new(plugin) }
   let(:plugin)     { WPScan::Plugin.new('spec', target) }
   let(:target)     { WPScan::Target.new('http://wp.lab/') }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'plugin_version', 'readme') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('plugin_version', 'readme') }
 
   def version(number, found_by, confidence)
     WPScan::Version.new(
@@ -26,7 +26,7 @@ describe WPScan::Finders::PluginVersion::Readme do
 
     after do
       stub_request(:get, /.*/).to_return(status: 404)
-      stub_request(:get, readme_url).to_return(body: File.read(File.join(fixtures, @file)))
+      stub_request(:get, readme_url).to_return(body: File.read(fixtures.join(@file)))
 
       expect(finder.aggressive).to eql @expected
     end

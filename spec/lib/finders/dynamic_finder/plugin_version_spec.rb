@@ -32,7 +32,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
       subject(:finder) { described_class.new(plugin) }
       let(:plugin)     { WPScan::Plugin.new(slug, target) }
       let(:target)     { WPScan::Target.new('http://wp.lab/') }
-      let(:fixtures)   { File.join(DYNAMIC_FINDERS_FIXTURES, 'plugin_version') }
+      let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('plugin_version') }
 
       let(:expected) do
         if expected_all[slug][finder_class].is_a?(Hash)
@@ -62,7 +62,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
             context 'when the version is detected' do
               let(:stubbed_response) do
                 df_stubbed_response(
-                  File.join(fixtures, "#{finder_super_class.underscore}_passive_all.html"),
+                  fixtures.join("#{finder_super_class.underscore}_passive_all.html"),
                   finder_super_class
                 )
               end
@@ -95,7 +95,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
       end
 
       describe '#aggressive' do
-        let(:fixtures) { File.join(super(), slug, finder_class.underscore) }
+        let(:fixtures) { super().join(slug, finder_class.underscore) }
 
         before do
           expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
@@ -106,7 +106,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
         if config['path']
           context 'when the version is detected' do
             let(:stubbed_response) do
-              df_stubbed_response(File.join(fixtures, config['path']), finder_super_class)
+              df_stubbed_response(fixtures.join(config['path']), finder_super_class)
             end
 
             it 'returns the expected version' do

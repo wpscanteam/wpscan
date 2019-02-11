@@ -2,7 +2,7 @@ describe WPScan::Finders::InterestingFindings::BackupDB do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'interesting_findings', 'backup_db') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'backup_db') }
   let(:wp_content) { 'wp-content' }
   let(:dir_url)    { target.url("#{wp_content}/backup-db/") }
 
@@ -51,7 +51,7 @@ describe WPScan::Finders::InterestingFindings::BackupDB do
       end
 
       context 'when directory listing enabled' do
-        let(:body) { File.read(File.join(fixtures, 'dir_listing.html')) }
+        let(:body) { File.read(fixtures.join('dir_listing.html')) }
 
         it 'returns the expected interesting_findings attribute' do
           @expected_entries = %w[sqldump.sql test.txt]

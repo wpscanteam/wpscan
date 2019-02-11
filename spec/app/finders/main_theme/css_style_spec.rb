@@ -2,11 +2,11 @@ describe WPScan::Finders::MainTheme::CssStyle do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'main_theme', 'css_style') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'css_style') }
 
   describe '#passive' do
     after do
-      stub_request(:get, url).to_return(body: File.read(File.join(fixtures, fixture)))
+      stub_request(:get, url).to_return(body: File.read(fixtures.join(fixture)))
       expect(finder.passive).to eql @expected
     end
 

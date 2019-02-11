@@ -2,11 +2,11 @@ describe WPScan::Finders::WpVersion::Readme do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'wp_version', 'readme') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('wp_version', 'readme') }
   let(:readme_url) { url + 'readme.html' }
 
   describe '#aggressive' do
-    before { stub_request(:get, readme_url).to_return(body: File.read(File.join(fixtures, file))) }
+    before { stub_request(:get, readme_url).to_return(body: File.read(fixtures.join(file))) }
 
     after do
       expect(target).to receive(:sub_dir).and_return(false)

@@ -4,7 +4,7 @@ module WPScan
       class Base
         # @return [ String ]
         def self.db_file
-          @db_file ||= File.join(DB_DIR, 'dynamic_finders.yml')
+          @db_file ||= DB_DIR.join('dynamic_finders.yml')
         end
 
         # @return [ Hash ]

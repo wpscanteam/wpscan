@@ -21,7 +21,7 @@ shared_examples 'App::Views::MainTheme' do
         expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
         stub_request(:get, /.*/)
         stub_request(:get, /.*\.css\z/)
-          .to_return(body: File.read(File.join(FIXTURES, 'models', 'theme', 'style.css')))
+          .to_return(body: File.read(FIXTURES.join('models', 'theme', 'style.css')))
       end
 
       context 'when no verbose' do

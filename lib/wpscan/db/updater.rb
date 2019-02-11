@@ -15,11 +15,11 @@ module WPScan
       attr_reader :repo_directory
 
       def initialize(repo_directory)
-        @repo_directory = repo_directory
+        @repo_directory = Pathname.new(repo_directory).expand_path
 
-        FileUtils.mkdir_p(repo_directory) unless Dir.exist?(repo_directory)
+        FileUtils.mkdir_p(repo_directory.to_s) unless Dir.exist?(repo_directory.to_s)
 
-        raise "#{repo_directory} is not writable" unless Pathname.new(repo_directory).writable?
+        raise "#{repo_directory} is not writable" unless repo_directory.writable?
 
         delete_old_files
       end
@@ -41,7 +41,7 @@ module WPScan
 
       # @return [ String ]
       def last_update_file
-        @last_update_file ||= File.join(repo_directory, '.last_update')
+        @last_update_file ||= repo_directory.join('.last_update').to_s
       end
 
       # @return [ Boolean ]
@@ -54,7 +54,7 @@ module WPScan
       # @return [ Boolean ]
       def missing_files?
         FILES.each do |file|
-          return true unless File.exist?(File.join(repo_directory, file))
+          return true unless File.exist?(repo_directory.join(file))
         end
         false
       end
@@ -85,16 +85,18 @@ module WPScan
         res.body.chomp
       end
 
+      # @return [ String ]
       def local_file_path(filename)
-        File.join(repo_directory, filename.to_s)
+        repo_directory.join(filename.to_s).to_s
       end
 
       def local_file_checksum(filename)
         Digest::SHA512.file(local_file_path(filename)).hexdigest
       end
 
+      # @return [ String ]
       def backup_file_path(filename)
-        File.join(repo_directory, "#{filename}.back")
+        repo_directory.join("#{filename}.back").to_s
       end
 
       def create_backup(filename)

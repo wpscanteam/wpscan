@@ -2,7 +2,7 @@ describe WPScan::Finders::Users::RSSGenerator do
   subject(:finder)  { described_class.new(target) }
   let(:target)      { WPScan::Target.new(url) }
   let(:url)         { 'http://ex.lo/' }
-  let(:fixtures)    { Pathname.new(FINDERS_FIXTURES).join('users', 'rss_generator') }
+  let(:fixtures)    { FINDERS_FIXTURES.join('users', 'rss_generator') }
   let(:rss_fixture) { File.read(fixtures.join('feed.xml')) }
 
   describe '#passive, #aggressive' do
@@ -39,7 +39,7 @@ describe WPScan::Finders::Users::RSSGenerator do
     end
 
     context 'when RSS link in homepage' do
-      let(:homepage_fixture) { File.join(fixtures, 'homepage_links.html') }
+      let(:homepage_fixture) { fixtures.join('homepage_links.html') }
 
       it 'returns the expected from #passive' do
         stub_request(:get, target.url('feed/')).to_return(body: rss_fixture)

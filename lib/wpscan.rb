@@ -33,7 +33,7 @@ module WPScan
   include CMSScanner
 
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
-  DB_DIR  = File.join(Dir.home, '.wpscan', 'db')
+  DB_DIR  = Pathname.new(Dir.home).join('.wpscan', 'db')
 
   # Override, otherwise it would be returned as 'wp_scan'
   #

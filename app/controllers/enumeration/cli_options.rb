@@ -98,7 +98,7 @@ module WPScan
         [
           OptFilePath.new(
             ['--timthumbs-list FILE-PATH', 'List of timthumbs\' location to use'],
-            exists: true, default: File.join(DB_DIR, 'timthumbs-v3.txt'), advanced: true
+            exists: true, default: DB_DIR.join('timthumbs-v3.txt').to_s, advanced: true
           ),
           OptChoice.new(
             ['--timthumbs-detection MODE',
@@ -113,7 +113,7 @@ module WPScan
         [
           OptFilePath.new(
             ['--config-backups-list FILE-PATH', 'List of config backups\' filenames to use'],
-            exists: true, default: File.join(DB_DIR, 'config_backups.txt'), advanced: true
+            exists: true, default: DB_DIR.join('config_backups.txt').to_s, advanced: true
           ),
           OptChoice.new(
             ['--config-backups-detection MODE',
@@ -128,7 +128,7 @@ module WPScan
         [
           OptFilePath.new(
             ['--db-exports-list FILE-PATH', 'List of DB exports\' paths to use'],
-            exists: true, default: File.join(DB_DIR, 'db_exports.txt'), advanced: true
+            exists: true, default: DB_DIR.join('db_exports.txt').to_s, advanced: true
           ),
           OptChoice.new(
             ['--db-exports-detection MODE',

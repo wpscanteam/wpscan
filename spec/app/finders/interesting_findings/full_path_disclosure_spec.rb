@@ -2,7 +2,7 @@ describe WPScan::Finders::InterestingFindings::FullPathDisclosure do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'interesting_findings', 'fpd') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'fpd') }
   let(:file_url)   { target.url('wp-includes/rss-functions.php') }
 
   describe '#aggressive' do
@@ -18,7 +18,7 @@ describe WPScan::Finders::InterestingFindings::FullPathDisclosure do
     end
 
     context 'when a log file' do
-      let(:body) { File.read(File.join(fixtures, 'rss_functions.php')) }
+      let(:body) { File.read(fixtures.join('rss_functions.php')) }
 
       it 'returns the InterestingFinding' do
         found = finder.aggressive

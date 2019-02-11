@@ -2,7 +2,7 @@ describe WPScan::Finders::InterestingFindings::DebugLog do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'interesting_findings', 'debug_log') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'debug_log') }
   let(:wp_content) { 'wp-content' }
   let(:log_url)    { target.url("#{wp_content}/debug.log") }
 
@@ -18,7 +18,7 @@ describe WPScan::Finders::InterestingFindings::DebugLog do
     end
 
     context 'when a log file' do
-      let(:body) { File.read(File.join(fixtures, 'debug.log')) }
+      let(:body) { File.read(fixtures.join('debug.log')) }
 
       it 'returns the InterestingFinding' do
         expect(finder.aggressive).to eql WPScan::DebugLog.new(

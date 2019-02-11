@@ -2,7 +2,7 @@ describe WPScan::Finders::Plugins::UrlsInHomepage do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'plugins', 'urls_in_homepage') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('plugins', 'urls_in_homepage') }
 
   it_behaves_like 'App::Finders::WpItems::URLsInHomepage' do
     let(:type)                { 'plugins' }
@@ -15,7 +15,7 @@ describe WPScan::Finders::Plugins::UrlsInHomepage do
   describe '#passive' do
     before do
       stub_request(:get, finder.target.url)
-        .to_return(body: File.read(File.join(fixtures, 'found.html')))
+        .to_return(body: File.read(fixtures.join('found.html')))
 
       expect(finder.target).to receive(:content_dir).at_least(1).and_return('wp-content')
     end

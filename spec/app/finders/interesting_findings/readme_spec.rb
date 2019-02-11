@@ -2,7 +2,7 @@ describe WPScan::Finders::InterestingFindings::Readme do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'interesting_findings', 'readme') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'readme') }
 
   describe '#aggressive' do
     before do
@@ -20,7 +20,7 @@ describe WPScan::Finders::InterestingFindings::Readme do
     # TODO: case when multiple files are present ? (should return only the first one found)
     context 'when a file exists' do
       let(:file)   { finder.potential_files.sample }
-      let(:readme) { File.read(File.join(fixtures, 'readme-3.9.2.html')) }
+      let(:readme) { File.read(fixtures.join('readme-3.9.2.html')) }
 
       before { stub_request(:get, target.url(file)).to_return(body: readme) }
 

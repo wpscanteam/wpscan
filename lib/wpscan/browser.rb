@@ -5,7 +5,7 @@ module WPScan
 
     # @return [ String ] The path to the user agents list
     def user_agents_list
-      @user_agents_list ||= File.join(DB_DIR, 'user-agents.txt')
+      @user_agents_list ||= DB_DIR.join('user-agents.txt').to_s
     end
 
     # @return [ String ]

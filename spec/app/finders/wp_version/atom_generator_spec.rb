@@ -2,7 +2,7 @@ describe WPScan::Finders::WpVersion::AtomGenerator do
   subject(:finder)   { described_class.new(target) }
   let(:target)       { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)          { 'http://ex.lo/' }
-  let(:fixtures)     { Pathname.new(FINDERS_FIXTURES).join('wp_version', 'atom_generator') }
+  let(:fixtures)     { FINDERS_FIXTURES.join('wp_version', 'atom_generator') }
   let(:atom_fixture) { File.read(fixtures.join('feed', 'atom')) }
 
   describe '#passive, #aggressive' do
@@ -36,7 +36,7 @@ describe WPScan::Finders::WpVersion::AtomGenerator do
     end
 
     context 'when atom links in homepage' do
-      let(:homepage_fixture) { File.join(fixtures, 'links.html') }
+      let(:homepage_fixture) { fixtures.join('links.html') }
 
       it 'returns the expected from #passive' do
         stub_request(:get, target.url('?feed=atom')).to_return(body: atom_fixture)

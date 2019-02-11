@@ -2,7 +2,7 @@ describe WPScan::Finders::InterestingFindings::UploadSQLDump do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'interesting_findings', 'upload_sql_dump') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'upload_sql_dump') }
   let(:wp_content) { 'wp-content' }
 
   describe '#aggressive' do
@@ -21,7 +21,7 @@ describe WPScan::Finders::InterestingFindings::UploadSQLDump do
     context 'when a 200' do
       before do
         stub_request(:get, finder.dump_url)
-          .to_return(status: 200, body: File.read(File.join(fixtures, fixture)))
+          .to_return(status: 200, body: File.read(fixtures.join(fixture)))
       end
 
       context 'when the body does not match a SQL dump' do

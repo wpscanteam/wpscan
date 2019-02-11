@@ -14,7 +14,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
   describe df_tested_class_constant('WpVersion', finder_class) do
     subject(:finder) { described_class.new(target) }
     let(:target)     { WPScan::Target.new('http://wp.lab/') }
-    let(:fixtures)   { File.join(DYNAMIC_FINDERS_FIXTURES, 'wp_version') }
+    let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('wp_version') }
 
     let(:expected) do
       expected_all[finder_class].is_a?(Hash) ? [expected_all[finder_class]] : expected_all[finder_class]
@@ -35,7 +35,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
         context 'when no PATH' do
           let(:stubbed_response) do
             df_stubbed_response(
-              File.join(fixtures, "#{finder_super_class.underscore}_passive_all.html"),
+              fixtures.join("#{finder_super_class.underscore}_passive_all.html"),
               finder_super_class
             )
           end
@@ -61,7 +61,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
     end
 
     describe '#aggressive' do
-      let(:fixtures) { File.join(super(), finder_class.underscore) }
+      let(:fixtures) { super().join(finder_class.underscore) }
 
       before do
         allow(target).to receive(:sub_dir).and_return(nil)
@@ -72,7 +72,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
       if config['path']
         context 'when the version is detected' do
           let(:stubbed_response) do
-            df_stubbed_response(File.join(fixtures, config['path']), finder_super_class)
+            df_stubbed_response(fixtures.join(config['path']), finder_super_class)
           end
 
           it 'returns the expected version' do

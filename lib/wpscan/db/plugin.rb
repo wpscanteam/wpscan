@@ -4,7 +4,7 @@ module WPScan
     class Plugin < WpItem
       # @return [ String ]
       def self.db_file
-        @db_file ||= File.join(DB_DIR, 'plugins.json')
+        @db_file ||= DB_DIR.join('plugins.json')
       end
     end
   end

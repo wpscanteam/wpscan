@@ -2,7 +2,7 @@ describe WPScan::Finders::InterestingFindings::DuplicatorInstallerLog do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'interesting_findings', 'duplicator_installer_log') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'duplicator_installer_log') }
   let(:filename)   { 'installer-log.txt' }
   let(:log_url)    { target.url(filename) }
 
@@ -19,7 +19,7 @@ describe WPScan::Finders::InterestingFindings::DuplicatorInstallerLog do
     end
 
     context 'when the body matches' do
-      let(:body) { File.read(File.join(fixtures, filename)) }
+      let(:body) { File.read(fixtures.join(filename)) }
 
       it 'returns the InterestingFinding' do
         expect(finder.aggressive).to eql WPScan::DuplicatorInstallerLog.new(

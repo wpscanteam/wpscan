@@ -2,10 +2,10 @@ describe WPScan::Finders::ThemeVersion::Style do
   subject(:finder) { described_class.new(theme) }
   let(:theme)      { WPScan::Theme.new('spec', target) }
   let(:target)     { WPScan::Target.new('http://wp.lab/') }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'theme_version', 'style') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('theme_version', 'style') }
 
   before :all do
-    Typhoeus::Config.cache = WPScan::Cache::Typhoeus.new(File.join(SPECS, 'cache'))
+    Typhoeus::Config.cache = WPScan::Cache::Typhoeus.new(SPECS.join('cache'))
   end
 
   before do
@@ -77,7 +77,7 @@ describe WPScan::Finders::ThemeVersion::Style do
       'no_version' => nil
     }.each do |file, expected_version|
       context "when #{file}" do
-        let(:style_body) { File.new(File.join(fixtures, "#{file}.css")) }
+        let(:style_body) { File.new(fixtures.join("#{file}.css")) }
 
         it 'returns the expected version' do
           expected = if expected_version

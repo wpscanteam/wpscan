@@ -33,7 +33,7 @@ module WPScan
 
       # @return [ String ]
       def self.wp_fingerprints_path
-        @wp_fingerprints_path ||= File.join(DB_DIR, 'wp_fingerprints.json')
+        @wp_fingerprints_path ||= DB_DIR.join('wp_fingerprints.json')
       end
 
       # @return [ Hash ]

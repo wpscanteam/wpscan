@@ -1,7 +1,7 @@
 describe WPScan::Timthumb do
   subject(:timthumb) { described_class.new(url, opts) }
   let(:url)          { 'http://wp.lab/wp-content/timthumb.php' }
-  let(:fixtures)     { File.join(FIXTURES, 'models', 'timthumb') }
+  let(:fixtures)     { FIXTURES.join('models', 'timthumb') }
   let(:opts)         { {} }
 
   describe '#new' do
@@ -59,7 +59,7 @@ describe WPScan::Timthumb do
   describe '#webshot_enabled?' do
     before do
       stub_request(:get, /#{timthumb.url}\?src=.*&webshot=1/i)
-        .to_return(body: File.read(File.join(fixtures, fixture)))
+        .to_return(body: File.read(fixtures.join(fixture)))
     end
 
     context 'when enabled' do

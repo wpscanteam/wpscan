@@ -2,8 +2,8 @@ describe WPScan::Finders::DbExports::KnownLocations do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/aa/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'db_exports') }
-  let(:opts)       { { list: File.join(WPScan::DB_DIR, 'db_exports.txt') } }
+  let(:fixtures)   { FINDERS_FIXTURES.join('db_exports') }
+  let(:opts)       { { list: WPScan::DB_DIR.join('db_exports.txt').to_s } }
 
   describe '#potential_urls' do
     before do
@@ -40,7 +40,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
 
     context 'when some files exist' do
       let(:files) { %w[ex.sql backups/db_backup.sql] }
-      let(:db_export) { File.read(File.join(fixtures, 'dump.sql')) }
+      let(:db_export) { File.read(fixtures.join('dump.sql')) }
 
       before do
         files.each do |file|

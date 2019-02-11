@@ -2,7 +2,7 @@ describe WPScan::Finders::ThemeVersion::WooFrameworkMetaGenerator do
   subject(:finder) { described_class.new(theme) }
   let(:theme)      { WPScan::Theme.new(slug, target) }
   let(:target)     { WPScan::Target.new('http://wp.lab/') }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'theme_version', 'woo_framework_meta_generator') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('theme_version', 'woo_framework_meta_generator') }
 
   before do
     expect(target).to receive(:content_dir).and_return('wp-content')
@@ -11,7 +11,7 @@ describe WPScan::Finders::ThemeVersion::WooFrameworkMetaGenerator do
 
   describe '#passive' do
     after do
-      stub_request(:get, target.url).to_return(body: File.read(File.join(fixtures, 'editorial-1.3.5.html')))
+      stub_request(:get, target.url).to_return(body: File.read(fixtures.join('editorial-1.3.5.html')))
 
       expect(finder.passive).to eql @expected
     end

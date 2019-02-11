@@ -3,14 +3,14 @@ describe WPScan::Theme do
   let(:slug)       { 'spec' }
   let(:blog)       { WPScan::Target.new('http://wp.lab/') }
   let(:opts)       { {} }
-  let(:fixtures)   { File.join(FIXTURES, 'models', 'theme') }
+  let(:fixtures)   { FIXTURES.join('models', 'theme') }
 
   before { expect(blog).to receive(:content_dir).at_least(1).and_return('wp-content') }
 
   describe '#new' do
     before do
       stub_request(:get, /.*\.css\z/)
-        .to_return(body: File.read(File.join(fixtures, 'style.css')))
+        .to_return(body: File.read(fixtures.join('style.css')))
     end
 
     its(:url) { should eql 'http://wp.lab/wp-content/themes/spec/' }
@@ -37,7 +37,7 @@ describe WPScan::Theme do
   describe '#version' do
     after do
       stub_request(:get, /.*\.css\z/)
-        .to_return(body: File.read(File.join(fixtures, 'style.css')))
+        .to_return(body: File.read(fixtures.join('style.css')))
 
       expect(WPScan::Finders::ThemeVersion::Base).to receive(:find).with(theme, @expected_opts)
       theme.version(version_opts)
@@ -91,7 +91,7 @@ describe WPScan::Theme do
   describe '#parent_theme' do
     before do
       stub_request(:get, blog.url('wp-content/themes/spec/style.css'))
-        .to_return(body: File.read(File.join(fixtures, main_theme)))
+        .to_return(body: File.read(fixtures.join(main_theme)))
     end
 
     context 'when no template' do
@@ -108,7 +108,7 @@ describe WPScan::Theme do
 
       before do
         stub_request(:get, parent_url)
-          .to_return(body: File.read(File.join(fixtures, 'style.css')))
+          .to_return(body: File.read(fixtures.join('style.css')))
       end
 
       %w[child_style windows_line_endings].each do |fixture|

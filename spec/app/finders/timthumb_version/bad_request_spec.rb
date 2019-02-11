@@ -2,10 +2,10 @@ describe WPScan::Finders::TimthumbVersion::BadRequest do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Timthumb.new(url) }
   let(:url)        { 'http://ex.lo/timthumb.php' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'timthumb_version', 'bad_request') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('timthumb_version', 'bad_request') }
 
   describe '#aggressive' do
-    before { stub_request(:get, url).to_return(body: File.read(File.join(fixtures, file))) }
+    before { stub_request(:get, url).to_return(body: File.read(fixtures.join(file))) }
     after  { expect(finder.aggressive).to eql @expected }
 
     context 'when no version' do

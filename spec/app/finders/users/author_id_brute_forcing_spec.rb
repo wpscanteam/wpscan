@@ -2,7 +2,7 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'users', 'author_id_brute_forcing') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('users', 'author_id_brute_forcing') }
 
   describe '#aggressive' do
     xit
@@ -24,7 +24,7 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
       '2.9.2', '2.9.2-permalink'
     ].each do |file|
       it "returns 'admin' from #{file}.html" do
-        body = File.read(File.join(fixtures, "#{file}.html"))
+        body = File.read(fixtures.join("#{file}.html"))
         res = Typhoeus::Response.new(body: body)
 
         expect(finder.username_from_response(res)).to eql 'admin'
@@ -40,7 +40,7 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
         '2.9.2', '2.9.2-permalink'
       ].each do |file|
         it "returns 'admin display_name' from #{file}.html" do
-          body = File.read(File.join(fixtures, "#{file}.html"))
+          body = File.read(fixtures.join("#{file}.html"))
 
           expect(finder.display_name_from_body(body)).to eql 'admin display_name'
         end
@@ -50,7 +50,7 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
     context 'when no display_name' do
       ['4.1.1', '3.0', '2.9.2'].each do |file|
         it "returns nil for #{file}-empty.html" do
-          body = File.read(File.join(fixtures, "#{file}-empty.html"))
+          body = File.read(fixtures.join("#{file}-empty.html"))
 
           expect(finder.display_name_from_body(body)).to eql nil
         end

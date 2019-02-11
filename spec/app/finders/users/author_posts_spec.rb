@@ -2,7 +2,7 @@ describe WPScan::Finders::Users::AuthorPosts do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'users', 'author_posts') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('users', 'author_posts') }
 
   describe '#passive' do
     xit
@@ -10,7 +10,7 @@ describe WPScan::Finders::Users::AuthorPosts do
 
   describe '#potential_usernames' do
     it 'returns the expected usernames' do
-      res = Typhoeus::Response.new(body: File.read(File.join(fixtures, 'potential_usernames.html')))
+      res = Typhoeus::Response.new(body: File.read(fixtures.join('potential_usernames.html')))
 
       results = finder.potential_usernames(res)
 

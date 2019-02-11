@@ -2,8 +2,8 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'config_backups') }
-  let(:opts)       { { list: File.join(WPScan::DB_DIR, 'config_backups.txt') } }
+  let(:fixtures)   { FINDERS_FIXTURES.join('config_backups') }
+  let(:opts)       { { list: WPScan::DB_DIR.join('config_backups.txt').to_s } }
 
   describe '#aggressive' do
     before do
@@ -23,7 +23,7 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
 
     context 'when some files exist' do
       let(:files) { ['%23wp-config.php%23', 'wp-config.bak'] }
-      let(:config_backup) { File.read(File.join(fixtures, 'wp-config.php')) }
+      let(:config_backup) { File.read(fixtures.join('wp-config.php')) }
 
       before do
         files.each do |file|

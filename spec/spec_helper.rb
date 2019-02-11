@@ -23,7 +23,7 @@ end
 
 # Dynamic Finders Helpers
 def df_expected_all
-  YAML.safe_load(File.read(File.join(DYNAMIC_FINDERS_FIXTURES, 'expected.yml')))
+  YAML.safe_load(File.read(DYNAMIC_FINDERS_FIXTURES.join('expected.yml')))
 end
 
 def df_tested_class_constant(type, finder_class, slug = nil)

@@ -1,5 +1,5 @@
 shared_examples 'WordPress::CustomDirectories' do
-  let(:fixtures) { File.join(super(), 'custom_directories') }
+  let(:fixtures) { super().join('custom_directories') }
 
   describe '#content_dir' do
     {
@@ -7,9 +7,7 @@ shared_examples 'WordPress::CustomDirectories' do
       relative_one: 'wp-content', relative_two: 'wp-content', cache: 'wp-content'
     }.each do |file, expected|
       it "returns #{expected} for #{file}.html" do
-        fixture = File.join(fixtures, "#{file}.html")
-
-        stub_request(:get, target.url).to_return(body: File.read(fixture))
+        stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{file}.html")))
 
         expect(target.content_dir).to eql expected
       end

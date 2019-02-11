@@ -2,7 +2,7 @@ describe WPScan::Finders::Users::OembedApi do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'users', 'oembed_api') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('users', 'oembed_api') }
 
   describe '#aggressive' do
     before do
@@ -18,14 +18,14 @@ describe WPScan::Finders::Users::OembedApi do
 
     context 'when a JSON response' do
       context 'when 404' do
-        let(:body) { File.read(File.join(fixtures, '404.json')) }
+        let(:body) { File.read(fixtures.join('404.json')) }
 
         its(:aggressive) { should eql([]) }
       end
 
       context 'when 200' do
         context 'when author_url present' do
-          let(:body) { File.read(File.join(fixtures, '200_author_url.json')) }
+          let(:body) { File.read(fixtures.join('200_author_url.json')) }
 
           it 'returns the expected array of users' do
             users = finder.aggressive
@@ -42,7 +42,7 @@ describe WPScan::Finders::Users::OembedApi do
         end
 
         context 'when author_url not present but author_name' do
-          let(:body) { File.read(File.join(fixtures, '200_author_name.json')) }
+          let(:body) { File.read(fixtures.join('200_author_name.json')) }
 
           it 'returns the expected array of users' do
             users = finder.aggressive

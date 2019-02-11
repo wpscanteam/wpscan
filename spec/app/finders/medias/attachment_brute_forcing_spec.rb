@@ -2,7 +2,7 @@ describe WPScan::Finders::Medias::AttachmentBruteForcing do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
-  let(:fixtures)   { File.join(FINDERS_FIXTURES, 'medias', 'attachment_brute_forcing') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('medias', 'attachment_brute_forcing') }
 
   describe '#aggressive' do
     xit

@@ -1,6 +1,6 @@
 shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
   let(:passive_fixture) do
-    File.join(fixtures, "#{described_class.to_s.demodulize.underscore}_passive_all.html")
+    fixtures.join("#{described_class.to_s.demodulize.underscore}_passive_all.html")
   end
 
   describe '#passive_configs' do
@@ -69,7 +69,7 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
         configs.each do |finder_class, config|
           finder_super_class = config['class'] || finder_class
 
-          fixture           = File.join(fixtures, slug, finder_class.underscore, config['path'])
+          fixture           = fixtures.join(slug, finder_class.underscore, config['path'])
           stubbed_response  = df_stubbed_response(fixture, finder_super_class)
           path              = finder.aggressive_path(slug, config)
 
