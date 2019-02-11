@@ -4,7 +4,7 @@ module WPScan
     class Theme < WpItem
       # @return [ String ]
       def self.db_file
-        @db_file ||= DB_DIR.join('themes.json')
+        @db_file ||= DB_DIR.join('themes.json').to_s
       end
     end
   end
