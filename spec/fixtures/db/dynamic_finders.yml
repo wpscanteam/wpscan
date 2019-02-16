@@ -4836,6 +4836,12 @@ plugins:
       path: languages/cj-wc-ajax-search.pot
       pattern: !ruby/regexp /\-Version:\ CODJA WooCommerce Ajax Search (?<v>\d+\.[\.\d]+)/i
       version: true
+  codup-woocommerce-custom-fields:
+    QueryParameter:
+      files:
+      - lib/codupads/styles/style.css
+      - lib/codupads/scripts/adscript.js
+      version: true
   coinpaprika:
     TranslationFile:
       class: BodyPattern
@@ -8206,6 +8212,12 @@ plugins:
       files:
       - assets/css/frontend-form-print-pay.css
       - assets/js/form-pay.js
+      version: true
+  formarketer:
+    QueryParameter:
+      files:
+      - public/css/formarketer-public.css
+      - public/js/formarketer-public.js
       version: true
   formcraft-form-builder:
     QueryParameter:
@@ -12002,6 +12014,12 @@ plugins:
       path: lang/locus-pt_BR.po
       pattern: !ruby/regexp /msgid "(?<v>\d+\.[\.\d]+)/i
       version: true
+  loft-postreorder:
+    TranslationFile:
+      class: BodyPattern
+      path: assets/languages/loft-post-reorder.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Loft PostReorder (?<v>\d+\.[\.\d]+)/i'
+      version: true
   loftloader:
     TranslationFile:
       class: BodyPattern
@@ -14151,6 +14169,12 @@ plugins:
       files:
       - js/notifyme.js
       version: true
+  noto-font-loader:
+    QueryParameter:
+      files:
+      - public/css/noto-font-loader-sans.css
+      - public/js/noto-font-loader-public.js
+      version: true
   novarum-json-importer:
     QueryParameter:
       files:
@@ -14928,6 +14952,12 @@ plugins:
       - public/js/parsley.min.js
       - public/js/public.js
       version: true
+  pcloud-backup:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/pcb-fr_FR.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Pcloud Backup v(?<v>\d+\.[\.\d]+)/i'
+      version: true
   pd-helper:
     QueryParameter:
       files:
@@ -15077,6 +15107,15 @@ plugins:
       - js/jquery.mobile.js
       - js/jquery.mCustomScrollbar.concat.min.js
       - js/bwg_gallery_box.js
+      version: true
+  photo-gallery-with-responsive:
+    QueryParameter:
+      files:
+      - assets/css/popup.css
+      - assets/css/slick.css
+      - assets/css/font-awesome.min.css
+      - assets/css/pgr-custom.css
+      - assets/js/catfilter.js
       version: true
   photo-swipe:
     QueryParameter:
@@ -16928,6 +16967,12 @@ plugins:
       path: langs/wp-remove-generator-meta-de_DE.po
       pattern: !ruby/regexp '/on: WordPress\.com Stats Smiley Remover v(?<v>\d+\.[\.\d]+)/i'
       version: true
+  remove-media-library:
+    QueryParameter:
+      files:
+      - public/css/remove-media-library-public.css
+      - public/js/remove-media-library-public.js
+      version: true
   remove-projects-in-divi:
     TranslationFile:
       class: BodyPattern
@@ -18696,6 +18741,12 @@ plugins:
       - assets/css/icons.css
       - assets/js/front-widget.js
       version: true
+  simple-google-maps-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   simple-history:
     ComposerFile:
       class: ConfigParser
@@ -20331,6 +20382,8 @@ plugins:
       - public/css/sympose.css
       - public/js/sympose.js
       - public/libs/font-awesome/svg-with-js/js/fontawesome-all.js
+      - public/css/sympose.min.css
+      - public/js/sympose.min.js
       version: true
     TranslationFile:
       class: BodyPattern
@@ -20493,6 +20546,12 @@ plugins:
       files:
       - public/assets/js/jquery.cookie.js
       - public/assets/js/toastr.min.js
+      version: true
+  targetaudience:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/targetaudience-de_DE.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: TargetAudience v(?<v>\d+\.[\.\d]+)/i'
       version: true
   tashortcodes:
     QueryParameter:
@@ -20965,6 +21024,12 @@ plugins:
     MetaTag:
       class: Xpath
       xpath: //meta[@name="TimeZoneCalculator"]/@content
+      version: true
+  tiny-bar:
+    QueryParameter:
+      files:
+      - front/style/hmtb_style.css
+      - front/js/hmtb_script.js
       version: true
   tiny-youtube-post-widget:
     QueryParameter:
@@ -24315,6 +24380,13 @@ plugins:
       path: lang/wp-activity.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: WP\-Activity (?<v>\d+\.[\.\d]+)/i'
       version: true
+  wp-ad-guru:
+    QueryParameter:
+      files:
+      - assets/css/adguru.css
+      - assets/js/simple.carousel_edited.js
+      - assets/js/adguru.js
+      version: true
   wp-admin-notification:
     TranslationFile:
       class: BodyPattern
@@ -25678,6 +25750,12 @@ plugins:
       files:
       - assets/public/css/wpmi.css
       - assets/public/js/wpmi.js
+      version: true
+  wp-mailscout:
+    QueryParameter:
+      files:
+      - public/css/mailscout-public.css
+      - public/js/mailscout-public.js
       version: true
   wp-maintenance-mode:
     TranslationFile:
@@ -27659,6 +27737,21 @@ plugins:
       class: BodyPattern
       path: wpvm.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: wpvm (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  wpxon-ajax-contact-form:
+    QueryParameter:
+      files:
+      - public/css/bootstrap.min.css
+      - public/css/animate.css
+      - public/css/style.css
+      - public/js/form-validator.min.js
+      - public/js/contact-form-script.js
+      - public/js/main.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/ajax-contact-form.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Ajax Contact Form v(?<v>\d+\.[\.\d]+)/i'
       version: true
   wrc-pricing-tables:
     QueryParameter:
