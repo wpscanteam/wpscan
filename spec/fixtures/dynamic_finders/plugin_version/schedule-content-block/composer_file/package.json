@@ -1,0 +1,33 @@
+{
+  "name": "schedule-content-block",
+  "version": "1.0.0",
+  "private": true,
+  "main": "schedule-content-block.php",
+  "author": "Jesús Olazaogoitia <jesus.designer@gmail.com>",
+  "license": "(GPLv2 or later)",
+  "scripts": {
+    "start": "cross-env BABEL_ENV=default webpack --watch",
+    "build": "cross-env BABEL_ENV=default NODE_ENV=production webpack -p"
+  },
+  "devDependencies": {
+    "@wordpress/babel-plugin-makepot": "^2.1.2",
+    "@wordpress/babel-preset-default": "^1.2.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "classnames": "^2.2.6",
+    "cross-env": "^5.1.5",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "node-sass": "^4.9.0",
+    "postcss-loader": "^2.1.5",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^6.0.7",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.11.0"
+  },
+  "dependencies": {
+    "react-datepicker": "^2.0.0"
+  }
+}

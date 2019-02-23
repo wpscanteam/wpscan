@@ -1291,6 +1291,12 @@ plugins:
       files:
       - assets/js/script.js
       version: true
+  analogwp-templates:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/ang.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: AnalogWP Templates (?<v>\d+\.[\.\d]+)/i'
+      version: true
   anchor-highlighter:
     QueryParameter:
       files:
@@ -3360,6 +3366,12 @@ plugins:
       class: BodyPattern
       path: languages/brightcove.pot
       pattern: !ruby/regexp /ct\-Id\-Version:\ Brightcove Video Connect (?<v>\d+\.[\.\d]+)/i
+      version: true
+  brikshya-map:
+    QueryParameter:
+      files:
+      - public/css/brikshya-map-public.css
+      - public/js/brikshya-map-public.js
       version: true
   brix-page-builder:
     TranslationFile:
@@ -5834,6 +5846,13 @@ plugins:
       files:
       - assets/css/delightful-downloads.min.css
       version: true
+  delivery-date-for-woocommerce:
+    QueryParameter:
+      files:
+      - public/css/delivery_date_for_woocommerce-public.css
+      - public/css/jquery-ui.css
+      - public/js/delivery_date_for_woocommerce-public.js
+      version: true
   delivery-drivers-for-woocommerce:
     QueryParameter:
       files:
@@ -6853,6 +6872,16 @@ plugins:
       files:
       - css/els-ajax-login-css.css
       - js/els-ajax-login-def.js
+      version: true
+  em-purchase-code-validator:
+    QueryParameter:
+      files:
+      - public/assets/css/em-puchase-code-validator-public.css
+      - public/assets/js/vue.min.js
+      - public/assets/js/moment.js
+      - public/assets/js/moment-timezone.min.js
+      - public/assets/js/axios.min.js
+      - public/assets/js/em-puchase-code-validator-public.js
       version: true
   email-address-encoder:
     TranslationFile:
@@ -11969,6 +11998,12 @@ plugins:
       path: languages/local-like-and-share.pot
       pattern: !ruby/regexp /roject\-Id\-Version:\ Local Like And Share (?<v>\d+\.[\.\d]+)/i
       version: true
+  local-links:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/local-links.pot
+      pattern: !ruby/regexp /"Local Links v(?<v>\d+\.[\.\d]+)/i
+      version: true
   local-market-explorer:
     QueryParameter:
       files:
@@ -13139,6 +13174,12 @@ plugins:
       files:
       - assets/css/dist/minerva-kb.css
       - assets/js/minerva-kb.js
+      version: true
+  mingrana-wp-to-blockchain:
+    QueryParameter:
+      files:
+      - public/css/mingrana-wp-public.css
+      - public/js/mingrana-wp-public.js
       version: true
   mins-to-read:
     QueryParameter:
@@ -15738,6 +15779,12 @@ plugins:
       files:
       - css/frontend.css
       version: true
+  posterno:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/posterno.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Posterno (?<v>\d+\.[\.\d]+)/i'
+      version: true
   postmatic:
     TranslationFile:
       class: BodyPattern
@@ -17780,6 +17827,12 @@ plugins:
       class: BodyPattern
       path: languages/scand-osticket-connector-ru_RU.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: osTicket Connector (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  schedule-content-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   scheduled-pages-dashboard-widget:
     TranslationFile:
@@ -20726,6 +20779,12 @@ plugins:
       path: languages/testimonials-widget.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ Testimonials Widget (?<v>\d+\.[\.\d]+)/i
       version: true
+  testimonials-wp:
+    QueryParameter:
+      files:
+      - css/twp.css
+      - js/twp-s2n.js
+      version: true
   text-hover:
     QueryParameter:
       files:
@@ -21716,6 +21775,12 @@ plugins:
       files:
       - ultimate-rotator.css
       version: true
+  ultimate-sms-notifications:
+    QueryParameter:
+      files:
+      - public/css/woo-usn-public.css
+      - public/js/woo-usn-public.js
+      version: true
   ultimate-tag-cloud-widget:
     JavascriptComment:
       class: BodyPattern
@@ -22539,6 +22604,14 @@ plugins:
       class: BodyPattern
       path: languages/wc-checkout-terms-popup.pot
       pattern: !ruby/regexp '/rsion: WooCommerce Checkout Terms Popup (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  wc-confirm-payment:
+    QueryParameter:
+      files:
+      - public/css/woocommerce-confirm-payment-public.css
+      - public/js/modernizr-custom.js
+      - public/js/jquery.form.js
+      - public/js/woocommerce-confirm-payment-public.js
       version: true
   wc-customer-related-order:
     TranslationFile:
@@ -26119,6 +26192,11 @@ plugins:
       files:
       - css/postratings-css.css
       - js/postratings-js.js
+      version: true
+  wp-posts-for-users:
+    QueryParameter:
+      files:
+      - css/wppfu_style.css
       version: true
   wp-posts-slider-cloudberriez:
     TranslationFile:
