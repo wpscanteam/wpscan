@@ -7,7 +7,7 @@
 
 # INSTALL
 
-## Prerequisites:
+## Prerequisites
 
 - (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
 - Ruby >= 2.3 - Recommended: latest
@@ -16,19 +16,19 @@
   - The 7.29 has a segfault
 - RubyGems      - Recommended: latest
 
-### From RubyGems (Recommended):
+### From RubyGems (Recommended)
 
-```
+```shell
 gem install wpscan
 ```
 
 On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's System Integrity Protection (SIP), either install RVM and install wpscan again, or run ```sudo gem install -n /usr/local/bin wpscan``` (see [#1286](https://github.com/wpscanteam/wpscan/issues/1286))
 
-### From sources (NOT Recommended):
+### From sources (NOT Recommended)
 
 Prerequisites: Git
 
-```
+```shell
 git clone https://github.com/wpscanteam/wpscan
 
 cd wpscan/
@@ -47,14 +47,17 @@ Updating WPScan itself is either done via ```gem update wpscan``` or the package
 Pull the repo with ```docker pull wpscanteam/wpscan```
 
 Enumerating usernames
-```
+
+```shell
 docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u
 ```
 
 Enumerating a range of usernames
-```
+
+```shell
 docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u1-100
 ```
+
 ** replace u1-100 with a range of your choice.
 
 # Usage
@@ -68,41 +71,44 @@ The DB is located at ~/.wpscan/db
 
 WPScan can load all options (including the --url) from configuration files, the following locations are checked (order: first to last):
 
-* ~/.wpscan/cli_options.json
-* ~/.wpscan/cli_options.yml
-* pwd/.wpscan/cli_options.json
-* pwd/.wpscan/cli_options.yml
+- ~/.wpscan/cli_options.json
+- ~/.wpscan/cli_options.yml
+- pwd/.wpscan/cli_options.json
+- pwd/.wpscan/cli_options.yml
 
 If those files exist, options from them will be loaded and overridden if found twice.
 
 e.g:
 
 ~/.wpscan/cli_options.yml:
-```
+
+```yml
 proxy: 'http://127.0.0.1:8080'
 verbose: true
 ```
 
 pwd/.wpscan/cli_options.yml:
-```
+
+```yml
 proxy: 'socks5://127.0.0.1:9090'
 url: 'http://target.tld'
 ```
 
 Running ```wpscan``` in the current directory (pwd), is the same as ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
 
-
 Enumerating usernames
-```
+
+```shell
 wpscan --url https://target.tld/ --enumerate u
 ```
 
 Enumerating a range of usernames
-```
+
+```shell
 wpscan --url https://target.tld/ --enumerate u1-100
 ```
-** replace u1-100 with a range of your choice.
 
+** replace u1-100 with a range of your choice.
 
 # PROJECT HOME
 
@@ -134,18 +140,20 @@ A commercial use is one intended for commercial advantage or monetary compensati
 
 Example cases of commercialization are:
 
- - Using WPScan to provide commercial managed/Software-as-a-Service services.
- - Distributing WPScan as a commercial product or as part of one.
- - Using WPScan as a value added service/product.
+- Using WPScan to provide commercial managed/Software-as-a-Service services.
+- Distributing WPScan as a commercial product or as part of one.
+- Using WPScan as a value added service/product.
 
 Example cases which do not require a commercial license, and thus fall under the terms set out below, include (but are not limited to):
 
- - Penetration testers (or penetration testing organizations) using WPScan as part of their assessment toolkit.
- - Penetration Testing Linux Distributions including but not limited to Kali Linux, SamuraiWTF, BackBox Linux.
- - Using WPScan to test your own systems.
- - Any non-commercial use of WPScan.
+- Penetration testers (or penetration testing organizations) using WPScan as part of their assessment toolkit.
+- Penetration Testing Linux Distributions including but not limited to Kali Linux, SamuraiWTF, BackBox Linux.
+- Using WPScan to test your own systems.
+- Any non-commercial use of WPScan.
 
 If you need to purchase a commercial license or are unsure whether you need to purchase a commercial license contact us - team@wpscan.org.
+
+We may grant commercial licenses at no monetary cost at our own discretion if the commercial usage is deemed by the WPScan Team to significantly benefit WPScan.
 
 Free-use Terms and Conditions;
 
@@ -153,9 +161,9 @@ Free-use Terms and Conditions;
 
 Redistribution is permitted under the following conditions:
 
- - Unmodified License is provided with WPScan.
- - Unmodified Copyright notices are provided with WPScan.
- - Does not conflict with the commercialization clause.
+- Unmodified License is provided with WPScan.
+- Unmodified Copyright notices are provided with WPScan.
+- Does not conflict with the commercialization clause.
 
 ### 4. Copying
 
