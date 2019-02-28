@@ -153,8 +153,6 @@ Example cases which do not require a commercial license, and thus fall under the
 
 If you need to purchase a commercial license or are unsure whether you need to purchase a commercial license contact us - team@wpscan.org.
 
-We may grant commercial licenses at no monetary cost at our own discretion if the commercial usage is deemed by the WPScan Team to significantly benefit WPScan.
-
 Free-use Terms and Conditions;
 
 ### 3. Redistribution
