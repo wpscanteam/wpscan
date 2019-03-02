@@ -2740,6 +2740,12 @@ plugins:
       files:
       - js/banner.js
       version: true
+  blockbuddy:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   blockq:
     TranslationFile:
       class: BodyPattern
@@ -4240,6 +4246,12 @@ plugins:
       files:
       - public/css/style.css
       - public/js/jscolor.min.js
+      version: true
+  cf7-countries:
+    QueryParameter:
+      files:
+      - public/css/cf7-countries-public.css
+      - public/js/cf7-countries-public.js
       version: true
   cf7-editor-button:
     TranslationFile:
@@ -5770,11 +5782,23 @@ plugins:
       - public/js/scripts.js
       - public/js/readmore_v2.2.0.min.js
       version: true
+  dailybrief:
+    QueryParameter:
+      files:
+      - public/css/dailybrief-public.css
+      - public/js/dailybrief-public.js
+      version: true
   danixland-countdown:
     TranslationFile:
       class: BodyPattern
       path: i18n/danixland-countdown.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ danixland CountDown (?<v>\d+\.[\.\d]+)/i
+      version: true
+  dash-notifier:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/dash-notifier.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Dash Notifier (?<v>\d+\.[\.\d]+)/i'
       version: true
   dashboard-linker:
     TranslationFile:
@@ -7885,6 +7909,12 @@ plugins:
       path: i18n/languages/flash-toolkit.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Flash Toolkit (?<v>\d+\.[\.\d]+)/i'
       version: true
+  flat-preloader:
+    QueryParameter:
+      files:
+      - assets/css/flat-preloader-public.css
+      - assets/js/flat-preloader.js
+      version: true
   flat-twitter:
     QueryParameter:
       files:
@@ -8463,6 +8493,11 @@ plugins:
       files:
       - assets/css/gamipress.min.css
       - assets/js/gamipress.min.js
+      version: true
+  gazchaps-woocommerce-getaddress-io:
+    QueryParameter:
+      files:
+      - gazchaps-getaddress-io.min.js
       version: true
   gc-testimonials-to-testimonials:
     TranslationFile:
@@ -9403,6 +9438,11 @@ plugins:
       - grid-archives.css
       - grid-archives-effect-css.php
       version: true
+  grid-block:
+    QueryParameter:
+      files:
+      - public/css/grid-block-public.css
+      version: true
   grid-gallery-with-custom-links:
     QueryParameter:
       files:
@@ -9508,6 +9548,9 @@ plugins:
       - assets/js/blueimp-gallery-vimeo.js
       - assets/js/blueimp-gallery-youtube.js
       - js/gt3pg.js
+      - dist/css/blueimp-gallery.css
+      - dist/gt3pg.css
+      - dist/gt3pg.js
       version: true
   guardian-news-headlines:
     QueryParameter:
@@ -12506,6 +12549,12 @@ plugins:
       path: mp-content/languages/MailPress-fr_FR.po
       pattern: !ruby/regexp /msgid "Since MailPress (?<v>\d+\.[\.\d]+)/i
       version: true
+  mailshogun:
+    QueryParameter:
+      files:
+      - public/css/mailshogun-public.css
+      - public/js/mailshogun-public.js
+      version: true
   maintenance-mode-z:
     QueryParameter:
       files:
@@ -13873,6 +13922,17 @@ plugins:
       class: BodyPattern
       path: languages/nelio-featured-posts.pot
       pattern: !ruby/regexp /roject\-Id\-Version:\ Nelio Featured Posts (?<v>\d+\.[\.\d]+)/i
+      version: true
+  nelio-maps:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/nelio-maps.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Nelio Maps (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   neo-bootstrap-carousel:
     QueryParameter:
@@ -16247,6 +16307,11 @@ plugins:
       path: languages/pronamic_ideal.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Pronamic Pay (?<v>\d+\.[\.\d]+)/i
       version: true
+  proof-factor-social-proof-notifications:
+    QueryParameter:
+      files:
+      - public/css/proof-factor-wp-public.css
+      version: true
   propertyhive:
     QueryParameter:
       files:
@@ -18284,6 +18349,17 @@ plugins:
       class: BodyPattern
       path: languages/share-decentral-de_DE.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: Share Decentral v(?<v>\d+\.[\.\d]+)/i'
+      version: true
+  share-monkey:
+    QueryParameter:
+      files:
+      - "/shared/css/share-monkey-shared.css"
+      - "/shared/socicon/style.css"
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/share_monkey-en_US.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Share Monkey (?<v>\d+\.[\.\d]+)/i'
       version: true
   share-this-image:
     QueryParameter:
@@ -21159,6 +21235,12 @@ plugins:
       - public/css/token-ad-admin.css
       - public/js/token-ad-public.js
       version: true
+  tokenpile-client:
+    QueryParameter:
+      files:
+      - public/css/tokenpile_client-public.css
+      - public/js/tokenpile_client-public.js
+      version: true
   toms-guide-download:
     TranslationFile:
       class: BodyPattern
@@ -21934,6 +22016,7 @@ plugins:
       - assets/js/bootstrap.js
       - assets/js/rating.js
       - assets/js/feedback.js
+      - assets/js/webform.js
       version: true
   unlimited-addons-for-wpbakery-page-builder:
     ReleaseLog:
@@ -24851,6 +24934,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/public.css
+      version: true
+  wp-connect-coil:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/WpConnectCoilTrtr.pot
+      pattern: !ruby/regexp /"v(?<v>\d+\.[\.\d]+)/i
       version: true
   wp-contact-form7-email-spam-blocker:
     QueryParameter:

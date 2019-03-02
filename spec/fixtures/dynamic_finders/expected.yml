@@ -3414,6 +3414,12 @@ plugins:
       confidence: 10
       interesting_entries:
       - http://wp.lab/wp-content/plugins/blockalyzer-adblock-counter/js/banner.js?ver=1.3
+  blockbuddy:
+    ComposerFile:
+      number: '0.1'
+      found_by: Composer File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/blockbuddy/package.json, Match: ''0.1'''
   blockq:
     TranslationFile:
       number: '1.0'
@@ -5277,6 +5283,14 @@ plugins:
       interesting_entries:
       - http://wp.lab/wp-content/plugins/cf7-color-picker/public/css/style.css?ver=0.1
       - http://wp.lab/wp-content/plugins/cf7-color-picker/public/js/jscolor.min.js?ver=0.1
+  cf7-countries:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/cf7-countries/public/css/cf7-countries-public.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/cf7-countries/public/js/cf7-countries-public.js?ver=1.0.0
+      confidence: 20
   cf7-editor-button:
     TranslationFile:
       number: 1.0.0
@@ -7181,6 +7195,14 @@ plugins:
       - http://wp.lab/wp-content/plugins/daily-bible-readings/public/js/scripts.js?ver=1.0.2
       - http://wp.lab/wp-content/plugins/daily-bible-readings/public/js/readmore_v2.2.0.min.js?ver=1.0.2
       confidence: 20
+  dailybrief:
+    QueryParameter:
+      number: 1.0.28
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/dailybrief/public/css/dailybrief-public.css?ver=1.0.28
+      - http://wp.lab/wp-content/plugins/dailybrief/public/js/dailybrief-public.js?ver=1.0.28
+      confidence: 20
   danixland-countdown:
     TranslationFile:
       number: '0.4'
@@ -7188,6 +7210,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/danixland-countdown/i18n/danixland-countdown.pot,
         Match: ''Project-Id-Version: danixland CountDown 0.4'''
+  dash-notifier:
+    TranslationFile:
+      number: '1.0'
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/dash-notifier/languages/dash-notifier.pot,
+        Match: ''"Project-Id-Version: Dash Notifier 1.0'''
   dashboard-linker:
     TranslationFile:
       number: 0.1.0
@@ -9806,6 +9835,14 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/flash-toolkit/i18n/languages/flash-toolkit.pot,
         Match: ''"Project-Id-Version: Flash Toolkit 1.1.6'''
+  flat-preloader:
+    QueryParameter:
+      number: 1.1.2
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/flat-preloader/assets/css/flat-preloader-public.css?ver=1.1.2
+      - http://wp.lab/wp-content/plugins/flat-preloader/assets/js/flat-preloader.js?ver=1.1.2
+      confidence: 20
   flat-twitter:
     QueryParameter:
       number: '1.0'
@@ -10533,6 +10570,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/gamipress/assets/css/gamipress.min.css?ver=1.3.5
       - http://wp.lab/wp-content/plugins/gamipress/assets/js/gamipress.min.js?ver=1.3.5
       confidence: 20
+  gazchaps-woocommerce-getaddress-io:
+    QueryParameter:
+      number: '1.1'
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/gazchaps-woocommerce-getaddress-io/gazchaps-getaddress-io.min.js?ver=1.1
+      confidence: 10
   gc-testimonials-to-testimonials:
     TranslationFile:
       number: 1.3.1
@@ -11693,6 +11737,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/grid-archives/grid-archives.css?ver=1.7.0
       - http://wp.lab/wp-content/plugins/grid-archives/grid-archives-effect-css.php?ver=1.7.0
       confidence: 20
+  grid-block:
+    QueryParameter:
+      number: 1.0.1
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/grid-block/public/css/grid-block-public.css?ver=1.0.1
+      confidence: 10
   grid-gallery-with-custom-links:
     QueryParameter:
       number: 1.2.2
@@ -11826,7 +11877,10 @@ plugins:
       - http://wp.lab/wp-content/plugins/gt3-photo-video-gallery/assets/js/blueimp-gallery-vimeo.js?ver=1.6.5.6
       - http://wp.lab/wp-content/plugins/gt3-photo-video-gallery/assets/js/blueimp-gallery-youtube.js?ver=1.6.5.6
       - http://wp.lab/wp-content/plugins/gt3-photo-video-gallery/js/gt3pg.js?ver=1.6.5.6
-      confidence: 90
+      - http://wp.lab/wp-content/plugins/gt3-photo-video-gallery/dist/css/blueimp-gallery.css?ver=1.6.5.6
+      - http://wp.lab/wp-content/plugins/gt3-photo-video-gallery/dist/gt3pg.css?ver=1.6.5.6
+      - http://wp.lab/wp-content/plugins/gt3-photo-video-gallery/dist/gt3pg.js?ver=1.6.5.6
+      confidence: 100
   guardian-news-headlines:
     QueryParameter:
       number: 0.5.4
@@ -15587,6 +15641,14 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/mailpress/mp-content/languages/MailPress-fr_FR.po,
         Match: ''msgid "Since MailPress 7.0'''
+  mailshogun:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/mailshogun/public/css/mailshogun-public.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/mailshogun/public/js/mailshogun-public.js?ver=1.0.0
+      confidence: 20
   maintenance-mode-z:
     QueryParameter:
       number: 1.1.0
@@ -17327,6 +17389,18 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/nelio-featured-posts/languages/nelio-featured-posts.pot,
         Match: ''roject-Id-Version: Nelio Featured Posts 2.2.2'''
+  nelio-maps:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/nelio-maps/languages/nelio-maps.pot, Match:
+        ''"Project-Id-Version: Nelio Maps 1.0.0'''
+    ComposerFile:
+      number: 1.0.0
+      found_by: Composer File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/nelio-maps/package.json, Match: ''1.0.0'''
   neo-bootstrap-carousel:
     QueryParameter:
       number: 1.3.1
@@ -20332,6 +20406,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/pronamic-ideal/languages/pronamic_ideal.pot,
         Match: ''"Project-Id-Version: Pronamic Pay 4.7.0'''
+  proof-factor-social-proof-notifications:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/proof-factor-social-proof-notifications/public/css/proof-factor-wp-public.css?ver=1.0.0
+      confidence: 10
   propertyhive:
     QueryParameter:
       number: 1.4.13
@@ -22915,6 +22996,20 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/share-decentral/languages/share-decentral-de_DE.po,
         Match: ''"Project-Id-Version: Share Decentral v1.0'''
+  share-monkey:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/share-monkey//shared/css/share-monkey-shared.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/share-monkey//shared/socicon/style.css?ver=1.0.0
+      confidence: 20
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/share-monkey/languages/share_monkey-en_US.po,
+        Match: ''"Project-Id-Version: Share Monkey 1.0.0'''
   share-this-image:
     QueryParameter:
       number: '1.04'
@@ -26591,6 +26686,14 @@ plugins:
       - http://wp.lab/wp-content/plugins/tokenad/public/css/token-ad-admin.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/tokenad/public/js/token-ad-public.js?ver=1.0.0
       confidence: 20
+  tokenpile-client:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/tokenpile-client/public/css/tokenpile_client-public.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/tokenpile-client/public/js/tokenpile_client-public.js?ver=1.0.0
+      confidence: 20
   toms-guide-download:
     TranslationFile:
       number: 1.0.5
@@ -27551,6 +27654,7 @@ plugins:
       - http://wp.lab/wp-content/plugins/universam-demo/assets/js/bootstrap.js?ver=4.50.02
       - http://wp.lab/wp-content/plugins/universam-demo/assets/js/rating.js?ver=4.50.02
       - http://wp.lab/wp-content/plugins/universam-demo/assets/js/feedback.js?ver=4.50.02
+      - http://wp.lab/wp-content/plugins/universam-demo/assets/js/webform.js?ver=4.50.02
       confidence: 100
   unlimited-addons-for-wpbakery-page-builder:
     ReleaseLog:
@@ -31202,6 +31306,13 @@ plugins:
       interesting_entries:
       - http://wp.lab/wp-content/plugins/wp-comments-form-validation/assets/css/public.css?ver=1.0.0
       confidence: 10
+  wp-connect-coil:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/wp-connect-coil/languages/WpConnectCoilTrtr.pot,
+        Match: ''"v1.0.0'''
   wp-contact-form7-email-spam-blocker:
     QueryParameter:
       number: 1.0.0
