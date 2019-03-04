@@ -24379,8 +24379,15 @@ plugins:
       version: true
   wordpress-seo:
     Comment:
+      xpath: //comment()[contains(., 'Yoast')]
       pattern: !ruby/regexp '/optimized with the Yoast(?: WordPress)? SEO plugin v(?<v>[^\s]+)
-        -|\/ Yoast WordPress SEO plugin\./i'
+        \-|\/ Yoast WordPress SEO plugin\./i'
+      version: true
+  wordpress-seo-premium:
+    Comment:
+      xpath: //comment()[contains(., 'Yoast')]
+      pattern: !ruby/regexp '/optimized with the Yoast SEO Premium plugin v(?<v>[^\s]+)
+        \-|\/ Yoast SEO Premium plugin\./i'
       version: true
   wordpress-simple-paypal-shopping-cart:
     Comment:
