@@ -148,6 +148,11 @@ plugins:
       files:
       - includes/js/callus.js
       version: true
+  3cx-live-chat-talk:
+    QueryParameter:
+      files:
+      - includes/js/callus.js
+      version: true
   3cx-webinars:
     QueryParameter:
       files:
@@ -9073,6 +9078,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  gosign-promo-box-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   gosign-simple-teaser-block:
     ComposerFile:
       class: ConfigParser
@@ -11345,6 +11356,12 @@ plugins:
     QueryParameter:
       files:
       - index.js
+      version: true
+  klarity-message-action-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   klaro-consent-manager:
     QueryParameter:
@@ -14251,6 +14268,12 @@ plugins:
       - css/notification-box.css
       - js/notification-box.js
       version: true
+  notification-system:
+    QueryParameter:
+      files:
+      - css/style.css
+      - dist/js/notificationsRESTAPI/app.js
+      version: true
   notify-connect-par-jm-crea:
     MetaTag:
       class: Xpath
@@ -14376,6 +14399,11 @@ plugins:
       class: BodyPattern
       path: languages/nwa.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Navionics\-WebAPI (?<v>\d+\.[\.\d]+)/i
+      version: true
+  nx-ads:
+    QueryParameter:
+      files:
+      - public/css/nx-ads-public.css
       version: true
   nxtbridge-ledger:
     QueryParameter:
@@ -15448,6 +15476,7 @@ plugins:
       files:
       - public/css/podcast-player-public.css
       - public/js/podcast-player-public.js
+      - public/js/simplebar.min.js
       version: true
     TranslationFile:
       class: BodyPattern
@@ -19488,6 +19517,12 @@ plugins:
       xpath: //comment()[contains(., 'name="sti"')]
       pattern: !ruby/regexp /<meta name="sti" version="(?<v>\d+\.[\.\d]+)" \/>/i
       version: true
+  smashing-blocks:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   smilebox-widget:
     QueryParameter:
       files:
@@ -20390,6 +20425,11 @@ plugins:
       files:
       - public/css/super-web-share-public.css
       - public/js/super-web-share-public.js
+      version: true
+  superb-tables:
+    QueryParameter:
+      files:
+      - css/data-table.css
       version: true
   superior-faq:
     QueryParameter:
@@ -22490,6 +22530,12 @@ plugins:
       files:
       - js/script.js
       version: true
+  voice-dialog-navigation:
+    ComposerFile:
+      class: ConfigParser
+      path: composer.json
+      key: version
+      version: true
   voice-search:
     QueryParameter:
       files:
@@ -23726,6 +23772,11 @@ plugins:
       - public/css/fa/css/font-awesome.min.css
       - public/js/wc_ss_btns-public.js
       version: true
+  woo-products-by-category:
+    QueryParameter:
+      files:
+      - public/css/wcpbc-styles.css
+      version: true
   woo-products-coming-soon:
     QueryParameter:
       files:
@@ -24379,15 +24430,15 @@ plugins:
       version: true
   wordpress-seo:
     Comment:
-      xpath: //comment()[contains(., 'Yoast')]
+      xpath: "//comment()[contains(., 'Yoast')]"
       pattern: !ruby/regexp '/optimized with the Yoast(?: WordPress)? SEO plugin v(?<v>[^\s]+)
         \-|\/ Yoast WordPress SEO plugin\./i'
       version: true
   wordpress-seo-premium:
     Comment:
-      xpath: //comment()[contains(., 'Yoast')]
-      pattern: !ruby/regexp '/optimized with the Yoast SEO Premium plugin v(?<v>[^\s]+)
-        \-|\/ Yoast SEO Premium plugin\./i'
+      xpath: "//comment()[contains(., 'Yoast')]"
+      pattern: !ruby/regexp /optimized with the Yoast SEO Premium plugin v(?<v>[^\s]+)
+        \-|\/ Yoast SEO Premium plugin\./i
       version: true
   wordpress-simple-paypal-shopping-cart:
     Comment:
@@ -26505,6 +26556,12 @@ plugins:
       - public/css/customizer-end-point-public.css
       - public/js/customizer-end-point-public.js
       version: true
+  wp-rest-yoast-meta:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wp-rest-yoast-meta.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WP REST Yoast Meta (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wp-restaurant-listings:
     QueryParameter:
       files:
@@ -26912,6 +26969,12 @@ plugins:
     Comment:
       xpath: //comment()[contains(., "WP-SWFObject")]
       pattern: !ruby/regexp /WP\-SWFObject (?<v>\d+\.[\.\d]+)/i
+      version: true
+  wp-switch-user:
+    QueryParameter:
+      files:
+      - public/css/ace_switch_user-public.css
+      - public/js/ace_switch_user-public.js
       version: true
   wp-syntax:
     QueryParameter:
