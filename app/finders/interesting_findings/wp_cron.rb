@@ -11,7 +11,7 @@ module WPScan
 
           WPScan::WPCron.new(
             wp_cron_url,
-            confidence: 100,
+            confidence: 60,
             found_by: DIRECT_ACCESS,
             references: {
               url: [

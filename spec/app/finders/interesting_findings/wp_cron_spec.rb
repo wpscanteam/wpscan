@@ -15,7 +15,7 @@ describe WPScan::Finders::InterestingFindings::WPCron do
       it 'returns the InterestingFinding' do
         expect(finder.aggressive).to eql WPScan::WPCron.new(
           finder.wp_cron_url,
-          confidence: 100,
+          confidence: 60,
           found_by: described_class::DIRECT_ACCESS
         )
       end
