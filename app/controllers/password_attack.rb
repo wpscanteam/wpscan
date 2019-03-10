@@ -65,8 +65,12 @@ module WPScan
         when :wp_login
           WPScan::Finders::Passwords::WpLogin.new(target)
         when :xmlrpc
+          raise XMLRPCNotDetected unless xmlrpc
+
           WPScan::Finders::Passwords::XMLRPC.new(xmlrpc)
         when :xmlrpc_multicall
+          raise XMLRPCNotDetected unless xmlrpc
+
           WPScan::Finders::Passwords::XMLRPCMulticall.new(xmlrpc)
         end
       end

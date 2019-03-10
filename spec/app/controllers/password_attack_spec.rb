@@ -66,25 +66,49 @@ describe WPScan::Controller::PasswordAttack do
       end
 
       context 'when xmlrpc' do
-        before do
-          expect(controller.target).to receive(:xmlrpc).and_return(WPScan::XMLRPC.new("#{target_url}/xmlrpc.php"))
-        end
+        context 'when xmlrpc not detected on target' do
+          before do
+            expect(controller.target).to receive(:xmlrpc).and_return(nil)
+          end
 
-        context 'when single xmlrpc' do
-          let(:attack) { 'xmlrpc' }
+          context 'when single xmlrpc' do
+            let(:attack) { 'xmlrpc' }
 
-          it 'returns the correct object' do
-            expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPC
-            expect(controller.attacker.target).to be_a WPScan::XMLRPC
+            it 'raises an error' do
+              expect { controller.attacker }.to raise_error(WPScan::XMLRPCNotDetected)
+            end
+          end
+
+          context 'when xmlrpc-multicall' do
+            let(:attack) { 'xmlrpc-multicall' }
+
+            it 'raises an error' do
+              expect { controller.attacker }.to raise_error(WPScan::XMLRPCNotDetected)
+            end
           end
         end
 
-        context 'when xmlrpc-multicall' do
-          let(:attack) { 'xmlrpc-multicall' }
+        context 'when xmlrpc detected on target' do
+          before do
+            expect(controller.target).to receive(:xmlrpc).and_return(WPScan::XMLRPC.new("#{target_url}/xmlrpc.php"))
+          end
 
-          it 'returns the correct object' do
-            expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPCMulticall
-            expect(controller.attacker.target).to be_a WPScan::XMLRPC
+          context 'when single xmlrpc' do
+            let(:attack) { 'xmlrpc' }
+
+            it 'returns the correct object' do
+              expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPC
+              expect(controller.attacker.target).to be_a WPScan::XMLRPC
+            end
+          end
+
+          context 'when xmlrpc-multicall' do
+            let(:attack) { 'xmlrpc-multicall' }
+
+            it 'returns the correct object' do
+              expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPCMulticall
+              expect(controller.attacker.target).to be_a WPScan::XMLRPC
+            end
           end
         end
       end
