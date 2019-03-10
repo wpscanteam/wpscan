@@ -1,4 +1,5 @@
 require_relative 'interesting_findings/readme'
+require_relative 'interesting_findings/wp_cron'
 require_relative 'interesting_findings/multisite'
 require_relative 'interesting_findings/debug_log'
 require_relative 'interesting_findings/backup_db'
@@ -23,7 +24,7 @@ module WPScan
           %w[
             Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog
             Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
-            UploadSQLDump EmergencyPwdResetScript
+            UploadSQLDump EmergencyPwdResetScript WPCron
           ].each do |f|
             finders << InterestingFindings.const_get(f).new(target)
           end

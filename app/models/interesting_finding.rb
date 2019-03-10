@@ -42,4 +42,7 @@ module WPScan
 
   class UploadSQLDump < InterestingFinding
   end
+
+  class WPCron < InterestingFinding
+  end
 end
