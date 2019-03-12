@@ -50,6 +50,7 @@ wordpress:
     confidence: 100
     interesting_entries:
     - http://wp.lab/wp-includes/css/buttons.min.css?ver=3.8.1
+    - http://wp.lab/wp-includes/css/buttons.css?ver=3.8.1
     - http://wp.lab/wp-includes/css/admin-bar.min.css?ver=3.8.1
     - https://wp.lab/wp-includes/js/wp-util.min.js?ver=3.8.1
     - https://wp.lab/wp-includes/js/wp-backbone.min.js?ver=3.8.1
@@ -73,18 +74,20 @@ wordpress:
   QueryParameterInInstallPage:
     number: 3.8.1
     found_by: Query Parameter In Install Page (Aggressive Detection)
-    confidence: 90
+    confidence: 100
     interesting_entries:
     - http://wp.lab/wp-includes/css/buttons.min.css?ver=3.8.1
     - http://wp.lab/wp-admin/css/install.min.css?ver=3.8.1
+    - http://wp.lab/wp-admin/css/install.css?ver=3.8.1
     - http://wp.lab/wp-includes/css/dashicons.min.css?ver=3.8.1
   QueryParameterInUpgradePage:
     number: 3.8.1
     found_by: Query Parameter In Upgrade Page (Aggressive Detection)
-    confidence: 60
+    confidence: 90
     interesting_entries:
     - http://wp.lab/wp-includes/css/buttons.min.css?ver=3.8.1
     - http://wp.lab/wp-admin/css/install.min.css?ver=3.8.1
+    - http://wp.lab/wp-admin/css/install.css?ver=3.8.1
   SitemapGenerator:
     number: 4.0
     found_by: Sitemap Generator (Aggressive Detection)

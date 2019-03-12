@@ -40,8 +40,11 @@ wordpress:
     xpath: //link[contains(@href,"wp-includes/")]/@href|//script[contains(@src,"wp-includes/")]/@src
     files:
     - wp-includes/js/wp-embed.min.js
+    - wp-includes/js/wp-embed.js
     - wp-includes/css/dashicons.min.css
+    - wp-includes/css/dashicons.css
     - wp-includes/js/comment-reply.min.js
+    - wp-includes/js/comment-reply.js
     confidence_per_occurence: 40
     version: true
   CommonWpIncludesQueryParameterInHomepage:
@@ -49,18 +52,30 @@ wordpress:
     xpath: //link[contains(@href,"wp-includes/")]/@href|//script[contains(@src,"wp-includes/")]/@src
     files:
     - wp-includes/css/buttons.min.css
+    - wp-includes/css/buttons.css
     - wp-includes/css/admin-bar.min.css
+    - wp-includes/css/admin-bar.css
     - wp-includes/js/wp-util.min.js
+    - wp-includes/js/wp-util.js
     - wp-includes/js/wp-backbone.min.js
+    - wp-includes/js/wp-backbone.js
     - wp-includes/js/utils.min.js
+    - wp-includes/js/utils.js
     - wp-includes/js/thickbox/thickbox.css
     - wp-includes/js/wp-a11y.min.js
+    - wp-includes/js/wp-a11y.js
     - wp-includes/js/mediaelement/wp-mediaelement.min.css
+    - wp-includes/js/mediaelement/wp-mediaelement.css
     - wp-includes/js/mediaelement/wp-mediaelement.min.js
+    - wp-includes/js/mediaelement/wp-mediaelement.js
     - wp-includes/js/mediaelement/mediaelement-migrate.min.js
+    - wp-includes/js/mediaelement/mediaelement-migrate.js
     - wp-includes/js/mediaelement/wp-playlist.min.js
+    - wp-includes/js/mediaelement/wp-playlist.js
     - wp-includes/js/wp-ajax-response.min.js
+    - wp-includes/js/wp-ajax-response.js
     - wp-includes/css/wp-pointer.min.css
+    - wp-includes/css/wp-pointer.css
     confidence_per_occurence: 10
     version: true
   PluginAndThemeQueryParameterInHomepage:
@@ -72,8 +87,11 @@ wordpress:
     xpath: //link[contains(@href,"wp-includes/css/") or contains(@href,"wp-admin/css/")]/@href
     files:
     - wp-includes/css/buttons.min.css
+    - wp-includes/css/buttons.css
     - wp-includes/css/dashicons.min.css
+    - wp-includes/css/dashicons.css
     - wp-admin/css/install.min.css
+    - wp-admin/css/install.css
     confidence_per_occurence: 30
     version: true
   QueryParameterInUpgradePage:
@@ -82,7 +100,9 @@ wordpress:
     xpath: //link[contains(@href,"wp-includes/css/") or contains(@href,"wp-admin/css/")]/@href
     files:
     - wp-includes/css/buttons.min.css
+    - wp-includes/css/buttons.css
     - wp-admin/css/install.min.css
+    - wp-admin/css/install.css
     confidence_per_occurence: 30
     version: true
   SitemapGenerator:

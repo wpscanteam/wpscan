@@ -7,6 +7,9 @@
   <title>WordPress &rsaquo; Update</title>
   <link rel='stylesheet' id='buttons-css'  href='http://wp.lab/wp-includes/css/buttons.min.css?ver=3.8.1' type='text/css' media='all' />
 <link rel='stylesheet' id='install-css'  href='http://wp.lab/wp-admin/css/install.min.css?ver=3.8.1' type='text/css' media='all' />
+
+<link rel='stylesheet' id='install-css'  href='http://wp.lab/wp-admin/css/install.css?ver=3.8.1' type='text/css' media='all' />
+
 <!--[if lte IE 7]>
 <link rel='stylesheet' id='ie-css'  href='http://wp.lab/wp-admin/css/ie.min.css?ver=3.8.1' type='text/css' media='all' />
 <![endif]-->

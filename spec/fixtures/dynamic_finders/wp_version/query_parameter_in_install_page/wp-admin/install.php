@@ -7,6 +7,9 @@
   <title>WordPress &rsaquo; Installation</title>
   <link rel='stylesheet' id='buttons-css'  href='http://wp.lab/wp-includes/css/buttons.min.css?ver=3.8.1' type='text/css' media='all' />
 <link rel='stylesheet' id='install-css'  href='http://wp.lab/wp-admin/css/install.min.css?ver=3.8.1' type='text/css' media='all' />
+
+<link rel='stylesheet' id='install-css'  href='http://wp.lab/wp-admin/css/install.css?ver=3.8.1' type='text/css' media='all' />
+
 <link rel='stylesheet' id='dashicons-css'  href='http://wp.lab/wp-includes/css/dashicons.min.css?ver=3.8.1' type='text/css' media='all' />
 </head>
 <body class="wp-core-ui">
