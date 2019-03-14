@@ -4,7 +4,8 @@ shared_examples 'WordPress::CustomDirectories' do
   describe '#content_dir' do
     {
       default: 'wp-content', https: 'wp-content', custom_w_spaces: 'custom content spaces',
-      relative_one: 'wp-content', relative_two: 'wp-content', cache: 'wp-content'
+      relative_one: 'wp-content', relative_two: 'wp-content', cache: 'wp-content',
+      in_raw_js: 'wp-content', with_sub_dir: 'app'
     }.each do |file, expected|
       it "returns #{expected} for #{file}.html" do
         stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{file}.html")))

@@ -15,10 +15,14 @@ module WPScan
         def content_dir
           unless @content_dir
             escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
-            pattern     = %r{#{escaped_url}(.+?)\/(?:themes|plugins|uploads|cache)\/}i
+            pattern     = %r{#{escaped_url}([^\/]+)\/(?:themes|plugins|uploads|cache)\/}i
 
             in_scope_urls(homepage_res) do |url|
               return @content_dir = Regexp.last_match[1] if url.match(pattern)
+            end
+
+            xpath_pattern_from_page('//script[not(@src)]', pattern, homepage_res) do |match|
+              return @content_dir = match[1]
             end
           end
 
