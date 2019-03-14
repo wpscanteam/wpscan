@@ -81,4 +81,33 @@ shared_examples WPScan::Target::Platform::WordPress do
       its(:wordpress_hosted?) { should be false }
     end
   end
+
+  describe '#login_url' do
+    before { allow(target).to receive(:sub_dir) }
+
+    context 'when returning a 200' do
+      before { stub_request(:get, target.url('wp-login.php')).to_return(status: 200) }
+
+      its(:login_url) { should eql target.url('wp-login.php') }
+    end
+
+    context 'when a redirection occured' do
+      before do
+        expect(WPScan::Browser).to receive(:get_and_follow_location)
+          .and_return(Typhoeus::Response.new(effective_url: effective_url, body: ''))
+      end
+
+      context 'to an in scope URL' do
+        let(:effective_url) { target.url('wp-login.php').gsub('http', 'https') }
+
+        its(:login_url) { should eql effective_url }
+      end
+
+      context 'to an out of scope URL' do
+        let(:effective_url) { 'http://something.else' }
+
+        its(:login_url) { should eql target.url('wp-login.php') }
+      end
+    end
+  end
 end

@@ -72,9 +72,21 @@ module WPScan
           )
         end
 
+        # The login page is checked for a potential redirection (from http to https)
+        # the first time the method is called, and the effective_url is then used
+        # if suitable, otherwise the default wp-login will be.
+        #
         # @return [ String ] The URL to the login page
         def login_url
-          url('wp-login.php')
+          return @login_url if @login_url
+
+          @login_url = url('wp-login.php')
+
+          res = Browser.get_and_follow_location(@login_url)
+
+          @login_url = res.effective_url if in_scope?(res.effective_url)
+
+          @login_url
         end
       end
     end
