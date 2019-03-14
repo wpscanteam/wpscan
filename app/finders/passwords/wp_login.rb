@@ -10,7 +10,8 @@ module WPScan
         end
 
         def valid_credentials?(response)
-          response.code == 302
+          response.code == 302 &&
+            response.headers['Set-Cookie']&.any? { |cookie| cookie =~ /wordpress_logged_in_/i }
         end
 
         def errored_response?(response)

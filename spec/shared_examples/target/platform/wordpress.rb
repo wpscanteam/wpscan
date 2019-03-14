@@ -98,9 +98,17 @@ shared_examples WPScan::Target::Platform::WordPress do
       end
 
       context 'to an in scope URL' do
-        let(:effective_url) { target.url('wp-login.php').gsub('http', 'https') }
+        context 'when https version of the wp-login' do
+          let(:effective_url) { target.url('wp-login.php').gsub('http', 'https') }
 
-        its(:login_url) { should eql effective_url }
+          its(:login_url) { should eql effective_url }
+        end
+
+        context 'when something else' do
+          let(:effective_url) { target.url('something').gsub('http', 'https') }
+
+          its(:login_url) { should eql target.url('wp-login.php') }
+        end
       end
 
       context 'to an out of scope URL' do

@@ -84,7 +84,7 @@ module WPScan
 
           res = Browser.get_and_follow_location(@login_url)
 
-          @login_url = res.effective_url if in_scope?(res.effective_url)
+          @login_url = res.effective_url if res.effective_url =~ /wp\-login\.php\z/i && in_scope?(res.effective_url)
 
           @login_url
         end
