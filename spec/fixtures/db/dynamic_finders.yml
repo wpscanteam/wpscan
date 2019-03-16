@@ -389,6 +389,16 @@ plugins:
       files:
       - assets/css/wp-aas-public.css
       version: true
+  accordion-blocks:
+    QueryParameter:
+      files:
+      - js/accordion-blocks.js
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   accordion-faq-block:
     ComposerFile:
       class: ConfigParser
@@ -584,6 +594,12 @@ plugins:
       class: BodyPattern
       path: css/parallax.css
       pattern: !ruby/regexp /\*\* [^\s]+ \- V(?<v>\d+\.[\.\d]+)/i
+      version: true
+  adaptive-learning-with-learndash:
+    QueryParameter:
+      files:
+      - assets/css/al.css
+      - assets/js/al.js
       version: true
   adbutler:
     QueryParameter:
@@ -5902,6 +5918,12 @@ plugins:
       - public/css/jquery-ui.css
       - public/js/delivery_date_for_woocommerce-public.js
       version: true
+  delivery-date-system-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/delivery-date-system.pot
+      pattern: !ruby/regexp '/n: Delivery Date System for WooCommerce (?<v>\d+\.[\.\d]+)/i'
+      version: true
   delivery-drivers-for-woocommerce:
     QueryParameter:
       files:
@@ -8131,6 +8153,12 @@ plugins:
     QueryParameter:
       files:
       - public/js/embed.min.js
+      version: true
+  focus-sitecall-lite:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   folding-stats-plus:
     TranslationFile:
@@ -10371,6 +10399,12 @@ plugins:
       path: languages/implied-cookie-consent.pot
       pattern: !ruby/regexp /ject\-Id\-Version:\ Implied Cookie Consent (?<v>\d+\.[\.\d]+)/i
       version: true
+  import-bookmarks:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/import-bookmarks.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Import Bookmarks (?<v>\d+\.[\.\d]+)/i'
+      version: true
   import-facebook-events:
     TranslationFile:
       class: BodyPattern
@@ -11383,6 +11417,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  klarity-section-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   klaro-consent-manager:
     QueryParameter:
       files:
@@ -12052,6 +12092,12 @@ plugins:
       files:
       - public/css/twitch-public.css
       - public/js/twitch-public.js
+      version: true
+  lnd-for-wp:
+    QueryParameter:
+      files:
+      - public/css/lnd-for-wp-public.css
+      - public/js/lnd-for-wp-public.js
       version: true
   loanthru-calculator:
     QueryParameter:
@@ -15497,6 +15543,7 @@ plugins:
       - public/css/podcast-player-public.css
       - public/js/podcast-player-public.js
       - public/js/simplebar.min.js
+      - public/js/public.build.js
       version: true
     TranslationFile:
       class: BodyPattern
@@ -18919,6 +18966,17 @@ plugins:
       - assets/css/icons.css
       - assets/js/front-widget.js
       version: true
+  simple-gdpr-cookies:
+    QueryParameter:
+      files:
+      - assets/css/public/dist/styles.min.css
+      - assets/js/public/dist/scripts.min.js
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   simple-google-maps-block:
     ComposerFile:
       class: ConfigParser
@@ -20735,6 +20793,15 @@ plugins:
       files:
       - public/assets/js/jquery.cookie.js
       - public/assets/js/toastr.min.js
+      version: true
+  tape:
+    QueryParameter:
+      files:
+      - public/css/tape-plugin-public.css
+      - public/css/intlTelInput.min.css
+      - public/js/utils.js
+      - public/js/intlTelInput.min.js
+      - public/js/tape-plugin-public.js
       version: true
   targetaudience:
     TranslationFile:
@@ -23141,6 +23208,11 @@ plugins:
       path: languages/weforms.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ weForms (?<v>\d+\.[\.\d]+)/i
       version: true
+  wegfinder:
+    QueryParameter:
+      files:
+      - public/css/wegfinder-public.css
+      version: true
   weight-loss-tracker:
     QueryParameter:
       files:
@@ -23254,6 +23326,12 @@ plugins:
       class: BodyPattern
       path: language/wholesale-market-en_US.po
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Wholesale Market (?<v>\d+\.[\.\d]+)/i
+      version: true
+  wholesale-price:
+    QueryParameter:
+      files:
+      - public/css/dynamic-wholesale-price-public.css
+      - public/js/dynamic-wholesale-price-public.js
       version: true
   whoteaches-portal:
     QueryParameter:
@@ -23518,6 +23596,12 @@ plugins:
       class: BodyPattern
       path: i18n/languages/woo-better-usability.pot
       pattern: !ruby/regexp /d\-Version:\ WooCommerce Better Usability (?<v>\d+\.[\.\d]+)/i
+      version: true
+  woo-bookings-calendar:
+    TranslationFile:
+      class: BodyPattern
+      path: i18n/languages/woo-bookings-calendar.pot
+      pattern: !ruby/regexp '/\-Version: WooCommerce Bookings Calendar (?<v>\d+\.[\.\d]+)/i'
       version: true
   woo-bought-together:
     QueryParameter:
@@ -24321,6 +24405,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  woopanel:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woopanel.pot
+      pattern: !ruby/regexp /"v(?<v>\d+\.[\.\d]+)/i
+      version: true
   woorousell:
     QueryParameter:
       files:
@@ -25012,6 +25102,11 @@ plugins:
     QueryParameter:
       files:
       - assets/css/public.css
+      version: true
+  wp-commerce7:
+    QueryParameter:
+      files:
+      - assets/css/commerce7-for-wordpress.css
       version: true
   wp-connect-coil:
     TranslationFile:
@@ -25908,6 +26003,12 @@ plugins:
       - js/md5.js
       - js/themes/modern.js
       - js/wplc_u_node_events.js
+      version: true
+  wp-live-post-search:
+    QueryParameter:
+      files:
+      - "/public/css/wp-live-post-search-public.css"
+      - "/public/js/wp-live-post-search-public.js"
       version: true
   wp-load-list:
     QueryParameter:
@@ -27370,6 +27471,14 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  wp-woo-products-slider:
+    QueryParameter:
+      files:
+      - public/css/wp_wps-public.css
+      - public/css/owl.carousel.min.css
+      - public/js/owl.carousel.min.js
+      - public/js/wp_wps-public.js
       version: true
   wp-yearendstats:
     TranslationFile:
