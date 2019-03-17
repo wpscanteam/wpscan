@@ -19,4 +19,10 @@ module WPScan
       'The WordPress version is invalid'
     end
   end
+
+  class WpContentDirNotDetected < Error
+    def to_s
+      'Unable to identify the wp-content dir, please supply it with --wp-content-dir'
+    end
+  end
 end

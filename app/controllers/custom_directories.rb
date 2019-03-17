@@ -16,7 +16,7 @@ module WPScan
 
         return if target.content_dir
 
-        raise 'Unable to identify the wp-content dir, please supply it with --wp-content-dir'
+        raise WpContentDirNotDetected
       end
     end
   end

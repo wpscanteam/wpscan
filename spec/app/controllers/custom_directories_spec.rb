@@ -22,12 +22,8 @@ describe WPScan::Controller::CustomDirectories do
     context 'when the content_dir is not found and not supply' do
       before { expect(controller.target).to receive(:content_dir) }
 
-      let(:exception) do
-        'Unable to identify the wp-content dir, please supply it with --wp-content-dir'
-      end
-
       it 'raises an exception' do
-        expect { controller.before_scan }.to raise_error(exception)
+        expect { controller.before_scan }.to raise_error(WPScan::WpContentDirNotDetected)
       end
     end
 
