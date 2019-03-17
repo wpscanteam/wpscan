@@ -1,4 +1,4 @@
-FROM ruby:2.5.1-alpine AS builder
+FROM ruby:2.6.2-alpine3.9 AS builder
 LABEL maintainer="WPScan Team <team@wpscan.org>"
 
 ARG BUNDLER_ARGS="--jobs=8 --without test development"
@@ -19,7 +19,7 @@ RUN rake install --trace
 RUN chmod -R a+r /usr/local/bundle
 
 
-FROM ruby:2.5-alpine
+FROM ruby:2.6.2-alpine3.9
 LABEL maintainer="WPScan Team <team@wpscan.org>"
 
 RUN adduser -h /wpscan -g WPScan -D wpscan
