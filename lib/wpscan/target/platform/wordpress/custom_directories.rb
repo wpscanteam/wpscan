@@ -54,6 +54,13 @@ module WPScan
           plugins_uri.to_s
         end
 
+        # @param [ String ] slug
+        #
+        # @return [ String ]
+        def plugin_url(slug)
+          plugins_uri.join("#{URI.encode(slug)}/").to_s
+        end
+
         # @return [ String ]
         def themes_dir
           @themes_dir ||= "#{content_dir}/themes"
@@ -67,6 +74,13 @@ module WPScan
         # @return [ String ]
         def themes_url
           themes_uri.to_s
+        end
+
+        # @param [ String ] slug
+        #
+        # @return [ String ]
+        def theme_url(slug)
+          themes_uri.join("#{URI.encode(slug)}/").to_s
         end
 
         # TODO: Factorise the code and the content_dir one ?
