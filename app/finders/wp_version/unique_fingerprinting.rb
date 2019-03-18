@@ -11,13 +11,14 @@ module WPScan
             hydra.abort
             progress_bar.finish
 
-            break WPScan::WpVersion.new(
+            return WPScan::WpVersion.new(
               version_number,
               found_by: 'Unique Fingerprinting (Aggressive Detection)',
               confidence: 100,
               interesting_entries: ["#{url} md5sum is #{md5sum}"]
             )
           end
+          nil
         end
 
         def create_progress_bar(opts = {})
