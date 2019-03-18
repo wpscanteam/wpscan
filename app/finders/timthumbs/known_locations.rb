@@ -2,8 +2,10 @@ module WPScan
   module Finders
     module Timthumbs
       # Known Locations Timthumbs Finder
+      # Note: A vulnerable version, 2.8.13 can be found here:
+      # https://github.com/GabrielGil/TimThumb/blob/980c3d6a823477761570475e8b83d3e9fcd2d7ae/timthumb.php
       class KnownLocations < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+        include Finders::Finder::Enumerator
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list Mandatory
@@ -13,12 +15,22 @@ module WPScan
           found = []
 
           enumerate(target_urls(opts), opts) do |res|
-            next unless res.code == 400 && res.body =~ /no image specified/i
-
             found << WPScan::Timthumb.new(res.request.url, opts.merge(found_by: found_by, confidence: 100))
           end
 
           found
+        end
+
+        # @param [ Typhoeus::Response ] res
+        # @param [ Regexp,nil ] exclude_content
+        #
+        # @return [ Boolean ]
+        def valid_response?(res, _exclude_content = nil)
+          return false unless res.code == 400
+
+          full_res = Browser.get(res.effective_url, cache_ttl: 0)
+
+          full_res.body =~ /no image specified/i ? true : false
         end
 
         # @param [ Hash ] opts

@@ -3,7 +3,7 @@ module WPScan
     module Themes
       # Known Locations Themes Finder
       class KnownLocations < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+        include Finders::Finder::Enumerator
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
@@ -12,11 +12,7 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(target_urls(opts), opts) do |res, slug|
-            # TODO: follow the location (from enumerate()) and remove the 301 here ?
-            # As a result, it might remove false positive due to redirection to the homepage
-            next unless [200, 401, 403, 301].include?(res.code)
-
+          enumerate(target_urls(opts), opts) do |_res, slug|
             found << WPScan::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
 
@@ -28,12 +24,11 @@ module WPScan
         #
         # @return [ Hash ]
         def target_urls(opts = {})
-          slugs       = opts[:list] || DB::Themes.vulnerable_slugs
-          urls        = {}
-          themes_url  = target.url('wp-content/themes/')
+          slugs = opts[:list] || DB::Themes.vulnerable_slugs
+          urls  = {}
 
           slugs.each do |slug|
-            urls["#{themes_url}#{URI.encode(slug)}/"] = slug
+            urls[target.theme_url(slug)] = slug
           end
 
           urls
