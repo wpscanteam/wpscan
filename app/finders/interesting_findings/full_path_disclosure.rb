@@ -10,7 +10,7 @@ module WPScan
 
           return if fpd_entries.empty?
 
-          WPScan::FullPathDisclosure.new(
+          Model::FullPathDisclosure.new(
             target.url(path),
             confidence: 100,
             found_by: DIRECT_ACCESS,

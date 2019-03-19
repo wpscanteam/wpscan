@@ -21,10 +21,10 @@ module WPScan
 
           return [] unless details
 
-          [CMSScanner::User.new(details[0],
-                                found_by: format(found_by_msg, details[1]),
-                                confidence: details[2],
-                                interesting_entries: [api_url])]
+          [Model::User.new(details[0],
+                           found_by: format(found_by_msg, details[1]),
+                           confidence: details[2],
+                           interesting_entries: [api_url])]
         rescue JSON::ParserError
           []
         end

@@ -1,3 +1,9 @@
+module WPScan
+  module Model
+    include CMSScanner::Model
+  end
+end
+
 require_relative 'models/interesting_finding'
 require_relative 'models/wp_version'
 require_relative 'models/xml_rpc'

@@ -11,7 +11,7 @@ module WPScan
 
           return unless [200, 403].include?(res.code) && !target.homepage_or_404?(res)
 
-          WPScan::BackupDB.new(
+          Model::BackupDB.new(
             url,
             confidence: 70,
             found_by: DIRECT_ACCESS,

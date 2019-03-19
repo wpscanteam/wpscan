@@ -1,6 +1,6 @@
 shared_examples 'App::Views::Enumeration::Users' do
   let(:view)  { 'users' }
-  let(:user)  { CMSScanner::User }
+  let(:user)  { WPScan::Model::User }
 
   describe 'users' do
     context 'when no users found' do

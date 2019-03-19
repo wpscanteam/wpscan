@@ -31,7 +31,7 @@ module WPScan
               configs.each do |klass, config|
                 item = process_response(opts, target.homepage_res, slug, klass, config)
 
-                found << item if item.is_a?(WpItem)
+                found << item if item.is_a?(Model::WpItem)
               end
             end
 
@@ -70,7 +70,7 @@ module WPScan
 
                 item = process_response(opts, response, slug, klass, config)
 
-                found << item if item.is_a?(WpItem)
+                found << item if item.is_a?(Model::WpItem)
               end
             end
 

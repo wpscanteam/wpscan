@@ -7,7 +7,7 @@ module WPScan
       class Base
         include CMSScanner::Finders::UniqueFinder
 
-        # @param [ WPScan::Timthumb ] target
+        # @param [ Model::Timthumb ] target
         def initialize(target)
           finders << TimthumbVersion::BadRequest.new(target)
         end

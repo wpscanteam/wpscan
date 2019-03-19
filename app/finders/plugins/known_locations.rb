@@ -13,7 +13,7 @@ module WPScan
           found = []
 
           enumerate(target_urls(opts), opts) do |_res, slug|
-            found << WPScan::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
+            found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
 
           found

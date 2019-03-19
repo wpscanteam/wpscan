@@ -18,7 +18,7 @@ module WPScan
 
           target.registration_enabled = true
 
-          WPScan::Registration.new(
+          Model::Registration.new(
             res.effective_url,
             confidence: 100,
             found_by: DIRECT_ACCESS,

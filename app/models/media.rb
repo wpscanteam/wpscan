@@ -1,5 +1,7 @@
 module WPScan
-  # Media
-  class Media < InterestingFinding
+  module Model
+    # Media
+    class Media < InterestingFinding
+    end
   end
 end

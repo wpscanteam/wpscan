@@ -26,7 +26,7 @@ describe WPScan::Finders::MainTheme::WooFrameworkMetaGenerator do
 
       it 'returns the expected theme' do
         @file     = 'woo_generator.html'
-        @expected = WPScan::Theme.new(
+        @expected = WPScan::Model::Theme.new(
           'Merchant', target,
           found_by: 'Woo Framework Meta Generator (Passive Detection)',
           confidence: 80

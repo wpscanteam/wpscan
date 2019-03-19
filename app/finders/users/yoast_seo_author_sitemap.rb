@@ -15,10 +15,10 @@ module WPScan
 
             next unless username && !username.strip.empty?
 
-            found << CMSScanner::User.new(username,
-                                          found_by: found_by,
-                                          confidence: 100,
-                                          interesting_entries: [sitemap_url])
+            found << Model::User.new(username,
+                                     found_by: found_by,
+                                     confidence: 100,
+                                     interesting_entries: [sitemap_url])
           end
 
           found

@@ -1,7 +1,7 @@
 shared_examples 'App::Views::MainTheme' do
   let(:controller) { WPScan::Controller::MainTheme.new }
   let(:tpl_vars)   { { url: target_url } }
-  let(:theme)      { WPScan::Theme.new(theme_name, target, found_by: 'rspec') }
+  let(:theme)      { WPScan::Model::Theme.new(theme_name, target, found_by: 'rspec') }
 
   describe 'main_theme' do
     let(:view) { 'theme' }
@@ -38,7 +38,11 @@ shared_examples 'App::Views::MainTheme' do
         let(:expected_view) { 'verbose' }
 
         it 'outputs the expected string' do
-          expect(theme).to receive(:version).at_least(1).and_return(WPScan::Version.new('3.2', found_by: 'style'))
+          expect(theme)
+            .to receive(:version)
+            .at_least(1)
+            .and_return(WPScan::Model::Version.new('3.2', found_by: 'style'))
+
           @tpl_vars = tpl_vars.merge(theme: theme, verbose: true)
         end
       end

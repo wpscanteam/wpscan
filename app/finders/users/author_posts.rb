@@ -10,7 +10,7 @@ module WPScan
           found_by_msg = 'Author Posts - %s (Passive Detection)'
 
           usernames(opts).reduce([]) do |a, e|
-            a << CMSScanner::User.new(
+            a << Model::User.new(
               e[0],
               found_by: format(found_by_msg, e[1]),
               confidence: e[2]

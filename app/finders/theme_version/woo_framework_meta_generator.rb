@@ -11,7 +11,7 @@ module WPScan
 
           return unless Regexp.last_match[1] == target.slug
 
-          WPScan::Version.new(Regexp.last_match[2], found_by: found_by, confidence: 80)
+          Model::Version.new(Regexp.last_match[2], found_by: found_by, confidence: 80)
         end
       end
     end

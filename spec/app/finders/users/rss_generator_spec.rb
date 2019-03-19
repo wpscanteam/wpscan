@@ -24,12 +24,12 @@ describe WPScan::Finders::Users::RSSGenerator do
         stub_request(:get, target.url('feed/rss2/'))
 
         expect(finder.aggressive).to eql [
-          CMSScanner::User.new(
+          WPScan::Model::User.new(
             'admin',
             confidence: 50,
             found_by: 'Rss Generator (Aggressive Detection)'
           ),
-          CMSScanner::User.new(
+          WPScan::Model::User.new(
             'Aa Dias-Gildes',
             confidence: 50,
             found_by: 'Rss Generator (Aggressive Detection)'
@@ -45,12 +45,12 @@ describe WPScan::Finders::Users::RSSGenerator do
         stub_request(:get, target.url('feed/')).to_return(body: rss_fixture)
 
         expect(finder.passive).to eql [
-          CMSScanner::User.new(
+          WPScan::Model::User.new(
             'admin',
             confidence: 50,
             found_by: 'Rss Generator (Passive Detection)'
           ),
-          CMSScanner::User.new(
+          WPScan::Model::User.new(
             'Aa Dias-Gildes',
             confidence: 50,
             found_by: 'Rss Generator (Passive Detection)'
@@ -63,12 +63,12 @@ describe WPScan::Finders::Users::RSSGenerator do
           stub_request(:get, target.url('comments/feed/')).to_return(body: rss_fixture)
 
           expect(finder.aggressive(mode: :mixed)).to eql [
-            CMSScanner::User.new(
+            WPScan::Model::User.new(
               'admin',
               confidence: 50,
               found_by: 'Rss Generator (Aggressive Detection)'
             ),
-            CMSScanner::User.new(
+            WPScan::Model::User.new(
               'Aa Dias-Gildes',
               confidence: 50,
               found_by: 'Rss Generator (Aggressive Detection)'
@@ -82,12 +82,12 @@ describe WPScan::Finders::Users::RSSGenerator do
           stub_request(:get, target.url('feed/')).to_return(body: rss_fixture)
 
           expect(finder.aggressive).to eql [
-            CMSScanner::User.new(
+            WPScan::Model::User.new(
               'admin',
               confidence: 50,
               found_by: 'Rss Generator (Aggressive Detection)'
             ),
-            CMSScanner::User.new(
+            WPScan::Model::User.new(
               'Aa Dias-Gildes',
               confidence: 50,
               found_by: 'Rss Generator (Aggressive Detection)'

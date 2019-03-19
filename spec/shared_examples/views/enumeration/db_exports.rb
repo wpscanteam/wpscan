@@ -1,6 +1,6 @@
 shared_examples 'App::Views::Enumeration::DbExports' do
   let(:view)      { 'db_exports' }
-  let(:db_export) { WPScan::DbExport }
+  let(:db_export) { WPScan::Model::DbExport }
 
   describe 'db_exports' do
     context 'when no file found' do

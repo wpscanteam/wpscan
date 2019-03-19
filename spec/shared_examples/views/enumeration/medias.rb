@@ -1,6 +1,6 @@
 shared_examples 'App::Views::Enumeration::Medias' do
   let(:view)  { 'medias' }
-  let(:media) { WPScan::Media }
+  let(:media) { WPScan::Model::Media }
 
   describe 'medias' do
     context 'when no medias found' do

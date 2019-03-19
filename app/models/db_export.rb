@@ -1,5 +1,7 @@
 module WPScan
-  # DB Export
-  class DbExport < InterestingFinding
+  module Model
+    # DB Export
+    class DbExport < InterestingFinding
+    end
   end
 end

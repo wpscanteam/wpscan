@@ -22,7 +22,7 @@ describe WPScan::Finders::InterestingFindings::DuplicatorInstallerLog do
       let(:body) { File.read(fixtures.join(filename)) }
 
       it 'returns the InterestingFinding' do
-        expect(finder.aggressive).to eql WPScan::DuplicatorInstallerLog.new(
+        expect(finder.aggressive).to eql WPScan::Model::DuplicatorInstallerLog.new(
           log_url,
           confidence: 100,
           found_by: described_class::DIRECT_ACCESS

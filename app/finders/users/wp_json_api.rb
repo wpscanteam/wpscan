@@ -41,11 +41,11 @@ module WPScan
           found = []
 
           JSON.parse(response.body)&.each do |user|
-            found << CMSScanner::User.new(user['slug'],
-                                          id: user['id'],
-                                          found_by: found_by,
-                                          confidence: 100,
-                                          interesting_entries: [response.effective_url])
+            found << Model::User.new(user['slug'],
+                                     id: user['id'],
+                                     found_by: found_by,
+                                     confidence: 100,
+                                     interesting_entries: [response.effective_url])
           end
 
           found

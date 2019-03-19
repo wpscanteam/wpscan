@@ -32,7 +32,7 @@ describe WPScan::Controller::PasswordAttack do
 
       it 'returns an array with the users' do
         expected = %w[admin editor].reduce([]) do |a, e|
-          a << CMSScanner::User.new(e)
+          a << WPScan::Model::User.new(e)
         end
 
         expect(controller.users).to eql expected
@@ -90,7 +90,9 @@ describe WPScan::Controller::PasswordAttack do
 
         context 'when xmlrpc detected on target' do
           before do
-            expect(controller.target).to receive(:xmlrpc).and_return(WPScan::XMLRPC.new("#{target_url}/xmlrpc.php"))
+            expect(controller.target)
+              .to receive(:xmlrpc)
+              .and_return(WPScan::Model::XMLRPC.new("#{target_url}/xmlrpc.php"))
           end
 
           context 'when single xmlrpc' do
@@ -98,7 +100,7 @@ describe WPScan::Controller::PasswordAttack do
 
             it 'returns the correct object' do
               expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPC
-              expect(controller.attacker.target).to be_a WPScan::XMLRPC
+              expect(controller.attacker.target).to be_a WPScan::Model::XMLRPC
             end
           end
 
@@ -107,7 +109,7 @@ describe WPScan::Controller::PasswordAttack do
 
             it 'returns the correct object' do
               expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPCMulticall
-              expect(controller.attacker.target).to be_a WPScan::XMLRPC
+              expect(controller.attacker.target).to be_a WPScan::Model::XMLRPC
             end
           end
         end
@@ -127,7 +129,7 @@ describe WPScan::Controller::PasswordAttack do
       end
 
       context 'when xmlrpc not enabled' do
-        let(:xmlrpc) { WPScan::XMLRPC.new("#{target_url}/xmlrpc.php") }
+        let(:xmlrpc) { WPScan::Model::XMLRPC.new("#{target_url}/xmlrpc.php") }
 
         it 'returns the WpLogin' do
           expect(xmlrpc).to receive(:enabled?).and_return(false)
@@ -138,7 +140,7 @@ describe WPScan::Controller::PasswordAttack do
       end
 
       context 'when xmlrpc enabled' do
-        let(:xmlrpc) { WPScan::XMLRPC.new("#{target_url}/xmlrpc.php") }
+        let(:xmlrpc) { WPScan::Model::XMLRPC.new("#{target_url}/xmlrpc.php") }
 
         before { expect(xmlrpc).to receive(:enabled?).and_return(true) }
 
@@ -159,7 +161,7 @@ describe WPScan::Controller::PasswordAttack do
               expect(controller.target).to receive(:wp_version).and_return(false)
 
               expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPC
-              expect(controller.attacker.target).to be_a WPScan::XMLRPC
+              expect(controller.attacker.target).to be_a WPScan::Model::XMLRPC
             end
           end
 
@@ -167,20 +169,20 @@ describe WPScan::Controller::PasswordAttack do
             before { expect(controller.target).to receive(:wp_version).and_return(wp_version) }
 
             context 'when WP < 4.4' do
-              let(:wp_version) { WPScan::WpVersion.new('3.8.1') }
+              let(:wp_version) { WPScan::Model::WpVersion.new('3.8.1') }
 
               it 'returns the XMLRPCMulticall' do
                 expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPCMulticall
-                expect(controller.attacker.target).to be_a WPScan::XMLRPC
+                expect(controller.attacker.target).to be_a WPScan::Model::XMLRPC
               end
             end
 
             context 'when WP >= 4.4' do
-              let(:wp_version) { WPScan::WpVersion.new('4.4') }
+              let(:wp_version) { WPScan::Model::WpVersion.new('4.4') }
 
               it 'returns the XMLRPC' do
                 expect(controller.attacker).to be_a WPScan::Finders::Passwords::XMLRPC
-                expect(controller.attacker.target).to be_a WPScan::XMLRPC
+                expect(controller.attacker.target).to be_a WPScan::Model::XMLRPC
               end
             end
           end

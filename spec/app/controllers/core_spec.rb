@@ -29,13 +29,13 @@ describe WPScan::Controller::Core do
       expect(core.target).to receive(:server).and_return(@stubbed_server)
       expect(core.load_server_module).to eql @expected
 
-      [core.target, WPScan::WpItem.new(target_url, core.target)].each do |instance|
+      [core.target, WPScan::Model::WpItem.new(target_url, core.target)].each do |instance|
         expect(instance).to respond_to(:directory_listing?)
         expect(instance).to respond_to(:directory_listing_entries)
 
         # The below doesn't work, the module would have to be removed from the class
         # TODO: find a way to test this
-        # expect(instance.server).to eql @expected if instance.is_a? WPScan::WpItem
+        # expect(instance.server).to eql @expected if instance.is_a? WPScan::Model::WpItem
       end
     end
 

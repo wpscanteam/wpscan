@@ -30,7 +30,7 @@ module WPScan
             end
 
             potential_usernames.uniq.each do |potential_username|
-              found << CMSScanner::User.new(potential_username, found_by: found_by, confidence: 50)
+              found << Model::User.new(potential_username, found_by: found_by, confidence: 50)
             end
 
             break

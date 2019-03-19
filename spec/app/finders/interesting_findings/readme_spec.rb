@@ -25,7 +25,7 @@ describe WPScan::Finders::InterestingFindings::Readme do
       before { stub_request(:get, target.url(file)).to_return(body: readme) }
 
       it 'returns the expected InterestingFinding' do
-        expected = WPScan::Readme.new(
+        expected = WPScan::Model::Readme.new(
           target.url(file),
           confidence: 100,
           found_by: described_class::DIRECT_ACCESS

@@ -1,4 +1,4 @@
-describe WPScan::Theme do
+describe WPScan::Model::Theme do
   subject(:theme)  { described_class.new(slug, blog, opts) }
   let(:slug)       { 'spec' }
   let(:blog)       { WPScan::Target.new('http://wp.lab/') }

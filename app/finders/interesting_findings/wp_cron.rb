@@ -9,7 +9,7 @@ module WPScan
 
           return unless res.code == 200
 
-          WPScan::WPCron.new(
+          Model::WPCron.new(
             wp_cron_url,
             confidence: 60,
             found_by: DIRECT_ACCESS,

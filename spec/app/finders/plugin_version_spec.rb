@@ -3,7 +3,7 @@
 
 describe WPScan::Finders::PluginVersion::Base do
   subject(:plugin_version) { described_class.new(plugin) }
-  let(:plugin)             { WPScan::Plugin.new(slug, target) }
+  let(:plugin)             { WPScan::Model::Plugin.new(slug, target) }
   let(:target)             { WPScan::Target.new('http://wp.lab/') }
   let(:default_finders)    { %w[Readme] }
 

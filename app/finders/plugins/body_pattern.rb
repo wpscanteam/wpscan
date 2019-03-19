@@ -15,7 +15,7 @@ module WPScan
         def process_response(opts, response, slug, klass, config)
           return unless response.body =~ config['pattern']
 
-          Plugin.new(
+          Model::Plugin.new(
             slug,
             target,
             opts.merge(found_by: found_by(klass), confidence: config['confidence'] || DEFAULT_CONFIDENCE)

@@ -1,6 +1,6 @@
 describe WPScan::Finders::TimthumbVersion::Base do
   subject(:timthumb_version) { described_class.new(target) }
-  let(:target)               { WPScan::Timthumb.new(url) }
+  let(:target)               { WPScan::Model::Timthumb.new(url) }
   let(:url)                  { 'http://ex.lo/timthumb.php' }
 
   describe '#finders' do

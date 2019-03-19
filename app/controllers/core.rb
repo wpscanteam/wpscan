@@ -95,7 +95,7 @@ module WPScan
         mod = CMSScanner::Target::Server.const_get(server)
 
         target.extend mod
-        WPScan::WpItem.include mod
+        Model::WpItem.include mod
 
         server
       end

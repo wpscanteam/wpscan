@@ -20,13 +20,13 @@ module WPScan
           target.multi_call(methods).run
         end
 
-        # @param [ Array<CMSScanner::User> ] users
+        # @param [ Array<Model::User> ] users
         # @param [ Array<String> ] passwords
         # @param [ Hash ] opts
         # @option opts [ Boolean ] :show_progression
         # @option opts [ Integer ] :multicall_max_passwords
         #
-        # @yield [ CMSScanner::User ] When a valid combination is found
+        # @yield [ Model::User ] When a valid combination is found
         #
         # TODO: Make rubocop happy about metrics etc
         #

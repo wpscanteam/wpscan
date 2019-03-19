@@ -13,9 +13,9 @@ module WPScan
 
           number = Regexp.last_match(1)
 
-          return unless WPScan::WpVersion.valid?(number)
+          return unless Model::WpVersion.valid?(number)
 
-          WPScan::WpVersion.new(
+          Model::WpVersion.new(
             number,
             found_by: 'Readme (Aggressive Detection)',
             # Since WP 4.7, the Readme only contains the major version (ie 4.7, 4.8 etc)

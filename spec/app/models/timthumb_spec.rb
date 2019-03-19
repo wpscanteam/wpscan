@@ -1,4 +1,4 @@
-describe WPScan::Timthumb do
+describe WPScan::Model::Timthumb do
   subject(:timthumb) { described_class.new(url, opts) }
   let(:url)          { 'http://wp.lab/wp-content/timthumb.php' }
   let(:fixtures)     { FIXTURES.join('models', 'timthumb') }
@@ -86,7 +86,7 @@ describe WPScan::Timthumb do
     end
 
     context 'when version' do
-      let(:version) { WPScan::Version.new(version_number) }
+      let(:version) { WPScan::Model::Version.new(version_number) }
 
       context 'when version >= 2.8.14' do
         let(:version_number) { '2.8.14' }

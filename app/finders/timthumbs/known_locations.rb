@@ -15,7 +15,7 @@ module WPScan
           found = []
 
           enumerate(target_urls(opts), opts) do |res|
-            found << WPScan::Timthumb.new(res.request.url, opts.merge(found_by: found_by, confidence: 100))
+            found << Model::Timthumb.new(res.request.url, opts.merge(found_by: found_by, confidence: 100))
           end
 
           found

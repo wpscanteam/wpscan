@@ -1,4 +1,4 @@
-describe WPScan::Media do
+describe WPScan::Model::Media do
   subject(:media) { described_class.new(url) }
   let(:url)       { 'http://e.oeg/?attachment_id=2' }
 

@@ -1,4 +1,4 @@
-describe WPScan::WpVersion do
+describe WPScan::Model::WpVersion do
   describe '#new' do
     context 'when invalid number' do
       it 'raises an error' do

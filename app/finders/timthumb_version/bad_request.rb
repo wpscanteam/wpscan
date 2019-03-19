@@ -8,7 +8,7 @@ module WPScan
         def aggressive(_opts = {})
           return unless Browser.get(target.url).body =~ /(TimThumb version\s*: ([^<]+))/
 
-          WPScan::Version.new(
+          Model::Version.new(
             Regexp.last_match[2],
             found_by: 'Bad Request (Aggressive Detection)',
             confidence: 90,

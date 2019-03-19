@@ -18,14 +18,14 @@ describe WPScan::Target do
     end
 
     context 'when interesting_findings' do
-      let(:interesting_findings) { ['aa', CMSScanner::RobotsTxt.new(target.url)] }
+      let(:interesting_findings) { ['aa', CMSScanner::Model::RobotsTxt.new(target.url)] }
 
       context 'when no XMLRPC' do
         its(:xmlrpc) { should be_nil }
       end
 
       context 'when XMLRPC' do
-        let(:xmlrpc) { WPScan::XMLRPC.new(target.url('xmlrpc.php')) }
+        let(:xmlrpc) { WPScan::Model::XMLRPC.new(target.url('xmlrpc.php')) }
         let(:interesting_findings) { super() << xmlrpc }
 
         its(:xmlrpc) { should eq xmlrpc }
@@ -81,13 +81,13 @@ describe WPScan::Target do
 
     context 'when wp_version found' do
       context 'when not vulnerable' do
-        before { target.instance_variable_set(:@wp_version, WPScan::WpVersion.new('4.4')) }
+        before { target.instance_variable_set(:@wp_version, WPScan::Model::WpVersion.new('4.4')) }
 
         it { should_not be_vulnerable }
       end
 
       context 'when vulnerable' do
-        before { target.instance_variable_set(:@wp_version, WPScan::WpVersion.new('3.8.1')) }
+        before { target.instance_variable_set(:@wp_version, WPScan::Model::WpVersion.new('3.8.1')) }
 
         it { should be_vulnerable }
       end
@@ -95,7 +95,7 @@ describe WPScan::Target do
 
     context 'when config_backups' do
       before do
-        target.instance_variable_set(:@config_backups, [WPScan::ConfigBackup.new(target.url('/a-file-url'))])
+        target.instance_variable_set(:@config_backups, [WPScan::Model::ConfigBackup.new(target.url('/a-file-url'))])
       end
 
       it { should be_vulnerable }
@@ -103,7 +103,7 @@ describe WPScan::Target do
 
     context 'when db_exports' do
       before do
-        target.instance_variable_set(:@db_exports, [WPScan::DbExport.new(target.url('/wordpress.sql'))])
+        target.instance_variable_set(:@db_exports, [WPScan::Model::DbExport.new(target.url('/wordpress.sql'))])
       end
 
       it { should be_vulnerable }
@@ -111,7 +111,9 @@ describe WPScan::Target do
 
     context 'when users' do
       before do
-        target.instance_variable_set(:@users, [CMSScanner::User.new('u1'), CMSScanner::User.new('u2')])
+        target.instance_variable_set(:@users,
+                                     [WPScan::Model::User.new('u1'),
+                                      WPScan::Model::User.new('u2')])
       end
 
       context 'when no passwords' do

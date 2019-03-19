@@ -16,7 +16,7 @@ module WPScan
           response.html.xpath(config['xpath'] || '//script[not(@src)]').each do |node|
             next if config['pattern'] && !node.text.match(config['pattern'])
 
-            return Plugin.new(
+            return Model::Plugin.new(
               slug,
               target,
               opts.merge(found_by: found_by(klass), confidence: config['confidence'] || DEFAULT_CONFIDENCE)

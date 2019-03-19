@@ -1,6 +1,6 @@
 describe WPScan::Finders::TimthumbVersion::BadRequest do
   subject(:finder) { described_class.new(target) }
-  let(:target)     { WPScan::Timthumb.new(url) }
+  let(:target)     { WPScan::Model::Timthumb.new(url) }
   let(:url)        { 'http://ex.lo/timthumb.php' }
   let(:fixtures)   { FINDERS_FIXTURES.join('timthumb_version', 'bad_request') }
 
@@ -20,7 +20,7 @@ describe WPScan::Finders::TimthumbVersion::BadRequest do
       let(:file) { '2.8.14.php' }
 
       it 'returns the expected version' do
-        @expected = WPScan::Version.new(
+        @expected = WPScan::Model::Version.new(
           '2.8.14',
           confidence: 90,
           found_by: 'Bad Request (Aggressive Detection)',

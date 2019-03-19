@@ -28,7 +28,7 @@ describe WPScan::Finders::MainTheme::CssStyle do
         let(:fixture) { 'link_href.html' }
 
         it 'returns the expected theme' do
-          @expected = WPScan::Theme.new(
+          @expected = WPScan::Model::Theme.new(
             'twentyfifteen',
             target,
             found_by: 'Css Style (Passive Detection)',
@@ -42,7 +42,7 @@ describe WPScan::Finders::MainTheme::CssStyle do
         let(:fixture) { 'style_code.html' }
 
         it 'returns the expected theme' do
-          @expected = WPScan::Theme.new(
+          @expected = WPScan::Model::Theme.new(
             'custom',
             target,
             found_by: 'Css Style (Passive Detection)',

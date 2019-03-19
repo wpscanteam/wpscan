@@ -1,4 +1,4 @@
-describe WPScan::WpItem do
+describe WPScan::Model::WpItem do
   subject(:wp_item)  { described_class.new(slug, blog, opts) }
   let(:slug)         { 'test_item' }
   let(:blog)         { WPScan::Target.new(url) }

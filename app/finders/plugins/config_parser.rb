@@ -19,7 +19,7 @@ module WPScan
           # when checking for plugins
           #
 
-          Plugin.new(
+          Model::Plugin.new(
             slug,
             target,
             opts.merge(found_by: found_by(klass), confidence: config['confidence'] || DEFAULT_CONFIDENCE)

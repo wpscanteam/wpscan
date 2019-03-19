@@ -11,7 +11,7 @@ module WPScan
             hydra.abort
             progress_bar.finish
 
-            return WPScan::WpVersion.new(
+            return Model::WpVersion.new(
               version_number,
               found_by: 'Unique Fingerprinting (Aggressive Detection)',
               confidence: 100,

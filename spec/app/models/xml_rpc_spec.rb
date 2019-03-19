@@ -1,4 +1,4 @@
-describe WPScan::XMLRPC do
+describe WPScan::Model::XMLRPC do
   subject(:xml_rpc) { described_class.new('http//e.org/xmlrpc.php') }
 
   describe '#references' do

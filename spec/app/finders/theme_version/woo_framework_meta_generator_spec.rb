@@ -1,6 +1,6 @@
 describe WPScan::Finders::ThemeVersion::WooFrameworkMetaGenerator do
   subject(:finder) { described_class.new(theme) }
-  let(:theme)      { WPScan::Theme.new(slug, target) }
+  let(:theme)      { WPScan::Model::Theme.new(slug, target) }
   let(:target)     { WPScan::Target.new('http://wp.lab/') }
   let(:fixtures)   { FINDERS_FIXTURES.join('theme_version', 'woo_framework_meta_generator') }
 
@@ -28,7 +28,7 @@ describe WPScan::Finders::ThemeVersion::WooFrameworkMetaGenerator do
       let(:slug) { 'Editorial' }
 
       it 'return the expected version' do
-        @expected = WPScan::Version.new(
+        @expected = WPScan::Model::Version.new(
           '1.3.5',
           found_by: 'Woo Framework Meta Generator (Passive Detection)',
           confidence: 80

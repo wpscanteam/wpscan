@@ -1,6 +1,6 @@
 shared_examples 'App::Views::Enumeration::ConfigBackups' do
   let(:view)          { 'config_backups' }
-  let(:config_backup) { WPScan::ConfigBackup }
+  let(:config_backup) { WPScan::Model::ConfigBackup }
 
   describe 'config_backups' do
     context 'when no backups found' do

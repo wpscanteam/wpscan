@@ -1,6 +1,6 @@
 describe WPScan::Finders::ThemeVersion::Base do
   subject(:theme_version) { described_class.new(theme) }
-  let(:theme)             { WPScan::Plugin.new(slug, target) }
+  let(:theme)             { WPScan::Model::Plugin.new(slug, target) }
   let(:target)            { WPScan::Target.new('http://wp.lab/') }
   let(:slug)              { 'spec' }
   let(:default_finders)   { %w[Style WooFrameworkMetaGenerator] }

@@ -1,4 +1,4 @@
-describe WPScan::Plugin do
+describe WPScan::Model::Plugin do
   subject(:plugin) { described_class.new(slug, blog, opts) }
   let(:slug)       { 'spec' }
   let(:blog)       { WPScan::Target.new('http://wp.lab/') }
@@ -70,7 +70,7 @@ describe WPScan::Plugin do
     context 'when values' do
       let(:slug) { 'no-vulns-popular' }
 
-      its(:latest_version) { should eql WPScan::Version.new('2.0') }
+      its(:latest_version) { should eql WPScan::Model::Version.new('2.0') }
       its(:last_updated) { should eql '2015-05-16T00:00:00.000Z' }
       its(:popular?) { should be true }
     end
@@ -87,7 +87,12 @@ describe WPScan::Plugin do
       end
 
       context 'when version' do
-        before { expect(plugin).to receive(:version).at_least(1).and_return(WPScan::Version.new(version_number)) }
+        before do
+          expect(plugin)
+            .to receive(:version)
+            .at_least(1)
+            .and_return(WPScan::Model::Version.new(version_number))
+        end
 
         context 'when version < last_version' do
           let(:version_number) { '1.2' }
@@ -113,7 +118,12 @@ describe WPScan::Plugin do
       end
 
       context 'when version' do
-        before { expect(plugin).to receive(:version).at_least(1).and_return(WPScan::Version.new('1.0')) }
+        before do
+          expect(plugin)
+            .to receive(:version)
+            .at_least(1)
+            .and_return(WPScan::Model::Version.new('1.0'))
+        end
 
         its(:outdated?) { should eql false }
       end
@@ -166,7 +176,12 @@ describe WPScan::Plugin do
         end
 
         context 'when plugin version' do
-          before { expect(plugin).to receive(:version).at_least(1).and_return(WPScan::Version.new(number)) }
+          before do
+            expect(plugin)
+              .to receive(:version)
+              .at_least(1)
+              .and_return(WPScan::Model::Version.new(number))
+          end
 
           context 'when < to a fixed_in' do
             let(:number) { '5.0' }

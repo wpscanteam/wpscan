@@ -1,7 +1,7 @@
 shared_examples 'App::Views::Enumeration::Timthumbs' do
   let(:view)     { 'timthumbs' }
-  let(:timthumb) { WPScan::Timthumb }
-  let(:version)  { WPScan::Version.new('2.8.14', found_by: 'Bad Request') }
+  let(:timthumb) { WPScan::Model::Timthumb }
+  let(:version)  { WPScan::Model::Version.new('2.8.14', found_by: 'Bad Request') }
 
   describe 'timthumbs' do
     context 'when no timthumbs found' do

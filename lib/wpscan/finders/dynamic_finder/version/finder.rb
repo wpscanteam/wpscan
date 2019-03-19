@@ -9,9 +9,9 @@ module WPScan
 
           # @param [ String ] number
           # @param [ Hash ] finding_opts
-          # @return [ WPScan::Version ]
+          # @return [ Model::Version ]
           def create_version(number, finding_opts)
-            WPScan::Version.new(number, version_finding_opts(finding_opts))
+            Model::Version.new(number, version_finding_opts(finding_opts))
           end
 
           # @param [ Hash ] opts

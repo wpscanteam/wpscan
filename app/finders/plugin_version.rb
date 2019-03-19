@@ -7,7 +7,7 @@ module WPScan
       class Base
         include CMSScanner::Finders::UniqueFinder
 
-        # @param [ WPScan::Plugin ] plugin
+        # @param [ Model::Plugin ] plugin
         def initialize(plugin)
           finders << PluginVersion::Readme.new(plugin)
 
@@ -16,7 +16,7 @@ module WPScan
 
         # Load the finders associated with the plugin
         #
-        # @param [ WPScan::Plugin ] plugin
+        # @param [ Model::Plugin ] plugin
         def load_specific_finders(plugin)
           module_name = plugin.classify
 

@@ -24,7 +24,7 @@ module WPScan
 
             next unless error =~ /The password you entered for the username|Incorrect Password/i
 
-            found << CMSScanner::User.new(username, found_by: found_by, confidence: 100)
+            found << Model::User.new(username, found_by: found_by, confidence: 100)
           end
 
           found

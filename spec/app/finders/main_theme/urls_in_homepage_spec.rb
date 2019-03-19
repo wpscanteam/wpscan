@@ -22,7 +22,7 @@ describe WPScan::Finders::MainTheme::UrlsInHomepage do
       @expected = []
 
       { 'twentyfifteen' => 6, 'yolo' => 4, 'test' => 2 }.each do |slug, confidence|
-        @expected << WPScan::Theme.new(
+        @expected << WPScan::Model::Theme.new(
           slug, target, found_by: 'Urls In Homepage (Passive Detection)', confidence: confidence
         )
       end

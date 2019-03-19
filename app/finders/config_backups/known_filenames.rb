@@ -17,7 +17,9 @@ module WPScan
             # Might need to improve that
             next unless res.body =~ /define/i && res.body !~ /<\s?html/i
 
-            found << WPScan::ConfigBackup.new(res.request.url, found_by: DIRECT_ACCESS, confidence: 100)
+            found << Model::ConfigBackup.new(res.request.url,
+                                             found_by: DIRECT_ACCESS,
+                                             confidence: 100)
           end
 
           found

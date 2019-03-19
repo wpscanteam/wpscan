@@ -36,7 +36,7 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
 
         files.each do |file|
           url = "#{target.url}#{file}"
-          expected << WPScan::ConfigBackup.new(
+          expected << WPScan::Model::ConfigBackup.new(
             url,
             confidence: 100,
             found_by: described_class::DIRECT_ACCESS

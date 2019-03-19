@@ -7,7 +7,7 @@ module WPScan
           include CMSScanner::Finders::Finder::SmartURLChecker
 
           def create_version(number, opts = {})
-            WPScan::WpVersion.new(
+            Model::WpVersion.new(
               number,
               found_by: opts[:found_by] || found_by,
               confidence: opts[:confidence] || 80,

@@ -23,7 +23,7 @@ describe WPScan::Finders::InterestingFindings::FullPathDisclosure do
       it 'returns the InterestingFinding' do
         found = finder.aggressive
 
-        expect(found).to eql WPScan::FullPathDisclosure.new(
+        expect(found).to eql WPScan::Model::FullPathDisclosure.new(
           file_url,
           confidence: 100,
           found_by: described_class::DIRECT_ACCESS

@@ -12,7 +12,7 @@ module WPScan
 
             url = target.url('wp-content/mu-plugins/')
 
-            return WPScan::MuPlugins.new(
+            return Model::MuPlugins.new(
               url,
               confidence: 70,
               found_by: 'URLs In Homepage (Passive Detection)',
@@ -35,7 +35,7 @@ module WPScan
 
           target.mu_plugins = true
 
-          WPScan::MuPlugins.new(
+          Model::MuPlugins.new(
             url,
             confidence: 80,
             found_by: DIRECT_ACCESS,

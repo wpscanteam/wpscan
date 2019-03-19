@@ -6,7 +6,7 @@ module WPScan
         include Finders::WpItems::URLsInHomepage
 
         def create_theme(slug, style_url, opts)
-          WPScan::Theme.new(
+          Model::Theme.new(
             slug,
             target,
             opts.merge(found_by: found_by, confidence: 70, style_url: style_url)

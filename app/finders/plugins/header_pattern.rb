@@ -18,7 +18,7 @@ module WPScan
             configs.each do |klass, config|
               next unless headers[config['header']] && headers[config['header']].to_s =~ config['pattern']
 
-              found << Plugin.new(
+              found << Model::Plugin.new(
                 slug,
                 target,
                 opts.merge(found_by: found_by(klass), confidence: config['confidence'] || DEFAULT_CONFIDENCE)

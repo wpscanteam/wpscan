@@ -14,7 +14,7 @@ shared_examples 'App::Views::WpVersion' do
     end
 
     context 'when the version is not nil' do
-      let(:version) { WPScan::WpVersion.new('4.0', found_by: 'rspec') }
+      let(:version) { WPScan::Model::WpVersion.new('4.0', found_by: 'rspec') }
 
       context 'when confirmed_by is empty' do
         context 'when no interesting_entries' do
@@ -77,7 +77,7 @@ shared_examples 'App::Views::WpVersion' do
       let(:expected_view) { 'with_vulns' }
 
       it 'outputs the expected string' do
-        @tpl_vars = tpl_vars.merge(version: WPScan::WpVersion.new('3.8.1', found_by: 'rspec'))
+        @tpl_vars = tpl_vars.merge(version: WPScan::Model::WpVersion.new('3.8.1', found_by: 'rspec'))
       end
     end
   end

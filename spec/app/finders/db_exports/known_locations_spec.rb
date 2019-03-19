@@ -53,7 +53,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
 
         files.each do |file|
           url = "#{target.url}#{file}"
-          expected << WPScan::DbExport.new(
+          expected << WPScan::Model::DbExport.new(
             url,
             confidence: 100,
             found_by: described_class::DIRECT_ACCESS

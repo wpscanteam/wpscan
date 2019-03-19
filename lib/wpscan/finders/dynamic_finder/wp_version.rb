@@ -4,9 +4,9 @@ module WPScan
       module WpVersion
         module Finder
           def create_version(number, finding_opts)
-            return unless WPScan::WpVersion.valid?(number)
+            return unless Model::WpVersion.valid?(number)
 
-            WPScan::WpVersion.new(number, version_finding_opts(finding_opts))
+            Model::WpVersion.new(number, version_finding_opts(finding_opts))
           end
         end
 

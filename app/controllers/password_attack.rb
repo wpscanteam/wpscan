@@ -52,7 +52,7 @@ module WPScan
         @attacker ||= attacker_from_cli_options || attacker_from_automatic_detection
       end
 
-      # @return [ WPScan::XMLRPC ]
+      # @return [ Model::XMLRPC ]
       def xmlrpc
         @xmlrpc ||= target.xmlrpc
       end
@@ -95,7 +95,7 @@ module WPScan
         return target.users unless parsed_options[:usernames]
 
         parsed_options[:usernames].reduce([]) do |acc, elem|
-          acc << CMSScanner::User.new(elem.chomp)
+          acc << Model::User.new(elem.chomp)
         end
       end
 

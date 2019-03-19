@@ -14,7 +14,7 @@ module WPScan
           found = []
 
           (items_from_links('plugins') + items_from_codes('plugins')).uniq.sort.each do |slug|
-            found << Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
+            found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
 
           found

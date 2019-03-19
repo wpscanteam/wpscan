@@ -15,7 +15,7 @@ module WPScan
           enumerate(target_urls(opts), opts) do |res|
             next unless res.code == 200
 
-            found << WPScan::Media.new(res.effective_url, opts.merge(found_by: found_by, confidence: 100))
+            found << Model::Media.new(res.effective_url, opts.merge(found_by: found_by, confidence: 100))
           end
 
           found

@@ -48,7 +48,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
             found.each_with_index do |version, index|
               expected_version = expected.at(index)
 
-              expect(version).to be_a WPScan::WpVersion
+              expect(version).to be_a WPScan::Model::WpVersion
               expect(version.number).to eql expected_version['number'].to_s
               expect(version.found_by).to eql expected_version['found_by']
               expect(version.interesting_entries).to match_array expected_version['interesting_entries']
@@ -83,7 +83,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
             found.each_with_index do |version, index|
               expected_version = expected.at(index)
 
-              expect(version).to be_a WPScan::WpVersion
+              expect(version).to be_a WPScan::Model::WpVersion
               expect(version.number).to eql expected_version['number'].to_s
               expect(version.found_by).to eql expected_version['found_by']
               expect(version.interesting_entries).to match_array expected_version['interesting_entries']

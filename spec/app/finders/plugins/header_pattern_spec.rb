@@ -5,7 +5,7 @@ describe WPScan::Finders::Plugins::HeaderPattern do
   let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('plugin_version') }
 
   def plugin(slug)
-    WPScan::Plugin.new(slug, target)
+    WPScan::Model::Plugin.new(slug, target)
   end
 
   describe '#passive' do

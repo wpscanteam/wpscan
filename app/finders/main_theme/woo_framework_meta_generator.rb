@@ -10,7 +10,7 @@ module WPScan
         def passive(opts = {})
           return unless target.homepage_res.body =~ PATTERN
 
-          WPScan::Theme.new(
+          Model::Theme.new(
             Regexp.last_match[1],
             target,
             opts.merge(found_by: found_by, confidence: 80)

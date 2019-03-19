@@ -14,7 +14,7 @@ module WPScan
           slugs = items_from_links('themes', false) + items_from_codes('themes', false)
 
           slugs.each_with_object(Hash.new(0)) { |slug, counts| counts[slug] += 1 }.each do |slug, occurences|
-            found << WPScan::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 2 * occurences))
+            found << Model::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 2 * occurences))
           end
 
           found

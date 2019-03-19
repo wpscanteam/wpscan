@@ -22,7 +22,7 @@ describe WPScan::Finders::WpVersion::AtomGenerator do
         stub_request(:get, target.url('?feed=atom'))
 
         expect(finder.aggressive).to eql [
-          WPScan::WpVersion.new(
+          WPScan::Model::WpVersion.new(
             '4.0',
             confidence: 80,
             found_by: 'Atom Generator (Aggressive Detection)',
@@ -42,7 +42,7 @@ describe WPScan::Finders::WpVersion::AtomGenerator do
         stub_request(:get, target.url('?feed=atom')).to_return(body: atom_fixture)
 
         expect(finder.passive).to eql [
-          WPScan::WpVersion.new(
+          WPScan::Model::WpVersion.new(
             '4.0',
             confidence: 80,
             found_by: 'Atom Generator (Passive Detection)',
@@ -59,7 +59,7 @@ describe WPScan::Finders::WpVersion::AtomGenerator do
           stub_request(:get, target.url('feed/atom/')).to_return(body: atom_fixture)
 
           expect(finder.aggressive(mode: :mixed)).to eql [
-            WPScan::WpVersion.new(
+            WPScan::Model::WpVersion.new(
               '4.0',
               confidence: 80,
               found_by: 'Atom Generator (Aggressive Detection)',
@@ -78,7 +78,7 @@ describe WPScan::Finders::WpVersion::AtomGenerator do
           stub_request(:get, target.url('?feed=atom'))
 
           expect(finder.aggressive).to eql [
-            WPScan::WpVersion.new(
+            WPScan::Model::WpVersion.new(
               '4.0',
               confidence: 80,
               found_by: 'Atom Generator (Aggressive Detection)',

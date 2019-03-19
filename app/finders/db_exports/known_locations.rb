@@ -17,7 +17,9 @@ module WPScan
           enumerate(potential_urls(opts), opts) do |res|
             next unless res.code == 200 && res.body =~ /INSERT INTO/
 
-            found << WPScan::DbExport.new(res.request.url, found_by: DIRECT_ACCESS, confidence: 100)
+            found << Model::DbExport.new(res.request.url,
+                                         found_by: DIRECT_ACCESS,
+                                         confidence: 100)
           end
 
           found

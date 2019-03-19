@@ -10,7 +10,7 @@ module WPScan
 
           return unless res.body =~ /DUPLICATOR INSTALL-LOG/
 
-          WPScan::DuplicatorInstallerLog.new(
+          Model::DuplicatorInstallerLog.new(
             url,
             confidence: 100,
             found_by: DIRECT_ACCESS,

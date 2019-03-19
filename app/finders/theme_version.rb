@@ -8,7 +8,7 @@ module WPScan
       class Base
         include CMSScanner::Finders::UniqueFinder
 
-        # @param [ WPScan::Theme ] theme
+        # @param [ Model::Theme ] theme
         def initialize(theme)
           finders <<
             ThemeVersion::Style.new(theme) <<
@@ -19,7 +19,7 @@ module WPScan
 
         # Load the finders associated with the theme
         #
-        # @param [ WPScan::Theme ] theme
+        # @param [ Model::Theme ] theme
         def load_specific_finders(theme)
           module_name = theme.classify
 

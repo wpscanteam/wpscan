@@ -13,7 +13,7 @@ describe WPScan::Finders::InterestingFindings::WPCron do
       let(:status) { 200 }
 
       it 'returns the InterestingFinding' do
-        expect(finder.aggressive).to eql WPScan::WPCron.new(
+        expect(finder.aggressive).to eql WPScan::Model::WPCron.new(
           finder.wp_cron_url,
           confidence: 60,
           found_by: described_class::DIRECT_ACCESS

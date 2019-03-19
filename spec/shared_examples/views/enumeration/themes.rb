@@ -1,6 +1,6 @@
 shared_examples 'App::Views::Enumeration::Themes' do
   let(:view)   { 'themes' }
-  let(:plugin) { WPScan::Theme }
+  let(:plugin) { WPScan::Model::Theme }
 
   describe 'themes' do
     context 'when no themes found' do

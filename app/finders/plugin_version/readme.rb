@@ -7,14 +7,14 @@ module WPScan
         def aggressive(_opts = {})
           found_by_msg = 'Readme - %s (Aggressive Detection)'
 
-          WPScan::WpItem::READMES.each do |file|
+          Model::WpItem::READMES.each do |file|
             url = target.url(file)
             res = Browser.get(url)
 
             next unless res.code == 200 && !(numbers = version_numbers(res.body)).empty?
 
             return numbers.reduce([]) do |a, e|
-              a << WPScan::Version.new(
+              a << Model::Version.new(
                 e[0],
                 found_by: format(found_by_msg, e[1]),
                 confidence: e[2],

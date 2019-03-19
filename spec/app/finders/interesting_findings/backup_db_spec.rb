@@ -35,7 +35,7 @@ describe WPScan::Finders::InterestingFindings::BackupDB do
       after do
         found = finder.aggressive
 
-        expect(found).to eql WPScan::BackupDB.new(
+        expect(found).to eql WPScan::Model::BackupDB.new(
           dir_url,
           confidence: 70,
           found_by: described_class::DIRECT_ACCESS

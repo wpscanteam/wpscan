@@ -1,11 +1,11 @@
 describe WPScan::Finders::PluginVersion::Readme do
   subject(:finder) { described_class.new(plugin) }
-  let(:plugin)     { WPScan::Plugin.new('spec', target) }
+  let(:plugin)     { WPScan::Model::Plugin.new('spec', target) }
   let(:target)     { WPScan::Target.new('http://wp.lab/') }
   let(:fixtures)   { FINDERS_FIXTURES.join('plugin_version', 'readme') }
 
   def version(number, found_by, confidence)
-    WPScan::Version.new(
+    WPScan::Model::Version.new(
       number,
       found_by: format('Readme - %s (Aggressive Detection)', found_by),
       confidence: confidence,
@@ -31,7 +31,7 @@ describe WPScan::Finders::PluginVersion::Readme do
       expect(finder.aggressive).to eql @expected
     end
 
-    let(:readme_url) { plugin.url(WPScan::WpItem::READMES.sample) }
+    let(:readme_url) { plugin.url(WPScan::Model::WpItem::READMES.sample) }
 
     context 'when no version' do
       it 'returns nil' do

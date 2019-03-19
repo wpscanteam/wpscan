@@ -33,7 +33,7 @@ describe WPScan::Finders::WpVersion::Readme do
       let(:file) { '4.0.html' }
 
       it 'returns the expected version' do
-        @expected = WPScan::WpVersion.new(
+        @expected = WPScan::Model::WpVersion.new(
           '4.0',
           confidence: 90,
           found_by: 'Readme (Aggressive Detection)',

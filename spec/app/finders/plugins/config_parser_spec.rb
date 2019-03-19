@@ -8,6 +8,6 @@ describe WPScan::Finders::Plugins::ConfigParser do
   #  let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('plugin_version') }
   #
   #  let(:expected_all) { df_expected_all['plugins'] }
-  #  let(:item_class)   { WPScan::Plugin }
+  #  let(:item_class)   { WPScan::Model::Plugin }
   # end
 end

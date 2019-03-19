@@ -18,7 +18,7 @@ module WPScan
 
             next unless username
 
-            found << CMSScanner::User.new(
+            found << Model::User.new(
               username,
               id: id,
               found_by: format(found_by_msg, found_by),

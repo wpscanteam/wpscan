@@ -1,6 +1,6 @@
 describe WPScan::Finders::ThemeVersion::Style do
   subject(:finder) { described_class.new(theme) }
-  let(:theme)      { WPScan::Theme.new('spec', target) }
+  let(:theme)      { WPScan::Model::Theme.new('spec', target) }
   let(:target)     { WPScan::Target.new('http://wp.lab/') }
   let(:fixtures)   { FINDERS_FIXTURES.join('theme_version', 'style') }
 
@@ -81,7 +81,7 @@ describe WPScan::Finders::ThemeVersion::Style do
 
         it 'returns the expected version' do
           expected = if expected_version
-                       WPScan::Version.new(
+                       WPScan::Model::Version.new(
                          expected_version,
                          confidence: 80,
                          interesting_entries: ["#{theme.style_url}, Version: #{expected_version}"]

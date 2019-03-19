@@ -1,6 +1,6 @@
 shared_examples 'App::Views::Enumeration::Plugins' do
   let(:view)   { 'plugins' }
-  let(:plugin) { WPScan::Plugin }
+  let(:plugin) { WPScan::Model::Plugin }
 
   describe 'plugins' do
     context 'when no plugins found' do

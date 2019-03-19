@@ -56,7 +56,7 @@ describe WPScan::Controller::WpVersion do
       context "when --detection-mode #{mode}" do
         let(:cli_args) { "#{super()} --detection-mode #{mode}" }
 
-        [WPScan::WpVersion.new('4.0')].each do |version|
+        [WPScan::Model::WpVersion.new('4.0')].each do |version|
           context "when version = #{version}" do
             let(:stubbed) { version }
 
@@ -68,16 +68,16 @@ describe WPScan::Controller::WpVersion do
 
     context 'when --wp-version-all supplied' do
       let(:cli_args) { "#{super()} --wp-version-all" }
-      let(:stubbed) { WPScan::WpVersion.new('3.9.1') }
+      let(:stubbed) { WPScan::Model::WpVersion.new('3.9.1') }
 
-      it_calls_the_formatter_with_the_correct_parameter(WPScan::WpVersion.new('3.9.1'))
+      it_calls_the_formatter_with_the_correct_parameter(WPScan::Model::WpVersion.new('3.9.1'))
     end
 
     context 'when --wp-version-detection mode supplied' do
       let(:cli_args) { "#{super()} --detection-mode mixed --wp-version-detection passive" }
-      let(:stubbed) { WPScan::WpVersion.new('4.4') }
+      let(:stubbed) { WPScan::Model::WpVersion.new('4.4') }
 
-      it_calls_the_formatter_with_the_correct_parameter(WPScan::WpVersion.new('4.4'))
+      it_calls_the_formatter_with_the_correct_parameter(WPScan::Model::WpVersion.new('4.4'))
     end
   end
 end
