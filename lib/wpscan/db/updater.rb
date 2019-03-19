@@ -80,7 +80,7 @@ module WPScan
         url = "#{remote_file_url(filename)}.sha512"
 
         res = Browser.get(url, request_params)
-        raise DownloadError, res if res.timed_out? || res.code != 200
+        raise Error::Download, res if res.timed_out? || res.code != 200
 
         res.body.chomp
       end
@@ -121,7 +121,7 @@ module WPScan
         file_url  = remote_file_url(filename)
 
         res = Browser.get(file_url, request_params)
-        raise DownloadError, res if res.timed_out? || res.code != 200
+        raise Error::Download, res if res.timed_out? || res.code != 200
 
         File.open(file_path, 'wb') { |f| f.write(res.body) }
 

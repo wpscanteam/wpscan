@@ -13,7 +13,7 @@ module WPScan
               confidence: opts[:confidence] || 80,
               interesting_entries: opts[:entries]
             )
-          rescue WPScan::InvalidWordPressVersion
+          rescue WPScan::Error::InvalidWordPressVersion
             nil # Invalid Version returned as nil and will be ignored by Finders
           end
         end

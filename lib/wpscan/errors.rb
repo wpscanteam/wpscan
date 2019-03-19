@@ -1,5 +1,9 @@
 module WPScan
-  class Error < StandardError
+  module Error
+    include CMSScanner::Error
+
+    class Standard < StandardError
+    end
   end
 end
 

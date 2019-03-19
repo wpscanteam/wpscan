@@ -23,7 +23,7 @@ describe WPScan::Controller::CustomDirectories do
       before { expect(controller.target).to receive(:content_dir) }
 
       it 'raises an exception' do
-        expect { controller.before_scan }.to raise_error(WPScan::WpContentDirNotDetected)
+        expect { controller.before_scan }.to raise_error(WPScan::Error::WpContentDirNotDetected)
       end
     end
 

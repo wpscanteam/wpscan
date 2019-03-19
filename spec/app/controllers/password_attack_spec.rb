@@ -75,7 +75,7 @@ describe WPScan::Controller::PasswordAttack do
             let(:attack) { 'xmlrpc' }
 
             it 'raises an error' do
-              expect { controller.attacker }.to raise_error(WPScan::XMLRPCNotDetected)
+              expect { controller.attacker }.to raise_error(WPScan::Error::XMLRPCNotDetected)
             end
           end
 
@@ -83,7 +83,7 @@ describe WPScan::Controller::PasswordAttack do
             let(:attack) { 'xmlrpc-multicall' }
 
             it 'raises an error' do
-              expect { controller.attacker }.to raise_error(WPScan::XMLRPCNotDetected)
+              expect { controller.attacker }.to raise_error(WPScan::Error::XMLRPCNotDetected)
             end
           end
         end

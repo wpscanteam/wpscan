@@ -70,7 +70,7 @@ describe WPScan::Controller::Core do
         let(:cli_args) { "#{super()} --no-update" }
 
         it 'raises an error' do
-          expect { core.update_db_required? }. to raise_error(WPScan::MissingDatabaseFile)
+          expect { core.update_db_required? }. to raise_error(WPScan::Error::MissingDatabaseFile)
         end
       end
 
@@ -199,7 +199,7 @@ describe WPScan::Controller::Core do
         let(:redirection) { 'http://g.com/' }
 
         it 'raises an error' do
-          expect { core.before_scan }.to raise_error(CMSScanner::HTTPRedirectError)
+          expect { core.before_scan }.to raise_error(CMSScanner::Error::HTTPRedirect)
         end
       end
 
@@ -218,7 +218,7 @@ describe WPScan::Controller::Core do
           it 'raises an error' do
             expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false)
 
-            expect { core.before_scan }.to raise_error(WPScan::NotWordPressError)
+            expect { core.before_scan }.to raise_error(WPScan::Error::NotWordPress)
           end
         end
       end
@@ -230,7 +230,7 @@ describe WPScan::Controller::Core do
       before { expect(core).to receive(:load_server_module) }
 
       it 'raises an error' do
-        expect { core.before_scan }.to raise_error(WPScan::WordPressHostedError)
+        expect { core.before_scan }.to raise_error(WPScan::Error::WordPressHosted)
       end
     end
 
@@ -253,7 +253,7 @@ describe WPScan::Controller::Core do
 
       context 'when no --force' do
         it 'raises an error' do
-          expect { core.before_scan }.to raise_error(WPScan::NotWordPressError)
+          expect { core.before_scan }.to raise_error(WPScan::Error::NotWordPress)
         end
       end
 

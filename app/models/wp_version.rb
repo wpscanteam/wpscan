@@ -4,7 +4,7 @@ module WPScan
     include Vulnerable
 
     def initialize(number, opts = {})
-      raise InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
+      raise Error::InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
 
       super(number, opts)
     end

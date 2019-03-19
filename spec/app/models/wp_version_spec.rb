@@ -2,7 +2,7 @@ describe WPScan::WpVersion do
   describe '#new' do
     context 'when invalid number' do
       it 'raises an error' do
-        expect { described_class.new('aa') }.to raise_error WPScan::InvalidWordPressVersion
+        expect { described_class.new('aa') }.to raise_error WPScan::Error::InvalidWordPressVersion
       end
     end
 

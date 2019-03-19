@@ -16,7 +16,7 @@ module WPScan
 
         return if target.content_dir
 
-        raise WpContentDirNotDetected
+        raise Error::WpContentDirNotDetected
       end
     end
   end
