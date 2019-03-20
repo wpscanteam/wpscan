@@ -23,13 +23,12 @@ module WPScan
       @all_numbers = []
 
       DB::Fingerprints.wp_fingerprints.each_value do |fp|
-        fp.each_value do |versions|
-          versions.each do |version|
-            @all_numbers << version unless @all_numbers.include?(version)
-          end
-        end
+        @all_numbers << fp.values
       end
 
+      # @all_numbers.flatten.uniq.sort! {} doesn't produce the same result here.
+      @all_numbers.flatten!
+      @all_numbers.uniq!
       @all_numbers.sort! { |a, b| Gem::Version.new(b) <=> Gem::Version.new(a) }
     end
 
