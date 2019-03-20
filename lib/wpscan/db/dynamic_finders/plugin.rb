@@ -60,7 +60,7 @@ module WPScan
 
         # @param [ String ] slug
         # @return [ Constant ]
-        def self.maybe_create_modudle(slug)
+        def self.maybe_create_module(slug)
           # What about slugs such as js_composer which will be done as JsComposer, just like js-composer
           constant_name = classify_slug(slug)
 
@@ -76,7 +76,7 @@ module WPScan
             # Kind of an issue here, module is created even if there is no valid classes
             # Could put the #maybe_ directly in the #send() BUT it would be checked everytime,
             # which is kind of a waste
-            mod = maybe_create_modudle(slug)
+            mod = maybe_create_module(slug)
 
             finders.each do |finder_class, config|
               klass = config['class'] || finder_class
