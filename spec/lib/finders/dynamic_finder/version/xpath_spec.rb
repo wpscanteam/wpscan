@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::DynamicFinder::Version::Xpath do
   module WPScan
     module Finders

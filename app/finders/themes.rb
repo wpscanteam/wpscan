@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'themes/urls_in_homepage'
 require_relative 'themes/known_locations'
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'main_theme/css_style'
 require_relative 'main_theme/woo_framework_meta_generator'
 require_relative 'main_theme/urls_in_homepage'

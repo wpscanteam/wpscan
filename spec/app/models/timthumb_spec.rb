@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Model::Timthumb do
   subject(:timthumb) { described_class.new(url, opts) }
   let(:url)          { 'http://wp.lab/wp-content/timthumb.php' }

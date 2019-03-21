@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'db_exports/known_locations'
 
 module WPScan

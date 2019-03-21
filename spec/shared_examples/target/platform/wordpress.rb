@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'wordpress/custom_directories'
 
 shared_examples WPScan::Target::Platform::WordPress do

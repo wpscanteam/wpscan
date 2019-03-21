@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::DbExports::Base do
   subject(:db_exports) { described_class.new(target) }
   let(:target)         { WPScan::Target.new(url) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::DynamicFinder::Version::BodyPattern do
   module WPScan
     module Finders

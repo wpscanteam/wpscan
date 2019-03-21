@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Model::WpVersion do
   describe '#new' do
     context 'when invalid number' do

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'enumeration/cli_options'
 require_relative 'enumeration/enum_methods'
 

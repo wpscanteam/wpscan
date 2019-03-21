@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'App::Views::Enumeration::Medias' do
   let(:view)  { 'medias' }
   let(:media) { WPScan::Model::Media }

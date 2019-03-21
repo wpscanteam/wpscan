@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::DynamicFinder::Version::JavascriptVar do
   module WPScan
     module Finders

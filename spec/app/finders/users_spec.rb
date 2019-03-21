@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::Users::Base do
   subject(:user) { described_class.new(target) }
   let(:target)   { WPScan::Target.new(url) }

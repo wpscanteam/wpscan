@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'wp_version/rss_generator'
 require_relative 'wp_version/atom_generator'
 require_relative 'wp_version/rdf_generator'

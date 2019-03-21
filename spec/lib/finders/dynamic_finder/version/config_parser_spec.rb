@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::DynamicFinder::Version::ConfigParser do
   module WPScan
     module Finders

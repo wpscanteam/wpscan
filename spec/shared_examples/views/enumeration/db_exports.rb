@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'App::Views::Enumeration::DbExports' do
   let(:view)      { 'db_exports' }
   let(:db_export) { WPScan::Model::DbExport }

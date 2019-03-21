@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Browser do
   subject(:browser) { described_class.instance(options) }
   before            { described_class.reset }

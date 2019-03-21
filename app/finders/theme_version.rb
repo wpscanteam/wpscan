@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'theme_version/style'
 require_relative 'theme_version/woo_framework_meta_generator'
 

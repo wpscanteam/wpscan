@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'App::Views::Enumeration::ConfigBackups' do
   let(:view)          { 'config_backups' }
   let(:config_backup) { WPScan::Model::ConfigBackup }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   module Error
     # Error raised when there is a missing  DB file and --no-update supplied

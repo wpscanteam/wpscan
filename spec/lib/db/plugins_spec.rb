@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::DB::Plugins do
   subject(:plugins) { described_class }
 

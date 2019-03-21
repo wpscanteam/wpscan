@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   class Target < CMSScanner::Target
     module Platform
@@ -111,9 +113,9 @@ module WPScan
           return @uri.to_s unless path
 
           if path =~ %r{wp\-content/plugins}i
-            path.gsub!('wp-content/plugins', plugins_dir)
+            path = +path.gsub('wp-content/plugins', plugins_dir)
           elsif path =~ /wp\-content/i
-            path.gsub!('wp-content', content_dir)
+            path = +path.gsub('wp-content', content_dir)
           elsif path[0] != '/' && sub_dir
             path = "#{sub_dir}/#{path}"
           end

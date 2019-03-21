@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::ThemeVersion::Base do
   subject(:theme_version) { described_class.new(theme) }
   let(:theme)             { WPScan::Model::Plugin.new(slug, target) }

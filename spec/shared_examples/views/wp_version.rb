@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'App::Views::WpVersion' do
   let(:controller) { WPScan::Controller::WpVersion.new }
   let(:tpl_vars)   { { url: target_url } }

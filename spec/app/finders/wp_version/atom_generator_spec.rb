@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::WpVersion::AtomGenerator do
   subject(:finder)   { described_class.new(target) }
   let(:target)       { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }

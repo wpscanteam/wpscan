@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::TimthumbVersion::Base do
   subject(:timthumb_version) { described_class.new(target) }
   let(:target)               { WPScan::Model::Timthumb.new(url) }

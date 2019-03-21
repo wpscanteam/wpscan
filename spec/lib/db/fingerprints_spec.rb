@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::DB::Fingerprints do
   describe '#unique_fingerprints' do
     # Handled in #wp_unique_fingerprints

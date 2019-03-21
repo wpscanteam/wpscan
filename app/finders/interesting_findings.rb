@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'interesting_findings/readme'
 require_relative 'interesting_findings/wp_cron'
 require_relative 'interesting_findings/multisite'

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   module Controller
     # Specific Core controller to include WordPress checks

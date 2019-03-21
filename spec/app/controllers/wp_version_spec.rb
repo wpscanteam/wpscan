@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def it_calls_the_formatter_with_the_correct_parameter(version)
   it 'calls the formatter with the correct parameter' do
     expect(controller.formatter).to receive(:output)

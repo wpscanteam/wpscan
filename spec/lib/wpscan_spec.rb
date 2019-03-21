@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan do
   it 'has a version number' do
     expect(WPScan::VERSION).not_to be nil

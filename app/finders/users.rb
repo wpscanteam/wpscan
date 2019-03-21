@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'users/author_posts'
 require_relative 'users/wp_json_api'
 require_relative 'users/oembed_api'

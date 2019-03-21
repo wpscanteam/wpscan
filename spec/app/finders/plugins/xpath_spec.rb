@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::Plugins::Xpath do
   it_behaves_like WPScan::Finders::DynamicFinder::WpItems::Finder do
     subject(:finder)   { described_class.new(target) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::DB::Themes do
   subject(:themes) { described_class }
 

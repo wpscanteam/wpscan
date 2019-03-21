@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
   let(:passive_fixture) do
     fixtures.join("#{described_class.to_s.demodulize.underscore}_passive_all.html")

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Model::Plugin do
   subject(:plugin) { described_class.new(slug, blog, opts) }
   let(:slug)       { 'spec' }

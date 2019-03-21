@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Controller::Aliases do
   subject(:controller) { described_class.new }
   let(:target_url)     { 'http://ex.lo/' }

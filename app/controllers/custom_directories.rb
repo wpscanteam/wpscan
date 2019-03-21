@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   module Controller
     # Controller to ensure that the wp-content and wp-plugins

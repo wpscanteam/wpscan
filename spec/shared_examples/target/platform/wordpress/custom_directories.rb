@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'WordPress::CustomDirectories' do
   let(:fixtures) { super().join('custom_directories') }
 

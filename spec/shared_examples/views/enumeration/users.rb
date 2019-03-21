@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'App::Views::Enumeration::Users' do
   let(:view)  { 'users' }
   let(:user)  { WPScan::Model::User }

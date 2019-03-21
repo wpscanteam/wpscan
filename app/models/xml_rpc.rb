@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   module Model
     # Override of the CMSScanner::XMLRPC to include the references

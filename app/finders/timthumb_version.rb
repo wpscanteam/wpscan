@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'timthumb_version/bad_request'
 
 module WPScan

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'enumeration/users'
 require_relative 'enumeration/medias'
 require_relative 'enumeration/themes'

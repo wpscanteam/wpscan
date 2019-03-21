@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'plugins/urls_in_homepage'
 require_relative 'plugins/known_locations'
 # From the DynamicFinders

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'medias/attachment_brute_forcing'
 
 module WPScan

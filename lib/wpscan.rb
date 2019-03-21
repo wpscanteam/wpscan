@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Gems
 # Believe it or not, active_support MUST be the first one,
 # otherwise encoding issues can happen when using JSON format.

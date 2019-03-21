@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 expected_all = df_expected_all['wordpress']
 
 WPScan::DB::DynamicFinders::Wordpress.create_versions_finders

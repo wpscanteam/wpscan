@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'wpscan/finders/finder/wp_version/smart_url_checker'
 
 require 'wpscan/finders/dynamic_finder/finder'

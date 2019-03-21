@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 %w[custom_directories].each do |required|
   require "wpscan/target/platform/wordpress/#{required}"
 end

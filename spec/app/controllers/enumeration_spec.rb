@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Controller::Enumeration do
   subject(:controller) { described_class.new }
   let(:target_url)     { 'http://wp.lab/' }

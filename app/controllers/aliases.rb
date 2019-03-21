@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   module Controller
     # Controller to add the aliases in the CLI

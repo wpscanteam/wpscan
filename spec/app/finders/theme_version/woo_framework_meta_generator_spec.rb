@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::ThemeVersion::WooFrameworkMetaGenerator do
   subject(:finder) { described_class.new(theme) }
   let(:theme)      { WPScan::Model::Theme.new(slug, target) }

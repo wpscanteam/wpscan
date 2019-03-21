@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Controller::Core do
   subject(:core)       { described_class.new }
   let(:target_url)     { 'http://ex.lo/' }

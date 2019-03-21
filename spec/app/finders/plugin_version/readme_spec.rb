@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::PluginVersion::Readme do
   subject(:finder) { described_class.new(plugin) }
   let(:plugin)     { WPScan::Model::Plugin.new('spec', target) }

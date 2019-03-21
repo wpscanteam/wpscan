@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   module Error
     # WordPress hosted (*.wordpress.com)

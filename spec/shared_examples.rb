@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'shared_examples/views/wp_version'
 require 'shared_examples/views/main_theme'
 require 'shared_examples/views/enumeration'

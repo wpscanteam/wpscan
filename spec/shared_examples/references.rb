@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples WPScan::References do
   describe '#references_keys' do
     it 'contains the :wpvulndb symbol' do

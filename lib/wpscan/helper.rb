@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 def read_json_file(file)
   JSON.parse(File.read(file))
 rescue StandardError => e

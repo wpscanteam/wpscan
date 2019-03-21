@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 shared_examples 'App::Views::Enumeration::Themes' do
   let(:view)   { 'themes' }
   let(:plugin) { WPScan::Model::Theme }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::InterestingFindings::Base do
   subject(:files) { described_class.new(target) }
   let(:target)    { WPScan::Target.new(url) }

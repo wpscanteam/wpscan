@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::Themes::Base do
   subject(:themes) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }

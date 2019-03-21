@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Finders::ConfigBackups::Base do
   subject(:config_backups) { described_class.new(target) }
   let(:target)             { WPScan::Target.new(url) }

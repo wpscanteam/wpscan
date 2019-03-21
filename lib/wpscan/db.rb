@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'db/wp_item'
 require_relative 'db/updater'
 require_relative 'db/wp_items'

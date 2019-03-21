@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe WPScan::Model::XMLRPC do
   subject(:xml_rpc) { described_class.new('http//e.org/xmlrpc.php') }
 

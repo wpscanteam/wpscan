@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module WPScan
   # References module (which should be included along with the CMSScanner::References)
   # to allow the use of the wpvulndb reference

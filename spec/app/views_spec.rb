@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe 'App::Views' do
   let(:target_url) { 'http://ex.lo/' }
   let(:target)     { WPScan::Target.new(target_url) }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # All Plugin Dynamic Finders returning a Version are tested here.
 # When adding one to the spec/fixtures/db/dynamic_finder.yml, a few files have
 # to be edited/created
