@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require 'memory_profiler' # https://github.com/SamSaffron/memory_profiler
+require 'wpscan'
+
+report = MemoryProfiler.report(top: 10) do
+  # Couldn't we just load the ./wpscan here ?
+  # require_relative 'wpscan' doesn't work
+  WPScan::Scan.new do |s|
+    s.controllers <<
+      WPScan::Controller::CustomDirectories.new <<
+      WPScan::Controller::InterestingFindings.new <<
+      WPScan::Controller::WpVersion.new <<
+      WPScan::Controller::MainTheme.new <<
+      WPScan::Controller::Enumeration.new <<
+      WPScan::Controller::PasswordAttack.new <<
+      WPScan::Controller::Aliases.new
+
+    s.run
+  end
+end
+
+report.pretty_print(scale_bytes: true, detailed_report: true, to_file: 'memprof.report')
