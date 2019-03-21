@@ -64,18 +64,24 @@ module WPScan
           # What about slugs such as js_composer which will be done as JsComposer, just like js-composer
           constant_name = classify_slug(slug)
 
-          unless version_finder_module.constants.include?(constant_name)
+          # version_finder_module.constants.include? could be used here
+          # however, it increases the memory allocated doing so.
+          unless version_finder_modules.include?(constant_name)
             version_finder_module.const_set(constant_name, Module.new)
+
+            version_finder_modules << constant_name
           end
 
           version_finder_module.const_get(constant_name)
         end
 
+        # @return [ Array<Constant> ]
+        def self.version_finder_modules
+          @version_finder_modules ||= version_finder_module.constants
+        end
+
         def self.create_versions_finders
           versions_finders_configs.each do |slug, finders|
-            # Kind of an issue here, module is created even if there is no valid classes
-            # Could put the #maybe_ directly in the #send() BUT it would be checked everytime,
-            # which is kind of a waste
             mod = maybe_create_module(slug)
 
             finders.each do |finder_class, config|
