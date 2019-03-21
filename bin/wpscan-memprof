@@ -20,4 +20,6 @@ report = MemoryProfiler.report(top: 10) do
   end
 end
 
-report.pretty_print(scale_bytes: true, detailed_report: true, to_file: 'memprof.report')
+# scale_bytes option not yet supported in the latest stable
+# See https://github.com/SamSaffron/memory_profiler/issues/68
+report.pretty_print($stdout, scale_bytes: true, detailed_report: true, to_file: 'memprof.report')
