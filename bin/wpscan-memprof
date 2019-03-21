@@ -3,9 +3,7 @@
 require 'memory_profiler' # https://github.com/SamSaffron/memory_profiler
 require 'wpscan'
 
-report = MemoryProfiler.report(top: 10) do
-  # Couldn't we just load the ./wpscan here ?
-  # require_relative 'wpscan' doesn't work
+report = MemoryProfiler.report(top: 15) do
   WPScan::Scan.new do |s|
     s.controllers <<
       WPScan::Controller::CustomDirectories.new <<
