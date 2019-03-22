@@ -5,6 +5,15 @@ module WPScan
   class Target < CMSScanner::Target
     include Platform::WordPress
 
+    # @return [ Hash ]
+    def head_or_get_request_params
+      @head_or_get_request_params ||= if Browser.head(url).code == 405
+                                        { method: :get, maxfilesize: 1 }
+                                      else
+                                        { method: :head }
+                                      end
+    end
+
     # @return [ Boolean ]
     def vulnerable?
       [@wp_version, @main_theme, @plugins, @themes, @timthumbs].each do |e|

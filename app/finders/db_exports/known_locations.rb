@@ -4,7 +4,9 @@ module WPScan
       # DB Exports finder
       # See https://github.com/wpscanteam/wpscan-v3/issues/62
       class KnownLocations < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+        include Finders::Finder::Enumerator
+
+        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE) TABLE|INSERT INTO/.freeze
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
@@ -15,12 +17,19 @@ module WPScan
           found = []
 
           enumerate(potential_urls(opts), opts) do |res|
-            next unless res.code == 200 && res.body =~ /INSERT INTO/
-
             found << WPScan::DbExport.new(res.request.url, found_by: DIRECT_ACCESS, confidence: 100)
           end
 
           found
+        end
+
+        def valid_response?(res, _exclude_content = nil)
+          return false unless res.code == 200
+
+          return true if res.effective_url.end_with?('.zip') &&
+                         res.headers['Content-Type'] =~ %r{\Aapplication/zip}i
+
+          Browser.get(res.effective_url, headers: { 'Range' => 'bytes=0-3000' }).body =~ SQL_PATTERN ? true : false
         end
 
         # @param [ Hash ] opts

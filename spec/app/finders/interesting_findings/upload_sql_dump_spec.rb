@@ -6,13 +6,16 @@ describe WPScan::Finders::InterestingFindings::UploadSQLDump do
   let(:wp_content) { 'wp-content' }
 
   describe '#aggressive' do
-    before { expect(target).to receive(:content_dir).at_least(1).and_return(wp_content) }
+    before do
+      expect(target).to receive(:content_dir).at_least(1).and_return(wp_content)
+      expect(target).to receive(:head_or_get_request_params).and_return(method: :head)
+    end
 
-    after {  expect(finder.aggressive).to eql @expected }
+    after { expect(finder.aggressive).to eql @expected }
 
     context 'when not a 200' do
       it 'returns nil' do
-        stub_request(:get, finder.dump_url).to_return(status: 404)
+        stub_request(:head, finder.dump_url).to_return(status: 404)
 
         @expected = nil
       end
@@ -20,8 +23,11 @@ describe WPScan::Finders::InterestingFindings::UploadSQLDump do
 
     context 'when a 200' do
       before do
+        stub_request(:head, finder.dump_url).to_return(status: 200)
+
         stub_request(:get, finder.dump_url)
-          .to_return(status: 200, body: File.read(fixtures.join(fixture)))
+          .with(headers: { 'Range' => 'bytes=0-3000' })
+          .to_return(body: File.read(fixtures.join(fixture)))
       end
 
       context 'when the body does not match a SQL dump' do

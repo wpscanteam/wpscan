@@ -22,15 +22,13 @@ module WPScan
         end
 
         # @param [ Typhoeus::Response ] res
-        # @param [ Regexp,nil ] exclude_content
+        # @param [ Regexp, nil ] exclude_content
         #
         # @return [ Boolean ]
         def valid_response?(res, _exclude_content = nil)
           return false unless res.code == 400
 
-          full_res = Browser.get(res.effective_url, cache_ttl: 0)
-
-          full_res.body =~ /no image specified/i ? true : false
+          Browser.get(res.effective_url).body =~ /no image specified/i ? true : false
         end
 
         # @param [ Hash ] opts
