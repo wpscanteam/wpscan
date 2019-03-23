@@ -5,6 +5,14 @@
 [![Code Climate](https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
 [![Patreon Donate](https://img.shields.io/badge/patreon-donate-green.svg)](https://www.patreon.com/wpscan)
 
+[WPScan Homepage](https://wpscan.org)
+
+[WPScan.io - Online WPScan Cloud Scanner](https://wpscan.io)
+
+[WPScan Vulnerability Database](https://wpvulndb.com)
+
+[WPScan WordPress Plugin](https://wordpress.org/plugins/wpscan/)
+
 # INSTALL
 
 ## Prerequisites
@@ -109,14 +117,6 @@ wpscan --url https://target.tld/ --enumerate u1-100
 ```
 
 ** replace u1-100 with a range of your choice.
-
-# PROJECT HOME
-
-[https://wpscan.org](https://wpscan.org)
-
-# VULNERABILITY DATABASE
-
-[https://wpvulndb.com](https://wpvulndb.com)
 
 # LICENSE
 
