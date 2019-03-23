@@ -1,17 +1,30 @@
-![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png "WPScan - WordPress Security Scanner")
+<p align="center">
+  <a href="https://wpscan.org/">
+    <img src="https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png" alt="WPScan logo">
+  </a>
+</p>
 
+<h3 align="center">WPScan</h3>
+
+<p align="center">
+  WordPress Vulnerability Scanner
+  <br>
+  <br>
+  <a href="https://wpscan.org/">Homepage</a>
+  ·
+  <a href="https://wpscan.io/">WPScan.io</a>
+  ·
+  <a href="https://wpvulndb.com/">Vulnerability Database</a>
+  ·
+  <a href="https://wordpress.org/plugins/wpscan/">WordPress Plugin</a>
+</p>
+
+<p align="center">
 [![Gem Version](https://badge.fury.io/rb/wpscan.svg)](https://badge.fury.io/rb/wpscan)
 [![Build Status](https://travis-ci.org/wpscanteam/wpscan.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
 [![Code Climate](https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
 [![Patreon Donate](https://img.shields.io/badge/patreon-donate-green.svg)](https://www.patreon.com/wpscan)
-
-[WPScan Homepage](https://wpscan.org)
-
-[WPScan.io - Online WPScan Cloud Scanner](https://wpscan.io)
-
-[WPScan Vulnerability Database](https://wpvulndb.com)
-
-[WPScan WordPress Plugin](https://wordpress.org/plugins/wpscan/)
+</p>
 
 # INSTALL
 
