@@ -10,20 +10,20 @@
   WordPress Vulnerability Scanner
   <br>
   <br>
-  <a href="https://wpscan.org/" title="homepage">Homepage</a>
+  <a href="https://wpscan.org/" title="homepage" target="_blank">Homepage</a>
   ·
-  <a href="https://wpscan.io/" title="wpscan.io">WPScan.io</a>
+  <a href="https://wpscan.io/" title="wpscan.io" target="_blank">WPScan.io</a>
   ·
-  <a href="https://wpvulndb.com/" title="vulnerability database">Vulnerability Database</a>
+  <a href="https://wpvulndb.com/" title="vulnerability database" target="_blank">Vulnerability Database</a>
   ·
-  <a href="https://wordpress.org/plugins/wpscan/" title="wordpress plugin">WordPress Plugin</a>
+  <a href="https://wordpress.org/plugins/wpscan/" title="wordpress plugin" target="_blank">WordPress Plugin</a>
 </p>
 
 <p align="center">
-  <a href="https://badge.fury.io/rb/wpscan"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
-  <a href="https://travis-ci.org/wpscanteam/wpscan"><img src="https://travis-ci.org/wpscanteam/wpscan.svg?branch=master"></a>
-  <a href="https://codeclimate.com/github/wpscanteam/wpscann"><img src="https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
-  <a href="https://www.patreon.com/wpscan"><img src="https://img.shields.io/badge/patreon-donate-green.svg"></a>
+  <a href="https://badge.fury.io/rb/wpscan" target="_blank"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
+  <a href="https://travis-ci.org/wpscanteam/wpscan" target="_blank"><img src="https://travis-ci.org/wpscanteam/wpscan.svg?branch=master"></a>
+  <a href="https://codeclimate.com/github/wpscanteam/wpscann" target="_blank"><img src="https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
+  <a href="https://www.patreon.com/wpscan" target="_blank"><img src="https://img.shields.io/badge/patreon-donate-green.svg"></a>
 </p>
 
 # INSTALL
