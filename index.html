@@ -74,7 +74,8 @@
           <!-- Get README.md from Github API using JSONP. Turn the markdown into HTML. -->
           function content(response) {
             var data = atob(response.data.content.replace(/\s/g, ''));
-            preview.innerHTML = markdown.toHTML(data);
+            var converter = new showdown.Converter();
+            preview.innerHTML = converter.makeHtml(data);
             return data;
           }
 
@@ -92,6 +93,7 @@
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    <script src="javascripts/markdown-browser-0.6.0-beta1/markdown.min.js"></script>
+    <!-- <script src="javascripts/markdown-browser-0.6.0-beta1/markdown.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.7/showdown.min.js"></script>
   </body>
 </html>
