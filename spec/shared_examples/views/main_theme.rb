@@ -21,7 +21,11 @@ shared_examples 'App::Views::MainTheme' do
 
       before do
         expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
+
+        # Stub the checks for error/debug logs and readmes to 404
+        stub_request(:head, /.*/).and_return(status: 404)
         stub_request(:get, /.*/)
+
         stub_request(:get, /.*\.css\z/)
           .to_return(body: File.read(FIXTURES.join('models', 'theme', 'style.css')))
       end

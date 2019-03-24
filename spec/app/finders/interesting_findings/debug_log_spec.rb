@@ -8,10 +8,16 @@ describe WPScan::Finders::InterestingFindings::DebugLog do
   let(:wp_content) { 'wp-content' }
   let(:log_url)    { target.url("#{wp_content}/debug.log") }
 
-  before { expect(target).to receive(:content_dir).at_least(1).and_return(wp_content) }
+  before do
+    expect(target).to receive(:head_or_get_params).and_return(method: :head)
+    expect(target).to receive(:content_dir).at_least(1).and_return(wp_content)
+  end
 
   describe '#aggressive' do
-    before { stub_request(:get, log_url).to_return(body: body) }
+    before do
+      stub_request(:head, log_url)
+      stub_request(:get, log_url).to_return(body: body)
+    end
 
     context 'when empty file' do
       let(:body) { '' }
