@@ -112,30 +112,34 @@ module WPScan
         @classify ||= classify_slug(slug)
       end
 
-      # @return [ String ] The readme url if found
+      # @return [ String, False ] The readme url if found, false otherwise
       def readme_url
         return if detection_opts[:mode] == :passive
 
-        if @readme_url.nil?
-          READMES.each do |path|
-            return @readme_url = url(path) if Browser.get(url(path)).code == 200
+        return @readme_url unless @readme_url.nil?
+
+        READMES.each do |path|
+          if Browser.instance.forge_request(url(path), blog.head_or_get_params).run.code == 200
+            return @readme_url = url(path)
           end
         end
 
-        @readme_url
+        @readme_url = false
       end
 
-      # @return [ String, false ] The changelog url if found
+      # @return [ String, false ] The changelog url if found, false otherwise
       def changelog_url
         return if detection_opts[:mode] == :passive
 
-        if @changelog_url.nil?
-          CHANGELOGS.each do |path|
-            return @changelog_url = url(path) if Browser.get(url(path)).code == 200
+        return @changelog_url unless @changelog_url.nil?
+
+        CHANGELOGS.each do |path|
+          if Browser.instance.forge_request(url(path), blog.head_or_get_params).run.code == 200
+            return @changelog_url = url(path)
           end
         end
 
-        @changelog_url
+        @changelog_url = false
       end
 
       # @param [ String ] path

@@ -22,8 +22,9 @@ shared_examples 'App::Views::MainTheme' do
       before do
         expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
 
-        # Stub the checks for error/debug logs and readmes to 404
-        stub_request(:head, /.*/).and_return(status: 404)
+        # Stub all requests to 200, to detect a readme and changelog.
+        # Detection of the error_log will fail as the empty body won't match the patterns
+        stub_request(:head, /.*/)
         stub_request(:get, /.*/)
 
         stub_request(:get, /.*\.css\z/)
