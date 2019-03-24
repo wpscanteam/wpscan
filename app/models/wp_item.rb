@@ -125,7 +125,7 @@ module WPScan
         @readme_url
       end
 
-      # @return [ String, false ] The changelog urr if found
+      # @return [ String, false ] The changelog url if found
       def changelog_url
         return if detection_opts[:mode] == :passive
 
