@@ -27,10 +27,10 @@ describe WPScan::Finders::DbExports::KnownLocations do
   describe '#aggressive' do
     before do
       expect(target).to receive(:sub_dir).at_least(1).and_return(false)
-      expect(target).to receive(:homepage_or_404?).at_least(1).and_return(false)
+      expect(target).to receive(:head_or_get_request_params).and_return(method: :head)
 
       finder.potential_urls(opts).each_key do |url|
-        stub_request(:get, url).to_return(status: 404)
+        stub_request(:head, url).to_return(status: 404)
       end
     end
 
@@ -40,20 +40,28 @@ describe WPScan::Finders::DbExports::KnownLocations do
       end
     end
 
+    context 'when a zip returns a 200' do
+      xit
+    end
+
     context 'when some files exist' do
-      let(:files) { %w[ex.sql backups/db_backup.sql] }
+      let(:found_files) { %w[ex.sql backups/db_backup.sql] }
       let(:db_export) { File.read(fixtures.join('dump.sql')) }
 
       before do
-        files.each do |file|
-          stub_request(:get, "#{url}#{file}").to_return(body: db_export)
+        found_files.each do |file|
+          stub_request(:head, "#{url}#{file}").to_return(status: 200)
+
+          stub_request(:get, "#{url}#{file}")
+            .with(headers: { 'Range' => 'bytes=0-3000' })
+            .to_return(body: db_export)
         end
       end
 
       it 'returns the expected Array<DbExport>' do
         expected = []
 
-        files.each do |file|
+        found_files.each do |file|
           url = "#{target.url}#{file}"
           expected << WPScan::Model::DbExport.new(
             url,

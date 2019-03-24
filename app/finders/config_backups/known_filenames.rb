@@ -5,7 +5,7 @@ module WPScan
     module ConfigBackups
       # Config Backup finder
       class KnownFilenames < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+        include Finders::Finder::Enumerator
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
@@ -16,15 +16,18 @@ module WPScan
           found = []
 
           enumerate(potential_urls(opts), opts) do |res|
-            # Might need to improve that
-            next unless res.body =~ /define/i && res.body !~ /<\s?html/i
-
-            found << Model::ConfigBackup.new(res.request.url,
-                                             found_by: DIRECT_ACCESS,
-                                             confidence: 100)
+            found << Model::ConfigBackup.new(res.request.url, found_by: DIRECT_ACCESS, confidence: 100)
           end
 
           found
+        end
+
+        def valid_response?(res, _exclude_content = nil)
+          return unless res.code == 200
+
+          full_res = Browser.get(res.effective_url)
+
+          full_res.body =~ /define/i && full_res.body !~ /<\s?html/i
         end
 
         # @param [ Hash ] opts

@@ -5,24 +5,25 @@ module WPScan
     module InterestingFindings
       # UploadSQLDump finder
       class UploadSQLDump < CMSScanner::Finders::Finder
-        SQL_PATTERN = /(?:(?:(?:DROP|CREATE) TABLE)|INSERT INTO)/.freeze
+        SQL_PATTERN = /(?:DROP|CREATE|(?:UN)?LOCK) TABLE|INSERT INTO/.freeze
 
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
-          url = dump_url
-          res = Browser.get(url)
+          head_res = browser.forge_request(dump_url, target.head_or_get_request_params).run
 
-          return unless res.code == 200 && res.body =~ SQL_PATTERN
+          return unless head_res.code == 200
+
+          return unless Browser.get(dump_url, headers: { 'Range' => 'bytes=0-3000' }).body =~ SQL_PATTERN
 
           Model::UploadSQLDump.new(
-            url,
+            dump_url,
             confidence: 100,
             found_by: DIRECT_ACCESS
           )
         end
 
         def dump_url
-          target.url('wp-content/uploads/dump.sql')
+          @dump_url ||= target.url('wp-content/uploads/dump.sql')
         end
       end
     end

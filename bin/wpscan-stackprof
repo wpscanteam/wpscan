@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'stackprof' # https://github.com/tmm1/stackprof
+require 'wpscan'
+
+# The object mode produces a segfault currently: https://github.com/jfelchner/ruby-progressbar/issues/153
+# StackProf.run(mode: :object, out: '/tmp/stackprof-object.dump') do
+# StackProf.run(mode: :wall, out: '/tmp/stackprof-wall.dump') do
+StackProf.run(mode: :cpu, out: '/tmp/stackprof-cpu.dump', interval: 500) do
+  # Couldn't we just load the ./wpscan here ?
+  # require_relative 'wpscan' doesn't work
+  WPScan::Scan.new do |s|
+    s.controllers <<
+      WPScan::Controller::CustomDirectories.new <<
+      WPScan::Controller::InterestingFindings.new <<
+      WPScan::Controller::WpVersion.new <<
+      WPScan::Controller::MainTheme.new <<
+      WPScan::Controller::Enumeration.new <<
+      WPScan::Controller::PasswordAttack.new <<
+      WPScan::Controller::Aliases.new
+
+    s.run
+  end
+end

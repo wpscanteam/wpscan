@@ -9,7 +9,7 @@ module WPScan
         def aggressive(_opts = {})
           path = 'wp-content/uploads/tmm_db_migrate/tmm_db_migrate.zip'
           url  = target.url(path)
-          res  = Browser.get(url)
+          res  = browser.forge_request(url, target.head_or_get_request_params).run
 
           return unless res.code == 200 && res.headers['Content-Type'] =~ %r{\Aapplication/zip}i
 

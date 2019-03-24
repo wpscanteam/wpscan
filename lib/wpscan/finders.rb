@@ -41,9 +41,6 @@ module WPScan
         #
         # @yield [ Typhoeus::Response, String ]
         def enumerate(urls, opts = {})
-          determine_request_params(urls, opts)
-          # determine_valid_response_codes(opts)
-
           create_progress_bar(opts.merge(total: urls.size))
 
           urls.each do |url, slug|
@@ -61,6 +58,11 @@ module WPScan
           hydra.run
         end
 
+        # @return [ Hash ]
+        def request_params
+          @request_params ||= target.head_or_get_request_params.merge(cache_ttl: 0)
+        end
+
         # @param [ Typhoeus::Response ] res
         # @param [ Regexp,nil ] exclude_content
         #
@@ -73,7 +75,9 @@ module WPScan
 
           # Perform a full get to check if homepage or custom 404
           if res.code == 200
-            full_res = Browser.get(res.effective_url, cache_ttl: 0)
+            # The cache is not disabled to avoid additional request/s when checking
+            # for directory listing
+            full_res = Browser.get(res.effective_url)
 
             return false if target.homepage_or_404?(full_res) ||
                             exclude_content && full_res.body.match(exclude_content)
@@ -82,23 +86,6 @@ module WPScan
           true
         end
         # rubocop:enable Metrics/PerceivedComplexity
-
-        # @return [ Hash ]
-        def request_params
-          @request_params ||= { cache_ttl: 0 }
-        end
-
-        # @param [ Hash ] urls
-        # @param [ Hash ] opts
-        def determine_request_params(urls, _opts)
-          head_res = Browser.head(urls.first[0], cache_ttl: 0)
-
-          @request_params = if head_res.code == 405
-                              { method: :get, maxfilesize: 1, cache_ttl: 0 }
-                            else
-                              { method: :head, cache_ttl: 0 }
-                            end
-        end
 
         # @return [ Array<Integer> ]
         def valid_response_codes
