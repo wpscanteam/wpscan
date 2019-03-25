@@ -119,9 +119,7 @@ module WPScan
         return @readme_url unless @readme_url.nil?
 
         READMES.each do |path|
-          if Browser.instance.forge_request(url(path), blog.head_or_get_params).run.code == 200
-            return @readme_url = url(path)
-          end
+          return @readme_url = url(path) if Browser.forge_request(url(path), blog.head_or_get_params).run.code == 200
         end
 
         @readme_url = false
@@ -134,9 +132,7 @@ module WPScan
         return @changelog_url unless @changelog_url.nil?
 
         CHANGELOGS.each do |path|
-          if Browser.instance.forge_request(url(path), blog.head_or_get_params).run.code == 200
-            return @changelog_url = url(path)
-          end
+          return @changelog_url = url(path) if Browser.forge_request(url(path), blog.head_or_get_params).run.code == 200
         end
 
         @changelog_url = false
