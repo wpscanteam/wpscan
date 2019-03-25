@@ -112,6 +112,7 @@ describe WPScan::Model::WpItem do
     end
   end
 
+  # Guess all the below should be in the theme/plugin specs
   describe '#readme_url' do
     xit
   end
@@ -125,6 +126,10 @@ describe WPScan::Model::WpItem do
   end
 
   describe '#error_log?' do
+    xit
+  end
+
+  describe '#head_and_get' do
     xit
   end
 end

@@ -9,6 +9,10 @@ module WPScan
         super(slug, blog, opts)
 
         @uri = Addressable::URI.parse(blog.url("wp-content/plugins/#{slug}/"))
+
+        # To be used by #head_and_get
+        # If custom wp-content, it will be replaced by blog#url
+        @path_from_blog = "wp-content/plugins/#{slug}/"
       end
 
       # @return [ JSON ]

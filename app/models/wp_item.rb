@@ -12,9 +12,9 @@ module WPScan
       READMES    = %w[readme.txt README.txt README.md readme.md Readme.txt].freeze
       CHANGELOGS = %w[changelog.txt CHANGELOG.md changelog.md].freeze
 
-      attr_reader :uri, :slug, :detection_opts, :version_detection_opts, :blog, :db_data
+      attr_reader :uri, :slug, :detection_opts, :version_detection_opts, :blog, :path_from_blog, :db_data
 
-      delegate :homepage_res, :xpath_pattern_from_page, :in_scope_urls, :head_and_get, to: :blog
+      delegate :homepage_res, :xpath_pattern_from_page, :in_scope_urls, to: :blog
 
       # @param [ String ] slug The plugin/theme slug
       # @param [ Target ] blog The targeted blog
@@ -119,7 +119,9 @@ module WPScan
         return @readme_url unless @readme_url.nil?
 
         READMES.each do |path|
-          return @readme_url = url(path) if Browser.forge_request(url(path), blog.head_or_get_params).run.code == 200
+          t_url = url(path)
+
+          return @readme_url = t_url if Browser.forge_request(t_url, blog.head_or_get_params).run.code == 200
         end
 
         @readme_url = false
@@ -132,7 +134,9 @@ module WPScan
         return @changelog_url unless @changelog_url.nil?
 
         CHANGELOGS.each do |path|
-          return @changelog_url = url(path) if Browser.forge_request(url(path), blog.head_or_get_params).run.code == 200
+          t_url = url(path)
+
+          return @changelog_url = t_url if Browser.forge_request(t_url, blog.head_or_get_params).run.code == 200
         end
 
         @changelog_url = false
@@ -156,6 +160,26 @@ module WPScan
         return if detection_opts[:mode] == :passive
 
         super(path, params)
+      end
+
+      # See CMSScanner::Target#head_and_get
+      #
+      # This is used by the error_log? above in the super()
+      # to have the correct path (ie readme.txt checked from the plugin/theme location
+      # and not from the blog root). Could also be used in finders
+      #
+      # @param [ String ] path
+      # @param [ Array<String> ] codes
+      # @param [ Hash ] params The requests params
+      # @option params [ Hash ] :head Request params for the HEAD
+      # @option params [ hash ] :get Request params for the GET
+      #
+      # @return [ Typhoeus::Response ]
+      def head_and_get(path, codes = [200], params = {})
+        final_path = +@path_from_blog
+        final_path << URI.encode(path) unless path.nil?
+
+        blog.head_and_get(final_path, codes, params)
       end
     end
   end

@@ -14,6 +14,10 @@ module WPScan
         @uri       = Addressable::URI.parse(blog.url("wp-content/themes/#{slug}/"))
         @style_url = opts[:style_url] || url('style.css')
 
+        # To be used by #head_and_get
+        # If custom wp-content, it will be replaced by blog#url
+        @path_from_blog = "wp-content/themes/#{slug}/"
+
         parse_style
       end
 
