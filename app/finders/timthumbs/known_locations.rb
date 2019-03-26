@@ -7,7 +7,12 @@ module WPScan
       # Note: A vulnerable version, 2.8.13 can be found here:
       # https://github.com/GabrielGil/TimThumb/blob/980c3d6a823477761570475e8b83d3e9fcd2d7ae/timthumb.php
       class KnownLocations < CMSScanner::Finders::Finder
-        include Finders::Finder::Enumerator
+        include CMSScanner::Finders::Finder::Enumerator
+
+        # @return [ Array<Integer> ]
+        def valid_response_codes
+          @valid_response_codes ||= [400]
+        end
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list Mandatory
@@ -16,21 +21,13 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(target_urls(opts), opts) do |res|
+          enumerate(target_urls(opts), opts.merge(check_full_response: 400)) do |res|
+            next unless res.body =~ /no image specified/i
+
             found << Model::Timthumb.new(res.request.url, opts.merge(found_by: found_by, confidence: 100))
           end
 
           found
-        end
-
-        # @param [ Typhoeus::Response ] res
-        # @param [ Regexp, nil ] exclude_content
-        #
-        # @return [ Boolean ]
-        def valid_response?(res, _exclude_content = nil)
-          return false unless res.code == 400
-
-          Browser.get(res.effective_url).body =~ /no image specified/i ? true : false
         end
 
         # @param [ Hash ] opts

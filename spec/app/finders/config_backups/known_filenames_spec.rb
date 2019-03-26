@@ -10,7 +10,7 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
   describe '#aggressive' do
     before do
       expect(target).to receive(:sub_dir).at_least(1).and_return(false)
-      expect(target).to receive(:head_or_get_request_params).and_return(method: :head)
+      expect(target).to receive(:head_or_get_params).and_return(method: :head)
 
       finder.potential_urls(opts).each_key do |url|
         stub_request(:head, url).to_return(status: 404)
@@ -30,8 +30,10 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
       before do
         found_files.each do |file|
           stub_request(:head, "#{url}#{file}").to_return(status: 200)
-          stub_request(:get, "#{url}#{file}").to_return(body: config_backup)
+          stub_request(:get, "#{url}#{file}").to_return(status: 200, body: config_backup)
         end
+
+        expect(target).to receive(:homepage_or_404?).twice.and_return(false)
       end
 
       it 'returns the expected Array<ConfigBackup>' do
@@ -39,6 +41,7 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
 
         found_files.each do |file|
           url = "#{target.url}#{file}"
+
           expected << WPScan::Model::ConfigBackup.new(
             url,
             confidence: 100,

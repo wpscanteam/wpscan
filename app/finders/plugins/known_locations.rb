@@ -5,7 +5,12 @@ module WPScan
     module Plugins
       # Known Locations Plugins Finder
       class KnownLocations < CMSScanner::Finders::Finder
-        include Finders::Finder::Enumerator
+        include CMSScanner::Finders::Finder::Enumerator
+
+        # @return [ Array<Integer> ]
+        def valid_response_codes
+          @valid_response_codes ||= [200, 401, 403, 301]
+        end
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
@@ -14,7 +19,7 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(target_urls(opts), opts) do |_res, slug|
+          enumerate(target_urls(opts), opts.merge(check_full_response: 200)) do |_res, slug|
             found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
 

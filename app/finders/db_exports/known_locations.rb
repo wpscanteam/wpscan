@@ -6,7 +6,7 @@ module WPScan
       # DB Exports finder
       # See https://github.com/wpscanteam/wpscan-v3/issues/62
       class KnownLocations < CMSScanner::Finders::Finder
-        include Finders::Finder::Enumerator
+        include CMSScanner::Finders::Finder::Enumerator
 
         SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE) TABLE|INSERT INTO/.freeze
 
@@ -18,20 +18,21 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(potential_urls(opts), opts) do |res|
+          enumerate(potential_urls(opts), opts.merge(check_full_response: 200)) do |res|
+            if res.effective_url.end_with?('.zip')
+              next unless res.headers['Content-Type'] =~ %r{\Aapplication/zip}i
+            else
+              next unless res.body =~ SQL_PATTERN
+            end
+
             found << Model::DbExport.new(res.request.url, found_by: DIRECT_ACCESS, confidence: 100)
           end
 
           found
         end
 
-        def valid_response?(res, _exclude_content = nil)
-          return false unless res.code == 200
-
-          return true if res.effective_url.end_with?('.zip') &&
-                         res.headers['Content-Type'] =~ %r{\Aapplication/zip}i
-
-          Browser.get(res.effective_url, headers: { 'Range' => 'bytes=0-3000' }).body =~ SQL_PATTERN ? true : false
+        def full_request_params
+          @full_request_params ||= { headers: { 'Range' => 'bytes=0-3000' } }
         end
 
         # @param [ Hash ] opts

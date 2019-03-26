@@ -27,7 +27,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
   describe '#aggressive' do
     before do
       expect(target).to receive(:sub_dir).at_least(1).and_return(false)
-      expect(target).to receive(:head_or_get_request_params).and_return(method: :head)
+      expect(target).to receive(:head_or_get_params).and_return(method: :head)
 
       finder.potential_urls(opts).each_key do |url|
         stub_request(:head, url).to_return(status: 404)
@@ -56,6 +56,8 @@ describe WPScan::Finders::DbExports::KnownLocations do
             .with(headers: { 'Range' => 'bytes=0-3000' })
             .to_return(body: db_export)
         end
+
+        expect(target).to receive(:homepage_or_404?).twice.and_return(false)
       end
 
       it 'returns the expected Array<DbExport>' do
