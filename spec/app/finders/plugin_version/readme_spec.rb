@@ -24,16 +24,22 @@ describe WPScan::Finders::PluginVersion::Readme do
   end
 
   describe '#aggressive' do
-    before { expect(target).to receive(:content_dir).and_return('wp-content') }
+    before do
+      expect(target).to receive(:content_dir).and_return('wp-content')
+
+      allow(target).to receive(:head_or_get_params).and_return(method: :head)
+
+      stub_request(:head, /.*/).to_return(status: 404)
+      stub_request(:head, readme_url).to_return(status: 200)
+    end
+
+    let(:readme_url) { plugin.url(WPScan::Model::WpItem::READMES.sample) }
 
     after do
-      stub_request(:get, /.*/).to_return(status: 404)
       stub_request(:get, readme_url).to_return(body: File.read(fixtures.join(@file)))
 
       expect(finder.aggressive).to eql @expected
     end
-
-    let(:readme_url) { plugin.url(WPScan::Model::WpItem::READMES.sample) }
 
     context 'when no version' do
       it 'returns nil' do

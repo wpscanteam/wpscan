@@ -9,9 +9,10 @@ module WPScan
         def aggressive(_opts = {})
           found_by_msg = 'Readme - %s (Aggressive Detection)'
 
+          # The target(plugin)#readme_url can't be used directly here
+          # as if the --detection-mode is passive, it will always return nil
           Model::WpItem::READMES.each do |file|
-            url = target.url(file)
-            res = Browser.get(url)
+            res = target.head_and_get(file)
 
             next unless res.code == 200 && !(numbers = version_numbers(res.body)).empty?
 
@@ -20,10 +21,11 @@ module WPScan
                 e[0],
                 found_by: format(found_by_msg, e[1]),
                 confidence: e[2],
-                interesting_entries: [url]
+                interesting_entries: [res.effective_url]
               )
             end
           end
+
           nil
         end
 
