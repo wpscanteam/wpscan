@@ -9,21 +9,16 @@ module WPScan
 
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
-          head_res = browser.forge_request(dump_url, target.head_or_get_request_params).run
+          path = 'wp-content/uploads/dump.sql'
+          res  = target.head_and_get(path, [200], get: { headers: { 'Range' => 'bytes=0-3000' } })
 
-          return unless head_res.code == 200
-
-          return unless Browser.get(dump_url, headers: { 'Range' => 'bytes=0-3000' }).body =~ SQL_PATTERN
+          return unless res.body =~ SQL_PATTERN
 
           Model::UploadSQLDump.new(
-            dump_url,
+            target.url(path),
             confidence: 100,
             found_by: DIRECT_ACCESS
           )
-        end
-
-        def dump_url
-          @dump_url ||= target.url('wp-content/uploads/dump.sql')
         end
       end
     end

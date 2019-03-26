@@ -7,13 +7,12 @@ module WPScan
       class DuplicatorInstallerLog < CMSScanner::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
-          url = target.url('installer-log.txt')
-          res = Browser.get(url)
+          path = 'installer-log.txt'
 
-          return unless res.body =~ /DUPLICATOR INSTALL-LOG/
+          return unless target.head_and_get(path).body =~ /DUPLICATOR INSTALL-LOG/
 
           Model::DuplicatorInstallerLog.new(
-            url,
+            target.url(path),
             confidence: 100,
             found_by: DIRECT_ACCESS,
             references: { url: 'https://www.exploit-db.com/ghdb/3981/' }

@@ -8,13 +8,12 @@ module WPScan
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'wp-content/backup-db/'
-          url  = target.url(path)
-          res  = Browser.get(url)
+          res  = target.head_and_get(path, [200, 403])
 
           return unless [200, 403].include?(res.code) && !target.homepage_or_404?(res)
 
           Model::BackupDB.new(
-            url,
+            target.url(path),
             confidence: 70,
             found_by: DIRECT_ACCESS,
             interesting_entries: target.directory_listing_entries(path),

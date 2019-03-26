@@ -9,9 +9,10 @@ describe WPScan::Finders::InterestingFindings::Readme do
   describe '#aggressive' do
     before do
       expect(target).to receive(:sub_dir).at_least(1).and_return(false)
+      expect(target).to receive(:head_or_get_params).at_least(1).and_return(method: :head)
 
       finder.potential_files.each do |file|
-        stub_request(:get, target.url(file)).to_return(status: 404)
+        stub_request(:head, target.url(file)).to_return(status: 404)
       end
     end
 
@@ -24,7 +25,10 @@ describe WPScan::Finders::InterestingFindings::Readme do
       let(:file)   { finder.potential_files.sample }
       let(:readme) { File.read(fixtures.join('readme-3.9.2.html')) }
 
-      before { stub_request(:get, target.url(file)).to_return(body: readme) }
+      before do
+        stub_request(:head, target.url(file))
+        stub_request(:get, target.url(file)).to_return(body: readme)
+      end
 
       it 'returns the expected InterestingFinding' do
         expected = WPScan::Model::Readme.new(

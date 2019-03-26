@@ -7,14 +7,14 @@ module WPScan
       class Readme < CMSScanner::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
-          potential_files.each do |file|
-            url = target.url(file)
-            res = Browser.get(url)
+          potential_files.each do |path|
+            res = target.head_and_get(path)
 
-            if res.code == 200 && res.body =~ /wordpress/i
-              return Model::Readme.new(url, confidence: 100, found_by: DIRECT_ACCESS)
-            end
+            next unless res.code == 200 && res.body =~ /wordpress/i
+
+            return Model::Readme.new(target.url(path), confidence: 100, found_by: DIRECT_ACCESS)
           end
+
           nil
         end
 

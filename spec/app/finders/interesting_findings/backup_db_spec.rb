@@ -8,31 +8,38 @@ describe WPScan::Finders::InterestingFindings::BackupDB do
   let(:wp_content) { 'wp-content' }
   let(:dir_url)    { target.url("#{wp_content}/backup-db/") }
 
-  before { expect(target).to receive(:content_dir).at_least(1).and_return(wp_content) }
+  before do
+    expect(target).to receive(:content_dir).at_least(1).and_return(wp_content)
+    expect(target).to receive(:head_or_get_params).and_return(method: :head)
+  end
 
   describe '#aggressive' do
-    before { stub_request(:get, dir_url).to_return(status: status, body: body) }
-
-    let(:body) { '' }
-
     context 'when not a 200 or 403' do
-      let(:status) { 404 }
+      it 'returns nil' do
+        stub_request(:head, dir_url).to_return(status: 404)
 
-      its(:aggressive) { should be_nil }
+        expect(finder.aggressive).to eql nil
+      end
     end
 
     context 'when 200 and matching the homepage' do
-      before { expect(target).to receive(:homepage_or_404?).and_return(true) }
+      it 'returns nil' do
+        stub_request(:head, dir_url)
+        stub_request(:get, dir_url)
 
-      let(:status) { 200 }
+        expect(target).to receive(:homepage_or_404?).and_return(true)
 
-      its(:aggressive) { should be_nil }
+        expect(finder.aggressive).to eql nil
+      end
     end
 
     context 'when 200 or 403' do
-      before { expect(target).to receive(:homepage_or_404?).and_return(false) }
+      before do
+        stub_request(:head, dir_url)
+        stub_request(:get, dir_url).and_return(body: body)
 
-      let(:status) { 200 }
+        expect(target).to receive(:homepage_or_404?).and_return(false)
+      end
 
       after do
         found = finder.aggressive
@@ -47,6 +54,8 @@ describe WPScan::Finders::InterestingFindings::BackupDB do
       end
 
       context 'when no directory listing' do
+        let(:body) { '' }
+
         it 'returns an empty interesting_findings attribute' do
           @expected_entries = []
         end

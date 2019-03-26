@@ -7,13 +7,13 @@ module WPScan
       class EmergencyPwdResetScript < CMSScanner::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
-          url  = target.url('/emergency.php')
-          res  = Browser.get(url)
+          path = 'emergency.php'
+          res  = target.head_and_get(path)
 
           return unless res.code == 200 && !target.homepage_or_404?(res)
 
           Model::EmergencyPwdResetScript.new(
-            url,
+            target.url(path),
             confidence: res.body =~ /password/i ? 100 : 40,
             found_by: DIRECT_ACCESS,
             references: {
