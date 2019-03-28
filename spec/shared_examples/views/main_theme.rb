@@ -22,7 +22,7 @@ shared_examples 'App::Views::MainTheme' do
       before do
         expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
 
-        # Stub all requests to 200, to detect a readme and changelog.
+        # Stub all requests to 200, to detect the readme.
         # Detection of the error_log will fail as the empty body won't match the patterns
         stub_request(:head, /.*/)
         stub_request(:get, /.*/)

@@ -9,8 +9,7 @@ module WPScan
       include CMSScanner::Target::Platform::PHP
       include CMSScanner::Target::Server::Generic
 
-      READMES    = %w[readme.txt README.txt README.md readme.md Readme.txt].freeze
-      CHANGELOGS = %w[changelog.txt CHANGELOG.md changelog.md].freeze
+      READMES = %w[readme.txt README.txt README.md readme.md Readme.txt].freeze
 
       attr_reader :uri, :slug, :detection_opts, :version_detection_opts, :blog, :path_from_blog, :db_data
 
@@ -125,21 +124,6 @@ module WPScan
         end
 
         @readme_url = false
-      end
-
-      # @return [ String, false ] The changelog url if found, false otherwise
-      def changelog_url
-        return if detection_opts[:mode] == :passive
-
-        return @changelog_url unless @changelog_url.nil?
-
-        CHANGELOGS.each do |path|
-          t_url = url(path)
-
-          return @changelog_url = t_url if Browser.forge_request(t_url, blog.head_or_get_params).run.code == 200
-        end
-
-        @changelog_url = false
       end
 
       # @param [ String ] path

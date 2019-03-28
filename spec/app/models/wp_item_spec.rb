@@ -117,10 +117,6 @@ describe WPScan::Model::WpItem do
     xit
   end
 
-  describe '#changelog_url' do
-    xit
-  end
-
   describe '#directory_listing?' do
     xit
   end

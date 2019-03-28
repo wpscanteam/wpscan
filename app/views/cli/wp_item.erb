@@ -8,9 +8,6 @@
 <% if @wp_item.readme_url -%>
  | Readme: <%= @wp_item.readme_url %>
 <% end -%>
-<% if @wp_item.changelog_url -%>
- | Changelog: <%= @wp_item.changelog_url %>
-<% end -%>
 <% if @wp_item.latest_version && @wp_item.outdated? -%>
  | <%= warning_icon %> The version is out of date, the latest version is <%= @wp_item.latest_version %>
 <% end -%>
