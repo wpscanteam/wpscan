@@ -283,6 +283,12 @@ plugins:
       - assets/js/jquery.lazyloadxt.srcset.min.js
       - assets/js/jquery.lazyloadxt.extend.js
       version: true
+  a4-barcode-generator:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wpbcu-barcode-generator.pot
+      pattern: !ruby/regexp /abel Sheets for Wordpress & WooCommerce (?<v>\d+\.[\.\d]+)/i
+      version: true
   abc-notation:
     VersionInFilename:
       class: Xpath
@@ -1373,6 +1379,16 @@ plugins:
       - stylesheets/app.css
       - js/app.js
       version: true
+  animate-blocks:
+    QueryParameter:
+      files:
+      - dist/aos-init.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/animate-blocks.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Animate Blocks (?<v>\d+\.[\.\d]+)/i'
+      version: true
   animate-everything:
     QueryParameter:
       files:
@@ -2019,6 +2035,12 @@ plugins:
     QueryParameter:
       files:
       - assets/js/autotrack.js
+      version: true
+  awesome-instagram-feed:
+    QueryParameter:
+      files:
+      - public/css/awesome-instagram-feed-public.css
+      - public/js/awesome-instagram-feed-public.js
       version: true
   awesome-instant-search:
     TranslationFile:
@@ -4334,6 +4356,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  cf7-shortcode-finder:
+    QueryParameter:
+      files:
+      - public/css/contact-form-shortcode-finder-public.css
+      - public/js/contact-form-shortcode-finder-public.js
+      version: true
   cf7-utm-tracking:
     QueryParameter:
       files:
@@ -5556,6 +5584,11 @@ plugins:
     QueryParameter:
       files:
       - assets/css/xgenious-crypto-live-custom.css
+      version: true
+  crypto-prices:
+    QueryParameter:
+      files:
+      - public/main.css
       version: true
   crypto-ticker:
     QueryParameter:
@@ -9120,6 +9153,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  gosign-header-image-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   gosign-masonry-post-block:
     ComposerFile:
       class: ConfigParser
@@ -9610,6 +9649,7 @@ plugins:
       - dist/css/blueimp-gallery.css
       - dist/gt3pg.css
       - dist/gt3pg.js
+      - dist/frontend.css
       version: true
   guardian-news-headlines:
     QueryParameter:
@@ -9995,6 +10035,11 @@ plugins:
       files:
       - assests/css/ht-instagramfeed.css
       - assests/css/font-awesome.min.css
+      version: true
+  ht-newsletter-for-elementor:
+    QueryParameter:
+      files:
+      - assests/css/ht-mailchimpform.css
       version: true
   ht-team-member:
     QueryParameter:
@@ -11273,6 +11318,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  kenzap-stats:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   kenzap-steps:
     ComposerFile:
       class: ConfigParser
@@ -11970,6 +12021,12 @@ plugins:
       files:
       - public/css/pda-wp-magic-link-public.css
       - public/js/pda-wp-magic-link-public.js
+      version: true
+  link-widget-title:
+    QueryParameter:
+      files:
+      - public/css/link-widget-title-public.css
+      - public/js/link-widget-title-public.js
       version: true
   link2wiki:
     JavascriptVar:
@@ -13227,6 +13284,12 @@ plugins:
       class: BodyPattern
       path: languages/mf2-feed.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: MF2 Feed (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  mfloormap:
+    TranslationFile:
+      class: BodyPattern
+      path: Lang/mFloorMap-en_US.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: mFloorMap (?<v>\d+\.[\.\d]+)/i'
       version: true
   mg-wc-stripe:
     TranslationFile:
@@ -16123,11 +16186,29 @@ plugins:
       xpath: //meta[@name="generator"]/@content[contains(., "Press Events")]
       version: true
       pattern: !ruby/regexp /Press Events (?<v>\d+\.[\.\d]+)/i
+  press-release:
+    QueryParameter:
+      files:
+      - inc/frontend/css/prwirepro-press_release_editor-frontend.css
+      - inc/frontend/js/prwirepro-press_release_editor-frontend.js
+      version: true
   press-release-distribution:
     QueryParameter:
       files:
       - inc/frontend/css/prwirepro-press_release_distribution-frontend.css
       - inc/frontend/js/prwirepro-press_release_distribution-frontend.js
+      version: true
+  press-release-newsroom:
+    QueryParameter:
+      files:
+      - inc/frontend/css/prwirepro-press_release_newsroom-frontend.css
+      - inc/frontend/js/prwirepro-press_release_newsroom-frontend.js
+      version: true
+  press-release-writer:
+    QueryParameter:
+      files:
+      - inc/frontend/css/prwirepro-press_release_writer-frontend.css
+      - inc/frontend/js/prwirepro-press_release_writer-frontend.js
       version: true
   press-tube:
     TranslationFile:
@@ -16800,6 +16881,14 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  radar-shortcodes:
+    QueryParameter:
+      files:
+      - public/css/radar-shortcodes.css
+      - public/css/hljs/atom-one-dark.css
+      - public/js/radar-shortcodes.js
+      - public/js/radar-shortcodes-plugins.js
       version: true
   radio-buttons-for-taxonomies:
     TranslationFile:
@@ -18903,6 +18992,11 @@ plugins:
       files:
       - simple-events-calendar.css
       version: true
+  simple-exit-intent-popup:
+    QueryParameter:
+      files:
+      - public/js/seip-public.js
+      version: true
   simple-expires:
     TranslationFile:
       class: BodyPattern
@@ -20901,6 +20995,11 @@ plugins:
       - assets/css/style.css
       - assets/js/owl.carousel.min.js
       version: true
+  teampresslite:
+    QueryParameter:
+      files:
+      - js/teampress.js
+      version: true
   teams-slider-shortcode-pack:
     QueryParameter:
       files:
@@ -22222,6 +22321,12 @@ plugins:
     ConfigParser:
       path: tmp/cross-poster.json
       key: version
+      version: true
+  url-language-switcher:
+    QueryParameter:
+      files:
+      - global/css/url-lang-switcher-global.css
+      - global/js/url-lang-switcher-global.js
       version: true
   used-media-identifier:
     QueryParameter:
@@ -23670,6 +23775,12 @@ plugins:
       class: BodyPattern
       path: languages/woo-csv-price-fa_IR.po
       pattern: !ruby/regexp /msgid "Version (?<v>\d+\.[\.\d]+)/i
+      version: true
+  woo-custom-email-blocks:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woo-custom-email-blocks.pot
+      pattern: !ruby/regexp '/ersion: WooCommerce Custom Email Blocks (?<v>\d+\.[\.\d]+)/i'
       version: true
   woo-delivery-scheduler:
     QueryParameter:

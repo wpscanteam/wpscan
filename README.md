@@ -1,9 +1,24 @@
-![alt text](https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png "WPScan - WordPress Security Scanner")
+<p align="center">
+  <a href="https://wpscan.org/">
+    <img src="https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png" alt="WPScan logo">
+  </a>
+</p>
 
-[![Gem Version](https://badge.fury.io/rb/wpscan.svg)](https://badge.fury.io/rb/wpscan)
-[![Build Status](https://travis-ci.org/wpscanteam/wpscan.svg?branch=master)](https://travis-ci.org/wpscanteam/wpscan)
-[![Code Climate](https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg)](https://codeclimate.com/github/wpscanteam/wpscan)
-[![Patreon Donate](https://img.shields.io/badge/patreon-donate-green.svg)](https://www.patreon.com/wpscan)
+<h3 align="center">WPScan</h3>
+
+<p align="center">
+  WordPress Vulnerability Scanner
+  <br>
+  <br>
+  <a href="https://wpscan.org/" title="homepage" target="_blank">Homepage</a> - <a href="https://wpscan.io/" title="wpscan.io" target="_blank">WPScan.io</a> - <a href="https://wpvulndb.com/" title="vulnerability database" target="_blank">Vulnerability Database</a> - <a href="https://wordpress.org/plugins/wpscan/" title="wordpress plugin" target="_blank">WordPress Plugin</a>
+</p>
+
+<p align="center">
+  <a href="https://badge.fury.io/rb/wpscan" target="_blank"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
+  <a href="https://travis-ci.org/wpscanteam/wpscan" target="_blank"><img src="https://travis-ci.org/wpscanteam/wpscan.svg?branch=master"></a>
+  <a href="https://codeclimate.com/github/wpscanteam/wpscann" target="_blank"><img src="https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
+  <a href="https://www.patreon.com/wpscan" target="_blank"><img src="https://img.shields.io/badge/patreon-donate-green.svg"></a>
+</p>
 
 # INSTALL
 
@@ -109,14 +124,6 @@ wpscan --url https://target.tld/ --enumerate u1-100
 ```
 
 ** replace u1-100 with a range of your choice.
-
-# PROJECT HOME
-
-[https://wpscan.org](https://wpscan.org)
-
-# VULNERABILITY DATABASE
-
-[https://wpvulndb.com](https://wpvulndb.com)
 
 # LICENSE
 
