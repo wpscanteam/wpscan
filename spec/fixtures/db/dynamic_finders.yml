@@ -157,6 +157,12 @@ plugins:
       - public/css/jquery.w3w-autosuggest-plugin.min.css
       - public/js/jquery.w3w-autosuggest-plugin.bundle.min.js
       version: true
+  300form:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^v(?<v>\d+\.[\.\da-z]+)(?!.*v\d+\.[\.\da-z]+)/mi
+      version: true
   360-image:
     ComposerFile:
       class: ConfigParser
@@ -3602,6 +3608,12 @@ plugins:
       - public/css/bookwize-theme-default.css
       - public/js/bookwize-form-public.js
       version: true
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.txt
+      pattern: !ruby/regexp /^\#\# (?<v>\d+\.[\.\d]+) \- [\d\-]+(?!.*\#\# \d+\.[\.\d]+
+        \- [\d\-]+)/mi
+      version: true
   bookwize-integrated-booking-engine:
     QueryParameter:
       files:
@@ -4922,6 +4934,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  cf7-repeatable-fields:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
+      version: true
   cf7-sendinblue-opt-in-checkbox:
     ChangeLog:
       class: BodyPattern
@@ -5149,6 +5167,12 @@ plugins:
       class: BodyPattern
       path: languages/cielo-woocommerce.pot
       pattern: !ruby/regexp /ielo WooCommerce \- Solu[^o]+o Webservice (?<v>\d+\.[\.\d]+)/i
+      version: true
+  cip-dtac-for-give:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   civicrm-admin-utilities:
     TranslationFile:
@@ -5648,6 +5672,12 @@ plugins:
       path: languages/comment-form-message.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ Comment Form Message (?<v>\d+\.[\.\d]+)/i
       version: true
+  comment-mail:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# v(?<v>\d+)/i
+      version: true
   comment-popularity:
     QueryParameter:
       files:
@@ -5732,6 +5762,11 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   community-watch:
     QueryParameter:
@@ -7069,6 +7104,12 @@ plugins:
       - assets/css/frontend.css
       - assets/js/frontend.js
       version: true
+  dobsondev-shortcodes:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /Tested up to Wordpress [\d\.]+ \((?<v>\d+\.[\.\d]+)\)/i
+      version: true
   dobsondev-weather:
     ChangeLog:
       class: BodyPattern
@@ -7774,6 +7815,12 @@ plugins:
       - public/js/dist/html2canvas.min.js
       - public/js/dist/html2canvas.svg.min.js
       version: true
+  echo-show-ids:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
+      version: true
   ecwid-widgets-avalanche:
     QueryParameter:
       files:
@@ -8081,6 +8128,12 @@ plugins:
       path: languages/email-address-encoder.pot
       pattern: !ruby/regexp /oject\-Id\-Version:\ Email Address Encoder (?<v>\d+\.[\.\d]+)/i
       version: true
+  email-download-link:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
+      version: true
   email-form-under-post:
     QueryParameter:
       files:
@@ -8100,6 +8153,12 @@ plugins:
       files:
       - css/public.css
       - js/public.js
+      version: true
+  email-posts-to-subscribers:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
       version: true
   email-shortcode:
     QueryParameter:
@@ -8525,6 +8584,11 @@ plugins:
       xpath: //meta[@name="generator"]/@content
       version: true
       pattern: !ruby/regexp /Event Espresso Version (?<v>[\d\.a-z]+\.L)/i
+    ChangeLog:
+      class: BodyPattern
+      path: change_log.txt
+      pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+\.L)/
+      version: true
   event-importer-for-meetup-and-the-events-calendar:
     TranslationFile:
       class: BodyPattern
@@ -10561,6 +10625,12 @@ plugins:
       - css/toolbar.css
       - js/scripts.js
       version: true
+  google-map-with-fancybox-popup:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
+      version: true
   google-maps-builder:
     QueryParameter:
       files:
@@ -11509,6 +11579,12 @@ plugins:
       path: cs-framework/languages/bn_BD.po
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Codestar Framework (?<v>\d+\.[\.\d]+)/i
       version: true
+  horizontal-scroll-google-picasa-images:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
+      version: true
   horizontal-widget-most-recent-viewed-posts:
     QueryParameter:
       files:
@@ -11862,6 +11938,12 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
+  iframe-popup:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
       version: true
   ifthengive:
     QueryParameter:
@@ -12452,6 +12534,12 @@ plugins:
       class: BodyPattern
       path: languages/wpinv-quotes-en_US.po
       pattern: !ruby/regexp /roject\-Id\-Version:\ Quotes for Invoicing (?<v>\d+\.[\.\d]+)/i
+      version: true
+  ip-address-checker:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^v(?<v>\d+\.[\.\da-z]+)(?!.*v\d+\.[\.\da-z]+)/mi
       version: true
   ip-blocker-wp:
     MetaTag:
@@ -13874,6 +13962,11 @@ plugins:
       - js/front-plugins.js
       - js/front.js
       version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
+      version: true
   live-composer-page-builder:
     Comment:
       pattern: !ruby/regexp /\/live\-composer\-page\-builder\/css\/ie\.css\?ver=(?<v>\d+\.[\.\d]+)/i
@@ -14785,6 +14878,12 @@ plugins:
       class: BodyPattern
       path: languages/marketplace-taxes.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Marketplace Taxes (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  marketpress-product-importer:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^(?<v>\d+\.[\.\d]+)(?!.*\d+\.[\.\d]+)/mi
       version: true
   masburti-flickr-gallery:
     TranslationFile:
@@ -17964,6 +18063,12 @@ plugins:
       - _css/pop-widget.css
       - _js/pop-widget.js
       version: true
+  popunder-popup:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
+      version: true
   popup-anything-on-click:
     QueryParameter:
       files:
@@ -18175,6 +18280,12 @@ plugins:
       files:
       - post-list-generator.css
       - next-page.js
+      version: true
+  post-notice:
+    ChangeLog:
+      class: BodyPattern
+      path: Changelog.txt
+      pattern: !ruby/regexp /^v(?<v>\d+\.[\.\da-z]+)(?!.*v\d+\.[\.\da-z]+)/mi
       version: true
   post-notif:
     QueryParameter:
@@ -18809,6 +18920,12 @@ plugins:
     QueryParameter:
       files:
       - public/css/proof-factor-wp-public.css
+      version: true
+  propel:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   propertyhive:
     QueryParameter:
@@ -19831,6 +19948,12 @@ plugins:
       files:
       - public/css/wpr-theme.css
       version: true
+  responsive-owl-carousel:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
+      version: true
   responsive-p5js-for-wp:
     QueryParameter:
       files:
@@ -20009,6 +20132,12 @@ plugins:
       files:
       - "/assets/css/style.css"
       - assets/css/style.min.css
+      version: true
+  resume-cv:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   resume-page:
     TranslationFile:
@@ -20974,6 +21103,11 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   seo-check:
     QueryParameter:
@@ -24313,6 +24447,12 @@ plugins:
       - front/style/hmtb_style.css
       - front/js/hmtb_script.js
       version: true
+  tiny-carousel-horizontal-slider-plus:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
+      version: true
   tiny-youtube-post-widget:
     QueryParameter:
       files:
@@ -27222,6 +27362,12 @@ plugins:
       - public/css/r_wev_search-public.css
       - public/js/r_wev_search-public.js
       version: true
+  woo-eftsecure-gateway:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
+      version: true
   woo-estimated-shipping-date:
     TranslationFile:
       class: BodyPattern
@@ -30024,6 +30170,12 @@ plugins:
       files:
       - style.css
       version: true
+  wp-linkmove:
+    ChangeLog:
+      class: BodyPattern
+      path: Changelog.txt
+      pattern: !ruby/regexp /^v(?<v>\d+\.[\.\da-z]+)(?!.*v\d+\.[\.\da-z]+)/mi
+      version: true
   wp-list-pages-by-custom-taxonomy:
     QueryParameter:
       files:
@@ -30578,6 +30730,12 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /\#\# v(?<v>\d+\.[\.\d]+)/i
       version: true
+  wp-profitshare-advertisers:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^(?<v>\d+\.[\.\d]+)(?!.*\d+\.[\.\d]+)/mi
+      version: true
   wp-property:
     QueryParameter:
       files:
@@ -30870,6 +31028,12 @@ plugins:
       - public/js/rs-team-public.js
       - public/js/owl.carousel.js
       - public/js/custom.js
+      version: true
+  wp-russian-horoscope:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   wp-saml-auth:
     TranslationFile:
