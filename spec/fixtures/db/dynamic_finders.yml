@@ -4567,6 +4567,12 @@ plugins:
       - public/css/catch-instagram-feed-gallery-widget-public.css
       - public/js/catch-instagram-feed-gallery-widget-public.js
       version: true
+  catch-scroll-progress-bar:
+    QueryParameter:
+      files:
+      - public/css/catch-scroll-progress-bar-public.css
+      - public/js/catch-scroll-progress-bar-public.js
+      version: true
   catch-web-tools:
     Comment:
       xpath: //comment()[contains(., "Catch Web Tools")]
@@ -6331,6 +6337,17 @@ plugins:
     QueryParameter:
       files:
       - public/main.css
+      version: true
+  crypto-qr-code-wp:
+    QueryParameter:
+      files:
+      - assets/css/style.css
+      - assets/js/script.js
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
       version: true
   crypto-ticker:
     QueryParameter:
@@ -8211,6 +8228,7 @@ plugins:
     QueryParameter:
       files:
       - public/js/enhanced-ajax-add-to-cart-wc-public.js
+      - public/js/enhanced-ajax-add-to-cart-wc.min.js
       version: true
   enhanced-catalog-images-for-woocommerce:
     QueryParameter:
@@ -8897,6 +8915,17 @@ plugins:
       files:
       - templates/default/css/style.min.css
       - js/wp-fb-social-stream.min.js
+      version: true
+  fakeblock:
+    QueryParameter:
+      files:
+      - assets/css/fkblk.min.css
+      - assets/js/fkblk.min.js
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /^v(?<v>\d+\.[\.\d]+)/i
       version: true
   fakerpress:
     ComposerFile:
@@ -9650,6 +9679,12 @@ plugins:
       files:
       - assets/css/frontend-form-print-pay.css
       - assets/js/form-pay.js
+      version: true
+  form-to-sheet:
+    QueryParameter:
+      files:
+      - public/css/form-to-sheet-public.css
+      - public/js/form-to-sheet-public.js
       version: true
   formarketer:
     QueryParameter:
@@ -10588,6 +10623,12 @@ plugins:
       key: version
       version: true
   gosign-masonry-post-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+  gosign-post-teaser-block:
     ComposerFile:
       class: ConfigParser
       path: package.json
@@ -11551,6 +11592,17 @@ plugins:
       files:
       - assests/css/ht-mailchimpform.css
       version: true
+  ht-portfolio:
+    QueryParameter:
+      files:
+      - assets/js/popper.min.js
+      version: true
+  ht-slider-for-elementor:
+    QueryParameter:
+      files:
+      - assests/css/animate.min.css
+      - assests/css/ht-slider-widgets.css
+      version: true
   ht-team-member:
     QueryParameter:
       files:
@@ -12248,6 +12300,12 @@ plugins:
       - public/js/ia-public.js
       - public/css/iasemantify-public.css
       - public/js/iasemantify-public.js
+      version: true
+  instant-css:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   instant-weekly-roundup:
     QueryParameter:
@@ -14601,6 +14659,12 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  mandabem:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/mandabem.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: Woocomerce Mandabem (?<v>\d+\.[\.\d]+)/i'
       version: true
   mango-contact-form:
     QueryParameter:
@@ -19374,6 +19438,12 @@ plugins:
       - assets/css/frontend.css
       - assets/js/frontend.js
       version: true
+  recent-posts-markdown:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   recent-posts-widget-designer:
     QueryParameter:
       files:
@@ -20262,6 +20332,17 @@ plugins:
       - public/assets/css/public.css
       - public/assets/js/public.js
       version: true
+  rsrpp:
+    QueryParameter:
+      files:
+      - public/css/rsrpp-public.css
+      - public/js/rsrpp-public.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/rsrpp-pl_PL.po
+      pattern: !ruby/regexp '/ion: Really Simple Related Posts Plugin (?<v>\d+\.[\.\d]+)/i'
+      version: true
   rss-antenna:
     QueryParameter:
       files:
@@ -20500,6 +20581,12 @@ plugins:
     QueryParameter:
       files:
       - api2pdf.js
+      version: true
+  say-it:
+    QueryParameter:
+      files:
+      - public/css/say-it-public.css
+      - public/js/say-it-public.js
       version: true
   sb-login:
     TranslationFile:
@@ -20743,6 +20830,12 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  section-block:
+    QueryParameter:
+      files:
+      - build/block.css
+      - build/background-position-events.min.js
       version: true
   secure-copy-content-protection:
     QueryParameter:
@@ -24876,6 +24969,58 @@ plugins:
       - assets/css/uix-slideshow.css
       - assets/js/uix-slideshow.js
       version: true
+  ulisting:
+    QueryParameter:
+      files:
+      - assets/js/frontend/bootstrap/bootstrap.min.js
+      - assets/js/select2.full.min.js
+      - assets/js/frontend/stm-listing.js
+      - assets/js/moment.min.js
+      - assets/js/js.cookie.js
+      - assets/js/Sortable.min.js
+      - assets/bootstrap-datepicker/js/bootstrap-datepicker.min.js
+      - assets/js/vue/vue.min.js
+      - assets/js/vue-tinymce-2/tinymce.min.js
+      - assets/js/vue-tinymce-2/vue-easy-tinymce.min.js
+      - assets/js/vue/vuedraggable.min.js
+      - assets/js/vue/vue2-datepicker.js
+      - assets/js/vue/vue-resource.min.js
+      - assets/js/vue/vuejs-paginate.js
+      - assets/js/vue/stm-listing-tab.js
+      - assets/js/frontend/stm-google-map.js
+      - assets/js/vue/vue-google-maps.js
+      - assets/js/vue/vue-ulist-dropdown.js
+      - assets/js/vue/vue-select2.js
+      - assets/js/vue/vue-range-slider.js
+      - assets/js/vue/v-timer.js
+      - assets/js/frontend/stm-search-form-advanced.js
+      - assets/js/frontend/field/search/stm-field-search.js
+      - assets/js/frontend/field/search/stm-field-checkbox.js
+      - assets/js/frontend/field/search/stm-field-proximity.js
+      - assets/js/frontend/field/search/stm-field-location.js
+      - assets/js/frontend/field/search/stm-field-range.js
+      - assets/js/frontend/field/search/stm-field-dropdown.js
+      - assets/js/frontend/field/search/stm-field-date.js
+      - assets/js/frontend/stm-search-form-type.js
+      - assets/js/frontend/stm-search-form-category.js
+      - assets/js/frontend/stm-listing-pagination.js
+      - assets/js/frontend/stm-listing-order.js
+      - assets/js/frontend/stm-listing-map.js
+      - assets/js/frontend/stm-column-switch.js
+      - assets/js/frontend/ulisting-inventory-list.js
+      - assets/js/frontend/ulisting-my-listing.js
+      - assets/js/frontend/stm-location.js
+      - assets/js/frontend/stm-file-dragdrop.js
+      - assets/js/frontend/stm-login.js
+      - assets/js/frontend/stm-register.js
+      - assets/js/frontend/stm-profile-edit.js
+      - assets/js/frontend/stm-form-listing.js
+      - assets/js/animated-scroll-to.js
+      - includes/lib/pricing-plan//assets/js/frontend/stm-pricing-plan.js
+      - includes/lib/pricing-plan//assets/js/frontend/user-plan-detail.js
+      - includes/lib/stripe//assets/js/stripe-card-component.js
+      - includes/lib/stripe//assets/js/stripe-my-card.js
+      version: true
   ulitmate-facebook-buttons:
     QueryParameter:
       files:
@@ -25508,6 +25653,12 @@ plugins:
       class: BodyPattern
       path: ChangeLog.md
       pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/
+      version: true
+  vbsso-lite:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
   vc-mailchimp:
     QueryParameter:
@@ -27648,6 +27799,12 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/i
+      version: true
+  woocommerce-admin:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woocommerce-admin.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WooCommerce Admin (?<v>\d+\.[\.\d]+)/i'
       version: true
   woocommerce-bcash:
     TranslationFile:
@@ -31371,6 +31528,13 @@ plugins:
       - assets/wpurp-public-forced.css
       - vendor/font-awesome/css/font-awesome.min.css
       - assets/wpurp-public.js
+      version: true
+  wp-unit-converter:
+    QueryParameter:
+      files:
+      - public/css/wp-unit-converter-public.css
+      - public/js/math.min.js
+      - public/js/wp-unit-converter-public.js
       version: true
   wp-upcoming-releases:
     TranslationFile:
