@@ -1,0 +1,76 @@
+## Changelog
+
+### 1.1.6
+* Dev - Added function for changing the breadcrumbs to the top of the banner
+
+### 1.1.5
+* Dev - Added in an option to set a title position
+* Dev - Fixed the add new banner css
+
+### 1.1.4
+* Dev - Added in an "image size" dropdown to the banner metabox panel so you can choose your image size for posts and page banners
+* Dev - Changed the Taxonomy banners to call a full image by default.
+* Dev - Making sure slick.min.js slider is present, this is usually when using LSX banners with a non LSX theme.
+* Dev - Added in a way to allow the "CMB" field vendor to be excluded.  `define( 'LSX_BANNER_DISABLE_CMB', true );`
+
+### 1.1.3
+* Dev - Changed the "Banner" field nonce on the taxonomy term edit pages.
+* Fix - Fixed the edit term "thumbnail" preview.
+* Fix - Fixed the missing placeholder image settings.
+* Dev - Added in integration for WP Forms
+
+### 1.1.2
+* Dev - Added in a template tag which returns if the current item is disabled - lsx_is_banner_disabled()
+
+### 1.1.1
+* Dev - Added compatibility with LSX Videos
+* Dev - Added compatibility with LSX Search
+* Dev - Set default banner background colour to black and text colour to white
+
+### 1.1.0
+* Added compatibility with LSX 2.0
+* Dev - New project structure
+* Dev - Added in a filter to allow you to disable the banner altogether
+* Dev - Updated the "Add Image" JS for the term image selection (using wp.media)
+* Dev - Added compatibility to Envira Gallery
+* Dev - Added compatibility to Soliloquy
+* Dev - UIX copied from TO 1.1 + Fixed issue with sub tabs click (settings)
+* Dev - New image size: square ('lsx-thumbnail-square')
+* Dev - New filter: banner image (lsx_banner_image)
+* Fix - Updated the license class to work with the new settings button
+* Fix - Multiple images - Randomize banners when there is more than one
+* Fix - Text/tagline front-end and all fields back-end reviewed (made all visible from default)
+* Fix - Scripts from CMB loading first than WC scripts (to avoid WC load its select2 script - it breaks the CMB select)
+* Fix - LSX tabs working integrated with TO tabs (dashboard settings)
+* Tweak - Added new option to make the banner full height or not
+* Tweak - Made the banner slider option uses Slick Slider
+* Tweak - Added new fields: button (text, link, class, link/anchor/modal), logo, background colour, text colour
+
+### 1.0.6
+* Fix - Added the missing "full" image size to the placeholder class.
+* Fix - Before try use the attachment URL, test if it's available
+
+### 1.0.5
+* Fix - Display tagline in blog page
+* Fix - Adjusted the plugin settings link inside the LSX API Class
+* Fix - Fixed the "banner height" attribute on front-end
+* Fix - Fixed banner title on archives
+* Fix - Fixed the feature from add/remove images on WP term pages
+* Updated the CMB class with custom Google Maps code.
+
+### 1.0.4
+* Feature - Use Soliloquy HTML in front-end slider when it's a Soliloquy slider selected in back-end
+* Feature - New option to disable the banner title per page/post
+
+### 1.0.3
+* Fix - Init variable as array and not string to avoid PHP fatal error
+
+### 1.0.2
+* Fix - Fixed all prefixes replaces (to_ > lsx_to_, TO_ > LSX_TO_)
+
+### 1.0.1
+* Fix - Reduced the access to server (check API key status) using transients
+* Fix - Made the API URLs dev/live dynamic using a prefix "dev-" in the API KEY
+
+### 1.0.0
+* First Version

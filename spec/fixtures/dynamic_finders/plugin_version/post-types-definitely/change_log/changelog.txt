@@ -1,0 +1,68 @@
+== Changelog ==
+
+= 0.6.7 =
+* Added: post type and taxonomy endpoints for the WP REST API are now handled automatically depending on their other public-related arguments
+* Enhanced: on WordPress 4.7 bulk actions are handled in a clean way using the new infrastructure, without any JavaScript hacks
+* Enhanced: meta fields are provided with proper defaults for registration; registration is discouraged though due to the lack of object subtype handling in WordPress Core
+* Enhanced: new post type labels in WordPress 4.7 are now automatically generated
+* Fixed: datetime and time fields no longer switch the time back by an hour automatically
+* Fixed: in datetime and date fields it is no longer possible to accidentally change the month by scrolling
+* Fixed: datetime and date fields better support locale special characters
+
+= 0.6.6 =
+* Fixed: select fields no longer show twice when a placeholder is specified
+
+= 0.6.5 =
+* Enhanced: on WordPress >= 4.6, post and term meta is now registered via `register_meta()`
+* Tweaked: updated the plugin initialization library
+* Tweaked: updated the Select2 and Datetimepicker JavaScript plugins
+* Fixed: dropdowns no longer close immediately after opening them
+
+= 0.6.4 =
+* Fixed: WPDLib now has type "wordpress-muplugin" so that it is not loaded outside of a project
+
+= 0.6.3 =
+* Fixed: uncaught JavaScript error with datetimepicker
+
+= 0.6.2 =
+* Enhanced: Plugin adjusted for single term edit form changes in WordPress >= 4.5
+* Enhanced: WYSIWYG field experience is now more similar to the default post editor, including media and link buttons
+* Tweaked: updated the Select2 and Datetimepicker JavaScript plugins
+* Fixed: the selected value of a multiselect field is now properly displayed
+* Fixed: the `rows` attribute now works correctly for textareas and WYSIWYG
+* Fixed: updated the media picker JavaScript plugin for more flexibility and some bug fixes
+* Fixed: updated the map picker JavaScript plugin for more flexibility and some bug fixes
+
+= 0.6.1 =
+* Enhanced: on WordPress >= 4.5, the rows in a terms list table can now be sorted by term meta columns
+* Tweaked: restructured some classes and created abstract base classes
+* Tweaked: plugin now uses wordpress.org language packs
+* Tweaked: updated plugin initialization library
+* Fixed: `wpptd_get_taxonomy()` now handles `WP_Error` correctly
+* Fixed: on WordPress >= 4.5, the term meta UI is properly outputted using a new core action
+* Fixed: admin notice no longer shows on each site when the plugin is activated network-wide
+* Fixed: numeric validation of floating point numbers
+* Fixed: formatting floating point numbers more precise than 2 digits
+
+= 0.6.0 =
+* Added: term meta is now supported (WordPress 4.4 required)
+* Added: on the term editing screen a UI for term meta is created, consisting of meta boxes, similar to the post editing screen (WordPress 4.4 required)
+* Added: new functions to get related posts / terms / users for a specific post or term, allowing simple object-to-object relationships
+* Added: 4 new actions are available to easily enqueue scripts on specific post type or taxonomy admin pages only
+* Added: new field type map (can store either address or latitude and longitude)
+* Enhanced: terms list table columns can now be customized (WordPress 4.4 required)
+* Enhanced: terms list tables can now have customized row actions and bulk actions (WordPress 4.4 required)
+* Enhanced: automatic post type / taxonomy labels translation is now more accurate as one can now specify the gender of the post type / taxonomy title
+* Enhanced: the plugin can now easily be used as a must-use plugin or as a library in any plugin or theme
+* Enhanced: media field type can now alternatively store URL instead of attachment ID
+* Enhanced: options keys 'terms' and 'users' (for related objects) now accept 'any' as value (similar to 'posts')
+* Fixed: taxonomy screens are now correctly highlighted in the admin menu when they're active
+* Fixed: critical validation bug in WYSIWYG
+* Fixed: step validation for decimal numbers
+* Fixed: images now display correctly in media preview
+
+= 0.5.1 =
+* Fixed: on PHP 5.2 the plugin now terminates appropriately
+
+= 0.5.0 =
+* First stable version

@@ -1,0 +1,107 @@
+= 3.3.3 =
+ * Fixes some scenario's where the translation warning sticks around for translated (and other english locales)
+ * Fixes a PHP Warning
+ * Support per-user locales
+ * Bumps required version of WordPress to 4.5+
+
+= 3.3.2 =
+ * Security Fix: Fixes a CSRF vulnerability which could be used to trick a user into importing a large file to their site. Props to Edwin Molenaar (https://www.linkedin.com/in/edwinmolenaar)
+ * Fix a typo that caused subsequent plugin activations to fail if the server doesn't meet the Add From Server requirements
+ * Fix a path mismatch on certain windows configurations (No longer need to specify uppercase disk markers)
+ * Import Audio metadata and store image/audio metadata in the same manner as core.
+
+= 3.3.1 =
+ * Fix plugin activation
+
+= 3.3 =
+ * The plugin now requires WordPress 4.0 and PHP 5.4 as a minumum requirement.
+ * Updated to use WordPress.org translation system, please submit translations through https://translate.wordpress.org/projects/wp-plugins/add-from-server/stable
+ * Updated to WordPress 4.3 styles
+
+= 3.2.0.4 =
+ * Fix for a PHP Warning shown under certain hosting configurations, "headers already sent by (output started at .../add-from-server/class.add-from-server.php:1357)"
+ * WordPress.org Translation compatibility
+
+= 3.2.0.3 =
+ * PHP 5.4 compatibility
+ * Special characters in URL fixes
+ * Japanese Translations from Naoko Takano ( http://en.naoko.cc/ )
+
+= 3.2.0.2 =
+ * Fix: Translations not loaded early enough for menu items.
+
+= 3.2.0.1 =
+ * Fix: Incorrect GUID on imported items in subdir of uploads folder
+ * Fix: Not all items would correctly trigger the already-imported error
+
+= 3.2.0 =
+ * For Pre-3.2 changelog, Please see http://plugins.svn.wordpress.org/add-from-server/tags/2.3/readme.txt
+ * Cleanup, Now requires WordPress 3.2+
+ * Now has an options panel to control who is allowed to import files
+ * Now has the option to specify what the base directory is for file imports (ie. allows you to prevent users access to non-public directories)
+ * Versioning changes - This plugin will from now use the earliest version of WordPress it supports. 3.2 requires 3.2, 3.2.0.1 is a point release which requires 3.2. 3.3.4 will require WP 3.3.4 etc. May seem a little weird, but you'll get used to it, bigger numbers are still better :)
+
+= 2.3 =
+ * Quick 3.0 compatibility release
+ * Removed Deprecated notices, Fixed a few other warnings occasionally
+ * GUID now a valid url when % is included in the filename
+ * Requires WordPress 3.0 now.
+
+= 2.x =
+ * French update from Denis Rebaud
+
+= 2.2.1 =
+ * Remove svn:externals, The WordPress .zip packager does NOT like making peoples life easier when you've got multiple plugins.
+
+= 2.2 =
+ * Slight error warning changes
+ * WARNING: 2.8.5/2.9 compatibility: ALL users who can upload files will now have access to the Add From Server functionality, This is due to security changes in wordpress removing the unfiltered uploads functionality. This has the side effect that you cannot upload ALL types of files too, See the FAQ for some more info.
+ * Re-ordered changelog for 2.8 changelog compatibility.
+
+= 2.1 =
+ * Introduce QuickJump
+ * Fix bugs related to the Admin navigation disapearing
+ * Fix bugs related to hints showing up linking to the wrong page
+ * Do not show the Inline uploaders tabs in the normal uploader :)
+ * Fix 2.8.1's plugin security mashes..
+
+= 2.0.1 =
+ * Russian Translation from Lecactus
+
+= 2.0 =
+ * Requires WordPress 2.7+ (From now on, My Plugins will only be supported for the current stable branch)
+ * WP2.7 SSL Support
+ * WP2.7 checkbox support
+ * WP2.7 upload modifications
+ * WP2.7 Styling
+ * Files/folders are sorted by name
+ * Update Notification changelogs (On the plugins page)
+ * Completely rewritten, Hopefully this'll fix some long-time bugs which have affected some.
+ * Persion translation from sourena
+ * Italian translation from Stafano
+
+= 1.4 =
+ * German Translation
+ * More stuffing around with the checkbox that doesnt work for anyone, yet works on every test system i've tried
+ * Set the date on imported files to that of their uploads folder
+
+= 1.3.2 =
+ * French translation changes from Ozh & Olivier
+ * Fixed the checkbox list for certain unknown browsers.
+
+= 1.3 =
+ * Internationalisation; French translation
+ * Internationalisation; Spanish translation
+ * Checkbox select all
+ * Import into non-post attachment
+
+= 1.2 =
+ * Fixed filename oddness including old directory names
+ * Added a check to see if the file exists in the Media library allready
+ * Added a check to see if the file is allready in the uploads folder before importing, and if so, simply add it to the database, do not mash the filesystem
+
+= 1.1 =
+ * Fixed a bug which causes the original import file to be deleted upon removing from the media library, The file in /uploads/2008/03/ remains however. Will now delete the file in the uploads folder instead of the original imported file, However, Be warned, files previously imported WILL remain as they are, and the original import file will be deleted(if you delete from the media library)
+
+= 1.0 =
+ * Initial Release

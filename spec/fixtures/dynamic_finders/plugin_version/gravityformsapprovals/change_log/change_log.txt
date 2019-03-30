@@ -1,0 +1,36 @@
+-------------------------------------------------------------------------------------------------------------------
+Version 1.1
+	- Bump minimum version of Gravity Forms required to 2.4.
+	- Fixed an issue where approvers can't add notes.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0.1
+	- Added the gform_approvals_entry_rejected action which fires when an entry is rejected.
+	- Added the gform_approvals_entry_approved action which fires when an entry is approved. Example:
+	add_filter( 'gform_approvals_entry_approved', 'sh_gform_approvals_entry_approved', 10, 2 );
+	function sh_gform_approvals_entry_approved( $entry, $form ){
+		// do something now the entry is approved
+	}
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0.0
+	- Bumping version
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0-beta-5
+	- Fixed an issue where User Registration is skipped even when there are no approval feeds.
+	- Fixed an issue where the approval buttons appear even when conditional logic is not met.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0-beta-4
+	- Added the gravityformsapprovals_form_settings and gravityformsapprovals_uninstall capabilities for integration with the Members plugin.
+	- Updated some strings to be translatable.
+	- Fixed an issue with form settings tab which might not appear under certain conditions.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0-beta-3
+	- Fixed an issue with the entry detail page where the approval buttons won't appear if the approver is changed in the feed settings.
+
+-------------------------------------------------------------------------------------------------------------------
+Version 1.0-beta-2
+	- Added support for translations

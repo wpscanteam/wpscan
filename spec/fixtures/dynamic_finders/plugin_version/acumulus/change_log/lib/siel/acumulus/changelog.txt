@@ -1,0 +1,1325 @@
+Changelog Acumulus webkoppelingen
+=================================
+
+ALL = Alle webshops.
+HS  = HikaShop (Joomla)
+JOO = Joomla (HikaShop + VirtueMart3)
+MA  = Magento (alle ondersteunde versies)
+MA1 = Magento 1
+MA2 = Magento 2 (MA20, MA21 = specifieke minor versie binnen major versie 2)
+OC  = OpenCart (alle ondersteunde versies)
+OC1 = OpenCart 1
+OC2 = OpenCart 2 (OC21, OC22, OC23 = specifieke minor versie binnen major versie 2)
+OC3 = OpenCart 3
+PS  = PrestaShop
+VM3 = VirtueMart3 (Joomla)
+WC  = WooCommerce (WordPress) (alle ondersteunde versies, vanaf 5.5.2 is dat alleen nog WC3)
+WC2 = WooCommerce 2 (WordPress)
+WC3 = WooCommerce 3 (WordPress)
+
+5.6.0 (2019-03-13)
+------------------
+Bugs:
+- ALL: (but mostly WC) to retrieve vat rates based on vat classes, we normally
+  need a country code. If no country code has been saved in the customer info,
+  this might fail. so "completing" the country code (with nl as default) will
+  now be done directly when retrieving the address data.
+- WC: You can refund a fraction of an article (price) but Woocommerce will still
+  store quantity as an integer rounded towards 0 (and thus possibly even 0). We
+  now do accept this, but unit prices may be strange, though line totals should
+  be correct.
+- PS: Some of our database queries failed to run correctly with PS1.7.5 and/or
+  PHP7.2.
+- PS: PS 1.7.5 changed the log folder again.
+- JOO: 'Error Library path src not found' on order status updates. No automatic
+  sending of invoices to Acumulus has been possible since version 5.4.9...
+
+Features:
+- WC/MA/PS: (These are the web shops that do support credit notes.) Added a
+  setting to define whether to automatically send credit invoices to Acumulus
+  upon their creation.
+- ALL: Added some validations to the configuration form.
+- ALL: Improved some warning/error messages.
+
+Refactoring:
+- PS: Source::addProperties() is no longer needed, so only execute it on older
+  versions.
+
+5.5.4 (2019-02-25)
+------------------
+Bugs:
+- WC: Precision was set to strict, especially for older invoices.
+
+5.5.3 (2019-02-11)
+------------------
+Features:
+- ALL: Better logging on status change, new status and set of statuses on which
+  to send are now also logged when the invoice has been sent (was only when it
+  was not sent).
+
+Bugs:
+- WC: [SIEL #123927] Dubbele concept-facturen.
+- WC: update_meta_data() also returns false when the new value is the same as
+  the old value.
+- ALL: Property sources refund an order were not defined with credit notes and
+  therefore their properties were not accessible. Especially problematic for WC.
+- WC: Prevent notices on missing city and postal code if they are not provided.
+
+Refactorings:
+- ALL: Add type hint to AcumulusEntryManager::save() method parameter.
+
+5.5.2 (2019-01-23)
+------------------
+Features:
+- WC: Added actions to the 'invoice status overview' meta box on the edit order
+  screen.
+- WC: Added support for the 'Custom Order Numbers for WooCommerce' plugin.
+- ALL: Verander de factuur in een concept als een regel een onbekend btw
+  percentage bevat.
+- ALL: To prevent recurring "404 - Error - Bad Request - Requested invoice for
+  entry 123456 not found. - XGYBSN000", the data for a no longer existing
+  Acumulus entry are deleted from the local database.
+
+Bugs:
+- ALL: For refunds, the "property source" 'order' referred to an Invoice\Source
+  object instead of to the hosting webshops's order object/array. The property
+  source 'orderSource' now no longer exists in WC.
+  NOTE: This may have consequences for your field references (veldverwijzingen)
+  in your advanced settings!
+- ALL: Setting "Concept" was not used: plugin would make an invoice a concept on
+  warnings regardless the value for this setting.
+
+Refactorings:
+- OC: Cache geo zones.
+- WC: Use add_meta_boxes_{post_type} instead of add_meta_boxes action.
+- ALL: Make field references handling more robust (though catchable fatal errors
+  are still not caught).
+- ALL: Form refactoring: do not add success/error message if none specified;
+  added getSubmittedValue() method; added getType() method.
+- ALL: FormRenderer: changed list of parameters into 1 $field parameter on most
+  render methods; added addAjax() method to support ajax submissions.
+- ALL: InvoiceManager: added send1() method; made send() protected.
+- ALL: Removed a lot of code warnings.
+- ALL: Moved some translatable strings from batch to module.
+
+5.5.1 (2018-12-13)
+------------------
+Features:
+- ALL: Make better use of available vat class meta data to reduce the possible
+  vat types of a line.
+- ALL: Make better use of available meta data (by combining them) to get the vat
+  rate of a line.
+- WC3: WC seems to return amounts with an increased precision (was: rounded to
+  the cent. now: it seems not any longer rounded).
+- WC3: Follow setting 'woocommerce_tax_based_on' to determine the country code.
+- WC: Use country, city and postal code of Acumulus invoice (instead of Customer
+  object) to get lookup tax rates. (this also makes
+  WooCommerce\Creator::getVatRateLookupMetadataByTaxClass() work in WC2...)
+
+Bugs:
+- ALL: only use the setting that defines EU vat classes when the shop might sell
+  articles subject to EU vat.
+- ALL: looked up vat rate meta data may be an empty array: use empty() instead
+  of isset().
+- ALL: looked up vat rate may still be a single float, not necessarily an array:
+  'array' type hint in Completor::metaDataHas0VatRate() is incorrect.
+- ALL: allow, recognise and store empty multi-select fields on the config forms.
+- ALL: notice Undefined index nature in completor.php on line 336.
+- OC2/OC3: mail did not use the correct property names for the smtp settings.
+- WC: PHP Fatal error:  Uncaught TypeError: Argument 1 passed to
+  WooCommerce\Helpers\Token::getDataValue() must be of the type array, string
+  given: only descend recursively if the property found by tokenizing on _, is a
+  (data) array itself.
+
+Refactorings:
+- WC: Remove properties $order and $refund from Creator class.
+- WC: Only call WC method WC_Tax::get_tax_class_slugs() once in getVatClasses().
+- ALL: Rename Creator::LineType_Order to Creator::LineType_OrderItem.
+
+5.5.0 (2018-11-14)
+------------------
+Features:
+- ALL: There are more products than the digital services that are subject to
+  foreign vat for EU customers:
+  - Rephrase everything that has to do with digital services (vat type 6).
+  - Rename option digitalServices to foreignVat.
+- ALL: better differentiate between invoice type 1 and 6 for countries having
+  the same vat rate as NL:
+  * Meta::VatRateLookupLabel is now also an array.
+  * Add vat class information as metadata.
+  * Add method ShopCapabilities::getVatClasses().
+  * Add setting foreignVatClasses (default, UI on config form).
+  * Use setting foreignVatClasses and vat class meta data to select between vat
+    type 1 and 6.
+- OC: Improved filling vat class/rate lookup meta data by matching zones of
+  order address with geo zones of tax rates.
+- ALL: Support for new roles and permissions to access the web server API.
+- ALL: Added logging to execution stage of batch form.
+- ALL: Make "property specification not found" a debug level message.
+- JOO: Access rights revisited so that menu-items remain visible in the admin
+  menu for people who only have access to the batch send form.
+- WC: Now supports WC3.5 and WP5. Better update handling.
+- WC2: show message that support for WC2 will end in a next version.
+- Improved precision handling: getVatRangeTags() now adds the precision meta
+  tags, removed from the shop specific Creator classes.
+Bugs:
+- ALL: Capitalise country adjectives (e.g. dutch -> Dutch) in code documentation
+  and comments).
+- MA: The size attribute on a multi select form element was not taken from our
+  form settings.
+- WC3: Since WC3, the shipping tax class can be "inherited" from the product
+  items (which should be the preferred value for this setting). The plugin did
+  not handle this value correctly.
+- WC3: Code to get the vat rate lookup meta data did not use customer location
+  and would therefore be based on shop location.
+- WC3: Code to improve precision of shipping costs ex vat ignores zone based
+  shipping method settings of WC3.
+- ALL: Warning: implode(): Invalid arguments passed in Completor.php on line 835.
+- ALL: module specific translations were not loaded on case sensitive systems
+  (e.g. linux).
+- ALL: Warning 511: Incorrect vattype value used (false) in vattype tag as part
+  of invoice section in the XML. Using default value of 1(national, regular
+  invoice). (CE005BVTC)
+- ALL: Message 'message_warning_no_vattype_must_split' was not translated.
+- OC: Breadcrumb on settings page was incorrect.
+
+5.4.9 (2018-10-03)
+------------------
+Features:
+- JOO: Add access right to config, advanced config and batch screens.
+Bugs:
+- JOO: Install/update: Call to a member function getAcumulusConfig() on boolean.
+- JOO: Install: File does not exist .../com_acumulus/admin/language/en-GB.com_acumulus.ini
+
+5.4.8 (2018-08-27)
+------------------
+Bugs:
+- OC: SplitLine strategy was removed as having no usages: it turns out that
+  OpenCart coupons need it.
+- ALL: Error in assigning strategy to the vatrate-source tag in
+  CompletorInvoiceLines::addVatRateToLookupLines.
+- ALL: Error in initializing possible vat types.
+- ALL: Empty country code now handled as NL.
+- OC1/OC23: getVatRateLookupByTotalLineType() did not return any tax class id.
+- ALL: Handle the case where a vat rate lookup results in multiple vat rates.
+- ALL: If a parent line must be handled by the strategy phase , ensure that the
+  child lines also are handled by the strategy phase if they have 'vat rate
+  source' = 'parent'.
+
+5.4.7 (2018-07-20)
+------------------
+- ALL: Added an option that covers how to handle missing amounts.
+Bugs:
+- OC (bug/feature?): Better handling of total lines (e.g. shipping) regarding
+  whether the amount is inc or ex vat and vat rate lookup for those lines.
+- ALL: Option "Send consumer client records to Acumulus." removes country code
+  before it is used to determine the vat type.
+- ALL: goods outside EU may use vat type = 1 when you can't or don't want to
+  prove that the goods will leave the EU.
+- ALL: improved handling of costprice and margin lines.
+- ALL: Use host name instead of shop software name when creating fictitious
+  email addresses.
+
+5.4.6 (2018-07-10 JOO)
+5.4.6 (2018-07-09 OC)
+---------------------
+- JOO: com_acumulusInstallerScript.php still contained references to the old
+  library path and defined a psr0 namespace instead of a psr4 one.
+- OC: Warning: lsprintf(): Too few arguments in Opencart/Shop/AcumulusEntryManager.php
+  on line 93. Warning: mysqli::Query(): Empty query.
+
+5.4.5 (2018-07-04)
+------------------
+- ALL: Notice: Undefined index: nature_shop in ConfigForm.php on line 85.
+
+5.4.4 (2018-06-05)
+------------------
+- ALL: better filling and handling of field nature, especially for non-item
+  fields (shipping costs, payment fee).
+- WC: Styling van popup-help in het statusoverzicht op bestellingpagina.
+- WC2: Fatal error: Uncaught Error: Call to a member function get_items() on
+  null in Creator.
+- WC2: Fatal error: Uncaught Error: Call to undefined method
+  WC_Order_Refund::get_parent_id() in Source.
+- WC2: Fatal error: Uncaught RuntimeException: Source::getPaymentMethodOrder()
+  not implemented for Source.
+
+5.4.3 (2018-05-31)
+------------------
+- ALL: feature: added support for costprice setting in all plugins, was only for
+  WooCommerce and, not completely correct, PrestaShop.
+- ALL: feature: removed invoice setting useMargin in favor of shop setting
+  marginProducts.
+- ALL: feature: based on the new settings, the code to determine the vat type
+  and any warning to give when no vat type could be determined, has been
+  improved.
+- ALL: feature: Added configuration settings to determine the nature of the
+  products in the catalog and if goods are sold using the margin scheme. These
+  settings are used to fill in the nature tag and to better determine the vat
+  type.
+- ALL: bug: validation between send customer and email invoice as pdf on
+  advanced config could go wrong.
+- WC: bug Rendering of invoice and packing slip contained errors possibly
+  leading to 2 pdf icons before the invoice.
+- ALL: bug: Warning: strpos() expects parameter 1 to be string, array given in
+  Config.php on line 1129/1155.
+
+5.4.2 (2018-05-15)
+------------------
+- WC: typo in css class is-dismissible on messages.
+- WC: Op een bestellingpagina in de backend wordt nu een statusoverzicht getoond
+  van de Acumulusfactuur. In een volgende versie zullen acties als bv. 'Opnieuw
+  verzenden' en 'Op betaald zetten' toegevoegd worden. Laat ons weten wat u hier
+  van vindt. Suggesties en opmerkingen zijn van harte welkom!
+- ALL: moved Creator::getInvoiceTotals() to Source::getTotals().
+- ALL: moved Creator::completeInvoiceTotals() to Source::completeTotals().
+- ALL: renamed Source::getTotals() to Source::getAvailableTotals().
+- ALL: renamed Source::getPaymentState() to Source::getPaymentStatus().
+- ALL: Legend or summary are not required: Notice:  Undefined index: legend ...
+
+5.4.1 (2018-05-13)
+------------------
+Important note:
+- ALL: Version 5.4.0 has been released to solve some fatal errors for Magento.
+  This has been done while not all the documentation had been finished yet, so
+  more backwards incompatible changes (for developers) will be found in this
+  5.4.1 version.
+
+Changes:
+- ALL: To "clean up" the appearance of the forms, especially the advanced config
+  form, use of the html5 details tag has been introduced. A number of fieldsets
+  are made collapsible/expandable and will be closed by default. PrestaShop does
+  not support this tag, nor js collapsable fieldsets.
+- ALL (MOST): Errors and warnings weren't shown when generated during saving the
+  config.
+- ALL: Not all curl libraries define the CURL_SSLVERSION_TLSv1_2 constant, even
+  if they support that TLS version.
+- HS: Trying to get property of non-object in Joomla\HikaShop\Invoice\Source.php
+  on line 139
+- ALL: Looked up vat rates were not copied from parent to children.
+- ALL: Config form now also displays the exception message when an exception
+  was raised.
+- WC: update_option() also returns false when there are no changes. We want to
+  return true to prevent a user message "There was an error saving the config".
+- ALL: As a consequence of documenting this library from a developers view
+  point, non backwards compatible changes were made that simplify or reduce the
+  amount of code that needs to be written when developing a new extension:
+  - Order of constructor parameters changed to make it consistent among the
+    various classes. This should only affect the Container class in the
+    library.
+  - Container::getManager() renamed to Container::getInvoiceManager().
+  - Now that (since long) the library version is a constant, it can be passed
+    to the constructor of Log, instead of setting it when the Config has been
+    created.
+  - Meta tags renamed to make them more consistent.
+  - Form::addWarningMessage() renamed to Form::addWarningMessages().
+  - Form::addErrorMessage() renamed to Form::addErrorMessages().
+  - Form::isSubmitted() moved to a separate FormHelper class.
+  - Form::getPostedValues() moved to a separate FormHelper class.
+  - Form::systemValidate() removed, should be done in the webshop specific part.
+  - Property source 'originalInvoiceSource' renamed to order.
+  - Property source 'refund' added.
+  - Refactored ShopCapabilities::getTokenInfo().
+- ALL: Continued adding extensive overview documentation aimed at developers
+  that want to create a new extension on their own based on this library.
+- ALL: As part of the developers documentation: added a MyWebShop namespace
+  containing "template" code that can be used when developing a new extension
+  based on this library.
+
+5.4.0 (2018-04-17)
+------------------
+- MA: main.CRITICAL: Exception message: SQLSTATE[23000]: Integrity constraint
+  violation: 1062 Duplicate entry.
+- MA2: Fatal error: Call to undefined method Creator::getSign().
+- ALL: Added extensive overview documentation aimed at developers that want to
+  create a new extension on their own based on this library.
+- ALL: As a consequence of documenting this library from a developers view
+  point, simplifications were made to the code by removing interfaces in favor
+  of the base class that implements that interface:
+  - Removed TranslatorInterface
+  - Removed ContainerInterface
+  - Removed ConfigStoreInterface
+  - Removed ConfigInterface
+  - Removed ShopCapabilitiesInterface
+  - Removed CommunicatorInterface
+- ALL: As a consequence of documenting this library from a developers view
+  point, non backwards compatible changes were made that simplify or reduce the
+  amount of code that needs to be written when developing a new extension:
+  - ConfigStore was simplified, it now only should store the one array value as
+    passed in.
+  - Order of constructor parameters changed to make it consistent among the
+    various Classes.
+
+5.3.0 (2018-04-09)
+------------------
+- WC: statusoverzicht uitgeschakeld voor deze versie.
+- ALL: Gebruik de opgezochte btw percentages van de productinformatie als de
+  berekende btw bandbreedte zo wijd is dat er meerdere btw percentages mogelijk
+  zijn.
+- ALL: Do not render the for attribute with a label for a markup element.
+- ALL: Controls op Batchscherm aangepast: radio buttons voor verzendwijzen en
+  een aparte checkbox voor dry-run.
+- ALL: Methods Form::getDateFormat() en Form::geShopDateFormat() zijn
+  verwijderd. Die shops die nog geen html5 input type=date gebruiken, krijgen
+  een (html5 attribuut) placeholder met het verwachte formaat dat
+  gestandaardiseerd is op wat een date field verstuurt (yyyy-mm-dd).
+- Refactor: centralise date formats.
+
+5.2.2 (2018-03-16)
+------------------
+- ALL: security review: better code and document security measures taken. Some
+  additional escaping was added, mostly input coming from the Acumulus API, so
+  no real security risks were discovered.
+- WC: 2e versie van de "dashboard" functionaliteit.
+- ALL: Moved order/credit note related getting methods from Creator to Source.
+- ALL: Replace FormRenderer::setUsePopupDescription() with more generic
+  FormRenderer:::setProperty().
+- All: Allow for label and label wrapper specific attributes in form fields.
+- All: Notice: Undefined index: vatrate in Completor.php on line 989.
+
+5.2.1 (2018-03-05)
+------------------
+- WC: Toon status van de boeking in Acumulus in het admnin shop order formulier.
+  dit is de eerste versie van de "dashboard" functionaliteit.
+- ALL: voeg een berichttype "opmerking" toe zodat de melding over het
+  overschrijven van een bestaande factuur er minder ernstig uitziet.
+- ALL: Add Source::getRefunds() and rename Source::getOriginalInvoiceSource to
+  Source::getOrder().
+- ALL: Form rendering: Allow to use shop specific help texts, often in a hover
+  popup.
+- Error in Container::getAcumulusEntry().
+- WC: Change WordPress form rendering to accommodate the new Acumulus invoice
+  overview form.
+
+5.2.0 (2018-02-26)
+------------------
+- PS: Log folder is in 1.7 /app/logs/ en niet meer /log/.
+- ALL: Als een factuur als concept wordt ogeslagen voeg dan een verwijzing naar
+  waar deze te vinden toe aan de waarschuwingstekst.
+- ALL: Als er een bedrag mist wordt er nu een waarschuwing en, indien mogelijk,
+  een correctieregel toegvoegd. Dit kan gebeuren als bv een betaalmodule die
+  (nog) niet door ons wordt ondersteund een betaalfee toevoegt.
+- ALL: een 0-factuur kon bij een aantal shops leiden tot een onterechte
+  waarschuwing en dus een concept-factuur. Deze situatie wordt nu beter
+  aangepakt waardoor de waarschuwing niet meer gegeven zal worden.
+- ALL: Als je vanaf nu een factuur opnieuw en geforceerd verstuurd, zal de oude
+  boeking de "verwijderd" status krijgen. Je ontvangt hierover een mail. Ook de
+  waarschuwing bij geforceerd verzenden is aangepast.
+- ALL: Het te gebruiken factuursjabloon wordt nu pas bepaald na het invoice_created
+  event zodat het eventueel corrigeren van de betaalstatus in dat event doorwerkt
+  in de factuursjabloon keuze.
+- ALL: meerdere spelfouten uit de NL en EN vertalingen gehaald.
+- ALL: fouten en waarschuwingen van een ander API request (vooralsnog opvragen
+  btw tarieven en verwijderen oude entry) worden toegvoegd aan het
+  overall resultaat van de hoofdbewerking (add invoice).
+- ALL: toegang op veldniveau tot acumulus entry records is nu beter geregeld
+  door het wrappen van een db record/object in een nieuwe class AcumulusEntry.
+- ALL: Rename AcumulusEntryModel naar AcumulusEntryManager.
+- ALL: A number of API calls have been added:
+  * Set Delete Status: https://siel.nl/acumulus/API/Entry/Set_Delete_Status/
+  * Get Entry (Boeking) Details: https://siel.nl/acumulus/API/Entry/Get_Entry_Details/
+  * Payment - Get status: https://siel.nl/acumulus/API/Invoicing/Payment_Get_Status/
+  * Payment - Set status: https://siel.nl/acumulus/API/Invoicing/Payment_Set_Status/
+  * Email invoice or reminder: https://siel.nl/acumulus/API/Invoicing/Email/
+  * Get PDF Invoice: https://siel.nl/acumulus/API/Invoicing/Get_PDF_Invoice/
+  * Get PDF Packing Slip: https://siel.nl/acumulus/API/Delivery/Get_PDF_Packing_Slip/
+  This allows us to add numerous features in upcoming releases.
+
+5.1.2 (2018-02-14)
+------------------
+- ALL: currency meta informatie wordt nu gebruikt om bestellingen in andere
+  currencies te converteren naar euro's. Dit werkt voor zover de shop de meta
+  info correct weet aan te leveren.
+- ALL: Als de standaard currency v/d shop geen euro is, maar de order wel, maar
+  bedragen worden opgeslagen in de standaard valuta wordt de factuur ook
+  geconverteerd naar euros.
+- VM: Ondersteuning voor andere currencies. Alleen meta-info, opslag is altijd
+  in base currency.
+- HS: Ondersteuning voor andere currencies. Er zit een fout in HS zelf als je
+  een getoonde maar niet gepubliceerde valuta gebruikt: de verzendkosten worden
+  dan fout getoond en opgeslagen.
+- WC: Ondersteuning voor andere currencies. Alleen meta info, WC ondersteunt
+  geen andere currencies.
+- MA: Ondersteuning voor andere currencies. Alleen meta-info, opslag is altijd
+  in base currency.
+- OC: Ondersteuning voor andere currencies. Alleen meta-info, opslag is altijd
+  in default currency.
+- PS: Ondersteuning voor andere currencies.
+- PS: FatalThrowableError: Access to undeclared static property: Acumulus::$module_version
+
+5.1.1 (2018-02-07)
+------------------
+- ALL: Ernstige fout in Container bij creatie Communicator object.
+- MA: getBillingAddress() kan leeg zijn en tot een warning/foutmelding leiden.
+- MA: Ondersteun multi-currency door alleen nog maar de Base velden te gebruiken.
+
+5.1.0 (2018-02-07)
+------------------
+- MA2: Ondersteuning toegevoegd voor betaalkosten via de paycheckout en sisow
+  betaalproviders.
+- WC: Moved support for other plugins to a separate class.
+- ALL: Maak (waar mogelijk) onderscheid tussen 0% btw en btw-vrij.
+- ALL: Als een factuur niet verzonden wordt omdat het totaal 0 is, werdt
+ 'verzenden tegengehouden door het event "AcumulusInvoiceCreated' gelogd.
+
+5.0.5 (2018-01-25)
+------------------
+- composer.json: Message from packagist: siel/acumulus failed to update, invalid
+  composer.json data:  License "GPL-3.0" is a deprecated SPDX license
+  identifier, use "GPL-3.0-only" or "GPL-3.0-or-later" instead.
+- PSR-1: use true, false and null instead of TRUE, FALSE and NULL.
+
+5.0.4 (2018-01-22)
+------------------
+- WC: Eigen oplossing voor WooCommerce bug #18357 ging de fout in.
+
+5.0.3 (2018-01-19)
+------------------
+- ALL: Backslashes worden niet goed verstuurd naar Acumulus waardoor met name
+  Nieuwe regels en tabs niet werken in de velden beschrijving en notities.
+- WC: Oude folder libraries was nog niet verwijderd uit svn.
+
+5.0.2 (2018-01-18)
+------------------
+- ALL: originalInvoiceSource als bron van veldverwijzingen werkte niet.
+- OC23/OC3: Ondersteuning voor quick_status_updater module.
+- WC: WooCommerce bug #18357 is nu in onze eigen code opgelost zodat deze versie
+  van onze plugin met zowel oude als toekomstige WC versies goed werkt.
+- PS: Fout in ondersteuning voor paypal module (veld payment_fee).
+
+5.0.1 (2018-01-11)
+------------------
+- HS, PS, VM: Je kunt in het batchverzendscherm nu (ipv referenties) ook id's van de
+  bestellingen gebruiken om de reeks te verzenden bestellingen aan te geven.
+- ALL: Own autoloader is back in the library, but at the root folder. It was to
+  much copy & paste after all, but the new version does not execute
+  automatically upon including.
+- ALL: Optie testmodus staat nu ook op het batchverzendformulier.
+- PS: Process fields payment_fee and payment_fee_rate on the invoice source,
+  not on the original order (thus not on refunds).
+- MA1: Support Magento1 compiled mode.
+- MA: Tested and corrected event triggering and its parameter passing.
+- MA: Created example modules for MA1 and MA2 to handle events defined by the Acumulus module.
+- ALL: All plugins (HS, MA1 + MA2, OC1 + OC23 + OC3, PS, VM, and WC are now on
+  the 5.x structure.
+- ALL: Verduidelijking v/d vraag "Verkoopt u btw-vrije producten".
+- Changes to readme.md and leesmij.md
+
+5.0.0 (2017-12-26)
+------------------
+- ALL: Merged all 4.x changes up to 4.9.6 into this branch.
+- ALL: Added changelog.txt (this file) to the root of this library.
+- ALL: Own autoloader is no longer part of the library but will be copied to
+  those shops that still need it.
+- PS: PS is now on the 5.x structure
+- PS: Created an example module to handle hooks defined by the Acumulus module.
+- PS: Tested and corrected hook triggering.
+
+5.0.0-alpha1 (2017-09-26)
+-------------------------
+- ALL: Logberichten op batchscherm ietsje verbeterd.
+- MA2: Bij opslaan van het instellingenformulier werd de configuratiecache niet
+  goed geleegd.
+- MA2 overgezet naar nieuwe library.
+- Library op github en packagist geplaatst.
+  * Deze is nu apart te downloaden via:
+    * https://github.com/SIELOnline/libAcumulus
+    * Via composer.json:
+      {
+        "require": {
+          "siel/acumulus": "^5@dev"
+        }
+      }
+  * Voor die webshops/cms die het ondersteunen zal de library voortaan niet
+    meer mee geleverd worden, maar via composer apart gedownload moeten worden.
+  * De folderstruktuur en naamgeving is aangepast aan de huidige "best
+    practices", met name die van php libraries die met composer werken.
+
+4.9.6 (2017-12-22)
+------------------
+- BTW aangepast naar btw.
+- PS: Ondersteuning voor de velden payment_fee en payment_fee_rate (PayPal with
+  a fee module).
+
+4.9.5 (2017-11-13)
+------------------
+- OC23/OC3: The own events of the Acumulus extension caused warnings and fatal
+  errors on the catalog side (i.e. with automatic invoice sending based on
+  order status changes, not with batch sending).
+
+4.9.4 (2017-11-10)
+------------------
+- JOO: Fout bij controleren of event handlers de verzending willen tegenhouden.
+- ALL: Verzendkostenregels kregen meta-line-type = manual ipv shipping.
+- WC: Shipping tax class lookup voegt niet altijd meta-vatrate-lookup-source
+  tag toe.
+
+4.9.3 (2017-11-03)
+------------------
+- PS: Misschien ging er iets fout met het disablen en enablen van de hooks
+  waardoor de koppeling niet meer reageerde op bestelstatuswijzigingen.
+
+4.9.2 (2017-10-24)
+------------------
+- JOO: Support for Joomla 3.8 toegevoegd.
+- WC3: Ondersteuning toegevoegd voor de WooCommerce EU vat number plugin, ging
+  waarschijnlijk ook fout bij de WooCommerce EU vat assistant.
+
+4.9.1 (2017-09-26)
+------------------
+- WordPress 4.8.2 heeft de wpdb::prepare() method aangepast aan zijn
+  documentatie: %u is niet langer toegestaan. Dit gaf een foutmelding bij
+  batchverzending op basis van bestelnummers.
+- WC3: Ondersteuning toegevoegd voor de WooCommerce Bookings plugin.
+- ALL: Bepalen van veldreferenties is ìets aangepast. Bij wel of niet meenemen
+  van letterlijke tekenreeksen wordt nu beter gekeken naar de erop volgende
+  property.
+- HS: Precisie is zeer hoog: we hebben ofwel exacte btw percentages bechikbaar
+  ofwel prijzen en btw-bedragen met 5 cijfers achter de komma. Dus geen
+  probleem met precisie in HikaShop.
+- VM: Precisie is zeer hoog: we hebben ofwel exacte btw percentages bechikbaar
+  ofwel prijzen en btw-bedragen met 5 cijfers achter de komma. Dus geen
+  probleem met precisie in VirtueMart.
+
+4.9.0 (2017-09-25)
+------------------
+- ALL: Since 2017-09-19 the Acumulus web service only accepts TLS 1.2.
+  Apparently, some libraries do support this version but do not use it by
+  default, so we force it.
+- ALL: Aanpassingen aan de events:
+  * Event InvoiceCompleted hernoemd naar InvoiceSendBefore.
+  * Event InvoiceSent hernoemd naar InvoiceSendAfter.
+    (Noot: de webshop specifieke events/filters/... die worden aangeroepen
+	volgen de naamgeving zoals gebruikelijk in die webshop).
+  * Parametervolgorde van de events InvoiceCreated InvoiceSendBefore
+    veranderd.
+  * InvoiceSendAfter event wordt nu aangeroepen voor het mailen van het
+    resultaat, wardoor custom toegevoegde waarschuwingen of fouten ook gemaild
+    worden.
+- OC3: Ondersteuning voor OpenCart 3 toegevoegd.
+- OC23: Triggers getest (mbv example code van punt hier beneden): ze bleken
+  niet te werken.
+- OC23: voorbeeld module voor het ontwikkelen van event handlers is ontwikkeld.
+  Deze is als afzonderlijke zip te downloaden en dient als documentatie voor de
+  events die de Acumulus extensie definieert.
+- OC23: Locatie van de bestanden waaruit de extensie is opgebouwd was fout.
+  Sinds 2.3 behoren ze onder extension/module ipv onder module geplaatst te
+  worden. Hierdoor werden de uninstall en install acties niet goed uitgevoerd.
+- OC22: Wordt niet langer ondersteund.
+- OC: Precisie: bedragen worden ex btw opgegeven, ook verzend en administratie-
+  kosten. Dus hier geen problemen met de precisie.
+
+4.8.1 (2017-08-09)
+------------------
+- PS: Enkele parameters voor de door deze module gedefinieerde events/hooks
+  aangepast.
+- PS: Precisie is al hoog in PS, dus geen aanpassingen nodig.
+- MA: Verhoogde precisie voor verzendkostenregels als deze inclusief btw worden
+  ingegeven door de administrator.
+- MA: Verhogen precisie voor productregels veranderd door gebruik te maken van
+  hetzelfde algoritme als voor WC.
+
+4.8.0 (2017-08-01)
+------------------
+- WC3: Precisie voor productregels verhoogd. Dit zou een groot gedeelte van
+  verschillen tussen de winkelfactuur en de Acumulusfactuur moeten voorkomen.
+  Laat het weten als u toch nog verschillen blijft houden!
+- WC3: Precisie voor verzendkostenregels verhoogd. Dit zou een groot gedeelte
+  van verschillen tussen de winkelfactuur en de Acumulusfactuur moeten
+  voorkomen.
+  Laat het weten als u toch nog verschillen blijft houden!
+- ALL: Onderzoek naar en verhoging van de precisie voor de andere webshops zal
+  in de volgende versies van 4.8.x toegevoegd worden.
+- WC3: Opzoeken van het btw-tarief voor verzendkosten ging de fout in door een
+  wijziging in de datastructuur.
+- WC: Houd rekening met meerdere vezendkostenregels: bedrag per regel was gelijk
+  aan het totaal bedrag voor de verzendkosten.
+- Constants gedefinieerd voor alle API tags en eigen meta tags.
+
+4.8.0-alpha3 (2017-07-10)
+-------------------------
+- ALL: btw berekening gebruikt nu een iets grotere marge omdat het met .5 cent
+  die naar beneden afgerond wordt fout kon gaan.
+- WC3: Precisie van de btw berekening is nog slechter dan gedacht: gebruik nog
+  grotere marges.
+- MA21: psr4.php en classes voor andere webshops worden niet meer mee
+  uitgeleverd omdat dit tot fouten bij het commando "magento setup:di:compile"
+  leidt.
+- WC: Als de kinderen van een bundelproduct niet getoond worden, en de info
+  ovegenomen moet worden naar het hoofdproduct kan de berekening van het btw
+  percentage fout gaan.
+- WC2: heeft nu ook support for the woocommerce-bundle-products extension
+  (visibility settings are ignored for now).
+- WC2: Ging nog steeds fout (met wit scherm) bij reageren op statuswijzigingen van
+  bestellingen. Foutmelding in log: Fatal Error: call to undefined method
+  WC_Order::get_date_created().
+- WC: Foutieve link naar het formulier met de basisinstellingen.
+- ALL: Mail en logberichten zijn sterk verbeterd, ze bevatten meer details,
+  betere aanwijzingen en houden rekening met de wat meer recente opties als
+  testmodus, versturen als concept, en dry-run.
+- ALL: Het resultaat van een web service call wordt nu in een
+  \Siel\Acumulus\Web\Result object gezet. Heeft gevolgen voor het
+  acumulus_invoice_sent event dat nu een Result object ontvangt ipv een array.
+- ALL: Lokaal ontdekte fouten en waarschuwingen worden nu aan de
+  acumulus_invoice_created en acumulus_invoice_completed events meegegeven als
+  localResult. Deze events mogen deze variabele ook gebruiken om waarschuwingen
+  of foutboodschappen toe te voegen. Als het een foutboodschap betreft wordt de
+  invoice ook niet verstuurd en wordt er een mail verstuurd met daarin de
+  foutboodschap.
+- MA: Bundelproducten kunnen nog steeds de fout ingaan omdat de precisie
+  slechter kan zijn dan 1 cent.
+
+4.8.0-alpha2 (2017-06-07)
+-------------------------
+- PS/MA: Fout in checkbox afhandeling op het geavanceerde instellingen formulier.
+
+4.8.0-alpha1 (2017-06-07)
+-------------------------
+- MA: Bundel product krijgt vaak 0% als btw percentage: negeer en gebruik andere
+  beschikbare info.
+- ALL: Als een factuur vanwege waarschuwingen als concept verstuurd wordt, wordt
+  er geen pdf factuur verstuurd. Vermeld dit bij de waarschuwing.
+- JOO: Support Joomla 3.7.
+- WC: Houd rekening met meerdere vezendkostenregels.
+- Code refactorings: Move getShopEnvironment() from ConfigStore to
+  ShopCapabilities.
+- Code refactorings: Refactor to instantiate a FormRenderer or FormMapper via
+  the container.
+- Code refactorings: Move config related classes and interface to separate
+  namespace.
+- Code refactorings: Separate InjectorInterface and its implementation in
+  Config(Interface) into a separate ContainerInterface and Container class.
+
+4.7.8 (2017-06-01)
+------------------
+- PS17: Verzenden van email ging fout.
+- PS17: Deze versie heeft een iets andere menustructuur, het menu-item "Acumulus
+  geavanceerde instellingen" staat nu op een andere plek.
+- PS: Opslaan van verzonden facturen (om dubbel versturen te voorkomen ging mis
+  sinds 4.6.0. Er is geen manier om de ontbrekende gegevens alsnog aan de tabel
+  toe te voegen.
+- PS: default voor full name bevat een fout (sinds 4.7.0).
+
+4.7.7 (2017-05-25)
+-------------------
+- WC2: Gaat fout met wit scherm op case-sensitive systemen (ofwel linux) door
+  een typefout in een namespace.
+- WC: Als gebundelde producten niet getoond worden dan moet de prijsinfo daarvan
+  nog wel overgenomen worden.
+- WC: voorkom notice Source::callTypeSpecificMethod: method does not exist:
+  getInvoiceDateOrder
+- WC: Verwijderen van de plugin gaat fout: "Verwijderen van mislukt.".
+- MA1: Call to undefined method Varien_Db_Adapter_Pdo_Mysql::renameTablesBatch()
+  in upgrade-3.4.4-4.0.0.php on line 70. Dit gaat alleen fout in Magento 1.7.
+
+4.7.6 (2017-05-04)
+------------------
+- ALL: versturen als concept of defintieve factuur is nu een instelling.
+- WC: Batch verzending werd gelimiteerd tot het standaard aantal posts per
+  pagina aan bestellingen bij selectie op basis van datum of bij gebruik van 1
+  v/d ondersteunde sequential order number plugins.
+- WC3: support for the woocommerce-bundle-products extension (visibility
+  settings are ignored for now).
+- WC3: notices worden nu ook voorkomen. NB: onze plugin is binnen WC3 nog niet
+  getest op compatibiliteit met woocommerce-tm-extra-product-options.
+- PS: Voorkom dat de naam van de verzendwijze leeg is op de factuur.
+- ALL: class token kan nu geinherit worden, WC doet dit nu ook.
+
+4.7.5 (2017-04-10)
+------------------
+- WC3: LET OP: WC3 bevat een aantal subtiele wijzigingen die onze plugin kan
+  raken. Controleer alle facturen op afwijkingen en laat het meteen weten als u
+  iets vreemds tegenkomt!
+- WC3: btw bedrag wordt niet langer met hoge precisie opgeslagen maar afgerond
+  op een cent. Hierdoor werden de onder en bovemarges voor het btw percentage
+  verkeerd berekend en kon het btw percentage gemist worden.
+
+4.7.4 (2017-04-07)
+------------------
+- WC: Acumulus plugin geschikt gemaakt voor WC 3.0 (alleen het voorkomen van
+  fatals)
+- WC: Onterechte fourmelding bij opslaan configuratie als die niet gewijzigd is.
+- ALL: Foutief succes bericht bij formulieren and vreemde karakters in versie
+  info.
+
+4.7.3 (2017-04-05)
+------------------
+- ALL: Instelling toegevoegd om opties/varianten/deelproducten niet te tonen.
+- ALL: Alle "Email as pdf" velden op het geavanceerde instellingenformulier
+  geplaatst en meer "Email as pdf" velden (<emailaspdf> tag in invoice-add
+  bericht) configureerbaar gemaakt:
+  * emailto
+  * emailFrom kan nu veldverwijzingen bevatten.
+  * emailBcc kan nu veldverwijzingen bevatten.
+  * subject kan nu veldverwijzingen bevatten ipv [#b] en [#f].
+- ALL: Factuurregel velden (<lime> tag in invoice-add bericht) configureerbaar
+  gemaakt:
+  * itemnumber
+  * product
+  * nature
+  * costprice
+- WC: Log info over (meta) queries die uitgevoerd worden.
+- OC: NitroPack van Isenselabs zet op Windows \ in DIR_APPLICATION ipv /,
+  waardoor de bepaling van catalog vs admin fout gaat.
+
+4.7.2 (2017-03-13)
+------------------
+- JOO/OC/WC: quotes in formveld attributen werden niet geescaped.
+- WC: WC gebruikt zijn eigen "magic quotes" (wp_magic_quotes()): maak dit
+  ongedaan.
+- ALL: batchscherm: bericht over verstuurde berichten en succes bericht werden
+  verkeerd vertaald.
+- PS: Wijzigingen op het geavanceerde instellingenformulier worden niet
+  opgeslagen.
+- ALL: (of iig WC) Lege string kan ten onrechte als waarde voor een niet
+  bestaande veldverwijzing teruggegeven worden.
+- MA2 (maar eigenlijk ALL): Samengestelde producten werken nog niet in alle
+  situaties.
+- ALL: Invoice velden in invoice-add bericht configureerbaar gemaakt:
+  * description
+  * descriptiontext
+  * invoicenotes
+- ALL: Veldverwijzingen kunnen nu concatenatie zonder spaties en letterlijke
+  tekst bevatten.
+- ALL: class Source toevoegen als bron voor veldverwijzingen.
+
+4.7.1 (2017-02-24)
+------------------
+- ALL: Loggen als veldverwijzingen niet gevonden worden.
+- MA1: formulierverzending werkte niet.
+- MA: code voor verschillende versies waar mogelijk samengevoegd.
+- ALL: Bij samengestelde of bundelproducten kregen de kinderen geen
+  "meta-line-type" waarde.
+- ALL: bundelproducten kunnen de fout in gaan als de kinderen geen of 0% als
+  btw percentage hebben, of als het bundelproduct juist geen of 0% als btw
+  percentage heeft. NB: Dit is nog steeds niet naar alle tevredenheid opgelost!
+
+4.7.0 (2017-02-15)
+------------------
+- ALL: Customer velden in invoice-add bericht configureerbaar maken:
+  * contactyourid
+  * companyname1
+  * companyname2
+  * fullname
+  * salutation
+  * address1
+  * address2
+  * postalcode
+  * city
+  * vatnumber
+  * telephone
+  * fax
+  * email
+  * mark (kenmerk)
+- MA1: checkboxes op het geavanceerde instellingen formulier werkten niet.
+- MA1: rechten per Acumulus formulier waren niet in te stellen.
+- WC: refunds hebben een negatieve "quantity" bij teruggestuurde producten en
+  hierdoor ook een onterechte correctieregel.
+- WC: btw over teruggegeven verzendkosten bij een refund zijn op de cent
+  nauwkeurig ipv op 4 cijfers achter de komma zoals bij een bestelling. Hierdoor
+  kon de btw berekening fout gaan.
+- ALL: gebruik een fictief email adres (<shopname>@nul.sielsystems.nl) wanneer
+  de webshop geen email adres van de klant heeft opgeslagen. Dit voorkomt dat er
+  steeds een nieuwe relatie aangemaakt wordt.
+- ALL: gebruik van consumer.<shopname>@nul.sielsystems.nl als fictief email
+  adres wanneer de optie "Uw (niet zakelijke) klanten automatisch aan uw
+  relaties in Acumulus toevoegen." niet aan staat
+- ALL: Prevent json error when XML is returned.
+- JOO: "Notice: Indirect modification of overloaded element has no effect" of
+  "Fatal error: Cannot use object of type stdClass as array" in ConfigStore.php,
+  regel 98.
+- WC: Status on-hold/in de wacht wordt nu ook als niet betaald gezien.
+- OC: Keuze voor OC factuurnummer als factuurnummer werd niet gegeven.
+
+4.6.6 (2016-12-27)
+------------------
+- Verbeterde en gecorrigeerde foutstatusafhandeling.
+- OC20: OC 2.0/2.1 gebruikt nog de oude eventbenamingen. Daardoor werkte het
+  automatisch versturen niet.
+- OC2: Instantiate correct OC helper.
+
+4.6.5 (2016-12-06)
+------------------
+- OC23: Error: model/localisation/tax_class not found bij verzenden factuur
+  nav status wijziging (niet in batch).
+
+4.6.4 (2016-12-06)
+------------------
+- ALL: Formvalidatie mbt "verzenden factuur als PDF" was fout.
+- JOO: Fout in installer script.
+
+4.6.3 (2016-11-17)
+------------------
+- MA1: Fatal error: Class 'Varien_Data_Form_Element_Number' not found in ...
+- MA1: install file had een verkeerd versienummer.
+
+4.6.2 (2016-11-10)
+------------------
+- OC2: Error in template (in 4.6.0 opgelost voor OC23, maar de rename was niet
+  doorgevoerd in de gereleasede zip.
+
+4.6.1 (2016-11-09)
+------------------
+- OC2: Error in template (in 4.6.0 opgelost voor OC23, maar speelde ook in OC2).
+
+4.6.0 (2016-11-07)
+------------------
+- Support voor OpenCart 2.3 en Magento 2.1.
+- ALL: Configuratie-optie 'verzend geen gratis verzending regels' veranderd in
+  'verzend gratis verzending regels'.
+- ALL: Configuratie-optie verzend 0-bedrag facturen toegevoegd.
+- ALL: Configuratie-optie contact status toegevoegd.
+- ALL: De configuratie-instellingen zijn nu verdeeld over 2 schermen: standaard
+  en geavanceerd. De groepering en de helpteksten zijn verbeterd.
+- ALL: Sommige recent toegevoegde customer tags werden niet ge-unset, maar nog
+  steeds verstuurd met de 'fictieve klant' optie.
+- ALL: Toevoegen van een set van vertalingen overschrijft bestaande vertalingen
+  niet meer. Hierdoor is het eenvoudiger om webshop-specifieke vertalingen te
+  gebruiken.
+- ALL: Opslag van concept facturen kon leiden tot "Duplicate key" fouten.
+- ALL: Shop namespaces mogen nu willekeurig diepte hebben.
+- WC: Fatal error: Call to a member function get_order_number() on boolean in
+  Siel\Acumulus\WooCommerce\Invoice\Source.php on line 45, geintroduceerd op
+  13-07-2016 in 4.5.5, waardoor refunds niet meer gecreëerd worden.
+- OC23: en weer een aantal geniepige veranderingen door die klojos van OC
+  waardoor de plugin niet correct werkt met 2.3. Wat ging er mis:
+  * configuratiescherm: all actieve betaalmethodes werden weergegeven als
+    'OpenCart'.
+  * Could not load template admin/view/template/module/acumulusform.tpl!
+  * De meegeleverde ocmod werkt niet meer.
+- WC: Ondesteuning voor de plugin "WooCommerce Extra Product Options"
+  (https://codecanyon.net/item/woocommerce-extra-product-options/7908619).
+- WC: Fout in herkennen van de woocommerce-sequential-order-numbers-pro plugin,
+  waardoor deze niet ondersteund werd.
+- ALL: overwriteifexist werd niet op 0 gezet als dat zo was ingesteld. Idem voor
+  concept op 0 (geen concept) zetten, maar dat had geen gevolgen want dat is de
+  default bij afwezigheid van het veld.
+- ALL: "dry run" optie met verbeterde logging toegevoegd aan batch scherm..
+- ALL: Instellingen toegevoegd om opmaak varianten/opties/samengestelde goederen
+  te beinvloeden.
+- HS/VM: omschrijving opties/varianten wordt nu toegevoegd aan bestelregels.
+- ALL: already deprecated const ServiceConfigInterface::Debug_StayLocal removed.
+- ALL: Gebruik de naam van de verzendmethode op de factuurregel voor de
+  verzendkosten (was: de algemene term "Verzendkosten").
+- PS: Verzendkosten (ex btw) worden op de cent nauwkeurig doorgegeven door PS.
+  Dit leidt vaak tot 1 cent afwijkende facturen in Acumulus. Reken terug vanuit
+  verzendkosten inc btw + btw tarief dat ook opgeslagen wordt.
+- MA/OC: Opties opnemen op meerdere lijnen ging fout door overnemen btw bedrag
+  waardoor correcties en strategieen niet meer correct werkten.
+- OC22+: Better logging with mail errors.
+
+4.5.6 (2016-09-15)
+------------------
+- OC2: ocmod problems.
+- OC22: event handling overhaul waardoor automatisch versturen niet meer werkte.
+- MA2: versienummer opvragen is veranderd.
+- MA2: $bootstrap is niet altijd geinitialiseerd (bv bij een cmdline update).
+
+4.5.5 (2016-06-28)
+------------------
+- OC: gratis verzending regels dienen niet door een strategie behandeld te
+  worden.
+
+4.5.4 (2016-06-15)
+------------------
+- HS: payment_name is geen uniek id voor een betaalmethode: gebruik payment_id.
+- HS: enabled is niet genoeg om te bepalen of een betaalmethode aanstaat: er is
+  ook een property payment_published.
+- ALL: Laat een refund naar de originele order verwijzen in de beschrijving.
+- WC: Only a static class method or function can be used in an uninstall hook.
+
+4.5.3 (2016-06-15)
+------------------
+- ALL: setting triggerInvoiceSendEvent verwijderd: deze gaf te veel
+  onduidelijkheid en problemen. Voor alle webshops geld dat de logica hiervan
+  vervangen is door de waarde van triggerOrderStatus (met name de waarde 0).
+  Voor MA is triggerInvoiceEvent geïntroduceerd om de functionaliteit van
+  verzending op basis van factuur events te behouden.
+
+4.5.2 (2016-06-13)
+------------------
+- ALL: Fout tijdens upgrade process waardoor triggerInvoiceSendEvent niet
+  gecorrigeerd wordt.
+
+4.5.1 (2016-06-10)
+------------------
+- WC: Fout tijdens upgrade process.
+- WC: Ondersteuning voor de gratis EU VAT Assistant plugin (deze plugin
+  ondersteunt zowel B2B (verlegde btw) als B2C (digital goods)).
+- ALL: Waarshuwing bij regels zonder btw wordt ten onrechte ook getoond bij
+  factuur met verlegde btw.
+
+4.5.0 (2016-06-09) [4.5.0-beta2 (2016-06-07)]
+---------------------------------------------
+- ALL: Fout in ondersteuning voor de margeregeling als die via custom code
+  toegepast wordt.
+
+4.5.0-beta2 (2016-06-01)
+-------------------------
+- ALL: Rekening en kostenplaats op basis van betaalmethode.
+- ALL: Toon het 'Moment van versturen' formveld niet als er geen keus is.
+- ALL: Het "Support & debug" formveld is hernoemd naar "Factuur verzendmodus".
+- MA2: Magento 2 ondersteuning toegevoegd.
+- ALL: Stay local optie voor "Invoice send mode" (voorheen debug and support)
+  verwijderd.
+- ALL: Waarschuwing als er btw vrije regels op de factuur voorkomen terwijl is
+  ingesteld dat er geen btw vrije producten of diensten verkocht worden.
+- ALL: Waarschuwing als de strategieën niet alle ontbrekende velden ingevuld
+  krijgen
+- ALL: Via de globale variabele $sielAcumulusCustomNamespace is het nu mogelijk
+  om classes in de koppeling te overriden/extenden.
+- ALL: Betere ondersteuning voor de margeregeling als die via custom code
+  toegepast wordt.
+- PS: Undefined index: type op het config formulier als de accountgegevens nog
+  niet, of niet correct, zijn ingevuld.
+
+4.5.0-alpha1 (2016-05-13)
+-------------------------
+- MA2: Magento 2 ondersteuning
+- ALL: kleine refactorings (logging, teksten, commentaar).
+
+4.4.3 (2016-04-19)
+------------------
+- ALL: prevent double listings in meta-calculated-fields.
+- PS: Splitsen van kortingsregels over de 2 voorkomende btw tarieven ging fout
+  als er ook een (incorrecte) 0%-regel in de bestelling voorkomt.
+- MA1: Incorrecte en incomplete free shipping regel op refunds.
+
+4.4.2
+-----
+- OC: Verzenden orders via statuswijziging werkt niet (OC1 gaat alleen fout aan
+  de catalog kant).
+
+4.4.1 (2016-04-12)
+------------------
+- PS(/ALL): Split strategieën herzien, deze gaven, iig voor PS, niet de juiste
+  resultaten.
+
+4.4.0 (2016-04-11)
+------------------
+- ALL: Als een factuur als concept verzonden wordt, stuurt Acumulus geen
+  entry_id terug. Toch willen we ook hier een beveiliging tegen dubbel
+  versturen: sta null toe als waardes voor entry_id en token en sla dit ook op.
+- ALL: Fout in TryallVatRatePermutations waardoor die nooit succesvol kan zijn.
+- ALL: (dummy) Fail strategie is niet meer nodig en daarom verwijderd.
+- ALL: Forceer verzenden wanneer de debuginstelling op testmodus of lokaal
+  staat (3e of 4e optie: 'Verzend berichten naar Acumulus maar Acumulus zal
+  alleen de invoer controleren op fouten en waarschuwingen en geen
+  veranderingen opslaan.'of 'Verzend geen berichten naar Acumulus, verstuur
+  alleen een mail met het bericht dat verstuurd zou worden.').
+- ALL: Betere logging in Strategy classes.
+- JOO: checkbox waarden worden niet goed opgeslagen in de config.
+- JOO: Bij installatie: You have an error in your SQL syntax ... near '`id`
+  int(11) NOT NULL auto_increment, ...
+- MA1: Prevent warnings in Magento whose own autoloader does log warnings when a
+  class cannot be loaded.
+- ALL: Notice: Undefined index: meta-vattypes-possible in
+  Siel/Acumulus/Invoice/Completor.php on line 662.
+
+4.3.0 (2016-03-08)
+------------------
+- ALL: Op PHP5.3: Fatal error: Uncaught exception 'ReflectionException' with
+  message 'Class Siel\Acumulus\WooCommerce\Shop\AcumulusEntryModel does not
+  have a constructor, so you cannot pass any constructor arguments' in
+  /wp-content/plugins/acumulus/libraries/Siel/Acumulus/Shop/Config.php:211.
+- OC1: Eerste versie op deze library: Europese btw tarieven; Batch verzending.
+  Nog geen refunds.
+- OC2: Typo die voorkomt dat coupon regels gesplitst kunnen worden over
+  verschillende btw tarieven.
+- OC2: Typo die voorkomt dat het acumulus.invoice.sent event uitgevoerd word.
+- ALL: Waarden voor de instellingen "moment van versturen" en  "Bestelstatus"
+  worden niet getoond op formulier (wel opgeslagen en gebruikt).
+- WC: Class batchform verwijderd, base batchform is niet meer abstract.
+- PS: PS specifieke code volgens standards van https://addons.prestashop.com.
+- ALL: Code nu volgens PSR-2 coding standard opgemaakt.
+
+4.2.1 (2016-02-24)
+------------------
+- PS: Form submit van instellingenformulier wordt niet herkend en verwerkt.
+- WC: Variabele producten waarbij de varities niet als aparte SKUs aangemaakt
+  zijn kwamen zonder variantomschrijving terecht op de factuurregels.
+- ALL: Nieuwe optie toegevoegd om facturen met verlegde btw te kunnen
+  onderscheiden van facturen met alleen btw vrije producten. Dit voorkomt een
+  hoop waarschuwingen bij de meeste winkels die toch geen btw vrije producten
+  of diensten leveren.
+
+4.2.0 (2016-02-16)
+------------------
+- ALL: De completor kijkt nu naar de bestellingstotalen en de totalen van de
+  afzonderlijke bestellingsregels en voegt een correctieregel toe als deze niet
+  gelijk zijn. Dit leverde fouten in verschillende plugins op, met name bij
+  kortingen in refunds:
+  * MA1: btw op korting op verzendkosten in een credit note worden niet
+    opgeslagen, bereken aan de hand van ontbrekende bedragen.
+  * PS: Kortingsbedrag (ex btw) op een order dat teruggevorderd wordt op een
+    credit slip is niet bekend: bereken aan de hand van het matchen van
+    ontbrekende bedragen met kortingen op de oorspronkelijke order.
+  * VM3: Verbeterde behandeling van kortingen zowel via calc rules als coupons.
+- ALL: Sla geen leeg wachtwoord op (staat toe dat, eenmaal ingevuld, het niet
+  meer naar en van de browser verstuurd hoeft te worden).
+- ALL: type fout waardoor removeEmptyShipping optie niet correct werkte.
+- PS: Mogelijke PHP warning als een order via batchformulier verzonden wordt.
+- MA1: Foute verzendkosten werden verstuurd als een korting ook van toepassing is
+  op die verzendkosten.
+- MA1: Payment fee kan vooralsnog niet worden herkend: getPaymentchargeAmount()
+  is een niet bestaande method.
+- ALL: Source:;getStatus() toegevoegd. allows further refactorings.
+- ALL: refactorings, waaronder
+  * hernoemen van een aantal 'meta-...' tags.
+  * introductie en gebruik van ShopConfig::getForm().
+  * introductie en gebruik van Source:;getStatus().
+- OC2: bug fixing.
+
+4.2.0-beta9 (2016-01-25)
+------------------------
+- OC2: Eerste versie op deze library: Europese btw tarieven; Batch verzending.
+  Nog geen refunds.
+- ALL: Verbeterde verwerking van facturen die (mogelijk of zeker) gesplitst
+  moeten worden. Als er meerdere factuurtypes mogelijk zijn, wordt er een
+  conceptfactuur verstuurd die in Acumulus gecorrigeerd en evt gesplitst moet
+  worden.
+- HS: zelf aangemaakte statussen werden niet herkend bij een orderstatuswijziging.
+
+4.2.0-beta8 (2016-01-18)
+------------------------
+- ALL: Optie toegevoegd om aan te geven of u in uw winkel digitale diensten
+  aanbiedt. Dit wordt gebruikt voor een betere selectie van en controle op de
+  mogelijke btw types. GEEF DEZE OPTIE EEN WAARDE IN HET INSTELLINGENSCHERM!
+- WC: Klikbare link naar de changelog in de WP readme.txt.
+- WC: filters.txt aangepast zodat huidige parameters en hun type beschreven
+  worden.
+- PS: do no longer update not changed fields id_shop and id_shop_group.
+
+
+4.2.0-beta7 (2016-01-13)
+------------------------
+- WC: Gebruik WC logging ipv de wel erg basic (= afwezige) WP logging. Acumulus
+  heeft nu zijn eigen log onder WooCommerce - Systeem status - Logs.
+- ALL: Verwijder dubbele email adresseringen en display names.
+- ALL: Verbeterde verwerking van gelijke btw percentages (b.v. BE en NL 21%).
+  Als er meerdere factuurtypes mogelijk zijn wordt er een conceptfactuur
+  verstuurd die in Acumulus gecorrigeerd en evt gesplitst kan worden.
+- ALL: Meer logging.
+- HS/VM3: log message (gebruikt voor debugging) verwijderd.
+
+4.2.0-beta6 (2016-01-11)
+------------------------
+- HS/VM3: Logging werkte alleen als Joomla in debug modus is en ook dan nog niet
+  voor debug messages. Acumulus heeft nu zijn eigen log file.
+- ALL: empty <line> in XML als item with key = 0 is verwijderd, bv. door de
+ "Verzend geen gratis verzending regels" optie.
+
+4.2.0-beta5 (2016-01-07)
+------------------------
+- HS/VM3: Corrected bad fix introduced in 4.2.0-beta3 (PHP5.5 constructs).
+
+4.2.0-beta4 (2016-01-06)
+------------------------
+- WC, PS, MA1:  Uncaught exception 'ReflectionException' with message 'Class
+  Siel\Acumulus\WooCommerce\Shop\ConfigStore does not have a constructor, so you
+  cannot pass any constructor arguments' (error introduced in 4.2.0-beta2).
+- WC: Hoodlettergevoeligheid bij doorgeven van namespace. Geeft: Fatal error:
+  Cannot instantiate abstract class Siel\Acumulus\Shop\InvoiceManager in
+  /Siel/Acumulus/Shop/Config.php on line 203 (error introduced in 4.2.0-alpha1).
+
+4.2.0-beta3 (2016-01-05)
+------------------------
+- VM3,HS: PHP5.5 constructs in Joomla\Shop\InvoiceManager.php.
+- WC: Added to Wordpress.org
+
+4.2.0-beta2 (2016-01-05)
+------------------------
+- VM3,HS: Joomla componenten mogen dezelfde naam hebben.
+
+4.2.0-beta1 (2016-01-04)
+------------------------
+- HS: Orders verzenden werkt, refunds nog niet
+
+4.2.0-alpha5 (2015-12-31)
+-------------------------
+- VM3,HS: Meer logging tijdens installeren.
+- PS: Ondersteun versies voor 1.6.0.x door te controleren of getOrderDetailTaxes
+  wel aanwezig is.
+- HS: customer gedeelte van facturen zo nu correct moeten werken.
+
+4.2.0-alpha3 (2015-12-28)
+-------------------------
+- VM3: Define and trigger Joomla events onAcumulusInvoice[Created|Completed|Sent].
+- WC: Added readme.txt conform the wordpress.org instructions.
+- WC: Add our own manual line to the manual lines of the system instead of
+  replacing them.
+- VM3: return type van AcumulusEntryModel::getByEntryId en getByInvoiceSourceId
+  waren fout.
+- VM3: Sta selecteren statussen om te verzenden toe op ConfigForm.
+
+4.2.0-alpha1
+------------
+- Groot aantal refactorings om ondersteuning voor HikaShop toe te voegen. Code
+  die geen gebruik maakt van VM3 functies maar alleen maar van Joomla functies
+  is apart gezet.
+- VM3: Ondersteuning voor automatische versturing.
+- VM3: return type van AcumulusEntryModel::getByEntryId en getByInvoiceSourceId
+  waren fout, maar worden (nog) niet gebruikt.
+- PS,WC: handmatig ingevoerde regels bij refunds konden genegeerd worden.
+- VM3: Error in install script: readme-nl.txt is hernoemd naar leesmij.txt.
+- PS: De koppeling werkt ook met PS1.5. Minimale versie requirement aangepast.
+- ALL: Prevent autoloader warnings when file does not exist.
+- VM3: Parse error: syntax error, unexpected T_OBJECT_OPERATOR in
+  com_acumulusInstallerScript.php on line 68: PHP5.3 incompatibiliteit.
+
+4.1.1 (2015-11-07)
+------------------
+- ALL: Batchverzending: onterechte/verkeerde melding "niet verzonden omdat
+  factuur al verzonden is" als factuurverzending wordt tegengehouden door een
+  event.
+- WC: Versienummer van de plugin zelf was niet bijgewerkt, alleen die van de
+  library.
+- WC: Updated the documentation of filters and actions in filters.txt
+- ALL: Undefined index: countrycode in Siel/Acumulus/Invoice/Creator.php line 294
+- ALL: API hernoemd naar Library (in versieinfo).
+- ALL [#39961]: Er bestaan producten die niet onderhevig aan btw zijn.
+
+4.1.0 (2015-10-31)
+------------------
+- MA1,PS,WC [#33383]: Het is nu mogelijk om meerdere order statussen te kiezen
+  waarbij de order naar Acumulus verstuurd moet worden.
+- WC [#33222]: Om de betaalstatus van een order te bepalen, wordt niet meer
+  gekeken naar paid_date, alleen nog maar naar needs_payments().
+- WC [https://forum.acumulus.nl/index.php?topic=4984.0]: In WC is het mogelijk
+  om producten te verwijderen.
+
+
+4.0.3 (2015-10-11)
+------------------
+- WC [https://forum.acumulus.nl/index.php?topic=4963 ]: Regression: WC denkt
+  altijd dat factuur al verzonden is.
+
+
+4.0.2 (2015-10-07)
+------------------
+- PS,WC: Support upgrading from 3.x.
+- WC: Lazy load config (LogLevel, debug).
+
+
+4.0.1 (2015-10-04)
+------------------
+- WC [https://forum.acumulus.nl/index.php?topic=4942.0]: PHP Fatal error: Class
+  'Requirements' not found in AcumulusSetup.php line 81.
+
+
+4.0.0 (2015-10-02)
+------------------
+De library 4.x is volledig vernieuwd. Er is meer gemeenschappelijke code en er
+is meer documentatie. Hierdoor kan de library ook losstaand gebruikt worden.
+
+Alle kennis en ervaring die met de library 3.x is opgedaan is verwerkt in deze
+versie. Uiteraard zijn alle problemen die in 3.x zijn gevonden en ook van
+toepassing waren op 4.x ook hier opgelost. Vanwege de grote verschillen is de
+3.x changelog verwijderd en beginnen we hier met een schone lijst.
+
+- ALL: Europese btw tarieven.
+- MA1,PS,WC: Ondersteuning voor credit memo's.
+- ALL: Batch verzendformulier.
+- VM: Ondersteuning voor VirtueMart 3. Doch nog geen ondersteuning voor credit
+  memos, automatische verzending en de betaalde EU VAT checker extensie.
+- WC: Ondersteuning voor de EU VAT extensie.
+- WC: Ondersteuning voor de plugins woocommerce-sequential-order-numbers(-pro)
+  en wc-sequential-order-numbers.
+
+
+Ondersteunde versies van de verschillende pakketten
+===================================================
+Merk op dat dit versies zijn die "ooit" getest zijn, waarbij uiteraard de meest
+recente versie momenteel gebruikt wordt bij het ontwikkelen en testen. Het is
+dus niet gegarandeerd dat de huidige versie van onze plugin oudere versies van
+de webshop correct ondersteund. Daar waar kennis daarover beschikbaar is, wordt
+die hieronder vermeld.
+
+HikaShop
+--------
+* 4.0.3 (Joomla 3.9.3) - 2.6.0 (Joomla 3.4.8)
+
+
+Magento 2
+---------
+* 2.3 lokaal niet werkend te krijgen, maar er is geen feedback van klanten dat
+  het niet werkt.
+* 2.2 lokaal niet werkend te krijgen, maar er is geen feedback van klanten dat
+  het niet werkt.
+* 2.1.11 - 2.1.2
+* 2.0.6 - 2.0.4
+
+
+Magento 1
+---------
+* 1.9.3.7 - 1.9.2.1
+* 1.7 door klanten getest, lijkt te werken.
+
+
+OpenCart 3.x
+------------
+* 3.0.2.1b
+
+
+OpenCart 2.x
+------------
+* 2.3.0.2
+* 2.2.0.0 (t/m library versie 8.4.1)
+* 2.1.0.1 (t/m library versie 8.4.1)
+
+
+OpenCart 1.x
+------------
+* 1.5.6.4
+
+
+PrestaShop
+----------
+* 1.7.5 - 1.7.1
+* 1.6 lijkt iha te werken, maar de link van het geavanceerde instellingenscherm
+  naar het configureerscherm werkt niet.
+* Thirtybees lijkt een kloon van PS1.6 en kan/zal dus dezelfde problemen als 1.6
+  hebben.
+* 1.6.1.13
+* 1.6.1.2 bevat een fout die deze koppeling raakt
+* 1.6.1.0 bevat fouten die deze koppeling raken.
+* 1.5.x (werkt volgens gebruikers vanaf 4.2.0-alpha5)
+
+
+VirtueMart
+----------
+* 3.4.2 (Joomla 3.8.13)
+* 3.2.14 (Joomla 3.8.10)
+* 3.2.12 (Joomla 3.8.5)
+* 3.2.12 (Joomla 3.8.3)
+* 3.2.4 (Joomla 3.8.1)
+* 3.0.18 (Joomla 3.7.2)
+* 3.0.18 (Joomla 3.6.5)
+* 3.0.18 (Joomla 3.6.2)
+* 3.0.14 (Joomla 3.4.4)
+* 3.0.10 (Joomla 3.4.4)
+* 3.0.8 (Joomla 3.4.1)
+
+
+WooCommerce
+-----------
+* 3.3.5 (WordPress: 4.9.5)
+* 3.2.6 (WordPress: 4.9.2)
+* 3.1.2 (WordPress: 4.8.2)
+* 3.1.2 (WordPress: 4.8)
+* 3.1.1 (WordPress: 4.8)
+* 3.1.0 (WordPress: 4.8)
+* 3.0.1 (WordPress: 4.7.3)
+* 2.6.13 (WordPress: 4.7.3)
+* 2.6.11 (WordPress: 4.7)
+* 2.6.6 (WordPress: 4.6.1)
+* 2.6.4 (WordPress: 4.6.1)
+* 2.6.1 (WordPress: 4.5.3)
+* 2.5.5 (WordPress: 4.5.3)
+* 2.5.5 (WordPress: 4.5.2)
+* 2.5.5 (WordPress: 4.4.2)
+* 2.5.2 (WordPress: 4.4.2)
+* 2.4.12 (WordPress: 4.4.2)
+* 2.4.7 (WordPress: 4.3.1)
+* 2.3.13 (WordPress: 4.2.3)
+* < 2.3 gaat niet correct werken met "apply after tax" coupons.

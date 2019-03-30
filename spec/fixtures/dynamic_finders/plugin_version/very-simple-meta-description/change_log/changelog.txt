@@ -1,0 +1,165 @@
+CHANGELOG
+=========
+
+= Version 5.1 =
+* settingspage: no product section if WooCommerce plugin isn't installed and active
+* file vsmd: removed unnecessary whitespaces
+
+= Version 5.0 =
+* decreased maximum meta description length from 320 to 160 characters
+* why? because Google decreased this length in may 2018
+* for a short period of time the maximum length was 320 characters
+* this means you might have to change your meta description
+
+= Version 4.9 =
+* fix: character counter
+
+= Version 4.8 =
+* fix: mistake in plugin description
+
+= Version 4.7 =
+* some textual changes
+* removed unnecessary notifications from changelog (such as "updated readme file" and "updated FAQ")
+
+= Version 4.6 =
+* fixed PHP 7.2 warning in case of an empty page excerpt (thanks Nick)
+* using mb_strlen() instead of strlen() for the character counter
+* now character counter supports all UTF-8 characters
+* minor textual change
+
+= Version 4.5 =
+* readme file: removed donate link
+* updated theme author info
+* credits in changelog: removed all full names (because of the GDPR)
+
+= Version 4.4 =
+* tagline is not used as meta description anymore
+* this was used when meta description field was empty
+* removed this because a tagline is too short to be used as meta description
+
+= Version 4.3 =
+* increased maximum meta description length from 160 to 320 characters (thanks kawaiikawaii)
+* why? because Google increased this length at the end of 2017
+* redesigned the settingspage
+
+= Version 4.2 =
+* several small adjustments in file vsmd
+
+= Version 4.1 =
+* as mentioned before: removed support for Open Graph and Twitter Cards
+* new: activate post and page excerpt or product excerpt separately
+* updated all files
+
+= Version 4.0 =
+* in next version I will remove support for Open Graph and Twitter Cards
+* why? because both features don't have much to do with a meta description
+* and the amount of users did not increase after adding both features
+* best practice: removed closing PHP tag from most files
+* best practice: added newline at end of most files
+
+= Version 3.9 =
+* fixed bug in open graph tag (description) on homepage
+* it always printed the tagline, never the meta description
+
+= Version 3.8 =
+* minor textual changes
+* updated file vsmd
+
+= Version 3.7 =
+* increased meta description length from 150 to 160 characters
+* minor textual changes
+* updated file vsmd
+
+= Version 3.6 =
+* file vsmd: disable direct access to file
+
+= Version 3.5 =
+* added twitter cards tags
+* updated text strings on settingspage
+* updated file uninstall
+
+= Version 3.4 =
+* added custom excerpt for pages too
+* now you can set a custom excerpt for every post and page
+
+= Version 3.3 =
+* added open graph tags
+* for more info please check readme file
+* updated file uninstall
+
+= Version 3.2 =
+* file vsmd: fix in the meta description order
+
+= Version 3.1 =
+* SEO: added checkbox to use the custom post excerpt as meta description (thanks Tom)
+* updated file uninstall
+
+= Version 3.0 =
+* SEO: added checkbox to use meta description for homepage only (thanks Dan)
+* updated file uninstall
+
+= Version 2.9 =
+* added link to settingspage
+
+= Version 2.8 =
+* file vsmd: textual changes
+
+= Version 2.7 =
+* added file changelog
+
+= Version 2.6 =
+* added character counter
+* updated text strings
+
+= Version 2.5 =
+* only few minor adjustments
+
+= Version 2.4 =
+* updated text strings
+
+= Version 2.3 =
+* added a PayPal donate link
+
+= Version 2.2 =
+* only updated readme file
+
+= Version 2.1 =
+* removed translations: plugin now support WordPress language packs
+
+= Version 2.0 =
+* added file uninstall.php so settings in database are removed when uninstalling plugin
+
+= Version 1.9 =
+* file vsmd: updated Data Escaping in header
+
+= Version 1.8 =
+* changed text domain for the wordpress.org translation system
+
+= Version 1.7 =
+* updated file vsmd
+ 
+= Version 1.6 =
+* updated language files
+
+= Version 1.5 =
+* only few minor adjustments
+
+= Version 1.4 =
+* only few minor adjustments
+
+= Version 1.3 =
+* removed function vsmd_clean_input and replaced it with native WP function sanitize_text_field
+* now all UTF-8 characters are supported
+* added Catalan translation (thanks Miquel)
+* added FAQ in readme file
+
+= Version 1.2 =
+* added Serbian translation (thanks Ogi)
+* added Brazilian Portuguese translation (thanks Gustavo)
+* added Spanish translation (thanks Alvaro)
+
+= Version 1.1 =
+* adjusted function vsmd_clean_input. Only allowed: letters (a-z), digits (0-10), space, point, hyphen and comma
+
+= Version 1.0 =
+* first stable release

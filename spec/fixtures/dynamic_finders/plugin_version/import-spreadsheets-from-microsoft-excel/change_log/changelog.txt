@@ -1,0 +1,29 @@
+== Changelog ==
+
+= 10.1 =
+
+* Extensive revision of the plugin to support the Gutenberg Block editor in both WordPress version 4 and 5, with seamless switching to/from the Classic editor. Please read the **Upgrade Notice** for information about a problem that may appear when you switch back and forth between the Block editor and the Classic editor. 
+
+= 10.0.2 =
+
+* line 396 to 408 : commented sanitization file check because all folder/file are renamed accordingly
+* line 451 to 461 : added to rename folder, file and to delete unsanitized filename
+* line 609 to 613 : commented message invalid file name
+
+= 10.0.1 =
+
+* readme.txt updated with up-to-date information and separate changelog.txt file added
+* line 410 : sanitize_file_name() added
+* line 409 : replaced mkdir with wp_mkdir_p which is WordPress built-in function.
+* line 399 : check if folder name to be created is valid name.
+* line 413 : check if target zip file to be processed has valid name.
+* error message:  Invalid file name. Only characters, numbers, underscore, dot and dashes are allowed.
+* Improvement: Implemented all the requirements of the standard WordPress plugin.
+* Fix: Tested with the latest WordPress version 4.9
+
+= 9.0.1 =
+* Improvement: Added checking for ZipArchive PHP extension and error logging feature.
+* Fix: Tested compatibility with more than 35 most common plugins and fixed compatibility issue with another plugin.
+
+= 9.0.0 =
+* Initial version.

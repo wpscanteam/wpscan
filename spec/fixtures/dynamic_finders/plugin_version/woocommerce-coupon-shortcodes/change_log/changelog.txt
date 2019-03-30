@@ -1,0 +1,79 @@
+== WooCommerce Coupon Shortcodes by itthinx                       Changelog ==
+
+
+= 1.8.0 =
+* WordPress 5.1 compatibility tested.
+* WooCommerce 3.5 compatibility tested.
+
+= 1.7.0 =
+* Added the [coupon_show] shortcode which allows to render coupon
+  code, description and discount info together for each discount,
+  also in enumerations with [coupon_enumerate].
+* Updated and tested for WordPress 5.0 compatibility.
+* Updated and tested for WooCommerce 3.5 compatibility.
+* Added the option to randomize a coupon enumeration.
+* Fixed swapped options used in coupon enumerations (order and orderby).
+* Updated the readme.txt with additional examples.
+
+= 1.6.2 =
+* Added the Woo plugin header tag.
+
+= 1.6.1 =
+* Updated compatibility with WooCommerce 3.4.
+* Fixed missing ABSPATH checks.
+
+= 1.6.0 =
+* Tested with WordPress 4.9.
+* Tested with WooCommerce 3.3.5
+* Tested with WooCommerce 3.4.0-beta.1
+
+= 1.5.1 =
+* Tested with WordPress 4.8.
+* Updated plugin tags.
+
+= 1.5.0 =
+* Tested with WordPress 4.8.
+
+= 1.4.0 =
+* Tested with WordPress 4.7.3 and prepared for WooCommerce 3.0
+
+= 1.3.0 =
+* Tested with WordPress 4.4 and WooCommerce 2.4.10.
+* Added the `[coupon_is_not_applied]` shortcode.
+
+= 1.2.6 =
+* Tested with WordPress 4.3 and WooCommerce 2.4.6.
+* Updated the documentation links.
+
+= 1.2.5 =
+* WordPress 4.1 and WooCommerce 2.3.x compatibility checked
+* Updated the version required
+
+= 1.2.4 =
+* WordPress 3.9 compatibility checked
+
+= 1.2.3 =
+* Improved coupon currency symbol rendering, now using wp_price() to render
+  amount and currency when available.
+
+= 1.2.2 =
+* WordPress 3.8 compatibility checked
+
+= 1.2.1 =
+* Fixed a PHP Warning when no codes are supplied to a shortcode.
+
+= 1.2.0 =
+* Added [coupon_enumerate] shortcode
+* Added support for subscription coupons
+* Added the option to display the coupon code as prefix with the
+  [coupon_description] and [coupon_discount] shortcodes.
+* Fixed bug caused by undeclared variable used to check excluded product IDs
+
+= 1.1.0 =
+* Added: [coupon_is_applied] shortcode
+* Improved: allow more flexible description and discount listings, the
+  `element_tag` attribute can be used to specify enclosing tags other than the
+  default `span`
+
+= 1.0.0 =
+* Initial release.

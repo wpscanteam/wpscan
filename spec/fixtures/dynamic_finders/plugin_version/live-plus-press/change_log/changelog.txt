@@ -1,0 +1,70 @@
+Live+Press
+supported by Tania Morell (aka "digsite")
+
+v2.2.1 03.22.2010
+- Bugfix : Added stripslashes to LP data on its way out of the database to prevent recursive backslashes
+- Bugfix : Corrected bug with email post crossposting
+- Removed : Userpic text box option. No longer used.
+
+v2.2 03.20.2010
+- Bugfix : LJ logins beyond the first one failed to authenticate
+- Bugfix : Saving a draft no longer triggers a crosspost (again)
+- Bugfix : Replaced SCRIPT_URI with is_admin in two places in lpextras.php
+- Bugfix : A broken LJ site no longer affects LP or WP as a result of LP
+- Bugfix : Addressed complaints with apostrophes, commas, slashes in the body and title
+- Changed : How LP processes post content before crossposting - using apply_filters
+- Added : Style formatting on the admin page to make options easier to follow
+- Added : support for non-Roman alphabet: Ie, Cyrillic, Kanji, Sanskrit, Greek, Arabic, Hebrew, etc
+
+v2.1.11 03.15.2010
+- Bugfix : Fixed unpopulated dropdowns, Uncommented Switcher 
+
+v2.1.10 03.07.2010
+- Bugfix : Removed unecessary calls to lpextras.php which connects to LJ XMLRPC interface
+
+v2.1.9 06.10.2009
+- Bugfix : Saving a draft on WP publishes a post on LJ
+- Changed : Blog linkback from LJ points to post uri instead of blog url
+
+v2.1.8 11.18.2008
+- Bugfix : Livejournal.com site down results on broken blog
+
+v2.1.0 08.22.2008
+- Bugfix : Clean posts of invisible space characters that break crossposting
+- Bugfix : Saving/Editing journal logins flakiness
+- Bugfix : Rewrite of journal login/edit code fixed jsQuery errors
+- Bugfix : Was unable to deselect comment option on previously published posts
+- Bugfix : Was unable to deselect linkback option on previously published posts
+- Removed : Removed options usesynch, useextras, advanced linkback
+- Removed : Removed options guess mood, and fix include path 
+- Removed : ljeditjournal.php, no longer needed
+- Removed : class-IXR.php hack, no longer needed
+- Removed : md5.js, using php md5 instead
+- Changed : Authenticates with livejournal using challenge method instead of deprecated clear password
+- Changed : LP extras user interface aesthetics and layout
+- Changed : LP admin page user interface aesthetics and layout
+- Added : New livepress options table key to store journal logins
+- Added : Auto email crossposting configurable on LP Admin page
+- Added : Linkback includes "leave comment here" based on nocomment setting
+- Added : Option to choose between crossposting categories or tags
+- Added : Option to disable comments by default
+
+v2.0.7
+- Bugfix : 
+- Removed :
+- Changed :
+- Added :
+
+v2.0.6
+
+v2.0.5
+
+v2.0.4
+
+v2.0.3
+
+v2.0.2
+
+v2.0.1
+
+v2.0

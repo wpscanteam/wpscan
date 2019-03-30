@@ -1,0 +1,554 @@
+= v2.0.13 - March 04, 2019 =
+
+* **New** Set loading effect for 'Load more' task.
+* **New** Set loading effect at task list page and list archive page nevigation.
+* **New** Set loading effect at task list pagination. 
+* **New** New library v-tooltip
+* **Fix** Any kinds of url added extra &nbsp from tinymce text filed.
+* **Fix** After project edit, the description is not updated real time.
+* **Fix** Less file is not built to css file.
+* **Update** Set target blank in tinymce posted url.
+
+= v2.0.12 - Feb 15, 2019 =
+
+* **New** New filter welcome page redirect.
+* **Fix** Task pagination did not work.
+* **Fix** Close button did not work in new project form.
+* **Fix** Milestone due date did not update.
+* **Update** Set permission at user create time from project overview page. 
+
+= v2.0.11 - Feb 08, 2019 =
+
+* **New** Integrate with popper js.
+* **New** Welcome page.
+* **New** Premium page.
+* **Fix** Change task list fetch query.
+* **Fix** Change task fetch query.
+* **Fix** File upload problem from discussion section.
+* **Fix** After close single task the list page is refreshing.
+* **Fix** Remove html tag from email content.
+* **Fix** Color picker does not work.
+
+= v2.0.10 - Dec 19, 2018 =
+
+* **Hotfix** Fatal error at page and post edit time.
+
+= v2.0.9 - Dec 19, 2018 =
+
+* **New** Update user from overview page.
+* **New** Move tasks from one list to another.
+* **Update** Permission for project delete.
+* **Fix** Project update time dialog-box close automatically.
+* **Fix** Conflict with text editor and datepicker problem for task create.
+* **Fix** Date-picker auto close, when select a date.
+* **Fix** Coding standard according wordpress.
+
+= v2.0.8 - Nov 29, 2018 =
+
+* **New** Project home page redesign.
+* **New** Close single task popup with ESC button.
+* **New** Single task popup is enable from activity page.
+* **Update** Task filter form alignment.
+* **Fix** Relative date for comments.
+* **Fix** Tabindex for texteditor.
+* **Fix** Latest activity for single task.
+* **Fix** More task button missing from completed tasks.
+* **Fix** Date picker auto hide problem.
+* **Fix** Task list responsive issue.
+* **Remove** Slicknav library.
+
+= v2.0.7 - November 08, 2018 =
+
+*  **New** Switch project with key binding cmd+j/clt+j.
+*  **New** Task list page redesign.
+*  **New** Single task list page redesign.
+*  **New** System default task list inbox. 
+*  **New** All description fields with validation and sanitization at edit time.
+*  **New** Project title should be unique.
+*  **Fix** Task filter query.
+*  **Fix** Task and task-list sorting supported in mobile.
+
+= v2.0.6 - Oct 02, 2018 =
+
+* **New** Set permission setting for user mail notification.
+* **New** Task single page redesign.
+* **New** Show activity in single task page.
+* **New** Projects can mark as favourite by users.
+* **New** Added completed_by and completed_at fields in pm_tasks database table.
+* **New** Added status field in pm_broad database table.
+* **New** Support for video file upload.
+* **New** New user notification.
+* **New** Advanced task filter from task list page.
+* **New** Set deleted activity log in activity section.
+* **Fix** Invalid time issue in activity page.
+* **Fix** Overview graph for last 3o days activity
+* **Fix** Get email notification when update discussion
+
+= v2.0.5 - August 16, 2018 =
+
+* **New** Added filters for getting custom query in all transformers.
+* **New** Project description in html format.
+* **Fix** Undefined task title from activity.
+* **Fix** Single task popup close automatically.
+* **Fix** Activity count when delete an element.
+* **Fix** Manage capability return false, when user role is not found.
+* **Fix** Some translation issues.
+* **Fix** Some compatibility issue on internet explorer.
+* **Fix** Task assignee input field is not updating when assignee user field is Empty
+* **Fix** Task list milestone input field is not updating when milestone is Empty
+
+= v2.0.4 - July 27, 2018 =
+
+ * **Fix** Download link for wedevs project manager php-5.6.
+ 
+= v2.0.3 - July 27, 2018 =
+
+ * **New** List drag, drop and reorder.
+ * **New** Task independently switch in task lists.
+ * **New** Added categry pagination.
+ * **Fix** Date format problem for task and overviews graph.
+ * **Update** Activity date format change.
+ * **Update** Load All Categories in select form.
+ * **Update** Load all HTTP request with GET and POST methods.
+
+= v2.0.2 - July 23, 2018 =
+
+ * **New** Create function for getting individual task.
+ * **New** Hook for all CRUD (Create, Read, Update and Delete)
+ * **Fix** Task complete and incomplete issues in microsoft edge browser.
+ * **Fix** Pagination set -1 for per page and its getting error.
+ * **Fix** Multisite installation and upgrade.
+ * **Fix** Translation for vue files.
+ * **Fix** Fetch project in single task page.
+ * **Fix** Reduce conflict with WPERP plugin.
+ * **Fix** JS make compitable with IE>8.
+
+= v2.0.1 - Jun 29, 2018 =
+
+ * **Fix:** Fix database migration problem upon updating the plugin.
+
+= v2.0 - Jun 28, 2018 =
+
+ * **BREAKING**: This **v2.0** release is a major version and introduces breaking changes by re-writing the whole plugin. Please test the plugin before updating from <strong>v1.x</strong>. Taking a **database backup** is adviced.
+ * **New:** REST API added. Now you can access everything of project manager via the API. Creating of mobile apps would be much easier.
+ * **New:** Moved from custom post type to custom database tables, which performs a lot faster.
+ * **New:** We have re-written the Project Management UI, powered by [Vue.js](https://vuejs.org/). This introduces a SPA (Single Page Application) with blazing fast page loading and a snappier user experience.
+ * **Bug Fixes:** We have also squashed a lot pesky bugs under the hood.
+
+= 1.6.16 - Jun 11, 2018 =
+
+ * [fixed] Project title is overlaping on RTL language.
+ * [fixed] Could not select project category while creating/editing a project.
+ * [fixed] Single task is not re-rendering
+
+= 1.6.15 - May 10, 2018 =
+
+ * [fixed] Task list is not showing when using the Internet Explorer browser.
+ * [fixed] Projects dashboard display missing alignment.
+ * [Update] Improved plugin strings.
+ 
+= 1.6.14 - April 26, 2018 =
+
+ * [fixed] Task is not showing after clicking on a task from the calendar.
+ * [fixed] Mail notificaation system not working.
+ * [fixed] Category menu selection while creating project not working on RLT.
+ * [fixed] RTL display missing alignment on milestone.
+
+= 1.6.13 - April 12, 2018 =
+
+ * [fixed] RTL display missing alignment.
+ * [fixed] Settings menu is not showing properly on projects header.
+ * [fixed] Project settings page translation not working.
+
+= 1.6.12 - March 22, 2018 =
+
+ * [fixed] Showing HTML markup in task descriptions when we enter plain text.
+ * [fixed] To-do list, Discussion, milestone, page translation not working.
+ * [fixed] Projects page translation not working.
+ * [update] Improved plugin strings.
+ 
+= 1.6.11 - February 26, 2018 =
+
+ * [fix] Notify users while commenting in a task.
+ * [fix] Trix-editor intregration with the WP ERP.
+ * [fix] Compatible with the Microsoft Edge browser.
+ * [fix] Task re-ordering.
+ * [fix] Project list and grid view compatible with all browsers.
+
+= 1.6.10 - November 27, 2017 =
+
+ * [new] Vuejs loading made compact.
+ * [new] Included vuejs in project file.
+ * [update] Included file download attributes.
+ * [update] Notify manager when updating comments.
+ * [fix] Navigate to a task from the calendar.
+ * [fix] User search problem fixed when creating a project.
+ * [fix] Text editor style problem fixed.
+
+= 1.6.9 - August 24, 2017 =
+
+ * [Fix] CPM free loader class active after loading WP all plugins
+ * [Fix] All co-workers get mail after completed the task
+ * [new] weForms Upsell Class
+
+= 1.6.8 - August 17, 2017 =
+
+ * [Fix] Prevent the loading trix-editor for all WP page.
+ * [Fix] Text formating retained got from others editor.
+ * [Fix] Creating second task does change the date of first task.
+ * [new] Add new component cpm-datepicker
+
+= 1.6.7 - August 01, 2017 =
+
+ * [new] Js Tiptip library has been added.
+ * [update] Condition applied when showing calender on setting tast start date.
+ * [update] Date icon has been shown if no date was set.
+ * [update] Description icon has been shown if no description was set.
+ * [update] Co-Worker icon has been shown if no Co-Worker was set in the task.
+ * [fix] Double date picker shown at task date update time.
+ * [fix] Undefined index errors.
+
+= 1.6.6 - July 31, 2017 =
+
+ * [new] Task title update from single task page.
+ * [new] Task privacy update from single task page.
+ * [new] Task description update from single task page.
+ * [new] Task start and end date update from single task page.
+ * [new] Add user/co-worker/client from single task page.
+ * [fix] Unable to complete task.
+ * [fix] When complete a task then this completed task shown double in the to-do list.
+ * [fix] Double "New To-Do" button shown.
+ * [update] 'Get project id' function always return false.
+ * [update] Design change for single task page. 
+ 
+= 1.6.5 - July 6, 2017 =
+
+ * [fix] Co-worker can not show the list corner menu.
+ * [fix] Co-Worker could not notifying when add or update project.
+ * [fix] Double "New To-Do" button shown and also cpm-new-todolist-form has shown when clicked "New To-Do" List button.
+ * [fix] Project create permission.
+ * [fix] Get complete and incomplete task query
+ * [fix] Change routing effect at todo-list page to another page
+
+= 1.6.4 - June 22, 2017 =
+
+ * [new] Task list-view on the right corner in to-do list section.
+ * [update] Notify co-workers on task completion.
+ * [update] Task update action hook.
+ * [update] Style sheets updated.
+ * [update] Some javascript refactored.
+ * [fix] Wrong color is showing for a task on basis of task competion status.
+ * [fix] PHP warning on project overview.
+ * [fix] PHP warning on my task overview.
+
+= 1.6.3 - June 07, 2017 =
+
+ * [new] Drag and drop sortability added to the task
+ * [update] Task color scheme.
+ * [update] Activity graph color scheme in my task section.
+ * [update] Single task redirection in my task section.
+ * [update] Project duplication.
+ * [update] Project overview section.
+ * [fix] Grid/List view action on project listing is not working.
+ * [fix] Project overview graph is not working.
+ * [fix] Not all users of a project is being duplicated when duplicating a project.
+ * [fix] Notification is sent to the co-workers when a project is created.
+ * [fix] Unable to comment in a task when it is redirected from current task in my task.
+ * [fix] Unable to comment in a task when it is redirected from outstanding task in mytask.
+ * [fix] Unable to comment in a task when it is redirected from competed task in my task.
+ * [fix] User selection is not working in my task.
+ * [fix] Date section is not working in activity graph in my task.
+ * [fix] Red color is showing for current task in my task.
+ * [fix] Overview section in my task is not working
+ * [fix] Activity section in my task is not working
+ * [fix] Current task section in my task is not working
+ * [fix] Outstanding task section in my task is not working
+ * [fix] Completed task section in my task is not working
+ * [fix] File attachment is not working when commenting in the file section of a project.
+ * [fix] Unable to delete a comment in the file section of a project.
+ * [fix] Commenting in a discussion board is not working.
+ * [fix] Editing a comment in a discussion board is not working.
+ * [fix] Deleting a comment in a discussion board is not working.
+ * [fix] Javascript shows error when commenting, editing comments and deleting comments in discussion board.
+
+= 1.6.2 - April 27, 2017 =
+
+ * [new] Email template for mentioning users in a comment. [pro]
+ * [new] Moment js dependency added.
+ * [new] Compatibility for mentioning users in a comment.
+ * [update] Include filter for register project post type.
+ * [update] Include filter for register project taxonomy.
+ * [update] Change pagination position from left to right.
+ * [update] Pagination has been shown up and down of to-do lists content.
+ * [update] Single task url.
+ * [update] To-do lists progress bar.
+ * [update] Unnecessary parameters removed form wp_enqueue_script in cpm.
+ * [update] Array declaration according to lower version of php.
+ * [fix] Can’t use function return value in write context.
+ * [fix] Syntax error, unexpected '['
+ * [fix] Filtering for to-do lists private view.
+ * [fix] Filtering problem for the visibility of to-do lists create button.
+ * [fix] List style problem in tiny-MCE comment box while commenting on discussion board.
+ * [fix] WP nonce problem in project discussion.
+
+= 1.6.1 - April 11, 2017 =
+
+ * [fix] Load JS files only in todo list page
+ * [fix] Fix typo in todo list privacy checking capability
+ * [fix] Shortcode rendering in comments
+ * [fix] Remove users from notification panel outside of the project members
+ * [fix] Removed PHP array shorthand declaration
+ * [fix] Single task URL problem in My Task
+
+= 1.6 - April 08, 2017 =
+
+ * [new] Use js library Vue
+ * [new] Design layout changed for To-do Lists.
+ * [new] Real time update every action for To-do lists.
+ * [new] Two way data binding for to-do list edit
+ * [new] Two way data binding for task edit
+ * [new] Task lazy loading.
+ * [new] Vue routing for single To-do list
+ * [new] Real time pagination.
+ * [new] Completed and incomplete label added for corresponding tasks in single to-list.
+ * [update] Discussion editor changed from tricks to tinymce.
+ * [update] Real time change of progress bar.
+ * [update] Assign user to task options changed from choosen to Vue multiselect.
+ * [update] User avatar(gravatar) link changed form 404 to mm
+ * [fix] Remove comments link from overview.
+ * [fix] All functionalities for to-do list.
+
+= 1.5.1 - September 19, 2016 =
+
+ * [new] Send Email Notification when a comment updates.
+ * [new] Add filter for how many letter to show when image name is long in files tab.
+ * [fix] Fixed conflict with buddypress.
+ * [fix] Fixed Project creation capability and update language files.
+ * [fix] Made Report print friendly.
+ * [fix] Files tab loading improvement.
+ * [fix] Show all comments in newly uploaded file view.
+ * [fix] Client view private discussion.
+
+= 1.5 - August 20, 2016 =
+
+ * [new] Report section new design.
+ * [new] New Report item added.
+ * [new] Files tab new design and add new feature in pro version.
+ * [new] Add option for create document and connect to other online Docs.
+ * [new] Add option to upload files / attachment direct to a project.
+ * [fix] Duplicate mail send on project create.
+ * [fix] Change cpm_get_option function.
+
+= 1.4.3 - May 30, 2016 =
+
+ * [fix] Milestone input date and project redirect issue after create.
+ * [fix] Sorting completed milestone
+ * [fix] Image broken in emails
+ * [fix] File upload on first discussion problem fix.
+ * [fix] Task Done/Undone tick problem fix.
+ * [fix] New user create on project create or update problem fix.
+ * [fix] Department or personal projects show in ERP integration.
+
+= 1.4.2 - April 6, 2016 =
+
+ * [fix] Project permission problem in free version
+
+= 1.4.1 - March 28, 2016 =
+
+ * [new] Task list sticky option added as a replacement for sorting
+ * [new] Proper mime type icon set
+ * [new] Initial ERP integration added
+ * [fix] Front-end URL issue
+
+= 1.4 - March 13, 2016 =
+
+ * [new] UI Re-designed
+ * [new] Tasks now have a description field
+ * [tweak] As now we have description in tasks, previous tasks were updated.
+ * [tweak] Project post_type changed from `project` to `cpm_project`
+ * [tweak] Task post_type changed from `task` to `cpm_task`
+ * [tweak] Task List post_type changed from `task_list` to `cpm_task_list`
+ * [tweak] Milestone post_type changed from `milestone` to `cpm_milestone`
+ * [tweak] Message post_type changed from `message` to `cpm_message`
+ * [tweak] project_category taxonomy changed from `project_category` to `cpm_project_category`
+
+= 1.3.8 - October 20, 2015 =
+
+ * [fix] Front-end current task, outstanding task and completed task url problem fix
+ * [fix] Without login can access front-end problem fix
+ * [fix] Current task, outstanding task and completed task live update problem fix.
+ * [fix] Fetch outstanding and completed task problem fix
+
+= 1.3.7 - October 15, 2015 =
+
+ * [fix] Fix LogicException on autoloader
+
+= 1.3.6 - October 15, 2015 =
+
+ * [fix][pro] Add category for front-end
+ * [fix] Email notification subject issue fixed
+
+= 1.3.5 - September 29, 2015 =
+
+ * [fix] User role and items table weren't being created during install
+
+= 1.3.4 - September 19, 2015 =
+
+ * [fix] Pagination error fix in free version
+ * [fix] Project manage/create cap option brought back to free
+ * [fix] Version upgrader issue fixed
+
+= 1.3.3 - September 15, 2015 =
+
+ * [fix] Single project permission issue
+
+= 1.3.2 - September 14, 2015 =
+
+ * [fix] Project Duplication error
+ * [fix] New task assignmed email subject was missing
+
+= 1.3.1 - September 11, 2015 =
+
+ * [fix] File missing problem for front-end
+ * [fix] Plugin path in updater
+
+= 1.3 - September 3, 2015 =
+
+ * [improved] Free/Pro separation. Massive code change
+ * [improved] Email notification templates updated. Removed the settings from admin.
+
+= 1.2.2 - June 9, 2015 =
+
+* [fix] Fatal error on frontend
+
+= 1.2.1 - June 7, 2015 =
+
+* [fix] Project report datepicker wasn't showing
+* [fix] URL management for admin/frontend
+* [improved] Plugin updater
+
+= 1.2 - June 4, 2015 =
+
+* [new] Project Reporting
+* [new] Progress accross all the projects
+* [new] JSON REST API integration added
+
+= 1.1 - April 19, 2015 =
+
+* [new] Daily digest feature added
+* [improved] Plugin upgrade routine updated
+
+
+= 1.0 - March 1, 2015 =
+
+* [fix] Project delete time shoud be deleted all child post
+* [fix] Active Tabs not working for To-do Lists & Settings
+* [fix] Comment link problem for Subtask
+* [improved] Duplicate project - To-do lists order lost
+* [new] assign a task to more than one user
+* [new] Search feature
+* [new] Filter projects by clients
+* [new] Pagination in project home page
+* [fix] Files Tab Doesn't show any attachement to Client
+* [fix] Long Project Title Problem
+* [new] witch for disabling certain E-mail notification
+* [fix] Project manager date format is fixed
+* [fix] E-mail URL Problem
+* [new] Email Notification ON/OFF feature
+* [fix] Link in message body not working
+* [new] Rich text editor
+
+
+= 0.5.3 - April 19, 2014 =
+
+* [fix] 1 day decrease due to gmt_offset when updating todo
+* [fix] Added checking on single message/todo/milestone for unauthorized access
+* [new] BCC on/off settings for notification
+* [improved] Scrolling project people when more peoples are added on listing
+
+= 0.5.2 - Mar 25, 2014 =
+
+* [fix] privacy bug in milestone
+* [fix] project_category removed from project filter
+* [fix] milestone duplicate assignment
+* [fix] milestone lock icon
+* [fix] addons menu removed for other users
+
+= 0.5.1 =
+
+* default from email field added
+* separate calender and my task script function
+* avatar bug fix
+* stopwatch function removed
+* task trigger position changed
+* remove font family
+* number of projects bug fix in listing
+
+= 0.5 =
+
+* Pro version released
+
+= 0.4.3 =
+
+* new: Spanish translation
+* new: German translation
+* new: Indonesian translation
+* fix: milestone datepicker issue
+* fix: some typo fixes
+* improved: comment count next to tasklists
+
+### 0.4.2
+
+* bug fix: project activity/comments on frontend widget
+* bug fix: project activity/comments on comment rss
+* bug fix: number of milestones
+* improved: plugin textdomain loading
+* new: project task progressbar on project listing
+* new: tasklist sorting
+* new: task sorting
+* new: Dutch translation language added
+* new: Brazilian Portuguese language added
+
+### 0.4.1
+
+* bug fix: attachment association problem on comment update
+* bug fix: error on message update
+
+### 0.4
+
+* improved: default email format changed to 'text/plain' from 'text/html'
+* improved: toggle added on user notification selection
+* improved: only date was showing on single message details, time added
+* improved: some filters added on URLs
+* bug fix: actual file url hidden on files tab for privacy
+* bug fix: any user could edit any users message
+* bug fix: any user could delete any users message
+* new: admin settings page added
+* new: email template added
+* new: French translation added
+* new: file upload size settings added
+
+### 0.3.1
+
+* comment update bug fix
+* project activity is now grouped by date
+* "load more" button added on project activity
+* some function documentation added.
+
+### 0.3
+
+* Translation capability added
+* Attachment security added. All files are now served via a proxy script
+  for security with permission checking.
+
+### 0.2.1
+
+* Comments display error fix
+
+### 0.2
+
+* Remove comments from listing publicly
+* Post types are hidden from search
+
+### 0.1
+Initial version released

@@ -1,0 +1,54 @@
+== Changelog ==
+
+= 0.6.7 =
+* Enhanced: on WordPress 4.7 settings are now registered globally using the enhanced `register_meta()` implementation
+* Fixed: datetime and time fields no longer switch the time back by an hour automatically
+* Fixed: in datetime and date fields it is no longer possible to accidentally change the month by scrolling
+* Fixed: datetime and date fields better support locale special characters
+
+= 0.6.6 =
+* Fixed: select fields no longer show twice when a placeholder is specified
+
+= 0.6.5 =
+* Tweaked: updated the plugin initialization library
+* Tweaked: updated the Select2 and Datetimepicker JavaScript plugins
+* Fixed: dropdowns no longer close immediately after opening them
+
+= 0.6.4 =
+* Fixed: WPDLib now has type "wordpress-muplugin" so that it is not loaded outside of a project
+
+= 0.6.3 =
+* Fixed: uncaught JavaScript error with datetimepicker
+
+= 0.6.2 =
+* Enhanced: WYSIWYG field experience is now more similar to the default post editor, including media and link buttons
+* Tweaked: updated the Select2 and Datetimepicker JavaScript plugins
+* Fixed: the selected value of a multiselect field is now properly displayed
+* Fixed: the `rows` attribute now works correctly for textareas and WYSIWYG
+* Fixed: updated the media picker JavaScript plugin for more flexibility and some bug fixes
+* Fixed: updated the map picker JavaScript plugin for more flexibility and some bug fixes
+
+= 0.6.1 =
+* Tweaked: plugin now uses wordpress.org language packs
+* Tweaked: updated plugin initialization library
+* Fixed: "Settings saved" message does not show twice anymore on an options screen
+* Fixed: admin notice no longer shows on each site when the plugin is activated network-wide
+* Fixed: numeric validation of floating point numbers
+* Fixed: formatting floating point numbers more precise than 2 digits
+
+= 0.6.0 =
+* Added: a new action is available to easily enqueue scripts on specific settings pages only
+* Added: new field type map (can store either address or latitude and longitude)
+* Enhanced: the plugin can now easily be used as a must-use plugin or as a library in any plugin or theme
+* Enhanced: media field type can now alternatively store URL instead of attachment ID
+* Enhanced: options keys 'terms' and 'users' (for related objects) now accept 'any' as value (similar to 'posts')
+* Fixed: critical validation bug in WYSIWYG
+* Fixed: step validation for decimal numbers
+* Fixed: images now display correctly in media preview
+
+= 0.5.1 =
+* Fixed: critical issue in `wpod_get_options()`
+* Fixed: on PHP 5.2 the plugin now terminates appropriately
+
+= 0.5.0 =
+* First stable version

@@ -1,0 +1,72 @@
+== Documentation plugin by itthinx - changelog.txt ==
+
+= 1.5.1 =
+* Added some additional post type labels.
+* Customized the post updated messages for the document post type.
+* Fixed the output of Documentation_Renderer::list_children() to surround the items with corresponding ul tags.
+  This also fixes the output of the [documentation_list_children] shortcode and the Documentation Children widget
+  who use this method.
+* Added the documentation_list_children_prefix and documentation_list_children_suffix filters.
+* Security improvement, added ABSPATH checks.
+
+= 1.5.0 =
+* Replaced deprecated widget constructor in Documentation_Documents_Widget.
+* Fixed use of undefined constant.
+* Replaced use of the DOCUMENTATION_PLUGIN_DOMAIN constant with the string literal 'documentation'.
+* Added the Add-Ons section.
+* Added the Notice class.
+* Added links to the documenation pages.
+* Added the Document Categories widget.
+
+= 1.4.1 =
+* WordPress 4.8 compatibility tested.
+
+= 1.4.0 =
+* WordPress 4.7.2 compatibility tested.
+* Improved handling of number of documents shown for Documents widget.
+* Added the [documentation_categories] shortcode.
+
+= 1.3.6 =
+* Fixed an issue where providing a widget title would be erroneously used to filter documents shown.
+
+= 1.3.5 =
+* Tested for WordPress 4.4.
+
+= 1.3.3 =
+* Tested for WordPress 4.2.
+* Fixed separators in Settings affecting the admin sidebar's separators.
+* Added an info section in Settings.
+
+= 1.3.2 =
+* Fixed missing ul tags in the document hierarchy renderer.
+* Added a content filter to recognize escaped shortcodes in documents, so that
+  these can appear and be rendered without the double [[ ]]. WordPress will
+  render them with double brackets if the shortcode doesn't exist.
+
+= 1.3.1 =
+* Fixed static call to class method.
+
+= 1.3.0 =
+* Adjusted for WordPress 4.0 compatibility.
+* Added [documentation_documents] shortcode.
+
+= 1.2.0 =
+* Added support for search options to the [documentation_search_form] shortcode.
+
+= 1.1.0 =
+* Added the [documentation_search_form] shortcode which provides a dynamic document search form.
+
+= 1.0.3 =
+* WordPress 3.9 compatibility checked
+* Translation template added
+
+= 1.0.2 =
+* Improvement: Documents are available under Appearance > Menus so that documents can be added directly to menus.
+* Improvement: Changed the basic labels of document categories to distinguish them from post categories, especially for the Menus.
+* Improvement: Added the Document Categories column on the Documents overview screen Document > All Documents.
+
+= 1.0.1 =
+* WordPress 3.8 compatibility checked.
+
+= 1.0.0 =
+* This is the first public release.

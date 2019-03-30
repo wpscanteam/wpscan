@@ -1,0 +1,120 @@
+== Changelog == 
+All notable changes to this plugin will be documented in this file. Copy of all changes for last MAJOR version can also be found in readme.txt.
+
+= 4.1.1 - 2019-02-22 =
+
+* Added - When Wordpress cronjobs are disabled (DISABLE_WP_CRON = true), text with link to FAQ is shown underneath setting to activate cronjob purging
+* Added - Current timezone underneath setting for cronjob time of day
+
+= 4.1.0 - 2019-02-21 =
+* Added - Plugin is capable to purge with Wordpress cronjobs
+* Added - Plugin is tested for usage with Wordpress 5.0.3
+* Added - Icon for 'Purge all caches' on adminbar
+* Fixed - Errors caused by empty 'File with hosts (JSON)' setting 
+* Changed - 'Purge all caches' also available on frontend adminbar
+* Changed - Corrected a few spellerrors (cachalong -> cacholong)
+* Changed - Updated copyright from 2015-2018 to 2015-2019
+
+
+= 4.0.2 - 2018-11-15 =
+* Added - Plugin is tested for usage with Wordpress 5.0.
+* Fixed -  Hook wp_unique_post_slug recieves 6 arguments instead of 4.
+* Changed - Retrieval of Wordpress default post types for flushing. Only public post types are used & flushable.
+* Changed - 'Itemlist to sentence' function also handles associative array's. 
+
+= 4.0.1 - 2018-03-14 =
+* Changed - Small improvement to readme.txt.
+
+= 4.0.0 - 2018-02-26 =
+* Added - license.txt file
+* Added - Fingerprinting for assets
+* Changed - Plugin name change from Cache helper by Cacholong -> Cache control by Cacholong
+* Changed - Small changes in author / copyright
+* Changed - Language files updated
+* Changed - All php / phtml / js files a copyright / license block
+* Changed - Namespaced all classes
+* Changed - Improved prefix on all global functions cc_ -> cacholong_cc_
+* Changed - All namespaces to fully qualified names
+* Changed - Javascipt prefixes from cc_ -> cacholong_cc
+* Changed - Wordpress HTTP API is used instead of (custom) curl (wrapper).
+* Deprecated - Curl class.
+
+= 3.2.1 - 2018-01-25 =
+* Fixed - Small fix for showing 'delay text'.
+
+= 3.2.0 - 2018-01-24 =
+* Changed - Only show 'delay text' for pagespeed when purge was succesfull, instead of always.
+
+= 3.1.1 - 2016-09-14 =
+* Fixed - Removed a few purge hooks from is_admin() to work again.
+
+= 3.1.0 - 2017-12-22 =
+* Added - Delay text message for all purges.
+* Fixed - Handle non-array admin messages.
+* Changed - userOptions table is now used to handle session flash data, session handling is removed.
+* Changed - is_admin() to optimize performance frontend.
+* Changed - Removed log message for missing hosts json file, not needed anymore. 
+* Changed - Language files updated.
+* Changed - Improvements in messages, phpDoc and debugging.
+* Deprecated - Sessions class.
+
+= 3.0.0 - 2017-12-15 =
+* Added - Setting to enable or disable removing id attribute from stylesheet link tag. Nginx pagespeed needs css id removed to combine stylsheets.
+
+= 2.0.2 - 2016-09-14 =
+* Added - Purges are triggered at trash and untrash.
+
+= 2.0.1 - 2016-09-11 =
+* Added - Debug options added (triggered by WP_DEBUG).
+
+* Changed - Changes in admin notice classes.
+* Fixed - Fixed message 'are you sure you want to activate' on activation hook. Removed nonce check.
+
+= 2.0.0 - 2016-09-09 =
+* Changed - Setting fields for default and custom post types to trigger other purges.
+
+= 1.4.0 - 2016-08-30 =
+* Changed - Properly handle purge for scheduled post.
+
+= 1.3.0 - 2016-03-28 =
+* Changed - Purge messages are simplified. They are no longer saved directly to a session, but processed to one message per message type (error, notice, info ...). Detailed information about every purge is no longer given, to prevent a long list of purge messages.
+* Changed - Small improvement in handling https requests.
+* Changed - Small changes in handling non-existing hosts file.
+
+= 1.2.7 - 2016-02-16 =
+* Fixed - session_destroy() gives warning when no session is available. Check for session_id before destroying implemented.
+
+= 1.2.6 - 2016-02-16 =
+* Fixed - Al users can now use the 'purge all' button in the admin bar.
+
+= 1.2.5 - 2016-02-16 =
+* Fixed - Curl timeout from 1 to 5 seconds, because some purge-requests take more then 1 second.
+
+= 1.2.4 - 2016-01-04 =
+* Fixed - Function empty() can't handle temporary value from function to check if it is empty. Needs variable by reference. Only applies to < php 5.5.
+
+= 1.2.3 - 2015-12-21 =
+* Fixed - Disable SSL verification in curl request to avoid issues.
+
+= 1.2.2 - 2015-12-18 =
+* Fixed - Redirects happen when a https requests a purge. Let http(s) protocol determin the curl request protocol. So if https is used, the purge also uses https.
+
+= 1.2.1 - 2015-11-27 =
+* Fixed - Navmenu update needs total cache flush.
+* Fixed - New shutdown method hanles all delayed purges at once.
+
+= 1.2.0 - 2015-11-26 =
+* Added - Use default settings for hosts.json, when not available.
+* Added - Handle admin messages with ajax.
+* Added - Merge admin messages to converve space.
+* Changed - Check on post type to only allow certain post types to trigger purge. Works with a blacklist.
+
+= 1.1.1 - 2015-11-17 =
+* Fixed - Activation and uninstall hooks are fixed.
+
+= 1.1.0 - 2015-11-17 =
+* Added - Handle purge for post or page crud, slug changes & ajax change. 
+* Fixed - Errors are saved in session, because inline ajax edit seems to break the inline edit (although it did not). To not the confuse the user, errors are saved in a session and retrieved in the next request.
+
+= 1.0.0 - 2015-11-10 =	
+* Added - First release.

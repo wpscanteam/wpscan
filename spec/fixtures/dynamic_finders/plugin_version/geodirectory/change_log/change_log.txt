@@ -1,0 +1,828 @@
+v1.6.38
+Bulk delete tags results in 500 Internal Server Error - FIXED
+Backend edit GD listing pages can show blank page - FIXED
+CURL call replaced with wp_remote_get() - CHANGED
+GD Tool > Ratings check always shows "Review locations missing or broken" - FIXED
+Sometimes search button shows font-awesome icon html - FIXED
+Google Map bubble not working after Google round infoWindow update - FIXED
+
+v1.6.37
+WP Font Awesome Settings added to support CSS and JS versions - ADDED
+
+v1.6.36
+Event search not showing results for near location search - FIXED
+Some themes not showing GD Home Top widget section - FIXED
+Font Awesome ratings input not showing correctly if FA not loaded with Pseudo-Elements - FIXED
+Get directions text not changing when using default value - FIXED
+
+v1.6.35
+Font Awesome Pseudo-Elements flag disabled by default - CHANGED
+
+v1.6.34
+CSS Pseudo-Elements now enabled for Font Awesome - CHANGED
+Disable our own FA on beaver builder pages until BB updates to FA5 JS - FIXED
+Map child categories reveal icon not showing correctly - FIXED
+Map child categories show/hide toggle not working - FIXED
+
+v1.6.32
+Fix GD search conflict with Jetpack by WordPress.com ElasticSearch - FIXED
+Change CPT settings sorting options description - CHANGED
+Special apostrophe character not supported with search listing - FIXED
+OSM cant handel geocode search of UK post codes missing the space - FIXED
+Search adds all terms to query if search field is blank - FIXED
+Deleted tag still displayed on the listing detail page - FIXED
+Use of getenv('REMOTE_ADDR') with PHP v7.2.1 results in internal server error - FIXED
+Issue with listing slug WPML translation - FIXED
+Listing shortcode shows posts from all categories if category has no post - FIXED
+Location me page shows wrong results on map when map cache enabled - FIXED
+CPT archive pages not showing any results - FIXED
+Unable to translate text on detail page photos popup - FIXED
+Search radius settings not filtering the results - FIXED
+OSM near search geolocation not adding on default location to search - FIXED
+Google maps CSS changes means map info-window close button does not work - FIXED
+Shadow missing from fav listing icon - FIXED
+Update Font Awesome to v5 JS version - CHANGED
+
+v1.6.30
+Yoast v8.x shows error on backend edit listing page - FIXED
+
+v1.6.29
+iframe api generation broken (by Google iframe restrictions) changed to new window popup - FIXED
+Apple devices use different kind of apostrophe which does not work for search - FIXED
+Fieldset title with special characters outputs incorrect css class - FIXED
+Issue with detail page permalink when Yoast SEO is active - FIXED
+Map popup shows incorrect listing links - FIXED
+
+v1.6.28
+OpenStreetMap populates wrong region for UK - FIXED
+Check added if post info missing on details page - FIXED
+If doing first ever upgrade of GD the "set in what locations" can be unset - FIXED
+
+v1.6.27
+Distance on related listings not showing anymore - FIXED
+Shows incorrect address in edit listing - FIXED
+Deleting listing sometimes fails to delete featured image smaller image sets - FIXED
+Add submit ip in export listings data - CHANGED
+Old Google analytics code should not be added if disabled - FIXED
+
+v1.6.26
+OSM address encoder fails if site is non SSL - FIXED
+
+v1.6.25
+My Favorites text in breadcrumb not translatable - FIXED
+Email custom field not showing on map bubble - FIXED
+Related listings widget does not have option to sort nearest listings - FIXED
+Address field does not hide validation message if address set from map dragend - FIXED
+Add listing shortcode not working if page have other shortcodes - FIXED
+Details page send enquiry/friend forms don't validate if listing is published - FIXED
+New hooks added for WPML duplicate translation - CHANGED
+Review form rendered with rich editor does not validate the field correctly - FIXED
+Detail page sidebar gets wrapped to bottom of page for Divi v3.0.87 - FIXED
+JetPack CDN breaks listing images - FIXED
+New core WP 4.9 plupload JS breaks our CSV upload for import - FIXED
+
+v1.6.24
+Fix affiliate links for GeoDirectory CPTs listing pages - FIXED
+Broken term links on details page if region removed from details links - FIXED
+GD login link throwing to 404 page for already logged user - FIXED
+Show validation message for empty review/reply text - CHANGED
+Listing edited notification should be sent after listing data saved - CHANGED
+After GT to GD migration comment content shows [img] tags - FIXED
+Multiselect ajax not working properly due to VARCHAR - FIXED
+Overall rating sort now uses bayesian formula by default - CHANGED
+Add to fav for multisite using same option, now uses option for each site - CHANGED
+Bulk edit action breaks the listing status - FIXED
+listing_width parameter does not working in gd_listings shortcode FIXED
+View all link should go to search page with near me selected - CHANGED
+geodir_reviewer_content_author_link filter added - ADDED
+CPT draft/pending links can be broken with some settings - FIXED
+category_restrict parameter not hiding the text More Categories/Less Categories - FIXED
+
+v1.6.23
+"All" string is not translated in popular post widget title - FIXED
+Fix post name for autosaved listing from backend - FIXED
+Added filter to the geodir_listing_belong_to_current_user() function - ADDED
+Search by tag keyword not working properly - FIXED
+
+v1.6.22
+Comment replies should not add review structured data - FIXED
+Hooks added to customize texts in location description when for empty location - ADDED
+Popular post widget view all link should have url with current language - FIXED
+Mobile details page tabs now close and scroll to show tab title - CHANGED
+Sometime click on pinpoint doesn't opens the map infowindow - FIXED
+Category top description not saved from new category form - FIXED
+Fix flexslider JS conflict - FIXED
+Option added in popular post widget to hide widget if no listings found - ADDED
+Disable review submitting on draft/trash/pending listing - CHANGED
+Don't translate GD post types/taxonomies if disabled in WPML settings - CHANGED
+RTL, details page tabs not RTL - FIXED
+On detail page show no. images as per plan allowed - FIXED
+Remove grey X from default custom field - CHANGED
+WPML v3.2+ compatibility changes - CHANGED
+Theme My Login compatibility fix - FIXED
+Can't disable BCC notification to admin on post submit success - CHANGED
+Backend should load content in language that user has selected in his profile - FIXED
+geodir_date() function not working for already translated date - FIXED
+Disable quick edit links for GD CPTs - CHANGED
+If nothing found during Near search the Near location will be used as the map default location - CHANGED
+Popular post view widget, added filter to sort by option - ADDED
+Recent reviews no. of reviews limit not working - FIXED
+Function geodir_user_post_listing_count() using current user id instead of user_id arg - FIXED
+Widget listing should show nearest results when location filter enabled and lat/lon set - CHANGED
+On login/signup page redirect_to parameter not working for logged user - FIXED
+Problem occurs when using "tag" string in post type name - FIXED
+gd_listings shortcode shows all listings if post_author has no listings - FIXED
+UsersWP login widget redirects to /login page - FIXED
+Added beta map cache settings to GD>Design>Map section - ADDED
+GD css conflict with Woocommerce - FIXED
+
+v1.6.21
+Recent reviews doesn't work well with WPML - FIXED
+Changed "Get Directions" custom field to apple maps link as it redirects better on all devices - CHANGED
+Remove X theme search page titles and breadcrumbs - CHANGED
+Post type conflict on add listing page  - FIXED
+Listings & terms unique slug validation with WPML - CHANGED
+DB Max index length variable added - ADDED
+In location translation change to in %s to fix prefix location - CHANGED
+Added option to change default list thumbnail image size - ADDED
+Added title attribute to listing images - ADDED
+CPT > Categories widget on detail page should filter post type & category if allowed - CHANGED
+New hook added to filter address fields being displayed - ADDED
+
+v1.6.20
+is_featured column added in listing sample CSV file - CHANGED
+Map Bubble placement problem for OpenStreetMap - FIXED
+Listing slider widget image not a link - CHANGED
+Hooks added to filter custom field value - CHANGED
+Problem when listing title matches category or tag name - FIXED
+Map ajax now sends location info to bust some caching problems - FIXED
+If map first loads empty then changing CPT on map might not work - FIXED
+Dummy images urls www. removed as some servers do not follow redirect - FIXED
+Default Google maps mobile view full screen map button removed as we have our own - CHANGED
+
+v1.6.19
+X theme update causes some layout issues - FIXED
+Kleo listing and CPT pages not using GD titles - FIXED
+Audio custom file fields will now show audio player instead of link - CHANGED
+If single cat selected in home map, show that marker rather than post default marker - CHANGED
+Geolocation on near field can be cached when browser back button used - FIXED
+WP Session class lib can expose the Session ID publicly - SECURITY
+
+v1.6.18
+Custom field should display label instead of value if set in option values - FIXED
+With WPML the location terms added twice when CPT slug is translated - FIXED
+gd_listing_map shortcode not working for CPT other then "gd_place" - FIXED
+GD Booster causes problem when used http in urls on SSL enabled site - FIXED
+Listing slider widget breaks slider if on detail page - FIXED
+For price custom field option "Decimal display" does not working - FIXED
+Singapore set address on map does not always return country - FIXED
+Use of ICL_LANGUAGE_CODE conflicts if used to check WPML installed - CHANGED
+New attributes added in gd_listings shortcode to filter user favorite listings - ADDED
+Backward compatibility for multibyte string functions - CHANGED
+Facebook login will not redirect back to add listing page - FIXED
+Fix conflict Advanced Custom Fields timepicker - FIXED
+Isle of Man added as own country and regions fixed - FIXED
+Undefined error when map marker animating - FIXED
+Option added to disable overwrite by Yoast SEO titles & metas on GD pages - ADDED
+On Custom AJAX request WPML uses default language for non logged user - FIXED
+Search returns all the posts for Kleo theme - FIXED
+Sort CPT taxonomy in popular categories widget - CHANGED
+Fixed some countries missing ISO country code - FIXED
+Admin use only date field should not lost value if saved by user - FIXED
+Post date should be updated via CSV import - CHANGED
+In [gd_listings] shortcode if category has no posts then it shows all the results - FIXED
+[gd_popular_post_view] shortcode character_count=0 not working - FIXED
+Popup forms not using correct language with WPML - FIXED
+Flatsome theme compatibility settings added - ADDED
+BuddyBoss theme compatibility settings added - ADDED
+Add locate me button to address input on add listing page - ADDED
+Categories icon urls are broken if site moved from http to https - FIXED
+Allow import/export linked business cpt ids - ADDED
+In front end allowed to translate listing via WPML duplicate translation - ADDED
+Fix issue with Paris sometimes returning a sub section name from Google API - FIXED
+Fix Tax Meta Class conflicts - FIXED
+
+v1.6.17
+Changes for batch WPML duplicates feature - CHANGED
+Yoast SEO location replacement tags no longer working - FIXED
+
+v1.6.16
+Country should be not added in DB via query - FIXED
+New parameters post_type & category added to the listings map shortcode - CHANGED
+WPML geodir_info_url and geodir_login_url now uses lang code in url when needed - CHANGED
+Added try catch to Google analytics account call which can break if no accounts present - FIXED
+Added Google Analytics option to anonymize IP to comply with German law - ADDED
+Marker pins not bouncing for OpenStreetMap - FIXED
+Make ratings stars clickable on listing - ADDED
+Fix for WordFence warning on registration via GD Login - FIXED
+Textarea and html custom field can now use default value - CHANGED
+Kleo theme title not show on preview page - FIXED
+Breadcrumb formatting issue with the neighbourhood name - FIXED
+On add listing page switching WPML language changes the listing type - CHANGED
+Option added in listing map widget to enable marker cluster for map - CHANGED
+Google Analytics account error breaks the site - FIXED
+Auto register custom fields for WPML translation via GD custom field translation tool - CHANGED
+Fix ISO2 for translated country - FIXED
+Updated Generate API KEY button to add access for all APIs - CHANGED
+Switching language from WPML location switcher looses the page variables on GeoDirectory pages - FIXED
+Set address on map can sometimes not work right if no zip is provided - FIXED
+Address and Category cant be shown on their own tab - FIXED
+The country code is undefined when default country is set and translated - FIXED
+Single quote in default city name causes problem in add new city - FIXED
+Popular post view widget Featured sort now secondarily ordered by date added -  CHANGED
+Geocode address add listing page on FireFox can cause ZERO_RESULTS in some circumstances - FIXED
+Fusion Builder jQuery chosen conflicts with GD jQuery chosen - FIXED
+Hook added to enable/disable editor for description field - CHANGED
+Spain now uses administrative_area_level_2 for regions (this will affect current Spanish listings, you should add new regions and then merge out old ones) -  CHANGED
+Category are not unticked on page refresh for map post type other than default - FIXED
+Synchronize the post reviews if "Synchronize comment on duplicate content" is set - CHANGED
+New title variables added to display country/region/city/neighbourhood - CHANGED
+Some functions added for truncate, strlen, substr the text - ADDED
+WPML duplicate should not be posts edited from frontend - FIXED
+"Place" and "Places" in latest core PO file is not translating anymore - FIXED
+WPML "view all" does not use the translated CPT slug - FIXED
+White spaces in multiselect comma separated custom fields does not ticked in edit form - FIXED 
+Ultimate VC Addons script breaks backend add/edit listings - FIXED
+Widget CPT Categories has extra closing ul tag - FIXED
+Detail page map get directions should user user location - CHANGED
+[#user_email#] shortcode variable is not working in listing notification emails - FIXED
+Added media query for 375px to show listings 100% at below that - ADDED
+Some WPML compatibility fix - FIXED
+Option added to disable review stars for certain post type - CHANGED
+Fix issue for plugin installation via WP-CLI - FIXED
+Sao Tome and Principe and South Sudan countries added to DB list - CHANGED
+GD Tools> reload countries table tool added to update new countries - ADDED
+Detail page previous and next links broken if WPML is active - FIXED
+
+v1.6.15
+Google Services API can conflict with newer version of the Google Service Class - UPDATED
+No way to deactivate GA Settings, deactivation button added - ADDED
+Google map directions not working on detail page map - FIXED
+CSS issue with map category show/hide icon - FIXED
+Filters added to admin BCC emails - ADDED
+Twenty Seventeen theme compatibility settings added - ADDED
+geodir_save_post_info() now faster and escapes values better - CHANGED
+Using apostrophe(&#39;) in title breaks title in map info window  - FIXED
+
+v1.6.11
+geodir_set_as_home rule still existed from depreciated option - FIXED
+Registration box, changed Name/Email around so to work with browser save user/pass - CHANGED
+Fix for primer theme edit place page - FIXED
+Font awesome rating validation not working - FIXED
+Admin BCC post_submit subject/message hooks not applied - FIXED
+Google maps on some mobile devices adds a new span which breaks slide out menu - FIXED
+Max and min map zoom levels set via hooks not working - FIXED
+$extra_fields in custom field stripping slashes too early - FIXED
+Email headers changed from string to array() and MIME-Version removed - CHANGED
+Added filters to the add listing page title and description labels for difficult translations - ADDED
+Reunion (island) added and Burma removed (replaced with Myanmar) - CHANGED
+Payment manager restrict description input count can affect video tab - FIXED
+WPML exclude cats on map does not work for translations of categories - FIXED
+Dummy data section improved and additional industries added - ADDED
+Empty price field outputs 0.00, now it is not displayed - CHANGED
+On detail page current location parameters should be added to the term links - CHANGED
+OpenStreetMap does not working when third party plugin using the Google Maps JS API - FIXED
+GD listings query returns wrong total when category has sub categories - FIXED
+BREAKING CHANGE: Google Analytics settings simplified, MUST be re-setup to continue use - BREAKING CHANGE
+On multisite after import it shows wrong directory location to upload images - FIXED
+alive_days column added in exported csv file - ADDED
+Share this section on details page removed, share this servers have been causing problems - REMOVED
+Full screen map button class changed to have gd- prefix to avoid conflicts - CHANGED
+
+v1.6.10
+Search can fail if more than one CPT but one is empty - FIXED
+Search with near field can fire before geolocation returned - FIXED
+Sort by farthest not working, sorts by nearest - FIXED
+Change enquiry email name if owned by admin or not claimed - CHANGED
+
+v1.6.9
+Tab custom field hook missing htmlvar variable - FIXED
+Some CSS tweaks for gd-comma-list in tabs - CHANGED
+linked place marker can sometime show on details page map of original place - FIXED
+Changes for custom OpenStreetMap integration - CHANGED
+Option added in Popular Category Widget to show parent categories only - ADDED
+Video preview placeholder shown on preview page - CHANGED
+Enable location filter option added for slider widget - ADDED
+Changed for WPML not getting correct lang from url - FIXED
+Predefined custom fields section added to place settings - ADDED
+Search bar styles change (to use original GD>Design>Search>Use old non-styled form) - STYLE BREAKING CHANGE
+Firefox marker title hover fails on multiple repeat hovers - FIXED
+If multiple CPT but only one has posts then search CPT switcher will not show - CHANGED
+$_SERVER['SERVER_NAME'] returns empty host with nginx server - FIXED
+Flexslider RTL chrome 53 bug, slider not showing - FIXED
+Chosen select RTL display bug - FIXED
+Yoast SEO meta tags should add category default image in meta - ADDED
+Lazyload images not loading if they have parentheses in the url (x) - FIXED
+Price output settings added to numerical text custom fields - ADDED
+Settings added to remove data on plugin uninstall - ADDED
+
+v1.6.8
+Address field output containd class post instead of post_address - FIXED
+Video and special offers tabs can show twice - FIXED
+Custom field position change function sometimes not run - FIXED
+Multiselect custom field can now be show as comma separated by adding class `gd-comma-list` - ADDED
+With Avada theme "GD Home Top Section" widgets dont work on GD Home page - FIXED
+
+v1.6.7
+Original custom fields hook htmlvar broken - FIXED
+Default custom fields not able to show in custom tab - FIXED
+Function added to convert date formats - ADDED
+Checkbox custom field can fail to show if previously set as own tab - FIXED
+
+v1.6.6
+Added filter to geodir_filter_empty_terms function - ADDED
+Best of widget not showing lazyload images on ajax change - FIXED
+Added action hooks to login widget for social buttons - ADDED
+Changed the way fullscreen map works for more compatibility - CHANGED
+Mouse scroll zoom control setting not working for OpenStreetMap - FIXED
+Popular post view widget -> "Post Type:" setting not working on CPT pages - FIXED
+Responsive video shortcode - ADDED
+Claim listing error message incorrect class - FIXED
+Address field not showing the same on prview page - FIXED
+Options added in CPT categories widget to disable viewing post type & category filters - ADDED
+Server side marker clustering not working with OpenStreetMap - FIXED
+BuddyPress admin bar not availble for non admin users - FIXED
+Fixed map marker title special characters encoding - FIXED
+Let popup forms template override from theme - FIXED
+Added a filter to modify My Dashboard widget title - ADDED
+Map routing direction feature added for detail page OpenStreetMap - CHANGED
+Ajax pagination not working when more then gd_listings shortcodes added to the same page - FIXED
+
+v1.6.5
+Location page breadcrumb now uses location page slug - CHANGED
+Date custom field date formats now more standardized - CHANGED
+Claimed column added in exported listings csv file - FIXED
+Imported images with spaces are not loaded via the lazyload function - FIXED
+GD Listings shortcode extended with the "tags" parameter to filter listings by tags - ADDED
+fgetcsv ignores special characters when they are at the beginning of line - FIXED
+When a CPT has no listing it replaces the blank CPT name in meta titles - FIXED
+Map un-ticked cats wrong on first load if default place CPT not used - FIXED
+Nearest option added to related listings - ADDED
+Add listing shortcode can sometimes show form twice - FIXED
+My Favorite page uses first listing author name instead of logged in user name - FIXED
+Is active option removed from the address field to avoid confusion - CHANGED
+Unable to populate dummy data with OpenStreetMap enabled - FIXED
+Editor/Authors can access some parts of the backend even if setting set to not allow - FIXED
+Listing success template now uses author sidebar instead of details page sidebar - CHANGED
+Popup forms changed to placeholders and html5 validation - CHANGED
+
+v1.6.4
+Date custom field can sometimes display default date on preview page - FIXED
+Average review added back to sidebar - CHANGED
+& symbol causing problem in listing tag display - FIXED
+Option added to export listings which are published between specific dates - CHANGED
+Listings shortcode paging not working with lazy load images - FIXED
+Google maps now required API KEY, setting added - FIXED
+
+v1.6.3
+Popular post categories widget not adhering to default post type setting - FIXED
+OpenStreetMap breaks images on https sites when SSL is active - FIXED
+Show page content for all GD pages - ADDED
+jQuery chosen conflicts causes problem when add new region/city in backend add listing - FIXED
+gd-Navi CSS min-width set to avoid hiding on small screens - FIXED
+Lazy load GD images option added in Design>Scripts - ADDED
+Wrong class spelling for search widget shortcode - FIXED
+dummy data images are being cached now - ADDED
+No reviews link points to #respond instead of #reviews - FIXED
+Filter added to make telephone linkable in home map bubble - ADDED
+Switching themes will persist GD widgets but now keep theme specific widget settings - FIXED
+If new import has new featured image it does not set it properly as featured image - FIXED
+Beaver Builder plugin has problems with draft posts when GD installed - FIXED
+Second line menus items can show over first line sub menu items because of z-index - FIXED
+Changed load_textdomain to init hook for WPML compatibility - CHANGED
+Text `Listing Title` and `Listing Description` changed to CPT specific - CHANGED
+Added filter to modify special offers tab content - ADDED
+switching post type on home map are persistent now - CHANGED
+Multiselect custom field now output as comma separated list instead of ul - CHANGED
+Apostrophe problem in address field - FIXED
+
+v1.6.2
+GD Search widget bug with Display Widgets plugin - FIXED
+Log the WP error in debug.log with csv row number when fail to import listing - ADDED
+Single select extra info value not showing when output - FIXED
+Function geodir_get_post_meta() returns false value when field has value 0(zero) - FIXED
+Added filters for client and admin emails - ADDED
+Option added to remove details page tabs and show as list - ADDED
+Added filter hook to listing slider widget - ADDED
+If CPT order is changed from default the homepage categories dont change - FIXED
+Hide the empty categories on the map - CHANGED
+Large number of categories slow down the add listing page - FIXED
+Removed DONOTCACHEPAGE for frontpage as it is no longer dynamic for locations - CHANGED
+geodir_setup_submit_search() can set multiple click events on search submit - FIXED
+OpenStreetMap integration added for maps - ADDED
+New Avada theme can break search filters depending on settings - FIXED
+General functions PHP version warning - FIXED
+
+v1.6.0
+GD export should not export deleted listings - CHANGED
+Edited by author message should not fire when using GD import - CHANGED
+get_currentuserinfo() Depreciated and removed/changed - FIXED
+Option added to show custom text when no listings found in gd_listings shortcode - CHANGED
+Page number variables added for titles & metas description - CHANGED
+Forgot Password link not working - FIXED
+The category icon and default image uploader no longer working with WP 4.5 - FIXED
+Now able to set source category id for WPML translated categories in GD Import/Export - CHANGED
+GD Import/Export imports wrong latitudes values - FIXED
+JS error on hovering listings in some cases - FIXED
+
+v1.5.9
+New parameter "post_author" added in [gd_listings] shortcode to filter listings by author - ADDED
+The slider thumbnails are not working as expected when many listings are displayed - FIXED
+Excluded categories printed when selecting a category on add listing page - FIXED
+Var GEODIRECTORY_PLUGIN_DIR was not defined if server falls back to PHP sessions - FIXED
+Fontawesome star rating colour CSS missing a closing bracket - FIXED
+If map shows multiple CPT, clicking current selected CPT shows loading div constantly - FIXED
+Quotes in csv title import break maps - FIXED
+If domain name contain CPT and home page is set to current location then it breaks the links on listing pages - FIXED
+geodir_is_page() fails if post_type query var is an array - FIXED
+Features widget add item button does not do anything for new widgets - FIXED
+Added option to bounce marker pin on listing hover on listing page - ADDED
+Multinews theme compatibility changes for new version - FIXED
+Add listing neighbourhood via GD import/export listings - CHANGED
+If apostrophe in option value then it disappears from the selected option values - FIXED
+Display cpt/category name in the advanced pagination info - CHANGED
+Send notification to Admin when listing edited by Author - ADDED
+Added new filter for search terms `geodir_search_better_search_terms` - ADDED
+Search with single quotes does not return results - FIXED
+Tag and Cat labels on details page easier to translate - CHANGED
+Options added to check/refresh analytics data and to set time interval for auto refresh results - ADDED
+Some PHP7 compatibility changes - CHANGED
+
+v1.5.8
+Local .mo file path points to wrong location - FIXED
+Debugging notice printing on plugins.php page - FIXED
+
+v1.5.7
+GD Export should split requests to skip out of memory problem - FIXED
+Added filters to change img urls for uses like CDN - ADDED
+Added filters to be able to add your own vars to titles and meta - ADDED
+Some plugins/themes can unset the page_id which breaks some features - FIXED
+Events with long running times sometimes not showing on the map - FIXED
+Some notification subjects not translatable - FIXED
+Datepicker custom filed now has filter to add extra params - ADDED
+Visual Composer can throw error for widget view all links - FIXED
+Added TouristAttraction schema type for categories - ADDED
+Added filter to be able to add/remove schema types - ADDED
+Notifications email messages sent by GD should be translatable - FIXED
+Changes for the neighbourhood system improvement - CHANGED
+id & style class added to custom field type fieldset - ADDED
+Home map shortcode now supports latitude longitude args - ADDED
+Made few changes for W3C validation - CHANGED
+Font awesome updated to 4.5.0 - CHANGED
+New filter added to use group by clause in map marker query - ADDED
+Custom field option values should be translatable - FIXED
+Permalink pages settings saving on a different wpml language breaks pages settings - FIXED
+Added filter to be able to search listing results map json - ADDED
+Able to enter title for url fields with "|" separator like "http://wpgeodirectory.com|GeoDirectory" - CHANGED
+Listing width option does not working in related listing widget - FIXED
+For category field type "select" it should add parent category also when a sub-category is selected - FIXED
+Slight change to tax meta class for compatibility with some themes - CHANGED
+Added hooks to add listing success page message - ADDED
+Schema filter/function added $post param - CHANGED
+GD login doesn't allows login by email if site is using SSL - FIXED
+Description word limit to zero in GD -> Design -> Listings doesn't hide listing description - FIXED
+Url custom field uses default value for link text if present - CHANGED
+Default image should not displayed on listing detail preview page - FIXED
+Changes to implement location import/export for multilocations - CHANGED
+Not able to create new custom field with type checkbox if default value entered - FIXED
+GeoDirectory Session class added to manage sessions - ADDED
+Deleting custom field not deletes the field from sorting fields table - FIXED
+Address field sort option removed - CHANGED
+Font Awesome support added for rating images - ADDED
+Some servers fail if a POST value is VARCHAR so we change it to XVARCHAR for post - CHANGED
+Hide tags and description fields if char limit set to ZERO for fields - CHANGED
+WordPress function wp_get_http is deprecated, removed and replaced - CHANGED
+
+v1.5.6
+In add listing form sub-categories are no longer showing in hierarchy for checkbox display type - FIXED
+Tick parent category should not tick sub-categories but untick parent category should untick sub-categories - CHANGED
+Filter added to modify unfavorite icon - ADDED
+Details page map can have overlapping sidebar map elements - FIXED
+Schema description HTML tags now removed - CHANGED
+New widget added to display content like features - ADDED
+URL Schema can have validation error - FIXED
+Multiselect fields with {optgroup} sometimes not creating a list - FIXED
+Option added to export max number listings per csv file to fix out of memory issue - FIXED
+Body classes added to GD pages for each page - ADDED
+The recent reviews widget ignores 1 star reviews - FIXED
+Added ability to show upgrade warning messages for major changes - ADDED
+Multiselect custom field "Display Type" option doesn't save on first attempt - FIXED
+Apostrophe in location name breaks the maps - FIXED
+JS warning Google maps sensor no longer required - FIXED
+Features widget now has repeater fields for ability to add lots of items - CHANGED
+Star rating hidden when map is full screen - FIXED
+
+v1.5.5
+Added charset parameter to case conversion functions - ADDED
+Avada compat CSS updated to adjust search button position - FIXED
+Filter `geodir_filter_title_variables_location_arr` added to filter the location variables for titles/meta - ADDED
+GD category page CPT slug does not change when switching language with WPML - FIXED
+Search form url not keeping the language in the url with WPML - FIXED
+Homepage page_id query var not set and can cause problems with Yoast SEO - FIXED
+Some changes for PHP7 - CHANGED
+All CPT text are translatable using db translation - FIXED
+New actions added to customize listing not found message - CHANGED
+Advance search submit button fixed - FIXED
+Pagination not working when location selected - FIXED
+Shortcode added for CPT categories widget - ADDED
+Breadcrumb HTML does not wrap correctly for a small screens or in a mobile - FIXED
+Added geodir_review_form_args, gd_rating_form_html, geodir_get_rating_stars_html filters - ADDED
+Post type archive link not working when "add city slug in listing urls" for location - FIXED
+Tested with WP 4.4 - NOTICE
+Blog archive page shows home page content even selected as a posts page - FIXED
+
+v1.5.4
+Event after map marker opened extended to prevent FireFox reclosing marker with server side clustering addon - FIXED
+Map popup image margins and padding set to 0 !important for compatibility - CHANGED
+Bootstrap styles can alter the popular categories count number position - FIXED
+Location switcher ajax search not working with accents chars - FIXED
+Best of widget Option added to display reviews in excerpt - ADDED
+Image gallery lightbox popup image stretches problem with some themes - FIXED
+Changed creation of url custom field from varchar 255 to text for longer urls - CHANGED
+Yoast SEO is unable to overwrite the home page meta title - FIXED
+Map tick box HTML changed for compatibility - CHANGED
+New widget added: CPT Categories - ADDED
+Default home page map width changed to 100% from 960px - CHANGED
+With multi ratings the comment sorting is reversed then selected under settings -> discussion - FIXED
+Excerpt more filter now only applied to GD post types - CHANGED
+New action "geodir_infowindow_meta_before" added in map marker info window - ADDED
+Default category can be set by "default_category" in csv import - CHANGED
+Search unable to find listings for a particular keyword in the content - FIXED
+New GD Home page created and setting depreciated for overriding normal home page - CHANGED
+Email address with .coop TLD not validated - FIXED
+Yoast meta title, description & keywords now also works with %location% tag - ADDED
+GeoProperty theme compatibility pack - ADDED
+Related listing widget does not reset the $post value properly - FIXED
+Email subjects and messages can now be translated in .po file if original messages is used - CHANGED
+Structured data now uses JSON-LD and can be filtered to add more info - ADDED
+Schema type option added to categories for structured data - ADDED
+Categories tax meta "cat_schema" is manageable using import/export - ADDED
+HTML5 validation added to email, number, tel and url custom fields - ADDED
+HTML5 pattern validation option added to text custom fields - ADDED
+Options added for location specific urls like /country/city/ & /region/city/ - ADDED
+Select and multiselect custom fields now exactly set their own max length in the DB so to not use as many bytes - CHANGED
+Custom field type fieldset should not import/export in csv file - FIXED
+In listing search form spinner icon customized with font-awesome spinner - CHANGED
+On home page map categories menu not able to click on down arrow of scroll bar - FIXED
+case conversion functions added to support unicode languages - ADDED
+case conversion functions replaced with custom function to support unicode languages - CHANGED
+Titles & Metas section added for changing GD page meta titles and descriptions - ADDED
+Some page titles now editable in the Titles & Metas section - ADDED
+Page titles compatible with WP 4.4 - ADDED
+%%location%%, %%in_location%%, %%location_single%% and %%in_location_single%% now compatible with Yoast (WPSEO) - ADDED
+Double words like `Place Categories` now easier to translate as one - CHANGED
+Error message added when creation/edit of custom field fails - ADDED
+Options added for location specific urls like /country/city/ & /region/city/ – ADDED
+Able to get WP_Error on post save failure in geodir_save_listing() - CHANGED
+Use get_site_url() instead of home_url() - CHANGED
+
+v1.5.3
+If tax query has 'relation' set then it will throw WARNING in wp_list_pluck - FIXED
+listing-preview page template removed as details page template now used - CHANGED
+In some cases with https when saving a listing it can change image url - FIXED
+Cyrillic letters does not supported in GD Import - FIXED
+Event map infowindow not showing dates properly - FIXED
+Conflicts due to same id for password field in login and register form - FIXED
+Jobby compatibility pack - ADDED
+Avatar links to the member page are inconsistent - FIXED
+Map popups with no image can be malformed on some themes - FIXED
+WPML listings not exports original post id for some listings - FIXED
+Datepicker custom field can show wrong date on edit if left blank on save - FIXED
+Google maps zoom and street view buttons hidden with new Google layout - FIXED
+New GD page gd-info added for displaying info messages - ADDED
+New GD page gd-login added for login/register - ADDED
+Some large imports can stop at 98/99% but are actually finished - FIXED
+Image popup modal on detail page doesn't resize according to screen size - FIXED
+Editing CPT tag not updating tag for associated CPT listing - FIXED
+Changes made for marker cluster addon to allow server side clustering - ADDED
+New login page now compatible with buddypress registration form for redirect option - CHANGED
+GD import speed improved -  CHANGED
+Hit enter to search delayed by 100ms so other functions have a chance to change settings - CHANGED
+Unused css image classes removed - REMOVED
+Email custom field now used mailto: for the address and filter added to change the name output - CHANGED
+Preview page missing address closing div which can break the footer in some themes - FIXED
+New widget "CPT Categories" added to list categories - ADDED
+Visiting a place while session is set to another location can show wrong breadcrumbs - FIXED
+Added some filters in listview template and widget listview for jobby theme compatibility - ADDED
+Fixed html_var variable in custom fields output - FIXED
+Added class for fieldset field - ADDED
+
+v1.5.2
+Map view type TERRAIN option added for all the maps - FIXED
+Upgrade function `gd_fix_cpt_rewrite_slug` set to run on every upgrade incase a user misses a version - CHANGED
+Renamed Directory_Theme to Directory_Starter - FIXED
+Avada box style not working for some pages - FIXED
+Share this links to details pages can sometimes cause JS error from jQuery history hash object - FIXED
+WPML, other translation links on details pages can be broken when viewing on non default language - FIXED
+Filter added to change recent reviews excerpt length - ADDED
+Details table limiting city,region,country names to 30 char, some region names are longer, changed to 50 char - FIXED
+Image file for custom field not enlarging using modal if displayed as tab on detail page - FIXED
+IE map infowindow can appear very small in height - FIXED
+Added filter for adding the location to the url, so it can be filtered from addons - ADDED
+Popup custom field image file in lightbox modal not working on home page and listing pages - FIXED
+Details map and details page map widget mapview not changing from ROADMAP - FIXED
+Details page mobile tabs view improved - CHANGED
+General option added to set if user deleted posts go to trash or are permanently deleted - ADDED
+Date custom field default format of mm/dd/yy added and descriptions of each format added for better understanding - CHANGED
+Changed textdomain from defined constant to a string 'geodirectory' - CHANGED
+Awesome font upgraded with new Awesome font version 4.4.0 - CHANGED
+
+v1.5.1
+Default sort by titles not translatable - FIXED
+Listings permalinks are broken if slug matches part of host or base url - FIXED
+Popular post view widget is no longer stripping HTML in the excerpt - FIXED
+Add a filter to override comment avatar size from themes - ADDED
+Added some code to override reviews template from theme - ADDED
+Some filters added in best of widget - CHANGED
+All widgets changed from PHP4 style constructors to PHP5 __construct, for WordPress 4.3 - CHANGED
+Image file for custom field can be enlarged using modal - ADDED
+Bottom section widget area inside wrapper div - FIXED
+Review text first paragraph not wrapped in `p` tags - FIXED
+Moved out avatar from reviews header - CHANGED
+Changed terms and conditions link from a text input to a page select under GD>Permalinks for WPML compatibility - CHANGED
+Option added in popular post category widget to set default posttype - CHANGED
+Recurring events no working with GD import & export - FIXED
+Category limit no longer counting child categories - FIXED
+In popular post widget View All link in not correct if location filter disabled - FIXED
+Disabling address change on marker move now also includes map drag on add listing page - CHANGED
+Countries Caribbean Netherlands and Curaçao added to the country DB - ADDED
+New map infowindow style added to be more consistent on different size maps - CHANGED
+If WPSEO static blog page set GD homepage title wrong - FIXED
+
+v1.5.0
+Google analytic countries throws error - FIXED
+Some PHP warnings removed when installing - FIXED
+User level Subscriber not shown Google Analytics stats - FIXED
+GeoDirectory custom script & css should not be printed in backend - FIXED
+Added two hooks to search queries - ADDED
+Post tags has a DB limit of 254, removed this limit - FIXED
+The recent reviews shortcode is missing the title attribute - FIXED
+Login error on GD signup page is not appearing - FIXED
+In forgot password notification user display name is not well formatted - FIXED
+Wrong link passed in send enquiry notification email - FIXED
+User Dashboard links not showing titles on mobile - FIXED
+Option added to customize pagination with "Showing results x-y of z" - ADDED
+WPML custom posts slug translation not working with GD (requires CPT and Event addon update also) - FIXED
+WPML popular post view rating on details page all the same as main post - FIXED
+Import Export is now compatible with WPML - FIXED
+Popular post widget set to use "All" if no category selected - CHANGED
+Linked business events are not displayed on detail page for cached post - FIXED
+Post images and location details not translated with WPML duplicate option - FIXED
+Single post map icon not https if https is on unless uploaded via https - FIXED
+Category map icon not https if https is on unless uploaded via https - FIXED
+User ID column added in attachments table  - ADDED
+Shortcodes [#username#] & [#user_login#] added in registration notification - FIXED
+is_approved and caption columns added in attachments table  - ADDED
+Listing slider widget can now show more than one listing at a time - CHANGED
+Some JS and CSS files removed/reorganised - CHANGED
+Info for PHP settings requirements added on GD Import & Export page - ADDED
+Location manager select not working with genesis child themes on mobile - FIXED
+Changes for Genesis child theme fixes - CHANGED
+Import/export we now try to use ini_set to extend the execution times, if ini_set() can't be use we show manual settings notification - CHANGED
+Disqus comments plugin now works with blog posts but is disabled on GD posts - FIXED
+5px margin added to grid view titles - CHANGED
+Error messaged on user registration border changed from green to red to denote errors - CHANGED
+Date custom field shows value even if no date entered and format can be wrong on edit - FIXED
+Moved login/reg function to be called on wp_loaded rather than init so other plugins have a chance to hook in if needed - CHANGED
+
+v1.4.9
+Google Analytics extra error messages added to help users debug - ADDED
+Google Analytics days of week now translatable - FIXED
+Broken image link can break the image upload button when editing - FIXED
+Added check to not run file system check function when doing ajax calls - CHANGED
+Best of widget now supports multiple uses per page - FIXED
+Filter login_redirect added for login after GD signup - ADDED
+Google Analytics Countries now translatable - FIXED
+Google maps home map loads categories on first load instead of via ajax after page load - CHANGED
+Cyrillic characters not exporting correctly in import/export - FIXED
+With WPML search results listings for all languages - FIXED
+In registration send password to email note removed when user allowed choose own password - FIXED
+Menu save triggering rebuilding of category count and review counts - FIXED
+Added option to General>search to limit small individual words form being searched - ADDED
+Genesis cat description appearing twice and title out of align if sort by present - FIXED
+Google removed some JS files from their CDN which broke some Analytics, changed to cloudflare CDN - FIXED
+Added function to ad featured image to details page header so facebook will use it on url share - ADDED
+Fields is_featured, package_id & expire_date do not working for import/export - FIXED
+Default theme compatibility settings not installed on first install only on upgrade - FIXED
+Google analytics metric changed from ga:sessions to ga:pageviews - CHANGED
+Social importer not showing imported images properly - FIXED
+Disable dragging on map not working for all mobile devices, mainly just Apple devices - FIXED
+
+v1.4.8
+Send Enquiry & send to friend options removed from listings page - CHANGED
+Add listing form upload image tool should not upload non-image files - FIXED
+Added wp_filesystem checks for systems having problems with import/export - ADDED
+Genesis theme update shows menu below top widget area - FIXED
+Added filter to be able to stop add listing address from changing when moving map pin - ADDED
+Better seo title and description for search results - CHANGED
+Without filling mandatory fields click on save draft button keeps spinning - FIXED
+Autozoom assigned only for more then map markers - CHANGED
+Import/export integrated with franchise feature - ADDED
+Import/export work with parent/child category - ADDED
+Custom field with apostrophe sign not translated properly - FIXED
+WPML not translating details page content correctly - FIXED
+Google Analytics for owners stopped working due to API retirement, new improved Analytics added - FIXED
+Category listing sort by rating now uses review count as second sort value - CHANGED
+WPML copy content for translation no longer copying GD custom fields - FIXED
+Function codeAddress changed to geodir_codeAddress for compatibility - CHANGED
+
+v1.4.7
+Search not working for empty keyword search - FIXED
+Review counts lost during virtual page conversion (also fixed by saving any place) - FIXED
+Option added to allow/restrict some file types for custom field file upload - ADDED
+Some DocBlocks added for documentation - ADDED
+
+v1.4.6
+New filter added for term link in popular category widget - ADDED
+Validation added to avoid multiple times selection for same category - FIXED
+Map ajax requests now specifically set to return utf-8 - CHANGED
+Star ratings in sidebar not responsive for window size between 883x738 & 982x738 - FIXED
+New filter added for location terms - ADDED
+Searching function updated to find results for only matching whole words - FIXED
+On sorting comment the comment text goes disappeared - FIXED
+Import & Export added for GD listings & categories - ADDED
+CSV Upload updated & moved under Import & Export - CHANGED
+GD pages converted from virtual to normal pages - CHANGED
+GD pages section added to GD permalinks page - ADDED
+
+v1.4.5
+Slider JS missing from preview page - FIXED
+http://docs.wpgeodirectory.com/security-release-21-04-2015/ - SECURITY UPDATE
+
+v1.4.4
+In CSV upload file new column post_status added to set listing status - CHANGED
+term description sometimes not showing - FIXED
+Listing title displaying sanitized for title attribute - ADDED
+CSV upload not dealing with line breaks in fields - FIXED
+ADDRESS_MSG can't be translated because it contains HTML tags - FIXED
+CSS files minified and added to one file for frontend - CHANGED
+JS files minified for the frontend - CHANGED
+In Best of widget listings "Best of" text not translatable - FIXED
+Update for Avada 3.8+ compatibility that removes the need to edit and have the header.php in child theme - CHANGED
+On search pages sort options removed as sorting is done by search criteria - CHANGED
+
+v1.4.3
+In the map child categories should be checked/unchecked when parent category is checked/unchecked - FIXED
+Sorting by title not working correctly - FIXED
+Added $post_id param to action 'geodir_update_postrating' - ADDED
+Removed preview button from backend for GD posts - CHANGED
+
+v1.4.2
+Google api establishment term can override street address - FIXED
+Added action geodir_infowindow_meta_after to infowindow - ADDED
+On home page map css class added to highlight searched post type - FIXED
+Popular category count not working with ajax - FIXED
+In backend geodirectory style conflicts with some themes style - FIXED
+Sort by most reviews not working in widget and shortcode popular post view - FIXED
+Validation added for custom permalinks in GD -> General -> Permalinks - FIXED
+All Listings virtual page removed - CHANGED
+Shortcode added for best of widget - ADDED
+Recent reviews widget ratings stars color not changed with multirating color setting - FIXED
+geodir_curPageURL() changed slightly for https url's, we no longer add the port number - CHANGED
+Shortcode added for to display GeoDirectory Listings with pagination - ADDED
+Marker cluster not working in maps added via shortcode - FIXED
+Add to fav/remove from fav text now filterable - ADDED
+Awesome font upgraded with new Awesome font version 4.3.0 - ADDED
+After searching for a city not able to search city again without clearing Near input box - FIXED
+Custom fields texts translation added - FIXED
+[#from_email#] added as a shortcode in notification templates - ADDED
+Changed hook 'template_include' to priority 9 - CHANGED
+
+v1.4.1
+Distances to listings should show miles/km until 0.01 rather than 1 before changing to ft/m - FIXED
+Function geodir_save_listing() now unsets the listing session before returning - CHANGED
+Error in google review rich snippets when review rating manager plugin not active - FIXED
+Some DocBlocks added for documentation - ADDED
+
+v1.4.0
+New user registration disabled error not showing because of &amp; - FIXED
+Category icons not always updated when changed - FIXED
+Search results not ordered correct if default sort_by changed - FIXED
+$_SESSION['listing'] being cleared too early for other addons - FIXED
+Options added for detail page default sections to be disabled - ADDED
+Best of widget doesn't set it's own view at first using the last set which is 2x grid - FIXED
+Category icons broken with WPML per language - FIXED
+Custom field wording "Show on detail page" changed for clarity - CHANGED
+Class menu-item-has-children added to GD menu items Listings & Add Listing - FIXED
+Slashes not stripped from message of send enquiry email - FIXED
+CSV upload not supports formatting in description - FIXED
+WPML bug, can show untranslated posts if category ID matches post ID - FIXED
+Star rating images have a line at the end on safari (fixed with jQuery) - FIXED
+Detail page tab content messed during page loading - FIXED
+
+v1.3.9
+Moved change log into core files as we lost 1.3.9 change log due to SSD failure - CHANGED
+Virgin islands have duplicate entries in country list, removed from db install script - FIXED
+Search changed for better individual word results - CHANGED
+Excerpt length hook priority changed so it's not overridden by avada - CHANGED
+Upload error message can now be translated - FIXED
+Several W3C validation fixes/changes made - CHANGED
+Switching between listing types can add an additional "enable dragging" message - FIXED
+Category widget has a default of 15 changing this in widget does not take affect - FIXED
+Dummy data can sometimes not delete post_details info - FIXED
+Recent reviews widget can sometimes show replies as reviews - FIXED
+added filter to function geodir_curPageURL - ADDED
+Share this button JS not loaded over HTTPS if requested - FIXED
+Add listing page on mobile can sometime scroll to content section - FIXED
+Popular Categories widget improved loading time, reduced SQL queries and added ajax switcher per CPT - CHANGED
+GD > Best of widget added (similar to yelp best of section)  - ADDED
