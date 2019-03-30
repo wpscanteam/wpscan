@@ -1,0 +1,758 @@
+= 2.37 - Mar. 18, 2019 =
+* added ability to export testimonials with featured images included.
+* added option to change single testimonial permalink slug.
+* fixed a conflict with `Mesmerize` theme not displaying the views.
+* fixed issue with audio shortcode not playing in the testimonial content.
+* fixed form redirect url not saving.
+* fixed issue when testimonial slideshows has only one testimonial.
+* fixed issue with the `read more` link in a slideshow not toggling correctly.
+* removed `Really Simple Captcha` from captcha settings.
+* fixed wp_debug warnings.
+* minor backend tweaks.
+
+= 2.36 - Feb. 15, 2019 =
+* bug fixes and tweaks
+
+= 2.35 - Feb. 12, 2019 =
+* fixed multiple bugs with the submission form
+* fixes testimonial and star rating not displaying properly
+
+= 2.34 - Feb. 8, 2019 =
+* removed all strongplugins.com branding
+* removed links to external addons; all Strong Testimonials addons should be delivered from w.org
+* re-licensed under GPLv3 & added a copy of the license in .txt format
+* improved plugin escaping / sanitization
+
+= 2.32.4 - Dec. 27, 2018 =
+* Prerender shortcodes in WordPress Custom HTML widgets.
+
+= 2.32.3 - Dec 4, 2018 =
+* Fix stretched slide height in carousel.
+
+= 2.32.2 - Dec 4, 2018 =
+* Add adjustable responsive breakpoints for carousels.
+
+= 2.32.1 - Oct 26, 2018 =
+* Fix bug in translation of slider text controls.
+
+= 2.32 - Aug 6, 2018 =
+* Add carousel option.
+* Add filters to form field classes.
+
+= 2.31.10 - Aug 2, 2018 =
+* Fix singular/plural phrases in testimonial average shortcode.
+* Fix bug in scroll to success message.
+* Fix RTL slider controls.
+* Attempt to fix slider touch problems in iOS.
+
+= 2.31.9 - July 17, 2018 =
+* Fix compatbility issue with Gutenberg.
+* Fix bug in average rating calculation.
+* Fix CSS columns for recent browser updates.
+* Fix bug in lazy-loading compatibility option.
+* Improve theme compatibility.
+* Add filter on form submit button CSS class.
+
+= 2.31.8 - June 16, 2018 =
+* Fix "wait" spinner in unstyled form template.
+* On forms, only show required symbol if field label is shown.
+* Refactor inline style method.
+* Improve exception handling.
+
+= 2.31.7 - June 7, 2018 =
+* Fix JavaScript incompatibility in IE and Edge.
+
+= 2.31.6 - June 2, 2018 =
+* Fix bug when adding a custom field in view editor.
+
+= 2.31.5 - June 1, 2018 =
+* Fix XSS vulnerablilities reported by DefenseCode using Thunderscan.
+* Add spinner UI element while form is being submitted to deter visitor from navigating away.
+* Minor admin UI improvements.
+
+= 2.31.4 - May 22, 2018 =
+* Add integration with WordPress privacy exporter and eraser features.
+
+= 2.31.3 - May 19, 2018 =
+* Fix missing submit button.
+
+= 2.31.2 - May 18, 2018 =
+* Fix bug in average rating half-star.
+
+= 2.31.1 - May 15, 2018 =
+* Fix conflict with Review Markup add-on.
+
+= 2.31 - May 15, 2018 =
+* Add `[testimonial_average_rating]` shortcode.
+* Add compatibility option for script controller.
+* Add compatibility option for lazy loading images.
+* Minor template style tweaks for small screens.
+* Use empty star icon instead of full icon in different color.
+* Change default message "Required field" to "Required".
+* Improve exception handling.
+* Improve Pjax compatibility.
+* Apply JavaScript coding standard.
+* Add console logging for slider when `SCRIPT_DEBUG` enabled.
+* Minor admin style tweaks.
+
+= 2.30.9 - May 6, 2018 =
+* Fix bug in add-on activation process.
+
+= 2.30.8 - April 26, 2018 =
+* Fix incorrect text domains.
+* Fix bug in form validation translation files.
+* Remove obsolete German translation.
+* Update translation files.
+* Refactor the submit buttons on settings pages.
+
+= 2.30.7 - April 23, 2018 =
+* Fix bug in front-end controller script.
+
+= 2.30.6 - April 17, 2018 =
+* Improve embeds in Masonry layout.
+* Fix `[testimonial_count category]` shortcode in Properties add-on.
+* Update the EDD license updater class.
+* Improve notification email admin UI.
+* Improve notification email message when custom fields are blank.
+
+= 2.30.5 - April 9, 2018 =
+* Fix bug when email field is not required.
+* Fix display of templates in view editor when theme/add-on templates are present.
+* Fix inconsistent use of filter on default view settings.
+* Improve compatibility with themes and thumbnail column in admin list.
+* Improve compatibility with installation scripts (table creation).
+* Improve check for missing add-on license.
+* Add front-end "Nothing found" message for administrators.
+* Add data attribute 'count' for found_posts to view container for troubleshooting.
+* Add filter on `[testimonial_count]` shortcode defaults.
+* Add ability to capture notification email on localhost.
+* Revive a logger class.
+* Minor admin UI tweaks.
+
+= 2.30.4 - Mar 20, 2018 =
+* Fix bug in slider in Firefox 59.
+
+= 2.30.3 - Mar 16, 2018 =
+* Improve slider script compatibility (event propagation).
+
+= 2.30.2 - Mar 11, 2018 =
+* Fix backwards-compatibility for WordPress versions 4.5 and older.
+
+= 2.30.1 - Mar 6, 2018 =
+* Fix minor bug in PHP7 compatibility.
+* Improve real-time validation in fields editor.
+* Minor CSS fixes.
+
+= 2.30.0 - Feb 10, 2018 =
+* Add option for font color in view editor.
+* Add option for a custom CSS class on the image link for lightboxes.
+* Add shortcode attributes for post_ids, category, order, and count.
+* Use `is_email()` to validate email addresses.
+* Use `number_format_i18n()` in testimonial_count shortcode.
+* Refactor template groups into base templates with options.
+* Add option to disable touch swipe navigation in slideshows.
+* Simplify slideshow CSS.
+* Fix bug in slider script in Chrome.
+
+= 2.29.1 - Jan 8, 2018 =
+* Only to trigger update because the SVN version was incomplete.
+
+= 2.29 - Jan 8, 2018 =
+* Add integration with Google Captcha by BestWebSoft.
+* Remove integration with Captcha plugin.
+* Remove integration with Advanced noCaptcha reCaptcha plugin.
+* Fix CSS conflict with Cherry Slider.
+* Fix bug when adding the category field to the notification email.
+* Fix read-more filter usage for WPML and Polylang.
+* Add filter: `wpmtst_read_more_page_output`.
+* Add support for FooBox Image Lightbox.
+* Improved the notification email admin UI.
+* Handle form submission on custom action.
+* Add dismissible persistent admin notice capability.
+* Improve add-on configuration check.
+* Minor refactoring for improved performance.
+
+= 2.28.4 - Nov 20, 2017 =
+* Fix bug when using count in views.
+* Fix bug that prevented saving views.
+* Fix bug that prevented deleting the plugin.
+* Rename the form's submit button CSS class to `wpmtst-submit` to prevent conflicts. Thanks @chestozo.
+* Remove mail debug logger.
+* Improved update process to prevent simultaneous execution.
+
+= 2.28.3 - Nov 18, 2017 =
+* Fix bug in slider when not using transition effect.
+* Fix conflict between standard pagination and query limit.
+* Fix bug when saving custom fields in post editor.
+* Add capability for custom input fields.
+
+= 2.28.2 - Nov 10, 2017 =
+* Fix bug when only one page in paginated views (count < per_page).
+
+= 2.28.1 - Nov 10, 2017 =
+* Fix conflict with paginated views in some themes.
+
+= 2.28 - Nov 9, 2017 =
+* Add compatibility settings for Ajax page loading.
+* Add subtle transition effect for paginated views.
+* Add standard pagination options.
+  * Previous/Next links
+  * Condensed navigation
+  * Before/after page number text
+* Fix bug where standard pagination failed to add a trailing slash.
+* Fix bug that failed to check plugin-specific capabilities in multisite.
+* Fix bug that caused redirect loop if database error occurs during installation.
+* Add a JavaScript controller to coordinate components.
+* Refactor slider script.
+* Refactor pager script.
+* Refactor honeypots to inline, plain JavaScript.
+* Refactor many functions into classes.
+* Add ability to register a custom field type (experimental).
+
+= 2.27.2 - Oct 10, 2017 =
+* Fix bug in update process.
+
+= 2.27.1 - Oct 9, 2017 =
+* Fix bug in update process.
+
+= 2.27 - Oct 9, 2017 =
+* Fix optional loading of Font Awesome.
+* Fix width on double-digit pagination controls in Modern template.
+* Fix hiding slider controls if no slides are present.
+* Fix CSS for slider controls in Internet Explorer 11.
+* Add unique user capabilities for workflow control.
+* Add option to set checkbox field on by default.
+* Add option to exclude from Lazy Loading Responsive Images plugin (on by default).
+* Add filters to "Read more" link text and URL.
+* Add filter to form redirect URL.
+* Add filter to skip prerender (for compatibility).
+* Add filters for styles, scripts and script vars.
+* New About page.
+* Minor refactoring for improved performance.
+
+= 2.26.10 - Sep 12, 2017 =
+* Fix compatibility with Captcha by simplywordpress 4.3.4+.
+* Fix compatibility with Polylang string translations when user's admin language is not English.
+* Improve flex grid style when last row is less than full.
+* Improve rendering of shortcode field type.
+* Add post ID of newly submitted testimonial to action hook.
+
+= 2.26.9 - Sep 2, 2017 =
+* Fix integration with Polylang 2.1+.
+* Indent subcategories in the category selector on the form.
+
+= 2.26.8 - Aug 26, 2017 =
+* Fix form whitespace problem in some themes.
+
+= 2.26.7 - Aug 15, 2017 =
+* Fix compatibility with Captcha plugin version 4.3.1.
+
+= 2.26.6 - Aug 15, 2017 =
+* Trim leading and trailing spaces on form input values.
+
+= 2.26.5 - Aug 2, 2017 =
+* Improve adding thumbnail support.
+
+= 2.26.4 - July 31, 2017 =
+* Fix bug in WPML String Translations.
+
+= 2.26.3 - July 27, 2017 =
+* Fix bug when displaying empty rating in post editor.
+
+= 2.26.2 - July 24, 2017 =
+* Fix WPGlobus compatibility.
+
+= 2.26.1 - July 17, 2017 =
+* Fix bug in saving checkbox field.
+
+= 2.26 - July 6, 2017 =
+* Improve excerpt handling.
+* Add option for linking title to testimonial post.
+* Improve featured image responsive style.
+* Minor UI improvements in view editor.
+
+= 2.25.2 - June 28, 2017 =
+* Fix conflict with OptimizePress page builder.
+* Remove defer on admin scripts.
+
+= 2.25.1 - June 26, 2017 =
+* Fix bug when adding star rating to single template and category archive.
+
+= 2.25 - June 23, 2017 =
+* Improve form validation.
+  * Update jQuery Validation plugin (1.16.0).
+  * Add tabindex.
+  * Add custom validation to star rating field.
+  * Improve form error indicator style.
+* Fix bug that was printing duplicate script variables.
+* Make checkbox field text translatable.
+* Add hooks and filters in form submission.
+* Add option to disable "* Required Field" notice.
+* Update link to wordpress.org review form.
+* Update style for Review Markup add-on.
+* Lint and compress JavaScript files.
+
+= 2.24 - June 12, 2017 =
+* Fix bug in saving a zero rating.
+* Fix bug in add-on license activation screen.
+* Add real-time configuration checks.
+* Improve debug logger.
+
+= 2.23.2 - June 7, 2017 =
+* Fix default translation filters.
+
+= 2.23.1 - June 4, 2017 =
+* Fix bug in default nofollow links.
+* Fix bug when saving checkbox value in post editor.
+* fix bug in admin list checkbox column.
+
+= 2.23 - May 31, 2017 =
+* Add nofollow default setting.
+* Add checkbox input type.
+* Add support for Captcha Pro by BestWebSoft.
+* Defer front-end javascript to improve compatibility.
+* Allow shortcodes and basic HTML in the "Before", "After", "Text" fields.
+* Add filter on "Required Field" notice.
+* Remove `link_new_tab` and `link_nofollow` functions.
+* Minor refactoring.
+
+= 2.22.6 - May 29, 2017 =
+* Fix conflict with prerender and some themes.
+
+= 2.22.5 - May 25, 2017 =
+* Fix bug in adding nofollow attribute to outbound links.
+
+= 2.22.4 - May 20, 2017 =
+* Fix compatibility with Max Mega Menu plugin.
+
+= 2.22.3 - May 18, 2017 =
+* Improve style and script loading.
+* Fix bug in slideshow in WordPress version less than 4.6.
+* Fix WPML slug translation.
+* Minor refactoring.
+
+= 2.22.2 - May 14, 2017 =
+* Fix bug in add-on license activation for localhost sites.
+
+= 2.22.1 - May 11, 2017 =
+* Fix bug in displaying add-on sections in view editor.
+
+= 2.22 - May 9, 2017 =
+* Add option for sticky views.
+* Add view mode for single post template.
+* Add view mode description.
+* Move custom style to `<head>` to avoid FUOC.
+* Use built-in `imagesLoaded` script instead.
+* Move manual excerpt read-more to appear after testimonial content.
+* Fix bug that caused some double read-more's.
+* Improve compatibility with Divi Builder 2.
+* Remove general compatibility mode; no longer needed.
+
+= 2.21.2 - Apr 21, 2017 =
+* Fix bug in add-on license activation process.
+
+= 2.21.1 - Apr 18, 2017 =
+* Fix bug in Font Awesome loading.
+
+= 2.21 - Apr 14, 2017 =
+* Add option for default rating value on the form.
+* Add custom field name to form HTML elements.
+* Add option to skip loading Font Awesome.
+* Add background color option to the form.
+* Add filters to bypass layout stylesheets if not needed.
+* Minor admin UI improvements.
+
+= 2.20 - Apr 3, 2017 =
+* Handle screen resize and orientation change in slider.
+* Add `wpautop` to automatic excerpts for consistent style.
+* Improve form nonce check.
+* Update EDD integration.
+* Add filters for custom sort order.
+
+= 2.19.2 - Mar 27, 2017 =
+* Fix conflict with Wonderflux framework.
+
+= 2.19.1 - Mar 24, 2017 =
+* Fix bug in category assignment on new submissions.
+* Add `wpmtst_field_value` filter.
+
+= 2.19 - Mar 18, 2017 =
+* Improve add-on integration.
+* Prevent conflict between Advanced noCaptcha reCaptcha plugin and page builders.
+* Add simple WP-CLI compatibility.
+* Add option to clear star rating value.
+
+= 2.18.2 - Feb 26, 2017 =
+* Fix bug in conditional loading of star rating stylesheet.
+
+= 2.18.1 - Feb 23, 2017 =
+* Fix bug in form success/error scrolling.
+
+= 2.18 - Feb 15, 2017 =
+* Add form success redirect options.
+* Add visual editor (TinyMCE) to the form success message.
+* Process shortcodes in the form success message.
+* Fix bug when slideshows are in hidden tabs.
+* Fix bug in edit rating script.
+* Improve Modern template responsive style.
+* Minor refactoring.
+
+= 2.17.5 - Jan 18, 2017 =
+* Fix bug when page has multiple slideshows.
+
+= 2.17.4 - Jan 17, 2017 =
+* Fix bug in form Ajax.
+
+= 2.17.3 - Dec 28, 2016 =
+* Fix bug that allowed unsanitized custom field names.
+* Improve admin UI.
+* Update Spanish translation.
+
+= 2.17.2 - Dec 14, 2016 =
+* Fix incomplete loading of FontAwesome for slideshows.
+
+= 2.17.1 - Dec 14, 2016 =
+* Fix bug in plugin activation process.
+* Improve category checklist style in default form template.
+
+= 2.17 - Dec 13, 2016 =
+* Add category checklist option to form fields.
+* Fix bug that allowed double underscores in custom field name.
+* Fix date column formatting in testimonials admin list.
+* Improve admin UI in fields and view editors.
+* Improve slideshow controls style.
+
+= 2.16.5 - Dec 8, 2015 =
+* Fix bug when [Max Mega Menu](https://wordpress.org/plugins/megamenu/) plugin installed.
+
+= 2.16.4 - Dec 7, 2016 =
+* Fix conflict with [Huge IT Slider](https://wordpress.org/plugins/slider-image/) plugin.
+* Remove some unnecessary edge case functions.
+
+= 2.16.3 - Dec 5, 2016 =
+* Fix bug when loading form validation translation files.
+* Fix bug that initialized slideshows before images are loaded.
+* Improve admin UI.
+
+= 2.16.2 - Dec 4, 2016 =
+* Strip slashes from custom fields and submitted form values.
+
+= 2.16.1 - Dec 2, 2016 =
+* Fix bug in slideshow query.
+* Fix conflict with Dream Theme themes.
+
+= 2.16 - Dec 1, 2016 =
+* Fix missing icons (start, quotes, pager buttons).
+* Fix incorrect WPML string registration (read-more texts).
+* Improve compatibility.
+
+= 2.15 - Nov 29, 2016 =
+* Add 'required' attribute to file input field.
+* Add slideshow behavior options.
+* Add slideshow control and navigation options.
+* Fix minor bugs.
+
+= 2.14.3 - Nov 22, 2016 =
+* Fix reordering.
+* Fix rating column in admin list.
+* Add post type and taxonomy filters.
+* Improve upgrade process.
+
+= 2.14.2 - Nov 3, 2016 =
+* Fix bug in form validation.
+
+= 2.14.1 - Nov 1, 2016 =
+* Fix bug in non-paginated query.
+
+= 2.14 - Oct 31, 2016 =
+* Add option for using standard WordPress pagination.
+* Add option for displaying text before a custom field.
+* Redesign fields section in view editor.
+* Begin conversion to SCSS.
+* Improve contextual help and links.
+* Improve compatibility and performance.
+
+= 2.13.5 - Oct 22, 2016 =
+* Fix loading of FontAwesome.
+
+= 2.13.4 - Oct 20, 2016 =
+* Fix bug in loading view resources.
+* Fix bug in pagination settings.
+* Fix bug in mail queue.
+* Handle multiple paginated views on same page.
+* Handle multiple rating fields.
+
+= 2.13 - Oct 17, 2016 =
+* Fix bug in saving star rating in post editor.
+* Fix bug when clearing a URL field.
+* Fix bug in redisplaying form values when form has errors.
+* Add options for scrolling to the form success message or first form error.
+
+= 2.12.4 - Sep 28, 2016 =
+* Add title to Modern template.
+* Fix left-aligned image in Modern template in some themes.
+* Fix conflict with Styles: Twentyfourteen plugin.
+
+= 2.12.3 - Sep 23, 2016 =
+* Enforce email and URL input types.
+
+= 2.12.2 - Sep 15, 2016 =
+* Fix compatibility with versions of WordPress before 4.4.
+* Fix bug in fields editor.
+* Remove disabling of title, thumbnail, and category fields in view editor if those fields were not found in form fields.
+
+= 2.12.1 - Sep 15, 2016 =
+* Fix bug in loading Font Awesome.
+* Fix bug in new submit_date field.
+* Fix bug in form preview.
+
+= 2.12 - Sep 14, 2016 =
+* Star ratings!
+    * Get rating on a form
+    * Display in a view
+    * Edit on the testimonial
+    * Show in admin list
+* Store the date a testimonial was submitted for displaying in a view.
+* Improve fields:
+    * Add form preview.
+    * Add contextual help (the Help tab).
+    * Add option to hide the label.
+    * Add option for default form value (translatable).
+    * Add option for default display value (translatable).
+    * Add option to include a shortcode.
+    * Fix bug: Save fields after restoring defaults.
+    * Improve fields editor UI.
+* Add feature to copy the testimonial shortcode to the clipboard.
+* Fix function that checks for minimum required WordPress version.
+* Remove unused Font Awesome files.
+* Update POT file.
+* Minor refactoring.
+
+= 2.11.17 - Sep 8, 2016 =
+* Add "Read more" link text to WPML and Polylang translation strings.
+
+= 2.11.16 - Sep 3, 2016 =
+* Fix conflict with [Styles](https://wordpress.org/plugins/styles/) plugin.
+
+= 2.11.15 - Sep 2, 2016 =
+* Fix bug in menu for subscribers.
+
+= 2.11.14 - Aug 25, 2016 =
+* Handle special characters in view name.
+
+= 2.11.13 - Aug 24, 2016 =
+* Improve theme compatibility.
+
+= 2.11.12 - Aug 22, 2016 =
+* Fix bug in loading Font Awesome for Modern template.
+
+= 2.11.11 - Aug 19, 2016 =
+* Fix custom image size.
+
+= 2.11.10 - Aug 19, 2016 =
+* Improve general theme compatibility.
+
+= 2.11.9 - Aug 13, 2016 =
+* Improve compatibility with [CM Tooltip Glossary](https://wordpress.org/plugins/enhanced-tooltipglossary/).
+
+= 2.11.8 - Aug 11, 2016 =
+* Maintain line breaks in submitted testimonial content.
+
+= 2.11.7 - Aug 10, 2016 =
+* Remove `wp_make_content_images_responsive` filter.
+
+= 2.11.6 - Aug 10, 2016 =
+* Remove `wp_make_content_images_responsive` filter.
+
+= 2.11.5 - Aug 10, 2016 =
+* Compatible with [CM Tooltip Glossary](https://wordpress.org/plugins/enhanced-tooltipglossary/).
+* Reinstate option for "Read more" link to a page from within testimonial.
+
+= 2.11.4 - Aug 9, 2016 =
+* Reinstate "Read more" option for manual excerpts.
+
+= 2.11.3 - July 25, 2016 =
+* Remove background on Modern template.
+
+= 2.11.2 - July 20, 2016 =
+* New template: Modern.
+
+= 2.11.1 - July 20, 2016 =
+* Fix bug in pagination.
+* Fix bug in view class name option.
+
+= 2.11 - July 19, 2016 =
+* Slideshow navigation options.
+
+= 2.10.3 - July 13, 2016 =
+* Fix conflict with NextGEN Gallery.
+* Fix bugs in update process.
+* Add `wpmtst_before_testimonial` and `wpmtst_after_testimonial` hooks for prepending and appending content to each testimonial.
+
+= 2.10.2 - July 12, 2016 =
+* Fix bug in "Read more" selector.
+
+= 2.10.1 - July 11, 2016 =
+* Fix bug in single testimonial selector.
+
+= 2.10 - July 11, 2016 =
+* Fix bug when not using company_website field.
+* Improve "Read more" link to behave like standard blog posts.
+* Separate option for a "Read more" link to a page/post.
+* Option to show an indicator bubble for pending testimonials.
+* Include Font Awesome instead of loading via CDN.
+
+= 2.9.4 - July 2, 2016 =
+* Compatible with FooBox Image Lightbox [Free](https://wordpress.org/plugins/foobox-image-lightbox/) and [Pro](http://fooplugins.com/plugins/foobox/) versions.
+
+= 2.9.3 - June 28, 2016 =
+* Fix conflict with themes and plugins that also include Font Awesome.
+
+= 2.9.2 - June 28, 2016 =
+* Fix bug.
+
+= 2.9.1 - June 28, 2016 =
+* Fix conflict with WooCommerce.
+
+= 2.9 - June 3, 2016 =
+* Compatible with [Max Mega Menu](https://wordpress.org/plugins/megamenu/) plugin.
+* Disable redirect to Guide page after update.
+* Disable console log output in Cycle script.
+
+= 2.8 =
+
+= 2.7 =
+
+= 2.6 - May 17, 2016 =
+* Bypass WordPress empty post check.
+* Enable embeds (YouTube, Twitter, etc.).
+* Add setting for embed frame width.
+
+= 2.5.8 - May 12, 2016 =
+* Fix grid layout in IE 9 and IE 11.
+
+= 2.5.7 - May 11, 2016 =
+* New "No Quotes" template.
+* Restrict the CSS Classes setting to names only; not to be used for custom CSS rules.
+* Update the Guide.
+
+= 2.5.6 - April 24, 2016 =
+* Compatible with [Bretheon](http://themes.muffingroup.com/?theme=bretheon) theme.
+* Update the Guide.
+
+= 2.5.5 - April 22, 2016 =
+* Fix bug in notification email logging.
+* Fix bug when enabling custom fields and comments.
+
+= 2.5.4 - April 22, 2016 =
+* Fix bug in Guide.
+* Minimum WordPress version required: 3.6.
+
+= 2.5.3 - April 21, 2016 =
+* Minor admin UI improvements.
+
+= 2.5.2 - April 12, 2016 =
+* Add pagination to `strong_testimonials_view()` template function.
+* Fix bug in Categories column.
+
+= 2.5.1 - April 8, 2016 =
+* Add comments column to testimonial admin list.
+* Fix conflict with NextGEN Gallery.
+
+= 2.5 - April 7, 2016 =
+* Fix bug on date format conversion.
+* Fix content class bug.
+* Add filters to override default pagination.
+
+= 2.4.1 - April 5, 2016 =
+* Apply all content filters (revert change in 2.4.0).
+* Bypass content filter for [All In On Schema.org Rich Snippets](https://wordpress.org/plugins/all-in-one-schemaorg-rich-snippets/) plugin.
+
+= 2.4 - April 4, 2016 =
+* Add email notification troubleshooting log.
+* Add option to show Custom Fields meta box.
+* Add option to enable comments on individual testimonials.
+* Fix formatting of non-US date formats.
+* Apply only standard content filters (wptexturize, convert_smilies, wpautop, shortcode_unautop, do_shortcode).
+
+= 2.3.3 - March 18, 2016 =
+* Prevent incompatible combination of pagination and Masonry.
+
+= 2.3.2 - March 17, 2016 =
+* Fix bug when getting fields for Polylang.
+
+= 2.3.1 - March 12, 2016 =
+* Apply all content filters to be compatible with [WPGlobus](https://wordpress.org/plugins/wpglobus/) translation plugin.
+
+= 2.3 - March 9, 2016 =
+* Improve compatibility with [Posts for Page](https://wordpress.org/plugins/posts-for-page/), [Custom Content Shortcode](https://wordpress.org/plugins/custom-content-shortcode/), and other plugins that use shortcodes to pull in other content.
+* Add form handling to `strong_testimonials_view()` template function.
+* Optimize slideshow loading.
+* Strip HTML whitespace by default with option to disable.
+* Disable form honeypots by default in new installs.
+* Fix bug with first slide in Cycle script.
+* Fix conflict with RT Themes.
+* Fix admin style conflict.
+
+= 2.2.12 - March 3, 2016 =
+* Fix bug when title is empty in some languages.
+* Add error logging to save process.
+
+= 2.2.11 - March 2, 2016 =
+* Fix slideshow stacking bug in unstyled template.
+* Add option to disable scroll top in paginated Views.
+
+= 2.2.10 - March 1, 2016 =
+* Add post date to Custom Fields in View editor.
+
+= 2.2.9 - February 29, 2016 =
+* Fix conflict with [Toolset Views](https://wp-types.com/) plugin.
+* Add Persian translation.
+
+= 2.2.8 - February 23, 2016 =
+* Fix conflict with Post Types Order plugin.
+
+= 2.2.7 - February 22, 2016 =
+* Bug fix for PHP 7.
+
+= 2.2.6 - February 19, 2016 =
+* Allow some HTML in form messages (same as comments).
+* Add `wpmtst_form_success_message` filter.
+
+= 2.2.5 - February 17, 2016 =
+* Handle possibility of missing standard image sizes.
+
+= 2.2.4 - February 15, 2016 =
+* Fix bug in widget processing.
+
+= 2.2.3 - February 11, 2016 =
+* Fix bug in category selector in WPML.
+
+= 2.2.2 - February 10, 2016 =
+* Fix bug in category selector custom field when localized.
+
+= 2.2.1 - February 8, 2016 =
+* Fix bug in View category selector.
+* Prevent potential class name conflict.
+
+= 2.2 - February 8, 2016 =
+* Improve category selector in View editor.
+* Add category filter to testimonial admin list.
+* Make category column sortable in testimonial admin list.
+* Add German translation.
+
+= 2.1 - February 5, 2016 =
+* Add ability to duplicate a View.
+* Fix pagination/slideshow show/hide behavior in View editor.
+* Add framework for add-on plugins.
+
+= 2.0.1 - February 3, 2016 =
+* Fix bug that restored default custom fields.
+
+= 2.0 - February 2, 2016 =
+* Remove `[strong]`, `[wpmtst]`, `[read_more]` shortcodes.
+* Remove original widget.
+* Add content area to View widget.
+* Improve handling of special characters in Fields editor.
+* Fix bug in failed Captcha when submitting form via Ajax.
+* Compatible with [Profit Builder](http://wpprofitbuilder.com/) plugin.

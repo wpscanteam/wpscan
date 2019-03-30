@@ -1,0 +1,149 @@
+*** ShipStation for WooCommerce ***
+
+= 2019-01-07 - version 4.1.27 =
+* Fix - Use product name from order instead of product itself.
+* Fix - Prevent errors when WooCommerce isn't active.
+
+= 2018-12-10 - version 4.1.26 =
+* Update - Setup notice link to WooCommerce-specific landing page.
+
+= 2018-11-08 - version 4.1.25 =
+* Update - WP 5.0 compatibility.
+
+= 2018-10-18 - version 4.1.24 =
+* Fix - Add missing language .pot file.
+* Update - WC 3.5 compatibility.
+
+= 2018-09-12 - version 4.1.23 =
+* Fix    - Use correct textdomain on some strings.
+* Tweak  - Rework settings notice to correctly provide setup instructions.
+* Tweak  - Coding standards and making the plugin ready for wordpress.org.
+
+= 2018-05-24 - version 4.1.22 =
+* Fix    - Order timestamp issue.
+
+= 2018-05-23 - version 4.1.21 =
+* Fix    - Privacy policy updates.
+
+= 2018-05-23 - version 4.1.20 =
+* Fix    - Paid date not showing actual payment date, but Order Date instead.
+* Update - Privacy policy notification.
+* Update - Export/erasure hooks added.
+* Update - WC 3.4 compatibility.
+
+= 2017-12-15 - version 4.1.19 =
+* Fix - WC 3.3 compatibility.
+
+= 2017-07-18 - version 4.1.18 =
+* Fix - Update the order status to complete if XML from ShipStation is not present in request's body. Also log the request information.
+* Fix - Adjusted text domain for two strings so that they are now translateable.
+
+= 2017-07-06 - version 4.1.17 =
+* Fix - Issue when a server couldn't read ShipNotify's XML posted in request's body, nothing is updated in the order.
+* Tweak - Added setting, docs, and support links in plugin action links.
+
+= 2017-06-14 - version 4.1.16 =
+* Fix - Issue where legacy code for converting sequential order numbers still used.
+* Fix - Make sure to not count non shippable item when get notified from ShipStation.
+
+= 2017-05-12 - version 4.1.15 =
+* Fix - Ensure some orders from previous version of ShipStation are able to be found on notifications.
+
+= 2017-05-11 - version 4.1.14 =
+* Fix - Possible error when order is not found during shipment notification.
+* Tweak - Order numbers are now sent via own XML field and will not display in invoice.
+
+= 2017-05-05 - version 4.1.13 =
+* Fix - WC30 date/time not displaying correctly.
+* Fix - Tax amount discrenpancy when sent to Shipstation.
+* Fix - When using split orders, order does not get updated in WooCommerce.
+* Tweak - Sequential Numbers Pro compatibility.
+* Add - Exported order note when the order has been exported.
+
+= 2017-05-02 - version 4.1.12 =
+* Fix - Product attributes not passing to Shipstation under certain conditions.
+
+= 2017-05-01 - version 4.1.11 =
+* Fix - Export error due to WC30 incompatibility.
+
+= 2017-04-10 - version 4.1.10 =
+* Fix  - Allow additional characters to be used for shipping service name
+
+= 2017-04-06 - version 4.1.9 =
+* Fix  - Additional updates for WC 3.0 compatibility
+
+= 2017-04-03 - version 4.1.8 =
+* Fix  - PHP 7 compatibility
+* Fix  - Update for WC 3.0 compatibility
+
+= 2016-10-03 - version 4.1.7 =
+* Fix  - Digital products are also sent through.
+* Fix  - Checkout add on fee not being sent through.
+
+= 2016-08-15 - version 4.1.6 =
+* Tweak - Added filter for ShipNotify order ID
+* Tweak - Send payment method ShipStation
+* Fix   - Issue where fee items not be exported to ShipStation
+
+= 2016-02-24 - version 4.1.5 =
+* Fix   - Compatibility issue with WC Order Status Manager
+
+= 2016-01-25 - version 4.1.4 =
+* Fix   - Compatibility issue with woocommerce-sequential-order-numbers-pro version 1-9-0
+
+= 2015-09-23 - version 4.1.3 =
+* Fix   - Allow copy/paste from API key field in firefox
+
+= 2015-08-21 - version 4.1.2 =
+* Fix   - Send pre-discount unit price.
+
+= 2015-08-06 - version 4.1.1 =
+* Fix   - Send UnitPrice as single product total-
+* Tweak - Date parsing.
+
+= 2015-06-24 - version 4.1.0 =
+* Fix   - Sanitize XML response.
+* Fix   - Prevent API requests being callable when not authenticated.
+* Fix   - Prevent caching.
+* Tweak - Use hash_equals to compare keys.
+* Tweak - Send total discount to ShipStation.
+
+= 2015-05-12 - version 4.0.9 =
+* Tweak - woocommerce_shipstation_export_order filter.
+* Tweak - Exclude system notes.
+* Tweak - Custom field value filters.
+
+= 2015-04-03 - version 4.0.8 =
+* Fix   - Don't automatically set to $is_customer_note to true
+
+= 2015-03-12 - version 4.0.7 =
+* Check if $product exists before checking if needs_shipping in export.
+
+= 2015-01-16 - version 4.0.6 =
+* Send negative discount.
+
+= 2015-01-08 - version 4.0.5 =
+* Export query based on post_modified_gmt rather than post_date_gmt
+
+= 2014-11-19 - version 4.0.4 =
+* Fix compatibility with Sequential order numbers.
+
+= 2014-11-13 - version 4.0.3 =
+* Extra logging in ShipNotify.
+* Fixed completing orders with multiple lines.
+
+= 2014-11-13 - version 4.0.2 =
+* Order results by date.
+* Enforce minimum page 1.
+* Removed check to see if orders need shipping to prevent issues with offset/max pages. Exports all orders.
+
+= 2014-11-12 - version 4.0.1 =
+* Added 'pages' node to XML feed so ShipStation knows how many pages of results are present.
+
+= 2014-11-01 - version 4.0.0 =
+* Completely refactored by WooThemes!
+* Supports split orders (only completes the order once all items are shipped).
+* Exports orders (from statuses you define).
+* Excludes orders and items which do not require shipping.
+* Simplified setup process; just requires an auth key.
+* Exports order-level discounts as line items.

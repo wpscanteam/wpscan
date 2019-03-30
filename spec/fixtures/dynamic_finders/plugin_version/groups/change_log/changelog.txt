@@ -1,0 +1,482 @@
+== Groups by itthinx - changelog.txt ==
+
+= 2.6.0 =
+* Tested for WordPress 5.1.
+* Added an option to filter by posts restricted by any group.
+* Added an option to filter by posts restricted by no group.
+* Removed an option to filter by only unrestricted posts which didn't work.
+* Improved groups column header fitting on post admin screens.
+* Fixed a notice when a user has no groups assigned.
+
+= 2.5.0 =
+* Tested for WordPress 5.0.
+
+= 2.4.0 =
+* Improved performance when filtering the users list by groups to avoid issues with large user bases.
+* Tested with the latest WordPress 4.9.
+* Updated the minimum required WordPress version to 4.6.
+* Fixed a missing Javascript resource when selecting an image in the customizer.
+
+= 2.3.1 =
+* Fixed several points where warnings related to the use of count() and the Countable interface would occur due to changes in PHP 7.2.
+* Tested with WordPress 4.9.
+* Added the groups_post_access_posts_where_query_get_post_types filter to allow additional processing to cover for cases like where
+  wc_query is set.
+* Fixed a notice related to the use of an undefined variable in the Groups_Post_Access class.
+* Added the logo and the option to get reminded later to the Groups notice.
+* Added filters on get_previous_post_where and get_next_post_where to restrict access on adjacent posts.
+
+= 2.3.0 =
+* Tested with WordPress 4.8.
+* Fixed a REST API access restriction issue, added the filter rest_prepare_{$post_type} to
+  grant or deny access to individual posts.
+* Updated the translation template.
+* German translation updated.
+* Updated the appearance of the network settings.
+* Updated the table creation process dropping use of dbDelta() due to its restrictions (can't handle IF NOT EXISTS).
+* Fixed an issue related to cache and switching to a blog when neither wp_cache_switch_to_blog() nor wp_cache_reset()
+  are implemented, like in WP Engine's object-cache.php which does provide wp_cache_flush().
+* Guarded against concurrent execution of multiple instances of plugin activation and deactivation processes.
+* Fixed an attempt to refresh capabilities when no previous version was installed.
+
+= 2.2.0 =
+* Important change in this version: If access restrictions for post type are disabled, related entries will not be protected anymore.
+* Improved the activation performance by simplifying the creation of user-group entries.
+  The 'groups_created_user_group' action is not invoked on incorporating existing users and
+  a single query is used to create entries for all users.
+  Based on suggestions from @haroldkyle in https://github.com/itthinx/groups/pull/14
+* Added a warning message displayed in the plugins list when Groups is going to delete its
+  data on deactivation.
+* Added the ability to obtain user_ids from Groups_Group.
+* Improved the performance when obtaining users from Groups_Group.
+  Based on suggestions from @tricki in https://github.com/itthinx/groups/pull/50
+* Adjusted the signature of the Groups_User constructor to use null as default for its $user_id argument.
+* Added methods in Groups_Post_Access to get and set which post types Groups should handle.
+* Changed the default assumption to handle only post types that are 'public' by default. Others are not handled by default.
+* Updated the Options to show all available post types.
+* Improved performance by limiting our posts_where, wp_count_posts and other filters in Groups_Post_Access to handled post types only.
+* Fixed a potential fatal error when the user_register hook is fired and get_current_screen() is not defined.
+* Updated translations.
+* Fixed a notice when no post types are selected in Groups > Options.
+* Added comment filters to hide comments on protected entries.
+* Improved the performance of the post filter.
+* Added several performance improvements related to data retrieval and caching on various objects and data sets.
+* Added a notice handler class.
+
+= 2.1.2 =
+* Fixed a warning that came up when the post type in a query is provided as an array indicating multiple post types.
+* Users who can administer Groups (with the groups_admin_groups capability) now also see posts restricted to groups
+  they do not belong to, in line with the ability to restrict access with groups they do not belong to for consistency's
+  sake.
+* Added a filter on woocommerce_product_is_visible so protected up-sell and cross-sell products
+  are effectively hidden.
+
+= 2.1.1 =
+* Changed the default value for legacy mode used on installation to false. Fixes database errors
+  due to missing capability table at that stage.
+* Modified the method signature of Groups_Post_Access::posts_where() and
+  Groups_Post_Access_Legacy::posts_where() to avoid PHP 7.1 warnings (reference expected, value given).
+* Removed the administrator override option on the back end. Administrator override now requires the constant
+  GROUPS_ADMINISTRATOR_OVERRIDE to be defined as true.
+* Updated the French translation.
+* Adjusted the load order for translations.
+
+= 2.1.0 =
+* Changed the requirements to allow to restrict by group.
+* Fixed legacy access restrictions help replaced new groups help.
+
+= 2.0.3 =
+* Fixed a "Fatal error:  Call to a member function get_role_caps() on a non-object" which
+  could occur in circumstances with invalid user IDs.
+
+= 2.0.2 =
+* Added the option to dismiss the Welcome screen.
+* Updated German and Spanish translations.
+
+= 2.0.1 =
+* Fixed an issue with conflicting cache entries with legacy mode enabled.
+* Fixed access restriction capabilities were reset when reenabling legacy mode.
+
+= 2.0.0 =
+* Changed the access restriction model to group-based access restrictions.
+* Provides an optional legacy mode that supports the previous capability-based access restrictions.
+* Optimized the approach to restrict read access on posts using groups rather than access restriction capabilities.
+* Added the `groups_restrict_access` capability which grants users to impose access restrictions.
+* Fixed the order_by and order parameters in Groups_Group::get_groups()
+* Added the $create parameter in Groups_UIE::render_select()
+* Removed the "Chosen" library.
+* Improved and reduced the footprint on the Users admin screen, now allowing to filter by one or multiple groups.
+* Added a welcome screen.
+* Added the option to assign groups to new users directly when creating them from the Dashboard.
+* Changed the language domain to string literal instead of constant.
+* Improvements on internal coding standards (single/double quotes, EOF, formatting).
+
+= 1.13.1 =
+* Fixed an issue where the wrong post count would be produced for statuses that do not represent a valid WooCommerce order status.
+* Added support for post counts with WooCommerce Subscriptions.
+
+= 1.13.0 =
+* Added a filter on wp_count_posts.
+
+= 1.12.0 =
+* Fixed an issue where resource paths were not correct with customized WP_CONTENT_DIR, WP_CONTENT_URL, WP_PLUGIN_DIR and WP_PLUGIN_URL.
+
+= 1.11.3 =
+* Updated the Spanish translation.
+
+= 1.11.2 =
+* Updated the translation template.
+* Updated the German translation.
+* Moved the complete changelog out to changelog.txt.
+
+= 1.11.1 =
+* Fixed the order_by and order parameters in Groups_Group::get_groups()
+
+= 1.11.0 =
+* Added the Brazilian Portuguese translation.
+
+= 1.10.3 =
+* Added the groups_access_restrictions_capability_selected filter.
+
+= 1.10.2 =
+* Tested for WordPress 4.5.
+
+= 1.10.1 =
+* Fixed the French translation which introduced incorrect markup breaking the help button.
+* Added the groups_admin_groups_add_form_after_fields filter.
+* Added the groups_admin_groups_add_submit_success action.
+* Added the groups_admin_groups_edit_form_after_fields filter.
+* Added the groups_admin_groups_edit_submit_success action.
+* Fixed some code formatting (tabs).
+
+= 1.10.0 =
+* Adjusted the Groups and Capabilities screens' UI elements.
+* Reduced the filters section footprint on the Groups screen.
+* Reduced the filters section footprint on the Capabilities screen.
+* Fixed use of deprecated constructor in the Groups_Pagination class.
+* Fixed sorting by description and the sorting indicator on the Groups screen.
+* Fixed sorting by description and the sorting indicator on the Capabilities screen.
+* Fixed some code formatting issues including superfluous whitespace.
+* Improved the footer rendering and footprint.
+
+= 1.9.1 =
+* WordPress 4.4 compatible.
+* Updated selectize.js to 0.12.1 (standalone).
+* Fixed a representation issue for the lower group selector on the Users screen.
+* Updated the page headings to use h1 instead of h2.
+* Added the is_member method to Groups_User.
+* Updated the footer.
+
+= 1.9.0 =
+* Added own cache encapsulation to guard against flaws in outdated cache implementations.
+* Added new user group property to obtain hierarchical groups.
+* Improved user properties to use own caching.
+* Fixed media field filters wrongly declared as actions.
+* Fixed the version comparison operation.
+
+= 1.8.1 =
+* Fixed potential XSS vulnerabilities related to the unescaped use of the $_SERVER['REQUEST_URI'] in some forms.
+
+= 1.8.0 =
+* WordPress 4.3.1 compatibility tested.
+* Add-ons section added.
+
+= 1.7.2 =
+* WordPress 4.3 compatibility tested.
+* Updated the menu position constant (string instead of number).
+* Removed translation of the Groups menu title (related to a consistent appearance and would also be affected by a a core bug).
+* Fixed padding for the header checkbox on the Groups and Capabilities screens.
+
+= 1.7.1 =
+* Fixes an issue with map_meta_cap filtering where no valid post ID is provided.
+
+= 1.7.0 =
+* Added the French translation.
+* Added the [groups_login] shortcode.
+* Added the [groups_logout] shortcode.
+* Updated the German translation.
+* Updated the Spanish translation.
+* Added the groups_deleted_capability_capability action.
+* Fixed an issue with deleted capabilities restricting access to posts.
+* Fixed cache entries for capabilities.
+
+= 1.6.0 =
+* Added the German translation.
+* Updated the Spanish translation.
+* Updated the Groups menu position.
+* Removed empty strings from translation.
+
+= 1.5.5 =
+* Added administrative links to the plugin entry.
+
+= 1.5.4 =
+* Added the Dutch translation.
+
+= 1.5.3 =
+* Added a comparison method for groups and capabilities.
+* Updated the documentation link in the help content.
+
+= 1.5.2 =
+* Improved internal definitions to use API function instead of WP_CONTENT_DIR
+  and WP_CONTENT_URL constants.
+* Now showing inherited capabilities for groups.
+* Added ABSPATH check to plugin main file.
+* Improved the UI rendering cancel links as buttons.
+* Improved the UI adding some space on capability selector box.
+* Fixed a pagination issue when the page number is indicated on the Groups or Capabilities screen.
+
+= 1.5.1 =
+* Please **MAKE A BACKUP** of your site and database PRIOR to updating.
+* WordPress 4.2 compatible.
+* Adopted a more flexible index size on the capability row of the capability table.
+
+= 1.5.0 =
+* Please **MAKE A BACKUP** of your site and database PRIOR to updating.
+* WordPress 4.2 compatible.
+* Reduced the index size on the capability row of the capability table.
+
+= 1.4.15 =
+* Due to changes in versions 1.4.14 and 1.4.15, it's important to **MAKE A BACKUP** of the site & database, test the site, extensions & theme PRIOR to updating.
+* Fixes a cache incompatibility with caching mechanisms that do not implement wp_cache_get()'s function signature fully.
+This addresses cases specifically where the fourth parameter $found is not initialized as expected upon return.
+The performance improvements included in this release are lessened with caching plugins that fail to implement the return value disambiguation via $found.
+
+= 1.4.14 =
+* Now not using Groups' the_posts filter by default as results are already filtered by Groups' posts_where filter.
+* Added the groups_filter_the_posts filter which can be used to 'reactivate' Groups' the_posts filter where needed.
+* Added caching for capabilities read by capability name.
+* Added caching for groups read by name.
+* Added caching for results obtained in Groups_Post_Access::user_can_read_post(...).
+* Added the groups_post_access_user_can_read_post filter.
+* Admin override is disabled by default (existing installs need to disable manually if options were saved).
+* Swedish translation by [Andréas Lundgren](http://adevade.com) added.
+
+= 1.4.13 =
+* WordPress 4.1 compatible.
+
+= 1.4.12 =
+* Fixes missing selectize Javascript for the media uploader's attachment popup.
+
+= 1.4.11 =
+* WordPress 4.0 compatible.
+
+= 1.4.10 =
+* Improved: code documentation
+* WordPress 3.9 compatibility checked
+* Changed some filter usage with prepare() for 3.9 nags.
+* Fixed unmatched tags in the tree view.
+
+= 1.4.9 =
+* Fixed: Tree view doesn't appear/disappear in menu directly after setting the option.
+* Improved: Feedback when options have been saved.
+* Improved: UI size adjustments.
+* Added: New API methods Groups_Group::get_group_ids() and Groups_Group::get_groups().
+* Improved: groups and capabilities table cell titles and ellipsis added.
+
+= 1.4.8 =
+* Fixed: A closing tag in the group list on the user profile.
+* Fixed: Help wording.
+* Improved: Capabilities in the Access Restrictions column are sorted for more consistent display.
+* Improved: Reduced ID, Edit and Remove column widths on Groups and Capabilities screens.
+* Fixed: Stripping added slashes from groups and capabilities displayed.
+* Added: Feedback when groups and capabilities are created, updated or removed in admin.
+* Added: group and exclude_group attributes for the [groups_user_groups] shortcode.
+* Improved: Replaced remnant CR LF line-endings in code.
+* Fixed: Handling updates to a capability when the capability field is empty.
+* Fixed: Handling updates to a group when the name field is empty.
+* Fixed: Don't allow to use the name of another existing group when updating a group.
+* Fixed: Don't allow to use the name of another existing capability when updating one.
+
+= 1.4.7 =
+* Security improvement: plugin files accessed directly exit
+
+= 1.4.6.1 =
+* Fixed: Don't interfere with output when there is no post (the_content and get_the_excerpt filters)
+
+= 1.4.6 =
+* Security fix : Certain capabilities could be granted to users instead of being denied with a change introduced in version 1.4.5. Roles with negated capabilities would effectively grant these capabilities to the user.
+
+= 1.4.5 =
+* Using a WordPress API function get_post_type_capabilities() instead of semi-hardcoded capabilities for access restriction checks (affects CPTs).
+* Changed: Taking role-based capabilities into account when creating cache entries for the Groups_User object. The new groups_user_add_role_capabilities filter allows to modify this new behaviour by returning false.
+* Added: groups_user_add_role_capabilities filter.
+
+= 1.4.4 =
+* WordPress 3.8 compatibility checked.
+* Fixed: Access restriction options per post type when none is checked.
+
+= 1.4.3 =
+* Added: Bulk editing (add/remove) of post access restriction capabilities.
+* Fixed: A typo in the Access Restriction column's tooltip text.
+* Fixed: Validation of access restriction capabilities when saved on options admin screen.
+* Changed: Users must now have the groups_access capability to be able to use the access restriction meta box on posts.
+
+= 1.4.2 =
+* Added: Access restriction capabilities shown for enabled post types on overview screens.
+* WordPress 3.7.1 compatibility checked.
+* Fixed: Error caused by typo when obtaining group_ids_deep property for a Groups_User.
+* Changed: Replaced some __get calls by properties.
+* Added: Filter by access restriction capabilities for enabled post types on overview screens.
+ 
+= 1.4.1 =
+* Added: Better group-assignment on the Users admin screen, allows to assign/remove multiple users to/from multiple groups along with a better UI.
+* Changed: Groups requires at least WordPress 3.5 now, although this only affects the group-action functionality on the Users admin screen, the restrict_manage_users action which is now used to render the UI elements needed, was introduced with WordPress 3.5.
+* Added: Extensions box in Options.
+* Improved: Groups section in user profile with added description.
+
+= 1.4.0 =
+* Added: Groups > Groups > Add / Edit group screens, allow to assign/modify the capabilities assigned to the group.
+* Added: Groups > Groups screen, allow to assign/remove multiple capabilities to multiple groups.
+* Added: Groups > Groups screen, allow to delete multiple groups as a bulk action.
+* Added: Groups > Capabilities screen, allow to delete multiple capabilities as a bulk action.
+* Improved: Groups > Options screen, using searchable select instead of checkboxes to enable capabilities for access restriction.
+* Improved: In user profiles, using a searchable select to modify group assignments.
+* Improved: Reduced the footer text in groups admin sections.
+* Improved: Admin CSS to make better use of screen real-estate and more coherent appearance with the new UI additions.
+
+= 1.3.14 =
+* Added the option to quick-create group and capability within the access restriction meta-box.
+* Added the option to show groups granting access per capability in the access restriction meta-box.
+* Added the quick-create field to the access restrictions meta-box which allows to create group & capability on the fly.
+* Added [Selectize.js](http://brianreavis.github.io/selectize.js/) and using it in the access restrictions meta-box instead of checkboxes.
+* Improved the Groups > Options screen using a Selectize-based selection of capabilities that are enabled for access restriction.
+ 
+= 1.3.13 =
+* Fixed duplicate postmeta created when saving access restriction capabilities for a post.
+* [groups_can] and [groups_can_not] now accept multiple capabilities separated by comma.
+* WordPress 3.6.1 compatibility checked.
+
+= 1.3.12 =
+* WordPress 3.6 compatibility checked.
+* Fixed table appearance for capabilities and groups admin sections when there are no results.
+
+= 1.3.11 =
+* Fix: Access restriction capabilities must be disjunctive.
+* Added: List of groups can be shown in user profiles on the back end and group assignments can be edited by group admins.
+* Improvement: Groups shown for users on the Users screen are sorted by name.
+
+= 1.3.10 =
+* Fix: Under certain conditions with caching involved, capabilities were not correctly retrieved. Thanks to Jason Kadlec who [reported the issue](http://wordpress.org/support/topic/nasty-error-with-latest-version).
+* Improvement: Related to the above fix, improved the way how *_deep properties are retrieved on cache misses, resulting in slightly better performance.
+* Fix: Added a missing text domain.
+* Improvement: Added help icon when user has no access restriction capabilities.
+* Fix: Redirecting after group action in users screen to end up with a clean admin URL.
+
+= 1.3.9 =
+* Fix: added filter hooked on posts_where motivated by pagination issues - the posts must be filtered before the totals are calculated in WP_Query::get_posts().
+* Improvement: modified the signature of the the_posts filter method in Groups_Post_Access to receive the $query by reference
+* Improvement: a substantial improvement on overall performance is achieved by caching user capabilities and groups
+* Fix: access restriction boxes showing capabilities that the user should not be allowed to set to restrict posts
+* Fix: resolve user-capability when a capability is deleted
+
+= 1.3.8 =
+* Fix: using substitute wp_cache_switch_to_blog instead of deprecated function wp_cache_reset when available (from 3.5.0)
+* Fix: don't show access restriction meta box on attachments, the option is added with the attachment fields (3.5 uses common post edit screen but save_post isn't triggered on attachments)
+* Improvement: limiting choice of access restrictions to those the current user has
+* Fix: restrict access to edit or delete posts based on the post's access restrictions
+* Feature: added option to refresh capabilities
+* Fix: replaced use of get_user_by() (memory leaks on large user sets) with query & added batch limit when adding users to Registered group on activation
+
+= 1.3.7 =
+* Fix: missing argument for meta box when saving a post
+* Fix: Groups conflicting with other plugins adding columns to the Users screen (in the manage_users_custom_column filter) thanks to [Erwin](http://www.transpontine.com) who spotted this :)
+
+= 1.3.6 =
+* Replaced call to get_users() with query to avoid memory errors on activation with large users bases.
+* Provided a default value for a method in Groups_Access_Meta_Boxes to avoid issues with other plugins or themes.
+
+= 1.3.5 =
+* Fixed out of memory issues with large user bases on Users > All Users page. Thanks to [Jason Glaspey](http://www.jasonglaspey.com) who spotted the issue :)
+
+= 1.3.4 =
+* WP 3.5 cosmetics
+
+= 1.3.3 =
+* WP 3.5 compatibility http://core.trac.wordpress.org/ticket/22262
+
+= 1.3.2 =
+* Fixed capabilities cannot be added or removed from groups in localized installations
+
+= 1.3.1 =
+* Added users property to Groups_Group
+* Moved tests out of core folder
+* Fixed missing $wpdb in Groups_Group's getter
+* Added group filters on users admin section
+
+= 1.3.0 =
+* Added feature that allows to show access restrictions depending on post type
+* Added support for access restrictions on Media
+* Fixed issue, removed access restrictions offered on Links
+
+= 1.2.5 =
+* Added Spanish translation
+
+= 1.2.4 =
+* Minor improvements on Options screen
+* Added show="users" option to [groups_group_info] shortcode which lists user logins for users in a group - rather experimental as it doesn't offer any sorting, pagination, linking or other options
+
+= 1.2.3 =
+* New shortcode [groups_join group="..."] lets a user join the given group 
+* New shortcode [groups_leave group="..."] lets a user leave the given group
+
+= 1.2.2 =
+* Revised styles
+* WordPress 3.4 compatibility
+* Dropping support for WordPress < 3.3
+* Help uncluttered.
+
+= 1.2.1 =
+* Reduced files loaded on non-admin pages.
+* Added Lithuanian translation.
+* Changed help to use tabs.
+
+= 1.2.0 =
+* Access control is no longer restricted to the groups_read_post capability: now any capability can be used to limit access to posts so that different groups can be granted access to different sets of posts.
+
+= 1.1.5 =
+* Added shortcode & API functions [groups_user_group] / [groups_user_groups] that allows to show the list of groups the current user or a specific user belongs to
+* Added shortcode & API functions [groups_groups]to show the site's list of groups
+* Class comments.
+
+= 1.1.4 =
+* Reduced plugin admin footer.
+
+= 1.1.3 =
+* Added safety & warning to test page.
+
+= 1.1.2 =
+* Tested on WP 3.3.2
+
+= 1.1.1 =
+* Multisite: Fixed (removed) conditions that would only make Groups act on public and non-mature sites
+* Multisite: Adding add/remove to group only on sites', not network users admin screen
+* Multisite: Added constraint in user_register hook checking if the user is a member of the blog
+ 
+= 1.1.0 =
+* Added Groups menu to network admin
+* Added option to delete plugin data for all sites on multisite installations; removed option for individual sites
+* Improved activation and deactivation for network installs
+* Increases column sizes on capabilities table and fixes cut-off capabilities delete_published_pages and delete_published_posts
+
+= 1.0.0-beta-3d =
+* Fixed issues caused by an excessively long index for the capability DB table.
+Some installations wouldn't work correctly, showing no capabilities and making it impossible to add new ones.  
+* Taking into account blog charset/collation on newly created tables.
+
+= 1.0.0-beta-3c =
+* Groups shortcodes now allow nesting.
+
+= 1.0.0-beta-3b =
+* Fixed admin override option not being updated
+* DB tables checked individually to create (motivated by case of all but capability table not being created)
+
+= 1.0.0-beta-3 =
+* Groups wouldn't activate due to a fatal error on WP <= 3.2.1 : is_user_member_of_blog() is defined in ms-functions.php
+* Added [groups_group_info] shortcode 
+
+= 1.0.0-beta-2 =
+* Increased length of capability.capability, capability.class, capability.object columns to support long capabilities.
+* Improved admin CSS.
+
+= 1.0.0-beta-1 =
+* This is the first public beta release.

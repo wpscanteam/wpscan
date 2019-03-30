@@ -1,0 +1,104 @@
+== Changelog ==
+
+= 2.4.1 (Mar. 24, 2019) =
+* Fixed migration
+
+= 2.4.0 (Mar. 21, 2019) =
+* Deprecated the legacy mode (users in this mode are forced to configure TOTP)
+* Added password field to the registration form
+* Spinner is showed when a QR code is refreshed
+* Added link to a contact form
+* Added new notifications
+* Disabling TOTP and SMS methods must be confirmed
+* Updated texts
+* Deleted automated logging in to 2FAS dashboard during redirection from WordPress to dashboard.2fas.com
+* Created new tables for migrations and trusted devices
+* Secured send SMS action
+* Fixed interim login configuration
+* Fixed menu
+* Fixed error during disabling legacy mode
+* Automated logging out users obligated to use 2FA after 14 days
+
+= 2.3.0 (Nov. 14, 2018) =
+* Added error reporting
+* Changed API for IP geolocation
+* Trusted devices are deleted when 2FA is disabled or removed
+* Added integration deletion
+* Deleted requiring pluggable.php file
+* Fixed offline codes bugs
+* Updated SDK
+
+= 2.2.0 (Aug. 6, 2018) =
+* Administrator can obligate users to use two-factor authentication
+* Fixed trusted device deletion button
+
+= 2.1.2 (Jun. 11, 2018) =
+* Changed a link description on the login page
+* Fixed error displayed when integration user did not exist
+* Added remaining offline codes number next to a tab title
+* Fixed a bug with TOTP secret not being updated in the link for a mobile configuration
+
+= 2.1.1 (Feb. 19, 2018) =
+* Security enhancements
+* Updated text of notification displayed when provided code is invalid
+* Added required PHP extensions check
+* Fixed push notifications which were sent after configuration reset
+* Minor frontend fixes
+
+= 2.1.0 (Nov. 28, 2017) =
+* Added mechanism for displaying update message when a new version of the plugin is available
+* Highlighted active plan on administrator's settings page
+* Changed text in button for generating backup codes
+* Bug fixes
+
+= 2.0.2 (Nov. 3, 2017) =
+* Fixed compatibility issues with offline codes and menu icon on Firefox
+
+= 2.0.1 (Oct. 16, 2017) =
+* Fixed broken theme customization
+
+= 2.0.0 (Aug. 30, 2017) =
+
+**Important notice**
+
+This version is a **major** version. It significantly changes the flow of authentication.
+
+Currently, you can only authenticate through TOTP (tokens) or push (2FAS Auth mobile app). Text messages and Voice Calls are only available as a backup method.
+
+If you are using SMS or VMS as the main authentication method, please note that the plugin will be switched to legacy mode. As soon as you configure TOTP method or disable SMS/VMS method, the legacy mode is disabled.
+
+* Redesign
+* Added backup codes
+* Added logging in via 2FAS Auth mobile app (push notification)
+* SMS and VMS authentication methods became backup methods
+* Trusted device is not being added automatically anymore
+* Added compatibility with All In One WP Security & Firewall plugin's feature which allows changing the login page URL
+
+= 1.2.2 (May 9, 2017) =
+* Added compatibility with WooCommerce
+
+= 1.2.1 (Jan. 17, 2017) =
+* Bug fixes
+
+= 1.2.0 (Jan. 4, 2017) =
+* Added support for OAuth to 2FAS
+* Improved the QR code quality
+* Minor frontend fixes
+
+= 1.1.1 (Dec. 29, 2016) =
+* Improved login page
+* Fixed "jQuery is not defined" error
+
+= 1.1.0 (Nov. 29, 2016) =
+* Added new authentication channels: text message and voice call
+* Improved overall plugin performance
+* Refreshed appearance
+
+= 1.0.1 (Sept. 27, 2016) =
+* Login process improvements
+* Trusted device list changes
+* Minor changes in visual performance
+* Bug fixes
+
+= 1.0.0 (Aug. 24, 2016) =
+* The first stable release of the plugin

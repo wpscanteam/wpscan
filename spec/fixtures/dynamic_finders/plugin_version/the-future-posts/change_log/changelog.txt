@@ -1,0 +1,117 @@
+=== The Future Posts ===
+Contributors: jdalmeida
+Author: Jos&eacute De Almeida
+Author URI: https://www.josedealmeida.com/
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=YPL25DBZSWHWY
+Tags: posts, post grid, responsive, scheduled, pods, advanced custom fields, woocommerce, elementor, beaver builder, visual composer
+Requires at least: 4.6.0
+Tested up to: 4.9.6
+Requires PHP: 5.6.0
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
+
+== Changelog ==
+
+= 1.40 - 2018-08-07 =
+* Fixed the plugin output contents in Beaver Builder. The output code was been placed outside the defined module zone.
+
+= 1.37 - 2018-08-07 =
+* The sintax error on main.php line 390 seems to be a PHP problem afterall. Not a code bug. I successfully tested it with PHP v5.4.45, v5.5.38, v5.6.20, v7.0.3, v7.1.4 and v7.2.0. I unsuccessfully tested it with v5.2.4, v5.2.17 and v5.3.29. Furthermore, a customer reported the problem with PHP v5.6.30. Solution: update PHP to a more recent version like v7.0.3 and hopefully the problem should disapear.
+
+= 1.36 - 2018-08-06 =
+* Fixed sintax error on main.php line 390
+
+= 1.35 - 2018-07-27 =
+* Fixed permalinks not working properly.
+
+= 1.34 - 2018-07-25 =
+* Fixed (again) custom posts type categories not showing. Hope this is it!
+
+= 1.33 - 2018-07-24 =
+* Fixed custom posts type categories not showing.
+
+= 1.32 - 2018-07-23 =
+* Updated description and FAQ.
+
+= 1.31 - 2018-07-23 =
+* Fixed pretty permalinks on custom post types.
+
+= 1.30 - 2018-07-22 =
+* Added 'categories' to the 'fields' attribute. Format: categories=text;[link|nolink];[separator]. Example: "categories=text;link;, ". Default separator is " | ";
+* Added three new CSS tags concerning the 'categories' field to the default and custom theme.
+
+= 1.24 - 2018-07-22 =
+* Abandoned previous version's method of using pretty permalinks based on 'Post name'. Bad idea...
+* Added a new method of having pretty permalinks in ALL posts (including 'Future' posts), keeping WordPress' Permalink Settings whatever they may be. For instance: http://the-future-posts.local/my-category/sample-post/. Thanks, Joelle!
+* Now all posts, incluing Future, Draft, Pending, Private, etc, will be shown to anonymous non-logged users, just like Published posts. By default, WordPress returns a 404 error page when a future post is being accessed (thus preventing a future post to be shown), unless accessed by a logged Administrator. This was happening up until now. Not anymore!
+
+= 1.23 - 2018-07-20 =
+* Now using post permalinks based on 'Post name' (http://the-future-posts.local/sample-post/) instead of 'Plain' (http://the-future-posts.local/?p=123).
+
+= 1.22 - 2018-07-05 =
+* Removed the default 'font-family' CSS tag from the 'the-future-posts.css' file. This way the default font will be inherited from WordPress theme settings.
+
+= 1.21 - 2018-07-03 =
+* Updated the 'Quick Start' menu. Now includes the CSS code for the sidebar Demos #7, #8 and #9.
+* Added to the 'About' menu a short curriculum about the author. 
+
+= 1.20 - 2018-06-30 =
+* Added built-in theme: 'tfp_circles'. See 'Quick Start' menu.
+* Added built-in theme: 'tfp_rounded_corners'. See 'Quick Start' menu.
+* Added 'div' option to the 'fields' attribute. Inserts '&lt;DIV&gt' and '&lt;/DIV&gt;' HTML tag wherever needed. Format: div=[start|end];[attributes]. Example: div=start;class='my_div_class'. For the attributes, like class, use the ' apostrophe character, not the " quotation mark character.
+* Fixed vertical scroll bars on CSS code frames.
+
+= 1.11 - 2018-06-29 =
+* Reorganized the plugin menu for a more intuitive interface.
+* Added several illustrated demos on the 'Quick Start' menu.
+
+= 1.10 - 2018-06-28 =
+* Added 'overlay' attribute. You can now switch on/off the image overlay from the shortcode. Ignored when image is not linked. Default is 'true;#000000'. Other properties available on CSS code (look for '.the_future_posts_image_overlay').
+* Added 'overlay_icon' attribute. You can now display an icon when mouse pointer is over the images. You can switch on/off the image overlay icon from the shortcode. Ignored when image is not linked. Default is 'false;#ffffff'. Other properties available on CSS code (look for '.the_future_posts_image_overlay_icon').
+* Added 'the-future-posts' internal icons font. Features 150 image overlay related icons. Fully compatible with all sorts of platforms: EOT, SVG, TTF, WOFF and WOFF2.
+* Added 'Overlay icons' sub menu item, with instructions on how to change the overlay icon.
+* New code for image aspect ratios. Less PHP code, no CSS code needed. Any aspect ratio supported.
+* New optimized code for image overlay.
+
+= 1.00 - 2018-06-22 =
+* Added a 'width' setting in attribute 'fields' float: [start|end];[left|right];[width]. Works on 'start' only. Default=50%.
+* Added aspect ratio setting in attribute 'fields' image: [original|1:1|5:4|4:3|3:2|16:9|4:5|3:4|2:3|9:16|custom]. Default: original.
+* Replaced plugin screenshots images, with several shortcode examples.
+* Fixed realtime date/time clock in the Settings page.
+
+= 0.99 - 2018-06-19 =
+* Now with a proper admin menu, with sub menus items: Intro, Settings, Themes, FAQ and Changelog.
+* Minor cosmetic updates.
+
+= 0.98 - 2018-06-18 =
+* Added 'date_before', 'date_after' and 'date_inclusive' attributes.
+* The above 3 new date attributes works with the The Future Is Now plugin. Please read FAQ for further info.
+
+= 0.97 - 2018-06-17 =
+* Fixed custom fields get_field() bug.
+
+= 0.96 - 2018-06-16 =
+* Enhanced the 'readme.txt' file.
+* Enhanced the options page.
+
+= 0.95 - 2018-06-15 =
+* Enhanced the 'readme.txt' file.
+* Minor updates on the options page.
+
+= 0.94 - 2018-06-14 =
+* Enhanced the 'readme.txt' file.
+* Updated icon and banner images.
+
+= 0.93 - 2018-06-13 =
+* Enhanced the 'readme.txt' file.
+
+= 0.92 - 2018-06-10 =
+* Added 'tag' attribute
+* Fixed some taxonomy query problems.
+* First public beta release.
+
+= 0.91 - 2018-06-09 =
+* Fixed some issues concerning WordPress guidelines.
+
+= 0.90 - 2018-06-08 =
+* First beta release.

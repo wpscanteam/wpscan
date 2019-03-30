@@ -1,0 +1,74 @@
+== Widgets Control - Changelog ==
+
+= 2.1.0 =
+* Tested for full WordPress 4.9 compatibility.
+* Minimum WordPress version 4.6 is required as of this release.
+* Minimum PHP 5.5.38 is required as of this release.
+* Added the minimum required PHP plugin header tag.
+* Updated the info meta box location for Content.
+* Fixed a PHP Notice about an undefined index (title).
+* Fixed content blocks with Groups access restriction were rendered when set.
+* Fixed an issue where Elementor is interfering, obtaining wrong content for content blocks.
+* Added the widgets_control_content_render_output filter.
+* Fixed that the widgets_control_content_id was called twice.
+
+= 2.0.3 =
+* Improved WPML compatibility to retrieve the content of translated content blocks.
+
+= 2.0.2 =
+* Fixed wrong description on PHP code for content blocks.
+* Updated the German translation.
+
+= 2.0.1 =
+* Added the widgets_control_content() API function.
+* Fixed PHP code shown for content blocks.
+
+= 2.0.0 =
+* Added a new post type to support Content Blocks and related features.
+* Added the [widgets_control_content] shortcode.
+* Added the Content Block widget.
+* Replaced the usage of language domain constant with string.
+* Added the notice class.
+* Added support for display conditions for mobile, tablet and desktop (small, medium and large) screen sizes.
+* German translation updated.
+
+= 1.7.0 =
+* German translation added.
+* Updated plugin tags.
+* Added text domain and domain path to the plugin header.
+
+= 1.6.0 =
+* Tested with WordPress 4.8.
+
+= 1.5.0 =
+* Added the `[widgets_control]` shortcode.
+* Added changelog.txt and moved full changelog there.
+* Improvement: Using plugin_dir_path() and plugins_url() functions to determine paths.
+
+= 1.4.1 =
+* Improved the has_term token to check categories and tags if no taxonomy is indicated.
+* Fixed a PHP Notice due to an undefined variable when using the has_term token.
+
+= 1.4.0 =
+* Added support for visibility settings on whole sidebars.
+* Fixed conditions display with some special characters.
+* Tested with WordPress 4.4.
+
+= 1.3.1 =
+* Fixed condition by post ID not working.
+* Fixed condition by post ID or title applied when not on a single post or page.
+
+= 1.3.0 =
+* The [tax] token now also includes categories and tags automatically and supports the format [tax:taxonomy:term].
+
+= 1.2.0 =
+* Tested with WordPress 4.3.1.
+* Added support for [WPML](http://wpml.org) - display widgets conditionally based on the current language.
+* Improved the format of the visibility options, added links to documentation and extended version.
+
+= 1.1.0 =
+* Tested with WordPress 4.3.
+* Fixed wording in settings.
+
+= 1.0.0 =
+* Initial release.

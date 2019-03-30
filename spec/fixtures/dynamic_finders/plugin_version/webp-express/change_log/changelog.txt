@@ -1,0 +1,158 @@
+= 0.13.0 =
+*(released: 21 mar 2019)*
+* Bulk Conversion
+* Fixed problems with Gd converter and PNG
+* Optinally auto convert upon media upload
+* Windows fix (thanks, lwxbr!)
+
+= 0.12.2 =
+*(released 8 mar 2019)*
+* Fixed bug: On some nginx configurations, the newly added protection against directly calling the converter scripts were triggering also when it should not.
+
+= 0.12.1 =
+*(released 7 mar 2019)*
+* Fixed bug: Alter HTML crashed when HTML was larger than 600kb and "image urls" where selected
+
+= 0.12.0 =
+*(released 5 mar 2019)*
+* Multisite support (!)
+* A new operation mode: "No conversion", if you do not want to use WebP Express for converting. Replaces the old "Just redirect" mode
+* Added capability testing of .htaccess. The .htaccess rules are now tailored to the capabilities on the system. For example, on some platforms the filename of a requested image is passed to the converter script through the query string, but on platforms that supports passing it through an environment variable, that method is used instead
+* Picturefill.js is now optional (alter html, picture tag)
+* A great bunch more!
+
+For more info, see the closed issues on the 0.12.0 milestone on the github repository: https://github.com/rosell-dk/webp-express/milestone/12?closed=1
+
+= 0.11.3 =
+*(released 18 feb 2019)*
+* Fixed bug: Alter HTML caused media library not to display images on some systems. Alter HTML is now disabled in admin mode.
+* Alter HTML (picture tags) could produce the source tags with "src" attribute. But source tags inside picture tags must use "srcset" attribute. Fixed.
+* Alter HTML (image urls): srcsets containing "x" descriptors wasn't handled (ie, srcset="image.jpg 1x")
+* Fixed rewrite rules when placed in root so they are confined to wp-content and uploads. In particular, they no longer apply in wp-admin area, which might have caused problems, ie with media library.
+* Added warning when rules are placed in root and "Convert non-existing webp-files upon request" feature is enabled and WebP Express rules are to be placed below Wordpress rules
+* Fixed bug: The code that determined if WebP Express had placed rules in a .htaccess failed in "CDN friendly" mode. The effect was that these rules was not cleaned up upon plugin deactivation
+
+= 0.11.2 =
+*(released 14 feb 2019)*
+* Fixed bug which caused Alter HTML to fail miserably on some setups
+* AlterHTML now also looks for lazy load attributes in DIV and LI tags.
+
+= 0.11.1 =
+*(released 6 feb 2019)*
+* Fixed bug which caused the new "Convert non-existing webp-files upon request" not to work on all setups
+
+= 0.11.0 =
+*(released 6 feb 2019)*
+* Alter HTML to point to webp files (choose between picture tags or simply altering all image urls)
+* Convert non-existing webp-files upon request (means you can reference the converted webp files before they are actually converted!)
+
+For more info, see the closed issues on the 0.11.0 milestone on the github repository: https://github.com/rosell-dk/webp-express/milestone/14?closed=1
+
+= 0.10.0 =
+*(released 7 jan 2019)*
+* Introduced "Operation modes" in order to keep setting screens simple but still allow tweaking
+* WebP Express can now be used in conjunction with Cache Enabler and ShortPixel
+* Cache-Control header is now added in *.htaccess*, when redirecting directly to existing webp
+
+For more info, see the closed issues on the 0.10.0 milestone on the github repository: https://github.com/rosell-dk/webp-express/milestone/7?closed=1
+
+= 0.9.1 =
+*(released 28 dec 2018)*
+* Fixed critical bug causing blank page on options page
+
+= 0.9.0 =
+*(released 27 dec 2018)*
+* Optionally make .htaccess redirect directly to existing webp (improves performance)
+* Optionally do not send filename from *.htaccess* to the PHP in Querystring, but use other means (improves security and reduces risks of problems due to firewall rules)
+* Fixed some bugs
+
+For more info, see the closed issues on the 0.9.0 milestone on the github repository: https://github.com/rosell-dk/webp-express/issues?q=is%3Aclosed+milestone%3A0.9.0
+
+= 0.8.1 =
+*(released 11 dec 2018)*
+* Fixed javascript bug
+
+= 0.8.0 =
+*(released 11 dec 2018)*
+* New conversion method, which calls imagick binary directly. This will make WebP express work out of the box on more systems
+* Made sure not to trigger LFI warning i Wordfence (to activate, click the force .htaccess button)
+* Imagick can now be configured to set quality to auto on systems where the auto option isn't generally available
+* Added Last-Modified header to images. This makes image caching work better
+* Added condition in .htaccess that checks that source file exists before handing over to converter
+* On some systems, converted files where stored in ie *..doc-rootwp-content..* rather than *..doc-root/wp-content..*. This is fixed, a clean-up script corrects the file structure upon upgrade.
+
+For more info, see the closed issues on the 0.8.0 milestone on the github repository: https://github.com/rosell-dk/webp-express/issues?q=is%3Aclosed+milestone%3A0.8.0
+
+= 0.7.2 =
+*(released 21 nov 2018)*
+Fixed a critical bug which generated an error message which caused corrupt images. It was not the bug itself, but the error message it generated, that caused the images to be corrupted. It only happened when debugging was enabled in php.ini
+
+= 0.7.1 =
+*(released 9 nov 2018)*
+Fixed minor "bug". The Api version combobox in Remote WebP Express converter was showing on new sites, but I only want it to show when old api is being used.
+
+= 0.7.0 =
+*(released 9 nov 2018)*
+This version added option to provide conversion service to other sites!
+
+For more info, see the closed issues on the 0.7.0 milestone on the github repository: https://github.com/rosell-dk/webp-express/issues?q=is%3Aclosed+milestone%3A0.7.0
+
+= 0.6.0 =
+*(released 4 okt 2018)*
+This version added option for setting caching header, fixed a serious issue with *Imagick*, added a new converter, *Gmagick*, added a great deal of options to *Cwebp* and generally improved the interface.
+
+* Added option for caching
+* Fixed long standing and serious issue with Imagick converter. It no longer generates webp images in poor quality
+* Added gmagick as a new conversion method
+* WebPExpress now runs on newly released WebP-Convert 1.2.0
+* Added many new options for *cwebp*
+* You can now quickly see converter status by hovering over a converter
+* You can now choose between having quality auto-detected or not (if the server supports detecting quality).
+* If the server does not support detecting quality, the WPC converter will display a quality "auto" option
+* Added special intro message for those who has no working conversion methods
+* Added help texts for options
+* Settings are now saved, when changing converter options. Too many times, I found myself forgetting to save...
+
+For more info, see the closed issues on the 0.6.0 milestone on our github repository: https://github.com/rosell-dk/webp-express/issues?q=is%3Aclosed+milestone%3A0.6.0
+
+= 0.5.0 =
+This version works on many more setups than the previous. Also uses less resources and handles when images are changed.
+
+* Configuration is now stored in a separate configuration file instead of storing directly in the *.htaccess* file and passing it on via query string. When updating, these settings are migrated automatically.
+* Handles setups where Wordpress has been given its own directory (both methods mentioned [here](https://codex.wordpress.org/Giving_WordPress_Its_Own_Directory))
+* Handles setups where *wp-content* has been moved, even out of Wordpress root.
+* Handles setups where Uploads folder has been moved, even out of *wp-content*.
+* Handles setups where Plugins folder has been moved, even out of *wp-content* or out of Wordpress root
+* Is not as likely to be subject to firewalls blocking requests (in 0.4.0, we passed all options in a querystring, and that could trigger firewalls under some circumstances)
+* Is not as likely to be subject to rewrite rules from other plugins interfering. WebP Express now stores the .htaccess in the wp-content folder (if you allow it). As this is deeper than the root folder, the rules in here takes precedence over rules in the main *.htaccess*
+* The *.htaccess* now passes the complete absulute path to the source file instead of a relative path. This is a less error-prone method.
+* Reconverts the webp, if source image has changed
+* Now runs on version 1.0.0 of [WebP On Demand](https://github.com/rosell-dk/webp-on-demand). Previously ran on 0.3.0
+* Now takes care of only loading the PHP classes when needed in order not to slow down your Wordpress. The frontend will only need to process four lines of code. The backend footprint is also quite small now (80 lines of code of hooks)
+* Now works in Wordpress 4.0 - 4.6.
+* Added cache-breaking tokens to image test links
+* Denies deactivation if rewrite rules could not be removed
+* Refactored thoroughly
+* More helpful texts.
+* Extensive testing. Tested on Wordpress 4.0, 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.8 and 4.9. Tested with PHP 5.6, PHP 7.0 and PHP 7.1. Tested on Apache and LiteSpeed. Tested when missing various write permissions. Tested migration. Tested when installed in root, in subfolder, when Wordpress has its own directory (both methods), when wp-content is moved out of Wordpress directory, when plugins is moved out of Wordpress directory, when both of them are moved and when uploads have been moved.
+
+For more info, see the closed issues on the 0.5.0 milestone on our github repository: https://github.com/rosell-dk/webp-express/milestone/2?closed=1
+
+= 0.4.0 =
+This version fixes some misbehaviours and provides new http headers with info about the conversion process.
+
+* Fixed bug: .htaccess was not updated every time the settings was saved.
+* Fixed bug: The plugin generated error upon activation.
+* Now produces X-WebP-Convert-And-Serve headers with info about the conversion - useful for validating that converter receives the expected arguments and executes correctly.
+* WebPExpress options are now removed when plugin is uninstalled.
+* No longer generates .htaccess rules on install. The user now has to actively go to Web Express setting and save first
+* Added a "first time" message on options page and a reactivation message
+
+For more info, see the closed issues on the github repository: https://github.com/rosell-dk/webp-express/milestone/1?closed=1
+
+= 0.3.1 =
+* The "Only jpeg" setting wasn't respected in 0.3.0. It now works again
+
+= 0.3 =
+* Now works on LiteSpeed webservers
+* Now sends X-WebP-On-Demand headers for easier debugging

@@ -1,0 +1,157 @@
+*** WooCommerce Square Changelog ***
+
+= 1.0.35 - 2019-02-01 =
+* Fix - Idempotency key reuse issue when checking out.
+
+= 1.0.34 - 2018-11-07 =
+* Update - Fieldset tag to div tag in payment box to prevent unwanted styling.
+* Fix - Provide unique idempotency ID to the order instead of random unique number.
+* Update - WP tested up to version 5.0
+
+= 1.0.33 - 2018-09-27 =
+* Update - WC tested up to version 3.5
+
+= 1.0.32 - 2018-08-23 =
+* Fix - UK/GB localed does not support Diners/Discover, so do not show these brands on checkout.
+
+= 1.0.31 - 2018-06-05 =
+* Fix - SSL notice in admin shows even though SSL is provided.
+* Update - Send WC active prices to Square instead of tax exclusive.
+* Add - Hook `wc_square_sync_to_square_price` to filter prices sent to Square.
+
+= 1.0.30 - 2018-05-23 =
+* Update - WC tested up to version 3.4
+* Update - Privacy policy notification.
+* Update - Export/erasure hooks added.
+
+= 1.0.29 - 2018-04-17 =
+* Fix    - If more than 1000 items, next batch is ignored.
+* Fix    - Wrong setting used when syncing product.
+* Fix    - Japan locale does not support Diners/Discover, so do not show these brands on checkout.
+* Update - WC tested up to version 3.4
+
+2018-04-04 - version 1.0.28
+* Fix   - Double inventory sync for newly created products.
+* Fix   - Infinite loop with pagination, where Square keeps sending the same link.
+* Fix   - Remove usage of deprecated jQuery method.
+* Fix   - Sync job should not be sending anything if there are no stock changes.
+* Fix   - Trigger to decrease stock upon purchase not working
+* Tweak - Add logging and skip sync in case store's currency/country is not allowed.
+* Tweak - Improve debug logging when fetching inventory
+* Tweak - Inventory reduction in Square will be treated as stock sale.
+
+2018-02-19 - version 1.0.27
+* Fix - In some cases request timeouts are not set long enough causing timeout errors.
+* Fix - Square to WC sync sets products with 0 quantity to In Stock.
+* Fix - Potential issue with Square to WC sync when response is not an array.
+* Fix - When description is more than 4095 characters, sync fails to Square.
+* Fix - Add checks to product object before scheduling an event to prevent errors in cron job.
+* Fix - Add check to prevent auto inventory poll from running when a manual sync is in progress.
+
+2018-01-29 - version 1.0.26
+* Fix - Call to undefined method causes error.
+
+2018-01-29 - version 1.0.25
+* Tweaks - Error handling.
+* Add - Public Release on .org
+
+2017-12-13 - version 1.0.24
+* Fix - In some cases rounding issues occur causing payment unable to process.
+* Update - WC tested up to version.
+* Add - Readme.txt.
+
+2017-11-10 - version 1.0.23
+* Add - WC minimum requirements in header.
+* Fix - WC Product sometimes is not a proper object preventing sync.
+* Fix - PHP 7 notice with amount not cast an int.
+
+2017-09-06 - version 1.0.22
+* Tweak - Increase inventory polling cache and add timeout limit.
+* Fix - CRON scheduling time not using UTC causes delay in CRON job.
+
+2017-07-26 - version 1.0.21
+* Fix - Non decimal place price such as Japanese Yen is not formatted properly when syncing Square to WC.
+
+2017-06-29 - version 1.0.20
+* Fix - Schedule sale price not updating on Square when sale is over.
+* Fix - Pass price to Square tax exclusive instead of inclusive.
+* Fix - Create customer error on payments when phone number is not provided.
+* Update - Settings location description to be more clear.
+
+2017-06-06 - version 1.0.19
+* Fix - Sync currency amounts that do not contain decimals correctly.
+
+2017-05-19 - version 1.0.18
+* Fix - Better logic of sale price on WC when syncing so it doesn't override regular price unintented.
+* Fix - If image exists for a product, don't sync the image to prevent duplicated images being created.
+* Fix - Enable status not showing for Square payments in gateway list.
+
+2017-05-08 - version 1.0.17
+* Fix - WC 3.0 debug tools compatibility.
+* Add - Support for Japan market.
+
+2017-03-31 - version 1.0.16
+* Add - Confirmation message before bulk sync.
+* Add - Cron schedules for when product stock changes instead of firing off immediately.
+
+2017-03-27 - version 1.0.15
+* Update - Additional updates for WooCommerce 3.0.0 compatibility.
+* Add - Support for UK market.
+
+2017-03-13 - version 1.0.14
+* Fix - When multiple notify emails are set, causes 500 server error.
+* Fix - Sync issues when syncing large datasets.
+* Fix - Sync item with no sku sometimes gets corrupted with other item data.
+* Update - WooCommerce 3.0.0 compatibility.
+
+2017-01-17 - version 1.0.13
+* Add - Support for Australian markets.
+
+2017-01-09 - version 1.0.12
+* Fix - When syncing inventory WC to Square, stock level becomes zero.
+
+2016-10-26 - version 1.0.11
+* Fix - When WC API is used, it can cause duplicate WC API Exception.
+
+2016-10-14 - version 1.0.10
+* Update - Make sure Square only works for US and CA merchants.
+
+2016-09-12 - version 1.0.9
+* Fix - Normalize price when syncing Square to WC to prevent errors.
+* Add - Option to disable sync per product.
+
+2016-09-08 - version 1.0.8
+* Add - WC Products CRUD to replace REST API for creating products to prevent interference with wc-api.
+* Add - Filter to add custom DOM elements for payments to render payment form "woocommerce_square_payment_form_trigger_element".
+* Fix - Payments token expiration was not handled correctly due to using API v2.
+
+2016-08-30 - version 1.0.7
+* Tweak - Replace all wp_remote_requests with raw cURL.
+* Fix - In IE, the browser won't replace iFrame form fields when it is hidden.
+
+2016-08-27 - version 1.0.6
+* Add - Clear cache/transient tool in system status->tool.
+* Fix - Prevent infinite loop when polling Square inventory.
+
+2016-08-25 - version 1.0.5
+* Fix - Image not syncing when using wp_remote_request. Changed to raw cURL.
+
+2016-08-19 - version 1.0.4
+* Tweak - Payment form field styles.
+* Add - woocommerce_square_payment_input_styles filter to allow manipulation of the form styles.
+* Fix - When duplicating product in WC, it replaces the original product on Square.
+* Fix - In FireFox, the browser won't replace iFrame form fields when it is hidden.
+
+2016-08-16 - version 1.0.3
+* Fix - When duplicating product in WC, it replaces the original product on Square.
+* Fix - oAuth tokens were not renewing properly.
+
+2016-08-04 - version 1.0.2
+* Update - HTTP protocol to version 1.1 to prevent timeouts.
+
+2016-08-01 - version 1.0.1
+* Tweak - Make credit card form fields more responsive in mobile devices.
+* Fix - Square list endpoints may return duplicates, so put in place a check for that.
+
+2016-07-26 - version 1.0.0
+* First Release

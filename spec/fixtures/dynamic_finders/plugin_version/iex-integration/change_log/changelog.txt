@@ -1,0 +1,166 @@
+== Changelog ==
+= 2.2.5.1  - 20-03-2019 =
+* Added compatability with newest version of WooCommerce *
+* Added stock status check on variant in product create in shop *
+* Added support for woocommerce_update_order trigger *
+* Changed name to include the written attribute, instead of the pa_ value *
+* Fixed a bug with shipping id *
+* Fixed issue with receiving orders through api *
+
+= 2.2.5.0  - 20-02-2018 =
+* Issue with price not always updating on parent product *
+* WC version supported tags added *
+* Swiss tax issue corrected *
+
+= 2.2.4.4  - 10-01-2018 =
+* Meta on parent product added *
+* Client api changes *
+* Product visibility issue *
+* Shipping taxrate issue *
+
+= 2.2.4.3  - 04-09-2017 =
+* Fixed issue with allow backorder * 
+* Multiple integration support *
+* Fixed stock status on parent product *
+* Fixed order filter *
+* Fixed issue with transient *
+
+= 2.2.4.2  - 03-05-2017 =
+* Fixed issue with order ID *
+
+= 2.2.4.1  - 25-04-2017 =
+* Fixed issue with variants *
+* Fixed parent product transfer *
+
+= 2.2.4.0  - 18-04-2017 = 
+* Compatibility with WooCommerce 3.0 * 
+
+= 2.2.3.15 - 23-12-2016 =
+* Fixed url mismatch check *
+* Fixed PHP Warning: Missing argument 2 for IEX_Integration::iex_term_edit()
+
+= 2.2.3.14 - 29-12-2016 =
+* Default to 2 decimal places for all numbers *
+* Changed the way urls are received from IEX *
+
+= 2.2.3.13 - 08-12-2016 =
+* Compatibility with Wordpress 4.7 *
+* Fixed multiple warnings with number_format *
+* Removed manuel sync from plugin - Do this from the Dashboard *
+
+= 2.2.3.12 - 09-11-2016 =
+* Added category sync from shop to IEX *
+
+= 2.2.3.11 - 28-09-2016 =
+* Compatibility with Wordpress 4.6 *
+* Fixed price not being updated correcly back to shop *
+* Fixed stock not being set correctly if full stock is not returned from ERP *
+* Fixed response on product create *
+* Fixed rounding to WooCommerce decimal setting *
+* Added total product stock to orderlines *
+
+= 2.2.3.10 - 15-08-2016 =
+* Fixed payment fee format *
+* Fixed shippingmethods getting returned to IEX correctly *
+* Changed icon to match other Wordpress icons *
+
+= 2.2.3.9 - 27-06-2016 =
+* Fixed sending customer state *
+* Fixed sending customer address 2 *
+* Added variable parent product to data *
+* Added create product function *
+* Added update variations function *
+
+= 2.2.3.8 - 24-05-2016 =
+* Fixed admin.js and admin.css not found errors *
+* Beginning WPML support *
+
+= 2.2.3.7 - 20-05-2016 =
+* Changed how you check if your key is valid in plugin *
+* Made changes to get it onto Wordpress.org Repo *
+
+= 2.2.3.6 - 11-05-2016 =
+* Issue with sku on variations not being transferred *
+
+= 2.2.3.5 - 03-05-2016 =
+* Fixed sanity check in plugin *
+* Fixed not getting hidden/disabled variations *
+* Fixed what data is sent on order if product has been deleted *
+* Added complete date to the data transfered to IEX *
+
+= 2.2.3.4 - 08-04-2016 =
+* Fixed version to not show DEV *
+
+= 2.2.3.3 - 08-04-2016 =
+* More bugfixing *
+* Improved error messages *
+
+= 2.2.3.2 - 08-04-2016 =
+* Fixed finding products from IEX Api *
+* Better error messages *
+
+= 2.2.3.1 - 30-03-2016 =
+* Fixed product price only being set when saving products introduced in the last version *
+* Fixed finding products in shop via IEX API *
+* Fixed setting the right full name for shipping *
+
+= 2.2.3.0 - 02-03-2016 =
+* Added better error handling *
+* Added shipping method id to shipping info *
+* Added the ability to get shipping and payment methods as data *
+* Fixed Warning: Invalid argument supplied for foreach() *
+
+= 2.2.2.9 - 22-02-2016 =
+* Fixed not sending products if array is empty *
+* Fixed fatal error when saving/moving order where product has been deleted *
+* Fixed fatal error where class wp_auto_update has already been declared *
+* Added State to billing and shipping *
+* Added product category info *
+
+= 2.2.2.8 - 25-01-2015 =
+* Fixed "Cannot use scalar value as an array" *
+* Fixed order_shipping not being set to 0 if no shipping *
+
+= 2.2.2.7 - 15-01-2015 =
+* Fixed payment_fee tax and price *
+* Fixed shipment tax and price *
+* Fixed external url *
+
+* Note: WooCommerce URL in IEX Dashboard is now required *
+* Note: Product and Order states now required in IEX Dashboard or the order/product will be ignored *
+
+= 2.2.2.6 - 11-12-2015 =
+* Really fixed orderlines not having correct variation_id *
+
+= 2.2.2.5 - 11-12-2015 =
+* Fixed multiple PHP warnings *
+* Fixed orderlines not having correct variation_id *
+* Added functionality to synchronize products from IEX Dashboard *
+
+= 2.2.2.4 - 04-12-2015 =
+* Added URL check *
+* Fixed stock update bug *
+
+= 2.2.2.3 - 29-11-2015 =
+* Fixed breaking bug *
+
+= 2.2.2.2 - 27-11-2015 =
+* Fixed order duplicate transfer *
+
+= 2.2.2.1 - 27-11-2015 =
+* Fixed orderline fee. *
+
+= 2.2.2 - 25-11-2015 =
+* Orders are now sent on save rather than status change. *
+* Added orderline unit_price_total, holding the Total unit price after any line discount. *
+* Added version info to everything sent to IEX for easier debug. *
+
+= 2.2.1 - 24-11-2015 =
+* Multiple bugfixes. *
+* The plugin now sends Wordpress, WooCommerce and Plugin versions to IEX with orders and products, making debug easier. *
+
+= 2.x   - 24-06-2015 =
+* New: It's now possible to update product title and stock from calls outside the shop, making 2-way sync possible *
+
+= --2015 =
+* Initial "release" *

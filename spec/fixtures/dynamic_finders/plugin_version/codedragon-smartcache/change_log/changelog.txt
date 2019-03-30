@@ -1,0 +1,33 @@
+# Changelog
+
+## [1.1.8] - 2018-08-16
+### Fixed
+- Corrected the value check in the Smart_Cache_remove_update_notification() method that was preventing some 3rd-party plugins from updating properly
+- Corrected the presentation order of dashboard news items
+
+## [1.1.7] - 2018-07-27
+### Fixed
+- Temporary combined file cleanup routine
+
+## [1.1.6] - 2018-07-27
+### Fixed
+- AJAX interface conflict
+- Problem where combined files were being created for each unique site URL rather than distinct set of source files.  This generated a large set of duplicate files, one each associated with a URL.  Instead combined filenames are calculated from the hash of the filenames being combined.
+
+## [1.1.5] - 2018-06-19
+### Fixed
+- Admin Javascript error that prevents automatic scanning
+
+## [1.1.4] - 2018-06-18
+### Changed
+- Added a mechanism to run the site pre-scan upon activation
+- Removed automatic Javascript deferment-by-attribute from core as it was causing some theme scripts to load improperly.  Deferred placement of the scripts is still performed.
+
+## [1.1.2] - 2018-05-23
+### Changed
+- Updated the GZip Compression section in the smartcacheopt.conf generator to handle more mime types and increase the compression level
+- Tested plugin for compatibility with Wordpress v 4.9.6
+- Minor typo corrections in admin module
+
+## [1.1.0] - 2018-05-14
+### Initial stable release

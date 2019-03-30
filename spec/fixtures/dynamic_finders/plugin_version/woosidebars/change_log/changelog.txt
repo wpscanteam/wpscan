@@ -1,0 +1,61 @@
+*** WooSidebars Changelog ***
+
+2018.06.18 - version 1.4.5
+ * Fix - Fixes a fatal error, by removing the no longer relevant contextual help.
+
+2018.06.08 - version 1.4.4
+ * New - Enable a widget area for "a page and it's children".
+ * Fix - Error notice when on a page without a defined screen_id.
+
+2015.09.22 - version 1.4.3
+ * Fix - Ensures condition headings are present before attempting to output in the conditions meta box.
+   /classes/class-woo-conditions.php
+
+2015.04.22 - version 1.4.2
+ * Security Fix - remove_query_arg vulnerability
+   /classes/class-woo-sidebars.php
+
+2015.02.17 - version 1.4.1
+ * Fix - Fixes an error notice on the homepage, caused by the tag check logic.
+   /classes/class-woo-conditions.php
+
+2015.02.17 - version 1.4.0
+ * New - Adds a condition to change the widget area for all posts tagged with a selected tag.
+   /classes/class-woo-conditions.php
+
+2013.08.13 - version 1.3.1
+ * /classes/class-woo-conditions.php - Re-introduce add_post_meta() instead of update_post_meta() when saving conditions. Using update_post_meta() prevents multiple conditions from being saved.
+
+2013.08.12 - version 1.3.0
+ * /assets/css/admin.css - Replace all instances of #woo-conditions with #woosidebars-conditions to match the renamed meta box. Add basic jQueryUI styling reset to prevent visual inconsistency when jQueryUI is loaded via a third-party plugin.
+ * /assets/js/admin.js - Adjust the JavaScript logic to use the new "woosidebars-conditions" selector instead of "woo-conditions" for toggling advanced options on and off.
+ * /classes/class-woo-conditions.php - Rename "woo-conditions" meta box to "woosidebars-conditions". Fixes display bug with the WPML "Multilingual Content Setup" meta box. Replaces all instances of &$this with $this. Introduces upper_limit property and woosidebars_upper_limit filter. Addresses logic for the "single" condition type.
+ * /classes/class-woo-sidebars.php - Replaces all instances of &$this with $this. Introduces upper_limit property and woosidebars_upper_limit filter.
+
+2013.03.08 - version 1.2.2
+ * /classes/class-woo-sidebars.php - Changed capability for displaying the "Widget Areas" menu to use "edit_theme_options" instead of "switch_themes".
+ * /assets/css/admin.css - Minor styling adjustments. Fixes admin styling when jquery-ui-fresh CSS is loaded by other plugins.
+
+2013.01.09 - version 1.2.1
+ * /classes/class-woo-conditions.php - Update script version. Update conditions meta box HTML to move the "advanced" button to it's own list instead of being a part of the tabs. Add "post_type" condition without the "post-type-" prefix. Fixes the "Template Hierarchy -> Pages" bug.
+ * /classes/class-woo-sidebars.php - If WordPress SEO is active, remove the unused meta box styling, as it conflicts with the custom WooSidebars meta box styling. Set "has_archive" to "sidebars". Make sure only users with the "switch_themes" capability can see the "Widget Areas" admin menu.
+ * /assets/js/admin.js - Adjust admin JavaScript to work with updated conditions meta box HTML.
+
+2012.08.14 - version 1.1.2
+ * /integrations/integration-woocommerce.php - Added logic to stop undefined index notices in foreach(). Prevent direct file access.
+ * /classes/class.wooconditions.php,
+   /classes/class.woosidebars.php - Prevent direct file access.
+ * /classes/class.updater.php - Prevent direct file access. Return $false instead of false when checking for updates, if not WooSidebars.
+ * /lang/woosidebars-en_GB.po - Rescanned language file.
+ * /lang/woosidebars-xx_XX.pot - Rescanned language template file.
+ * woosidebars.php - Prevent direct file access. Update stable tag.
+ * index.php - Added to prevent directory listing.
+
+2012.05.23 - version 1.1.0
+ * /classes/class.woosidebars.php - Adjustments to accept integrations.
+ * /classes/class.wooconditions.php - Adjustments to accept integrations.
+ * /integrations/integration-woocommerce.php - Initial WooCommerce integration, if WooCommerce is active.
+ * woosidebars.php - Load WooCommerce integration, if WooCommerce is active.
+
+2012.04.11 - version 1.0.0
+ * Initial release. Woo!

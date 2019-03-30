@@ -1,0 +1,290 @@
+== Changelog ==
+
+= 0.10.4 - 2019-03-21 =
+* fixed styles in FL Matches widget
+
+= 0.10.3 - 2019-03-21 =
+* added multisite support
+* improved and unified block headers
+* improved "match slim" layout: hover effect, all block as a link, removed clubs link
+* added "date_from" and "date_to" params to the matches shortcode (format YYYY-MM-DD)
+* minor fixes
+
+= 0.10.2 - 2019-03-10 =
+* added players dropdown live filter (match edit)
+* added sorting option for player dropdown (on match edit page)
+
+= 0.10.1 - 2019-03-03 =
+* fixed error with not rendering players in match event after save
+* added cards in the match statistic block
+* added custom Match title separator option
+* fixed some not translated strings
+
+= 0.10.0 - 2019-03-03 =
+* added round support for knockout competitions
+* improved admin UI on the Competition edit page
+* improved Clubs selector on the Competition page
+* improved admin UI on Match (creating and editing)
+* added option to edit Match structure
+* added country option in the Leagues
+
+= 0.9.2 - 2019-02-22 =
+* improved compatibility with WordPress 5.1
+* updated included libs (Bootstrap, Plyr)
+* added Greek language (thanks to @spirossm)
+* minor bug fixes
+
+= 0.9.1 - 2019-02-03 =
+* fixed: missing quote in standing shortcode
+* bump minimum PHP version up to 5.5
+* minor styles improvements
+
+= 0.9.0 - 2019-01-15 =
+* added: main color for Club (used in stats bars)
+* added: option to override player positions text in plugin settings
+* added: option in Cards widget to hide points column
+* improved: admin UI (metaboxes)
+* updated included dependencies
+* minor fixes; performance, code and styles improvements
+
+= 0.8.5 - 2018-12-23 =
+* added: matchweek sorting option in Matches shortcode
+* added: competition logo in match list
+* added: options for custom match date and time format
+* improvements: hide not published stadium from match header
+* improved performance (players caching)
+* minor fixes and improvements
+
+= 0.8.4 - 2018-12-12 =
+* added: exclude_ids option in Standing shortcode and widget
+* changed: Club template structure
+* fixed: incorrect conceded goals in stats for away team if home squad not set
+* changed: overflow scrollbar library
+* improved: if active season isn’t set, latest term is used
+* fixed: error in PHP < 5.5
+
+= 0.8.3 - 2018-12-02 =
+* added: Player shortcode (same as widget)
+* added: club option in the Player widget and shortcode
+* added: default player photo option
+* added: shortcodes button in the Gutenberg Classic block
+* added: German language (thanks to Jörg)
+* changed: template files for Player
+
+= 0.8.2 - 2018-11-19 =
+* added: batch import/creation tool for clubs and players
+* fixed: loading admin scripts in some non-English sites
+* fixed: penalty shootout sorting
+
+= 0.8.1 - 2018-11-11 =
+* improved: Player statistics (added icons instead of texts, added stats for goalkeepers, fixed error on calculating own goals, improved recalculation speed)
+* added: custom round-robin format option
+* added: player short name used instead of full in most templates
+* updated: language files
+* Attention! After this update required to recalculate stats (Football Leagues >> Settings >> Service Links >> Recalculate Stats for All Matches and Players)
+
+= 0.8.0 - 2018-11-03 =
+* added: Player widget
+* added: option to override "Matchweek" text
+* added: custom content metabox for most instances: Match, Club, Competition, Player, Stadium. You can use it for custom content or shortcodes.
+* added: page about premium version
+* updated: tutorials page
+* fixed: icons style error with some icon fonts
+* fixed: hide zero (not set) minute in Match events
+* minor fixes and improvements
+
+= 0.7.5 - 2018-10-21 =
+* added: ability to change match duration (full and extra time)
+* improved: time format now is set from WP settings (Settings > General > Time Format)
+* improved: club abbreviation is used by default in match list widgets
+* improved: text truncate in widgets (when column is too narrow)
+* added: many filters and action into code (for developers)
+* minor fixes and improvements
+
+= 0.7.4 - 2018-10-08 =
+* added Club Kit image option in club
+* added Cards shortcode
+* added new options in Cards widget (sort by points, hide with zero, link below widget)
+* added new option in Competition Header shortcode (title as a link)
+* fixed SVG icons rendering in IE
+* added translation to Romanian
+* minor fixes and improvements
+
+= 0.7.3 - 2018-09-25 =
+* added Referees support
+* added Cards Widget
+* added ability to change player number for match
+* improved interface in admin Match screen
+* added ability to attach coaches to match
+* changed competition tabs layout (buttons instead of tabs)
+* changed match template structure
+* improved - goals and cards are added to player stats even if empty lineups
+* added option to load alternative page template (plugin settings)
+* added translation to Italian and Slovenian
+* minor fixes and improvements
+
+= 0.7.2 - 2018-09-18 =
+* improved Competition layout (changed grouping for multistage competitions)
+* improved Standing Table layout (especially for phones and laptops)
+* improved support for Twentysixteen theme (added special layout)
+* minor fixes and improvements
+
+= 0.7.1 - 2018-09-07 =
+* fixed error on PHP < 7.0
+
+= 0.7.0 - 2018-09-07 =
+* added staff members
+* added draggable sorting for the squad, match players and events in admin
+* added custom fields for club and stadium
+* added rendering extra minutes for cards, goals, substitutes and missed penalties in Match
+* minor fixes and improvements
+
+= 0.6.6 - 2018-08-19 =
+* Fixed error on recalculating stats
+
+= 0.6.5 - 2018-08-18 =
+* added French translation (thanks to @belgofoot)
+* added custom fields in the player
+* added match video section (supported Media Gallery, Youtube or Vimeo)
+* added penalty shootout section in the match
+* added aggregate text for matches (useful for knockout)
+* added half time and full time (if extra time) score in match header
+* added notes about match extra time and penalties (in list and single match)
+* fixed incorrect minutes calculation on getting the red card on the bench (match resave needed)
+* fixed player minutes after the halftime substitution (1 min correction)
+* fixed “Matchweek” not translation ready in widgets and shortcode
+* fixed incorrect flags (Curaçao, Kosovo)
+* improved the default table style for better compatibility
+* fixed incorrect (manually entered) player’s date of birth crashes pages
+
+= 0.6.4 - 2018-07-21 =
+* fixed 'Support' page rendering on PHP < 7.0
+* fixed JS error on edit stadium without saved Google Maps API key
+* added tooltip with country name on flag hover
+* added options to show/hide matches blocks on stadium page
+* added lightbox gallery for stadium photos
+* updated Bootstrap 4 to the latest version (4.1.2)
+* fixed parsing shortcodes in match description
+* added text caption under the player photo (on the Player page)
+* added option to hide/show player photo caption
+* added attendance in the match header
+* added Danish translation (thanks to @cbdk)
+
+= 0.6.3 - 2018-07-17 =
+* minor fixes in countries and flags (thanks to @belgofoot)
+
+= 0.6.2 - 2018-07-10 =
+* fixed styling issues in IE (clubs and matches widget)
+* fixed rendering localized date for non-english sites in some layouts
+* improved mobile layouts
+* improved and fixed minor issues in templates
+
+= 0.6.1 - 2018-07-07 =
+* added match shortcode
+
+= 0.6.0 - 2018-05-22 =
+* improved compatibility with 3d party themes
+* updated Bootstrap to version 4.1.1
+* added Polish language (thanks to @forzza)
+
+= 0.5.7 - 2018-05-01 =
+* fixed player match time calculation in stats (after red card)
+* added new icon for goal from penalty
+* added section "Missed Penalties" in finished match
+* URGENT! - after this update required to recalculate players statistic (Football Leagues >> Settings >> Service Links >> Recalculate Stats for All Matches an Players)
+
+= 0.5.6 - 2018-04-22 =
+* fixed player match time calculation in stats
+* fixed error with displaying incorrect card type in player profile
+* updated bootstrap to the latest version
+* URGENT! - after this update required to recalculate players statistic (Football Leagues >> Settings >> Service Links >> Recalculate Stats for All Matches an Players)
+
+= 0.5.5 - 2018-04-09 =
+* improved translation ready status
+* added Russian language
+* fixed several bugs
+* minor improvements
+
+= 0.5.4 - 2018-03-30 =
+* added shortcodes dropdown list in WP editor
+* fixed bugs in PHP 5.4
+* minor fixes
+
+= 0.5.3 - 2018-03-28 =
+* added an option to disable Bootstrap 4 files (useful if your theme already has them or in conflicts)
+* added a matchweek filter in matches admin table
+* fixed a bug in Competition Header shortcode with displaying several seasons
+* fixed a bug with incorrect automatic match title (thanks to forzza)
+* fixed compatibility with PHP below 5.6 (thanks to forzza)
+* minor usability fixes
+* released new Demo Site - [Demo 1 - Aneto theme](http://football.anwp.pro/demo-belarus-main/)
+
+= 0.5.2 - 2018-03-23 =
+* fix bug with rendering club form in standing table (resave of standing table needed)
+
+= 0.5.1 - 2018-03-23 =
+* added competition header shortcode
+* added players shortcode and widget (scorers and assists)
+* added club form in standing table
+* added notes below standing table
+* improved standing table rendering
+* improved clubs shortcode and widget (added grid layout)
+* improved stadium page (new fields, gallery, latest matches and fixtures)
+* fixed bug with initial points calculation
+* minor and bug fixes
+
+= 0.5.0 - 2018-03-15 =
+* added automatic players statistic calculations (according to match lineups and events)
+* improved player page:
+	* added season stats summary
+	* added table with players matches + stats
+	* added season dropdown selector
+* added SQUAD shortcode
+* added squad table layout and set up as default ( you can change it in plugin settings )
+* added season selector in club
+* added latest matches and fixtures in club page
+* added flipped countdown in match fixture page
+* added latest matches with club form (series) in match fixture page
+* added standing table colors for selected place or selected club
+* minor and bug fixes
+* URGENT! - after this update required to recalculate players statistic (Football Leagues >> Settings >> Service Links >> Recalculate Stats for All Matches an Players)
+
+= 0.4.5 - 2018-03-07 =
+* added multiseason support for competition
+* added season selector in match
+* improved admin interface for match, club and season
+* minor and bug fixes
+
+= 0.4.4 - 2018-03-04 =
+* added: new options in Matches widget and shortcode
+* added: modern layout in Matches widget
+* added: tooltips in standing table
+* improved: competition content layouts
+* improved: club logos rendering in match list
+* fixed: disable TGMPA class if already exists in other plugin or theme to prevent conflict
+
+= 0.4.3 - 2018-02-25 =
+* added clubs widget and shortcode
+* added matches widget and shortcode - [shortcode params](https://anwp.pro/football-leagues/shortcodes-for-football-league-plugin/)
+* minor fixes
+
+= 0.4.2 - 2018-02-17 =
+* improved and updated multistage competition workflow - [How to setup multistage competition](https://anwp.pro/football-leagues/how-to-setup-competition-with-multiple-stages/)
+* added default competition template (you change it in Display Options metabox in Competition)
+* minor fixes
+* after this update required to resave all multistage competitions and recalculate match statistic (Football Leagues >> Settings >> Service Links >> Recalculate Stats for All Matches)
+
+= 0.4.1 - 2018-02-15 =
+* improved documentation
+* admin: added new player status - "on trial"
+* admin: added club filter in players
+* admin: improved club selector in competition
+* admin: improved match event modal
+* admin: replaced modal lib (for better compatibility with IE)
+* club squad:
+	* added badges for players on loan
+	* hide players with trial and left status
+* minor fixes
+
+= 0.4.0 - 2018-02-11 =
+* Initial public release

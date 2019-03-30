@@ -1,0 +1,196 @@
+1.4.6
+changes:
+	- Re-organized settings page
+	- Introduce new Help page
+	- Introduce new option for setting the default jobs duration for imported jobs
+	- Introduce new option for clearing cached data
+
+fixes:
+	- Scraping failing for some providers
+	- Job duration defaulting to 30 days when WPJM duration was empty
+	- Some duplicate jobs being imported
+	- Missing Indeed logo
+
+1.4.5
+changes:
+	- Added option for displaying imported jobs on a separate listing (new shortcode [goft_jobs] is available) (premium plans only)
+	- Added option to display filter dropdown to allow users filtering between all jobs, site jobs and external jobs, on frontend listings (premium plans only)
+fixes:
+	- Jobs being automatically expired on specific schedules
+	- Feeds containing a single job being split and imported as multiple jobs with weird content
+
+1.4.4
+Changes:
+	- Added ZipRecruiter to list of API providers (with salary and jobs age filter)
+	- Added AdView to list of API providers (with salary and jobs type filter)
+Fixes:
+	- 'Apply with Resume' showing for imported jobs when WPJM's Resume Manager add-on installed
+
+1.4.3
+Changes:
+	- Added support for negative keyword matching (excludes jobs that contain certain keywords)
+	- Added option to filter keywords by title and/or description
+	- Added job type/categories keywords mapping for more accurate smart assignments
+	- Added new 'Smart Assign' options:
+		. Categories Multi Terms Match/Job Types Single Term Match
+		. Job Types Multi Terms Match/Categories Single Term Match
+fixes:
+	- 'Smart Assign' not correctly matching terms
+	- Custom expiry dates being ignored
+
+1.4.2
+Changes:
+	- Updated Indeed URL schema to 'https'
+	- Removed 'idealist.org' from list of providers (no longer provides RSS feeds)
+Fixes:
+	- Incorrect 'No new jobs found' message when all jobs were excluded by user rules
+
+1.4.1
+Fixes:
+	- Application URL defaulting to user email in Pro plan
+1.4.0
+Fixes:
+	- 'Read more' option being ignored
+	- Geolocation working on manually imported jobs but failing in schedules
+	- Clicking 'Go Fetch Jobs' button multiple times spanning several loader messages
+	- Fatal error on PHP environments without the 'iconv()' extension installed
+	- Scheduler start times always defaulting to UTC time
+Changes:
+	- Added support for setting a job application email on each feed (applications behave as regular jobs but they are redirected to the specified email) (pro+)
+	- Removed Indeed (RSS and API) and Careerjet (API) import job limits (although not recommended, you can now import more jobs then the default limits) (pro+)
+	- Added support for Indeed API (more control over results and affiliate tracking) (pro+)
+	- Added support for Careerjet API (more control over results and affiliate tracking) (pro+)
+	- Added new Indeed and Careerjet option pages for setting Publisher ID's and API defaults (pro+)
+	- Automatically expire Indeed jobs that are flagged as 'Expired' (pro+)
+	- Added option to feature Indeed 'Sponsored' jobs (pro+)
+	- Added 'Description Length' and 'Limit' parameters to Careerjet RSS feed (pro+)
+	- Added 'Use CORS proxy' setting to force load 'https://' feeds through a CORS proxy
+	- Better compatibility with RSS Feeds that could not be read but were valid in W3C validator
+	- Removed 'Force Feed' option. The importer will now automatically force load a feed if nothing else works
+	- Reduced RSS Feeds timeout to 30 seconds
+	- Automatically default all invalid RSS item dates (1970-01-01) to current date
+	- Added import duration time column to schedules log table
+	- Geolocation location names now default to the site language
+	- Added caching mechanisms for geocoding requests
+	- Removed 'dice.com' from list of providers (no longer provides RSS feeds)
+	- Performance optimizations
+
+1.3.1
+Fixes:
+	- Weekly/Monthly schedules not running if cron wasn't triggered on the first day of the week/month
+	- Saved scrape fields not being loaded with the respective template
+	- 'Content Period' column showing an extra number on the schedules listing
+	- Additional 'Settings' page showing on WP backend sidebar
+	- Some geolocation fields (e.g: 'geolocation_city') not being filled correctly
+	- RSS feeds with valid location coordinates showing 'Anywhere'
+	- PHP7 issues loading feeds
+
+Changes:
+	- Added hook to allow skipping meta data extraction using regular expressions for specific providers
+	- Added optional 'Providers Filter' for filtering jobs by 'provider'
+	- Added 'Status' option to the settings page (allows assigning a specific status to imported jobs)
+	- Added 'Limit' column to the schedules list
+	- Added 'seek.com.au' to the list of RSS providers
+	- PHP warnings on single job pages when 'wp-job-manager-applications' installed, in WP 4.7
+	- Added new filters
+	- Use 'wp_kses()' instead of 'strip_tags()' for sanitizing job descriptions
+	- Default 'Posted By' user to current logged in user, on import jobs page
+
+1.3
+Fixes:
+	- Application form being displayed by mistake on imported jobs when 'Job Applications' add-on was installed
+	- Wrong import limit calculation when limit was superior to total jobs in feed
+	- Added 'nopaging' to the query that checks for duplicate jobs
+	- Check for 'OpenGraph' class before loading it (better compatibility with other plugins that use the same class)
+
+Changes:
+	- Added ability to search for additional meta data like company name and locations in RSS items title, on select providers
+	- Added manual actions to schedules: 'Test' or 'Run' (Pro+ plan only!)
+	- Added option to extract incomplete/missing meta data on select providers (Pro+ plan only!) (can extract full job descriptions, companies, locations and logos directly from the site providers - e.g: Indeed - not always guaranteed to work!)
+	- Moved 'Fetch Logos' checkbox to the 'Import Details' section
+	- Moved logos fetching and geocoding previously done while the RSS feed was loaded to the main import process (improves RSS feeds loading speed)
+	- Added New settings page with several options:
+
+		General:
+		. Imported Jobs Filters   - Displays new filters for filtering jobs by 'type' (imported jobs/regular jobs) or by 'provider'
+		. Jobs Provider Column    - Display a new column on job listings with the job provider site
+		. Duplicates Behavior     - Choose to ignore or update duplicate jobs
+		. Google API Key          - Specify your Google Maps API key to use geolocation and reduce API limits
+		. Rate Limit              - Geocoding rate limit (number of locations geocodes per second)
+		. Allow Visitors to Apply - Choose whether to Hide/Show the apply button to visitors
+		. Read More Text          - Specify the read more text appended to job description excerpts (default is [...])
+		. Canonical Links         - Improve SEO with canonical links pointing to the source URL
+		. Debug Log               - Enable it to generate a report to debug any issues with the support team
+
+		Scheduler: (Pro+ plan only!)
+		. Start time - Set the approximate time for the import schedules to start
+		. Interval   - Set the interval between schedule runs
+
+	- The 'Smart Assign' feature will now search for taxonomy terms (job types and categories) on any custom RSS feed tag hooked to the 'goft_wpjm_providers_valid_item_tags' filter
+	- Removed 'CareerBuilder' as provider since it no longer provides RSS feeds
+	- Updated 'jobsproblogger.net' provider (now called 'problogger.com')
+
+1.2.4
+Fixes:
+	- Security and performance fixes (update is highly recommended!)
+	- Schedules being “stuck” with no response
+Changes:
+	- Laying foundations for upcoming  major new version
+
+1.2.3
+Fixes:
+	- Existing location info for providers using geolocation tags (like Indeed) sometimes not recognized and displayed as 'Anywhere'
+	- Schedules authors not saving correctly
+	- W3 Total Cache plugin sometimes causing import process to fail
+	- Template names using quotes/double-quotes causing javascript issues
+	- Multi-country providers not inheriting main provider settings (ignoring location and other meta)
+
+Changes:
+	- Added 30 seconds time interval schedule runs (interval time can be customized using the filter - 'goft_wpjm_schedules_interval_sleep')
+	- Added multi-country provider 'monster.com' (US, Canada, UK, France, Germany and Netherlands) with location meta (Pro+ plan only)
+
+1.2.2
+Fixes:
+	- Fatal error on plugin install screen (Premium plans only)
+
+1.2.1
+Fixes:
+	- Job categories/types editable fields showing below the details group (Free version only)
+	- Fatal errors causing blank screen when viewing the plugins page
+	- Conflicts with WooCommerce 'select2' libraries causing weird visual issues in import jobs page
+
+1.2
+Fixes:
+	- Users dropdown only showing admin users
+
+Changes:
+	- Tweaked UI
+	- Replaced simple providers dropdown with fancier 'Select2' dropdown
+	- Added 'Smart Assign' option to terms group (automatically assigns the best term(s) to each imported job considering jobs content - for Pro and Pro+ plans)
+	- Added 'Keyword' filtering option to filter imported jobs using keywords (for Pro and Pro+ plans)
+	- Added log meta box to schedule pages (provides stats info on imported, duplicates, and total excluded jobs - pro and pro+ plans)
+	- Added 'Advanced/Basic' toggle under the 'Screen Options' for toggling between basic/advanced import settings
+	- Added guided help tour
+	- Added 'Screen Options'
+	- Added 'Help' tab
+	- Added new generic RSS providers: trabajos.com, us.jobs
+	- Highlight job expiry date if older then today
+
+1.1.2
+Fixes:
+	- Invalid 'Create Template' link under schedule pages
+	- Use 'the_content' filter for feeds description (fixes HTML entities not properly converted on some RSS feeds)
+	- Strip tags in titles (fixes HTML tags showing in post titles on some RSS feeds)
+
+Changes:
+	- Added Option to force load a feed (for feeds that although valid may fail to load)
+
+1.1.1
+Fixes:
+ 	- Feeds not loading in Firefox
+
+1.1
+Fixes:
+ 	- Feeds from known providers not returning any data
+
+1.0 - First Release

@@ -1,0 +1,196 @@
+*** WooCommerce Amazon and eBay Integration ***
+
+2019-2-04 - version 1.3.25
+* add arguments to product_save hook
+
+2019-1-31 - version 1.3.24
+* support WooCommerce REST API product edit hooks
+* wordpress tested up to 5.0.3
+
+2018-12-23 - version 1.3.22
+* Update - tested up to 5.0.2 wordpress
+
+2018-12-23 - version 1.3.22
+* Fix	 - ordering of admin instantiation on sync
+
+2018-12-04 - version 1.3.21
+* Add	 - support for WooCommerce Shipping Tracking Pro extension
+
+2018-11-09 - version 1.3.20
+* Fix	 - bug fix to account creation
+
+2018-11-09 - version 1.3.19
+* Update - change sign up form
+
+2018-11-09 - version 1.3.18
+* Fix	 - fix KSES function on plugin activation
+
+2018-11-01 - version 1.3.17
+* Fix	 - update Plugin URI to match published woocommerce product page
+
+2018-10-30 - version 1.3.16
+* Update - tested up to 3.5.0
+
+2018-10-30 - version 1.3.15
+* Fix	 - general code improvements
+* Fix	 - handle tracking numbers from 'WooCommerce Shipping Tracking' (WCST)
+
+2018-10-19 - version 1.3.14
+* Fix	 - fix eBay order buttons
+
+2018-10-18 - version 1.3.13
+* Fix	 - speed up getting orders and tracking information
+
+2018-10-16 - version 1.3.12
+* Add	 - additional order metafields - tag orders created by Amazon/eBay
+* Add	 - activation message
+* Add	 - amended account signup form
+
+2018-09-28 - version 1.3.11
+* Update - only create users/customers on new orders
+
+2018-09-25 - version 1.3.10
+* Update - avoid duplicate users created on order create/edit by avoiding any backend caching
+
+2018-09-21 - version 1.3.9
+* Update - update shipping tracking fetch to match new woocommerce extension internal storage format
+
+2017-11-14 - version 1.3.8
+* Update - declare woocommerce tested up to version
+
+2017-11-14 - version 1.3.6
+* Fix	 - transmit shipping tax class settings to properly calculate shipping tax amounts on order import
+
+2017-11-14 - version 1.3.5
+* Fix	 - stock adjustment node and merchant notes in order creation
+
+2017-11-14 - version 1.3.4
+* Fix	 - use currency converted prices in orders where applicable
+
+2017-07-20 - version 1.3.3
+* Update - change name to Codisto LINQ
+
+2017-07-19 - version 1.3.2
+* Fix	 - modify styles for mobile view in control panel
+
+2017-05-24 - version 1.3.0
+* Update - transmit plugin version during synchronisation
+
+2017-05-09 - version 1.2.5
+* Update - updated menu items
+
+2017-05-01 - version 1.2.49
+* Add 	 - Amazon release
+* Add	 - readme update
+
+2017-05-01 - version 1.2.48
+* Fix 	 - remove control characters from signup fields
+
+2017-04-25 - version 1.2.47
+* Update - upgrade readme to cover 4.7.4 as latest tested version
+* Fix	 - fix pre-registration backdrop UI
+
+2016-12-13 - version 1.2.46
+* Fix 	 - sort variation attributes by user-entered sequence
+* Fix 	 - set admin context when synchronizing
+
+2016-12-13 - version 1.2.45
+* Update - upgrade readme to cover 4.7.0 as latest tested version
+
+2016-11-16 - version 1.2.44
+* Fix	 - suppress warnings and user legacy tax function naming for support on older versions
+
+2016-11-16 - version 1.2.43
+* Fix 	 - clear output buffer before proxying or syncing, ensures clean output for all plugin endpoints
+
+2016-11-02 - version 1.2.42
+* Update - improved support for 'select' style globally defined attributes at product level
+* Update - started synchronising variation level attributes
+
+2016-09-26 - version 1.2.41
+* Add	 - add Account menu item
+
+2016-09-26 - version 1.2.40
+* Fix 	 - stop PHP warnings when accessing offsets that don't exist in an object during catalogue sync
+
+2016-09-15 - version 1.2.39
+* Fix 	 - read correct values from global attributes
+
+2016-09-06 - version 1.2.38
+* Fix 	 - wordpress 4.6 doesn't properly honour compress/decompress in new http api, disable compression in proxy
+
+2016-08-30 - version 1.2.37
+* Fix	 - fix variation labels
+
+2016-08-24 - version 1.2.35
+* Update - change compression settings
+
+2016-08-04 - version 1.2.34
+* Fix 	 - fix variation stock control
+
+2016-07-11 - version 1.2.33
+* Fix	 - change order sync to avoid sending emails as the customer is already in communication via eBay
+* Fix 	 - product options that aren't variations converted to multi-variant listings correctly
+
+2016-06-30 - version 1.2.31
+* Fix	 - change unit price on order lines to ex tax to match standard woocommerce orders
+
+2016-06-09 - version 1.2.30
+* Fix 	 - work around wp super cache shutdown function that corrupts output
+
+2016-06-09 - version 1.2.29
+* Fix	 - ensure exit() called on sync and proxy functions so that additional plugins do not foul the output
+
+2016-06-08 - version 1.2.28
+* Fix 	 - disable sending taxes if they are turned off in woocommerce settings
+* Fix 	 - check for header_remove existence before using it (introduced in php 5.2)
+
+2016-06-03 - version 1.2.27
+* Update - support multiple shipping options in the shipping callback
+* Fix	 - properly add any applicable tax on shipping to the inc tax freight result
+
+2016-05-05 - version 1.2.6
+* Fix	 - fixed an issue with rewrite generation in plugin activation when site and home urls had different protocols
+* Add 	 - added dynamic shipping callback for realtime bulky item rates on ebay
+
+2016-05-04 - version 1.2.25
+* Update - updated readme to include base pricing based on customer feedback
+* Fix 	 - flush option cache on registration
+* Fix 	 - modified acf detection function
+
+2016-04-29 - version 1.2.22
+* Update - use Advanced Custom Fields - https://www.advancedcustomfields.com/ to map field values and galleries to your eBay listings
+
+2016-04-25 - version 1.2.21
+* Fix 	 - force decompression headers off if required to decompress in proxy
+
+2016-04-25 - version 1.2.2
+* Fix	 - forced currency setting during sync to match home currency with aelia currency switcher installed
+* Fix 	 - fixed UI to avoid scroll in scroll when wordpress left menu grew too long
+
+2016-04-22 - version 1.2.1
+* Fix 	 - switched http headers over to be codisto specific to avoid collision with other extensions
+
+2016-04-21 - version 1.2.0
+* Fix 	 - handle missing _GET variables during registrations
+
+2016-04-21 - version 1.1.99
+* Update - tested against wordpress 4.5
+
+2016-04-04 - version 1.1.98
+* Fix 	 - fallback to get_product defined in earlier versions of WooCommerce if wc_get_product is not defined
+
+2016-04-04 - version 1.1.97
+* Fix 	 - handle older versions of wordpress by not assuming wp_json_encode
+
+2016-03-30 - version 1.1.96
+* Fix	 - shift to full size image download - wp_get_attachment_image_src takes a default 2nd arg of 'thumbnail' which is now overriden to 'full'
+
+2016-03-30 - version 1.1.95
+* Update - had trouble updating wordpress svn so bumped version number
+
+2016-03-30 - version 1.1.94
+* Fix 	 - fix rewrite rules to honour the difference between home and site url
+
+2016-03-21 - version 1.1.87
+* Initial public release

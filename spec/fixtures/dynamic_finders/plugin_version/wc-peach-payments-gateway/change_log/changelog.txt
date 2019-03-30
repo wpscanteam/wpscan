@@ -1,0 +1,56 @@
+*** WC Peach Payments Gateway Changelog ***
+
+2018.12.18 - version 1.2.2
+ * Dev - Allowed the "<form>" tag in wp_kses_allowed_html. A WordPress > 5.0 update.
+
+2018.11.20 - version 1.2.1
+ * Dev - Added in an option to allow Virtual or Downloadable orders to be set to complete.
+ * Fix - Fixed the Copy and Pay for Prevailing when using a stored card.
+
+2018.10.03 - version 1.2.0
+ * Dev - Refactored code to WordPress Guidelines.
+
+2018.10.01 - version 1.1.4
+ * Fix - Removed the hard coded description when not using card storage
+
+2018.09.18 - version 1.1.3
+ * Fix - Fixed the Gateway description which shows on checkout.
+
+2018.04.17 version 1.1.2
+ * Added in styling to center the CNP response
+ * Added in a conditional statement to process_payment_status() to make sure Complete and Processing order are not re checked.
+
+2017.07.21 - version 1.1.1
+ * Removed the $order->update_status('completed'); forcing the subscription renewals to automatically complete.
+
+2017.06.15 - version 1.1.0
+ * Added in a get_id(),get_customer_id() and a get_item_product() function to help with 2.5 through to 3.0 compatibility.
+ * Fixed the missing meta_key "_peach_subscription_payment_method" on subscription orders.
+ * Added in the WC logger class and calls to record the payments failures.
+ * Added in variable decelerations at the top of each class.
+ * Reworked the logic of the process_payment_status() and process_payment() functions.
+ * Fixed the redirect for failed payment if a card is decliend on the merchants side.
+ * Fixed the Payment Presentation name for subscriptions.  (viewed in the merchant account)
+
+2016.04.07 - version 1.0.11
+ * Updated the Copy and Pay form widget.js to V4.
+
+2015.12.15 - version 1.0.10
+ * Fixed the Virtual Subscription with a Free trial bug.
+ * Fixed the process_post_status() function from calling the get_token_status function twice.
+ * Added in support for a "Diners Club" card.
+
+2015.10.14 - version 1.0.8
+ * Add WC_Addons_Gateway_Simplify_Commerce_Deprecated
+ * Support admin payment method changes
+ * Update renewal payments for Subs v2.0
+ * Remove meta from resubscribe orders
+ * Update order_contains_subscription()
+ * Update change failling payment method
+ * Add support for multiple subscriptions
+
+2014.06.27 - version 1.0.1
+ * Fix - Adds the plugin name to the plugin header data.
+
+2014.06.26 - version 1.0.0
+ * First Release

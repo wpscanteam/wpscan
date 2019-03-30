@@ -1,0 +1,128 @@
+== Changelog ==
+
+= 1.3.5 =
+* Fixes an issue that removes table header content using update_field() while option "use header" is set to "no".
+* Fixes an issue with the update_post_metadata filter
+
+= 1.3.4 =
+* Fixes an issue that prevents the removal of table contents
+
+= 1.3.3 =
+* Fixes returning empty table after saving content containing a single quote
+
+= 1.3.5 =
+* Fixes returning empty table after saving content containing quotes
+* Fixes an issue using update_field() on a table field
+
+= 1.3.5 =
+* Changes table data storing format from JSON string to serialized array. This is due to an issue caused by third party plugins using update_post_meta() without providing wp_slash() to the value before. Existing table data values in JSON string format in the database will still exists and be compatible. When a field is saved again, the storage format changes from JSON to serialized array.
+* Fixes an PHP error of table caption
+
+= 1.3.0 =
+* Adds support for table caption
+* Fixes an JavaScript issue for ACF version 4
+
+= 1.2.6 =
+* Replaces jQuery.noConflict methode
+* Prevents PHP error if table fields value is from a previous fieldtype
+
+= 1.2.5 =
+* Adds danish translation, thanks to Jeppe Skovsgaard
+
+= 1.2.4 =
+* Fixes backslashes on using update_field();
+
+= 1.2.3 =
+* Adds support for the ACF update_field() function. If you get the table fields data array by get_field(), you can change the table data array and using update_field() to save the changes to the field.
+
+= 1.2.2 =
+* Adds plugin version to table data for handling structural changes.
+* Fixes loosing table data containing quotes on third party update_post_meta() actions to table field values. Limited to new fields or fields value changed since plugin version 1.2.2.
+* Fixes an PHP warning since PHP 7.2 when body data is null
+
+= 1.2.1 =
+* Fixes not using user locale for translation
+* Adds description for handling line breaks to plugins page
+
+= 1.2 =
+* Adds support for tab navigation. Uses shift + tab for backward navigation.
+* Minor code improvements
+
+= 1.1.16 =
+* Keeps the WordPress admin area working, if tablefields value is not a valid JSON string. Logs the invalid value in the console for debugging.
+
+= 1.1.15 =
+* Adds polish translation by Pawel Golka
+
+= 1.1.14 =
+* Fixes table does not appear under certain field groups location rules
+
+= 1.1.13 =
+* Fixes an XSS issue within /wp-admin/ pages
+
+= 1.1.12 =
+* Adds support for field groups post taxonomy rule
+
+= 1.1.11 =
+* Fixes rerendering of tables while changing other content
+
+= 1.1.10 =
+* Fixed table functionality with respect to the ACF rules
+
+= 1.1.9 =
+* Fixes returning false on single empty table cell for ACF version 4
+
+= 1.1.8 =
+* Fixes support for user edit pages
+
+= 1.1.7 =
+* Fixes support for user profile pages
+
+= 1.1.6 =
+* UI: Fixes table header switch off problem
+
+= 1.1.5 =
+* Fixes issue occured after database migration with plugin "WP Migrate DB"
+
+= 1.1.4 =
+* Takes over icon class changes in ACF-Pro since version 5.3.2
+
+= 1.1.3 =
+* Fixes wrong function name 'change_template'
+
+= 1.1.2 =
+* Fixes missing table on page template change
+
+= 1.1.1 =
+* Compatibility to icon changes of ACF Pro version 5.2.8
+* Fixes table top legend height in FireFox
+* Fixes delete column icon position in IE
+
+= 1.1 =
+* Improved User Experience when deleting all columns and rows.
+* Compatibility to changes of ACF Pro version 5.2.7.
+
+= 1.0.7 =
+* Use wp_json_encode() instead of json_encode(). This may fix issues in rare enviroments.
+
+= 1.0.6 =
+* If the table has only a single empty cell (this is by default), no table data will return now.
+
+= 1.0.5 =
+* Fixes javascript issue in IE 8.
+* Fixes missing table borders and table header´s height in FireFox.
+
+= 1.0.4 =
+* Fixes an uri problem on some hosts.
+
+= 1.0.3 =
+* Fixes an php error on HTTP_REFFERER.
+
+= 1.0.2 =
+* Fixes error when including the plugin from inside a theme.
+
+= 1.0.1 =
+* Fixes ACF validation error "required" when header option "use table header" was used and unchecked.
+
+= 1.0 =
+* Official Release of the free version

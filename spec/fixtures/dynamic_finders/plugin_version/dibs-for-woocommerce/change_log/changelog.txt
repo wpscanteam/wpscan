@@ -1,0 +1,230 @@
+*** DIBS Changelog ***
+
+2019.01.07		- version 2.6.1
+* Tweak			- Update DIBS ticket number in subscription during every subscription renewal payment.
+* Fix			- Add maketicket (new DIBS subscription) even if it is a manuall subscription renewal. This can happen if customer pays for a renewal maually and selects DIBS as payment method.
+
+2018.12.12		- version 2.6.0
+* Feature		- Added Dankort app as new separate payment method.
+* Tweak			- Plugin WordPress 5.0 compatible.
+* Tweak			- Changed URL to docs about refunds/API credentials in settings page.
+* Fix			- Code cleaning.
+
+2018.09.11		- version 2.5.5
+* Tweak			- Improved get_order_id() function to get correct order id during callbacks from DIBS.
+* Fix			- Modify redirct url to checkout page for subscriptions with free trial (previous customer ended up on My account page).
+
+2018.07.16		- version 2.5.4
+* Tweak			- Improved compatibility with plugins adding sequential order numbers features and devs changing order number via the woocommerce_order_number filter.
+
+2018.06.10		- version 2.5.3
+* Tweak			- Use get_site_url() instead of site_url() for callback url's. Better support for https.
+* Fix			- Session error fix (could be triggered in WC 3.3+).
+
+2017.11.21		- version 2.5.2
+* Tweak			- Grab DIBS ticket number from subscription first (instead of parent order) on subscription renewal orders. Could cause problem when customer had changed card on a subscription.
+
+2017.11.06		- version 2.5.1
+* Tweak			- Removed V-DK as paytype sent to DIBS for card payments.
+* Tweak			- Don't send Order on-hold email for DIBS status code 12 (capture pending).
+
+2017.10.16		- version 2.5.0
+* Misc			- WC 3.0 compat/removed deprecated notices.
+* Tweak			- Added WC 3.2+ new plugin headers ( WC requires at least & WC tested up to).
+* Tweak			- Added more payment types to credit card payment type.
+* Tweak			- Don't send Order on-hold email for DIBS status code 12 (capture pending). Send regular Processing order email.
+* Fix			- Fixed Materpass WC 3.0 bug.
+* Fix 			- PHP Notice:  Undefined variable: dibs_language.
+* Fix 			- PHP Notice: Order properties should not be accessed directly on /order-pay page.
+
+2017.08.10		- version 2.4.5
+* Tweak			- WPML compatibility to return customer to correct language for thank you page.
+* Fix			- Only run override_checkout_fields on frontend for MasterPass.
+
+2017.02.02		- version 2.4.4
+* Fix			- Makes the plugin translatable through WordPress.org (https://translate.wordpress.org/projects/wp-plugins/dibs-for-woocommerce).
+
+2016.12.07		- version 2.4.3
+* Tweak			- Added possibility to send payment window language to DIBS based on current site language in WP.
+* Fix			- Make a real pre-athorization in DIBS when subscription signup contains a free trial. Previously 1 kr was charged.
+
+2016.10.26		- version 2.4.2
+* Fix			- Get DIBS ticket number from subscription in process_subscription_payment if it isn't stored in parent order (might happen if customer have changed/updated their card).
+
+2016.10.19		- version 2.4.1
+* Fix			- Fixed fatal error when trying to instantiate WC_Gateway_Dibs_MasterPass in WC_Gateway_Dibs_MasterPass_Functions class.
+
+2016.10.17		- version 2.4
+* Feature		- Added support for MasterPass payment method.
+* Tweak			- Added support for sending calcfee as parameter in card payment (http://tech.dibspayment.com/D2/Hosted/Input_parameters/Standard).
+* Tweak			- Added admin notice class to check if the old MasterPass plugin (https://krokedil.se/produkt/dibs-d2-masterpass/) is active. This plugin now replaces the old one.
+* Fix			- PHP notice fix.
+
+2016.09.30		- version 2.3.1
+* Tweak			- Added MobilePay support for Norway.
+* Tweak			- Code refactoring - added payment gateway factory class.
+* Fix			- Remove key_hmac (old code) to avoid php notices.
+* Fix			- Added missing country and language settings in constructor for invoice payment.
+
+2016.07.13		- version 2.3
+* Feature		- Added support for Mobile Pay Online (for Denmark).
+* Tweak			- Added support for WooCommerce Subscriptions customer payment method change (WCS 2.0 change).
+* Fix			- Changed to hook 'woocommerce_subscription_failing_payment_method_updated_dibs' for handling updated payment method changes (WCS 2.0 compat).
+* Fix			- Changed endpoint for DIBS Authorizations (Subscription renewal payments) to work together with Flexwin.
+* Fix			- Bugfixes after code refactoring (separate is_available() for each payment method, remove subscription support & added separate payment icon for invoice payment).
+* Fix			- Use update_post_meta to avoid duplicate post meta data in orders (mainly for subscription payments).
+
+2016.06.27		- version 2.2.1
+* Tweak         - Updated readme.txt.
+* Tweak			- Changed plugin main file name for WordPress best practices.
+
+2016.06.27		- version 2.2
+* Tweak         - Removed payment window support.
+* Misc			- Release on wordpress.org.
+
+2016.05.13		- version 2.1.7
+* Tweak			- Added filter 'wc_dibs_get_order_id' in helper function for retrieving order ID (get_order_id) from order number. Useful for third party plugins.
+* Tweak			- Added $order as third parameter in filter dibs_checkout_form.
+* Fix			- Add DIBS transaction number to WC _transaction_id even for subscription renewal payments.
+* Fix			- PHP notice fix in helper get_order_id()(WC Sequential Order Numbers Pro compatibility).
+
+2016.01.28		- version 2.1.6
+* Feature		- Adds multiple subscription support.
+* Fix			- Fixes WC Sequential Order Numbers Pro compatibility.
+
+2016.01.07 		- version 2.1.5
+* Tweak			- Updated refunds so it works with Flexwin as well. Now API Credentials from DIBS is needed.
+
+2015.12.08 		- version 2.1.4
+* Tweak			- Added capturenow/instant capture even for subscription payments.
+* Tweak			- Changed capture_order_on_completion() so it works with both Payment Window and Flexwin.
+
+
+2015.10.06 		- version 2.1.3
+* Tweak			- Added setting for changing/overriding the default DIBS cc payment method icon.
+* Fix			- Move translation files to 'languages' folder.
+				
+2015.04.21 		- version 2.1.2
+* Tweak			- Fixes an undefined variable notice in Invoice class.
+
+2015.04.10 		- version 2.1.1
+* Tweak			- Loading payment gateway icons dynamically from DIBS.
+* Tweak			- Removed filter woocommerce_dibs_icon & woocommerce_dibs_invoice_icon in favor of wc_dibs_icon_html & wc_dibs_invoice_icon_html
+
+2015.04.01 		- version 2.1
+* Feature		- Added responsive view to Flexwin payment window.
+* Tweak			- Order number sent to DIBS instead of Order ID on subscription renewal payments.
+* Fix			- Capture bug on subscription renewal payments.
+
+2015.02.25 		- version 2.0.1
+* Fix			- Order emails not sent when orderstatus changes from Pending to Processing (executed in $order->payment_complete()).
+* Tweak			- Separate acceptReturnUrl and callbackUrl sent to DIBS to avoid triggering of payment_complete() multiple times. 
+
+2015.01.23 		- version 2.0
+* Feature		- Added option to capture DIBS transaction by marking order complete.
+* Feature       - Added support for refunds.
+* Enhancement   - Updated translation files.
+
+2014.11.17 		- version 1.5.7
+* Tweak			- Approving response status ACCEPTED in addition to ACCEPT from DIBS when executing recurring payments (in process_subscription_payment()). 
+
+2014.11.12 		- version 1.5.6
+* Tweak			- Switched to wp_remote_post (instead of cURL) when connecting to DIBS (AuthorizeTicket) on recurring payments.
+* Tweak			- Better reporting when wp_remote_post fails due to server issues.
+
+2014.11.04 		- version 1.5.5
+* Feature		- added textdomain woocommerce-gateway-dibs (instead of woothemes).
+* Feature		- Added Manual Modification class that adds a metabox to single order page if the constant WC_DIBS_DEBUG is true. Useful when Ticket number and Transaction number needs to be edited manually.
+* Tweak			- Removed intval for price sent to DIBS (in class WC_Gateway_Dibs_CC).
+* Fix			- Strip n° (french translation) in get_order_number() for Order ID sent to DIBS (Payment window).
+
+2014.10.08 		- version 1.5.4
+* Fix			- Removed selectable Paytype parameters sent to Flexwin via settings. Flexwin doesn't have an ALL_CARDS parameter. The filter woocommerce_dibs_paytypes is still available.
+* Fix			- DIBS not available as payment gateway for subscription payments if Flexwin is used as payment method.
+
+2014.10.02 		- version 1.5.3
+* Tweak			- Added Paytype parameters to Flexwin payment method.
+* Tweak			- Added apply_filters woocommerce_dibs_paytypes for possibility to override paytypes (other than the available ones via the plugin settings) sent to DIBS.
+
+2014.09.25 		- version 1.5.2
+* Misc			- WooCommerce 2.2 Compatibility
+* Misc			- Dropped support for 2.0.x
+* Feature		- Support for Sequential orders Pro (Payment Window).
+* Tweak			- Better multi currency support. Use of get_woocommerce_currency() instead of specific functions in WooCommerce Currency Switcher & WPML.
+* Tweak			- Added Portuguese as selectable language for the DIBS payment window.
+
+2014.07.10 		- version 1.5.1
+* Fix			- Missing amount sent to DIBS when using the Flexwin payment method.
+
+2014.06.24 		- version 1.5
+* Feature		- Subscription support
+* Fix			- WPML improvements
+* Tweak			- Added apply_filters dibs_checkout_form (to the checkout form args before adding them as form fields).
+
+2014.04.05 - version 1.4.5
+ * Fix			- 2.1 compatibility in $redirect_url for Flexwin callback (when order status is set to completed or processing).
+ * Tweak		- Added setting for Paytype (Payment Window).
+ 
+2014.04.05 - version 1.4.4
+ * Feature		- Added support for multiple currencies support with  WooCommerce Currency Switcher (http://dev.pathtoenlightenment.net).
+ * Feature		- Added support for multiple currencies support with  WPML's new multiple currencies feature, independent of the site’s languages.
+ * Tweak		- Added apply_filters for language sent to DIBS.
+ * Tweak		- Added DIBS reservation number to order as post meta on payment complete.
+ * Fix			- Changed accepturl & acceptReturnUrl to /woocommerce/dibscallback. DIBS doesn't like querystrings. 
+ 
+2014.02.10 - version 1.4.3
+ * Fix: 		- Improved str_replace() for $order->billing_phone sent to DIBS.
+
+2014.02.05 - version 1.4.2
+ * Tweak 		- Improved invoice fee display on checkout page for Klarna invoice.
+ * Fix			- WooCommerce 2.1 compatibility
+  
+2014.01.20 - version 1.4.1
+ * Feature:		Added setting for Order total calculation made by the gateway (DIBS Invoice). Useful when selling products that uses tax with 3 or 4 decimals.
+ * Fix:			Removed wp_enqueue_script invoice-fee.js (not used).
+ * Fix: 		str_replace('+','-', '', $order->billing_phone), for the Payment Window payment method.
+ 
+2013.11.15 - version 1.4
+ * Feature:		Added DIBS Invoice payment method
+ * Fix: 		str_replace('+','-', '', $order->billing_phone)
+ * Tweak:		Added apply_filters woocommerce_dibs_cc_callbackurl
+ * Tweak:		Use $woocommerce->add_inline_js for javacript in generate_dibs_form()
+ 
+2013.05.31 - version 1.3.5
+ * Bugfix: Changed preg_match for strpos in function check_callback(). Caused php warning on some servers.
+ * Added callback check so that orders doesn't get reported as processing/completed multiple times.
+
+2013.04.25 - version 1.3.4
+ * Changed add_message to add_error in message displayed in function cancel_order().
+ * Bugfix: Changed acceptReturnUrl for Payment Window to get_return_url() (without the querystring).
+ * Changed Norwegian language code for Payment Window.
+
+2013.02.11 - version 1.3.3
+ * Callback check now moved to separate class.
+ * Bugfix: Callback url caused HMac calculation error (Payment Window).
+ * Improved Cancel order feature (problem in earlier versions due to DIBS callback url limitations)
+ 
+ 2013.01.23 - version 1.3.2
+ * WC 2.0 Compat
+ * Better callback support
+ * Added apply_filters to Gateway icon.
+ 
+2012.12.05 - version 1.3.1
+ * Updater
+
+2012.10.18 - version 1.3
+ * Added Instant capture feature (immediately transfer order total from the customers credit card to the shops account).
+ * Changed value in orderid (sent to DIBS) from $order_id to $order->get_order_number(). This to reflect order number changes made by the woocommerce-sequential-order-numbers-pro plugin.
+ * Added support for DIBS Payment Window.
+ * Changed callbackurl from home_url() to site_url('/woocommerce/dibscallback'). This because of return issues when the Payment Window method was used.
+
+2012.07.26 - version 1.2
+ * Changed ordertext sent to DIBS from orderID to Billing Name and Billing Address. OrderID is already sent as orderid to DIBS.
+ 
+ 2012.05.17 - version 1.1
+ * Changed callbackurl from site_url() to home_url()
+ * Added debug/log feature
+ * Updated readme file (The checkbox "All fields exclusive of card information response" must be checked).
+
+2011.10.13 - version 1.0
+ * First Release

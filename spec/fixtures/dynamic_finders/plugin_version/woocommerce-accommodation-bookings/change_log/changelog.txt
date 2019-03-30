@@ -1,0 +1,90 @@
+*** Changelog ***
+
+= 1.1.5 - 2018-11-12 =
+* Fix - Overwrite get_duration function, to fix duration calculations.
+
+= 1.1.4 - 2018-10-23 =
+* Add - PAO 3.0 compatibility.
+* Fix - Check product object before calling method to prevent errors.
+
+= 1.1.3 =
+* Fix - Fatal error when disabling WooCommerce.
+* Fix - Undefined index notice.
+* Fix - Check for product before using it in order info.
+* Fix - Resource Costs not added for Custom Rate - Date Ranges.
+* Tweak - Add an option to autocomplete accommodation orders by allowing virtual accommodation products.
+* Fix - Remove duplicate person cost multiplier checkbox.
+
+= 1.1.2 =
+* Fix - Corrupted check-in/check-out dates in DB.
+* Update - WC 3.3 compatibility
+
+= 1.1.1 =
+* Fix - PHP Notice when fully booked array is empty.
+* Fix - Bookings outside of available range being checked for availability.
+* Fix - Maximum number of nights allowed option set to 0 breaks page.
+* Fix - Bookable product base cost not being cleared when changing to an Accommodation product.
+* Fix - Update _wc_booking_block_cost when base cost is updated.
+
+= 1.1.0 =
+* Fix - Display cost not used when presenting price to the client.
+* Add - Add woocommerce_accommodation_bookings_range_picker_enabled to disable range picker.
+* Fix - Fallback to default checkin/checkout time values if none are set.
+* Fix - Fully booked days not showing correctly when persons are used.
+* Fix - Resource availability calculated incorrectly.
+* Add - New functionality to restrict the day a booking can start on. 
+* Fix - Tax fields missing.
+* Fix - Display price is showing incorrectly.
+* Fix - Availability rules being ignored.
+* Fix - Today should be shown as booked if it has check out available only
+
+= 1.0.9 =
+* Fix - Additional updates for WooCommerce 3.0 compatibility.
+* Fix - Min/max rules not being applied.
+* Fix - Prices not being added to cart.
+* Fix - Align panel icons.
+* Fix - Fatal error when using older version of Bookings.
+* Fix - Logic for availability of dates with checkin/checkout.
+* Fix - Resource costs not being calculated.
+
+= 1.0.8 =
+* Fix - WooCommerce 3.0 compatibility.
+
+= 1.0.7 =
+* Fix - Partially booked dates not indicated on the calendar.
+* Fix - Updated deprecated WooCommerce function calls.
+* Fix - Plugin locale/text domain loaded after output is generated.
+
+= 1.0.6 =
+* Fix - Check in/out time is not respected when booking is created
+* Tweak - Also check if booking class exists when plugin is loaded in case directory's name is not woocommerce-bookings
+
+= 1.0.5 =
+* Add - Display cost settings field.
+* Fix - Undefined variable on $post using tab manager.
+
+= 1.0.4 =
+* Feature - Add support for Persons
+* Feature - Add support for Resources
+* Fix - Full compatibility with Product Add-ons.
+
+= 1.0.3 =
+* Fix - Per Night Price Displaying Incorrect above bookings form.
+* Fix - Plugin on WordPress.org does not include assets folder.
+* Fix - Compatibility with Product Add-ons.
+
+= 1.0.2 =
+* Fix - Fatal Error on submit booking request in admin bookings
+* Fix - Incorrect end date time in order info and cart
+* Fix - No manual booking if product type is Accommodations
+* Fix - Better dependencies checker
+* Fix - Fatal error when plugin is deactivated
+* Fix - Fix display of checkout times when using different date formats.
+* Fix - Fix documentation link.
+
+= 1.0.1 =
+* Fix - Typo in month names.
+* Fix - Fix check-in/check-out times in the booking list table.
+
+= 1.0 =
+* Initial version.

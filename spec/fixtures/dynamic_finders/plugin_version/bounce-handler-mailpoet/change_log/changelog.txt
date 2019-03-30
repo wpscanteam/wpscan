@@ -1,0 +1,83 @@
+== Changelog ==
+
+= 1.3.13 - 2019-02-11 =
+* Fixed : Empty bounce handler settings page after mailpoet v3.19.0 update.
+
+= 1.3.12 - 2018-01-21 =
+* Fix : Bounce Logs.
+
+= 1.3.11 - 2018-01-10 =
+* Fix : Adds missing files and information for translation.
+
+= 1.3.10 - 2018-12-06 =
+* Add bulk or single log delete option to empty the bounce handler logs
+
+= 1.3.9 - 2018-07-06 =
+* GDPR Compatibility - Plugin is now connected to the WordPress v4.9.6 “Personal Data Exporter” and “Personal Data Eraser”. The log data considered sensitive for the GDPR many issues, tha's why it will be deleted if the user performs the Personal Data Eraser.
+
+= 1.3.8 - 2018-05-15 =
+* Plugin is now compatibility to PHP 7, 7.1, 7.2
+* Updated PEAR.php and socket.php files.
+* Fixed all the depricated functions which affecting to the previous PEAR version.
+
+= 1.3.7 - 2018-04-12 =
+* Uploaded missing image.
+
+= 1.3.6 - 2018-04-12 =
+* Fixed the  the mailbox password with special characters that might be causes an [AUTHENTICATIONFAILED]
+* Fixed the tooltip text colour.
+
+= 1.3.5 - 2018-04-04 =
+* Fixed the "Secure connection(SSL)" and "Self-signed certificates" issues.
+  
+  Settings for Secure connection(SSL):
+  - Set Yes, if you want secure connection between this server to your mailserver.
+  - Set NO, if you want a plain connection between this server to your mailserver.
+
+  Settings for Self-signed certificates:
+  - If your mailserver support Self Signed Certificate than set Yes, otherwise set No.
+
+= 1.3.4 – 2018-01-19 =
+* Fixed the changing unsubscriber issue after save and when leave the page.
+
+= 1.3.3 – 2018-01-01 =
+* Code for creating the text file is to debug scheduler has been removed from the schedule.php
+
+= 1.3.2 – 2017-11-22 =
+* Updated include/class-mailpoet-bounce-handler.php
+
+= 1.3.1 – 2017-11-22 =
+* To fixed Settings option key name that is affected cron system.
+
+= 1.3.0 – 2017-11-07 =
+* To fixed Actions & Notifications settings
+* To added more effective functions in the Bounce Logs tab
+	- To added log list dropdown
+	- To added new filter for bounce reasons
+	- Each coulmns are now sorting by clicking the column header.
+
+= 1.2.2 – 2017-10-13 =
+* Updated new dropdown named "Disregard current list" and fixed the functionalities.
+
+= 1.2.1 – 2017-09-29 =
+* On the Actions & Notifications tab, the fifth item [[Add/remove on another list] on the dropdowns for mail box full and mailbox not available.
+* When it is selected, it will show the same three extra dropdown as for “Unsubscribe the user”
+
+= 1.2.0 – 2017-09-29 =
+* On the Actions & Notifications tab, the two dropdowns for mailbox full and mailbox is not available split into 4 dropdowns each. 
+
+Older version 1.1.2: [Unsubscribe the user and add him to the list “xxx”]
+Version 1.2.0: [Unsubscribe the user] and [add/remove] him for the list [xxx] as [Subscribed/Unconfirmed/Unsubscribed/Bounced] 
+
+= 1.1.2 =
+* The error functions have been improved more than before in the version 1.1.2. 
+
+= 1.1.1 =
+* Fixed the PHP warning issue in the version 1.1.0. 
+
+= 1.1.0 =
+* Bounced email logger add. Now you can check list of email those were bounced.
+* Bounce checker output buffering improved.
+
+= 1.0.0 =
+* Initial release.

@@ -1,0 +1,213 @@
+= 1.4.6 =
+* Tweaks: Modified connections to work with WP remote functions
+
+= 1.4.5 =
+* Tweaks: History no longer clears on publishing
+
+= 1.4.4 =
+* Fixes: Fixed refresh triggers sent to iframe, as well as premissions
+* Fixes: Fixed icon selector not displaying correctly on the builder interface
+
+= 1.4.3 =
+* Tweaks: Improved error handling for connections
+* Fixes: Fixed issues when loading the preview with querystrings
+
+= 1.4.2 =
+* Fixes: Fixed visual editor not showing up sometimes
+* Fixes: Fixed colorpicker system colors not displaying sometimes
+* Fixes: Fixed blank templates not rendering correctly
+* Fixes: Fixed CSS styling that broke overlays for sliders
+
+= 1.4.1 =
+* Feature: Added special resizing buttons when working with Templates
+* Tweaks: Restored row overlay color for better legibility
+* Fixes: Fixed an issue when trying to access the builder as a guest
+
+= 1.4.0 =
+* Feature: The codebase has been overhauled to display the builder layout inside an iframe
+* Feature: You can now change your lout dimensions to mobile device resolutions
+* Feature: The builder is now docked to the left side of the screen
+* Feature: Adding new elements no longer locks the builder
+* Feature: Elements are now copied instantly, and without disrupting workflow
+* Feature: The change history dropdown now updates a lot faster
+* Feature: Saving changes is now faster and non-obtrusive
+* Feature: All elements now have top margins, which can be set to negative
+* Tweaks: The builder noy only adds a top margin if there's not enough room
+
+= 1.3.11 =
+* Fixes: Fixed templates page
+* Fixes: Added checks to ensure template embeds don't crash on old versions of PHP
+
+= 1.3.10 =
+* Fixes: Fixed a small error that ocurred on some native WordPress widgets
+
+= 1.3.9 =
+* Fixes: Added support for PHP 5.2.X and older when using closures
+
+= 1.3.8 =
+* Feature: Templates are now baseline functionality, so you can reuse your designs
+* Feature: Added a widget for embedding Forge templates anywhere
+* Feature: Added a shortcode for Forge templates
+* Tweaks: Large headings will now scale down automatically on mobile
+
+= 1.3.7 =
+* Feature: Added entrance animations to all elements
+* Feature: Added native WordPress widgets as elements, including a Sidebar element
+* Feature: Added system colors that can be used on any element and tweaked on the Customizer
+* Fixes: Fixed an issue with the colorpicker, where color would be slightly inaccurate
+
+= 1.3.6 =
+* Hotfix: Solved a small bug in the generation of settings pages
+
+= 1.3.5 =
+* Feature: Mass Editing is here! You can now Ctrl + Click to edit multiple elements
+* Tweaks: Added a refined Spanish translation
+* Fixes: The Mailchimp connection now supports an unlimited number of lists
+
+= 1.3.4 =
+* Feature: Added an Alt attribute to image elements
+* Feature: Some numeric fields are now sliders
+* Feature: Some fields are now buttons instead of dropdowns
+* Feature: Added Mailrelay as a connection service
+* Tweaks: Refined permissions for opening the page builder
+* Tweaks: Adjusted responsive breaks for columns
+
+= 1.3.3 =
+* Feature: Added video backgrounds to rows
+* Feature: Added transparent background overlays to rows
+* Tweaks: Slightly improved the UI for row columns
+* Tweaks: Adjusted capabilities for viewing the Forge admin pages
+
+= 1.3.2 =
+* Feature: Forge now supports creating landing pages natively
+* Feature: The export process now supports images from your media library
+* Fixes: Fixed import/export window styling
+* Fixes: Fixed Sendy connection not working when name field is empty
+
+= 1.3.1 =
+* Feature: Added proper border fields
+* Tweaks: Row dropdowns have been redesigned
+* Tweaks: Added live editing to checkbox fields
+* Tweaks: Improved the CSS of the row containers for mobile
+
+= 1.3.0 =
+* Feature: Added AJAX live editing! Most fields can now be previewed without saving
+* Tweaks: Rewrote the codebase for improved builder instantiation
+* Tweaks: Changed colorpicker to a more efficient one
+* Tweaks: Added some resistance to dragging elements to avoid misclicks
+* Tweaks: Fixed Magnific Popup library
+* Tweaks: Page builders can now be more easily handled
+* Tweaks: Refined element settings so they are a bit more organized
+* Tweaks: Added additional metadata to various elements
+
+= 1.2.6 =
+* New Feature: Keyboard shortcuts! You can undo using Ctrl+Z and redo using Ctrl+Y
+* New Feature: Added settings for customizing the behavior of the page builder
+* New Feature: You can now add the current post content as an element
+* Tweaks: Element settings are now grouped and more organized
+* Tweaks: Removed caching from W3 Total Cache and WP Rocket when using the builder
+
+= 1.2.5 =
+* Hotfix: Fixes issue that prevented AJAX calls from properly executing
+
+= 1.2.4 =
+* New Feature: Image elements can now be linked to a specific URL
+* New Feature: Added Sendy as a connection service
+* New Feature: Text blocks can now have different sizes and colors
+* New Feature: Presets! Themes can now integrate with Forge and provide predesigned layouts
+* Tweaks: Improved column spacing on mobile view
+
+= 1.2.3 =
+* New Feature: Added connections page for third party services
+* New Feature: Added a streamlined dashboard page
+* Fixes: Columns now properly take an ID and a CSS class value
+* Fixes: Images now have a normalized border style
+
+= 1.2.2 =
+* Fixes: Minor fixes to the CSS styles
+
+= 1.2.1 =
+* Tweaks: Added several interface improvements to avoid incompatibilities with theme layout, as well as misclicks
+* Tweaks: Added a list of all available extensions
+* Tweaks: Fixed license key input
+
+= 1.2.0 =
+* New Feature: The plugin has been extensively rewritten to provide support for extensions. Many filters have been added.
+* New Feature: Rows can now have 12 different layouts, up from 5.
+* New Feature: You can now change the background color of the page.
+* New Feature: The admin menu has been reorganized into a single entry.
+* New Feature: Added FontAwesome and Typicons icon libraries.
+* Tweaks: The action history now shows a loading icon on refresh.
+
+= 1.1.7 =
+* New Feature: Partial live editing added! You can now see changes made on elements, instantly.
+* New Feature: Rows now have an option for having a fixed height equal to the browser
+* New Feature: All elements now have common fields for CSS classes, IDs, and bottom margins
+* New Feature: Image fields can now take an absolute URL as their value, for better portability
+* Tweaks: All elements now have a single margin-bottom field, which you can use to control the spacing
+* Fixes: Resolved an issue where some elements of the builder would not load
+
+= 1.1.6 =
+* Tweaks: Added better CSS handling of responsive elements
+* Fixes: Resolved an issue where an empty action history crashed the builder
+
+= 1.1.5 =
+* New Feature: Rows can now have a fixed background image
+* Tweaks: The builder can now be launched without having to activate it first
+* Tweaks: Added minor code enhancements for future upgrades
+* Tweaks: Added custom jQuery triggering when creating or updating an element
+
+= 1.1.4 =
+* New Feature: Added a Spanish translation!
+
+= 1.1.3 =
+* Tweaks: Added a loading icon for better visual feedback
+* Fixes: Removed the link to the Settings page
+
+= 1.1.2 =
+* Fixes: Activation fix
+
+= 1.1.1 =
+* New Feature: Some fields now have descriptive tooltips
+* New Feature: Rows can now have parallax backgrounds
+
+= 1.1.0 =
+* New Feature: You can now undo and redo any action taken!
+* Tweaks: Added better handling of hierarchical elements
+* Tweaks: Row margins can now be in precentages or pixels
+* Tweaks: Adjusted margins between elements
+* Tweaks: Added better defaults for rows
+* Fixes: Refined asset loading so it does not conflict with empty rows
+* Fixes: Fixed row margins
+
+= 1.0.0 =
+* New Feature: You can now import and export content!
+* Tweaks: Added better handling of data
+* Tweaks: Forms are now more efficient
+
+= 0.2.1 =
+* CSS and JS assets are now loaded on demand
+* Added more helpful links to the admin area
+
+= 0.2.0 =
+* Headings can now have any font size, alignment, and color
+* Images can now be aligned
+
+= 0.1.5 =
+* Minor adjustments to fields and CSS 
+
+= 0.1.4 =
+* Modified paddings field to have a more visual look
+
+= 0.1.3 =
+* Added page-level settings that let you add custom CSS
+
+= 0.1.2 =
+* Added global error handling to prevent other plugins from breaking the builder
+
+= 0.1.1 =
+* Added Spanish translation
+* Clarified messages on the admin edit screen
+
+= 0.1.0 =
+* Beta release, yay!

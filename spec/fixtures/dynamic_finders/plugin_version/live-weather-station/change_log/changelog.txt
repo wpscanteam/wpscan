@@ -1,0 +1,922 @@
+#3.7.11 / March 20th, 2019
+
+* Bug fix: widgets in preview mode may produce a PHP warning with some WordPress setups. 
+
+
+#3.7.10 / February 19th, 2019
+
+* Improvement: optimization of night and day times computation for background changing in widgets.
+* Improvement: LCD display now correctly handles non-ascci caracters (i.e. for German, French, Dutch, etc.).
+* Improvement: in the file manager, clicking on "download file" will now download the file even if the file format is unsupported by WordPress.
+* Improvement: reference pressure value is stored while computing psychrometric values even if there's no reference temperature or humidity values.
+* Improvement: better server detection and outputting for servers on private IP range (mainly residential self-hosted servers).
+* Improvement: full support for WordPress 5.1.
+* Bug fix: some stations, in some maps, have wrong night/day indicator when "current conditions" is chosen as marker type. 
+* Bug fix: it's impossible to reset a module name after customization. 
+* Bug fix: there's a malformed exception when Netatmo servers are unable to send an error code after a failed token refresh.
+* Bug fix: while upgrading Weather Station, last version number may be wrongly interpreted and this results in the unnecessary execution of some patches.
+* Removed: iconv dependencies. Weather Station is now fully operational even if iconv support is not installed: iconv is no more a requirement.
+* Removed: [Weather Station support for PHP < 7.1 and WordPress < 4.9](https://weather.station.software/blog/weather-station-support-changes/). If you have versions older than that, Weather Station may work, but I can not offer technical support anymore...
+
+#3.7.9 / February 1st, 2019
+
+* Improvement: better temperature validity range for rain vs. snow detection.
+* Improvement: month names are now translated in calendar heatmap (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/) for the suggestion).
+* Improvement: optimized cache mechanism for multilingual sites.
+* Improvement: it's now possible to let the protocol specifier in the source name when adding a file-based station.
+* Improvement: FontAwesome 5 has been updated to version 5.7.0.
+* Improvement: current conditions icon is now displayed in station views.
+* Improvement: adapted table lists in prevision of WordPress 5.1.
+* Improvement: optimization of barometric/atmospheric pressure conversion.
+* Bug fix: some alarms are not working correctly when in non-metric system (thanks to [@dougotto65](https://weather.station.software/community/profile/dougotto65/)).
+* Bug fix: Steadman index, Summer Simmer index and delta-T thresholds are not correctly saved when in non-metric system.
+* Bug fix: outdoor widget may wrongly display the snow rate.
+* Bug fix: heatmap charts are not correctly refreshed when ajax refresh is selected (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: some icons may be missing/invisible in the station view.
+* Bug fix: in some cases, there may be a PHP warning when outputting ephemeris widget.
+* Bug fix: an extra space character is added after some textual shortcodes (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: widget produces PHP error when colors are not set (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: dates typos in the changelog.
+
+#3.7.8 / January 22nd, 2019
+
+* Improvement: better data obsolescence handling.
+* Improvement: collection error are now reported on a station basis for Clientraw, Realtime and Stickertags file-based stations.
+* Improvement: optimization of collection and database storage.
+* Improvement: for Clientraw based stations, extra modules are now created only if they are operational.
+* Improvement: full compatibility with PHP 7.3.
+* Bug fix: Netatmo importer can't import rain values in some conditions (thanks to [@2bias](https://weather.station.software/community/profile/2bias/)).
+* Bug fix: some few German words are again wrongly lower-cased - sorry, that's a long story (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: PHP errors when hosting provider blocks Netatmo services.
+* Bug fix: if a file-based station is in error, all stations having the same type may reproduce the same error (thanks to [@daguilera](https://weather.station.software/community/profile/daguilera/)).
+* Bug fix: alarms in steel meters are not working correctly (thanks to [@olaf](https://weather.station.software/community/profile/olaf/)).
+* Bug fix: psychrometric computation takes in some rare cases wrong reference values.
+
+#3.7.7 / January 14th, 2019
+
+* Improvement: detection of current user language (when internationalization support is not installed) has been greatly improved.
+* Bug fix: ephemeris computing in extreme latitudes may generate a PHP warning.
+* Bug fix: collecting a Netatmo station with a removed module may generate a PHP warning.
+* Bug fix: in German languages, some words are (again and again) wrongly lower-cased (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+
+#3.7.6 / January 14th, 2019
+
+* Bug fix: in German languages, some words are (again) wrongly lower-cased (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+
+
+#3.7.5 / January 14th, 2019
+
+* Improvement: all the API calls have been redesigned to be compliant with newly enforced WordPress security rules.
+* Improvement: simple quality checking on collected data.
+* Improvement: "theme-proof" standardized layout for fire, indoor, outdoor, solar and thunderstorm widgets.
+* Improvement: greater speed while collecting data.
+* Improvement: logged events about refresh token for Netatmo APIs are more precise (and less anxiogenic).
+* Improvement: the health index icon is now consistent between widgets and admin station view.
+* Improvement: better _erroneous values_ handling for BloomSky stations.
+* Improvement: when "theme outputs FontAwesome" is chosen, it's now possible to specify CSS or JS+SVG as rendering method.
+* Bug fix: in some cases, daily windrose may be wrongly refreshed (thanks to [@grosnenesse](https://weather.station.software/community/profile/grosnenesse/)).
+* Bug fix: when "theme outputs FontAwesome" is chosen, some icons in admin views are missing.
+* Bug fix: shadows for SVG icons are wrongly rendered in widgets.
+* Bug fix: in German languages, some words are wrongly lower-cased (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: in some cases computing potential temperature may produce a PHP warning (thanks to [@erwin](https://weather.station.software/community/profile/erwin/)).
+* Removed: cUrl dependencies. Weather Station is now fully operational even if cUrl support is not installed: cUrl is no more a requirement.
+
+#3.7.4 / January 7th, 2019
+
+* Improvement: optimized quota management for Mapbox and ThunderForest maps.
+* Improvement: "theme-proof" standardized layout for ephemeris widget.
+* Improvement: standardized icon sizes in admin station view.
+* Improvement: optimized meaning range computation (in non-metric systems) for dew and frost points, humidex, heat index, wind chill, Steadman index and summer simmer.
+* Improvement: min, max and trend have been removed from admin station view for better readability.
+* Bug fix: heat index is shown in widgets when temperature is below 27°C (thanks to [@thomas](https://weather.station.software/community/profile/thomas/)).
+* Bug fix: in some cases, the moon logo in ephemeris widget has a wrong size.
+* Bug fix: with some WordPress themes, the Windy logo inherit of CSS properties.
+
+#3.7.3 / January 3th, 2019
+
+* Improvement: the ephemeris module (in station view) now displays local times rather than UTC.
+* Improvement: optimized edge cases handling in ephemeris computation.
+* Bug fix: maps display wrong values in popup boxes when non-metric systems are chosen.
+* Bug fix: rain is wrongly collected in stickertags files when not in metric system (thanks to [@thomas](https://weather.station.software/community/profile/thomas/)).
+* Bug fix: there's a PHP notice when saving display settings.
+
+#3.7.2 / January 2nd, 2019
+
+* Improvement: better icon sizes in widget when Awesome Font 5 as CSS is choosen as rendering method.
+* Improvement: when zoom control is set to _disabled_ for a map, it disables now the mouse scroll wheel too (thanks to [@hwim](https://weather.station.software/community/profile/hwim/) for the suggestion).
+* Improvement: stickertags file can now be parsed, even if times and dates formats are not standard.
+* Improvement: rendering of analytics graph has been optimized.
+* Improvement: when the language is available with a translation greater than 95%, Weather Station no longer uses partial translations.
+* Bug fix: in solar widget, sunshine duration may be displayed even if it's not checked in widget settings (thanks to [@gerhard](https://weather.station.software/community/profile/gerhard/)).
+* Bug fix: when stickertags file is not an UTF file (as it should be), Weather Station can't read the used temperature unit (thanks to [@thomas](https://weather.station.software/community/profile/thomas/)).
+* Bug fix: in some cases, the language of Weather Station backend is the main language site, not the user selected language.
+
+#3.7.1 / December 28th, 2018
+
+* Improvement: the precision of average and standard deviation computation for angles (wind and gust) have been drastically improved.
+* Improvement: better handling for error 500 _sometimes_ sent by Netatmmo servers.
+* Bug fix: some modules have "unknown" as displayed name (thanks to [@gerhard](https://weather.station.software/community/profile/gerhard/)).
+* Bug fix: in some cases, maps are displayed without icons.
+* Bug fix: the files manager generates PHP warnings when WordPress is hosted on a Windows server (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+
+#3.7.0 / December 27th, 2018
+
+* New: mapping service allowing to generate maps with selected station(s) on weather and agricultural layers (OpenWeatherMap).
+* New: mapping service allowing to generate maps with selected station(s) on animated weather layers (Windy.com).
+* New: mapping service allowing to generate maps with selected station(s) on beautiful static layers (Mapbox, Stamen, Thunderforest).
+* New: historical data import from Netatmo cloud services for personal weather stations and "Healthy Home Coaches".
+* New: historical data import from Pioupiou servers for V1 & V2 sensors.
+* New: historical data export as CSV, DSV, TSV or ND-JSON file.
+* New: historical data import from previously saved file (ND-JSON).
+* New: Summer Simmer index is now computed and available in all controls and outdoor widget.
+* New: Steadman index (aka "Australian apparent temperature") is now computed and available in all controls and outdoor widget.
+* New: psychrometric delta-t value is now computed and available in all controls and psychrometry widget.
+* New: a new file manager to manage import / export files.
+* Improvement: better wind angle precision in all computation.
+* Improvement: running background processes are now listed in the "at a glance" box.
+* Improvement: there's now a "disclaimer" box in the dashboard.
+* Improvement: thresholds are now alphabetically ordered in the settings page.
+* Improvement: modules management form is now fully responsive.
+* Improvement: full compatibility with WordPress 5.0.
+* Improvement: added inline help while adding or editing station for Netatmo, WeatherFlow, BloomSky, Pioupiou, Ambient and sticketags-based stations.
+* Improvement: added inline help for modules management.
+* Improvement: weather condition (as numerical ID) is now rightly truncated in historical data.
+* Improvement: FontAwesome 5 has been updated to version 5.5.0.
+* Improvement: it's now possible to choose the outputting method for Font Awesome: CSS or JS+SVG.
+* Improvement: default mode for outputting FontAwesome is now "FontAwesome 5 as CSS".
+* Improvement: the "scheduled tasks" tab is now replaced by a full admin page.
+* Improvement: better layout and icons alignment in the tasks scheduler.
+* Improvement: location (and coordinates) rendering is now consistent between views, widgets, maps and controls.
+* Improvement: inline help for the tasks scheduler.
+* Improvement: cache duration for historical graphs has been increased to 12 hours.
+* Improvement: huge speed optimization when loading graphs in some browsers.
+* Improvement: for better compatibility and reactivity improvement, the script loader now wait for the whole document is loaded to launch.
+* Improvement: loading of daily and historical graphs (in ajax preload and ajax refresh mode) has been greatly improved for pages where there are many graphs.
+* Improvement: in the add form for WeatherFlow station, there's now a link to the [official WeatherFlow map](https://smartweather.weatherflow.com/map/).
+* Bug fix: in textual shortcode, trend for barometric pressure is not available in plain text (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: in distribution radial charts, legend is wrong when values are rain rates.
+* Bug fix: in some conditions, the inline help layout is shifted.
+* Bug fix: in textual shortcode, Ambient stations should not propose to use min/max temperatures (thanks to [@weatherboy](https://weather.station.software/community/profile/weatherboy/)).
+* Removed: as Weather Underground [stopped providing its API services](https://weather.station.software/blog/weather-underground-closes-its-doors-to-individual-users/), all features linked to Weather Underground have been removed.
+
+
+#3.6.4 / October 22nd, 2018
+
+* Improvement: better UV handling for Weather Underground stations.
+* Improvement: better precision in moon phase computation.
+* Improvement: in textual shortcodes, the long name (instead of short one) is now rendered for measurement type to avoid confusion with dimension name (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: some links to the online documentation may be wrong when site is not in english (thanks to [@christophe](https://weather.station.software/community/profile/christophe/)).
+
+#3.6.3 / October 19th, 2018
+
+* Improvement: full redesign of pressure handling. There are now two measurements: [Atmospheric and Barometric pressures](https://weather.station.software/handbook/background-processes/pressure-expander/).
+* Improvement: better precision in moon ephemeris computation.
+* Improvement: code cleaning for better download time.
+* Improvement: ready for the next change in WeatherFlow APIs.
+* Bug fix: irradiance is not stored when the collected station is based on realtime.txt file (thanks to [@gerhard](https://weather.station.software/community/profile/gerhard/)).
+* Bug fix: in some cases, moon age and phase are wrongly truncated.
+* Bug fix: decimal specifications are not applied on some measurements.
+
+
+#3.6.2 / October 13th, 2018
+
+* Improvement: better precision in psychrometric computation.
+* Improvement: durations have now a consistent displaying while used as textual data.
+* Bug fix: with some themes, the legend of windroses may be partially hidden.
+* Bug fix: UV values and strike counts are wrongly rendered in textual data when their values are 0 (thanks to [@johnny](https://weather.station.software/community/profile/johnny/)).
+
+#3.6.1 / October 10th, 2018
+
+* Improvement: all controls and charts can now be rendered in TablePress cells.
+* Improvement: charts now display sunshine duration in a human-friendly format (thanks to [@gerhard](https://weather.station.software/community/profile/gerhard/) for the suggestion).
+* Improvement: durations can now be used as main dimension in line series and bar series charts.
+* Bug fix: auto-refresh for textual data does not work properly with some pages builders (thanks to [@gerhard](https://weather.station.software/community/profile/gerhard/), [@johnny](https://weather.station.software/community/profile/johnny/) and [@zerog981](https://weather.station.software/community/profile/zerog981/)).
+* Bug fix: in the wizard for textual data and clean gauge shortcodes, selecting a color reset the module name.
+
+#3.6.0 / October 9th, 2018
+
+* New: Weather Station natively supports ***BloomSky*** stations (SKY1, SKY2 & Storm) - special thanks to Francis Gedeon for the tests.
+* New: Weather Station natively connects to ***Ambient Weather Network*** - special thanks to Francis Gedeon for the tests.
+* New: "picture" module for stations supporting visual snapshots.
+* New: "video" module for stations supporting daily timelapses.
+* New: a new video control to display timelapses (shortcode available in historical data tab).
+* New: a new picture control to display last snapshot from the station (shortcode available in current records tab).
+* New: notification system in Weather Station dashboard.
+* New language: German / Formal German (thanks to [@zerog981](https://weather.station.software/community/profile/zerog981/) and all German translators for their involvement).
+* Improvement: full redesign of wind handling. There are now two measurements: [wind source and wind direction](https://weather.station.software/handbook/background-processes/wind-angle-wind-source-expander/).
+* Improvement: textual shortcodes can now be autorefreshed every 2 minutes.
+* Improvement: all charts and graphs can now use user-editable colors schemes (thanks to Ralf Karpa for the suggestion).
+* Improvement: customized name and visibility of modules are now viewable in station view.
+* Improvement: all widgets can have the station view snapshot as background (for station supporting visual snapshots).
+* Improvement: new "rolling days" period type for historical charts allowing to view 7, 15, 30, 60 and 90 last days.
+* Improvement: for station supporting it, Weather Station is now able to collect and display "sunshine duration" (thanks to Gerhard Witteveen for the suggestion and tests).
+* Improvement: for historical data, standard deviation, average value and median value have now a consistent number of decimal.
+* Improvement: huge precision improvements for windroses, angular streams and value radial charts.
+* Improvement: textual shortcodes are able to output picture URL (for station supporting visual snapshots).
+* Improvement: textual shortcodes are able to output video URL (for station supporting daily timelapses).
+* Improvement: textual shortcodes are now able to output station model.
+* Improvement: textual shortcodes are now able to output reference pressure for computed values module.
+* Improvement: accumulated rainfall for today is now based on local day for WeatherFlow stations (it was previously based on last 24h).
+* Improvement: Weather Station now collects accumulated rainfall for yesterday from WeatherFlow stations.
+* Improvement: correct handling of battery and signal measurements types for stations which doesn't report it.
+* Improvement: rain measurements have now a consistent decimal value for all value types.
+* Improvement: better layout and behavior in the module selector.
+* Improvement: FontAwesome 5 has been updated to version 5.3.1.
+* Improvement: better icon handling and alignment in admin views.
+* Improvement: the select box to choose color scheme (for charts) has been redesigned to be more clear.
+* Improvement: a background process manager can now handle long treatments without slowing down WordPress.
+* Improvement: Weather Station now supports the [DISABLE_NAG_NOTICES directive](https://codex.wordpress.org/Plugin_API/Action_Reference/admin_notices#Disable_Nag_Notices) if you do not want to see update message in site backend.
+* Improvement: the readme.txt have now a minimum PHP version to prepare coming changes on the official WordPress repository.
+* Bug fix: in textual shortcodes, the customized name of a module is wrongly rendered.
+* Bug fix: Weather Station is unable to get Healthy Home Coach name due to API changes made by Netatmo.
+* Bug fix: icons for illuminance and irradiance are wrongly rendered in some screens.
+* Bug fix: in some condition, pushing data to PWSWeather, WeatherUnderground or MET Office does not work.
+* Bug fix: when canceling the addition of a Netatmo station or Healthy Home Coach, the message shown is wrong.
+* Bug fix: the customized name of a module is not correctly escaped, so some names are wrongly saved.
+* Bug fix: time scales for daily charts maybe wrong in PHP > 7.2.7 (thanks to Ruud Janssen for reporting it).
+* Bug fix: charts may produce errors when they try to graph values from a removed station.
+* Bug fix: database analytics may be displayed with malformed charts in some cases.
+* Bug fix: PHP warning in stations list when the refresh time of a station is unknown.
+* Bug fix: the display of oldest data date may be buggy (again) for some very recently added stations.
+* Bug fix: when adding a station, after removing it, the modules details are not reset.
+* Bug fix: the infobox for carbon dioxide in indoor widget wrongly display "carbon monoxide" as label.
+* Bug fix: in some (very rare) condition, last refresh time of a station can not be rightly stored (thanks to Dominik T. for detecting it).
+* Removed: Netatmo wind gauge module no longer supports maximum hourly wind source and strength, so it is removed from collected and displayed measurements.
+
+#3.5.5 / June 25th, 2018
+
+* Improvement: links in news feed are now identified with a language mark.
+* Bug fix: CORS error in recent browsers versions when using CND (thanks to Martin Kolárik for his help in detecting the root cause of this issue).
+* Bug fix: the link to "what's new" info box is wrong due to website redesign.
+
+#3.5.4 / June 22nd, 2018
+
+* Improvement: it's now possible to choose which version of Font Awesome is used and how it is enqueued.
+* Improvement: full compatibility with PHP 7.2.
+* Improvement: old versions of WordPress or PHP now generate warnings in events log.
+* Improvement: Weather Station can now run (in degraded mode) without PHP internationalization support.
+* Improvement: links to external websites (documentation, support, etc.) are now identified with a language mark.
+* Improvement: the new Weather Station icon is now visible in the welcome panel.
+* Bug fix: some icons are missing or misaligned in the dashboard.
+* Bug fix: some online documentation links are wrong due to website redesign.
+
+#3.5.3 / June 11th, 2018
+
+* Improvement: generated files (stickertags and YoWindow) have now an accurate HTTP header for the Last-Modified field (thanks to Ken True for pointing it).
+* Improvement: icon sizes are now standardized in widgets.
+* Improvement: Weather Station now takes care of wrongly configurated PHP Internationalization Support.
+* Removed: links to french documentation when plugin is used in french.
+* Bug fix: a PHP notice may appears when recording performance counters.
+* Bug fix: a PHP notice may appears when displaying historical Line & Bar charts or Calendar Heatmaps.
+* Bug fix: a MySQL warning at plugin deactivation gives an error in smoke test.
+
+#3.5.2 / May 10th, 2018
+
+* Improvement: removed query string from resource name when using CDN.
+* Improvement: it's now possible to change credentials of a service (Netatmo, OpenWeatherMap or Weather Undergroung) without deleting associated stations (thanks to Fred Contat for the suggestion).
+* Improvement: better Netatmo Healthy Home Coach error handling.
+* Bug fix: a wrong value may be displayed in textual shortcode for last seen, last refresh, first setup and last setup measurement types (thanks to Fred Contat for detecting it).
+* Bug fix: a PHP notice may appears when accessing the server configuration details page.
+
+#3.5.1 / April 24th, 2018
+
+* Improvement: optimized logic for the update message box.
+* Bug fix: with some PHP versions, there could be an error in a wrongly cleaned portion of code.
+
+#3.5.0 / April 24th, 2018
+
+* New: Weather Station is now compatible with the ***Pioupiou Wind Station*** from the Pioupiou network.
+* New: a new module manager allows, on a per station basis, to rename and/or hide modules.
+* New: new single and multi stackable bars chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new stackable areas chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new radial bar chart for daily graph with tons of options and settings.
+* New: new radial bar chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new candlestick chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new distribution radar chart and value radar chart for daily graph with tons of options and settings.
+* New: new distribution radar chart and value radar chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new angular stream chart for daily graph with tons of options and settings.
+* New: new angular stream chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new bi-line chart for daily graph with tons of options and settings.
+* New: new bi-line chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* Improvement: new value scale for time consistent boundaries in all daily and historical graphs supporting it (thanks to Ralf Karpa for the suggestion).
+* Improvement: for historical data compiled in standard mode, middle values are now available .
+* Improvement: with clean gauges, it's now possible to override standard colors for pointer, label, unit and value.
+* Improvement: the station list view have now a new column for direct access to shortcodes wizard.
+* Improvement: font sizes for scales in charts have been adapted for improving display (thanks to Gerhard Witteveen for the suggestion).
+* Improvement: interactive hint (in lines charts) is improved for small screens and finger pointing (thanks to Damien Maillet for the suggestion).
+* Improvement: all graphs and charts are now compatible with Elementor builder (thanks to Carlos Pedrola for the suggestion).
+* Improvement: for measurements types which doesn't support it, dataset is now hidden in chart select boxes.
+* Improvement: charts now support the inversion of the "template color" scheme.
+* Improvement: the bar & line chart now supports value scale parameter (only for line, for bar it's always automatic).
+* Improvement: pollution module is now hidden in select boxes when it have no consistent data to show.
+* Improvement: height of calendar heatmap is now optimized regarding the container size.
+* Improvement: popup hint for bar & lines chart now displays dates with a consistent format.
+* Improvement: new colorization method for bar & line chart to improve readability.
+* Improvement: all scripts and stylesheets (including own plugin assets) can now be loaded from external CDN (settings in *system* tab).
+* Improvement: streamlined color management for graph with a single time serie.
+* Improvement: consistency in color inversion for graphs with more than one time serie.
+* Improvement: new actions labels in stations list view for better understanding.
+* Improvement: automatic value scale for noise level is now a "0-based - top" scale.
+* Improvement: Weather Station now supports stations without coordinates.
+* Improvement: analytics have a new tab to display database statistics.
+* Improvement: analytics graphs have better timescale readability.
+* Improvement: cache operations optimization for backend.
+* Bug fix: in some old PHP versions, _opcache_ detection may produce unwanted warnings.
+* Bug fix: the meteorological winter dates may be wrong in some conditions while using sliding seasons as period for historical charts.
+* Bug fix: in some cases and in some timezones the time scale of the daily charts is wrong.
+* Bug fix: gauge is ugly when it references a non-existent module (after replacement or powered-off module).
+* Bug fix: wrong reference to a file (nv.d3.min.js.map) causes silent errors in the browser when displaying charts without CDN.
+* Bug fix: with some themes, the popup hint may be at a wrong position or have a wrong width.
+* Bug fix: due to the unmaintained OpenWeatherMap API for pollution, the module collection may generate many warnings in the events log.
+
+
+#3.4.4 / February 16th, 2018
+
+* Bug fix: LCD display preview can be inaccurate (thanks to John Schauer for detecting it).
+* Bug fix: in some rare cases, a WeatherFlow station may be unnamed and, therefore, be inaccessible in stations list view.
+* Bug fix: function name collision with WPML plugin results in blank screen when Weather Station & WPML are both active (thanks to David Garcia Watkins for reporting it).
+
+
+#3.4.3 / January 25th, 2018
+
+* Improvement: better name handling for multiline charts.
+* Bug fix: some `realtime.txt` based stations that worked before 3.4.2 may reverse - again :/ - uv index and irradiance (thanks to Ralf Karpa for detecting it).
+* Bug fix: a cache error may appear in some case when using a cache manager (thanks to John Schauer for reporting it).
+
+#3.4.2 / January 22nd, 2018
+
+* Improvement: new dimensions added to charts: density & area density, power flux & luminous flux densities, specific energy (thanks to Ralf Karpa for the suggestion).
+* Bug fix: some css border have their property inverted.
+* Bug fix: in some cases, cache for daily graphs is too aggressive: values are cached for too long time and are not refreshed correctly.
+* Bug fix: with some templates, charts are incorrectly redrawn when set in _Ajax Preload_ or _Ajax Refresh_ mode.
+* Bug fix: after applying the patch to correct `realtime.txt` variant, soil and solar values may be inverted (thanks to Ralf Karpa for detecting it).
+
+
+#3.4.1 / January 19th, 2018 
+
+* Improvement: for multilingual sites, Weather Station now takes care of the page language in all controls and widgets. Compatible with Babble, Polylang, Weglot and WPML.
+* Improvement: for multilingual sites, cache management is now done on a per language basis.
+* Improvement: visibility is now collected for OpenWeatherMap stations and all stations under [Current Records] virtual module (and available in current, daily and historical data).
+* Improvement: UV index and irradiance are now collected for Weather Underground stations (and available in current, daily and historical data).
+* Improvement: the detailed server configuration is much more elaborated with WordPress and database environments.
+* Bug fix: the display of oldest data date may be buggy for some very recently added stations.
+* Bug fix: graphs may have wrong width properties when inserted in tabs (thanks to Ralf Karpa and his son for detecting it).
+* Bug fix: daily graphs maybe unordered if you have manually inserted values in DB table - please, don't do that :-/ (thanks to Ralf Karpa for detecting it).
+* Bug fix: in some cases, last strike distance is wrong when expressed in imperial system.
+* Bug fix: a MySQL warning at plugin activation gives an error in smoke test.
+* Bug fix: there's some layout "glitches" in the charts with Safari and Chrome on iOS.
+
+#3.4.0 / January 16th, 2018
+
+* New: Weather Station now compiles data as daily and historical values.
+* New: new single-line and multi-lines chart for daily graph with tons of options and settings.
+* New: new single-line and multi-lines chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new calendar heatmap for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: new line and bar chart for historical graph (month, meteorological season and year) with tons of options and settings.
+* New: data for graphs can be cached (settings in *system* tab).
+* New: the scheduled tasks tab allows to proceed on execution and reschedule of tasks belonging to the new history pool.
+* New: the analytics graphs for task and cache now take care of the new history pools and caches.
+* New: third-party scripts and stylesheets can now be loaded from external CDN (settings in *system* tab).
+* New: a new device manager automatically takes care of wind and rain gauges replacement for Netatmo stations.
+* Improvement: the station view has been totally redesigned and is now faster to load.
+* Improvement: plugin admin (all tabs and screens) is now fully responsive, you can use it easily on your smartphone or tablet.
+* Improvement: the widgets names contains now an icon for an easier identification in the customizer.
+* Improvement: the textual shortcodes can now render dimension names of measurements (i.e. pressure, length, speed, etc.).
+* Improvement: if a cache manager is installed, Weather Station can now flush its cache when the cache manager does it (settings in *system* tab). Compatible with Autoptimize, Hyper Cache, W3 Total Cache, WP Rocket and WP Super Cache.
+* Improvement: scripts can now be loaded in footer to accelerate page render time (settings in *system* tab).
+* Improvement: scripts enqueuing has been optimized, admin pages are now 15% faster and pages with controls are 20% faster.
+* Improvement: better detection of needed php librairies and extensions.
+* Improvement: improved display behavior of rain values in outdoor weather summary and fire weather widgets for `clientraw.txt` and WeatherFlow stations (thanks to Alex for the suggestion).
+* Improvement: wind chill have now a consistent decimal value across all controls.
+* Improvement: better cache consistency when adding or removing station.
+* Improvement: better device detection and management for WeatherFlow and file-based stations (`clientraw.txt` and `realtime.txt` only).
+* Improvement: support for the located modules (indoor/outdoor) for WeatherFlow stations.
+* Improvement: a warning event is now generated when the server mask or disable some system functions.
+* Bug fix: in some cases, the plugin try to download translations statistics at each loading.
+* Bug fix: with some browsers, the layout of shortcode window is ugly.
+* Bug fix: for stations based on `clientraw.txt` files, seasonal aggregation can be selected while this type of measurement doesn't exists (thanks to Alex for detecting it).
+* Bug fix: when only stations based on `clientraw.txt` are collected, it's impossible to select a module in the Indoor Comfort widget (thanks to Alex for detecting it).
+* Bug fix: a PHP/MySQL error may appears when using "indoor" widget when no collected station provides this type of data.
+* Bug fix: in some (rare) race condition, it's not impossible that an event is not recorded in the event log.
+* Bug fix: it's impossible (again) to save negative threshold values for the Chandler Burning index, in Chrome, Safari and Firefox.
+* Bug fix: it's impossible to save threshold values greater than 100 for the Chandler Burning index, in Chrome, Safari and Firefox.
+* Bug fix: since some weeks, strike distance for WeatherFlow stations are wrong.
+
+#3.3.4 / November 27th, 2017
+
+* Bug fix: PHP warning when computing an equivalent potential temperature for a zero temperature.
+* Bug fix: daily and yearly rain data are wrongly recorded for stations based on `clientraw.txt` files (thanks to Jonathan G. for detecting it).
+
+
+#3.3.3 / November 13th, 2017
+
+* Improvement: compatibility with WordPress 4.9.
+* Improvement: lower boundaries for temperatures, frost point and windchill are now suitable for stations in extreme cold conditions (thanks to John S. for the suggestion).
+
+
+#3.3.2 / October 11th, 2017
+
+* Improvement: the stations list has new columns to improve its use.
+* Improvement: if you have more than 2 collected stations, the stations list doesn't show anymore shortcodes links to speed up the displaying.
+* Bug fix: in some cases, uninstalling the plugin doesn't remove all its tables.
+* Bug fix: in extremely rare cases, updating partial translation may produce a PHP fatal error (thanks to Lars for detecting it).
+
+
+#3.3.1 / October 5th, 2017
+
+* Improvement: the computed health index now takes care of data (un)availability.
+* Improvement: data manager now checks integrity twice a day to find (and delete) orphaned measurement data.
+* Bug fix: extra modules are not collected in `clientraw.txt` files when they are not in standard order (thanks to Gerhard Witteveen for detecting it).
+* Bug fix: PHP notice when WeatherFlow send empty dataset for current observations.
+
+
+#3.3.0 / September 5th, 2017
+
+* New: Weather Station is now compatible with the ***Smart Weather Station*** from WeatherFlow (Air & Sky modules).
+* New: Weather Station is now compatible with stations based on `stickertags` file (WeatherLink, WsWin32, MeteoBridge, etc.).
+* New: a new ***Solar*** widget to display irradiance, illuminance and UV index.
+* New: a new ***Thunderstorm*** widget to display strike counts, bearing and distance.
+* New: a new ***Psychrometry*** widget to display psychrometric values (see below).
+* New: solar module with irradiance, UV index and illuminance measurements (for stations supporting it) available in all controls.
+* New: thunderstorm module with lighting strikes count, distance and bearing measurements (for stations supporting it) available in all controls.
+* New: soil module with temperature, leaf wetness, evapotranspiration and moisture content/tension measurements (for stations supporting it) available in all controls.
+* New: the task scheduler have a new mode to allow a higher frequency of weather collection and sharing (settings in *system* tab).
+* New: it's now possible to subscribe to Weather Station news right from the dashboard.
+* New: psychrometric temperatures (wet bulb, equivalent, potential and equivalent potential) computed and available in all controls.
+* New: psychrometric partial and saturation vapor pressures computed and available in all controls.
+* New: psychrometric absolute humidity (partial or saturation) computed and available in all controls.
+* New: air density, equilibrium moisture content and specific enthalpy computed and available in all controls.
+* New: ability to publish outdoor data of personal stations as YoWindow XML format (to be used in YoWindow desktop application / screensaver).
+* New: file-based stations are now publishable via `stickertags` format.
+* Improvement: ephemeris widget and textual shortcodes now take care of locations where there's no day or no night (on 24h).
+* Improvement: an admin notification informs you when Weather Station have been updated.
+* Improvement: widgets now hide the header blank zone when there's no title or information to display (thanks to Lisa Yoon for the suggestion).
+* Improvement: widgets have now generic css classes that allow styling without using jQuery (thanks to LarsHdg for the suggestion).
+* Improvement: UV index and strikes summary are now available in the *Outdoor Weather Summary* widget.
+* Improvement: it's now possible to override the Healthy Home Coach internal health index with a computed value (comparable with indoor modules).
+* Improvement: the *display* tab of *settings* screen has been reorganized for better readability.
+* Improvement: inline help is now visible in widget and main settings (question mark in a circle).
+* Improvement: icons for day, dawn and dusk lengths and durations are now consistent.
+* Improvement: new setting to choose units (metric/imperial) for psychrometric values.
+* Improvement: some interface style settings have appeared in the *display* tab of *settings* screen.
+* Improvement: in textual shortcodes, difference is now made between Unix timestamps and UTC timestamps.
+* Improvement: distances now have a rounding precision commensurate with their values.
+* Improvement: the file handler now supports double date format in `realtime.txt` files.
+* Improvement: new option in *system* tab of *settings* screen to set the HTTP timeout (helps to get rid of temporary timeout errors with Weather Underground or OpenWeatherMap).
+* Improvement: better detection of environment while needed for support/help procedures.
+* Bug fix: in some cases, the dashboard columns may be blank after adding a station from the welcome panel.
+* Bug fix: it's impossible to save negative threshold values for the Chandler Burning index, in Chrome, Safari and Firefox.
+* Bug fix: carbon monoxide thresholds are wrongly converted from/to some system units.
+* Bug fix: temperatures have not the same decimal precision in all displays.
+* Bug fix: textual shortcodes doesn't display correctly formatted last refresh times.
+* Bug fix: the formatting of length (of day, dawn & dusk) in ephemeris module is wrong in some cases.
+* Bug fix: the icons for dew point and frost point are not correctly aligned in *Outdoor Weather Summary* widget.
+* Bug fix: adding a file-based station throws, in some cases, a notice in the PHP log file.
+* Bug fix: the time is sometimes wrong in generated `stickertags` files for Netatmo stations.
+* Bug fix: removing a Weather Underground station may produce an inconsistent warning message.
+
+#3.2.5 / May 17th, 2017
+
+* Improvement: compatibility with WordPress 4.8
+* Bug fix: PHP error in quota analytics on fresh install.
+
+#3.2.4 / May 9th, 2017
+
+* Improvement: number of data posts to Weather underground are now 10 times per hour.
+* Improvement: frequency for sharing data with Met Office are now aligned on WOW recommendation (20 minutes).
+* Bug fix: events log indicates "Too Many Requests" when pushing data to Met Office, when sharing is activated with PWS and Weather Underground too.
+
+#3.2.3 / May 2nd, 2017
+
+* Bug fix: there's a missing php file in the distribution done by WordPress.org (`ListTableTasks.php`).
+* Bug fix: PHP Warning when compiling quota performance data for the first time.
+
+#3.2.2 / May 2nd, 2017
+
+* Bug fix: silent SQL syntax error on MySQL > v5.6 despite 3.2.1 bug fix.
+
+#3.2.1 / May 1st, 2017
+
+* Bug fix: silent SQL syntax error on MySQL > v5.6.
+
+#3.2.0 / May 1st, 2017
+
+* New: a full-featured quota manager allows you to not exceed API usage for all services (Netatmo, Weather Underground, etc.).
+* New: a dashboard box displays API usage.
+* New: a dashboard box displays statistics on events counts.
+* New: it's now possible to reset cache from 'maintenance' tab of *settings* screen.
+* New: it's now possible to purge events log from 'maintenance' tab of *settings* screen.
+* New: tasks execution, events and api usage analytics - for those who love data analytics.
+* New: scheduled tasks manager - for those who dream to be a time sorcerer.
+* Improvement: better cache management after plugin update.
+* Improvement: adjustment of some elements in *Versions* box in dashboard.
+* Improvement: you could now set a limit for data age in analytics reports.
+* Improvement: totally rewritten push cron engine for optimization and stability.
+* Improvement: if your WordPress configuration is set to prohibit automatic updates, you can no longer set the corresponding option for Weather Station.
+* Improvement: better readability for *Weather Station News* box in dashboard.
+* Improvement: speed optimization for stations list and stations views.
+* Improvement: watchdog now takes care of plugin auto-update process - especially with PHP 7.
+* Improvement: it's now possible to reset analytics view.
+* Improvement: "Pusher" subsystem have been renamed to "Weather Pusher".
+* Improvement: consistency of events types between all collectors subsystems have been greatly improved.
+* Improvement: contextual help updated in the dashboard.
+* Bug fix: the css for widget is always outputed on frontend even if there's no widget on the page (special thanks to Schatzalp).
+* Bug fix: in very rare circumstances, it's not possible to move boxes in dashboard and station view.
+* Bug fix: the events log view doesn't shows contextual help when it is filtered.
+* Bug fix: unable to share data on Weather Underground site since they have updated their servers.
+* Bug fix: Healthy Home Coaches in stations list shows wrong options.
+* Bug fix: PHP warning when partial translations are not available for updates.
+
+#3.1.3 / March 17th, 2017
+
+* Improvement: it's now possible to force plugin automatic update thanks to WordPress updates system (enabled by default).
+* Improvement: adjustment of some UI elements in dashboard.
+* Bug fix: in analytics, the *Rendering Requests* graph uses the wrong interpolation method.
+
+#3.1.2 / March 13th, 2017
+
+* Bug fix: in Fire Weather widget, the current risk is wrong.
+
+#3.1.1 / March 13th, 2017
+
+* Improvement: the time scale for cache analytics offers now better readability.
+* Improvement: the *Weather Station News* box of the dashboard has been redesigned to show cleaner items.
+* Bug fix: in Fire Weather widget, the color of the current risk icon is wrong.
+* Bug fix: with some configurations, the window for shortcodes in admin panel has the wrong size.
+
+#3.1.0 / March 8th, 2017
+
+* New: a new widget ***Indoor Comfort*** to display indoor measurements health quality and advices.
+* New: a new widget ***Fire Weather*** to display fire risk at the station location.
+* New: an health index (computed for all indoor modules) is available in all controls.
+* New: the Chandler burning index is computed for all stations and available in all controls.
+* New: dawn and dusk time (civil, nautical and astronomical) are computed and available in textual data.
+* New: day duration (standard, civil, nautical and astronomical) are computed and available in textual data.
+* New: twilight for dawn and dusk (civil, nautical and astronomical) are computed and available in textual data.
+* New: ephemeris widget can now display standard, civil, nautical and astronomical daylight times.
+* New: support for the ***Healthy Home Coach*** from Netatmo.
+* New: a screen (reachable from 'versions' box) displays servers informations useful for local file-based stations.
+* New: a dashboard widget displays statistics on cache efficiency.
+* Improvement: all widgets and controls can now be cached (settings in *system* tab).
+* Improvement: outdoor weather and ephemeris widgets can have background images for day, twilight and night.
+* Improvement: outdoor weather and ephemeris widget can have a background color which luminosity follows current light.
+* Improvement: better precision of the measurement type in the LCD display in case of ambiguity.
+* Improvement: gases concentrations (for now CO & CO₂) can now be expressed as volume and mass mixing ratio, mass concentration and partial pressure (settings in *display* tab).
+* Improvement: strong accuracy and speed optimization for weather indexes and ephemeris computing.
+* Improvement: O₃ measurements are now renamed in "O₃ layer" and "ozone layer" to avoid confusion and misinterpretations.
+* Improvement: better coordinates management for stations based on `realtime.txt` files.
+* Improvement: source name for file-based stations can now have 240 characters.
+* Improvement: better readability for PHP configuration info panel in requirements warning.
+* Bug fix: with stations based on `clientraw.txt` files, collected wind speeds and gusts may be wrong.
+* Bug fix: in some conditions, widget in flat design mode doesn't shows the right background color.
+* Bug fix: in *Outdoor Weather Summary* widget, the "hide obsolete measurements" doesn't work as expected for OpenWeatherMap data.
+* Bug fix: message "Inconsistent data to insert..." in events log just after forcing a synchronization.
+* Bug fix: message "Inconsistent data to insert..." in events log while updating latitude or longitude for some file-based stations.
+* Bug fix: the wrong system send an events while regenerating access token (must be "Authentication").
+* Bug fix: in some conditions, partial translations are not updated (downloaded) once a day.
+* Bug fix: since WordPress 4.7 the partial translation system works erratically when an admin user have not set "site default" as language.
+* Bug fix: PHP warning in log file when Weather Underground return incorrect timestamp.
+
+#3.0.11 / February 1st, 2017
+
+* Bug fix: coordinates for stations based on `realtime.txt` files are truncated (many thanks to sebs42 to find it).
+
+#3.0.10 / January 20th, 2017
+
+* Bug fix: ephemeris widget doesn't correctly displays its background since 3.0.9 version.
+
+#3.0.9 / January 18th, 2017
+
+* Improvement: more readable cloud base altitude (logarithmic scale accuracy).
+* Improvement: better detection of firmware revision in file-based stations.
+* Improvement: widgets are now automatically exempted to be rendered/modified by wp-Typography plugin.
+* Improvement: better support for WP 4.7 languages mode in multisite installation.
+* Bug fix: the data manager doesn't catch attempts to insert null measured values into data table.
+* Bug fix: PHP 7.1 "Uncaught ArgumentCountError" while activating the plugin (many thanks to Brad-NZ to find this bug).
+
+#3.0.8 / January 16th, 2017
+
+* Improvement: full compatibility with WordPress 4.7 language management (for administration screens).
+* Bug fix: bad file format error is detected for some `clientraw.txt` files generated by Meteohub.
+* Bug fix: the url to make a review of the plugin is wrong.
+
+#3.0.7 / December 20th, 2016
+
+* Improvement: direct changelog access from Dashboard.
+* Bug fix: since WordPress 4.7, some events are not correctly filtered in the events log.
+
+#3.0.6 / December 19th, 2016
+
+* Improvement: optimized *Purge & Resynchronize* feature.
+* Improvement: better database migration from previous versions.
+* Improvement: adding/modifying links in inline help.
+* Improvement: more precise error messages when unable to add a Weather Underground station.
+* Improvement: optimized layout of shortcodes windows.
+* Improvement: internal translations updates are now done once per day.
+* Improvement: `readme.txt` cleaning.
+* Bug fix: activating `stickertags` publishing need page refreshing to be shown.
+* Bug fix: there are some typos in shortcodes windows titles.
+
+#3.0.5 / November 21st, 2016
+
+* Improvement: better latitude & longitude interpretation for `clientraw.txt` files.
+* Bug fix: bad file format error is detected for some `clientraw.txt` files generated by WeeWX (thanks to Marco Sartini to find this bug).
+
+#3.0.4 / November 18th, 2016
+
+* Bug fix: in some rare cases, the gauge boundaries for wind measurements are not correctly saved.
+
+#3.0.3 / November 18th, 2016
+
+* Improvement: min/max values and alarms are now displayed with consistent accuracy.
+* Improvement: better detection and process for migration from previous 2.x versions.
+* Bug fix: the gauge boundaries for some wind measurements are wrong.
+
+#3.0.2 / November 17th, 2016
+
+* Improvement: extreme conditions for pressure are more accurate when expressed in inHg and mmHg.
+* Improvement: caching mechanism on slow queries.
+* Improvement: error handling when generating shortcodes for missing data.
+* Bug fix: the gauge boundaries for pressure are wrong with units in inHg and mmHg.
+* Bug fix: the gauge boundaries for cloudiness are wrong.
+
+#3.0.1 / November 15th, 2016
+
+* Bug fix: some typos in dir names.
+
+#3.0.0 / November 14th, 2016
+
+This new release is a major update of the plugin which is now named **Weather Station**.
+After upgrading, please, review all your settings.
+
+* New: totally redesigned plugin admin pages to provide a simpler and easier access to all features and settings.
+* New: a full featured dashboard (like the WordPress one) provides a simplified way to access to all features and operating analytics of the plugin.
+* New: a new *station view* offers more in-depth visibility and understanding of the collected weather stations.
+* New: in addition to its nominal mode, Weather Station can now run in a simplified mode (automatic selection of settings, display options, units, etc.).
+* New: it's now possible to collect data from stations published on Weather Underground.
+* New: it's now possible to collect data from stations publishing their data via `realtime.txt` file (Cumulus, etc.).
+* New: it's now possible to collect data from stations publishing their data via `clientraw.txt` file (Weather Display, WeeWX, etc.).
+* New: the min & max boundaries for controls (like meters or gauges) can be set for each measurement types.
+* New: the min & max alarms thresholds for controls (like LCD panel or meters) can be set for each measurement types.
+* New: a widget in the WordPress dashboard now display an *operating summary* of the plugin.
+* New: it's now possible to manually purge and resynchronize data.
+* New: humidity min & max collecting for station supporting it. Output rendering in all shortcodes.
+* New: pressure min & max collecting for station supporting it. Output rendering in all shortcodes.
+* New: yesterday, month, season and year aggregated rain collecting for station supporting it. Output rendering in all shortcodes.
+* New: for Netatmo stations first setup, last setup and last upgrade dates are collected and may be rendered like other measurements.
+* New: for all personal stations last seen and last refresh dates are collected and may be rendered like other measurements.
+* New: new alternate icons set to display moon ephemeris values.
+* New: ability to publish outdoor data of personal stations as `stickertags` format (for local, national or transnational weather networks like FRWN, etc.).
+* New: a caching mechanism is implemented to accelerate all backend rendering.
+* Improvement: stability and speed are dramatically optimized.
+* Improvement: it's now possible to use partial translations.
+* Improvement: Weather Station has a new stylized (and stylish) logo!
+* Improvement: Weather Station has now its own menu in the main admin sidebar.
+* Improvement: all UI have been redesigned for easy use (icons, information messages, confirmation prompts, etc.).
+* Improvement: each admin page have now a contextual help.
+* Improvement: the settings page now adheres to the "standard" WordPress admin look & feel.
+* Improvement: external and auxiliary links can now be opened in same or new window (settings in *system* tab).
+* Improvement: all mapping features are now provided by OpenStreetMap.
+* Improvement: events log and logging policy are now configurable (settings in *system* tab).
+* Improvement: short codes previews are now based on true values (before it was on estimated values).
+* Improvement: namespaces refactored for avoiding name collision with other plugins.
+* Improvement: Weather Station now use the latest version of Netatmo SDK.
+* Improvement: pressure displayed in hPa have now reasonable accuracy with 1 decimal.
+* Improvement: better cURL error reporting (now in event log) when SSL issues occurs.
+* Improvement: it's now possible to be warned when time difference between Netatmo server and your server is too large (settings 'Server Time shift' in *system* tab).
+* Improvement: the plugin now verify all prerequisites (mandatory extensions) at startup and shows warning if there's something missing.
+* Improvement: connection status, dashboard and stations provides direct links to filtered events log.
+* Improvement: it's now possible to manage individually each Netatmo station (i.e. add or remove station to the mechanism of collect).
+* Improvement: huge source code refactoring and commenting for better readability.
+* Improvement: all forms now implements security best practices (nonces, validations, etc.).
+* Improvement: better support for anti directory listing.
+* Improvement: event log now shows events numbers and supports direct access to detailed description.
+* Improvement: battery and signal levels for Netatmo stations are more accurate.
+* Improvement: optimized country / time zones list for Deutchland, United-Kingdom, Russia, Serbia, Vietnam and Yemen.
+* Improvement: Weather Station now use the latest version of Font Awesome (4.7).
+* Bug fix: wind strength rounding in km/h are not accurate.
+* Bug fix: current weather from OpenWeatherMap is wrongly registered in the events log.
+* Bug fix: filtering events log by station doesn't work.
+* Bug fix: unable to validate site ID and AWS 6-digit PIN for sending data to MET Office.
+* Bug fix: some warning events are not logged.
+
+#2.9.3 / August 4th, 2016
+
+* New language: Russian (thanks to [@tefal](https://profiles.wordpress.org/tefal/) for its involvement).
+* Improvement: support for WordPress 4.6
+
+#2.9.1 / June 22nd, 2016
+
+* New language: Dutch (thanks to [@hanstis](https://profiles.wordpress.org/hanstis)).
+* Bug fix: wrong displaying of noise, O₃, CO and CO₂ in LCD Panel.
+
+#2.9.0 / June 19th, 2016
+
+* New: Live Weather Station can now collects max wind strength and angle for today (from Netatmo stations) and display it in textual shortcodes, LCD Panel, clean gauges and steel meter.
+* New language: English/South Africa.
+* Improvement: the number of decimals for wind strength are now adapted to the true strength (on a suggestion from [seasparrow](https://wordpress.org/support/profile/seasparrow)).
+* Improvement: better display for wind and units in LCD Panel.
+* Improvement: added compatibility to *WN (local weather networks) thanks to Patrice Corre from FRWN.
+* Improvement: some events have new severity for better visibility.
+* Improvement: event log is now more precise whith Netatmo connection error codes and messages.
+* Improvement: 4th phase of code refactoring for provisioning 3.X version.
+* Bug fix: in some cases, unit name in plain text, for wind and rain, is not correctly rendered.
+* Bug fix: some generated files are not correctly refreshed when using Varnish as cache.
+
+#2.8.1 / June 8th, 2016
+
+* Improvement: systems, services and stations are now alphabeticaly sorted in the events log filter.
+* Improvement: 3rd phase of code refactoring for provisioning 3.X version.
+* Bug fix: url rewriting doesn't cover all DB_* files cases.
+
+#2.8.0 / June 6th, 2016
+
+* New: new events log for all operations and cron jobs.
+* New language: English/Canada.
+* Improvement: new way of error handling for some processes.
+* Improvement: more visible warnings when internationalization support is not installed.
+* Improvement: better handling of connection/disconnection for Netatmo and OpenWeatherMap account.
+* Improvement: 2nd phase of code refactoring for provisioning 3.X version.
+* Bug fix: connectivity test for PWS Weather services may fails in some cases.
+* Bug fix: remaining or elapsed approximate time maybe wrong under one minute.
+* Bug fix: titles of columns are not translatable in stations views.
+
+#2.7.4 / May 24th, 2016
+
+* New language: English/UK.
+* Improvement: modification of API handling for better performances in cron jobs.
+* Improvement: code refactoring for provisioning 3.X version.
+* Bug fix: PHP warning when saving empty associated services for a Netatmo station.
+* Bug fix: some typos in french translations (be, ca and fr).
+
+#2.7.2 / May 16th, 2016
+
+* New language: French/Belgium.
+* New language: French/Canada.
+* Improvement: French translation now complies with french typography rules and main wordpress-fr recommendations.
+* Improvement: better javascript files refreshing after updating the plugin.
+
+#2.7.1 / May 10th, 2016
+
+* Bug fix: some javascript files are incorrectly minified.
+
+#2.7.0 / May 9th, 2016
+
+* New: Live Weather Station can now collects polution data for ozone (O₃) and carbon monoxide (CO) and display it in textual shortcodes, LCD Panel, clean gauges and steel meter. It is an experimental feature, [see notes](https://wordpress.org/support/topic/new-pollution-data-types-units-and-limitations).
+* Improvement: new "bullet-proof" mode for cron jobs.
+* Improvement: steel meters have now adaptative decimal numbers for labels.
+* Improvement: LCD panel now displays the correct number of decimal digits depending on the measurement type.
+* Improvement: clean gauge and steel meters now supports values smaller than 1.
+* Improvement: better min/max values handling in clean gauges.
+* Improvement: sample urls for related services redirects now to Netatmo stations.
+* Bug fix: some MySQL warnings while activating the plugin.
+* Bug fix: in some circumstances, cron jobs are disappearing (and data updates are not done) - many thanks to [Atle](https://wordpress.org/support/profile/atlehogberg) to have pointed out this annoying issue.
+
+#2.6.0 / April 24th, 2016
+
+* New: Live Weather Station can now send outdoor Netatmo data to [Weather Underground](https://www.wunderground.com/) service.
+* New: new option for rain and snow displaying: metric or imperial system.
+* Improvement: textual shortcodes can now display units (symbol/abbrev. or full unit name) for measurement types.
+* Improvement: unit for snow in metric system is now automatic (millimeters or centimeters).
+* Bug fix: LCD panel doesn't shows the right unit for snowfall in some cases.
+* Bug fix: impossible to disable data sending to Met Office or PWS Weather when station is correctly synchronized.
+* Bug fix: some typos in french translation.
+
+#2.5.0 / April 13th, 2016
+
+* New: Live Weather Station can now send outdoor Netatmo data to [Met Office](http://wow.metoffice.gov.uk/) and [PWS Weather](http://www.pwsweather.com/) services.
+* New: new option for wind direction icons: it's now possible to choose the semantics of the icons (towards or from).
+* Improvement: steel meters can now shows accumulated rainfall for last hour (Netatmo).
+* Improvement: support for Wordpress 4.5.
+* Bug fix: in some circumstances, Live Weather Station are not able to obtain correct geolocation of Netatmo stations.
+* Bug fix: database and PHP warnings when updating plugin in some cases.
+* Bug fix: PHP warning when in Netatmo & OWM mode and there is no specified OWM station.
+
+#2.4.1 / March 14th, 2016
+
+* Improvement: an error window now shows the reason when it's not possible to generate a shortcode (mostly for OpenWeatherMap errors).
+* Bug fix: unable to generate shortcodes when OpenWeatherMap servers sends empty responses.
+* Bug fix: unable to connect a Netatmo account with a password containing quotes, double-quotes or backslashes.
+* Bug fix: station names containing html special characters, quotes, double-quotes or backslashes are not correctly displayed in widgets and admin panel.
+
+
+#2.4.0 / March 8th, 2016
+
+* New language: English/New Zealand.
+* Improvement: Netatmo servers are now queried every five minutes (it was every ten minutes in previous versions).
+* Bug fix: a string of the *About* box is not translatable.
+* Bug fix: name collision for Color Class with other unknown plugin.
+
+#2.3.0 / March 2nd, 2016
+
+* New language: English/Australia.
+* Improvement: all live controls and widgets now makes distinction between (and shows correct units and labels for) rain rates and rainfalls.
+* Improvement: steel meters can now shows accumulated rainfall for today (Netatmo) and last 3 hours (OpenWeatherMap).
+* Improvement: Live Weather Station now supports empty responses sent sometimes by OpenWeatherMap servers.
+* Improvement: Live Weather Station now supports erroneous data sent sometimes by Netatmo servers.
+* Improvement: a warning is now displayed in the site dashboard when php internationalisation extension is not installed (it is a requirement to run Live Weather Station, see [FAQ](https://wordpress.org/plugins/live-weather-station/faq/)).
+* Bug fix: rainfalls and snowfalls are not correctly shown in LCD panel when their values are null.
+
+#2.2.2 / February 17th, 2016
+
+* Bug fix: live controls are no correctly displayed when `wp-admin` directory is not at the root of the site.
+
+#2.2.1 / February 11th, 2016
+
+* Bug fix: error in some steel meters while displaying obsolete data.
+* Bug fix: LCD font is not correctly displayed (in steel meters) when current value is out of range.
+* Bug fix: some typos in carbon dioxide strings.
+
+#2.2.0 / January 25th, 2016
+
+* New: steel meters, with tons of customization parameters, to display "live" values.
+* Improvement: using of subscript character for carbon dioxide, now displayed as CO₂ (previously, it was CO2).
+* Improvement: in clean gauges it's now possible to choose to display the shortened measurement type as title or label.
+
+#2.1.0 / January 13th, 2016
+
+* New: clean gauges to display "live" values.
+* Improvement: new option for outdoor weather widget: you can now choose to hide obsolete data.
+* Improvement: pressure displayed in inHg have now reasonable accuracy with 2 decimals.
+* Improvement: the data collecting method for Netatmo & OpenWeatherMap is now "bullet-proof".
+* Improvement: an improved connection mode that should avoid unwanted disconnections (on Netatmo servers temporary errors).
+* Improvement: refresh cycle for live controls goes from 5 minutes to 2 minutes - datas are fresher than ever ;).
+* Improvement: the *About* box is now much more readable.
+* Bug fix: some typos in french translation.
+
+#2.0.1 / December 22nd, 2015
+
+* Bug fix: PHP notice while collecting non-existent rain or snow values from OpenWeatherMap.
+
+#2.0.0 / December 17th, 2015
+
+*Note to existing 1.X users: due to the new connection mode (see improvements below), you must set again your Netatmo credentials in plugin dashboard after the plugin update.*
+
+* New: ability to create "virtual" weather stations based on OpenWeatherMap records ; you can now use Live Weather Station even if you don't have a Netatmo weather station.
+* New: when a Netatmo station is correctly located (in netatmo online app) its collected data are enriched with data from OpenWeatherMap (cloudiness, snow falls, etc.) if collect mode is set to "Netatmo and OpenWeatherMap".
+* New: astronomical computed values (aka ephemeris) for sun (sunrise, sunset, distance and angular size) and for moon (mooonrise, moonset, age, phase, illumination, distance and angular size), available via shortcodes (textual values) and a new widget.
+* Improvement: new option for outdoor weather widget and live controls: you can now set a data obsolesence time beyond which data will no longer be displayed. This is especially useful for Netatmo modules management (when turned off or disconnected from the main base) or while connectivity issues.
+* Improvement: new option for outdoor weather widget: it's now possible to specify max width of the rendered widget.
+* Improvement: new option for outdoor weather widget: subtitle can now be "nothing", "date & time of records" or "station coordinates (if known)".
+* Improvement: new options for outdoor weather widget: you can now display current weather (as a big icon), cloudiness and snowfall if connected to OpenWeatherMap.
+* Improvement: new option for distance displaying: metric or imperial system.
+* Improvement: new option for textual shortcodes: wind direction/angle can now be displayed abbreviated or in plain text.
+* Improvement: new option for live controls: displaying only measured data or measured and computed data.
+* Improvement: new connection mode to Netatmo account to comply with the new manufacturer's recommendations that take effect in a few months (no more login or password storing).
+* Improvement: computed values are now displayed in the site dashboard as an additional module for each station.
+* Improvement: reference wind strength for wind chill computing can now be displayed via shortcodes.
+* Improvement: stations time zone can now be displayed via shortcodes.
+* Improvement: for some unknown reason, some netatmo wind gauges doesn't have historical values nor gusts values. The widget now take care of this...
+* Improvement: in textual shortcodes, timestamps can now be displayed in remaining or elapsed approximate time.
+* Improvement: times and dates in widgets, textual shortcodes and site dashboard are now local to station (in previous version it was local to server).
+* Improvement: more meaningful error message if no data to show in LCD Panel.
+* Bug fix: unable to set colors for widgets when displayed for the same station on the same page.
+* Bug fix: wrong preview of LCD panel in the site dashboard (admin panel) when there was more than one Netatmo station.
+* Bug fix: malformed subtitles in LCD panel for some wind and rain gauges.
+
+
+#1.2.2 / November 25th, 2015
+
+* New: added an *About* box in dashboard.
+* Improvement: widget now shows max wind strength of the day.
+* Improvement: widget tooltip now shows the wind direction in plain text.
+* Improvement: better handling of wind direction when strength is null.
+* Improvement: secured handling of wind strength historic and max wind strength.
+* Improvement: for some unknown reason, some netatmo rain gauges doesn't aggregate hour/daily values. The widget now take care of this...
+* Bug fix: a `<a>` tag was not closed in some circumstances in the admin panel.
+* Bug fix: wrong displaying in the admin panel when there was more than one station to show.
+* Bug fix: color picker was not working with some themes delaying JQuery loading.
+
+#1.2.1 / November 24th, 2015
+
+* Bug fix: wrong settings when not updating widget after Live Weather Station update.
+* Bug fix: no icon in widget when it was displayed in content (not in sidebar).
+
+#1.2.0 / November 23rd, 2015
+
+* New: wind chill computing ([what is it?](https://en.wikipedia.org/wiki/Wind_chill)): available in widget, textual shortcodes and live controls (as outdoor values).
+* New: cloud base (above ground level) computing ([what is it?](https://en.wikipedia.org/wiki/Cloud_base)): available in widget, textual shortcodes and live controls (as outdoor values).
+* New: new option for altitude displaying: metric or imperial system.
+* Bug fix: PHP notice when not updating widget settings after Live Weather Station update.
+* Bug fix: wrong battery level and signal quality stored for virtual modules.
+
+#1.1.1 / November 19th, 2015
+
+* Bug fix: wrong border style when widget was displayed in content (not in sidebar).
+
+#1.1.0 / November 19th, 2015
+
+* New: dew point and frost point computing ([what is it?](https://en.wikipedia.org/wiki/Dew_point)): available in widget, textual shortcodes and live controls (as outdoor values).
+* New: heat index (USA, humidity based) computing ([what is it?](https://en.wikipedia.org/wiki/Heat_index)): available in widget, textual shortcodes and live controls (as outdoor values).
+* New: humidex (Canada, dew point based) computing ([what is it?](https://en.wikipedia.org/wiki/Humidex)): available in widget, textual shortcodes and live controls (as outdoor values).
+* New: temperature trend: data collecting and output rendering in all shortcodes.
+* New: pressure trend: data collecting and output rendering in all shortcodes.
+* New: altitude of the main station base: data collecting and output rendering in textual shortcodes.
+* New: coordinates (latitude and longitude) of the main station base: data collecting and output rendering in textual shortcodes.
+* New: device/module firmware revision: data collecting and output rendering in textual shortcodes.
+* Improvement: new options for widget: background opacity and show/hide borders.
+* Improvement: new option for live controls: show/hide computed values.
+
+#1.0.0 / November 14th, 2015
+
+* First public version.

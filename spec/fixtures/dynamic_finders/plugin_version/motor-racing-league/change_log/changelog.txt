@@ -1,0 +1,147 @@
+1.9.8 - 14th Aug 2017
+		Correct scoring issue where very occasionally a rain prediction will get points for pole position
+
+1.9.7 - 21st Feb 2017
+		Close 1 second window between deadline and entry submission
+		Updates for WP 4.7
+
+1.9.6 - 11th Mar 2016
+        Added option to display notices at the top/bottom/both of entry form
+        Removed deprecated mysql_real_escape_string
+        Fixed ability to enter predictions after qualifying
+        Updates for WP 4.4
+
+1.9.5 - 25th Jan 2014
+		Updated Zazilian language
+		Fixed bug with scoring when 'Use Race Points' was checked.  Only award points if the predicted and actual finishing positions match.
+		
+1.9.4 - 13th Sep 2013
+		Bug fix for tooltips showing incorrect driver on `[motorracingleague results=x]`
+		Performance improvements for `[motorracingleague results=x]`
+		New option `[motorracingleague results=x used_doubleups=1]` displays an extra table of players who have doubled up previously in the season.
+
+1.9.3 - 3rd Aug 2013
+		Updates for WordPress V3.6
+
+1.9.2 - 12th Jul 2013
+		Added ignoredeadline option to statistics shortcode to display prediction statistics before the entry deadline has passed.
+		Bug fix to honour 'Double Up' setting between Qualifying and Race prediction deadlines.
+
+1.9.1 - 9th Apr 2013
+		Add upgrade procedure now that Wordpress no longer deactivates/reactivates on upgrade.
+		Change default option to 'Must be logged-in', 'Can not see predictions', 'Max Stats' = 3
+		Correct points breakdown tooltips
+		Reduce memory usage on front-end
+		Removed 'Conditional CSS/JS' option as it didn't work in some cases !
+
+1.9   - 19th Mar 2013
+		Handle 'Show Predictions' button better if no predictions.
+		Improved robustness of email reminders.
+		Bug fix for qualifying deadline for last race of season.
+
+1.8   - 12th Mar 2013
+		Allows predictions for Rain, Safety Car, DNF
+		Allow users to Double Up points for one race
+		Minor bug fixes
+
+1.7   - 8th Mar 2013
+		Added email reminders to prompt users who have not predicted yet.
+		
+1.6   - 18th Feb 2013
+		Do not save late entries - i.e. those submitted after the deadline
+		Order rankings from `[motorracingleague results=x]` by Total Points, Best Previous Round, Earliest Prediction
+		Update jQuery stylesheet
+		Display actual date (not local date/time) of a prediction in the admin screens
+
+1.5.2 - 12th Dec 2012
+		Bug fix for missing tabs in Wordpress V3.5
+		
+1.5.1 - 15th Nov 2012
+		Bug fix for some themes not showing the countdown clock.
+		
+1.5	  - 10th Mar 2012
+		Bug fix for [motorracingleague predictions=x] not honouring the championship ID
+		Added total points to logged-in users' predictions
+		Updates for WP 3.* to remove PHP notices
+		Display message before saving if a user must be logged in to predict
+
+1.4   - 20th Mar 2011
+		Updates for Wordpress Multi-site installations
+		Experimental setting to show the users display_name from their profile instead
+		of login_name.  NOTE - If a user changes their display name mid season the points
+		may not tally correctly.  Still under development.
+		
+1.3   - 23th Feb 2011
+        Correct minor bug loading admin stylesheet
+        Fix minor bug with checkboxes and Google Chrome browser
+        Allow Opt-in mailing list function for all types of users.
+        Optionally send a confirmation email of a players' prediction
+        Drop temporary tables after points calculations
+        Added shortcode [motorracingleague predictions=n] to list a logged-in players predictions
+        Make leading zero on lap time optional
+
+1.2.1 - 29th Apr 2010
+		Added shortcode to display prediction summary statistics
+		
+1.2   - 3rd Mar 2010
+		Added option to present non-logged in users with a mailing list opt-in checkbox
+		Scroll window to top of form when 'Show Predictions' clicked
+
+1.1.2 - 6th Feb 2010
+		Fix bug with non privileged AJAX requests failing
+
+1.1.1 - 4th Feb 2010
+		Prevent the display of other peoples predictions for logged in users.
+
+1.1   - 18th Jan 2010
+		Administration screens tidied up and minor bug fixes
+		Logged in users can now change predictions up until the race deadline.
+		Scoring tab for a championship to assign points depending on finishing positions.
+		Make the prediction of pole position optional
+		Allow the prediction of fastest lap (or most laps led) driver
+		Allow the prediction of pole lap time
+		Changes to shortcode syntax to ease future enhancements. See [Upgrade Notice](http://wordpress.org/extend/plugins/motor-racing-league/upgrade_notice/).
+		Allow multiple instances for results Widget. You can now add a widget for each championship. Requires Wordpress 2.8+
+		Moved some settings from global to championship related.
+		Added scrollbar to users' results table for narrow display columns.
+		Added option to prevent loading of Javascript and CSS unless post has an [motorracingleague] shortcode present.
+		Portuguese translation - Thanks Willian
+
+1.0.7 - 17th Nov 2009
+		Bug fix - Class activation error with ImportExport function
+		Added option to copy drivers from another season to avoid data re-entry.
+
+1.0.6 - 9th Oct 2009
+		Correct a couple of spelling mistakes
+		Added column to results and widget display to show a players ranking
+		Correct bad path location for language translation files.
+		Stylesheet change to right-justify points columns for a neater display.
+		Spanish translation added - Thanks Sammy
+		Bug fix - Correct display problem if two predictions have equal timestamps
+		Bug fix - Check players email address against previous entry to prevent new users 'hi-jacking' old player names.
+		Fixed Javascript clash with prototype and jquery libraries. Should also fix problems with Atahualpa Theme
+		
+1.0.5 - 1st Sep 2009
+		Add option to allow users to view other peoples predictions	before making their own.
+		Administrators can alter players predictions, e.g. due to user data entry errors.
+		Bug fix - Recalculating results trashed entry timestamp preventing further recalculations
+		because the entry time had now passed the race deadline
+		Option to ensure users must be logged in before predicting
+		
+1.0.4 - 25th Aug 2009
+		Updates for compatibility with MySQL 4.0
+		Alter database schema to prevent duplicate drivers
+		Add option to display promotion link to author homepage
+		Added Javascript countdown timer to next entry deadline
+
+1.0.3 - 17th Aug 2009
+		Allow some changes to championship settings
+		Added missing screen shots
+		Added simple import of old race results.
+		BUG FIX - Handle missing championships better.
+
+1.0.2 - 16th Aug 2009
+		Bug fix activation/deactivation problem. Correct bad directory path.
+
+1.0 - 16th Aug 2009
+		Initial Version

@@ -1,0 +1,225 @@
+CHANGELOG
+=========
+
+= Version 5.7 =
+* readme file: removed donate link
+* updated theme author info
+
+= Version 5.6 =
+* last update: this plugin will be removed from repository
+* main reason is the small number of active installs
+* you can keep using plugin, but without updates and without support from author
+* file vssf-form: added escaping to empty variables
+* updated info about SMTP plugins in readme file
+* updated file vssf-style
+* updated readme file
+
+= Version 5.5 =
+* new: attribute to change default email subject: subject
+* new: attribute to scroll back to form location after submit: scroll_to_form
+* for more info please check readme file
+
+= Version 5.4 =
+* minor change in file vssf-style
+
+= Version 5.3 =
+* form now supports bootstrap css
+* this means I have added bootstrap css classes
+* updated files vssf-form and vssf-widget-form
+* updated file vssf-style
+
+= Version 5.2 =
+* best practice: removed closing PHP tag from most files
+* best practice: added newline at end of most files
+
+= Version 5.1 =
+* new: sender can receive a confirmation by mail after submitting form
+* added 2 attributes: auto_reply and auto_reply_message
+* for more info please check readme file
+* updated file vssf-form
+* added info in readme file about the use of smtp plugins
+* updated FAQ
+
+= Version 5.0 =
+* changed the "from" header to avoid form submissions being marked as spam
+* the "from" header is now a default email that ends with your site domain
+* also added new attribute to change this email again: from_header
+* for more info please check readme file
+* updated files vssf and vssf-form
+* updated readme file
+
+= Version 4.9 =
+* bugfix: fixed double form submission
+* updated file vssf-form
+
+= Version 4.8 =
+* improvement: check to determine whether form was sent or not
+* updated file vssf
+* minor textual changes
+* updated readme file
+* new screenshots on wp.org
+
+= Version 4.7 =
+* file vssf-form: removed error message above form
+* updated file vssf-style
+
+= Version 4.6 =
+* information field: save html is allowed
+* added filter wp_kses_post
+* updated files vssf-form and vssf-widget
+
+= Version 4.5 =
+* all php files: disable direct access to file
+* updated file uninstall
+
+= Version 4.4 =
+* file vssf-widget: fixed php7 error (thanks nx3d)
+
+= Version 4.3 =
+* file vssf-style: minor changes
+* updated FAQ
+
+= Version 4.2 =
+* added attribute to hide phone field
+* updated file vssf-form (css class of input fields)
+* updated readme file
+
+= Version 4.1 =
+* readme file: bunch of textual changes
+
+= Version 4.0 =
+* added file changelog
+* updated readme file
+
+= Version 3.9 =
+* updated file vssf-form: changed prefix of input name from form_ into vssf_
+* css class of widget and info: replaced underscore with hyphen 
+* updated file vssf-style
+* updated readme file
+
+= Version 3.8 =
+* removed empty action attribute from form tag
+* updated readme file
+
+= Version 3.7 =
+* added support for plugin Contact Form DB
+* with this plugin you can list form submissions in your dashboard
+
+= Version 3.6 =
+* changed file names: you might need to activate plugin again
+* updated readme file
+
+= Version 3.5 =
+* updated text strings
+* updated readme file
+
+= Version 3.4 =
+* file vssf_main: simplyfied field validation
+* changed captcha label
+* relocated file vssf_style to folder css
+* updated file vssf_style
+* updated readme file
+
+= Version 3.3 =
+* added a PayPal donate link
+* updated readme file
+
+= Version 3.2 =
+* updated readme file
+* updated FAQ
+* updated file vssf_settings
+
+= Version 3.1 =
+* updated readme file
+* file vssf_widget: changed label Shortcode Attributes into Attributes, to avoid confusion
+
+= Version 3.0 =
+* updated file vssf_widget: you can use shortcode attributes for the widget now. More info about this at the Installation section.
+* file vssf_main: changed phonenumber into phone
+* updated readme file
+
+= Version 2.9 =
+* removed signup confirmation which was send to submitter to avoid email of admin is being used by spammers
+* added widget text input to add additional information about your event, meeting, etc
+* updated file vssf_main
+* file vssf_setting: removed function to set mail header 'Sender' because many servers ignore this
+* updated readme file
+
+= Version 2.8 =
+* removed translations: plugin now support WordPress language packs
+
+= Version 2.7 =
+* added file uninstall.php so settings in database are removed when uninstalling plugin
+
+= Version 2.6 =
+* updated file vssf_main
+* renamed sum_fields: captcha_fields
+* renamed security_fields: honeypot_fields
+
+= Version 2.5 =
+* updated file vssf_main
+* updated Data Validation and Escaping
+
+= Version 2.4 =
+* changed text domain for the wordpress.org translation system
+* updated FAQ
+
+= Version 2.3 =
+* file vssf_main: added separate email headers for message to submitter to avoid message going to spam or junk folder
+
+= Version 2.2 =
+* marjor update
+* as mentioned before I have removed the custom style editor
+* fixed bug with REPLY-TO header and Cyrilic language
+* updated most php files
+* updated language files
+* updated FAQ
+
+= Version 2.1 =
+* NOTE: in next version I will remove the custom style editor. More info: WordPress plugin page and readme file.
+* please ignore previous update: I forgot to add an adjusted file
+
+= Version 2.0 =
+* submitter will now receive signup confirmation by mail
+* updated language files
+
+= Version 1.9 =
+* updated language files
+
+= Version 1.8 =
+* several small adjustments
+* updated language files 
+
+= Version 1.7 =
+* adjusted the email headers to avoid messages directly going to junk/spam folder: added Reply-To and Return-Path
+* renamed vssf_sanitize_text_field into vssf_sanitize_text_area
+* updated language files
+
+= Version 1.6 =
+* removed 'extract' from file vssf_main
+* adjusted code in file vssf_main
+* cleaned up code in file vssf_style
+
+= Version 1.5 =
+* major update
+* cleaned up code in file vssf_main
+* added custom style editor: you can change the layout (CSS) of your form using the custom style page in WP dashboard
+* linebreaks in textarea field are allowed now
+* updated language files 
+
+= Version 1.4 =
+* form will now use theme styling for input fields and submit button. If not supported in your theme you can activate plugin styling in file vssf_style.
+
+= Version 1.3 =
+* replaced all divs with paragraph tags for better form display
+
+= Version 1.2 =
+* added translatable form subject
+* updated language files
+
+= Version 1.1 =
+* adjusted plugin for use as widget only. The shortcode to display form on a page is still supported. Do not use shortcode and widget because this might cause a conflict.
+* updated language files
+
+= Version 1.0 =
+* first stable release

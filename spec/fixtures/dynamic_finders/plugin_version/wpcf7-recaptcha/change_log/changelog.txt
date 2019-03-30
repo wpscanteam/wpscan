@@ -1,0 +1,71 @@
+== Changelog Archive ==
+
+This is to keep track of all changes the plugin undertakes. The readme.txt should only contain the most recent 3.
+
+= 1.1.5 =
+
+Release Date: February 25, 2019
+
+* Overview
+	* Added plugin to github and link to github on description page.
+	* Ran into issue committing v1.1.4 which caused json checksums to not reflect some changes made. Thank @willpresleyev for pointing this out!
+
+= 1.1.4 =
+
+Relase Date: February 22, 2019
+
+* General
+	* Ensured WordPress 5.1 compatibility
+	* We need your help translating this plugin! Please contribute at: https://translate.wordpress.org/projects/wp-plugins/wpcf7-recaptcha
+	
+* Multisite
+	* Multisite - Network Admins will notice a new menu item under plugins labelled "WPCF7 reCaptcha Settings"
+	* Multisite - Network Admins now have the ability to add default keys and settings for sites. Individual sites can overwrite these defaults should they choose to.
+	* Multisite - Default Network settings do not override keys or settings if they are already set/saved on the individual site. These only apply if none are found on the individual site.
+	
+* Cleanup
+	* Removed languages folder to avoid confusion with glotpress.
+
+= 1.1.3 =
+
+Relase Date: February 06, 2019
+
+* Overview
+	* An attempt to make translations easier and better overall.
+	* Combined a few redundant translation functions into a single translation function.
+	* Changed instances of reCaptcha that were all caps and not consistent.
+	* Added a margin-bottom: 0 style to the reCaptcha iframe in an attempt to prevent CSS overlapping using the `add_action( 'wp_enqueue_scripts', 'iqfix_recaptcha_inline_css' )` hook.
+
+
+= 1.1.2 =
+
+Relase Date: January 14, 2019
+
+* Overview
+	* Replaces old Text Domain 'iqc' with new Text Domain 'wpcf7-recaptcha' to match the plugin slug. This fix should help translations.
+	* Added Portable Object Template (.pot) file to the /languages/ folder to help translators.
+	* Added call to action on the settings page which encourages users to like IQComputing on Facebook to receive the latest news and updates regarding this plugin and future plugins we develop.
+
+= 1.1.1 =
+
+Release Date: January 07, 2019
+
+* Overview
+	* Adds message whenever user forgets to click reCaptcha checkbox.
+
+= 1.1.0 =
+
+Release Date: December 28, 2018
+
+* Overview
+	* Prevents Contact Form 7 from removing reCaptcha keys upon update.
+	* Removes Contact Form 7 reCaptcha upgrade notice.
+
+= 1.0 =
+
+Release Date: December 28, 2018
+
+* Overview
+	* Initial release of plugin.
+	* Contact Form 7 5.0.5 reCaptcha functionality copied over.
+	* Created subpage under "Contact" named "reCaptcha Version" to be used as a settings page.

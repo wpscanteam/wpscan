@@ -1,0 +1,48 @@
+= 2.0.2 =
+* Disable the Unsubscribe/Manage Subscription widget button by default.
+* Fixed Widget title not showing properly.
+* Added Admin option to change the number of items displayed on the Subscribers and Queue pages.
+
+= 2.0.1 =
+* Fixed initialization of users variable in get_users() function.
+
+= 2.0 =
+* Added Subscriber Options to control which authors or blogs users can subscribe to.
+* Added option to automatically subscribe user upon user registration.
+* Added subscription management for subscribers.
+* Added custom CSS feature.
+* Restructured the HTML code of the frontend forms and widget to allow for better CSS customization.
+* Removed disclosure of Wordpress user IDs in SubMe forms.
+* Removed listing of Wordpress users with 'Subscriber' role in all SubMe options.
+* Cleaned up usage of the stripslashes function.
+* Fixed <? to <?php in include/subscribers.php and include/queue.php
+
+= 1.2.3 =
+* Improved visual layout of Admin settings
+* Improved conversion of html to text when publishing new posts
+
+= 1.2.2 =
+* Added CSV export
+* Added CSV import
+* Changed <h2> tags in subscribers.php to <h3> tags. Added single <h2> title in subscribers.php and queue.php. Error messages are now properly shown on top of the page.
+* Besides showing error messages, info messages are now also shown.
+
+= 1.2.1 =
+* Added option to fix the Return-Path for phpmailer
+* Fixed some Dutch translations
+* Fixed printing the noun 'item' in plural or singular in include/queue.php and include/subscribers.php to make it agree with the number of items.
+
+= 1.2 =
+* Added Michael Tibben's Html2Text class to convert HTML to plain text. SubMe's version of Html2Text doesn't convert newlines to spaces.
+* Added trim_words function to create an excerpt of a post, instead of using wp_trim_words.
+
+= 1.1.1 =
+* Fixed version info
+* Added search tag
+
+= 1.1 =
+* Added logging of subscriber's IP address.
+* Added flood pretection for adding new subscribers.
+* Added message 'No items found' for empty tables in include/subscribers.php and include/queue.php.
+* Improved retrieval of AUTO_INCREMENT value when a new subscriber is added to the database.
+* Code cleanup

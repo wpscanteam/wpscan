@@ -1,0 +1,123 @@
+*** WooCommerce eWAY Gateway Changelog ***
+
+2018-11-19 - version 3.1.19
+* Update - WP 5.0 compatibility.
+
+2018-10-17 - version 3.1.18
+* Update - Add settings link
+* Update - WC 3.5 compatibility.
+
+2018-08-21 - version 3.1.17
+* Fix    - Store Host IP is captured/Depicted as customer IP address on Eway site.
+
+2018-05-22 - version 3.1.16
+* Update - Privacy policy notification.
+* Update - Export/erasure hooks added.
+* Update - WC 3.4 compatibility.
+
+2018-05-02 - version 3.1.15
+* Update - WP tested up to version.
+* Fix - coding standards.
+* Fix - nonce usage, input sanitization, output escaping.
+
+2017-12-15 - version 3.1.14
+* Update - WC tested up to version.
+
+2017-04-03 - version 3.1.13
+* Fix - Update for WC 3.0 compatibility.
+
+2016-12-09 - version 3.1.12
+* Tweak - Update deprecated WooCommerce core function calls.
+* Fix   - Credit Card details not being sent in certain instances.
+
+2016-08-11 - version 3.1.11
+* Tweak - user order currency and not store currency for shop that have multiple currencies.
+* Fix   - When save cards enabled payment method card changes didn't work.
+
+2016-08-04 - version 3.1.10
+* Fix - Subscription credit card changes not allowed.
+
+2015-11-11 - version 3.1.9
+* Disable button after submitting credit card form to avoid double submissions.
+
+2015-10-28 - version 3.1.8
+* Fix - PHP Fatal error when in Debug mode
+* New - WooCommerce Subscriptions 2.0 Support
+
+2015-09-14 - version 3.1.7
+* Hardcode API listener for subscription support.
+
+2015-08-05 - version 3.1.6
+* Fix - Error handling.
+* Removed deprecated code.
+
+2015-05-15 - version 3.1.5
+* Fix - Send through customer country code as lowercase
+
+2015-05-07 - version 3.1.4
+* Fix - Don't show the "Manage Cards" link if no credit cards are saved.
+
+2015-02-17 - version 3.1.3
+* Fix - Use right method to retrieve error message from WordPress
+
+2014-10-16 - version 3.1.2
+* Fix - Issue where paying subscription via token card with no upfront payment failed.
+
+2014-09-25 - version 3.1.1
+* Fix - Issue where subscriptions with no upfront payment failed.
+
+2014-08-20 - version 3.1
+* New - Token Payment Support, customer can save cards and make payments using saved cards.
+* New - WooCommerce Subscriptions Support
+* New - WC 2.2 Refunds support
+* Tweak - Allow usage in any store currency
+* Tweak - Change textdomain to wc-eway
+
+2014-07-16 - version 3.0.2
+* Add ability to limit checkout to certain card types.
+
+2014-06-04 - version 3.0.1
+* Credit card validation, validate credit card data before sending to eWAY.
+
+2014-05-08 - version 3.0
+* Complete rewrite using Rapid 3.1
+* eWAY PCI Compliant
+* Supports 3D Secure
+* Soap no longer required
+* Next release will bring token payments and subscription support
+
+2014-01-20 - version 2.0.9
+* WC 2.1 Compatibility
+
+2013-12-03 - version 2.0.8
+* Fix fatal error
+
+2013-11-26 - version 2.0.7
+* Limit company name
+* Send through IP logged by WC
+
+2013-08-15 - version 2.0.6
+* sslverify filter for overriding
+
+2013-07-01 - version 2.0.5
+* Add DeviceID to calls
+
+2013-04-24 - version 2.0.4
+* Sequentual Order Numbers support
+
+2013-04-12 - version 2.0.3
+* Workaround for https://bugs.php.net/bug.php?id=27777
+* WSDL caching
+* Send through user agent to eWAY for better debugging on their side
+
+2013-04-05 - version 2.0.2
+* Made card types configurable via settings
+* Fixed fatal error issue
+* Better error handling on checkout pages when soap client fails
+
+2013-04-01 - version 2.0.1
+* Added woocommerce_eway_card_types filter
+* Fixed SOAP check to display error when missing
+
+2013-03-01 - version 2.0.0
+* Rewrite

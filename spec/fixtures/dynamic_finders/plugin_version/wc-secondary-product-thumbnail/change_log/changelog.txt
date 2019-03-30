@@ -1,0 +1,52 @@
+== Changelog ==
+
+= 1.3.2 =
+* Fixed execution order of the function that adds secondary product thumbnail
+* Fixed compatibility issue with caching plugins
+
+= 1.3.1 =
+* Added support for the version check feature in WooCommerce 3.2+
+* Dev - Removed `wcspt_disable_on_mobile` filter hook
+
+= 1.3 =
+* Added support for AJAX products loading (e.g. infinite scroll and load more button)
+* Added support for WordPress Multisite
+* Compatible up to Wordpress 4.9 and WooCommerce 3.2
+* Refactored and optimized plugin code
+
+= 1.2.1 =
+* Fix - WooCommerce 3.0 compatibility
+
+= 1.2 =
+* Feature - Can reveal the last image in product gallery instead of the first image, see plugin documentation
+* Tweak - Better animation timing
+* Tweak - Further improve themes compatibility
+* Dev - Removed `wc_secondary_product_thumbnail_styles` filter hook
+
+= 1.1.2 =
+* Minor CSS improvements
+
+= 1.1.1 =
+* Use minified CSS & JS files rather than the non-minified versions, if SCRIPT_DEBUG is not turned on
+
+= 1.1 =
+* Animations now use CSS3 transitions for smoother animation effect
+* Fallback to jQuery's .animate() in legacy browsers (e.g. IE 8-9)
+* Improved performance
+
+= 1.0.4 =
+* Tested with WordPress 4.6 and WooCommerce 2.6
+* Replace deprecated jQuery(document).ready(function) with jQuery(function)
+
+= 1.0.3 =
+* Fix a fatal error when $product->get_gallery_attachment_ids() is called on some themes.
+* Code cleanup.
+
+= 1.0.2 =
+* Minor CSS fixes.
+
+= 1.0.1 =
+* Fix secondary thumbnail opacity issue on some themes.
+
+= 1.0 =
+* Initial release.

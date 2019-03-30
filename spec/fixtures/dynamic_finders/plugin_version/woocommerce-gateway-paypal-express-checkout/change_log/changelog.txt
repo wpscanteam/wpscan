@@ -1,0 +1,215 @@
+*** Changelog ***
+
+= 1.6.10 - 2019-03-05 =
+* Fix - Use only product attributes when adding to cart
+
+= 1.6.9 - 2019-02-03 =
+* Fix - Avoid SPB render error by tweaking 'allowed' funding methods' empty value
+
+= 1.6.8 - 2019-01-25 =
+* Fix - Guard against themes applying filter with too few params
+
+= 1.6.7 - 2019-01-25 =
+* Fix - Error 10413 when using coupons
+* Fix: All variation details when using buttons on product pages are kept
+* Fix: Always render the PayPal buttons in the mini cart
+
+= 1.6.6 - 2019-01-09 =
+* Fix - Discount items were not being included
+* Add - Filter for order details to accept decimal quantities of products
+* Fix - Unable to buy variation from product page
+* Fix - Can use PayPal from product page without inputting required fields
+* Add - Display PayPal fees under the totals on the order admin page
+* Add - Prefill name, phone, and email info in PayPal Guest Checkout from checkout screen
+
+= 1.6.5 - 2018-10-31 =
+* Fix - Truncate the line item descriptions to avoid exceeding PayPal character limits.
+* Update - WC 3.5 compatibility.
+* Fix - checkout.js script loading when not needed.
+* Fix - Missing shipping total and address when starting from checkout page.
+
+= 1.6.4 - 2018-09-27 =
+* Fix - Billing address from Checkout form not being passed to PayPal via Smart Payment Button.
+* Fix - Checkout form not being validated until after Smart Payment Button payment flow.
+
+= 1.6.3 - 2018-08-15 =
+* Fix - Fatal error caused by a fix for Smart Payment Buttons.
+
+= 1.6.2 - 2018-08-15 =
+* Fix - Tax not applied on the (Confirm your PayPal order) page at the checkout.
+
+= 1.6.1 - 2018-07-04 =
+* Fix - GDPR Fatal error exporting user data when they have PPEC subscriptions.
+* Fix - PayPal Credit still being disabled by default.
+* Update - Rename 'PayPal Express Checkout' to 'PayPal Checkout'.
+* Fix - Missing PayPal branding in "Buy Now" Smart Payment Button.
+* Fix - PHP warning when PayPal Credit not supported and no funding methods hidden.
+* Fix - Smart Payment Buttons gateway not inheriting IPN and subscription handling.
+* Fix - Single product Smart Payment Button failing without existing session.
+* Fix - When cart is empty, JS error on cart page and mini-cart payment buttons showing.
+* Add - Locale filter.
+
+= 1.6.0 - 2018-06-27 =
+* Add - Smart Payment Buttons mode as alternative to directly embedded image links for all instances of PayPal button.
+* Fix - Help tip alignment for image settings.
+* Update - Enable PayPal Credit by default, and restrict its support by currency.
+* Update - Omit 'Express Checkout' portion of default payment method title.
+* Update - Enable Express Checkout on regular checkout page by default.
+* Update - Enable Express Checkout on single product page by default.
+
+= 1.5.6 - 2018-06-06 =
+* Fix    - Virtual products cause issues with billing details validation.
+
+= 1.5.5 - 2018-05-23 =
+* Update - WC 3.4 compatibility
+* Update - Privacy policy notification.
+* Update - Export/erasure hooks added.
+
+= 1.5.4 - 2018-05-08 =
+* Add - Hook to make billing address not required `woocommerce_paypal_express_checkout_address_not_required` (bool).
+* Fix - Duplicate checkout settings when PP Credit option is enabled.
+* Fix - Impossible to open API credentials after saving Settings.
+* Fix - Prevent filtering if PPEC is not enabled.
+* Fix - Single Product checkout: Quantity being duplicated due to multiple AJAX calls.
+* Fix - When returning from PayPal, place order buttons says "proceed to payment".
+* Tweak - Default billing address to be required.
+
+= 1.5.3 - 2018-03-28 =
+* Fix - wp_enqueue_media was not correctly loaded causing weird behavior with other parts of system wanting to use it.
+* Fix - Typo in activation hook.
+
+= 1.5.2 - 2018-02-20 =
+* Tweak - Express checkout shouldn't display "Review your order before the payment".
+* Fix - Compatibility with Subscriptions and Checkout from Single Product page.
+* Fix - Make sure session object exists before use to prevent fatal error.
+
+= 1.5.1 =
+* Add   - Hooks for Settings.
+* Fix   - Missing Settings link on Plugins page.
+* Fix   - Use correct image URL for PayPal image logo.
+* Tweak - Default to signature method if certificate missing, rather than other way around.
+
+= 1.5.0 =
+* Add   - PayPal credit is now available on checkout.
+* Fix   - WC 3.3 compatibility.
+* Add   - Ability to select existing / upload new image(s) for logo / header fields.
+* Fix   - Shipping address overridden when PayPal returns billing address.
+
+= 1.4.7 =
+* Fix   - Issue with missing PayPal session information.
+* Fix   - Dependency error when using LibreSSL.
+* Fix   - Additional compatibility with shipping plugins
+* Fix   - Issue where deprecated `WC_Cart::get_cart_url` is being used.
+* Tweak - Makes admin notification dismissible.
+
+= 1.4.6 =
+* Fix   - Coupon related PayPal error 10413.
+
+= 1.4.5 =
+* Fix   - Title/Description fields in the settings should appear based on Enable PayPal Express Checkout.
+* Add   - Invoice Prefix now has the ability to be empty.
+* Fix   - Additional compatibility fixes for line items.
+* Fix   - PHP notice for Subscription id.
+
+= 1.4.4 =
+* Fix   - PayPal error (10431).
+* Fix   - PHP notices.
+
+= 1.4.3 =
+* Fix   - Refunds not working on authorize then captured transactions.
+* Fix   - Checkout on single product available before variations are chosen.
+* Fix   - Not Returning PayPal Transaction Fee.
+* Fix   - 10431 (Item Amount Invalid at Checkout) error with discounts.
+* Fix   - Phone not returned and "Require Phone Number" setting not working.
+
+= 1.4.2 =
+* Fix   - _paypal_status on Authorize transactions not updating to processing after capture.
+* Fix   - 10413 (The totals of the cart item amounts do not match order amounts) error with discounts.
+* Fix   - Shipping Address being required on Virtual products.
+
+= 1.4.1 =
+* Fix   - Properly calculate whether Billing phone is required or not.
+* Fix   - Set NOSHIPPING based on product shipping requiredness (e.g. virtual products do not need shipping, etc).
+
+= 1.4.0 =
+* Tweak - Use shipping discount instead of tax when adjustment negative.
+* Fix   - Cannot process refunds on "authorize" transactions.
+* Add   - Option for displaying express checkout button on the product page.
+* Fix   - If there are no shipping options in WooCommerce, PayPal doesn't pass a shipping address to WC.
+* Add   - Option to set Billing phone number mandatory.
+* Add   - Option to disable checkout with PayPal button on Cart page.
+* Fix   - Trigger required shipping cost before checkout.
+
+= 1.3.0 =
+* Fix - Fatal Error calling is_main_query.
+* Fix - Customer invoice email doesn't allow payment with PPEC.
+* Fix - Double stock reduction.
+* Fix - Payment automatically goes to complete when payment action set to Authorize.
+
+= 1.2.1 =
+* Fix - Avoid plugin links notice when WooCommerce is not active - props rellect
+* Fix - Do not show this gateway when the cart amount is zero
+* Fix - Fix 10413 error that prevents checking out with a coupon
+* Fix - Filter default address fields to ensure they are not required
+
+= 1.2.0 =
+* Fix - Prevent conflict with other gateways.
+* Fix - Compatibility with WooCommerce 3.0, including ensuring the customer address is saved correctly.
+
+= 1.1.3 =
+* Fix   - Guest users can checkout without giving shipping information when required.
+* Fix   - Modal popup not working properly. Changed to full page redirect with a hook to add back the modal/popup.
+* Tweak - Guest checkout is on by default. Should be turned off by using this filter: woocommerce_paypal_express_checkout_allow_guests.
+
+= 1.1.2 =
+* Fix - Make sure translations are loaded properly.
+* Fix - Added IPN (Instant Payment Notification) handler.
+* Fix - Make sure guest payment is enabled by default.
+
+= 1.1.1 =
+* Fixed fatal error prior to PHP 5.5 caused by passing empty() a non-variables.
+
+= 1.1.0 =
+* Improved flow after express checkout by removing billing and shipping fields and simply allowing shipping method selection.
+* Fix - Fixed in-context checkout to work after ajax cart reload.
+* Fix - Added missing 'large' button size.
+* Fix - Prevent double stock reduction when payment complete.
+* Fix - Allow PPE from pay page and don't use in-context checkout for PayPal Mark on checkout.
+* Fix - Increase timeout to 30 to prevent error #3.
+* Tweak - If the store owner decides to enable PayPal standard, respect that decision and remove EC from checkout screen.
+* Tweak - Change place order button to "continue to payment".
+* Tweak - Moved default button location to woocommerce_proceed_to_checkout hook.
+* Tweak - Improved button appearance and look alongside regular checkout button.
+
+= 1.0.4 =
+* Fix - Wrong section slug / tab after redirected from connect.woocommerce.com
+* Fix - Make sure to check if credentials were set in cart and checkout pages
+* Fix - Removed configuration of chipers to use for TLS
+
+= 1.0.3 =
+* Fix - Issue where missing rounding two decimal digits of tax causing transaction being refused
+* Fix - Issue where custom logo image URL is not saved
+
+= 1.0.2 =
+* Fix - Strip out HTML tags from item descriptions to prevent warning from PayPal
+* Fix - Issue of incorrect plugin's setting link from admin plugins page when using WooCommerce 2.6
+* Tweak - Make enabled option to default to true
+* Fix - Issue of missing help icon when plugin directory is not the same as plugin's slug.
+* Tweak - Add admin notice to setup / connect after plugin is activated.
+
+= 1.0.1 =
+* Fix - Make sure OpenSSL is installed with 1.0.1 as the minimum required version, otherwise display warning
+* Fix - Make sure cURL transport is available for WP HTTP API, otherwise display warning
+* Fix - Unhandled certificate-style API credential
+* Fix - Fixed calculated tax and coupons data that sent over to PayPal
+* Fix - Fixed calculated shipping discount data that sent over to PayPal
+
+= 1.0.0 =
+* Initial stable release
+
+= 0.2.0 =
+* Fix - Add cancel link on checkout page when session for PPEC is active
+* Fix - In-context mini browser keeps spinning because failure xhr response is not handled properly
+
+= 0.1.0 =
+* Beta release

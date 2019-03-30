@@ -1,0 +1,68 @@
+= 2.4.2 =
+* changed: noresize in filename also works in batch processing
+* fixed: error message does not contain filename when file is missing
+* fixed: notice on network settings when deep scan option has not been set before
+
+= 2.4.1 =
+* fixed: bulk resizer scan returning incorrect results
+* fixed: sprintf error during resizing and upload
+
+= 2.4.0 =
+* added: deep scanning option for when attachment metadata isn't updating properly
+* fixed: uploads from Gutenberg not detected properly
+* fixed: some other plugin(s) trying to muck with the Imsanity settings links and breaking things
+* fixed: undefined notice for query during ajax operation
+* fixed: stale metadata could prevent further resizing
+
+= 2.3.9 =
+* fixed: PNG to JPG filled transparency with black instead of white
+* fixed: auto-rotation causes incorrect scaling
+* fixed: results box stops scrolling at line 28
+* added: pre-emptive checks on file parameter to prevent read errors with getimagesize()
+
+= 2.3.8 =
+* added: 'imsanity_crop_image' filter to crop images during resizing
+* added: increased security of network settings and AJAX requests
+* changed: metadata fetch and update use correct functions instead of direct database queries
+* changed: bulk resize search is kinder to your database
+* fixed: bulk resize could produce a larger image
+* fixed: image file permissions not checked prior to resizing
+* fixed: EWWW Image Optimizer optimizes image during resizing instead of waiting for metadata generation
+* fixed: JPG quality not displaying correctly on network/multisite settings page
+* fixed: some strings were not translatable
+* fixed: bulk resize results container was not scrollable
+* removed: legacy resize function for WP lower than 3.5
+
+= 2.3.7 =
+* fixed: uploads to Media Library not detected properly
+* changed: default JPG quality is now 82, to match the WordPress default
+* changed: fr_FR and ru_RU moved to WP.org language packs
+* changed: new maintainer
+
+= 2.3.6	=
+* tested up to WP 4.4
+* if resized image is not smaller than original, then keep original
+* allow IMSANITY_AJAX_MAX_RECORDS to be overridden in wp-config.php
+* if png-to-jpg is enabled, replace png transparency with white
+
+= 2.3.5	=
+* Add option to hide Imsanity girl logo image on settings screen
+
+= 2.3.4	=
+* Security update to network settings page
+
+= 2.3.3	=
+* Update default size from 1024 to 2048
+* Tested up to WordPress 4.1.1
+* Move screenshots to /assets folder
+* Added 256x256 icon
+
+= 2.3.2	=
+* Add PNG-To-JPG Option thanks to Jody Nesbitt
+
+= 2.3.1	=
+* ignore errors if EXIF data is not readable
+* show counter when bulk resizing images
+
+= 2.3.0 =
+* fix for incorrectly identifying media uploads as coming from 'other' on WP 4+

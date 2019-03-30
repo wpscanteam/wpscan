@@ -1,0 +1,630 @@
+== V4.0 ==
+
+Breaking changes
+------------------
+New WordPress minimum version requirement of 4.7
+New system requirements now checking against WordPress 4.7 and PHP 5.5
+"Download log" file structure ID changed for Id
+
+Enhancement
+------------------
+New "Starter Hero" Arlo Theme
+Manual plugin upload process available from this version
+New "Keep settings" option for plugin deletion
+New [arlo_event_template_hero_image] shortcode
+New [arlo_event_template_list_image] shortcode
+
+Bugfixes
+------------------
+Security improvements
+Remove now unused "import" directory
+"Download log" was showing an error when open in Excel
+
+
+== V3.9 ==
+
+Enhancement
+------------------
+Improvement of the Starter themes
+New [arlo_event_template_advertised_price] shortcode
+New [arlo_event_template_advertised_presenters] shortcode
+New [arlo_event_template_credits] shortcode
+New [arlo_event_haslimitedplaces] shortcode
+Make Timezone selector [arlo_timezones] available on Upcoming page
+Better support for load balanced architectures
+
+Bugfixes
+------------------
+Venue map not showing on Venue page
+Multiple instance of upcoming widget are conflicting
+Upcoming widget do not keep event/template tag after import
+WordPress Menus and Custom Links including html in their text field are html-escaped
+Best event price (From) includes Events hidden from website
+Glitch on expand button on Starter theme
+Discount should not display on Online Activities if only applied to events
+
+
+== V3.8.1 ==
+
+Bugfixes
+------------------
+Load balanced architectures do not allow the import to run correctly
+
+
+== V3.8 ==
+
+Enhancement
+------------------
+External URL support for Arlo's sitemap
+New [arlo_event_summary] shortcode to display sessions description
+New [arlo_event_template_register_private_interest] shortcode for private lead form link
+New [arlo_suggest_private_datelocation] shortcode for private lead form link
+New "order" attribute for [arlo_event_price]
+New "period" option to show end date for [arlo_event_next_running]
+Year is added after the month used as a delimiter on the Upcoming page
+Add discount and places remaining corner labels on Schedule page of the "Starter template" theme
+
+Bugfixes
+------------------
+Upcoming widget is not working when tags are specified
+[arlo_event_isfull] now working on sessions too
+[arlo_event_duration] now showing session duration on sessions
+Event of 6 hours X minutes is not showing 1 day
+Other WordPress plugin errors are sometimes stopping the import
+
+
+== V3.7 ==
+
+Enhancement
+------------------
+Full support for PHP 7
+Use OpenSSL for encryption
+PHP and WordPress version now visible on System requirements tab
+Improve Log error message on import failure
+
+Bugfixes
+------------------
+Using the Delete functionality of WordPress keep most of my settings but lose my theme
+Event search show duplicates of events with multiple categories
+First plugin activation sometimes fails with a Fatal error
+Timezones in filter are not sorted by time offset
+Default Spark designer template do not allow enough space for the day of the month not to wrap
+memory_limit in php.ini cannot be specified in GB
+[arlo_event_template_code] does not appear when specified on Upcoming pages
+
+
+== V3.6.1 ==
+
+Bugfixes
+------------------
+Timezones blocking the import on some specific platforms
+
+
+== V3.6 ==
+
+Deprecated features
+------------------
+Remove the ability to rename and exclude filter options
+
+Enhancement
+------------------
+New "Starter template" Arlo Theme
+Use category header as meta description if category is selected as a filter
+Ability to filter global level shortcodes by mutliple categories/location/templatetag/eventtag
+Delivery filter for on demand events (online activities)
+Support tax exempt tags
+Make venue related shortcodes available within the [arlo_event_list_item] or [arlo_upcoming_list_item] shortcodes
+New [arlo_event_duration_description] shortcode
+New [arlo_event_dates] shortcode
+New [arlo_event_isfull] shortcode
+New [arlo_event_offers_hasdiscount] shortcode
+New "show_child_elements" attribute for [arlo_upcoming_list_item]
+New "layout" attribute for [arlo_event_session_list_item] to show the session information as a tooltip or as a popup
+New "separator" attribute for [arlo_event_next_running]
+New {%count%} placeholder in "text" attribute for [arlo_event_next_running]
+
+Bugfixes
+------------------
+Allow import with PHP 7.2 on Linux
+Filters was not redirecting properly when containing slashes
+Show all except on Tags still show event if it has multiple tags
+Reset button moves on selection of drop down (Jazz Theme)
+Ensure filter priority - user first global shortcode second and filter by page at last
+Session tags are not diplayed by [arlo_event_tags]
+With some Arlo Themes [arlo_template_region_selector] and [arlo_template_search_region_selector] are breaking the layout
+
+
+== V3.5.2 ==
+
+Bugfixes
+------------------
+Allow import with PHP 7.2
+
+
+== V3.5.1 ==
+
+Bugfixes
+------------------
+Admin page gets into a redirect loop on some webservers
+Wrong filter URL if a global level shortcode is used on a home page
+
+
+== V3.5 ==
+
+Enhancement
+------------------
+New "template_link" attribute for [arlo_event_next_running]
+Enhance the output of [arlo_venue_address] and new "link" attribute
+New "Region selector" widget
+New "State" filter for [arlo_event_filters], [arlo_upcoming_event_filters], [arlo_event_template_filters] and [arlo_schedule_filters]
+New "templateid" attribute for [arlo_upcoming_list] global shortcode
+Filter settings available for custom shortcodes
+
+
+== V3.4.1 ==
+
+Bugfixes
+------------------
+Fix, global level shortcodes don't respect attribute settings
+
+
+== V3.4 ==
+
+Enhancement
+------------------
+Resuable shortcodes
+New "category", "location", "delivery" and "templatetag" attributes for [arlo_event_template_list] global shortcode
+New "category", "location", "delivery" and "templatetag" attributes for [arlo_schedule] global shortcode
+New "category", "location", "delivery", "eventtag", "templatetag", "presenter" and "month" attributes for [arlo_upcoming_list] global shortcode
+New "category" attribute for [arlo_onlineactivites_list] global shortcode
+
+== V3.3.1 ==
+
+Bugfixes
+------------------
+Fix, when rich snippet for event doesn't return Location
+Fix, when the event search returns the template multiple times
+
+== V3.3 ==
+
+Enhancement
+------------------
+Support structured meta data (rich snippets) for events, online activities, templates, venues and presenters
+New 'Schedule' page
+New '[arlo_event_notice]' shortcode
+
+== V3.2.1 ==
+
+Bugfixes
+------------------
+Fix long running import issue, which can timeout the request
+
+Bugfixes
+------------------
+Template doesn't appear in multiple categories 
+Suggest template section doesn't display all templates from multiple categories
+OnlineActivity template doesn't load by default in some cases
+Internal theme files doesn't load in some cases
+
+== V3.2 ==
+
+Enhancement
+------------------
+New online activities global shortcode [arlo_onlineactivites_list]
+New options for Upcoming events widget
+New settings to customize filters
+New settings for the Import
+The plugin is fully compatible with PHP 7
+Many bug fixes
+
+Bugfixes
+------------------
+[arlo_event_duration] shortcode doesn't return a regionalized value
+[arlo_event_price] shortcode doesn't return a regionalized value
+Fix filter URL issue if the global shortcodes were used on a home page page
+Fix error when "show_child_elements" is used for template_list
+Next Running date is not correct while choice delivery as workshop
+
+
+== V3.1.3 ==
+
+Enhancement
+------------------
+New presenter filter for [arlo_upcoming_event_filters]
+Support new URL structure on the admin pages and for private events
+
+Bugfixes
+------------------
+Fix broken link in [arlo_suggest_datelocation] when used the 'text' attribute
+
+
+== V3.1 ==
+
+== V3.1.2 ==
+
+Enhancement
+------------------
+Improve error logging and reliability for import
+
+== V3.1 ==
+
+Enhancement
+------------------
+New 'link' attribute for [arlo_event_location] and [arlo_event_presenters] shortcodes
+New [arlo_venue_link] shortcode
+New [arlo_presenter_link] shortcode
+
+Bugfixes
+------------------
+Fix timezone issues on the upcoming events widget
+Fix timezone error if the WP hasn't got a named timezone
+
+
+== V3.0.1 ==
+
+Enhancement
+------------------
+Enhance import process
+Fix permission issues with WPEngine hosting
+Enhance time zone indicators on events
+
+Bugfixes
+------------------
+Fix missing session information on a reginalized platform
+Fix saving tags for multisession events
+
+
+== V3.0 ==
+
+Enhancement
+------------------
+New, improved, more reliable import
+Revamp the codebase behind the plugin
+New [arlo_event_filters] shortcode
+New [arlo_search_field] shortcode
+New built-in theme selection
+
+Bugfixes
+------------------
+Minor fixes and improvements
+
+== V2.4.1.2 ==
+
+Enhancement
+------------------
+Remove PHP notices
+Add system requirement check for future release
+
+Bugfixes
+------------------
+Fixed wrong [arlo_event_duration] return value
+Fix when [arlo_event_price] doesn't return the "cheapest" price
+Fix when [arlo_event_next_running] returns a session date
+
+== V2.4.1.1 ==
+
+Enhancement
+------------------
+Improvement of the import stability
+
+Bugfixes
+------------------
+Fix category depth level set
+
+== V2.4 ==
+
+Enhancement
+------------------
+Online Activities
+[arlo_content_field_item] shortcode is available within the [arlo_upcoming_list_item] shortcode
+New [arlo_event_credits] shortcode
+New [arlo_event_template_advertised_duration] shortcode
+New 'showfrom' attribute for [arlo_event_price] shortcode
+New 'strip_html' attribute every shortcode
+Terminate background task
+Send error data to Arlo
+New [arlo_category_title] shortcode
+New setting for GoogleMaps API Key
+New 'text' attribute for [arlo_event_next_running] shortcode
+Detailed log / Ability to download log
+[arlo_event_next_running] shortcode respects delivery and location filters 
+
+Bugfixes
+------------------
+
+Price can be missing on the event template page, if WP is using other db prefix than 'wp_' https://github.com/ArloSoftware/arlowp-plugin/issues/150
+Automated sync doesn't run every hour https://github.com/ArloSoftware/arlowp-plugin/issues/151
+Fixed category count number for [arlo_categories] shortcode
+Multiple data showed during import
+Multiregion import issue
+
+== V2.3.5.1 ==
+
+Bugfixes
+------------------
+Fix start and end date times when the dates are returning a UTC value https://github.com/ArloSoftware/arlowp-plugin/issues/149
+
+== V2.3.5 ==
+
+Enhancement
+------------------
+New asynchronous import, for more information, please visit: http://developer.arlo.co/doc/wordpress/import
+
+Bugfixes
+------------------
+Support localization for dates and times: https://github.com/ArloSoftware/arlowp-plugin/issues/141
+
+
+== V2.3.1 ==
+
+Bugfixes
+------------------
+
+Important fix to solve the compatibility issue with some external plugin: https://github.com/ArloSoftware/arlowp-plugin/issues/139
+
+== V2.3 ==
+
+Enhancement
+------------------
+Enhancement of the plugin update mechanism
+
+Bugfixes
+------------------
+
+Important fix to solve the compatibility issue with some external plugin
+Few minor bugfixes
+
+== V2.3 ==
+
+Enhancement
+------------------
+
+Regionalized plugin
+New region selector shortcodes [arlo_upcoming_region_selector], [arlo_template_search_region_selector], [arlo_template_region_selector]
+New "regionalized" option for the [arlo_suggest_templates] shortcode
+
+Bugfixes
+------------------
+Fix [arlo_event_template_link] shortcode: https://github.com/ArloSoftware/arlowp-plugin/issues/117
+Fix when the upcoming events widget contains sessions: https://github.com/ArloSoftware/arlowp-plugin/issues/116
+Fix the private event link with the WordPress Arlo Theme: https://github.com/ArloSoftware/arlowp-plugin/issues/115
+Fix cache issue when the browser caches the custom.css file: https://github.com/ArloSoftware/arlowp-plugin/issues/113
+The [arlo_content_field_item] shortcode field can show data from previous import: https://github.com/ArloSoftware/arlowp-plugin/issues/100
+Fix show_only_at_bottom parameter in [arlo_event_template_list_item] shortcode: https://github.com/ArloSoftware/arlowp-plugin/issues/110
+
+
+== V2.2.1 ==
+
+Bugfixes
+------------------
+New import concurrency management to avoid duplicate data with double import (usually happened on a shared hosting)
+Fix for admin list venue page to not show multiple data
+Fix for categories list depth parameter problem
+
+
+Enhancement
+------------------
+
+[arlo_no_event_text] shortcode to display a text if there is no event
+Danish translation
+Escape all the output to ensure security
+
+
+== V2.2 ==
+
+Bugfixes
+------------------
+
+[arlo_event_next_running] shortcode returns incorrect data when the event has sessions: https://github.com/ArloSoftware/arlowp-plugin/issues/96
+
+Enhancement
+------------------
+
+New option (class) for "layout" attribute and new "prefix" attribute for [arlo_event_template_tags] and [arlo_event_tags] shortcodes
+New [arlo_event_template_link] shortcode for externally hosted event
+New, restructured admin settings page
+New events, templates, session, venues, presenters lists
+SEO friendly urls for filters
+Meta description for event template, generated from the template summary
+
+
+== V2.1.7.1 ==
+
+Fix in the import script
+
+== V2.1.7 ==
+
+Bugfixes
+------------------
+
+The arlo_event_template_tags is in wrong place: https://github.com/ArloSoftware/arlowp-plugin/issues/85
+No "Register your interest" link on the template page: https://github.com/ArloSoftware/arlowp-plugin/issues/92
+The template price isn't available as a shortcode: https://github.com/ArloSoftware/arlowp-plugin/issues/91
+In the category list, there is no register interest link: https://github.com/ArloSoftware/arlowp-plugin/issues/90
+JS error while reloading the templates: https://github.com/ArloSoftware/arlowp-plugin/issues/89
+Event search doesn't return the template if it's under a category's subcategory: https://github.com/ArloSoftware/arlowp-plugin/issues/88
+De/Activate the plugin overwrites the page settings: https://github.com/ArloSoftware/arlowp-plugin/issues/87
+Delete the plugin doesn't remove all the db tables: https://github.com/ArloSoftware/arlowp-plugin/issues/84
+After sync, not all the tables are cleaned up https://github.com/ArloSoftware/arlowp-plugin/issues/86
+Warning with setTimezone fn with a live online event: https://github.com/ArloSoftware/arlowp-plugin/issues/83
+
+Enhancement
+------------------
+
+New select dropdown for event's tag in the [arlo_upcoming_event_filters] shortcode: https://github.com/ArloSoftware/arlowp-plugin/issues/94
+New select dropdown for template's tag in the [arlo_event_template_filters] shortcode: https://github.com/ArloSoftware/arlowp-plugin/issues/93
+Remove PHP notice errors
+
+
+== V2.1.6 ==
+
+Bugfixes
+------------------
+
+The sample links are bad for the venue and presenter: https://github.com/ArloSoftware/arlowp-plugin/issues/78
+Higher time limit for the import: https://github.com/ArloSoftware/arlowp-plugin/issues/77
+
+Enhancement
+------------------
+
+Style and layout selector for the templates: https://github.com/ArloSoftware/arlowp-plugin/issues/79
+Save the previously selected template and layout on the settings page: https://github.com/ArloSoftware/arlowp-plugin/issues/80
+New shortcode [arlo_event_template_tags] and [arlo_event_tags]: https://github.com/ArloSoftware/arlowp-plugin/issues/81
+Show session information for the event in a tooltip [arlo_event_session_list_item]: https://github.com/ArloSoftware/arlowp-plugin/issues/49
+Update the database on plugin update: https://github.com/ArloSoftware/arlowp-plugin/issues/82
+
+
+== V2.1.5.2 ==
+
+Bugfixes
+------------------
+
+Two event with the same dates on a template page https://github.com/ArloSoftware/arlowp-plugin/issues/76
+
+== V2.1.5.1 ==
+
+Enhancement
+------------------
+
+Notice for permalinks
+Notice for post types
+
+
+== V2.1.5 ==
+
+Enhancement
+------------------
+New basic search widget
+Custom "No events to show" message
+Import error/success message
+New "Welcome bar" with load demo data button: https://github.com/ArloSoftware/arlowp-plugin/issues/64
+Dismissible notices for the welcome bar: https://github.com/ArloSoftware/arlowp-plugin/issues/73
+New [arlo_suggest_templates] shortcode based on tag or category
+Add last import date to the settings page: https://github.com/ArloSoftware/arlowp-plugin/issues/69
+
+Bugfixes
+------------------
+
+If there is no category, there is no template in the events list: https://github.com/ArloSoftware/arlowp-plugin/issues/66
+Link is wrong for the arlo_content_field_list_item shortcode: https://github.com/ArloSoftware/arlowp-plugin/issues/67
+Modify the platform name field on the settings page https://github.com/ArloSoftware/arlowp-plugin/issues/68
+Remove the platform name causes an import: https://github.com/ArloSoftware/arlowp-plugin/issues/70
+
+
+
+== V2.1.1 ==
+
+Bugfixes
+------------------
+Pagination link error: https://github.com/ArloSoftware/arlowp-plugin/issues/59
+
+Title starts with a ":" when a category is selected, but the page hasn't got a name: https://github.com/ArloSoftware/arlowp-plugin/issues/60
+
+== V2.1 ==
+
+Bugfixes
+------------------
+Issue #51
+
+
+== V2.07 ==
+
+Enhancement
+------------------
+Reload original templates
+Database upgrade can be run by de/activate the plugin
+Event order on the "events list" page
+New "delivery" filter for "arlo_event_template_filters" shortcode
+Localization
+Arlo search widget
+
+Bugfixes
+------------------
+Issue #19
+Issue #46
+
+
+== V2.06 ==
+
+Enhancement
+------------------
+New "removeyear" attribute for "arlo_event_next_running" shortcode
+Issue #25
+PHP version checker Issue #24
+New "limit" and "layout" attribute for "arlo_event_next_running" shortcode
+New "format" attribute for "arlo_event_next_running" shortcode
+New "arlo_event_provider" field with link #12
+New "arlo_event_delivery" field #12
+New "delivery" filter for "arlo_upcoming_event_filters" shortcode
+New "show_child_elements" (bool) property for the "arlo_event_template_list_item" shortcode to show the category's sub/child categories
+New "class" attribute for "arlo_event_registration" shortcode
+
+Bugfixes
+------------------
+Issue #35
+Issue #34
+Issue #32
+Issue #29
+Issue #28
+Issue #27
+Issue #26
+Issue #21
+
+
+== V2.05 ==
+
+Enhancement
+------------------
+New "counts" property for the "arlo_categories" shortcode to show the number of the templates within the category and its subcategories
+New "show_only_at_bottom" (bool) property for the "arlo_event_template_list_item" shortcode to show the items only, if the user is in a leaf/bottom category
+New "show_child_elements" (bool) property for the "arlo_categories" shortcode to show the category's sub/child categories
+
+
+== V2.04 ==
+
+Bugfixes
+------------------
+Issue #1
+
+
+Enhancement
+------------------
+New "location" filter for events list
+New "fields" setting for [arlo_content_field_item] to define description fields
+
+
+== V2.03 ==
+
+New boxed layout for "Event": event_boxed.tmpl
+New "show" attribute for "arlo_event_list_item" and new way to handle the show more dates
+New data attribute for '<ul class="arlo-list arlo-show-more events" data-show-text="Show more">' to handle the text
+
+New boxed layout for "Upcoming events": upcoming_boxed.tmpl
+
+== V2.02 ==
+
+Bugfixes
+------------------
+Template category filter url was bad if a filter was already applied
+If there is no next running for a template and no register interest url, it showed the date of 01. jan 1970 instead of nothing
+
+Enhancement
+------------------
+Remove all reference for Prefer
+
+== V2.01 ==
+
+Bugfixes
+------------------
+If a venue is not displayed on the website, the Location is just a text instead of a link
+Handle database error and rollback all the changes if one of the insert scripts failed
+If there is no available link for "Register interest", remove the whole link
+Fixed event template category filter form action parameter
+
+New functionality
+------------------
+Availability to modify the "Free" terminology
+Availability to choose the price display (incl/excl GST)
+Automatically submit the filter form when the dropdown filter is changes
+New "Provider" field
+

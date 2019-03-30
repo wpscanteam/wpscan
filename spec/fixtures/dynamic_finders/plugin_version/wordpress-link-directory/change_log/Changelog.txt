@@ -1,0 +1,130 @@
+== To Do ==
+
+Collect rank of reciprocal page (if supplied) and add the ability to accept/refuse links based on this value.
+Ability to select number of links per page (with paged navigation i.e. Pages: 1, 2, 3).
+Add the ability for people to edit their links if registered.
+
+== Version 1.8.2 ==
+
+Added securimage CAPTCHA system.
+Added Import to and Export from WordPress functions.
+Better W3C validation all round.
+Fixed the email sent on approval of a link.
+
+== Version 1.8.1 ==
+
+Admin screens are now compatible with WordPress 2.7 thanks to Electric Chalk: http://www.electricchalk.com/wordpress-link-directory
+
+== Version 1.8 ==
+
+Emails the submitter upon approval.
+Ability to sell premium links which are placed higher and are dofollow.
+Includes an additional style file.
+
+== Version 1.7.3 ==
+
+Number of pending links added to menu.
+Style File selection fixed to be independant of platform.
+Some linking issues fixed including flagging and subcategory linking.
+
+== Version 1.7.2 ==
+
+Further problems with flagging fixed.
+All display variables (problems with double quotes in sprintf) fixed.
+Approval option checking when add links fixed.
+Sub-categories are now displayed similarly to parent categories (in panels).
+
+== Version 1.7.1 ==
+
+Themes/Styles added. Style (.css) files can be added and selected from the admin section.
+Some messages fixed where they wouldn't display variables correctly.
+Pending links are now not displayed in the front end.
+Flagging function fixed. Flag links are now nofollow.
+Added option to limit description size on Add URL page.
+
+== Version 1.7 ==
+
+Optional custom permalinks enabled allowing the user to set a base permalink structure if custom permalinks are enabled.
+Ability to send new links to a moderation queue for approval or deletion.
+Options menu cleaned up and categorized.
+Nofollow option is now recognized when viewing detailed info about a link and on the search page.
+
+== Version 1.6.2 ==
+
+Corrected some problems in the installation process.
+
+== Version 1.6.1 ==
+
+Fixed some upgrading issues and some problems with shortcodes.
+French translation file added.
+
+== Version 1.6 ==
+
+New tagged and flagged fields added to MySQL which enable tagging.
+Tagging added using [link] tags. If enabled the [link] tag submits a new link when created from its attributes.
+Flagging option added for both tagged and standard links.
+Edit Links page displays links alot better, before it took up alot of space.
+Target option fixed and now displays correctly.
+lang folder added with a README on translating WP Link Directory and an untested German translation is provided.
+
+== Version 1.5 ==
+
+The plugin has now been internationalized. This means translation is now possible. This was a relatively big undertaking and so deserves its own version increment. Translators will need to run poEdit or equivelant and search/replace on __ since _e isn't used.
+Target option added which allows links to have an attribute of _blank or _self.
+
+== Version 1.4.1 ==
+
+Confirmation required when clicking the Cleanse button.
+Confirmation required when deleting links.
+Search results are now ordered by pagerank.
+Option to show/hide the number of links in each category and sub-category.
+Issue fixed where trying to view detailed info for links that don't exist would try to display links and thumbnail. Now returns a 'link doesn't exist' message.
+
+== Version 1.4 ==
+
+New Search page which allows searching by URL, Title, Description or All
+One layer of Sub-Categories added which should be enough for most peoples needs.
+Email Me option finally displays correctly.
+Links added through the admin section now check and alert when a link cannot be opened, but add it regardless.
+
+== Version 1.3 ==
+
+Better shortcode handling added with category and page parameters. I.e. [wplinkdir page="Add URL"] or [wplinkdir category="Video Games"]
+Captcha option added with captcha images supplied by captcha.net.
+Thumbnails changed to thumbshots.org which are updated more frequently.
+Email Me option now displays correctly.
+All external links now have the target attribute of _blank.
+
+
+== Version 1.2.1 ==
+
+Links to Search Engine backlinks, cached pages, Alexa stats and Whois info added in detailed view.
+Thumbnails of websites added where possible.
+Navigation error where the Add URL and Link To Us links wouldn't work has been fixed.
+
+== Version 1.2 ==
+
+Automatic upgrading based on version added.
+
+Ability to display detailed information about each link.
+New option to add nofollow to links.
+New option to display or hide Pagerank.
+Optional Name and Email fields added to the Add URL page.
+New option to change the order in which links are displayed.
+New option to change how many categories are displayed per row.
+
+The Pagerank for each site is now updated when Update is pressed in the edit links page.
+Duplicate linking fixed. Before, duplicate links weren't thrown out properly.
+
+
+== Version 1.1 ==
+
+New option to allow use of HTML in site description field.
+New option to email the admin whenever a new link is added to the directory.
+Ability to manually add links from the admin section without the requirement of a reciprocal link.
+URL of reciprocal link page is now displayed (if supplied) in the admin section.
+Cleanse function added which checks all links in the directory for reciprocal requirements.
+
+Issue where Home page wasn't linked correctly or would create long HTTP queries fixed.
+Issue with double escaping of quotes (' and " => \' and \") fixed.
+Duplicate links are thrown out (before they would be accepted).

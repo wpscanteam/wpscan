@@ -1,0 +1,41 @@
+## Changelog
+
+# 2.0.2
+* Dev - Added in a setting so you have the choice to enable the jQuery BlockUI js or not.
+
+# 2.0.1
+* Dev - Added in a filter to allow the attaching of files from the upload field to the processor running.
+* Dev - Added in a form processing notification using the jquery.blockUI library
+* Fix - Fixed various formatting issues when sending a request to Zoho
+* Dev - Added in 2 new sections to the readme.txt for help on form configuration
+
+# 2.0.0
+* Dev - Upgraded the API version to 2.0
+* Dev - Renamed 'lsx_cf_zoho_create_entry' hook to 'process_zoho_submission' as the old hook passes a different $object array which will probably break any code hooking this.
+* Dev - Removed the force text fields
+* Dev - Added in a class for pre-populating the Caldera Form with information from Zoho via a URL
+* Dev - Restructured the Plugin Files and Classes
+* Dev - Added in logging for all requests.
+* Dev - Added in the Travis Integration
+
+# 1.1.2
+* Dev - Added in a filter to replace any checkbox values with a set "true" or "false"
+* Dev - Removed the restricted fields from the configuration options allowing you to map a magic tag to the field.
+* Dev - Removed the unused options for the Lead and the Contact processors.
+* Dev - Adding in a setting field to allow the user to define their API url
+* Fix - Added in 3 options to fix the duplicate checks on Contact and Lead Submission
+
+# 1.1.1
+* Dev - Added A Filter 'lsx_cf_zoho_create_entry' to allow manipulation of the request object
+* Dev - Added An Action 'lsx_cf_zoho_create_entry_complete' to allow tasks for after creation
+* Dev - Added a new config page "Field Setup"
+* Fix - Fixed a typo in the get config call which prevented certain tasks from running
+* Dev - Added in a setup page to allow you to force "select" dropdowns via WP
+* Fix - Fixed the list configs
+
+# 1.1.0
+* Dev - Added in a fallback connection for the wp_remote_request in the CF_Zoho_CRM() class
+* Fix - Fixed the filtering of the XML data sent to Zoho
+
+# 1.0.0
+* Initial release

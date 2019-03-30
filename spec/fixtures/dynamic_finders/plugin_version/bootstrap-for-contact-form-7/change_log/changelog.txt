@@ -1,0 +1,102 @@
+== Changelog ==
+
+= 1.4.8 =
+* Added: support for input groups for number tags
+* Added: support for conditional loading of styles and scripts
+* Enhanced: Labels now allow basic inline HTML markup
+* Fixed: Acceptance validation not showing message
+
+= 1.4.7 =
+* Fixed: plugin compatibility with Contact Form 7 version 5.0 acceptance checkbox triggering submit button
+
+= 1.4.6 =
+* Fixed: plugin compatibility with Contact Form 7 version 5.0 acceptance checkbox triggering submit button
+* Fixed: plugin compatibility with Contact Form 7 after refactor removing jQuery.fn.wpcf7ClearResponseOutput() function
+
+= 1.4.5 =
+* Fixed: plugin compatibility with Contact Form 7 version 4.9 input type radio default required
+
+= 1.4.4 =
+* Fixed: critical bug with REALLY SIMPLE CAPTCHA not showing image
+
+= 1.4.3 =
+* Fixed: plugin compatibility fatal errors with Contact Form 7 version 4.8 related to form validation and REALLY SIMPLE CAPTCHA
+* Fixed: Contact Form 7 version 4.7 features are now being used
+* Fixed: correct styles for latest Contact Form 7 versions are now being printed
+
+= 1.4.2 =
+* Fixed: plugin compatibility fatal errors with Contact Form 7 version 4.6 with count and CAPTCHA shortcodes
+
+= 1.4.1 =
+* Fixed: plugin is now compatible with Contact Form 7 version 4.6 and its renamed functions / classes
+
+= 1.4.0 =
+* Enhanced: all form settings except `submit_size`, `submit_type` and `required_html` can now be overridden on a per-field basis by providing the setting name and its intended value as a shortcode attribute
+* Enhanced: a new value 'none' is now supported for the `layout` form setting which will prevent any wrapper from rendering; it is recommended to only use this for advanced field layouts
+* Enhanced: a new attribute `label_class` can now be added to shortcodes for additional label classes
+* Enhanced: `input_before` and `input_after` now support HTML by putting something like `{input_before}<span>Content before</span>{/input_before} into the content of a field shortcode (make sure to use curly braces); this method is now recommended and takes precedence over the old way
+* Fixed: the label of the `free_text` option in radio buttons / checkboxes is now displayed correctly
+
+= 1.3.1 =
+* Enhanced: alerts can now be made dismissible by defining the constant `CF7BS_ALERT_DISMISSIBLE`
+* Fixed: properly add `for` attributes to labels for checkbox and radio groups for accessibility
+* Fixed: wrapped checkbox and radio groups with `<fieldset>` for accessibility; needs to be manually enabled by defining the constant `CF7BS_FIELDSET_WRAP` (because of possible backwards compatibility issues with styling)
+* Fixed: ID is no longer created for button groups which have an empty ID specified
+
+= 1.3.0 =
+* Added: the new Google reCAPTCHA shortcode is now supported
+* Enhanced: added an additional filter to adjust form field arguments
+* Enhanced: a notice in the admin is now shown if the plugin cannot be initialized
+* Enhanced: language files no longer bundled in the plugin; now completely relies on language packs
+* Fixed: form element errors are now displayed correctly on horizontal forms and hidden on inline forms
+* Fixed: plugin constant definitions now happen on 'plugins_loaded' hook
+* Fixed: typo 'dismissable' in alert setting / class is now 'dismissible'
+* Fixed: readme link to 'Additional Settings' now translateable
+
+= 1.2.4 =
+* Tweaked: added textdomain for translate.wordpress.org
+* Fixed: defaults are now working correctly on all field types
+* Fixed: the label for attribute is no longer printed if no ID has been provided
+
+= 1.2.3 =
+* Enhanced: Arguments for every field are now filtered to allow detailed adjustments
+
+= 1.2.2 =
+* Fixed: CSS is now specific to the contact form to prevent conflicts
+
+= 1.2.1 =
+* Added: the captchar shortcode now supports an 'include_captchac' option to display the captcha image inline with the input field
+* Added: the textarea shortcode and all other text inputs now support an 'include_count' option to display their character count inline with them
+* Enhanced: the default grid column count of Bootstrap can now be overridden using the form property 'grid_columns'
+* Enhanced: the textarea shortcode now supports 'input_before' and 'input_after' (content is displayed above / below the textarea)
+* Enhanced: the submit button size can now be adjusted separately from the rest of the form's size
+* Tweaked: captcha images now have their image size adjusted to the 'size' form property by default
+* Tweaked: `---` typed in the 'input_before' or 'input_after' option will render as a space in the frontend
+* Fixed: minlength and maxlength attributes are now honored by all text inputs and textareas
+
+= 1.2.0 =
+* Added: new CF7 count shortcode is now supported
+* Enhanced: form properties can now be modified without any code (i.e. without a filter); the properties can be defined in the new "Additional Settings" tab of Contact Form 7
+* Enhanced: textual inputs now support Bootstrap's input group feature
+* Enhanced: checkbox and radio types can now show an actual label; it is only used as the checkbox label if no option is provided
+* Tweaked: plugin now adheres to WordPress Coding Standards
+* Fixed: improved display method for captcha images
+* Fixed: textarea row attribute now honored
+* Fixed: free_text attribute on checkbox and radio types now honored
+* Fixed: form attribute 'group_type' now honored
+* Fixed: additional CF7 styles are now outputted in the head
+* Fixed: check if CF7 functions are available before calling them
+
+= 1.1.1 =
+* Fixed: exclusive option for checkbox now working
+* Fixed: default option for radio/checkbox now working
+* Fixed: PHP notice for radio/checkbox with only one option
+* Fixed: Captcha not valid message now only shows up once as it is supposed to
+
+= 1.1.0 =
+* Added: new attribute 'align' can be added to the submit button
+* Enhanced: submit button now positioned properly according to form layout
+* Fixed: select and radio/checkbox options now use the main plugin's `get_data_option` method
+
+= 1.0.0 =
+* First stable version

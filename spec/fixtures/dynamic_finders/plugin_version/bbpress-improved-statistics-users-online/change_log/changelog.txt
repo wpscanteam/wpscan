@@ -1,0 +1,161 @@
+*** bbPress Advanced Statistics ***
+
+= 1.5 - 17th September, 2017 =
+ * Feature: Guests can now be tracked, this is enabled by default [Please note: this is not retroactive]
+ * Feature: Lots of new tags, such as pluralised text and number of guests online
+ * Feature: Additional customisable strings added, giving you more control of the plugin
+ * Enhance: Plugin displays persistent admin message when installed without reaching required dependencies
+ * Enhance: Complete overhaul of the statistics widget display
+ * Enhance: Removed before/after hook options, please use the provided actions instead
+ * Enhance: `shortcode_activity()` is deprecated, notice is displayed if used. Update your code to use `build_html()` instead.
+ * Enhance: Various code modifications to speed up the plugin
+ * Bug Fix: Upgrade function ensures the correct prefix is used within a multi-site environment
+ * Bug Fix: Widget heading index error
+
+= 1.4.5 - 6th August, 2017 =
+ * Enhance: Updated respository page and supported version of WordPress
+ * Bug Fix: PHP Error (undefined index) when no users have been inactive corrected
+
+= 1.4.4.1 - 2nd January, 2017 =
+ * Enhance: Small improvements to uninstall procedure, added some comments 
+ * Enhance: Plugin now actively checks to see if bbPress is installed - will deactivate if it isn't
+ * Bug Fix: Support for periods in the posts/topics and user counts
+
+= 1.4.4 - 1st January, 2017 =
+ * Enhance: Plugin Information page now displays more information for debugging purposes
+ * Enhance: Worked on cleaning up some of the code, sorting out comments and so on
+ * Bug Fix: Corrected an issue with multisites where the parent db prefix was being selected all the time when getting online users
+ * Bug Fix: Corrected an issue with multisites db prefix when the plugin is running upgrades
+
+= 1.4.3 - 26th December, 2016 =
+ * Feature: WordPress Multisite/Networks now fully supported
+ * Feature: 'Plugin Information' tab added, this page will be expanded overtime to assist with debugging.
+ * Enhance: Admin-related files will only load when in an admin page
+ * Enhance: Data will now be automatically uninstalled when the plugin is deleted, the user is now explicitly required to check the option to prevent data being deleted
+ * Enhance: Uninstall procedure is generally much more safe now
+ * Bug Fix: An issue in which users were unable to uninstall the plugin should now be resolved
+ * Bug Fix: Corrected an issue in which the statistics were incorrect for boards with more than 10000 posts. Thanks to [tronix-ex](https://wordpress.org/support/users/tronix-ex/) for assistance with this.
+ 
+= 1.4.2 - 18th August, 2016 =
+ * Bug Fix: Users Currently Online count updated
+
+= 1.4.1 - 18th August, 2016 =
+ * Bug Fix: Corrected installation issues
+ * Bug Fix: Corrected upgrade issue
+
+= 1.4 - 17th August, 2016 =
+ * Full WordPress 4.6 Support!
+ * Feature: Added 'Statistics to Display' option, allowing the user to define which online statistics should be displayed
+ * Feature: Added 'User Display Limit' option, allowing the user to define how many users should be displayed before stopping (ideal for larger boards)
+ * Feature: Added 'User Display Limit Page' option, allowing the user to define a page to be displayed should the count of users go over the limit you set
+ * Feature: New Information Page added to the Admin Screen. This displays useful information for debugging purposes
+ * Enhance: Updated the CSS for the admin side, cleared up some bad formatting.
+ * Enhance: Moved Plugin options around
+ * Enhance: Old Database Structure (prior to version 1.3) has now been removed
+ * Enhance: Added default whitelisted codes to support popular BBCode Plugins (e.g GD bbPress Tools)
+ * Enhance: More styling options added to the statistics, see Other Notes for further info
+ * Enhance: Plugin Upgrade has been given some love!
+ * Enhance: Assets folder cleaned up, removed unnecessary files
+ * Enhance: Added translation support for widget
+ * Enhance: Admin Data Callback added for general validation of user input
+ * Enhance: PHP Notices cleared up
+
+= 1.3.13 - 7th May, 2016 =
+ * Feature: Addition of Usergroup Key. This supports custom groups, and will modify the colour based on your stylesheet rules
+ * Enhance: Spaces are supported in user groups for CSS styling (replaced with hyphens)
+ * Enhance: Updated the way bbPress stats are collected
+ * Enhance: Hyperlink IDs for each user moved into the main element
+ * Enhance: Various general code improvements
+
+= 1.3.12 - 1st May, 2016 =
+ * Bug Fix: Corrected Uninstall procedure table name
+
+= 1.3.11 - 26th April, 2016 =
+ * Bug Fix: Made `userid` a unique column to prevent duplicates from appearing
+ * Bug Fix: More fixes for the upgrade procedure
+
+= 1.3.1 - 23rd April, 2016 =
+ * Bug Fix: Corrected database issues that occurred after upgrading
+ * Bug Fix: Fixed installation for sites using different db prefixes
+ * Bug Fix: Corrected PHP Notice in admin page
+
+= 1.3.0 - 22nd April, 2016 =
+ * Feature: Addition of a usable widget! With this being said, shortcodes in widgets is no longer enabled by default for **new installations**. See 'Other Notes' for further details
+ * Feature: 'Most Users Ever Online' has been added to the plugin! **This does not take previous data into account, it takes effect from upgrade/plugin installation**
+ * Enhance: Plugin Installation has been drastically improved.
+ * Enhance: Plugin Deactivation has been improved, now features option to delete all options and database upon uninstallation. Further changes in future updates
+ * Enhance: User Activity is now stored in a custom DB table, some performance increase should be noted on larger sites. Data has been migrated, and the old structure will be removed in a future update.
+ * Enhance: Files removed that are no longer required for the plugin (assets/js)
+ * Enhance: Further Translation Support added for Admin Pages (radio and checkboxes), removed obsolete/pointless translations
+ * Bug Fix: Resolved an issue where extra options would be active regardless of being enabled
+
+= 1.2.2 - 5th April, 2016 =
+ * Enhance: CSS updated, more classes added for easier theme compatibility!
+ * Enhance: Additional CSS added by default to the provided CSS file
+ * Enhance: Added ability to disable CSS file
+ * Bug Fix: Few languages fixes throughout the plugin
+
+= 1.2.1 - 3rd April, 2016 =
+ * Bug Fix: 'User is Online' persistently appearing in user profile. Thanks to [Anticosti](https://wordpress.org/support/topic/persistant-user-is-online-in-profile-page) 
+ * Enhance: Updated language text for 'Welcome to our newest member' as it was causing issues. [Thanks to cooljojo](https://wordpress.org/support/topic/about-languages)
+
+= 1.2 - 24th March, 2016 =
+ * Feature: Extras tab has been added to host additional functionality for the plugin
+ * Feature: BBCode/Shortcode Whitelist added - you can now set which BBCodes/Shortcodes to exclusively enable
+ * Feature: Shortcodes within widgets are no longer enabled by default, users can now switch this on or off!
+ * Enhance: Full glotpress support! Translating is much easier, [Help translate](https://translate.wordpress.org/projects/wp-plugins/bbpress-improved-statistics-users-online) 
+ * Enhance: Admin Page API updated to include new pages
+ * Enhance: Better Code Commenting for navigation around the plugin
+ * Bug Fix: Resolved PHP Notices/Errors around the plugin, thanks to [ripteh1337 for reporting!](https://wordpress.org/support/topic/php-error-169)
+ * Bug Fix: Saving settings on a non-existant tab wipes no longer wipes your settings
+
+= 1.1.3 - 9th January 2016 =
+ * Feature: Ability to choose between Usernames or Display names within the settings, [requested by IILLC](https://wordpress.org/support/topic/feature-request-display-name-instead-of-login-name)  
+ * Bug Fix: Array clearing within a loop (rookie mistake!)
+
+= 1.1.2 - 10th October 2015 =
+ * Enhance: Formatting clear up within some files
+ * Enhance: Some code clean-up and identified other areas for improvement in future releases
+ * Bug Fix: Statistics now appear within the Topics Index (/topics) - [thanks to UVScott for the bug report!](https://wordpress.org/support/topic/bug-report-stats-not-displaying-on-topics-index?)
+
+= 1.1.1 - 12th July, 2015 =
+ * Feature: Threads and Posts can now be combined, bbPress Statistics do not count the first post of a thread as a post, this can be toggled within the settings.
+ * Enhance: Language packs can be overrided now, any packs loaded in /wp-content/languages/bbpress-advanced-statistics/ will override those packaged as part of the plugin
+ * Enhance: Translation String added for username hover over, "ago"
+ * Enhance: Minor code clean up & bug fixes
+ * Bug Fix: Removal of duplicate "bbPress Statistics" option
+
+= 1.1.0 - 4th July, 2015 =
+ * Feature: WordPress "textdomain" language files are now supported, new translations can be added into the /lang/ folder!
+ * Feature: Hover text added to users within the Forum Statistics section
+ * Enhance: Added additional localisation strings
+
+= 1.0.3 - 25th May, 2015 =
+ * Feature: Count parameters: %COUNT_ACTIVE_USERS% and %COUNT_ALL_USERS% to display count of users active recently & inactive
+ * Feature: Minutes parameter: %MINS% to display the option "User Active Time" value
+ * Enhance: No longer grabbing unnecessary data from the database
+ * Enhance: Removed unused code and variables, fixed up some incorrect code comments
+ * Bug Fix: Time logic within the Currently Active Users portion fixed, now correctly displays the currently active users regardless of what option is set
+ * Bug Fix: User Active Time option not working - incorrect variable used within the options page, options will require a resave
+ * Bug Fix: Default options are now saved when the user first installs the plugin
+
+= 1.0.2.1 - 23rd May, 2015 =
+ * Bug Fix: PHP error when installing v1.0.2 (sorry about that)
+ * Bug Fix: No longer time-travelling the release!
+
+= 1.0.2 - 22nd May, 2015 =
+ * Feature: New options added to display the statistics within bbPress without widgets, [see here](https://wordpress.org/support/topic/in-forum-display) 
+ * Enhance: Updated the way options are saved in the Database and removed some redundant code
+ * Bug Fix: Fixed "an error has occurred" message when no users were online / active within the past 24 hours
+ * Bug Fix: Fixed a PHP warning when no options were set for checkboxes
+
+= 1.0.1.1 - 12th May, 2015 =
+ * Feature: Addition of shortcode activation with HTML widget
+ * Enhance: SVN clean up, moving screenshots to the assets folder
+ * Bug Fix: Dependency error for PHP, [see here](https://wordpress.org/support/topic/error-message-421)  
+
+= 1.0.1 - 11th May, 2015 =
+ * Bug Fix: Logic bug with users last online, it now correctly works out how many users were online in the past x hours
+
+= 1.0.0 - 10th May, 2015 =
+* Initial release

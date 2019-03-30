@@ -1,0 +1,791 @@
+V3.4.1
+- New: With "Multitasking Business Rep." setting, more than one service at a time slot can be served
+- Tweak: Added action hooks in gateways for Multi Language
+- Tweak: Payment gateway setting fields order
+- Tweak: Better handling of automatic timetable opening after service change
+- Fix: Minor help text correction
+- Fix: When no preference is selected, if all providers are on holiday (but not break nor busy), booking can be done
+
+V3.4
+- New: Support for Credits addon
+- New: Working hour setting tables can be limited to reduce height of the setting tables
+- New: Daily schedules added. Also supports multiple providers side by side
+- Change: Additional styles are now loaded after stylesheets
+- Change: Minor style changes
+- Tweak: In monthly calendar, timetable for current day is now automatically opened on load
+- Tweak: IF EXISTS has been added to DROP TABLE query during uninstall
+- Tweak: In debug mode, WP BASE menu items are added to the front end toolbar
+- Tweak: Autocomplete off has been added to date picker input field
+- Fix: After resetting database tables completely, services cannot be added
+- Fix: If "Use Time Base in Time Slot Calculus" is set as yes, booking end time is not correct
+- Fix: Admin booking search function does not take non logged in clients into consideration
+- Fix: Admin pagination link styles omitted by WP5.0 core added
+- Fix: Admin booking filter for week selection finds bookings with one week shift when start of week is Monday
+- Fix: PHP notice for previously existed, non active widget
+- Fix: Random SP selection is not working as expected
+- Fix: If all SPs are busy with a certain service, preceeding slots are not reserved for another service 
+- Fix: Login link not clickable when Advanced Features addon is not active
+- Fix: Login interface displayed twice  
+
+V3.3
+- Change: Monthly calendar revamped
+- Change: Show legend default value is set to No
+- Fix: Cannot add new booking from Schedules page
+- Fix: In monthly calendar, slots for today are not selectable 
+
+V3.2.3
+- New: PHP7.3 compatibility
+- Fix: TinyMCE warning in Gutenberg editor
+- Fix: color picker not working
+- Tweak: Minor changes in admin.css for Multi Language addon
+
+V3.2.2
+- Tweak: Reduced number of queries in admin bookings page
+- Tweak: css change when hovering a free slot
+- Fix: Provider is still free although he has been booked in another service at the same slot
+- Fix: Default Settings are not restored after "Restore to default settings" unless email templates check box is checked
+- Fix: Slots are not correctly shown unavailable in legacy mode when service duration is longer than time base
+
+V3.2.1.1
+- Fix: Admin "Add New" button tries to add event instead of service
+- Fix: When admin enters a manual booking without strict check, end time cannot be set
+
+V3.2.1
+- New: WP 5.0 compatibility
+- New: Support for Event Bookings addon
+- Change: Confirmation form css
+- Change: Pointer tutorials have been retired
+- Fix: Javascript error for table view in mobile device
+ 
+V3.2.0
+- New: Slider option instead of pulldown menu for service selection
+- Change: jQuery Mobile is no more used
+- Change: PHP 5.4 support dropped. WP BASE now requires PHP 5.5+
+- Tweak: Support for Front End End
+- Fix: Javascript error when connected with mobile device
+- Fix: Notices are not displayed in mobile devices
+- Fix: Time selection issue in admin bookings in certain time formats
+- Fix: Error when a shortcode is inserted in Divi or OnePager block
+
+V3.1.0
+- Tweak: Overall code cleaning and refactoring
+- Change: Custom Functions is not using PHP eval function any more
+- Change: TableTools for DataTables has been removed as it was deprecated by their developers
+- Fix: qtip error while displaying description for service tooltip
+- Fix: WooCommerce compatibility class causes description text to be duplicated
+
+V3.0.1
+- jQuery Multiselect updated to V3
+- Added filter for modifying ajax tooltip
+- Bot trap added to the confirmation form
+- Improved admin booking record creation and opening speed
+- Significantly improved page load speed of custom texts
+- Admin booking record design improved
+- Code refactoring
+- Fix: Deposit calculation ignores decimals
+
+V3.0.0
+- Initial public release
+
+v3.0 Beta52
+- Change: Folder name is wp-base-dev now
+- Change: Handling of location/service/worker fields changed behavior. More intuitive and flexible now
+- Change: Some help texts moved to wp-base.com
+- New: License system
+- Fix: Search by name in admin bookings does not account for first_name and last_name of client
+- Fix: In manual booking, for worker=0 case, service availability is wrongly checked although "Always Check Available Times of Services" setting is No
+
+v3.0 Beta43
+- Fix: From email when its setting is left empty
+- Fix: Location capacity not working
+- Fix: List shortcode breaks html due to missing esc_attr
+- Fix: Cancellation does noot work on BP user tab
+- Fix: Cancel confirmation javascript message not displayed
+- Fix: Cancelled notice is not displayed
+- Change: Front End Login is a part of Advanced Features addon now
+
+V3.0 Beta42
+- New classes to control menu behavior consistently
+- New setting LSW Priority to control menu behavior
+- New feature: Location can be edited with FEE
+- New feature: Removed status display reason (cancellation, abandonment)
+- FEE codes refactored
+
+V3.0 Beta41
+- Bug fixes
+
+V3.0 Beta40
+- Bug fixes
+- New: Some admin setting panes (e.g. Quick Start) are collapsible
+- Change: On page load a worker is preselected by default instead of "no preference"
+- New setting: Remember latest booked provider
+- New Addon: Event Bookings
+
+V3.0 Beta38
+- Change: Displaying busy status on front end is back
+- New: With setting of display mode, in calendars unavailable slots can be hidden, 0 to 24 hours status can be displayed
+- Tweak: Faster loading of pages
+
+V3.0 Beta37
+- WP BASe is now WP BASE
+- Change: Schedules page and code is re-written under a new WpBSchedules class
+- Fix: Remaining time of cart starts from preset when page refreshed and a new item added
+
+V3.0 Beta36
+- Change: Admin methods separated into several classes and have new file locations
+- Fix: Test appointments cannot assign worker
+
+V3.0 Beta35
+- Fixes, improvements and new settings in WooCommerce integration
+- Change: Gracefully clear cache. wp_flush_cache is no more used and own cache flushing is handled by invalidation method
+- Change: php sessions are not used any more
+- Fix: Filtering for worker does not work
+
+V3.0 Beta33
+- Fix: PayPal cancel return page not saving
+- New Setting: PayPal Item Name
+- New feature: Signature can be captured as UDF field
+
+V3.0 Beta32
+- Bug fixes 
+- New placeholder in Advanced Pricing: PAYMENT_METHOD
+- Change: Wording for Service Provider to Provider
+
+V3.0 Beta31
+- mpdf updated to V7.0
+- Refactored cancel booking codes in the new WpBCancel class 
+- New: Theme selector widget
+- Fix: PHP fatal error caused by missing or corrupted settings
+- Fix: Import failing when there are extensive booking records
+- Fix: Reset without email templates does not work properly
+- Fix: PHP notice on admin side when there are no pages on the website
+
+V3.0 Beta30
+- DB version increased to 3030
+- "Happening Now" wording changed to "In Progress"
+- Improvements in Monthly Calendar Widget
+- Better handling of lazy load
+- Change: Pending Approval bookings auto removal time setting changed from "minutes" to "hours"
+- Change: Some user settings relocated
+- Change: "app_pagination" shortcode changed as "app_next"
+- Fix: Fatal error in Test Bookings
+- Fix: DB error when deleting a UDF
+- Fix: Missing closing div tag in confirmation form
+- Fix: Service records per page does not obey its setting
+- Fix: Pax does not show in confirmation form when seats=1
+
+V3.0 Beta28
+- New roles: wpb_worker and wpb_client
+- New capability control: Admin side menus and tabs can be displayed per used based on capabilities (with a user access manager plugin)
+- Fix: Several PHP notices in PHP7.2
+- Fix: Fatal error in admin bookings
+
+V3.0 Beta27
+- Fix: PHP warning after deleting all categories
+
+V3.0 Beta26
+- Category can bu used in confirmation form and in emails
+- New Addon: Multi Language
+
+V3.0 Beta23
+- New template functions added
+- Various bug fixes
+
+V3.0 Beta22
+- New setting: Editing upper limit
+- Change: Name change for several addons 
+
+V3.0 Beta21
+- From email fallback value changed to no-reply@domainname
+
+V3.0 Beta19
+- New setting and feature: Lazy Load
+
+V3.0 Beta18
+- New: Links pointing to old website are automatically converted to new website url during Import
+- Basic structure for new Addon: Waiting List
+
+V3.0 Beta17
+- New: Slot availability is OOP now (WpB_Calendar and WpB_Slot classes)
+
+V3.0 Beta16
+- Fix: PHP error when saving manual payment records
+- Fix: PHP error when modular shortcodes are used
+- Fix: Decimal separator as comma not accepted in manual payments
+- Fix: Service capacity not taken into account when no workers defined
+- Fix: During saving of a new booking, submitted user data not saved to WP user meta
+- Fix: With Shopping Card and Extras, selected extras are saved to all bookings, while only parent should have this extra
+- Fix: Quotas admin script added to irrelevant admin pages, e.g. user profile page
+- Fix: Services do not respect Annual Schedules
+- Fix: In admin bookings, when service has been selected from a free one, price and deposit fields are not updating
+- Fix: If a service/worker/location is not on the first page, after saving its order is miscalculated
+- Fix: PHP notice about $_POST['start_time'] when selected service lasts all day
+- Fix: Cache is flushed too frequently
+- Tweak: Better responsive support for transactions page
+- Tweak: Better handling of Terms & Conditions
+- Tweak: Tabletools file moved to plugins folder for better security (DB Version updated to 3012)
+- Tweak: To prevent tampering with, Cookies are subject to hash check now
+- Tweak: Updating of admin bookings row dynamically when record has been changed
+- Tweak: Much faster calendar creation on front end for packages when all delays are in days
+- New setting and behavior: "Collapse Record after Successful Save" is by default set as Yes
+- New setting: Extras Multiplied with Pax
+- New: Caching and preloading for front end
+- New Setting: Client Selects Service Provider controls whether SP selection pulldown will be displayed
+
+V3.0 Beta15
+- Fix: Warnings after FEE save, Quotas not functioning correctly
+- Fix: Extras not updating price when editing in admin Bookings
+- Fix: Group Bookings not updating price when editing in Admin Bookings
+- Fix: wpb_delete_app_meta and wpb_delete_service_meta not working
+- Tweak: Faster new booking creation on admin bookings
+- Tweak: List of Participants in Group Bookings
+- Tweak: Better spinner system during ajax calls
+- Tweak: Responsive support for Admin Booking and Manage Bookings pages enhanced
+
+V3.0  
+- Fix: PHP error on display settings
+- Fix: When admin.php is lazy loaded, front hooks are loaded twice
+- Fix: Adding a service as extra fails
+- Fix: Advanced Pricing calculations for multiple appointments are not correct
+- Fix: Location post type is not saved
+- Change: Front end assets (add_default_js) are configured at a later instant now (wp_enqueue_scripts)
+- Change: "Default Service" is now "Sample Service"
+- Change: All instances of SERVICE_PROVIDER placeholder is replaced by WORKER (Also SERVICE_PROVIDER_EMAIL, SERVICE_PROVIDER_PHONE, SERVICE_PROVIDER_ID)
+- Change: Group booking completely changed. Now number of seats are selected before time slot creation
+- New: Countdown time (Previously this was handled by Pending Payment auto removal time)
+- New: Compatibility with Popup Maker
+- New: Effects when opening and closing dialogs
+- Tweak: Advance Pricing settings are codemirror'ed
+
+V3.0 Beta13
+- Fix: After sorting of a service, "More" settings are not moved to the new position
+- Fix: PHP fatal error on FE Manage Bookings page
+- Fix: Export CSV on Front End Booking Management not respecting only_own setting
+- Change: Sorting of services is only possible when all "more" settings are hidden
+- Change: app_provider_id POST/GET variable is deprecated in favour of app_worker_id
+- Change: app_service_providers shortcode deprecated in favour of app_workers
+
+V3.0 Beta12
+- Fix: In list of Bookings, Cancel button incorrectly enabled when a worker is client of another worker (Settings: for client cancel not allowed, for worker allowed)
+- Fix: Test appointments not respecting location
+- Fix: Settings cannot be saved in BuddyPress
+- Fix: Issues with CodeMirror
+- Tweak: Seats can be selected for packages
+- Change: It is now required to set WPB_REMOVE_ALL_DATA to true in order to delete all data during uninstall
+- Change: User submitted validation filters now return false when submitted value validates
+- Change: User submitted fields are only saved if all fields are validated
+- New Tool: Custom Functions
+
+v3.0 Beta11
+- Fix: Swipe.setup() javascript error on non WP-BASE pages
+- Fix: Regular service price is not correctly calculated from unit price of variable durations
+- Fix: FEE gives too less booking error
+- Fix: FEE does not update changed user data
+- Change: Time functions separated from core.php
+- Change: Ajax functions moved to front-ajax.php
+- Change: Auxilliary methods, e.g. _explode, _implode, sanitize_commas moved to functions.php
+- Change: Some other methods, e.g. format_duration, format_currency moved to functions.php
+- Change: get_reserve_apps no longer accepts lsw parameters
+- Change: In FEE form spans have class names now
+- Change: Listing order of Coupons and Easy Pricing have been reversed
+- Change: "Action upon price mismatch" removed for now to be added in a later release
+- Tweak: Front end now respects worker availability as well as service availability when worker=0
+- Tweak: css setting fields use Codemirror now
+- Tweak: RAM usage slightly improved
+- Tweak: is_busy function refactored. Now it is more readable and potentially using less PHP picks
+- Tweak: Recurring appointments - Now accepts 3 monthly modes. Accepts only weekdays, weekends, every other day, EOD without sunday. REPEAT_UNIT can be omitted
+- New Settings: Hide Cancel button, thousands separator, decimal separator. Now number format is free from locale
+
+V3.0 Beta10
+- Fix: For non logged in users, user fields cannot be sent on the confirmation form
+- Fix: Auto register not sending notification
+- Fix: app_book switches to default view after clicking previous/next buttons
+- Fix: PHP error "to few arguments" when only Annual Schedules and Packages are activated
+- Fix: Wrong available times are pulled from DB because of Annual Schedules
+- Fix: Book in Flex View: Wrong starting time if duration is long, e.g. 12 hours
+- Fix: Woocommerce: Zero priced service not accepted
+- Fix: Woocommerce: Messages and titles are not respecting "Name in Cart" setting
+- Fix: Woocommerce: Order processing
+- Fix: Auto increment value in working hours tables preventing save (DB Version updated to 3010)
+- Fix: Service category selections are lost if ESF is deactivated, services saved and ESF reactivated
+- New: Filters to define own css and theme files (and folders)
+- New: Compatibility with WP-Rocket caching plugin
+- Change: Formatting of phone field is suspended for now
+- Change: Mobile dedect updated to the latest version (2.8.25)
+- Change: DB Version 3010
+- Change: In Pro Features addon, WpBProf class removed
+- Tweak: app-common.js refactored and minimized: app-common.min.js
+- Tweak: Recurring appointments refactored
+- Tweak: Better display and handling of multiple appointments on confirmation form with inclusion of a "details" field
+
+V3.0 Beta9
+- New: Follow up emails can also have PDF attachments
+- New: Alphabetic sorting for categories
+- New: Second optional parameter (fallback) for get_options method
+- New setting: Addon Fields Position on Confirmation Form
+- New: In Recurring Appointments, repeat unit and max repeats are selectable
+- Fix: X-Theme compatibility issue when Debug is off
+- Fix: find_first_free_slot failing for all day services
+- Fix: reserve_apps_by_worker is now location independent
+- Fix: Recurring appointments not blocking slots correctly
+- Change: PDF files is saved in /uploads/__app/ folder instead of /uploads/
+- Change: PDF Addon now requires PHP5.4+
+- Tweak: Better handling of all day services: End time is now 00:00:00 instead of an artificial 23:59:59
+- Tweak: Location on first load adapts to default service
+
+V3.0 Beta8
+- New: Created by column (on behalf booking) in admin-bookings
+- New: Terms & Conditions
+- New setting: Tax
+- New: TAX, TAX_PERCENT, PRICE_WITHOUT_TAX email placeholders added
+- Fix: Saving General Global Settings creates a new Make an Appointment page
+- Fix: Single quotes in service names break Extras page
+- Fix: Service/Category/Location/Worker names and notes are not displayed correctly when there are double quotes
+- Fix: PHP error on admin side due to deactivation of Categories
+- Fix: Various wording fixes on front end for all day services
+- Fix: Price not shown in test email
+- Fix: PHP warning in post_confirmation due to price mismatch logic moved to Pro Features
+- Change: State and Country fields have been removed from confirmation form (To be added as dropdown in the future )
+- Change: W3 Total cache is allowed to minify css and javascript
+- Change: "Note" field in confirmation form is textarea now
+
+V3.0 Beta7
+- Fix: Collision between month and week filters in admin bookings
+- Fix: Service providers list cannot be sorted by name
+- Fix: Time base "auto" setting not taking working hours into account if there is an off the hour cell (e.g. it should not allow 30 minutes if someone starts at 9:15am)
+- Fix: Tutorials
+- Change: Categories are now a part of Extended Service Features
+- Tweak: W3 Total Cache clear post cache is run with app_flush_cache action
+- Tweak: Post ID can be used as Return Page setting
+
+V3.0 Beta6
+- New: RTL support
+- Tweak: Most front end css files are minified and combined. Javascript libraries are combined and moved to footer (WP-BASE debug mode should be off)
+- Tweak: Annual Scheduling: As alternative schedule selection changes, its sample also dynamically changes
+- Tweak: In front end calendars' start attribute "auto" can be selected which will take the calendar to the first available date
+- Fix: Monthly calendar markup when week starts on Saturday
+- Fix: "Starts" checkbox does not correctly reflect its setting in "Hidden Fields in the Confirmation Form"
+- Fix: PHP fatal error when connected with mobile device
+- Fix: Js error when connected with mobile device
+- Fix: Various corrections covering all day services
+
+V3.0 Beta5
+- New setting: Always Check Available Times of Services
+- New: Ability to search for appt. date and filter with appt. week in admin bookings
+- Fix: php error switch_to_blog does not exist
+- Fix: DB error during network activate
+- Fix: DB error due to manual_payment column left from previous version
+
+V3.0 Beta4
+- Tweak: Quotas is now using a cached result set dramatically improving performance
+- Tweak: Services settings are redesigned
+- Fix: Special Days settings not displayed when Quotas activated alone
+- Fix: Weekly quota now also correctly blocks weeks starting other than Monday
+- Fix: gcal_ID index too long
+- Fix: PHP error on multisite blog delete
+- Fix: When entering new booking, change of date/time correctly changes price
+- Fix: DB error when searching with "note"
+- Fix: Correction of $GLOBALS['appointments'] write position
+- Change: "Any quota" has been renamed as "Total Upcoming" and it does not take completed bookings into account now
+- Change: Working hours tables do not have autoincrement column any more
+- Change: Javascript in admin-bookings has been refactored and moved to a separate file: app-admin.js
+- New settings in admin bookings: Lock - lockes monetary fields to automatic changes. Admin Note - To take private notes
+- New: Confirmation fields (service, price, start time, etc ) can be hidden
+- New: Compliance with W3 Total Cache checked, compliance with X Theme provided
+- New: email templates can be excluded from Reset to Defaults
+- New: Location parameter in Manage Bookings shortcode 
+
+V3.0 Beta3
+- Fix: PHP errors in PHP V5.3
+- Fix: Unable to install
+- Fix: Special Days and Weekly Limits in Quotas not working correctly
+- Fix: RAM shortage issue when importing data from A+
+- Tweak: Quotas now blocks time slots even on preload (Monthly and Weekly calendars only)
+
+V3.0 Beta2
+- New setting: "From name" for emails
+- New: Compatibility tested and maintained with Live Composer, Fusion Builder and Elementor
+- New: Auto register and auto login settings
+- New: Categories are now sortable
+- Fix: PHP Error during saving of user settings
+- Fix: Issues clearing Locations and Categories from a service
+- Fix: Locations DB table lacking auto increment field
+- Fix: Minor display issue when deposit or price is zero
+- Fix: Rebook button now correctly get user fields from source booking. Also auto populate user works for Rebook
+- Fix: Php warning messages in quotas and limits when saving services
+- Fix: "Add more" settings are not saved for a newly added service
+- Tweak: If non logged in client books on a WC page and auto register is "Yes", client is automatically logged in 
+- Tweak: Improvements in countdown UI
+- Tweak: Improvements in Packages speed
+- Tweak: Improvements on confirmation form
+- Tweak: Easy setting of repetitive package jobs
+- Tweak: app_hide and app_show now accepts < and > signs
+
+V3.0.0 Beta1
+- Change: DB structure changed to reduce mysql RAM usage, improve runtime speed and increase scalability
+- Change: Class names and instantiation routines are standardized
+- Change: Option names and php constants
+- Change: Pending status now has 2 different texts on the admin side depending on the payment expectation: Pending Approval, Pending Payment
+- Change: Now there are 2 different auto remove set time for Pending Approval, Pending Payment.
+- Change: Default Number of Booking Records per Page is now 20
+- Change: Arrangement of setting pages
+- Change: non logged-in users (with cookie check in browser) can also use FEE. New email placeholder EDIT
+- Change: Edit dialog horizontal position
+- Change: mPDF updated to V6.1. Now it supports PHP7
+- New setting: "Allow provider cancel own appointments"
+- New: Remote confirmation of pending booking by client using CONFIRM placeholder. New setting "Allow client confirm appointments by email"
+- New shortcode: [app_show] which can also be used in emails
+- New feature: Conditional email texts using app_hide and app_show shortcodes
+- New: When an email template has changed, changed part (first 10 words) is saved in log file
+- New addon: WooCommerce
+- New: SERVICE_ID, LOCATION_ID, SERVICE_PROVIDER_ID placeholders
+- New: DB table "base_meta" which will keep previous app, location, service additional fields and udf values
+- New user fields: First name, Last name
+- New: UDF Phone field which auto dedects country and adds flag
+- New: UDF Date field
+- New: Follow-up emails as part of Reminder Emails Addon
+- New feature: Admin side text replace
+- New fature: Services can be selected as Extra
+- New feature: User specific coupons
+- New: Automatic loading of scripts and css files for templates and automatic recognition shortcodes to be updated via ajax
+- New: In List of Bookings, Packages and other Multiple Bookings are displayed as a single item, however children can be viewed in tooltip
+- New: Packages may include other packages as jobs
+- New: Confirmation form auto adjusts itself to 1/2 column layout
+- Fix: editor.min.css not loading in emails page
+- Fix: pdf attachment file accepts placeholders
+
+V1.99.327
+- Fix: Infinite loop in get_reserve_apps_by_worker
+- Fix: Packages selectable in Test Appointments
+- Fix: js failing when MarketPress is not active
+- Fix: Saving wrong UDF values when multiple booking records are open
+
+V1.99.326
+- Fix: Value in admin bookings page under balance column
+- Fix: Test code left in FEE
+- Fix: In FEE, service provider value is not sent to ajax request
+- Fix: Saving Locations page resetting all global settings
+- Fix: php error in book_stack in mobile device
+- Fix: Better handling for jQuery.mobile conflicts with 3rd party plugins
+- Fix: Various issues in Packages addon
+- Fix: wp_is_mobile replaced with $this->is_mobile
+- Fix: delete_user action not functioning 
+- New setting: FEE editable booking fields (service, provider, date, time) are now selectable. Check your settings after update
+- New: Locations now support Google Maps in confirmation form, dialog and emails
+- New: Rebook button
+- New: Automatic adaptation for SiteOrigin, Divi, Unyson, OnePager page builders. Also tested and confirmed compatibility with Visual Composer, Beaver Builder, Make, Layers.
+- New addons: Recurring Appointments, MarketPress
+- Change: Multiple Clients addon renamed as "Group Bookings"
+- Change: Cancelling using link in email requires logging in
+- Change: Multiple Appointments addon renamed as "Shopping Cart"
+- Change: Due Payment Reminder addon is renamed as "Reminder Emails". Reminder emails are now a part of this addon.
+- Change: Renamed "Deposit" as "Security Deposit" for clarity 
+
+V1.99.323
+- New: Locations are now selectable in "applies to" field of Custom Pricing, Extras and Coupons
+- Change: Settings for Extras are now under Global Settings
+- Fix: update_lsw not accepting 0 value to be forced
+- Fix: Rescheduling of unassigned provider (w=0) in admin bookings
+- Fix: Front End Edit cannot select late booking (Must be doing front end edit, late booking allowed, must be today, selected service must be longer than time base, its starting time must not be divisible by its duration)
+
+V1.99.322
+- Fix: Week numbers in annual schedule calculations are now consistent with starting day of the week
+- Fix: When a child becomes parent, its parent_id set as its own ID (It should be 0)
+- Fix: Showing available slots when duration > time base and working hours do not fully cover duration
+- Change: Multiple appointment is handled in a separate class now (in multiple.php)
+- Change: As status of a parent changes, children match to the parent status
+
+V1.99.321
+- Change: No more supporting php versions less than V5.3.0
+- Change: Various optimization improvements on the front end
+- Change: Added default columns to display for app_manage (Previously it was empty, displaying all available columns)
+- New: In bookings page the following columns are added as hidden: created, location, price, deposit, paid, balance, email, phone, address, postcode, city, country. These can be made visible using "Screen options".
+- New: Price, deposit, paid, balance column headers show total value per client for the page
+- New: Added categories for services. DB version is now 2.1.1 
+- Fix: Division by zero fatal error when variable services active and preselect first service is set to No
+- Fix: Custom texts are being displayed in alphabetical order by default (previously this was done by datatables after page load)
+- Fix: Addons submenu item location was before Global Settings
+- Fix: app_tutorial_continue function giving fatal error
+- Fix: php warning error for UDFs when no UDF defined
+- Fix: More export/import bugs
+- Fix: Calendars not showing available slots when midnight - first available working hour is not divisible by duration
+
+V1.99.319
+- Change and fix: Use "any" as status attribute in app_manage shortcode in order to display all available statuses (Previously using "all" which was messed up with "all" tab which is showing all bookings). 
+- Change: When adding a manual booking, first free day is automatically selected (Previously it was current day, free or not)
+- Change: UDF's are NOT added to app_manage as columns by default. They have to be added manually.
+- Fix: Cron command and job
+- Fix: Special days in ESS are not taken into account
+- Fix: Exact hours are not selected for the first available day if time base is less than service duration and there is a lead time
+- Fix: Manual payment column removed from CSV export
+- Fix: php fatal error when using book_stack
+- Fix: Multiselect not loading in edit-post page
+- Fix: FE Booking management pagination links adding extra "page" parameter to the url
+- Fix: If no valid email provided, error message is being repeatedly logged for reminder email (Now an action is provided instead of logging)
+
+V1.99.318
+- Fix: Export bookings is no more displayed on bookings page (Displayed under Tools>Export/Import or FE Booking Management)
+- Fix: Hide column controls in Bookings page Screen Controls
+- Fix: Import of serialized data
+- Fix: In Service Providers page Dummy checkbox not reflecting actual setting
+- Fix: Late booking cannot be done in blocked time any more
+- Fix: Wrong behavior in service provider editing
+- New: User role can be selected in Easy Custom Pricing
+- New Setting: Action upon price mismatch
+- New Addon: Extras
+- New Addon: Variable Durations
+- New: Debug can display how price is affected by Addons
+- New: app_quotas_is_allowed filter has been added
+- New: Column 'additional' in workers and locations tables. DB version is now 2.0.9
+- Change: Minor markup change in admin-bookings.php covering label class="app_iedit_user"
+- Change: In post confirmation "end" value is taken into account to calculate length of the service (previously duration).
+- Change: UDF table has been moved to wp-options
+- Change: wp_cache_flush is being called less frequently now
+- Change: Discount to selected user roles setting removed (This can be adjusted better with Easy Custom Pricing now)
+- Change: UDF columns on Bookings page are hidden by default (They can be made visible using "Screen Options" as before)
+
+V1.99.315
+- Fix: Manual payment submitted amount 1cent issue
+- Fix: Late booking issue when service duration is longer than time base
+- Change: In confirmation and edit forms, empty div margin are set to zero
+- Change: Advanced Pricing is changed as Advanced Custom Pricing and it is a part of Custom Pricing addon now
+- Change: Zero value is formatted and currency sign for monetary values is not added any more in emails
+- New: Easy Custom Pricing, which is a part of Custom pricing 
+- New: Setting: Late booking permission time 
+
+V1.99.313
+- Fix: Manual bookings dialog behavior when more than one dialog open
+- Fix: php error while changing status on Manage Bookings
+- Fix: Paging issues for Coupons and Alternative Schedules
+- New: Export button can be added/removed with add_export attribute in app_manage shortcode
+- New: Number of business records per page setting (Locations, services, service providers per page)
+- Change: Tab order in global settings changed
+
+V1.99.312
+- New: Settings for timezones
+- New: Settings for GCal
+- Fix: Wrong attachment in reminder emails
+
+V1.99.311
+- Fix: White space in front of php opening tag in user.php cleared
+- Fix: Welcome dialog in Network Admin disabled
+- Fix: Payment gateways not loaded: Add manual payment button not displayed
+
+V1.99.310
+- Change: qtip and DataTables updated to latest versions
+- Change: Services table ID column is auto increment now
+- Change: Location of global settings rearranged
+- Change: Pro Options and Widgets Pro addons combined as Pro Features
+- Change: Annual schedules, holidays, special days and other business options are now exported/imported with "Database tables" button
+- Change: BuddyPress messages are now given with JQuery dialog
+- New: Widgets can now be exported/imported
+- New: Custom texts can be excluded from import
+- New: Undo function during copy/paste of working hours
+- New: A BuddyPress user profile tab can be added to let clients directly book the provider
+- New: Service providers can add, edit and delete own services. They can edit own annual schedules
+- New: Addons can be directly used as WP plugins
+- Fix: Special days included in export/import
+- Fix: Special days not being saved
+- Fix: Datatables not submitting hidden fields in Custom Texts
+
+V1.99.301
+- Fix: php method not found error
+- Change: pro.php addon file renamed as pro-options.php
+
+V1.99.300
+- Change: Plugin name changed to WP-BASE
+- Change: Lead Times Per Service addon renamed as Extended Service Settings (ESS)
+- Change: Pro specific service settings moved to ESS
+- Change: All Payment Gateways are reorganized as Addons
+- Change: Holiday term is changed to Special Day in Quotas and ESS
+- New: Addons Annual Assignments & Holidays, Export/Import, Modular Shortcodes, Service Providers, Widgets Pro which include codes previously a part of Pro version
+- New: Settings for FEE: Allow Client Make Higher Price Selections, Update Price When Edited Values Result in Lower Price
+- New: FEE now also updates price when time of day has been changed
+- New: Filters for quotas app_quotas_where and app_quotas_where_for_special_days
+- New: Feature and setting: 
+- Fix: Special day definition can be done on Services tab
+- Fix: Packages does not correctly calculate availability when job delay is zero
+- Fix: Manual payments dialog issues
+- Fix: FEE does not calculate price of packages
+
+
+v1.99.220
+- Fix: Admin additional style missing tags
+- Fix: Weekly calendar not displaying correctly in client timezone
+- Fix: Several corrections in Payment Gateways
+- Fix: Packages respect quotas for each package service (job)
+- New: SERVICE_PROVIDER_PHONE, SERVICE_PROVIDER_EMAIL placeholders can be used in email templates
+- New: In emails, SERVER_DATE_TIME and SERVER_END_DATE_TIME placeholders can be used.
+- New" In emails PAYPAL placeholder can be used
+- New: In List of Bookings PayPal Pay Now button can be added
+- New: Coupons Addon
+- New: Simplyfy by Mastercard Payment gateway
+- New: Location capacity can be set to limit number of services that can be given at any time slot (New column in Locations db table)
+- New: "From email" setting and app_from_email filter hook
+- Change: In emails, DATE_TIME and END_DATE_TIME values show client local time now. CLIENT_DATE_TIME and CLIENT_END_DATE_TIME placeholders became redundant and removed.
+- Change: Confirmation dialog now has close button
+
+V1.99.218
+- Fix: Wrong evaluation of providers and working hours when there are more than one effective service on the same page
+- Fix: During import, some lines are executed altough they should be skipped
+- Fix: Issues in Book Now Single button
+- Fix: One week shift in annual assignments
+- Fix: Seats addon not accepting seats > 1
+- Fix: Seats field appearing in confirmation form although Seats are disabled
+- Fix: UDF change does not update price on the fly
+- Fix: Reverse process flow, app_hide shortcode in another shortcode
+- Fix: Front End Edit service and provider changes not working correctly
+- Fix: Being able to click another edit button while edit form is called, but not displayed yet
+- Fix: Issue in hide shortcode when used in a widget
+- Fix: Field alert message closing other dialog
+- Fix: Test appointments can select internal services
+- Fix: Readonly display of client Time Zone
+- New: In FEE form, clicking cancel button asks confirmation
+- New: Service attribute in app_book shortcode
+- New: hide_if attribute in app_locations, app_services, app_service_providers shortcodes
+- New: app_get_duration filter which allows variable service duration
+- New: "Hard Limit" which forcibly breaks execution of list of bookings (app_list) if there are too many bookings. Limit time (default 10 secs) can be set using APP_HARD_LIMIT in wp-config.php
+- Change: In shortcodes cap='none' will be accepted as true for everyone (including not logged in visitors)
+- Change: In FEE form, clicking cancel button does not refresh page
+- Change: Upon error, FEE form is not closed any more
+- Change: Disable timezone handling setting is not effective on admin side
+- Change: In FEE, Nothing changed and save error give different error messages now
+- Change: In FEE, client allowed to select provider as "no preference" if: a) "Selection Method of Service Provider in No Preference setting" is "client selects" AND capacity is increased OR b) 'app_is_no_pref_allowed' filter returns true
+
+V1.99.216
+- Fix: incorrect formatting of exported settings when it includes curly brackets: json_encode in export settings is replaced by wp_json_encode
+- Fix: Js error in packages when service name has a quotation mark
+- Fix: Some issues in time slot generation
+- Change: Annual schedules show full year (Previously it was starting from current week)
+
+V1.99.214
+- New setting to enable/disable logging of setting changes
+- In Manual Booking, save response "You did not make any changes" (neutral-black) is separated from "Record could not be saved" (error-red)
+- New shortcode "app_hide" to control display of elements on the page according to some conditions, e.g. selection of a worker
+- New shortcode "app_book_stack" for new booking layout: Book in Stack View
+- Now it is possible to change the process flow from locations->services->providers to providers->services->locations or any order combination of the three.
+- STATUS placeholder is included in email templates
+- is_ios and is_android functions added
+- New columns in services db table book_start and book_end
+- New working hours entry and editing concept. Working hours can be edited in a graphical interface. Multiple working hour tables can be edited at the same time. Copy/paste functionality between wh tables.
+- New Annual Schedules: For every provider and service, an alternative working schedule which will be selected per week basis can be selected
+- New: Service providers can select their time zones and set working hours according to those values.
+- New: Now it is possible to define "Service Working Hours". This is used when no service provider is picked on the front end
+- New: Addon "Packages" allowing to combine two or more services. Also supports multiple bookings (More than one package can be added)
+- New cart concept for Multiple and Package appointments
+- New: Addon "SMS" which lets sending of confirmation, reminder etc messages over SMS by Twilio, Plivo or Nexmo
+- Change: Default order_by (order on page load) setting of app_list changed from "ID" to "ID DESC"
+- Change: Install is a separate class now (in activate.php)
+- Change: Focusing to a field is disabled in iOS devices (can be overriden)
+- Change: "pack" order changed
+- Deprecated: Limited Time Services and Extended Exceptions Addons
+- Global Upper Limit now accepts negative numbers, letting to close all services (negative numbers are already accepted in per service settings)
+- User time zone is auto detected now
+- List of bookings is displayed after fully rendered
+- New setting: Enable Time Zone Handling
+- Refactoring of email functions
+- Datatables (1.10.10) and dt.responsive (2.0.1) updated to the latest versions
+- For Multiple Appointments, parent ID can be edited on admin edit bookings page
+- Setting import/export changed to json format
+- Fix: Unnecessary columns being displayed in List Of Bookings
+- Fix: Duplicate loading of default_js customization variables
+- Fix: Datatables not loading for custom texts page
+
+V1.99.205
+- Weekly Schedule now displays bookings inline
+- Month selection in upper limit added
+- Improvements in speed and look of page when connected with mobile device
+- Widgets and widget instances can be added to or removed from each page individually. Different selections for mobile and non mobile devices.
+
+V1.99.204
+- New settings "auto delete" and "auto delete delay time" which enable automatic deletion of expired bookings (removed and end time passed)
+- New shortcode [app_no_html] which can be used to load ApB js and css files to a custom template without generating any html output and killing its contents.
+- New $GLOBALS['appointment'] for current appointment object, when available, i.e. in edit, admin edit, email functions. Always check it with isset($GLOBALS['appointment'])
+- mpdf moved to includes/pro-files/ folder
+- New important filter: app_js_parameters to set some javascript parameters (limited, but the correct way)
+- All javascript $(body) and $(document.body) replaced with $(document)
+- More jquery ui tabs added on admin settings pages
+- Fixed: Manual Payment button double clicking adding extra payment
+
+V1.99.203
+- Fix: email settings cannot be saved
+- Fix: Some warnings if all services are deleted 
+- Fix: Swipe calling ajax twice
+
+V1.99.202
+-Fix: php error on settings page
+
+V1.99.201
+- jQuery UI tabs usage on certain admin pages
+- UDF custom functions now accept 2 parameters: Saved value and ID of the udf
+- Datepickers now obey "Week starts on" WP setting
+- Wp Editor can be used in Shortcode widget content setting
+- Tooltips on calendar pages are now using ajax instead of preload, dramatically reducing load time
+- Monthly calendars do not preload as default, dramatically reducing page load time
+- Most of the scripts are moved to app-common.js file
+- qtip codes are refactored
+- Expired test appointments are now automatically deleted
+- Improvements in front end page load speed
+- Improvements in Advanced pricing functionality and display
+- Debug mode to display configuration errors and time slot availability on the front end
+- Calendars admin page renamed as "Schedules"
+- Display order of UDF and standard user fields on the confirmation form can be freely set
+- Automatic dedection of mobile phone and tablet connection
+- "Form" element is now wrapping edit form in order to make use of browser autofill property
+- New setting "Debug mode": Either configuration errors and states are visible to admin or not
+- New setting "Consider tablets as mobile"
+- New setting "Mobile theme": Front end theme that will be used for mobile phones (and tablets if selected as mobile)
+- New setting "Color scheme (swatch)"
+- New shortcode app_book: A compact shortcode which creates a complete booking page with mobile phone support and swipe functionality
+- New shortcodes app_is_mobile and app_is_not_mobile: Let different contents and shortcodes run for mobile and non-mobile devices
+- total_paid, deposit, balance columns can be used in List shortcode
+- Fixed: Datepicker format
+- Fixed: Changes were not accepted when date/time fields were not changed
+- Fixed: Wrong page refreshed when provider changed on Working Hours setting page
+- Fixed: php error in Test Appointments
+- Fixed: Front end themeroller selection changing selected admin theme
+- Fixed: After edit, confirmation dialog displaying unedited booking data
+- Fixed: Bookings filtered with month could not be sorted
+- Fixed: Extended exceptions not saving settings 
+
+
+V1.99.200
+1. In new bookings, user data auto populates after selection
+2. Fixed: Front end edit giving error
+3. Custom css file location has been changed: uploads/__app/
+4. Manual payment entries change balance and total payment fields on the fly
+5. Admin theme can be selected separately. Default admin theme set to "smoothness" whose colors fit better
+6. Fixed wrong sorting when closest last is selected
+7. Unassigned provider can be selectable in admin bookings filter
+8. _appointments_data javascript namespace changed as _app_
+9. User fields display order can be changed on the confirmation form
+10. In pdf creation, only one font left, the others cleaned, however now any true type fonts can be uploaded to uploads/__app/fonts/ folder to be used with pdf.
+11. Some changes in file names and location of the files and methods to make Personal and Pro versions be possible.
+12. Fixed: On behalf editing not respecting quotas issue
+13. Changed: Completed appointments are also taken into account for quotas
+14. Fixed: quoatas-per-service php warning after deletion of a service
+15. Fixed: Editing a booking of a deleted service not possible issue
+16. New user fields postcode and country. Handling of user fields standardized on code level
+17. Admin bookings filter/sort save property removed
+18. In List of Bookings, button elements are being used instead of input elements
+19. "Show more/less" control on services tab moved from Addons to admin.php
+20. "Show all/hide all" link has been added to expand all service addon settings at once
+21. Add Manual Payment button has been activated on Front End management page
+22. Refactoring of all classes and functions
+23. Plugin is now independent from its directory name
+24. app_all_appointments and app_my_appointments shortcodes are deprecated
+25. Reminder emails are not sent if they are supposed to be sent in the past, i.e. if booking made after reminder time
+26. CREATED placeholder (date/time of booking has been made) can be used in emails
+27. UDF is now supporting user functions, but without parameters
+28. The following method is deprecated and will be deleted in the next update: is_working
+29. New APP_DISABLE_RESET, APP_DISABLE_ADVANCED_PRICING, APP_DISABLE_GCAL global constants to disable Resetting, Advanced Pricing Addon and Google Calendar Addon on wp-config.php level
+30. TableTools added to Custom Texts. Also all records can be selected
+31. In admin calendars jump to a selected day is possible
+32. In admin calendars different color for "partly busy" days
+33. Fixed: Booking issues when there are no service providers defined
+34. Plugin menu item is listed after "Comments" on left side admin menu
+35. Compatibility for WP4.4 tested
+36. Cancel button disabled status fixed for already cancelled booking
+37. New "padding before" setting for each service. Previous break is renamed as "padding after"
+38. Fixed: In manage bookings, changing appointment time to a later time was not possible
+39. On Manage Bookings page, custom datepick jQuery widget replaced with jQuery UI datepicker widget

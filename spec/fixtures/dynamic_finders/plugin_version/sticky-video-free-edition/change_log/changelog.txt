@@ -1,0 +1,49 @@
+[2.1.0]
+- Refactored part of the code to separate logic for different JS players.
+  This will make it easier to include more players support in the future
+- Added "forced-sticky-video" class and "forced-selector" parameter
+- Fixed bug for Twitch iframe support
+- Added support to Wistia JS player
+
+[2.0.2]
+- Better placeholder behaviour if video is position:absolute (e.g. forced 16:9 aspect ratio)
+- Forced positioning with "!important" when sticky (reduced contrast with aggressive style from external theme/plugins)
+
+[2.0.1]
+- Fixed issue when using minifying plugins that change the order of scripts
+
+[2.0.0]
+- Removed jQuery dependency
+- Fixed minor-bug on window resizing
+- Added "data-sticky-video-state" attributes
+- Added fade/motion/scale transition types
+- Added placeholder-background choice
+- Added styling options for mobile breakpoint
+- Improved compatibility with WP's media player
+- Improved transition performance
+
+[1.3.1]
+- Fixed bug when positioning to bottom-left/right
+
+[1.3.0]
+- Improved JS performance: less use of jQuery and use of requestAnimationFrame for scrolling checks
+- Fixed minor bugs for WP's video player
+
+[1.2.0]
+- Added support to embedded videos from: youtube, vimeo, facebook, brightcove, jwplatform, dailymotion, youku, tudou, wistia, schooltube, break, metacafe, liveleak, archive.org
+- Added support for jwplayer JS player
+
+[1.1.0]
+- Added HTML class selecting method ("sticky-video" and "contains-sticky-video")
+- Added close button functionality
+
+[1.0.3]
+- Fixed wrong initial positioning at the edge of the page for rare cases of iframes
+
+[1.0.2]
+- Fixed bug in selecting vimeo tags
+- Added support for dailymotion.com
+- Higher zIndex for videos in fixed position
+
+[1.0.1]
+- Fixed issue if sticky-video.js <script> has "defer" attribute

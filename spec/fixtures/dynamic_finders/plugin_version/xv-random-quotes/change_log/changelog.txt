@@ -1,0 +1,174 @@
+== XV Random Quotes ==
+
+= 1.35 =
+Fixes and consolidates sanitization across ADD + EDIT quotes
+* See https://wordpress.org/support/topic/great-little-tool-4#post-8759612
+
+= 1.34 =
+Fixes problem when sequence goes back to 0
+* See https://github.com/xavivars/xv-random-quotes/issues/9
+
+= 1.28 =
+Fix issues in widget handling
+* Error in SQL query
+* Wrong sanitize applied
+
+= 1.27 =
+Add charset and collation when creating table
+
+= 1.24 =
+Fix released extension at WordPress.org
+
+= 1.21 =
+Fix incorrect escaping when saving settings 
+
+= 1.20 =
+First version published of XV Random Quotes
+* Cleanup of help page
+* Added unit test framework
+* Removed old paypal buttons and URL references
+
+= 1.11 =
+* Change AJAX quote loader
+** Now it uses proper AJAX calls
+
+= 1.10 =
+
+* Updating plugin to Wordpress 3.9 & PHP 5+
+** Removal of deprecated mysql_escape_string in favor of esc_sql
+
+* Code cleanup
+** Better code readability
+
+
+== Stray Quotes Z ==
+
+This is the changelog of adjustemnts to version 1.9.9 made by [Sergey Sirotkin](http://www.zeyalabs.ch/). 
+To find the changes in the code, diff it against original files or search for comments starting with "zL:".
+
+= 1.9.9.z3 =
+
+* Fixed: displaying of invisible quotes when using multiple categories in `stray-all` shortcode.
+* Fixed: corrupted character encoding in search box after search request submission (affected accented, Cyrillic and other "non-A-Z" letters).
+* Fixed: notice about undefined variable `userquery`.
+
+= 1.9.9.z2 =
+
+* Fixed: problem with escaping backslashes with WP 2.9.
+* Fixed: notice about undefined constant `add_shortcode`.
+
+= 1.9.9.z1 =
+
+* Added: search form to "Manage" page (enables search by a single keyword or phrase on the quote body).
+
+
+== Stray Quotes ==
+
+* 1.9.9 Changed: the way locale files are loaded
+Changed: the way the settings page has to check validity of the URLs (hopefully more accurate now)
+Changed: it is now not mandatory to include the variables in author or source links on the settings page
+Added: chapter in the Help page dedicated to solving potential HTTPS problems (thanks to Andy for helping with this).
+Fixed: replacement of & char in the links (thanks to Ian for pointing this out)
+
+* 1.9.8 Fixed: a small bug caused contributors not to be considered when using AJAX.
+
+* 1.9.7 Added: when contributors are allowed to add and manage quotes, it is now possible to specify whether a widget, a shortcode or a tag should display quotes only from a given contributor. See the help page for more. Changed: Widget layout. Fixed: the link buttons for the author and source fields on the edit page would not work.
+
+* 1.9.6 Changed: For compatibility with other plugins that use similar or too common names for their shortcodes (above all NextGen gallery), the shortcodes of Stray Random Quotes have changed names. Please take note before worrying about malfunctions: random-quote is now stray-random, all-quotes is now stray-all and quote is now stray-id. Please make the appropriate changes everywhere in your blog where Stray Random Quotes shortcodes are used, or they won’t work anymore.
+Sorry about this, I hoped and tried to implement a more clever automatic check on the active shortcodes but unfortunatley many plugins don’t register theirs correctly and it is not possible from inside a wordpress plugin to identify them with certainty.
+Fixed: some of the settings got reset upon activation because of a comparison based on version number that for unknown reasons did not work. Possibly a PHP bug. I disabled the comparison and the problem should not present itself anymore, although it might cause issues to users who upgrade from very old versions of the plugin.
+Fixed: a compatibility issue with WordPress 2.8 in conjunction with other plugins that loaded jquery (as experienced by many with Ozh Admin Drop Menu+Stray Random Quotes). I welcome anyone’s feedback on this since I haven’t tested the fix in all possible scenarios and other problems might be lurking around.
+
+* 1.9.5 Fixed: small bug in the JS AJAX file that caused a error in IE.
+
+* 1.9.4 Added: Stray Random quotes is now multiuser, which means that a contributor to the blog can access a restricted version of the plugin, add quotes, manage them and little else. Please note: this feature will need a one-time manipulation of the quotes table to add a ‘user’ field to it. It is a safe operation but you might want to backup before upgrading. Added: the ability to disable the aspect settings for a given widget, shortcode or template tag, so that where needed (such as with random taglines) the default layout of the quotes can be ignored (more on the help page). Added: Danish localization, thanks to Georg. Fixed: a nasty bug that broke AJAX in firefox, when Stray Random Quotes was the only plugin to load jQuery. Fixed: many more little bugs. A big thank you as always to the users that pointed the bugs out.
+
+* 1.9.2 Added: ability to reset the settings to factory defaults (in the Tools page). Changed: parts of the settings page. Also changed and expanded: the help page (much more readable now) (You must know at this point that there is NOT another wordpress plugin with such a exhaustive embedded help page). Fixed: the [quote] shortcode and the stray_a_quote template tag wouldn’t work with PHP 4. Thanks to Kathryn and Nathan for poiting out this bug and testing the fix. Fixed: Nasty bug that caused the settings in the tools page (such as the bookmarklet options or the shortcode extensions) to be reset whenever the user updated the options in the settings page.
+
+* 1.9.0 Fixed: noticeable bug within the quote shortcode that prevented AJAX and the sequence of quotes to work. Thanks to marc for pointing this bug out. Fixed/changed: parts of the help page.
+
+* 1.8.9 Few bugs fixed to version 1.8.8, which included the following: Added: the quotes can now rotate automatically after a given interval of seconds. Added: widgets and template tags can load more than one quote a time; Added: the loading message can now be customized in the settings page; Added: Croatian translation thanks to Rajic; Changed: the help page has been rewritten in large part. Changed: removed the title options in the settings page, that were useless. Fixed: the loading message does not cause the collapsing of the quote area anymore. Fixed: many minor bugs. This version rewrites most of the code of the core functions, merging a great deal of lines and hopefully making the plugin more efficient.
+
+* 1.8.6 Added: Chinese translation thanks to WGMking; fixed: a rare bug caused by IIS-enabled servers (thanks to Tool).
+
+* 1.8.5 Added: bulk editing for the management page; added: a dedicated Tools Page where fantastic things can be achieved (such as a bookmarklet and the ability to extend shortcodes to new areas of the blog, which in turn will allow you to have random quotes and words in unexpected locations); added: per-widget and per-tag ability to disable ajax; changed: the way the [random-quote] shortcode works (now accepts much more variables); fixed: pagination of the [all-quotes] shortcodes (thanks to frettsy). There are other enhancements and quite enough minor bugs fixed. So much of the innovation with this version is thanks to the suggestions and requests of the users, to them goes my most sincere gratitude.
+1.8.3 This version comes with German translation, a million thanks to Markus Griesbach for providing it. Also fixed a MYSQL rare bug that caused the random-quote shortcode not to work: thanks to Zarban for the help catching it. For the new functions, such as images with the quotes or bulk editing, things will be worked out for the next major release 1.9. A poll is still open on this page to influence what will be made of it.
+
+* 1.8.2 Added: the ability to entirely disable the ajax automation in the settings page. Added: the ability for those who add the quotes directly to the template, to also specify a “next quote” link phrase (see help page). Fixed: the loading of new quotes didn’t work when no categories were selected. Fixed: Switching from “default” category wouldn’t work with new quotes (thanks to AgentSmith for pointing this bug out.) Fixed: weird little things happening when the quotes were loaded not randomly and not from the widget with one category only. Changed: I removed from the set of files of the plugins the “lang” folder since it contained only a copy of the english version. It will be reinstated when someone will finally translate this plugin.
+
+* 1.8.1 This version fixes few bugs, mainly concerning the ajax automation where the quotes where loaded twice instead of just once. I also adjusted the transition between quotes, now it should feel a bit better.
+
+* 1.8.0: Not only this version corrects the problems of the previous versions but for the first time it comes with ajax automation. For this achievement, many thanks go to the incredible contribution of AgentSmith who with generosity and great ability helped to develop this functionality and bypass the obstacles its implementation represented. Now the user will be able to dynamically fetch another quote and display it on the blog, without refreshing the page.The quote can be reloaded either by clicking on it, or with a custom link. Also, fixed in this version: the widget displaying only its title and not the quote. I eventually came to realize that this was a problem that presented itself when only one group was selected in the widget options: finally I could fix it. Fixed: adding a link to the author or the source compromised the ability of the “add new” page to present the same quote again. The discovery of this bug also thanks to the outstanding contribution of AgentSmith.
+To do for the next versions: bulk editing and ajax for the manage page!
+
+* 1.7.9 Following the crash of the previous version, I am forced to issue another fix — In case you were involved in the accident, here’s what happened: wanting to change “groups” to “categories”, I ventured in an SQL operation that in certain cases created a duplicated column… I don’t know why, since for someone worked without a problem. Doesn’t matter. Furthermore, in version 1.7.8 I changed the names of certain options related to groups, but forgot to do so upon activation. This involved widgets as well. Because of all this, many users reported not being able to browse their quotes and even to display quotes on the blog using widgets. This version should fix all this and also remove the duplicate column in your database. Please deactivate before installing (if you don’t upgrade automatically). To make a clean install, you might want consider removing the old options (using the plugin “remove” tool. I know it is annoying and you don’t really have to do it) and backup the “wp_stray_quotes” table. It is not required but at this point, why not. I must thank for the precious help in (hopefully) understanding this matter: xensen and Andre Camara. Thanks also to Rebecca, Sab Guy, Bonnie and Jason for reporting the problem in a timely fashion.
+
+* 1.7.7 This version should fix the support for UTF8 characters as experienced in the settings page (thanks to Chrille for pointing the bug out). Please give me confirmation on this if you care. There is nothing else: although new things are hopefully cooking for the next versions.
+
+* 1.7.6 Added: ability to manually reset the index of the quotes if the numbers get too high (on the help page). Added: an overriding HTML element to put before the source when there is no author (on the settings page). Fixed: it is now impossible for group names to have spaces in them– because it made things wacky (on the new and manage pages). If you do have spaces in the names of any of your groups, upon activation this version will replace them with dashes (don’t worry about it, everything else will be untouched). Changed: when all the quotes are rendered on a post or a page, only the bottom navigation links will be present. I think the above ones were redundant. If you want them back, uncomment the line 304 in the file stray_functions.php. Changed: Now the user can choose whether after inserting a new quote the values should persist in the form or not (thanks to AgentSmith for pointing this out). Fixed: titles of the pages are a little more explicative. Fixed: when switching how many quotes to show per page, the page number is reset to 1 to avoid false ‘”no quotes yet” messages (manage page). Fixed: few more little things.
+
+* 1.7.5 I had to issue this other update right away for a much bigger bug that I just discovered at my own expenses (the loss of not one but two quotes). In short, whenever a quote was edited in the manage page and then the manage page was changed by sorting or picking a different group, the just edited quote would get emptied of all its content. Yep, you read it right. Hollowed out. I hope this hasn’t happened to anyone else yet because there is no turning back unless you can enter the quote again. Anyway, this version solves the problem. I wish the bugs were discovered all together but this is not how it works.
+
+* 1.7.4 OK, another version right away for a tiny bug that screwed up the creation of new groups for the new quotes: thanks to pupo, James and AgentSmith for catching the bug and saving the day. I also removed the quotes I had placed myself at the top of the pages: at first I thought they were fun, but they were also annoying. Man, I hope this is the last update for a week at least.
+
+* 1.7.3: This version has a new overview page (I don’t know why); a dedicated help page; a more helpful “add new quote” page. It now handles links in author and source a little better, so that a specific link added to the author or source of a quote overrides the defaults indicated in the settings page. It also has a dedicated page for the removal of the plugin, quotes on every page, and it has been slightly redesigned here and there: more importantly it comes with many many fixes, some of which thanks to the help of the users, whom I thank profusely.
+
+* 1.7.1: With this version the list of the quotes in a page or post can be paged (thanks to James and others who reminded me of this missing functionality). Also, the list of quotes can now be generated from one or some or all the groups. Refer to the overview page in the plugin menu for more details. On the fixing front, I solved a problem with shortcodes that were always displayed at the top of the post regardless their position in the post editor. I also might have found a temporary workaround for the “division by zero” problem someone encountered in the management page. I still have to figure that one out though since I can’t reproduce the problem (I suspect it depends on the settings of each one’s php server) so give me feedback on this if you have any. I also made minor corrections to some of the functions and a slight enhancement to the ‘quotes’ menu in the admin area. Some fixing and enhancement on the linking front is still to be made so be patient on that.
+
+* 1.7 I think it is fair to say that this new version of Stray Random Quotes scores as a significative improvement. I could say ‘dramatic’. It comes with new features, such as groups for quotes; a new management page; a new quote editor and much more. Most of the functions have been rewritten and all in all this version is definitively worthed a try. After the update your widget might disappear. Just enable it again in the widget page. I temporarily removed the sketchy italian translation because there was still too much to translate. The plugin is localization-ready and eager for new translators though.
+
+* 1.6.4 WordPress 2.7 compatibility hopefully FIXED. Sorry, the last update was really pointless and not really compatible with anything. Also, I’m having quite a few obtuse problems with connections and computers these days which should explain the delay with this fix. Forgive and forget, he?
+
+* 1.6.3 WordPress 2.7 compatibility.
+
+* 1.6.2 Fixed a compatibility issue with WP 2.6 which caused the available themes to not be displayed (thanks to all the users of Stray Random Quotes who pointed this bug out!). Also updated the layout of the option and manage pages to make them more consistent with the general design of WP.
+
+* 1.6.1 Fixed the fact that the plugin didn’t really considered wordpress 2.3.x users. Now the compatibility is assured, although WP 2.3 cannot use the shortcodes (see ‘installation’). Thanks to gnr for pointing the bug out! I also fixed a pretty significant bug in the first time run of the plugin, where it didn’t insert a sample quote although a message said it did, and I fixed the html code of the management page, it was messed up.
+
+* 1.6 Major update (hence the slight jump forward in numbering): First of all, it takes advantage of the new WordPress 2.5 shortcuts API by adding three different shortcuts to easily insert quotes inside your posts. In addition, it gives you the option to link author and source of your quotes to Wikipedia (not only to Google anymore) in all the major languages. Talking about language, this plugin is now ready for translations so come forward if you’re willing to translate it in your own language. Only english and italian are available so far. This version contains a bunch of minor fixes and code rewriting, and also a few new names for its functions (you shouldn’t notice any difference, but check out the installation instructions).
+
+* 1.53 Hopefully fixed a little mishap with the code that caused the “updated table” message to persist. Also a link that didn’t work should be fixed. Thanks to c for pointing this bugs out. Also, I changed the name of the plugin to make it more to the point.
+
+* 1.52 Finally managed to use “edit” and “delete” links instead of buttons in the list of quotes. Great personal achievement since I was never able to make this simple thing work. More minor fixes.
+
+* 1.51 Minor fixes.
+
+* 1.50 Stray Quotes refurbished in order to work under WordPress 2.5. Apparently it now does.
+
+* 1.48 Corrected a typo that caused the plugin to throw a fatal error when activated. Usual messing up, no comment. While I was there I adjusted the way the plugin updates and creates the new table. It should work more cleverly now (nothing noticeable though).
+
+* 1.47 This is a minor update to the general layout of the option and management pages. Hoping everything is more readable and usable now. Also I corrected the function where the “add new” form would display the content of the last inserted quote. Now the form does not display anything. Let me know if you don’t think this way it is better. Few minor potential bugs hopefully corrected as well. Please be aware that the plugin now comes with five files (three .php, one .css and one .htm) instead than a single .php (which was getting too big and cumbersome to edit). So after you upload the folder with the new files, remember to delete the single file leftover by the old version.
+
+* 1.46 I am really but once again I must update this plugin. Few slipping lines and a inattentive copy and paste caused an atrocious bug in the last version. Instead of editing old quotes it added them as new ones. Should be fixed now. It won’t happen again for at least… a while now — I promise.
+
+* 1.45 Sorry for the many updates. It’s because now I have the time. Anyway this version fixes the general functionality of the plugin where it would do certain crucial things (like updating the table to a new version) only if the management page was opened. Now it does what it has to do no matter what page is opened or not opened. I can’t believe it I haven’t solved this before, but this is how it goes.
+
+* 1.44 As requested, a new field has been added to management page. It is now possible to specify the source of the quote and, in the option page, the relative optional formatting elements. Few potential bugs fixed.
+
+* 1.43 Added a new option to set the default visibility for new quotes. In the options page.
+
+* 1.42 with this update Stray Quotes should discriminate more intelligently the elements that can be added to both the sidebar and the quotes page, so that the page isn’t filled with non pertinent formatting. More details on the options page itself.
+
+* 1.41 corrected a general malfunction in the widget title, where it didn’t handle unicode characters and disappeared from the sidebar or the options unexpectedly. Now everything should work. Thanks to tiosolid who addressed the bug. This is a fix version with no new features, but updating is strongly recommended.
+
+* 1.4 first release. Numbering follows version number of the “Random Quotes” zombierobot.com/wp-quotes plugin from which my plugin takes its first steps.
+
+
+== RANDOM QUOTES ==
+
+= 1.3 - September 1, 2005 =
+
+* Another css screw-up fixed, as well as proper instructions
+
+= 1.2 - August 12, 2005 =
+
+* The CSS class id wp_quotes was screwed up, this is just a fix for that.
+
+= 1.1 - August 11, 2005 =
+
+* Added the <!–wp_quotes_page–> for page of quotes functionality
+* Now inserts a few quotes into the database
+
+= 1.0 - July 27, 2005 =
+
+* Initial Release!

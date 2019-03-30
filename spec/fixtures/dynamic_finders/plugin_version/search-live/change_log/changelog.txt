@@ -1,0 +1,83 @@
+== Search Live by itthinx - Changelog ==
+
+= 1.8.2 =
+* Modified for backwards compatibility with PHP < 5.5 due to an issue with empty
+  Fatal error: Can’t use method return value in write context ...
+
+= 1.8.1 =
+* Fixed all posts are shown as results when there are no matches.
+* Added our icon to the review notice.
+
+= 1.8.0 =
+* Tested with WordPress 4.8.
+
+= 1.7.0 =
+* Added the Brazilian Portuguese translation.
+
+= 1.6.1 =
+* Completed the German translation.
+
+= 1.6.0 =
+* Translation template updated.
+* German translations added.
+* Added the notice class.
+* Tested with WordPress 4.7.3.
+
+= 1.5.0 =
+
+* The tooltip (title attribtute) of the search field is now customizable.
+* Improved the way search results are obtained when presented on the search
+  results page.
+* Removed the option related to standard search enhancement or restriction as
+  it affected searches originating from Search Live only, and its search results
+  on the search results page should be consistent with those obtained in the
+  live search form in any case.
+
+= 1.4.0 =
+
+* Tested with WordPress 4.6.
+* Improved multilanguage support with updated WPML API usage.
+* WPML compatibility improvement : using the wpml_register_single_string action instead of the deprecated icl_register_string function
+* WPML compatibility improvement : using the wpml_translate_single_string filter instead of the deprecated icl_translate function
+
+= 1.3.3 =
+
+* Added support for string translations using WPML for configurable strings in the Search Live widget.
+* Fixed the translation context of the submit button label.
+
+= 1.3.2 =
+
+* Added the Text Domain and Domain Path in the plugin header.
+* Replaced uses of the SEARCH_LIVE_PLUGIN_DOMAIN constant with 'search-live'.
+
+= 1.3.1 =
+
+* Fixed: disable WPML filter by language based on option for widget and shortcode.
+
+= 1.3.0 =
+
+* Added support for custom post types.
+* Tested with WordPress 4.4.1.
+
+= 1.2.2 =
+
+* Fixed: posts_where filter affecting queries on the admin side.
+
+= 1.2.1 =
+
+* Improvement: added CSS rule to make screen reader text invisible where themes don't already do it.
+* Improvement: adopted a 98% standard width for the search field which makes more sense (also with popular themes).
+
+= 1.2.0 =
+
+* Improvement: Added the option to change the length of descriptions.
+
+= 1.1.0 =
+
+* Improvement: Now also caching result entries (besides query results).
+* Improvement: Building descriptions from content when manual excerpts are empty.
+* Fixed: Main settings weren't saved.
+
+= 1.0.0 =
+
+* Initial release.

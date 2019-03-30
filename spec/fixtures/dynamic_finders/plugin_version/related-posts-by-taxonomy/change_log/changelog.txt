@@ -1,0 +1,175 @@
+= 2.6.0 =
+* Enhancement
+    * Ajax query (opt in feature).
+		* Does the query for related posts after the page is loaded.
+		* Speeds up perceived page load time.
+	* Meta query filter
+		* Allows you to query related posts by post meta.
+
+= 2.5.1 =
+* Enhancement
+    * Add ability to show the post date after the post title
+    * Allow getting post fields from the cache
+    * Add new filter to filter all related posts permalinks
+    * Add new tests for the post type feature (GitHub)
+* Bug fixes
+	* (minor) Add post classes after retrieving posts from the cache
+	* (minor) Return an error if invalid taxonomies or post types was requested with the WP Rest API
+
+= 2.5.0 =
+* Enhancement
+	* Prepare plugin for gutenberg blocks
+	* Add 'terms' parameter for shortcode and widget
+	* Add GDPR information to readme.txt
+	* deprecate functions (with back compatibility)
+		* km_rpbt_related_posts_by_taxonomy()
+		* km_rpbt_get_default_args()
+		* km_rpbt_related_posts_by_taxonomy_validate_ids()
+		* km_rpbt_related_posts_by_taxonomy_template()
+		* km_rpbt_post_title_link()
+		* km_rpbt_get_related_post_title_link()
+		* km_rpbt_related_posts_by_taxonomy_widget()
+* Bug fixes
+	* (minor) Add missing filter pre_related_posts before cache queries
+	* (minor) Add missing properties to related posts returned by the cache 
+
+= 2.4.1 =
+* Enhancement
+	* Add post classes with filters or as a shortcode or widget argument
+	* Move included current post to the top of the stack by default 
+
+= 2.4.0 =
+* Enhancement
+	* Add post classes with filters or as a shortcode or widget argument
+
+= 2.3.2 =
+* Enhancement
+	* Add public_only parameter to not display private related posts from the current author.
+	* Add include_self parameter to include the current post in the related posts.
+	* Add filter pre_related_posts to override the related posts query.
+* Bug fixes
+	* Fix duplicate gallery IDs breaking the column layout of WordPress galleries. Props: @sonamel
+
+= 2.3.1 =
+
+* Enhancement
+	* Add support to disable the shortcode or widget for this plugin
+	* Add support to update all plugin settings with one filter.
+
+= 2.3.0 =
+
+* Enhancement
+	* Add a WordPress REST API layer to get related posts (opt-in feature)
+	* Add new filter to activate the WordPress REST API layer
+
+= 2.2.2 =
+
+* Enhancement
+	* New option to link thumbnail captions (post titles) to posts in the widget and shortcode
+	* Make the widget UI more intuitive
+* Bug fixes
+	* Fix wrong results for cached custom post type related posts 
+
+= 2.2.1 =
+
+* Enhancement
+	* Add selective refresh to the widget for the customizer
+* Bug fixes
+	* Fix deprecated notice (by removing PHP4 style constructor) when installing this plugin with PHP7. Props: @dima-stefantsov
+
+= 2.2.0 =
+* Enhancement
+	* Refactor of the persistant cache for consistent results when using the plugin filters
+	* Better data sanitation for taxonomies and comma separated values
+	* New PHPunit tests (GitHub only)
+
+= 2.1.1 =
+* Enhancement
+	* Add Spanish, Catalan and Polish translation files
+* Bug fixes
+	* Fix minor regression bug with the hide empty filter.
+	* Fix minor bug where the wrong default post type was being used by the shortcode.
+
+= 2.1.0 =
+* Enhancement
+	* Optimised related posts query.
+	* All round better validation of function arguments.
+	* Persistent cache out of beta. Now fully functioning.
+	* Cached data will be deleted after deleting the plugin from the wp-admin
+	* New opt-in cache log in the toolbar.
+
+= 2.0.1 =
+* Enhancement
+	* New option for the widget to randomise the related posts.
+	* Refactored the query to get the related posts.
+	* Organized files in the new 'includes' directory.
+	* Added a new class for debugging (only loaded if needed, with a filter).
+	* New PHPUnit tests for the widget(GitHub only).
+	* Updated the widget constructor as it is deprecated with WP 4.3
+	* Added a new (beta) front end cache layer.
+
+= 1.1 =
+* Bug fixes
+	* Fixed a minor compatibility bug with the widget customizer. Settings were not saved properly when adding a new widget.
+
+= 1.0 =
+* Enhancement
+	* Using WordPress semantic versioning.
+	* New shortcode attributes before_shortcode and after_shortcode.
+	* Default h3 heading for the shortcode 'Related Posts' title
+	* Shortcode is wrapped in a div container
+	* New filter to add classes to gallery items.
+	* New action after displaying related posts.
+	* Better logic for the 'related' parameter.
+* Bug fixes
+	* Applying 'the_title' filters for the shortcode caption.
+= 0.4.1 =
+Updated 'include_terms' logic to search for related posts with different taxonomy terms if 'related' is set.
+Updated unit tests to be more reliable.
+= 0.4 =
+* Enhancement
+	* Added a new parameter 'related' to get posts with include_terms even if the current post doesn't have the included terms (unrelated). 
+	* Used attribute aria-describedby in wp_get_attachment_image for accessibility (similar changes as in the WordPress 4.1 gallery).
+	* Added new filters related_posts_by_taxonomy_post_thumbnail_link and related_posts_by_taxonomy_rss_post_thumbnail_link.
+	* Removed extract() from all files (WordPress core best practices).
+	* Added Phpunit tests (in the github repository).
+
+* Bug fixes
+	* Fixed a filter recursion bug for the shortcode if it's used in the WordPress the_content filter and the format is excerpts or posts.
+
+* Notice
+	* Deprecated filters related_posts_by_taxonomy_post_thumbnail and related_posts_by_taxonomy_rss_post_thumbnail.
+
+= 0.3.1 =
+* New filters for the related posts query.
+* Fixed minor bug when using spaces in post_types string in the short code.
+* Added plugin icons introduced with WordPress 4.0
+
+= 0.3 =
+* Enhancement
+	* New parameters for the shortcode and widget: include_terms and caption.
+	* New support for html5 tags (set by themes) in the thumbnail gallery (same as in WordPress 3.9 gallery shortcode).
+	* Allow image columns to be set to zero (same as in WordPress gallery shortcode).
+	* New options for gallery captions. Use the post title (default), excerpt, attachment caption or attachment alt text for the caption. 
+	* Reformatted code and new inline filter documentation is added to adhere to new WordPress coding standards.
+	* New filters for overriding images in the thumbnail gallery.
+
+* Bug fixes
+	* Fixed bug where duplicate related posts where found for order="RAND". Props: [Mock](https://profiles.wordpress.org/mock).
+	* Fixed php notices coming from the Related_Posts_By_Taxonomy_Defaults class.
+
+* Notice
+	* Removed backward compatibility for WordPress 3.4.
+	* The template used for display of the post thumbnails is updated. Review the changes made in the updated related-posts-thumbnails.php file if you're using it to display the thumbnails in your own theme.
+
+= 0.2.1 =
+* Added image sizes and columns for the widget and shortcode. 
+* Cleaned up of code base and speed improvements.
+* Added a Dutch translation.
+* Added a filter for the caption of post thumbnails.
+* Added two filters for a future settings page for this plugin. (this will be a separate plugin)
+
+= 0.2 =
+* Added new feature to display related post thumbnails.
+* Removed the docs that came with the plugin.
+* some minor bug fixing for the shortcode.

@@ -1,0 +1,399 @@
+*** Facebook for WooCommerce Changelog ***
+2019-02-26 - Version 1.9.11
+* changing contributor to facebook from facebook4woocommerce, so that
+  woo plugin will be shown under https://profiles.wordpress.org/facebook/#content-plugins
+* adding changelog in readme.txt so that notifications will be sent for updates and
+  changelog will be shown under https://wordpress.org/plugins/facebook-for-woocommerce/#developers
+* removing debug flags notice under facebook-for-woocommerce.php so that developers will
+  be able to debug with debug logs
+
+2019-02-11 - Version 1.9.10
+* Add facebook support link, this will help merchants to reach out to facebook customer service.
+* Make plugin wordpress compatible by removing woocommerce updater and removing woo_include
+
+2018-12-30 - Version 1.9.9
+* Fix issue with missing file in v1.9.8
+* Remove misleading content relating to Instagram which is not launched yet.
+
+2018-11-30 - Version 1.9.8
+* Prevent Show/Hide button auto scroll.
+* DIY entry field for FB product Image.
+* Initial Support for Advanced Bulk Edit.
+* Added Option to Use short description instead of description.
+* Added checkbox for disable sync with FB for dev environment.
+* Add New Advanced Option : Auto Force Resync on Schedule.
+* Don't sync out of stock items to FB depending on Woo setting.
+* Add custom price.
+* Fix 502 Bad Gateway Error When Redirect.
+* Sync composite product with calculating the price based on the price of sub-items.
+* Advanced Options Toggle in Configuration Screen.
+
+2018-11-01 - Version 1.9.7
+* Support messenger chat customization dialog
+* Add Copyright header.
+* Fix lowercasting product description.
+* Fix Connect Woo AYMT Logic Flow and improve Logging.
+
+2018-09-21 - Version 1.9.6
+* Update plugin description of new design for WooCommerce.
+* Remove get_date() in Woocommerce plugin.
+* Add External Action-to-Make Channel Support.
+
+2018-08-14 - Version 1.9.5
+* Fix Subscription Event Injection
+
+2018-08-10 - Version 1.9.4
+* Support Lead Gen Event - Contact Form 7
+* Separate Redirect Entry Point Logging
+* Fix undefined variable warnings.
+* Add a Settings link to the plugin config page from the WP Plugins page.
+* Adding filter to Pixel init for injection of fbq(consent, revoke) (GDPR)
+
+2018-08-01 - Version 1.9.3
+* Add Edge Cases for Integration Test.
+* Fix Undefined PHP Warning.
+* Add subscribe event.
+* Fix Unable to Change Pixel after Setup.
+* Fix Integration Test Confirmation Dialog.
+
+2018-07-08 - Version 1.9.2
+* Exclude Virtual Variation and Set Staging.
+* Add Version Number for Logging.
+
+2018-06-22 - version 1.9.1
+* Fix Page Name Extra Space .
+* Remove Strange Box in Design.
+
+2018-06-15 - version 1.9.0
+* Fix Performance Issue by Reusing Existing wp_query Object Contents.
+* Rename Long Column Which Causes UI Issues for Users in Product Overview.
+* Update Admin Notice Content.
+* Fix Weird ID Error Message.
+* Fix Product ID for Brand Attribute.
+* Don't use Checkout URL for Unknown Product Types.
+* Add Beta Integration Test for Syncing Products by Uploading Feed.
+* Fix Pixel Fired on Related Products.
+* Redesign Admin Panel.
+* Add Integration Test Entry Point Button.
+
+2018-05-02 - version 1.8.7
+* Fix PHP Error Due to product_brand Taxonomy Not Existing
+
+2018-04-26 - version 1.8.6
+* Potential Fix for Compatibility with Enhanced ECommerce Plugin
+* Reduce Fetch ID API Call for Hidden Products
+* Support Product Bundles Extension
+* Basic Support for WP All Import
+* Fix Trashing and Deletion
+* Fetch Brand and Support WooCommerce Brand Extension
+* Remove warning for duplicate SKUs
+* Remove upsell header on config page
+* Update Info Banner Content
+* Fix Warning When Deleting NON PRODUCT post
+* WPML Support : Language Selector
+
+2018-04-17 - version 1.8.5
+* Fix ViewContent event incorrectly firing with content_type 'product'
+* Fix product group retailer id not matching ViewContent content id.
+* Added logging and defensive code to debug #348
+* Warning about Cart URL changes now clears with Force Resync
+
+2018-04-06 - version 1.8.4
+* Fire AddToCart on Cart Viewed for shops which redirect to cart.
+* Fix HTML AJAX comment inside script breaking HTML optimizers.
+* Log product sync speed as a performance metric.
+
+2018-03-30 - version 1.8.3
+* Fix Hidden Product Showing Up in Shop after Initial Sync.
+* Hiding a variable product now hides the product on FB.
+* Fix Variable Subscription Products Not Syncing Variants.
+* Support Default Variant in Plugin via Graph API: Create and Update.
+* Set Default Variant as Default Product in Feed.
+
+2018-03-20 - version 1.8.2
+* Fix category column in feed.
+* Update Force Resync to use a feed if feed was used for initial sync. (~15x faster)
+* Fix all caps description products being rejected from feed.
+* Fix gallery images for variable products not showing in feed.
+* Fix multiple category error in feed upload.
+
+2018-02-27 - version 1.8.1
+* Fix Upgrade TagName For Beta Version
+
+2018-02-14 - version 1.8.0
+* Up to 15x Performance Improvement of Initial Product Sync by using a feed upload.
+* Fix Subscription Product Bug Due to API Change.
+* Fix Undefined Index Notices.
+* Ensure jQuery is Loaded before Using it.
+* Moved apply_filters from Constructor to wp_head Action.
+* Remove Atlernative Pixel Basecode Fetching.
+* [WordPress]Separate the Plugins to Different Directories
+
+2018-02-01 - version 1.7.11
+* Fix permission error due to difference in data format between graphapi and feed uploading.
+
+2018-01-31 - version 1.7.10
+* Disable Alternate Pixel Basecode fetching due to issues for some stores.
+* Fix variation carry main description if variant description is empty.
+* Add version check information.
+
+2018-01-30 - version 1.7.9
+* Add Filter hook for other plugins to override pixel behavior.
+* Fix 500 errors when saving settings.
+
+2018-01-25 - version 1.7.8
+* Fixes WC_Facebookcommerce_Pixel reference error
+
+2018-01-22 - version 1.7.7
+* Fix purchase event not firing for Stripe.
+* Fix duplicate pixel issue for Initiate Checkout and Purchase events
+* Pixel basecode is fetched from Facebook when setup is completed.
+* Pixel proxy endpoints added for cases where pixel script cannot be loaded.
+
+2018-01-03 - version 1.7.6
+* WordPress only plugin notice on missing Pixel ID.
+* WordPress only plugin direct link to settings page from plugin page.
+
+2018-01-11 - version 1.7.5
+* Fix auto-updater to upgrade facebook-for-woocommerce only.
+
+2018-01-05 - version 1.7.4
+* Fix purchase event not firing for some payment types.
+* Provide functionality to refresh API token when invalid.
+* Added Quick Edit Compatibility.
+* Fix Incompatibility with remove HTTP extension.
+* Added Bulk Edit Compatibility.
+* WPML compatibility: products in non-default language set to staging
+* Add support for variable subscription products.
+
+2017-12-13 - version 1.7.3
+* Fix security hole that would allow a logged in user without
+  manage_woocommerce permissions to toggle the fb_visibility of products.
+* Handle shortcodes.
+* Support product duplication.
+
+2017-11-30 - version 1.7.2
+* Fix issue with get_plugin_data being called before it was loaded.
+* Improve perf of info dialog.
+* Move class loading and DB read into admin gate to fix site slowdown.
+
+2017-11-29 - version 1.7.0
+* Enable auto-upgrading.
+* Remove the extra content IDs to fix match rate issue.
+* Only show 'Any' in attribute value string and show attribute name.
+* Fix trash/restore products visibility on Facebook Shop.
+* Fix deprecated function for variant description.
+* Add hook and fix checkout url for external products.
+* Clean HTML tag in product title.
+* Add info dialog on WooCommerce report, settings and status page.
+
+2017-11-03 - version 1.6.6
+* Solve race condition to avoid minus remaining number in syncing process.
+* Fix sync of variant product description.
+* Enable line breaks in product main description.
+* Enable upsell message and redirect link visible for upgrading users.
+* Improve upsell message content and style.
+
+2017-10-19 - version 1.6.5
+* Fix unterminated div tag. Thanks @pwag42
+* After 7 days, show a link to a new ads interface on the settings page.
+
+2017-10-04 - version 1.6.4
+* Default to variant specific image as primary image for FB.
+  * Add a Checkbox to allow override to use the parent product image.
+* Don't sync items which have zero price.
+  * Existing 0 price items will be marked invisible after Force-Resync.
+* Support Syncing Bookable Items with 'Display Cost' set.
+* Fix 'Update' and 'Publish' for Bookable Items.
+
+
+2017-10-03 - version 1.6.3
+* Use Bookable price when regular price doesn't exist.
+* Support Default Variations.
+* Fix warning when generating attribute names.
+
+2017-09-28 - version 1.6.2
+* Fix "Invalid Parameter" API error caused by invalid sale dates.
+* Fix variable product unable to sync gallery images.
+* Cache gallery image urls for variable products to reduce DB load.
+* Fix exception during generation of some ViewCategory events.
+
+2017-09-21 - version 1.6.1
+* Prevent save settings button for other WooCommerce plugins erasing FB settings.
+
+2017-09-15 - version 1.6.0
+* Support sale start and end dates
+* Include tax on sale price as needed
+* Fix visibility toggle on the product page
+* No longer publish hidden products
+* Use variable products' attribute name, instead of slug name
+* Fix encoding issue in Variation names
+* Resolve W3 validation error caused by pixel code
+* Correctly sync variants where the attribute is not specified or set to 'any'.
+* Save Changes button no longer disappears in other settings pages
+* Fix a JS warning caused by ViewCategory events by switching to trackCustom
+* Fix quoted strings having unneeded slashes in the FB Description
+* Fix Unicode encoding in Category Names. Thanks @jancinert.
+
+2017-09-05 - version 1.5.1
+* Fix critical issue with ViewContent events not matching products.
+
+2017-09-05 - version 1.5.0
+* Added support for generic WordPress installations (without WooCommerce)
+  * Added Search events
+  * Setting page for Pixel ID and for enabling advanced measurement
+* Use featured image as primary image for variants, and variant images as additional images.
+
+2017-08-25 - version 1.4.6
+* Fix issue where prices were rounded incorrectly
+
+2017-08-15 - version 1.4.5
+* Prevent printed output from breaking the popupOrigin
+* Add composer.json file
+
+2017-07-25 - version 1.4.4
+* Remove duplicate and blank content ids in pixel fires.
+* Fix warning when sale price is malformed.
+
+2017-07-26 - version 1.4.3
+* Remove search event for admin panel searches (fix JS error preventing quick edit)
+* Prevent search event from firing twice
+* Add categories to items
+* Add re-configure button back if merchant is locked out (e.g. due to password change)
+
+2017-06-20 - version 1.4.2
+* Add custom Facebook description box
+* Less yelling during product sync
+* Remove deprecation warnings
+* Fix RTL issue for JS loading (thanks Ariel!)
+* Validate gender param to FB enum
+* Fix product deletion for sub variants
+
+2017-06-15 - version 1.4.1
+* Fix OOM/whitescreen of death error (constrain product count query to IDs)
+
+2017-06-05 - version 1.4.0
+* Background sync! Products will now sync in the background if you keep your settings page open.
+* Fix purchase pixel fires for product variants
+* Fix state on hide/show buttons
+* Fix issue with incorrect price rounding
+* Delete FB metadata from product items as well as groups
+* Add GPL license to repo
+
+2017-05-30 - version 1.3.3
+* Use display prices for regular prices (includes VAT if used)
+* Switch from checkboxes to buttons on Products page
+* Add "Reset Facebook metadata" option for merchants that duplicate products
+* Add "Delete on Facebook" option for products
+* Only delete products when actually deleted (vs trashed)
+* Allow pixel resetting after setup completion
+* Disable plugin if WP_DEBUG_DISPLAY is detected (prevent PHP notice injection)
+
+2017-05-25 - version 1.3.2
+* Allow Force Resync button to resume stalled product syncs.
+* Handle WP_Error errors
+
+2017-05-23 - version 1.3.1
+* Only use checkout urls if valid cart url is detected
+* Set priority and namespacing for all ajax functions
+* Workaround for staticxx domain redirects
+
+2017-05-15 - version 1.3.0
+* Improve memory usage and remove OOM for large product catalogs
+* Split variant methods for product groups and product items (fix mismatches)
+* Make re-sync button work for updates as well as creates
+* Fix issue with newly added variants breaking out of their product group
+* Use default form values for variants if present
+* Strip registered shortcodes from descriptions via strip_shortcodes
+* Remove PHP warning about variable passed by reference
+* Capture and save existing FBIDs on "Duplicate Retailer ID" error
+
+2017-05-11 - version 1.2.6
+* Remove use of post guid for product URLs
+
+2017-05-06 - version 1.2.5
+* Ajax lockdown: transmit fb-specific code and set priority on save_settings
+
+2017-05-05 - version 1.2.4
+* Fix issue with pixel selection step freezing due to missing site url.
+
+2017-05-04 - version 1.2.3
+* Workaround for servers that send additional characters on ajax responses
+
+2017-05-02 - version 1.2.2
+* Fix issues with non-english variant labels
+* Support gallery image urls
+
+2017-05-02 - version 1.2.1
+* Use wc_get_cart_url to support custom cart URLs
+* Fix logging bug for users without manage_woocommerce attempting to set up
+
+2017-04-27 - version 1.2.0
+* Allow regular admins with manage_woocommerce permission to use plugin
+* Lock settings during product sync
+* Do not allow product sync during an existing product sync
+* Validate catalog ID before product sync
+* Fix issue with resync products button
+* Fix issue with plugin breaking product search
+
+2017-04-25 - version 1.1.0
+* Support duplicate SKUs via better retailer ID logic
+* Add "resync products" button
+* Update FB logging to support objects as well as strings
+* Add support for regular and sale pricing
+
+2017-04-20 - version 1.0.3
+* Remove delete button (use Advanced Settings tab instead)
+* Cleaned up admin messages, prepended them with "Facebook for WooCommerce"
+
+2017-04-13 - version 1.0.2
+* Remove Save Settings button when not in debug mode
+
+2017-04-11 - version 1.0.1
+* Prevent blank item descriptions
+* Update copy on setup page
+* Sanitize settings before sending via fblog
+* Show better warnings for duplicate SKUs
+
+2017-04-10 - version 1.0.0
+ * First release! Woo!
+
+2017-04-09 - version 0.8.0
+ * Include status messages during background sync
+ * Fix several PHP warnings and various WooCommerce 3.0 compatibility issues
+
+2017-04-07 - version 0.7.2
+ * Fix issue where products were not being created due to blank descriptions
+
+2017-04-04 - version 0.7.1
+ * Clean up output for checkboxes via printf
+ * Bug fixes and performance improvements
+
+2017-04-03 - version 0.7.0
+ * Add new product visibility checkbox toggle for Facebook Shops on Product list
+ * Official rename: Facebook for WooCommerce
+
+2017-03-30 - version 0.6.0
+ * Revert back to minor revisions for versioning
+ * Add ability to reset all settings to start over
+
+2017-03-20 - version 0.0.5
+ * Fix "Get Started" button bug
+ * Fix issue preventing "Use Advanced Matching" setting from properly saving
+ * Various security fixes
+
+2017-03-01 - version 0.0.4
+
+ * Add Facebook metabox on product page with products' FB ID and a Visibility toggle (publish/unpublish).
+
+2017-02-15 - version 0.0.3
+
+ * Add a change log!
+ * Modify plugin to check for both local and network installs of WooCommerce.
+ * Disable plugin hooks that were triggering before setup was complete.
+ * Escape HTML tags in product descriptions.
+ * Use attribute label name instead of first-letter-capitalized slug.
+
+2017-02-02 - version 0.0.2
+
+ * Fix breaking when debug mode is disabled (null check in facebook-settings.js)
