@@ -29,6 +29,8 @@ module WPScan
             show_progression: user_interaction?
           )
         )
+
+        # GC.start
       end
     end
   end
