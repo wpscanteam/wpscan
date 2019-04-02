@@ -23,7 +23,7 @@ module WPScan
 
       # @return [ JSON ]
       def db_data
-        DB::Theme.db_data(slug)
+        @db_data ||= DB::Theme.db_data(slug)
       end
 
       # @param [ Hash ] opts

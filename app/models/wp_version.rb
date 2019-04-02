@@ -37,7 +37,7 @@ module WPScan
 
       # @return [ JSON ]
       def db_data
-        DB::Version.db_data(number)
+        @db_data ||= DB::Version.db_data(number)
       end
 
       # @return [ Array<Vulnerability> ]
