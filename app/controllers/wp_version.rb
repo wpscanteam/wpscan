@@ -18,10 +18,6 @@ module WPScan
 
       def before_scan
         WPScan::DB::DynamicFinders::Wordpress.create_versions_finders
-
-        # Force the Garbage Collector to run due to the above method being
-        # quite heavy in objects allocation
-        GC.start
       end
 
       def run
