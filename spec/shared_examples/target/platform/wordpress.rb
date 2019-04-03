@@ -68,6 +68,76 @@ shared_examples WPScan::Target::Platform::WordPress do
     end
   end
 
+  describe '#maybe_add_cookies' do
+    let(:fixtures) { super().join('maybe_add_cookies') }
+    let(:browser)  { WPScan::Browser.instance }
+
+    context 'when nothing matches' do
+      it 'does nothing' do
+        stub_request(:get, target.url).to_return(body: 'nothing there')
+
+        subject.maybe_add_cookies
+
+        expect(browser.cookie_string).to eql nil
+        expect(subject.homepage_res.body).to eql 'nothing there'
+      end
+    end
+
+    context 'when matches' do
+      before do
+        stub_request(:get, target.url)
+          .to_return(
+            { body: File.read(fixtures.join("#{cookie}.html")) },
+            body: 'Cookies Accepted!' # if we put {} there, ruobop not happy!
+          )
+      end
+
+      {
+        'vjs' => 'vjs=2420671338'
+      }.each do |key, expected_cookie_string|
+        context "when #{key} match" do
+          let(:cookie) { key }
+
+          context 'when the browser does not have a cookie_string already' do
+            before do
+              subject.maybe_add_cookies
+
+              # This one does not work, opened an issue
+              # https://github.com/bblimke/webmock/issues/813
+              # stub_request(:get, target.url)
+              #  .with(headers: { 'Cookie' => expected_cookie_string })
+              #  .to_return(body: 'Cookies Accepted!')
+            end
+
+            it 'sets the correct cookies, reset the homepage_res' do
+              expect(browser.cookie_string).to eql expected_cookie_string
+              expect(subject.homepage_res.body).to eql 'Cookies Accepted!'
+            end
+          end
+
+          context 'when the browser has cookie_string already' do
+            before do
+              browser.cookie_string = 'key=no-override'
+
+              subject.maybe_add_cookies
+
+              # This one does not work, opened an issue
+              # https://github.com/bblimke/webmock/issues/813
+              # stub_request(:get, target.url)
+              #  .with(headers: { 'Cookie' => "#{expected_cookie_string}; key=no-override" })
+              #  .to_return(body: 'Cookies Accepted!')
+            end
+
+            it 'sets the correct cookies, reset the homepage_res' do
+              expect(browser.cookie_string).to eql "#{expected_cookie_string}; key=no-override"
+              expect(subject.homepage_res.body).to eql 'Cookies Accepted!'
+            end
+          end
+        end
+      end
+    end
+  end
+
   describe '#wordpress_hosted?' do
     its(:wordpress_hosted?) { should be false }
 

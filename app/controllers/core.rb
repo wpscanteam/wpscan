@@ -52,13 +52,16 @@ module WPScan
       def before_scan
         @last_update = local_db.last_update
 
-        maybe_output_banner_help_and_version # From CMS Scanner
+        maybe_output_banner_help_and_version # From CMSScanner
 
         update_db if update_db_required?
         setup_cache
         check_target_availability
         load_server_module
         check_wordpress_state
+      rescue Error::NotWordPress => e
+        target.maybe_add_cookies
+        raise e unless target.wordpress?(parsed_options[:detection_mode])
       end
 
       # Raises errors if the target is hosted on wordpress.com or is not running WordPress

@@ -45,6 +45,34 @@ module WPScan
           false
         end
 
+        COOKIE_PATTERNS = {
+          'vjs' => /createCookie\('vjs','(?<c_value>\d+)',\d+\);/i
+        }.freeze
+
+        # Sometimes there is a mechanism in place on the blog, which requires a specific
+        # cookie and value to be added to requests. Lets try to detect and add them
+        def maybe_add_cookies
+          COOKIE_PATTERNS.each do |cookie_key, pattern|
+            next unless homepage_res.body =~ pattern
+
+            browser = Browser.instance
+
+            cookie_string = "#{cookie_key}=#{Regexp.last_match[:c_value]}"
+
+            cookie_string += "; #{browser.cookie_string}" if browser.cookie_string
+
+            browser.cookie_string = cookie_string
+
+            # Force recheck of the homepage when retying wordpress?
+            # No need to clear the cache, as the request (which will contain the cookies)
+            # will be different
+            @homepage_res = nil
+            @homepage_url = nil
+
+            break
+          end
+        end
+
         # @return [ String ]
         def registration_url
           multisite? ? url('wp-signup.php') : url('wp-login.php?action=register')

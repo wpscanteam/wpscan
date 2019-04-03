@@ -218,7 +218,7 @@ describe WPScan::Controller::Core do
 
         context 'when not wordpress' do
           it 'raises an error' do
-            expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false)
+            expect(core.target).to receive(:wordpress?).twice.with(:mixed).and_return(false)
 
             expect { core.before_scan }.to raise_error(WPScan::Error::NotWordPress)
           end
@@ -250,12 +250,26 @@ describe WPScan::Controller::Core do
     context 'when not wordpress' do
       before do
         expect(core).to receive(:load_server_module)
-        expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false)
       end
 
       context 'when no --force' do
-        it 'raises an error' do
-          expect { core.before_scan }.to raise_error(WPScan::Error::NotWordPress)
+        before { expect(core.target).to receive(:maybe_add_cookies) }
+
+        context 'when no cookies added or still not wordpress after being added' do
+          it 'raises an error' do
+            expect(core.target).to receive(:wordpress?).twice.with(:mixed).and_return(false)
+
+            expect { core.before_scan }.to raise_error(WPScan::Error::NotWordPress)
+          end
+        end
+
+        context 'when the added cookies solved it' do
+          it 'does not raise an error' do
+            expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false).ordered
+            expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true).ordered
+
+            expect { core.before_scan }.to_not raise_error
+          end
         end
       end
 
@@ -263,6 +277,8 @@ describe WPScan::Controller::Core do
         let(:cli_args) { "#{super()} --force" }
 
         it 'does not raise any error' do
+          expect(core.target).to receive(:wordpress?).with(:mixed).and_return(false)
+
           expect { core.before_scan }.to_not raise_error
         end
       end
