@@ -14,6 +14,8 @@ module WPScan
 
             url = target.url('wp-content/mu-plugins/')
 
+            target.mu_plugins = true
+
             return Model::MuPlugins.new(
               url,
               confidence: 70,
@@ -32,8 +34,6 @@ module WPScan
 
           return unless [200, 401, 403].include?(res.code)
           return if target.homepage_or_404?(res)
-
-          # TODO: add the check for --exclude-content once implemented ?
 
           target.mu_plugins = true
 
