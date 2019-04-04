@@ -50,7 +50,7 @@ module WPScan
 
             if uri.path =~ %r{/author/([^/\b]+)/?\z}i
               usernames << [Regexp.last_match[1], 'Author Pattern', 100]
-            elsif uri.query =~ /author=[0-9]+/
+            elsif /author=[0-9]+/.match?(uri.query)
               usernames << [node.text.to_s.strip, 'Display Name', 30]
             end
           end

@@ -39,7 +39,7 @@ module WPScan
         output('@notice', msg: 'It seems like you have not updated the database for some time.')
         print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
 
-        Readline.readline =~ /^y/i ? true : false
+        /^y/i.match?(Readline.readline) ? true : false
       end
 
       def update_db
@@ -69,7 +69,7 @@ module WPScan
       def check_wordpress_state
         raise Error::WordPressHosted if target.wordpress_hosted?
 
-        if Addressable::URI.parse(target.homepage_url).path =~ %r{/wp-admin/install.php$}i
+        if %r{/wp-admin/install.php$}i.match?(Addressable::URI.parse(target.homepage_url).path)
 
           output('not_fully_configured', url: target.homepage_url)
 

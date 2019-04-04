@@ -14,7 +14,7 @@ module WPScan
 
           Model::EmergencyPwdResetScript.new(
             target.url(path),
-            confidence: res.body =~ /password/i ? 100 : 40,
+            confidence: /password/i.match?(res.body) ? 100 : 40,
             found_by: DIRECT_ACCESS,
             references: {
               url: 'https://codex.wordpress.org/Resetting_Your_Password#Using_the_Emergency_Password_Reset_Script'

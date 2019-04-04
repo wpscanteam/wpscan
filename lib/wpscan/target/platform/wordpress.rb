@@ -79,7 +79,7 @@ module WPScan
         end
 
         def wordpress_hosted?
-          uri.host =~ /\.wordpress\.com$/i ? true : false
+          /\.wordpress\.com$/i.match?(uri.host) ? true : false
         end
 
         # @param [ String ] username
