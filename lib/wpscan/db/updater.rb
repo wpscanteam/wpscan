@@ -8,11 +8,11 @@ module WPScan
       # /!\ Might want to also update the Enumeration#cli_options when some filenames are changed here
       FILES = %w[
         plugins.json themes.json wordpresses.json
-        timthumbs-v3.txt user-agents.txt config_backups.txt
-        db_exports.txt dynamic_finders.yml wp_fingerprints.json LICENSE
+        timthumbs-v3.txt config_backups.txt db_exports.txt
+        dynamic_finders.yml wp_fingerprints.json LICENSE
       ].freeze
 
-      OLD_FILES = %w[wordpress.db dynamic_finders_01.yml].freeze
+      OLD_FILES = %w[wordpress.db user-agents.txt dynamic_finders_01.yml].freeze
 
       attr_reader :repo_directory
 
