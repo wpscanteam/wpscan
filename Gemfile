@@ -3,4 +3,4 @@
 source 'https://rubygems.org'
 gemspec
 
-gem 'cms_scanner', branch: '0.0.44.0', git: 'git@github.com:wpscanteam/CMSScanner.git'
+gem 'cms_scanner', branch: '0.0.44.0', git: 'https://github.com/wpscanteam/CMSScanner.git'
