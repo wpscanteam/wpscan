@@ -18,9 +18,9 @@ module WPScan
         output(
           'theme',
           theme: target.main_theme(
-            mode: parsed_options[:main_theme_detection] || parsed_options[:detection_mode]
+            mode: ParsedCli.main_theme_detection || ParsedCli.detection_mode
           ),
-          verbose: parsed_options[:verbose]
+          verbose: ParsedCli.verbose
         )
       end
     end

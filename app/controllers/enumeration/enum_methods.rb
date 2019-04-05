@@ -7,13 +7,13 @@ module WPScan
       # @param [ String ] type (plugins or themes)
       # @param [ Symbol ] detection_mode
       #
-      # @return [ String ] The related enumration message depending on the parsed_options and type supplied
+      # @return [ String ] The related enumration message depending on the ParsedCli and type supplied
       def enum_message(type, detection_mode)
         return unless %w[plugins themes].include?(type)
 
-        details = if parsed_options[:enumerate][:"vulnerable_#{type}"]
+        details = if ParsedCli.enumerate[:"vulnerable_#{type}"]
                     'Vulnerable'
-                  elsif parsed_options[:enumerate][:"all_#{type}"]
+                  elsif ParsedCli.enumerate[:"all_#{type}"]
                     'All'
                   else
                     'Most Popular'
@@ -39,15 +39,15 @@ module WPScan
       #
       # @return [ Hash ]
       def default_opts(type)
-        mode = parsed_options[:"#{type}_detection"] || parsed_options[:detection_mode]
+        mode = ParsedCli.options[:"#{type}_detection"] || ParsedCli.detection_mode
 
         {
           mode: mode,
-          exclude_content: parsed_options[:exclude_content_based],
+          exclude_content: ParsedCli.exclude_content_based,
           show_progression: user_interaction?,
           version_detection: {
-            mode: parsed_options[:"#{type}_version_detection"] || mode,
-            confidence_threshold: parsed_options[:"#{type}_version_all"] ? 0 : 100
+            mode: ParsedCli.options[:"#{type}_version_detection"] || mode,
+            confidence_threshold: ParsedCli.options[:"#{type}_version_all"] ? 0 : 100
           }
         }
       end
@@ -61,7 +61,7 @@ module WPScan
 
       def enum_plugins
         opts = default_opts('plugins').merge(
-          list: plugins_list_from_opts(parsed_options),
+          list: plugins_list_from_opts(ParsedCli.options),
           sort: true
         )
 
@@ -77,7 +77,7 @@ module WPScan
 
         plugins.each(&:version)
 
-        plugins.select!(&:vulnerable?) if parsed_options[:enumerate][:vulnerable_plugins]
+        plugins.select!(&:vulnerable?) if ParsedCli.enumerate[:vulnerable_plugins]
 
         output('plugins', plugins: plugins)
       end
@@ -107,7 +107,7 @@ module WPScan
 
       def enum_themes
         opts = default_opts('themes').merge(
-          list: themes_list_from_opts(parsed_options),
+          list: themes_list_from_opts(ParsedCli.options),
           sort: true
         )
 
@@ -123,7 +123,7 @@ module WPScan
 
         themes.each(&:version)
 
-        themes.select!(&:vulnerable?) if parsed_options[:enumerate][:vulnerable_themes]
+        themes.select!(&:vulnerable?) if ParsedCli.enumerate[:vulnerable_themes]
 
         output('themes', themes: themes)
       end
@@ -145,28 +145,28 @@ module WPScan
       end
 
       def enum_timthumbs
-        opts = default_opts('timthumbs').merge(list: parsed_options[:timthumbs_list])
+        opts = default_opts('timthumbs').merge(list: ParsedCli.timthumbs_list)
 
         output('@info', msg: "Enumerating Timthumbs #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('timthumbs', timthumbs: target.timthumbs(opts))
       end
 
       def enum_config_backups
-        opts = default_opts('config_backups').merge(list: parsed_options[:config_backups_list])
+        opts = default_opts('config_backups').merge(list: ParsedCli.config_backups_list)
 
         output('@info', msg: "Enumerating Config Backups #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('config_backups', config_backups: target.config_backups(opts))
       end
 
       def enum_db_exports
-        opts = default_opts('db_exports').merge(list: parsed_options[:db_exports_list])
+        opts = default_opts('db_exports').merge(list: ParsedCli.db_exports_list)
 
         output('@info', msg: "Enumerating DB Exports #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('db_exports', db_exports: target.db_exports(opts))
       end
 
       def enum_medias
-        opts = default_opts('medias').merge(range: parsed_options[:enumerate][:medias])
+        opts = default_opts('medias').merge(range: ParsedCli.enumerate[:medias])
 
         if user_interaction?
           output('@info',
@@ -181,13 +181,13 @@ module WPScan
       #
       # @return [ Boolean ] Wether or not to enumerate the users
       def enum_users?(opts)
-        opts[:users] || (parsed_options[:passwords] && !parsed_options[:username] && !parsed_options[:usernames])
+        opts[:users] || (ParsedCli.passwords && !ParsedCli.username && !ParsedCli.usernames)
       end
 
       def enum_users
         opts = default_opts('users').merge(
           range: enum_users_range,
-          list: parsed_options[:users_list]
+          list: ParsedCli.users_list
         )
 
         output('@info', msg: "Enumerating Users #{enum_detection_message(opts[:mode])}") if user_interaction?
@@ -198,7 +198,7 @@ module WPScan
       # If the --enumerate is used, the default value is handled by the Option
       # However, when using --passwords alone, the default has to be set by the code below
       def enum_users_range
-        parsed_options[:enumerate][:users] || cli_enum_choices[0].choices[:u].validate(nil)
+        ParsedCli.enumerate[:users] || cli_enum_choices[0].choices[:u].validate(nil)
       end
     end
   end

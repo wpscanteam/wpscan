@@ -13,8 +13,8 @@ module WPScan
       end
 
       def before_scan
-        target.content_dir = parsed_options[:wp_content_dir] if parsed_options[:wp_content_dir]
-        target.plugins_dir = parsed_options[:wp_plugins_dir] if parsed_options[:wp_plugins_dir]
+        target.content_dir = ParsedCli.wp_content_dir if ParsedCli.wp_content_dir
+        target.plugins_dir = ParsedCli.wp_plugins_dir if ParsedCli.wp_plugins_dir
 
         return if target.content_dir
 
