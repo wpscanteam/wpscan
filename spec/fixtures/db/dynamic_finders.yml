@@ -874,6 +874,12 @@ plugins:
       path: languages/at.pot
       pattern: !ruby/regexp '/Project\-Id\-Version: WordPress Blank Pot v(?<v>\d+\.[\.\d]+)/i'
       version: true
+  admin-atlex-cloud:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/ru_RU.pot
+      pattern: !ruby/regexp '/ct\-Id\-Version: Admin Atlex Cloud Plugin (?<v>\d+\.[\.\d]+)/i'
+      version: true
   admin-bar:
     TranslationFile:
       class: BodyPattern
@@ -2236,6 +2242,11 @@ plugins:
       path: languages/authors-autocomplete-meta-box-es_ES.po
       pattern: !ruby/regexp /\-Version:\ Authors Autocomplete Meta Box (?<v>\d+\.[\.\d]+)/i
       version: true
+  authors-list:
+    QueryParameter:
+      files:
+      - css/authors-list.css
+      version: true
   auto-animateimage:
     QueryParameter:
       files:
@@ -2784,6 +2795,21 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^(?<v>\d+\.[\.\d]+) \- \d+/
+      version: true
+  bdtask-booking365:
+    QueryParameter:
+      files:
+      - public/css/msbdt-bootstrap.css
+      - public/css/msbdt-ui.css
+      - public/font-awesome/css/font-awesome.min.css
+      - public/css/msbdt-custom-style.css
+      - public/css/msbdt-public.css
+      - public/js/msbdt-bootstrap.min.js
+      - public/js/msbdt-jquery.slimscroll.min.js
+      - public/js/msbdt-public.js
+      - public/ajax/msbdt-public-service-display-ajax.js
+      - public/ajax/multi-appointment-select-disable-date-agnist-doctor-ajax.js
+      - public/ajax/msbdt-public-professional-display-ajax.js
       version: true
   bdwebteam-recent-post-tabs-widget:
     QueryParameter:
@@ -5432,6 +5458,12 @@ plugins:
       path: config.js
       key: version
       version: true
+  clust-client-portal:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/clust-wp-portal.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: Clust Client Portal (?<v>\d+\.[\.\d]+)/i'
+      version: true
   cm-idin:
     QueryParameter:
       files:
@@ -6326,6 +6358,18 @@ plugins:
       files:
       - css/cresta-whatsapp-chat-front-css.css
       version: true
+  crm-hubspot-learndash-integration:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
+  crm-salesforce-learndash-integration:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
   cronycle-content:
     QueryParameter:
       files:
@@ -6422,6 +6466,16 @@ plugins:
       class: BodyPattern
       path: languages/et-csv.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: et\-csv (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  curatewp-related-posts:
+    QueryParameter:
+      files:
+      - assets/dist/layouts.build.css
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/cwprp-en_US.po
+      pattern: !ruby/regexp '/ct\-Id\-Version: CurateWP \- Related Posts (?<v>\d+\.[\.\d]+)/i'
       version: true
   currencyr:
     TranslationFile:
@@ -7318,6 +7372,13 @@ plugins:
     QueryParameter:
       files:
       - js/gtm4wp-form-move-tracker.js
+      version: true
+  dvk-conf:
+    QueryParameter:
+      files:
+      - public/css/dvk-conf-public.css
+      - public/js/dvk-conf-public.js
+      - public//js/cookie.js
       version: true
   dvk-social-sharing:
     QueryParameter:
@@ -8903,6 +8964,12 @@ plugins:
       files:
       - public/css/exxica-social-marketing-public.css
       - public/js/exxica-social-marketing-public.js
+      version: true
+  ezycookie:
+    QueryParameter:
+      files:
+      - public/css/ezycookie-public.css
+      - public/js/ezycookie-public.js
       version: true
   f1press:
     QueryParameter:
@@ -12157,6 +12224,12 @@ plugins:
       path: languages/import-html-pages.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ HTML Import 2 (?<v>\d+\.[\.\d]+)/i
       version: true
+  import-shopify-to-woocommerce:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.txt
+      pattern: !ruby/regexp /\/\*+\s*(?<v>\d+\.[\.\d]+) \- [\d\.]{8,}\s*\*+\//i
+      version: true
   import-spreadsheets-from-microsoft-excel:
     ChangeLog:
       class: BodyPattern
@@ -14884,6 +14957,12 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^(?<v>\d+\.[\.\d]+)(?!.*\d+\.[\.\d]+)/mi
+      version: true
+  mas-static-content:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/mas-static-content.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: MAS Static Content (?<v>\d+\.[\.\d]+)/i'
       version: true
   masburti-flickr-gallery:
     TranslationFile:
@@ -20926,6 +21005,12 @@ plugins:
       - css/search-google.css
       - js/search-google.js
       version: true
+  search-in-place:
+    QueryParameter:
+      files:
+      - css/codepeople_shearch_in_place.css
+      - js/codepeople_shearch_in_place.js
+      version: true
   search-live:
     QueryParameter:
       files:
@@ -22049,6 +22134,12 @@ plugins:
       path: languages/simple-user-listing.pot
       pattern: !ruby/regexp '/Project\-Id\-Version: Simple User Listing (?<v>\d+\.[\.\d]+)/i'
       version: true
+  simple-widget-title-links:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/simple-widget-title-links.pot
+      pattern: !ruby/regexp '/t\-Id\-Version: Simple Widget Title Links (?<v>\d+\.[\.\d]+)/i'
+      version: true
   simple-word-count-and-reading-time:
     QueryParameter:
       files:
@@ -23001,6 +23092,19 @@ plugins:
       files:
       - assets/css/sports-address-book.css
       - assets/js/sports-address-book.js
+      version: true
+  sports-leagues:
+    QueryParameter:
+      files:
+      - public/css/styles.css
+      - vendor/world-flags-sprite/stylesheets/flags32.css
+      - vendor/world-flags-sprite/stylesheets/flags16.css
+      - public/js/sl-public.js
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/i
       version: true
   sportspress:
     QueryParameter:
@@ -25181,6 +25285,12 @@ plugins:
       - nyams_ultimate_button.css
       - nyams_ultimate_button.js
       version: true
+  ultimate-bulk-seo-noindex-nofollow:
+    QueryParameter:
+      files:
+      - public/css/bulk-seo-noindex-public.css
+      - public/js/bulk-seo-noindex-public.js
+      version: true
   ultimate-elements-elementor-page-builder:
     ChangeLog:
       class: BodyPattern
@@ -26867,6 +26977,12 @@ plugins:
       - css/customstyle.css
       - js/tab-active.js
       version: true
+  wg-responsive-slider:
+    ChangeLog:
+      class: BodyPattern
+      path: ChangeLog.txt
+      pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
   wgauge:
     QueryParameter:
       files:
@@ -27466,6 +27582,12 @@ plugins:
       class: BodyPattern
       path: CHANGELOG.txt
       pattern: !ruby/regexp /\/\*+\s*(?<v>\d+\.[\.\d]+) \- [\d\.]{8,}\s*\*+\//i
+      version: true
+  woo-lucky-wheel:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/
       version: true
   woo-manual-orders:
     ChangeLog:
@@ -28806,6 +28928,11 @@ plugins:
       path: languages/wp-affiliate-linker.pot
       pattern: !ruby/regexp '/Project\-Id\-Version: WP Affiliate Linker (?<v>\d+\.[\.\d]+)/i'
       version: true
+  wp-ai-manager:
+    QueryParameter:
+      files:
+      - public/js/wp-ai-manager-scroll.js
+      version: true
   wp-airbnb-review-slider:
     QueryParameter:
       files:
@@ -28859,6 +28986,13 @@ plugins:
     QueryParameter:
       files:
       - css/skin-standard.css
+      version: true
+  wp-attention-click:
+    QueryParameter:
+      files:
+      - public/assets/css/wpac.min.css
+      - public/assets/js/wpac-plugins.min.js
+      - public/assets/js/wpac.min.js
       version: true
   wp-author-box:
     QueryParameter:
@@ -30010,6 +30144,12 @@ plugins:
       - imageviewer/imageviewer.css
       - imageviewer/imageviewer.js
       - wp-imageviewer-init.js
+      version: true
+  wp-inquiries:
+    QueryParameter:
+      files:
+      - "/css/wp-inquiries.css"
+      - "/js/wp-inquiries.js"
       version: true
   wp-installer:
     ChangeLog:
