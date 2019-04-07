@@ -3,13 +3,11 @@
 describe WPScan::Controller::Core do
   subject(:core)       { described_class.new }
   let(:target_url)     { 'http://ex.lo/' }
-  let(:parsed_options) { rspec_parsed_options(cli_args) }
   let(:cli_args)       { "--url #{target_url}" }
 
   before do
-    WPScan::Browser.reset
     described_class.reset
-    described_class.parsed_options = parsed_options
+    WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
   end
 
   describe '#cli_options' do
@@ -140,7 +138,7 @@ describe WPScan::Controller::Core do
 
       expect(core.formatter).to receive(:output).with('banner', hash_including(verbose: nil), 'core')
 
-      expect(core).to receive(:update_db_required?).and_return(false) unless parsed_options[:update]
+      expect(core).to receive(:update_db_required?).and_return(false) unless WPScan::ParsedCli.update
     end
 
     context 'when --update' do

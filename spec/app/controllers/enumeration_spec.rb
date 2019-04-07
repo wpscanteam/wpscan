@@ -3,16 +3,13 @@
 describe WPScan::Controller::Enumeration do
   subject(:controller) { described_class.new }
   let(:target_url)     { 'http://wp.lab/' }
-  let(:parsed_options) { rspec_parsed_options(cli_args) }
   let(:cli_args)       { "--url #{target_url}" }
 
   before do
-    WPScan::Browser.reset
-
     ## For the --passwords options
     allow_any_instance_of(OptParseValidator::OptPath).to receive(:check_file)
 
-    described_class.parsed_options = parsed_options
+    WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
   end
 
   describe '#enum_message' do
@@ -120,7 +117,7 @@ describe WPScan::Controller::Enumeration do
         expect(controller).to receive(:enum_plugins)
         expect(controller).to receive(:enum_config_backups)
 
-        expect(parsed_options[:plugins_detection]).to eql :passive
+        expect(WPScan::ParsedCli.plugins_detection).to eql :passive
       end
 
       it 'calls enum_plugins and enum_config_backups' do

@@ -16,7 +16,7 @@ describe 'App::Views' do
       let(:parsed_options) { { url: target_url, format: formatter.to_s.underscore.dasherize } }
 
       before do
-        controller.class.parsed_options = parsed_options
+        WPScan::ParsedCli.options = parsed_options
         # Resets the formatter to ensure the correct one is loaded
         controller.class.class_variable_set(:@@formatter, nil)
       end

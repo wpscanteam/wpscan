@@ -24,7 +24,7 @@ module WPScan
       end
 
       def run
-        return unless parsed_options[:passwords]
+        return unless ParsedCli.passwords
 
         if user_interaction?
           output('@info',
@@ -33,13 +33,13 @@ module WPScan
 
         attack_opts = {
           show_progression: user_interaction?,
-          multicall_max_passwords: parsed_options[:multicall_max_passwords]
+          multicall_max_passwords: ParsedCli.multicall_max_passwords
         }
 
         begin
           found = []
 
-          attacker.attack(users, passwords(parsed_options[:passwords]), attack_opts) do |user|
+          attacker.attack(users, passwords(ParsedCli.passwords), attack_opts) do |user|
             found << user
 
             attacker.progress_bar.log("[SUCCESS] - #{user.username} / #{user.password}")
@@ -61,9 +61,9 @@ module WPScan
 
       # @return [ CMSScanner::Finders::Finder ]
       def attacker_from_cli_options
-        return unless parsed_options[:password_attack]
+        return unless ParsedCli.password_attack
 
-        case parsed_options[:password_attack]
+        case ParsedCli.password_attack
         when :wp_login
           WPScan::Finders::Passwords::WpLogin.new(target)
         when :xmlrpc
@@ -94,9 +94,9 @@ module WPScan
 
       # @return [ Array<Users> ] The users to brute force
       def users
-        return target.users unless parsed_options[:usernames]
+        return target.users unless ParsedCli.usernames
 
-        parsed_options[:usernames].reduce([]) do |acc, elem|
+        ParsedCli.usernames.reduce([]) do |acc, elem|
           acc << Model::User.new(elem.chomp)
         end
       end

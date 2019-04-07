@@ -3,12 +3,10 @@
 describe WPScan::Controller::CustomDirectories do
   subject(:controller) { described_class.new }
   let(:target_url)     { 'http://ex.lo/' }
-  let(:parsed_options) { rspec_parsed_options(cli_args) }
   let(:cli_args)       { "--url #{target_url}" }
 
   before do
-    WPScan::Browser.reset
-    described_class.parsed_options = parsed_options
+    WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
   end
 
   describe '#cli_options' do
@@ -34,7 +32,7 @@ describe WPScan::Controller::CustomDirectories do
 
       it 'does not raise any error' do
         expect { controller.before_scan }.to_not raise_error
-        expect(controller.target.content_dir).to eq parsed_options[:wp_content_dir]
+        expect(controller.target.content_dir).to eq WPScan::ParsedCli.wp_content_dir
       end
     end
   end

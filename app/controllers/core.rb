@@ -27,12 +27,12 @@ module WPScan
       # @return [ Boolean ]
       def update_db_required?
         if local_db.missing_files?
-          raise Error::MissingDatabaseFile if parsed_options[:update] == false
+          raise Error::MissingDatabaseFile if ParsedCli.update == false
 
           return true
         end
 
-        return parsed_options[:update] unless parsed_options[:update].nil?
+        return ParsedCli.update unless ParsedCli.update.nil?
 
         return false unless user_interaction? && local_db.outdated?
 
@@ -44,9 +44,9 @@ module WPScan
 
       def update_db
         output('db_update_started')
-        output('db_update_finished', updated: local_db.update, verbose: parsed_options[:verbose])
+        output('db_update_finished', updated: local_db.update, verbose: ParsedCli.verbose)
 
-        exit(0) unless parsed_options[:url]
+        exit(0) unless ParsedCli.url
       end
 
       def before_scan
@@ -61,7 +61,7 @@ module WPScan
         check_wordpress_state
       rescue Error::NotWordPress => e
         target.maybe_add_cookies
-        raise e unless target.wordpress?(parsed_options[:detection_mode])
+        raise e unless target.wordpress?(ParsedCli.detection_mode)
       end
 
       # Raises errors if the target is hosted on wordpress.com or is not running WordPress
@@ -76,7 +76,7 @@ module WPScan
           exit(WPScan::ExitCode::VULNERABLE)
         end
 
-        raise Error::NotWordPress unless target.wordpress?(parsed_options[:detection_mode]) || parsed_options[:force]
+        raise Error::NotWordPress unless target.wordpress?(ParsedCli.detection_mode) || ParsedCli.force
       end
 
       # Loads the related server module in the target
@@ -88,7 +88,7 @@ module WPScan
         server = target.server || :Apache # Tries to auto detect the server
 
         # Force a specific server module to be loaded if supplied
-        case parsed_options[:server]
+        case ParsedCli.server
         when :apache
           server = :Apache
         when :iis

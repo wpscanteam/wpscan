@@ -24,8 +24,8 @@ module WPScan
         output(
           'version',
           version: target.wp_version(
-            mode: parsed_options[:wp_version_detection] || parsed_options[:detection_mode],
-            confidence_threshold: parsed_options[:wp_version_all] ? 0 : 100,
+            mode: ParsedCli.wp_version_detection || ParsedCli.detection_mode,
+            confidence_threshold: ParsedCli.wp_version_all ? 0 : 100,
             show_progression: user_interaction?
           )
         )
