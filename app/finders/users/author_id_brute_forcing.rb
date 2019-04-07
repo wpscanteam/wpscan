@@ -7,6 +7,11 @@ module WPScan
       class AuthorIdBruteForcing < CMSScanner::Finders::Finder
         include CMSScanner::Finders::Finder::Enumerator
 
+        # @return [ Array<Integer> ]
+        def valid_response_codes
+          @valid_response_codes ||= [200, 301, 302]
+        end
+
         # @param [ Hash ] opts
         # @option opts [ Range ] :range Mandatory
         #
@@ -15,7 +20,7 @@ module WPScan
           found = []
           found_by_msg = 'Author Id Brute Forcing - %s (Aggressive Detection)'
 
-          enumerate(target_urls(opts), opts) do |res, id|
+          enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |res, id|
             username, found_by, confidence = potential_username(res)
 
             next unless username
@@ -49,7 +54,7 @@ module WPScan
           super(opts.merge(title: ' Brute Forcing Author IDs -'))
         end
 
-        def request_params
+        def full_request_params
           { followlocation: true }
         end
 
