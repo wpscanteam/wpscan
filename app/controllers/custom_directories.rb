@@ -10,7 +10,7 @@ module WPScan
           OptString.new(['--wp-content-dir DIR',
                          'The wp-content directory if custom or not detected, such as "wp-content"']),
           OptString.new(['--wp-plugins-dir DIR',
-                         'The plugins directory if custom or not deteced, such as "wp-content/plugins"'])
+                         'The plugins directory if custom or not detected, such as "wp-content/plugins"'])
         ]
       end
 
