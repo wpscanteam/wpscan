@@ -13,8 +13,9 @@ module WPScan
           @plugins_dir = dir.chomp('/')
         end
 
+        # @param [ Symbol ] detection_mode
         # @return [ String ] The wp-content directory
-        def content_dir
+        def content_dir(detection_mode = :mixed)
           unless @content_dir
             escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
             pattern     = %r{#{escaped_url}([\w\s\-\/]+)\/(?:themes|plugins|uploads|cache)\/}i
@@ -26,9 +27,19 @@ module WPScan
             xpath_pattern_from_page('//script[not(@src)]', pattern, homepage_res) do |match|
               return @content_dir = match[1]
             end
+
+            unless detection_mode == :passive
+              return @content_dir = 'wp-content' if default_content_dir_exists?
+            end
           end
 
           @content_dir
+        end
+
+        def default_content_dir_exists?
+          # url('wp-content') can't be used here as the folder has not yet been identified
+          # and the method would try to replace it by nil which would raise an error
+          [200, 401, 403].include?(Browser.forge_request(uri.join('wp-content/').to_s, head_or_get_params).run.code)
         end
 
         # @return [ Addressable::URI ]
