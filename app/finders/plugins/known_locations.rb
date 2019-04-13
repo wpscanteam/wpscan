@@ -9,7 +9,7 @@ module WPScan
 
         # @return [ Array<Integer> ]
         def valid_response_codes
-          @valid_response_codes ||= [200, 401, 403, 301, 500].freeze
+          @valid_response_codes ||= [200, 401, 403, 500].freeze
         end
 
         # @param [ Hash ] opts
@@ -19,7 +19,7 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(target_urls(opts), opts.merge(check_full_response: [200, 401, 403, 500])) do |_res, slug|
+          enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |_res, slug|
             found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
 
