@@ -1,3 +1,9 @@
+<!--
+  Make sure the WP versions disclosed here are either 3.8.1 or 4.0
+  Otherwise they won't be reported as there is a check to ensure WP versions created are
+  correct (ie in the DB)
+-->
+
 <!-- Addthis-* New JS -->
 <script data-cfasync="false" type="text/javascript">if (window.addthis_product === undefined) { window.addthis_product = "wpp"; } if (window.wp_product_version === undefined) { window.wp_product_version = "wpp-6.1.1"; } if (window.wp_blog_version === undefined) { window.wp_blog_version = "3.8.1"; } if (window.addthis_share === undefined) { window.addthis_share = {}; } if (window.addthis_config === undefined) { window.addthis_config = {"data_track_clickback":true,"ignore_server_config":true,"ui_atversion":300}; } if (window.addthis_layers === undefined) { window.addthis_layers = {}; } if (window.addthis_layers_tools === undefined) { window.addthis_layers_tools = []; } else {  } if (window.addthis_plugin_info === undefined) { window.addthis_plugin_info = {"info_status":"enabled","cms_name":"WordPress","plugin_name":"Share Buttons by AddThis","plugin_version":"6.1.1","plugin_mode":"WordPress","anonymous_profile_id":"wp-7b3083b30b021a2b07908c9f8fd01f57","php_version":"5.3.3-7+squeeze19","cms_version":"3.8.1","page_info":{"template":"home","post_type":""},"sharing_enabled_on_post_via_metabox":false}; }
                     (function() {
@@ -38,6 +44,124 @@
       window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.3\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/wp.lab\/wp-includes\/js\/wp-emoji-release.min.js?ver=3.8.1"}};
       !function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56794,8205,9794,65039],[55358,56794,8203,9794,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
     </script>
+
+<!-- enhanced-e-commerce-for-woocommerce-store -->
+<script type="text/javascript">jQuery(function($) {
+tvc_lc="TWD";
+homepage_json_ATC_link=[];
+tvc_fp=[];
+tvc_rcp=[];
+tvc_rdp=[];
+prodpage_json_ATC_link=[];
+tvc_pgc=[];
+catpage_json_ATC_link=[];
+var items = [];
+//set local currencies
+gtag("set", {"currency": tvc_lc});
+function t_products_impre_clicks(t_json_name,t_action){
+t_send_threshold=0;
+t_prod_pos=0;
+t_json_length=Object.keys(t_json_name).length;
+for(var t_item in t_json_name) {
+t_send_threshold++;
+t_prod_pos++;
+items.push({
+"id": t_json_name[t_item].tvc_i,
+"name": t_json_name[t_item].tvc_n,
+"category": t_json_name[t_item].tvc_c,
+"price": t_json_name[t_item].tvc_p,
+});
+if(t_json_length > 6 ){
+if((t_send_threshold%6)==0){
+t_json_length=t_json_length-6;
+gtag("event", "view_item_list", { "event_category":"Enhanced-Ecommerce",
+"event_label":"product_impression_"+t_action, "items":items,"non_interaction": true});
+items = [];
+}
+}else{
+t_json_length--;
+if(t_json_length==0){
+gtag("event", "view_item_list", { "event_category":"Enhanced-Ecommerce",
+"event_label":"product_impression_"+t_action, "items":items,"non_interaction": true});
+items = [];
+}
+}
+}
+}
+//function for comparing urls in json object
+function prod_exists_in_JSON(t_url,t_json_name,t_action){
+if(t_json_name.hasOwnProperty(t_url)){
+t_call_fired=true;
+gtag("event", "select_content", {
+"event_category":"Enhanced-Ecommerce",
+"event_label":"product_click_"+t_action,
+"content_type": "product",
+"items": [
+{
+"id":t_json_name[t_url].tvc_i,
+"name": t_json_name[t_url].tvc_n,
+"category":t_json_name[t_url].tvc_c,
+"price": t_json_name[t_url].tvc_p,
+}
+],
+"non_interaction": true
+});
+}else{
+t_call_fired=false;
+}
+return t_call_fired;
+}
+function prod_ATC_link_exists(t_url,t_ATC_json_name,t_prod_data_json,t_qty){
+t_prod_url_key=t_ATC_json_name[t_url]["ATC-link"];
+if(t_prod_data_json.hasOwnProperty(t_prod_url_key)){
+t_call_fired=true;
+// Enhanced E-commerce Add to cart clicks
+gtag("event", "add_to_cart", {
+"event_category":"Enhanced-Ecommerce",
+"event_label":"add_to_cart_click",
+"non_interaction": true,
+"items": [{
+"id" : t_prod_data_json[t_prod_url_key].tvc_i,
+"name":t_prod_data_json[t_prod_url_key].tvc_i,
+"category" : t_prod_data_json[t_prod_url_key].tvc_c,
+"price": t_prod_data_json[t_prod_url_key].tvc_p,
+"quantity" :t_qty
+}]
+});
+}else{
+t_call_fired=false;
+}
+return t_call_fired;
+}
+if(tvc_fp.length !== 0){
+t_products_impre_clicks(tvc_fp,"fp");
+}
+if(tvc_rcp.length !== 0){
+t_products_impre_clicks(tvc_rcp,"rp");
+}
+jQuery("a:not([href*=add-to-cart],.product_type_variable, .product_type_grouped)").on("click",function(){
+t_url=jQuery(this).attr("href");
+//home page call for click
+t_call_fired=prod_exists_in_JSON(t_url,tvc_fp,"fp");
+if(!t_call_fired){
+prod_exists_in_JSON(t_url,tvc_rcp,"rp");
+}
+});
+//ATC click
+jQuery("a[href*=add-to-cart]").on("click",function(){
+t_url=jQuery(this).attr("href");
+t_qty=$(this).parent().find("input[name=quantity]").val();
+//default quantity 1 if quantity box is not there
+if(t_qty=="" || t_qty===undefined){
+t_qty="1";
+}
+t_call_fired=prod_ATC_link_exists(t_url,homepage_json_ATC_link,tvc_fp,t_qty);
+if(!t_call_fired){
+prod_ATC_link_exists(t_url,homepage_json_ATC_link,tvc_rcp,t_qty);
+}
+});
+tvc_smd={"tvc_wcv":"3.5.7","tvc_wpv":"3.8.1","tvc_eev":"2.1.6","tvc_cnf":{"t_ee":"on","t_df":false,"t_gUser":false,"t_UAen":"on","t_thr":6,"t_IPA":false,"t_OptOut":false,"t_PrivacyPolicy":true}};
+});</script>
 
 
 <!-- limelight-storefront -->

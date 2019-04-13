@@ -137,6 +137,125 @@ var CGMPGlobal = {"ajaxurl":"http:\/\/wp.lab\/wp-admin\/admin-ajax.php","noBubbl
 </script>
 
 
+<!-- enhanced-e-commerce-for-woocommerce-store -->
+<script type="text/javascript">jQuery(function($) {
+tvc_lc="TWD";
+homepage_json_ATC_link=[];
+tvc_fp=[];
+tvc_rcp=[];
+tvc_rdp=[];
+prodpage_json_ATC_link=[];
+tvc_pgc=[];
+catpage_json_ATC_link=[];
+var items = [];
+//set local currencies
+gtag("set", {"currency": tvc_lc});
+function t_products_impre_clicks(t_json_name,t_action){
+t_send_threshold=0;
+t_prod_pos=0;
+t_json_length=Object.keys(t_json_name).length;
+for(var t_item in t_json_name) {
+t_send_threshold++;
+t_prod_pos++;
+items.push({
+"id": t_json_name[t_item].tvc_i,
+"name": t_json_name[t_item].tvc_n,
+"category": t_json_name[t_item].tvc_c,
+"price": t_json_name[t_item].tvc_p,
+});
+if(t_json_length > 6 ){
+if((t_send_threshold%6)==0){
+t_json_length=t_json_length-6;
+gtag("event", "view_item_list", { "event_category":"Enhanced-Ecommerce",
+"event_label":"product_impression_"+t_action, "items":items,"non_interaction": true});
+items = [];
+}
+}else{
+t_json_length--;
+if(t_json_length==0){
+gtag("event", "view_item_list", { "event_category":"Enhanced-Ecommerce",
+"event_label":"product_impression_"+t_action, "items":items,"non_interaction": true});
+items = [];
+}
+}
+}
+}
+//function for comparing urls in json object
+function prod_exists_in_JSON(t_url,t_json_name,t_action){
+if(t_json_name.hasOwnProperty(t_url)){
+t_call_fired=true;
+gtag("event", "select_content", {
+"event_category":"Enhanced-Ecommerce",
+"event_label":"product_click_"+t_action,
+"content_type": "product",
+"items": [
+{
+"id":t_json_name[t_url].tvc_i,
+"name": t_json_name[t_url].tvc_n,
+"category":t_json_name[t_url].tvc_c,
+"price": t_json_name[t_url].tvc_p,
+}
+],
+"non_interaction": true
+});
+}else{
+t_call_fired=false;
+}
+return t_call_fired;
+}
+function prod_ATC_link_exists(t_url,t_ATC_json_name,t_prod_data_json,t_qty){
+t_prod_url_key=t_ATC_json_name[t_url]["ATC-link"];
+if(t_prod_data_json.hasOwnProperty(t_prod_url_key)){
+t_call_fired=true;
+// Enhanced E-commerce Add to cart clicks
+gtag("event", "add_to_cart", {
+"event_category":"Enhanced-Ecommerce",
+"event_label":"add_to_cart_click",
+"non_interaction": true,
+"items": [{
+"id" : t_prod_data_json[t_prod_url_key].tvc_i,
+"name":t_prod_data_json[t_prod_url_key].tvc_i,
+"category" : t_prod_data_json[t_prod_url_key].tvc_c,
+"price": t_prod_data_json[t_prod_url_key].tvc_p,
+"quantity" :t_qty
+}]
+});
+}else{
+t_call_fired=false;
+}
+return t_call_fired;
+}
+if(tvc_fp.length !== 0){
+t_products_impre_clicks(tvc_fp,"fp");
+}
+if(tvc_rcp.length !== 0){
+t_products_impre_clicks(tvc_rcp,"rp");
+}
+jQuery("a:not([href*=add-to-cart],.product_type_variable, .product_type_grouped)").on("click",function(){
+t_url=jQuery(this).attr("href");
+//home page call for click
+t_call_fired=prod_exists_in_JSON(t_url,tvc_fp,"fp");
+if(!t_call_fired){
+prod_exists_in_JSON(t_url,tvc_rcp,"rp");
+}
+});
+//ATC click
+jQuery("a[href*=add-to-cart]").on("click",function(){
+t_url=jQuery(this).attr("href");
+t_qty=$(this).parent().find("input[name=quantity]").val();
+//default quantity 1 if quantity box is not there
+if(t_qty=="" || t_qty===undefined){
+t_qty="1";
+}
+t_call_fired=prod_ATC_link_exists(t_url,homepage_json_ATC_link,tvc_fp,t_qty);
+if(!t_call_fired){
+prod_ATC_link_exists(t_url,homepage_json_ATC_link,tvc_rcp,t_qty);
+}
+});
+tvc_smd={"tvc_wcv":"3.5.7","tvc_wpv":"5.1.1","tvc_eev":"2.1.6","tvc_cnf":{"t_ee":"on","t_df":false,"t_gUser":false,"t_UAen":"on","t_thr":6,"t_IPA":false,"t_OptOut":false,"t_PrivacyPolicy":true}};
+});</script>
+
+
 <!-- fb-social-reader -->
 <script type="text/javascript">
       window._sr = {
@@ -160,6 +279,10 @@ var CGMPGlobal = {"ajaxurl":"http:\/\/wp.lab\/wp-admin\/admin-ajax.php","noBubbl
         "is_readable": false
       }
 </script>
+
+
+<!-- finale-woocommerce-sales-countdown-timer-discount -->
+<script type='text/javascript'>var wcct_data = {"wcct_version":"2.8.0","currency":"NT$","admin_ajax":"https:\/\/wp.lab\/wp-admin\/admin-ajax.php","home_url":"https:\/\/wp.lab","log_file":"https:\/\/wp.lab\/wp-content\/uploads\/finale-woocommerce-sales-countdown-timer-discount\/force.txt","refresh_timings":"yes","reload_page_on_timer_ends":"yes","l":"NA"};</script>
 
 
 <!-- flow-flow-social-streams -->

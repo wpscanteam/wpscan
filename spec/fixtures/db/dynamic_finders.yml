@@ -17,8 +17,13 @@ wordpress:
     version: true
   EmojiSettings:
     class: JavascriptVar
-    xpath: //script[contains(text(), "wpemojiSettings")]
+    xpath: //script[contains(., "wpemojiSettings")]
     pattern: !ruby/regexp /wp\-includes\\\/js\\\/wp\-emoji\-release\.min\.js\?ver=(?<v>\d+\.[\.\d]+)/i
+    version: true
+  EnhancedEcommerceJavascript:
+    class: JavascriptVar
+    xpath: //script[contains(., "tvc_smd=")]
+    pattern: !ruby/regexp /"tvc_wpv":"(?<v>\d+\.[\.\d]+)",/i
     version: true
   LimelightStorefrontJavascript:
     class: JavascriptVar
@@ -960,6 +965,12 @@ plugins:
       path: languages/admitadtracking-ru_RU.po
       pattern: !ruby/regexp '/Project\-Id\-Version: Admitad Tracking (?<v>\d+\.[\.\d]+)/i'
       version: true
+  adobe-xmp-for-wp:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/adobe-xmp-for-wp.pot
+      pattern: !ruby/regexp '/n: JSM''s Adobe XMP \/ IPTC for WordPress (?<v>\d+\.[\.\d]+)/i'
+      version: true
   adplugg:
     ChangeLog:
       class: BodyPattern
@@ -1358,6 +1369,13 @@ plugins:
       class: BodyPattern
       path: languages/en_US.po
       pattern: !ruby/regexp /msgid "Version (?<v>\d+\.[\.\d]+)/i
+      version: true
+  ajax-login-registration:
+    QueryParameter:
+      files:
+      - public/css/library-book-search-public.css
+      - public/js/jquery.validate.js
+      - public/js/ajax-login-registration-public.js
       version: true
   ajax-manufactory:
     QueryParameter:
@@ -2962,6 +2980,12 @@ plugins:
       path: languages/best-testimonial.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Best Testimonial v(?<v>\d+\.[\.\d]+)/i'
       version: true
+  better-admin-users-search:
+    TranslationFile:
+      class: BodyPattern
+      path: i18n/baus.pot
+      pattern: !ruby/regexp '/t\-Id\-Version: Better Admin Users Search (?<v>\d+\.[\.\d]+)/i'
+      version: true
   better-archives-widget:
     QueryParameter:
       files:
@@ -3007,6 +3031,17 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# \[(?<v>\d+\.[\.\d]+)\]/
+      version: true
+  better-reviews-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woo-better-reviews.pot
+      pattern: !ruby/regexp '/Version: Better Reviews For WooCommerce (?<v>\d+\.[\.\d]+)/i'
       version: true
     ChangeLog:
       class: BodyPattern
@@ -3782,6 +3817,11 @@ plugins:
       class: BodyPattern
       path: languages/bp-emails-for-bbp.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: BP Emails for BBP (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  bp-event-manager:
+    QueryParameter:
+      files:
+      - inc/js/bpem_script.js
       version: true
   bp-events-calendar:
     TranslationFile:
@@ -6273,6 +6313,12 @@ plugins:
       - css/spbcta-stylesheet-front.css
       - js/spbcta-nm.js
       version: true
+  coupons:
+    QueryParameter:
+      files:
+      - frontend/css/frontend.css
+      - frontend/js/frontend.js
+      version: true
   course-scheduler-for-learndash:
     ChangeLog:
       class: BodyPattern
@@ -6455,6 +6501,12 @@ plugins:
       - assets/js/cryptoniq.libs.js
       - assets/js/cryptoniq.engine.js
       version: true
+  cryptopanel-payment-gateway-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/cryptopanel-payment-gateway-de_DE.po
+      pattern: !ruby/regexp '/Id\-Version: CryptoPanel Payment Gateway (?<v>\d+\.[\.\d]+)/i'
+      version: true
   css3-buttons:
     TranslationFile:
       class: BodyPattern
@@ -6466,6 +6518,16 @@ plugins:
       class: BodyPattern
       path: languages/et-csv.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: et\-csv (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  curatewp-nested-posts:
+    QueryParameter:
+      files:
+      - assets/dist/layouts.build.css
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/cwpnp.pot
+      pattern: !ruby/regexp '/ect\-Id\-Version: CurateWP \- Nested Posts (?<v>\d+\.[\.\d]+)/i'
       version: true
   curatewp-related-posts:
     QueryParameter:
@@ -8356,6 +8418,11 @@ plugins:
       - assets/frontend/css/main.min.css
       - assets/frontend/js/main.min.js
       version: true
+  enhanced-e-commerce-for-woocommerce-store:
+    JavascriptVar:
+      xpath: //script[contains(., "tvc_smd=")]
+      pattern: !ruby/regexp /"tvc_eev":"(?<v>\d+\.[\.\d]+)",/i
+      version: true
   enhanced-links:
     Comment:
       xpath: //comment()[contains(., "Enhanced Links")]
@@ -9144,6 +9211,12 @@ plugins:
       - style.css
       - slide.js
       version: true
+  faq-accordion-block:
+    QueryParameter:
+      files:
+      - build/block.css
+      - build/slide-toggle.min.js
+      version: true
   faq-wd:
     QueryParameter:
       files:
@@ -9329,6 +9402,11 @@ plugins:
       files:
       - scripts/ftg.css
       - scripts/jquery.finalTilesGallery.js
+      version: true
+  finale-woocommerce-sales-countdown-timer-discount:
+    JavascriptVar:
+      xpath: //script[contains(., "wcct_data =")]
+      pattern: !ruby/regexp /"wcct_version":"(?<v>\d+\.[\.\d]+)",/i
       version: true
   findusat:
     QueryParameter:
@@ -11740,6 +11818,12 @@ plugins:
       files:
       - assets/js/popper.min.js
       version: true
+  ht-request:
+    QueryParameter:
+      files:
+      - public/css/wph-request-public.css
+      - public/js/wph-request-public.js
+      version: true
   ht-slider-for-elementor:
     QueryParameter:
       files:
@@ -12259,6 +12343,12 @@ plugins:
       - includes/stylesheet/imu_calculator.css
       - includes/js/imu_calculator.js
       version: true
+  inboundwp-lite:
+    QueryParameter:
+      files:
+      - assets/css/font-awesome.min.css
+      - assets/css/ibwp-public.css
+      version: true
   index-press:
     TranslationFile:
       class: BodyPattern
@@ -12436,6 +12526,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/instag-slider.css
+      version: true
+  instagram-widget-by-wpzoom:
+    QueryParameter:
+      files:
+      - css/instagram-widget.css
+      - js/instagram-widget.js
       version: true
   instalinker:
     QueryParameter:
@@ -13126,6 +13222,12 @@ plugins:
     QueryParameter:
       files:
       - kalendar_cz_style.css
+      version: true
+  kalender-digital:
+    QueryParameter:
+      files:
+      - public/css/kalender-digital-public.css
+      - public/js/kalender-digital-public.js
       version: true
   kanzu-support-desk:
     QueryParameter:
@@ -15042,6 +15144,23 @@ plugins:
       version: true
       pattern: !ruby/regexp /MasterSlider (?<v>\d+\.[\.\d]+) \- Responsive Touch\
         Image Slider \| avt\.li\/msf/i
+  masvideos:
+    QueryParameter:
+      files:
+      - assets/css/masvideos.css
+      - assets/js/frontend/popper.min.js
+      - assets/js/frontend/bootstrap-util.min.js
+      - assets/js/frontend/bootstrap-tab.min.js
+      - assets/js/frontend/bootstrap-dropdown.min.js
+      - assets/js/frontend/playlist-tv-show.min.js
+      - assets/js/frontend/playlist-video.min.js
+      - assets/js/frontend/playlist-movie.min.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/masvideos.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: MAS Videos (?<v>\d+\.[\.\d]+)/i'
+      version: true
   masy-gallery:
     QueryParameter:
       files:
@@ -19467,6 +19586,11 @@ plugins:
       path: languages/random-quote-of-the-day.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: TODO (?<v>\d+\.[\.\d]+)/i'
       version: true
+  rank-with-schema:
+    QueryParameter:
+      files:
+      - js/main.js
+      version: true
   raratheme-companion:
     TranslationFile:
       class: BodyPattern
@@ -22720,6 +22844,12 @@ plugins:
       path: languages/social-count-plus.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Social Count Plus (?<v>\d+\.[\.\d]+)/i
       version: true
+  social-divi:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# \[(?<v>\d+\.[\.\d]+)\]/
+      version: true
   social-icons:
     QueryParameter:
       files:
@@ -25050,6 +25180,12 @@ plugins:
       path: lang/tweetific.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Tweetific (?<v>\d+\.[\.\d]+)/i
       version: true
+  tweettee:
+    QueryParameter:
+      files:
+      - src/PublicPart/css/tweettee_public.css
+      - src/PublicPart/js/tweettee_public.js
+      version: true
   tweetview-widget:
     QueryParameter:
       files:
@@ -25554,6 +25690,12 @@ plugins:
       class: BodyPattern
       path: languages/um-story-lite.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: UM Story Lite (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  um-user-list:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/um-user-list.pot
+      pattern: !ruby/regexp '/Id\-Version: SuitePlugins \- UM User List (?<v>\d+\.[\.\d]+)/i'
       version: true
   um-user-switching:
     TranslationFile:
@@ -26885,6 +27027,12 @@ plugins:
       - public/css/pmz-weekly-menu-public.css
       - public/js/pmz-weekly-menu-public.js
       version: true
+  weer:
+    QueryParameter:
+      files:
+      - public/css/weer-public.css
+      - public/js/weer-public.js
+      version: true
   weeventscalendar:
     TranslationFile:
       class: BodyPattern
@@ -28057,6 +28205,11 @@ plugins:
       path: i18n/languages/woocommerce.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ WooCommerce (?<v>\d+\.[\.\d]+)/i
       version: true
+    JavascriptVarFromEnhancedEcommerce:
+      class: JavascriptVar
+      xpath: //script[contains(., "tvc_smd=")]
+      pattern: !ruby/regexp /"tvc_wcv":"(?<v>\d+\.[\.\d]+)",/i
+      version: true
   woocommerce-accommodation-bookings:
     TranslationFile:
       class: BodyPattern
@@ -28518,6 +28671,8 @@ plugins:
       - assets/css/woolentor-widgets.css
       - assets/js/popper.min.js
       - assets/js/bootstrap.min.js
+      - assets/css/htflexboxgrid.css
+      - assets/css/simple-line-icons.css
       version: true
   woomizer:
     ComposerFile:
@@ -28993,6 +29148,7 @@ plugins:
       - public/assets/css/wpac.min.css
       - public/assets/js/wpac-plugins.min.js
       - public/assets/js/wpac.min.js
+      - public/assets/js/pixel-geo.min.js
       version: true
   wp-author-box:
     QueryParameter:
@@ -30358,6 +30514,12 @@ plugins:
       files:
       - library/js/load-more.js
       version: true
+  wp-logger-tenbulls:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^v(?<v>\d+\.[\.\da-z]+)(?!.*v\d+\.[\.\da-z]+)/mi
+      version: true
   wp-login-button:
     QueryParameter:
       files:
@@ -30805,6 +30967,12 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  wp-post-to-trello-card:
+    QueryParameter:
+      files:
+      - public/css/wp-post-to-trello-card-public.css
+      - public/js/wp-post-to-trello-card-public.js
       version: true
   wp-postratings:
     QueryParameter:
