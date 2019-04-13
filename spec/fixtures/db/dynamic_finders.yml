@@ -27381,6 +27381,12 @@ plugins:
       xpath: //meta[@name="generator" and contains(@content, "WolfPortfolio")]/@content
       pattern: !ruby/regexp /WolfPortfolio (?<v>\d+\.[\.\d]+)/i
       version: true
+  wolf-visual-composer:
+    MetaGenerator:
+      class: Xpath
+      xpath: //meta[@name="generator" and contains(@content, "WolfWPBakeryPageBuilderExtension")]/@content
+      pattern: !ruby/regexp /WolfWPBakeryPageBuilderExtension (?<v>\d+\.[\.\d]+)/i
+      version: true
   wolfnet-idx-for-wordpress:
     QueryParameter:
       files:
