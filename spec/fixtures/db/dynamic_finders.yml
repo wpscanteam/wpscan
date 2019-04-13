@@ -27375,6 +27375,12 @@ plugins:
       - js/active-js.js
       - js/jquery.elevateZoom-3.0.8.min.js
       version: true
+  wolf-portfolio:
+    MetaGenerator:
+      class: Xpath
+      xpath: //meta[@name="generator" and contains(@content, "WolfPortfolio")]/@content
+      pattern: !ruby/regexp /WolfPortfolio (?<v>\d+\.[\.\d]+)/i
+      version: true
   wolfnet-idx-for-wordpress:
     QueryParameter:
       files:
