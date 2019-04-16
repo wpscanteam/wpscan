@@ -25,13 +25,16 @@ LABEL maintainer="WPScan Team <team@wpscan.org>"
 RUN adduser -h /wpscan -g WPScan -D wpscan
 
 COPY --from=builder /usr/local/bundle /usr/local/bundle
+
 RUN chown -R wpscan:wpscan /wpscan
 
 # runtime dependencies
 RUN apk add --no-cache libcurl procps sqlite-libs
 
+WORKDIR /wpscan
 
 USER wpscan
+
 RUN /usr/local/bundle/bin/wpscan --update --verbose
 
 ENTRYPOINT ["/usr/local/bundle/bin/wpscan"]
