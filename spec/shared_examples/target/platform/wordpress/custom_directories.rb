@@ -7,12 +7,27 @@ shared_examples 'WordPress::CustomDirectories' do
     {
       default: 'wp-content', https: 'wp-content', custom_w_spaces: 'custom content spaces',
       relative_one: 'wp-content', relative_two: 'wp-content', cache: 'wp-content',
-      in_raw_js: 'wp-content', with_sub_dir: 'app', relative_two_sub_dir: 'cms/wp-content'
+      in_raw_js: 'wp-content', with_sub_dir: 'app', relative_two_sub_dir: 'cms/wp-content',
+      in_meta_content: 'wp-content'
     }.each do |file, expected|
       it "returns #{expected} for #{file}.html" do
         stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{file}.html")))
 
         expect(target.content_dir).to eql expected
+      end
+    end
+
+    context 'when scope given' do
+      let(:opts) { super().merge(scope: ['*.cloudfront.net']) }
+
+      {
+        scope: 'wp-content', scope_meta_content: 'wp-content'
+      }.each do |file, expected|
+        it "returns #{expected} for #{file}.html" do
+          stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{file}.html")))
+
+          expect(target.content_dir).to eql expected
+        end
       end
     end
 

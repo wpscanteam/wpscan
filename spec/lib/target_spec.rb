@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 describe WPScan::Target do
-  subject(:target) { described_class.new(url) }
+  subject(:target) { described_class.new(url, opts) }
   let(:url)        { 'http://ex.lo' }
+  let(:opts)       { {} }
 
   it_behaves_like WPScan::Target::Platform::WordPress
 

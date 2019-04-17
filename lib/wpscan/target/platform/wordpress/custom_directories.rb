@@ -17,14 +17,15 @@ module WPScan
         # @return [ String ] The wp-content directory
         def content_dir(detection_mode = :mixed)
           unless @content_dir
-            escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
-            pattern     = %r{#{escaped_url}([\w\s\-\/]+)\/(?:themes|plugins|uploads|cache)\/}i
+            # #url_pattern is from CMSScanner::Target
+            pattern = %r{#{scope_url_pattern}([\w\s\-\/]+)\/(?:themes|plugins|uploads|cache)\/}i
 
             in_scope_urls(homepage_res) do |url|
               return @content_dir = Regexp.last_match[1] if url.match(pattern)
             end
 
-            xpath_pattern_from_page('//script[not(@src)]', pattern, homepage_res) do |match|
+            # Checks for the pattern in raw JS code, as well as @content attributes of meta tags
+            xpath_pattern_from_page('//script[not(@src)]|//meta/@content', pattern, homepage_res) do |match|
               return @content_dir = match[1]
             end
 
@@ -96,14 +97,13 @@ module WPScan
           themes_uri.join("#{URI.encode(slug)}/").to_s
         end
 
-        # TODO: Factorise the code and the content_dir one ?
         # @return [ String, False ] String of the sub_dir found, false otherwise
         # @note: nil can not be returned here, otherwise if there is no sub_dir
         #        the check would be done each time
         def sub_dir
           unless @sub_dir
-            escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
-            pattern     = %r{#{escaped_url}(.+?)\/(?:xmlrpc\.php|wp\-includes\/)}i
+            # escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
+            pattern = %r{#{url_pattern}(.+?)\/(?:xmlrpc\.php|wp\-includes\/)}i
 
             in_scope_urls(homepage_res) do |url|
               return @sub_dir = Regexp.last_match[1] if url.match(pattern)
