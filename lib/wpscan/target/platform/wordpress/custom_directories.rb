@@ -17,7 +17,7 @@ module WPScan
         # @return [ String ] The wp-content directory
         def content_dir(detection_mode = :mixed)
           unless @content_dir
-            # #url_pattern is from CMSScanner::Target
+            # scope_url_pattern is from CMSScanner::Target
             pattern = %r{#{scope_url_pattern}([\w\s\-\/]+)\/(?:themes|plugins|uploads|cache)\/}i
 
             in_scope_urls(homepage_res) do |url|
@@ -102,7 +102,7 @@ module WPScan
         #        the check would be done each time
         def sub_dir
           unless @sub_dir
-            # escaped_url = Regexp.escape(url).gsub(/https?/i, 'https?')
+            # url_pattern is from CMSScanner::Target
             pattern = %r{#{url_pattern}(.+?)\/(?:xmlrpc\.php|wp\-includes\/)}i
 
             in_scope_urls(homepage_res) do |url|
