@@ -141,8 +141,6 @@ shared_examples WPScan::Target::Platform::WordPress do
   describe '#wordpress_hosted?' do
     let(:fixtures) { super().join('wordpress_hosted') }
 
-    # its(:wordpress_hosted?) { should be false }
-
     context 'when the target host matches' do
       let(:url) { 'http://ex.wordpress.com' }
 
