@@ -139,7 +139,9 @@ shared_examples WPScan::Target::Platform::WordPress do
   end
 
   describe '#wordpress_hosted?' do
-    its(:wordpress_hosted?) { should be false }
+    let(:fixtures) { super().join('wordpress_hosted') }
+
+    # its(:wordpress_hosted?) { should be false }
 
     context 'when the target host matches' do
       let(:url) { 'http://ex.wordpress.com' }
@@ -150,7 +152,30 @@ shared_examples WPScan::Target::Platform::WordPress do
     context 'when the target host doesn\'t matches' do
       let(:url) { 'http://ex-wordpress.com' }
 
-      its(:wordpress_hosted?) { should be false }
+      context 'when wp-content not detected' do
+        before do
+          expect(target).to receive(:content_dir).with(:passive).and_return(nil)
+          stub_request(:get, target.url).to_return(body: File.read(fixtures.join(fixture).to_s))
+        end
+
+        context 'when an URL matches a WP hosted' do
+          let(:fixture) { 'matches.html' }
+
+          its(:wordpress_hosted?) { should be true }
+        end
+
+        context 'when URLs don\'t match' do
+          let(:fixture) { 'no_match.html' }
+
+          its(:wordpress_hosted?) { should be false }
+        end
+      end
+
+      context 'when wp-content detected' do
+        before { expect(target).to receive(:content_dir).with(:passive).and_return('wp-content') }
+
+        its(:wordpress_hosted?) { should be false }
+      end
     end
   end
 

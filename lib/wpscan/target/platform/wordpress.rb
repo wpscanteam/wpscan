@@ -78,8 +78,19 @@ module WPScan
           multisite? ? url('wp-signup.php') : url('wp-login.php?action=register')
         end
 
+        # @return [ Boolean ] Whether or not the target is hosted on wordpress.com
         def wordpress_hosted?
-          /\.wordpress\.com$/i.match?(uri.host) ? true : false
+          return true if /\.wordpress\.com$/i.match?(uri.host)
+
+          unless content_dir(:passive)
+            pattern = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i.freeze
+
+            urls_from_page(homepage_res) do |url|
+              return true if url.match?(pattern)
+            end
+          end
+
+          false
         end
 
         # @param [ String ] username

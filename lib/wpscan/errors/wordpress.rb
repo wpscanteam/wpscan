@@ -5,7 +5,7 @@ module WPScan
     # WordPress hosted (*.wordpress.com)
     class WordPressHosted < Standard
       def to_s
-        'Scanning *.wordpress.com hosted blogs is not supported.'
+        'The target appears to be hosted on WordPress.com. Scanning such site is not supported.'
       end
     end
 
