@@ -18,7 +18,7 @@ module WPScan
         def content_dir(detection_mode = :mixed)
           unless @content_dir
             # scope_url_pattern is from CMSScanner::Target
-            pattern = %r{#{scope_url_pattern}([\w\s\-\/]+)\/(?:themes|plugins|uploads|cache)\/}i
+            pattern = %r{#{scope_url_pattern}([\w\s\-/]+)\\?/(?:themes|plugins|uploads|cache)\\?/}i
 
             in_scope_urls(homepage_res) do |url|
               return @content_dir = Regexp.last_match[1] if url.match(pattern)
@@ -103,7 +103,7 @@ module WPScan
         def sub_dir
           unless @sub_dir
             # url_pattern is from CMSScanner::Target
-            pattern = %r{#{url_pattern}(.+?)\/(?:xmlrpc\.php|wp\-includes\/)}i
+            pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
 
             in_scope_urls(homepage_res) do |url|
               return @sub_dir = Regexp.last_match[1] if url.match(pattern)
