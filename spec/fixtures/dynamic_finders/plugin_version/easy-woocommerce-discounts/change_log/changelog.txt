@@ -1,0 +1,143 @@
+== Changelog ==
+
+= 3.2.0 - 22.02.2019 =
+* New : Add an option to live price to calculate price by ignoring in the cart quantities of a product.
+
+= 3.1.0 - 14.01.2019=
+* New : Automatically add free products to the cart for BOGO rules.
+
+= 3.0.1 - 24.12.2018 =
+* Fix : Fixing an issue in product purchase messages.
+* Fix : Fixing an issue in html price override.
+* Fix : Fixing override of cart item price on ajax add to cart.
+* Fix : Fixing issue in the cart items price after adding price override feature.
+
+= 3.0.0 - 22.12.2018 =
+* New : Adding new price override feature that override products price in a right way.
+* New : Improve performance of the plugin by adding a cache solution.
+* New : Adding a cache for products price.
+* New : Adding a cache for products quantity table.
+* New : Adding a cache for products purchase messages.
+
+= 2.8.0 - 26.11.2018 =
+* New : Adding payment method condition to the pricing rules.
+* New : Adding shipping method condition to the pricing rules.
+* New : Adding shipping country condition to the pricing rules.
+* New : Adding shipping state condition to the pricing rules.
+* New : Adding shipping postcode condition to the pricing rules.
+* New : Adding shipping zone condition to the pricing rules.
+* New : Adding an option to control change display price.
+* New : Adding an option to control set onsale for products.
+* New : Adding discount column to the quantity table.
+* New : Adding a shortcode for purchase message.
+* New : Adding wccs_quantity_table_quantity filter to quantity table quantity column.
+* New : Adding wccs_quantity_table_discount filter to quantity table discount column.
+* New : Adding wccs_quantity_table_price filter to quantity table price column.
+* New : Adding "before add to cart form" and "after add to cart form" to supported positions of quantity table, purchase message and live price.
+* Fix : Fixing an issue in hiding variations quantity table.
+* Fix : Do not show price range if min and max are same and only show min in the quantity table.
+* Fix : Fixing an issue when user add item to the cart with ajax request.
+
+= 2.7.0 - 12.11.2018 =
+* New : Display prices with their associated quantities in the cart.
+* New : Adding shortcode support for purchase x receive y rules messages.
+* New : Adding colors for purchase x receive y rules text messages.
+* New : Removing quantity from purchase and products group rules to make them simple and function like previous versions.
+* Fix : Fixing issue of applying tax on discounted prices.
+* Fix : Fixing limit discount issue when discount type is fixed price.
+* Fix : Fixing discount limit issues.
+
+= 2.6.0 - 11.10.2018 =
+* Fix : Fixing issues in purchase x receive y pricing rules.
+* Fix : Fixing issues in live price when price is 0.
+* Fix : Fixing issue of displaying review in products list shortcode.
+* Fix : Fixing reference error in posts_where method.
+* New : Adding a feature to caching purchase pricing rules.
+
+= 2.5.0 - 27.09.2018 =
+* New : Adding Subtotal of products include tax to the conditions.
+* New : Adding Subtotal of products exclude tax to the conditions.
+* New : Adding Subtotal of variations include tax to the conditions.
+* New : Adding Subtotal of variations exclude tax to the conditions.
+* New : Adding Subtotal of categories include tax to the conditions.
+* New : Adding Subtotal of categories exclude tax to the conditions.
+* New : Adding Subtotal of attributes include tax to the conditions.
+* New : Adding Subtotal of attributes exclude tax to the conditions.
+* New : Adding Subtotal of tags include tax to the conditions.
+* New : Adding Subtotal of tags exclude tax to the conditions.
+
+= 2.4.0 - 22.09.2018 =
+* Improvement : Making products & variations & coupons & customers select field as a autocomplete select field.
+
+= 2.3.0 - 19.09.2018 =
+* Important : WooCommerce minimum supported version is 3.0.0 from now on.
+* New : Adding Checkout Fee rules.
+* New : Adding price discount per item to the cart discounts.
+* New : Adding percentage discount per item to the cart discounts.
+* New : Adding items to cart discounts to apply discount to the specified items in the cart.
+* New : Adding a feature to displaying cart discounts name as discount label in the cart.
+* New : Adding a feature to combining cart discounts and displaying them as a total discount with specified label from settings.
+* New : Rename menu and page title in the Dashboard.
+* New : Adding payment method checking condition.
+* New : Adding shipping method checking condition.
+* New : Adding shipping country checking condition.
+* New : Adding shipping state checking condition.
+* New : Adding shipping postcode checking condition.
+* New : Adding shipping zone checking condition.
+* New : Adding styles to the bulk pricing tables.
+* New : Adding scroll to the bulk pricing horizontal table.
+* New : Adding a feature to apply or not apply cart discounts with individual cart coupons.
+* New : Adding a feature to apply or not apply cart discounts with cart regular coupons.
+* Fix : Fixing bulk pricing horizontal table labels issue.
+* Fix : Fixing cart discount removing issue on WooCommerce 3.2 and above.
+
+= 2.2.4 - 08.09.2018 =
+* Fix : Fixing issue of not including tax in adjusted prices when include tax enabled.
+
+= 2.2.3 - 06.08.2018 =
+* Fix : Fixing issues in fixed prices.
+* New : Adding a shortcode for the live price.
+
+= 2.2.2 - 24.07.2018 =
+* Fix : Fixing pricing issues with subtotal conditions.
+
+= 2.2.1 - 15.07.2018 =
+* Fix : Do not show live price when discounts are not available for the product.
+* Fix : Fixing issue of get_product_attributes in WooCommerce 2.6
+
+= 2.2.0 - 12.07.2018 =
+* New : Live price feature that shows discounted price in product page.
+* Fix : Fixing products name in select for woocommerce 2.6
+* Fix : Fixing repeat issue in products group pricing.
+* Fix : Fixing select2 issue in woocommerce 2.6
+* Fix : Fixing issue of cart discount coupon in Russian language.
+
+= 2.1.1 - 23.05.2018 =
+* Fix : Fixing empty function issue on php 5.5 and previous.
+
+= 2.1.0 - 27.04.2018 =
+* New : Adding duplicate rule feature.
+
+= 2.0.0 - 27.03.2018 =
+* New : Adding more conditions to products pricing.
+* New : Adding more options to discounted products in pricing.
+* New : Adding tiered pricing type.
+* New : Adding fee adjustment to simple pricing.
+* New : Adding a shortcode for bulk pricing table.
+* Fix : Making products listing compatible with WooCommerce 3.2 and greater.
+
+= 1.2.0 - 31.12.2017 =
+* New : Making Adming UI user friendly.
+* New : Adding limit option for cart discount in settings.
+* New : Adding limit option for products pricing in settings.
+* Fix : Fixing an issue in displaying discounted products.
+
+= 1.1.0 - 23.12.2017 =
+* New : Adding products group rule to pricing rules.
+* New : Adding exclude products rule to discount and pricing rules.
+* New : Adding excluded products from rule to pricing rules.
+* New : Adding Apply Mode to pricing and discount rules.
+* New : Adding matching mode to conditions and date times.
+
+= 1.0.0 - 26.11.2017 =
+* First release.

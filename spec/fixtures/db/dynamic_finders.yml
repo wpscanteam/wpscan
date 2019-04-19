@@ -2517,6 +2517,12 @@ plugins:
       xpath: //comment()[contains(., "awesomepress")]
       pattern: !ruby/regexp /\/awesomepress\/assets\/css\/font\-awesome\-ie7\.min\.css\?ver=(?<v>\d+\.[\.\d]+)/i
       version: true
+  awp-booking-calendar:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
   aws-cookies-popup:
     QueryParameter:
       files:
@@ -2660,6 +2666,12 @@ plugins:
       class: BodyPattern
       path: setting-page/languages/bn_BD.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: Codestar Framework (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  backdrop-post-types:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/backdrop-post-types.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: Backdrop Post Types (?<v>\d+\.[\.\d]+)/i'
       version: true
   background-music-player-lite:
     TranslationFile:
@@ -2979,6 +2991,11 @@ plugins:
       class: BodyPattern
       path: languages/best-testimonial.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Best Testimonial v(?<v>\d+\.[\.\d]+)/i'
+      version: true
+  best-ticker:
+    QueryParameter:
+      files:
+      - js/jquery.ticker.min.js
       version: true
   better-admin-users-search:
     TranslationFile:
@@ -6545,6 +6562,11 @@ plugins:
       path: languages/default.po
       pattern: !ruby/regexp /ect\-Id\-Version:\ Currencyr for WordPress (?<v>\d+\.[\.\d]+)/i
       version: true
+  custom-accordion-block:
+    QueryParameter:
+      files:
+      - "/js/custom-script.js"
+      version: true
   custom-admin-login:
     ChangeLog:
       class: BodyPattern
@@ -7320,6 +7342,11 @@ plugins:
       - js/media-query.js
       - js/download.js
       version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/dae.pot
+      pattern: !ruby/regexp '/oject\-Id\-Version: Download After Email v(?<v>\d+\.[\.\d]+)/i'
+      version: true
   download-manager:
     MetaGenerator:
       class: Xpath
@@ -7893,6 +7920,17 @@ plugins:
     QueryParameter:
       files:
       - public/css/easy-widget-columns-public.css
+      version: true
+  easy-woocommerce-discounts:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/easy-woocommerce-discounts.pot
+      pattern: !ruby/regexp /"Pricing & Discounts (?<v>\d+\.[\.\d]+)/i
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/i
       version: true
   easy-youtube-gallery:
     QueryParameter:
@@ -10653,6 +10691,11 @@ plugins:
       - assets/plugins/isotope/isotope.pkgd.min.js
       - assets/js/gallery.js
       - assets/plugins/tos/js/jquery.tosrus.min.custom.js
+      - assets/css/go-gallery.css
+      - assets/css/effects.css
+      - assets/plugins/qtlb/styles.css
+      - assets/js/go-gallery.js
+      - assets/plugins/qtlb/scripts.js
       version: true
   go-redirects:
     TranslationFile:
@@ -10844,6 +10887,12 @@ plugins:
       key: version
       version: true
   gosign-post-teaser-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+  gosign-posts-slider-block:
     ComposerFile:
       class: ConfigParser
       path: package.json
@@ -16896,6 +16945,13 @@ plugins:
       path: languages/ns-category-widget.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ NS Category Widget (?<v>\d+\.[\.\d]+)/i
       version: true
+  ns-marketplace-multi-vendor:
+    QueryParameter:
+      files:
+      - "/ASSETS/CSS/all.min.css"
+      - "/ASSETS/JS/ns-marketplace-multi-vendor-ajax-functions.js"
+      - "/ASSETS/JS/ns-marketplace-multi-vendor-account.js"
+      version: true
   ns-mistercorporate:
     QueryParameter:
       files:
@@ -17956,6 +18012,12 @@ plugins:
       - "/css/pigeonpack.min.css"
       - "/js/pigeonpack.min.js"
       version: true
+  piggly-views:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/piggly_views-pt_BR.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Piggly View (?<v>\d+\.[\.\d]+)/i'
+      version: true
   piklist:
     MetaTag:
       class: Xpath
@@ -18890,6 +18952,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  pricing-tables-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   primer-by-chloedigital:
     QueryParameter:
       files:
@@ -19667,6 +19735,12 @@ plugins:
       - site/resources/materialize.css
       - site/resources/app.css
       version: true
+  read-more-buddy:
+    QueryParameter:
+      files:
+      - public/css/read_mb-public.css
+      - public/js/read_mb-public.js
+      version: true
   read-offline:
     TranslationFile:
       class: BodyPattern
@@ -19817,6 +19891,12 @@ plugins:
       class: ConfigParser
       path: composer.json
       key: version
+      version: true
+  recover-woocommerce-abandoned-cart:
+    QueryParameter:
+      files:
+      - public/css/recover-woocommerce-abandoned-cart-public.css
+      - public/js/recover-woocommerce-abandoned-cart-public.js
       version: true
   recras:
     ChangeLog:
@@ -21067,6 +21147,13 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /^\#\#\#\# (?<v>\d+\.[\.\d]+) \- [^\r\n]+$/i
       version: true
+  scrollbar-by-webxapp:
+    QueryParameter:
+      files:
+      - assets/css/style.css
+      - assets/js/jquery.easeScroll.js
+      - assets/js/script.js
+      version: true
   scrolling-overlays:
     TranslationFile:
       class: BodyPattern
@@ -22310,6 +22397,12 @@ plugins:
     Comment:
       xpath: //comment()[contains(., "Simplest Gallery")]
       pattern: !ruby/regexp /Added by Simplest Gallery Plugin v\. (?<v>\d+\.[\.\d]+)/i
+      version: true
+  simplified-font-manager:
+    TranslationFile:
+      class: BodyPattern
+      path: lang/simplified-font-manager.pot
+      pattern: !ruby/regexp '/ect\-Id\-Version: Simplified Font Manager (?<v>\d+\.[\.\d]+)/i'
       version: true
   simply-snow:
     QueryParameter:
@@ -26247,6 +26340,16 @@ plugins:
       - video-js/kg-video-js-skin.css
       - css/kgvid_styles.css
       version: true
+  video-player-gallery:
+    QueryParameter:
+      files:
+      - vpg-assets/css/vpg-customjs.css
+      - vpg-assets/css/vpg-custom.css
+      - vpg-assets/css/font-awesome.min.css
+      - vpg-assets/css/slick.css
+      - vpg-assets/css/popup.css
+      - vpg-assets/js/simple-video.js
+      version: true
   video-sync-for-vimeo:
     QueryParameter:
       files:
@@ -26372,6 +26475,12 @@ plugins:
       class: BodyPattern
       path: languages/voice-search.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Voice Search (?<v>\d+\.[\.\d]+)/i
+      version: true
+  void-woo-cart-restrictor:
+    QueryParameter:
+      files:
+      - public/css/void-woo-cart-restrictor-public.css
+      - public/js/void-woo-cart-restrictor-public.js
       version: true
   voting-for-a-photo:
     QueryParameter:
@@ -27509,6 +27618,11 @@ plugins:
       files:
       - public/css/woo-authorizenet-public.css
       - public/js/woo-authorizenet-public.js
+      version: true
+  woo-best-selling-products:
+    QueryParameter:
+      files:
+      - assets/woobsp-styles.css
       version: true
   woo-better-usability:
     TranslationFile:
@@ -30334,6 +30448,8 @@ plugins:
     QueryParameter:
       files:
       - js/wpinventory.js
+      - "/themes/css/default-theme.css"
+      - "/js/wpinventory.js"
       version: true
   wp-invoice:
     QueryParameter:
@@ -33064,6 +33180,12 @@ plugins:
       class: BodyPattern
       path: includes/langs/yapsody-events-calendar-it_IT.po
       pattern: !ruby/regexp '/ct\-Id\-Version: Yapsody Events Calendar v(?<v>\d+\.[\.\d]+)/i'
+      version: true
+  yasothon-blocks:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   ycwp-qr-me:
     QueryParameter:
