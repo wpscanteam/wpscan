@@ -45,9 +45,7 @@ module WPScan
         def potential_usernames(res)
           usernames = []
 
-          target.in_scope_urls(res, '//a/@href') do |url, node|
-            uri = Addressable::URI.parse(url)
-
+          target.in_scope_uris(res, '//a/@href') do |uri, node|
             if uri.path =~ %r{/author/([^/\b]+)/?\z}i
               usernames << [Regexp.last_match[1], 'Author Pattern', 100]
             elsif /author=[0-9]+/.match?(uri.query)

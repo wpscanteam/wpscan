@@ -24,8 +24,8 @@ module WPScan
         #
         # @return [ Boolean ]
         def wordpress?(detection_mode)
-          in_scope_urls(homepage_res) do |url|
-            return true if Addressable::URI.parse(url).path.match(WORDPRESS_PATTERN)
+          in_scope_uris(homepage_res) do |uri|
+            return true if uri.path.match(WORDPRESS_PATTERN)
           end
 
           homepage_res.html.css('meta[name="generator"]').each do |node|
@@ -36,8 +36,8 @@ module WPScan
 
           if %i[mixed aggressive].include?(detection_mode)
             %w[wp-admin/install.php wp-login.php].each do |path|
-              in_scope_urls(Browser.get_and_follow_location(url(path))).each do |url|
-                return true if Addressable::URI.parse(url).path.match(WORDPRESS_PATTERN)
+              in_scope_uris(Browser.get_and_follow_location(url(path))).each do |uri|
+                return true if uri.path.match(WORDPRESS_PATTERN)
               end
             end
           end
@@ -85,8 +85,8 @@ module WPScan
           unless content_dir(:passive)
             pattern = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i.freeze
 
-            urls_from_page(homepage_res) do |url|
-              return true if url.match?(pattern)
+            uris_from_page(homepage_res) do |uri|
+              return true if uri.to_s.match?(pattern)
             end
           end
 

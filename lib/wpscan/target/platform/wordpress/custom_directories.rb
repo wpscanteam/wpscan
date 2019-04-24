@@ -20,8 +20,8 @@ module WPScan
             # scope_url_pattern is from CMSScanner::Target
             pattern = %r{#{scope_url_pattern}([\w\s\-/]+)\\?/(?:themes|plugins|uploads|cache)\\?/}i
 
-            in_scope_urls(homepage_res) do |url|
-              return @content_dir = Regexp.last_match[1] if url.match(pattern)
+            in_scope_uris(homepage_res) do |uri|
+              return @content_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
             end
 
             # Checks for the pattern in raw JS code, as well as @content attributes of meta tags
@@ -105,8 +105,8 @@ module WPScan
             # url_pattern is from CMSScanner::Target
             pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
 
-            in_scope_urls(homepage_res) do |url|
-              return @sub_dir = Regexp.last_match[1] if url.match(pattern)
+            in_scope_uris(homepage_res) do |uri|
+              return @sub_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
             end
 
             @sub_dir = false

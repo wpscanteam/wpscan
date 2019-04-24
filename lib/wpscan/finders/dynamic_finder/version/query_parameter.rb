@@ -35,15 +35,13 @@ module WPScan
           def scan_response(response)
             found = {}
 
-            target.in_scope_urls(response, xpath) do |url, _tag|
-              uri = Addressable::URI.parse(url)
-
+            target.in_scope_uris(response, xpath) do |uri|
               next unless uri.path =~ path_pattern && uri.query&.match(self.class::PATTERN)
 
               version = Regexp.last_match[:v].to_s
 
               found[version] ||= []
-              found[version] << url
+              found[version] << uri.to_s
             end
 
             found

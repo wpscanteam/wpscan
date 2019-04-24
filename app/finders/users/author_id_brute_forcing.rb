@@ -83,8 +83,8 @@ module WPScan
         # @return [ String, nil ] The username found
         def username_from_response(res)
           # Permalink enabled
-          target.in_scope_urls(res, '//link/@href|//a/@href') do |url|
-            username = username_from_author_url(url)
+          target.in_scope_uris(res, '//link/@href|//a/@href') do |uri|
+            username = username_from_author_url(uri.to_s)
             return username if username
           end
 

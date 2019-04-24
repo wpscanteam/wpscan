@@ -57,9 +57,7 @@ module WPScan
         def api_url
           return @api_url if @api_url
 
-          target.in_scope_urls(target.homepage_res, "//link[@rel='https://api.w.org/']/@href").each do |url, _tag|
-            uri = Addressable::URI.parse(url.strip)
-
+          target.in_scope_uris(target.homepage_res, "//link[@rel='https://api.w.org/']/@href").each do |uri|
             return @api_url = uri.join('wp/v2/users/').to_s if uri.path.include?('wp-json')
           end
 

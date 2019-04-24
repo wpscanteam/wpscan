@@ -20,10 +20,10 @@ module WPScan
         end
 
         def passive_from_css_href(res, opts)
-          target.in_scope_urls(res, '//style/@src|//link/@href') do |url|
-            next unless Addressable::URI.parse(url).path =~ %r{/themes/([^\/]+)/style.css\z}i
+          target.in_scope_uris(res, '//style/@src|//link/@href') do |uri|
+            next unless uri.path =~ %r{/themes/([^\/]+)/style.css\z}i
 
-            return create_theme(Regexp.last_match[1], url, opts)
+            return create_theme(Regexp.last_match[1], uri.to_s, opts)
           end
           nil
         end

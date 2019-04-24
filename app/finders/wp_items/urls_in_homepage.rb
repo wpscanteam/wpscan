@@ -12,8 +12,8 @@ module WPScan
         def items_from_links(type, uniq = true)
           found = []
 
-          target.in_scope_urls(target.homepage_res) do |url|
-            next unless url =~ item_attribute_pattern(type)
+          target.in_scope_uris(target.homepage_res) do |uri|
+            next unless uri.to_s =~ item_attribute_pattern(type)
 
             found << Regexp.last_match[1]
           end
