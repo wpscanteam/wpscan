@@ -7508,6 +7508,12 @@ plugins:
       - assets/js/admin_contact.js
       pattern: !ruby/regexp /ver=v(?<v>\d+\.[\.\d]+)/
       version: true
+  e-commerce-by-salescart:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\*+ V E R \s+ (?<v>\d+\.[\.\d]+)/i
+      version: true
   e2pdf:
     QueryParameter:
       files:
@@ -8426,6 +8432,12 @@ plugins:
       xpath: //meta[@name="generator"]/@content
       version: true
       pattern: !ruby/regexp /empty framework (?<v>\d+\.[\.\d]+)/i
+  endnotes:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Endnotes (?<v>\d+\.[\.\d]+)(?!.*Endnotes \d+\.[\.\d]+)/mi
+      version: true
   energ1zer:
     QueryParameter:
       files:
@@ -9094,6 +9106,12 @@ plugins:
       - assets/css/public.min.css
       - assets/js/public.min.js
       version: true
+  fa-wp-admin-menu-icons:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# \[v(?<v>\d+\.[\.\d]+)\]/i
+      version: true
   face-live-chat:
     QueryParameter:
       files:
@@ -9364,6 +9382,12 @@ plugins:
       files:
       - assets/css/wpfp-public.css
       version: true
+  featured-posts:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /Changed from [\d\.]+ to (?<v>\d+\.[\.\d]+)/i
+      version: true
   featured-posts-widget:
     QueryParameter:
       files:
@@ -9575,6 +9599,12 @@ plugins:
       files:
       - public/css/flexy-breadcrumb-public.css
       - public/js/flexy-breadcrumb-public.js
+      version: true
+  flickr-me:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Flickr Me (?<v>\d+\.[\.\d]+)(?!.*Flickr Me \d+\.[\.\d]+)/mi
       version: true
   flickr-shortcode-importer:
     TranslationFile:
@@ -10001,6 +10031,13 @@ plugins:
     QueryParameter:
       files:
       - css/foxyshop.css
+      version: true
+  fp-foundation-assistant:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\s+[\d\.]{8,} \- Version (?<v>\d+\.[\.\d]+)(?!.*[\d\.]{8,}
+        \- Version \d+\.[\.\d]+)/mi
       version: true
   fpp-pano:
     ChangeLog:
@@ -11577,6 +11614,13 @@ plugins:
       - public/css/healthcare-review-master-public.css
       - public/js/healthcare-review-master-public.js
       - public/js/jquery.easy-ticker.min.js
+      version: true
+  healthengine-online-booking-widget-installer:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /^\#\# \[(?<v>\d+\.[\.\d]+)\] \- [\d\-]+(?!.*\#\# \[\d+\.[\.\d]+\]
+        \- [\d\-]+)/mi
       version: true
   heart-this:
     QueryParameter:
@@ -15710,6 +15754,12 @@ plugins:
       path: lang/mind-body.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ (?<v>\d+\.[\.\d]+)/i
       version: true
+  mindvalley-shortcut-framework:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
+      version: true
   minerva-knowledge-base-lite:
     QueryParameter:
       files:
@@ -15788,6 +15838,12 @@ plugins:
       class: BodyPattern
       path: languages/mobile-dj-manager.pot
       pattern: !ruby/regexp /oject\-Id\-Version:\ MDJM Event Management (?<v>\d+\.[\.\d]+)/i
+      version: true
+  mobile-menu:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
       version: true
   mobile-switcher:
     QueryParameter:
@@ -16667,6 +16723,12 @@ plugins:
   nextgen-gallery:
     Comment:
       pattern: !ruby/regexp /<meta name="NextGEN" version="(?<v>\d+\.[\.\d]+)"/i
+      version: true
+  nextgen-image-cropper:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.txt
+      pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
       version: true
   nextgen-public-deletor:
     QueryParameter:
@@ -18411,6 +18473,13 @@ plugins:
       - public/css/elastic_grid.min.css
       - public/js/ims-portfolio-public.js
       version: true
+  portfolio-mgmt:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Portfolio Mgmt\. (?<v>\d+\.[\.\d]+)(?!.*Portfolio Mgmt\.
+        \d+\.[\.\d]+)/mi
+      version: true
   portfolio-toolkit:
     TranslationFile:
       class: BodyPattern
@@ -19775,6 +19844,13 @@ plugins:
     QueryParameter:
       files:
       - "/assets/fonts/font-awesome/css/font-awesome.min.css"
+      version: true
+  real-membership:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\#\# \[(?<v>\d+\.[\.\d]+)\] \- [\d\-]+(?!.*\#\# \[\d+\.[\.\d]+\]
+        \- [\d\-]+)/mi
       version: true
   really-static:
     TranslationFile:
@@ -22568,6 +22644,12 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/
       version: true
+  skybox-checkout-for-woocommerce:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.md
+      pattern: !ruby/regexp /^\#+ \[(?<v>\d+\.[\.\d]+)\](?!.*\#+ \[\d+\.[\.\d]+\])/mi
+      version: true
   slate:
     TranslationFile:
       class: BodyPattern
@@ -25083,6 +25165,12 @@ plugins:
       path: languages/trail-manager.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Trail Manager (?<v>\d+\.[\.\d]+)/i'
       version: true
+  trailblaze:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Trailblaze (?<v>\d+\.[\.\d]+)(?!.*Trailblaze \d+\.[\.\d]+)/mi
+      version: true
   traktivity:
     ComposerFile:
       class: ConfigParser
@@ -25348,6 +25436,13 @@ plugins:
       xpath: //meta[@name="twitvid"]/@content
       version: true
       pattern: !ruby/regexp /twitvid\/(?<v>\d+\.[\.\d]+)/i
+  twounter:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^== Version (?<v>\d+\.[\.\d]+) ==(?!.*== Version \d+\.[\.\d]+
+        ==)/mi
+      version: true
   tx-onepager:
     MetaTag:
       class: Xpath
@@ -26511,6 +26606,12 @@ plugins:
       - public/css/vvbc-in-store-product-categories-public.css
       - public/js/vvbc-in-store-product-categories-public.js
       version: true
+  vw-notes-files-downloader:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=(?<v>\d+\.[\.\d]+)=(?!.*=\d+\.[\.\d]+=)/mi
+      version: true
   vw-property-listing:
     ChangeLog:
       class: BodyPattern
@@ -27279,6 +27380,11 @@ plugins:
       path: languages/whizz-es_ES.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: WHIZZ (?<v>\d+\.[\.\d]+)/i'
       version: true
+    ChangeLog:
+      class: BodyPattern
+      path: change_log.txt
+      pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
+      version: true
   whois-dashboard-widget:
     QueryParameter:
       files:
@@ -27438,6 +27544,11 @@ plugins:
     QueryParameter:
       files:
       - js/wd-player.js
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /^\#+ (?<v>\d+\.[\.\d]+)(?!.*\#+ \d+\.[\.\d]+)/mi
       version: true
   wishlist-woocommerce:
     QueryParameter:
@@ -28141,6 +28252,12 @@ plugins:
       - public/css/isswscr-public.css
       - public/js/isswscr-public.js
       version: true
+  woo-shipperhq:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /^\#+ (?<v>\d+\.[\.\d]+)(?!.*\#+ \d+\.[\.\d]+)/mi
+      version: true
   woo-shop-customizer:
     QueryParameter:
       files:
@@ -28595,6 +28712,12 @@ plugins:
       class: BodyPattern
       path: languages/woocommerce-pagseguro.pot
       pattern: !ruby/regexp /oject\-Id\-Version:\ WooCommerce PagSeguro (?<v>\d+\.[\.\d]+)/i
+      version: true
+  woocommerce-pay-to-upload-modification:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /[\d\.]{8,} \- Version\s+(?<v>\d+\.[\.\d]+)/i
       version: true
   woocommerce-payfast-gateway:
     ChangeLog:
@@ -29739,11 +29862,22 @@ plugins:
       - public/js/validator/formValidation.min.js
       - public/js/validator/bootstrap-validator.min.js
       version: true
+  wp-custom-sidebars:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /= v(?<v>\d+\.[\.\d]+)/i
+      version: true
   wp-customer-reviews:
     QueryParameter:
       files:
       - css/wp-customer-reviews-generated.css.php
       - js/wp-customer-reviews.js
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /= (?:\d+\.[\.\d]+ \/ )?(?<v>\d+\.[\.\d]+) =/i
       version: true
   wp-dashboard-beacon:
     TranslationFile:
@@ -30135,6 +30269,12 @@ plugins:
       path: changelog.md
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  wp-flexslider:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /= v(?<v>\d+\.[\.\d]+)/i
+      version: true
   wp-flickity:
     QueryParameter:
       files:
@@ -30371,6 +30511,12 @@ plugins:
     Comment:
       xpath: //comment()[contains(., "WP-HOTWords")]
       pattern: !ruby/regexp '/WP\-HOTWords vers[^o]+o: (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  wp-hrm-lite-human-resource-management-system:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
       version: true
   wp-hrms:
     QueryParameter:
@@ -31640,6 +31786,12 @@ plugins:
       files:
       - public/css/wp-snapcam-public.css
       version: true
+  wp-snippets:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.md
+      pattern: !ruby/regexp /= v(?<v>[\d]+) =/i
+      version: true
   wp-snowfall:
     QueryParameter:
       files:
@@ -32680,6 +32832,12 @@ plugins:
     QueryParameter:
       files:
       - public/css/wpnextpreviouslink-public.css
+      version: true
+  wponion:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp '/\#\# \[Beta : (?<v>\d+\.[\.\d]+)\]/i'
       version: true
   wpos-owl-carousel-ultimate:
     QueryParameter:
