@@ -868,6 +868,15 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/
       version: true
+  adfoxly:
+    QueryParameter:
+      files:
+      - public/vendor/jquery-confirm/jquery-confirm.min.css
+      - public/css/adfoxly-public.css
+      - public/vendor/jquery-confirm/jquery-confirm.min.js
+      - public/js/adfoxly-public.js
+      - public/js/adfoxly-public-ajax.js
+      version: true
   adjusted-bounce-rate:
     QueryParameter:
       files:
@@ -5257,6 +5266,11 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
+  civic-social-feeds:
+    QueryParameter:
+      files:
+      - public/css/csf-public.css
+      version: true
   civicrm-admin-utilities:
     TranslationFile:
       class: BodyPattern
@@ -6367,6 +6381,12 @@ plugins:
       - public/css/jquery-ui.structure.min.css
       - public/js/jquery-ui.min.js
       - public/js/courtres-public.js
+      version: true
+  cpf-e-cnpj-para-contact-form-7:
+    QueryParameter:
+      files:
+      - js/mask.min.js
+      - js/main.js
       version: true
   cpo-content-types:
     ChangeLog:
@@ -9916,6 +9936,12 @@ plugins:
       path: composer.json
       key: version
       version: true
+  foreup-forms:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   forge:
     ChangeLog:
       class: BodyPattern
@@ -11571,6 +11597,12 @@ plugins:
       - css/harmonia.css
       - js/harmonia.js
       version: true
+  hash-hash-tags:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/hash-hash-tags-ja.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: (?<v>\d+\.[\.\d]+)/i'
+      version: true
   hash-link-scroll-offset:
     QueryParameter:
       files:
@@ -11838,6 +11870,12 @@ plugins:
     QueryParameter:
       files:
       - public/css/hospitality-public.min.css
+      version: true
+  host-google-fonts-locally:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/host-google-fonts-locally.pot
+      pattern: !ruby/regexp '/t\-Id\-Version: Host Google Fonts Locally (?<v>\d+\.[\.\d]+)/i'
       version: true
   hotelroomscanner:
     ComposerFile:
@@ -12205,6 +12243,12 @@ plugins:
     QueryParameter:
       files:
       - public/assets/css/public.css
+      version: true
+  ig-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   ignation-iot:
     QueryParameter:
@@ -13780,6 +13824,12 @@ plugins:
       files:
       - inc/css/latex.min.css
       - inc/css/print.min.css
+      version: true
+  launchpad-article-feedback:
+    QueryParameter:
+      files:
+      - assets/css/launchpad_feedback.css
+      - assets/js/launchpad_feedback.js
       version: true
   lava-bp-post:
     QueryParameter:
@@ -16399,6 +16449,11 @@ plugins:
       - css/frontend-style.css
       - styles/silver/style.css
       version: true
+  mygallery:
+    QueryParameter:
+      files:
+      - public/js/1.bundle.js
+      version: true
   myspeakingpage:
     QueryParameter:
       files:
@@ -17759,6 +17814,14 @@ plugins:
       class: BodyPattern
       path: languages/parcelware.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Parcelware (?<v>\d+\.[\.\d]+)/i
+      version: true
+  parkingpro-booking-widgets:
+    QueryParameter:
+      files:
+      - public/css/jquery.timepicker.min.css
+      - public/css/parkingpro-booking-widgets-public.css
+      - public/js/jquery.timepicker.min.js
+      - public/js/parkingpro-booking-widgets-public.js
       version: true
   parsedown-importer:
     ComposerFile:
@@ -19327,6 +19390,12 @@ plugins:
       path: languages/pddp.pot
       pattern: !ruby/regexp /ect\-Id\-Version:\ Publish Date DatePicker (?<v>\d+\.[\.\d]+)/i
       version: true
+  publish-post-email-notification:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/publish-post-email-notification.pot
+      pattern: !ruby/regexp /"(?<v>\d+\.[\.\d]+)/i
+      version: true
   publish2:
     QueryParameter:
       files:
@@ -19451,6 +19520,12 @@ plugins:
     QueryParameter:
       files:
       - js/q2w3-fixed-widget.min.js
+      version: true
+  qa-cost-of-goods-margins:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   qbot-question-answer:
     QueryParameter:
@@ -22439,6 +22514,12 @@ plugins:
       - jquery.prettyembed.min.js
       - jquery.fitvids.js
       version: true
+  simple-youtube-gdpr:
+    QueryParameter:
+      files:
+      - public/css/simple-youtube-gdpr-public.css
+      - public/js/simple-youtube-gdpr-public.js
+      version: true
   simplegal:
     TranslationFile:
       class: BodyPattern
@@ -23645,6 +23726,12 @@ plugins:
       - public/css/stencil-public.css
       - public/js/stencil-public.js
       version: true
+  sticky-add-to-cart-for-woo:
+    QueryParameter:
+      files:
+      - public/css/satcwoo-public.css
+      - public/js/satcwoo-public.js
+      version: true
   sticky-menu-or-anything-on-scroll:
     QueryParameter:
       files:
@@ -24179,6 +24266,12 @@ plugins:
       - assets/leaflet/css/leaflet.css
       - assets/jquery-ui/themes/base/jquery-ui.min.css
       - assets/style.css
+      version: true
+  tabut-companion:
+    QueryParameter:
+      files:
+      - public/css/tabut-companion-public.css
+      - public/js/tabut-companion-public.js
       version: true
   tackthis:
     QueryParameter:
@@ -26445,6 +26538,12 @@ plugins:
       - vpg-assets/css/popup.css
       - vpg-assets/js/simple-video.js
       version: true
+  video-popup-block:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   video-sync-for-vimeo:
     QueryParameter:
       files:
@@ -26497,6 +26596,14 @@ plugins:
     QueryParameter:
       files:
       - assets/css/button-styles.css
+      version: true
+  virtual-marketplace-store:
+    QueryParameter:
+      files:
+      - public/css/lightbox.min.css
+      - public/css/vmstore-public.css
+      - public/js/lightbox.min.js
+      - public/js/vmstore-public.js
       version: true
   visideign-login:
     QueryParameter:
@@ -26669,6 +26776,12 @@ plugins:
       class: BodyPattern
       path: languages/wallets-front.pot
       pattern: !ruby/regexp /Id\-Version:\ Bitcoin and Altcoin Wallets (?<v>\d+\.[\.\d]+)/i
+      version: true
+  wallkit:
+    QueryParameter:
+      files:
+      - public/css/wallkit-wp-public.css
+      - public/js/wallkit-wp-public.min.js
       version: true
   wanapost-several-social-sharing:
     QueryParameter:
@@ -26871,6 +26984,12 @@ plugins:
     QueryParameter:
       files:
       - includes/css/style.css
+      version: true
+  wc-return-warrranty:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wc-return-warranty.pot
+      pattern: !ruby/regexp '/rsion: WooCommerce Return and Warrranty (?<v>\d+\.[\.\d]+)/i'
       version: true
   wc-rich-reviews-lite:
     QueryParameter:
