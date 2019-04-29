@@ -1,6 +1,6 @@
 ---
-name: Custom issue template
-about: ''
+name: Other Issue
+about: Create a report which is not a related to a Bug or Feature
 title: ''
 labels: ''
 assignees: ''
