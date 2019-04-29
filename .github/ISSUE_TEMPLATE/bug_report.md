@@ -1,3 +1,14 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
+
+---
+
+Before submitting an issue, please make sure you fully read any potential error messages output and did some research on your own.
+
 ### Subject of the issue
 Describe your issue here.
 
