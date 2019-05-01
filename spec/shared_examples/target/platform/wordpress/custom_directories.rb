@@ -31,6 +31,16 @@ shared_examples 'WordPress::CustomDirectories' do
       end
     end
 
+    context 'when the target URL is invalid according to PublicSuffix and contains a port' do
+      let(:url) { 'http://wp-lab:82/aa' }
+
+      it 'returns wp-content when matches' do
+        stub_request(:get, target.url).to_return(body: File.read(fixtures.join('with_port.html')))
+
+        expect(target.content_dir).to eql 'wp-content'
+      end
+    end
+
     context 'when not found via the homepage' do
       before { stub_request(:get, target.url).to_return(body: '') }
 
