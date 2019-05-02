@@ -1,0 +1,1307 @@
+*** Changelog ***
+
+2019.05.01 - version 2.0.1
+
+* New: Rename plugin to Sensei LMS - #2511, #2516
+* New: Deprecate `manage_sensei_page_sensei_learners_sortable_columns` in favour of `manage_sensei-lms_page_sensei_learners_sortable_columns` - #2516
+* New: Deprecate `manage_sensei_page_sensei_grading_sortable_columns` in favour of `manage_sensei-lms_page_sensei_grading_sortable_columns` - #2516
+* New: Deprecate `manage_sensei_page_sensei_analysis_sortable_columns` in favour of `manage_sensei-lms_page_sensei_analysis_sortable_columns` - #2516
+* Tweak: Change text domain from `sensei` to `sensei-lms` - #2511
+* Tweak: Update footer text in `templates/emails/footer.php` - #2516
+* Fix: Allow "Learner Admin" link to be translated - #2516
+
+2019.04.02 - version 2.0.0
+
+* New: Extract all WooCommerce integration functionality
+* New: Add dependency check for minimum PHP version (5.6)
+* New: Email signup modal appears on initial activation
+* New: Sensei Extensions page
+* New: Filter `sensei_lesson_course_create_form_top` was added
+* New: Filter `sensei_lesson_course_create_form_bottom` was added
+* New: Action `sensei_lesson_course_created` was added
+* New: Filter `sensei_course_content_has_access` was added
+* New: Filter `sensei_output_course_enrolment_actions` was added
+* New: Filter `sensei_lesson_show_course_signup_notice` was added
+* New: Filter `sensei_lesson_course_signup_notice_message` was added
+* New: Filter `sensei_lesson_course_signup_notice_level` was added
+* New: Filter `sensei_quiz_course_signup_notice_message` was added
+* New: Action `sensei_course_meta_inside_before` was added
+* New: Action `sensei_course_meta_inside_after` was added
+* New: Filter `sensei_shortcode_classes` was added
+* New: Filter `sensei_widget_course_component_components_list` was added
+* New: Filter `sensei_widget_course_component_get_courses_{$component} ` was added
+* New: Filter `sensei_widget_course_component_no_courses_message_{$component}` was added
+* New: Run plugin updates when needed - #2497
+* New: Sensei_Main::sensei_woocommerce_email_course_details has been deprecated in favour of Sensei_WC::email_course_details
+* New: Sensei_Main::sensei_woocommerce_reactivate_subscription has been deprecated in favour of Sensei_WC::reactivate_subscription
+* New: Sensei_Main::sensei_woocommerce_subscription_ended has been deprecated in favour of Sensei_WC::end_subscription
+* New: Sensei_Main::sensei_woocommerce_complete_order has been deprecated in favour of Sensei_WC::complete_order
+* New: Sensei_Main::sensei_woocommerce_cancel_order has been deprecated in favour of Sensei_WC::cancel_order
+* New: Sensei_Main::sensei_activate_subscription has been deprecated in favour of Sensei_WC::activate_subscription
+* New: Sensei_Main::woocommerce_course_update has been deprecated in favour of Sensei_WC::course_update
+* New: Sensei_Main::sensei_get_woocommerce_product_object has been deprecated in favour of Sensei_WC::get_product_object
+* New: Sensei_Main::disable_guest_checkout has been deprecated in favour of Sensei_WC::disable_guest_checkout
+* New: Sensei_Main::virtual_order_payment_complete has been deprecated in favour of Sensei_WC::virtual_order_payment_complete
+* New: Sensei_Main::check_user_permissions has been deprecated with no replacement
+* New: Sensei_Utils::sensei_is_woocommerce_present has been deprecated in favour of Sensei_WC::is_woocommerce_present
+* New: Sensei_Utils::sensei_is_woocommerce_activated has been deprecated in favour of Sensei_WC::is_woocommerce_active
+* New: Sensei_Utils::sensei_customer_bought_product has been deprecated in favour of Sensei_WC::has_customer_bought_product
+* New: Sensei_Frontend::activate_purchased_courses has been deprecated in favour of \Sensei_WC_Paid_Courses\Courses::activate_purchased_courses
+* New: Sensei_Frontend::activate_purchased_single_course has been deprecated in favour of \Sensei_WC_Paid_Courses\Courses::activate_purchased_single_course
+* New: Sensei_Frontend::sensei_woocommerce_in_cart_message has been deprecated in favour of Sensei_WC::course_in_cart_message
+* New: Sensei_Course::get_product_courses has been deprecated in favour of Sensei_WC_Paid_Courses\Courses::get_product_courses
+* New: Sensei_Course::get_product_courses_query_args has been deprecated in favour of Sensei_WC_Paid_Courses\Courses::get_product_courses_query_args
+* New: Sensei_WC_Utils::wc_version_less_than has been deprecated in favour of version_compare( WC()->version, $str, '<'  )
+* New: Sensei_WC_Utils::is_product_variation has been deprecated in favour of $product->is_type( 'variation'  )
+* New: Sensei_WC_Utils::get_order_id has been deprecated in favour of $order->get_id()
+* New: Sensei_WC_Utils::get_product has been deprecated in favour of wc_get_product
+* New: Sensei_WC_Utils::get_parent_product has been deprecated in favour of wc_get_product
+* New: Sensei_WC_Utils::get_formatted_variation has been deprecated in favour of wc_get_formatted_variation
+* New: Sensei_WC_Utils::get_product_variation_data has been deprecated in favour of \Sensei_WC_Utils::get_variation_data
+* New: Sensei_WC_Utils::get_product_from_item has been deprecated in favour of $item->get_product()
+* New: Sensei_WC_Utils::get_checkout_url has been deprecated in favour of wc_get_checkout_url
+* New: sensei_wc_add_to_cart has been deprecated in favour of Sensei_WC::the_add_to_cart_button_html
+* New: sensei_check_if_product_is_in_cart has been deprecated in favour of Sensei_WC::is_product_in_cart
+* New: sensei_simple_course_price has been deprecated in favour of Sensei_WC_Paid_Courses\Frontend\Courses::output_course_price
+* New: is_woocommerce_active has been deprecated with no replacement.
+* New: sensei_check_woocommerce_version has been deprecated with no replacement
+* New: The `newcourses` shortcode has been deprecated
+* New: The `featuredcourses` shortcode has been deprecated
+* New: The `freecourses` shortcode has been deprecated
+* New: The `paidcourses` shortcode has been deprecated
+* New: The `usercourses` shortcode has been deprecated
+* New: The `allcourses` shortcode has been deprecated
+* New: The `sensei_show_delete_course_button` hook has been deprecated and will be removed in Sensei 4.0
+* New: The `sensei_merge_courses_with_parent_product` hook has been deprecated in favour of `sensei_wc_paid_courses_merge_courses_with_parent_product`
+* Tweak: Access Permissions setting only controls Lesson content
+* Tweak: Change text domain from `woothemes-sensei` to `sensei`
+* Tweak: In `templates/content-course.php`, call Sensei_Course::get_course_loop_content_class instead of WooThemes_Sensei_Course::get_course_loop_content_class
+* Tweak: In `templates/single-quiz/question-type-*.php`, call Sensei_Question::get_template_data instead of WooThemes_Sensei_Question::get_template_data
+* Tweak: Update version numbers and add `ABSPATH` checks in templates - #2488
+* Fix: Conflict with Jetpack shortcodes module causing Sensei videos to not display
+* Fix: Bug causing the Lesson order to change on Lesson update
+* Fix: Completed modules being displayed as "In Progress"
+* Fix: Fix permalink/rewrite rule issue on plugin activation - #2492
+* Fix: Allow for late additions to data updates - #2490
+* Fix: Fix issues with coding standards
+
+2018.11.29 - version 1.12.2
+
+* New: Add usage tracking for course enrolments
+* Fix: PHP warnings when ordering courses, modules or lessons
+* Fix: PHP warnings on Sensei Analysis page
+* Fix: PHP warning on Course Results page
+* Fix: Add missing translations on Messages screen
+* Fix: Enable translating "more" text on Bulk Learner Actions screen
+* Fix: Show post content for paid courses on single course page
+* Fix: Show course categories in WordPress 5.0
+* Fix: Coding standard and security violations
+* Fix: Use updated lesson data when updating quiz
+* Tweak: Removed underscores from filenames
+
+2018.11.01 - version 1.12.1
+
+* Fix: Comments not displaying on Lesson page on unsupported themes
+* Fix: I18n problems
+* Fix: AJAX requests sent too frequently
+* Fix: Comments displaying where they shouldn't on some unsupported themes
+
+2018.10.22 - version 1.12.0
+
+* New: Better support for non-Sensei themes
+* New: Redirect to next lesson after completing a lesson
+* New: Show comments for preview lessons
+* New: Add `sensei_course_image_html` filter to enable altering HTML output of a course image
+* Tweak: Start lesson when student first views lesson page
+* Tweak: Remove _Single Course page displays_ setting
+* Tweak: Minify sensei.css
+* Tweak: Upgrade Select2 to latest version
+* Fix: Bulk Learner Actions showing all users in the network
+* Fix: JavaScript error on Lessons page
+
+2018.06.13 - version 1.11.0
+
+* Fix: Fix display of all other lessons after module is removed
+* Fix: Fix when force completing lessons with quizzes with questions
+* Fix: Course score based on quizzes that have graded questions
+* Tweak: Improve performance of fetching the learner count for usage tracking
+* Tweak: Use domain as value of Tracks userid parameter
+* Tweak: Delete user's messages when the user is deleted
+* Tweak: Update URL and Twitter account in tweet that can be sent after activating
+* New: Add filter for successful payment statuses - sensei_wc_order_statuses
+* New: Add (Free) Preview label to lesson title
+* New: Add usage tracking for quiz settings
+* New: Add stats for number of quizzes and quiz questions
+* New: Add email column to Analysis screen
+
+2018.04.11 - version 1.10.1
+
+* Fix: Fix error in data updates when there are no quizzes
+* Tweak: Add setting for data deletion
+
+2018.04.04 - version 1.10.0
+
+* Fix: Fixes associating courses after purchase of a variable subscription product
+* Fix: Allow certain HTML tags on quiz correct answer result
+* Fix: ​Fix number parameter not working for [sensei_user_courses] shortcode
+* Fix: Ensure answers to true / false questions are translated for students
+* Fix: Fix PHP notices when viewing or adding a lesson and there are no courses
+* Fix: Fix PHP 7.2.x warnings
+* Fix: Fix get_class warning on PHP 7.2.x
+* Fix: Check if WC_VERSION constant is defined before using it
+* Fix: Fix CSS class name translation
+* Fix: Hardcode DAY_IN_SECONDS to avoid continuous sending of data on old WP installations
+* Fix: Fix PHP notices when purchasing non-course product as a guest
+* Tweak: Remove WooThemes branding on settings page
+* Tweak: On single course page, link to module only if we should
+* Tweak: Conditionally link to module in lesson breadcrumb
+* Tweak: Exclude modules from course navigation when not appropriate
+* Tweak: Send usage data immediately when enabled through opt-in dialog
+* Tweak: Clean up extended settings in Gutenberg Lesson editor
+* New: Delete plugin data on uninstall
+* New: Add revisions support to courses, lessons and questions
+* New: Add sensei_start_course_redirect_url filter when starting course
+* New: Add usage tracking for active and completed courses
+* New: Show lesson tags in Gutenberg editor
+* New: Add usage tracking for system info
+
+2018.02.06 - version 1.9.20
+
+* New: Course navigation moves between both lessons and modules
+* New: Page template for modules
+* New: Filters for customizing quiz answer text and CSS class names
+* New: Usage tracking
+* Tweak: Remove Sensei Welcome screen
+* Tweak: Remove theme check notice
+* Fix: Tabbed navigation for `sensei_user_courses` shortcode
+* Fix: Setting course start date for all students
+* Fix: Only authorized users can view messages
+* Fix: Only users with appropriate permissions can duplicate courses and lessons
+
+2017.11.07 - version 1.9.19
+
+* Fix: Fix JS bugs introduced by minification process
+* Add: ESLint support
+
+2017.11.01 - version 1.9.18
+
+* Fix: Can't preview draft lessons in draft course
+* Fix: Show Draft Lessons when Previewing course draft
+* Fix: Issue with lesson excerpts
+* Fix: Incorrect heading structure, Use h1s for headings on Module, Course and Lesson Order
+- Add: sensei_learner_admin_get_row_data Filter. Managing table columns on Managing learners
+* Fix: Learner Profiles: display correct url pattern when wp in custom folder. Learner Profiles Settings showing wrong learner URL Pattern when WP installation in custom location
+* Fix: Ordering courses using "menu_order" and Courses > Order Courses doesn't work. WC: Don't construct WC_Orders
+* Fix: Replace 'new WC_Order' with wc_get_order() function.
+* Fix: Course not showing in My Courses if order is manually Completed 
+* Fix: Simplify CSS for displaying answer feedback
+- Change purchase button text when a course is free. Change "purchase this course" for free products. Change "purchase this course" for free products
+* Fix: Link course to a single variation of a variable WooCommerce product.
+* Fix: Removed learner from Course comeback if see course single page
+* Fix: Scheduled lessons not added to course page. Scheduled lessons should be added to course page
+* Fix: Always show answers filter doesn't work for zero grade questions 
+* Fix: Single quotes in video embed HTML breaks on save
+* Fix: WP_Query not getting reset on My Courses page. Reset postdata after resetting $wp_query
+* Fix: Messaging issue on preview lessons. Correct the phrasing for lesson previews on Purchasable courses.
+- Add: Learner Bulk Actions: Make Learner search more flexible.
+- Add: filter sensei_send_message_link 
+* Fix: Learner Profiles can handle email-like usernames. 
+* Fix: Lesson: Allow Completing if Quiz has no questions
+* Fix: "Complete Lesson" button missing
+* Fix: Videos visible when prerequisites have not been completed  
+* Fix: Modification to users displayed in Analysis?
+* Fix: some of the columns to be sortable for Learners in Analysis overview
+* Fix: Weird html in shortcodes. Fixes excerpts in template to properly nest within paragraphs. 
+* Fix: New lesson: cannot assign to a module unless a draft is saved first. Lesson Admin: Populate modules on course change
+* Fix: Pagination not working on course archive front page
+* Fix: Featured course filter gives 404 on home page 
+* Fix: Multi Line Quiz responses displayed as HTML if saved and resumed
+* Fix: Can't delete answer feedback
+* Fix: Courses page sorting dropdown problems
+* Fix: Autocomplete processing virtual orders not working
+* Fix: "Free" Course filter displays courses linked to product variations  
+* Fix: Menu should not collapse when navigated to Messages
+* Fix: Quiz Multiline as HTML is saved for teacher as plaintext- 
+* Fix: Sensei/WC Variable product: Start courses only when their variation is purchased
+* Fix: issue preventing course author from syncing with lesson author
+* Fix: Update name of WooThemes Updater plugin in notices
+* Fix: Course Admin: Show the add lesson link even when the course has lessons
+* Fix: Unpublished products should never be purchasable1
+* Fix: issue with slashes in gap fill question answers
+* Fix: Lock down wp-admin access when editing post_type quiz.
+- Add: My Courses: Convert Tabs to filters
+* Fix: My Courses Pagination broken
+* Fix: Remove "All" filtering from settings
+* Fix: Preserve lesson order w/ modules when changing course author
+* And many more fixes and improvements
+
+2017.09.07 - version 1.9.17
+
+* Fix Add learner to course and complete course sends two duplicate emails
+* Fix Modules: WooCommerce 2.6.x Select2 compatibility fix
+* Fix Incorrect heading structure: Use proper headings hierarchy for settings and data updates
+* Fix Usernames with a . or @ don't work for loading user profiles (Get learner profiles by login, not slug)
+* Fix Fatal Jetpack removing module taxonomy
+* Add bulk recalculate completion
+* Fix Modules: Teachers should only view their own modules
+* Fix: Lesson image does not display on single course page [Pri] Low [Type] Bug
+* Add User Courses Shortcode: Filter for conditionally displaying toggles
+* Fix Memberships: Query all restricted content
+* Fix Lesson image does not respect size setting
+* Fix Remove trailing whitespaces from translatable strings [Pri] Low [Type] Bug
+* Fix Unable to add Existing Questions to Quiz with Search Filter (PHP 7.1.4)
+
+
+2017.07.10 - version 1.9.16
+
+* Fix - Prevent multiple emails being sent to learners already started on a course.
+* Fix - Course content disappears
+* Fix - Prevent certain scenarios where course start date was resetting when visiting my-courses
+* Fix - Don't send confusing registration emails to users
+* Fix - Learner Profile White screen
+* Fix - Prevent users from buying duplicate courses
+* Admins can now edit learner course start dates
+
+2017.06.20 - version 1.9.15
+
+* Improve handling of get_bloginfo( ‘admin_email’ ) #1809
+* Fix With [sensei_courses] short code on product page, up-sells disappear #1800
+* Fix Users not being added to purchased courses again #1808 1810
+* Fix Select2 (Can’t add course when editing Module)
+* Better 2017 Theme Support
+* Even Better Memberships Integration
+* Other small bugfixes and improvements
+
+2017.04.25 - version 1.9.14
+
+* Fix minor syntax in course categories widget #1786
+* Add filter for permitted data update functions #1783
+* WC 3.0 Compat: Fix admin course notices #1788
+* WC 3.0 Compat: Ignore orphaned product variations #1789
+* Make sure sensei_message save hook runs after CPT is registered #1770. Fixes Compatibility issue with Safe Redirect Manager
+* Fix non-localization friendly quiz title #1768
+* use $wpdb->users and $wpdb->comments instead of $wpdb->prefix on Bulk Learner Action Query
+
+
+2017.04.07 - version 1.9.13
+
+* Add Experimental Course Admin REST API (disabled by default)
+* Add Allow user to change question points text formatting
+* Add support for `source` tag for videos
+* Allow admin to reset quiz for single student
+* Warn users when admin_email not a wp admin email
+* Fix random HTML rendering into REST endpoints for course shortcodes
+* Fix Fatal error when viewing Sensei course in combination with the Products Bundle plugin
+* Fix Module description not displayed on course page
+* Fix Login form sanitizes password
+* Fix Teacher not able to see the graded quizzes
+* Fix Single Course Page: Displaying "Lessons" header when there are no lessons
+* Fix issue when username is an email, but user has different email [Pri] Normal [Type] Enhancement
+* Fix WC >= 2.7-beta and WC 3.0 Compat in Lesson Admin
+* Fix WC 3.0 Select2 conflict by Upgrading to Select2 v4
+* Fix Allow Memberships cache control on start_courses_associated_with_membership
+* Fix 'reset' learner bulk action not resetting all courses
+* Add filter for learner profile permalink
+* Fix empty CSV analysis export for learners
+* Various fixes and improvements
+
+2017.03.01 - version 1.9.12
+
+* Bulk Learner Actions - Initial version. You can now assign, unassign and reset multiple users on (multiple) courses.
+* Compatibility with Woocommerce 2.7
+* Initial support for the new user defined locale settings on wp 4.7
+* Fix - Jetpack Compat: Add Beautiful Math Support on quiz feedback
+* Fix - Correctly display answer feedback on quizzes
+* Fix - Cancelled trial subscriptions do not retain course access after trial expires.
+* Fix - Purchased course doesn’t show on learner profile
+* Fix - Error when updating course as a teacher in WP 4.7
+* Bugfixes, improvements
+
+2017.01.10 - version 1.9.11
+
+* Improved WC Memberships integration. Added option to "Auto-start" courses belonging to memberships when activated
+* Improved robustness of quiz save/submit when using random questions
+* Added option to disable HTML sanitization on video embeds to support legacy video providers
+* Fix - Logged out users get correct message on courses protected by memberships
+* Fix - Course results <head> title displayed
+* Fix - Only consider published lessons for completion percentages
+* Fix - Get rid several division by zero warnings
+* Fix - Display Course prerequisite message
+* Fix - Ensure a teacher cannot change the product associated with a course
+* Fix - correctly assign free subscription courses
+
+2016.12.20 - version 1.9.10
+
+* WordPress 4.7 Compatibility release
+
+2016.10.19 - version 1.9.9
+
+* Hotfix - Address possible fatal on older PHP versions
+
+2016.10.18 - version 1.9.8
+* Fix - Removed HTML output on lesson complete message
+* Fix - The video HTML tag now works properly in the video embed field
+* Fix - Deleted/non-existant courses showing in course order list
+* Fix - Completed lessons showing 'in progress' label
+* Fix - Missing link in log in message
+* Fix - Conflict with Heroic Knowledge Base
+* Fix - HTML showing in grading for uploaded files
+* Fix - Lessons show 'please complete the previous course'
+* Fix - Conflict with Jetpack: iframe video embeds converting to shortcodes
+* Fix - Parse errors on PHP <5.3
+* Fix - typo in sensei_has_user_completed_prerequisite_lesson
+* Fix - Conflict with Wishlist Member
+
+2016.09.29 - version 1.9.7
+* Improve Module taxonomy labels
+* Fix - Lesson doesn't appear on Course archive until ordering is resaved
+* Fix - Errors when duplicating course with lessons
+* Fix - Add modules-frontend.css to sensei_disable_styles filter
+* Fix - Grade unanswered questions too
+* Fix - Paypal "Cancel and return" causing a fatal error
+* Fix - Do not create duplicate membership rules on save
+* Fix - Random users not being assigned to courses after purchase
+* Fix - "Quiz saved" notice not appearing
+* Various security fixes
+
+2016.05.05 - version 1.9.6
+* Fix - Fixed an issue prevent Modern Tribe's The Event Calendar from functioning properly.
+* Fix - Ensure the question grade is shown inline with questions.
+* Fix - Prevent a PHP notice when calling question results.
+* Fix - Prevent a situation where quiz answers are revealed prior to submission.
+* Fix - Use the course ID when building the permalink for the start course form.
+
+2016.04.26 - version 1.9.5
+* Fix	- The purchase course button wasn't showing up on some courses.
+* Fix	- Ensure courses are activated when order status is processing or completed.
+* Fix	- Ensure course linked to a subscription is activated immediately after purchase.
+* Fix	- Ensure the [sensei_course_page] shortcode displays lessons in modules.
+* Fix	- Fixed a few potential fatal errors when adding a learner to a course.
+* Fix	- Fixed the learner profile url when WordPress is installed in a separate folder.
+* Fix	- Ensure purchased courses don't display a price on the My Courses page.
+* Fix	- Remove link from lesson image on single lesson page.
+* Fix	- Ensure is_sensei() returns true on module archive pages.
+* Fix	- Ensure comments display on lessons for registered learners, if enabled.
+* Fix	- Ensure quiz shows correct message when submitted for manual grading.
+* Fix	- Ensure links in results page link to lesson pages.
+* Fix	- Ensure module is not removed from course when editing module via quick edit.
+* Fix	- Ensure quick editing a lesson does not remove any of its settings.
+* Fix	- Fixed input ids on multiple choice questions.
+* Fix	- Show appropriate message in Learner Management when a search returns no results.
+* Fix	- Ensure lesson/course completion emails are not sent to learners before completion.
+* Fix	- Prevent questions being deleted from original lesson, when deleting them from a duplicated lesson.
+* Fix	- When updating a lesson slug, ensure the corresponding quiz slug is also updated.
+* Fix	- When a lesson is permanently deleted, also delete the corresponding quiz.
+* Fix	- Ensure deleted lessons are not displayed on the course page.
+* Fix	- Course archive page now works if set as front page.
+* Fix	- Fixed up some formatting issues on the module archive page.
+* Fix	- When learner does not achieve the passmark, ensure the required passmark is displayed.
+* Fix	- Ensure correct/incorrect answers are indicated, according to https://docs.woothemes.com/document/sensei-quiz-settings-flowchart/
+* Tweak	- Removed empty span tag from single course page.
+* Tweak	- Added some new hooks to the [sensei_user_courses] shortcode.
+* Tweak	- Removed two redundant settings from the WooCommerce settings section.
+* Tweak	- Course archive page now displays the number of courses per page as specified in Settings > Reading (Blog pages show at most...)
+* Tweak	- Improved the login message when a guest visitor views a course page.
+* Tweak	- Changed heading tags in admin pages to conform to WordPress standards.
+* Tweak	- Moved arrows after the text in course/lesson/quiz navigation.
+* Tweak	- Improved string formatting for a few strings to make translation easier.
+* New	- Added "menu_order" as an orderby parameter on [sensei_courses] to order courses as specified in Courses > Order Courses
+
+
+2016.04.04 - version 1.9.4
+* Fix	- Ensure current quiz grade is displayed when submitting autograded quizzes.
+* Fix	- Ensure grading notes are always displayed when quiz is manually graded.
+* Fix	- Prevent fatal error when adding learner to a course.
+* Fix	- Prevent Uncaught ReferenceError when removing learner from a course.
+* Fix	- Ensure questions don't change after submission when using a subset of questions in a quiz.
+* Fix	- Fixed label text on search button in Learner Management.
+* Fix	- Fixed incorrect WC order status.
+* Fix	- Fixed an issue with is_course_purchasable()
+* New	- Added support for WP QuickLaTeX plugin.
+* New	- Added new 'sensei_courses_shortcode_course_data' filter in courses.
+* New	- Added a 'sensei_load_default_supported_theme_wrappers' filter to allow disabling custom theme wrappers.
+* Tweak	- Updated support link in Plugins page.
+
+2016.03.03 - version 1.9.3
+* Fix	- Message titles now link to the individual messages.
+* Fix	- Make sure Sensei does not affect the display of blog posts.
+* Fix	- Fixed a few php warnings.
+* Fix	- Courses linked to product variations can now be purchased.
+* Fix	- Make "Free Preview" translation ready.
+* Fix	- Make sure lessons can't be viewed until the prerequisite is complete.
+* Fix	- Fixed the course component widget for active and completed courses.
+* Fix	- Ensure courses can't be accessed if linked to a subscription that is on-hold, cancelled, or expired.
+* Tweak	- Improved appearance of tabs when using [sensei_user_courses]
+* New	- Added 'Configure', 'Docs', and 'Support' links to Sensei on Plugins page.
+
+2016.02.11 - version 1.9.2
+* Fix   - Access permissions restored to the way it worked in version 1.8.8, totally removing the no-permissions templates.
+* Fix   - Using $wpdb to prefix mysql queries, missed one instance in version 1.9.1
+* Fix   - Use the correct wc statuses when checking if an order is acceptable.
+* Fix   - Ensure wc_get_product is wrapped inside a is WooCommerce active check to ensure the function exists.
+* Fix   - Avoid checking if a user is on a course if the user is not logged in, removing an error notice.
+* Fix   - ensure the take course button shows up for logged in user on the no-permissions template.
+* Fix   - Boolean questions should not have default values.
+* Fix   - Fix up the course component widget.
+* Fix   - Add the missing preview label for preview lessons that appear in modules on a single course.
+* Fix   - Remove users saved data from lesson when they are removed.
+* Fix   - Hide complete lesson button on lesson when the current user is not taking the lessons course.
+* Fix   - Hide preview if user is already taking course.
+* Fix   - Creating sensei pages now updated correctly within settings.
+* Tweak - Hide add to cart if the course is already in cart.
+* Tweak - Get user saved answers to return null of none was saved as false values could also be answer values.
+* Tweak - Function sensei_can_user_view_lesson will now also work from the quiz template context.
+* Tweak - Fix up the frontend notification system to use the notification functionality built into Sensei.
+* New   - Introduce a new function for checking if a course is purchasable.
+
+2016.02.07 - version 1.9.1
+* Fix   - Use strtolower function on hosts that do not support mb_stringtolower.
+* Fix   - Use $wpdb prefix for mysql queries where it wasn't added.
+* Fix   - Avoid division by zero error.
+* Fix   - Do not hide embedded videos for admins and when a lesson is in preview mode.
+* Fix   - The Woocommerce class should only be added to no-permissions template.
+* Fix   - Ensure we check for is_object before trying to access the object property.
+* Fix   - Add strings manually to allow for easier translation.
+* Fix   - Fatal error on certain hosts by providing a direct path to woocommerce hooks loading file.
+* Fix   - Fix the no permissions template when displaying a single course should also show lessons and possible modules.
+* Fix   - Fix the preview lesson to ensure the message shown is the same as it was in 1.8.8
+* Fix   - Modules status was now shows the correct status message and css class.
+* Fix   - Boolean question type html shows both false and true option correctly.
+* Fix   - Update POT file to ensure no error are present.
+* Fix   - Single course full or excerpt settings now show up exactly as it was set.
+* Fix   - Hide view quiz button from users not taking the lesson
+* Fix   - Hide login message from users who are already logged in
+* Fix   - WooCommerce bug where users couldn't purchases a course
+* Fix   - Ensure that users manually added to a paid course still have access.
+* Tweak - Remove the delete course button from my-course while still allowing developers to show it with a filter.
+
+2016.01.02 - version 1.9
+For a list of files changed please see: https://github.com/woothemes/sensei/compare/version/1.8.9-beta-1...master#files_bucket
+
+* New   - Templates system completely overhauled. The templates now contain almost no logic, just hooks and html. Most functionality
+          is hooked in which allows for even more customization and easier update fixes. It is also easier to read. This
+          also includes the use of more functions to enforce greater code reuse.
+* New   - Shortcode all the things. We've heard you here and we've added more shortcodes so can worry less about templates.
+ 		  the new shortcodes are on our support documentation. The old shortcodes works fine.
+* New   - Course Archives template now overtakes the selected page giving you a new filterable list of courses.
+* New   - A Next lesson button for easier flow while students progress through a course.
+* New   - Custom round function that can be filtered, for developers to choose the decimals.
+* New   - Sensei() now officialy replaces $woothemes_sensei, which will be deprecated soon.
+* New   - php classes are now auto loaded when needed instead of loading all classes for every request.
+* New   - New filters for all sensei core post type for easier customization.
+* New   - Allow for zero graded questions, so you can ask things questions just for fun :)
+* New   - Option to send email to teacher when a learner completes a lesson
+* New   - Course management metabox to Edit Course screen so you can jump to learner management and grading directly.
+* New   - Renamed frontend.css to sensei.scss to avoid conflict and confusion with other plugins and themes.
+* New   - Course in progress icon change so that it doesn't look like it's loading all the time.
+* New   - Admin WordPress notice styles to align with core.
+* New   - Support for Twentysixteen WordPress default theme
+* Fix   - Integration support for WooCommerce subscriptions extension.
+* Fix   - File upload popup didn't work on the single question edit screen.
+* Fix   - A call to the wrong get user function.
+* Fix   - Encoding issues when using strtolower fixed. The function now returns utf-8.
+* Fix   - Corrected a few typos.
+* Fix   - No more forced updates. You are free to do them when you choose.
+* Fix   - Broken html In certain places.
+* Fix   - Use slug when adding question type and not the name.
+* Fix   - Moved course details outside of H2 heading.
+* Fix   - Ensure that grading notes show up for gap fill questions.
+* Fix   - Remove extra forward slash when loading templates.
+* Fix   - Multi-line question answers not showing in admin grading.
+* Fix   - File upload paths on Multi-site.
+* Fix   - No more double "Quiz Quiz" on your single quiz.
+* Fix   - Sensei now handles url rule flushing so you don't see 404 for Sensei specific page and post types.
+* Fix   - Fix a few critical issues where we we <? instead of <?php
+* Fix   - The admin url 404 after installing sensei pages.
+* Tweak - Purchased courses now show up on top of the order review page in a WooCommerce notice.
+* Tweak - Many functions have been deprecated in favor of better named functions.
+* Tweak - We've removed all apply_filters around strings because they are redundant when string can already be alterd
+          by using translation filters.
+* Tweak - Deprecated all of the old template hooks in order to make place for new, more generic hooks.
+* Tweak - New congratulations messaging for when a user completed a lesson that doesn't require a pass to complete.
+* Tweak - Removed the CSS variations for Sensei messages.
+* Tweak - Set wp-login.php as a fallback in case a my courses page is not set.
+* Tweak - Sensei user capabilities now loaded plugin activation.
+* Tweak - Quiz post type title can't be edited any more as it is auto generated.
+* Tweak - Teachers are no redirected to admin url when they log in.
+* Tweak - Show admin bar to users who can 'edit_courses'.
+* Tweak - Better support for variable WooCommerce products.
+* Tweak - Improved help text on video embed field.
+* Tweak - A new class to handle all template related functionality.
+* Tweak - Template specific hooks moved to a separate file under includes/hooks/template.php.
+* Tweak - Add with_front property to rewrite rules for better url customization.
+* Tweak - All internal php classes files and names have been renamed to conform to our new naming structure
+          class-sensei-class-name.php, removing woothemes.
+* Tweak - Sensei moved over to Select 2 completely. No more chosen. This means better mobile support.
+* Tweak - All sensei scripts now load the script with the installed Sensei version appended.
+* Tweak - Better class and function comments to assist developer IDE with discovery.
+* Tweak - General code cleanup.
+
+2015.09.09 - version 1.8.8
+* Fixed - Administrator does not have access to the Sensei settings on new installs
+* Fixed - Drop downs not working correctly on certain admin screens.
+
+2015.09.07 - version 1.8.7
+* Fixed - Course created email sent twice
+* Fixed - Error notices on the lesson edit screen
+* Fixed - WP_Widget constructors updated as within WordPress Core
+* Fixed - Menu items with blank URL disappeared when the private messages functionality were disabled in settings.
+* Fixed - Answers disappear after adding a question
+* Fixed - Multiple Choice random order was applied by default even if the user didn't select this.
+* Fixed - TextArea question answers not displaying correctly in grading.
+* Fixed - Question type contains author name
+* Fixed - "Other Lessons" title always shows, even with no lessons under it.
+* Fixed - auto-grading not working for gap fill
+* Fixed - Double forward slash when loading templates
+* Fixed - Invalid prompt message when trying to leave the Add Question page
+* Fixed - Installing the sensei pages, the dropdowns for both pages are still empty on the first load.
+* Fixed - allow for course products to be part WooCommerce product bundles
+* Fixed - removed WordPress 4.3 table list notices
+* Tweak - Give the teacher the right access to Lesson comments
+* Tweak - Users with teacher role will now be sent to admin after login.
+* Tweak - Show admin bar to users who can 'edit_courses'
+
+2015.07.15 - version 1.8.6
+* Fix   - Failure to load the JS in admin page because there was an extra dot in the file name.
+* Fix   - a few Typos in comments and strings
+* Fix   - Remove special character and replace with \' instead
+* Fix   - change site_transients to normal transients and decrease the time from 30 days to 10
+* Fix   - Create a fallback for round with 3 parameters. Added a check to use to use only 2 parameter for php version below 5.3
+* Tweak - Output course order via php instead of relying on JS to re-order on the front-end.
+
+2015.06.18 - version 1.8.5
+* Fix   - Save the lesson preview checkbox unchecked state as well. The bug was that unchecked boxes does not get passed via $_POST in certain cases.
+* Tweak - Allow the quiz results rounding to be filtered. So you can now have decimal points shown to the user instead of the rounded up amount.
+* Fix   - Module order screen now working. The fix is to remove chosen from the select box. This will be replaced by select2.
+* Fix   - Update the modules order link on all courses admin page. The link went to the wrong place.
+* Fix   - Add contact teacher button to lessons and quizzes.
+* Fix   - Allow gap-fill questions to be auto graded again.
+
+2015.06.11 - version 1.8.4
+* Fix   - Query post type changes for non Sensei queries. Added better checking to ensure this
+          query filter only applies to teachers.
+* Fix   - Performance issues on the all courses page with a large user base.
+* Fix   - Performance: user ajax search timed out due to large user base. Enforce minimum string search length.
+* Fix   - Update all instances of 'numberofposts' with 'posts_per_page'. Also adding and upper
+        limit as '-1' (unlimited) is not good.
+
+2015.06.05 - version 1.8.3
+* Fix   - Fixed an issue where only 10 questions could be seen in quizzes
+* Tweak - Correctly pluralise the string 'Currently completed x lesson(s) of y in total'
+
+2015.06.02 - version 1.8.2
+* Fix   - Sensei quiz settings not retrieved correctly
+* Fix   - Modules management course selection Javascript error causing courses to be unselectable
+* Fix   - Error notices showing up on the front end for non logged in users
+
+2015.05.28 - version 1.8.1
+* Tweak - Teacher role have to submit courses for review by default
+* Tweak - Language file updated.
+* Fix   - Internal calls to WooCommerce active checking function changed to static
+
+2015.05.28 - version 1.8.0
+* New   - Update the teacher role to give teachers more control. Also added further notifications for course ownership changes.
+* New   - Sensei Modules extensions merged into Sensei Core
+* New   - Disable notification on a per course basis
+* New   - Bulk and Quick Edit support for some of the lessons properties
+* New   - Bulk Editing for some of the lessons properties
+* New   - Global Sensei instance function `Sensei()`
+* New   - Plugin install welcome screen
+* Tweak - Increase min width of find learner drop down and remove inline styles.
+* Tweak - Dummy content updated
+* Tweak - Within some hooked functions, use the values passed in instead of global values.
+* Tweak - Code Documentation updates and a few refactor a few functions.
+* Tweak - Set quiz type taxonomy public setting to false to avoid it showing up in theme bread crumbs
+* Fix   - Remove error notices on on the analysis screen
+* Fix   - Bug where lessons can’t be removed from module
+* Fix   - Minify all scripts to avoid javascript errors
+* Fix   - Remove error notices on on the grading screen
+* Fix   - Errors on the single course front-end page
+* Fix   - Remove error notices on on the grading screen
+* Fix   - All questions were not available in he existing questions section
+* Fix   - Remove error notice on the single quiz page when trying to access lessons status
+* Fix   - Avoid errors fro the learner when the course has not yet been saved
+* Fix   - Learner Management and Analysis page pagination
+* Fix   - Correctly escape multi-line question answers to ensure they don’t save with and extra new line character after every list item.
+* Fix   - fix bug where the selected module was not showing for none admin users
+* Fix   - Fix error on the WP login page
+
+2015.04.23 - version 1.7.7
+* Fix - Security loophole introduce in WP. Escaping all urls.
+
+2015.04.20 - version 1.7.6
+* Fix - Missing learner management search missing.
+* Fix - Remove learner from course popup message missing.
+
+2015.04.14 - version 1.7.5
+* Fix - Admin learner course completion no longer redirects to the lesson screen.
+* Tweak - Use update meta instead of add meta for the quiz lesson meta
+* Fix - Edit single question answer feedback is now saved the first time
+* Tweak - Update language strings to use the main Sensei language string and update the POT file
+* Tweak - Remove the default comment emails sent when using the sensei messages feature
+* Tweak - Remove the purchase notice if a user is already taking a course
+* Fix - Upload file button error on the single question edit screen.
+* Fix - Maintain quiz question order when duplicating a lesson.
+* Fix - Grading feedback now shows up for automatic and manual graded quizzes.
+* Tweak - Use home_url instead of site_url
+* Fix - Show user confirmation when the private message was sent
+* Tweak - The single course register button links to my courses and not WP register screen.
+
+2015.03.31 - version 1.7.4
+ * Fix - Allow users to save their answers uniquely for questions shared across multiple quizzes
+ * Fix - Bug that blocked teacher to access the admin area when WooCommerce is active
+ * Tweak - Allow contact teach button to be localized
+ * Fix - Sensei start lesson function error if the data argument is not passed in.
+
+2015.03.03 - version 1.7.3
+ * Tweak - Removing Canvas them wrappers (this will now be handled in the theme directly)
+ * Tweak - Decapitalising 'Total Grade' text on Course Results page
+ * Tweak - Moving course logic from frontend class to its proper place in the course class
+ * Tweak - Moving lesson logic from frontend class to its proper place in the lesson class
+ * Tweak - Removing `comments_rss_item_filter` as it is no longer needed - this should improve frontend performace
+ * Tweak - Making sure the `sensei_user_course_end` action is only fired at the correct times
+ * Tweak - Ensuring consistency on course prerequisite checks
+ * Tweak - Ensuring consistency of course completion checks
+ * Tweak - Adding sanity checks to ensure that data received by `sensei_check_for_activity()` is always valid
+ * Tweak - Removing 'by' from course author link
+ * Fix - Removing HTML container element for course video when no video is present
+ * Fix - Making sure gap fill questions work even if you leave out the pre- and/or post-gap text
+ * Fix - Allowing 'Analysis' menu label and page heading to be translated
+ * Fix - Ensures course component widget works correctly when 'limit' is not set
+
+2015.02.17 - version 1.7.2
+ * Update - Adding database table indexes to comments table to improve performance
+ * Update - Adding manual update to allow removal of legacy Sensei activity data
+ * Tweak - Removing localisation from empty strings
+ * Tweak - Adding localistion to Sensei menu items
+ * Fix - Preventing completion of first lesson from marking entire course as complete
+ * Fix - Fixing Course Component widget item loading and display
+ * Fix - Preventing 'Delete Course' button from displaying on purchased courses
+ * Fix - Fixing occassional javascript error when editing lesson quizzes
+ * Fix - Reinstating filter that allowed certificate link on single course page
+ * Fix - Ensuring duplicated lessons use the correct timezone for publication date
+ * Fix - Ensuring only valid unragded quizzes are displayed in the grading dashboard
+ * Fix - Standardising excerpt display on lesson tag archives
+ * Fix - Making sure that lesson preview title text only runs in correct locations
+ * Fix - Restores lesson statuses on lesson archive page
+ * Fix - Updating for WooCommerce 2.3 compatibility
+
+2015.02.04 - version 1.7.1
+ * Tweak - Improving detection for whether critical updates are needed or not
+ * Tweak - Updating code for WooCommerce 2.2+
+ * Fix - Fixing display of 'Delete Course' button on paid courses
+
+2015.02.02 - version 1.7.0
+ * New - Completely new data structure that improves site performace and fixes numerous data-consistency issues
+ * New - Multiple choice questions can now accept multiple correct answers
+ * New - LaTeX support for all questions, answers and answer notes (requires Jetpack's Beautiful Math module)
+ * New - Gap Fill questions can now be auto-graded
+ * New - New 'Question Description' field to give your learners more clarity
+ * New - Loads of new actions and filters to make Sensei more extensible
+
+2014.12.18 - version 1.6.9
+ * Fix - Fixing Chosen drop down menus on course edit screen
+ * Fix - Fixing Analysis export to select entire data set
+ * Fix - Fixing quiz duplication when lessons are published
+ * Fix - Ensure question edit screen shows the quizzes that the question is used in
+ * Fix - Updating theme integration guide link in unsupported theme notice
+ * Tweak - Adding view links after saving courses & lessons
+ * Tweak - Updating 'course' post type so that it shows in the admin bar
+
+2014.12.05 - version 1.6.8
+ * Fix   - The “View Quiz” button now shows up for all lessons that have a quiz attached.
+ * Fix   - When a learner submits a quiz the email will now be sent to the course teacher and not the admin account.
+ * Fix   - The login|logout now accounts for all languages where login/logout each can be multiple words.
+
+2014.11.06 - version 1.6.7
+ * Fix   - Lesson complete class assigned to the right lessons.
+ * Fix   - Remove pagination from the courses widget component
+ * Fix   - Remove php notice on accessing lesson_completion and using undefined variables
+ * Tweak - Prevents sending email when a lesson has no quiz questions.
+ * Tweak - Update the quiz author when to be the same as the lesson author.
+ * Tweak - Add existing filter to the sign up message
+ * Tweak - Hide reset and view quiz button for non logged in users and Update the access settings text to reflect the correct logic
+
+2014.10.09 - version 1.6.6
+ * Fix - bug where in certain cases the next lesson doesn't become available when the pre requisite is completed
+ * Fix - Resolved php notices and warnings
+ * Fix - My Courses login issues on certain server setup
+ * Fix - Move misplaced div tag on the login page
+ * Fix - Prevent sending a quiz graded email when there is no quiz
+ * Tweak - Replaces back links with a single breadcrumb trail.
+ * Tweak - Ensure contact teacher button still shows on lessons.
+ * Tweak - Standardises sensei_view_lesson_quiz_text filter
+ * Tweak - Allow users to login with email
+ * Tweak - When updating a quiz title, update the quiz title immediately without the need for a page refresh
+ * Tweak - Makes private message textarea full width
+ * New - More hooks and filters
+ * New - Sensei theme notices for theme unsupported themes and a link to the documentation theme page
+
+2014.08.21 - version 1.6.5
+ * Fix - Fixing chosen input width in New Course panel in Lesson edit screen
+ * Fix - Adds a missing sensei_please_purchase_course_text filter
+ * Fix - Fixes a potential error in the page titles of course results and learner profiles
+ * Fix - Fixes an issue with search when Sensei is activated
+ * Tweak - Adds a 'send-message-button' class to the contact teacher button
+ * Tweak - Prevents Sensei settings from being deleted when the plugin is uninstalled
+
+2014.08.13 - version 1.6.4
+ * Fix - Fixing chosen input width in Category Questions tab
+
+2014.08.05 - version 1.6.3
+ * New - Single class to manage Sensei notices
+ * Tweak - Adding missing text filter
+ * Tweak - Adding 'button' class to course results link for more consistent display
+ * Tweak - Significant improvements to Sensei activity functions that improve all-round performance (kudos David Page)
+ * Tweak - Retaining learner question & quiz data when they are removed from lessons & courses due to expired/cancelled subscriptions/orders
+ * Tweak - Improving function that checks for user course completion (kudos David Page)
+ * Fix - Improving registration to make sure duplicate email addresses are not allowed
+ * Fix - Improving login and registration redirects and feedback notices
+ * Fix - Ensuring that grades do not show over 100% for any courses or lessons
+ * Fix - Fixing Analysis export to fetch correct page
+ * Fix - Fixing PHP Strict Standards warnings
+ * Fix - Fixing course price display
+ * Fix - Stopping question duplication when lessons are duplicated
+ * Fix - Fixing occasional 404 errors after after clicking 'more' link on course overview page
+ * Fix - Fixing excerpts on course archive pages
+
+ Template files modified:
+ /templates/loop-course.php
+ /templates/single-course/course-lessons.php
+
+2014.07.28 - version 1.6.2
+ * New - Adding WPML compatibility
+ * Tweak - Hide the 'You have already added this Course to your cart' message if the user is enrolled in the course and add a new 'hide_sensei_woocommerce_in_cart_message' filter to remove the notice completely
+ * Fix - Fixing incorrect text domain references
+ * Fix - Fixing chosen input widths
+ * Fix - Fixing learner profile URL when site URL is different from home URL
+ * Fix - Fixing question order meta data update (kudos David Page)
+ * Fix - Fixing answer ID generation on quiz edit panel to ensure all answer types will be displayed (kudos David Page)
+ * Fix - Fixing answer feedback saving and generation (kudos David Page)
+ * Fix - Fixing ordering of questions loaded from existing questions (kudos David Page)
+ * Fix - Failed logins now redirect back to the frontend login page
+ * Fix - Ensuring all frontend Sensei messages are correctly styled
+ * Fix - Fixing Analysis export to export correct page
+
+2014.06.30 - version 1.6.1
+ * Fix - Making sure Learner Management page shows for users with 'manage_sensei_grades' capability
+ * Fix - Fixing bug that prevented all email notifications from being deactivated
+ * Fix - Fixing lesson order in single lesson next/previous lesson navigation
+ * Fix - Ensuring that modules display on single course page for courses with prerequisites
+ * Fix - Making sure learner management user search works without WooCommerce activated
+
+2014.06.25 - version 1.6.0
+ * New - Comprehensive question bank functionality including question categories, the ability to re-use questions in multiple quizzes and bulk adding questions from a category
+ * New - New Learner Management dashboard that allows administrators to add/remove learners to/from any course or lesson
+ * New - Secure private message functionality that allows learners to contact and interact with course & lesson teachers
+ * New - Email notifications for learner and teacher activity
+ * New - Adding 'manage_sensei' and 'manage_sensei_grades' capabilities to govern how users interact with dashboard pages
+ * New - New 'Teacher' role that has the 'manage_sensei_grades' capability giving access to Grading, Analysis & Learner Management
+ * New - Ability to set preview lessons that are available before starting a course
+ * New - Ability to reorder all courses & lessons via drag-and-drop
+ * New - Moving global quiz settings into new quiz settings panel to enable them to be configured per quiz
+ * New - Grading notes for auto-graded questions
+ * New - Sensei menu item control moved to Appearance > Menus for fine-grained control over menu items
+ * Tweak - Displaying lesson excerpt on single lesson page for unregistered users
+ * Tweak - Converting all Less files to SASS
+ * Fix - Making sure that courses are no longer available after subscription ends
+ * Fix - Ensuring that only valid users are shown in the grading dashboard
+ * Fix - Fixing filter for quiz results link
+
+2014.03.21 - version 1.5.4
+ * Fix - Fixing content formatting in TwentyTwelve theme
+ * Fix - Fixing warning when number of questions to show is 1
+ * Fix - Start a Course link on My Courses page now links to custom Course Archive page if specified in settings.
+ * Fix - Fixing Javascript error on lesson and course edit pages
+ * Fix - Fixing file upload question type when no other types are included in the quiz
+ * Fix - Ensuring that all ungraded quizzes show up in the grading dashboard
+
+2014.03.21 - version 1.5.3
+ * New - Moving global Sensei functions to new file to make them accessible everywhere
+ * Fix - Fixing CSS conflict with WooCommerce forms
+ * Fix - Fixing login form on My Courses page
+ * Fix - Making sure multiple choice answers that contain apostrophes wil always work on any server
+ * Fix - Fixing occasional WooCommerce error on single course pages
+
+2014.03.12 - version 1.5.2
+ * New - Adding support for RTL languages in the dashboard
+ * New - Minifying all Javascript files and enabling SCRIPT_DEBUG script expansion
+ * Tweak - Updating Chosen Javascript & CSS libraries to v1.1
+ * Tweak - Auto-scrolling to complete lesson button after button has been clicked
+ * Fix - Fixing all queries so that other page queries are not affected by Sensei settings
+
+2014.03.07 - version 1.5.1
+ * New - Adding utility function to check if a user has completed a lesson
+ * Fix - Fixing PHP errors on My Courses page
+ * Fix - Fixing course progress bars on My Courses page
+
+2014.03.04 - version 1.5.0
+ * New - Completely refactored the quiz edit panel
+ * New - Adding 'File Upload' question type
+ * New - Adding ability to manually order quiz questions via drag-and-drop along with option to randomly order questions
+ * New - Adding option to have any number of multiple choice answers
+ * New - Adding ability to manually order multiple choice answers via drag-and-drop along with option to randomly order answers
+ * New - Adding function to upload media files to quiz questions
+ * New - Adding option to only show a limited number of quiz questions to each student
+ * Tweak - Displaying grading notes on graded quizzes if quiz reset is disabled
+ * Fix - Hiding grading notes with Javascript to cater for disabled CSS
+ * New - Adding ablity to duplicate courses
+ * New - Adding option to filter lessons by course in the dashboard
+ * New - Adding pagination to My Courses page
+ * Fix - Fixing number of courses shown on My Course page
+ * Fix - Preventing purchased courses with incomplete prerequisites from being completed
+ * Fix - Removing 'view results' link when no quizzes are present
+ * Fix - Removing prerequisite course field when a prerequisite course is moved to trash
+ * New - Adding ablity to duplicate lessons
+ * New - Adding 'lesson tags' taxonomy for broader grouping of lessons
+ * Tweak - Removing numbering from lessons and adding filter to put them back
+ * Tweak - Moving videos to top of lessons and adding filter to choose the video location
+ * Fix - Making lesson archive display consistent in all areas
+ * Fix - Removing PHP notices from lesson archives
+ * Fix - Removing prerequisite lesson field when a prerequisite lesson is moved to trash
+ * New - Enhancing grading dashboard to allow filtering by grade status
+ * Tweak - Improving user search in grading dashboard
+ * New - Adding courses and lessons to the 'At a Glance' dashboard widget
+ * Tweak - Removing unused images and CSS
+ * Tweak - Updating deprecated functions for WooCommerce 2.1
+ * Fix - Fixing adding variable product course to cart
+ * Tweak - Switching profile URLs to use 'nicename' instead of 'username'
+ * New - Adding registration form to login page
+ * Tweak - Improving styling of login page
+ * Fix - Fixing image display in widgets
+ * New - Adding is_sensei() conditional to check for Sensei pages
+ * New - Adding 'sensei' class to body tag for all Sensei pages
+ * New - Adding update to clean up Sensei activity for deleted users
+ * Fix - Ensuring that user Sensei activity is deleted when a user is deleted from WordPress
+
+2014.02.13 - version 1.4.9
+ * Fix - Fixing WooCommerce taxonomy templates when Sensei is active
+ * Fix - Fixing bug that was causing grades to be higher than 100%
+ * Fix - Clearing floats on Sensei front-end messages
+ * Fix - Making sure chosen drop down is always used on course product selection
+
+2014.01.23 - version 1.4.8
+ * New - Allowing access to courses when WooCommerce order is marked as processing
+ * Fix - Ensuring that all purchased courses show up on the My Courses page
+ * Fix - Fixing auto grading when all user's answers are incorrect
+ * Fix - IE compatibility fix for course completion
+ * Fix - Fixing update script so that all questions are not reset to multiple choice on update
+ * Fix - Fixing sanitisation of answer input fields
+ * Fix - Fixing saving of true/false questions
+ * Fix - Ensuring that new questions do not contain data from previous question added
+ * Fix - Preventing completed courses widget from showing all courses if none are completed
+ * Tweak - General CSS tweaks
+
+2013.12.13 - version 1.4.7
+ * Fix - Fixing add question function for WordPress 3.8+
+
+2013.12.12 - version 1.4.6
+ * New - Adding Chosen Ajax library
+ * Tweak - Updating Chosen CSS
+ * Tweak - Moving nav arrows from markup to CSS (affects pagination wrappers)
+ * Tweak - Removing absolute positioning from course action buttons on single course page
+ * Tweak - Updating admin icons and styling for WordPress 3.8
+ * Tweak - Allowing Sensei updater to run functions from extensions
+ * Tweak - Preventing grouped products from being selected as course products
+ * Fix - Removing PHP warnings
+ * Fix - Fixing course excerpt display on Courses page
+
+2013.12.04 - version 1.4.5
+ * /classes/class-woothemes-sensei-frontend.php - Ensures course content displays when user starts taking course
+ * /classes/class-woothemes-sensei-course.php,
+   /classes/class-woothemes-sensei-frontend.php,
+   /templates/loop-course.php,
+   /widgets/widget-woothemes-sensei-category-courses.php,
+   /widgets/widget-woothemes-sensei-course-component.php - Fixes lesson count when lesson and course have different authors
+ * /assets/js/lesson-metadata.js - Fixes display of course name when adding from within a lesson
+ * /classes/class-woothemes-sensei-frontend.php - Adds course link to order thank you and details pages
+ * /classes/class-woothemes-sensei-course.php,
+   /classes/class-woothemes-sensei-frontend.php,
+   /classes/class-woothemes-sensei-learner-profiles.php,
+   /templates/loop-course.php,
+   /templates/loop-lesson.php,
+   /templates/single-course/course-lessons.php - Removes empty 'fix' divs
+ * /widgets/widget-woothemes-sensei-lesson-component.php,
+   /classes/class-woothemes-sensei-course.php,
+   /classes/class-woothemes-sensei-frontend.php - Markup fixes
+ * /classes/class-woothemes-sensei-learner-profiles.php - Enables auto paragraphs on learner profile description
+ * /assets/css/frontend.css,
+   /classes/class-woothemes-sensei-course-results.php,
+   /classes/class-woothemes-sensei-course.php,
+   /classes/class-woothemes-sensei-frontend.php,
+   /inc/woothemes-sensei-template.php,
+   /templates/content-no-permissions.php,
+   /templates/single-quiz/quiz-questions.php,
+   /templates/woocommerce/add-to-cart.php - Adds unique classes on sensei messages
+ * /classes/class-woothemes-sensei-analysis-course.php,
+   /classes/class-woothemes-sensei-analysis-lesson.php,
+   /classes/class-woothemes-sensei-analysis-overview.php,
+   /classes/class-woothemes-sensei-analysis.php,
+   /classes/class-woothemes-sensei-grading-main.php - Uses display name instead of username in Analysis/Grading sections
+ * /templates/content-single-lesson.php,
+   /classes/class-woothemes-sensei-frontend.php - Ensures lesson comments are only visible to users with access
+ * /classes/class-woothemes-sensei.php,
+   /classes/class-woothemes-sensei-frontend.php - Ensures courses are deactivated when an order is refunded/cancelled
+ * /classes/class-woothemes-sensei-course.php,
+   /classes/class-woothemes-sensei-lesson.php,
+   /classes/class-woothemes-sensei-settings-api.php,
+   /classes/class-woothemes-sensei-settings.php,
+   /classes/class-woothemes-sensei.php - Registers new image sizes for Sensei images, with hard crop setting
+ * /classes/class-woothemes-sensei.php - Ensures guest checkout is disabled if Sensei products in cart
+ * /classes/class-woothemes-sensei-frontend.php - Only display excerpts for lessons/courses in search results
+
+
+2013.11.20 - version 1.4.4
+ * /templates/course-results/course-info.php - Updating markup for course results page
+ * /templates/learner-profile/learner-info.php - Updating markup for learner profile page
+ * /templates/content-single-lesson.php - Fixing lesson prerequisite check
+ * /widgets/widget-woothemes-sensei-course-component.php - Fixing 'My Active Courses' & 'Featured Courses' widgets
+ * /classes/class-woothemes-sensei-course-results.php - Updating markup & fixing rewrite rules for course results page
+ * /classes/class-woothemes-sensei-learner-profiles.php - Updating markup & fixing rewrite rules for learner profiles
+ * /classes/class-woothemes-sensei-course.php - Updating markup for lesson quiz meta buttons & fixing limits on course queries
+ * /classes/class-woothemes-sensei-frontend.php - Updating markup, fixing lesson prerequisites & adding function to check for completed lessons
+ * /classes/class-woothemes-sensei-utils.php - Updating button markup
+ * /classes/class-woothemes-sensei.php - Fixing rewrite rules for learner profiles and course results page & improving guest checkout check
+
+2013.10.24 - version 1.4.3
+ * /assets/css/frontend.css - Responsive layout tweaks & fixes.
+ * /classes/class-woothemes-sensei-frontend.php - fixes missing complete course hook, fixes missing lesson complete message and reset lesson buttons, fixes 'delete course' function.
+ * /classes/class-woothemes-sensei-utils.php - fixes lesson complete message on single lesson page if there are no quiz questions.
+
+2013.10.15 - version 1.4.2
+ * /assets/js/lesson-metadata.js - fixes post issues with multiline and boolean add and edit ajax functions.
+ * /templates/woocommerce/add-to-cart.php - fixes adding of variable subscription courses to cart.
+ * /templates/single-quiz/question_type-boolean.php,
+   /templates/single-quiz/question_type-essay-paste.php,
+   /templates/single-quiz/question_type-gap-fill.php,
+   /templates/single-quiz/question_type-multi-line.php,
+   /templates/single-quiz/question_type-multiple-choice.php,
+   /templates/single-quiz/question_type-single-line.php - sets default grade of 1 to every question for cases where no grade is set
+ * /classes/class-woothemes-sensei-admin.php - fixes issue where sensei comment types were visible to authors in the backend.
+ * /classes/class-woothemes-sensei-grading.php - fixes layout issue in the grading admin interface where the footer was misplaced.
+ * /classes/class-woothemes-sensei-updates.php - fixes array sort method error notices on the updates screen.
+ * /classes/class-woothemes-sensei-utils.php - fixes quiz submitted link translation string on single lesson page & auto grading issue when some questions are left unanswered.
+ * /classes/class-woothemes-sensei-frontend.php - fixes object instantiation PHP warning, and issue on quiz button incorrectly displaying on single lesson page.
+ * /classes/class-woothemes-sensei-lesson.php - fixes save function to handle changes made in lessons ajax.
+
+2013.10.10 - version 1.4.1
+ * /templates/single-course/course-lessons.php - Fixing typo in lessons template
+ * /assets/css/frontend.less,
+   /assets/css/frontend.css - Updating layout of lesson buttons
+ * /classes/class-woothemes-sensei-frontend.php - Ensuring 'complete lesson' and 'take quiz' buttons display correctly
+ * /classes/class-woothemes-sensei-lesson.php - Fixing adding of multiple choice questions
+ * /classes/class-woothemes-sensei-course.php - Changing 'chapters' to 'lessons' for consistency
+ * /classes/class-woothemes-sensei-list-table.php - fixes user query and pagination for scaling
+ * /classes/class-woothemes-sensei-analysis-overview.php,
+   /classes/class-woothemes-sensei-analysis-course.php,
+   /classes/class-woothemes-sensei-analysis-lesson.php,
+   /classes/class-woothemes-sensei-grading.php,
+   /classes/class-woothemes-sensei-grading-main.php - fixes user query for scaling
+
+2013.9.24 - version 1.4.0
+ * /templates/learner-profile.php,
+   /templates/learner-profile/learner-info.php - Adding new templates to display learner profiles
+ * /templates/course-results.php,
+   /templates/course-results/course-info.php,
+   /templates/course-results/course-lessons.php - Adding new templates to display course results page
+ * /templates/user/my-courses.php - Moving courses output to global function
+ * /templates/loop-course.php - Changing 'Lectures' to 'Lessons' & adding text filters
+ * /templates/single-quiz/quiz-questions.php - Moving logic for quiz grade message into utility function
+ * /templates/single-quiz/question_type-boolean.php,
+   /templates/single-quiz/question_type-essay-paste.php,
+   /templates/single-quiz/question_type-gap-fill.php,
+   /templates/single-quiz/question_type-multi-line.php,
+   /templates/single-quiz/question_type-multiple-choice.php,
+   /templates/single-quiz/question_type-single-line.php - Adding question grade & answer notes
+ * /templates/content-single-course.php,
+   /templates/content-single-lesson.php - Allowing site admins to view all content
+ * /templates/woocommerce/add-to-cart.php - Fixing purchase course button to work with variable subscriptions
+ * /inc/woothemes-sensei-template.php - Adding sensei_all_access() function and text filters
+ * /widget/widget-woothemes-sensei-category-courses.php,
+   /widget/widget-woothemes-sensei-course-component.php - Changing 'Lectures' to 'Lessons' & adding text filters
+ * /classes/class-woothemes-sensei.php - Loading new classes for learner profiles & course results and adding function to dynamically disable guest checkout
+ * /classes/class-woothemes-sensei-admin.php - Restructuring Sensei admin menu items & fixing menu highlighting
+ * /classes/class-woothemes-sensei-posttypes.php - Adding author field to post types, filters on labels and slugs, fixing a few translatable strings & restructuring admin menu items
+ * /classes/class-woothemes-sensei-updates.php - Adding admin menu page for manual updates, restructuring links, refactoring updates panel & adding new update function
+ * /classes/class-woothemes-sensei-course.php - Adding load_user_courses_content() to generate active/completed course data per user
+ * /classes/class-woothemes-sensei-settings.php - Adding Learner Profiles settings & updating descriptions for other settings
+ * /classes/class-woothemes-sensei-settings-api.php - Fixing HTML labels on settings page, updating settings CSS version
+ * /classes/class-woothemes-sensei-learner-profiles.php - New class for managing learner profiles
+ * /classes/class-woothemes-sensei-course-results.php - New class for managing course results pages
+ * /classes/class-woothemes-sensei-analysis.php,
+   /classes/class-woothemes-sensei-analysis-overview.php,
+   /classes/class-woothemes-sensei-analysis-course.php,
+   /classes/class-woothemes-sensei-analysis-lesson.php,
+   /classes/class-woothemes-sensei-analysis-user-profile.php,
+   /classes/class-woothemes-sensei-grading-main.php - Updating layout, restructuring links, adding text filters, adding column array filters, enhancing user queries & removing CSS from non-Sensei pages
+ * /classes/class-woothemes-sensei-utils.php - Numerous changes for grade points, moving a number of operations into functions and some minor bug fixes
+ * /classes/class-woothemes-sensei-frontend.php - Adding extra info for question processing, fixing up lesson prerequisite functions, adding text filters & moving some operations into utility functions
+ * /classes/class-woothemes-sensei-list-table.php - Fixing sorting of primary columns
+ * /classes/class-woothemes-sensei-grading.php,
+   /classes/class-woothemes-sensei-grading-user-quiz.php,
+   /classes/class-woothemes-sensei-lesson.php,
+   /assets/js/grading-general.js,
+   /assets/js/lesson-metadata.js,
+   /assets/js/general-frontend.js, - Adding grade points and answer notes per question, restructuring links, adding text filters, updating quiz add/edit UI, fixing PHP notices & removing CSS from non-Sensei pages
+ * /assets/css/settings.less,
+   /assets/css/settings.css - Adding styles for new grading features, updating quiz add/edit UI & updating general admin UI styling
+ * /assets/css/frontend.less,
+   /assets/css/frontend.css - Adding styles for learner profiles & course results
+ * /assets/css/global.css - Updating styles for admin menu items
+ * /assets/css/activation.less,
+   /assets/css/activation.css - Adding stylesheet to handle Sensei setup notice
+ * /assets/images/woothemes.png - Updating WooThemes logo
+
+
+2013.07.05 - version 1.3.7
+ * /assets/js/lesson-metadata.js - fix for javascript removing special chars in ajax posting for question types
+ * /classes/class-woothemes-sensei-updates.php - adds hidden manual updates screen in /wp-admin/options-general.php?page=sensei-manual-update-hidden-page
+
+2013.07.01 - version 1.3.6
+ * /templates/single-quiz/question_type-multiple-choice.php - handles apostrophes in answers bugfix
+ * /classes/class-woothemes-sensei-utils.php - handles apostrophes in answers bugfix
+
+2013.06.10 - version 1.3.5
+ * /assets/js/lesson-metadata.js - fix for true false question type selector problems
+ * /classes/class-woothemes-sensei-lesson.php - fix for true false question type selector problems
+ * /widgets/widget-woothemes-sensei-course-component.php - fix for featured courses output
+
+2013.06.04 - version 1.3.4
+ * /assets/css/global.css - updated styling for grading notices
+ * /classes/class-woothemes-sensei.php,
+   /classes/class-woothemes-sensei-analysis-course.php,
+   /classes/class-woothemes-sensei-analysis-lesson.php,
+   /classes/class-woothemes-sensei-frontend.php - fixes bug in completed courses logic
+ * /classes/class-woothemes-sensei-admin.php - updated backend stylesheets
+ * /classes/class-woothemes-sensei-grading.php - added grading success messages in the sensei_grading_notices action
+ * /templates/single-course/course-lessons.php,
+   /templates/user/my-courses.php - fixes bug in completed courses logic
+
+2013.05.30 - version 1.3.3
+ * /assets/css/frontend.css - fixes Twenty Twelve CSS conflict for lesson navigation next and previous links
+ * /classes/class-woothemes-sensei.php - adds support for more WC subscriptions actions
+
+2013.05.28 - version 1.3.2
+ * /classes/class-woothemes-sensei-grading.php,
+   /classes/class-woothemes-sensei-utils.php - Fixing grading bug that was causing grade totals to not be saved, added function for lesson_quiz_questions()
+ * /classes/class-woothemes-sensei-frontend.php - Adding logic to fix message for lessons without quiz questions that have been completed
+ * /classes/class-woothemes-sensei-updates.php - Adding security checks on update script loops
+ * /templates/single-quiz/quiz-questions.php - Improving check for manual/auto quiz grading on front-end
+
+2013.05.27 - version 1.3.1
+ * /classes/class-woothemes-sensei-grading.php - Fixing bug that prevented non-admin users from being graded
+
+2013.05.23 - version 1.3.0
+ * /assets/css/global.css,
+   /assets/css/frontend.css,
+   /assets/css/settings.css - question types and grading styling
+ * /assets/images/icon_right_32.png,
+   /assets/images/icon_wrong_32.png - grading icons
+ * /assets/js/grading-general.js - New grading javascript logic
+ * /assets/js/lesson-metadata.js - question types modifications
+ * /classes/class-woothemes-sensei-analysis.php,
+   /classes/class-woothemes-sensei-analysis-course.php,
+   /classes/class-woothemes-sensei-analysis-lesson.php,
+   /classes/class-woothemes-sensei-analysis-overview.php - question types and grading modifications
+ * /classes/class-woothemes-sensei-frontend.php - question types and grading modifications
+ * /classes/class-woothemes-sensei-lesson.php - question types modifications
+ * /classes/class-woothemes-sensei-grading.php - New grading functionality, main class
+ * /classes/class-woothemes-sensei-grading-main.php - New grading functionality, overview screen
+ * /classes/class-woothemes-sensei-grading-user-profile.php - New grading functionality, grade a quiz screen
+ * /classes/class-woothemes-sensei-posttypes.php - question types modifications
+ * /classes/class-woothemes-sensei-question.php - question types modifications
+ * /classes/class-woothemes-sensei-quiz.php - question types modifications
+ * /classes/class-woothemes-sensei-updates.php - upgrade functions for questions types and grading data
+ * /classes/class-woothemes-sensei-utils.php - question types and grading helper functions
+ * /classes/class-woothemes-sensei.php - added access permissions filter, woocommerce paypal hook fix
+ * /inc/woothemes-sensei-template.php - questions types and grading helper functions
+ * /templates/single-quiz/question_type-boolean.php,
+   /templates/single-quiz/question_type-essay_paste.php,
+   /templates/single-quiz/question_type-gap-fill.php,
+   /templates/single-quiz/question_type-multi-line.php,
+   /templates/single-quiz/question_type-multiple-choice.php,
+   /templates/single-quiz/question_type-single-line.php,
+   /templates/single-quiz/quiz-questions.php - question types modifications, added new template files for new question types
+
+
+2013.05.16 - version 1.2.6
+ * /classes/class-woothemes-sensei-frontend.php - modified the course signup link to handle purchaseable courses
+ * /classes/class-woothemes-sensei.php - permissions modification for user access
+ * /templates/content-single-lesson.php - added notice for course signup if the user doesnt have access
+ * /templates/single-quiz/quiz-questions.php - disabled quiz fields for when user is not taking the course, and added signup notice
+
+2013.05.13 - version 1.2.5
+ * /classes/class-woothemes-sensei-frontend.php - fix for access permissions settings on Lessons and Quiz pages
+ * /templates/content-single-lesson.php - fix for access permissions settings on Lessons page
+
+2013.05.08 - version 1.2.4
+ * /widgets/widget-woothemes-sensei-course-component.php - fix for no active and completed courses in widget
+
+2013.04.30 - version 1.2.3
+ * /assets/css/frontend.css - fix for FontAwesome issue in Firefox
+ * /classes/class-woothemes-sensei-frontend.php - warning message fix
+
+2013.04.29 - version 1.2.2
+ * /classes/class-woothemes-sensei-frontend.php - fix for get_comments_number filter
+ * /classes/class-woothemes-sensei.php - fix for access permissions settings
+ * /templates/single-lesson/lesson-meta.php - fix for access permissions settings
+
+2013.04.25 - version 1.2.1
+ * /assets/js/lesson-metadata.js - security improvements
+ * /classes/class-woothemes-sensei-admin.php,
+ 	/classes/class-woothemes-sensei-analysis.php,
+ 	/classes/class-woothemes-sensei-lesson.php,
+ 	/classes/class-woothemes-sensei.php - security improvements
+ * /classes/class-woothemes-sensei-course.php - security improvements, fix for course image output, fix for trashed variations
+ * /classes/class-woothemes-sensei-frontend.php - improved template hooks, fix for WC add to cart url
+ * /classes/class-woothemes-sensei-posttypes.php - fix for lesson_comments setting
+ * /classes/class-woothemes-sensei-utils.php - fix for comments_clauses filter
+ * /inc/woothemes-sensei-template.php - improved template hooks
+ * /templates/archive-course.php,
+ 	/templates/archive-lesson.php,
+ 	/templates/loop-lesson.php,
+ 	/templates/no-permissions.php,
+ 	/templates/single-course.php,
+ 	/templates/single-course/course-meta.php,
+ 	/templates/single-lesson.php,
+ 	/templates/single-lesson/lesson-meta.php,
+ 	/templates/single-quiz.php,
+ 	/templates/single-quiz/quiz-questions.php,
+ 	/templates/taxonomy-course-category.php,
+ 	/templates/user/my-courses.php - improved template hooks
+ * /templates/wrappers/wrapper-end.php,
+ 	/templates/wrappers/wrapper-start.php - added support for Canvas styling
+ * /widgets/widget-woothemes-sensei-category-courses.php,
+ 	/widgets/widget-woothemes-sensei-course-categories.php,
+ 	/widgets/widget-woothemes-sensei-course-component.php,
+ 	/widgets/widget-woothemes-sensei-lesson-component.php - security improvements
+
+2013.04.04 - version 1.2.0
+ * /assets/css/settings.css - styling changes for Analysis
+ * /assets/js/lesson-metadata.js - fix for media upload button not firing
+ * /classes/class-woothemes-sensei.php - refactor for loading of classes, added subscriptions hooks, added logic for woocommerce order cancellation
+ * /classes/class-woothemes-sensei-analysis.php - refactor to use List Tables class, output functions for new Analysis areas, added export capability for Analysis tables
+ * /classes/class-woothemes-sensei-analysis-course.php - new class to handle Analysis Courses
+ * /classes/class-woothemes-sensei-analysis-lesson.php - new class to handle Analysis Lessons
+ * /classes/class-woothemes-sensei-analysis-overview.php - new class to handle Analysis Overview
+ * /classes/class-woothemes-sensei-analysis-user-profile.php - new class to handle Analysis User Overview
+ * /classes/class-woothemes-sensei-course.php - add filter for course placeholder image, handle product_variation post type
+ * /classes/class-woothemes-sensei-frontend.php - new hooks for frontend use, filters for custom nav menu items
+ * /classes/class-woothemes-sensei-lesson.php - add filter for lesson placeholder image
+ * /classes/class-woothemes-sensei-list-table.php - new list table class to handle data tables
+ * /classes/class-woothemes-sensei-posttypes.php - refactor for loading of classes
+ * /classes/class-woothemes-sensei-utils.php - refactor for removing of comment_clause filters for checking sensei activity
+ * /inc/woothemes-sensei-template.php - removes old functions, recent comments widget fix
+ * /templates/archive-course.php - fixes shortcode issues on paginated pages
+ * /templates/content-no-permissions.php - uses new frontend hooks
+ * /templates/content-single-course.php - uses new frontend hooks
+ * /templates/content-single-lesson.php - uses new frontend hooks
+ * /templates/content-loop-course.php - uses new frontend hooks
+ * /templates/content-loop-lesson.php - uses new frontend hooks
+ * /templates/content-taxonomy-course-category.php - uses new frontend hooks
+ * /templates/woocommerce/add-to-cart.php - handle product_variation post type
+ * /widgets/widget-woothemes-sensei-category-courses.php - uses new frontend hooks
+ * /widgets/widget-woothemes-sensei-course-component.php - uses new frontend hooks
+ * /widgets/widget-woothemes-sensei-lesson-component.php - uses new frontend hooks
+
+2013.03.11 - version 1.1.2
+ * classes/class-woothemes-sensei-utils.php - fix to check if product was purchased
+ * classes/class-woothemes-sensei.php - fix for checking product id
+
+2013.03.10 - version 1.1.1
+ * classes/class-woothemes-sensei.php - modify function call to use global object, added new product object function
+ * inc/woothemes-sensei-template.php - modify function call to use global object, removed old function
+ * templates/woocommerce/add-to-cart.php - modify function call to use global object
+
+2013.03.04 - version 1.1.0
+ * assets/chosen/* - added chosen library for improved dropdown usability
+ * assets/css/frontend.css - frontend course category meta styling
+ * assets/css/global.css - admin chosen drop down styling, admin add question button styling
+ * assets/js/lesson-metadata.js - js to set select inputs to use chosen library for Courses, Lessons, and Settings admin area, allow HTML in question title and answers
+ * classes/class-woothemes-sensei-admin.php - register chosen styles
+ * classes/class-woothemes-sensei-course.php - added Course Category column to the write panel and quick edit, added permissions for WooCommerce adding of products, modified course query for paid and free products to check the actual prices of the products
+ * classes/class-woothemes-sensei-frontend.php - logic for additional lesson pagination, additional hooks for frontend output
+ * classes/class-woothemes-sensei-lesson.php - added Course Category to Ajax Course add, register chosen js, added permissions for adding of Courses, modified quiz_questions query to take additional params for ordering
+ * classes/class-woothemes-sensei-posttypes.php - register new Course Category taxonomy for Courses post type, add menu item for Course Category write panel, added meta caps for future post types permissions
+ * classes/class-woothemes-sensei-settings.php - added option to randomize the quiz questions
+ * classes/class-woothemes-sensei-updates.php - new Class for running Sensei upgrade functions
+ * classes/class-woothemes-sensei.php - register new widgets, refactor widget register logic, logic for Course Category taxonomy archive templater loader, added upgrade function actions, added WC functions for virtual products
+ * inc/woothemes-sensei-template.php - added function to get the next and previous lessons, added Course Category archive header logic to template function
+ * templates/content-no-permissions.php - pagination modification
+ * templates/content-single-course.php - pagination modification, course access permissions fix, added frontend hooks for output
+ * templates/content-single-lesson.php - pagination modification, added frontend hooks for output
+ * templates/content-single-quiz.php - pagination modification, added frontend hooks for output
+ * templates/loop-course.php - added Course Category meta info
+ * templates/taxonomy-course-category.php - template file for new Course Category taxonomy terms
+ * templates/single-lesson/lesson-meta.php - conditional for message output
+ * templates/single-quiz/quiz-questions.php - logic for randomizing quiz questions
+ * templates/user/my-courses.php - added Course Category meta info
+ * templates/wrappers/pagination-lesson.php - added file for lesson pagination
+ * templates/wrappers/pagination-posts.php - added file for default pagination
+ * templates/wrappers/pagination-quiz.php - added file for quiz lesson pagination
+ * widgets/widget-woothemes-sensei-category-courses.php - added file to display Courses from a specific Category
+ * widgets/widget-woothemes-sensei-course-categories.php - added file to display a list of Course Categories
+
+2013.02.25 - version 1.0.11
+ * /assets/css/frontend.css - Adjusted 'Complete Lesson' button margin on the Lessons page.
+ * /templates/single-lesson/lesson-meta.php - fixed missing class on Take the Lesson Quiz link.
+ * /templates/single-quiz/quiz-questions.php - fixed logic bug for showing the current status of the completed quiz.
+
+2013.02.14 - version 1.0.10
+ * /assets/css/frontend.css - Fixed buttons and shortcodes styles that were conflicting with theme styles.
+
+2013.02.12 - version 1.0.9
+ * templates/content-single-lesson.php - Fix for access permissions setting logic
+ * templates/single-lesson/lesson-mega.php - Fix for access permissions setting logic
+ * templates/single-quiz/quiz-questions.php - Fix for access permissions setting logic
+
+2013.02.11 - version 1.0.8
+ * assets/js/lesson-metadata.js - added htmlentities function for backend validation on raw HTML input
+ * classes/class-woothemes-sensei-utils.php - validation for not logged in user data
+ * classes/class-woothemes-sensei-settings.php - rewording of setting for access permissions
+ * classes/* - stripped trailing spaces
+ * templates/* - stripped trailing spaces
+
+2013.02.08 - version 1.0.7
+ * templates/content-single-lesson.php - Fixing bug that prevented the lesson content from showing for some users
+
+2013.02.06 - version 1.0.6
+ * templates/content-single-lesson.php - Ensuring lesson content does not show until pre-requisite lesson is completed
+
+2013.01.31 - version 1.0.5
+ * /inc/woo-functions.php - Add WooCommerce checks. Fixes compatibility when running Sensei and WooCommerce extensions, regarding updates.
+ * /inc/class-wc-dependencies.php - ADDED.
+
+2013.01.30 - version 1.0.4
+ * classes/class-woothemes-sensei-course.php - added function to find product courses
+ * classes/class-woothemes-sensei-utils.php - moved customer bought product function check
+ * classes/class-woothemes-sensei.php - added WooCommerce hooks for completing a payment to add the Course to a users My Courses page
+ * inc/woothemes-sensei-template.php - moved customer bought product function check
+ * templates/user/my-courses.php - updated call to customer bought product function
+ * templates/woocommerce/add-to-cart.php - updated call to customer bought product function
+
+2013.01.29 - version 1.0.3
+ * classes/class-woothemes-sensei-settings-api.php - fix for conflict with Groups plugin
+ * classes/class-woothemes-sensei-settings.php - options to switch of js and css, and options for complete lesson button, reset lesson button, and to remove No Quiz warning message
+ * classes/class-woothemes-sensei-frontend.php - logic to switch of js and css
+ * templates/content-single-course.php - removed woocommerce after hook to prevent related products conflict
+ * templates/single-lesson/lesson-meta.php - added complete lesson and reset lesson buttons functions
+ * inc/woothemes-sensei-template.php - output functions for complete lesson and reset lesson buttons
+
+2013.01.25 - version 1.0.2
+ * templates/archive-course.php - fixed localization typo
+ * templates/archive-lesson.php - fixed localization typo
+ * classes/class-woothemes-sensei-settings.php - fixed woocommerce detection code
+ * classes/class-woothemes-sensei-utils.php - fixed woocommerce detection code
+ * classes/class-woothemes-sensei-posttypes.php - added filters for content type slugs
+
+2013.01.22 - version 1.0.1
+ * /inc/woo-functions.php - Include the woo-functions file, for integration with the WooThemes Updater plugin.
+ * /classes/class-woothemes-sensei.php - Add "public" scope to methods missing a scope. Remove call to old plugin updater code.
+ * /classes/class-woothemes-plugin-updater.php - REMOVED.
+ * /lang/woothemes-sensei-en_GB.po - Added language translation file.
+ * /lang/woothemes-sensei-xx_XX.pot - Added language translation file template.
+ * woothemes-sensei.php - Include the woo-functions file.
+
+2013.01.21 - version 1.0.0
+ * First release. Woo!
