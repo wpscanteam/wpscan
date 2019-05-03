@@ -4,7 +4,7 @@ require_relative 'interesting_findings/readme'
 require_relative 'interesting_findings/wp_cron'
 require_relative 'interesting_findings/multisite'
 require_relative 'interesting_findings/debug_log'
-require_relative 'interesting_findings/backup_db'
+require_relative 'interesting_findings/plugin_backup_folders'
 require_relative 'interesting_findings/mu_plugins'
 require_relative 'interesting_findings/registration'
 require_relative 'interesting_findings/tmm_db_migrate'
@@ -24,7 +24,7 @@ module WPScan
           super(target)
 
           %w[
-            Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog
+            Readme DebugLog FullPathDisclosure PluginBackupFolders DuplicatorInstallerLog
             Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
             UploadSQLDump EmergencyPwdResetScript WPCron
           ].each do |f|

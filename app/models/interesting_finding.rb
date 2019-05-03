@@ -10,7 +10,7 @@ module WPScan
     #
     # Empty classes for the #type to be correctly displayed (as taken from the self.class from the parent)
     #
-    class BackupDB < InterestingFinding
+    class PluginBackupFolder < InterestingFinding
     end
 
     class DebugLog < InterestingFinding
