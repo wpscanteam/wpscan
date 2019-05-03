@@ -3,7 +3,7 @@
 module WPScan
   module Finders
     module InterestingFindings
-      # BackupDB finder
+      # Known Backup Folders from Plugin finder
       class PluginBackupFolders < CMSScanner::Finders::Finder
         PATHS = %w[wp-content/backup-db/ wp-content/backups-dup-pro/ wp-content/updraft/].freeze
 
