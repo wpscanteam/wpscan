@@ -5,10 +5,9 @@ describe WPScan::Finders::InterestingFindings::PluginBackupFolders do
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'plugin_backup_folders') }
-  let(:wp_content) { 'wp-content' }
 
   before do
-    expect(target).to receive(:content_dir).at_least(1).and_return(wp_content)
+    expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
 
     finder.class::PATHS.each { |path| stub_request(:head, target.url(path)).to_return(status: 404) }
 
