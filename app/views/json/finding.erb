@@ -11,9 +11,10 @@
   }<% unless index == last_index %>,<% end -%>
 <% end -%>
 <% end -%>
-},
-"vulnerabilities": [
-<% if @item.respond_to?(:vulnerabilities) && !(vulns = @item.vulnerabilities).empty? -%>
+}
+<% if @item.respond_to?(:vulnerabilities) -%>
+,"vulnerabilities": [
+<% unless (vulns = @item.vulnerabilities).empty? -%>
   <% last_index = vulns.size - 1 -%>
   <% vulns.each_with_index do |v, index| -%>
   {
@@ -24,3 +25,4 @@
   <% end -%>
 <% end -%>
 ]
+<% end -%>
