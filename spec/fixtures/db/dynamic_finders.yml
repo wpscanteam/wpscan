@@ -537,6 +537,12 @@ plugins:
       - public/css/acf-multi-step-public.css
       - public/js/acf-multi-step-public.js
       version: true
+  acf-options-for-polylang:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.md
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
   acf-sidebar-selector-field:
     TranslationFile:
       class: BodyPattern
@@ -957,6 +963,12 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^(?<v>\d+\.[\.\d]+) \- \d+/
+      version: true
+  admin-only-jetpack:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/admin-only-jetpack.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Admin Only Jetpack (?<v>\d+\.[\.\d]+)/i'
       version: true
   admitad-tracking:
     TranslationFile:
@@ -2468,6 +2480,16 @@ plugins:
     QueryParameter:
       files:
       - assets/js/autotrack.js
+      version: true
+  awesome-hooks:
+    QueryParameter:
+      files:
+      - assets/awesome-hooks.min.css
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   awesome-instagram-feed:
     QueryParameter:
@@ -4689,6 +4711,12 @@ plugins:
       - public/css/catch-scroll-progress-bar-public.css
       - public/js/catch-scroll-progress-bar-public.js
       version: true
+  catch-under-construction:
+    QueryParameter:
+      files:
+      - public/css/catch-under-construction-public.css
+      - public/js/catch-under-construction-public.js
+      version: true
   catch-web-tools:
     Comment:
       xpath: //comment()[contains(., "Catch Web Tools")]
@@ -4912,6 +4940,11 @@ plugins:
       xpath: //comment()[contains(., "CC-Scripts")]
       pattern: !ruby/regexp /CC-Scripts (?<v>\d+\.[\.\d]+)/i
       version: true
+  cc-social-buttons:
+    QueryParameter:
+      files:
+      - assets/js/script.js
+      version: true
   ccr-client-testimonials:
     QueryParameter:
       files:
@@ -5049,6 +5082,12 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
+      version: true
+  cf7-reply-manager:
+    QueryParameter:
+      files:
+      - admin/css/style.css
+      - admin/js/cf7_rm.js
       version: true
   cf7-sendinblue-opt-in-checkbox:
     ChangeLog:
@@ -6361,6 +6400,12 @@ plugins:
       files:
       - public/css/cosmic-public.css
       - public/js/cosmic-public.js
+      version: true
+  cosy-address-book:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/cosy-address-book.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: CoSy Address Book (?<v>\d+\.[\.\d]+)/i'
       version: true
   cotacao-moedas-hoje:
     QueryParameter:
@@ -8053,6 +8098,15 @@ plugins:
       - public/js/dist/html2canvas.min.js
       - public/js/dist/html2canvas.svg.min.js
       version: true
+  echelon-so:
+    QueryParameter:
+      files:
+      - inc/utilities.css
+      - features/animated-gradients/inc/granim.min.js
+      - features/animated-gradients/inc/animated-gradients.js
+      - features/animate/inc/animate.js
+      - features/tooltip/inc/tooltip.js
+      version: true
   echo-show-ids:
     ChangeLog:
       class: BodyPattern
@@ -9106,6 +9160,12 @@ plugins:
       path: langs/export-woocommerce.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Export WooCommerce (?<v>\d+\.[\.\d]+)/i
       version: true
+  export-woocommerce-customer-list:
+    QueryParameter:
+      files:
+      - public/css/pisol-ewcl-public.css
+      - public/js/pisol-ewcl-public.js
+      version: true
   express-twitter-feed:
     QueryParameter:
       files:
@@ -9331,6 +9391,12 @@ plugins:
       - fancybox/jquery.easing-1.3.pack.js
       - fancybox/jquery.mousewheel-3.0.4.pack.js
       - fancybox/jquery.fancybox-1.3.4.pack.js
+      version: true
+  fanimani-pl:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/fanimani-pl_PL.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: FaniMani\.pl v(?<v>\d+\.[\.\d]+)/i'
       version: true
   faq-accordion:
     QueryParameter:
@@ -10080,6 +10146,12 @@ plugins:
       - js/src/flp-stats.js
       - js/lib/intl-tel-input-master/css/intlTelInput.css
       - js/lib/intl-tel-input-master/js/intlTelInput.min.js
+      version: true
+  forms-to-webmerge:
+    QueryParameter:
+      files:
+      - public/css/forms-to-webmerge-public.css
+      - public/js/forms-to-webmerge-public.js
       version: true
   formularios-de-contacto-salesup:
     QueryParameter:
@@ -11400,6 +11472,12 @@ plugins:
       - public/js/scrollTo.js
       - public/js/jquery.magnific-popup.min.js
       - public/js/jquery.cookie.js
+      version: true
+  greenpay-payment-gateway:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/greenpay-payment-gateway.pot
+      pattern: !ruby/regexp '/ct\-Id\-Version: GreenPay Payment Gateway (?<v>\d+\.[\.\d]+)/i'
       version: true
   greenturtlelab-tool:
     TranslationFile:
@@ -14595,6 +14673,12 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  logistia:
+    QueryParameter:
+      files:
+      - public/css/logistia-public.css
+      - public/js/logistia-public.js
+      version: true
   logo-carousel-block:
     ComposerFile:
       class: ConfigParser
@@ -15332,6 +15416,17 @@ plugins:
     Comment:
       xpath: //comment()[contains(., "MasterModalLoginLite")]
       pattern: !ruby/regexp /Qt PopUp \(MasterModalLoginLite\) v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  master-popups-lite:
+    Comment:
+      xpath: //comment()[contains(., "MasterPopups")]
+      pattern: !ruby/regexp /MPP:MasterPopups v(?<v>\d+\.[\.\d]+)/i
+      version: true
+    QueryParameter:
+      files:
+      - assets/public/css/master-popups.min.css
+      - assets/public/css/font-awesome.css
+      - assets/public/js/master-popups.min.js
       version: true
   master-slider:
     QueryParameter:
@@ -16965,6 +17060,12 @@ plugins:
       - includes/prettyphoto/prettyphoto.js
       - includes/prettyphoto/nimble-prettyPhoto.js
       version: true
+  nines-music:
+    QueryParameter:
+      files:
+      - dist/APlayer.min.css
+      - dist/APlayer.min.js
+      version: true
   ninja-gutenberg-blocks-gutenberg-blocks-collection:
     ComposerFile:
       class: ConfigParser
@@ -17676,6 +17777,12 @@ plugins:
       files:
       - js/outbound.js
       version: true
+  outdr-booking-widget:
+    QueryParameter:
+      files:
+      - main.css
+      - main.js
+      version: true
   oxygen-visual-site-builder:
     QueryParameter:
       files:
@@ -18284,6 +18391,12 @@ plugins:
       - css/inuit.css
       - css/mangnific-popup.css
       - js/public.js
+      version: true
+  pj-contact-form:
+    QueryParameter:
+      files:
+      - assets/front-end/css/style.css
+      - assets/front-end/js/main.js
       version: true
   pj-jquery-ui-helper:
     QueryParameter:
@@ -18972,6 +19085,7 @@ plugins:
       - modules/scroll-to-top/public/js/public-powerkit-scroll-to-top.js
       - modules/slider-gallery/public/js/flickity.pkgd.min.js
       - modules/slider-gallery/public/js/public-powerkit-slider-gallery.js
+      - modules/share-buttons/public/js/public-powerkit-share-buttons.js
       version: true
   powerpack-addon-for-beaver-builder:
     ChangeLog:
@@ -19000,6 +19114,12 @@ plugins:
     QueryParameter:
       files:
       - js/ppm-accordion-active.js
+      version: true
+  pppt:
+    QueryParameter:
+      files:
+      - public/css/pppt-public.css
+      - public/js/pppt-public.js
       version: true
   pramadillo-activecampaign-email-preference-center:
     QueryParameter:
@@ -19276,6 +19396,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/front-styles.css
+      version: true
+  productdyno:
+    QueryParameter:
+      files:
+      - public/css/productdyno-public.css
+      - public/js/productdyno-public.js
       version: true
   professional-contact-form:
     QueryParameter:
@@ -20979,6 +21105,11 @@ plugins:
       files:
       - public/assets/css/public.css
       - public/assets/js/public.js
+      version: true
+  rsg-compiled-libraries:
+    QueryParameter:
+      files:
+      - my-lib/rsg/rsg.min.js
       version: true
   rsrpp:
     QueryParameter:
@@ -24910,6 +25041,7 @@ plugins:
     QueryParameter:
       files:
       - themify/js/main.min.js
+      - css/themify-builder-style.min.css
       version: true
   themify-builder-lite:
     QueryParameter:
@@ -28035,6 +28167,11 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  woo-chrome-one-tap-login:
+    QueryParameter:
+      files:
+      - public/css/chrome-one-tap-login-for-woocommerce-store-public.css
+      version: true
   woo-correios-calculo-de-frete-na-pagina-do-produto:
     QueryParameter:
       files:
@@ -28272,6 +28409,12 @@ plugins:
       - public/css/woo-open-graph-public.css
       - public/js/woo-open-graph-public.js
       version: true
+  woo-order-export:
+    ChangeLog:
+      class: BodyPattern
+      path: change_log.txt
+      pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
   woo-paymaya-payment-gateway:
     ChangeLog:
       class: BodyPattern
@@ -28489,6 +28632,12 @@ plugins:
       class: BodyPattern
       path: CHANGELOG.md
       pattern: !ruby/regexp /^\#+ (?<v>\d+\.[\.\d]+)(?!.*\#+ \d+\.[\.\d]+)/mi
+      version: true
+  woo-shipping-dpd-baltic:
+    QueryParameter:
+      files:
+      - public/css/dpd-public.css
+      - public/js/dpd-public-dist.js
       version: true
   woo-shop-customizer:
     QueryParameter:
@@ -29166,6 +29315,12 @@ plugins:
       class: BodyPattern
       path: languages/woopanel.pot
       pattern: !ruby/regexp /"v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  woopop-electronic-invoice-free:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /(?<v>[\d\.]+) \- [\dA-Z\/]{6,}/
       version: true
   woorousell:
     QueryParameter:
@@ -30083,6 +30238,12 @@ plugins:
       - assets/css/slick.css
       - assets/css/recent-post-style.css
       version: true
+  wp-custom-author-url:
+    QueryParameter:
+      files:
+      - public/css/wp-custom-author-url-public.css
+      - public/js/wp-custom-author-url-public.js
+      version: true
   wp-custom-register-login:
     QueryParameter:
       files:
@@ -30561,6 +30722,12 @@ plugins:
       - public/js/bootstrap.min.js
       - public/js/validator/formValidation.min.js
       - public/js/validator/bootstrap-validator.min.js
+      version: true
+  wp-frontend-delete-account:
+    QueryParameter:
+      files:
+      - assets/css/wpfda-frontend.css
+      - assets/js/frontend.js
       version: true
   wp-frontend-submit:
     QueryParameter:
@@ -33582,6 +33749,17 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  yatra:
+    QueryParameter:
+      files:
+      - assets/css/yatra.css
+      - assets/js/yatra.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/yatra.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Yatra (?<v>\d+\.[\.\d]+)/i'
       version: true
   ycwp-qr-me:
     QueryParameter:
