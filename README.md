@@ -30,6 +30,7 @@
 - Curl >= 7.21  - Recommended: latest
   - The 7.29 has a segfault
 - RubyGems      - Recommended: latest
+- Nokogiri might require packages to be installed via your package manager depending on your OS, see https://nokogiri.org/tutorials/installing_nokogiri.html
 
 ### From RubyGems (Recommended)
 
