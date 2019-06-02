@@ -2235,6 +2235,7 @@ plugins:
     QueryParameter:
       files:
       - assets/css/apwpultimate-public-style.css
+      - assets/css/jplayer.blue.monday.min.css
       version: true
   audio-widget:
     TranslationFile:
@@ -3968,6 +3969,12 @@ plugins:
       class: BodyPattern
       path: languages/bp-premiums.pot
       pattern: !ruby/regexp /\-Id\-Version:\ SuitePlugins \- BP Premiums (?<v>\d+\.[\.\d]+)/i
+      version: true
+  bp-profile-field-duplicator:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/bp-profile-field-duplicator.pot
+      pattern: !ruby/regexp '/on: BuddyPress Profile Field Duplicator (?<v>\d+\.[\.\d]+)/i'
       version: true
   bp-reactions:
     TranslationFile:
@@ -6583,6 +6590,12 @@ plugins:
       - public/slick/slick.min.js
       - public/js/slick-carousel.js
       version: true
+  cross-domain-tracker-for-affiliatewp:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
   crosswordsearch:
     TranslationFile:
       class: BodyPattern
@@ -7829,6 +7842,16 @@ plugins:
       class: BodyPattern
       path: lang/easy-featured-images-hu_HU.po
       pattern: !ruby/regexp /oject\-Id\-Version:\ Easy Featured Images v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  easy-feedback:
+    QueryParameter:
+      files:
+      - assets/ef-style.css
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\#\# \[(?<v>\d+\.[\.\d]+)\]/
       version: true
   easy-gdpr-consent-mailchimp:
     QueryParameter:
@@ -12306,6 +12329,12 @@ plugins:
       - public/css/ch-reservation-public.css
       - public/js/ch-reservation-public.js
       version: true
+  ice-chat:
+    QueryParameter:
+      files:
+      - public/css/chat-box-public.css
+      - public/js/chat-box-public.js
+      version: true
   icegram:
     QueryParameter:
       files:
@@ -16654,6 +16683,17 @@ plugins:
       - public/css/left.css
       - public/js/side-menu.js
       version: true
+  mx-pagebuilder-html:
+    QueryParameter:
+      files:
+      - includes/frontend/assets/css/style.css
+      - includes/frontend/assets/js/script.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/uk_UA.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: xq\-xe\-xt\-xy (?<v>\d+\.[\.\d]+)/i'
+      version: true
   mxr-easy-embed-wall:
     QueryParameter:
       files:
@@ -16702,6 +16742,12 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^(?<v>\d+\.[\.\d]+)/
+      version: true
+  myanmar-unipress:
+    QueryParameter:
+      files:
+      - _inc/js/rabbit.js
+      - _inc/js/bunny.js
       version: true
   mybookprogress:
     QueryParameter:
@@ -19344,6 +19390,12 @@ plugins:
       - inc/frontend/css/prwirepro-press_release_newsroom-frontend.css
       - inc/frontend/js/prwirepro-press_release_newsroom-frontend.js
       version: true
+  press-release-template:
+    QueryParameter:
+      files:
+      - inc/frontend/css/prwirepro-press_release_template-frontend.css
+      - inc/frontend/js/prwirepro-press_release_template-frontend.js
+      version: true
   press-release-writer:
     QueryParameter:
       files:
@@ -20197,6 +20249,18 @@ plugins:
       path: languages/ravelry-projects-widget.pot
       pattern: !ruby/regexp '/ect\-Id\-Version: Ravelry projects widget (?<v>\d+\.[\.\d]+)/i'
       version: true
+  rc-geo-access:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
+  rc-site-map:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
   rdp-google-custom-search:
     QueryParameter:
       files:
@@ -20533,6 +20597,12 @@ plugins:
       files:
       - public/css/tm-related-posts-public.css
       - public/js/bootstrap.min.js
+      version: true
+  related-products-sku:
+    QueryParameter:
+      files:
+      - public/css/wcrp-public.css
+      - public/js/wcrp-public.js
       version: true
   related-products-slider-for-woocommerce:
     QueryParameter:
@@ -21928,6 +21998,11 @@ plugins:
       - assets/css/popup.css
       - assets/js/frontend-main.js
       version: true
+  sendapi-net:
+    QueryParameter:
+      files:
+      - public/css/sendapi-public.css
+      version: true
   sendpulse-email-marketing-newsletter:
     ComposerFile:
       class: ConfigParser
@@ -22113,6 +22188,12 @@ plugins:
       class: BodyPattern
       path: languages/share_monkey-en_US.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: Share Monkey (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  share-social-media:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/share-social-media-hi_IN.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Share Social Media (?<v>\d+\.[\.\d]+)/i'
       version: true
   share-this-image:
     QueryParameter:
@@ -23581,6 +23662,11 @@ plugins:
       - assets/css/font-awesome.min.css
       - assets/css/foundrysl.css
       version: true
+  social-parts:
+    QueryParameter:
+      files:
+      - public/js/social-parts-public.js
+      version: true
   social-polls-by-opinionstage:
     QueryParameter:
       files:
@@ -23647,6 +23733,11 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
+  socialized:
+    QueryParameter:
+      files:
+      - assets/styles/socialized.css
       version: true
   socialsnap:
     QueryParameter:
@@ -23818,6 +23909,12 @@ plugins:
     QueryParameter:
       files:
       - admin/sl-admin-style.css
+      version: true
+  sparrow:
+    QueryParameter:
+      files:
+      - public/css/getsparrow-public.css
+      - public/js/getsparrow-public.js
       version: true
   special-admins:
     ComposerFile:
@@ -24662,6 +24759,16 @@ plugins:
       class: ConfigParser
       path: package.json
       key: version
+      version: true
+  table-addons-for-elementor:
+    QueryParameter:
+      files:
+      - public/css/table-addons-for-elementor-public.css
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/table-addons-elementor.pot
+      pattern: !ruby/regexp '/\-Id\-Version: Table Addons For Elementor (?<v>\d+\.[\.\d]+)/i'
       version: true
   table-builder-for-csv:
     QueryParameter:
@@ -26292,6 +26399,12 @@ plugins:
     QueryParameter:
       files:
       - public/js/ultimate-post-list-public.js
+      version: true
+  ultimate-post-review:
+    QueryParameter:
+      files:
+      - public/css/ultimate-post-review-public.css
+      - public/js/ultimate-post-review-public.js
       version: true
   ultimate-post-thumbnails:
     QueryParameter:
@@ -31238,6 +31351,7 @@ plugins:
       - js/wpinventory.js
       - "/themes/css/default-theme.css"
       - "/js/wpinventory.js"
+      - themes/css/default-theme.css
       version: true
   wp-invoice:
     QueryParameter:
@@ -31873,6 +31987,20 @@ plugins:
     QueryParameter:
       files:
       - js/custom.js
+      version: true
+  wp-post-grid-slider-filter-by-xgenious:
+    QueryParameter:
+      files:
+      - "/assets/css/animate.css"
+      - "/assets/css/font-awesome.css"
+      - "/assets/css/owl.carousel.css"
+      - "/assets/css/xg_normalize.css"
+      - "/assets/css/xgenious.tab.css"
+      - "/assets/css/style.css"
+      - "/assets/js/isotope.pkgd.js"
+      - "/assets/js/owl.carousel.js"
+      - "/assets/js/xgenious.tab.js"
+      - "/assets/js/main.js"
       version: true
   wp-post-likes:
     QueryParameter:
@@ -32816,6 +32944,12 @@ plugins:
       path: i18n/languages/wp-travel.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ WP Travel (?<v>\d+\.[\.\d]+)/i
       version: true
+  wp-travel-blocks:
+    TranslationFile:
+      class: BodyPattern
+      path: i18n/languages/wp-travel-blocks.pot
+      pattern: !ruby/regexp '/roject\-Id\-Version: WP Travel Blocks New (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wp-travel-engine:
     QueryParameter:
       files:
@@ -33149,6 +33283,12 @@ plugins:
       files:
       - public/css/wp30-by-who-public.css
       - public/js/wp30-by-who-public.js
+      version: true
+  wpa-woocommerce-product-gallery-lite:
+    QueryParameter:
+      files:
+      - assets/css/style.css
+      - assets/css/custom-style.css
       version: true
   wpac-like-system:
     QueryParameter:
