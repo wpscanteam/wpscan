@@ -1592,11 +1592,23 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  amazing-linker:
+    QueryParameter:
+      files:
+      - public/css/amazing-linker-public.css
+      - public/js/amazing-linker-public.js
+      version: true
   amazing-portfolio:
     TranslationFile:
       class: BodyPattern
       path: inc/framework/languages/cs-framework.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Codestar Framework (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  amazing-search:
+    QueryParameter:
+      files:
+      - public/css/amazing-search-public.css
+      - public/js/amazing-search-public.js
       version: true
   amazon-associates-link-builder:
     QueryParameter:
@@ -4011,6 +4023,11 @@ plugins:
       files:
       - assets/js/tempust.js
       version: true
+  bp-verified-member:
+    QueryParameter:
+      files:
+      - assets/css/style.css
+      version: true
   bp-xprofile-rich-text-field:
     TranslationFile:
       class: BodyPattern
@@ -5177,6 +5194,12 @@ plugins:
       - public/css/Change-Admin-Login-Logo-public-public.css
       - public/js/Change-Admin-Login-Logo-public.js
       version: true
+  change-buddypress-user-display-name-and-slug:
+    QueryParameter:
+      files:
+      - public/css/mf-change-bp-user-display-slug-public.css
+      - public/js/mf-change-bp-user-display-slug-public.js
+      version: true
   change-wc-price-title:
     QueryParameter:
       files:
@@ -6199,6 +6222,8 @@ plugins:
       files:
       - public/css/contact-list-public.css
       - public/js/contact-list-public.js
+      - public/contact-list-public.css
+      - public/contact-list-public.js
       version: true
   contact-us-page-contact-people:
     QueryParameter:
@@ -6365,6 +6390,12 @@ plugins:
       files:
       - public/css/coii-public.css
       - public/js/coii-public.js
+      version: true
+  cookiealert:
+    QueryParameter:
+      files:
+      - public/css/cookiealert-public.css
+      - public/js/cookiealert-public.js
       version: true
   cookiebar:
     QueryParameter:
@@ -7009,6 +7040,12 @@ plugins:
       files:
       - public/js/scripts.js
       - public/js/readmore_v2.2.0.min.js
+      version: true
+  daily-snapshot-for-woocommerce-admin:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/mwb-dailyss-en_US.po
+      pattern: !ruby/regexp '/n: Daily Snapshot for WooCommerce Admin (?<v>\d+\.[\.\d]+)/i'
       version: true
   dailybrief:
     QueryParameter:
@@ -13411,6 +13448,12 @@ plugins:
       xpath: //comment()[contains(., "jQuery Lightbox")]
       pattern: !ruby/regexp /jQuery Lightbox For Native Galleries v(?<v>\d+\.[\.\d]+)/i
       version: true
+  jquery-manager:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   jquery-page-peel:
     Comment:
       xpath: //comment()[contains(., "jQuery Page Peel")]
@@ -15830,6 +15873,11 @@ plugins:
       files:
       - build/melonpan-block-container-front.css
       version: true
+  melonpan-block-images:
+    QueryParameter:
+      files:
+      - build/melonpan-block-images-front.css
+      version: true
   memberlite-elements:
     QueryParameter:
       files:
@@ -16694,6 +16742,18 @@ plugins:
       path: languages/uk_UA.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: xq\-xe\-xt\-xy (?<v>\d+\.[\.\d]+)/i'
       version: true
+  mx-time-zone-clocks:
+    QueryParameter:
+      files:
+      - includes/frontend/assets/css/style.css
+      - includes/frontend/assets/js/script.js
+      - includes/frontend/assets/js/jquery.canvasClock.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/uk_UA.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: xq\-xe\-xt\-xy (?<v>\d+\.[\.\d]+)/i'
+      version: true
   mxr-easy-embed-wall:
     QueryParameter:
       files:
@@ -16736,6 +16796,12 @@ plugins:
       class: BodyPattern
       path: languages/my-restaurant-menu.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ My Restaurant Menu (?<v>\d+\.[\.\d]+)/i
+      version: true
+  my-restaurant-reviews:
+    QueryParameter:
+      files:
+      - public/css/mrr-public.css
+      - public/js/mrr-public.js
       version: true
   myadmanager:
     ChangeLog:
@@ -17776,6 +17842,11 @@ plugins:
       files:
       - pub/js/emoji.min.js
       version: true
+  open-wp-seo:
+    Comment:
+      xpath: //comment()[contains(., "Open WordPress")]
+      pattern: !ruby/regexp /Open WordPress SEO (?<v>\d+\.[\.\d]+)/i
+      version: true
   openhousevideo:
     QueryParameter:
       files:
@@ -17967,6 +18038,12 @@ plugins:
       files:
       - main.css
       - main.js
+      version: true
+  ovic-addon-toolkit:
+    QueryParameter:
+      files:
+      - assets/css/ovic-core.min.css
+      - assets/js/ovic-core.min.js
       version: true
   oxygen-visual-site-builder:
     QueryParameter:
@@ -19390,6 +19467,12 @@ plugins:
       - inc/frontend/css/prwirepro-press_release_newsroom-frontend.css
       - inc/frontend/js/prwirepro-press_release_newsroom-frontend.js
       version: true
+  press-release-services:
+    QueryParameter:
+      files:
+      - inc/frontend/css/prwirepro-press_release_services-frontend.css
+      - inc/frontend/js/prwirepro-press_release_services-frontend.js
+      version: true
   press-release-template:
     QueryParameter:
       files:
@@ -20111,6 +20194,7 @@ plugins:
       version: true
   quickseo-by-squirrly:
     Comment:
+      xpath: //comment()[contains(., "Quick SEO")]
       pattern: !ruby/regexp /Quick SEO Plugin (?<v>\d+\.[\.\d]+)/i
       version: true
   quietly:
@@ -25449,6 +25533,11 @@ plugins:
       path: languages/ttlc.pot
       pattern: !ruby/regexp '/Project\-Id\-Version: Ticketrilla: Client (?<v>\d+\.[\.\d]+)/i'
       version: true
+  tidings:
+    QueryParameter:
+      files:
+      - css/tidings.css
+      version: true
   time-clock:
     QueryParameter:
       files:
@@ -26798,6 +26887,21 @@ plugins:
     QueryParameter:
       files:
       - public/css/userdocs-public.css
+      version: true
+  userisle:
+    QueryParameter:
+      files:
+      - assets/css/userisle-layout.css
+      - assets/css/userisle-style.css
+      - assets/css/userisle.css
+      - assets/css/userisle-media.css
+      - assets/js/jquery-tiptip/jquery-tiptip.js
+      - assets/js/jquery-toggles/jquery-toggles.js
+      - assets/js/jquery-modal/jquery-modal.js
+      - assets/js/jquery-selectize/jquery-selectize.js
+      - assets/js/jquery-raty/jquery-raty.js
+      - assets/js/jquery-wui/jquery-wui.js
+      - assets/js/frontend/userisle.js
       version: true
   users-activity:
     QueryParameter:
