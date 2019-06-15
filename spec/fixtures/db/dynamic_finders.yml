@@ -1908,6 +1908,11 @@ plugins:
       - public/js/apostle-social-wall-public.js
       - public/js/apostle-social-wall-masonry.js
       version: true
+  apoyl-weixinshare:
+    QueryParameter:
+      files:
+      - public/js/jweixin-1.4.0.js
+      version: true
   app-mockups-carousel:
     QueryParameter:
       files:
@@ -8210,6 +8215,8 @@ plugins:
       - features/animated-gradients/inc/animated-gradients.js
       - features/animate/inc/animate.js
       - features/tooltip/inc/tooltip.js
+      - features/sticky/inc/sticky.js
+      - features/waypoints/inc/waypoints.js
       version: true
   echo-show-ids:
     ChangeLog:
@@ -10004,6 +10011,12 @@ plugins:
     QueryParameter:
       files:
       - public/js/embed.min.js
+      version: true
+  focus-on-reviews-for-woocommerce:
+    QueryParameter:
+      files:
+      - public/css/forfwc-public.css
+      - public/js/forfwc-public.js
       version: true
   focus-sitecall-lite:
     ComposerFile:
@@ -12970,6 +12983,11 @@ plugins:
       path: package.json
       key: version
       version: true
+  instant-seo:
+    QueryParameter:
+      files:
+      - js/instantpage-1.2.2.js
+      version: true
   instant-weekly-roundup:
     QueryParameter:
       files:
@@ -14948,6 +14966,12 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  lsx-blocks:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^\#+ (?<v>\d+\.[\.\d]+)(?!.*\#+ \d+\.[\.\d]+)/mi
+      version: true
   lsx-blog-customizer:
     QueryParameter:
       files:
@@ -15400,6 +15424,17 @@ plugins:
       - vendor/font-awesome/css/font-awesome.min.css
       - assets/frontend/css/main.css
       - assets/frontend/js/main.js
+      version: true
+  mantrabrain-instagram-pack:
+    QueryParameter:
+      files:
+      - assets/css/mb-instagram-pack.css
+      - assets/js/mb-instagram-pack.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/mb-instagram-pack.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Instagram Pack (?<v>\d+\.[\.\d]+)/i'
       version: true
   mantrabrain-starter-sites:
     TranslationFile:
@@ -18107,6 +18142,7 @@ plugins:
       - js/parallax.js
       - js/rellax.js
       - js/frontend.js
+      - js/liquid.js
       version: true
   page-builder-sandwich:
     QueryParameter:
@@ -21944,6 +21980,13 @@ plugins:
       path: package.json
       key: version
       version: true
+  seatgeek-affiliate-tickets:
+    QueryParameter:
+      files:
+      - public/css/wisersteps-bootstrap.css
+      - public/css/seatgeek-affiliate-tickets-public.css
+      - public/js/seatgeek-affiliate-tickets-public.js
+      version: true
   section-block:
     QueryParameter:
       files:
@@ -22086,6 +22129,17 @@ plugins:
     QueryParameter:
       files:
       - public/css/sendapi-public.css
+      version: true
+  sendbox-email-marketing-newsletter:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   sendpulse-email-marketing-newsletter:
     ComposerFile:
@@ -24327,6 +24381,12 @@ plugins:
       - public/css/stencil-public.css
       - public/js/stencil-public.js
       version: true
+  stibee-email-subscription-form:
+    QueryParameter:
+      files:
+      - public/css/wp-stibee-public.css
+      - public/js/wp-stibee-public.js
+      version: true
   sticky-add-to-cart-for-woo:
     QueryParameter:
       files:
@@ -25587,6 +25647,12 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^\*+Version (?<v>\d+\.[\.\d]+)\*+(?!.*\*+Version \d+\.[\.\d]+\*+)/mi
       version: true
+  tiny-desk-pixel:
+    QueryParameter:
+      files:
+      - public/css/tiny-desk-pixel-public.css
+      - public/js/tiny-desk-pixel-public.js
+      version: true
   tiny-youtube-post-widget:
     QueryParameter:
       files:
@@ -26542,6 +26608,27 @@ plugins:
       path: options/languages/zh_CN.po
       pattern: !ruby/regexp '/"Project\-Id\-Version: Codestar Framework (?<v>\d+\.[\.\d]+)/i'
       version: true
+  ultimate-viral-quiz:
+    QueryParameter:
+      files:
+      - "/assets/libs/vender/angularjs/angular.min.js"
+      - "/assets/libs/vender/angularjs/ui-switch/angular-ui-switch.min.js"
+      - "/assets/libs/vender/angular-animate/angular-animate.min.js"
+      - "/assets/libs/vender/angularjs/angular-file-upload-shim.min.js"
+      - "/assets/libs/vender/angularjs/angular-file-upload.min.js"
+      - "/assets/libs/vender/bootstrap.min.js"
+      - "/assets/libs/vender/fuelux.min.js"
+      - "/assets/libs/app.js"
+      - "/assets/libs/listController.js"
+      - "/assets/libs/personalityController.js"
+      - "/assets/libs/pollController.js"
+      - "/assets/libs/rankController.js"
+      - "/assets/libs/triviaController.js"
+      - "/assets/libs/vender/sticky.min.js"
+      - "/assets/libs/vender/jquery-validation/jquery.validate.min.js"
+      - "/assets/libs/vender/jquery-validation/additional-methods.min.js"
+      - "/assets/js/script.js"
+      version: true
   ultimate-widgets-light:
     QueryParameter:
       files:
@@ -26988,6 +27075,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  vamaship-shipping:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/vamaship_shipping-domain-en_US.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: VAMASHIP SHIPPING  (?<v>\d+\.[\.\d]+)/i'
+      version: true
   vanilla-adaptive-maps:
     ChangeLog:
       class: BodyPattern
@@ -27079,6 +27172,14 @@ plugins:
     QueryParameter:
       files:
       - css/vertical-related-posts.css
+      version: true
+  vertycal:
+    QueryParameter:
+      files:
+      - "/prop/css/vertycal-plugin-style.css"
+      - prop/css/jquery-ui.css
+      - prop/js/vertycal-public.js
+      - prop/js/vertycal-vtabs.js
       version: true
   very-fast-loading:
     Comment:
@@ -30798,6 +30899,12 @@ plugins:
       files:
       - js/wp-disable-right-click.js
       version: true
+  wp-disabler:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/wp-disabler.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WP Disabler (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wp-discord:
     QueryParameter:
       files:
@@ -33278,6 +33385,11 @@ plugins:
     QueryParameter:
       files:
       - css/style.css
+      version: true
+  wp-whatsapp-product-request:
+    QueryParameter:
+      files:
+      - css/wpwpr_style.css
       version: true
   wp-whydonate:
     QueryParameter:

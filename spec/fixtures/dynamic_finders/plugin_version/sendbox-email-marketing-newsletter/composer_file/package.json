@@ -1,0 +1,31 @@
+{
+  "name": "sendbox",
+  "version": "1.0.0",
+  "description": "Sendbox Email Marketing Newsletter",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "msgfmt": "msgfmt languages/sendbox-email-marketing-newsletter-ru_RU.po -o languages/sendbox-email-marketing-newsletter-ru_RU.mo",
+    "msgmerge": "msgmerge -vU languages/sendbox-email-marketing-newsletter-ru_RU.po languages/sendbox-email-marketing-newsletter.pot",
+    "prod": "gulp prod && npm run msgmerge && npm run msgfmt",
+    "pomo": "npm run msgmerge && npm run msgfmt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git"
+  },
+  "keywords": [
+    "wordpress"
+  ],
+  "author": "Sendbox",
+  "license": "GPL-2.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-minify": "0.0.14",
+    "gulp-rename": "^1.2.2",
+    "gulp-wp-pot": "^2.0.4",
+    "gulp-zip": "^4.0.0"
+  },
+  "dependencies": {}
+}
