@@ -283,6 +283,14 @@ plugins:
       path: assets/js/script.js
       pattern: !ruby/regexp '/Version: (?<v>\d+\.[\.\d]+)/i'
       version: true
+  5usujian-super-serv:
+    QueryParameter:
+      files:
+      - asset/css/wysj-iconfont.css
+      - asset/css/5usujian-serv-trade.css
+      - asset/css/5usujian-serv-compatible.css
+      - asset/js/5usujian-serv-trade.js
+      version: true
   8-degree-availability-calendar:
     QueryParameter:
       files:
@@ -1234,6 +1242,12 @@ plugins:
       - public/css/styles.min.css
       - public/js/scripts.min.js
       version: true
+  affiliate-links-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/uk_UA.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: xq\-xe\-xt\-xy (?<v>\d+\.[\.\d]+)/i'
+      version: true
   affiliates:
     ChangeLog:
       class: BodyPattern
@@ -1350,6 +1364,12 @@ plugins:
       files:
       - assets/css/front.css
       - assets/scripts/front.js
+      version: true
+  aio-for-divi:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/en_US.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Divi AiO (?<v>\d+\.[\.\d]+)/i'
       version: true
   airstory:
     TranslationFile:
@@ -7034,6 +7054,12 @@ plugins:
       - libs/vimeo-player-js/player.js
       - js/client.js
       version: true
+  da-reactions:
+    QueryParameter:
+      files:
+      - assets/dist/public.css
+      - assets/dist/public.js
+      version: true
   daggerhart-openid-connect-generic:
     ChangeLog:
       class: BodyPattern
@@ -8461,6 +8487,12 @@ plugins:
       class: BodyPattern
       path: languages/ercs.pot
       pattern: !ruby/regexp /msgid "Version:\ (?<v>\d+\.[\.\d]+)/i
+      version: true
+  elegantui-social-media-icons:
+    QueryParameter:
+      files:
+      - public/css/eui-smi-public.css
+      - public/js/eui-smi-public.js
       version: true
   element-capability-manager:
     TranslationFile:
@@ -13245,6 +13277,11 @@ plugins:
       path: package.json
       key: version
       version: true
+  itp-cookie-saver:
+    QueryParameter:
+      files:
+      - frontend/js/nsc_ics_cookiesaver.js
+      version: true
   iugu-woocommerce:
     TranslationFile:
       class: BodyPattern
@@ -15007,6 +15044,17 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  lsx-importer-for-wetu:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
   lsx-mega-menus:
     ChangeLog:
       class: BodyPattern
@@ -16225,6 +16273,12 @@ plugins:
     QueryParameter:
       files:
       - assets/css/mcn-plugin.min.css
+      version: true
+  missing-product-shipping-info-tool:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/missing-product-shipping-info-tool-el.po
+      pattern: !ruby/regexp '/ion: Missing_Product_Shipping_Info_tool (?<v>\d+\.[\.\d]+)/i'
       version: true
   ml-adverts:
     QueryParameter:
@@ -18424,6 +18478,11 @@ plugins:
       files:
       - css/frontend.css
       version: true
+  pe-theme-elements-info:
+    QueryParameter:
+      files:
+      - css/pe-theme-elements-info.css
+      version: true
   peepso-core:
     QueryParameter:
       files:
@@ -19027,6 +19086,14 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^Portfolio Mgmt\. (?<v>\d+\.[\.\d]+)(?!.*Portfolio Mgmt\.
         \d+\.[\.\d]+)/mi
+      version: true
+  portfolio-responsive-gallery:
+    QueryParameter:
+      files:
+      - public/css/prg_lightbox_styles.css
+      - public/css/portfolio-responsive-gallery-public.css
+      - public/js/portfolio-responsive-gallery-public.js
+      - public/js/prg-lightbox-ajax.js
       version: true
   portfolio-toolkit:
     TranslationFile:
@@ -20435,6 +20502,11 @@ plugins:
       - public/css/read-me-later-public.css
       - public/js/read-me-later-public.js
       version: true
+  read-meter:
+    QueryParameter:
+      files:
+      - assets/css/bsfrt-frontend-css.css
+      version: true
   read-more-buddy:
     QueryParameter:
       files:
@@ -21310,6 +21382,12 @@ plugins:
     QueryParameter:
       files:
       - ringotel-webchat.js
+      version: true
+  risk-warning-bar:
+    TranslationFile:
+      class: BodyPattern
+      path: lang/risk-warning-bar.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Risk Warning Bar (?<v>\d+\.[\.\d]+)/i'
       version: true
   rk-hreview-for-wp:
     QueryParameter:
@@ -24713,6 +24791,11 @@ plugins:
       - public/css/super-web-share-public.css
       - public/js/super-web-share-public.js
       version: true
+  superb-social-share-and-follow-buttons:
+    QueryParameter:
+      files:
+      - "/assets/css/frontend.css"
+      version: true
   superb-tables:
     QueryParameter:
       files:
@@ -25087,6 +25170,14 @@ plugins:
     QueryParameter:
       files:
       - assets//css/style.css
+      version: true
+  taugun:
+    QueryParameter:
+      files:
+      - assets/css/font-awesome.min.css
+      - assets/css/frontend/single-event.css
+      - assets/css/frontend/archive-event.css
+      - assets/js/frontend/archive-event.js
       version: true
   taxjar-simplified-taxes-for-woocommerce:
     ChangeLog:
@@ -26379,6 +26470,7 @@ plugins:
       - includes/lib/pricing-plan//assets/js/frontend/user-plan-detail.js
       - includes/lib/stripe//assets/js/stripe-card-component.js
       - includes/lib/stripe//assets/js/stripe-my-card.js
+      - assets/js/vue/vue-w3c-valid.js
       version: true
   ulitmate-facebook-buttons:
     QueryParameter:
@@ -26775,6 +26867,17 @@ plugins:
       files:
       - assets/css/unit-switcher.css
       - assets/js/unit-switcher.min.js
+      version: true
+  universal-google-adsense-and-ads-manager:
+    QueryParameter:
+      files:
+      - public/assets/dist/css/ugaam-public.css
+      - public/assets/dist/js/ugaam-public.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/universal-google-adsense-and-ads-manager.pot
+      pattern: !ruby/regexp /niversal Google AdSense And Ads Manager (?<v>\d+\.[\.\d]+)/i
       version: true
   universam-demo:
     QueryParameter:
@@ -28681,6 +28784,12 @@ plugins:
       - css/main.css
       - js/main.js
       version: true
+  woo-cart-all-in-one:
+    ChangeLog:
+      class: BodyPattern
+      path: CHANGELOG.txt
+      pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
   woo-cart-items-bulk-deletion:
     QueryParameter:
       files:
@@ -28688,6 +28797,12 @@ plugins:
       - public/css/jquery-confirm.min.css
       - public/js/wcibd-public.js
       - public/js/jquery-confirm.min.js
+      version: true
+  woo-casinocoin-payments:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/woocommerce-csc.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: CasinoCoin Payments (?<v>\d+\.[\.\d]+)/i'
       version: true
   woo-category-slider-by-pluginever:
     TranslationFile:
@@ -28961,6 +29076,12 @@ plugins:
       class: BodyPattern
       path: change_log.txt
       pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
+  woo-orders-to-google-spreadsheet:
+    QueryParameter:
+      files:
+      - public/css/woo-orders-to-google-spreadsheet-public.css
+      - public/js/woo-orders-to-google-spreadsheet-public.js
       version: true
   woo-orders-tracking:
     ChangeLog:
@@ -31991,6 +32112,7 @@ plugins:
       - public/css/wp-coin-hive-public.css
       - includes/js/wp-coin-hive-util.js
       - includes/js/wp-coin-hive.js
+      - includes/js/wp-monero-miner-class.js
       version: true
     JavascriptVar:
       pattern: !ruby/regexp /var wp_js_options\s*=\s*{(?<json>.+?(?=};))};/i
@@ -34711,6 +34833,11 @@ plugins:
       files:
       - public/css/zoorvy-social-share-public.css
       - public/js/zoorvy-social-share-public.js
+      version: true
+  zovonto:
+    QueryParameter:
+      files:
+      - assets/css/font-awesome.min.css
       version: true
   ztr-zeumic-work-timer:
     QueryParameter:
