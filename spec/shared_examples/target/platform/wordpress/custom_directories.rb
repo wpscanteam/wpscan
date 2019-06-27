@@ -98,7 +98,7 @@ shared_examples 'WordPress::CustomDirectories' do
   end
 
   describe '#content_dir=, #plugins_dir=' do
-    ['wp-content', 'wp-custom'].each do |dir|
+    %w[wp-content wp-custom].each do |dir|
       context "when content_dir = #{dir} and no plugins_dir" do
         before { target.content_dir = dir }
 
