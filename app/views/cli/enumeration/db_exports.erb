@@ -5,7 +5,7 @@
 <%= notice_icon %> Db Export(s) Identified:
 <% @db_exports.each do |db_export| -%>
 
-<%= info_icon %> <%= db_export %>
+<%= critical_icon %> <%= db_export %>
 <%= render('@finding', item: db_export) -%>
 <% end -%>
 <% end %>

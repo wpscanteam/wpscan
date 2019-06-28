@@ -5,7 +5,7 @@
 <%= notice_icon %> Config Backup(s) Identified:
 <% @config_backups.each do |config_backup| -%>
 
-<%= info_icon %> <%= config_backup %>
+<%= critical_icon %> <%= config_backup %>
 <%= render('@finding', item: config_backup) -%>
 <% end -%>
 <% end %>
