@@ -1395,6 +1395,14 @@ plugins:
       path: languages/acfw30-en_US.po
       pattern: !ruby/regexp '/Project\-Id\-Version: Ajax Contact Forms v(?<v>\d+\.[\.\d]+)/i'
       version: true
+  ajax-content-browser:
+    QueryParameter:
+      files:
+      - assets/css/acb.css
+      - assets/js/jquery-tiptip/jquery-tiptip.js
+      - assets/js/jquery-simplebar/jquery-simplebar.js
+      - assets/js/frontend/acb.js
+      version: true
   ajax-dropdowns:
     QueryParameter:
       files:
@@ -3354,6 +3362,17 @@ plugins:
       - biz-cal.css
       - calendar.js
       version: true
+  bizreview:
+    QueryParameter:
+      files:
+      - assets/icofont/icofont.min.css
+      - assets/fontawesome/all.min.css
+      - assets/css/bt-grid.css
+      - assets/css/owl.carousel.min.css
+      - assets/css/owl.theme.default.min.css
+      - assets/css/style.css
+      - inc/google-review/js/google-place.js
+      version: true
   bizyhood:
     QueryParameter:
       files:
@@ -3378,6 +3397,11 @@ plugins:
     QueryParameter:
       files:
       - js/black-studio-touch-dropdown-menu.min.js
+      version: true
+  blackout-darkmode-widget:
+    QueryParameter:
+      files:
+      - js/blackout.js
       version: true
   blade:
     ComposerFile:
@@ -3426,6 +3450,12 @@ plugins:
       files:
       - dist/js//block-gallery-masonry.min.js
       - dist/js/vendors/flickity.min.js
+      version: true
+  block-layouts:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   block-spammers:
     TranslationFile:
@@ -4428,6 +4458,12 @@ plugins:
       files:
       - assets/filter.js
       version: true
+  business-model-canvas:
+    QueryParameter:
+      files:
+      - bmc-dashboard/css/bmc_frontend_style.css
+      - bmc-dashboard/js/bmc_frontend_script.js
+      version: true
   business-open-hours-master:
     QueryParameter:
       files:
@@ -4606,6 +4642,13 @@ plugins:
       class: BodyPattern
       path: languages/callme-plugin-ru_RU.po
       pattern: !ruby/regexp /Project\-Id\-Version:\ Call\.me form v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  camoo-sms:
+    QueryParameter:
+      files:
+      - assets/css/admin-bar.css
+      - assets/css/subscribe.css
+      - assets/js/script.js
       version: true
   campaign-monitor-dashboard:
     TranslationFile:
@@ -6531,6 +6574,12 @@ plugins:
       - frontend/css/frontend.css
       - frontend/js/frontend.js
       version: true
+  course-migration-for-learndash:
+    QueryParameter:
+      files:
+      - public/css/sfwd-lms-course-migration-public.css
+      - public/js/sfwd-lms-course-migration-public.js
+      version: true
   course-scheduler-for-learndash:
     ChangeLog:
       class: BodyPattern
@@ -7089,6 +7138,11 @@ plugins:
       class: BodyPattern
       path: i18n/danixland-countdown.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ danixland CountDown (?<v>\d+\.[\.\d]+)/i
+      version: true
+  darkmode:
+    QueryParameter:
+      files:
+      - js/darkmode.min.js
       version: true
   darwin-backup:
     ChangeLog:
@@ -8243,6 +8297,7 @@ plugins:
       - features/tooltip/inc/tooltip.js
       - features/sticky/inc/sticky.js
       - features/waypoints/inc/waypoints.js
+      - "/inc/front.js"
       version: true
   echo-show-ids:
     ChangeLog:
@@ -8669,6 +8724,12 @@ plugins:
       class: BodyPattern
       path: languages/embed-wikimedia.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Embed Wikimedia (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  emoji-autocomplete-gutenberg:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
       version: true
   emoji-keyboard-in-comment-form:
     TranslationFile:
@@ -10930,6 +10991,12 @@ plugins:
       class: BodyPattern
       path: languages/gis-maps.pot
       pattern: !ruby/regexp /"Project\-Id\-Version:\ Gis maps (?<v>\d+\.[\.\d]+)/i
+      version: true
+  gitblock:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/gitblock.po
+      pattern: !ruby/regexp '/Github Block Plugin (?<v>\d+\.[\.\d]+)/i'
       version: true
   github-ribbon:
     TranslationFile:
@@ -15332,6 +15399,17 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
       version: true
+  mailbluster4wp:
+    QueryParameter:
+      files:
+      - public/css/mailbluster4wp-public.css
+      - public/js/mailbluster4wp-public.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/mailbluster4wp.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: MailBluster v(?<v>\d+\.[\.\d]+)/i'
+      version: true
   mailcamp:
     QueryParameter:
       files:
@@ -17219,6 +17297,11 @@ plugins:
       - subscription/style.css
       - subscription/validate.js
       version: true
+  newsletter-email-subscribe:
+    QueryParameter:
+      files:
+      - css/style.css
+      version: true
   newsletter-manager:
     TranslationFile:
       class: BodyPattern
@@ -17707,6 +17790,11 @@ plugins:
       - public/assets/css/public.css
       - public/assets/js/public.js
       version: true
+  offers-overview-block:
+    QueryParameter:
+      files:
+      - build/block.css
+      version: true
   official-facebook-pixel:
     TranslationFile:
       class: BodyPattern
@@ -18127,6 +18215,7 @@ plugins:
       files:
       - main.css
       - main.js
+      - static/js/main.js
       version: true
   ovic-addon-toolkit:
     QueryParameter:
@@ -18663,6 +18752,11 @@ plugins:
     QueryParameter:
       files:
       - pe2-display.css
+      version: true
+  pick-n-post-quote:
+    QueryParameter:
+      files:
+      - css/style.css
       version: true
   picsascii:
     QueryParameter:
@@ -23182,6 +23276,17 @@ plugins:
       - public/css/simple-testimonials-showcase-public.css
       - public/js/simple-testimonials-showcase-public.js
       version: true
+  simple-urls:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/simple-urls.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Simple URLs (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: plugin:version
+      version: true
   simple-user-adding:
     TranslationFile:
       class: BodyPattern
@@ -25588,6 +25693,11 @@ plugins:
       - themify/js/main.min.js
       - css/themify-builder-style.min.css
       version: true
+    MetaTag:
+      class: Xpath
+      xpath: //meta[@name="builder-styles-css"]/@data-href
+      version: true
+      pattern: !ruby/regexp /\/themify\-builder\/css\/themify\-builder\-style\.min\.css\?ver=(?<v>\d+\.[\.\d]+)/i
   themify-builder-lite:
     QueryParameter:
       files:
@@ -30874,6 +30984,12 @@ plugins:
       path: wp-course-manager.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: WP Course Manager (?<v>\d+\.[\.\d]+)/i'
       version: true
+  wp-courseware-convertkit-addon:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   wp-cprotext:
     TranslationFile:
       class: BodyPattern
@@ -31370,6 +31486,12 @@ plugins:
     QueryParameter:
       files:
       - js/script.js
+      version: true
+  wp-foft-loader:
+    TranslationFile:
+      class: BodyPattern
+      path: lang/wp-foft-loader.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: WP FOFT Loader (?<v>\d+\.[\.\d]+)/i'
       version: true
   wp-font-awesome:
     QueryParameter:
@@ -32489,6 +32611,12 @@ plugins:
       files:
       - public/css/wp-quiz-importer-public.css
       - public/js/wp-quiz-importer-public.js
+      version: true
+  wp-radio:
+    QueryParameter:
+      files:
+      - assets/frontend.min.css
+      - assets/frontend.min.js
       version: true
   wp-ragadjust:
     QueryParameter:

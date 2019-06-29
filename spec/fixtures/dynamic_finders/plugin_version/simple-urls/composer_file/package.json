@@ -1,0 +1,27 @@
+{
+  "name": "simple-urls",
+  "description": "Development files for the Simple URLs plugin.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/studiopress/simple-urls"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "node-wp-i18n": "^1.2.3"
+  },
+  "scripts": {
+    "makepot": "wpi18n makepot --exclude=vendor,node_modules",
+    "addtextdomain": "wpi18n addtextdomain --exclude=vendor,node_modules"
+  },
+  "plugin": {
+    "name": "Simple URLs",
+    "uri": "https://github.com/studiopress/simple-urls",
+    "description": "Simple URLs is a complete URL management system that allows you create, manage, and track outbound links from your site by using custom post types and 301 redirects.",
+    "author": "StudioPress",
+    "authoruri": "https://www.studiopress.com/",
+    "version": "0.9.9",
+    "license": "GPL-2.0+",
+    "licenseuri": "https://www.gnu.org/licenses/gpl-2.0.html",
+    "textdomain": "simple-urls"
+  }
+}
