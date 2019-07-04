@@ -9,12 +9,12 @@ GEM
       eventmachine (>= 0.12.9)
       http_parser.rb (~> 0.6.0)
     eventmachine (1.2.7)
-    ffi (1.10.0)
+    ffi (1.11.1)
     forwardable-extended (2.6.0)
     http_parser.rb (0.6.0)
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
-    jekyll (3.8.5)
+    jekyll (3.8.6)
       addressable (~> 2.4)
       colorator (~> 1.0)
       em-websocket (~> 0.5)
@@ -31,8 +31,8 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
-    jekyll-seo-tag (2.6.0)
-      jekyll (~> 3.3)
+    jekyll-seo-tag (2.6.1)
+      jekyll (>= 3.3, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (1.17.0)
@@ -48,11 +48,11 @@ GEM
       jekyll-seo-tag (~> 2.1)
     pathutil (0.16.2)
       forwardable-extended (~> 2.6)
-    public_suffix (3.0.3)
+    public_suffix (3.1.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    rouge (3.3.0)
+    rouge (3.5.1)
     ruby_dep (1.5.0)
     safe_yaml (1.0.5)
     sass (3.7.4)
@@ -60,15 +60,23 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    thread_safe (0.3.6)
+    tzinfo (1.2.5)
+      thread_safe (~> 0.1)
+    tzinfo-data (1.2019.2)
+      tzinfo (>= 1.0.0)
+    wdm (0.1.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll (~> 3.8.5)
+  jekyll (~> 3.8.6)
   jekyll-feed (~> 0.6)
   minima (~> 2.0)
+  tzinfo (~> 1.2)
   tzinfo-data
+  wdm (~> 0.1.0)
 
 BUNDLED WITH
-   2.0.1
+   2.0.2
