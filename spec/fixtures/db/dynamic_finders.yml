@@ -18723,6 +18723,13 @@ plugins:
       - lib/photoswipe-ui-default.min.js
       - js/photoswipe.js
       version: true
+  photoblocks-grid-gallery:
+    CorrectReadmePath:
+      class: BodyPattern
+      path: README.txt
+      pattern: !ruby/regexp /= (?<v>\d+\.[\.\d]+) =/
+      confidence: 80
+      version: true
   photonic:
     QueryParameter:
       files:
