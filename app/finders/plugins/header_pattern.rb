@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from Dynamic Finder 'HeaderPattern'
-      class HeaderPattern < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class HeaderPattern < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 30
 
         # @param [ Hash ] opts

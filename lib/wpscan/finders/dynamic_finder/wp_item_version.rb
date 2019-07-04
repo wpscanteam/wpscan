@@ -4,22 +4,22 @@ module WPScan
   module Finders
     module DynamicFinder
       module WpItemVersion
-        class BodyPattern < WPScan::Finders::DynamicFinder::Version::BodyPattern
+        class BodyPattern < Finders::DynamicFinder::Version::BodyPattern
         end
 
-        class Comment < WPScan::Finders::DynamicFinder::Version::Comment
+        class Comment < Finders::DynamicFinder::Version::Comment
         end
 
-        class ConfigParser < WPScan::Finders::DynamicFinder::Version::ConfigParser
+        class ConfigParser < Finders::DynamicFinder::Version::ConfigParser
         end
 
-        class HeaderPattern < WPScan::Finders::DynamicFinder::Version::HeaderPattern
+        class HeaderPattern < Finders::DynamicFinder::Version::HeaderPattern
         end
 
-        class JavascriptVar < WPScan::Finders::DynamicFinder::Version::JavascriptVar
+        class JavascriptVar < Finders::DynamicFinder::Version::JavascriptVar
         end
 
-        class QueryParameter < WPScan::Finders::DynamicFinder::Version::QueryParameter
+        class QueryParameter < Finders::DynamicFinder::Version::QueryParameter
           # @return [ Regexp ]
           def path_pattern
             # TODO: consider the target.blog.themes_dir if the target is a Theme (maybe implement a WpItem#item_dir ?)
@@ -37,7 +37,7 @@ module WPScan
           end
         end
 
-        class Xpath < WPScan::Finders::DynamicFinder::Version::Xpath
+        class Xpath < Finders::DynamicFinder::Version::Xpath
         end
       end
     end

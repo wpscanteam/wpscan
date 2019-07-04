@@ -6,7 +6,7 @@ module WPScan
       module Version
         # Version finder using by parsing config files, such as composer.json
         # and so on
-        class ConfigParser < WPScan::Finders::DynamicFinder::Version::Finder
+        class ConfigParser < Finders::DynamicFinder::Version::Finder
           ALLOWED_PARSERS = [JSON, YAML].freeze
 
           def self.child_class_constants

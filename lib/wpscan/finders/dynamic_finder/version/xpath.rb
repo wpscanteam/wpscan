@@ -5,7 +5,7 @@ module WPScan
     module DynamicFinder
       module Version
         # Version finder using Xpath method
-        class Xpath < WPScan::Finders::DynamicFinder::Version::Finder
+        class Xpath < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
             @child_class_constants ||= super().merge(

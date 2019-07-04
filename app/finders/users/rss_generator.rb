@@ -6,7 +6,7 @@ module WPScan
       # Users disclosed from the dc:creator field in the RSS
       # The names disclosed are display names, however depending on the configuration of the blog,
       # they can be the same than usernames
-      class RSSGenerator < WPScan::Finders::WpVersion::RSSGenerator
+      class RSSGenerator < Finders::WpVersion::RSSGenerator
         def process_urls(urls, _opts = {})
           found = []
 

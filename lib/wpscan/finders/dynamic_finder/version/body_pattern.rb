@@ -6,7 +6,7 @@ module WPScan
       module Version
         # Version finder using Body Pattern method. Tipically used when the response is not
         # an HTML doc and Xpath can't be used
-        class BodyPattern < WPScan::Finders::DynamicFinder::Version::Finder
+        class BodyPattern < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
             @child_class_constants ||= super().merge(PATTERN: nil, CONFIDENCE: 60)

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from Dynamic Finder 'ConfigParser'
-      class ConfigParser < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class ConfigParser < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 40
 
         # @param [ Hash ] opts The options from the #passive, #aggressive methods

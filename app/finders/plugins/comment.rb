@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from the Dynamic Finder 'Comment'
-      class Comment < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class Comment < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 30
 
         # @param [ Hash ] opts The options from the #passive, #aggressive methods

@@ -65,15 +65,15 @@ module WPScan
 
         case ParsedCli.password_attack
         when :wp_login
-          WPScan::Finders::Passwords::WpLogin.new(target)
+          Finders::Passwords::WpLogin.new(target)
         when :xmlrpc
           raise Error::XMLRPCNotDetected unless xmlrpc
 
-          WPScan::Finders::Passwords::XMLRPC.new(xmlrpc)
+          Finders::Passwords::XMLRPC.new(xmlrpc)
         when :xmlrpc_multicall
           raise Error::XMLRPCNotDetected unless xmlrpc
 
-          WPScan::Finders::Passwords::XMLRPCMulticall.new(xmlrpc)
+          Finders::Passwords::XMLRPCMulticall.new(xmlrpc)
         end
       end
 
@@ -96,12 +96,12 @@ module WPScan
           wp_version = target.wp_version
 
           if wp_version && wp_version < '4.4'
-            WPScan::Finders::Passwords::XMLRPCMulticall.new(xmlrpc)
+            Finders::Passwords::XMLRPCMulticall.new(xmlrpc)
           else
-            WPScan::Finders::Passwords::XMLRPC.new(xmlrpc)
+            Finders::Passwords::XMLRPC.new(xmlrpc)
           end
         else
-          WPScan::Finders::Passwords::WpLogin.new(target)
+          Finders::Passwords::WpLogin.new(target)
         end
       end
 

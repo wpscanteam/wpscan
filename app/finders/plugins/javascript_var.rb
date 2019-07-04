@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from the Dynamic Finder 'JavascriptVar'
-      class JavascriptVar < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class JavascriptVar < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 60
 
         # @param [ Hash ] opts The options from the #passive, #aggressive methods

@@ -5,7 +5,7 @@ module WPScan
     module DynamicFinder
       module Version
         # Version finder using JavaScript Variable method
-        class JavascriptVar < WPScan::Finders::DynamicFinder::Version::Finder
+        class JavascriptVar < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
             @child_class_constants ||= super().merge(

@@ -12,23 +12,23 @@ module WPScan
           end
         end
 
-        class BodyPattern < WPScan::Finders::DynamicFinder::Version::BodyPattern
+        class BodyPattern < Finders::DynamicFinder::Version::BodyPattern
           include Finder
         end
 
-        class Comment < WPScan::Finders::DynamicFinder::Version::Comment
+        class Comment < Finders::DynamicFinder::Version::Comment
           include Finder
         end
 
-        class HeaderPattern < WPScan::Finders::DynamicFinder::Version::HeaderPattern
+        class HeaderPattern < Finders::DynamicFinder::Version::HeaderPattern
           include Finder
         end
 
-        class JavascriptVar < WPScan::Finders::DynamicFinder::Version::JavascriptVar
+        class JavascriptVar < Finders::DynamicFinder::Version::JavascriptVar
           include Finder
         end
 
-        class QueryParameter < WPScan::Finders::DynamicFinder::Version::QueryParameter
+        class QueryParameter < Finders::DynamicFinder::Version::QueryParameter
           include Finder
 
           # @return [ Hash ]

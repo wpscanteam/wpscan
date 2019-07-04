@@ -5,7 +5,7 @@ module WPScan
     module DynamicFinder
       module Version
         # Version finder using Header Pattern method
-        class HeaderPattern < WPScan::Finders::DynamicFinder::Version::Finder
+        class HeaderPattern < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
             @child_class_constants ||= super().merge(HEADER: nil, PATTERN: nil, CONFIDENCE: 60)

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from the Dynamic Finder 'Xpath'
-      class Xpath < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class Xpath < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 40
 
         # @param [ Hash ] opts The options from the #passive, #aggressive methods

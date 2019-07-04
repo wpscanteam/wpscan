@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from Dynamic Finder 'BodyPattern'
-      class BodyPattern < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class BodyPattern < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 30
 
         # @param [ Hash ] opts The options from the #passive, #aggressive methods

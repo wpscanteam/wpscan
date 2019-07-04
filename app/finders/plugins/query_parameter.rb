@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Plugins
       # Plugins finder from Dynamic Finder 'QueryParameter'
-      class QueryParameter < WPScan::Finders::DynamicFinder::WpItems::Finder
+      class QueryParameter < Finders::DynamicFinder::WpItems::Finder
         DEFAULT_CONFIDENCE = 10
 
         def passive(_opts = {})

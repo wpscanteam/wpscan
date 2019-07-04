@@ -5,7 +5,7 @@ module WPScan
     module DynamicFinder
       module Version
         # Version finder using QueryParameter method
-        class QueryParameter < WPScan::Finders::DynamicFinder::Version::Finder
+        class QueryParameter < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
             @child_class_constants ||= super().merge(
