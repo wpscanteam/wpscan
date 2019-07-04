@@ -77,9 +77,22 @@ module WPScan
         end
       end
 
+      # @return [ Boolean ]
+      def xmlrpc_get_users_blogs_enabled?
+        if xmlrpc&.enabled? &&
+           xmlrpc.available_methods.include?('wp.getUsersBlogs') &&
+           xmlrpc.method_call('wp.getUsersBlogs', [SecureRandom.hex[0, 6], SecureRandom.hex[0, 4]])
+                 .run.body !~ /XML\-RPC services are disabled/
+
+          true
+        else
+          false
+        end
+      end
+
       # @return [ CMSScanner::Finders::Finder ]
       def attacker_from_automatic_detection
-        if xmlrpc&.enabled? && xmlrpc.available_methods.include?('wp.getUsersBlogs')
+        if xmlrpc_get_users_blogs_enabled?
           wp_version = target.wp_version
 
           if wp_version && wp_version < '4.4'
