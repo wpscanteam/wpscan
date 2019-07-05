@@ -6,7 +6,7 @@ module WPScan
       class Plugin < Base
         # @return [ Hash ]
         def self.db_data
-          @db_data ||= super['plugins'] || {}
+          @db_data ||= raw_db_data['plugins'] || {}
         end
 
         def self.version_finder_module

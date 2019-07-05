@@ -6,7 +6,7 @@ module WPScan
       class Wordpress < Base
         # @return [ Hash ]
         def self.db_data
-          @db_data ||= super['wordpress'] || {}
+          @db_data ||= raw_db_data['wordpress'] || {}
         end
 
         # @return [ Constant ]

@@ -32,7 +32,7 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
     context 'when matches' do
       let(:body) { File.read(passive_fixture) }
 
-      it 'contains the expected plugins' do
+      it 'contains the expected items' do
         expected = []
 
         finder.passive_configs.each do |slug, configs|
@@ -89,7 +89,7 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
       end
     end
 
-    it 'returns the expected plugins' do
+    it 'returns the expected items' do
       expect(finder.aggressive).to match_array(@expected.map { |item| eql(item) })
     end
   end

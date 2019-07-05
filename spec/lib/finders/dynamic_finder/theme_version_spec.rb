@@ -1,40 +1,40 @@
 # frozen_string_literal: true
 
-# All Plugin Dynamic Finders returning a Version are tested here.
+# All Theme Dynamic Finders returning a Version are tested here.
 # When adding one to the spec/fixtures/db/dynamic_finder.yml, a few files have
 # to be edited/created
 #
 # - spec/fixtures/dynamic_finder/expected.yml with the expected result/s
-# - Then, depending on the finder class used: spec/fixtures/dynamic_finder/plugin_version/
+# - Then, depending on the finder class used: spec/fixtures/dynamic_finder/theme_version/
 #
 # Furthermore, the fixtures files _passive_all.html are also used by plugins/themes
 # finders in spec/app/finders/plugins|themes to check the items existence from the homepage
 #
 # In case of a failure, it's recommended to use rspec -e "<Full Description>" while fixing.
-# e.g: rspec -e "WPScan::Finders::PluginVersion::Cardealerpress::HeaderPattern#passive"
+# e.g: rspec -e "WPScan::Finders::ThemeVersion::Cardealerpress::HeaderPattern#passive"
 # The -e option can also be used to test all HeaderPattern, for example: rspec -e "::HeaderPattern"
 
-expected_all = df_expected_all['plugins']
+expected_all = df_expected_all['themes']
 
-WPScan::DB::DynamicFinders::Plugin.create_versions_finders
+WPScan::DB::DynamicFinders::Theme.create_versions_finders
 
 describe 'Try to create the finders twice' do
   it 'does not raise an error when the class already exists' do
-    expect { WPScan::DB::DynamicFinders::Plugin.create_versions_finders }.to_not raise_error
+    expect { WPScan::DB::DynamicFinders::Theme.create_versions_finders }.to_not raise_error
   end
 end
 
-WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, configs|
+WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, configs|
   configs.each do |finder_class, config|
     finder_super_class = config['class'] || finder_class
 
     # The QueryParameter specs are slow given the huge fixture file
     # If someone find a fix for that, please share!
-    describe df_tested_class_constant('PluginVersion', finder_class, slug), slow: true do
-      subject(:finder) { described_class.new(plugin) }
-      let(:plugin)     { WPScan::Model::Plugin.new(slug, target) }
+    describe df_tested_class_constant('ThemeVersion', finder_class, slug), slow: true do
+      subject(:finder) { described_class.new(theme) }
+      let(:theme)      { WPScan::Model::Theme.new(slug, target) }
       let(:target)     { WPScan::Target.new('http://wp.lab/') }
-      let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('plugin_version') }
+      let(:fixtures)   { DYNAMIC_FINDERS_FIXTURES.join('theme_version') }
 
       let(:expected) do
         if expected_all[slug][finder_class].is_a?(Hash)
@@ -46,12 +46,15 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
 
       let(:stubbed_response) { { body: 'aa' } }
 
-      describe '#passive', slow: true do
-        before do
-          stub_request(:get, target.url).to_return(stubbed_response)
+      before do
+        allow(target).to receive(:content_dir).and_return('wp-content')
 
-          expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
-        end
+        # When creating a theme, the style.css is checked, let's stub that
+        stub_request(:get, target.url("wp-content/themes/#{slug}/style.css"))
+      end
+
+      describe '#passive', slow: true do
+        before { stub_request(:get, target.url).to_return(stubbed_response) }
 
         if config['path']
           context 'when PATH' do
@@ -100,9 +103,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
         let(:fixtures) { super().join(slug, finder_class.underscore) }
 
         before do
-          expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
-
-          stub_request(:get, plugin.url(config['path'])).to_return(stubbed_response) if config['path']
+          stub_request(:get, theme.url(config['path'])).to_return(stubbed_response) if config['path']
         end
 
         if config['path']

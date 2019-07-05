@@ -120,6 +120,13 @@ wordpress:
     xpath: //comment()[contains(., "Strong Testimonials")]
     pattern: !ruby/regexp '/versions: WordPress (?<v>\d+\.[\.\d]+) \|/i'
     version: true
+themes:
+  zoner:
+    Readme:
+      class: BodyPattern
+      path: readme.txt
+      pattern: !ruby/regexp /= (?<v>\d+\.[\.\d]+) =/
+      version: true
 plugins:
   10centmail-subscription-management-and-analytics:
     MetaTag:
