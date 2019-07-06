@@ -530,6 +530,12 @@ plugins:
       - public/css/acf-customizer-public.css
       - public/js/acf-customizer-public.js
       version: true
+  acf-dropzone:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/acf-dropzone.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: ACF Dropzone (?<v>\d+\.[\.\d]+)/i'
+      version: true
   acf-fast-flexy:
     QueryParameter:
       files:
@@ -556,6 +562,12 @@ plugins:
       files:
       - public/css/acf-multi-step-public.css
       - public/js/acf-multi-step-public.js
+      version: true
+  acf-openstreetmap-field:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/acf-openstreetmap-field.pot
+      pattern: !ruby/regexp '/ect\-Id\-Version: ACF OpenStreetMap Field (?<v>\d+\.[\.\d]+)/i'
       version: true
   acf-options-for-polylang:
     ChangeLog:
@@ -1118,6 +1130,12 @@ plugins:
       class: BodyPattern
       path: lang/acf-table-pl_PL.po
       pattern: !ruby/regexp '/\#\. Fields: Table Field (?<v>\d+\.[\.\d]+)/i'
+      version: true
+  advanced-custom-types-for-divi:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/en_US.po
+      pattern: !ruby/regexp '/Version: Advanced Custom Types for Divi (?<v>\d+\.[\.\d]+)/i'
       version: true
   advanced-custom-widget:
     QueryParameter:
@@ -2424,6 +2442,12 @@ plugins:
       path: languages/autoclose-en_US.pot
       pattern: !ruby/regexp /delete the old settings from prior to v(?<v>\d+\.[\.\d]+)/i
       version: true
+  autocorrector-wp-camelcase:
+    QueryParameter:
+      files:
+      - public/css/autocorrector-wp-camelcase-public.css
+      - public/js/autocorrector-wp-camelcase-public.js
+      version: true
   automatic-copyright-year:
     QueryParameter:
       files:
@@ -2959,6 +2983,13 @@ plugins:
       - public/ajax/msbdt-public-service-display-ajax.js
       - public/ajax/multi-appointment-select-disable-date-agnist-doctor-ajax.js
       - public/ajax/msbdt-public-professional-display-ajax.js
+      version: true
+  bdtask-crm:
+    QueryParameter:
+      files:
+      - public/css/bdtaskcrm-public.css
+      - public/js/bdtaskcrm-public.js
+      - admin/js/demo.js
       version: true
   bdwebteam-recent-post-tabs-widget:
     QueryParameter:
@@ -3821,6 +3852,28 @@ plugins:
       path: lang/bookmark-export-de_DE.po
       pattern: !ruby/regexp '/Project\-Id\-Version: Bookmark Export (?<v>\d+\.[\.\d]+)/i'
       version: true
+  bookme-pro-free-appointment-booking-system:
+    QueryParameter:
+      files:
+      - frontend/assets/css/intlTelInput.css
+      - frontend/assets/css/ladda.min.css
+      - frontend/assets/css/picker.classic.css
+      - frontend/assets/css/picker.classic.date.css
+      - frontend/assets/css/trackpad-scroll.css
+      - frontend/assets/css/bookme-pro.css
+      - frontend/controllers/customer_profile/assets/css/customer_profile.css
+      - frontend/assets/js/spin.min.js
+      - frontend/assets/js/ladda.min.js
+      - frontend/assets/js/hammer.min.js
+      - frontend/assets/js/jquery.hammer.min.js
+      - frontend/assets/js/jquery.scroll.min.js
+      - frontend/assets/js/picker.js
+      - frontend/assets/js/picker.date.js
+      - frontend/assets/js/intlTelInput.min.js
+      - frontend/assets/js/tooltip.js
+      - frontend/assets/js/bookme-pro.js
+      - frontend/controllers/customer_profile/assets/js/customer_profile.js
+      version: true
   bookwize-booking-form:
     QueryParameter:
       files:
@@ -4114,6 +4167,14 @@ plugins:
       class: ConfigParser
       path: composer.json
       key: version
+      version: true
+  br-knowledge-base:
+    QueryParameter:
+      files:
+      - public/css/main.css
+      - public/css/BR_KNOWLEDGE_BASE-public.css
+      - public/css/font-awesome.css
+      - public/js/BR_KNOWLEDGE_BASE-public.js
       version: true
   branding:
     QueryParameter:
@@ -5192,6 +5253,11 @@ plugins:
       files:
       - public/css/cf7_notie-public.css
       - public/js/notie.js
+      version: true
+  cf7-phone-mask-field:
+    QueryParameter:
+      files:
+      - assets/js/jquery.maskedinput.min.js
       version: true
   cf7-proxy-ip:
     ComposerFile:
@@ -7428,6 +7494,12 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  different-menus-in-different-pages:
+    QueryParameter:
+      files:
+      - public/css/different-menus-for-different-page-public.css
+      - public/js/different-menus-for-different-page-public.js
+      version: true
   digest:
     TranslationFile:
       class: BodyPattern
@@ -7445,6 +7517,12 @@ plugins:
       class: BodyPattern
       path: languages/plugin-name.pot
       pattern: !ruby/regexp /Project\-Id\-Version:\ TODO (?<v>\d+\.[\.\d]+)/i
+      version: true
+  digitalpush:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/insert-headers-and-footers.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: DigitalPUSH (?<v>\d+\.[\.\d]+)/i'
       version: true
   dima-take-action:
     QueryParameter:
@@ -9784,6 +9862,12 @@ plugins:
       files:
       - css/feedzy-rss-feeds.css
       version: true
+  fibotalk-live-chat:
+    QueryParameter:
+      files:
+      - public/css/fibotalk-live-chat-public.css
+      - public/js/fibotalk-live-chat-public.js
+      version: true
   file-away:
     QueryParameter:
       files:
@@ -11003,7 +11087,7 @@ plugins:
     TranslationFile:
       class: BodyPattern
       path: languages/gitblock.po
-      pattern: !ruby/regexp '/Github Block Plugin (?<v>\d+\.[\.\d]+)/i'
+      pattern: !ruby/regexp /Github Block Plugin (?<v>\d+\.[\.\d]+)/i
       version: true
   github-ribbon:
     TranslationFile:
@@ -11746,6 +11830,17 @@ plugins:
       files:
       - public/css/gridable-style.css
       - public/js/gridable-scripts.js
+      version: true
+  groovy-menu-free:
+    QueryParameter:
+      files:
+      - assets/style/frontend.css
+      - assets/js/frontend.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/groovy-menu.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Groovy Menu (?<v>\d+\.[\.\d]+)/i'
       version: true
   groups:
     ChangeLog:
@@ -13309,6 +13404,14 @@ plugins:
       - scripts/bootstrap.js
       pattern: !ruby/regexp /ver=(?<v>[\d\.]+)/i
       version: true
+  isiatotop:
+    QueryParameter:
+      files:
+      - assets/css/isiaToTop.min.css
+      - assets/public/css/custom.css
+      - assets/js/isiaToTop.min.js
+      - assets/public/js/init.js
+      version: true
   issuem:
     QueryParameter:
       files:
@@ -13454,6 +13557,17 @@ plugins:
       files:
       - assets/css/jet-widgets.css
       - assets/css/jet-widgets-skin.css
+      version: true
+  jewelfit-virtual-jewellery-try-on:
+    QueryParameter:
+      files:
+      - public/css/virtual-jewellery-try-on-public.css
+      - public/css/jquery-ui.css
+      - public/css/bootstrap-responsive.css
+      - public/css/bootstrap.min.css
+      - public/js/virtual-jewellery-try-on-public.js
+      - public/js/html2canvas.min.js
+      - public/js/load_core_functions.js
       version: true
   jf-simple-coming-soon:
     TranslationFile:
@@ -15117,6 +15231,11 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
+      version: true
+  lsx-health-plan:
+    QueryParameter:
+      files:
+      - assets/css/lsx-health-plan.css
       version: true
   lsx-importer-for-wetu:
     ComposerFile:
@@ -18140,6 +18259,12 @@ plugins:
       path: lang/blockx-oih-nl_NL.po
       pattern: !ruby/regexp /\-Version:\ BlockX Original Image Handler (?<v>\d+\.[\.\d]+)/i
       version: true
+  orion-login-with-sms:
+    QueryParameter:
+      files:
+      - css/style.css
+      - dist/main.js
+      version: true
   os-bxslider:
     QueryParameter:
       files:
@@ -18482,6 +18607,12 @@ plugins:
       files:
       - public/css/past-events-extension-public.css
       version: true
+  payex-woocommerce-payments:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /Version (?<v>\d+\.[\.\d]+)/i
+      version: true
   paymentsense-gateway-for-woocommerce:
     ChangeLog:
       class: BodyPattern
@@ -18656,6 +18787,11 @@ plugins:
       class: BodyPattern
       path: translations/pfund-ro_RO.po
       pattern: !ruby/regexp /Project\-Id\-Version:\ Personal Fundraiser (?<v>\d+\.[\.\d]+)/i
+      version: true
+  personalized-shortcode-pro:
+    QueryParameter:
+      files:
+      - public/js/personalized-shortcode-pro-public.js
       version: true
   pesapress:
     QueryParameter:
@@ -20214,6 +20350,12 @@ plugins:
       path: composer.json
       key: version
       version: true
+  pws-better-widget-title:
+    QueryParameter:
+      files:
+      - public/css/pws-better-widget-title-public.css
+      - public/js/pws-better-widget-title-public.js
+      version: true
   pym-shortcode:
     JavascriptComment:
       class: BodyPattern
@@ -20680,6 +20822,20 @@ plugins:
       files:
       - css/style.css
       - js/script.js
+      version: true
+  realtypack-core:
+    QueryParameter:
+      files:
+      - views/assets/css/agancy.css
+      - views/assets/admin/css/featherlight.min.css
+      - views/assets/admin/js/featherlight.min.js
+      - views/assets/js/plugins/jquery.lazy.min.js
+      - views/assets/js/realty-pack-core.min.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/RTPC.pot
+      pattern: !ruby/regexp /msgid "v (?<v>\d+\.[\.\d]+)/i
       version: true
   rebel-slider:
     QueryParameter:
@@ -23928,6 +24084,17 @@ plugins:
       path: CHANGELOG.md
       pattern: !ruby/regexp /\#\# \[(?<v>\d+\.[\.\d]+)\]/
       version: true
+  social-elementor-lite:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/social-elementor-lite.pot
+      pattern: !ruby/regexp '/ion: Social Addons for Elementor \(Lite\) (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^Version:? (?<v>\d+\.[\.\d]+)(?!.*Version:? \d+\.[\.\d]+)/mi
+      version: true
   social-icons:
     QueryParameter:
       files:
@@ -24670,6 +24837,17 @@ plugins:
       files:
       - frontend/js/frontend.js
       version: true
+  store-notification:
+    QueryParameter:
+      files:
+      - assets/css/store-notification.css
+      - assets/js/store-notification.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/store-notification.pot
+      pattern: !ruby/regexp '/\#: svn\-repository\/tags\/(?<v>\d+\.[\.\d]+)/i'
+      version: true
   storefront-jetpack:
     QueryParameter:
       files:
@@ -24813,6 +24991,13 @@ plugins:
       class: BodyPattern
       path: changelog.txt
       pattern: !ruby/regexp /^v(?<v>\d+\.[\.\d]+)/i
+      version: true
+  subscribe-to-download-lite:
+    QueryParameter:
+      files:
+      - fontawesome/css/all.min.css
+      - "/css/stdl-frontend.css"
+      - "/js/stdl-frontend.js"
       version: true
   subscribe2:
     ChangeLog:
@@ -26595,6 +26780,14 @@ plugins:
       - includes/lib/stripe//assets/js/stripe-card-component.js
       - includes/lib/stripe//assets/js/stripe-my-card.js
       - assets/js/vue/vue-w3c-valid.js
+      - assets/js/vue/vue.js
+      - assets/js/frontend/bootstrap/bootstrap.js
+      - assets/js/select2.full.js
+      - assets/js/moment.js
+      - assets/js/toastr.js
+      - assets/bootstrap-datepicker/js/bootstrap-datepicker.js
+      - assets/js/frontend/dist/ulisting-main.js
+      - assets/js/vue/vue-resource.js
       version: true
   ulitmate-facebook-buttons:
     QueryParameter:
@@ -27028,6 +27221,7 @@ plugins:
       - assets/js/feedback.js
       - assets/js/webform.js
       - assets/js/universam.js
+      - theme/usam-global-style.css
       version: true
   unlimited-addons-for-wpbakery-page-builder:
     ReleaseLog:
@@ -27986,6 +28180,12 @@ plugins:
       class: BodyPattern
       path: CHANGELOG.txt
       pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/
+      version: true
+  wc-product-videos:
+    QueryParameter:
+      files:
+      - public/css/woocommerce-product-videos-public.css
+      - public/js/woocommerce-product-videos-public.js
       version: true
   wc-responsive-video:
     QueryParameter:
@@ -30543,6 +30743,12 @@ plugins:
       - js/jquery.atd.textarea.js
       - js/frontend.js
       version: true
+  wp-alert-bars:
+    QueryParameter:
+      files:
+      - assets/css/wab-front-style.css
+      - assets/js/wab-front-script.js
+      version: true
   wp-all-in-one-admin-bar:
     QueryParameter:
       files:
@@ -31949,6 +32155,12 @@ plugins:
       files:
       - public/assets/jquery.magnific-popup.min.js
       version: true
+  wp-link-bio:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/
+      version: true
   wp-link-list:
     QueryParameter:
       files:
@@ -33032,6 +33244,12 @@ plugins:
       - css/image-renderer.css
       - js/jquery.wp-smartcrop.min.js
       version: true
+  wp-sms-functions:
+    TranslationFile:
+      class: BodyPattern
+      path: lang/wp-sms-functions-tr_TR.po
+      pattern: !ruby/regexp '/"Project\-Id\-Version: SMS Provider (?<v>\d+\.[\.\d]+)/i'
+      version: true
   wp-smushit:
     TranslationFile:
       class: BodyPattern
@@ -33407,6 +33625,11 @@ plugins:
     QueryParameter:
       files:
       - style/style.css
+      version: true
+  wp-top-news:
+    QueryParameter:
+      files:
+      - assets/css/wtn-front-style.css
       version: true
   wp-topbar:
     Comment:
