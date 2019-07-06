@@ -9,6 +9,7 @@ module WPScan
       include CMSScanner::Target::Platform::PHP
       include CMSScanner::Target::Server::Generic
 
+      # Most common readme filenames, based on checking all public plugins and themes.
       READMES = %w[readme.txt README.txt README.md readme.md Readme.txt].freeze
 
       attr_reader :uri, :slug, :detection_opts, :version_detection_opts, :blog, :path_from_blog, :db_data
@@ -117,13 +118,17 @@ module WPScan
 
         return @readme_url unless @readme_url.nil?
 
-        READMES.each do |path|
+        potential_readme_filenames.each do |path|
           t_url = url(path)
 
           return @readme_url = t_url if Browser.forge_request(t_url, blog.head_or_get_params).run.code == 200
         end
 
         @readme_url = false
+      end
+
+      def potential_readme_filenames
+        @potential_readme_filenames ||= READMES
       end
 
       # @param [ String ] path

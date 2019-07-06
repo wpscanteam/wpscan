@@ -60,6 +60,26 @@ describe WPScan::Model::Plugin do
     end
   end
 
+  describe 'potential_readme_filenames' do
+    context 'when not set in the DF file' do
+      its(:potential_readme_filenames) { should eql described_class::READMES }
+    end
+
+    context 'when set in the DF file' do
+      context 'as a string' do
+        let(:slug) { 'photoblocks-grid-gallery' }
+
+        its(:potential_readme_filenames) { should eql %w[README.txt] }
+      end
+
+      context 'as an array' do
+        let(:slug) { 'customerlabs-actionrecorder' }
+
+        its(:potential_readme_filenames) { should eql %w[Readme.txt Readme.md] }
+      end
+    end
+  end
+
   describe '#latest_version, #last_updated, #popular' do
     context 'when none' do
       let(:slug) { 'vulnerable-not-popular' }

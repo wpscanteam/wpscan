@@ -28,6 +28,11 @@ module WPScan
 
         @version
       end
+
+      # @return [ Array<String> ]
+      def potential_readme_filenames
+        @potential_readme_filenames ||= [*(DB::DynamicFinders::Plugin.db_data.dig(slug, 'Readme', 'path') || super)]
+      end
     end
   end
 end

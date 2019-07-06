@@ -129,6 +129,8 @@ themes:
       version: true
 plugins:
   10centmail-subscription-management-and-analytics:
+    Readme:
+      path: README.txt
     MetaTag:
       class: Xpath
       xpath: //meta[@name="tencentmail-plugin-version"]/@content
@@ -7129,6 +7131,11 @@ plugins:
       - public/css/customer-chat-for-facebook-public.css
       - public/js/customer-chat-for-facebook-public.js
       version: true
+  customerlabs-actionrecorder:
+    Readme:
+      path:
+      - Readme.txt
+      - Readme.md
   customify-sites:
     TranslationFile:
       class: BodyPattern
@@ -18867,11 +18874,13 @@ plugins:
       - js/photoswipe.js
       version: true
   photoblocks-grid-gallery:
-    CorrectReadmePath:
-      class: BodyPattern
+    Readme:
       path: README.txt
-      pattern: !ruby/regexp /= (?<v>\d+\.[\.\d]+) =/
-      confidence: 80
+    QueryParameter:
+      files:
+      - public/css/photoblocks-public.css
+      - public/js/anime.min.js
+      - public/js/photoblocks.public.js
       version: true
   photonic:
     QueryParameter:

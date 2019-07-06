@@ -11,7 +11,7 @@ module WPScan
 
           # The target(plugin)#readme_url can't be used directly here
           # as if the --detection-mode is passive, it will always return nil
-          Model::WpItem::READMES.each do |file|
+          target.potential_readme_filenames.each do |file|
             res = target.head_and_get(file)
 
             next unless res.code == 200 && !(numbers = version_numbers(res.body)).empty?
