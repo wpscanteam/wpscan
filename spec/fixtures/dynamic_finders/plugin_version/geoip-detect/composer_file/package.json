@@ -1,0 +1,27 @@
+{
+  "name": "geoip-detect",
+  "version": "2.11.0",
+  "description": "Geoip Detection - Wordpress Plugin (JS)",
+  "main": "index.js",
+  "repository": "git@github.com:yellowtree/geoip-detect.git",
+  "author": "Benjamin Pick <benjaminpick@github.com>",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "clean": "rm -rf .cache",
+    "start": "rm -rf js/dist && parcel parcel.urls --out-dir js/dist",
+    "build": "rm -rf js/dist && parcel build parcel.urls --out-dir js/dist"
+  },
+  "private": false,
+  "dependencies": {
+    "@babel/runtime": "^7.4.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "lodash.get": "^4.4.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-transform-runtime": "^7.4.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "parcel-bundler": "^1.11.0",
+    "parcel-plugin-assets-list": "^1.7.0"
+  }
+}

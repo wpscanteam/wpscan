@@ -1,0 +1,410 @@
+﻿== Changelog ==
+
+= 1.2.17.0 =
+* Added Ontraport integration.
+* Added Mailjet integration.
+* Added Vertical Response integration.
+* Updated Mailpoet integration to use it's API for every operation.
+* Fixed sender name and email not injected on autoresponder emails.
+* Added doc link on how to fix the popular no email list found error.
+* Added stripslash support for from name.
+
+= 1.2.16.1 =
+* Added option to change optin theme.
+* Added unsubscribe support for emails sent to registered users.
+
+= 1.2.16.0 =
+* Added one-off newsletter support.
+* Added ninja forms support for custom html feature.
+* Fixed: conditional display in optin customizer.
+
+= 1.2.15.1 =
+* Added link to view integrations error log.
+* Added option to target users by their role.
+* Fixed: when click launch is activated, query string section is not hidden.
+* Fixed Uncaught TypeError: Cannot read property 'active' of undefined.
+* Added customizer option to remove post body in email automation.
+* Increase maximum post range slider to 1000 in email automation settings.
+* Added split test support for shortcode optin embed.
+
+= 1.2.15.0 =
+* Added new optin themes.
+* Added ability to replace the default fields with a shortcode and/or HTML content.
+* Added query string targeting display rule.
+* Added feature to hide optins on urls with the mohide=true query string.
+* Added categories and tax support to [posts-loop] email digest shortcode.
+* Allow users access to MailOptin with with manage_mailoptin capability.
+* Fixed bug where optin theme customizer config override another theme.
+* Fixed compatibility with Windows server.
+* Fixed bug with replacement of name and address placeholder tags in email automation.
+* Only load optin theme dependent script on mailoptin customizer UI.
+
+= 1.2.14.0 =
+* New: Disable closing of lightbox on backdrop click.
+* Added filter to use excerpt instead of post content in email automation.
+* Added Gutenberg block form embedding optin forms.
+
+= 1.2.13.2 =
+* Fixed bug with custom taxonomies settings not saving in email automation.
+* Fixed issues with email automation custom template shortcode tags not working.
+* Fixed bug where post with full content wasn't triggering email automation.
+* Fixed issue where ESP with default static fields returned empty because no custom user created field was found.
+
+= 1.2.13.1 =
+* Fixed issue where youtube/vimeo embed wasn't correctly showing in email.
+* Fixed PHP Deprecated:  define(): Declaration of case-insensitive constants is deprecated.
+* Core files are now included in parent plugin folder instead of composer vendor directory.
+
+= 1.2.13.0 =
+* Design refresh of the dashboard.
+* Added setting to disable impression tracking.
+* Lead bank now has its own settings page.
+
+= 1.2.12.2 =
+* Added support for windows hosting.
+* Added advance settings to name field for ESP mapping.
+* Made all tinymce control text/visual.
+
+= 1.2.12.1 =
+* Fixed issue where sending new post notification failed in some rare cases.
+* Fixed sendinblue bug where email address belonging to another list failed to be subscribed.
+
+= 1.2.12.0 =
+* Removed optin campaigns and conversion limit.
+* Added shortcode support for optin forms.
+* Fixed bug where email automation customizer wasn't saving.
+* Made headline in optin customizer visual/text.
+* Added shortcode support to success message.
+* Reduced inline js object added to frontend.
+* Added better explanation to re-authorize connection button.
+* Subscriber name is now split into name and lastname for Mailerlite connection.
+* Updated Convertfox to Gist.
+* Fixed bug with mailchimp interest user input.
+* Added sendinblue list sync where by user are not removed from their previous joined list.
+* Fix for mailchimp GDPR optin consent not working.
+
+= 1.2.11.4 =
+* Removed unused file.
+
+= 1.2.11.3 =
+* Remove lite upgrade in compliance with WP.org rule.
+
+= 1.2.11.2 =
+* Sendinblue optin fix when automation is active.
+* Remove IP address from ActiveCampaign payload if ip is not ip4.
+* More tighter customizer cleanup for improve compatibility with most themes and plugins.
+* Fix support for youtube and vimeo embed.
+* Made description wysiwyg to be text/visual.
+
+= 1.2.11.1 =
+* Responsive font size fixes for optin forms.
+* Fixed a number of PHP notice errors.
+* Added filter to disable sending optin errors email.
+
+= 1.2.11.0 =
+* Added support for custom post type to email automation.
+* Optin branding now disabled by default.
+* Better control over google fonts to load when not necessary.
+* Improve optin themes compatibility with most WP themes.
+
+= 1.2.10.1 =
+* Fixed bug with Mailerlite subscription not working.
+* Fixed bug where hiding note wasn’t working.
+* Fixed bug where effects wasn’t working in customizer preview.
+* Fixed: Uncaught TypeError: Cannot read property 'scrollHeight' of undefined.
+* Fixed bug with scripts not being cleaned up in customizer.
+
+= 1.2.10.0 =
+* Added support for changing optin font sizes.
+* Added support to inherit theme font in optins.
+* Added support for MailChimp GDPR tool for saving consent.
+* Optin no longer load an external css stylesheet.
+* Remove quoted slash from campaign names.
+* Some performance enhancements.
+
+= 1.2.9.0 =
+* Added Mailster Integration.
+* Added new switch customizer loader method.
+* Added confirmation prompt before deleting optin and email campaigns.
+* Added after main content control to email template.
+* Added easy google font plugin compatibility.
+* Fixed issue with urlencode happening to urls in email campaign.
+* Deactivate cloned optin and email campaign by default.
+* Test mode now ignore display rules.
+
+= 1.2.8.2 =
+* Only return untrashed and default type list for mailpoet.
+* Now obfuscating sendlane hash field.
+* Added timeout to MC HTTP client instance
+
+= 1.2.8.1 =
+* Fixed bug with curl not working on some host
+* Fixed bug with MailChimp email automation not sending
+
+= 1.2.8.0 =
+* Added headers to email customizer.
+* Metabox settings to skip a post from being included in new post notification.
+* Added Sendlane integration.
+
+= 1.2.7.1 =
+* Fixed bug with sendinblue not adding contact to list
+* Displays email template un-emogrified in customizer so custom css ish can be targeted and used.
+* Filter for adding custom page targeting rules added.
+* Fixed mini headline preview not working in some themes.
+* Added compatibility with flatbase theme
+* Ensure optin_type exist for the campaign before adding to DB to prevent PHP error.
+
+= 1.2.7.0 =
+* New dashboard redesign. Yay! Connections is now called integrations.
+* New: Email digest of published post [paid feature].
+* You can now edit automation campaign name.
+* Improve optin customization option.
+* Bug fix where name field required wasn’t hidden when name field is set to hidden.
+* Improve compatibility with nextgen gallery.
+
+= 1.2.6.0 =
+* Fixed bug where upgrade from lite to premium wasn't working.
+* Added tabs to sort controls into General and Style.
+* Added option to remove feature image from email campaign
+* Added before main content body editor control to email automation
+* Send test email feature is now retried without header.
+* Contextual naming of connection service list label re-added.
+* Added contextual display of some controls in email campaign customizer
+
+= 1.2.5.1 =
+* Enhance compatibility with more themes such as the popular Newspaper theme.
+* Added more optin form themes for lite users.
+
+= 1.2.5.0 =
+* Lite lightbox now load after about 3 seconds
+* Performance improvements.
+
+= 1.2.4.2 =
+* Added filter sorting to connections.
+* Performance improvements.
+
+= 1.2.4.1 =
+* Restricted removal of admin notice from other plugin to just mailoptin settings pages.
+* Fix for IP address getter.
+* [GDPR] Consent is now passed to MailChimp as custom field.
+* [GDPR] Consent is now passed to EmailOctopus as custom field.
+
+= 1.2.4.0 =
+* [GDPR] Added checkbox to optin form and save consent in ESP mostly as tags and custom field.
+* [GDPR] Added control to make name field in optin required or not
+* Fixed incorrect IP address label for Klaviyo integration
+* Fixed bug where Klaviyo included segment in list fetch
+* Form and email template builder URL now shortened.
+* Improve button to add new campaigns to be more visible.
+* Added notice when no connection is available in optin form builder.
+* Added optin type flag to optin name.
+* Fixed bug where specifying custom listing number in wp list wasn’t working.
+
+= 1.2.3.1 =
+* Fixed issue where Elegance Lightbox wasn't showing in optin listing.
+
+= 1.2.3.0 =
+* Added Klaviyo integration
+* Added Elegance lightbox optin theme.
+* Added some toast notifications to the form builder to remind you of things to do.
+* Added filtering of new post notification by post tags and categories.
+* Added auto-detect and convert vimeo & youtube embed to image link.
+* Added: New post notification can now be sent to users with specific roles.
+* Sendy optin subscription now include leads ip-address and referrer.
+* Improved compatibility with most WP themes in customizer.
+* Fixed bug where contextual display of integrations wasn’t properly working.
+* Fixed usage tracking not dismissing.
+* Moved success message to after conversion panel.
+* Update tinymce control to use the latest API.
+* Added filter customize/edit url.
+
+= 1.2.2.2 =
+* Fixed bug where ConvertFox was failing to add leads.
+
+= 1.2.2.1 =
+* Fixed bug where 'Globally load optin' wasn't kicking in.
+
+= 1.2.2.0 =
+* Added ConvertFox integration.
+* Added SendinBlue integration.
+* Switched from wp-admin-ajax to a custom ajax handler.
+* Fixed bug where GetResponse optin without name field was failing.
+* Remove all custom media button added by plugins and core to wp_editor.
+* Re-arrangement of display rules and page-level targeting.
+* Moved controls for hiding of note, headline, description to their panels.
+* Added check to prevent sidebar aside tag from being included in markup when state after conversion is optin form hidden.
+* Added filters to optin form components.
+* Ensure customization save changes is publishing and not saving draft. Fixed bug in wordpress.com hosting.
+* Swap out previous bulk activation of optin and automation to new queue system.
+* Added filter to disable optin impression count.
+* Added filter to optin form shortcode structure.
+* Added: send email to admin when optin is failing to subscribe leads.
+* Rebuilt settings setting page with tab.
+
+= 1.2.1.0 =
+* Fixed bug where impression wasn’t counting for sidebar/inpost optin forms.
+* Fixed bug where impression count was doubling for popups, notification bar and slide in optins.
+* Added activation of email campaign as toggle switches.
+* Added support for background color for optin form fields.
+* Fixed bug in OptinCampaignsRepository::get_optin_campaign_ids() working incorrectly.
+* Fixed bug where columbine inpost field get overly long when CTA is activated with onclick to reveal optin.
+* Fix styling for email campaign schedule control in customizer.
+* Rebuilt how optin form style are inlined.
+* Fixed bug where configuration of an optin clashes with another of same theme.
+* Small design change of the form builder.
+* Remove load_plugin_textdomain from core to main plugin file.
+* Reworked honeypot implementation.
+* Optimized images and added margin:0 to form optin tag.
+
+= 1.2.0.4 =
+* Added link to permanently dismiss review admin notice.
+
+= 1.2.0.3 =
+* Removed test files that raised security warning by VaultPress.
+* Cleanup assets added to customizer preview frame by other plugins/themes.
+* Fixed issue where sendy connection wasn't saving.
+* Added index.php to all folders to prevent directory browsing.
+* Removed close optin and close optin and reload in non-popup forms.
+* Code and performance improvements.
+
+= 1.2.0.2 =
+* Tweak mailerlite to resubscribe user who previously unsubscribe and then opt-in again.
+* Code and performance improvements.
+
+= 1.2.0.1 =
+* Fixed bug where AWeber connection settings page wasn't showing up.
+
+= 1.2.0.0 =
+* Added: connected status added to all connections.
+* Added: Close Optin On Note Click in optin form completed.
+* Fixed bug where lightbox impression count doubled
+* Define background-color for all form fields.
+* Added switch to activate/deactivate optin campaigns.
+* Added shortcode support to headline, description and note
+* Redesigned the connection settings page to be sidebar tabbed.
+* Elementor now added as a connection.
+* Connection's API key/token now obfuscated on display.
+* Fixed bug in leads subscription that already exist in mailpoet from failing in other language WP installs eg German.
+* Revamped single chosen field as well as date time and ace editor.
+* Rearranged menu such that optin menus comes first before that of email menus.
+* Added missing text-domain in strings.
+* Fix textareas control with long height.
+* Added filter to list of optin form fonts list.
+* All form fields in optin form now captured during form submit.
+* Added an event that is triggered after core optin form validation.
+* An event is now triggered when optin form validation kicks in.
+* Added styling to builder control descriptions.
+* Replaced optin actions buttons with icon font. Tooltip added to describe the action.
+* Replaced email automation actions text descriptions with icons. Tooltip added to describe the action.
+* Ensure OptinConversionsRepository:: month_conversion_count() return integer.
+
+= 1.1.7.1 =
+* Added accidentally removed background color form builder control.
+* Add action hook after optin form shortcodes definitions.
+
+= 1.1.7.0 =
+* Added: form background image customization for optin themes that support it.
+* Added: shortcodes in email campaigns are now parsed before they are processed for delivery.
+* Added collapse and expand buttons to connection and settings’ admin pages.
+* Email campaigns label changed to email automation
+* Log changed to Email Log
+* Plugin menu re-arranged.
+
+= 1.1.6.0 =
+* Added: GetResponse and GetResponse360 integrations.
+* Fixed bug where TinyMCE field preview wasn’t working in form/template builder.
+* Fixed bug where clearing local cookies didn't clear that of successful optin conversion.
+* Fix compatibility issues with upcoming WordPress 4.9
+
+= 1.1.5.0 =
+* Added after conversion actions feature: close optin, close optin and reload page, redirect to URL.
+* Added Action hook triggered after optin subscription.
+* Reverted change to limit_text() from wp_trim_words.
+* Removed older hide_logged_in rule from form builder.
+* Added: toggling of optin form close button.
+* Burst connection email list cache after every settings change.
+* Optimized all image assets.
+* Added class_exist check to MailPoet API class before usage to prevent any PHP error.
+
+
+* Custom CSS textarea converted to ACE Editor (Premium).
+* Recycled existing optin themes to other types (Premium).
+* Optin background image and logo support land in customizer.
+* listing of optin and email campaign now in descending order
+* Fixed bug where undefined webfont JS function causes optin not to display.
+* Fixed bug that prevent highlighting of active tab in settings page.
+* Added: shortcode and template tag embed of optin (Premium).
+* replace custom function for trimming text with wp one
+* All text-shadows be gone from every submit buttons in optin forms.
+* Simplified connections composer packaging.
+* Loads of performance enhancements
+* Code improvements.
+
+= 1.1.4.1 =
+* Fixed bug where before/after post optin form wasn’t showing in post.
+
+= 1.1.4.0 =
+* Added MailPoet 3 integration.
+* Added new Bannino optin theme (Premium).
+* Added new Dashdot optin theme (Premium).
+* Added new Daisy optin theme (Premium).
+* Recycled existing optin themes to other types (Premium).
+* Optin background image and logo support land in customizer.
+* listing of optin and email campaign now in descending order
+* Fixed bug where undefined webfont js function causes optin not to display.
+* Fixed bug that prevent highlighting of active tab in settings page.
+* Added: shortcode and template tag embed of optin (Premium).
+* replace custom function for trimming text with wp one
+* All text-shadows be gone from every submit buttons in optin forms.
+* Simplified connections composer packaging.
+* Loads of performance enhancements
+* Code improvements.
+
+= 1.1.3.0 =
+* Added ActiveCampaign integration.
+* Listing of optin and email campaign now displays the newest to oldest.
+* Added styling to pre tag in email template.
+* Added switch to toggle optin campaigns activation.
+* Global success and interaction cookies rule implemented. Was previously missing.
+* New display rule: Optin display can now be determined based on whether users are logged in or not.
+* Added support for click triggered (2-step optin process). (Premium)
+* Added refreshing styling to customizer controls.
+* "Footer Description" changed to "mailing address" in optin customizer.
+* Added check to ensure jQuery.MailOptin and jQuery.MailOptin.track_impression is defined to prevent any error.
+* Fixed bug where custom fields associated with a connect/esp do not show on initial customizer UI page load.
+* Loads of performance enhancements
+* Code improvements.
+
+= 1.1.2.0 =
+* Added integration for Drip (Email Marketing Automation Software).
+* Added ConvertKit integration.
+* Added EmailOctopus integration.
+* Added button to clear optin caches.
+* Added settings to change optin branding url with affiliate link.
+* Added impression tracking to inpost optin forms.
+* Missing close icon now display on all optin types after subscription success.
+* Fixed js bug that affected safari browsers when customizer is opened.
+* Connections now implement the features_support() interface contract.
+* Code improvements and performance enhancements.
+
+= 1.1.1.1 =
+* Now compatibility with MySQL versions less than 5.6.5.
+* Fixed bug where MailChimp subscription wasn't working.
+
+= 1.1.1.0 =
+* Added Elementor form integration.
+
+= 1.1.0.4 =
+* Fixed bug where email service providers weren't showing on optin campaign customizer.
+
+= 1.1.0.3 =
+* Added mailerlite integration.
+
+= 1.1.0.2 =
+* Fixed bug where invalid controls were showing for sidebar optin.
+
+= 1.1.0.1 =
+* Fixes to some internal APIs.
+
+= 1.1.0.0 =
+* the genesis.
