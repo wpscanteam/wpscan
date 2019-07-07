@@ -16,6 +16,8 @@ module WPScan
 
         # @return [ Array<Symbol> ]
         def self.allowed_classes
+          # The Readme is not put in there as it's not a Real DF, but rather using the DF system
+          # to get the list of potential filenames for a given slug
           @allowed_classes ||= %i[Comment Xpath HeaderPattern BodyPattern JavascriptVar QueryParameter ConfigParser]
         end
 
