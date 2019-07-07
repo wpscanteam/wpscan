@@ -5,13 +5,13 @@ module WPScan
     module DynamicFinders
       class Base
         # @return [ String ]
-        def self.db_file
-          @db_file ||= DB_DIR.join('dynamic_finders.yml').to_s
+        def self.df_file
+          @df_file ||= DB_DIR.join('dynamic_finders.yml').to_s
         end
 
         # @return [ Hash ]
-        def self.raw_db_data
-          @raw_db_data ||= YAML.safe_load(File.read(db_file), [Regexp])
+        def self.all_df_data
+          @all_df_data ||= YAML.safe_load(File.read(df_file), [Regexp])
         end
 
         # @return [ Array<Symbol> ]

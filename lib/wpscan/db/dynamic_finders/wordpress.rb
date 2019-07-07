@@ -5,8 +5,8 @@ module WPScan
     module DynamicFinders
       class Wordpress < Base
         # @return [ Hash ]
-        def self.db_data
-          @db_data ||= raw_db_data['wordpress'] || {}
+        def self.df_data
+          @df_data ||= all_df_data['wordpress'] || {}
         end
 
         # @return [ Constant ]
@@ -30,9 +30,9 @@ module WPScan
           return configs unless allowed_classes.include?(finder_class)
 
           finders = if aggressive
-                      db_data.reject { |_f, c| c['path'].nil? }
+                      df_data.reject { |_f, c| c['path'].nil? }
                     else
-                      db_data.select { |_f, c| c['path'].nil? }
+                      df_data.select { |_f, c| c['path'].nil? }
                     end
 
           finders.each do |finder_name, config|
@@ -48,7 +48,7 @@ module WPScan
 
         # @return [ Hash ]
         def self.versions_finders_configs
-          @versions_finders_configs ||= db_data.select { |_finder_name, config| config.key?('version') }
+          @versions_finders_configs ||= df_data.select { |_finder_name, config| config.key?('version') }
         end
 
         def self.create_versions_finders

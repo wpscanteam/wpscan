@@ -5,8 +5,8 @@ module WPScan
     module DynamicFinders
       class Plugin < Base
         # @return [ Hash ]
-        def self.db_data
-          @db_data ||= raw_db_data['plugins'] || {}
+        def self.df_data
+          @df_data ||= all_df_data['plugins'] || {}
         end
 
         def self.version_finder_module
@@ -21,7 +21,7 @@ module WPScan
 
           return configs unless allowed_classes.include?(finder_class)
 
-          db_data.each do |slug, finders|
+          df_data.each do |slug, finders|
             # Quite sure better can be done with some kind of logic statement in the select
             fs = if aggressive
                    finders.reject { |_f, c| c['path'].nil? }
@@ -48,7 +48,7 @@ module WPScan
 
           @versions_finders_configs = {}
 
-          db_data.each do |slug, finders|
+          df_data.each do |slug, finders|
             finders.each do |finder_name, config|
               next unless config.key?('version')
 
