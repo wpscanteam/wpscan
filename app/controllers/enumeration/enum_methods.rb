@@ -62,6 +62,7 @@ module WPScan
       def enum_plugins
         opts = default_opts('plugins').merge(
           list: plugins_list_from_opts(ParsedCli.options),
+          threshold: ParsedCli.plugins_threshold,
           sort: true
         )
 
@@ -108,6 +109,7 @@ module WPScan
       def enum_themes
         opts = default_opts('themes').merge(
           list: themes_list_from_opts(ParsedCli.options),
+          threshold: ParsedCli.themes_threshold,
           sort: true
         )
 

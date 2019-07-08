@@ -21,6 +21,8 @@ module WPScan
 
           enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |_res, slug|
             found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
+
+            raise Error::PluginsThresholdReached if opts[:threshold].positive? && found.size >= opts[:threshold]
           end
 
           found

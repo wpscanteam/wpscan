@@ -70,8 +70,8 @@ describe WPScan::Controller::Enumeration do
     it 'contains the correct options' do
       expect(controller.cli_options.map(&:to_sym)).to eql(
         %i[enumerate exclude_content_based
-           plugins_list plugins_detection plugins_version_all plugins_version_detection
-           themes_list themes_detection themes_version_all themes_version_detection
+           plugins_list plugins_detection plugins_version_all plugins_version_detection plugins_threshold
+           themes_list themes_detection themes_version_all themes_version_detection themes_threshold
            timthumbs_list timthumbs_detection
            config_backups_list config_backups_detection
            db_exports_list db_exports_detection

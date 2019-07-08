@@ -10,6 +10,8 @@ LineLength:
   Max: 120
 MethodLength:
   Max: 20
+  Exclude:
+  - 'app/controllers/enumeration/cli_options.rb'
 Lint/UriEscapeUnescape:
   Enabled: false
 Metrics/AbcSize:
@@ -19,6 +21,8 @@ Metrics/BlockLength:
   - 'spec/**/*'
 Metrics/ClassLength:
   Max: 150
+  Exclude:
+  - 'app/controllers/enumeration/cli_options.rb'
 Metrics/CyclomaticComplexity:
   Max: 8
 Style/Documentation:

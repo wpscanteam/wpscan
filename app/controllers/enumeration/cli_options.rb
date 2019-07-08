@@ -11,7 +11,6 @@ module WPScan
       end
 
       # @return [ Array<OptParseValidator::OptBase> ]
-      # rubocop:disable Metrics/MethodLength
       def cli_enum_choices
         [
           OptMultiChoices.new(
@@ -45,7 +44,6 @@ module WPScan
           )
         ]
       end
-      # rubocop:enable Metrics/MethodLength
 
       # @return [ Array<OptParseValidator::OptBase> ]
       def cli_plugins_opts
@@ -67,6 +65,11 @@ module WPScan
              'Use the supplied mode to check plugins versions instead of the --detection-mode ' \
              'or --plugins-detection modes.'],
             choices: %w[mixed passive aggressive], normalize: :to_sym, default: :mixed
+          ),
+          OptInteger.new(
+            ['--plugins-threshold THRESHOLD',
+             'Raise an error when the number of detected plugins via known locations reaches the threshold. ' \
+             'Set to 0 to ignore the threshold.'], default: 100
           )
         ]
       end
@@ -91,6 +94,11 @@ module WPScan
              'Use the supplied mode to check themes versions instead of the --detection-mode ' \
              'or --themes-detection modes.'],
             choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
+          ),
+          OptInteger.new(
+            ['--themes-threshold THRESHOLD',
+             'Raise an error when the number of detected themes via known locations reaches the threshold. ' \
+             'Set to 0 to ignore the threshold.'], default: 50
           )
         ]
       end
