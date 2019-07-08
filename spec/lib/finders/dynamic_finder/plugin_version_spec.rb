@@ -16,15 +16,9 @@
 
 expected_all = df_expected_all['plugins']
 
-WPScan::DB::DynamicFinders::Plugin.create_versions_finders
-
-describe 'Try to create the finders twice' do
-  it 'does not raise an error when the class already exists' do
-    expect { WPScan::DB::DynamicFinders::Plugin.create_versions_finders }.to_not raise_error
-  end
-end
-
 WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, configs|
+  WPScan::DB::DynamicFinders::Plugin.create_versions_finders(slug)
+
   configs.each do |finder_class, config|
     finder_super_class = config['class'] || finder_class
 

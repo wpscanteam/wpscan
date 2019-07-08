@@ -13,25 +13,15 @@ module WPScan
         def initialize(plugin)
           finders << PluginVersion::Readme.new(plugin)
 
-          load_specific_finders(plugin)
+          create_and_load_dynamic_versions_finders(plugin)
         end
 
-        # Load the finders associated with the plugin
+        # Create the dynamic version finders related to the plugin and register them
         #
         # @param [ Model::Plugin ] plugin
-        def load_specific_finders(plugin)
-          module_name = plugin.classify
-
-          return unless Finders::PluginVersion.constants.include?(module_name)
-
-          mod = Finders::PluginVersion.const_get(module_name)
-
-          mod.constants.each do |constant|
-            c = mod.const_get(constant)
-
-            next unless c.is_a?(Class)
-
-            finders << c.new(plugin)
+        def create_and_load_dynamic_versions_finders(plugin)
+          DB::DynamicFinders::Plugin.create_versions_finders(plugin.slug).each do |finder|
+            finders << finder.new(plugin)
           end
         end
       end

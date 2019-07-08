@@ -16,25 +16,15 @@ module WPScan
             ThemeVersion::Style.new(theme) <<
             ThemeVersion::WooFrameworkMetaGenerator.new(theme)
 
-          load_specific_finders(theme)
+          create_and_load_dynamic_versions_finders(theme)
         end
 
-        # Load the finders associated with the theme
+        # Create the dynamic version finders related to the theme and register them
         #
         # @param [ Model::Theme ] theme
-        def load_specific_finders(theme)
-          module_name = theme.classify
-
-          return unless Finders::ThemeVersion.constants.include?(module_name)
-
-          mod = Finders::ThemeVersion.const_get(module_name)
-
-          mod.constants.each do |constant|
-            c = mod.const_get(constant)
-
-            next unless c.is_a?(Class)
-
-            finders << c.new(theme)
+        def create_and_load_dynamic_versions_finders(theme)
+          DB::DynamicFinders::Theme.create_versions_finders(theme.slug).each do |finder|
+            finders << finder.new(theme)
           end
         end
       end

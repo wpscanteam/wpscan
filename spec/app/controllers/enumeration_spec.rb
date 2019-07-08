@@ -102,15 +102,6 @@ describe WPScan::Controller::Enumeration do
     end
   end
 
-  describe '#before_scan' do
-    it 'creates the Dynamic Finders' do
-      expect(WPScan::DB::DynamicFinders::Plugin).to receive(:create_versions_finders)
-      expect(WPScan::DB::DynamicFinders::Theme).to receive(:create_versions_finders)
-
-      controller.before_scan
-    end
-  end
-
   describe '#run' do
     context 'when no :enumerate' do
       before do

@@ -7,15 +7,6 @@ module WPScan
   module Controller
     # Enumeration Controller
     class Enumeration < CMSScanner::Controller::Base
-      def before_scan
-        DB::DynamicFinders::Plugin.create_versions_finders
-        DB::DynamicFinders::Theme.create_versions_finders
-
-        # Force the Garbage Collector to run due to the above method being
-        # quite heavy in objects allocation
-        GC.start
-      end
-
       def run
         enum = ParsedCli.enumerate || {}
 

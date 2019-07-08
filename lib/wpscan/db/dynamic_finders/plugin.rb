@@ -73,23 +73,33 @@ module WPScan
           version_finder_module.const_get(constant_name)
         end
 
-        def self.create_versions_finders
-          versions_finders_configs.each do |slug, finders|
-            mod = maybe_create_module(slug)
+        # Create the dynamic finders related to the given slug, and return the created classes
+        #
+        # @param [ String ] slug
+        #
+        # @return [ Array<Class> ] The created classes
+        def self.create_versions_finders(slug)
+          created = []
+          mod     = maybe_create_module(slug)
 
-            finders.each do |finder_class, config|
-              klass = config['class'] || finder_class
+          versions_finders_configs[slug]&.each do |finder_class, config|
+            klass = config['class'] || finder_class
 
-              # Instead of raising exceptions, skip unallowed/already defined finders
-              # So that, when new DF configs are put in the .yml
-              # users with old version of WPScan will still be able to scan blogs
-              # when updating the DB but not the tool
-              next if mod.constants.include?(finder_class.to_sym) ||
-                      !allowed_classes.include?(klass.to_sym)
+            # Instead of raising exceptions, skip unallowed/already defined finders
+            # So that, when new DF configs are put in the .yml
+            # users with old version of WPScan will still be able to scan blogs
+            # when updating the DB but not the tool
 
-              version_finder_super_class(klass).create_child_class(mod, finder_class.to_sym, config)
-            end
+            next unless allowed_classes.include?(klass.to_sym)
+
+            created << if mod.constants.include?(finder_class.to_sym)
+                         mod.const_get(finder_class.to_sym)
+                       else
+                         version_finder_super_class(klass).create_child_class(mod, finder_class.to_sym, config)
+                       end
           end
+
+          created
         end
 
         # The idea here would be to check if the class exist in
