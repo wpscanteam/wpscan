@@ -98,7 +98,7 @@ module WPScan
           OptInteger.new(
             ['--themes-threshold THRESHOLD',
              'Raise an error when the number of detected themes via known locations reaches the threshold. ' \
-             'Set to 0 to ignore the threshold.'], default: 50
+             'Set to 0 to ignore the threshold.'], default: 20
           )
         ]
       end
