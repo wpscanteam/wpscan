@@ -138,6 +138,17 @@ shared_examples 'WordPress::CustomDirectories' do
         expect(target.sub_dir).to eql expected
       end
     end
+
+    context 'when no sub_dir detected' do
+      it 'only checks the in_scope_uris once' do
+        stub_request(:get, target.url).to_return(body: File.read(File.join(fixtures, 'default.html')))
+
+        expect(target.sub_dir).to eql false
+
+        expect(target).to_not receive(:in_scope_uris)
+        expect(target.sub_dir).to eql false
+      end
+    end
   end
 
   describe '#url' do

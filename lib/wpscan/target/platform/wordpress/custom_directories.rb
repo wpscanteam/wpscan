@@ -99,20 +99,19 @@ module WPScan
 
         # @return [ String, False ] String of the sub_dir found, false otherwise
         # @note: nil can not be returned here, otherwise if there is no sub_dir
-        #        the check would be done each time
+        #        the check would be done each time, which would make enumeration of
+        #        long list of items very slow to generate
         def sub_dir
-          unless @sub_dir
-            # url_pattern is from CMSScanner::Target
-            pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
+          return @sub_dir unless @sub_dir.nil?
 
-            in_scope_uris(homepage_res) do |uri|
-              return @sub_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
-            end
+          # url_pattern is from CMSScanner::Target
+          pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
 
-            @sub_dir = false
+          in_scope_uris(homepage_res) do |uri|
+            return @sub_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
           end
 
-          @sub_dir
+          @sub_dir = false
         end
 
         # Override of the WebSite#url to consider the custom WP directories
