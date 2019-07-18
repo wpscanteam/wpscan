@@ -1,0 +1,13 @@
+"vuln_api": {
+<% unless @status.empty? -%>
+<% if @status['http_error'] -%>
+"http_error": <%= @status['http_error'].to_s.to_json %>
+<% else -%>
+"plan": <%= @status['plan'].to_json %>,
+"requests_done_during_scan": <%= @api_requests.to_json %>,
+"requests_remaining": <%= @status['requests_remaining'].to_json %>
+<% end -%>
+<% else -%>
+"error": "No WPVulnDB API Token given, as a result vulnerability data has not been output.\nYou can get a free API token with 50 daily requests by registering at https://wpvulndb.com/register."
+<% end -%>
+},

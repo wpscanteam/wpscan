@@ -7,7 +7,7 @@ module WPScan
 
     # @return [ String ]
     def default_user_agent
-      "WPScan v#{VERSION} (https://wpscan.org/)"
+      @default_user_agent ||= "WPScan v#{VERSION} (https://wpscan.org/)"
     end
   end
 end

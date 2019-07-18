@@ -81,24 +81,39 @@ describe WPScan::Model::Plugin do
   end
 
   describe '#latest_version, #last_updated, #popular' do
-    context 'when none' do
-      let(:slug) { 'vulnerable-not-popular' }
+    before { allow(plugin).to receive(:db_data).and_return(db_data) }
+
+    context 'when no db_data and no metadata' do
+      let(:slug)    { 'not-known' }
+      let(:db_data) { {} }
 
       its(:latest_version) { should be_nil }
       its(:last_updated) { should be_nil }
       its(:popular?) { should be false }
     end
 
-    context 'when values' do
+    context 'when no db_data but metadata' do
       let(:slug) { 'no-vulns-popular' }
+      let(:db_data) { {} }
 
       its(:latest_version) { should eql WPScan::Model::Version.new('2.0') }
       its(:last_updated) { should eql '2015-05-16T00:00:00.000Z' }
       its(:popular?) { should be true }
     end
+
+    context 'when db_data' do
+      let(:slug) { 'no-vulns-popular' }
+      let(:db_data) { vuln_api_data_for('plugins/no-vulns-popular') }
+
+      its(:latest_version) { should eql WPScan::Model::Version.new('2.1') }
+      its(:last_updated) { should eql '2015-05-16T00:00:00.000Z-via-api' }
+      its(:popular?) { should be true }
+    end
   end
 
   describe '#outdated?' do
+    before { allow(plugin).to receive(:db_data).and_return({}) }
+
     context 'when last_version' do
       let(:slug) { 'no-vulns-popular' }
 
@@ -116,13 +131,13 @@ describe WPScan::Model::Plugin do
             .and_return(WPScan::Model::Version.new(version_number))
         end
 
-        context 'when version < last_version' do
+        context 'when version < latest_version' do
           let(:version_number) { '1.2' }
 
           its(:outdated?) { should eql true }
         end
 
-        context 'when version >= last_version' do
+        context 'when version >= latest_version' do
           let(:version_number) { '3.0' }
 
           its(:outdated?) { should eql false }
@@ -130,7 +145,7 @@ describe WPScan::Model::Plugin do
       end
     end
 
-    context 'when no last_version' do
+    context 'when no latest_version' do
       let(:slug) { 'vulnerable-not-popular' }
 
       context 'when no version' do
@@ -153,13 +168,16 @@ describe WPScan::Model::Plugin do
   end
 
   describe '#vulnerabilities' do
+    before { allow(plugin).to receive(:db_data).and_return(db_data) }
+
     after do
       expect(plugin.vulnerabilities).to eq @expected
       expect(plugin.vulnerable?).to eql @expected.empty? ? false : true
     end
 
     context 'when plugin not in the DB' do
-      let(:slug) { 'not-in-db' }
+      let(:slug)    { 'not-in-db' }
+      let(:db_data) { {} }
 
       it 'returns an empty array' do
         @expected = []
@@ -168,7 +186,8 @@ describe WPScan::Model::Plugin do
 
     context 'when in the DB' do
       context 'when no vulnerabilities' do
-        let(:slug) { 'no-vulns-popular' }
+        let(:slug)    { 'no-vulns-popular' }
+        let(:db_data) { vuln_api_data_for('plugins/no-vulns-popular') }
 
         it 'returns an empty array' do
           @expected = []
@@ -176,11 +195,13 @@ describe WPScan::Model::Plugin do
       end
 
       context 'when vulnerabilities' do
-        let(:slug) { 'vulnerable-not-popular' }
+        let(:slug)    { 'vulnerable-not-popular' }
+        let(:db_data) { vuln_api_data_for('plugins/vulnerable-not-popular') }
+
         let(:all_vulns) do
           [
             WPScan::Vulnerability.new(
-              'First Vuln',
+              'First Vuln <= 6.3.10 - LFI',
               { wpvulndb: '1' },
               'LFI',
               '6.3.10'

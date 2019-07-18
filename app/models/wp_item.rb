@@ -39,11 +39,10 @@ module WPScan
 
         @vulnerabilities = []
 
-        # TODO Get them from API
-        #[*db_data['vulnerabilities']].each do |json_vuln|
-        #  vulnerability = Vulnerability.load_from_json(json_vuln)
-        #  @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
-        #end
+        [*db_data['vulnerabilities']].each do |json_vuln|
+          vulnerability = Vulnerability.load_from_json(json_vuln)
+          @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
+        end
 
         @vulnerabilities
       end
@@ -67,7 +66,7 @@ module WPScan
       # Not used anywhere ATM
       # @return [ Boolean ]
       def popular?
-        @popular ||= metadata['popular']
+        @popular ||= metadata['popular'] ? true : false
       end
 
       # @return [ String ]

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'controllers/core'
-require_relative 'controllers/api_token'
+require_relative 'controllers/vuln_api'
 require_relative 'controllers/custom_directories'
 require_relative 'controllers/wp_version'
 require_relative 'controllers/main_theme'

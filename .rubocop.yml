@@ -8,12 +8,12 @@ ClassVars:
   Enabled: false
 LineLength:
   Max: 120
+Lint/UriEscapeUnescape:
+  Enabled: false
 MethodLength:
   Max: 20
   Exclude:
   - 'app/controllers/enumeration/cli_options.rb'
-Lint/UriEscapeUnescape:
-  Enabled: false
 Metrics/AbcSize:
   Max: 25
 Metrics/BlockLength:
@@ -29,3 +29,6 @@ Style/Documentation:
   Enabled: false
 Style/FormatStringToken:
   Enabled: false
+Style/NumericPredicate:
+  Exclude:
+  - 'app/controllers/vuln_api.rb'

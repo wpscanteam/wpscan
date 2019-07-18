@@ -13,7 +13,8 @@ require 'uri'
 require 'time'
 require 'readline'
 require 'securerandom'
-
+# Monkey Patches/Fixes/Override
+require 'wpscan/typhoeus/response' # Adds a from_vuln_api? method
 # Custom Libs
 require 'wpscan/helper'
 require 'wpscan/db'
@@ -38,11 +39,27 @@ module WPScan
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
   DB_DIR  = Pathname.new(Dir.home).join('.wpscan', 'db')
 
+  Typhoeus.on_complete do |response|
+    next if response.cached? || !response.from_vuln_api?
+
+    self.api_requests += 1
+  end
+
   # Override, otherwise it would be returned as 'wp_scan'
   #
   # @return [ String ]
   def self.app_name
     'wpscan'
+  end
+
+  # @return [ Integer ]
+  def self.api_requests
+    @@api_requests ||= 0
+  end
+
+  # @param [ Integer ] value
+  def self.api_requests=(value)
+    @@api_requests = value
   end
 end
 

@@ -14,7 +14,7 @@ module WPScan
 
       OLD_FILES = %w[
         wordpress.db user-agents.txt dynamic_finders_01.yml
-        wordpressess.json plugins.json themes.json
+        wordpresses.json plugins.json themes.json
       ].freeze
 
       attr_reader :repo_directory

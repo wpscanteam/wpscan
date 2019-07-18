@@ -15,9 +15,16 @@ module WPScan
         @uri = Addressable::URI.parse(blog.url(path_from_blog))
       end
 
-      # @return [ JSON ]
+      # Retrieve the metadata from the vuln API if available (and a valid token is given),
+      # or the local metadata db otherwise
+      # @return [ Hash ]
       def metadata
-        @metadata ||= DB::Plugin.metadata_at(slug)
+        @metadata ||= db_data.empty? ? DB::Plugin.metadata_at(slug) : db_data
+      end
+
+      # @return [ Hash ]
+      def db_data
+        @db_data ||= DB::VulnApi.plugin_data(slug)
       end
 
       # @param [ Hash ] opts
