@@ -22,8 +22,8 @@ module WPScan
       end
 
       # @return [ JSON ]
-      def db_data
-        @db_data ||= DB::Theme.db_data(slug)
+      def metadata
+        @metadata ||= DB::Theme.metadata_at(slug)
       end
 
       # @param [ Hash ] opts

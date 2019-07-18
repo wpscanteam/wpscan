@@ -39,10 +39,11 @@ module WPScan
 
         @vulnerabilities = []
 
-        [*db_data['vulnerabilities']].each do |json_vuln|
-          vulnerability = Vulnerability.load_from_json(json_vuln)
-          @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
-        end
+        # TODO Get them from API
+        #[*db_data['vulnerabilities']].each do |json_vuln|
+        #  vulnerability = Vulnerability.load_from_json(json_vuln)
+        #  @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
+        #end
 
         @vulnerabilities
       end
@@ -60,18 +61,18 @@ module WPScan
 
       # @return [ String ]
       def latest_version
-        @latest_version ||= db_data['latest_version'] ? Model::Version.new(db_data['latest_version']) : nil
+        @latest_version ||= metadata['latest_version'] ? Model::Version.new(metadata['latest_version']) : nil
       end
 
       # Not used anywhere ATM
       # @return [ Boolean ]
       def popular?
-        @popular ||= db_data['popular']
+        @popular ||= metadata['popular']
       end
 
       # @return [ String ]
       def last_updated
-        @last_updated ||= db_data['last_updated']
+        @last_updated ||= metadata['last_updated']
       end
 
       # @return [ Boolean ]

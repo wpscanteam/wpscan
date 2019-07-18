@@ -5,8 +5,8 @@ module WPScan
     # WP Themes
     class Themes < WpItems
       # @return [ JSON ]
-      def self.db
-        Theme.db
+      def self.metadata
+        Theme.metadata
       end
     end
   end

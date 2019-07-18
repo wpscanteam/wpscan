@@ -16,8 +16,8 @@ module WPScan
       end
 
       # @return [ JSON ]
-      def db_data
-        @db_data ||= DB::Plugin.db_data(slug)
+      def metadata
+        @metadata ||= DB::Plugin.metadata_at(slug)
       end
 
       # @param [ Hash ] opts

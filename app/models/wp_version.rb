@@ -36,8 +36,8 @@ module WPScan
       end
 
       # @return [ JSON ]
-      def db_data
-        @db_data ||= DB::Version.db_data(number)
+      def metadata
+        @metadata ||= DB::Version.metadata_at(number)
       end
 
       # @return [ Array<Vulnerability> ]
@@ -46,21 +46,22 @@ module WPScan
 
         @vulnerabilities = []
 
-        [*db_data['vulnerabilities']].each do |json_vuln|
-          @vulnerabilities << Vulnerability.load_from_json(json_vuln)
-        end
+        # TODO get them from API
+        #[*db_data['vulnerabilities']].each do |json_vuln|
+        #  @vulnerabilities << Vulnerability.load_from_json(json_vuln)
+        #end
 
         @vulnerabilities
       end
 
       # @return [ String ]
       def release_date
-        @release_date ||= db_data['release_date'] || 'Unknown'
+        @release_date ||= metadata['release_date'] || 'Unknown'
       end
 
       # @return [ String ]
       def status
-        @status ||= db_data['status'] || 'Unknown'
+        @status ||= metadata['status'] || 'Unknown'
       end
     end
   end
