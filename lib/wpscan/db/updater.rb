@@ -64,11 +64,12 @@ module WPScan
       # @return [ Hash ] The params for Typhoeus::Request
       # @note Those params can't be overriden by CLI options
       def request_params
-        {
+        @request_params ||= {
           timeout: 600,
           connecttimeout: 300,
           accept_encoding: 'gzip, deflate',
-          cache_ttl: 0
+          cache_ttl: 0,
+          headers: { 'User-Agent' => Browser.instance.default_user_agent }
         }
       end
 
