@@ -17,7 +17,6 @@
   <a href="https://badge.fury.io/rb/wpscan" target="_blank"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
   <a href="https://travis-ci.org/wpscanteam/wpscan" target="_blank"><img src="https://travis-ci.org/wpscanteam/wpscan.svg?branch=master"></a>
   <a href="https://codeclimate.com/github/wpscanteam/wpscan" target="_blank"><img src="https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
-  <a href="https://www.patreon.com/wpscan" target="_blank"><img src="https://img.shields.io/badge/patreon-donate-green.svg"></a>
 </p>
 
 # INSTALL
