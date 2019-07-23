@@ -47,13 +47,21 @@ describe WPScan::DB::DynamicFinders::Plugin do
   describe '.create_versions_finders' do
     # handled and tested in spec/lib/finders/dynamic_finders/plugin_version_spec
 
-    describe 'Try to create the finders twice' do
+    context 'When trying to create the finders twice' do
       # let's just test one slug, no need to test them all
       let(:slug) { '12-step-meeting-list' }
 
       it 'does not raise an error when the class already exists' do
         WPScan::DB::DynamicFinders::Plugin.create_versions_finders(slug)
 
+        expect { WPScan::DB::DynamicFinders::Plugin.create_versions_finders(slug) }.to_not raise_error
+      end
+    end
+
+    context 'when the slug contains non alpha-numeric chars' do
+      let(:slug) { 'test.something' }
+
+      it 'sanitize it and does not raise an error' do
         expect { WPScan::DB::DynamicFinders::Plugin.create_versions_finders(slug) }.to_not raise_error
       end
     end
