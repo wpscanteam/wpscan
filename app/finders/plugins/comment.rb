@@ -18,7 +18,7 @@ module WPScan
           response.html.xpath(config['xpath'] || '//comment()').each do |node|
             comment = node.text.to_s.strip
 
-            next unless comment =~ config['pattern']
+            next unless comment&.match?(config['pattern'])
 
             return Model::Plugin.new(
               slug,

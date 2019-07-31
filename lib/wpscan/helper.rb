@@ -14,7 +14,7 @@ end
 # @return [ Symbol ]
 def classify_slug(slug)
   classified = slug.to_s.gsub(/[^a-z\d\-]/i, '-').gsub(/\-{1,}/, '_').camelize.to_s
-  classified = "D_#{classified}" if classified[0] =~ /\d/
+  classified = "D_#{classified}" if /\d/.match?(classified[0])
 
   classified.to_sym
 end

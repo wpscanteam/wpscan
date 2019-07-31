@@ -12,7 +12,7 @@ module WPScan
           path = 'wp-content/uploads/dump.sql'
           res  = target.head_and_get(path, [200], get: { headers: { 'Range' => 'bytes=0-3000' } })
 
-          return unless res.body =~ SQL_PATTERN
+          return unless SQL_PATTERN.match?(res.body)
 
           Model::UploadSQLDump.new(
             target.url(path),

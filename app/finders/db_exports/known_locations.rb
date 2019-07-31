@@ -20,9 +20,9 @@ module WPScan
 
           enumerate(potential_urls(opts), opts.merge(check_full_response: 200)) do |res|
             if res.effective_url.end_with?('.zip')
-              next unless res.headers['Content-Type'] =~ %r{\Aapplication/zip}i
+              next unless %r{\Aapplication/zip}i.match?(res.headers['Content-Type'])
             else
-              next unless res.body =~ SQL_PATTERN
+              next unless SQL_PATTERN.match?(res.body)
             end
 
             found << Model::DbExport.new(res.request.url, found_by: DIRECT_ACCESS, confidence: 100)

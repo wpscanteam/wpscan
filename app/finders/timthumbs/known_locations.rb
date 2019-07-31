@@ -22,7 +22,7 @@ module WPScan
           found = []
 
           enumerate(target_urls(opts), opts.merge(check_full_response: 400)) do |res|
-            next unless res.body =~ /no image specified/i
+            next unless /no image specified/i.match?(res.body)
 
             found << Model::Timthumb.new(res.request.url, opts.merge(found_by: found_by, confidence: 100))
           end

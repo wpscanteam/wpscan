@@ -52,7 +52,7 @@ module WPScan
 
           number = Regexp.last_match[1]
 
-          number if number =~ /[0-9]+/
+          number if /[0-9]+/.match?(number)
         end
 
         # @param [ String ] body

@@ -15,7 +15,7 @@ module WPScan
         #
         # @return [ Plugin ] The detected plugin in the response, related to the config
         def process_response(opts, response, slug, klass, config)
-          return unless response.body =~ config['pattern']
+          return unless response.body&.match?(config['pattern'])
 
           Model::Plugin.new(
             slug,

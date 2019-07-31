@@ -29,7 +29,7 @@ module WPScan
           end
 
           homepage_res.html.css('meta[name="generator"]').each do |node|
-            return true if node['content'] =~ /wordpress/i
+            return true if /wordpress/i.match?(node['content'])
           end
 
           return true unless comments_from_page(/wordpress/i, homepage_res).empty?

@@ -10,7 +10,7 @@ module WPScan
           pattern = %r{#{target.content_dir}/mu\-plugins/}i
 
           target.in_scope_uris(target.homepage_res) do |uri|
-            next unless uri.path =~ pattern
+            next unless uri.path&.match?(pattern)
 
             url = target.url('wp-content/mu-plugins/')
 
