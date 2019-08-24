@@ -59,7 +59,7 @@ describe WPScan::Model::WpVersion do
         it 'returns the expected result' do
           @expected = [WPScan::Vulnerability.new(
             'WP 3.8 - Vuln 1',
-            { url: %w[url-4], osvdb: %w[11], wpvulndb: '3' },
+            { url: %w[url-4], wpvulndb: '3' },
             'AUTHBYPASS'
           )]
         end
@@ -77,7 +77,7 @@ describe WPScan::Model::WpVersion do
             ),
             WPScan::Vulnerability.new(
               'WP 3.8.1 - Vuln 2',
-              { url: %w[url-2 url-3], osvdb: %w[10], cve: %w[2014-0166], wpvulndb: '2' },
+              { url: %w[url-2 url-3], cve: %w[2014-0166], wpvulndb: '2' },
               nil,
               '3.8.2'
             )
