@@ -1,0 +1,48 @@
+{
+  "name": "imagewalk",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "all": "npm run admin && npm run core && npm run main && npm run uploader",
+    "admin": "PKG=admin npm run do-${MODE:-build}",
+    "core": "PKG=core npm run do-${MODE:-build}",
+    "main": "PKG=main npm run do-${MODE:-build}",
+    "uploader": "PKG=uploader npm run do-${MODE:-build}",
+    "do-build": "browserify -e assets/js/src/$PKG | uglifyjs -c -m -o assets/js/dist/$PKG.min.js",
+    "postdo-build": "PKGCSS=assets/scss/$PKG.scss; if [ -f \"$PKGCSS\" ]; then node-sass $PKGCSS assets/css/$PKG.css --output-style expanded; fi",
+    "do-watch": "watchify -e assets/js/src/$PKG -o assets/js/dist/$PKG.js --delay 1500",
+    "do-release": "npm run all && node do-release.js"
+  },
+  "dependencies": {
+    "@wordpress/hooks": "^2.4.0",
+    "cropperjs": "^1.5.5",
+    "lodash.debounce": "^4.0.8",
+    "lodash.memoize": "^4.1.2",
+    "lodash.template": "^4.5.0",
+    "lodash.throttle": "^4.1.1",
+    "pica": "^5.1.0",
+    "qss": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@wordpress/browserslist-config": "^2.5.0",
+    "archiver": "^3.0.3",
+    "babelify": "^10.0.0",
+    "browserify": "^16.3.0",
+    "browserify-shim": "^3.8.14",
+    "node-sass": "^4.12.0",
+    "uglify-js": "^3.6.0",
+    "watchify": "^3.11.1"
+  },
+  "browserify": {
+    "transform": [
+      "babelify",
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "imagewalk": "global:imagewalk",
+    "imagewalk-data": "global:imagewalk_data"
+  }
+}
