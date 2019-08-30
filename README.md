@@ -86,30 +86,39 @@ The DB is located at ~/.wpscan/db
 
 WPScan can load all options (including the --url) from configuration files, the following locations are checked (order: first to last):
 
-- ~/.wpscan/cli_options.json
-- ~/.wpscan/cli_options.yml
-- pwd/.wpscan/cli_options.json
-- pwd/.wpscan/cli_options.yml
+- ~/.wpscan/scan.json
+- ~/.wpscan/scan.yml
+- pwd/.wpscan/scan.json
+- pwd/.wpscan/scan.yml
 
-If those files exist, options from them will be loaded and overridden if found twice.
+If those files exist, options from the `cli_options` key will be loaded and overridden if found twice.
 
 e.g:
 
-~/.wpscan/cli_options.yml:
+~/.wpscan/scan.yml:
 
 ```yml
-proxy: 'http://127.0.0.1:8080'
-verbose: true
+cli_options:
+  proxy: 'http://127.0.0.1:8080'
+  verbose: true
 ```
 
-pwd/.wpscan/cli_options.yml:
+pwd/.wpscan/scan.yml:
 
 ```yml
-proxy: 'socks5://127.0.0.1:9090'
-url: 'http://target.tld'
+cli_options:
+  proxy: 'socks5://127.0.0.1:9090'
+  url: 'http://target.tld'
 ```
 
 Running ```wpscan``` in the current directory (pwd), is the same as ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
+
+Such feature is useful to keep the API Token in a config file and not have to supply it via the CLI each time. To do so, create the ~/.wpscan/scan.yml file containing the below:
+
+```yml
+cli_options:
+  api_token: YOuR_API_TOKEN
+```
 
 Enumerating usernames
 
