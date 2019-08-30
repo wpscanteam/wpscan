@@ -60,18 +60,18 @@ module WPScan
 
       # @return [ String ]
       def latest_version
-        @latest_version ||= db_data['latest_version'] ? Model::Version.new(db_data['latest_version']) : nil
+        @latest_version ||= metadata['latest_version'] ? Model::Version.new(metadata['latest_version']) : nil
       end
 
       # Not used anywhere ATM
       # @return [ Boolean ]
       def popular?
-        @popular ||= db_data['popular']
+        @popular ||= metadata['popular'] ? true : false
       end
 
       # @return [ String ]
       def last_updated
-        @last_updated ||= db_data['last_updated']
+        @last_updated ||= metadata['last_updated']
       end
 
       # @return [ Boolean ]

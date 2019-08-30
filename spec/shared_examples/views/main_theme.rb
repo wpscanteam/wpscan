@@ -60,6 +60,8 @@ shared_examples 'App::Views::MainTheme' do
 
         it 'outputs the expected string' do
           expect(theme).to receive(:version).at_least(1)
+          allow(theme).to receive(:db_data).and_return(vuln_api_data_for('themes/dignitas-themes'))
+
           @tpl_vars = tpl_vars.merge(theme: theme, verbose: true)
         end
       end

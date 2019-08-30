@@ -9,6 +9,7 @@ describe 'App::Views' do
   # in the expected output.
   %i[JSON CliNoColour].each do |formatter|
     context "when #{formatter}" do
+      it_behaves_like 'App::Views::VulnApi'
       it_behaves_like 'App::Views::WpVersion'
       it_behaves_like 'App::Views::MainTheme'
       it_behaves_like 'App::Views::Enumeration'

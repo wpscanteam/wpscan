@@ -21,9 +21,16 @@ module WPScan
         parse_style
       end
 
+      # Retrieve the metadata from the vuln API if available (and a valid token is given),
+      # or the local metadata db otherwise
       # @return [ JSON ]
+      def metadata
+        @metadata ||= db_data.empty? ? DB::Theme.metadata_at(slug) : db_data
+      end
+
+      # @return [ Hash ]
       def db_data
-        @db_data ||= DB::Theme.db_data(slug)
+        @db_data ||= DB::VulnApi.theme_data(slug)
       end
 
       # @param [ Hash ] opts

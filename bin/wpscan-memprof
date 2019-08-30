@@ -7,6 +7,7 @@ require 'wpscan'
 report = MemoryProfiler.report(top: 15) do
   WPScan::Scan.new do |s|
     s.controllers <<
+      WPScan::Controller::VulnApi.new <<
       WPScan::Controller::CustomDirectories.new <<
       WPScan::Controller::InterestingFindings.new <<
       WPScan::Controller::WpVersion.new <<

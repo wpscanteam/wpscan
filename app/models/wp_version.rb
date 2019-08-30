@@ -35,9 +35,16 @@ module WPScan
         @all_numbers.sort! { |a, b| Gem::Version.new(b) <=> Gem::Version.new(a) }
       end
 
-      # @return [ JSON ]
+      # Retrieve the metadata from the vuln API if available (and a valid token is given),
+      # or the local metadata db otherwise
+      # @return [ Hash ]
+      def metadata
+        @metadata ||= db_data.empty? ? DB::Version.metadata_at(number) : db_data
+      end
+
+      # @return [ Hash ]
       def db_data
-        @db_data ||= DB::Version.db_data(number)
+        @db_data ||= DB::VulnApi.wordpress_data(number)
       end
 
       # @return [ Array<Vulnerability> ]
@@ -55,12 +62,12 @@ module WPScan
 
       # @return [ String ]
       def release_date
-        @release_date ||= db_data['release_date'] || 'Unknown'
+        @release_date ||= metadata['release_date'] || 'Unknown'
       end
 
       # @return [ String ]
       def status
-        @status ||= db_data['status'] || 'Unknown'
+        @status ||= metadata['status'] || 'Unknown'
       end
     end
   end

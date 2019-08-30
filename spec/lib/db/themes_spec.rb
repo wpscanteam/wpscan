@@ -4,7 +4,7 @@ describe WPScan::DB::Themes do
   subject(:themes) { described_class }
 
   describe '#all_slugs' do
-    its(:all_slugs) { should eql %w[no-vulns-popular dignitas-themes yaaburnee-themes] }
+    its(:all_slugs) { should eql %w[no-vulns-popular vulnerable-not-popular dignitas-themes yaaburnee-themes] }
   end
 
   describe '#popular_slugs' do
@@ -12,6 +12,6 @@ describe WPScan::DB::Themes do
   end
 
   describe '#vulnerable_slugs' do
-    its(:vulnerable_slugs) { should eql %w[dignitas-themes yaaburnee-themes] }
+    its(:vulnerable_slugs) { should eql %w[vulnerable-not-popular dignitas-themes yaaburnee-themes] }
   end
 end

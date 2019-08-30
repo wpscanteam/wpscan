@@ -86,8 +86,179 @@ describe WPScan::Model::Theme do
     end
   end
 
+  describe '#latest_version, #last_updated, #popular' do
+    before do
+      stub_request(:get, /.*\.css\z/)
+      allow(theme).to receive(:db_data).and_return(db_data)
+    end
+
+    context 'when no db_data and no metadata' do
+      let(:slug)    { 'not-known' }
+      let(:db_data) { {} }
+
+      its(:latest_version) { should be_nil }
+      its(:last_updated) { should be_nil }
+      its(:popular?) { should be false }
+    end
+
+    context 'when no db_data but metadata' do
+      let(:slug) { 'no-vulns-popular' }
+      let(:db_data) { {} }
+
+      its(:latest_version) { should eql WPScan::Model::Version.new('2.0') }
+      its(:last_updated) { should eql '2015-05-16T00:00:00.000Z' }
+      its(:popular?) { should be true }
+    end
+
+    context 'when db_data' do
+      let(:slug) { 'no-vulns-popular' }
+      let(:db_data) { vuln_api_data_for('themes/no-vulns-popular') }
+
+      its(:latest_version) { should eql WPScan::Model::Version.new('2.2') }
+      its(:last_updated) { should eql '2015-05-16T00:00:00.000Z-via-api' }
+      its(:popular?) { should be true }
+    end
+  end
+
+  describe '#outdated?' do
+    before do
+      stub_request(:get, /.*\.css\z/)
+      allow(theme).to receive(:db_data).and_return({})
+    end
+
+    context 'when last_version' do
+      let(:slug) { 'no-vulns-popular' }
+
+      context 'when no version' do
+        before { expect(theme).to receive(:version).at_least(1).and_return(nil) }
+
+        its(:outdated?) { should eql false }
+      end
+
+      context 'when version' do
+        before do
+          expect(theme)
+            .to receive(:version)
+            .at_least(1)
+            .and_return(WPScan::Model::Version.new(version_number))
+        end
+
+        context 'when version < latest_version' do
+          let(:version_number) { '1.2' }
+
+          its(:outdated?) { should eql true }
+        end
+
+        context 'when version >= latest_version' do
+          let(:version_number) { '3.0' }
+
+          its(:outdated?) { should eql false }
+        end
+      end
+    end
+
+    context 'when no latest_version' do
+      let(:slug) { 'vulnerable-not-popular' }
+
+      context 'when no version' do
+        before { expect(theme).to receive(:version).at_least(1).and_return(nil) }
+
+        its(:outdated?) { should eql false }
+      end
+
+      context 'when version' do
+        before do
+          expect(theme)
+            .to receive(:version)
+            .at_least(1)
+            .and_return(WPScan::Model::Version.new('1.0'))
+        end
+
+        its(:outdated?) { should eql false }
+      end
+    end
+  end
+
   describe '#vulnerabilities' do
-    xit
+    before do
+      stub_request(:get, /.*\.css\z/)
+      allow(theme).to receive(:db_data).and_return(db_data)
+    end
+
+    after do
+      expect(theme.vulnerabilities).to eq @expected
+      expect(theme.vulnerable?).to eql @expected.empty? ? false : true
+    end
+
+    context 'when theme not in the DB' do
+      let(:slug)    { 'not-in-db' }
+      let(:db_data) { {} }
+
+      it 'returns an empty array' do
+        @expected = []
+      end
+    end
+
+    context 'when in the DB' do
+      context 'when no vulnerabilities' do
+        let(:slug)    { 'no-vulns-popular' }
+        let(:db_data) { vuln_api_data_for('themes/no-vulns-popular') }
+
+        it 'returns an empty array' do
+          @expected = []
+        end
+      end
+
+      context 'when vulnerabilities' do
+        let(:slug)    { 'vulnerable-not-popular' }
+        let(:db_data) { vuln_api_data_for('themes/vulnerable-not-popular') }
+
+        let(:all_vulns) do
+          [
+            WPScan::Vulnerability.new(
+              'First Vuln',
+              { wpvulndb: '1' },
+              'LFI',
+              '6.3.10'
+            ),
+            WPScan::Vulnerability.new('No Fixed In', wpvulndb: '2')
+          ]
+        end
+
+        context 'when no theme version' do
+          before { expect(theme).to receive(:version).at_least(1).and_return(false) }
+
+          it 'returns all the vulnerabilities' do
+            @expected = all_vulns
+          end
+        end
+
+        context 'when theme version' do
+          before do
+            expect(theme)
+              .to receive(:version)
+              .at_least(1)
+              .and_return(WPScan::Model::Version.new(number))
+          end
+
+          context 'when < to a fixed_in' do
+            let(:number) { '5.0' }
+
+            it 'returns it' do
+              @expected = all_vulns
+            end
+          end
+
+          context 'when >= to a fixed_in' do
+            let(:number) { '6.3.10' }
+
+            it 'does not return it ' do
+              @expected = [all_vulns.last]
+            end
+          end
+        end
+      end
+    end
   end
 
   describe '#parent_theme' do

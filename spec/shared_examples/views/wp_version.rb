@@ -17,6 +17,7 @@ shared_examples 'App::Views::WpVersion' do
 
     context 'when the version is not nil' do
       let(:version) { WPScan::Model::WpVersion.new('4.0', found_by: 'rspec') }
+      before { allow(version).to receive(:db_data).and_return(vuln_api_data_for('wordpresses/40')) }
 
       context 'when confirmed_by is empty' do
         context 'when no interesting_entries' do
@@ -77,9 +78,12 @@ shared_examples 'App::Views::WpVersion' do
 
     context 'when the version is vulnerable' do
       let(:expected_view) { 'with_vulns' }
+      let(:version) { WPScan::Model::WpVersion.new('3.8.1', found_by: 'rspec') }
+
+      before { allow(version).to receive(:db_data).and_return(vuln_api_data_for('wordpresses/381')) }
 
       it 'outputs the expected string' do
-        @tpl_vars = tpl_vars.merge(version: WPScan::Model::WpVersion.new('3.8.1', found_by: 'rspec'))
+        @tpl_vars = tpl_vars.merge(version: version)
       end
     end
   end

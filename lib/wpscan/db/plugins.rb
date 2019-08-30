@@ -5,8 +5,8 @@ module WPScan
     # WP Plugins
     class Plugins < WpItems
       # @return [ JSON ]
-      def self.db
-        Plugin.db
+      def self.metadata
+        Plugin.metadata
       end
     end
   end

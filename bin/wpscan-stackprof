@@ -12,6 +12,7 @@ StackProf.run(mode: :cpu, out: '/tmp/stackprof-cpu.dump', interval: 500) do
   # require_relative 'wpscan' doesn't work
   WPScan::Scan.new do |s|
     s.controllers <<
+      WPScan::Controller::VulnApi.new <<
       WPScan::Controller::CustomDirectories.new <<
       WPScan::Controller::InterestingFindings.new <<
       WPScan::Controller::WpVersion.new <<

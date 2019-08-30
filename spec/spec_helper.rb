@@ -44,6 +44,10 @@ def df_stubbed_response(fixture, finder_super_class)
   end
 end
 
+def vuln_api_data_for(path)
+  JSON.parse(File.read(FIXTURES.join('db', 'vuln_api', "#{path}.json")))
+end
+
 require 'wpscan'
 require 'shared_examples'
 

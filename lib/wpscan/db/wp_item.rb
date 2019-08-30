@@ -6,14 +6,19 @@ module WPScan
     class WpItem
       # @param [ String ] identifier The plugin/theme slug or version number
       #
-      # @return [ Hash ] The JSON data from the DB associated to the identifier
-      def self.db_data(identifier)
-        db[identifier] || {}
+      # @return [ Hash ] The JSON data from the metadata associated to the identifier
+      def self.metadata_at(identifier)
+        metadata[identifier] || {}
       end
 
       # @return [ JSON ]
-      def self.db
-        @db ||= read_json_file(db_file)
+      def self.metadata
+        @metadata ||= read_json_file(metadata_file)
+      end
+
+      # @return [ String ]
+      def self.metadata_file
+        @metadata_file ||= DB_DIR.join('metadata.json').to_s
       end
     end
   end

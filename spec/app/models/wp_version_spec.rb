@@ -40,11 +40,13 @@ describe WPScan::Model::WpVersion do
 
   describe '#vulnerabilities' do
     subject(:version) { described_class.new(number) }
+    before { allow(version).to receive(:db_data).and_return(db_data) }
 
     context 'when no vulns' do
       let(:number) { '4.4' }
+      let(:db_data) { { 'vulnerabilities' => [] } }
 
-      its(:vulnerabilities) { should eql([]) }
+      its(:vulnerabilities) { should be_empty }
     end
 
     context 'when vulnerable' do
@@ -53,8 +55,25 @@ describe WPScan::Model::WpVersion do
         expect(version).to be_vulnerable
       end
 
+      let(:all_vulns) do
+        [
+          WPScan::Vulnerability.new(
+            'WP 3.8.1 - Vuln 1',
+            { wpvulndb: '1' },
+            'SQLI'
+          ),
+          WPScan::Vulnerability.new(
+            'WP 3.8.1 - Vuln 2',
+            { url: %w[url-2 url-3], osvdb: %w[10], cve: %w[2014-0166], wpvulndb: '2' },
+            nil,
+            '3.8.2'
+          )
+        ]
+      end
+
       context 'when a signle vuln' do
-        let(:number) { '3.8' }
+        let(:number) { '3.8.1' }
+        let(:db_data) { vuln_api_data_for('wordpresses/38') }
 
         it 'returns the expected result' do
           @expected = [WPScan::Vulnerability.new(
@@ -67,6 +86,7 @@ describe WPScan::Model::WpVersion do
 
       context 'when multiple vulns' do
         let(:number) { '3.8.1' }
+        let(:db_data) { vuln_api_data_for('wordpresses/381') }
 
         it 'returns the expected results' do
           @expected = [
@@ -87,27 +107,30 @@ describe WPScan::Model::WpVersion do
     end
   end
 
-  describe '#release_date' do
+  describe '#metadata, #release_date, #status' do
     subject(:version) { described_class.new('3.8.1') }
 
-    its(:release_date) { should eql '2014-01-23' }
+    before { allow(version).to receive(:db_data).and_return(db_data) }
 
-    context 'when the version is not in the DB' do
-      subject(:version) { described_class.new('3.8.2') }
+    context 'when no db_data' do
+      let(:db_data) { {} }
 
-      its(:release_date) { should eql 'Unknown' }
+      its(:release_date) { should eql '2014-01-23' }
+      its(:status) { should eql 'outdated' }
+
+      context 'when the version is not in the metadata' do
+        subject(:version) { described_class.new('3.8.2') }
+
+        its(:release_date) { should eql 'Unknown' }
+        its(:status) { should eql 'Unknown' }
+      end
     end
-  end
 
-  describe '#status' do
-    subject(:version) { described_class.new('3.8.1') }
+    context 'when db_data' do
+      let(:db_data) { vuln_api_data_for('wordpresses/381') }
 
-    its(:status) { should eql 'outdated' }
-
-    context 'when the version is not in the DB' do
-      subject(:version) { described_class.new('3.8.2') }
-
-      its(:release_date) { should eql 'Unknown' }
+      its(:release_date) { should eql '2014-01-23-via-api' }
+      its(:status) { should eql 'outdated-via-api' }
     end
   end
 end
