@@ -29203,11 +29203,6 @@ plugins:
       xpath: //meta[@name="generator" and contains(@content, "WPML")]/@content
       pattern: !ruby/regexp /\AWPML\sver:(?<v>\d+\.[\.\d]+)\sstt/i
       version: true
-    Changelog:
-      class: BodyPattern
-      path: changelog.md
-      pattern: !ruby/regexp /(?:#|\*)\s?(?<v>\d+\.[\.\d]+)/
-      version: true
     QueryParameter:
       files:
       - res/css/language-selector.css.gzip
