@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module DynamicFinder
       module Version
-        # Version finder using Body Pattern method. Tipically used when the response is not
+        # Version finder using Body Pattern method. Typically used when the response is not
         # an HTML doc and Xpath can't be used
         class BodyPattern < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]

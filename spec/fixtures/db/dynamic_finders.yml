@@ -14317,6 +14317,12 @@ plugins:
       path: changelog.md
       pattern: !ruby/regexp /\#\# (?<v>\d+\.[\.\d]+)/
       version: true
+  gravityforms-multilingual:
+    DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: gravityforms-multilingual
+      version: true
   gravityformsactivecampaign:
     ChangeLog:
       class: BodyPattern
@@ -29208,6 +29214,11 @@ plugins:
       - res/css/language-selector.css.gzip
       - res/js/jquery.cookie.js
       version: true
+    DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: sitepress-multilingual-cms
+      version: true
   sitewit-engagement-analytics:
     TranslationFile:
       class: BodyPattern
@@ -42493,6 +42504,36 @@ plugins:
     QueryParameter:
       files:
       - assets/js/wpmk-script.js
+      version: true
+  wpml-media-translation:
+    DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: wpml-media-translation
+      version: true
+  wpml-cms-nav:
+    DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: wpml-cms-nav
+      version: true
+  wpml-string-translation:
+    DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: wpml-string-translation
+      version: true
+  wpml-sticky-links:
+     DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: wpml-sticky-links
+      version: true
+  wpml-translation-management:
+    DependenciesFile:
+      class: ConfigParser
+      path: wpml-dependencies.json
+      key: wpml-translation-management
       version: true
   wpml-widgets:
     Readme:
