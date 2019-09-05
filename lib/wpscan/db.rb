@@ -7,6 +7,7 @@ require_relative 'db/plugins'
 require_relative 'db/themes'
 require_relative 'db/plugin'
 require_relative 'db/theme'
+require_relative 'db/sponsor'
 require_relative 'db/wp_version'
 require_relative 'db/fingerprints'
 

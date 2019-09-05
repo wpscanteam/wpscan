@@ -9,7 +9,7 @@ module WPScan
       FILES = %w[
         metadata.json wp_fingerprints.json
         timthumbs-v3.txt config_backups.txt db_exports.txt
-        dynamic_finders.yml LICENSE
+        dynamic_finders.yml LICENSE sponsor.txt
       ].freeze
 
       OLD_FILES = %w[
