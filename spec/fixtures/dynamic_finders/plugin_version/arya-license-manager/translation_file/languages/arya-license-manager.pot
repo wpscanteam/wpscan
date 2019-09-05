@@ -1,0 +1,593 @@
+# Copyright (C) 2019 Arya Themes
+# This file is distributed under the same license as the Arya License Manager plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Arya License Manager 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/arya-license-manager\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-08-27T01:28:03+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.3.0\n"
+"X-Domain: arya-license-manager\n"
+
+#. Plugin Name of the plugin
+msgid "Arya License Manager"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://gitlab.com/arya-license-manager"
+msgstr ""
+
+#. Description of the plugin
+msgid "Arya License Manager integrates with WooCommerce to simplify the creation and management of software licenses."
+msgstr ""
+
+#. Author of the plugin
+msgid "Arya Themes"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://www.aryathemes.com"
+msgstr ""
+
+#: compatibility.php:33
+msgid "Arya License Manager requires WooCommerce 3.6.0 or greater."
+msgstr ""
+
+#: src/Admin/Admin.php:95
+msgid "Licenses Management"
+msgstr ""
+
+#: src/Admin/Admin.php:96
+#: src/Admin/Settings.php:61
+#: src/Admin/Settings.php:83
+#: src/Admin/Settings.php:181
+#: src/Storefront/Account.php:81
+#: src/Storefront/Query.php:69
+#: templates/emails/email-licenses.php:8
+#: templates/emails/plain/email-licenses.php:10
+#: templates/myaccount/order-licenses.php:8
+msgid "Licenses"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:48
+#: src/Admin/License.php:187
+#: src/Admin/Product/Simple.php:63
+#: src/Admin/Product/Simple.php:64
+#: src/Admin/Product/Variable.php:65
+#: src/Storefront/Licenses.php:73
+#: src/Storefront/Licenses.php:102
+#: src/Storefront/Licenses.php:113
+#: src/Storefront/Order.php:292
+#: src/Storefront/Query.php:72
+#: templates/emails/email-licenses.php:17
+#: templates/myaccount/order-licenses.php:15
+#: templates/myaccount/order-licenses.php:43
+msgid "License"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:49
+#: src/Storefront/Order.php:304
+msgid "Type"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:50
+#: src/Storefront/License.php:107
+#: templates/emails/email-licenses.php:16
+#: templates/myaccount/order-licenses.php:14
+#: templates/myaccount/order-licenses.php:42
+msgid "Product"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:51
+#: src/Admin/License.php:130
+#: templates/myaccount/license.php:26
+msgid "Activations"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:52
+#: src/Admin/License.php:191
+#: src/Storefront/Order.php:295
+msgid "Status"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:53
+#: src/Admin/License.php:203
+#: src/Storefront/License.php:111
+msgid "Service start date"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:54
+#: src/Admin/License.php:207
+#: src/Storefront/License.php:115
+msgid "Service end date"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:55
+msgid "Order"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:155
+msgid "No licenses found."
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:226
+#: src/Storefront/License.php:103
+msgid "unlimited"
+msgstr ""
+
+#. translators: %s of %s: number of activations
+#: src/Admin/Analytics/Licenses.php:229
+#: src/Storefront/License.php:103
+msgid "%1$s of %2$s"
+msgstr ""
+
+#. translators: %s ago: human-readable time
+#: src/Admin/Analytics/Licenses.php:264
+msgctxt "%s = human-readable time"
+msgid "%s ago"
+msgstr ""
+
+#: src/Admin/Analytics/Licenses.php:303
+msgid "Regenerate download permissions"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:24
+msgid "Expired license"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:25
+msgid "Expired license emails are sent when a license has been deactivated by manager."
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:54
+msgid "[{site_title}]: License {license} has expired"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:64
+msgid "Expired license: <code>{license}</code>"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:120
+#: src/Admin/Emails/Suspended.php:124
+msgid "Enable/Disable"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:122
+#: src/Admin/Emails/Suspended.php:126
+msgid "Enable this email notification"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:126
+#: src/Admin/Emails/Suspended.php:130
+msgid "Recipient(s)"
+msgstr ""
+
+#. translators: Defaults to %s: Recipients for this email
+#: src/Admin/Emails/Expired.php:128
+#: src/Admin/Emails/Suspended.php:132
+msgid "Enter recipients (comma separated) for this email. Defaults to %s."
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:134
+#: src/Admin/Emails/Suspended.php:138
+msgid "Subject"
+msgstr ""
+
+#. translators: Available placeholders: %s: Available placeholders
+#: src/Admin/Emails/Expired.php:136
+#: src/Admin/Emails/Expired.php:145
+#: src/Admin/Emails/Suspended.php:140
+#: src/Admin/Emails/Suspended.php:149
+msgid "Available placeholders: %s"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:142
+#: src/Admin/Emails/Suspended.php:146
+msgid "Email heading"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:150
+#: src/Admin/Emails/Suspended.php:154
+msgid "Email type"
+msgstr ""
+
+#: src/Admin/Emails/Expired.php:152
+#: src/Admin/Emails/Suspended.php:156
+msgid "Choose which format of email to send."
+msgstr ""
+
+#: src/Admin/Emails/Suspended.php:24
+msgid "Suspended license"
+msgstr ""
+
+#: src/Admin/Emails/Suspended.php:25
+msgid "Suspended license emails are sent when a license has been deactivated by manager."
+msgstr ""
+
+#: src/Admin/Emails/Suspended.php:54
+msgid "[{site_title}]: License {license} has been suspended"
+msgstr ""
+
+#: src/Admin/Emails/Suspended.php:64
+msgid "License suspended: {license}"
+msgstr ""
+
+#: src/Admin/Integration.php:80
+#: src/Admin/Integration.php:101
+msgctxt "WooCommerce header breadcrumbs"
+msgid "Licenses"
+msgstr ""
+
+#: src/Admin/Integration.php:89
+msgctxt "WooCommerce header breadcrumbs"
+msgid "License details"
+msgstr ""
+
+#: src/Admin/License.php:83
+#: templates/myaccount/license.php:14
+msgid "License not available."
+msgstr ""
+
+#: src/Admin/License.php:89
+msgid "License details"
+msgstr ""
+
+#: src/Admin/License.php:128
+msgid "Information"
+msgstr ""
+
+#: src/Admin/License.php:133
+#: src/Admin/License.php:243
+#: src/Storefront/License.php:145
+#: src/Storefront/Licenses.php:74
+#: src/Storefront/Licenses.php:103
+#: src/Storefront/Licenses.php:114
+#: templates/myaccount/order-licenses.php:16
+#: templates/myaccount/order-licenses.php:44
+msgid "Actions"
+msgstr ""
+
+#: src/Admin/License.php:147
+#: src/Storefront/Cart.php:116
+#: src/Storefront/Order.php:332
+msgid "Unlimited activations"
+msgstr ""
+
+#. translators: %d activation: number of activations
+#: src/Admin/License.php:149
+#: src/Storefront/Cart.php:118
+#: src/Storefront/Order.php:334
+msgid "%d activation"
+msgid_plural "%d activations"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/License.php:195
+#: src/Admin/Product.php:121
+#: src/Admin/Product/Variable.php:121
+#: src/Storefront/License.php:119
+msgid "License type"
+msgstr ""
+
+#: src/Admin/License.php:199
+msgid "Product HM"
+msgstr ""
+
+#: src/Admin/License.php:211
+#: src/Storefront/License.php:123
+msgid "Allowed activations"
+msgstr ""
+
+#: src/Admin/License.php:215
+msgid "Order / Customer"
+msgstr ""
+
+#: src/Admin/License.php:241
+#: src/Storefront/License.php:143
+msgid "Activation"
+msgstr ""
+
+#: src/Admin/License.php:242
+#: src/Storefront/License.php:144
+#: src/Storefront/Order.php:307
+msgid "Activation date"
+msgstr ""
+
+#: src/Admin/License.php:258
+#: src/Storefront/License.php:206
+msgid "Associate"
+msgstr ""
+
+#: src/Admin/License.php:262
+#: src/License/Traits/LicenseTrait.php:98
+#: src/Storefront/License.php:208
+msgid "WordPress"
+msgstr ""
+
+#: src/Admin/License.php:263
+#: src/License/Traits/LicenseTrait.php:101
+#: src/Storefront/License.php:209
+msgid "Web Application"
+msgstr ""
+
+#: src/Admin/License.php:271
+#: src/Storefront/License.php:214
+msgid "Website URL"
+msgstr ""
+
+#: src/Admin/License.php:278
+#: src/Storefront/License.php:217
+msgid "The IP address of the provided website is automatically assigned."
+msgstr ""
+
+#: src/Admin/License.php:286
+msgid "Associate license"
+msgstr ""
+
+#: src/Admin/License.php:307
+#: src/Storefront/License.php:154
+msgid "This license has not been associated to a website."
+msgstr ""
+
+#: src/Admin/License.php:325
+#: src/Storefront/License.php:172
+msgid "Revoke"
+msgstr ""
+
+#: src/Admin/License.php:352
+msgid "Activate"
+msgstr ""
+
+#: src/Admin/License.php:353
+msgid "Deactivate"
+msgstr ""
+
+#: src/Admin/License.php:354
+msgid "Renew"
+msgstr ""
+
+#: src/Admin/License.php:361
+msgid "Choose an action..."
+msgstr ""
+
+#: src/Admin/License.php:369
+msgid "Update"
+msgstr ""
+
+#: src/Admin/License.php:389
+#: src/Storefront/Account.php:217
+msgid "It was not possible to associate the license."
+msgstr ""
+
+#: src/Admin/Licenses.php:61
+msgid "License Management"
+msgstr ""
+
+#: src/Admin/Licenses.php:86
+msgid "Number of licenses per page:"
+msgstr ""
+
+#: src/Admin/Order.php:60
+#: src/Storefront/Order.php:113
+msgid "Regenerate download permissions for licenses"
+msgstr ""
+
+#: src/Admin/Product.php:70
+msgid "Software License"
+msgstr ""
+
+#: src/Admin/Product.php:99
+#: src/Admin/Product/Variable.php:90
+msgid "Expiry time"
+msgstr ""
+
+#: src/Admin/Product.php:110
+#: src/Admin/Product/Variable.php:97
+msgid "Expire interval"
+msgstr ""
+
+#: src/Admin/Product.php:113
+#: src/Admin/Product/Variable.php:100
+msgid "Years"
+msgstr ""
+
+#: src/Admin/Product.php:114
+#: src/Admin/Product/Variable.php:101
+msgid "Months"
+msgstr ""
+
+#: src/Admin/Product.php:115
+#: src/Admin/Product/Variable.php:102
+msgid "Days"
+msgstr ""
+
+#: src/Admin/Product.php:124
+#: src/Admin/Product/Variable.php:124
+msgid "On-demand software"
+msgstr ""
+
+#: src/Admin/Product.php:125
+#: src/Admin/Product/Variable.php:125
+#: src/License/Traits/LicenseTrait.php:48
+msgid "Perpetual"
+msgstr ""
+
+#: src/Admin/Product.php:135
+#: src/Admin/Product/Variable.php:109
+#: src/Storefront/Cart.php:93
+msgid "Activation limit"
+msgstr ""
+
+#: src/Admin/Product.php:136
+#: src/Admin/Product/Variable.php:111
+msgid "Leave blank for unlimited activations."
+msgstr ""
+
+#: src/Admin/Product.php:139
+#: src/Admin/Product/Variable.php:114
+msgid "Unlimited"
+msgstr ""
+
+#: src/Admin/Product/License.php:63
+msgid "Software license"
+msgstr ""
+
+#: src/Admin/Product/Variable.php:64
+msgid "Enable this option if the product is associated to a license."
+msgstr ""
+
+#: src/Admin/Request.php:82
+#: src/Admin/Request.php:132
+#: src/Admin/Request.php:178
+msgid "It is not possible to perform an action since the order has not been completed."
+msgstr ""
+
+#: src/Admin/Settings.php:84
+msgid "The following options are used to configure licenses format."
+msgstr ""
+
+#: src/Admin/Settings.php:89
+msgid "Length"
+msgstr ""
+
+#: src/Admin/Settings.php:90
+msgid "Number of characters to generate a new license. Licenses shall have a minimum length of 10 characters."
+msgstr ""
+
+#: src/Admin/Settings.php:102
+msgid "Chunks"
+msgstr ""
+
+#: src/Admin/Settings.php:103
+msgid "Split a license into chunks."
+msgstr ""
+
+#: src/Admin/Settings.php:115
+msgid "Prefix"
+msgstr ""
+
+#: src/Admin/Settings.php:116
+msgid "Add the prefix to the generated license."
+msgstr ""
+
+#: src/Admin/Settings.php:124
+msgid "Suffix"
+msgstr ""
+
+#: src/Admin/Settings.php:125
+msgid "Add the suffix to the generated license."
+msgstr ""
+
+#: src/Admin/Settings.php:142
+msgid "Account page"
+msgstr ""
+
+#: src/Admin/Settings.php:147
+msgid "Pagination"
+msgstr ""
+
+#: src/Admin/Settings.php:148
+msgid "Limits the number of licenses to display on \"My Account\" page."
+msgstr ""
+
+#: src/Admin/Settings.php:182
+msgid "Endpoint for the \"Licenses\" page."
+msgstr ""
+
+#: src/Admin/Settings.php:189
+msgid "View license"
+msgstr ""
+
+#: src/Admin/Settings.php:190
+msgid "Endpoint for the \"View license\" page."
+msgstr ""
+
+#: src/License/Traits/LicenseTrait.php:51
+msgid "On demand software"
+msgstr ""
+
+#: src/License/Traits/LicenseTrait.php:68
+msgid "Valid"
+msgstr ""
+
+#: src/License/Traits/LicenseTrait.php:69
+msgid "Expired"
+msgstr ""
+
+#: src/License/Traits/LicenseTrait.php:70
+msgid "Suspended"
+msgstr ""
+
+#: src/License/Traits/LicenseTrait.php:71
+msgid "Inactive"
+msgstr ""
+
+#: src/License/Traits/LicenseTrait.php:84
+#: src/Storefront/Cart.php:120
+msgid "Unknown"
+msgstr ""
+
+#: src/Storefront/Account.php:96
+msgid "You do not have permission to view the license information."
+msgstr ""
+
+#: src/Storefront/Cart.php:99
+#: src/Storefront/Order.php:298
+msgid "Activation period"
+msgstr ""
+
+#: src/Storefront/License.php:224
+msgid "Accept"
+msgstr ""
+
+#: src/Storefront/Licenses.php:72
+#: src/Storefront/Licenses.php:101
+#: src/Storefront/Licenses.php:112
+msgid "Software"
+msgstr ""
+
+#: src/Storefront/Licenses.php:96
+#: templates/myaccount/order-licenses.php:37
+msgid "Manage"
+msgstr ""
+
+#: src/Storefront/Licenses.php:145
+msgid "«"
+msgstr ""
+
+#: src/Storefront/Licenses.php:146
+msgid "»"
+msgstr ""
+
+#: src/Storefront/Order.php:301
+msgid "Activations limit"
+msgstr ""
+
+#: src/Storefront/Order.php:310
+msgid "Expiry date"
+msgstr ""
+
+#: src/Storefront/Product.php:79
+msgid "Add to cart"
+msgstr ""
+
+#: templates/myaccount/license.php:10
+msgid "Invalid license."
+msgstr ""
+
+#: templates/myaccount/license.php:22
+msgid "Details"
+msgstr ""
+
+#: templates/myaccount/licenses.php:12
+msgid "Go shop"
+msgstr ""
+
+#: templates/myaccount/licenses.php:14
+msgid "There are no active licenses."
+msgstr ""
