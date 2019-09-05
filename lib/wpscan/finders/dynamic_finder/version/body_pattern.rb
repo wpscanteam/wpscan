@@ -16,7 +16,7 @@ module WPScan
           # @param [ Hash ] opts
           # @return [ Version ]
           def find(response, _opts = {})
-            return unless response.body =~ self.class::PATTERN
+            return unless response.code != 404 && response.body =~ self.class::PATTERN
 
             create_version(
               Regexp.last_match[:v],
