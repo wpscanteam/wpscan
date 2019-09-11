@@ -84,6 +84,8 @@ For more options, open a terminal and type ```wpscan --help``` (if you built wps
 
 The DB is located at ~/.wpscan/db
 
+## Load CLI options from file/s
+
 WPScan can load all options (including the --url) from configuration files, the following locations are checked (order: first to last):
 
 - ~/.wpscan/scan.json
@@ -113,11 +115,13 @@ cli_options:
 
 Running ```wpscan``` in the current directory (pwd), is the same as ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
 
-Such feature is useful to keep the API Token in a config file and not have to supply it via the CLI each time. To do so, create the ~/.wpscan/scan.yml file containing the below:
+## Save API Token in a file
+
+The feature mentioned above is useful to keep the API Token in a config file and not have to supply it via the CLI each time. To do so, create the ~/.wpscan/scan.yml file containing the below:
 
 ```yml
 cli_options:
-  api_token: YOuR_API_TOKEN
+  api_token: YOUR_API_TOKEN
 ```
 
 Enumerating usernames
