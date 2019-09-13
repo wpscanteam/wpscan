@@ -18,10 +18,10 @@ module WPScan
             choices: {
               vp: OptBoolean.new(['--vulnerable-plugins']),
               ap: OptBoolean.new(['--all-plugins']),
-              p: OptBoolean.new(['--plugins']),
+              p: OptBoolean.new(['--popular-plugins']),
               vt: OptBoolean.new(['--vulnerable-themes']),
               at: OptBoolean.new(['--all-themes']),
-              t: OptBoolean.new(['--themes']),
+              t: OptBoolean.new(['--popular-themes']),
               tt: OptBoolean.new(['--timthumbs']),
               cb: OptBoolean.new(['--config-backups']),
               dbe: OptBoolean.new(['--db-exports']),

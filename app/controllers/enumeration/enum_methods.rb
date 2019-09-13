@@ -56,7 +56,7 @@ module WPScan
       #
       # @return [ Boolean ] Wether or not to enumerate the plugins
       def enum_plugins?(opts)
-        opts[:plugins] || opts[:all_plugins] || opts[:vulnerable_plugins]
+        opts[:popular_plugins] || opts[:all_plugins] || opts[:vulnerable_plugins]
       end
 
       def enum_plugins
@@ -92,7 +92,7 @@ module WPScan
 
         if opts[:enumerate][:all_plugins]
           DB::Plugins.all_slugs
-        elsif opts[:enumerate][:plugins]
+        elsif opts[:enumerate][:popular_plugins]
           DB::Plugins.popular_slugs
         else
           DB::Plugins.vulnerable_slugs
@@ -103,7 +103,7 @@ module WPScan
       #
       # @return [ Boolean ] Wether or not to enumerate the themes
       def enum_themes?(opts)
-        opts[:themes] || opts[:all_themes] || opts[:vulnerable_themes]
+        opts[:popular_themes] || opts[:all_themes] || opts[:vulnerable_themes]
       end
 
       def enum_themes
@@ -139,7 +139,7 @@ module WPScan
 
         if opts[:enumerate][:all_themes]
           DB::Themes.all_slugs
-        elsif opts[:enumerate][:themes]
+        elsif opts[:enumerate][:popular_themes]
           DB::Themes.popular_slugs
         else
           DB::Themes.vulnerable_slugs
