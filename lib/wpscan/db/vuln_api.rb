@@ -4,7 +4,7 @@ module WPScan
   module DB
     # WPVulnDB API
     class VulnApi
-      NON_ERROR_CODES = [200, 401, 404].freeze
+      NON_ERROR_CODES = [200, 401].freeze
 
       class << self
         attr_accessor :token
@@ -24,6 +24,7 @@ module WPScan
 
         res = Browser.get(uri.join(path), params.merge(request_params))
 
+        return {} if res.code == 404 # This is for API inconsistencies when dots in path
         return JSON.parse(res.body) if NON_ERROR_CODES.include?(res.code)
 
         raise Error::HTTP, res

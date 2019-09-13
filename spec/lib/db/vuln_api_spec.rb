@@ -35,9 +35,11 @@ describe WPScan::DB::VulnApi do
     context 'when a token' do
       before { api.token = 's3cRet' }
 
+      let(:path) { 'path' }
+
       context 'when no timeouts' do
         before do
-          stub_request(:get, api.uri.join('path'))
+          stub_request(:get, api.uri.join(path))
             .with(headers: { 'Host' => api.uri.host, 'Expect' => nil, 'Referer' => nil,
                              'User-Agent' => WPScan::Browser.instance.default_user_agent,
                              'Authorization' => 'Token token=s3cRet' })
@@ -49,7 +51,7 @@ describe WPScan::DB::VulnApi do
           let(:body) { { data: 'something' }.to_json }
 
           it 'returns the expected hash' do
-            result = api.get('path')
+            result = api.get(path)
 
             expect(result).to eql('data' => 'something')
           end
@@ -60,7 +62,7 @@ describe WPScan::DB::VulnApi do
           let(:body) { { error: 'HTTP Token: Access denied.' }.to_json }
 
           it 'returns the expected hash' do
-            result = api.get('path')
+            result = api.get(path)
 
             expect(result).to eql('error' => 'HTTP Token: Access denied.')
           end
@@ -71,9 +73,20 @@ describe WPScan::DB::VulnApi do
           let(:body) { { error: 'Not found' }.to_json }
 
           it 'returns an empty hash' do
-            result = api.get('path')
+            result = api.get(path)
 
-            expect(result).to eql('error' => 'Not found')
+            expect(result).to eql({})
+          end
+
+          context 'when 404 with HTTML (API inconsistency due to dots in path)' do
+            let(:path) { 'path.b.c' }
+            let(:body) { '<!DOCTYPE html><html>Nop</html>' }
+
+            it 'returns an empty hash' do
+              result = api.get(path)
+
+              expect(result).to eql({})
+            end
           end
         end
       end
