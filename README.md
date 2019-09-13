@@ -130,7 +130,7 @@ cli_options:
   api_token: YOUR_API_TOKEN
 ```
 
-Enumerating usernames
+## Enumerating usernames
 
 ```shell
 wpscan --url https://target.tld/ --enumerate u
