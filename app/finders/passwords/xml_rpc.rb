@@ -8,7 +8,7 @@ module WPScan
         include CMSScanner::Finders::Finder::BreadthFirstDictionaryAttack
 
         def login_request(username, password)
-          target.method_call('wp.getUsersBlogs', [username, password])
+          target.method_call('wp.getUsersBlogs', [username, password], cache_ttl: 0)
         end
 
         def valid_credentials?(response)

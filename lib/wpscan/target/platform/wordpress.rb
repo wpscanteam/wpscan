@@ -109,6 +109,7 @@ module WPScan
           Browser.instance.forge_request(
             login_url,
             method: :post,
+            cache_ttl: 0,
             body: { log: username, pwd: password }
           )
         end

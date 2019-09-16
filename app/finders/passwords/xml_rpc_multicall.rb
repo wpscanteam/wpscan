@@ -19,7 +19,7 @@ module WPScan
             end
           end
 
-          target.multi_call(methods).run
+          target.multi_call(methods, cache_ttl: 0).run
         end
 
         # @param [ Array<Model::User> ] users
