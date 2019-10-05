@@ -101,7 +101,7 @@ module WPScan
       #
       # @return [ String ]
       def parse_style_tag(body, tag)
-        value = body[/^\s*#{Regexp.escape(tag)}:[\t ]*([^\r\n]+)/i, 1]
+        value = body[/#{Regexp.escape(tag)}:[\t ]*([^\r\n\*]+)/i, 1]
 
         value && !value.strip.empty? ? value.strip : nil
       end

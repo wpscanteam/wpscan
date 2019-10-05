@@ -10,10 +10,9 @@ describe WPScan::Model::Theme do
   before { expect(blog).to receive(:content_dir).at_least(1).and_return('wp-content') }
 
   describe '#new' do
-    before do
-      stub_request(:get, /.*\.css\z/)
-        .to_return(body: File.read(fixtures.join('style.css')))
-    end
+    before { stub_request(:get, /.*\.css\z/).to_return(body: File.read(fixture)) }
+
+    let(:fixture) { fixtures.join('style.css') }
 
     its(:url) { should eql 'http://wp.lab/wp-content/themes/spec/' }
     its(:style_url) { should eql 'http://wp.lab/wp-content/themes/spec/style.css' }
@@ -33,6 +32,14 @@ describe WPScan::Model::Theme do
       let(:opts) { super().merge(style_url: 'http://wp.lab/wp-content/themes/spec/custom.css') }
 
       its(:style_url) { should eql opts[:style_url] }
+    end
+
+    context 'when some new lines are stripped' do
+      let(:fixture) { fixtures.join('stripped_new_lines.css') }
+
+      its(:style_name)  { should eql 'Divi' }
+      its(:style_uri)   { should eql 'http://www.elegantthemes.com/gallery/divi/' }
+      its(:license_uri) { should eql 'http://www.gnu.org/licenses/gpl-2.0.html' }
     end
   end
 
