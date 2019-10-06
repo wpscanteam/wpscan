@@ -11,7 +11,9 @@ module WPScan
       module WordPress
         include CMSScanner::Target::Platform::PHP
 
-        WORDPRESS_PATTERN = %r{/(?:(?:wp-content/(?:themes|(?:mu\-)?plugins|uploads))|wp-includes)/}i.freeze
+        WORDPRESS_PATTERN      = %r{/(?:(?:wp-content/(?:themes|(?:mu\-)?plugins|uploads))|wp-includes)/}i.freeze
+        WP_JSON_OEMBED_PATTERN = %r{/wp\-json/oembed/}i.freeze
+        WP_ADMIN_AJAX_PATTERN  = %r{\\?/wp\-admin\\?/admin\-ajax\.php}i.freeze
 
         # These methods are used in the associated interesting_findings finders
         # to keep the boolean state of the finding rather than re-check the whole thing again
@@ -23,27 +25,33 @@ module WPScan
         # @param [ Symbol ] detection_mode
         #
         # @return [ Boolean ]
+        # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
         def wordpress?(detection_mode)
           in_scope_uris(homepage_res) do |uri|
-            return true if uri.path.match(WORDPRESS_PATTERN)
+            return true if WORDPRESS_PATTERN.match?(uri.path) || WP_JSON_OEMBED_PATTERN.match?(uri.path)
           end
 
-          homepage_res.html.css('meta[name="generator"]').each do |node|
-            return true if /wordpress/i.match?(node['content'])
+          return true if homepage_res.html.css('meta[name="generator"]').any? do |node|
+            /wordpress/i.match?(node['content'])
           end
 
           return true unless comments_from_page(/wordpress/i, homepage_res).empty?
 
+          return true if homepage_res.html.xpath('//script[not(@src)]').any? do |node|
+            WP_ADMIN_AJAX_PATTERN.match?(node.text)
+          end
+
           if %i[mixed aggressive].include?(detection_mode)
             %w[wp-admin/install.php wp-login.php].each do |path|
-              in_scope_uris(Browser.get_and_follow_location(url(path))).each do |uri|
-                return true if uri.path.match(WORDPRESS_PATTERN)
+              return true if in_scope_uris(Browser.get_and_follow_location(url(path))).any? do |uri|
+                WORDPRESS_PATTERN.match?(uri.path)
               end
             end
           end
 
           false
         end
+        # rubocop:enable Metrics/AbcSize, Metrics/PerceivedComplexity
 
         COOKIE_PATTERNS = {
           'vjs' => /createCookie\('vjs','(?<c_value>\d+)',\d+\);/i

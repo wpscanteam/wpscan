@@ -15,7 +15,7 @@ shared_examples WPScan::Target::Platform::WordPress do
     end
 
     context 'when pattern/s in the homepage' do
-      %w[default wp_includes only_scripts meta_generator comments mu_plugins].each do |file|
+      %w[default wp_includes only_scripts meta_generator comments mu_plugins wp_admin wp_json_oembed].each do |file|
         context "when a wordpress page (#{file}.html)" do
           let(:homepage) { file }
 
