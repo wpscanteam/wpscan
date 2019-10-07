@@ -34,6 +34,8 @@ module WPScan
         def user_details_from_oembed_data(oembed_data)
           return unless oembed_data
 
+          oembed_data = oembed_data.first if oembed_data.is_a?(Array)
+
           if oembed_data['author_url'] =~ %r{/author/([^/]+)/?\z}
             details = [Regexp.last_match[1], 'Author URL', 90]
           elsif oembed_data['author_name'] && !oembed_data['author_name'].empty?

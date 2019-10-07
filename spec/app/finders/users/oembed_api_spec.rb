@@ -19,15 +19,17 @@ describe WPScan::Finders::Users::OembedApi do
     end
 
     context 'when a JSON response' do
+      let(:body) { File.read(fixture) }
+
       context 'when 404' do
-        let(:body) { File.read(fixtures.join('404.json')) }
+        let(:fixture) { fixtures.join('404.json') }
 
         its(:aggressive) { should eql([]) }
       end
 
       context 'when 200' do
         context 'when author_url present' do
-          let(:body) { File.read(fixtures.join('200_author_url.json')) }
+          let(:fixture) { fixtures.join('200_author_url.json') }
 
           it 'returns the expected array of users' do
             users = finder.aggressive
@@ -44,7 +46,7 @@ describe WPScan::Finders::Users::OembedApi do
         end
 
         context 'when author_url not present but author_name' do
-          let(:body) { File.read(fixtures.join('200_author_name.json')) }
+          let(:fixture) { fixtures.join('200_author_name.json') }
 
           it 'returns the expected array of users' do
             users = finder.aggressive
@@ -58,6 +60,12 @@ describe WPScan::Finders::Users::OembedApi do
             expect(user.found_by).to eql 'Oembed API - Author Name (Aggressive Detection)'
             expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/oembed/1.0/embed?url=http://wp.lab/&format=json']
           end
+        end
+
+        context 'when body is an array' do
+          let(:fixture) { fixtures.join('array.json') }
+
+          its(:aggressive) { should eql([]) }
         end
       end
     end
