@@ -28,7 +28,7 @@ module WPScan
         def items_from_codes(type, uniq = true)
           found = []
 
-          target.homepage_res.html.css('script,style').each do |tag|
+          target.homepage_res.html.xpath('//script[not(@src)]|//style[not(@src)]').each do |tag|
             code = tag.text.to_s
             next if code.empty?
 
