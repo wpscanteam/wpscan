@@ -42,35 +42,25 @@ shared_examples 'WordPress::CustomDirectories' do
     end
 
     context 'when not found via the homepage' do
-      before { stub_request(:get, target.url).to_return(body: '') }
+      before do
+        stub_request(:get, target.url).to_return(body: '')
 
-      context 'when detection mode is passive' do
+        expect(target).to receive(:default_content_dir_exists?).and_return(dir_exist)
+      end
+
+      context 'when default dir does not exist' do
+        let(:dir_exist) { false }
+
         it 'returns nil' do
-          expect(target).not_to receive(:default_content_dir_exist?)
-
-          expect(target.content_dir(:passive)).to eql nil
+          expect(target.content_dir).to eql nil
         end
       end
 
-      context 'when detection mode is mixed or aggressive' do
-        before { expect(target).to receive(:default_content_dir_exists?).and_return(dir_exist) }
+      context 'when default dir exists' do
+        let(:dir_exist) { true }
 
-        %i[mixed aggressive].each do |mode|
-          context 'when default content dir exists' do
-            let(:dir_exist) { true }
-
-            it 'returns wp-content' do
-              expect(target.content_dir(mode)).to eql 'wp-content'
-            end
-          end
-
-          context 'when default content dir does not exist' do
-            let(:dir_exist) { false }
-
-            it 'returns nil' do
-              expect(target.content_dir(mode)).to eql nil
-            end
-          end
+        it 'returns wp-content' do
+          expect(target.content_dir).to eql 'wp-content'
         end
       end
     end

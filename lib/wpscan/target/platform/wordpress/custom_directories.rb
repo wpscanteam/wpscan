@@ -13,9 +13,8 @@ module WPScan
           @plugins_dir = dir.chomp('/')
         end
 
-        # @param [ Symbol ] detection_mode
         # @return [ String ] The wp-content directory
-        def content_dir(detection_mode = :mixed)
+        def content_dir
           unless @content_dir
             # scope_url_pattern is from CMSScanner::Target
             pattern = %r{#{scope_url_pattern}([\w\s\-/]+)\\?/(?:themes|plugins|uploads|cache)\\?/}i
@@ -29,9 +28,7 @@ module WPScan
               return @content_dir = match[1]
             end
 
-            unless detection_mode == :passive
-              return @content_dir = 'wp-content' if default_content_dir_exists?
-            end
+            return @content_dir = 'wp-content' if default_content_dir_exists?
           end
 
           @content_dir

@@ -152,7 +152,7 @@ shared_examples WPScan::Target::Platform::WordPress do
 
       context 'when wp-content not detected' do
         before do
-          expect(target).to receive(:content_dir).with(:passive).and_return(nil)
+          expect(target).to receive(:content_dir).and_return(nil)
           stub_request(:get, target.url).to_return(body: File.read(fixtures.join(fixture).to_s))
         end
 
@@ -170,7 +170,7 @@ shared_examples WPScan::Target::Platform::WordPress do
       end
 
       context 'when wp-content detected' do
-        before { expect(target).to receive(:content_dir).with(:passive).and_return('wp-content') }
+        before { expect(target).to receive(:content_dir).and_return('wp-content') }
 
         its(:wordpress_hosted?) { should be false }
       end

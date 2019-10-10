@@ -20,7 +20,7 @@ describe WPScan::Controller::CustomDirectories do
 
   describe '#before_scan' do
     context 'when the content_dir is not found and not supplied' do
-      before { expect(controller.target).to receive(:content_dir).with(:mixed) }
+      before { expect(controller.target).to receive(:content_dir).and_return(nil) }
 
       it 'raises an exception' do
         expect { controller.before_scan }.to raise_error(WPScan::Error::WpContentDirNotDetected)

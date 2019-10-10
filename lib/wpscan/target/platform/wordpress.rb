@@ -90,7 +90,7 @@ module WPScan
         def wordpress_hosted?
           return true if /\.wordpress\.com$/i.match?(uri.host)
 
-          unless content_dir(:passive)
+          unless content_dir
             pattern = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i.freeze
 
             uris_from_page(homepage_res) do |uri|
