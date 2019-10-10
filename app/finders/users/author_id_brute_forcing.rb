@@ -97,9 +97,12 @@ module WPScan
         # @return [ String, nil ]
         def display_name_from_body(body)
           page = Nokogiri::HTML.parse(body)
+
           # WP >= 3.0
           page.css('h1.page-title span').each do |node|
-            return node.text.to_s
+            text = node.text.to_s.strip
+
+            return text unless text.empty?
           end
 
           # WP < 3.0

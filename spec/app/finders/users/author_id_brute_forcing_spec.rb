@@ -50,7 +50,7 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
     end
 
     context 'when no display_name' do
-      ['4.1.1', '3.0', '2.9.2'].each do |file|
+      %w[4.9-span-tag 4.1.1 3.0 2.9.2].each do |file|
         it "returns nil for #{file}-empty.html" do
           body = File.read(fixtures.join("#{file}-empty.html"))
 
