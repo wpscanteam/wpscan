@@ -167,7 +167,6 @@ describe WPScan::Controller::Core do
           expect(core).to receive(:load_server_module)
           expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
           expect(core.target).to receive(:wordpress_hosted?).and_return(false)
-          # expect(core.target).to receive(:content_dir).and_return('wp-content')
         end
 
         it 'calls the formatter when started and finished to update the db' do
