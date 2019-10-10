@@ -7,7 +7,7 @@
   <link rel="alternate" type="application/rss+xml" title="Example RSS Feed" href="http://wp.lab/feed"/>
   <script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=1.0.0'></script>
 
-  <!-- plugins that should be detected -->
+  <!-- Plugins which should be detected from Links-->
   <link rel='stylesheet' href='https://wp.lab/wp-content/plugins/dl-1/cache/7f81.css?m=12' type='text/css' media='screen'/>
   <link rel="stylesheet" href="/wp-content/plugins/dl-2/css/frontend.css?ver=3.9.2"/>
 
@@ -24,6 +24,10 @@
   <link rel="stylesheet" href="https://wp.lab/wp-content/plugins//css/"/>
   <link rel="stylesheet" href="http://sub.lab/wp-content/plugins/ /aa/"/>
   <a href="http://wp.lab/wp-content/plugins/somefile.php">It should not be detected</a>
+  <script type='text/javascript' src='https://out-of-scope.lab/wp-content/plugins/should-not-be-detected/s.js'></script>
+
+
+  <!-- Plugins which should be detected from Code -->
 
   <style type="text/css">
     #fancybox-loading.fancybox-ie div {
