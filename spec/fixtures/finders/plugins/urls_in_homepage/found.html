@@ -8,7 +8,7 @@
   <script type='text/javascript' src='http://platform.twitter.com/widgets.js?ver=1.0.0'></script>
 
   <!-- plugins that should be detected -->
-  <link rel='stylesheet' href='http://wp.lab/wp-content/plugins/dl-1/cache/7f81.css?m=12' type='text/css' media='screen'/>
+  <link rel='stylesheet' href='https://wp.lab/wp-content/plugins/dl-1/cache/7f81.css?m=12' type='text/css' media='screen'/>
   <link rel="stylesheet" href="/wp-content/plugins/dl-2/css/frontend.css?ver=3.9.2"/>
 
   <script type='text/javascript' src='http://wp.lab/wp-content/plugins/dl-3/s2member-o.php?ws=1'></script>
@@ -17,6 +17,12 @@
   <!-- Duplicate, dl-4 should only be detected once -->
   <script type='text/javascript' src='/wp-content/plugins/dl-4/main2.js'></script>
 
+  <!-- in scope domain -->
+  <link rel="stylesheet" href="http://sub.lab/wp-content/plugins/dl-5/css/"/>
+
+  <!-- Should not be detected -->
+  <link rel="stylesheet" href="https://wp.lab/wp-content/plugins//css/"/>
+  <link rel="stylesheet" href="http://sub.lab/wp-content/plugins/ /aa/"/>
   <a href="http://wp.lab/wp-content/plugins/somefile.php">It should not be detected</a>
 
   <style type="text/css">

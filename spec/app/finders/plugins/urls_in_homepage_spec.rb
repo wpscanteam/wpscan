@@ -3,14 +3,16 @@
 describe WPScan::Finders::Plugins::UrlsInHomepage do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
-  let(:url)        { 'http://wp.lab/' }
+  let(:url)        { 'https://wp.lab/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('plugins', 'urls_in_homepage') }
+
+  before { target.scope << 'sub.lab' }
 
   it_behaves_like 'App::Finders::WpItems::URLsInHomepage' do
     let(:type)                { 'plugins' }
     let(:uniq_links)          { true }
     let(:uniq_codes)          { true }
-    let(:expected_from_links) { (1..4).map { |i| "dl-#{i}" } }
+    let(:expected_from_links) { (1..5).map { |i| "dl-#{i}" } }
     let(:expected_from_codes) { (1..6).map { |i| "dc-#{i}" } }
   end
 

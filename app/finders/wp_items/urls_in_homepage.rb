@@ -15,7 +15,9 @@ module WPScan
           target.in_scope_uris(target.homepage_res) do |uri|
             next unless uri.to_s =~ item_attribute_pattern(type)
 
-            found << Regexp.last_match[1]
+            slug = Regexp.last_match[1]&.strip
+
+            found << slug unless slug&.empty?
           end
 
           uniq ? found.uniq.sort : found.sort
@@ -42,7 +44,7 @@ module WPScan
         #
         # @return [ Regexp ]
         def item_attribute_pattern(type)
-          @item_attribute_pattern ||= %r{\A#{item_url_pattern(type)}([^/]+)/}i
+          @item_attribute_pattern ||= %r{#{item_url_pattern(type)}([^/]+)/}i
         end
 
         # @param [ String ] type
@@ -59,7 +61,7 @@ module WPScan
           item_dir = type == 'plugins' ? target.plugins_dir : target.content_dir
           item_url = type == 'plugins' ? target.plugins_url : target.content_url
 
-          url = /#{item_url.gsub(/\A(?:http|https)/i, 'https?').gsub('/', '\\\\\?\/')}/i
+          url = /#{item_url.gsub(/\A(?:https?)/i, 'https?').gsub('/', '\\\\\?\/')}/i
           item_dir = %r{(?:#{url}|\\?\/#{item_dir.gsub('/', '\\\\\?\/')}\\?/)}i
 
           type == 'plugins' ? item_dir : %r{#{item_dir}#{type}\\?\/}i

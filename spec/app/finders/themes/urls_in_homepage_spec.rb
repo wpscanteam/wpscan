@@ -6,6 +6,8 @@ describe WPScan::Finders::Themes::UrlsInHomepage do
   let(:url)        { 'http://wp.lab/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('themes', 'urls_in_homepage') }
 
+  # before { target.scope << 'sub.lab' }
+
   it_behaves_like 'App::Finders::WpItems::URLsInHomepage' do
     let(:type)                { 'themes' }
     let(:uniq_links)          { true }
