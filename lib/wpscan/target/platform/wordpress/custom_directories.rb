@@ -17,7 +17,7 @@ module WPScan
         def content_dir
           unless @content_dir
             # scope_url_pattern is from CMSScanner::Target
-            pattern = %r{#{scope_url_pattern}([\w\s\-/]+)\\?/(?:themes|plugins|uploads|cache)\\?/}i
+            pattern = %r{#{scope_url_pattern}([\w\s\-/]+?)\\?/(?:themes|plugins|uploads|cache)\\?/}i
 
             in_scope_uris(homepage_res) do |uri|
               return @content_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
