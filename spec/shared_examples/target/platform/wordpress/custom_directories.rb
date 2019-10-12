@@ -9,10 +9,13 @@ shared_examples 'WordPress::CustomDirectories' do
       relative_one: 'wp-content', relative_two: 'wp-content', cache: 'wp-content',
       in_raw_js: 'wp-content', in_raw_js_escaped: 'wp-content', with_sub_dir: 'app',
       relative_two_sub_dir: 'cms/wp-content', in_meta_content: 'wp-content',
-      themes_path_plugin_folder: 'wp-content'
+      themes_path_plugin_folder: 'wp-content', simple_link: nil
     }.each do |file, expected|
       it "returns #{expected} for #{file}.html" do
         stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{file}.html")))
+
+        # For cases where the expected is nil
+        allow(target).to receive(:default_content_dir_exists?).and_return(false)
 
         expect(target.content_dir).to eql expected
       end

@@ -19,7 +19,7 @@ module WPScan
             # scope_url_pattern is from CMSScanner::Target
             pattern = %r{#{scope_url_pattern}([\w\s\-/]+?)\\?/(?:themes|plugins|uploads|cache)\\?/}i
 
-            in_scope_uris(homepage_res) do |uri|
+            in_scope_uris(homepage_res, '//link/@href|//script/@src|//img/@src') do |uri|
               return @content_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
             end
 
