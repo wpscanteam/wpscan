@@ -1,0 +1,38 @@
+{
+  "name": "ui-blocks",
+  "author": {
+    "name": "Roman Bejnar",
+    "url": "https://bejnar.de"
+  },
+  "contributors": [
+    "Trang Nguyen (https://trangnguyen.de)"
+  ],
+  "version": "1.0.2",
+  "license": "GPL-2.0-or-later",
+  "main": "blocks/index.js",
+  "scripts": {
+    "dev": "cross-env webpack --watch",
+    "build": "cross-env NODE_ENV=production webpack -p"
+  },
+  "devDependencies": {
+    "@wordpress/babel-preset-default": "^1.2.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-loader": "^7.1.4",
+    "classnames": "^2.2.5",
+    "cross-env": "^5.1.5",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^4.1.0",
+    "node-sass": "^4.12.0",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.12.0"
+  },
+  "dependencies": {
+    "perspective-transform": "^1.1.3",
+    "react-resize-detector": "^4.2.0"
+  }
+}
