@@ -8666,6 +8666,9 @@ plugins:
       - css/cpt-list.css
       version: true
   crayon-syntax-highlighter:
+    JavascriptVar:
+      xpath: //script[contains(., "CrayonSyntax")]
+      pattern: !ruby/regexp /CrayonSyntax/
     Readme:
       path: readme.txt
   crazy-bone:
@@ -33304,6 +33307,9 @@ plugins:
     Readme:
       path: readme.txt
   tawkto-live-chat:
+    Comment:
+      xpath: //comment()[contains(., "Tawk.to")]
+      pattern: !ruby/regexp /Start of Tawk\.to Script \(/i
     Readme:
       path: readme.txt
   taxjar-simplified-taxes-for-woocommerce:
