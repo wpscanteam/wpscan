@@ -38,4 +38,3 @@ USER wpscan
 RUN /usr/local/bundle/bin/wpscan --update --verbose
 
 ENTRYPOINT ["/usr/local/bundle/bin/wpscan"]
-CMD ["--help"]
