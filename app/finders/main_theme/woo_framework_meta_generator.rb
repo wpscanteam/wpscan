@@ -10,7 +10,7 @@ module WPScan
         PATTERN           = /#{THEME_PATTERN}\s+#{FRAMEWORK_PATTERN}/i.freeze
 
         def passive(opts = {})
-          return unless target.homepage_res.body =~ PATTERN
+          return unless target.homepage_res.body =~ PATTERN || target.error_404_res.body =~ PATTERN
 
           Model::Theme.new(
             Regexp.last_match[1],

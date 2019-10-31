@@ -87,6 +87,8 @@ describe WPScan::Finders::Users::WpJsonApi do
   describe '#api_url' do
     let(:fixtures) { super().join('api_url') }
 
+    before { allow(target).to receive(:sub_dir).and_return(false) }
+
     context 'when url in the homepage' do
       {
         in_scope: 'https://wp.lab/wp-json/wp/v2/users/',
@@ -100,7 +102,7 @@ describe WPScan::Finders::Users::WpJsonApi do
       end
 
       context 'when subdir' do
-        before { allow(target).to receive(:subdir).and_return('cms') }
+        before { allow(target).to receive(:sub_dir).and_return('cms') }
 
         {
           in_scope_subdir: 'https://wp.lab/cms/wp-json/wp/v2/users/',

@@ -25,7 +25,10 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
     let(:stubbed_response) { { body: '' } }
 
     describe '#passive' do
-      before { stub_request(:get, target.url).to_return(stubbed_response) }
+      before do
+        stub_request(:get, target.url).to_return(stubbed_response)
+        stub_request(:get, ERROR_404_URL_PATTERN)
+      end
 
       if config['path']
         context 'when PATH' do
@@ -66,7 +69,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
       let(:fixtures) { super().join(finder_class.underscore) }
 
       before do
-        allow(target).to receive(:sub_dir).and_return(nil)
+        allow(target).to receive(:sub_dir).and_return(false)
 
         stub_request(:get, target.url(config['path'])).to_return(stubbed_response) if config['path']
       end

@@ -8,7 +8,8 @@ describe WPScan::Finders::Themes::UrlsInHomepage do
 
   # before { target.scope << 'sub.lab' }
 
-  it_behaves_like 'App::Finders::WpItems::URLsInHomepage' do
+  it_behaves_like 'App::Finders::WpItems::UrlsInPage' do
+    let(:page_url)            { url }
     let(:type)                { 'themes' }
     let(:uniq_links)          { true }
     let(:uniq_codes)          { true }

@@ -6,7 +6,8 @@ describe WPScan::Finders::MainTheme::UrlsInHomepage do
   let(:url)        { 'http://wp.lab/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'urls_in_homepage') }
 
-  it_behaves_like 'App::Finders::WpItems::URLsInHomepage' do
+  it_behaves_like 'App::Finders::WpItems::UrlsInPage' do
+    let(:page_url)            { url }
     let(:type)                { 'themes' }
     let(:uniq_links)          { false }
     let(:uniq_codes)          { false }
@@ -18,6 +19,8 @@ describe WPScan::Finders::MainTheme::UrlsInHomepage do
     before do
       stub_request(:get, /.*.css/)
       stub_request(:get, target.url).to_return(body: File.read(fixtures.join('found.html')))
+
+      allow(target).to receive(:content_dir).and_return('wp-content')
     end
 
     it 'returns the expected Themes' do

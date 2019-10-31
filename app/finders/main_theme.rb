@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'main_theme/css_style'
+require_relative 'main_theme/css_style_in_homepage'
+require_relative 'main_theme/css_style_in_404_page'
 require_relative 'main_theme/woo_framework_meta_generator'
 require_relative 'main_theme/urls_in_homepage'
+require_relative 'main_theme/urls_in_404_page'
 
 module WPScan
   module Finders
@@ -14,9 +16,11 @@ module WPScan
         # @param [ WPScan::Target ] target
         def initialize(target)
           finders <<
-            MainTheme::CssStyle.new(target) <<
+            MainTheme::CssStyleInHomepage.new(target) <<
+            MainTheme::CssStyleIn404Page.new(target) <<
             MainTheme::WooFrameworkMetaGenerator.new(target) <<
-            MainTheme::UrlsInHomepage.new(target)
+            MainTheme::UrlsInHomepage.new(target) <<
+            MainTheme::UrlsIn404Page.new(target)
         end
       end
     end

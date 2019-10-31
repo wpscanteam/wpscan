@@ -16,13 +16,15 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
 
   describe '#passive' do
     before do
-      stub_request(:get, target.url).to_return(body: body)
+      stub_request(:get, target.url).to_return(body: homepage_body)
+      stub_request(:get, ERROR_404_URL_PATTERN).to_return(body: error_404_body)
 
       allow(target).to receive(:content_dir).and_return('wp-content')
     end
 
     context 'when no matches' do
-      let(:body) { '' }
+      let(:homepage_body) { '' }
+      let(:error_404_body) { '' }
 
       it 'returns an empty array' do
         expect(finder.passive).to eql([])
@@ -30,9 +32,7 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
     end
 
     context 'when matches' do
-      let(:body) { File.read(passive_fixture) }
-
-      it 'contains the expected items' do
+      let(:expected_items) do
         expected = []
 
         finder.passive_configs.each do |slug, configs|
@@ -48,7 +48,25 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
           end
         end
 
-        expect(finder.passive).to match_array(expected.map { |item| eql(item) })
+        expected
+      end
+
+      context 'from the homepage' do
+        let(:homepage_body) { File.read(passive_fixture) }
+        let(:error_404_body) { '' }
+
+        it 'contains the expected items' do
+          expect(finder.passive).to match_array(expected_items.map { |item| eql(item) })
+        end
+      end
+
+      context 'from the 404' do
+        let(:homepage_body) { '' }
+        let(:error_404_body) { File.read(passive_fixture) }
+
+        it 'contains the expected items' do
+          expect(finder.passive).to match_array(expected_items.map { |item| eql(item) })
+        end
       end
     end
   end

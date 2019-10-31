@@ -8,7 +8,7 @@ describe WPScan::Finders::MainTheme::Base do
   describe '#finders' do
     it 'contains the expected finders' do
       expect(main_theme.finders.map { |f| f.class.to_s.demodulize })
-        .to eq %w[CssStyle WooFrameworkMetaGenerator UrlsInHomepage]
+        .to eq %w[CssStyleInHomepage CssStyleIn404Page WooFrameworkMetaGenerator UrlsInHomepage UrlsIn404Page]
     end
   end
 end

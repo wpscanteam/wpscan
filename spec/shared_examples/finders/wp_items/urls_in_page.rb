@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-shared_examples 'App::Finders::WpItems::URLsInHomepage' do
+shared_examples 'App::Finders::WpItems::UrlsInPage' do
   before do
-    stub_request(:get, finder.target.url).to_return(body: File.read(fixtures.join(file)))
+    stub_request(:get, page_url).to_return(body: File.read(fixtures.join(file)))
   end
 
   describe '#items_from_links' do

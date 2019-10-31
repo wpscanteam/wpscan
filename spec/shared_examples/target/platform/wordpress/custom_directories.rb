@@ -4,6 +4,9 @@ shared_examples 'WordPress::CustomDirectories' do
   let(:fixtures) { super().join('custom_directories') }
 
   describe '#content_dir' do
+    # Stub the error_404_res to make it easier to test
+    before { stub_request(:get, ERROR_404_URL_PATTERN) }
+
     {
       default: 'wp-content', https: 'wp-content', custom_w_spaces: 'custom content spaces',
       relative_one: 'wp-content', relative_two: 'wp-content', cache: 'wp-content',
@@ -45,9 +48,9 @@ shared_examples 'WordPress::CustomDirectories' do
       end
     end
 
-    context 'when not found via the homepage' do
+    context 'when not found via the homepage or 404' do
       before do
-        stub_request(:get, target.url).to_return(body: '')
+        stub_request(:get, target.url)
 
         expect(target).to receive(:default_content_dir_exists?).and_return(dir_exist)
       end
@@ -123,6 +126,9 @@ shared_examples 'WordPress::CustomDirectories' do
   end
 
   describe '#sub_dir' do
+    # Stub the error_404_res to make it easier to test
+    before { stub_request(:get, ERROR_404_URL_PATTERN) }
+
     { default: false, with_sub_dir: 'wp', relative_two_sub_dir: 'cms' }.each do |file, expected|
       it "returns #{expected} for #{file}.html" do
         fixture = File.join(fixtures, "#{file}.html")

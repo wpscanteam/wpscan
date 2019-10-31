@@ -7,14 +7,17 @@ shared_examples WPScan::Target::Platform::WordPress do
 
   let(:fixtures) { FIXTURES.join('target', 'platform', 'wordpress') }
 
-  describe '#wordpress?' do
+  describe '#wordpress?, wordpress_from_meta_comments_or_scripts?' do
     let(:fixtures) { super().join('detection') }
 
     before do
       stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{homepage}.html")))
+      stub_request(:get, ERROR_404_URL_PATTERN).to_return(body: File.read(fixtures.join("#{page_404}.html")))
     end
 
     context 'when pattern/s in the homepage' do
+      let(:page_404) { 'not_wp' }
+
       %w[default wp_includes only_scripts meta_generator comments mu_plugins wp_admin wp_json_oembed].each do |file|
         context "when a wordpress page (#{file}.html)" do
           let(:homepage) { file }
@@ -29,39 +32,55 @@ shared_examples WPScan::Target::Platform::WordPress do
     context 'when no clues in the homepage' do
       let(:homepage) { 'not_wp' }
 
-      context 'when only passive detection mode' do
-        it 'returns false' do
-          expect(subject.wordpress?(:passive)).to be false
+      context 'when pattern/s in the 404 page' do
+        %w[default wp_includes only_scripts meta_generator comments mu_plugins wp_admin wp_json_oembed].each do |file|
+          context "when a wordpress page (#{file}.html)" do
+            let(:page_404) { file }
+
+            it 'returns true' do
+              expect(subject.wordpress?(:mixed)).to be true
+            end
+          end
         end
       end
 
-      context 'when mixed or aggressive detection modes' do
-        context 'when wp-admin/install.php and wp-login.php not there' do
+      context 'when no clues in the 404 page' do
+        let(:page_404) { 'not_wp' }
+
+        context 'when only passive detection mode' do
           it 'returns false' do
-            %w[wp-admin/install.php wp-login.php].each do |path|
-              stub_request(:get, target.url(path)).to_return(status: 404)
+            expect(subject.wordpress?(:passive)).to be false
+          end
+        end
+
+        context 'when mixed or aggressive detection modes' do
+          context 'when wp-admin/install.php and wp-login.php not there' do
+            it 'returns false' do
+              %w[wp-admin/install.php wp-login.php].each do |path|
+                stub_request(:get, target.url(path)).to_return(status: 404)
+              end
+
+              expect(subject.wordpress?(:mixed)).to be false
             end
-
-            expect(subject.wordpress?(:mixed)).to be false
           end
-        end
 
-        context 'when wp-admin/install.php is matching a WP install' do
-          it 'returns true' do
-            stub_request(:get, target.url('wp-admin/install.php'))
-              .to_return(body: File.read(fixtures.join('wp-admin-install.php')))
+          context 'when wp-admin/install.php is matching a WP install' do
+            it 'returns true' do
+              stub_request(:get, target.url('wp-admin/install.php'))
+                .to_return(body: File.read(fixtures.join('wp-admin-install.php')))
 
-            expect(subject.wordpress?(:mixed)).to be true
+              expect(subject.wordpress?(:mixed)).to be true
+            end
           end
-        end
 
-        context 'when wp-admin/install.php not there but wp-login.php is matching a WP install' do
-          it 'returns true' do
-            stub_request(:get, target.url('wp-admin/install.php')).to_return(status: 404)
-            stub_request(:get, target.url('wp-login.php'))
-              .to_return(body: File.read(fixtures.join('wp-login.php')))
+          context 'when wp-admin/install.php not there but wp-login.php is matching a WP install' do
+            it 'returns true' do
+              stub_request(:get, target.url('wp-admin/install.php')).to_return(status: 404)
+              stub_request(:get, target.url('wp-login.php'))
+                .to_return(body: File.read(fixtures.join('wp-login.php')))
 
-            expect(subject.wordpress?(:mixed)).to be true
+              expect(subject.wordpress?(:mixed)).to be true
+            end
           end
         end
       end

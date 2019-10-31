@@ -8,7 +8,7 @@ describe WPScan::Finders::Themes::Base do
   describe '#finders' do
     it 'contains the expected finders' do
       expect(themes.finders.map { |f| f.class.to_s.demodulize })
-        .to eq %w[UrlsInHomepage KnownLocations]
+        .to eq %w[UrlsInHomepage UrlsIn404Page KnownLocations]
     end
   end
 end

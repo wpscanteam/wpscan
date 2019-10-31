@@ -19,13 +19,15 @@ module WPScan
             # scope_url_pattern is from CMSScanner::Target
             pattern = %r{#{scope_url_pattern}([\w\s\-/]+?)\\?/(?:themes|plugins|uploads|cache)\\?/}i
 
-            in_scope_uris(homepage_res, '//link/@href|//script/@src|//img/@src') do |uri|
-              return @content_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
-            end
+            [homepage_res, error_404_res].each do |page_res|
+              in_scope_uris(page_res, '//link/@href|//script/@src|//img/@src') do |uri|
+                return @content_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
+              end
 
-            # Checks for the pattern in raw JS code, as well as @content attributes of meta tags
-            xpath_pattern_from_page('//script[not(@src)]|//meta/@content', pattern, homepage_res) do |match|
-              return @content_dir = match[1]
+              # Checks for the pattern in raw JS code, as well as @content attributes of meta tags
+              xpath_pattern_from_page('//script[not(@src)]|//meta/@content', pattern, page_res) do |match|
+                return @content_dir = match[1]
+              end
             end
 
             return @content_dir = 'wp-content' if default_content_dir_exists?
@@ -104,8 +106,10 @@ module WPScan
           # url_pattern is from CMSScanner::Target
           pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
 
-          in_scope_uris(homepage_res) do |uri|
-            return @sub_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
+          [homepage_res, error_404_res].each do |page_res|
+            in_scope_uris(page_res) do |uri|
+              return @sub_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
+            end
           end
 
           @sub_dir = false

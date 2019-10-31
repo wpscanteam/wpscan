@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module WpItems
       # URLs In Homepage Module to use in plugins & themes finders
-      module URLsInHomepage
+      module UrlsInPage
         # @param [ String ] type plugins / themes
         # @param [ Boolean ] uniq Wether or not to apply the #uniq on the results
         #
@@ -12,7 +12,7 @@ module WPScan
         def items_from_links(type, uniq = true)
           found = []
 
-          target.in_scope_uris(target.homepage_res) do |uri|
+          target.in_scope_uris(page_res) do |uri|
             next unless uri.to_s =~ item_attribute_pattern(type)
 
             slug = Regexp.last_match[1]&.strip
@@ -30,7 +30,7 @@ module WPScan
         def items_from_codes(type, uniq = true)
           found = []
 
-          target.homepage_res.html.xpath('//script[not(@src)]|//style[not(@src)]').each do |tag|
+          page_res.html.xpath('//script[not(@src)]|//style[not(@src)]').each do |tag|
             code = tag.text.to_s
             next if code.empty?
 

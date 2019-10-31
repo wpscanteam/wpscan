@@ -7,32 +7,50 @@ describe WPScan::Finders::MainTheme::WooFrameworkMetaGenerator do
   let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'woo_framework_meta_generator') }
 
   describe '#passive' do
-    after do
-      stub_request(:get, url).to_return(body: File.read(fixtures.join(@file)))
-
-      expect(finder.passive).to eql @expected
+    before do
+      stub_request(:get, url).to_return(body: File.read(fixtures.join(homepage_fixture)))
+      stub_request(:get, ERROR_404_URL_PATTERN).to_return(body: File.read(fixtures.join(error_404_fixture)))
     end
 
     context 'when no Woo generator' do
+      let(:homepage_fixture) { 'no_woo_generator.html' }
+      let(:error_404_fixture) { 'no_woo_generator.html' }
+
       it 'returns nil' do
-        @file     = 'no_woo_generator.html'
-        @expected = nil
+        expect(finder.passive).to eql nil
       end
     end
 
     context 'when Woo generator' do
       before do
-        expect(target).to receive(:content_dir).at_least(1).and_return('wp-content')
+        allow(target).to receive(:content_dir).and_return('wp-content')
         stub_request(:get, "#{url}wp-content/themes/Merchant/style.css")
       end
 
-      it 'returns the expected theme' do
-        @file     = 'woo_generator.html'
-        @expected = WPScan::Model::Theme.new(
-          'Merchant', target,
-          found_by: 'Woo Framework Meta Generator (Passive Detection)',
-          confidence: 80
-        )
+      context 'from the homepage' do
+        let(:homepage_fixture) { 'woo_generator.html' }
+        let(:error_404_fixture) { 'no_woo_generator.html' }
+
+        it 'returns the expected theme' do
+          expect(finder.passive).to eql WPScan::Model::Theme.new(
+            'Merchant', target,
+            found_by: 'Woo Framework Meta Generator (Passive Detection)',
+            confidence: 80
+          )
+        end
+      end
+
+      context 'from the 404 page' do
+        let(:homepage_fixture) { 'no_woo_generator.html' }
+        let(:error_404_fixture) { 'woo_generator.html' }
+
+        it 'returns the expected theme' do
+          expect(finder.passive).to eql WPScan::Model::Theme.new(
+            'Merchant', target,
+            found_by: 'Woo Framework Meta Generator (Passive Detection)',
+            confidence: 80
+          )
+        end
       end
     end
   end

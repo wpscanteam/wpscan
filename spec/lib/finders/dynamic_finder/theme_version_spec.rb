@@ -38,8 +38,6 @@ WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, config
         end
       end
 
-      let(:stubbed_response) { { body: 'aa' } }
-
       before do
         allow(target).to receive(:content_dir).and_return('wp-content')
 
@@ -48,7 +46,19 @@ WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, config
       end
 
       describe '#passive', slow: true do
-        before { stub_request(:get, target.url).to_return(stubbed_response) }
+        before do
+          if defined?(stubbed_homepage_res)
+            stub_request(:get, target.url).to_return(stubbed_homepage_res)
+          else
+            stub_request(:get, target.url)
+          end
+
+          if defined?(stubbed_404_res)
+            stub_request(:get, ERROR_404_URL_PATTERN).to_return(stubbed_404_res)
+          else
+            stub_request(:get, ERROR_404_URL_PATTERN)
+          end
+        end
 
         if config['path']
           context 'when PATH' do
@@ -59,27 +69,63 @@ WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, config
         else
           context 'when no PATH' do
             context 'when the version is detected' do
-              let(:stubbed_response) do
-                df_stubbed_response(
-                  fixtures.join("#{finder_super_class.underscore}_passive_all.html"),
-                  finder_super_class
-                )
+              context 'from the homepage' do
+                let(:ie_url) { target.url }
+                let(:stubbed_homepage_res) do
+                  df_stubbed_response(
+                    fixtures.join("#{finder_super_class.underscore}_passive_all.html"),
+                    finder_super_class
+                  )
+                end
+
+                it 'returns the expected version/s' do
+                  found = [*finder.passive]
+
+                  expect(found).to_not be_empty
+
+                  found.each_with_index do |version, index|
+                    expected_version = expected.at(index)
+                    expected_ie = expected_version['interesting_entries'].map do |ie|
+                      ie.gsub(target.url + ',', ie_url + ',')
+                    end
+
+                    expect(version).to be_a WPScan::Model::Version
+                    expect(version.number).to eql expected_version['number'].to_s
+                    expect(version.found_by).to eql expected_version['found_by']
+                    expect(version.interesting_entries).to match_array expected_ie
+
+                    expect(version.confidence).to eql expected_version['confidence'] if expected_version['confidence']
+                  end
+                end
               end
 
-              it 'returns the expected version/s from the homepage' do
-                found = [*finder.passive]
+              context 'from the 404' do
+                let(:ie_url) { target.error_404_url }
+                let(:stubbed_404_res) do
+                  df_stubbed_response(
+                    fixtures.join("#{finder_super_class.underscore}_passive_all.html"),
+                    finder_super_class
+                  )
+                end
 
-                expect(found).to_not be_empty
+                it 'returns the expected version/s' do
+                  found = [*finder.passive]
 
-                found.each_with_index do |version, index|
-                  expected_version = expected.at(index)
+                  expect(found).to_not be_empty
 
-                  expect(version).to be_a WPScan::Model::Version
-                  expect(version.number).to eql expected_version['number'].to_s
-                  expect(version.found_by).to eql expected_version['found_by']
-                  expect(version.interesting_entries).to match_array expected_version['interesting_entries']
+                  found.each_with_index do |version, index|
+                    expected_version = expected.at(index)
+                    expected_ie = expected_version['interesting_entries'].map do |ie|
+                      ie.gsub(target.url + ',', ie_url + ',')
+                    end
 
-                  expect(version.confidence).to eql expected_version['confidence'] if expected_version['confidence']
+                    expect(version).to be_a WPScan::Model::Version
+                    expect(version.number).to eql expected_version['number'].to_s
+                    expect(version.found_by).to eql expected_version['found_by']
+                    expect(version.interesting_entries).to match_array expected_ie
+
+                    expect(version.confidence).to eql expected_version['confidence'] if expected_version['confidence']
+                  end
                 end
               end
             end
@@ -94,7 +140,8 @@ WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, config
       end
 
       describe '#aggressive' do
-        let(:fixtures) { super().join(slug, finder_class.underscore) }
+        let(:fixtures)         { super().join(slug, finder_class.underscore) }
+        let(:stubbed_response) { { body: 'aa' } }
 
         before do
           stub_request(:get, theme.url(config['path'])).to_return(stubbed_response) if config['path']

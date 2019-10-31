@@ -5,7 +5,7 @@ module WPScan
     module MainTheme
       # URLs In Homepage Finder
       class UrlsInHomepage < CMSScanner::Finders::Finder
-        include WpItems::URLsInHomepage
+        include WpItems::UrlsInPage
 
         # @param [ Hash ] opts
         #
@@ -20,6 +20,11 @@ module WPScan
           end
 
           found
+        end
+
+        # @return [ Typhoeus::Response ]
+        def page_res
+          @page_res ||= target.homepage_res
         end
       end
     end

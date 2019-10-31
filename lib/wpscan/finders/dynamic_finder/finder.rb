@@ -44,19 +44,27 @@ module WPScan
         #
         # @param [ Typhoeus::Response ] response
         # @param [ Hash ] opts
-        # @return [ Mixed ]
+        # @return [ Mixed: nil, Object, Array ]
         def find(_response, _opts = {})
           raise NoMethodError
         end
 
         # @param [ Hash ] opts
+        # @return [ Mixed ] See #find
         def passive(opts = {})
           return if self.class::PATH
 
-          find(target.homepage_res, opts)
+          homepage_result = find(target.homepage_res, opts)
+
+          if homepage_result
+            return homepage_result unless homepage_result.is_a?(Array) && homepage_result.empty?
+          end
+
+          find(target.error_404_res, opts)
         end
 
         # @param [ Hash ] opts
+        # @return [ Mixed ] See #find
         def aggressive(opts = {})
           return unless self.class::PATH
 

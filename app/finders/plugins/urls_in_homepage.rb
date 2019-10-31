@@ -4,10 +4,9 @@ module WPScan
   module Finders
     module Plugins
       # URLs In Homepage Finder
-      # Typically, the items detected from URLs like
-      # /wp-content/plugins/<slug>/
+      # Typically, the items detected from URLs like /wp-content/plugins/<slug>/
       class UrlsInHomepage < CMSScanner::Finders::Finder
-        include WpItems::URLsInHomepage
+        include WpItems::UrlsInPage
 
         # @param [ Hash ] opts
         #
@@ -20,6 +19,11 @@ module WPScan
           end
 
           found
+        end
+
+        # @return [ Typhoeus::Response ]
+        def page_res
+          @page_res ||= target.homepage_res
         end
       end
     end

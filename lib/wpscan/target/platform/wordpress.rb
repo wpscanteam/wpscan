@@ -24,21 +24,10 @@ module WPScan
 
         # @param [ Symbol ] detection_mode
         #
-        # @return [ Boolean ]
-        # rubocop:disable Metrics/AbcSize, Metrics/PerceivedComplexity
+        # @return [ Boolean ] Whether or not the target is running WordPress
         def wordpress?(detection_mode)
-          in_scope_uris(homepage_res) do |uri|
-            return true if WORDPRESS_PATTERN.match?(uri.path) || WP_JSON_OEMBED_PATTERN.match?(uri.path)
-          end
-
-          return true if homepage_res.html.css('meta[name="generator"]').any? do |node|
-            /wordpress/i.match?(node['content'])
-          end
-
-          return true unless comments_from_page(/wordpress/i, homepage_res).empty?
-
-          return true if homepage_res.html.xpath('//script[not(@src)]').any? do |node|
-            WP_ADMIN_AJAX_PATTERN.match?(node.text)
+          [homepage_res, error_404_res].each do |page_res|
+            return true if wordpress_from_meta_comments_or_scripts?(page_res)
           end
 
           if %i[mixed aggressive].include?(detection_mode)
@@ -51,7 +40,26 @@ module WPScan
 
           false
         end
-        # rubocop:enable Metrics/AbcSize, Metrics/PerceivedComplexity
+
+        # @param [ Typhoeus::Response ] response
+        # @return [ Boolean ]
+        def wordpress_from_meta_comments_or_scripts?(response)
+          in_scope_uris(response) do |uri|
+            return true if WORDPRESS_PATTERN.match?(uri.path) || WP_JSON_OEMBED_PATTERN.match?(uri.path)
+          end
+
+          return true if response.html.css('meta[name="generator"]').any? do |node|
+            /wordpress/i.match?(node['content'])
+          end
+
+          return true unless comments_from_page(/wordpress/i, response).empty?
+
+          return true if response.html.xpath('//script[not(@src)]').any? do |node|
+            WP_ADMIN_AJAX_PATTERN.match?(node.text)
+          end
+
+          false
+        end
 
         COOKIE_PATTERNS = {
           'vjs' => /createCookie\('vjs','(?<c_value>\d+)',\d+\);/i

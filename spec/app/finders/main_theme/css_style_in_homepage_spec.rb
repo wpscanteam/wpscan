@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-describe WPScan::Finders::MainTheme::CssStyle do
+describe WPScan::Finders::MainTheme::CssStyleInHomepage do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://wp.lab/' }
-  let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'css_style') }
+  let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'css_style_in_homepage') }
 
   describe '#passive' do
     after do
@@ -33,7 +33,7 @@ describe WPScan::Finders::MainTheme::CssStyle do
           @expected = WPScan::Model::Theme.new(
             'twentyfifteen',
             target,
-            found_by: 'Css Style (Passive Detection)',
+            found_by: 'Css Style In Homepage (Passive Detection)',
             confidence: 70,
             style_url: 'http://wp.lab/wp-content/themes/twentyfifteen/style.css?ver=4.1.1'
           )
@@ -47,7 +47,7 @@ describe WPScan::Finders::MainTheme::CssStyle do
           @expected = WPScan::Model::Theme.new(
             'custom',
             target,
-            found_by: 'Css Style (Passive Detection)',
+            found_by: 'Css Style In Homepage (Passive Detection)',
             confidence: 70,
             style_url: 'http://wp.lab/wp-content/themes/custom/style.css'
           )

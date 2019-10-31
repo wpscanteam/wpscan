@@ -31,9 +31,11 @@ module WPScan
 
             passive_configs.each do |slug, configs|
               configs.each do |klass, config|
-                item = process_response(opts, target.homepage_res, slug, klass, config)
+                [target.homepage_res, target.error_404_res].each do |page_res|
+                  item = process_response(opts, page_res, slug, klass, config)
 
-                found << item if item.is_a?(Model::WpItem)
+                  found << item if item.is_a?(Model::WpItem)
+                end
               end
             end
 
