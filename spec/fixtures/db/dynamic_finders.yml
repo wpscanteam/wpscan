@@ -40,6 +40,11 @@ wordpress:
     path: wp-links-opml.php
     pattern: !ruby/regexp /\Agenerator="wordpress\/(?<v>\d+\.[\.\d]+)"\z/i
     version: true
+  PixelCodeJavascript:
+    class: JavascriptVar
+    xpath: //script[not(@src) and contains(., "fbq")]
+    pattern: !ruby/regexp /wordpress\-(?<v>\d+\.[\.\d]+)\-/i
+    version: true
   MostCommonWpIncludesQueryParameterInHomepage:
     class: QueryParameter
     xpath: //link[contains(@href,"wp-includes/")]/@href|//script[contains(@src,"wp-includes/")]/@src
