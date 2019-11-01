@@ -68,6 +68,15 @@ shared_examples WPScan::Finders::DynamicFinder::WpItems::Finder do
           expect(finder.passive).to match_array(expected_items.map { |item| eql(item) })
         end
       end
+
+      context 'from both the homepage and 404' do
+        let(:homepage_body) { File.read(passive_fixture) }
+        let(:error_404_body) { File.read(passive_fixture) }
+
+        it 'does not contains the same finding twice (but from different page)' do
+          expect(finder.passive).to match_array(expected_items.map { |item| eql(item) })
+        end
+      end
     end
   end
 
