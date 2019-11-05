@@ -13,7 +13,11 @@ end
 
 begin
   require 'rspec/core/rake_task'
-  RSpec::Core::RakeTask.new(:spec)
+
+  RSpec::Core::RakeTask.new(:spec) do |t|
+    t.rspec_opts = %w{--tag ~slow}
+  end
+
   exec << :spec
 rescue LoadError
 end
