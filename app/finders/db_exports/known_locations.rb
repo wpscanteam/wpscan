@@ -4,7 +4,6 @@ module WPScan
   module Finders
     module DbExports
       # DB Exports finder
-      # See https://github.com/wpscanteam/wpscan-v3/issues/62
       class KnownLocations < CMSScanner::Finders::Finder
         include CMSScanner::Finders::Finder::Enumerator
 
@@ -41,7 +40,7 @@ module WPScan
         # @return [ Hash ]
         def potential_urls(opts = {})
           urls        = {}
-          domain_name = target.uri.host[/(^[\w|-]+)/, 1]
+          domain_name = PublicSuffix.domain(target.uri.host)[/(^[\w|-]+)/, 1]
 
           File.open(opts[:list]).each_with_index do |path, index|
             path.gsub!('{domain_name}', domain_name)

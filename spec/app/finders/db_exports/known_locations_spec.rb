@@ -9,7 +9,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
 
   describe '#potential_urls' do
     before do
-      expect(target).to receive(:sub_dir).at_least(1).and_return(false)
+      allow(target).to receive(:sub_dir).and_return(false)
     end
 
     it 'replace {domain_name} by its value' do
@@ -22,11 +22,45 @@ describe WPScan::Finders::DbExports::KnownLocations do
         http://ex.lo/aa/backups/db_backup.sql
       ]
     end
+
+    %w[dev poc www].each do |sub_domain|
+      context "when #{sub_domain} sub-domain" do
+        let(:url) { "https://#{sub_domain}.domain.tld" }
+
+        it 'replace {domain_name} by its correct value' do
+          expect(finder.potential_urls(opts).keys).to include "#{url}/domain.sql"
+        end
+      end
+    end
+
+    context 'when multi-level tlds' do
+      let(:url) { 'https://something.com.tr' }
+
+      it 'replace {domain_name} by its correct value' do
+        expect(finder.potential_urls(opts).keys).to include 'https://something.com.tr/something.sql'
+      end
+    end
+
+    context 'when multi-level tlds and sub-domain' do
+      let(:url) { 'https://dev.something.com.tr' }
+
+      it 'replace {domain_name} by its correct value' do
+        expect(finder.potential_urls(opts).keys).to include 'https://dev.something.com.tr/something.sql'
+      end
+    end
+
+    context 'when some weird stuff' do
+      let(:url) { 'https://098f6bcd4621d373cade4e832627b4f6.aa-bb-ccc-dd.domain-test.com' }
+
+      it 'replace {domain_name} by its correct value' do
+        expect(finder.potential_urls(opts).keys).to include "#{url}/domain-test.sql"
+      end
+    end
   end
 
   describe '#aggressive' do
     before do
-      expect(target).to receive(:sub_dir).at_least(1).and_return(false)
+      allow(target).to receive(:sub_dir).and_return(false)
       expect(target).to receive(:head_or_get_params).and_return(method: :head)
 
       finder.potential_urls(opts).each_key do |url|
