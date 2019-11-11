@@ -6,7 +6,9 @@ exec = []
 
 begin
   require 'rubocop/rake_task'
+
   RuboCop::RakeTask.new
+
   exec << :rubocop
 rescue LoadError
 end
@@ -14,9 +16,7 @@ end
 begin
   require 'rspec/core/rake_task'
 
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.rspec_opts = %w{--tag ~slow}
-  end
+  RSpec::Core::RakeTask.new(:spec) { |t| t.rspec_opts = %w{--tag ~slow} }
 
   exec << :spec
 rescue LoadError
