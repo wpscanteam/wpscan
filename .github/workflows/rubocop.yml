@@ -1,0 +1,13 @@
+name: CI
+
+on: [push]
+
+jobs:
+  rubocop:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Rubocop check
+      uses: gimenete/rubocop-action@1.0
