@@ -17,7 +17,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/wpscan.gemspec') }}
         restore-keys: |
           ${{ runner.os }}-gem-
     - name: Build and test with Rake
