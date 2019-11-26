@@ -1,4 +1,4 @@
-name: rspec
+name: Ruby
 
 on: [push]
 
@@ -26,4 +26,9 @@ jobs:
         bundle config force_ruby_platform true
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
+    - name: test
+      run: |
         bundle exec rspec
+    - name: rubocop
+      run: |
+        bundle exec rubocop
