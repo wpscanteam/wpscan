@@ -37,6 +37,8 @@ module WPScan
           end
         end
 
+        # This one has been disabled from the DF.yml as it was causing FPs when a plugin had numerous
+        # files matching a known WP version.
         class WpItemQueryParameter < QueryParameter
           def xpath
             @xpath ||=
