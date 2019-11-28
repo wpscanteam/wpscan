@@ -51,6 +51,8 @@ wordpress:
     files:
     - wp-includes/js/wp-embed.min.js
     - wp-includes/js/wp-embed.js
+    - wp-includes/css/dist/block-library/style.min.css
+    - wp-includes/css/dist/block-library/style.css
     - wp-includes/css/dashicons.min.css
     - wp-includes/css/dashicons.css
     - wp-includes/js/comment-reply.min.js
@@ -61,6 +63,8 @@ wordpress:
     class: QueryParameter
     xpath: //link[contains(@href,"wp-includes/")]/@href|//script[contains(@src,"wp-includes/")]/@src
     files:
+    - wp-includes/css/dist/block-library/theme.min.css
+    - wp-includes/css/dist/block-library/theme.css
     - wp-includes/css/buttons.min.css
     - wp-includes/css/buttons.css
     - wp-includes/css/admin-bar.min.css
