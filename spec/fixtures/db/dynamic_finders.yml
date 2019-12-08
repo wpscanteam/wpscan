@@ -12344,6 +12344,12 @@ plugins:
       path:
       - readme.txt
       - readme.md
+  elementor-pro:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\#\#\#\# (?<v>\d+\.[\.\d]+) \-/i
+      version: true
   elementor-templater:
     ChangeLog:
       class: BodyPattern
