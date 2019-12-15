@@ -19,8 +19,12 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |_res, slug|
-            found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
+          enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |res, slug|
+            finding_opts = opts.merge(found_by: found_by,
+                                      confidence: 80,
+                                      interesting_entries: ["#{res.effective_url}, status: #{res.code}"])
+
+            found << Model::Plugin.new(slug, target, finding_opts)
 
             raise Error::PluginsThresholdReached if opts[:threshold].positive? && found.size >= opts[:threshold]
           end
