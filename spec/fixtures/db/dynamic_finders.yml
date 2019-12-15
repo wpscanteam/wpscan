@@ -18913,6 +18913,9 @@ plugins:
     Readme:
       path: readme.txt
   instagram-feed:
+    JavascriptVar:
+      xpath: //script[not(@src) and contains(., "sbiajaxurl")]
+      pattern: !ruby/regexp /var sbiajaxurl =/
     QueryParameter:
       files:
       - css/sb-instagram.min.css
