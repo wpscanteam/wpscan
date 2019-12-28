@@ -23,7 +23,7 @@ module WPScan
       # @option opts [ Hash ]   :version_detection The options to use when looking for the version
       # @option opts [ String ] :url The URL of the item
       def initialize(slug, blog, opts = {})
-        @slug  = URI.decode(slug)
+        @slug  = Addressable::URI.unencode(slug)
         @blog  = blog
         @uri   = Addressable::URI.parse(opts[:url]) if opts[:url]
 
@@ -83,11 +83,6 @@ module WPScan
                       end
       end
 
-      # URI.encode is preferered over Addressable::URI.encode as it will encode
-      # leading # character:
-      # URI.encode('#t#') => %23t%23
-      # Addressable::URI.encode('#t#') => #t%23
-      #
       # @param [ String ] path Optional path to merge with the uri
       #
       # @return [ String ]
@@ -95,7 +90,7 @@ module WPScan
         return unless @uri
         return @uri.to_s unless path
 
-        @uri.join(URI.encode(path)).to_s
+        @uri.join(Addressable::URI.encode(path)).to_s
       end
 
       # @return [ Boolean ]
@@ -166,7 +161,7 @@ module WPScan
       # @return [ Typhoeus::Response ]
       def head_and_get(path, codes = [200], params = {})
         final_path = +@path_from_blog
-        final_path << URI.encode(path) unless path.nil?
+        final_path << path unless path.nil?
 
         blog.head_and_get(final_path, codes, params)
       end
