@@ -4,6 +4,8 @@ AllCops:
   Exclude:
   - '*.gemspec'
   - 'vendor/**/*'
+Layout/LineLength:
+  Max: 120
 Lint/UriEscapeUnescape:
   Enabled: false
 Metrics/AbcSize:
@@ -17,8 +19,6 @@ Metrics/ClassLength:
   - 'app/controllers/enumeration/cli_options.rb'
 Metrics/CyclomaticComplexity:
   Max: 8
-Metrics/LineLength:
-  Max: 120
 Metrics/MethodLength:
   Max: 20
   Exclude:
