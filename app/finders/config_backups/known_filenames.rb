@@ -32,7 +32,7 @@ module WPScan
           urls = {}
 
           File.open(opts[:list]).each_with_index do |file, index|
-            urls[target.url(file.chomp).gsub('#', '%23')] = index
+            urls[target.url(file.chomp)] = index
           end
 
           urls
