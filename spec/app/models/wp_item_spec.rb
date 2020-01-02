@@ -46,7 +46,7 @@ describe WPScan::Model::WpItem do
       end
 
       it 'encodes the path' do
-        expect(wp_item.url('#t#')).to eql "#{item_url}%23t%23"
+        expect(wp_item.url('#t#')).to eql "#{item_url}#t%23"
         expect(wp_item.url('t .txt')).to eql "#{item_url}t%20.txt"
       end
     end

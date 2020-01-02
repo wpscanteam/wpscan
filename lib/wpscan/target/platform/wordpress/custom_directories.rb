@@ -71,7 +71,7 @@ module WPScan
         #
         # @return [ String ]
         def plugin_url(slug)
-          plugins_uri.join("#{URI.encode(slug)}/").to_s
+          plugins_uri.join("#{Addressable::URI.encode(slug)}/").to_s
         end
 
         # @return [ String ]
@@ -93,7 +93,7 @@ module WPScan
         #
         # @return [ String ]
         def theme_url(slug)
-          themes_uri.join("#{URI.encode(slug)}/").to_s
+          themes_uri.join("#{Addressable::URI.encode(slug)}/").to_s
         end
 
         # @return [ String, False ] String of the sub_dir found, false otherwise
