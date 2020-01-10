@@ -105,6 +105,6 @@ SPECS                    = Pathname.new(__FILE__).dirname
 FIXTURES                 = SPECS.join('fixtures')
 FINDERS_FIXTURES         = FIXTURES.join('finders')
 DYNAMIC_FINDERS_FIXTURES = FIXTURES.join('dynamic_finders')
-ERROR_404_URL_PATTERN    = %r{/[a-z\d]{7}\.html$}
+ERROR_404_URL_PATTERN    = %r{/[a-z\d]{7}\.html$}.freeze
 
 redefine_constant(:DB_DIR, FIXTURES.join('db'))
