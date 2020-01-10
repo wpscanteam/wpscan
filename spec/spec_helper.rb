@@ -99,7 +99,7 @@ module WebMock
     end
   end
 end
-# rubocop:enabled all
+# rubocop:enable all
 
 SPECS                    = Pathname.new(__FILE__).dirname
 FIXTURES                 = SPECS.join('fixtures')
