@@ -1,0 +1,28 @@
+{
+	"name": "sorta-brilliant-postscript",
+	"version": "1.0.0",
+	"description": "P.S.",
+	"author": "sorta brilliant",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"wordpress"
+	],
+	"homepage": "https://sortabrilliant.com",
+	"main": "src/index.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/sortabrilliant/postscript.git"
+	},
+	"scripts": {
+		"build": "wp-scripts build",
+		"lint:css": "wp-scripts lint-style ./src",
+		"lint:scripts": "wp-scripts lint-js ./src",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"start": "wp-scripts start",
+		"test:unit": "wp-scripts test-unit-js"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^6.1.1",
+		"classnames": "^2.2.6"
+	}
+}

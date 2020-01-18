@@ -1,0 +1,42 @@
+{
+    "name": "via-crm-forms",
+    "version": "1.0.4",
+    "scripts": {
+        "dev": "webpack --mode development",
+        "build": "webpack --mode production",
+        "watch": "webpack --progress --watch",
+        "clean": "rm -rf ./build/*",
+        "package": "npm run build && zip via-crm-forms-$npm_package_version.zip -q -x@.package.exclude -r ../via-gravityforms-salesforce/build/ ../via-gravityforms-salesforce/src/ ../via-gravityforms-salesforce/vendor/ ../via-gravityforms-salesforce/composer.* ../via-gravityforms-salesforce/package.* ../via-gravityforms-salesforce/*.php ../via-gravityforms-salesforce/readme.txt"
+    },
+    "dependencies": {
+        "axios": "^0.18.0",
+        "grunt": "~0.4.5",
+        "grunt-composer": "~0.4.4",
+        "grunt-shell": "~0.7.0",
+        "immutable": "^3.8.2",
+        "react": "^16.4.1",
+        "react-dom": "^16.4.1",
+        "react-redux": "^5.0.7",
+        "redux": "^4.0.0",
+        "redux-saga": "^0.16.0",
+        "select2": "^4.0.2",
+        "webpack": "^4.15.1"
+    },
+    "devDependencies": {
+        "babel-core": "^6.26.3",
+        "babel-loader": "^7.1.5",
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-plugin-transform-regenerator": "^6.26.0",
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "babel-preset-stage-2": "^6.24.1",
+        "css-loader": "^0.28.11",
+        "mini-css-extract-plugin": "^0.4.1",
+        "node-sass": "^4.9.2",
+        "sass-loader": "^7.0.3",
+        "style-loader": "^0.21.0",
+        "webpack-cli": "^3.0.8"
+    }
+}
