@@ -28,7 +28,7 @@ module WPScan
         end
 
         def passive_urls_xpath
-          '//a[contains(@href, "rdf")]/@href'
+          '//a[contains(@href, "/rdf")]/@href'
         end
 
         def aggressive_urls(_opts = {})
