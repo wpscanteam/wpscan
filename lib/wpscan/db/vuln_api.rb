@@ -21,6 +21,7 @@ module WPScan
       # @return [ Hash ]
       def self.get(path, params = {})
         return {} unless token
+        return {} if path.end_with?('/latest') # Remove this when api/v4 is up
 
         res = Browser.get(uri.join(path), params.merge(request_params))
 
