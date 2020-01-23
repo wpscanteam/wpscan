@@ -57392,6 +57392,10 @@ plugins:
       files:
       - js/ai.js
       version: true
+    JavascriptVar:
+      xpath: //script[not(@src) and contains(., 'spai_settings')]
+      pattern: !ruby/regexp /shortpixel\-adaptive\-images","version":"(?<v>\d+\.[\.\d]+)"/i
+      version: true
   shortpixel-image-optimiser:
     Readme:
       path: readme.txt
