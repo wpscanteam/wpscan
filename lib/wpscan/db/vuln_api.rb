@@ -70,6 +70,7 @@ module WPScan
           headers: {
             'Host' => uri.host, # Reset in case user provided a --vhost for the target
             'Referer' => nil, # Removes referer set by the cmsscanner to the target url
+            'CF-Connecting-IP' => nil, # Removes in case user provided one for the target
             'User-Agent' => Browser.instance.default_user_agent,
             'Authorization' => "Token token=#{token}"
           }

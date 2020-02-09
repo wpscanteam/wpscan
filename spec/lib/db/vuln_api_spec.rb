@@ -3,6 +3,17 @@
 describe WPScan::DB::VulnApi do
   subject(:api) { described_class }
 
+  let(:request_headers) do
+    {
+      'Host' => api.uri.host,
+      'Expect' => nil,
+      'Referer' => nil,
+      'CF-Connecting-IP' => nil,
+      'User-Agent' => WPScan::Browser.instance.default_user_agent,
+      'Authorization' => 'Token token=s3cRet'
+    }
+  end
+
   describe '#uri' do
     its(:uri) { should be_a Addressable::URI }
   end
@@ -40,9 +51,7 @@ describe WPScan::DB::VulnApi do
       context 'when no timeouts' do
         before do
           stub_request(:get, api.uri.join(path))
-            .with(headers: { 'Host' => api.uri.host, 'Expect' => nil, 'Referer' => nil,
-                             'User-Agent' => WPScan::Browser.instance.default_user_agent,
-                             'Authorization' => 'Token token=s3cRet' })
+            .with(headers: request_headers)
             .to_return(status: code, body: body)
         end
 
@@ -95,9 +104,7 @@ describe WPScan::DB::VulnApi do
         context 'when all requests timeout' do
           before do
             stub_request(:get, api.uri.join('path'))
-              .with(headers: { 'Host' => api.uri.host, 'Expect' => nil, 'Referer' => nil,
-                               'User-Agent' => WPScan::Browser.instance.default_user_agent,
-                               'Authorization' => 'Token token=s3cRet' })
+              .with(headers: request_headers)
               .to_return(status: 0)
           end
 
@@ -113,9 +120,7 @@ describe WPScan::DB::VulnApi do
         context 'when only the first request timeout' do
           before do
             stub_request(:get, api.uri.join('path'))
-              .with(headers: { 'Host' => api.uri.host, 'Expect' => nil, 'Referer' => nil,
-                               'User-Agent' => WPScan::Browser.instance.default_user_agent,
-                               'Authorization' => 'Token token=s3cRet' })
+              .with(headers: request_headers)
               .to_return(status: 0).then
               .to_return(status: 200, body: { data: 'test' }.to_json)
           end
@@ -237,9 +242,7 @@ describe WPScan::DB::VulnApi do
 
       stub_request(:get, api.uri.join('status'))
         .with(query: { version: WPScan::VERSION },
-              headers: { 'Host' => api.uri.host, 'Expect' => nil, 'Referer' => nil,
-                         'User-Agent' => WPScan::Browser.instance.default_user_agent,
-                         'Authorization' => 'Token token=s3cRet' })
+              headers: request_headers)
         .to_return(status: code, body: return_body.to_json)
     end
 
@@ -266,6 +269,22 @@ describe WPScan::DB::VulnApi do
           expect(status['success']).to be true
           expect(status['plan']).to eql 'enterprise'
           expect(status['requests_remaining']).to eql 'Unlimited'
+        end
+      end
+
+      context 'when CF-Connecting-IP provided in CLI' do
+        let(:return_body) { { success: true, plan: 'free', requests_remaining: 100 } }
+
+        before do
+          WPScan::Browser.instance.headers = { 'CF-Connecting-IP' => '123.123.123.123' }
+        end
+
+        it 'removes the CF-Connecting-IP header from the request' do
+          status = api.status
+
+          expect(status['success']).to be true
+          expect(status['plan']).to eql 'free'
+          expect(status['requests_remaining']).to eql 100
         end
       end
     end
