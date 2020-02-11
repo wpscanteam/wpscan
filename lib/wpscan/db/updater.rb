@@ -72,7 +72,7 @@ module WPScan
           connecttimeout: 300,
           accept_encoding: 'gzip, deflate',
           cache_ttl: 0,
-          headers: { 'User-Agent' => Browser.instance.default_user_agent, 'Referer' => nil }
+          headers: { 'User-Agent' => Browser.instance.default_user_agent }
         )
       end
 
