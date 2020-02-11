@@ -5,8 +5,9 @@ describe WPScan::DB::VulnApi do
 
   let(:request_headers) do
     {
+      'Expect' => nil,
       'User-Agent' => WPScan::Browser.instance.default_user_agent,
-      'Authorization' => 'Token token=s3cRet'
+      'Authorization' => 'Token token=' + api.token
     }
   end
 

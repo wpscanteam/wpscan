@@ -66,17 +66,14 @@ module WPScan
       end
 
       # @return [ Hash ]
-      # Those params can not be overriden by CLI options, except for the cache_ttl
+      # @note Those params can not be overriden by CLI options
       def self.default_request_params
-        @default_request_params ||= {
-          timeout: 30,
-          connecttimeout: 15,
-          cache_ttl: Browser.instance.cache_ttl,
+        Browser.instance.default_connect_request_params.merge(
           headers: {
             'User-Agent' => Browser.instance.default_user_agent,
             'Authorization' => "Token token=#{token}"
           }
-        }
+        )
       end
     end
   end

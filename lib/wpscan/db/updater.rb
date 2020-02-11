@@ -67,13 +67,13 @@ module WPScan
       # @return [ Hash ] The params for Typhoeus::Request
       # @note Those params can't be overriden by CLI options
       def request_params
-        @request_params ||= {
+        @request_params ||= Browser.instance.default_connect_request_params.merge(
           timeout: 600,
           connecttimeout: 300,
           accept_encoding: 'gzip, deflate',
           cache_ttl: 0,
           headers: { 'User-Agent' => Browser.instance.default_user_agent, 'Referer' => nil }
-        }
+        )
       end
 
       # @return [ String ] The raw file URL associated with the given filename
@@ -85,7 +85,7 @@ module WPScan
       def remote_file_checksum(filename)
         url = "#{remote_file_url(filename)}.sha512"
 
-        res = Browser.get(url, request_params)
+        res = Typhoeus.get(url, request_params)
         raise Error::Download, res if res.timed_out? || res.code != 200
 
         res.body.chomp
@@ -126,7 +126,7 @@ module WPScan
         file_path = local_file_path(filename)
         file_url  = remote_file_url(filename)
 
-        res = Browser.get(file_url, request_params)
+        res = Typhoeus.get(file_url, request_params)
         raise Error::Download, res if res.timed_out? || res.code != 200
 
         File.open(file_path, 'wb') { |f| f.write(res.body) }
