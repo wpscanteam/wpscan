@@ -23,7 +23,8 @@ module WPScan
         return {} unless token
         return {} if path.end_with?('/latest') # Remove this when api/v4 is up
 
-        res = Browser.get(uri.join(path), params.merge(request_params))
+        # Typhoeus.get is used rather than Browser.get to avoid merging irrelevant params from the CLI
+        res = Typhoeus.get(uri.join(path), default_request_params.merge(params))
 
         return {} if res.code == 404 # This is for API inconsistencies when dots in path
         return JSON.parse(res.body) if NON_ERROR_CODES.include?(res.code)
@@ -65,12 +66,13 @@ module WPScan
       end
 
       # @return [ Hash ]
-      def self.request_params
-        {
+      # Those params can not be overriden by CLI options, except for the cache_ttl
+      def self.default_request_params
+        @default_request_params ||= {
+          timeout: 30,
+          connecttimeout: 15,
+          cache_ttl: Browser.instance.cache_ttl,
           headers: {
-            'Host' => uri.host, # Reset in case user provided a --vhost for the target
-            'Referer' => nil, # Removes referer set by the cmsscanner to the target url
-            'CF-Connecting-IP' => nil, # Removes in case user provided one for the target
             'User-Agent' => Browser.instance.default_user_agent,
             'Authorization' => "Token token=#{token}"
           }

@@ -5,10 +5,6 @@ describe WPScan::DB::VulnApi do
 
   let(:request_headers) do
     {
-      'Host' => api.uri.host,
-      'Expect' => nil,
-      'Referer' => nil,
-      'CF-Connecting-IP' => nil,
       'User-Agent' => WPScan::Browser.instance.default_user_agent,
       'Authorization' => 'Token token=s3cRet'
     }
@@ -47,6 +43,16 @@ describe WPScan::DB::VulnApi do
       before { api.token = 's3cRet' }
 
       let(:path) { 'path' }
+
+      context 'when params used' do
+        it 'ensures they override the defaults' do
+          expect(Typhoeus).to receive(:get)
+            .with(api.uri.join(path), hash_including(cache_ttl: 0))
+            .and_return(Typhoeus::Response.new(code: 404))
+
+          api.get(path, cache_ttl: 0)
+        end
+      end
 
       context 'when no timeouts' do
         before do
