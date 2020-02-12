@@ -18,9 +18,7 @@ module WPScan
         target.content_dir = ParsedCli.wp_content_dir if ParsedCli.wp_content_dir
         target.plugins_dir = ParsedCli.wp_plugins_dir if ParsedCli.wp_plugins_dir
 
-        return if target.content_dir
-
-        raise Error::WpContentDirNotDetected
+        raise Error::WpContentDirNotDetected unless target.content_dir
       end
     end
   end

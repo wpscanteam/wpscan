@@ -44,7 +44,7 @@ module WPScan
         # @param [ Typhoeus::Response ] response
         # @return [ Boolean ]
         def wordpress_from_meta_comments_or_scripts?(response)
-          in_scope_uris(response) do |uri|
+          in_scope_uris(response, '//link/@href|//script/@src|//img/@src') do |uri|
             return true if WORDPRESS_PATTERN.match?(uri.path) || WP_JSON_OEMBED_PATTERN.match?(uri.path)
           end
 
@@ -100,8 +100,9 @@ module WPScan
 
           unless content_dir
             pattern = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i.freeze
+            xpath   = '//@href[contains(., "wp.com")]|//@src[contains(., "wp.com")]'
 
-            uris_from_page(homepage_res) do |uri|
+            uris_from_page(homepage_res, xpath) do |uri|
               return true if uri.to_s.match?(pattern)
             end
           end
