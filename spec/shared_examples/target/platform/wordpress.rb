@@ -172,11 +172,19 @@ shared_examples WPScan::Target::Platform::WordPress do
       context 'when wp-content not detected' do
         before do
           expect(target).to receive(:content_dir).and_return(nil)
-          stub_request(:get, target.url).to_return(body: File.read(fixtures.join(fixture).to_s))
+
+          stub_request(:get, target.url)
+            .to_return(body: defined?(body) ? body : File.read(fixtures.join(fixture).to_s))
         end
 
-        context 'when an URL matches a WP hosted' do
-          let(:fixture) { 'matches.html' }
+        context 'when an src URL matches a WP hosted' do
+          let(:fixture) { 'match_src.html' }
+
+          its(:wordpress_hosted?) { should be true }
+        end
+
+        context 'when an href URL matches a WP hosted' do
+          let(:fixture) { 'match_href.html' }
 
           its(:wordpress_hosted?) { should be true }
         end
@@ -185,6 +193,20 @@ shared_examples WPScan::Target::Platform::WordPress do
           let(:fixture) { 'no_match.html' }
 
           its(:wordpress_hosted?) { should be false }
+        end
+
+        context 'when a lof of unrelated urls' do
+          let(:body) do
+            Array.new(250) { |i| "<a href='#{url}#{i}.html'>Some Link</a><img src='#{url}img-#{i}.png'/>" }.join("\n")
+          end
+
+          it 'should not take a while to process the page' do
+            time_start = Time.now
+            expect(target.wordpress_hosted?).to be false
+            time_end = Time.now
+
+            expect(time_end - time_start).to be < 1
+          end
         end
       end
 

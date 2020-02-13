@@ -8,11 +8,15 @@ module WPScan
         # @param [ String ] type plugins / themes
         # @param [ Boolean ] uniq Wether or not to apply the #uniq on the results
         #
-        # @return [Array<String> ] The plugins/themes detected in the href, src attributes of the homepage
+        # @return [ Array<String> ] The plugins/themes detected in the href, src attributes of the page
         def items_from_links(type, uniq = true)
           found = []
+          xpath = format(
+            '(//@href|//@src|//@data-src)[contains(., "%s")]',
+            type == 'plugins' ? target.plugins_dir : target.content_dir
+          )
 
-          target.in_scope_uris(page_res) do |uri|
+          target.in_scope_uris(page_res, xpath) do |uri|
             next unless uri.to_s =~ item_attribute_pattern(type)
 
             slug = Regexp.last_match[1]&.strip

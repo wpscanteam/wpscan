@@ -100,7 +100,7 @@ module WPScan
 
           unless content_dir
             pattern = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i.freeze
-            xpath   = '//@href[contains(., "wp.com")]|//@src[contains(., "wp.com")]'
+            xpath   = '(//@href|//@src)[contains(., "wp.com")]'
 
             uris_from_page(homepage_res, xpath) do |uri|
               return true if uri.to_s.match?(pattern)

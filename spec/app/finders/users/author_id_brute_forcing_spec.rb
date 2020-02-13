@@ -19,7 +19,7 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
     end
   end
 
-  describe '#potential_username' do
+  describe '#username_from_response' do
     [
       '4.1.1', '4.1.1-permalink',
       '3.0', '3.0-permalink',
@@ -30,6 +30,19 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
         res = Typhoeus::Response.new(body: body)
 
         expect(finder.username_from_response(res)).to eql 'admin'
+      end
+    end
+
+    context 'when a lot of unrelated links' do
+      it 'should not take a while to process the page' do
+        body = Array.new(300) { |i| "<a href='#{url}#{i}.html'>Some Link</a>" }.join("\n")
+        body << '<a href="https://wp.lab/author/test/">Link</a>'
+
+        time_start = Time.now
+        expect(finder.username_from_response(Typhoeus::Response.new(body: body))).to eql 'test'
+        time_end = Time.now
+
+        expect(time_end - time_start).to be < 1
       end
     end
   end

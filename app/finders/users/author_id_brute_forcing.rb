@@ -71,11 +71,13 @@ module WPScan
           return username, 'Display Name', 50 if username
         end
 
-        # @param [ String ] url
+        # @param [ String, Addressable::URI ] uri
         #
         # @return [ String, nil ]
-        def username_from_author_url(url)
-          url[%r{/author/([^/\b]+)/?}i, 1]
+        def username_from_author_url(uri)
+          uri = Addressable::URI.parse(uri) unless uri.is_a?(Addressable::URI)
+
+          uri.path[%r{/author/([^/\b]+)/?}i, 1]
         end
 
         # @param [ Typhoeus::Response ] res
@@ -83,12 +85,12 @@ module WPScan
         # @return [ String, nil ] The username found
         def username_from_response(res)
           # Permalink enabled
-          target.in_scope_uris(res, '//link/@href|//a/@href') do |uri|
-            username = username_from_author_url(uri.to_s)
+          target.in_scope_uris(res, '//@href[contains(., "author/")]') do |uri|
+            username = username_from_author_url(uri)
             return username if username
           end
 
-          # No permalink
+          # No permalink, TODO Maybe use xpath to extract the classes ?
           res.body[/<body class="archive author author-([^\s]+)[ "]/i, 1]
         end
 
