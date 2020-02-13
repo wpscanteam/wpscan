@@ -32,8 +32,12 @@ module WPScan
 
           if %i[mixed aggressive].include?(detection_mode)
             %w[wp-admin/install.php wp-login.php].each do |path|
-              return true if in_scope_uris(Browser.get_and_follow_location(url(path))).any? do |uri|
-                WORDPRESS_PATTERN.match?(uri.path)
+              res = Browser.get_and_follow_location(url(path))
+
+              next unless res.code == 200
+
+              in_scope_uris(res, '//link/@href|//script/@src') do |uri|
+                return true if WORDPRESS_PATTERN.match?(uri.path)
               end
             end
           end

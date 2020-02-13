@@ -82,6 +82,25 @@ shared_examples WPScan::Target::Platform::WordPress do
               expect(subject.wordpress?(:mixed)).to be true
             end
           end
+
+          context 'when a lot of irrelevant links' do
+            let(:body) do
+              Array.new(250) do |i|
+                "<a href='#{subject.url}#{i}.html>Link</a><img src='#subject.{url}img-#{i}.png'/>"
+              end.join("\n")
+            end
+
+            it 'should not take a while to process check' do
+              stub_request(:get, target.url('wp-admin/install.php')).to_return(body: body)
+              stub_request(:get, target.url('wp-login.php')).to_return(body: body)
+
+              time_start = Time.now
+              expect(subject.wordpress?(:mixed)).to be false
+              time_end = Time.now
+
+              expect(time_end - time_start).to be < 1
+            end
+          end
         end
       end
     end
