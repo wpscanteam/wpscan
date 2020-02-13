@@ -149,6 +149,24 @@ shared_examples 'WordPress::CustomDirectories' do
         expect(target.sub_dir).to eql false
       end
     end
+
+    context 'when a lot of irrelevant urls' do
+      let(:body) do
+        Array.new(250) do |i|
+          "<a href='#{subject.url}#{i}.html>Link</a><img src='#subject.{url}img-#{i}.png'/>"
+        end.join("\n")
+      end
+
+      it 'should not take a while to detect the sub_dir' do
+        stub_request(:get, target.url).to_return(body: body)
+
+        time_start = Time.now
+        expect(target.sub_dir).to eql false
+        time_end = Time.now
+
+        expect(time_end - time_start).to be < 1
+      end
+    end
   end
 
   describe '#url' do

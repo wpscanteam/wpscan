@@ -105,9 +105,10 @@ module WPScan
 
           # url_pattern is from CMSScanner::Target
           pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
+          xpath = '(//@src|//@href|//@data-src)[contains(., "xmlrpc.php") or contains(., "wp-includes/")]'
 
           [homepage_res, error_404_res].each do |page_res|
-            in_scope_uris(page_res) do |uri|
+            in_scope_uris(page_res, xpath) do |uri|
               return @sub_dir = Regexp.last_match[1] if uri.to_s.match(pattern)
             end
           end
