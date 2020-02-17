@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.4, 2.5, 2.6, 2.7, ruby-head]
+        ruby: [2.4, 2.5, 2.6, 2.7]
 
     steps:
     - uses: actions/checkout@v1
@@ -23,9 +23,9 @@ jobs:
       uses: actions/cache@v1
       with:
         path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/wpscan.gemspec') }}
+        key: ${{ runner.os }}-${{ matrix.ruby }}-gem-${{ hashFiles('**/wpscan.gemspec') }}
         restore-keys: |
-          ${{ runner.os }}-gem-
+          ${{ runner.os }}-${{ matrix.ruby }}-gem-
 
     - name: Build and test
       run: |
