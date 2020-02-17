@@ -14,10 +14,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Ruby ${{ matrix.node }}
+    - name: Set up Ruby ${{ matrix.ruby }}
       uses: actions/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.node }}
+        ruby-version: ${{ matrix.ruby }}
 
     - name: Cache gems
       uses: actions/cache@v1
