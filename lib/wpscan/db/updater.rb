@@ -24,6 +24,7 @@ module WPScan
 
         FileUtils.mkdir_p(repo_directory.to_s) unless Dir.exist?(repo_directory.to_s)
 
+        return if ParsedCli.update == "false"
         raise "#{repo_directory} is not writable" unless repo_directory.writable?
 
         delete_old_files
