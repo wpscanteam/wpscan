@@ -35,13 +35,13 @@ jobs:
         bundle config path vendor/bundle
         bundle install --jobs 4 --retry 3
 
-    - name: rspec
-      run: |
-        bundle exec rspec
-
     - name: rubocop
       run: |
         bundle exec rubocop
+
+    - name: rspec
+      run: |
+        bundle exec rspec
 
     - name: Coveralls
       uses: coverallsapp/github-action@master
