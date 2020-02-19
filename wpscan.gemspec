@@ -24,14 +24,14 @@ Gem::Specification.new do |s|
   s.add_dependency 'cms_scanner', '~> 0.8.2'
 
   s.add_development_dependency 'bundler',             '>= 1.6'
-  s.add_development_dependency 'coveralls',           '~> 0.8.0'
   s.add_development_dependency 'memory_profiler',     '~> 0.9.13'
   s.add_development_dependency 'rake',                '~> 13.0'
   s.add_development_dependency 'rspec',               '~> 3.9.0'
   s.add_development_dependency 'rspec-its',           '~> 1.3.0'
   s.add_development_dependency 'rubocop',             '~> 0.80.0'
   s.add_development_dependency 'rubocop-performance', '~> 1.5.0'
-  s.add_development_dependency 'simplecov',           '~> 0.16.1'
+  s.add_development_dependency 'simplecov',           '~> 0.18.2'
+  s.add_development_dependency 'simplecov-lcov',      '~> 0.8.0'
   s.add_development_dependency 'stackprof',           '~> 0.2.12'
   s.add_development_dependency 'webmock',             '~> 3.8.0'
 end

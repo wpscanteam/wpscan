@@ -2,14 +2,9 @@
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'simplecov' # Used filters are in /.simplecov
+require 'simplecov' # More config is defined in ./.simplecov
 require 'rspec/its'
 require 'webmock/rspec'
-
-if ENV['TRAVIS']
-  require 'coveralls'
-  SimpleCov.formatter = Coveralls::SimpleCov::Formatter
-end
 
 # See http://betterspecs.org/
 RSpec.configure do |config|
