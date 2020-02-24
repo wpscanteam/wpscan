@@ -1,0 +1,760 @@
+Voici un fichier avec les TODO et les changelog complets.
+
+== TODO ==
+
+* EVOL : Renforcer l'obfuscation des emails https://www.olybop.fr/comment-proteger-et-afficher-son-email-et-telephone-sur-son-site-internet/
+* EVOL: (suggestion utilisateur) traiter les requêtes https://hal.archives-ouvertes.fr/IRT-SYSTEMX/search/?qa[localReference_t][]=SVA
+    ==> Demande en cours à haltools pour utiliser leur interface en ce sens
+* ÉVOL: (suggestion utilisateur) Proposer l'option de traduire automatiquement la page en fonction de la langue de l'utilisateur
+* NLLE FONC: Ajoute l'affichage des champs personnalisés (dans [perso_panel], [member/alunmi_list] et dans [member/alumni_table] en tant que nouvelle colonne si ce n'est pas vide)
+* ÉVOL: (suggestion utilisateur) pouvoir faire [publications_list publication_type="xxxx"] pour HAL
+* ÉVOL: (suggestion utilisateur) Pas de possibilité d'avoir une page perso en français et en anglais
+* ÉVOL: (suggestion utilisateur) Pas de lien vers les pages des thématiques dans le team_panel
+* ÉVOL: (suggestion utilisateur) Obligé de mettre <br /> pour avoir deux numéros de téléphones dans la structure => Interpréter les sauts de ligne et mettre champs comme adresse
+* ÉVOL: (demande utilisateur) Pouvoir rajouter plusieurs tuteurs extérieurs au laboratoire (champs Prénom, nom, email).
+* ÉVOL: Ajout d'un bouton créer la page d'un utilisateur
+* ÉVOL: Rendre universel le uid_ENT_parisdescartes limité à Descartes.
+* NLLE FONC: Permettre de changer la taille des images des personnels => 1h30
+* ÉVOL: Publier sur git WordPress (supprimer les codes de migration entre vielles versions)
+* TEST: Tester en multisite WordPress (en cours)
+* VEILLE TECHNO: Regarder les fonctionnalités et usages intéressants des plugins techpress, Ultimatemember et labtools
+* ÉVOL: Exporte et importe les personnels, équipes et structure.
+* BUG: Interdire personnel dans aucune équipe
+* BUG (minueur) :  Retour de ligne excessif au niveau du logo du PDF d'une publication de HAL au format hal (pas présent au format apa et ieee)
+* ÉVOL: Forcer la migration sans passer par une page configuration.
+* ÉVOL: Pouvoir avec HAL faire des requêtes avec des idHal et des struct en même temps (ou consécutivement et fusionnées)
+* ÉVOL: Ajouter l'option unit à [teams_list]
+* ÉVOL: Ajout des dispositions légales: https://annuaire.cnrs.fr/l3c/owa/annuaire.recherche/index.html
+* ÉVOL: introduire _unit_of_curent_page
+* BUG: Timeout durant le traitement de retour HAL trop gros: https://haltools.archives-ouvertes.fr/Public/afficheRequetePubli.php?annee_publideb=2015&annee_publifin=2015&tri_exp=typdoc&tri_exp2=annee_publi&tri_exp3=auteur_exp&CB_ref_biblio=oui&ordre_aff=TA&Fen=Aff&langue=Francais [custom_publications_list equipe=46 annee=2015] qui renvoie un fichier de 4,6Mo
+* ÉVOL: Améliorer team_panel
+* ÉVOL: Adapter l'interface de MonLabo à gérer plus d'utilisateurs
+* ÉVOL: Suggestion: interface avec Reseda
+* ÉVOL: Créer page d'équipe à la création de l'équipe
+* ÉVOL: Ajout d'un mode debug
+* BUG: si Team groups enable est non défini, les champs de nom des groupes apparaissent.
+* CODE: Pour publication sur WordPress.org (https://codex.wordpress.org/Writing_a_Plugin)
+    * Gérer l'accès à la BD de façon standard: https://codex.wordpress.org/Creating_Tables_with_Plugins
+        * DONE: Add Database Table Prefix
+        * Use dbDelta for Creating or Updating the Table
+        * DONE: éviter $wpdb->query (sinon rajouter $wpdb->prepare), préférer $wpdb->insert
+        * DONE: Add db version Option
+        * DONE: register_activation_hook( __FILE__, 'jal_install' );
+        * DONE: add_action( 'plugins_loaded', 'myplugin_update_db_check' );
+        * https://codex.wordpress.org/Creating_Tables_with_Plugins
+    * Utiliser les codings standards https://make.wordpress.org/core/handbook/best-practices/coding-standards/
+        * php : reste doc: https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/
+            * https://make.wordpress.org/core/handbook/best-practices/inline-documentation-standards/php/
+        * DONE: JS
+        * DONE: css
+        * DONE: HTML
+    * installer JSHINT https://make.wordpress.org/core/handbook/best-practices/coding-standards/javascript/#jshint
+    * Plugins should follow the Accessibility Handbook https://make.wordpress.org/accessibility/handbook/
+        * https://make.wordpress.org/core/handbook/best-practices/coding-standards/accessibility-coding-standards/
+    * test avec PHP 5.2.3
+    * DONE : Vérifier chaque data in ou out https://codex.wordpress.org/Data_Validation
+        * sécuriser \$_(POST|GET|REQUEST) sanitize, validate, and escape all POST/GET/REQUEST
+            * Using stripslashes or strip_tags is rarely enough. The ultimate goal is that invalid and unsafe data is never processed, saved, or displayed. Clean everything, check everything, escape everything, and never trust the users to always have input sane data.
+    * Nonces #Nonces All actions that accept POST data should be secured with a nonce to prevent unauthorized access.
+        * https://codex.wordpress.org/WordPress_Nonces
+    * Change le nom de MonLabo, c'est une marque déposée en 2018! EasyLabo / Monlabb /MyEasyLab
+    * Plugin Handbook : https://developer.wordpress.org/plugins/
+
+Remember, check_admin_referer alone is not bulletproof security. Do not rely on nonces for authorization purposes. Use current_user_can() in order to prevent users without the right permissions from accessing things.
+* CODE: Se séparer des fonctions dépendantes des extensions php-mbstring et php-curl.
+
+
+== TODO abandonnés ==
+
+* ÉVOL: (suggestion utilisateur) Mettre en gras la partie interne des numéros perso (+33 (0)2 32 95 <strong>36 90</strong>)
+        ==> C'est très moche
+* ÉVOL: Quand on modifie un profil, ne pas retomber sur nouvel utilisateur
+        ==> Semble compliqué pour un apport faible
+* ÉVOL: Créer les pages des utilisateurs par défaut
+        ==> Cela va mettre du désordre dans un site qui ne fait qu'essayer le plugin
+* ÉVOL: A l'initialisation créer la page mère plus les pages des membres pour l'exemple
+        ==> Cela va mettre du désordre dans un site qui ne fait qu'essayer le plugin
+* ÉVOL: (suggestion utilisateur)  Possibilité d'avoir la [members_table] par équipe plutôt que par statuts.
+        ==> Complique pas mal le code pour une fonctionnalité qui est faisable "à la main" exemple:
+            <h1>team1</h1>[members_table team="1"] <h2>team1</h2>[members_table team="2"]
+
+
+== Changelog ==
+
+= 3.0 =
+(GIT tag v3.0)
+* EVOL : The plugin is changing its name from "MonLabo" to "Mon Laboratoire"
+* EVOL : The plugin is now in WordPress plugin repository
+* EVOL : Remove backward compatibility for following obsolete shortcodes :
+    - [members_list_automatic], [get_members_list]
+    - [custom_publications_list], [publications_automatic]
+    - [perso_panel_automatic]
+    - [alumni]
+* CODE : Suppress dead codes.
+
+= 2.8.1 =
+(GIT tag v2.8.1)
+* BUG: Dans certains cas, quand la base est mal initialisée, génère une erreur PHP.
+
+= 2.8 =
+(GIT tag v2.8)
+
+* NLLE FONC: Affichage "responsive" (adapté sur téléphone) de [perso_panel], [members_list], [members_table], [alumni_list], [alumni_table]
+* NLLE FONC: Permet d'utiliser sur le même site HAL sur certaines pages et Descartes Publi sur d'autres.
+* DEV / SECURITE : Réecriture / reprise profonde d'une partie importante du code en vue de la publication sur le dépot WordPress
+    * CODE: Applique les codings standards PHP,JS, CSS et HTML de WordPress : https://make.wordpress.org/core/handbook/best-practices/coding-standards/
+    * SQL: Add Database Table Prefix
+    * CODE: Renforce la sécurité des accès à la BDD par deux action :
+    *       1) obliger à fournir le format de données à toute action modificatrice de la bases
+    *       2) écriture de fonction plus directe d'accès à la base
+    * CODE : Remplace l'utilisation des fonctions du paquet php_cul par wp_remote_get()
+    * BUG-POTENTIEL: Redéfinit les conditions d'initialisation des tables et des options
+    * CODE: Sanitize shorcode parameters and $_(POST|GET) datas
+
+Évolutions mineures ou peu visibles :
+
+* NLLE FONC: Permet de personnaliser d'autres titres (Membres, Direction).
+* BUG: [almni_table], Quand l'année de départ n'était pas fournie, affichage parfois maladroit.
+* BUG: [members_list team="X"] pouvait indiquer un team leader erroné si une personne était team leader de deux équipes
+* BUG: [publications_list lang="xx'] : La langue des publications n'était pas toujours respectée
+* BUG: Supprime des warnings dans l'interface de création des équipes
+* DEV: Crée un script de distribution d'archive du plugin
+* DEV: Reformate readme.txt en Markdown
+
+= 2.7 =
+(GIT tag v2.7)
+
+* NLLE FONC: Ajoute la fonctionnalité optionnelle "Personnaliser les textes dans les shortcodes".
+             Permet de personnaliser nombre de textes dont les catégories de personnes, les titres...
+* NLLE FONC: [team_panel] : Ajoute l'option "team" à ce shortcode.
+* EVOL/BUG : [members_chart], [members_table], [alumi_chart] et [alumni_table] :
+        Ne plus faire de lien vers la page perso d'un membre alumni (seulement un lien vers son site exterieur s'il existe)
+        Les listes de personnes fonctionnent déjà comme cela.
+* EVOL: [members_list] : Suppression du titre lorsque l'option uniquelist="YES" est activée. C'est plus logique car il est difficile d'imaginer l'usage.
+* BUG/EVOL: Arrête le support du plugin Polylang, utilisé dans un seul cas (le lien vers la page d'une équipe), bugué et non maintenu dans MonLabo.
+* EVOL: [almni_table], affiche l'ancienne fonction plutôt que l'ancienne catégorie. C'est plus précis et plus logique.
+
+Évolutions mineures ou peu visibles :
+
+* BUG: Parfois décalages involontaires de textes suite à l'affichage d'une liste de personnes.
+* BUG: Sur certaines installations, des liens entre pages sont invalides. Passage de liens relatifs à des liens absolus.
+* BUG: [team_panel] : Les noms des leaders faisaient apparaître du code HTML.
+* BUG: Supprime quelques warning php sur des nouvelles installations
+* BUG/EVOL: [members_list] et [alumni_list] n'affichent plus de puce par défaut devant chaque personne.
+
+= 2.6 =
+(GIT tag v2.6)
+
+* NLLE FONC: Permettre de limiter le nombre de publications affichées (ajout des options "limit" et "offset" au shortcode [publications_list])
+* NLLE FONC: Ajoute l'option "person" au shortcode [perso_panel]
+
+Évolutions mineures ou peu visibles :
+
+* BUG:  Édition de personnels: Il était possible de rentrer des fonctions vides ce qui empêchait le formulaire d'être validé.
+* EVOL: Perso panel : le bouton "View my site" est renommé en "Personal website" (meilleure traduction)
+
+
+= 2.5.1 =
+(GIT tag v2.5)
+
+* BUG: Le changement de catégorie d'une personne ne fonctionnait plus dans certaines conditions
+* BUG: Les nouvelles options avec des majuscules de [publications_list] n'étaient pas reconnues.
+* BUG: Le bouton 'Édite cette personne' ne fonctionnait plus
+* BUG: Correction de nombreuses erreurs HTML qui, sur certains navigateurs, pouvaient créer des soucis d'affichage
+* BUG: Un panneau personnel comportant un bouton "voir mon site" était affiché avec trop d'espace vertical.
+
+Évolutions mineures ou peu visibles :
+
+* ÉVOL: Édition de personnels: Cacher "date de départ de l'unité"" si la personne est au statut "actif"
+* BUG: Quand on désactive la fonctionnalité "Personnels et équipes" :
+    * la configuration des serveurs de publication n'étaient plus accessible
+    * warning inutile "Veuillez renseigner une page de rattachement des pages personnelles" en interface privée
+    * désactivation non nécessaire du bouton d'aide [publications_list] dans la Documentation
+* BUG: Régression de la fonctionnalité champs personnalisés qui ne pouvaient plus être configurés
+
+
+
+= 2.4 =
+(GIT tag v2.4)
+
+* Shortcodes:
+    * ÉVOL: [custom_publications_list] est devenu obsolète (Incorporation de ses paramètres dans [publications_list])
+      Nouveaux paramètres dans [publications_list] : hal_struct, Hal_idHal, Descartes_alias, Descartes_auteurid,
+      Descartes_unite, Descartes_equipe, Descartes_typePub, Descartes_nohighlight, Descartes_orga_types,
+      escartes_format, Descartes_debug
+    * ÉVOL: Ajout pour [alumni_list], [alumni_table] et [alumni_chart] du paramètre years
+    * BUG: Les personnes marquées comme non visibles apparaissaient quand même dans certains tableaux ou organigrammes.
+* Édition de personnels:
+    * ÉVOL: Ajout de pouvoir choisir ses étudiants directement la page d'édition d'une personne (plutôt que de devoir la désigner mentor dans la page de l'étudiant)
+    * ÉVOL: Possibilité d'éditer l'adresse de la page d'une personne (il faut aussi fournir alors l'adresse de l'image)
+    * BUG: Quand il n'y a pas d'unité multiple, il était impossible de désigner un directeur en passant par la page d'édition de membre
+    * BUG: Permettre d'afficher la bonne édition d'une personne ou structure y compris si l'on recharge la page.
+
+Évolutions mineures ou peu visibles :
+
+* Shortcodes:
+    * BUG: Les publications d'une structure principale étaient montrées comme vides (serveur Descartes Publi)
+* Apparence:
+    * BUG: Parfois les panneaux personnels ou les listes d'utilisateurs avaient des textes non alignés verticalement
+    * CODE: Simplifie code en supprimant le paramètre d'affichage fond_en_surveillance
+
+
+= 2.3 =
+(GIT tag v2.3)
+
+* Options:
+    * ÉVOL: Les thématiques sont désormais des groupe d'équipe au nom redéfinissable.
+      Le nom est par défaut "Thématique" mais peut être changé en "Axe", "projet", "groupe de recherche" ou tout autre.
+    * ÉVOL: Simplifier le choix des serveurs de publication et les menus en n'autorisant pas les bases HAL et DESCARTES en même temps
+    * ÉVOL: Supprime l'option peu utilisée "Activer les fonctions avancées"
+
+Evolutions mineures ou peu visibles :
+
+* Édition de personnels:
+    * NLLE FONC: Ajout d'un raccourci dans la barre d'admin pour accéder à la page d'édition du personnel, de l'équipe ou de l'unité à laquelle appartient cette page.
+* Shortcodes:
+    * BUG: Une liste de publication où l'on précise title="" n'avait pas toujours le titre vide.
+    * NLLE FONC: Ajout de l'option "lang" au shortcode [publications_list]
+* Documentation:* ÉVOL: (suggestion utilisateur)  Possibilité d'avoir la [members_table] par équipe plutôt que par statuts.
+
+    * ÉVOL: Transfert du site du plugin vers http://monlabo.org
+
+
+= 2.2 =
+(GIT tag v2.2)
+
+* Apparence:
+    * ÉVOL: La couleur des liens est centralisée dans une option dans l'onglet "Apparence"
+* Options:
+    * ÉVOL: Ajout d'une option pour "Activer les fonctions et outils avancés"
+    * BUG: Quand on désactivait certaines options, elle se réactivaient toute seules
+* Édition de personnels:
+    * ÉVOL: Lier catégorie et fonction pour plus de clarté (la liste de fonction dépend désormais de la catégorie)
+    * BUG: Signaler quand on ne peut pas rajouter une image à une personne car elle n'a pas de page WordPress
+    * EVOL/BUG: Trie l'ordre des pages WordPress et les membres.
+    * NLLE FONC : Ajout d'un onglet "outils avancés" : Bouton pour créer les pages manquantes des utilisateurs
+    *
+Evolutions mineures ou peu visibles :
+
+* CODE: Rend le code plus robuste en utilisant des comparaisons plus strictes ("===" au lieu de "==")
+* BUG: Pour les grosses migrations de plusieurs version à la fois: Possibilité de perdre certaines versions intermédiaires
+
+
+= 2.1 =
+(GIT tag v2.1)
+
+* Shortcodes:
+    * NLLE FONC: ajout du shortcode [alumni_chart]
+    * NLLE FONC: Affichage des couleurs des équipes ([members_chart], [members_table] et [team_panel])
+    * ÉVOL: Quand une structure n'a pas rempli d'identifiant HAL, MonLabo utilisera les idHal de chaque membre de la structure.
+* Remise en forme de l'interface d'administration:
+    * NLLE FONC: Possibilité de changer l'image d'une personne directement dans l'interface d'édition des personnels
+    * NLLE FONC: Possibilité d'ajouter les photos des personnes dès la création de la personne
+    * ÉVOL: Utilisation du menu media pour le choix d'images ou logo plutôt que d'entrer l'URL de l'image à la main
+    * ÉVOL: Aide réorganisée
+    * ÉVOL: La page de rattachement des pages personnelles se règle plus facilement et est signalée quand non configurée.
+    * ÉVOL: Cache par défaut les champs d'édition des fonctions d'une personne dans l'interface d'édition des personnels
+
+Evolutions mineures ou peu visibles :
+
+* Allègement du plugin :
+    * CODE: Suppression des Glyphicons
+    * CODE: Recompression des images d'aide
+    * CODE: Supprime Boostrap modals et utilise à la place les thickbox WordPress
+* Édition de personnels :
+    * BUG: Un directeur d'unité n'avait pas toujours la case cochée "(co)directeur ou (co)directrice de l'unité"
+    * BUG: Une apostrophe dans un nom était affichée précédée d'un slash
+* BUG: Les majuscules accentuées produites dans les shortcodes n'étaient pas toujours correctes.
+
+
+= 2.0 =
+(GIT tag v2.0)
+
+Révision profonde des shortcodes de publication:
+
+* ÉVOL: Le shortcode [custom_publications_list] peut désormais utiliser des publications issues de HAL
+    * ÉVOL: nouvelles options persons, teams et units pour le shortcode [publications_list]
+    * ÉVOL: nom des paramètres des shortcodes :
+        * deviennent en anglais par défaut (les anciens noms français restent valides)
+        * deviennent insensibles au changement de case (minuscule ou majuscules)
+    * BUG: Ajout de robustesse à des valeurs invalides dans le traitement des publications extraites de HAL
+               et résolution de quelques bugs d'interprétation de fichiers bibtex
+
+Distinction entre les unités et la structure principale:* ÉVOL: (suggestion utilisateur)  Possibilité d'avoir la [members_table] par équipe plutôt que par statuts.
+
+
+* ÉVOL: Des pages WordPress peuvent désormais être attribuées aux unités et thématiques (seulement les personnes et équipes auparavant)
+* ÉVOL: Les unités peuvent avoir des coordonnées alternatives pour éventuellement différer de celles de la structure principale
+
+Evolutions mineures ou peu visibles :
+
+* ÉVOL: L'option "MonLabo_fax_ou_contact" est renommée en "MonLabo_contact"
+* BUG: Passe certains champs de la base de donnée en UTF8 pour éviter des bugs en cas de caractères complexes.
+* BUG: Lorsque demandés, les alumni n'étaient pas correctement affichés dans [members_table]
+* CODE: Amélioration interne du code:
+    * Réecriture profonde du code gérant les shortcodes de publication
+    * Conversion en classe de tous les Shortcodes (permet un code coverage plus précis)
+    * Séparation des webservices pour faciliter les tests unitaires
+    * Plus que doublement du nombre de tests unitaires (>4000 aujourd'hui).
+* ÉVOL: Publications depuis HAL au format APA et IEEE :
+    * Ajout de la prise en charge des publications de type @proceedings et @patents
+    * Utiliser le champs URL pour faire les liens plutôt que de le reconstruire à partir de HAL_ID
+    * Ajustement des titres des types de publications pour se rapprocher des pages web générées par HAL
+* BUG/CODE: Résout un problème d'accès dans certains chemins : Corrige une mauvaise utilisation de plugins_url(), remplacement de dirname(__FILE__ ) par __DIR__
+
+
+= 1.5 =
+(GIT tag v1.5)
+
+* ÉVOL: Fonction de recensement des utilisateurs du plugin
+
+Mineur:
+
+* BUG: Les valeurs par défaut des options n'étaient pas toujours prises en compte quand la valeur n'existait pas.
+* BUG: Une activation du plugin générait un warning à cause d'un saut de ligne affiché.
+* DOC: Ajout du lien du site et des logos des tutelles des auteurs.
+* ÉVOL: dans [alumni_list] le paramètre "categories" devient facultatif
+
+
+= 1.6 =
+(GIT tag v1.6)
+
+* ÉVOL: Unification des options des  shortcodes [member_list], [member_table], [member_chart], [alumni_list] et [alumni_table]
+        qui sont désormais tous dotés des options "categories", "unit" et "team" (de plus à choix multiple).
+* ÉVOL: Désormais une "structure principale" rassemble les unités et permet d'y attribuer des directeurs/directrices
+        et est paramétrable dans un nouvel onglet remplaçant "coordonnées"
+* ÉVOL: La catégorie de personnel "Direction" est supprimée. L'ajout d'un directeur à une unité suffit.
+
+Mineur:
+
+* CODE: Crée une classe MonLabo_persons et réecrit et refactorise le code de MonLabo_shortcode.php
+* BUG: [alumni_table] n'affichait ni le statut ni la date de départ
+* BUG: Formulaire d'édition des équipes : Le changement d'unité d'une équipe ne fonctionnait pas.
+* ÉVOL: Met en gras les chefs d'équipe dans les organigrammes [member_chart]
+* BUG: Dans le formulaire d'édition de personnel, l'indication du champs "Numéro d'auteur Descartes Publi" n'apparaissait pas.
+* ÉVOL: Quelques formulations de texte plus explicites
+* BUG: Supprime quelques warnings apparus lors de Tests et quelques balises html non fermées ou en trop.
+* BUG: Les personnels sous forme de liste ou tableau n'étaient pas toujours dans l'ordre alphabétique
+
+
+= 1.4 =
+(SVN r.643 et GIT tag v1.4)
+
+* NLLE FONC: Ajout du shortcode team_panel
+* ÉVOL: person_panel affiche désormais les Informations relatives aux tuteurs et étudiants
+
+Mineur:
+
+* ÉVOL: idHAL permet désormais de mettre plusieur id séparés par des virgules.
+* BUG  : Corrige le mauvais affichage de perso_panel dans une langue autre que par défaut
+* DEV : - Transfert de SVN vers git https://sourcesup.renater.fr
+        - Déplacement des tests unitaires dans un repo séparé MonLabo_tests
+
+
+= 1.3 =
+(SVN r.634 )
+
+* BUG  : Résolution de bugs :
+    * Impossible de modifier l'unité à laquelle apartient une équipe
+    * Impossible d'avoir des équipes sans page WordPress
+* ÉVOL: Amélioration de la vue en tableaux dans l'interface privée
+* NLLE FONC : Ajout de logos et ID descartes publi pour les unités
+
+
+= 1.2 =
+(SVN r.631)
+
+Majeur:
+
+* NLLE FONC: L'extraction des publications de HAL fonctionne en production et est une option séparée
+* NLLE FONC: L'interface d'administration est désormais multilingue
+
+Mineur:
+
+* CODE: Réduction de 30% de la taille du code de MonLabo_access_data.php
+* ÉVOL: Dans la page édition de membre: Ajouter comme choix (par défaut) de page WordPress "Pas de page".
+* BUG  : Résolution de bugs :
+    * compatibilité avec la version 5.2 de PHP,
+    * formulaires qui ne permettait pas de vider les listes de sélection
+    * les champs de formulaires publication étaient effacés si le serveur ParisDescartes était désactivé
+    * les valeurs des options binaires étaient parfois ignorées. Uniformisation de leurs valeurs ("0" ou "1")
+    * erreurs à l'activation sur une base vide
+
+
+= 1.1 =
+(SVN r.601)
+
+Majeur:
+
+* NLLE FONC: Ajout de la possibilité d'extraire les publications de HAL
+* NLLE FONC: Ajout d'une vue des sous forme de tableau dans l'interface admin
+
+Mineur:
+
+* ÉVOL: Amélioration cosmétique des formulaire d'édition de personnels, équipes...
+* CODE: Compatibilité avec la version PHP 5.2
+
+
+= 1.0 =
+(SVN r.590)
+
+* EVOL / CODE: Réécriture de la base de donnée et de toutes les couches basses
+                d'accès à cette base. Abandon des migrations antérieures à 0.93.
+                Réorganisation profonde d'une partie importante du code. Ajout de
+                nombreux tests unitaires.
+
+
+= 0.93 =
+(SVN r.469)
+
+* ÉVOL: Ajout de l'option d'affichage des publications
+
+
+= 0.92 =
+
+* CODE: Remplace tous les echo par des retour de variable (plus propres) dans inc-lib-forms.php et MonLabo_edit_members.php.
+* BUG: Corrections d'effets de bord dans les formulaires d'édition de membres, équipes...
+* BUG: Le formulaire d'édition des équipes ne se mettait plus à jour quand on sélectionnait une équipe.
+* ÉVOL: Formulaire d'édition de membres: Séparer l'affichage des membres entre actif et alumni dans les sélecteurs
+* BUG: Repair [alumni_list] shortcode
+* CODE: Refactoring de nombreuses fonctions
+
+
+= 0.91 =
+
+* CODE: Corriger orthographe pannel => panel
+* ÉVOL: Ajout d'un champs color dans la table des équipes
+* ÉVOL: Ajout d'une classe correspondant à la catégorie dans chaque colonne des compact tables
+* ÉVOL: Ajout d'une classe correspondant à l'équipe' dans chaque colonne des chart tables
+
+
+= 0.90 =
+
+* CODE: Refactoring of all shortcode and access to database
+
+
+= 0.70 =
+
+* CODE: Refactoring complet de l'accès à la base de donnée
+* CODE: Ajouts de tests unitaires pour toutes les couches bases
+
+
+= 0.68 =
+
+* CODE: Création d'un environement de tests unitaires
+* BUG: La fonction activate_MonLabo ne mettait pas les valeurs par défaut des options si la base était vide
+* BUG: Supprime le cache d'accès à certaines requêtes car il donnait des mauvais résultats lors de mises à jour intermédiaires.
+* BUG: Supprime de nombreux caches de requete qui posaient problèmes en cas de mise à jour de la base entre deux requêtes.
+* CODE: Ajout d'une classe MonLabo_db et son test unitaire
+
+
+= 0.67 =
+
+* DOC: Improve readme.txt
+* DOC: Corrige quelques fautes d'orthographe et imprécisions de la documentation
+* CODE: Renomme MonLabo_help_lib.php en MonLabo_doc.php (nom plus logique)
+* CODE: Supprimer fichiers et dossiers inutiles: admin/includes/images et Database.class.php
+* ADMIN: Supprime MonLabo_help.php après avoir autorisé les simples utilisateurs à accéder à la documentation
+* CODE: Rajouter index.php dans les dossiers manquants
+* DOC: Allège documentation (Met les onglets de la documentation en popup)
+
+
+= 0.66 =
+
+* ÉVOL: Amélioration de la page d'ajout/modification des membres
+    * Quand on supprime la personne, passer sa page en brouillon
+    * Adapater les champs et boutons en cas d'ajout de membre plutôt que modification
+* DOC: Ajout d'un dossier documentation
+
+
+= 0.65 =
+
+* CODE: Conversion de tous les tabs en espaces et reprise de la forme du code
+* CODE: Suppression des librairies inutiles: Boostrap, Parsley, Select2
+* ÉVOL: Delphine rajoutée dans les crédits
+
+
+= 0.64 =
+
+* ÉVOL: Suppression de phpMyEdit pour l'édition des membres, équipes, thématiques, unités
+
+
+= 0.63 =
+
+* BUG: Les pages des nouveaux membres utilisaients des anciens tags
+
+
+= 0.62 =
+
+* BUG: MonLabo_teams et MonLabo_members ne sont pas remplies à l'activation du plugin
+* NLLE FONC: Ajout du shortcode organigrame
+* ÉVOL: Permet d'afficher une liste d'alumni
+* ÉVOL: Ajoute l'aide des nouveaux shortcodes (alumni_*, members_table et members_chart)
+
+
+= 0.61 =
+
+* BUG: Adresse de l'équipe mauvaise quand la page est traduite par polylang
+* BUG: Nouvel auteur crée: Si titre vide remplacé par erreur par "0".
+* ÉVOL: Plus besoin de désactiver et réactiver le plugin pour mettre à jour les paramètres en cas d'évolution.
+
+
+= 0.60 =
+
+* NLLE FONC: Rajout du shortcode Alumni_table
+* BUG: Débugge affichage des équipes en tableaux
+* TABLE CHANGE: Ajout des champs statuts et tuteur dans la table des personnels
+* ÉVOL: Organise tous ajouts de fonctionnalités du plugins en cochant (plus de décochage pour ajouter)
+* ÉVOL: Check version number to ask deactivate plugin
+* BUG: Le calcul du nombre de chef d'équipe est mauvais, 1 au lieu de 0 quand il n'y a personne
+* ÉVOL: Unifie le nom des shortcodes
+    * members_table
+    * members_list (au lieu de members_list_automatic)
+    * members_chart (futur)
+    * alumni_table (futur)
+    * alumni_list
+    * publications_list (au lieu de publications_automatic)
+    * custom_publications_list (au lieu de get_publications)
+    * perso_panel (au lieu de perso_panel_automatic)
+* NLLE FONC: Ajout de custom fields pour les Personnels
+* NLLE FONC: Personnels: Ajout de la date de départ (utile pour les alumni)
+* BUG: Second titre décalé dans la liste des utilisateurs
+* ÉVOL: Mise sous forme d'onglets de l'aide.
+* NLLE FONC: Rajout de l'option code css custom
+* ÉVOL: Permet de désactiver les fonctions de publications
+* BUG: MonLabo_thematiques et MonLabo_unites ne sont pas remplies à l'activation du plugin
+* ÉVOL: Affichage correct des listes d'équipes d'une thématique
+
+
+= 0.50 =
+
+* NLLE FONC: Permet de configurer et de changer l'adresse du serveur de publications
+* NLLE FONC: Ajoute la liste de thématiques
+* NLLE FONC: Béta shortcode get_thematic_teams_list
+
+
+= 0.49 =
+
+* NLLE FONC: Possibilité d'utiliser une adresse alternative pour un utilisateur
+
+
+= 0.48 =
+
+* NLLE FONC: Add shortcode get_members_table
+* NLLE FONC: Add "Visitors" category
+* ÉVOL: Manage language en-GB
+
+
+= 0.47 =
+
+* ÉVOL: Sépare les options Fonctionnalités et Coordonnées
+
+
+= 0.45 =
+
+* ÉVOL: Table MonLabo_teams : La colone page_id devient page_id_or_url
+
+
+= 0.44 =
+
+* BUG (regression): Ne peut cas créer une nouvelle fonction pour un nouvel utilisateur
+* ÉVOL: Permet d'indiquer si un utilisateur est responsable d'équipe à sa création
+* BUG: Lien invalide vers les équipes d'un membre
+
+
+= 0.43 =
+
+* ÉVOL: Les responsables des équipes sont désormais stoqués dans les équipes
+
+
+= 0.42 =
+
+* ÉVOL: New CSS for user list
+
+
+= 0.41 =
+
+* ÉVOL: Utilise la nouvelle API "annee=-[durée]"
+
+
+= 0.40 =
+
+* ÉVOL: Le tag [perso_publications_automatic] devient [publications_automatic] (car il peut désormais être utilisé aussi sur les pages des équipes)
+* ÉVOL: Le tag [get_members_list] devient [members_list_automatic] (pour une question d'uniformité)
+* NLLE FONC: [members_list_automatic] peut être mis sur les pages des équipes (nouvelle colonne "Descartes pubmed equipe ID" dans la liste des équipes)
+
+
+= 0.33 =
+
+* BUG: Mauvaise sélection des membres des équipes si le champs "Team leader" n'était pas renseigné
+
+
+= 0.32 =
+
+* BUG: Création d'un tilisateur inversait nom et prenom.
+
+
+= 0.31 =
+
+* IMPROVE: Ajoute un lien vers la liste consultable des auteurs dans la base Descartes PubMed
+* BUG: Corrige la base d'ajout d'un membre du personnel qui ne fonctionnait pas
+
+
+= 0.30 =
+
+* IMPROVE NLLE FONC: Amélioration du formulaire d'ajout d'un membre du personnel
+
+
+= 0.29 =
+
+* NLLE FONC: Formulaire d'ajout d'un membre du personnel
+
+
+= 0.28 =
+
+* ÉVOL: Si un utilisateur ne fourni pas d'image, mettre une silouette
+* NLLE FONC: Permettre de choisir la silouhette par défaut
+
+
+= 0.27 =
+
+* NLLE FONC: Ajoute une colone "visible" à MonLabo_members pour éventuellement une personne n'apparaisse pas sur le site.
+
+
+= 0.26 =
+
+* NLLE FONC: Permet de désactiver la gestions des membres et des groupes
+
+
+= 0.25 =
+
+* BUG: Hote de la base de donnée n'est pas forcément localhost! (Remplacé par DB_HOST)
+
+
+= 0.24 =
+
+* NLLE FONC: Config - Permit to chose width of Bandeau Personnel and wdth of address block
+
+
+= 0.23 =
+
+* NLLE FONC: Separate options into tabs.
+* ÉVOL: Options settings storage name in database change name
+* DEV: Reorganize option functions
+
+
+= 0.22 =
+
+* NLLE FONC: Permit to fix radius of members image.
+* NLLE FONC: Permit to zoom name of people in perso pannel.
+* NLLE FONC: Permit to fix size of address in perso pannel.
+
+
+= 0.21 =
+
+* BUG: Suppress AUTO_INCREMENT of id for table MonLabo_teams in order to chose the Number
+* BUG: Prevent use of polylang function when this plugin is not activated
+
+
+= 0.20 =
+
+* ÉVOL: Ajust alumni display and permit parameter "external_link"
+* BUG: Version of CSS is now appliy
+
+
+= 0.19 =
+
+* ÉVOL: Rempli avec des valeurs par défaut les paramètres et les tables si ils sont vides
+
+
+= 0.18 =
+
+* ÉVOL: Update CSS of MonLabo in order to fix sise of bandeau-personnel
+* ÉVOL: Suppress unecessary shortcode [end_perso_panel]
+* BUG: Display again "Titre" (Dr. Pr....) in perso_panel
+
+
+= 0.17.1 =
+
+* ÉVOL: unactivate Add members forms
+
+
+= 0.17 =
+
+* NLLE FONC (PRE ALPHA): Add members forms
+* BUG: Suppress reference of obsolete shotcode fin_perso_panel
+* NLLE FONC: When a full phone number (begining with +) is entered, do not write prefix
+* BUG: Correct Alter table when reactivate plugin
+
+
+= 0.16 =
+
+* ADMIN BUG: Correct absence of display of first line of tables
+* NLLE FONC : Permit the use of several Page_ID numbers separated by ,
+* TABLE CHANGE: page_id field of table MonLabo_teams is now type varchar
+
+
+= 0.15.2 =
+
+* BUG: Correct bug that crash site on old version of PHP
+
+
+= 0.15 =
+
+* NLLE FONC: [get_members_list] finds automatically the team of the current page
+* FEAT: Translate into english all name of shortcodes and option
+
+
+= 0.14 =
+
+* NEW ADMIN FEAT: Add color picker when chosing color
+* ADMIN: Optimize display of help for members and team tables.
+* BUG: Correct alphabetic order of list of members
+
+
+= 0.13 =
+
+* NLLE FONC: Can change colors of members list
+
+
+= 0.12 =
+
+* DEV: Reorganize options page calls
+* INTERFACE: uses tabs in config pages
+* BUG: Correct bad display of members tables in old version of PHP
+
+
+= 0.11 =
+
+* DEV: Change architechture of files (add includes dir)
+* NLLE FONC: Add shortcode [ancien_membre]
+
+
+= 0.10 =
+
+* DEV: Manage activation hooks
+* ÉVOL: rename tag get_team_members into get_members__list
+* NEW EARLY FEAT: Add possibility to use several labs
+* BUG: Support UTF8 for phpmyedit.
+* DEV: Autoincrement new tables.
+
+
+= 0.9 =
+
+* NLLE FONC: Incorporate management of publications
+* NLLE FONC: Embed edition of tables
+
+
+= 0.8 =
+
+* NLLE FONC: Rename in MonLabo. Add admin menu.
+
+
+= 0.1 =
+
+* Initial release.
+
+
+== Upgrade Notice ==
+
+= 2.8 =

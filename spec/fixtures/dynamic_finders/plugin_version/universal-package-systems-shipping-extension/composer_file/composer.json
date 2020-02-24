@@ -1,0 +1,51 @@
+{
+    "name": "karneaud/wc-upackage_sys-shipping",
+    "description": "Universal Package System local delivery shipping extension plugin for WooCommerce",
+    "keywords": ["woocommerce", "extension"],
+    "homepage": "http://www.universalpackagesys.com",
+    "license": "GPL-2.0+",
+    "version": "1.0.0",
+    "repositories":[
+
+        {
+            "type": "path",
+            "url": "../universal_package_system",
+            "options": {
+              "symlink": false
+            }
+        }
+    ],
+    "require": {
+        "karneaud/universal_package_system":"dev-master"
+    },
+    "require-dev": {
+        "php": ">=7.0.0",
+        "composer/installers": "~1.0",
+        "woocommerce/woocommerce":"*",
+        "wp-cli/wp-cli":"^2.4@dev",
+        "psy/psysh":"*",
+        "php-http/guzzle6-adapter":"*",
+        "php-http/message": "^1.0",
+        "guzzlehttp/psr7": "^1.0",
+        "fzaninotto/faker": "^1.9@dev",
+        "jdgrimes/wp-http-testcase": "dev-master"
+    },
+    "scripts" : {
+      "post-install-cmd" : [
+          "/bin/bash -c \"[[ -f /usr/bin/wp ]] || ln -s /var/www/html/vendor/wp-cli/wp-cli/bin/wp /usr/bin/wp\"",
+          "/bin/bash -c \"source /var/www/html/vendor/wp-cli/wp-cli/utils/wp-completion.bash\"",
+          "/bin/bash -c \"[[ -f ~/.bash_profile ]] || touch ~/.bash_profile\"",
+          "/bin/bash -c \"source ~/.bash_profile\"",
+          "/var/www/html/wp-content/plugins/woocommerce/tests/bin/install.sh wordpress_tests root rootmysql db 5.2.2 true",
+          "/bin/bash -c \"phpunit --config ./tests/phpunit.xml\""
+      ]
+    },
+    "authors": [
+        {
+            "name": "Kendall Arneaud",
+            "homepage": "http://www.kendallarneaud.me"
+        }
+    ],
+    "type": "woocommerce-extension-plugin",
+    "minimum-stability": "dev"
+}
