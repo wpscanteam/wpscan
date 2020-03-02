@@ -130,6 +130,11 @@ cli_options:
   api_token: YOUR_API_TOKEN
 ```
 
+## Load APi Token From ENV
+
+The API Token will be automatically loaded from the ENV variable `WPSCAN_API_TOKEN` if present. If the `--api-token` CLI option is also used, the value from the CLI will be used.
+
+
 ## Enumerating usernames
 
 ```shell
