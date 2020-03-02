@@ -74,19 +74,39 @@ describe WPScan::Controller::VulnApi do
           context 'when limited requests' do
             let(:requests) { 100 }
 
-            it 'does not raise an error' do
+            it 'sets the token and does not raise an error' do
               expect { controller.before_scan }.to_not raise_error
+
+              expect(WPScan::DB::VulnApi.token).to eql 'token'
             end
 
             context 'when unlimited requests' do
               let(:requests) { 'Unlimited' }
 
-              it 'does not raise an error' do
+              it 'sets the token and does not raise an error' do
                 expect { controller.before_scan }.to_not raise_error
+
+                expect(WPScan::DB::VulnApi.token).to eql 'token'
               end
             end
           end
         end
+      end
+    end
+
+    context 'when token in ENV' do
+      before do
+        ENV[described_class::ENV_KEY] = 'token-from-env'
+
+        expect(WPScan::DB::VulnApi)
+          .to receive(:status)
+          .and_return('success' => true, 'plan' => 'free', 'requests_remaining' => 'Unlimited')
+      end
+
+      it 'sets the token and does not raise an error' do
+        expect { controller.before_scan }.to_not raise_error
+
+        expect(WPScan::DB::VulnApi.token).to eql 'token-from-env'
       end
     end
   end

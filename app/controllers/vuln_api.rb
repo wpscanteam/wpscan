@@ -4,6 +4,8 @@ module WPScan
   module Controller
     # Controller to handle the API token
     class VulnApi < CMSScanner::Controller::Base
+      ENV_KEY = 'WPSCAN_API_TOKEN'
+
       def cli_options
         [
           OptString.new(['--api-token TOKEN', 'The WPVulnDB API Token to display vulnerability data'])
@@ -11,9 +13,9 @@ module WPScan
       end
 
       def before_scan
-        return unless ParsedCli.api_token
+        return unless ParsedCli.api_token || ENV.key?(ENV_KEY)
 
-        DB::VulnApi.token = ParsedCli.api_token
+        DB::VulnApi.token = ParsedCli.api_token || ENV[ENV_KEY]
 
         api_status = DB::VulnApi.status
 
