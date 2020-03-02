@@ -13,12 +13,7 @@ module WPScan
 
           url = target.url(path)
 
-          Model::UploadDirectoryListing.new(
-            url,
-            confidence: 100,
-            found_by: DIRECT_ACCESS,
-            to_s: "Upload directory has listing enabled: #{url}"
-          )
+          Model::UploadDirectoryListing.new(url, confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

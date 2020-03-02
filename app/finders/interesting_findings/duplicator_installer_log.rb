@@ -11,12 +11,7 @@ module WPScan
 
           return unless /DUPLICATOR INSTALL-LOG/.match?(target.head_and_get(path).body)
 
-          Model::DuplicatorInstallerLog.new(
-            target.url(path),
-            confidence: 100,
-            found_by: DIRECT_ACCESS,
-            references: { url: 'https://www.exploit-db.com/ghdb/3981/' }
-          )
+          Model::DuplicatorInstallerLog.new(target.url(path), confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

@@ -8,7 +8,7 @@ module WPScan
 
       # @return [ Hash ]
       def references
-        {
+        @references ||= {
           url: ['http://codex.wordpress.org/XML-RPC_Pingback_API'],
           metasploit: [
             'auxiliary/scanner/http/wordpress_ghost_scanner',

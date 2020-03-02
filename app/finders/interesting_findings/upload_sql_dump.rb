@@ -14,11 +14,7 @@ module WPScan
 
           return unless SQL_PATTERN.match?(res.body)
 
-          Model::UploadSQLDump.new(
-            target.url(path),
-            confidence: 100,
-            found_by: DIRECT_ACCESS
-          )
+          Model::UploadSQLDump.new(target.url(path), confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

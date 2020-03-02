@@ -11,11 +11,7 @@ module WPScan
 
           return unless target.debug_log?(path)
 
-          Model::DebugLog.new(
-            target.url(path),
-            confidence: 100, found_by: DIRECT_ACCESS,
-            references: { url: 'https://codex.wordpress.org/Debugging_in_WordPress' }
-          )
+          Model::DebugLog.new(target.url(path), confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

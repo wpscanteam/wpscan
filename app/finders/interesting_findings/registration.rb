@@ -20,12 +20,7 @@ module WPScan
 
           target.registration_enabled = true
 
-          Model::Registration.new(
-            res.effective_url,
-            confidence: 100,
-            found_by: DIRECT_ACCESS,
-            to_s: "Registration is enabled: #{res.effective_url}"
-          )
+          Model::Registration.new(res.effective_url, confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

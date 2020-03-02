@@ -16,8 +16,7 @@ module WPScan
             target.url(path),
             confidence: 70,
             found_by: DIRECT_ACCESS,
-            interesting_entries: target.directory_listing_entries(path),
-            references: { url: 'https://github.com/wpscanteam/wpscan/issues/422' }
+            interesting_entries: target.directory_listing_entries(path)
           )
         end
       end

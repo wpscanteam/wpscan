@@ -16,13 +16,7 @@ module WPScan
 
             target.mu_plugins = true
 
-            return Model::MuPlugins.new(
-              url,
-              confidence: 70,
-              found_by: 'URLs In Homepage (Passive Detection)',
-              to_s: "This site has 'Must Use Plugins': #{url}",
-              references: { url: 'http://codex.wordpress.org/Must_Use_Plugins' }
-            )
+            return Model::MuPlugins.new(url, confidence: 70, found_by: 'URLs In Homepage (Passive Detection)')
           end
           nil
         end
@@ -37,13 +31,7 @@ module WPScan
 
           target.mu_plugins = true
 
-          Model::MuPlugins.new(
-            url,
-            confidence: 80,
-            found_by: DIRECT_ACCESS,
-            to_s: "This site has 'Must Use Plugins': #{url}",
-            references: { url: 'http://codex.wordpress.org/Must_Use_Plugins' }
-          )
+          Model::MuPlugins.new(url, confidence: 80, found_by: DIRECT_ACCESS)
         end
       end
     end

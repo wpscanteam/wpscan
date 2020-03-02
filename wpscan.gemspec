@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.8.3'
+  s.add_dependency 'cms_scanner', '~> 0.8.4'
 
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 0.9.13'

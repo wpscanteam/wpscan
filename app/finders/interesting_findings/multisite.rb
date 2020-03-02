@@ -17,13 +17,7 @@ module WPScan
 
           target.multisite = true
 
-          Model::Multisite.new(
-            url,
-            confidence: 100,
-            found_by: DIRECT_ACCESS,
-            to_s: 'This site seems to be a multisite',
-            references: { url: 'http://codex.wordpress.org/Glossary#Multisite' }
-          )
+          Model::Multisite.new(url, confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

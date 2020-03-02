@@ -13,12 +13,7 @@ module WPScan
 
           return unless res.code == 200 && res.headers['Content-Type'] =~ %r{\Aapplication/zip}i
 
-          Model::TmmDbMigrate.new(
-            url,
-            confidence: 100,
-            found_by: DIRECT_ACCESS,
-            references: { packetstorm: 131_957 }
-          )
+          Model::TmmDbMigrate.new(url, confidence: 100, found_by: DIRECT_ACCESS)
         end
       end
     end

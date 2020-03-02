@@ -16,8 +16,7 @@ module WPScan
             target.url(path),
             confidence: 100,
             found_by: DIRECT_ACCESS,
-            interesting_entries: fpd_entries,
-            references: { url: 'https://www.owasp.org/index.php/Full_Path_Disclosure' }
+            interesting_entries: fpd_entries
           )
         end
       end
