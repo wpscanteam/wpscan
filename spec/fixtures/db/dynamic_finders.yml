@@ -35,6 +35,17 @@ wordpress:
     xpath: //meta[@name="generator"]/@content
     pattern: !ruby/regexp /wordPress (?<v>\d+\.[\.\d]+)/i
     version: true
+  StyleEtag:
+    class: HeaderPattern
+    header: Etag
+    pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/i
+    path: wp-admin/load-styles.php
+    version: true
+  ScriptEtag:
+    class: HeaderPattern
+    header: Etag
+    pattern: !ruby/regexp /(?<v>\d+\.[\.\d]+)/i
+    path: wp-admin/load-scripts.php
   OpmlGenerator:
     class: Comment
     path: wp-links-opml.php

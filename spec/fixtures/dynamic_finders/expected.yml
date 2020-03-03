@@ -36,6 +36,16 @@ wordpress:
     found_by: Meta Generator (Passive Detection)
     interesting_entries:
     - 'http://wp.lab/, Match: ''WordPress 3.8.1'''
+  StyleEtag:
+    number: 3.8.1
+    found_by: Style Etag (Aggressive Detection)
+    interesting_entries:
+    - 'http://wp.lab/wp-admin/load-styles.php, Match: ''3.8.1'''
+  ScriptEtag:
+    number: 3.8.1
+    found_by: Script Etag (Aggressive Detection)
+    interesting_entries:
+    - 'http://wp.lab/wp-admin/load-scripts.php, Match: ''3.8.1'''
   OpmlGenerator:
     number: 4.0
     found_by: Opml Generator (Aggressive Detection)
