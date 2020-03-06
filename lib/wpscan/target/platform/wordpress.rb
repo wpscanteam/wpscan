@@ -48,7 +48,7 @@ module WPScan
         # @param [ Typhoeus::Response ] response
         # @return [ Boolean ]
         def wordpress_from_meta_comments_or_scripts?(response)
-          in_scope_uris(response, '//link/@href|//script/@src|//img/@src') do |uri|
+          in_scope_uris(response, '//link/@href|//script/@src') do |uri|
             return true if WORDPRESS_PATTERN.match?(uri.path) || WP_JSON_OEMBED_PATTERN.match?(uri.path)
           end
 
