@@ -148,7 +148,7 @@ module WPScan
             create_backup(filename)
             dl_checksum = download(filename)
 
-            raise "#{filename}: checksums do not match" unless dl_checksum == db_checksum
+            raise Error::ChecksumsMismatch, filename unless dl_checksum == db_checksum
 
             updated << filename
           rescue StandardError => e
