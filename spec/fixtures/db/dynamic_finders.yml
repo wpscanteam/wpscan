@@ -52446,10 +52446,16 @@ plugins:
     Readme:
       path: readme.txt
   paypal-for-woocommerce:
+    Readme:
+      path: readme.txt
     TranslationFile:
       class: BodyPattern
       path: i18n/languages/paypal-for-woocommerce-en_US.po
       pattern: !ruby/regexp /ject\-Id\-Version:\ PayPal for WooCommerce (?<v>\d+\.[\.\d]+)/i
+      version: true
+    Comment:
+      xpath: //comment()[contains(., "www.angelleye.com/product/woocommerce-paypal-plugin")]
+      pattern: !ruby/regexp /installed PayPal for WooCommerce v(?<v>\d+\.[\.\d]+)/i
       version: true
   paypal-ipn:
     QueryParameter:
@@ -58784,6 +58790,11 @@ plugins:
       - themes/legacy/templates/learndash_pager.min.js
       - assets/css/jquery.dropdown.min.css
       - themes/ld30/assets/js/learndash.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/learndash.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: LearnDash LMS (?<v>\d+\.[\.\d]+)/i'
       version: true
   sh-slideshow:
     Readme:
