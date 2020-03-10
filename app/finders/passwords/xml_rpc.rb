@@ -16,7 +16,7 @@ module WPScan
         end
 
         def errored_response?(response)
-          response.code != 200 && response.body !~ /login_error/i
+          response.code != 200 && response.body !~ /Incorrect username or password/i
         end
       end
     end
