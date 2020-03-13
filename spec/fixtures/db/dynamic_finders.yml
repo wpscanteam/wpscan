@@ -71017,6 +71017,14 @@ plugins:
   woocommerce-stock-manager:
     Readme:
       path: README.txt
+  woocommerce-subscriptions:
+    Readme:
+      path: readme.txt
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\- version (?<v>\d+\.[\.\d]+)/i
+      version: true
   woocommerce-template-hints:
     ChangeLog:
       class: BodyPattern
