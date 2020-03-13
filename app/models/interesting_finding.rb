@@ -20,7 +20,7 @@ module WPScan
     class DebugLog < InterestingFinding
       # @ return [ Hash ]
       def references
-        @references ||= { url: 'https://codex.wordpress.org/Debugging_in_WordPress' }
+        @references ||= { url: ['https://codex.wordpress.org/Debugging_in_WordPress'] }
       end
     end
 
