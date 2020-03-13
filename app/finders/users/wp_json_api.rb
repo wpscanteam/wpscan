@@ -21,7 +21,7 @@ module WPScan
           loop do
             current_page += 1
 
-            res = Typhoeus.get(api_url, params: { per_page: MAX_PER_PAGE, page: current_page })
+            res = Browser.get(api_url, params: { per_page: MAX_PER_PAGE, page: current_page })
 
             total_pages ||= res.headers['X-WP-TotalPages'].to_i
 
