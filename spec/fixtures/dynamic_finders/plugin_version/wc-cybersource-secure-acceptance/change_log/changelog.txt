@@ -1,0 +1,181 @@
+= 1.24.19 =
+* 8 January 2020
+* UPDATE: REST API Device Fingerprinting Implementation
+* FIXED: REST API BUG response code 00 
+
+= 1.23.18 =
+* 31 December 2019
+* UPDATE: update default signed field names
+* FIXED: remove rest API capture button in the sop and wm 
+* UPDATE: MMD REST API implemented
+
+= 1.22.17 =
+* 19 October 2019
+* UPDATE: REST API Integration
+* FIXED: SOAP MDD Fields 
+* TWEAK: Adjustable Customer Address length settings
+
+= 1.21.16 =
+* 8 September 2019
+* UPDATE: Silent Order Post (SOP) Subscription Integration
+
+= 1.20.16 =
+* 27 July 2019
+* FIXED: save token not working in the first time checkout
+* FIXED: PHP SOAP if not exist no methor available
+* TESTED: Wordpress Version up to 5.2.2
+* TESTED: WooCommerce Version up to 3.6.5
+* TESTED: PHP 7 Version up to 7.2.20
+* TESTED: MySQL Version up to 5.6.41-84.1
+
+= 1.19.15 =
+* 20 July 2019
+* FIXED: save token not working in the first time checkout
+* FIXED: PHP SOAP if not exist no methor available
+* TESTED: Wordpress Version up to 5.2.2
+* TESTED: WooCommerce Version up to 3.6.5
+* TESTED: PHP 7 Version up to 7.2.20
+* TESTED: MySQL Version up to 5.6.41-84.1
+
+= 1.19.14 =
+* 05 May 2019
+* UPDATE: Envato Authot WordPress Plugin Requirements
+* UPDATE: WC_Payment_Tokens implementation
+* UPDATE: add order id into cybersource_add_signed_field_names filter to apply_filters( 'cybersource_add_signed_field_names', $order_id, true );
+* FIXED: Offer-Line Details add new validation for a single quote (') item_x_name
+
+* 24 Dec 2018
+* FIXED: SO and SOP Card Expiration Year
+* UPDATE: Add Extra links online documentation and support
+
+= 1.18.12 =
+* 03 Nov 2018
+* UPDATE: depricated calls for WC 3.5.x
+* FIXED: payment form html
+* TESTED: Wordpress Version up to 4.9.9
+* TESTED: WooCommerce Version up to 3.5.1
+
+= 1.17.11 = 
+* 06 Oct 2018
+* UPDATE: Add random number in consumer_id if guest user.
+* UPDATE: Add save token if merchant notication is active.
+* FIXED: Deprecated woocommerce order_key 
+* FIXED: Deprecated woocommerce WC_Cart::get_checkout_url() 
+* FIXED: Deprecated woocommerce get order id
+* FIXED: Deprecated woocommerce get status 
+* FIXED: Deprecated woocommerce woocommerce_clean
+* FIXED: Deprecated woocommerce credit_card_form
+* TESTED: Wordpress Version up to 4.9.9
+* TESTED: WooCommerce Version up to 3.4.5
+
+= 1.16.10 = 
+* 05 July 2018
+* UPDATE: License API URI Validator
+
+= 1.15.10 = 
+* 30 June 2018
+* UPDATE: Support WooCommerce Subscription Addon
+
+= 1.14.10 = 
+* 06 June 2018
+* UPDATE: add consumer_id field in Secure Acceptance Web/Mobile
+* UPDATE: Merchant Notifications Post URL Supported (http://my-store.com/?wc-api=WC_API_Cybersource_SAWM&mnp=1).
+* UPDATE: Redirection Message CSS Div Block Mobile Responsive Supported.
+* TESTED: Wordpress Version up to 4.9.9
+* TESTED: WooCommerce Version up to 3.3.5
+
+
+= 1.13.10 = 
+* 10 Mar 2018
+* FIXED: woocommerce_clean is deprecated. 
+* FIXED: item name with special charaters.
+* FIXED: bill_to_company_name maximmum of string(40) length error
+* NEW: add new feature counter check for the order status if the cybersource payment success but the order status still pending
+
+= 1.12.9 = 
+* 21 Jan 2018
+* NEW: add new readme.txt for plugin compatibality. 
+* FIXED:  Simple Order API (SOAP) - SOAP-ERROR: Parsing WSDL: Couldn't load 
+* TESTED: Wordpress Version up to 4.9
+* TESTED: WooCommerce Version up to 3.2
+
+
+= 1.11.8 = 
+* 01 Dec 2017
+* NEW: Fingerprint Device ID Profiler
+* New: Multisite Supported 
+* UPDATE: Simple Order API (SOAP) -  Options Settings to disable Address Verification Services (AVS)
+* UPDATE: Options to set Accepted Card Logos
+
+= 1.10.7 = 
+* 09 Oct 2017
+* UPDATE: Web/Mobile Save Card / eCheck Options
+
+= 1.9.7 = 
+* 12 Sept 2017
+* FIXED:  Bugs when CodeCanyon Purchase Code Activation. 
+
+= 1.9.6 = 
+* 09 Sept 2017
+* UPDATE: Total amount type order to (double). 
+* UPDATE: Add new settings for MDD Fields. 
+* UPDATE: Add New settings CodeCanyon Purchase Code Activation.
+* FIXED:  Bugs when submitting cart item name to cybersource with '"'. 
+
+
+= 1.8.5 (30 july 2017 ) = 
+UPDATE: Additional Signed Field Names 
+    - merchant_id
+    - Merchant Defined Data (MDD) Fields
+UPDATE: Request and Response Logger for Cybersource Simple Order API(SOAP)
+FIXED: Removed Order Noted ($order->add_order_note()) call function creating error on transaction_response()  
+
+
+= 1.7.4 (16 july 2017 ) = 
+NEW: Cybersource APIs option settings
+    - Simple Order API (SOAP)
+    - Secure Acceptance Silent Order POST
+    - Secure Acceptance Web/Mobile
+    - Secure Acceptance Web/Mobile & Silent Order POST
+NEW: additional custom code functionality Merchant Defined Data (MDD) Fields add_filter implementation.   
+UPDATE: Cybersource Profile credentials live and test option settings
+UPDATE: additional settings disable round off total amount
+UPDATE: additional settings disable round off line tax amount and line total amount
+UPDATE: additional Generate HEADER HTML function into the settings
+UPDATE: additional Generate HR HTML function into the settings
+FIXED: Support WC version 3.x Customer information getters function during checkout and order receipt. 
+FIXED: Get Product SKU.
+
+= 1.6.3 (28 mar 2017) = 
+UPDATE: Additional Signed Field Names
+    bill_address1
+    bill_city
+
+= 1.5.3 (11 mar 2017) = 
+FIXED: item_0_unit_price invalid format.
+
+= 1.5.2 (02 mar 2017) = 
+UPDATE: Checkout Reference Order Id change to Order No.
+UPDATE: Auto Detect if order is virtual. the order status is automatically complete after payment. 
+FIXED: Web/Mobile Secure Acceptance not using token.
+
+= 1.4.1 (16 feb 2017) = 
+UPDATE: Option to set enable save card.
+= 1.3.1 (06 feb 2017) = 
+FIXED:  Fatal error, Can't use method return value in write context line 437
+FIXED:  Logger Request and Response Parameters
+
+= 1.3.0 (14 Nov 17) =
+UPDATE: Additional Signed Field Names 
+        ship_to_address_city, ship_to_address_country, ship_to_address_line1, ship_to_address_line2, ship_to_address_postal_code, ship_to_address_state, ship_to_forename, ship_to_phone, ship_to_surname, tax_amount, item_#_name, item_#_code, item_#_quantity, item_#_sku, item_#_unit_price, item_#_tax_amount, line_item_count
+UPDATE: Additional Offer-Line Details Settings
+UPDATE: Plugin Name and Description Update
+UPDATE: Payment Gateway method title and Description Update
+UPDATE: Additional plugin settings links
+
+= 1.2.0 (22 Nov 17) =
+UPDATE: Storing card tokens for future payments
+UPDATE: Web/Mobile and SOP Integration
+
+= 1.0.0 (21 july 15) =
+Initial release version
