@@ -17,7 +17,7 @@ module WPScan
         end
 
         # Needed to have inheritance of the @child_class_constants
-        # If inheritance is not needed, then the #child_class_constant can be used in the classe definition, ie
+        # If inheritance is not needed, then the #child_class_constant can be used in the class definition, ie
         #   child_class_constant :FILES, PATTERN: /aaa/i
         # @return [ Hash ]
         def self.child_class_constants
