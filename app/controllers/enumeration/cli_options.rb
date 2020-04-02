@@ -51,7 +51,7 @@ module WPScan
           OptSmartList.new(['--plugins-list LIST', 'List of plugins to enumerate'], advanced: true),
           OptChoice.new(
             ['--plugins-detection MODE',
-             'Use the supplied mode to enumerate Plugins, instead of the global (--detection-mode) mode.'],
+             'Use the supplied mode to enumerate Plugins.'],
             choices: %w[mixed passive aggressive], normalize: :to_sym, default: :passive
           ),
           OptBoolean.new(
@@ -62,8 +62,7 @@ module WPScan
           ),
           OptChoice.new(
             ['--plugins-version-detection MODE',
-             'Use the supplied mode to check plugins versions instead of the --detection-mode ' \
-             'or --plugins-detection modes.'],
+             'Use the supplied mode to check plugins\' versions.'],
             choices: %w[mixed passive aggressive], normalize: :to_sym, default: :mixed
           ),
           OptInteger.new(
