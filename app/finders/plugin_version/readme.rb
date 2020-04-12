@@ -68,11 +68,9 @@ module WPScan
           extracted_versions = extracted_versions.select { |x| x =~ /[0-9]+/ }
 
           sorted = extracted_versions.sort do |x, y|
-            begin
-              Gem::Version.new(x) <=> Gem::Version.new(y)
-            rescue StandardError
-              0
-            end
+            Gem::Version.new(x) <=> Gem::Version.new(y)
+          rescue StandardError
+            0
           end
 
           sorted.last

@@ -139,24 +139,22 @@ module WPScan
         updated = []
 
         FILES.each do |filename|
-          begin
-            db_checksum = remote_file_checksum(filename)
+          db_checksum = remote_file_checksum(filename)
 
-            # Checking if the file needs to be updated
-            next if File.exist?(local_file_path(filename)) && db_checksum == local_file_checksum(filename)
+          # Checking if the file needs to be updated
+          next if File.exist?(local_file_path(filename)) && db_checksum == local_file_checksum(filename)
 
-            create_backup(filename)
-            dl_checksum = download(filename)
+          create_backup(filename)
+          dl_checksum = download(filename)
 
-            raise Error::ChecksumsMismatch, filename unless dl_checksum == db_checksum
+          raise Error::ChecksumsMismatch, filename unless dl_checksum == db_checksum
 
-            updated << filename
-          rescue StandardError => e
-            restore_backup(filename)
-            raise e
-          ensure
-            delete_backup(filename) if File.exist?(backup_file_path(filename))
-          end
+          updated << filename
+        rescue StandardError => e
+          restore_backup(filename)
+          raise e
+        ensure
+          delete_backup(filename) if File.exist?(backup_file_path(filename))
         end
 
         File.write(last_update_file, Time.now)

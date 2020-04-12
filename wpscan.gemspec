@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name                  = 'wpscan'
   s.version               = WPScan::VERSION
   s.platform              = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 2.4'
+  s.required_ruby_version = '>= 2.5'
   s.authors               = ['WPScanTeam']
   s.date                  = Time.now.utc.strftime('%Y-%m-%d')
   s.email                 = ['team@wpscan.org']
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.8.6'
+  s.add_dependency 'cms_scanner', '~> 0.9.0'
 
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 0.9.13'
