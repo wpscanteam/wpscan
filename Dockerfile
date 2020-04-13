@@ -13,7 +13,6 @@ RUN apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-de
   rm -rf /usr/local/bundle/cache
 
 WORKDIR /wpscan
-RUN rm -rf specs
 RUN rake install --trace
 
 # needed so non superusers can read gems
