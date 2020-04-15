@@ -55,31 +55,15 @@ describe WPScan::Model::WpVersion do
         expect(version).to be_vulnerable
       end
 
-      let(:all_vulns) do
-        [
-          WPScan::Vulnerability.new(
-            'WP 3.8.1 - Vuln 1',
-            { wpvulndb: '1' },
-            'SQLI'
-          ),
-          WPScan::Vulnerability.new(
-            'WP 3.8.1 - Vuln 2',
-            { url: %w[url-2 url-3], osvdb: %w[10], cve: %w[2014-0166], wpvulndb: '2' },
-            nil,
-            '3.8.2'
-          )
-        ]
-      end
-
       context 'when a signle vuln' do
-        let(:number) { '3.8.1' }
+        let(:number) { '3.8' }
         let(:db_data) { vuln_api_data_for('wordpresses/38') }
 
         it 'returns the expected result' do
           @expected = [WPScan::Vulnerability.new(
             'WP 3.8 - Vuln 1',
-            { url: %w[url-4], wpvulndb: '3' },
-            'AUTHBYPASS'
+            references: { url: %w[url-4], wpvulndb: '3' },
+            type: 'AUTHBYPASS'
           )]
         end
       end
@@ -92,14 +76,14 @@ describe WPScan::Model::WpVersion do
           @expected = [
             WPScan::Vulnerability.new(
               'WP 3.8.1 - Vuln 1',
-              { wpvulndb: '1' },
-              'SQLI'
+              references: { wpvulndb: '1' },
+              type: 'SQLI',
+              cvss: { score: '5.4', vector: 'VECTOR' }
             ),
             WPScan::Vulnerability.new(
               'WP 3.8.1 - Vuln 2',
-              { url: %w[url-2 url-3], cve: %w[2014-0166], wpvulndb: '2' },
-              nil,
-              '3.8.2'
+              references: { url: %w[url-2 url-3], cve: %w[2014-0166], wpvulndb: '2' },
+              fixed_in: '3.8.2'
             )
           ]
         end

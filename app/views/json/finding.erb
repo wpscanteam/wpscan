@@ -19,6 +19,9 @@
   <% vulns.each_with_index do |v, index| -%>
   {
     "title": <%= v.title.to_json %>,
+    <% if v.cvss -%>
+    "cvss": <%= v.cvss.to_json %>,
+    <% end -%>
     "fixed_in": <%= v.fixed_in.to_json %>,
     "references": <%= v.references.to_json %>
   }<% unless index == last_index -%>,<% end -%>

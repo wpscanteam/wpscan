@@ -202,11 +202,11 @@ describe WPScan::Model::Plugin do
           [
             WPScan::Vulnerability.new(
               'First Vuln <= 6.3.10 - LFI',
-              { wpvulndb: '1' },
-              'LFI',
-              '6.3.10'
+              references: { wpvulndb: '1' },
+              type: 'LFI',
+              fixed_in: '6.3.10'
             ),
-            WPScan::Vulnerability.new('No Fixed In', wpvulndb: '2')
+            WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: '2' })
           ]
         end
 
