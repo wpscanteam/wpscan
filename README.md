@@ -7,7 +7,7 @@
 <h3 align="center">WPScan</h3>
 
 <p align="center">
-  WordPress Vulnerability Scanner
+  WordPress Security Scanner
   <br>
   <br>
   <a href="https://wpscan.org/" title="homepage" target="_blank">Homepage</a> - <a href="https://wpscan.io/" title="wpscan.io" target="_blank">WPScan.io</a> - <a href="https://wpvulndb.com/" title="vulnerability database" target="_blank">Vulnerability Database</a> - <a href="https://wordpress.org/plugins/wpscan/" title="wordpress security plugin" target="_blank">WordPress Security Plugin</a>
