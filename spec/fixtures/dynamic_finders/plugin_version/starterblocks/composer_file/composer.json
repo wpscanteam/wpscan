@@ -1,0 +1,31 @@
+{
+    "name": "starterblocks/starterblocks",
+    "type": "wordpress-plugin",
+    "license": "gpl-2.0-or-later",
+    "version": "1.0.2",
+    "description": "WordPress",
+    "homepage": "https://starterblocks.io/",
+    "authors": [
+        {
+            "name": "Dovy Paukstys",
+            "email": "dovy@redux.io",
+            "homepage": "https://github.com/dovy"
+        }
+    ],
+    "keywords": ["wordpress"],
+    "support": {
+        "issues": "https://github.com/starterblocks/starterblocks/issues"
+    },
+    "autoload": {
+        "psr-4": {
+            "StarterBlocks\\": "core/"
+        }
+    },
+    "require": {
+        "php": ">=7.1",
+        "composer/installers": "~1.0"
+    },
+    "scripts": {
+        "test": ["phpcs"]
+    }
+}
