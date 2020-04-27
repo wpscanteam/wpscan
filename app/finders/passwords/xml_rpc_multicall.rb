@@ -102,7 +102,7 @@ module WPScan
           end
 
           return unless /requested method [^ ]+ does not exist/i.match?(res.body)
-          
+
           progress_bar.log('The requested method is not supported')
         end
       end
