@@ -101,9 +101,9 @@ module WPScan
             progress_bar.log('Parsing error, might be caused by a too high --max-passwords value (such as >= 2k)')
           end
 
-          if /requested method [^ ]+ does not exist/i.match?(res.body)
-            progress_bar.log('The requested method is not supported')
-          end
+          return unless /requested method [^ ]+ does not exist/i.match?(res.body)
+          
+          progress_bar.log('The requested method is not supported')
         end
       end
     end
