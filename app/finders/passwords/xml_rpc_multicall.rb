@@ -75,13 +75,16 @@ module WPScan
                 progress_bar.stop
                 break
               end
-
-              progress_bar.total = progress_bar.progress + ((passwords.size - wordlist_index) / current_passwords_size.round(1)).ceil
+              
+              begin
+                progress_bar.total = progress_bar.progress + ((passwords.size - wordlist_index) / current_passwords_size.round(1)).ceil
+              rescue ProgressBar::InvalidProgressError
+              end
             end
           end
           # Maybe a progress_bar.stop ?
         end
-        # rubocop:disable all
+        # rubocop:enable all
 
         def passwords_size(max_passwords, users_size)
           return 1 if max_passwords < users_size
