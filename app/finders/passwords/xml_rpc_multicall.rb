@@ -88,7 +88,7 @@ module WPScan
 
         def passwords_size(max_passwords, users_size)
           return 1 if max_passwords < users_size
-          return 0 if users_size == 0
+          return 0 if users_size.zero?
 
           max_passwords / users_size
         end
@@ -97,9 +97,13 @@ module WPScan
         def check_and_output_errors(res)
           progress_bar.log("Incorrect response: #{res.code} / #{res.return_message}") unless res.code == 200
 
-          progress_bar.log('Parsing error, might be caused by a too high --max-passwords value (such as >= 2k)') if res.body =~ /parse error. not well formed/i
+          if /parse error. not well formed/i.match?(res.body)
+            progress_bar.log('Parsing error, might be caused by a too high --max-passwords value (such as >= 2k)')
+          end
 
-          progress_bar.log('The requested method is not supported') if res.body =~ /requested method [^ ]+ does not exist/i
+          if /requested method [^ ]+ does not exist/i.match?(res.body)
+            progress_bar.log('The requested method is not supported')
+          end
         end
       end
     end
