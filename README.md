@@ -77,6 +77,8 @@ docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u1-1
 
 # Usage
 
+Full user documentation can be found here; https://github.com/wpscanteam/wpscan/wiki/WPScan-User-Documentation
+
 ```wpscan --url blog.tld``` This will scan the blog using default options with a good compromise between speed and accuracy. For example, the plugins will be checked passively but their version with a mixed detection mode (passively + aggressively). Potential config backup files will also be checked, along with other interesting findings.
 
 If a more stealthy approach is required, then ```wpscan --stealthy --url blog.tld``` can be used.
