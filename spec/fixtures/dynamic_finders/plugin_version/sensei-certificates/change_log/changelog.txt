@@ -1,0 +1,126 @@
+*** Changelog ***
+
+2020.04.16 - version 2.0.4
+* Tweak: Some fixes general to be distributed through WordPress.org - #219
+
+2020.04.16 - version 2.0.3
+* New: Prepare the plugin to be distributed through WordPress.org - #215
+
+2020.03.20 - version 2.0.2
+* Fix: Certificate display issue when using non-Latin characters - #211
+
+2020.03.12 - version 2.0.1
+* New: Rename plugin to Sensei LMS Certificates - #195
+* Tweak: Remove certificates and templates from public search queries - #183
+* Tweak: Retrieve absolute image path via get_attached_file - #199
+* Tweak: Only load CSS on pages that require it - #205
+* Tweak: Replace use of deprecated course_query function - #207
+* Fix: Ensure font files can be accessed when plugin is copied to another site - #193
+* Fix: Localize placeholder text when editing certificate template - #206
+* Fix: Don't hide template positioning box when clicking off it - #204
+
+2019.04.25 - version 2.0.0
+* New: Add dependency check for minimum Sensei (1.11.0) and PHP (5.6) versions - #171
+* New: Add certificate link to course completion emails - #174
+* New: Add Hungarian translation (@amroland) - #170, #177
+* Tweak: Check dependencies and perform the majority of plugin loading tasks after other plugins have loaded - #175
+* Tweak: Use Woo header for plugin updates - #172
+* Fix: Disable viewing of certificates for courses without a certificate template - #173
+
+2018.12.06 - version 1.1.1
+* Fixes JavaScript error when editing a certificate template
+* Adds additional string escaping throughout the plugin
+* Fixes minor issue with restoring trashed certificate templates
+* Add translations for Russian and French
+
+2018.07.23 - version 1.1.0
+* Make date formatting for certificates follow the WP date format by default
+* Fix certificates menu position for Teacher users
+
+2017.11.01 - version 1.0.17
+* Fix fatal on plugin activation
+* Remove unnecessary .pot file
+* Make placeholders translatable in post_type_setup
+
+2017.05.03 - version 1.0.16
+* Fix fatal when activating certificates for the first time
+
+2017.04.28 - version 1.0.15
+* Admin: Allow only teachers and administrators to view admin areas
+* Never bundle generated ttf specs from tfpdf
+
+2017.04.25 - version 1.0.14
+* Fix certificate data update
+* Add the Display Name to the admin list table for certificates enhancement
+* Fix Errors when previewing a certificate template bug
+* Fix the selected admin menu item when editing a certificate template
+* Fix Permissions error on certificate learner and course links bug
+* Fix PHP 7 Errors/Notices on tfpdf
+
+2016.04.29 - version 1.0.13
+ * Fix - Fixed a deprecated function notice
+ * Fix - Ensures the certificate background image displays after saving template
+
+2016.02.02 - version 1.0.12
+ * Fix - Ensures certificates can be viewed when set to public
+ * Fix - Fixed a notice on certificates where background image id was not found
+ * Fix - Fixed a display issue with the certificate template dropdown
+ * Tweak - Ensure compatibility with Sensei 1.9
+
+2015.06.18 - version 1.0.11
+ * Fix - Ensure that the certificate view setting can only be seen by the current logged in user
+ * Tweak - Moved the certificates menu items to their own top level menu
+
+2015.06.11 - version 1.0.10
+ * Fix - Fix the certificate error that occurred when doing manual grading
+
+2015.02.10 - version 1.0.9
+ * Fix - Fixing certificate generation
+
+2015.02.01 - version 1.0.8
+ * Tweak - Updating code for Sensei 1.7 compatibility
+
+2014.09.23 - version 1.0.7
+ * Fix - Visit plugin site link in admin dashboard 404.
+ * Fix - Fixed certificate orientation if background image is portrait.
+ * Fix - Fixed a form display issue in the template editor.
+ * Fix - Removing erroneous Select2 reference.
+ * Tweak - If first and last name are added, they will be displayed on the certificate instead of the display name.
+
+2014.09.16 - version 1.0.6
+ * Fix - Ensures sensei_certificate_date_format filter applies to all certificates, not just previews.
+ * Fix - Fixed coding standards warnings.
+
+2014.06.23 - version 1.0.5
+ * Fix - Localizes completion date string to use correct language for month names.
+ * Fix - Fixes PHP warning when a certificate template has no styles selected.
+ * Fix - Ensures certificate link displays even if the course has no quizzes (requires Sensei v1.6)
+
+2014.04.28 - version 1.0.4
+ * Update - Adding support for user-defined custom fonts
+ * Fix - Switching to tFPDF library for PDF generation to handle multibyte character sets (Greek, Arabic, etc.)
+ * Fix - Making 'View Certificate' link text available for localization
+ * Fix - Hiding 'View Certificate' link if no certificate template is selected for the course
+
+2014.03.04 - version 1.0.3
+ * Fix - Switching background image to use path instead of URL
+   /classes/class-woothemes-sensei-certificates.php
+
+2014.01.14 - version 1.0.2
+ * Fix - Removes unnecessary rewrite endpoints, in favour of template_redirect.
+   /classes/class-woothemes-sensei-certificates.php
+
+ * Fix - Optimise the functionality to control access to, and to generate the certificate.
+   /classes/class-woothemes-sensei-certificates.php
+
+ * Fix - Ensure the extension doesn't break if a WooCommerce extension is activated.
+   /woo-includes/woo-functions.php
+   /woo-includes/class-wc-dependencies.php
+
+2013.12.12 - version 1.0.1
+ * /classes/class-woothemes-sensei-certificate-templates.php - Localization fix
+ * /classes/class-woothemes-sensei-certificates.php - Localization fix
+ * /woothemes-sensei-certificates.php - Localization fix
+
+2013.12.12 - version 1.0.0
+ * First release
