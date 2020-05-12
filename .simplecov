@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 if ENV['GITHUB_ACTION']
   require 'simplecov-lcov'
