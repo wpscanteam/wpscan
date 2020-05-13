@@ -31,25 +31,17 @@
 - RubyGems      - Recommended: latest
 - Nokogiri might require packages to be installed via your package manager depending on your OS, see https://nokogiri.org/tutorials/installing_nokogiri.html
 
-### From RubyGems (Recommended)
+### In a Pentesting distribution
+
+When using a pentesting distubution (such as Kali Linux), it is recommended to install/update wpscan via the package manager if available.
+
+### From RubyGems
 
 ```shell
 gem install wpscan
 ```
 
 On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's System Integrity Protection (SIP), either install RVM and install wpscan again, or run ```sudo gem install -n /usr/local/bin wpscan``` (see [#1286](https://github.com/wpscanteam/wpscan/issues/1286))
-
-### From sources (NOT Recommended)
-
-Prerequisites: Git
-
-```shell
-git clone https://github.com/wpscanteam/wpscan
-
-cd wpscan/
-
-bundle install && rake install
-```
 
 # Updating
 
