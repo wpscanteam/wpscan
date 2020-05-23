@@ -1,0 +1,66 @@
+{
+    "name": "@hamworks/user-profile-block",
+    "version": "0.0.2",
+    "author": "Hiroshi Urabe <urabe@ham.works> (https://ham.works)",
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/plugin-proposal-optional-chaining": "^7.9.0",
+        "@babel/preset-typescript": "^7.9.0",
+        "@types/lodash": "^4.14.150",
+        "@types/vfile-message": "^2.0.0",
+        "@types/wordpress__block-editor": "^2.2.7",
+        "@types/wordpress__blocks": "^6.4.6",
+        "@types/wordpress__editor": "^9.4.2",
+        "@types/wordpress__i18n": "^3.4.0",
+        "@typescript-eslint/eslint-plugin": "^2.30.0",
+        "@typescript-eslint/parser": "^2.30.0",
+        "@wordpress/browserslist-config": "2.6.0",
+        "@wordpress/scripts": "^9.0.0",
+        "cssnano": "^4.1.10",
+        "postcss-cli": "^7.1.1",
+        "postcss-import": "^12.0.1",
+        "postcss-omit-import-tilde": "^1.0.1",
+        "postcss-preset-env": "^6.7.0",
+        "postcss-url": "^8.0.0",
+        "prettier": "npm:wp-prettier@^2.0.4",
+        "typescript": "^3.8.3"
+    },
+    "license": "GPL-2.0+",
+    "main": "build/index.js",
+    "release-it": {
+        "hooks": {
+            "before:bump": "bash ./bin/build.sh user-profile-block ${version}",
+            "after:bump": "bash ./bin/create-zip.sh user-profile-block",
+            "after:release": "bash ./bin/cleanup.sh user-profile-block"
+        },
+        "github": {
+            "release": true,
+            "assets": [
+                "user-profile-block.zip"
+            ]
+        },
+        "npm": {
+            "publish": false
+        }
+    },
+    "repository": {
+        "url": "git@github.com:team-hamworks/user-profile-block.git",
+        "type": "git"
+    },
+    "scripts": {
+        "build": "NODE_ENV=production npm run build:dev",
+        "build:dev": "tsc && npm run postcss && wp-scripts build",
+        "env": "wp-scripts env",
+        "lint-js": "wp-scripts lint-js --ext .js,.jsx,.ts,.tsx src/**",
+        "lint-js:fix": "npm run lint-js -- --fix",
+        "packages-update": "wp-scripts packages-update",
+        "postcss": "postcss ./src/[^_]*.css --dir ./build --verbose",
+        "start": "npm run postcss -- -w & tsc --watch & wp-scripts start",
+        "tsc": "tsc"
+    },
+    "wp-env": {
+        "plugin-dir": "user-profile-block",
+        "plugin-name": "user-profile-block",
+        "welcome-build-command": "npm run start"
+    }
+}
