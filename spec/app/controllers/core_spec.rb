@@ -70,7 +70,7 @@ describe WPScan::Controller::Core do
         let(:cli_args) { "#{super()} --no-update" }
 
         it 'raises an error' do
-          expect { core.update_db_required? }. to raise_error(WPScan::Error::MissingDatabaseFile)
+          expect { core.update_db_required? }.to raise_error(WPScan::Error::MissingDatabaseFile)
         end
       end
 

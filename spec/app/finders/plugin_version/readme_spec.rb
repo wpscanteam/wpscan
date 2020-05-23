@@ -109,7 +109,7 @@ describe WPScan::Finders::PluginVersion::Readme do
         'a-lead-capture-contact-form-and-tab-button-by-awebvoicecom' => '3.1',
         'backup-scheduler' => '1.5.9',
         'release_date_slash' => '1.0.4'
-      }. each do |file, version_number|
+      }.each do |file, version_number|
         context "whith #{file}.txt" do
           it 'returns the expected version' do
             @file = "#{file}.txt"
