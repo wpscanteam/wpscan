@@ -5885,6 +5885,19 @@ plugins:
   ar-back-to-top:
     Readme:
       path: readme.txt
+  ar-contactus:
+    QueryParameter:
+      files:
+      - res/css/jquery.contactus.min.css
+      - res/js/scripts.js
+      - res/js/jquery.contactus.min.js
+      - res/js/jquery.maskedinput.min.js
+      version: true
+    Changelog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /\#\#\[(?<v>\d+\.[\.\d]+)\] \-/
+      version: true
   ar-magic:
     Readme:
       path: readme.txt
