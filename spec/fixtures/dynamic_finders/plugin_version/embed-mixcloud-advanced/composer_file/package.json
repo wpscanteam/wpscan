@@ -1,0 +1,29 @@
+{
+  "name": "mixcloud-embed-advanced",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Evgeny Veliky",
+  "license": "GPL-2.0",
+  "keywords": [
+    "WordPress",
+    "Mixcloud",
+    "Gutenberg"
+  ],
+  "main": "dist/index.min.js",
+  "scripts": {
+    "build": "wp-scripts build --config webpack.config.js",
+    "format:js": "wp-scripts format-js",
+    "lint:js": "wp-scripts lint-js",
+    "start": "wp-scripts start --config webpack.config.js",
+    "build-css": "node-sass frontend/style.scss dist/style.min.css --output-style compressed"
+  },
+  "devDependencies": {
+    "@wordpress/block-library": "^2.16.1",
+    "@wordpress/components": "^9.4.1",
+    "@wordpress/scripts": "^8.0.1",
+    "mini-css-extract-plugin": "^0.9.0",
+    "node-sass": "^4.14.1",
+    "style-loader": "^1.2.1"
+  },
+  "dependencies": {}
+}
