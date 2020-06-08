@@ -57,7 +57,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
       end
     end
 
-    context 'when a non standard URL host' do
+    context 'when a non standard URL' do
       let(:url) { 'http://dc-2' }
 
       it 'replaces {domain_name} by its correct value' do
