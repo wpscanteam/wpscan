@@ -12,7 +12,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
       allow(target).to receive(:sub_dir).and_return(false)
     end
 
-    it 'replace {domain_name} by its value' do
+    it 'replaces {domain_name} by its value' do
       expect(finder.potential_urls(opts).keys).to eql %w[
         http://ex.lo/aa/ex.sql
         http://ex.lo/aa/wordpress.sql
@@ -27,7 +27,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
       context "when #{sub_domain} sub-domain" do
         let(:url) { "https://#{sub_domain}.domain.tld" }
 
-        it 'replace {domain_name} by its correct value' do
+        it 'replaces {domain_name} by its correct value' do
           expect(finder.potential_urls(opts).keys).to include "#{url}/domain.sql"
         end
       end
@@ -36,7 +36,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
     context 'when multi-level tlds' do
       let(:url) { 'https://something.com.tr' }
 
-      it 'replace {domain_name} by its correct value' do
+      it 'replaces {domain_name} by its correct value' do
         expect(finder.potential_urls(opts).keys).to include 'https://something.com.tr/something.sql'
       end
     end
@@ -44,7 +44,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
     context 'when multi-level tlds and sub-domain' do
       let(:url) { 'https://dev.something.com.tr' }
 
-      it 'replace {domain_name} by its correct value' do
+      it 'replaces {domain_name} by its correct value' do
         expect(finder.potential_urls(opts).keys).to include 'https://dev.something.com.tr/something.sql'
       end
     end
@@ -52,8 +52,16 @@ describe WPScan::Finders::DbExports::KnownLocations do
     context 'when some weird stuff' do
       let(:url) { 'https://098f6bcd4621d373cade4e832627b4f6.aa-bb-ccc-dd.domain-test.com' }
 
-      it 'replace {domain_name} by its correct value' do
+      it 'replaces {domain_name} by its correct value' do
         expect(finder.potential_urls(opts).keys).to include "#{url}/domain-test.sql"
+      end
+    end
+
+    context 'when a non standard URL host' do
+      let(:url) { 'http://dc-2' }
+
+      it 'replaces {domain_name} by its correct value' do
+        expect(finder.potential_urls(opts).keys).to include "#{url}/dc-2.sql"
       end
     end
   end
