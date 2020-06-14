@@ -1,16 +1,16 @@
 FROM ruby:2.7.1-alpine AS builder
 LABEL maintainer="WPScan Team <team@wpscan.org>"
 
-ARG BUNDLER_ARGS="--jobs=8 --without test development"
-
-RUN echo "gem: --no-ri --no-rdoc" > /etc/gemrc
+RUN echo "install: --no-document --no-post-install-message\nupdate: --no-document --no-post-install-message" > /etc/gemrc
 
 COPY . /wpscan
 
 RUN apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
-  bundle install --system --clean --no-cache --gemfile=/wpscan/Gemfile $BUNDLER_ARGS && \
-  # temp fix for https://github.com/bundler/bundler/issues/6680
-  rm -rf /usr/local/bundle/cache
+  bundle config force_ruby_platform true && \
+  bundle config disable_version_check 'true' && \
+  bundle config without "test development" && \
+  bundle config path.system 'true' && \
+  bundle install --gemfile=/wpscan/Gemfile --jobs=8
 
 WORKDIR /wpscan
 RUN rake install --trace
