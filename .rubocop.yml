@@ -12,6 +12,8 @@ Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 Lint/DeprecatedOpenSSLConstant:
   Enabled: true
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
 Lint/UriEscapeUnescape:
   Enabled: false
 Lint/RaiseException:
@@ -28,7 +30,7 @@ Metrics/ClassLength:
   Exclude:
   - 'app/controllers/enumeration/cli_options.rb'
 Metrics/CyclomaticComplexity:
-  Max: 8
+  Max: 10
 Metrics/MethodLength:
   Max: 20
   Exclude:
@@ -50,5 +52,11 @@ Style/HashTransformValues:
 Style/NumericPredicate:
   Exclude:
   - 'app/controllers/vuln_api.rb'
+Style/RedundantFetchBlock:
+  Enabled: true
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+Style/RedundantRegexpEscape:
+  Enabled: true
 Style/SlicingWithRange:
   Enabled: true

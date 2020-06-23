@@ -14,7 +14,7 @@ describe WPScan::Finders::DynamicFinder::Version::QueryParameter do
   let(:finder_module) { WPScan::Finders::Version::Rspec }
   let(:finder_class)  { WPScan::Finders::Version::Rspec::QueryParameter }
   let(:finder_config) { { 'files' => %w[f1 f2] } }
-  let(:default) { { 'pattern' => /(?:v|ver|version)\=(?<v>\d+\.[\.\d]+)/i, 'confidence_per_occurence' => 10 } }
+  let(:default) { { 'pattern' => /(?:v|ver|version)=(?<v>\d+\.[.\d]+)/i, 'confidence_per_occurence' => 10 } }
 
   before { described_class.create_child_class(finder_module, :QueryParameter, finder_config) }
   after  { finder_module.send(:remove_const, :QueryParameter) }

@@ -33,7 +33,7 @@ module WPScan
 
           # @return [ Hash ]
           def self.child_class_constants
-            @child_class_constants ||= super().merge(PATTERN: /ver\=(?<v>\d+\.[\.\d]+)/i)
+            @child_class_constants ||= super().merge(PATTERN: /ver=(?<v>\d+\.[.\d]+)/i)
           end
         end
 

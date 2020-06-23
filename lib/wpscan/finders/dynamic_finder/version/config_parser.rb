@@ -11,7 +11,7 @@ module WPScan
 
           def self.child_class_constants
             @child_class_constants ||= super.merge(
-              PARSER: nil, KEY: nil, PATTERN: /(?<v>\d+\.[\.\d]+)/, CONFIDENCE: 70
+              PARSER: nil, KEY: nil, PATTERN: /(?<v>\d+\.[.\d]+)/, CONFIDENCE: 70
             )
           end
 

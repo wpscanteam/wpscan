@@ -45,7 +45,7 @@ module WPScan
       # @return [ Theme ]
       def parent_theme
         return unless template
-        return unless style_body =~ /^@import\surl\(["']?([^"'\)]+)["']?\);\s*$/i
+        return unless style_body =~ /^@import\surl\(["']?([^"')]+)["']?\);\s*$/i
 
         opts = detection_opts.merge(
           style_url: url(Regexp.last_match[1]),
@@ -101,7 +101,7 @@ module WPScan
       #
       # @return [ String ]
       def parse_style_tag(body, tag)
-        value = body[/#{Regexp.escape(tag)}:[\t ]*([^\r\n\*]+)/i, 1]
+        value = body[/#{Regexp.escape(tag)}:[\t ]*([^\r\n*]+)/i, 1]
 
         value && !value.strip.empty? ? value.strip : nil
       end

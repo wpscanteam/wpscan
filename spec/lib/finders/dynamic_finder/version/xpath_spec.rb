@@ -14,7 +14,7 @@ describe WPScan::Finders::DynamicFinder::Version::Xpath do
   let(:finder_module) { WPScan::Finders::Version::Rspec }
   let(:finder_class)  { WPScan::Finders::Version::Rspec::Xpath }
   let(:finder_config) { { 'xpath' => "//div/h3[@class='version-number']" } }
-  let(:default)       { { 'pattern' => /\A(?<v>\d+\.[\.\d]+)/, 'confidence' => 60 } }
+  let(:default)       { { 'pattern' => /\A(?<v>\d+\.[.\d]+)/, 'confidence' => 60 } }
 
   before { described_class.create_child_class(finder_module, :Xpath, finder_config) }
   after  { finder_module.send(:remove_const, :Xpath) }
@@ -60,7 +60,7 @@ describe WPScan::Finders::DynamicFinder::Version::Xpath do
     end
 
     context 'when PATTERN' do
-      let(:finder_config) { super().merge('pattern' => /Version: (?<v>[\d\.]+)/i) }
+      let(:finder_config) { super().merge('pattern' => /Version: (?<v>[\d.]+)/i) }
 
       it 'contains the expected constants' do
         expect(finder_class::XPATH).to eql finder_config['xpath']

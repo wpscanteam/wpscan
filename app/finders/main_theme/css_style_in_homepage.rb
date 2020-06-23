@@ -21,7 +21,7 @@ module WPScan
 
         def passive_from_css_href(res, opts)
           target.in_scope_uris(res, '//link/@href[contains(., "style.css")]') do |uri|
-            next unless uri.path =~ %r{/themes/([^\/]+)/style.css\z}i
+            next unless uri.path =~ %r{/themes/([^/]+)/style.css\z}i
 
             return create_theme(Regexp.last_match[1], uri.to_s, opts)
           end
@@ -33,7 +33,7 @@ module WPScan
             code = tag.text.to_s
             next if code.empty?
 
-            next unless code =~ %r{#{item_code_pattern('themes')}\\?/style\.css[^"'\( ]*}i
+            next unless code =~ %r{#{item_code_pattern('themes')}\\?/style\.css[^"'( ]*}i
 
             return create_theme(Regexp.last_match[1], Regexp.last_match[0].strip, opts)
           end

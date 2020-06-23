@@ -9,7 +9,7 @@ module WPScan
           # @return [ Hash ]
           def self.child_class_constants
             @child_class_constants ||= super().merge(
-              XPATH: nil, FILES: nil, PATTERN: /(?:v|ver|version)\=(?<v>\d+\.[\.\d]+)/i, CONFIDENCE_PER_OCCURENCE: 10
+              XPATH: nil, FILES: nil, PATTERN: /(?:v|ver|version)=(?<v>\d+\.[.\d]+)/i, CONFIDENCE_PER_OCCURENCE: 10
             )
           end
 

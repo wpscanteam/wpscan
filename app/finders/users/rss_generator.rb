@@ -13,7 +13,7 @@ module WPScan
           urls.each do |url|
             res = Browser.get_and_follow_location(url)
 
-            next unless res.code == 200 && res.body =~ /<dc\:creator>/i
+            next unless res.code == 200 && res.body =~ /<dc:creator>/i
 
             potential_usernames = []
 

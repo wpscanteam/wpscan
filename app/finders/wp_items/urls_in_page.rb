@@ -55,7 +55,7 @@ module WPScan
         #
         # @return [ Regexp ]
         def item_code_pattern(type)
-          @item_code_pattern ||= %r{["'\( ]#{item_url_pattern(type)}([^\\\/\)"']+)}i
+          @item_code_pattern ||= %r{["'( ]#{item_url_pattern(type)}([^\\/)"']+)}i
         end
 
         # @param [ String ] type
@@ -66,9 +66,9 @@ module WPScan
           item_url = type == 'plugins' ? target.plugins_url : target.content_url
 
           url = /#{item_url.gsub(/\A(?:https?)/i, 'https?').gsub('/', '\\\\\?\/')}/i
-          item_dir = %r{(?:#{url}|\\?\/#{item_dir.gsub('/', '\\\\\?\/')}\\?/)}i
+          item_dir = %r{(?:#{url}|\\?/#{item_dir.gsub('/', '\\\\\?\/')}\\?/)}i
 
-          type == 'plugins' ? item_dir : %r{#{item_dir}#{type}\\?\/}i
+          type == 'plugins' ? item_dir : %r{#{item_dir}#{type}\\?/}i
         end
       end
     end

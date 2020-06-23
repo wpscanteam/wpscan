@@ -13,7 +13,7 @@ module WPScan
           found = []
 
           Browser.get(sitemap_url).html.xpath('//url/loc').each do |user_tag|
-            username = user_tag.text.to_s[%r{/author/([^\/]+)/}, 1]
+            username = user_tag.text.to_s[%r{/author/([^/]+)/}, 1]
 
             next unless username && !username.strip.empty?
 

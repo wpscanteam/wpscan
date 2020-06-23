@@ -13,7 +13,7 @@ describe WPScan::Finders::DynamicFinder::Version::JavascriptVar do
 
   let(:finder_module) { WPScan::Finders::Version::Rspec }
   let(:finder_class)  { WPScan::Finders::Version::Rspec::JavascriptVar }
-  let(:finder_config) { { 'pattern' => /some version: (?<v>[\d\.]+)/i } }
+  let(:finder_config) { { 'pattern' => /some version: (?<v>[\d.]+)/i } }
   let(:default)       { { 'xpath' => '//script[not(@src)]', 'confidence' => 60 } }
 
   before { described_class.create_child_class(finder_module, :JavascriptVar, finder_config) }

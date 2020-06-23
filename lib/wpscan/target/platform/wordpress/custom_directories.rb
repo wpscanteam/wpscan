@@ -104,7 +104,7 @@ module WPScan
           return @sub_dir unless @sub_dir.nil?
 
           # url_pattern is from CMSScanner::Target
-          pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp\-includes/)}i
+          pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp-includes/)}i
           xpath = '(//@src|//@href|//@data-src)[contains(., "xmlrpc.php") or contains(., "wp-includes/")]'
 
           [homepage_res, error_404_res].each do |page_res|
@@ -124,9 +124,9 @@ module WPScan
         def url(path = nil)
           return @uri.to_s unless path
 
-          if %r{wp\-content/plugins}i.match?(path)
+          if %r{wp-content/plugins}i.match?(path)
             path = +path.gsub('wp-content/plugins', plugins_dir)
-          elsif /wp\-content/i.match?(path)
+          elsif /wp-content/i.match?(path)
             path = +path.gsub('wp-content', content_dir)
           elsif path[0] != '/' && sub_dir
             path = "#{sub_dir}/#{path}"

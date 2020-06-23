@@ -11,9 +11,9 @@ module WPScan
       module WordPress
         include CMSScanner::Target::Platform::PHP
 
-        WORDPRESS_PATTERN      = %r{/(?:(?:wp-content/(?:themes|(?:mu\-)?plugins|uploads))|wp-includes)/}i.freeze
-        WP_JSON_OEMBED_PATTERN = %r{/wp\-json/oembed/}i.freeze
-        WP_ADMIN_AJAX_PATTERN  = %r{\\?/wp\-admin\\?/admin\-ajax\.php}i.freeze
+        WORDPRESS_PATTERN      = %r{/(?:(?:wp-content/(?:themes|(?:mu-)?plugins|uploads))|wp-includes)/}i.freeze
+        WP_JSON_OEMBED_PATTERN = %r{/wp-json/oembed/}i.freeze
+        WP_ADMIN_AJAX_PATTERN  = %r{\\?/wp-admin\\?/admin-ajax\.php}i.freeze
 
         # These methods are used in the associated interesting_findings finders
         # to keep the boolean state of the finding rather than re-check the whole thing again
@@ -147,7 +147,7 @@ module WPScan
 
           res = Browser.get_and_follow_location(@login_url)
 
-          @login_url = res.effective_url if res.effective_url =~ /wp\-login\.php\z/i && in_scope?(res.effective_url)
+          @login_url = res.effective_url if res.effective_url =~ /wp-login\.php\z/i && in_scope?(res.effective_url)
 
           @login_url
         end

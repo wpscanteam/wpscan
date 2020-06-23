@@ -14,7 +14,7 @@ describe WPScan::Finders::DynamicFinder::Version::ConfigParser do
   let(:finder_module) { WPScan::Finders::Version::Rspec }
   let(:finder_class)  { WPScan::Finders::Version::Rspec::ConfigParser }
   let(:finder_config) { { 'key' => 'some-key', 'path' => 'file.json' } }
-  let(:default)       { { 'pattern' => /(?<v>\d+\.[\.\d]+)/, 'confidence' => 70 } }
+  let(:default)       { { 'pattern' => /(?<v>\d+\.[.\d]+)/, 'confidence' => 70 } }
 
   before { described_class.create_child_class(finder_module, :ConfigParser, finder_config) }
   after  { finder_module.send(:remove_const, :ConfigParser) }

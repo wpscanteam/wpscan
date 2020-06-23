@@ -7,7 +7,7 @@ module WPScan
       class MuPlugins < CMSScanner::Finders::Finder
         # @return [ InterestingFinding ]
         def passive(_opts = {})
-          pattern = %r{#{target.content_dir}/mu\-plugins/}i
+          pattern = %r{#{target.content_dir}/mu-plugins/}i
 
           target.in_scope_uris(target.homepage_res, '(//@href|//@src)[contains(., "mu-plugins")]') do |uri|
             next unless uri.path&.match?(pattern)

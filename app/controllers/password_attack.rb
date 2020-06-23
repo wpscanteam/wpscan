@@ -82,7 +82,7 @@ module WPScan
         if xmlrpc&.enabled? &&
            xmlrpc.available_methods.include?('wp.getUsersBlogs') &&
            xmlrpc.method_call('wp.getUsersBlogs', [SecureRandom.hex[0, 6], SecureRandom.hex[0, 4]])
-                 .run.body !~ /XML\-RPC services are disabled/
+                 .run.body !~ /XML-RPC services are disabled/
 
           true
         else

@@ -60,7 +60,7 @@ describe WPScan::Finders::DynamicFinder::Version::HeaderPattern do
     end
 
     context 'when PATTERN' do
-      let(:finder_config) { super().merge('pattern' => /Version: (?<v>[\d\.]+)/i) }
+      let(:finder_config) { super().merge('pattern' => /Version: (?<v>[\d.]+)/i) }
 
       it 'contains the expected constants' do
         expect(finder_class::HEADER).to eql finder_config['header']
