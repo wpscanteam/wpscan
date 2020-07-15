@@ -74,7 +74,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
                 end
 
                 it 'returns the expected version/s' do
-                  found = [*finder.passive]
+                  found = Array(finder.passive)
 
                   expect(found).to_not be_empty
 
@@ -104,7 +104,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
                 end
 
                 it 'returns the expected version/s' do
-                  found = [*finder.passive]
+                  found = Array(finder.passive)
 
                   expect(found).to_not be_empty
 
@@ -149,7 +149,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
             end
 
             it 'returns the expected version' do
-              found = [*finder.aggressive]
+              found = Array(finder.aggressive)
 
               expect(found).to_not be_empty
 

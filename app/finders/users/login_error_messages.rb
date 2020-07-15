@@ -37,7 +37,7 @@ module WPScan
           # usernames from the potential Users found
           unames = opts[:found].map(&:username)
 
-          [*opts[:list]].each { |uname| unames << uname.chomp }
+          Array(opts[:list]).each { |uname| unames << uname.chomp }
 
           unames.uniq
         end

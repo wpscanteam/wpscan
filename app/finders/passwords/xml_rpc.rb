@@ -12,7 +12,7 @@ module WPScan
         end
 
         def valid_credentials?(response)
-          response.code == 200 && response.body =~ /blogName/
+          response.code == 200 && response.body.include?('blogName')
         end
 
         def errored_response?(response)

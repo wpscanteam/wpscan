@@ -19,13 +19,13 @@ module WPScan
     # @return [ Boolean ]
     def vulnerable?
       [@wp_version, @main_theme, @plugins, @themes, @timthumbs].each do |e|
-        [*e].each { |ae| return true if ae && ae.vulnerable? } # rubocop:disable Style/SafeNavigation
+        Array(e).each { |ae| return true if ae && ae.vulnerable? } # rubocop:disable Style/SafeNavigation
       end
 
-      return true unless [*@config_backups].empty?
-      return true unless [*@db_exports].empty?
+      return true unless Array(@config_backups).empty?
+      return true unless Array(@db_exports).empty?
 
-      [*@users].each { |u| return true if u.password }
+      Array(@users).each { |u| return true if u.password }
 
       false
     end

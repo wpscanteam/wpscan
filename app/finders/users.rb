@@ -6,7 +6,7 @@ require_relative 'users/oembed_api'
 require_relative 'users/rss_generator'
 require_relative 'users/author_id_brute_forcing'
 require_relative 'users/login_error_messages'
-require_relative 'users/yoast_seo_author_sitemap.rb'
+require_relative 'users/yoast_seo_author_sitemap'
 
 module WPScan
   module Finders

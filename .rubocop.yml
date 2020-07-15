@@ -1,25 +1,14 @@
 require: rubocop-performance
 AllCops:
+  NewCops: enable
   TargetRubyVersion: 2.5
   Exclude:
   - '*.gemspec'
   - 'vendor/**/*'
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
 Layout/LineLength:
   Max: 120
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
 Lint/UriEscapeUnescape:
   Enabled: false
-Lint/RaiseException:
-  Enabled: true
-Lint/StructNewOverride:
-  Enabled: true
 Metrics/AbcSize:
   Max: 25
 Metrics/BlockLength:
@@ -39,24 +28,8 @@ Style/ClassVars:
   Enabled: false
 Style/Documentation:
   Enabled: false
-Style/ExponentialNotation:
-  Enabled: true
 Style/FormatStringToken:
   Enabled: false
-Style/HashEachMethods:
-  Enabled: true
-Style/HashTransformKeys:
-  Enabled: true
-Style/HashTransformValues:
-  Enabled: true
 Style/NumericPredicate:
   Exclude:
   - 'app/controllers/vuln_api.rb'
-Style/RedundantFetchBlock:
-  Enabled: true
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-Style/RedundantRegexpEscape:
-  Enabled: true
-Style/SlicingWithRange:
-  Enabled: true

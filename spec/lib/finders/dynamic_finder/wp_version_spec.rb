@@ -46,7 +46,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
           end
 
           it 'returns the expected version from the homepage' do
-            found = [*finder.passive]
+            found = Array(finder.passive)
 
             expect(found).to_not be_empty
 
@@ -81,7 +81,7 @@ WPScan::DB::DynamicFinders::Wordpress.versions_finders_configs.each do |finder_c
           end
 
           it 'returns the expected version' do
-            found = [*finder.aggressive]
+            found = Array(finder.aggressive)
 
             expect(found).to_not be_empty
 
