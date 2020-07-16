@@ -41,7 +41,7 @@ module WPScan
                    msg: "Performing password attack on #{attacker.titleize} against #{users.size} user/s")
           end
 
-          attacker.attack(users, passwords(ParsedCli.passwords), attack_opts) do |user|
+          attacker.attack(users, ParsedCli.passwords, attack_opts) do |user|
             found << user
 
             attacker.progress_bar.log("[SUCCESS] - #{user.username} / #{user.password}")
@@ -120,15 +120,6 @@ module WPScan
 
         ParsedCli.usernames.reduce([]) do |acc, elem|
           acc << Model::User.new(elem.chomp)
-        end
-      end
-
-      # @param [ String ] wordlist_path
-      #
-      # @return [ Array<String> ]
-      def passwords(wordlist_path)
-        @passwords ||= File.open(wordlist_path).reduce([]) do |acc, elem|
-          acc << elem.chomp
         end
       end
     end

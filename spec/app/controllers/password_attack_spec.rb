@@ -21,7 +21,7 @@ describe WPScan::Controller::PasswordAttack do
 
   describe '#users' do
     context 'when no --usernames' do
-      it 'calles target.users' do
+      it 'calls target.users' do
         expect(controller.target).to receive(:users)
         controller.users
       end
@@ -38,10 +38,6 @@ describe WPScan::Controller::PasswordAttack do
         expect(controller.users).to eql expected
       end
     end
-  end
-
-  describe '#passwords' do
-    xit
   end
 
   describe '#run' do

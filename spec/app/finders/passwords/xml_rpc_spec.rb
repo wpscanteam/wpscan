@@ -24,11 +24,13 @@ describe WPScan::Finders::Passwords::XMLRPC do
     </methodResponse>'
 
   describe '#attack' do
+    let(:wordlist_path) { FINDERS_FIXTURES.join('passwords.txt').to_s }
+
     context 'when no valid credentials' do
       before do
         stub_request(:post, url).to_return(status: status, body: RESPONSE_403_BODY)
 
-        finder.attack(users, %w[pwd])
+        finder.attack(users, wordlist_path)
       end
 
       let(:users) { %w[admin].map { |username| WPScan::Model::User.new(username) } }
