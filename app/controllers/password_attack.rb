@@ -23,27 +23,32 @@ module WPScan
         ]
       end
 
-      def run
-        return unless ParsedCli.passwords
-
-        if user_interaction?
-          output('@info',
-                 msg: "Performing password attack on #{attacker.titleize} against #{users.size} user/s")
-        end
-
-        attack_opts = {
+      def attack_opts
+        @attack_opts ||= {
           show_progression: user_interaction?,
           multicall_max_passwords: ParsedCli.multicall_max_passwords
         }
+      end
+
+      def run
+        return unless ParsedCli.passwords
 
         begin
           found = []
+
+          if user_interaction?
+            output('@info',
+                   msg: "Performing password attack on #{attacker.titleize} against #{users.size} user/s")
+          end
 
           attacker.attack(users, passwords(ParsedCli.passwords), attack_opts) do |user|
             found << user
 
             attacker.progress_bar.log("[SUCCESS] - #{user.username} / #{user.password}")
           end
+        rescue Error::NoLoginInterfaceDetected => e
+          # TODO: Maybe output that in JSON as well.
+          output('@notice', msg: e.to_s) if user_interaction?
         ensure
           output('users', users: found)
         end
@@ -65,6 +70,8 @@ module WPScan
 
         case ParsedCli.password_attack
         when :wp_login
+          raise Error::NoLoginInterfaceDetected unless target.login_url
+
           Finders::Passwords::WpLogin.new(target)
         when :xmlrpc
           raise Error::XMLRPCNotDetected unless xmlrpc
@@ -100,8 +107,10 @@ module WPScan
           else
             Finders::Passwords::XMLRPC.new(xmlrpc)
           end
-        else
+        elsif target.login_url
           Finders::Passwords::WpLogin.new(target)
+        else
+          raise Error::NoLoginInterfaceDetected
         end
       end
 

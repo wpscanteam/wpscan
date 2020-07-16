@@ -107,15 +107,34 @@ describe WPScan::Controller::PasswordAttack do
   end
 
   describe '#attacker' do
+    before do
+      allow(controller.target).to receive(:sub_dir)
+      controller.target.instance_variable_set(:@login_url, nil)
+    end
+
     context 'when --password-attack provided' do
       let(:cli_args) { "#{super()} --password-attack #{attack}" }
 
       context 'when wp-login' do
+        before { stub_request(:get, controller.target.url('wp-login.php')).to_return(status: status) }
+
         let(:attack) { 'wp-login' }
 
-        it 'returns the correct object' do
-          expect(controller.attacker).to be_a WPScan::Finders::Passwords::WpLogin
-          expect(controller.attacker.target).to be_a WPScan::Target
+        context 'when available' do
+          let(:status) { 200 }
+
+          it 'returns the correct object' do
+            expect(controller.attacker).to be_a WPScan::Finders::Passwords::WpLogin
+            expect(controller.attacker.target).to be_a WPScan::Target
+          end
+        end
+
+        context 'when not available (404)' do
+          let(:status) { 404 }
+
+          it 'raises an error' do
+            expect { controller.attacker }.to raise_error(WPScan::Error::NoLoginInterfaceDetected)
+          end
         end
       end
 
@@ -172,11 +191,26 @@ describe WPScan::Controller::PasswordAttack do
 
     context 'when automatic detection' do
       context 'when xmlrpc_get_users_blogs_enabled? is false' do
-        it 'returns the WpLogin' do
+        before do
           expect(controller).to receive(:xmlrpc_get_users_blogs_enabled?).and_return(false)
+          stub_request(:get, controller.target.url('wp-login.php')).to_return(status: status)
+        end
 
-          expect(controller.attacker).to be_a WPScan::Finders::Passwords::WpLogin
-          expect(controller.attacker.target).to be_a WPScan::Target
+        context 'when wp-login available' do
+          let(:status) { 200 }
+
+          it 'returns the WpLogin' do
+            expect(controller.attacker).to be_a WPScan::Finders::Passwords::WpLogin
+            expect(controller.attacker.target).to be_a WPScan::Target
+          end
+        end
+
+        context 'when wp-login.php not available' do
+          let(:status) { 404 }
+
+          it 'raises an error' do
+            expect { controller.attacker }.to raise_error(WPScan::Error::NoLoginInterfaceDetected)
+          end
         end
       end
 

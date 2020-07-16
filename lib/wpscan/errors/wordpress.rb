@@ -29,5 +29,11 @@ module WPScan
         ' use the --scope option or make sure the --url value given is the correct one'
       end
     end
+
+    class NoLoginInterfaceDetected < Standard
+      def to_s
+        'Could not find a login interface to perform the password attack against'
+      end
+    end
   end
 end

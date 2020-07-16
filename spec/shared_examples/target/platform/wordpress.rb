@@ -246,6 +246,12 @@ shared_examples WPScan::Target::Platform::WordPress do
       its(:login_url) { should eql target.url('wp-login.php') }
     end
 
+    context 'when a 404' do
+      before { stub_request(:get, target.url('wp-login.php')).to_return(status: 404) }
+
+      its(:login_url) { should eql false }
+    end
+
     context 'when a redirection occured' do
       before do
         expect(WPScan::Browser).to receive(:get_and_follow_location)

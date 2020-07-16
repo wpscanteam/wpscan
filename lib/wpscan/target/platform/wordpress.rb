@@ -139,15 +139,16 @@ module WPScan
         # the first time the method is called, and the effective_url is then used
         # if suitable, otherwise the default wp-login will be.
         #
-        # @return [ String ] The URL to the login page
+        # @return [ String, false ] The URL to the login page or false if not detected
         def login_url
-          return @login_url if @login_url
+          return @login_url unless @login_url.nil?
 
-          @login_url = url('wp-login.php')
+          @login_url = url('wp-login.php') # TODO: url(ParsedCli.login_uri)
 
           res = Browser.get_and_follow_location(@login_url)
 
           @login_url = res.effective_url if res.effective_url =~ /wp-login\.php\z/i && in_scope?(res.effective_url)
+          @login_url = false if res.code == 404
 
           @login_url
         end
