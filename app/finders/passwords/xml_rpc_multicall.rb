@@ -23,7 +23,7 @@ module WPScan
         end
 
         # @param [ Array<Model::User> ] users
-        # @param [ Array<String> ] passwords
+        # @param [ String ] wordlist_path
         # @param [ Hash ] opts
         # @option opts [ Boolean ] :show_progression
         # @option opts [ Integer ] :multicall_max_passwords
@@ -33,8 +33,9 @@ module WPScan
         # TODO: Make rubocop happy about metrics etc
         #
         # rubocop:disable all
-        def attack(users, passwords, opts = {})
+        def attack(users, wordlist_path, opts = {})
           wordlist_index         = 0
+          passwords              = File.open(wordlist_path).reduce([]) { |acc, elem| acc << elem.chomp }
           max_passwords          = opts[:multicall_max_passwords]
           current_passwords_size = passwords_size(max_passwords, users.size)
 
@@ -75,7 +76,7 @@ module WPScan
                 progress_bar.stop
                 break
               end
-              
+
               begin
                 progress_bar.total = progress_bar.progress + ((passwords.size - wordlist_index) / current_passwords_size.round(1)).ceil
               rescue ProgressBar::InvalidProgressError
