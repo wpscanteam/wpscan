@@ -109,8 +109,6 @@ module WPScan
             end
           end
           # Maybe a progress_bar.stop ?
-        ensure
-          wordlist.close
         end
         # rubocop:enable all
 
