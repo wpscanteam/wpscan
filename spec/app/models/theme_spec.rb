@@ -41,6 +41,12 @@ describe WPScan::Model::Theme do
       its(:style_uri)   { should eql 'http://www.elegantthemes.com/gallery/divi/' }
       its(:license_uri) { should eql 'http://www.gnu.org/licenses/gpl-2.0.html' }
     end
+
+    context 'when no tags' do
+      let(:fixture) { fixtures.join('no_tags.css') }
+
+      its(:author) { should eql nil }
+    end
   end
 
   describe '#version' do
