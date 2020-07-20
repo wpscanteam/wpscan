@@ -88,8 +88,8 @@ module WPScan
       def xmlrpc_get_users_blogs_enabled?
         if xmlrpc&.enabled? &&
            xmlrpc.available_methods.include?('wp.getUsersBlogs') &&
-           xmlrpc.method_call('wp.getUsersBlogs', [SecureRandom.hex[0, 6], SecureRandom.hex[0, 4]])
-                 .run.body !~ /XML-RPC services are disabled/
+           !xmlrpc.method_call('wp.getUsersBlogs', [SecureRandom.hex[0, 6], SecureRandom.hex[0, 4]])
+                  .run.body.match?(/>\s*405\s*</)
 
           true
         else

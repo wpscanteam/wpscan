@@ -1,5 +1,24 @@
 # frozen_string_literal: true
 
+XMLRPC_FAILED_BODY = '
+<?xml version="1.0" encoding="UTF-8"?>
+<methodResponse>
+  <fault>
+    <value>
+      <struct>
+        <member>
+          <name>faultCode</name>
+          <value><int>405</int></value>
+        </member>
+        <member>
+          <name>faultString</name>
+          <value><string>%s</string></value>
+        </member>
+      </struct>
+    </value>
+  </fault>
+</methodResponse>'
+
 describe WPScan::Controller::PasswordAttack do
   subject(:controller) { described_class.new }
   let(:target_url)     { 'http://ex.lo/' }
@@ -81,20 +100,34 @@ describe WPScan::Controller::PasswordAttack do
       end
 
       context 'when wp.getUsersBlogs method listed' do
-        before { expect(xmlrpc).to receive(:available_methods).and_return(%w[wp.getUsersBlogs m2]) }
+        before do
+          expect(xmlrpc).to receive(:available_methods).and_return(%w[wp.getUsersBlogs m2])
+
+          stub_request(:post, xmlrpc.url).to_return(body: body)
+        end
 
         context 'when wp.getUsersBlogs method disabled' do
-          it 'returns false' do
-            stub_request(:post, xmlrpc.url).to_return(body: 'XML-RPC services are disabled on this site.')
+          context 'when blog is in EN' do
+            let(:body) { format(XMLRPC_FAILED_BODY, 'XML-RPC services are disabled on this site.') }
 
-            expect(controller.xmlrpc_get_users_blogs_enabled?).to be false
+            it 'returns false' do
+              expect(controller.xmlrpc_get_users_blogs_enabled?).to be false
+            end
+          end
+
+          context 'when blog is in FR' do
+            let(:body) { format(XMLRPC_FAILED_BODY, 'Les services XML-RPC sont désactivés sur ce site.') }
+
+            it 'returns false' do
+              expect(controller.xmlrpc_get_users_blogs_enabled?).to be false
+            end
           end
         end
 
         context 'when wp.getUsersBlogs method enabled' do
-          it 'returns true' do
-            stub_request(:post, xmlrpc.url).to_return(body: 'Incorrect username or password.')
+          let(:body) { 'Incorrect username or password.' }
 
+          it 'returns true' do
             expect(controller.xmlrpc_get_users_blogs_enabled?).to be true
           end
         end
