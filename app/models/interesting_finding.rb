@@ -7,9 +7,6 @@ module WPScan
       include References
     end
 
-    #
-    # Some classes are empty for the #type to be correctly displayed (as taken from the self.class from the parent)
-    #
     class BackupDB < InterestingFinding
       def to_s
         @to_s ||= "A backup directory has been found: #{url}"
@@ -22,6 +19,10 @@ module WPScan
     end
 
     class DebugLog < InterestingFinding
+      def to_s
+        @to_s ||= "Debug Log found: #{url}"
+      end
+
       # @ return [ Hash ]
       def references
         @references ||= { url: ['https://codex.wordpress.org/Debugging_in_WordPress'] }
@@ -44,6 +45,10 @@ module WPScan
     end
 
     class FullPathDisclosure < InterestingFinding
+      def to_s
+        @to_s ||= "Full Path Disclosure found: #{url}"
+      end
+
       # @return [ Hash ]
       def references
         @references ||= { url: ['https://www.owasp.org/index.php/Full_Path_Disclosure'] }
@@ -106,6 +111,9 @@ module WPScan
     end
 
     class UploadSQLDump < InterestingFinding
+      def to_s
+        @to_s ||= "SQL Dump found: #{url}"
+      end
     end
 
     class WPCron < InterestingFinding
