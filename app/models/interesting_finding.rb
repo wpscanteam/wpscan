@@ -11,6 +11,10 @@ module WPScan
     # Some classes are empty for the #type to be correctly displayed (as taken from the self.class from the parent)
     #
     class BackupDB < InterestingFinding
+      def to_s
+        @to_s ||= "A backup directory has been found: #{url}"
+      end
+
       # @return [ Hash ]
       def references
         @references ||= { url: ['https://github.com/wpscanteam/wpscan/issues/422'] }
@@ -71,6 +75,9 @@ module WPScan
     end
 
     class Readme < InterestingFinding
+      def to_s
+        @to_s ||= "WordPress readme file found: #{url}"
+      end
     end
 
     class Registration < InterestingFinding
@@ -81,6 +88,10 @@ module WPScan
     end
 
     class TmmDbMigrate < InterestingFinding
+      def to_s
+        @to_s ||= "ThemeMakers migration file found: #{url}"
+      end
+
       # @return [ Hash ]
       def references
         @references ||= { packetstorm: [131_957] }
