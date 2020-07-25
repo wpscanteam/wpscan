@@ -81,7 +81,7 @@ module WPScan
 
     class Readme < InterestingFinding
       def to_s
-        @to_s ||= "WordPress readme file found: #{url}"
+        @to_s ||= "WordPress readme found: #{url}"
       end
     end
 
