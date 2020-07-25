@@ -1,0 +1,43 @@
+{
+  "name": "linchpin/courier",
+  "description": "Courier Notification for WordPress",
+  "homepage": "https://github.com/linchpin/courier",
+  "version": "1.2.3",
+  "authors": [
+    {
+      "name": "Linchpin",
+      "email": "sayhi@linchpin.com",
+      "homepage": "https://linchpin.com",
+      "role": "Developer"
+    }
+  ],
+  "keywords": [
+    "WordPress",
+    "linchpin",
+    "notices",
+    "notifications",
+    "alerts",
+		"gdpr"
+  ],
+  "support": {
+    "issues": "https://github.com/linchpin/courier/issues",
+    "source": "https://github.com/linchpin/courier"
+  },
+  "license": "GPL-2.0+",
+  "require-dev": {
+  },
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=7.0",
+    "erusev/parsedown": "^1.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "CourierNotices\\": "src/"
+    }
+  },
+  "scripts": {
+    "lint": "phpcs .",
+    "lint-fix": "phpcbf ."
+  }
+}
