@@ -25590,6 +25590,20 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/mon-laboratoire/changelog.txt, Match: ''=
         3.0'''
+  monarch:
+    QueryParameter:
+      number: 1.4.12
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - https://wp.lab/wp-content/plugins/monarch/css/style.css?ver=1.4.12
+      - https://wp.lab/wp-content/plugins/monarch/js/idle-timer.min.js?ver=1.4.12
+      - https://wp.lab/wp-content/plugins/monarch/js/custom.js?ver=1.4.12
+      confidence: 30
+    ChangeLog:
+      number: 1.4.12
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/monarch/changelog.txt, Match: ''version 1.4.12 ('''
   monk:
     QueryParameter:
       number: 0.7.0

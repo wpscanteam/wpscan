@@ -53472,6 +53472,18 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/
       version: true
+  monarch:
+    QueryParameter:
+      files:
+      - css/style.css
+      - js/idle-timer.min.js
+      - js/custom.js
+      version: true
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^version (?<v>\d+\.[\.\d]+) \(/
+      version: true
   monero-woocommerce-gateway:
     Readme:
       path: readme.txt

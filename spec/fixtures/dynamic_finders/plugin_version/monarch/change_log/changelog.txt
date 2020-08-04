@@ -1,0 +1,511 @@
+version 1.4.12 ( updated 03-11-2019 )
+- Security Update: Fixed a vulnerability that could allow some cross-site request forgery checks within our core product framework to be bypassed. In all cases, these checks were also hardened by user permission checks, however, user permissions checks alone are not sufficient to protect against all CSRF vectors. View the full disclosure here: https://us7.campaign-archive.com/?u=9ae7aa91c578052b052b864d6&id=917542a075.
+- Updated core to the latest version.
+  * core/admin/css/core.css
+  * core/admin/css/support-center.css
+  * core/admin/js/support-center.js
+  * core/components/Logger.php
+  * core/components/PageResource.php
+  * core/components/SupportCenter.php
+  * core/components/SupportCenterMUAutoloader.php
+  * core/components/Updates.php
+  * core/components/init.php
+  * core/components/mu-plugins/SupportCenterSafeModeDisablePlugins.php
+  * core/functions.php
+  * core/ui/utils/frames.js
+
+version 1.4.11 ( updated 02-26-2019 )
+- Updated core to the latest version.
+  * core/components/data/init.php
+
+version 1.4.10 ( updated 12-12-2018 )
+- Updated core to the latest version.
+  * core/components/data/Utils.php
+
+version 1.4.9 ( updated 12-05-2018 )
+- Various security hardening fixes.
+- Added i18n support for visual builder toggle buttons.
+- Fixed post_max_size megabytes conversion.
+- Fixed a issue where Your Save Has Failed Modal Hides Wordfence's Blocked Request Notification.
+- Fixed Monarch metabox styles in Gutenberg Editor.
+- Removed LinkedIn share count API integration since it was deprecated and no longer supported by LinkedIn.
+- Various security hardening fixes.
+  * core/admin/css/core.css
+  * core/admin/css/portability.css
+  * core/admin/js/core.js
+  * core/components/PageResource.php
+  * core/components/Portability.php
+  * core/components/Updates.php
+  * core/components/VersionRollback.php
+  * core/components/api/OAuthHelper.php
+  * core/components/api/Service.php
+  * core/components/api/email/HubSpot.php
+  * core/components/api/email/Provider.php
+  * core/components/api/email/Providers.php
+  * core/components/api/email/_MailPoet2.php
+  * core/components/api/email/_MailPoet3.php
+  * core/components/data/Utils.php
+  * core/components/data/init.php
+  * core/components/init.php
+  * core/components/lib/WPHttp.php
+  * core/components/post/Query.php
+  * core/functions.php
+  * core/ui/utils/attribute-binder.js
+  * core/ui/utils/frames.js
+  * css/stats-meta-styles.css
+  * monarch.php
+
+version 1.4.8 ( updated 10-30-2018 )
+  - Applied some minor security hardening improvements.
+
+version 1.4.7 ( updated 10-05-2018 )
+- Fixed the Facebook follower count.
+  * monarch.php
+
+version 1.4.6 ( updated 10-04-2018 )
+- Fixed a slightly outdated React version being loaded.
+- Updated custom fields retrieval and processing functions for Mailchimp to make it work with custom field names.
+- Fixed the Subscription error shown when using Custom fields in the Email Optin module with MailPoet service provider.
+- Fixed "et_social_stats" table missing error.
+  * .github/PULL_REQUEST_TEMPLATE.md
+  * core/admin/js/react-dom.production.min.js
+  * core/admin/js/react.production.min.js
+  * core/components/api/email/MailChimp.php
+  * core/components/api/email/_MailPoet3.php
+  * core/components/data/Utils.php
+  * monarch.php
+
+version 1.4.5 ( updated 08-13-2018 )
+- Fixed WSOD that occurred in some cases.
+  * monarch.php
+
+version 1.4.4 ( updated 08-13-2018 )
+- Corrected German translation of button text in WP Admin.
+- Fixed PHP notice that was occurring since introduction of rollback feature.
+- Fixed "et_social_stats" table missing error.
+  * core/components/VersionRollback.php
+  * core/languages/de_DE.mo
+  * core/languages/de_DE.po
+  * monarch.php
+
+version 1.4.3 ( updated 7-13-2018 )
+- Updated core framework to the latest version.
+  * core/*
+  * monarch.php
+
+version 1.4.2 ( updated 6-14-2018 )
+- Updated core framework to the latest version.
+- Sanitized values used to generate sharing popup.
+  * core/*
+  * monarch.php
+
+version 1.4.1 ( updated 5-31-2018 )
+- Updated core framework to the latest version.
+- Added extra security hardening to the OAuth2 authorization callback.
+  * core/*
+
+version 1.4 ( updated 5-26-2018 )
+- updated core framework to the latest version.
+- Added the option to disable Google Fonts.
+  * monarch.php
+  * css/admin.css
+  * includes/monarch_options.php
+  * js/admin.js
+  * core/*
+
+version 1.3.27 ( updated 4-26-2018 )
+- Updated core framework to the latest version.
+  * core/*
+
+version 1.3.26 ( updated 4-19-2018 )
+- Updated core framework to the latest version.
+  * core/*
+
+version 1.3.25 ( updated 2-8-2018 )
+- Updated core framework to the latest version.
+  * core/*
+
+version 1.3.24 ( updated 12-7-2017 )
+- Updated core framework to the latest version.
+  * core/admin/js/portability.js
+  * core/components/Portability.php
+  * core/functions.php
+
+version 1.3.23 ( updated 10-18-2017 )
+- Updated core framework to the latest version.
+  * core/admin/css/portability.css
+
+version 1.3.22 ( updated 10-18-2017 )
+- Updated core framework to the latest version.
+  * core/admin/fonts/modules.eot
+  * core/admin/fonts/modules.svg
+  * core/admin/fonts/modules.ttf
+  * core/admin/fonts/modules.woff
+
+version 1.3.21 ( updated 9-29-2017 )
+- Updated core framework to the latest version.
+  * core/components/api/email/ConstantContact.php
+  * core/components/api/email/GetResponse.php
+  * core/components/api/email/MailPoet.php
+  * core/components/api/email/_MailPoet2.php
+  * core/components/api/email/Provider.php
+  * core/components/api/email/Providers.php
+
+version 1.3.20 ( updated 9-21-2017 )
+- Updated core framework to the latest version.
+  * core/functions.php
+  * core/components/data/init.php
+  * core/components/data/Utils.php
+  * core/components/api/email/init.php
+  * core/components/api/email/iContact.php
+  * core/components/api/email/_ProviderName.php
+  * core/components/api/email/Providers.php
+  * core/components/api/email/Provider.php
+  * core/components/api/email/MailPoet.php
+  * core/components/api/email/MadMimi.php
+  * core/components/api/email/HubSpot.php
+  * core/components/api/email/GetResponse.php
+  * core/components/api/email/Feedblitz.php
+  * core/components/api/email/Emma.php
+  * core/components/api/email/ConvertKit.php
+  * core/components/api/email/ConstantContact.php
+  * core/components/api/email/CampaignMonitor.php
+  * core/components/api/email/Aweber.php
+  * core/components/api/email/ActiveCampaign.php
+  * core/components/api/Service.php
+  * core/components/Logger.php
+  * core/components/HTTPInterface.php
+
+version 1.3.19 ( updated 9-6-2017 )
+- Updated core framework to the latest version.
+  * core/init.php
+
+version 1.3.18 ( updated 7-27-2017 )
+- Updated core framework to the latest version.
+  * core/functions.php
+  * core/admin/js/portability.js
+  * core/components/Portability.php
+
+version 1.3.17 ( updated 7-14-2017 )
+- Updated core framework to the latest version.
+  * core/components/PageResource.php
+  * core/components/PageResource.php
+  * core/functions.php
+
+version 1.3.16 ( updated 7-10-2017 )
+- Updated core framework to the latest versions.
+- Fixed a bug that caused errors to occur on SiteGround hosting accounts for some customers when the Elegant Themes caching system attempted to clear the SiteGround cache during plugin & theme activation.
+  * core/components/PageResource.php
+  * core/components/data/Utils.php
+  * core/components/init.php
+  * core/functions.php
+  * core/init.php
+
+version 1.3.15 ( updated 7-8-2017 )
+- Updated core framework to the latest version.
+  * core/components/PageResource.php
+  * core/components/init.php
+
+version 1.3.14 ( updated 7-2-2017 )
+- Updated core framework to the latest version.
+  * core/components/PageResource.php
+  * core/components/init.php
+
+version 1.3.13 ( updated 7-2-2017 )
+- Updated core framework to the latest version.
+  * core/components/init.php
+  * core/components/PageResource.php
+
+version 1.3.12 ( updated 7-1-2017 )
+- Updated core framework to the latest version.
+  * core/init.php
+
+version 1.3.11 ( updated 7-1-2017 )
+- Updated core framework to the latest version.
+  * core/components/PageResource.php
+
+version 1.3.10 ( updated 6-30-2017 )
+- Updated core framework to the latest version.
+  * core/components/PageResource.php
+
+version 1.3.9 ( updated 6-30-2017 )
+- Updated core framework to the latest version.
+  * core/components/init.php
+  * core/components/PageResource.php
+
+version 1.3.8 updated 6-28-2017 )
+- Fixed undefined function PHP error that occurred after upgrading to the latest version in some cases.
+  * components/PageResource.php
+
+version 1.3.7 ( updated 6-28-2017 )
+- Updated core framework to the latest version.
+  * core/admin/js/page-resource-fallback.js
+  * core/admin/js/page-resource-fallback.min.js
+  * core/components/PageResource.php
+  * core/components/data/Utils.php
+  * core/components/init.php
+  * core/components/lib/BluehostCache.php
+  * core/functions.php
+  * core/init.php
+
+version 1.3.6 ( updated 5-31-2017 )
+- Updated Monarch to support the latest changes to the Facebook API.
+  * monarch.php
+
+version 1.3.5 ( updated 5-11-2017 )
+- Fixed an error that caused update notifications to fail when the latest version of Monarch was used with an old version of Divi.
+  * monarch.php
+
+version 1.3.4 ( updated 4-26-2017 )
+- Fixed error that occured on websites running PHP 5.2.
+- Fixed error that occured when updating plugins for some customers.
+  * core/components/Updates.php
+  * core/functions.php
+  * core/main_functions.php
+  * core/init.php
+
+version 1.3.3 ( updated 4-25-2017 )
+- Updated Monarch with new core/ structure.
+- Updated Facebook open graph to version 2.8
+- Updated Delicious URL to the new version.
+- An admin notice will now be displayed when an API needs re-authorization due to API updates.
+- Added RTL support for the Monarch dashboard.
+- Fixed a bug that allowed any empty @ symbol to be added when sharing via Twitter.
+- Removed nofollow attribute that was mistakenly added to the data-social_link div.
+- Removed FriendFeed from the list of available networks.
+- Fixed a bug where media icons were not positioned correctly in some cases.
+- Added validation to manual share count input fields in the Monarch dashboard.
+- Added support for additional post types when choosing where social sharing buttons will appear.
+- Fixed broken Vkontakte API.
+- Added support for Vkontakte groups and public pages.
+- Fixed a design conflict between Divi gallery hover icons and the On Media sharing location in Monarch.
+- Fixed a bug that caused Monarch settings import to fail in some cases.
+  * monarch.php
+  * css/admin-rtl.css
+  * css/style.css
+  * includes/monarch_options.php
+  * js/custom.js
+  * js/admin.js
+  * core/*
+
+version 1.3.2 ( updated 08-15-2016 )
+- Fixed settings page font issues in WordPress 4.6
+  * monarch.php
+  * css/admin.css
+  * core/admin/css/core.css
+  * core/functions.php
+
+version 1.3.1 ( updated 06-21-2016 )
+- Fixed the issue with Inline Sharing buttons jumping on page load
+- Fixed the issue with wrong hover effect for Outlook and Linkedin circle icons
+  * css/style.css
+- Fixed an SQL error that showed up on posts/pages sharing stats page in some cases
+- Fixed the issue with "Display on Home" option working incorrectly with some themes
+  * monarch.php
+
+version 1.3 ( updated 05-16-2016 )
+- Fixed some issues with Facebook API calls
+  * monarch.php
+
+version 1.2.9 ( updated 05-10-2016 )
+- Updated core submodule to latest versions (Fonts files were moved to /core. If you are currently calling these font files, your CSS files should be updated with new file paths).
+  * /core
+- Updated Google+ icon to match the new Google+ logo & branding guidlines.
+  * core/admin/fonts
+- Updated Facebook follow counts to handle change in latest API version
+  * monarch.php
+
+version 1.2.8 ( updated 04-13-2016 )
+- Fixed an issue that caused theme updates to fail when Bloom, Monarch or the Divi Builder were installed.
+  * core/admin/includes/class-updates.php
+
+version 1.2.7.3 ( updated 04-12-2016 )
+- Added option to configure auto updates from the Plugin Settings
+  * monarch.php
+  * css/admin.css
+  * includes/monarch_options.php
+  * js/admin.js
+  * /core
+- Fixed the issue with Linkedin wrong followers count
+  * monarch.php
+
+version 1.2.7.2 ( updated 02-26-2016 )
+- Fixed the issue with Facebook counts, not working properly
+  * monarch.php
+
+version 1.2.7.1 ( updated 02-18-2016 )
+- Fixed the issue with meta box settings, not being loaded properly for non-admin users
+  * monarch.php
+
+version 1.2.7 ( updated 02-17-2016 )
+- IMPORTANT: Fixed critical privilege escalation security vulnerability that, if properly exploited, could allow unprivileged registered WordPress users to modify plugin settings.
+  * For more detailed information, please refer to the full public disclosure that was emailed to all customers on 2-17-2016: http://bit.ly/1Q9P13N
+
+version 1.2.6 ( 11-23-2015 )
+- Fixed warning messages, displayed on a fresh installation
+- Twitter Share counts: Removed a request to an outdated endpoint
+  * monarch.php
+
+version 1.2.5 ( 09-09-2015 )
+- Fixed Facebook Follow count
+  * monarch.php
+
+version 1.2.4 ( 08-18-2015 )
+- GitHub: Fixed the issue with followers count for Organizations
+- LinkedIn: Fixed the issues with followers count retrieval from linkedin network
+- Pinterest: Fixed the issue with followers count in some cases
+- Fixed the issue with quotes encoding in post title
+- Fixed the issue with reset of share counts to 0 sometimes
+- Fixed the issue with HTML tags in title when sharing
+- Fixed the issue with sharing URL for buddypress pages
+- Fixed the issue with localization of some strings in Dashboard
+- Fixed the issue when Open Sans font loaded multiple times if Bloom and/or Divi was enabled
+- Added localization for the "k" and "Mil" suffixes
+  * monarch.php
+- Twitter: Fixed the issue with OAuthException class conflicts with some plugins
+  * includes/oauth.php
+- YouTube: Added YouTube API v3 support
+  * monarch.php
+  * includes/monarch_options.php
+- Fixed the issue with circle icons animation
+  * css/style.css
+- Fixed WP_Widget class constructor warning message in WordPress 4.3
+  * includes/monarch-widget.php
+- Added WPML support
+  * includes/monarch_options.php
+  * monarch.php
+- "On media" location is supported on Product post type pages now
+  * includes/monarch_options.php
+  * js/custom.js
+  * monarch.php
+- Added ability to set an empty title for the widget
+  * includes/monarch-widget.php
+- Improved visibility of API settings in Dashboard, depending on selected networks
+  * css/admin.css
+  * includes/monarch_options.php
+  * js/admin.js
+  * monarch.php
+- Added ability to filter the stats by location on Stats Page
+  * css/admin.css
+  * js/admin.js
+  * js/custom.js
+  * monarch.php
+
+version 1.2.3 ( 05-02-2015 )
+- Integrated Facebook API changes. Due to changes in Facebook's API, Monarch must be authorized to obtain follow/share counts from Facebook. Please get an App ID and App Secret from Facebook.
+  * includes/monarch_options.php
+  * js/admin.js
+  * monarch.php
+- Updated localization files
+  * languages/Monarch-en_US.po
+  * languages/Monarch-en_US.mo
+
+version 1.2.2 ( 04-21-2015 )
+- Fixed the issue with "loading icon" visibility in WordPress 4.2
+  * css/admin.css
+  * js/admin.js
+
+version 1.2.1 ( 02-19-2015 )
+- Added support for all Pinterest data formats
+- Fixed the issue with disabled "Share Count" option, visible on the mobile version
+- Fixed the issue with Like count, not displaying inside the mobile sidebar
+  * monarch.php
+- Added alt attribute ( alternate text ) to images in the Pinterest picker
+  * js/custom.js
+
+version 1.2 ( 02-05-2015 )
+
+- Monarch widget: Fixed the issue with likes count error
+  * monarch.php
+- Added option for Sidebar on Right Browser Edge:
+  * css/style.css
+  * includes/monarch_options.php
+  * monarch.php
+- Added a "Home" Option Within The Post Type Settings Of All Locations
+  * includes/monarch_options.php
+  * monarch.php
+- Added All Time Stats Graph
+  * css/admin.css
+  * js/admin.js
+  * monarch.php
+- Added Twitter Followers Auto Count
+  * includes/monarch_options.php
+  * includes/oauth.php
+  * includes/twitter_auth.php
+  * js/admin.js
+  * monarch.php
+- Added Pinterest Followers Auto Count
+- Added YouTube Api Support
+- Improved YouTube response handling
+- Fixed the issue with Pinterest icon,  conflicting with the official Pinterest plugin icon
+- Fixed the issue with wrong Google+ share counts
+- Fixed the issue with Twitter sharing link on mobile devices
+  * monarch.php
+- Added Stats Meta Box
+  * css/stats-meta-styles.css
+  * js/monarch-post-meta.js
+  * monarch.php
+- Added "All Networks" Front-end Icon
+  * css/fonts
+  * css/style.css
+  * includes/monarch_options.php
+  * monarch.php
+  * js/custom.js
+- Added "After Inactivity" Trigger
+- Added "After Comment" Trigger To Fly-In & Pop-Up
+- Added "Percentage Down The Page" trigger to Fly-In & Pop-Up
+- Added "After WooCommerce Purchase" Trigger To Fly-In & Pop-Up
+  * includes/monarch_options.php
+  * js/custom.js
+  * js/idle-timer.js
+  * monarch.php
+- Added Fadein/FadeOut Animation To Popup Overlay
+  * css/style.css
+  * js/custom.js
+- Fixed the issue with monarch widget class that had no width defined
+  * css/style.css
+- Added Highest performing posts to stats
+  * css/admin.css
+  * monarch.php
+
+version 1.1.2 ( 11-21-2014 )
+- Fixed the issue with override settings that were not saved correctly
+- Fixed the issue with incorrectly encoded symbols in the sharing popup window
+- Fixed the issue with a backslash displayed before apostrophes in popup/flyin titles and descriptions
+- Fixed some issues with the Contact Form module in the Divi theme
+- Counters display 1 Mil ( 1 million ) as opposed to 1000k now
+  * monarch.php
+- Fixed the issue with image size / alignment inside of the media shortcode
+- Fixed styling issues with some themes
+  * css/style.css
+  * js/custom.js
+- Pinterest Modal window: added an error message if there are no images on a page, improved functionality
+- Added "Hide/Show Sidebar" button
+  * css/style.css
+  * js/custom.js
+  * monarch.php
+- Improved Auto Width styles, auto width buttons remain auto width on mobile.
+  * css/style.css
+
+version 1.1.1 ( 10-28-2014 )
+- Fixed the issue with page url, not working properly, when some additional information was appended to it.
+  * js/custom.js
+
+version 1.1 ( 10-24-2014 )
+- Fixed Pinterest Modal Images visibility issue
+- Fixed styling issues
+- Fixed OpenSans typo - the font was not being used
+  * css/style.css
+- Added % Height to "Add Network" modal window
+  * css/admin.css
+  * js/admin.js
+- Fixed the issue with cached share counts
+- Fixed Pinterest modal warning message, when no networks were selected
+  * monarch.php
+- Fixed the issue with automatic share counts, not properly calculated after a comment is made
+  * js/custom.js
+  * monarch.php
+
+version 1.0 ( 10-22-2014 )
+
+- Initial release
