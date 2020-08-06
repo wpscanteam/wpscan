@@ -100,7 +100,7 @@ shared_examples 'WordPress::CustomDirectories' do
         before { target.content_dir = dir }
 
         its(:content_dir) { should eq dir.chomp('/') }
-        its(:plugins_dir) { should eq dir.chomp('/') + '/plugins' }
+        its(:plugins_dir) { should eq "#{dir.chomp('/')}/plugins" }
       end
 
       context "when content_dir = #{dir} and plugins_dir = #{dir}" do

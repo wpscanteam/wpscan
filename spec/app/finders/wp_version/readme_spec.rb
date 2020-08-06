@@ -5,7 +5,7 @@ describe WPScan::Finders::WpVersion::Readme do
   let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('wp_version', 'readme') }
-  let(:readme_url) { url + 'readme.html' }
+  let(:readme_url) { "#{url}readme.html" }
 
   describe '#aggressive' do
     before { stub_request(:get, readme_url).to_return(body: File.read(fixtures.join(file))) }

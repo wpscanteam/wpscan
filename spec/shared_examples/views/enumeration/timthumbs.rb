@@ -15,8 +15,8 @@ shared_examples 'App::Views::Enumeration::Timthumbs' do
     end
 
     context 'when timthumbs found' do
-      let(:tt)        { timthumb.new(target_url + 'tt.php', found_by: 'Known Locations') }
-      let(:tt2)       { timthumb.new(target_url + 'tt2.php', found_by: 'Known Locations') }
+      let(:tt)        { timthumb.new("#{target_url}tt.php", found_by: 'Known Locations') }
+      let(:tt2)       { timthumb.new("#{target_url}tt2.php", found_by: 'Known Locations') }
       let(:timthumbs) { [tt, tt2] }
 
       context 'when not vulnerable' do

@@ -7,6 +7,8 @@ AllCops:
   - 'vendor/**/*'
 Layout/LineLength:
   Max: 120
+Lint/MissingSuper:
+  Enabled: false
 Lint/UriEscapeUnescape:
   Enabled: false
 Metrics/AbcSize:
@@ -24,6 +26,8 @@ Metrics/MethodLength:
   Max: 20
   Exclude:
   - 'app/controllers/enumeration/cli_options.rb'
+Metrics/PerceivedComplexity:
+  Max: 11
 Style/ClassVars:
   Enabled: false
 Style/Documentation:
@@ -33,3 +37,5 @@ Style/FormatStringToken:
 Style/NumericPredicate:
   Exclude:
   - 'app/controllers/vuln_api.rb'
+Style/OptionalBooleanParameter:
+  Enabled: false

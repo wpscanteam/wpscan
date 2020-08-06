@@ -81,7 +81,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
                   found.each_with_index do |version, index|
                     expected_version = expected.at(index)
                     expected_ie = expected_version['interesting_entries'].map do |ie|
-                      ie.gsub(target.url + ',', ie_url + ',')
+                      ie.gsub("#{target.url},", "#{ie_url},")
                     end
 
                     expect(version).to be_a WPScan::Model::Version
@@ -111,7 +111,7 @@ WPScan::DB::DynamicFinders::Plugin.versions_finders_configs.each do |slug, confi
                   found.each_with_index do |version, index|
                     expected_version = expected.at(index)
                     expected_ie = expected_version['interesting_entries'].map do |ie|
-                      ie.gsub(target.url + ',', ie_url + ',')
+                      ie.gsub("#{target.url},", "#{ie_url},")
                     end
 
                     expect(version).to be_a WPScan::Model::Version

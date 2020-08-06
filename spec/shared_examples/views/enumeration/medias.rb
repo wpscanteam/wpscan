@@ -14,8 +14,8 @@ shared_examples 'App::Views::Enumeration::Medias' do
     end
 
     context 'when medias found' do
-      let(:m1)     { media.new(target_url + '?attachment_id=1', found_by: 'Attachment Brute Forcing') }
-      let(:m2)     { media.new(target_url + '?attachment_id=5', found_by: 'Attachment Brute Forcing') }
+      let(:m1)     { media.new("#{target_url}?attachment_id=1", found_by: 'Attachment Brute Forcing') }
+      let(:m2)     { media.new("#{target_url}?attachment_id=5", found_by: 'Attachment Brute Forcing') }
       let(:medias) { [m1, m2] }
       let(:expected_view) { File.join(view, 'medias') }
 

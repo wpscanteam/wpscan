@@ -13,8 +13,8 @@ describe WPScan::Finders::Users::AuthorIdBruteForcing do
   describe '#target_urls' do
     it 'returns the correct URLs' do
       expect(finder.target_urls(range: (1..2))).to eql(
-        url + '?author=1' => 1,
-        url + '?author=2' => 2
+        "#{url}?author=1" => 1,
+        "#{url}?author=2" => 2
       )
     end
   end
