@@ -8,7 +8,7 @@ describe WPScan::Finders::Users::Base do
   describe '#finders' do
     it 'contains the expected finders' do
       expect(user.finders.map { |f| f.class.to_s.demodulize })
-        .to eq %w[AuthorPosts WpJsonApi OembedApi RSSGenerator YoastSeoAuthorSitemap
+        .to eq %w[AuthorPosts WpJsonApi OembedApi RSSGenerator AuthorSitemap YoastSeoAuthorSitemap
                   AuthorIdBruteForcing LoginErrorMessages]
     end
   end
