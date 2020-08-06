@@ -25,7 +25,7 @@ describe WPScan::DB::DynamicFinders::Plugin do
 
       context 'when aggressive argument is true' do
         it 'returns only the configs with a path parameter' do
-          configs = subject.finder_configs(:Xpath, true)
+          configs = subject.finder_configs(:Xpath, aggressive: true)
 
           expect(configs.keys).to include('revslider')
           expect(configs.keys).to_not include('shareaholic')

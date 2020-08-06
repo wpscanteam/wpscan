@@ -20,7 +20,7 @@ shared_examples 'App::Finders::WpItems::UrlsInPage' do
       let(:fixture) { 'found.html' }
 
       it 'returns the expected array' do
-        expect(finder.items_from_links(type, uniq_links)).to eql expected_from_links
+        expect(finder.items_from_links(type, uniq: uniq_links)).to eql expected_from_links
       end
     end
 
@@ -52,7 +52,7 @@ shared_examples 'App::Finders::WpItems::UrlsInPage' do
       let(:fixture) { 'found.html' }
 
       it 'returns the expected array' do
-        expect(finder.items_from_codes(type, uniq_codes)).to eql expected_from_codes
+        expect(finder.items_from_codes(type, uniq: uniq_codes)).to eql expected_from_codes
       end
     end
   end

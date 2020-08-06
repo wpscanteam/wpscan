@@ -16,7 +16,7 @@ module WPScan
         # @param [ Symbol ] finder_class
         # @param [ Boolean ] aggressive
         # @return [ Hash ]
-        def self.finder_configs(finder_class, aggressive = false)
+        def self.finder_configs(finder_class, aggressive: false)
           configs = {}
 
           return configs unless allowed_classes.include?(finder_class)

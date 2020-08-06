@@ -31,7 +31,7 @@ module WPScan
 
           finder_configs(
             finder_class,
-            Regexp.last_match[1] == 'aggressive'
+            aggressive: Regexp.last_match[1] == 'aggressive'
           )
         end
 

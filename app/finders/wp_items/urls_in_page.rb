@@ -9,7 +9,7 @@ module WPScan
         # @param [ Boolean ] uniq Wether or not to apply the #uniq on the results
         #
         # @return [ Array<String> ] The plugins/themes detected in the href, src attributes of the page
-        def items_from_links(type, uniq = true)
+        def items_from_links(type, uniq: true)
           found = []
           xpath = format(
             '(//@href|//@src|//@data-src)[contains(., "%s")]',
@@ -31,7 +31,7 @@ module WPScan
         # @param [ Boolean ] uniq Wether or not to apply the #uniq on the results
         #
         # @return [Array<String> ] The plugins/themes detected in the javascript/style of the homepage
-        def items_from_codes(type, uniq = true)
+        def items_from_codes(type, uniq: true)
           found = []
 
           page_res.html.xpath('//script[not(@src)]|//style[not(@src)]').each do |tag|
