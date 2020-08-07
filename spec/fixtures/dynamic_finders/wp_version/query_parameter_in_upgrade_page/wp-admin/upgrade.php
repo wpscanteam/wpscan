@@ -10,6 +10,12 @@
 
 <link rel='stylesheet' id='install-css'  href='http://wp.lab/wp-admin/css/install.css?ver=3.8.1' type='text/css' media='all' />
 
+<link rel='stylesheet' id='dashicons-css'  href='http://wp.lab/wp-includes/css/dashicons.min.css?ver=3.8.1' type='text/css' media='all' />
+
+<link rel='stylesheet' id='forms-css'  href='http://wp.lab/wp-admin/css/forms.min.css?ver=3.8.1' type='text/css' media='all' />
+
+<link rel='stylesheet' id='l10n-css'  href='http://wp.lab/wp-admin/css/l10n.min.css?ver=3.8.1' type='text/css' media='all' />
+
 <!--[if lte IE 7]>
 <link rel='stylesheet' id='ie-css'  href='http://wp.lab/wp-admin/css/ie.min.css?ver=3.8.1' type='text/css' media='all' />
 <![endif]-->

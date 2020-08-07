@@ -114,6 +114,10 @@ wordpress:
     - wp-includes/css/dashicons.css
     - wp-admin/css/install.min.css
     - wp-admin/css/install.css
+    - wp-admin/css/forms.min.css
+    - wp-admin/css/forms.css
+    - wp-admin/css/l10n.min.css
+    - wp-admin/css/l10n.css
     confidence_per_occurence: 30
     version: true
   QueryParameterInUpgradePage:
@@ -123,8 +127,54 @@ wordpress:
     files:
     - wp-includes/css/buttons.min.css
     - wp-includes/css/buttons.css
+    - wp-includes/css/dashicons.min.css
+    - wp-includes/css/dashicons.css
     - wp-admin/css/install.min.css
     - wp-admin/css/install.css
+    - wp-admin/css/forms.min.css
+    - wp-admin/css/forms.css
+    - wp-admin/css/l10n.min.css
+    - wp-admin/css/l10n.css
+    confidence_per_occurence: 30
+    version: true
+  QueryParameterInRepairPage:
+    class: QueryParameter
+    path: wp-admin/maint/repair.php
+    xpath: //link[contains(@href,"wp-includes/css/") or contains(@href,"wp-admin/css/")]/@href
+    files:
+    - wp-includes/css/buttons.min.css
+    - wp-includes/css/buttons.css
+    - wp-includes/css/dashicons.min.css
+    - wp-includes/css/dashicons.css
+    - wp-admin/css/install.min.css
+    - wp-admin/css/install.css
+    - wp-admin/css/forms.min.css
+    - wp-admin/css/forms.css
+    - wp-admin/css/l10n.min.css
+    - wp-admin/css/l10n.css
+    confidence_per_occurence: 30
+    version: true
+  QueryParameterInLoginPage:
+    class: QueryParameter
+    path: wp-login.php
+    xpath: //link[contains(@href,"wp-includes/css/") or contains(@href,"wp-admin/css/")]/@href|//script[contains(@src,"wp-includes/js/") or contains(@src,"wp-admin/js/")]/@src
+    files:
+    - wp-includes/css/dashicons.min.css
+    - wp-includes/css/dashicons.css
+    - wp-includes/css/buttons.min.css
+    - wp-includes/css/buttons.css
+    - wp-admin/css/login.min.css
+    - wp-admin/css/login.css
+    - wp-admin/css/forms.min.css
+    - wp-admin/css/forms.css
+    - wp-admin/css/l10n.min.css
+    - wp-admin/css/l10n.css
+    - wp-admin/js/password-strength-meter.min.js
+    - wp-admin/js/password-strength-meter.js
+    - wp-includes/js/wp-util.min.js
+    - wp-includes/js/wp-util.js
+    - wp-admin/js/user-profile.min.js
+    - wp-admin/js/user-profile.js
     confidence_per_occurence: 30
     version: true
   SitemapGenerator:
