@@ -52,9 +52,10 @@ describe WPScan::Controller::Core do
       %i[apache iis nginx].each do |server|
         context "when #{server}" do
           let(:cli_args) { "#{super()} --server #{server}" }
+          let(:servers)  { [:Apache, nil, :IIS, :Nginx] }
 
           it "loads the #{server.capitalize} module and returns :#{server}" do
-            @stubbed_server = [:Apache, nil, :IIS, :Nginx].sample
+            @stubbed_server = servers.sample
             @expected       = server == :iis ? :IIS : server.to_s.camelize.to_sym
           end
         end

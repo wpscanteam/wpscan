@@ -38,8 +38,10 @@ describe WPScan::Target do
 
   %i[wp_version main_theme plugins themes timthumbs config_backups db_exports medias users].each do |method|
     describe "##{method}" do
+      let(:methods) { %i[wp_version main_theme] }
+
       before do
-        return_value = %i[wp_version main_theme].include?(method) ? false : []
+        return_value = methods.include?(method) ? false : []
 
         expect(WPScan::Finders.const_get("#{method.to_s.camelize}::Base"))
           .to receive(:find).with(target, opts).and_return(return_value)
