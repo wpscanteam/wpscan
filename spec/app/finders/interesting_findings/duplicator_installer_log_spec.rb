@@ -35,14 +35,46 @@ describe WPScan::Finders::InterestingFindings::DuplicatorInstallerLog do
       end
 
       context 'when the body matches' do
-        let(:body) { File.read(fixtures.join(filename)) }
-
-        it 'returns the InterestingFinding' do
+        after do
           expect(finder.aggressive).to eql WPScan::Model::DuplicatorInstallerLog.new(
             log_url,
             confidence: 100,
             found_by: described_class::DIRECT_ACCESS
           )
+        end
+
+        context 'when old versions of the file' do
+          let(:body) { File.read(fixtures.join('old.txt')) }
+
+          it 'returns the InterestingFinding' do
+            # handled in after loop above
+          end
+        end
+
+        context 'when newest versions of the file' do
+          context 'when PRO format 1' do
+            let(:body) { File.read(fixtures.join('pro.txt')) }
+
+            it 'returns the InterestingFinding' do
+              # handled in after loop above
+            end
+          end
+
+          context 'when PRO format 2' do
+            let(:body) { File.read(fixtures.join('pro2.txt')) }
+
+            it 'returns the InterestingFinding' do
+              # handled in after loop above
+            end
+          end
+
+          context 'when LITE' do
+            let(:body) { File.read(fixtures.join('lite.txt')) }
+
+            it 'returns the InterestingFinding' do
+              # handled in after loop above
+            end
+          end
         end
       end
     end
