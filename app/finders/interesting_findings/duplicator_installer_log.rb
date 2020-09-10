@@ -9,7 +9,7 @@ module WPScan
         def aggressive(_opts = {})
           path = 'installer-log.txt'
 
-          return unless /DUPLICATOR INSTALL-LOG/.match?(target.head_and_get(path).body)
+          return unless /DUPLICATOR(-|\s)?(PRO|LITE)?:? INSTALL-LOG/i.match?(target.head_and_get(path).body)
 
           Model::DuplicatorInstallerLog.new(target.url(path), confidence: 100, found_by: DIRECT_ACCESS)
         end
