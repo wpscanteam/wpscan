@@ -1,0 +1,51 @@
+{
+  "name": "rmb-recipe-block",
+  "title": "Recipe Block",
+  "version": "1.1.1",
+  "author": "Kelly Choyce-Dwan",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://ryelle.codes/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:ryelle/rmb-recipe-block.git"
+  },
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.8"
+  },
+  "files": [
+    "assets/**",
+    "build/**",
+    "readme.txt",
+    "package.json",
+    "rmb-recipe-block.php"
+  ],
+  "main": "build/recipe-block.js",
+  "devDependencies": {
+    "@wordpress/scripts": "12.2.0",
+    "concurrently": "5.3.0"
+  },
+  "scripts": {
+    "build": "wp-scripts build recipe-block=./assets/js/recipe-block.js",
+    "start": "wp-scripts start recipe-block=./assets/js/recipe-block.js",
+    "format:js": "wp-scripts format-js assets/js/**/*.js",
+    "lint:css": "wp-scripts lint-style assets/css/*",
+    "lint:css:fix": "wp-scripts lint-style assets/css/* --fix",
+    "lint:js": "wp-scripts lint-js assets/js/**/*.js",
+    "lint:js:fix": "wp-scripts format-js assets/js/**/*.js",
+    "lint:php": "composer run lint",
+    "lint:php:fix": "composer run format",
+    "lint": "concurrently \"npm run lint:js\" \"npm run lint:css\" \"npm run lint:php\"",
+    "ci": "npm run lint"
+  },
+  "stylelint": {
+    "rules": {
+      "selector-class-pattern": [
+        "^([a-z][a-z0-9]*)(-[a-z0-9]+)*(__[a-z0-9]+)?(-[a-z0-9]+)*$",
+        {
+          "message": "Selector should use lowercase and separate words with hyphens (selector-class-pattern)"
+        }
+      ]
+    }
+  }
+}
