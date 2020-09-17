@@ -21,6 +21,7 @@ RUN chmod -R a+r /usr/local/bundle
 
 FROM ruby:2.7.1-alpine
 LABEL maintainer="WPScan Team <team@wpscan.org>"
+LABEL org.opencontainers.image.source https://github.com/wpscanteam/wpscan
 
 RUN adduser -h /wpscan -g WPScan -D wpscan
 
