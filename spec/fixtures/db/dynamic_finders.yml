@@ -36496,6 +36496,12 @@ plugins:
       path: package.json
       key: version
       version: true
+  gAppointments:
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /Version (?<v>\d\.[\d\.]+) \([^\(]+\)/i
+      version: true
   gameball:
     Readme:
       path: readme.txt

@@ -1,0 +1,61 @@
+============================
+Version 1.9.4 ( 11 June 2020 )
+============================
+
+  - Enhancement: New provider can prevent duplicate title
+    - Enhancement: Appointments page now have available options in "Bulk actions" - "Cancel", "Confirm" appointments
+    - Feature: Appointments page now have an option in "Bulk actions" - "Resend Email Notifications"
+    - Feature: Appointments page can be sorted by chosen columns
+    - Feature: Each provider now have a field "location", it can be synced with appointments in google calendar
+    
+
+============================
+Version 1.9.3 ( 24 Oct 2019 )
+============================
+
+    - Fixed bug: Fixed an issue with ICS generation
+    - Fixed bug: Default google calendar for appointments with no provider regardless of settings
+    - Fixed bug: Assets unreachable 
+    - Fixed bug: Appointment date not being picked p in notifications upon submitting a form entry
+    - Fixed bug: Email being picked up instead of phone number
+    - Enhancement: Made some changes to work with thrive architect.
+    - Enhancement: Added ability to complete appointments after X hours instead of instant completion
+    - Enhancement: Extended cancellation functionality to allow cancelling until X hours before teh appointment
+    - Feature: Clients can reschedule their appointments from the front-end
+
+
+
+============================
+Version 1.9.2 ( 17 Jul 2019 )
+============================
+
+    - Fixed bug: Fixed google calendar api authentication not working in some cases
+    - Fixed bug: Some calendar appearance colors not affecting front-end calendar
+    - Fixed bug: Removed deprecated function usages
+    - Fixed bug: Fixed an issue where appointment date was not being sent in initial gforms notification
+    - Fixed bug: Custom time slots with the same starting hour being removed when saving service.
+    - Fixed bug: Bad available time slot calculation on certain cases
+    - Enhancement: Added %appointment_duration% merge tag to certain appointment notifications
+    - Enhancement: Added the ability to override appointment email template, see the documentation for details
+    - Enhancement: Provider and Service fields are now being sent as names instead of ids when exporting gravity forms entries
+    - Enhancement: Added ability to paginate appointments in shortcodes, see the documentation for details.
+    - Enhancement: Added ability to add a description to appointments when generating calendar links (ical)
+    - Enhancement: Documentation is being moved to an online source instead of local ()
+
+============================
+Version 1.9.1 ( 21 Dec 2018 )
+============================
+
+    - New Feature: Google Calendar synchronization.
+
+============================
+Version 1.9 ( 8 Oct 2018 )
+============================
+
+    - Feature: Outlook event generator.
+    - Update: Updated CMB2 library
+    - Fixed bug: Email time always at 12:00AM
+    - Fixed bug: Booking problem when submitting removed slots.
+    - Fixed bug: Calendar is required when not marked as required.
+    - Enhancement: New filters and hooks in ga_appointments_shortcode.
+    - Enhancement: New filters and hooks in ga_provider_appointments_shortcode.
