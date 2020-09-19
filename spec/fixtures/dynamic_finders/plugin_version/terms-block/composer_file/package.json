@@ -1,0 +1,82 @@
+{
+    "name": "@hamworks/terms-block",
+    "version": "0.1.1",
+    "description": "Term list block. Displays a list of all terms in the selected taxonomy.",
+    "author": "Hiroshi Urabe <urabe@ham.works> (https://ham.works)",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "WordPress"
+    ],
+    "homepage": "https://github.com/team-hamworks/terms-block",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:team-hamworks/terms-block.git"
+    },
+    "bugs": {
+        "url": "https://github.com/team-hamworks/terms-block/issues"
+    },
+    "main": "build/index.js",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "dependencies": {
+        "@wordpress/block-editor": "^4.4.0",
+        "@wordpress/icons": "^2.5.0",
+        "@wordpress/rich-text": "^3.21.0",
+        "lodash": "^4.17.20",
+        "tinycolor2": "^1.4.1"
+    },
+    "devDependencies": {
+        "@wordpress/browserslist-config": "2.7.0",
+        "@wordpress/scripts": "^12.1.1",
+        "husky": "^4.3.0",
+        "lint-staged": "^10.3.0",
+        "prettier": "npm:wp-prettier@^2.0.4"
+    },
+    "scripts": {
+        "build": "NODE_ENV=production npm run build:dev",
+        "build:dev": "wp-scripts build",
+        "env": "wp-scripts env",
+        "format-js": "wp-scripts format-js",
+        "lint-js": "wp-scripts lint-js src",
+        "lint-js:fix": "npm run lint-js -- --fix",
+        "lint-php": "./vendor/bin/phpcs --standard=./.phpcs.xml.dist",
+        "packages-update": "wp-scripts packages-update",
+        "start": "wp-scripts start"
+    },
+    "lint-staged": {
+        "*.js": [
+            "npm run format-js",
+            "npm run lint-js"
+        ],
+        "*.php": [
+            "npm run lint-php"
+        ],
+        "packages/*/package.json": [
+            "wp-scripts lint-pkg-json"
+        ]
+    },
+    "release-it": {
+        "github": {
+            "assets": [
+                "terms-block.zip"
+            ],
+            "release": true
+        },
+        "hooks": {
+            "after:bump": "bash ./bin/create-zip.sh terms-block",
+            "after:release": "bash ./bin/cleanup.sh terms-block",
+            "before:bump": "bash ./bin/create-release.sh terms-block ${version}"
+        },
+        "npm": {
+            "publish": false
+        }
+    },
+    "wp-env": {
+        "plugin-dir": "terms-block",
+        "plugin-name": "terms-block",
+        "welcome-build-command": "npm run start"
+    }
+}

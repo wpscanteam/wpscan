@@ -1,0 +1,39 @@
+{
+    "name": "five-star-ratings-shortcode",
+    "version": "1.1.4",
+    "description": "This plugin adds accessible, attractive 5-star ratings anywhere on your site with a simple shortcode. The plugin uses Font Awesome icons via their SVG + JavaScript method.",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "compile-sass": "node-sass -w assets/scss -o assets/css --output-style expanded",
+        "minify-css": "postcss assets/css/admin.css -o assets/css/admin.min.css -w",
+        "bundledDependencies": [
+            "fontawesome"
+        ]
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/seezee/Five-Star-Ratings-Plugin.git"
+    },
+    "keywords": [
+        "icon",
+        "wordpress",
+        "star",
+        "ratings",
+        "shortcode",
+        "accessible"
+    ],
+    "author": "Chris J. Zähller",
+    "license": "GPL-3.0+",
+    "bugs": {
+        "url": "https://github.com/seezee/Five-Star-Ratings-Plugin/issues"
+    },
+    "homepage": "https://github.com/seezee/Five-Star-Ratings-Plugin#readme",
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.14.0",
+        "node-sass": "^4.14.1"
+    },
+    "devDependencies": {
+        "cssnano": "^4.1.10",
+        "postcss-cli": "^6.1.3"
+    }
+}
