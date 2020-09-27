@@ -1,0 +1,54 @@
+{
+    "name": "@hamworks/editors-note",
+    "version": "0.0.3",
+    "author": "Hiroshi Urabe <urabe@ham.works> (https://ham.works)",
+    "dependencies": {
+        "@wordpress/block-editor": "^4.4.0",
+        "@wordpress/icons": "^2.5.0",
+        "@wordpress/rich-text": "^3.21.0",
+        "moment": "^2.28.0",
+        "uuid": "^8.3.0"
+    },
+    "devDependencies": {
+        "@wordpress/browserslist-config": "2.7.0",
+        "@wordpress/scripts": "^12.1.1",
+        "prettier": "npm:wp-prettier@^2.0.5"
+    },
+    "license": "GPL-2.0+",
+    "main": "build/index.js",
+    "release-it": {
+        "hooks": {
+            "before:bump": "bash ./bin/create-release.sh editors-note ${version}",
+            "after:bump": "bash ./bin/create-zip.sh editors-note",
+            "after:release": "bash ./bin/cleanup.sh editors-note"
+        },
+        "github": {
+            "release": true,
+            "assets": [
+                "editors-note.zip"
+            ]
+        },
+        "npm": {
+            "publish": false
+        }
+    },
+    "repository": {
+        "url": "git@github.com:team-hamworks/editors-note.git",
+        "type": "git"
+    },
+    "scripts": {
+        "build": "NODE_ENV=production npm run build:dev",
+        "build:dev": "wp-scripts build",
+        "format-js": "wp-scripts format-js",
+        "env": "wp-scripts env",
+        "lint-js": "wp-scripts lint-js src",
+        "lint-js:fix": "npm run lint-js -- --fix",
+        "packages-update": "wp-scripts packages-update",
+        "start": "wp-scripts start"
+    },
+    "wp-env": {
+        "plugin-dir": "editors-note",
+        "plugin-name": "editors-note",
+        "welcome-build-command": "npm run start"
+    }
+}
