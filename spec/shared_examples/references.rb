@@ -33,11 +33,11 @@ shared_examples WPScan::References do
       its(:cve_urls) { should eql %w[https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-11] }
 
       its(:wpvulndb_ids)  { should eql %w[12] }
-      its(:wpvulndb_urls) { should eql %w[https://wpvulndb.com/vulnerabilities/12] }
+      its(:wpvulndb_urls) { should eql %w[https://wpscan.com/vulnerabilities/12] }
 
       its(:references_urls) do
         should eql [
-          'https://wpvulndb.com/vulnerabilities/12',
+          'https://wpscan.com/vulnerabilities/12',
           'https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-11'
         ]
       end

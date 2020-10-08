@@ -12,7 +12,7 @@ module WPScan
 
       # @return [ Addressable::URI ]
       def self.uri
-        @uri ||= Addressable::URI.parse('https://wpvulndb.com/api/v3/')
+        @uri ||= Addressable::URI.parse('https://wpscan.com/api/v3/')
       end
 
       # @param [ String ] path

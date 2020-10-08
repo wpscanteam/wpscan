@@ -10,7 +10,7 @@
   WordPress Security Scanner
   <br>
   <br>
-  <a href="https://wpscan.org/" title="homepage" target="_blank">Homepage</a> - <a href="https://wpscan.io/" title="wpscan.io" target="_blank">WPScan.io</a> - <a href="https://wpvulndb.com/" title="vulnerability database" target="_blank">Vulnerability Database</a> - <a href="https://wordpress.org/plugins/wpscan/" title="wordpress security plugin" target="_blank">WordPress Security Plugin</a>
+  <a href="https://wpscan.com/" title="homepage" target="_blank">WPScan WordPress Vulnerability Database</a> - <a href="https://wordpress.org/plugins/wpscan/" title="wordpress security plugin" target="_blank">WordPress Security Plugin</a>
 </p>
 
 <p align="center">
@@ -82,7 +82,7 @@ The DB is located at ~/.wpscan/db
 
 ## Vulnerability Database
 
-The WPScan CLI tool uses the [WPVulnDB API](https://wpvulndb.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPVulnDB](https://wpvulndb.com/users/sign_up). Up to 50 API requests per day are given free of charge to registered users. Once the 50 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPVulnDB](https://wpvulndb.com/).
+The WPScan CLI tool uses the [WPScan API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan](https://wpscam.com/register). Up to 50 API requests per day are given free of charge to registered users. Once the 50 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPScan](https://wpscan.com/).
 
 ## Load CLI options from file/s
 
