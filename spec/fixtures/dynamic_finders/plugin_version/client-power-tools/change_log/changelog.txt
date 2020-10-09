@@ -1,0 +1,64 @@
+# Changelog for Client Power Tools
+
+All notable changes to this project will be documented in this file. The format
+is based on [Keep a Changelog](https://keepachangelog.com).
+
+## [Unreleased]
+
+
+## [1.0.5] - 2020-10-07
+
+### Changed
+- Handle frontend login error on the front end.
+- General tidying up.
+
+### Removed
+- Remove unused capabilities from Client Manager role (for now).
+- Remove unused functions cpt_get_client_profile_link and cpt_get_client_id.
+
+### Fixed
+- Email notifications should now deliver with the intended formatting.
+
+
+## [1.0.4] - 2020-10-05
+
+### Fixed
+- Prevent not-logged-in messages from displaying in the head when the_content filter is called (by Yoast SEO, for example).
+
+
+## [1.0.3] - 2020-10-05
+
+### Fixed
+- Center the modal dismiss button.
+- Fix false negatives from cpt_is_client if the user is not logged in but the user ID is provided.
+- Prevent Client Power Tools from intercepting the password reset workflow for non-clients.
+
+
+## [1.0.2] - 2020-10-02
+
+### Fixed
+- Fixed URL encoding.
+
+
+## [1.0.1] - 2020-10-02
+
+### Fixed
+- Check for main query on client dashboard.
+- Fixed set/change password key sanitization.
+
+
+## [1.0.0] - 2020-10-02
+
+### Added
+- Added some frontend form styles for greater compatibility with different themes.
+
+### Changed
+- Override default button display style on dismiss button.
+- Change constant prefix from CPT_ to CLIENT_POWER_TOOLS_.
+- Data sanitization and validation.
+
+
+## [0.1.0 (Beta)] - 2020-09-23
+
+### Added
+- Everything.
