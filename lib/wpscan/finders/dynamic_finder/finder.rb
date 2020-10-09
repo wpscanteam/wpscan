@@ -56,7 +56,7 @@ module WPScan
 
           homepage_result = find(target.homepage_res, opts)
 
-          return homepage_result unless homepage_result.nil? || homepage_result&.is_a?(Array) && homepage_result&.empty?
+          return homepage_result unless homepage_result.nil? || homepage_result.is_a?(Array) && homepage_result&.empty?
 
           find(target.error_404_res, opts)
         end
