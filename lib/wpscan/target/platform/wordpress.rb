@@ -139,11 +139,14 @@ module WPScan
         # the first time the method is called, and the effective_url is then used
         # if suitable, otherwise the default wp-login will be.
         #
+        # If the login_uri CLI option has been provided, it will be returne w/o redirection check.
+        #
         # @return [ String, false ] The URL to the login page or false if not detected
         def login_url
           return @login_url unless @login_url.nil?
+          return @login_url = url(ParsedCli.login_uri) if ParsedCli.login_uri
 
-          @login_url = url('wp-login.php') # TODO: url(ParsedCli.login_uri)
+          @login_url = url('wp-login.php')
 
           res = Browser.get_and_follow_location(@login_url)
 
