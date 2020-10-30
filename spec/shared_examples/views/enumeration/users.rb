@@ -16,8 +16,7 @@ shared_examples 'App::Views::Enumeration::Users' do
     context 'when users found' do
       let(:expected_view) { File.join(view, 'users') }
 
-      xit 'outputs the expected string' do
-      end
+      xit 'outputs the expected string'
     end
   end
 end
