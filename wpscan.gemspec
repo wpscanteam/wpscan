@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 0.9.13'
   s.add_development_dependency 'rake',                '~> 13.0'
-  s.add_development_dependency 'rspec',               '~> 3.9.0'
+  s.add_development_dependency 'rspec',               '~> 3.10.0'
   s.add_development_dependency 'rspec-its',           '~> 1.3.0'
   s.add_development_dependency 'rubocop',             '~> 1.1.0'
   s.add_development_dependency 'rubocop-performance', '~> 1.8.0'
