@@ -1,0 +1,88 @@
+{
+    "name": "@hamworks/simple-speech-bubble",
+    "version": "0.0.4",
+    "description": "Speech bubble block",
+    "author": "Hiroshi Urabe <urabe@ham.works> (https://ham.works)",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "WordPress",
+        "Gutenberg"
+    ],
+    "homepage": "https://github.com/team-hamworks/simple-speech-bubble",
+    "repository": {
+        "url": "git@github.com:team-hamworks/simple-speech-bubble.git",
+        "type": "git"
+    },
+    "bugs": {
+        "url": "https://github.com/team-hamworks/simple-speech-bubble/issues"
+    },
+    "dependencies": {
+        "@wordpress/icons": "^2.8.0",
+        "classnames": "^2.2.6",
+        "lodash": "^4.17.20"
+    },
+    "devDependencies": {
+        "@wordpress/browserslist-config": "^2.7.0",
+        "@wordpress/env": "^2.1.0",
+        "@wordpress/eslint-plugin": "^7.1.0",
+        "@wordpress/prettier-config": "^0.4.0",
+        "@wordpress/scripts": "^12.2.0",
+        "cssnano": "^4.1.10",
+        "husky": "^4.3.0",
+        "lint-staged": "^10.3.0",
+        "postcss-import": "^12.0.1",
+        "postcss-import-resolver": "^2.0.0",
+        "postcss-omit-import-tilde": "^1.0.1",
+        "postcss-preset-env": "^6.7.0",
+        "postcss-pxtorem": "^5.1.1",
+        "prettier": "npm:wp-prettier@2.0.5",
+        "stylelint-config-wordpress": "^17.0.0"
+    },
+    "scripts": {
+        "env": "wp-env",
+        "start": "wp-scripts start ./src/index.js ./src/script.js",
+        "build": "NODE_ENV=production wp-scripts build ./src/index.js ./src/script.js",
+        "format-js": "wp-scripts format-js ./src",
+        "lint-php": "./vendor/bin/phpcs --standard=./.phpcs.xml.dist",
+        "lint-style": "wp-scripts lint-style",
+        "lint-style:fix": "wp-scripts lint-style --fix",
+        "lint-js": "wp-scripts lint-js ./src",
+        "lint-js:fix": "wp-scripts lint-js ./src --fix"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "packages/*/package.json": [
+            "wp-scripts lint-pkg-json"
+        ],
+        "{*.css,*.scss}": [
+            "npm run lint-style"
+        ],
+        "*.js": [
+            "npm run format-js",
+            "npm run lint-js"
+        ],
+        "*.php": [
+            "npm run lint-php"
+        ]
+    },
+    "release-it": {
+        "hooks": {
+            "before:bump": "bash ./bin/create-release.sh simple-speech-bubble ${version}",
+            "after:bump": "bash ./bin/create-zip.sh simple-speech-bubble",
+            "after:release": "bash ./bin/cleanup.sh simple-speech-bubble"
+        },
+        "github": {
+            "release": true,
+            "assets": [
+                "simple-speech-bubble.zip"
+            ]
+        },
+        "npm": {
+            "publish": false
+        }
+    }
+}
