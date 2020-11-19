@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://wpscan.org/">
+  <a href="https://wpscan.com/">
     <img src="https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png" alt="WPScan logo">
   </a>
 </p>
