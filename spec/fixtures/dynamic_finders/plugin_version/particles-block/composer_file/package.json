@@ -1,0 +1,19 @@
+{
+  "name": "particles-block-cgb-guten-block",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "cgb-scripts start & npm run build:frontend -- -w",
+    "build": "cgb-scripts build && npm run build:frontend -- -p rollup-plugin-terser",
+    "eject": "cgb-scripts eject",
+    "build:frontend": "rollup src/frontend.js --file dist/frontend.js --format iife"
+  },
+  "dependencies": {
+    "cgb-scripts": "1.23.1"
+  },
+  "devDependencies": {
+    "canvas-nest.js": "^2.0.4",
+    "rollup": "^2.33.3",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
