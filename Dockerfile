@@ -19,7 +19,7 @@ RUN rake install --trace
 RUN chmod -R a+r /usr/local/bundle
 
 
-FROM ruby:2.7.1-alpine
+FROM ruby:2.7.2-alpine
 LABEL maintainer="WPScan Team <contact@wpscan.com>"
 LABEL org.opencontainers.image.source https://github.com/wpscanteam/wpscan
 
