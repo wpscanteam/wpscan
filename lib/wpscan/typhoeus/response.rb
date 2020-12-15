@@ -7,7 +7,7 @@ module Typhoeus
     #
     # @return [ Boolean ]
     def from_vuln_api?
-      effective_url.start_with?(WPScan::DB::VulnApi.uri.to_s) && !effective_url.include?('/status')
+      effective_url.start_with?(WPScan::DB::VulnApi.uri.to_s) && !effective_url.include?('v3/status')
     end
   end
 end
