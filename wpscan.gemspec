@@ -10,10 +10,10 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.5'
   s.authors               = ['WPScanTeam']
   s.date                  = Time.now.utc.strftime('%Y-%m-%d')
-  s.email                 = ['team@wpscan.org']
+  s.email                 = ['contact@wpscan.com']
   s.summary               = 'WPScan - WordPress Vulnerability Scanner'
   s.description           = 'WPScan is a black box WordPress vulnerability scanner.'
-  s.homepage              = 'https://wpscan.org/'
+  s.homepage              = 'https://wpscan.com/wordpress-security-scanner'
   s.license               = 'Dual'
 
   s.files                 = Dir.glob('lib/**/*') + Dir.glob('app/**/*') + %w[LICENSE README.md]
