@@ -7,6 +7,7 @@ describe WPScan::Controller::VulnApi do
 
   before do
     WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
+    WPScan::DB::VulnApi.instance_variable_set(:'@default_request_params', nil)
   end
 
   describe '#cli_options' do
@@ -27,7 +28,7 @@ describe WPScan::Controller::VulnApi do
       let(:cli_args) { "#{super()} --api-token token" }
 
       context 'when the token is invalid' do
-        before { expect(WPScan::DB::VulnApi).to receive(:status).and_return('error' => 'HTTP Token: Access denied.') }
+        before { expect(WPScan::DB::VulnApi).to receive(:status).and_return('status' => 'forbidden') }
 
         it 'raise an InvalidApiToken error' do
           expect { controller.before_scan }.to raise_error(WPScan::Error::InvalidApiToken)

@@ -1,13 +1,13 @@
 <% unless @status.empty? -%>
 <% if @status['http_error'] -%>
-<%= critical_icon %> WPVulnDB API, <%= @status['http_error'].to_s %>
+<%= critical_icon %> WPScan DB API, <%= @status['http_error'].to_s %>
 <% else -%>
-<%= info_icon %> WPVulnDB API OK
+<%= info_icon %> WPScan DB API OK
  | Plan: <%= @status['plan'] %>
  | Requests Done (during the scan): <%= @api_requests %>
  | Requests Remaining: <%= @status['requests_remaining'] %>
 <% end -%>
 <% else -%>
-<%= warning_icon %> No WPVulnDB API Token given, as a result vulnerability data has not been output.
+<%= warning_icon %> No WPScan API Token given, as a result vulnerability data has not been output.
 <%= warning_icon %> You can get a free API token with 50 daily requests by registering at https://wpscan.com/register
 <% end -%>
