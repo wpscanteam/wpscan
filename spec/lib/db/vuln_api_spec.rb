@@ -10,6 +10,11 @@ describe WPScan::DB::VulnApi do
     }
   end
 
+  before do
+    # Reset the default_request_params
+    api.instance_variable_set(:'@default_request_params', nil)
+  end
+
   describe '#uri' do
     its(:uri) { should be_a Addressable::URI }
   end
@@ -66,20 +71,16 @@ describe WPScan::DB::VulnApi do
           let(:body) { { data: 'something' }.to_json }
 
           it 'returns the expected hash' do
-            result = api.get(path)
-
-            expect(result).to eql('data' => 'something')
+            expect(api.get(path)).to eql('data' => 'something')
           end
         end
 
-        context 'when 401' do
-          let(:code) { 401 }
-          let(:body) { { error: 'HTTP Token: Access denied.' }.to_json }
+        context 'when 403' do
+          let(:code) { 403 }
+          let(:body) { { status: 'forbidden' }.to_json }
 
           it 'returns the expected hash' do
-            result = api.get(path)
-
-            expect(result).to eql('error' => 'HTTP Token: Access denied.')
+            expect(api.get(path)).to eql('status' => 'forbidden')
           end
         end
 
@@ -88,20 +89,16 @@ describe WPScan::DB::VulnApi do
           let(:body) { { error: 'Not found' }.to_json }
 
           it 'returns an empty hash' do
-            result = api.get(path)
-
-            expect(result).to eql({})
+            expect(api.get(path)).to eql({})
           end
+        end
 
-          context 'when 404 with HTTML (API inconsistency due to dots in path)' do
-            let(:path) { 'path.b.c' }
-            let(:body) { '<!DOCTYPE html><html>Nop</html>' }
+        context 'when 429 (API Limit Reached)' do
+          let(:code) { 429 }
+          let(:body) { { status: 'rate limit hit' }.to_json }
 
-            it 'returns an empty hash' do
-              result = api.get(path)
-
-              expect(result).to eql({})
-            end
+          it 'returns an empty hash' do
+            expect(api.get(path)).to eql({})
           end
         end
       end
@@ -120,6 +117,7 @@ describe WPScan::DB::VulnApi do
             result = api.get('path')
 
             expect(result['http_error']).to be_a WPScan::Error::HTTP
+            expect(api.default_request_params[:headers]['X-Retry']).to eql 3
           end
         end
 
@@ -134,9 +132,8 @@ describe WPScan::DB::VulnApi do
           it 'tries 1 time and returns expected data' do
             expect(api).to receive(:sleep).with(1).exactly(1).times
 
-            result = api.get('path')
-
-            expect(result).to eql('data' => 'test')
+            expect(api.get('path')).to eql('data' => 'test')
+            expect(api.default_request_params[:headers]['X-Retry']).to eql 1
           end
         end
       end
@@ -173,6 +170,15 @@ describe WPScan::DB::VulnApi do
           expect(api.plugin_data('slug-404')).to eql({})
         end
       end
+
+      context 'when API limit reached' do
+        it 'returns an empty hash' do
+          stub_request(:get, api.uri.join('plugins/slug-429'))
+            .to_return(status: 429, body: { status: 'rate limit hit' }.to_json)
+
+          expect(api.plugin_data('slug-429')).to eql({})
+        end
+      end
     end
   end
 
@@ -206,6 +212,15 @@ describe WPScan::DB::VulnApi do
           expect(api.theme_data('slug-404')).to eql({})
         end
       end
+
+      context 'when API limit reached' do
+        it 'returns an empty hash' do
+          stub_request(:get, api.uri.join('themes/slug-429'))
+            .to_return(status: 429, body: { status: 'rate limit hit' }.to_json)
+
+          expect(api.theme_data('slug-429')).to eql({})
+        end
+      end
     end
   end
 
@@ -237,6 +252,15 @@ describe WPScan::DB::VulnApi do
           stub_request(:get, api.uri.join('wordpresses/11')).to_return(status: 404, body: '{}')
 
           expect(api.wordpress_data('1.1')).to eql({})
+        end
+      end
+
+      context 'when API limit reached' do
+        it 'returns an empty hash' do
+          stub_request(:get, api.uri.join('wordpresses/429'))
+            .to_return(status: 429, body: { status: 'rate limit hit' }.to_json)
+
+          expect(api.wordpress_data('4.2.9')).to eql({})
         end
       end
     end
@@ -285,7 +309,7 @@ describe WPScan::DB::VulnApi do
           WPScan::Browser.instance.headers = { 'CF-Connecting-IP' => '123.123.123.123' }
         end
 
-        it 'removes the CF-Connecting-IP header from the request' do
+        it 'does not contain the CF-Connecting-IP header in the request' do
           status = api.status
 
           expect(status['success']).to be true
@@ -295,21 +319,20 @@ describe WPScan::DB::VulnApi do
       end
     end
 
-    context 'when 401' do
-      let(:code) { 401 }
-      let(:return_body) { { error: 'HTTP Token: Access denied.' } }
+    # When invalid/empty API token
+    context 'when 403' do
+      let(:code) { 403 }
+      let(:return_body) { { status: 'forbidden' } }
 
       it 'returns the expected hash' do
-        status = api.status
-
-        expect(status['error']).to eql 'HTTP Token: Access denied.'
+        expect(api.status['status']).to eql 'forbidden'
       end
     end
 
     context 'otherwise' do
       let(:code) { 0 }
 
-      it 'returns the expected hash with the response' do
+      it 'returns the expected hash with the response as an exception' do
         status = api.status
 
         expect(status['http_error']).to be_a WPScan::Error::HTTP

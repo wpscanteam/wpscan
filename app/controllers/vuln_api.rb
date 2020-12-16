@@ -8,7 +8,10 @@ module WPScan
 
       def cli_options
         [
-          OptString.new(['--api-token TOKEN', 'The WPVulnDB API Token to display vulnerability data'])
+          OptString.new(
+            ['--api-token TOKEN',
+             'The WPScan API Token to display vulnerability data, available at https://wpscan.com/profile']
+          )
         ]
       end
 
@@ -19,7 +22,7 @@ module WPScan
 
         api_status = DB::VulnApi.status
 
-        raise Error::InvalidApiToken if api_status['error']
+        raise Error::InvalidApiToken if api_status['status'] == 'forbidden'
         raise Error::ApiLimitReached if api_status['requests_remaining'] == 0
         raise api_status['http_error'] if api_status['http_error']
       end

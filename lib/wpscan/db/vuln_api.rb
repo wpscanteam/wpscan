@@ -4,7 +4,7 @@ module WPScan
   module DB
     # WPVulnDB API
     class VulnApi
-      NON_ERROR_CODES = [200, 401].freeze
+      NON_ERROR_CODES = [200, 403].freeze
 
       class << self
         attr_accessor :token
@@ -26,7 +26,7 @@ module WPScan
         # Typhoeus.get is used rather than Browser.get to avoid merging irrelevant params from the CLI
         res = Typhoeus.get(uri.join(path), default_request_params.merge(params))
 
-        return {} if res.code == 404 # This is for API inconsistencies when dots in path
+        return {} if res.code == 404 || res.code == 429
         return JSON.parse(res.body) if NON_ERROR_CODES.include?(res.code)
 
         raise Error::HTTP, res
@@ -34,6 +34,8 @@ module WPScan
         retries ||= 0
 
         if (retries += 1) <= 3
+          @default_request_params[:headers]['X-Retry'] = retries
+
           sleep(1)
           retry
         end
@@ -68,7 +70,7 @@ module WPScan
       # @return [ Hash ]
       # @note Those params can not be overriden by CLI options
       def self.default_request_params
-        Browser.instance.default_connect_request_params.merge(
+        @default_request_params ||= Browser.instance.default_connect_request_params.merge(
           headers: {
             'User-Agent' => Browser.instance.default_user_agent,
             'Authorization' => "Token token=#{token}"
