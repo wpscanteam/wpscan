@@ -6,6 +6,7 @@ require_relative 'interesting_findings/multisite'
 require_relative 'interesting_findings/debug_log'
 require_relative 'interesting_findings/backup_db'
 require_relative 'interesting_findings/mu_plugins'
+require_relative 'interesting_findings/php_disabled'
 require_relative 'interesting_findings/registration'
 require_relative 'interesting_findings/tmm_db_migrate'
 require_relative 'interesting_findings/upload_sql_dump'
@@ -26,7 +27,7 @@ module WPScan
           %w[
             Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog
             Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
-            UploadSQLDump EmergencyPwdResetScript WPCron
+            UploadSQLDump EmergencyPwdResetScript WPCron PHPDisabled
           ].each do |f|
             finders << InterestingFindings.const_get(f).new(target)
           end
