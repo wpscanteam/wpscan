@@ -36,6 +36,10 @@
 
 When using a pentesting distubution (such as Kali Linux), it is recommended to install/update wpscan via the package manager if available.
 
+### In macOSX via Homebrew
+
+`brew install wpscanteam/tap/wpscan`
+
 ### From RubyGems
 
 ```shell
