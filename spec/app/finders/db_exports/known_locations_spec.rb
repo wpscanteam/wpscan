@@ -102,19 +102,29 @@ describe WPScan::Finders::DbExports::KnownLocations do
         expect(target).to receive(:homepage_or_404?).twice.and_return(false)
       end
 
-      it 'returns the expected Array<DbExport>' do
-        expected = []
+      context 'when matching the pattern' do
+        it 'returns the expected Array<DbExport>' do
+          expected = []
 
-        found_files.each do |file|
-          url = "#{target.url}#{file}"
-          expected << WPScan::Model::DbExport.new(
-            url,
-            confidence: 100,
-            found_by: described_class::DIRECT_ACCESS
-          )
+          found_files.each do |file|
+            url = "#{target.url}#{file}"
+            expected << WPScan::Model::DbExport.new(
+              url,
+              confidence: 100,
+              found_by: described_class::DIRECT_ACCESS
+            )
+          end
+
+          expect(finder.aggressive(opts)).to eql expected
         end
+      end
 
-        expect(finder.aggressive(opts)).to eql expected
+      context 'when not matching the pattern' do
+        let(:db_export) { '' }
+
+        it 'returns an empty array' do
+          expect(finder.aggressive(opts)).to eql []
+        end
       end
     end
   end
