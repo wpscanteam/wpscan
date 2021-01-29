@@ -200,7 +200,7 @@ describe WPScan::Model::Theme do
 
     after do
       expect(theme.vulnerabilities).to eq @expected
-      expect(theme.vulnerable?).to eql @expected.empty? ? false : true
+      expect(theme.vulnerable?).to eql !@expected.empty?
     end
 
     context 'when theme not in the DB' do

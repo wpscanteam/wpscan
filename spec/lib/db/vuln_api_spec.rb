@@ -12,7 +12,7 @@ describe WPScan::DB::VulnApi do
 
   before do
     # Reset the default_request_params
-    api.instance_variable_set(:'@default_request_params', nil)
+    api.instance_variable_set(:@default_request_params, nil)
   end
 
   describe '#uri' do

@@ -39,7 +39,7 @@ module WPScan
         output('@notice', msg: 'It seems like you have not updated the database for some time.')
         print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
 
-        /^y/i.match?(Readline.readline) ? true : false
+        /^y/i.match?(Readline.readline)
       end
 
       def update_db

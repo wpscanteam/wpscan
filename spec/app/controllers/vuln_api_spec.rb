@@ -7,7 +7,7 @@ describe WPScan::Controller::VulnApi do
 
   before do
     WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
-    WPScan::DB::VulnApi.instance_variable_set(:'@default_request_params', nil)
+    WPScan::DB::VulnApi.instance_variable_set(:@default_request_params, nil)
   end
 
   describe '#cli_options' do

@@ -63,7 +63,7 @@ module WPScan
       def webshot_enabled?
         res = Browser.get(url, params: { webshot: 1, src: "http://#{default_allowed_domains.sample}" })
 
-        /WEBSHOT_ENABLED == true/.match?(res.body) ? false : true
+        !/WEBSHOT_ENABLED == true/.match?(res.body)
       end
 
       # @return [ Array<String> ] The default allowed domains (between the 2.0 and 2.8.13)
