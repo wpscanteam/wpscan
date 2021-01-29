@@ -24,10 +24,11 @@
 ## Prerequisites
 
 - (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
-- Ruby >= 2.3 - Recommended: latest
+- Ruby >= 2.5 - Recommended: latest
   - Ruby 2.5.0 to 2.5.3 can cause an 'undefined symbol: rmpd_util_str_to_d' error in some systems, see [#1283](https://github.com/wpscanteam/wpscan/issues/1283)
-- Curl >= 7.21  - Recommended: latest
+- Curl >= 7.72  - Recommended: latest
   - The 7.29 has a segfault
+  - The < 7.72 could result in `Stream error in the HTTP/2 framing layer` in some cases
 - RubyGems      - Recommended: latest
 - Nokogiri might require packages to be installed via your package manager depending on your OS, see https://nokogiri.org/tutorials/installing_nokogiri.html
 
