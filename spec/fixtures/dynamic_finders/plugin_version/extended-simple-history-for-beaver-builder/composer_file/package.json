@@ -1,0 +1,57 @@
+{
+  "name": "extended-simple-history-beaver-builder",
+  "version": "1.0.0",
+  "description": "Extended Simple History for Beaver Builder",
+  "main": "extended-simple-history-beaver-builder.php",
+  "scripts": {
+    "lint:js": "wp-scripts lint-js assets/js/src/",
+    "lint:css": "wp-scripts lint-style assets/css/scss/",
+    "build:js": "node build-scripts/js.js;",
+    "build:css": "node build-scripts/css.js;",
+    "build:i18n": "node ./node_modules/node-wp-i18n/bin/wpi18n addtextdomain && node ./node_modules/node-wp-i18n/bin/wpi18n makepot",
+    "watch:css": "./node_modules/watch/cli.js 'npm run build:css' assets/css/scss/ --ignoreDotFiles --wait=2",
+    "watch:js": "./node_modules/watch/cli.js 'npm run build:js' assets/js/src/ --ignoreDotFiles --wait=2",
+    "watch:i18n": "./node_modules/watch/cli.js 'npm run build:i18n' includes/ --ignoreDotFiles --wait=2",
+    "watch": "npm run watch:css & npm run watch:js",
+    "build": "npm run build:css && npm run build:js && npm run build:i18n;"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "WEBDOGS",
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@wordpress/browserslist-config": "^2.7.0",
+    "@wordpress/scripts": "^12.6.1",
+    "autoprefixer": "^9.8.6",
+    "babelify": "^10.0.0",
+    "browserify": "^16.5.2",
+    "cssnano": "^4.1.10",
+    "fs": "0.0.1-security",
+    "node-sass": "^4.14.1",
+    "node-wp-i18n": "^1.2.4",
+    "postcss": "^7.0.35",
+    "postcss-preset-env": "^6.7.0",
+    "uglify-js": "^3.12.4",
+    "watch": "^1.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "browsers": [
+              "extends @wordpress/browserslist-config"
+            ]
+          }
+        }
+      ]
+    ]
+  },
+  "browserslist": [
+    "extends @wordpress/browserslist-config"
+  ],
+  "dependencies": {}
+}

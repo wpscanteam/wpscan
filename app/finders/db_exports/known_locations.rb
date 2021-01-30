@@ -7,7 +7,7 @@ module WPScan
       class KnownLocations < CMSScanner::Finders::Finder
         include CMSScanner::Finders::Finder::Enumerator
 
-        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE) TABLE|INSERT INTO/.freeze
+        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE|ALTER) (?:TABLE|DATABASE)|INSERT INTO/.freeze
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list

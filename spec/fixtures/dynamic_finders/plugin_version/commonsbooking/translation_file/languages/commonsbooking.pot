@@ -1,0 +1,1074 @@
+# Copyright (C) 2020 wielebenwir e.V.
+# This file is distributed under the same license as the CommonsBooking plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: CommonsBooking 2.2.7\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/commonsbooking\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-12-17T12:56:50+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: commonsbooking\n"
+
+#. Plugin Name of the plugin
+#: src/Wordpress/Options/OptionsTab.php:38
+msgid "CommonsBooking"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://commonsbooking.org"
+msgstr ""
+
+#. Description of the plugin
+msgid "A wordpress plugin for management and booking of common goods."
+msgstr ""
+
+#. Author of the plugin
+msgid "wielebenwir e.V."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://wielebenwir.de/"
+msgstr ""
+
+#: includes/Options.php:12
+msgid "Welcome"
+msgstr ""
+
+#: includes/Options.php:18
+msgid "Welcome to CommonsBooking"
+msgstr ""
+
+#. translators: %s = version number
+#: includes/Options.php:22
+msgid ""
+"You are using CommonsBooking Version %s\n"
+"\n"
+"                            <h2>How to start</h2>\n"
+"                            <p>To get startet visit our tutorials and documentation on <a href=\"https://commonsbooking.org/docs\">https://commonsbooking.org/docs</a></p>\n"
+"\n"
+"                            <h2>Questions or bug reports?</h2>\n"
+"                            <p>Ask your questions or send us your bug reports here <a href=\"https://commonsbooking.org/kontakt/\">https://commonsbooking.org/kontakt/</a></p>\n"
+"\n"
+"                            <h2>Contribute</h2>\n"
+"                            The future of this plugin depends on your support. You can support us by make a donation on our website: <a href=\"https://www.wielebenwir.de/verein/unterstutzen\">wielebenwir</a>"
+msgstr ""
+
+#: includes/Options.php:42
+msgid "General"
+msgstr ""
+
+#: includes/Options.php:47
+msgid "Naming and permalinks"
+msgstr ""
+
+#: includes/Options.php:51
+msgid "Customize names & slugs. <br><b>Important:</b> After changing these settings, the option <a href=\"%s\">Permalinks</a> in Wordpress settings must be called and saved once for the changes to take effect."
+msgstr ""
+
+#: includes/Options.php:68
+msgid "Items slug"
+msgstr ""
+
+#. translators: %s = example url (like website.com/cb-items/)
+#: includes/Options.php:72
+msgid "The url for the items archive. E.g: %s"
+msgstr ""
+
+#: includes/Options.php:79
+msgid "Locations slug"
+msgstr ""
+
+#. translators: %s = example url (like website.com/cb-locations/)
+#: includes/Options.php:83
+msgid "The url for the locations archive. E.g: %s"
+msgstr ""
+
+#: includes/Options.php:99
+#: includes/Options.php:104
+#: includes/Options.php:109
+#: src/Wordpress/CustomPostType/Timeframe.php:745
+msgid "Booking Codes"
+msgstr ""
+
+#: includes/Options.php:120
+msgid "Templates"
+msgstr ""
+
+#: includes/Options.php:124
+msgid "Email templates"
+msgstr ""
+
+#: includes/Options.php:129
+msgid "Mail-Header from E-Mail"
+msgstr ""
+
+#: includes/Options.php:130
+msgid "E-Mail that will be shown as sender in generated emails"
+msgstr ""
+
+#: includes/Options.php:136
+msgid "Mail-Header from Name"
+msgstr ""
+
+#: includes/Options.php:137
+msgid "Name that will be shown as sender in generated emails"
+msgstr ""
+
+#: includes/Options.php:143
+msgid "Booking confirmed email subject"
+msgstr ""
+
+#: includes/Options.php:147
+msgid "Your booking {{item:post_title}} at {{location:post_title}} {{booking:booking_timeframe_date}} "
+msgstr ""
+
+#: includes/Options.php:151
+msgid "Booking confirmed email body"
+msgstr ""
+
+#: includes/Options.php:155
+msgid ""
+"\n"
+"                            Hi {{user:first_name}},<br>\n"
+"                            <p>thank you for booking {{item:post_title}} {{booking:booking_timeframe_date}}.\n"
+"                            </p>\n"
+"                            \n"
+"                            Pick up date and time: <b>{{booking:pickupDatetime}}</b><br>\n"
+"                            {{location:pickupInstructions}}\n"
+"                            {{booking:formattedBookingCode}}\n"
+"                            <br>\n"
+"                            Return date and time:\n"
+"                            <b>{{booking:returnDatetime}}</b>\n"
+"                            <br><br>\n"
+"                            <b>Location address</b><br>\n"
+"                            {{location:formattedAddress}}<br>\n"
+"                            {{location:formattedContactInfoOneLine}}\n"
+"                            <br>\n"
+"                            <p>Click here to see or cancel your booking: {{booking:bookingLink}}.<br>\n"
+"                            <b>Notice:</b> You need to be logged in to see your booking. <br>\n"
+"                            If the link leads you to the homepage of the webseite,\n"
+"                            please login first and then click the link again.<br></p>\n"
+"                            \n"
+"                            <h3>Your information</h3>\n"
+"                            <p>Login: {{user:user_nicename}}<br>\n"
+"                            Name: {{user:first_name}} {{user:last_name}}.</p>\n"
+"                            \n"
+"                            <p>Thanks, the Team. </p>\n"
+"                        "
+msgstr ""
+
+#: includes/Options.php:184
+msgid "Booking canceled email subject"
+msgstr ""
+
+#: includes/Options.php:187
+msgid "Booking canceled: {{item:post_title}} at {{location:post_title}} {{booking:booking_timeframe_date}}"
+msgstr ""
+
+#: includes/Options.php:190
+msgid "Booking canceled email body"
+msgstr ""
+
+#: includes/Options.php:193
+msgid ""
+"\n"
+"                            Hi {{user:first_name}},<br>\n"
+"                            <p>your booking {{item:post_title}} at {{location:post_title}} {{booking:booking_timeframe_date}} has been cancelled.\n"
+"                            </p>               \n"
+"                            <h3>Your information</h3>\n"
+"                            <p>Login: {{user:user_nicename}}<br>\n"
+"                            Name: {{user:first_name}} {{user:last_name}}.</p>\n"
+"                            \n"
+"                            <p>Thanks, the Team. </p>\n"
+"                            "
+msgstr ""
+
+#: includes/Options.php:281
+msgid "Migration"
+msgstr ""
+
+#: includes/Options.php:285
+msgid "Migrate from Commons Booking Version 0.X"
+msgstr ""
+
+#: includes/Options.php:287
+msgid "Migrate data from CommonsBooking Version 0.X. <br>The migration includes: locations, items, timeframes and bookings. <br>Please read the documentation on <a href=\"https://commonsbooking.org/docs/\">https://commonsbooking.org/docs/</a> before you start migration."
+msgstr ""
+
+#: includes/Options.php:290
+msgid "Start Migration"
+msgstr ""
+
+#: includes/Options.php:298
+msgid "CommonsBooking Version 0.X profile fields"
+msgstr ""
+
+#: includes/Options.php:300
+msgid "Enable the following legacy CommonsBooking Version 0.X user profile fields:"
+msgstr ""
+
+#: includes/Options.php:303
+msgid "Enable"
+msgstr ""
+
+#: includes/Options.php:308
+msgid "Terms & Services Url"
+msgstr ""
+
+#: src/Messages/Messages.php:62
+msgid "Could not send email because mail-template was not available. Check options -> templates"
+msgstr ""
+
+#. translators: %s = Booking code
+#: src/Model/Booking.php:65
+msgid "Your booking code is: %s"
+msgstr ""
+
+#. translators: %s = date in wordpress defined format
+#: src/Model/Booking.php:166
+msgid " on %s "
+msgstr ""
+
+#. translators: %1 = startdate, %2 = enddate in wordpress defined format
+#: src/Model/Booking.php:169
+msgid " from %1$s until %2$s "
+msgstr ""
+
+#: src/Model/Booking.php:266
+msgid "Cancel"
+msgstr ""
+
+#: src/Model/Booking.php:272
+msgid "Confirm Booking"
+msgstr ""
+
+#: src/Model/Booking.php:278
+msgid "Cancel Booking"
+msgstr ""
+
+#: src/Model/Booking.php:298
+msgid "Please check your booking and click confirm booking"
+msgstr ""
+
+#: src/Model/Booking.php:301
+msgid "Your booking is confirmed. A confirmation mail has been sent to you."
+msgstr ""
+
+#: src/Model/Booking.php:306
+msgid "Your booking has been canceled."
+msgstr ""
+
+#: src/Model/Booking.php:321
+msgid "Link to your booking"
+msgstr ""
+
+#: src/Model/Location.php:94
+msgid "Please contact the contact persons at the location directly if you have any questions regarding collection or return:"
+msgstr ""
+
+#: src/Model/Timeframe.php:38
+msgid "Available here"
+msgstr ""
+
+#. translators: %s = date in wordpress defined format
+#: src/Model/Timeframe.php:43
+msgid "on %s"
+msgstr ""
+
+#. translators: %s = date in wordpress defined format
+#: src/Model/Timeframe.php:47
+msgid "from %s"
+msgstr ""
+
+#: src/Model/Timeframe.php:49
+msgid "permanently"
+msgstr ""
+
+#. translators: %1$s = startdate, second %2$s = enddate in wordpress defined format
+#: src/Model/Timeframe.php:54
+msgid " from %1$s until %2$s"
+msgstr ""
+
+#. translators: %s = enddate in wordpress defined format
+#: src/Model/Timeframe.php:58
+msgid " until %s"
+msgstr ""
+
+#: src/Model/Timeframe.php:181
+msgid "A pickup time but no return time has been set. Please set the return time."
+msgstr ""
+
+#. translators: %1$s = timeframe-ID, %2$s is timeframe post_title
+#: src/Model/Timeframe.php:212
+msgid "Overlapping bookable timeframes are only allowed to have the same grid. See overlapping timeframe ID: %1$s: %2$s"
+msgstr ""
+
+#. translators: first %s = timeframe-ID, second %s is timeframe post_title
+#: src/Model/Timeframe.php:222
+msgid "time periods are not allowed to overlap. Please check the other timeframe to avoid overlapping time periods during one specific day. See affected timeframe ID: %1$s: %2$s"
+msgstr ""
+
+#. translators: first %s = timeframe-ID, second %s is timeframe post_title
+#: src/Model/Timeframe.php:232
+msgid "Date periods are not allowed to overlap. Please check the other timeframe to avoid overlapping Date periods. See affected timeframe ID: %1$s: %2$s"
+msgstr ""
+
+#: src/Plugin.php:305
+msgid "Item Category"
+msgstr ""
+
+#: src/Plugin.php:329
+msgid "Location Category"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:47
+msgid "First Name"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:50
+msgid "Please enter your first name"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:54
+msgid "Last Name"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:57
+msgid "Please enter your last name"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:61
+msgid "Phone Number"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:64
+msgid "Please enter your phone number"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:68
+#: src/Repository/CB1UserFields.php:273
+#: src/Wordpress/CustomPostType/Location.php:139
+#: templates/booking-single.php:53
+msgid "Address"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:71
+msgid "Please enter your address"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:74
+msgid "Terms and Conditions"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:77
+msgid "I accept the terms & conditions"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:78
+msgid "Please accept the terms & conditions"
+msgstr ""
+
+#. translators: %s = terms and service url
+#: src/Repository/CB1UserFields.php:172
+msgid "<a href=\"%s\" target=_blank\">Read the terms and services</a>"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:261
+msgid "Extra Fields"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:265
+msgid "Phone number"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:281
+msgid "Terms and conditions"
+msgstr ""
+
+#: src/Repository/CB1UserFields.php:286
+msgid "Accepted Terms & Conditions"
+msgstr ""
+
+#: src/View/BookingCodes.php:28
+#: src/Wordpress/CustomPostType/Item.php:39
+#: src/Wordpress/CustomPostType/Timeframe.php:81
+#: src/Wordpress/CustomPostType/Timeframe.php:620
+#: templates/booking-single.php:21
+msgid "Item"
+msgstr ""
+
+#: src/View/BookingCodes.php:28
+msgid "Pickup date"
+msgstr ""
+
+#: src/View/BookingCodes.php:28
+msgid "Code"
+msgstr ""
+
+#: src/View/Migration.php:22
+msgid "We could not detect a version of an older CommonsBooking Installation (Version 0.X)."
+msgstr ""
+
+#: src/View/Migration.php:25
+msgid "Found a version of an older CommonsBooking Installation (Version 0.X). You can migrate."
+msgstr ""
+
+#: src/View/Migration.php:32
+msgid "migration in process .. please wait ..."
+msgstr ""
+
+#: src/View/Migration.php:33
+msgid " Locations updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:34
+msgid " Items updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:35
+msgid " Timeframes updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:36
+msgid " Bookings updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:37
+msgid " Booking Codes updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:38
+msgid " Terms & Urls updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:39
+msgid " Taxonomies updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:40
+msgid " Options updated/saved"
+msgstr ""
+
+#: src/View/Migration.php:44
+msgid "Migration finished"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:38
+#: src/Wordpress/CustomPostType/Item.php:59
+msgid "Items"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:40
+#: src/Wordpress/CustomPostType/Location.php:45
+#: src/Wordpress/CustomPostType/Timeframe.php:891
+msgid "Add new"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:41
+#: src/Wordpress/CustomPostType/Item.php:43
+msgid "Add new item"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:42
+msgid "Edit item"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:44
+msgid "Show item"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:45
+msgid "Show items"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:46
+msgid "Search items"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:47
+msgid "items not found"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:48
+msgid "No items found in trash"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:49
+msgid "Parent items:"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:50
+msgid "All items"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:51
+msgid "Item archive"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:52
+msgid "Item attributes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:53
+msgid "Add to item"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:54
+msgid "Added to item"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:55
+msgid "Item image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:56
+msgid "set item image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:57
+msgid "remove item image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:58
+msgid "use as item image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:142
+msgid "Item Info"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:156
+msgid "Item Admin(s)"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:157
+msgid "choose one or more users to give them the permisssion to edit and manage this specific item. Only users with the role cb_manager can be selected here"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Item.php:162
+msgid "Select item admins."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:43
+#: src/Wordpress/CustomPostType/Location.php:64
+msgid "Locations"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:44
+#: src/Wordpress/CustomPostType/Timeframe.php:82
+#: src/Wordpress/CustomPostType/Timeframe.php:614
+msgid "Location"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:46
+#: src/Wordpress/CustomPostType/Location.php:48
+msgid "Add new location"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:47
+msgid "Edit location"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:49
+msgid "Show location"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:50
+msgid "Show locations"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:51
+msgid "Search locations"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:52
+msgid "location not found"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:53
+msgid "No locations found in trash"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:54
+msgid "Parent location:"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:55
+msgid "All locations"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:56
+msgid "Location archive"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:57
+msgid "Location attributes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:58
+msgid "Add to location"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:59
+msgid "Added to location"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:60
+msgid "Location image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:61
+msgid "set location image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:62
+msgid "remove location image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:63
+msgid "use as location image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:148
+msgid "Street / No."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:160
+msgid "Postcode"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:172
+msgid "City"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:185
+msgid "Country"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:195
+msgid "General Location information"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:204
+msgid "Location email"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:205
+msgid "email-address to get copy of booking confirmation and cancellation mails"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:216
+#: templates/booking-single.php:61
+msgid "Pickup instructions"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:217
+msgid "Type in information about the pickup process (e.g. detailed route description, opening hours, etc.). This will be shown to user in booking process and booking confirmation mail"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:227
+msgid "Location contact information"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:228
+msgid "information about how to contact the location (e.g. contact person, phone number, e-mail etc.). This will be shown to user in booking process and booking confirmation mail"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:242
+msgid "Location Admin(s)"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:243
+msgid "choose one or more users to give them the permisssion to edit and manage this specific location. Only users with the role cb_manager can be selected here."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:249
+msgid "Select location admins."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:254
+msgid "Allow locked day overbooking"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Location.php:255
+msgid "If selected, all not selected days in any bookable timeframe that is connected to this location can be overbooked. Read the documentation on <a href=\"https://commonsbooking.org\">commonsbooking.org</a> for more information."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:79
+msgid "User"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:80
+#: src/Wordpress/CustomPostType/Timeframe.php:588
+msgid "Type"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:83
+msgid "Bookingdate"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:84
+msgid "Start Date"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:85
+msgid "End Date"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:86
+msgid "Booking Status"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:127
+msgid "Bookable"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:128
+msgid "Holidays"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:131
+msgid "Repair"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:132
+#: src/Wordpress/CustomPostType/Timeframe.php:172
+msgid "Booking"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:133
+msgid "Booking canceled"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:308
+msgid "Filter By Type "
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:365
+msgid "Filter By Item "
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:392
+msgid "Filter By Location "
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:409
+msgid "Filter By Status "
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:437
+msgid "Start date"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:441
+msgid "End date"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:582
+msgid "Comment"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:583
+msgid "Internal comment. Will not be shown to users"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:589
+msgid "Select Type of this timeframe (e.g. bookable, repair, holidays, booking). See Documentation for detailed information."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:595
+#: src/Wordpress/CustomPostType/Timeframe.php:649
+msgid "Maximum booking duration"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:596
+msgid "Maximum booking duration in days"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:626
+msgid "Configure timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:631
+msgid "Timeframe Repetition"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:632
+msgid "Select the recurrence type of the time frame. If you select \"weekly\", you can select days of the week. "
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:636
+msgid "No Repetition"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:637
+msgid "Daily"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:638
+msgid "Weekly"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:639
+msgid "Monthly"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:640
+msgid "Yearly"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:644
+msgid "Full day"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:650
+msgid "Maximum booking duration in days per booking."
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:669
+msgid "Start time"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:684
+msgid "End time"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:698
+msgid "Grid"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:702
+msgid "Full slot"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:703
+msgid "Hourly"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:707
+msgid "Configure repetition"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:712
+msgid "Repetition start"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:719
+msgid "Weekdays"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:723
+msgid "Monday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:724
+msgid "Tuesday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:725
+msgid "Wednesday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:726
+msgid "Thursday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:727
+msgid "Friday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:728
+msgid "Saturday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:729
+msgid "Sunday"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:733
+msgid "Repetition end"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:740
+msgid "Create Booking Codes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:752
+#: templates/booking-single.php:39
+msgid "Booking Code"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:889
+#: src/Wordpress/CustomPostType/Timeframe.php:910
+msgid "Timeframes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:890
+msgid "Timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:892
+#: src/Wordpress/CustomPostType/Timeframe.php:894
+msgid "Add new timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:893
+msgid "Edit timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:895
+msgid "Show timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:896
+msgid "Show timeframes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:897
+msgid "Search timeframes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:898
+msgid "Timeframes not found"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:899
+msgid "No timeframes found in trash"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:900
+msgid "Parent timeframes:"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:901
+msgid "All timeframes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:902
+msgid "Timeframe archive"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:903
+msgid "Timeframe attributes"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:904
+msgid "Add to timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:905
+msgid "Added to timeframe"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:906
+msgid "Timeframe image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:907
+msgid "set timeframe image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:908
+msgid "remove timeframe image"
+msgstr ""
+
+#: src/Wordpress/CustomPostType/Timeframe.php:909
+msgid "use as timeframe image"
+msgstr ""
+
+#: templates/booking-single-notallowed.php:10
+msgid "You are not allowed to access this booking."
+msgstr ""
+
+#: templates/booking-single-notallowed.php:14
+msgid "Login to your account"
+msgstr ""
+
+#: templates/booking-single.php:28
+#: templates/timeframe-calendar.php:23
+msgid "Pickup"
+msgstr ""
+
+#: templates/booking-single.php:32
+#: templates/timeframe-calendar.php:31
+msgid "Return"
+msgstr ""
+
+#: templates/booking-single.php:50
+msgid "Location: "
+msgstr ""
+
+#: templates/booking-single.php:57
+msgid "Contact"
+msgstr ""
+
+#: templates/booking-single.php:69
+msgid "Your profile"
+msgstr ""
+
+#: templates/booking-single.php:72
+msgid "Your E-Mail"
+msgstr ""
+
+#: templates/booking-single.php:76
+msgid "Your User name"
+msgstr ""
+
+#: templates/item-single.php:9
+#: templates/location-single.php:9
+msgid "This item is currently not available."
+msgstr ""
+
+#: templates/item-single.php:13
+#: templates/item-withlocation.php:17
+msgid "Book item at this location"
+msgstr ""
+
+#. translators: %1$s: wp_login_url, 1$s: wp_registration_url
+#: templates/item-single.php:37
+#: templates/location-single.php:38
+msgid "To be able to book, you must first <a href=\"%1$s\">login</a> or <a href=\"%2$s\">register as new user</a>."
+msgstr ""
+
+#: templates/location-single-meta.php:18
+msgid "Adress"
+msgstr ""
+
+#: templates/location-single-meta.php:23
+msgid "Location contact"
+msgstr ""
+
+#: templates/location-single.php:15
+msgid "Book this item"
+msgstr ""
+
+#: templates/location-withitem.php:17
+#: templates/timeframe-withitem.php:2
+#: templates/timeframe-withlocation.php:2
+msgid "Book item"
+msgstr ""
+
+#: templates/shortcode-items.php:16
+msgid "Item currently not available."
+msgstr ""
+
+#: templates/shortcode-locations.php:14
+msgid "No article available at this location."
+msgstr ""
+
+#: templates/timeframe-calendar.php:25
+msgid "Please select the pickup date in the calendar"
+msgstr ""
+
+#: templates/timeframe-calendar.php:33
+msgid "Please select the return date in the calendar"
+msgstr ""
+
+#: templates/timeframe-calendar.php:41
+msgid "Continue to booking confirmation"
+msgstr ""

@@ -12,11 +12,11 @@ shared_examples WPScan::Target::Platform::WordPress do
 
     before do
       stub_request(:get, target.url).to_return(body: File.read(fixtures.join("#{homepage}.html")))
-      stub_request(:get, ERROR_404_URL_PATTERN).to_return(body: File.read(fixtures.join("#{page_404}.html")))
+      stub_request(:get, ERROR_404_URL_PATTERN).to_return(body: File.read(fixtures.join("#{page404}.html")))
     end
 
     context 'when pattern/s in the homepage' do
-      let(:page_404) { 'not_wp' }
+      let(:page404) { 'not_wp' }
 
       %w[default wp_includes only_scripts meta_generator comments mu_plugins wp_admin wp_json_oembed].each do |file|
         context "when a wordpress page (#{file}.html)" do
@@ -35,7 +35,7 @@ shared_examples WPScan::Target::Platform::WordPress do
       context 'when pattern/s in the 404 page' do
         %w[default wp_includes only_scripts meta_generator comments mu_plugins wp_admin wp_json_oembed].each do |file|
           context "when a wordpress page (#{file}.html)" do
-            let(:page_404) { file }
+            let(:page404) { file }
 
             it 'returns true' do
               expect(subject.wordpress?(:mixed)).to be true
@@ -45,7 +45,7 @@ shared_examples WPScan::Target::Platform::WordPress do
       end
 
       context 'when no clues in the 404 page' do
-        let(:page_404) { 'not_wp' }
+        let(:page404) { 'not_wp' }
 
         context 'when only passive detection mode' do
           it 'returns false' do
@@ -238,7 +238,19 @@ shared_examples WPScan::Target::Platform::WordPress do
   end
 
   describe '#login_url' do
-    before { allow(target).to receive(:sub_dir) }
+    before do
+      allow(target).to receive(:sub_dir)
+
+      WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
+    end
+
+    let(:cli_args) { '--url https://ex.lo' }
+
+    context 'when login_uri CLI option set' do
+      let(:cli_args) { "#{super()} --login_uri other-login.php" }
+
+      its(:login_url) { should eql target.url('other-login.php') }
+    end
 
     context 'when returning a 200' do
       before { stub_request(:get, target.url('wp-login.php')).to_return(status: 200) }

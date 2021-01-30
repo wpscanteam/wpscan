@@ -8,13 +8,13 @@ module WPScan
       def cli_options
         [OptURL.new(['--url URL', 'The URL of the blog to scan'],
                     required_unless: %i[update help hh version], default_protocol: 'http')] +
-          super.drop(1) + # delete the --url from CMSScanner
+          super.drop(2) + # delete the --url and --force from CMSScanner
           [
             OptChoice.new(['--server SERVER', 'Force the supplied server module to be loaded'],
                           choices: %w[apache iis nginx],
                           normalize: %i[downcase to_sym],
                           advanced: true),
-            OptBoolean.new(['--force', 'Do not check if the target is running WordPress']),
+            OptBoolean.new(['--force', 'Do not check if the target is running WordPress or returns a 403']),
             OptBoolean.new(['--[no-]update', 'Whether or not to update the Database'])
           ]
       end
@@ -39,7 +39,7 @@ module WPScan
         output('@notice', msg: 'It seems like you have not updated the database for some time.')
         print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
 
-        /^y/i.match?(Readline.readline) ? true : false
+        /^y/i.match?(Readline.readline)
       end
 
       def update_db

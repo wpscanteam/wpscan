@@ -54,7 +54,7 @@ def rspec_parsed_options(args)
     a << WPScan::Controller.const_get(sym).new
   end
 
-  controllers.option_parser.results(args.split(' '))
+  controllers.option_parser.results(args.split)
 end
 
 # TODO: remove when https://github.com/bblimke/webmock/issues/552 fixed

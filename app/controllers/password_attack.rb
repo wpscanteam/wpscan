@@ -19,7 +19,8 @@ module WPScan
           OptChoice.new(['--password-attack ATTACK',
                          'Force the supplied attack to be used rather than automatically determining one.'],
                         choices: %w[wp-login xmlrpc xmlrpc-multicall],
-                        normalize: %i[downcase underscore to_sym])
+                        normalize: %i[downcase underscore to_sym]),
+          OptString.new(['--login-uri URI', 'The URI of the login page if different from /wp-login.php'])
         ]
       end
 

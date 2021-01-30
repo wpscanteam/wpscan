@@ -172,7 +172,7 @@ describe WPScan::Model::Plugin do
 
     after do
       expect(plugin.vulnerabilities).to eq @expected
-      expect(plugin.vulnerable?).to eql @expected.empty? ? false : true
+      expect(plugin.vulnerable?).to eql !@expected.empty?
     end
 
     context 'when plugin not in the DB' do

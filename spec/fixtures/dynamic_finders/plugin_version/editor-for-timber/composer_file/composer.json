@@ -1,0 +1,30 @@
+{
+    "name": "dweipert/timber-editor",
+    "version": "1.0.2",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "Daniel Weipert",
+            "email": "code@drogueronin.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "TimberEditor\\": "src/"
+        }
+    },
+    "archive": {
+        "exclude": [
+            "*", ".*",
+            "!/assets",
+            "!/src",
+            "!/vendor",
+            "!/composer.json",
+            "!/editor-for-timber.php",
+            "!/LICENSE", "!/readme.txt"
+        ]
+    }
+}

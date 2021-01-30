@@ -132,5 +132,19 @@ module WPScan
         }
       end
     end
+
+    class PHPDisabled < InterestingFinding
+      # @return [ String ]
+      def to_s
+        @to_s ||= 'PHP seems to be disabled'
+      end
+
+      # @return [ Hash ]
+      def references
+        @references ||= {
+          url: ['https://github.com/wpscanteam/wpscan/issues/1593']
+        }
+      end
+    end
   end
 end

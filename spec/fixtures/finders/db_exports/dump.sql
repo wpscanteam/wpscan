@@ -35,3 +35,9 @@ LOCK TABLES `wp_comments` WRITE;
 INSERT INTO `wp_comments` VALUES (1,1,'A WordPress Commenter','wapuu@wordpress.example','https://wordpress.org/','','2017-02-17 18:22:27','2017-02-17 18:22:27','Hi, this is a comment.\nTo get started with moderating, editing, and deleting comments, please visit the Comments screen in the dashboard.\nCommenter avatars come from <a href=\"https://gravatar.com\">Gravatar</a>.',0,'1','','',0,0);
 /*!40000 ALTER TABLE `wp_comments` ENABLE KEYS */;
 UNLOCK TABLES;
+
+CREATE DATABASE Sales;
+
+ALTER DATABASE Test1
+ADD FILEGROUP Test1FG1;
+GO

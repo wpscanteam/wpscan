@@ -1,0 +1,32 @@
+{
+  "name": "wp-foft-loader",
+  "version": "2.1.5",
+  "description": "This plugin implements and automates Zach Leatherman’s Critical FOFT with preload, with a polyfill fallback emulating font-display: optional to optimize and speed up webfont loading and improve UX by minimizing Flash of Invisible Text, Flash of Unstyled Text, and DOM Reflow. See [https://github.com/zachleat/web-font-loading-recipes#the-compromise-critical-foft-with-preload-with-a-polyfill-fallback-emulating-font-display-optional](https://github.com/zachleat/web-font-loading-recipes#the-compromise-critical-foft-with-preload-with-a-polyfill-fallback-emulating-font-display-optional).",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seezee/WP-FOFT-Loader.git"
+  },
+  "keywords": [
+    "font",
+    "wordpress",
+    "performance",
+    "webfont"
+  ],
+  "author": "Chris J. Zähller",
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/seezee/WP-FOFT-Loader/issues"
+  },
+  "homepage": "https://github.com/seezee/WP-FOFT-Loader#readme",
+  "dependencies": {
+    "htmlpurifier": "ezyang/htmlpurifier",
+    "CSSTidy": "Cerdic/CSSTidy",
+    "Are-you-sure": "codedance/jquery.AreYouSure"
+  },
+  "bundledDependencies": [
+    "htmlpurifier", "CSSTidy", "Are-you-sure"
+  ]
+}

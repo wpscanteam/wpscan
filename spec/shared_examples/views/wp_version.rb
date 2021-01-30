@@ -40,14 +40,14 @@ shared_examples 'App::Views::WpVersion' do
       end
 
       context 'when confirmed_by is not empty' do
-        let(:confirmed_1) do
+        let(:confirmed1) do
           v = version.dup
           v.found_by = 'Confirmed 1'
           v.interesting_entries << 'IE1'
           v
         end
 
-        let(:confirmed_2) do
+        let(:confirmed2) do
           v = version.dup
           v.found_by = 'Confirmed 2'
           v.interesting_entries << 'IE1' << 'IE2'
@@ -58,7 +58,7 @@ shared_examples 'App::Views::WpVersion' do
           let(:expected_view) { 'confirmed_one' }
 
           it 'outputs the expected string' do
-            f = WPScan::Finders::Findings.new << version << confirmed_1
+            f = WPScan::Finders::Findings.new << version << confirmed1
 
             @tpl_vars = tpl_vars.merge(version: f.first)
           end
@@ -68,7 +68,7 @@ shared_examples 'App::Views::WpVersion' do
           let(:expected_view) { 'confirmed_multiples' }
 
           it 'outputs the expected string' do
-            f = WPScan::Finders::Findings.new << version << confirmed_1 << confirmed_2
+            f = WPScan::Finders::Findings.new << version << confirmed1 << confirmed2
 
             @tpl_vars = tpl_vars.merge(version: f.first)
           end

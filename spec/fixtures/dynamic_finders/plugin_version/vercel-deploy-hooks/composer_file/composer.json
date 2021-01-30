@@ -1,0 +1,41 @@
+{
+  "name": "aderaaij/wp-vercel-deploy-hooks",
+  "version": "1.1.0",
+  "type": "wordpress-plugin",
+  "license": "GPLv3",
+  "description": "WordPress starter theme with a modern development workflow",
+  "homepage": "https://github.com/aderaaij/wp-vercel-deploy-hooks",
+  "authors": [
+    {
+      "name": "Arden de Raaij",
+      "email": "a.de.raaij@gmail.com",
+      "homepage": "https://github.com/aderaaij/"
+    }
+  ],
+  "keywords": [
+    "wordpress"
+  ],
+  "support": {
+    "issues": "https://github.com/aderaaij/wp-vercel-deploy-hooks/issues"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+  "require": {
+    "php": "^7.1"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "lint": [
+      "phpcs --ignore=index.php,vendor,resources,storage,dist --extensions=php --standard=PSR12 ."
+    ]
+  }
+}
