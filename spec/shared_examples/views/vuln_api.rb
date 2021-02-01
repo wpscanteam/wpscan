@@ -32,7 +32,7 @@ shared_examples 'App::Views::VulnApi' do
 
       it 'outputs the expected string' do
         @tpl_vars = tpl_vars.merge(
-          status: { success: true, 'plan' => 'free', 'requests_remaining' => 0 },
+          status: { 'success' => true, 'plan' => 'free', 'requests_remaining' => 0 },
           api_requests: 3
         )
       end
@@ -43,7 +43,7 @@ shared_examples 'App::Views::VulnApi' do
 
       it 'outputs the expected string' do
         @tpl_vars = tpl_vars.merge(
-          status: { success: true, 'plan' => 'paid', 'requests_remaining' => 120 },
+          status: { 'success' => true, 'plan' => 'paid', 'requests_remaining' => 120 },
           api_requests: 3
         )
       end
@@ -54,7 +54,7 @@ shared_examples 'App::Views::VulnApi' do
 
       it 'outputs the expected string' do
         @tpl_vars = tpl_vars.merge(
-          status: { success: true, 'plan' => 'enterprise', 'requests_remaining' => 'Unlimited' },
+          status: { 'success' => true, 'plan' => 'enterprise', 'requests_remaining' => 'Unlimited' },
           api_requests: 3
         )
       end
