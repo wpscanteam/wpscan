@@ -87,7 +87,7 @@ The DB is located at ~/.wpscan/db
 
 ## Vulnerability Database
 
-The WPScan CLI tool uses the [WPScan API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan](https://wpscan.com/register). Up to 50 API requests per day are given free of charge to registered users. Once the 50 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPScan](https://wpscan.com/).
+The WPScan CLI tool uses the [WPScan API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan](https://wpscan.com/register). Up to 25 API requests per day are given free of charge to registered users. Once the 25 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPScan](https://wpscan.com/).
 
 ## Load CLI options from file/s
 
