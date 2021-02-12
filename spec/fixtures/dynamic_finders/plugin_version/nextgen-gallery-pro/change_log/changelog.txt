@@ -1,0 +1,522 @@
+NextGEN Pro
+by Imagely
+
+= V3.1.7 - 01.14.2021 =
+* Fixed:   Pro Lightbox not opening via trigger icons
+* Fixed:   Removed Composer dev dependencies from build
+
+= V3.1.5 - 01.13.2021 =
+* Fixed:   Pro Lightbox not opening
+* Fixed:   Direct digital download links not working
+* Fixed:   Coupon details could not be saved or edited
+* Fixed:   Image proofs could not be submitted
+* Fixed:   PHP 8 compatibility
+
+= v3.1.2 - 11.25.2020 =
+* Fixed:   The "Search" display type could not search or tag filter using some UTF8 characters
+* Changed: Several changes have been made for future jQuery 3.5 compatibility
+
+= V3.0.18 - 08.17.2020 =
+* Fixed:   Manage Pricelist page had several features broken by the WordPress 5.5 update
+
+= v3.0.17 - 08.14.2020 =
+* Fixed:   Proofing submission and some ecommerce cart functions were broken by the WordPress 5.5 update
+
+= v3.0.16 - 08.10.2020 =
+* Fixed:   Digital downloads were being served from the 'main' rather than 'backup' image files
+* Fixed:   Hover captions are broken with WordPress 5.5's jQuery upgrade
+* Fixed:   Hover captions styling was slightly misaligned with MS Edge
+
+= v3.0.15 - 07.22.2020 =
+* NEW:     Added 'minimum relevance' setting to Search display type
+* Fixed:   "Delete pricelist" button was not working
+* Fixed:   Allow digital downloads of images to continue even if the image is deleted from NextGen as long as the file remains on the server
+* Fixed:   Bulk actions dropdown on Manage Orders didn't always appear
+* Fixed:   ECommerce setup wizard was halting at step 4
+* Fixed:   Fixed a PHP warning generated when calculating sales taxes
+* Fixed:   Hover captions would misalign Pro Tile displays
+* Fixed:   PayPal Checkout transactions failed if a coupon was applied to the cart
+* Fixed:   PayPal Checkout would not work with non-USD currencies
+* Fixed:   Pro Lightbox routing issue could cause the incorrect image to appear when loaded a second time
+* Fixed:   Pro Search's template used incorrect HTML closing tags
+* Fixed:   Search display types could not be inserted into a page when results were limited to albums that were also sub-albums to another album
+* Fixed:   The regions of France was out of date and required adjustments
+
+= v3.0.13 - 04.21.2020 =
+* Changed: Pro Lightbox will now enforce a minimum of 50% available screenpace when calculating padding
+* Fixed:   "(number) items" string in the cart sidebar was not translateable
+* Fixed:   'Open in Pro Lightbox' setting not being honored by Pro Albums
+* Fixed:   Buttons on the cart checkout page were styled incorrectly with the Photocrati theme
+* Fixed:   Cart checkout page was not showing countries in the shipping fields when using IE11
+* Fixed:   Cart sidebar would generate javascript errors when using IE11
+* Fixed:   Images with very long descriptions could not be shared to Pinterest due to URL limits
+* Fixed:   Pro Film displays were not centered
+* Fixed:   Pro Film images were not center aligned when using the Photocrati theme
+* Fixed:   Pro Lightbox was bugged when viewing the results of a Pro Search display type
+* Fixed:   Removed inline javascript from display type templates
+* Fixed:   Resetting non-ecommerce settings caused the 'studio email' field to lose its value
+* Fixed:   Stripe webhook was failing to automatically mark orders as paid while generating an error about signature verification
+* Fixed:   Trim whitespace from shipping information when validating and processing orders
+
+= v3.0.10 - 03.16.2020 =
+* NEW:     Added WP-CLI methods for viewing pricelists and orders
+* NEW:     Added frontend image search display type
+* NEW:     Added optional image title and descriptions to Pro Film displays
+* Changed: Removed use of jquery.placeholder.js as it is no longer needed
+* Fixed:   Applying an invalid coupon after a valid coupon did not remove the valid coupon from the cart
+* Fixed:   Browser validation was failing to highlight the pricelist title field when saving a pricelist without a title
+* Fixed:   Customer order confirmation page did not include the second shipping line if provided
+* Fixed:   Horizontal filmstrip carousels were appearing incorrectly when using a right-to-left language
+* Fixed:   Hover Captions did not appear correctly with the TwentyTwenty theme
+* Fixed:   Hover captions' "Titlebar" style was displaying incorrectly
+* Fixed:   Prevent Pro Albums from displaying duplicate sub-albums and galleries when more than one Pro Album display exists on a page
+* Fixed:   Pro Albums could not display albums / galleries if they included an ampersand in their title
+* Fixed:   Pro Masonry displays were not working if the WordPress provided masonry.js was enqueued
+* Fixed:   Pro Sidescroll displays could sometimes show a horizontal scrollbar
+* Fixed:   Stripe orders were not including discounts from coupons
+* Fixed:   Stripe webhook handler was not sending admin notifications when encountering errors
+* Fixed:   Twitter Cards were passing a deprecated parameter
+
+= v3.0.9 - 12.12.2019 =
+* NEW:     Added new PayPal Checkout payment gateway
+* NEW:     Added 'ngg_order_details_content' filter to control order confirmation text
+* NEW:     Added methods to WP-CLI to view and manipulate pricelists
+* Changed: Include WHCC nexus states in sales tax by default if print lab is ready
+* Changed: Increased list of WHCC nexus states from 8 to 31
+* Changed: Renamed nextgen-gallery-pro.po to nextgen-gallery-pro.pot for better Loco Translate compatibility
+* Changed: Set NGG_PRO_USE_WHCC_NEXUS to TRUE by default if print lab is ready
+* Changed: The Stripe payment gateway no longer requires manually verifying the private key provided
+* Changed: Updated basil.js used by ecommerce for cart storage
+* Changed: Updated datetimepicker.js used by the coupons admin
+* Changed: Updated pressure.js used for image protection features
+* Changed: Updated sprintf.js used by ecommerce templates
+* Changed: Updated velocity.js used by the pro lightbox to scroll the comments sidebar
+* Fixed:   Coupon codes could not be saved or edited when the site language was not English
+* Fixed:   Digital Downloads did not appear on the cart sidebar if they did not exceed minimum requirements
+* Fixed:   Hover captions sometimes caused JS errors if both image titles and descriptions were hidden
+* Fixed:   Masonry galleries could have small thumbnails along the right column with certain themes (like TwentyTwenty)
+* Fixed:   PayPal IPN events were generating multiple print lab orders
+* Fixed:   Some cart sidebar texts were not translating
+* Fixed:   Stripe checkout with free items in the cart would result in an error given to the customer
+* Fixed:   Submitting image proofs was bugged when the site language was not English
+* Fixed:   Testing keys or gateways were generating actual WHCC orders
+* Fixed:   The category dropdown when adding new pricelist items was not displaying correctly with WordPress 5.3
+* Fixed:   The shopping cart page loading-spinner appeared incorrectly with TwentyTwenty
+
+= V3.0.6 - 11.06.2019 =
+* Fixed:   Stripe orders not marked as paid automatically.
+* NOTE:    Please click "Verify Stripe Keys" in Ecommerce Options -> Payment Gateways -> Stripe
+
+= V3.0.5 - 10.15.2019 =
+* NEW:     (Optional) Free download items can now be downloaded directly from the Pro Lightbox cart sidebar
+* Changed: Made "Resize images" feature an option when selling manually fulfilled items
+* Changed: Stripe SDK has been upgraded to support 3DS. Now requires PHP 5.4.0+
+* Changed: Updated gettext PO source
+* Fixed:   Applying an invalid coupon on the cart page would display "Invalid coupon" but apply the deduction anyway on the cart page display
+* Fixed:   Irish 'Eircode' were not validating correctly
+* Fixed:   Orders consisting entirely of downloadable items were being marked 'unpaid' if processed via PayPal
+* Fixed:   Orders processed by PayPal Express were not displaying the gateway name in the "Payment Gateway" column on the View Orders page
+* Fixed:   Orders with items from more than one pricelist could have the shipping costs applied for each pricelist
+* Fixed:   Pro Tiled Gallery images sometimes had incorrect sizing and/or aspect ratios
+* Fixed:   Some PayPal Standard IPN were not being processed
+* Fixed:   Subtotal amounts were not updating on the cart page when users with coupons changed item quantities
+
+= v3.0.4 - 09.17.2019 =
+* Changed: Renamed zip to postal code (more universal)
+* Changed: Removed fullscreen button in Pro Lightbox (deprecated by browsers)
+* Fixed:   Add to cart buttons not appearing in IE Edge
+* Fixed:   Pro Lightbox urls invalid and not sharable
+* Fixed:   Do not allow items added to the cart without ecommerce requirements met
+* Fixed:   Cost of goods not formatted as currency in confirmation e-mails
+* Fixed:   CSS typo galleria.nextgen_pro_lightbox.css
+* Fixed:   Do not send emails until PayPal Standard orders are marked as paid
+
+= v3.0.1 - 09.10.2019 =
+* NEW:     Added ngg_pro_taxjar_nexus and ngg_pro_taxjar_params filters
+* NEW:     Integrated with WHCC to provide automatic print lab fulfillment
+* NEW:     Integrated with TaxJar to provide automated sales tax calculations
+* NEW:     Ecommerce setup wizard
+* NEW:     Revamped interface for managing pricelists
+* NEW:     NextGEN Pro Tile display type
+* NEW:     Integration with currency conversion service
+* NEW:     Ability to crop images at checkout
+* NEW:     Validation of ecommerce options and payment gateways
+* NEW:     When NGG_PRO_LAB_TEST_MODE constant is set to true, print lab orders will not be fulfilled
+* NEW:     Automatically retry loading dynamic thumbnail generation urls
+* Changed: Minimum version of NextGEN Gallery increased to 3.0.0
+* Changed: Order data integrity is always preserved
+* Changed: Added notices about SSL requirements
+* Changed: Test gateway will always assume that NGG_PRO_LAB_TEST_MODE is set to true
+* Fixed:   Retina images generated at appropriate size
+* Fixed:   Memory optimizations when generating images
+* Fixed:   Excessive license checks and problems with caching
+* Fixed:   PHP warning when no nav menus exist for shopping cart icon
+* Fixed:   Styling and markup tweaks for 2019 redesign
+
+
+= v2.6.12 - 03.27.2019 =
+* Changed: Sharing with Facebook is now done through /share.php instead of the old /sharer/sharer.php
+* Fixed:   Albums did not display nested sub-albums if the child albums name was an integer
+* Fixed:   Horizontal Filmstrip and Slideshow galleries failed to run if their parent container was hidden at startup
+* Fixed:   NextGen Pro's product file was causing NextGen's activation routine to run too frequently
+* Fixed:   Pro Lightbox was scrolling to the top of the page after viewing a Pro Mosaic image
+
+= v2.6.8 - 12.13.2018 =
+* Fixed:   Images "shared" to Facebook will no longer be directed to the site frontpage when visited
+* Fixed:   Stripe TLS 1.2 warnings were displaying even though the system supported TLS 1.2+
+* Fixed:   Pro Lightbox was unable to open older, "preview image" based ATP galleries
+
+= v2.6.7 - 10.09.2018 =
+* Changed: Improved quantity selectors in the Pro Lightbox ecommerce sidebar
+* Changed: Numerous phpdoc entries have been corrected
+* Changed: Pro Lightbox 'cart updated' message was moved to avoid other elements being repositioned
+* Changed: Upgraded FontAwesome to version 5
+* Fixed:   Pro Imagebrowser navigation was positioned incorrectly with RTL languages
+* Fixed:   Pro Lightbox carousel was misstyled with RTL languages
+* Fixed:   Pro Lightbox was not honoring 'Apply to all images' lightbox setting
+
+= V2.6.3 - 07.24.2018 =
+* NEW:     Added French translations
+* NEW:     Added German translations
+* NEW:     Added Slovakian translations
+* NEW:     Browsers on mobile devices can now use the Pro Lightbox open-with-cart-sidebar and open-with-comments-sidebar features
+* NEW:     Pro Masonry displays can now have proofing enabled (requires hover captions, pro lightbox)
+* NEW:     Warn admins that Stripe requires TLS 1.2 and their system is affected
+* Changed: Plugin URL in nggallery-pro.php has been updated for accuracy
+* Fixed:   Hover captions compatibility with thickbox effect
+* Fixed:   Pro Lightbox image captions were sometimes floated when sharing icons were disabled
+* Fixed:   Pro Lightbox images were not correctly centered at startup under iOS
+* Fixed:   Pro Masonry displays included a single gallery-level trigger icon that should not have been included
+
+= V2.6.0 - 05.16.2018 =
+* NEW:     Complete redesign of NextGEN Gallery backend interface
+* NEW:     Pro Lightbox option to disable carousel thumbnails
+* NEW:     Pro Lightbox uses Facebook JS SDK to generate share dialogs
+* Changed: Location of NextGen Pro Ecommerce in the main WordPress admin menu
+* Changed: Optimized Pro Lightbox for performance, especially mobile devices
+* Changed: Galleria.js upgraded to the latest version (1.5.7)
+* Fixed:   Gutenberg compatibility
+* Fixed:   Pro Lightbox sidebar overlay not being removed when comments are disabled / users must be registered
+* Fixed:   Pro Lightbox will no longer attempt to use synchronous XHR
+
+= V2.5.7 - 06.21.2017 =
+* NEW:       Added Dutch translations as provided by Frank Leenders
+* Changed:   Updated Pro Lightbox comment mechanism to use latest WP conventions
+* Changed:   Uses KSES sanitization where applicable
+* Fixed:     Pro Lightbox routing when wordpress_page_root not defined
+* Fixed:     Pricelist requires at least one item to be saved
+* Fixed:     NextGEN Widget always opens first image in Pro Lightbox
+* Fixed:     Masonry display in Twenty Seventeen has overlapping image borders
+
+= V2.5.5 - 05.23.2017 =
+* Changed:   Updated to PictureFill 3.0.2
+* Changed:   Use KSES sanitization for output of properties which allow HTML
+* Changed:   Provide the ability to reset NGG options with and without ecommerce settings
+* Changed:   Proofs sent to Ecommerce Options > Email > Order notification e-mail recipient
+* Fixed:     Ability to include html in pro thumbnail caption templates
+* Fixed:     Removed tooltip caption showing on top Pro Mosaic hover captions
+* Fixed:     Stripped certain html tags from hover caption effects
+* Fixed:     Removed use of PHP Sessions from Cheque module
+
+= V2.5.0 - 03.28.2017 =
+* NEW:       Pro Imagebrowser Gallery
+* NEW:       Template support for Pro Galleries (requires NextGEN Gallery 2.2.0 or later)
+* NEW:       Three new Pro Imagebrowser templates (requires NextGEN Gallery 2.2.0 or later)
+* NEW:       Three new Pro Thumbnail Grid templates (requires NextGEN Gallery 2.2.0 or later)
+* Changed:   Updated Imagely branding in Pro Modules
+* Changed:   Branding changes from Photocrati to Imagely
+* Changed:   Use localStorage for cart instead of cookies by default. May adjust using option.
+* Fixed:     Digital Downloads tab showing in sidebar without products added
+* Fixed:     View Cart button in Pro Lightbox not working in IE11 in certain cases  
+* Fixed:     Album setting 'Open gallery in Pro Lightbox' working on thumbnail but not title
+* Fixed:     Pro Lightbox settings to display comments and cart initially can both be selected 
+* Fixed:     Presure.js generating errors in IE11 in certain cases 
+* Fixed:     Pro Lightbox 'Localize limit' interferes with Pro Album 'Open in Lightbox' option
+* Fixed:     Ensure that modules are loaded when NGG re-activates using WordPress 4.7
+* Fixed:     Incompatibilities with Elegant Themes
+* Fixed:     Hover captions not appearing
+* Fixed:     Misalignment of images in the Pro Lightbox
+* Fixed:     Images appear as zoomed in the Pro Lightbox
+* Fixed:     Ability to use quotes in pricelist titles
+* Fixed:     Various PHP warnings and notices
+
+= V2.3.63 - 12.13.2016 =
+* NEW:       Added display type aliases to Pro display types
+* Changed:   Minimum required version of NextGEN Gallery is now 2.1.49 or higher
+* Changed:   Upgrading PHP-Parser to 2.1.0 for PHP7 compatibility for build generation
+* Fixed:     The ability to add-to-cart on devices that have both touch and mouse inputs
+* Fixed:     Conflict with Gravity Forms
+* Fixed:     Local shipping rate applied to international orders
+* Fixed:     The ability to key "k" during a Pro Sidescroll
+* Fixed:     Pagination not working with "Open gallery in Pro Lightbox" feature for albums
+
+= V2.3.61 - 11.17.2016 =
+* Fixed:     Removed experimental category support for pricelists
+
+= V2.3.60 - 11.16.2016 =
+* Fixed:     Don't double-minify static resources in gulp build script
+* Fixed:     Hover captions working on all display types
+* Fixed:     Pro lightbox not working on iOS
+* Fixed:     Scrolling not working on iOS
+* Fixed:     Long tap image protection improvements on iOS
+* Fixed:     Only show "display galleries as" option for albums when relevant
+* Fixed:     Pro Sidescroll galleries are moved offscreen until they initialize
+
+= V2.3.58 - 10.12.2016 =
+* Fixed:     Use local version of imagesloaded if not provided by WordPress for Pro Sidescroll
+
+= V2.3.56 - 10.12.2016 =
+* NEW:       Added Pro Sidescroll Gallery
+* Changed:   Now uses gulp for package compilation & JS/CSS minification
+* Changed:   Removed "by Photocrati" from plugin description
+* Changed:   Reorganized lightbox settings design to be more intuitive
+* Fixed:     Hover captions not running and/or not including image descriptions in some circumstances
+* Fixed:     Long press on mobile devices opening context menu when image protection was enabled
+* Fixed:     Pro Mosaic previously required NextGen's lightbox setting to not be "None"
+
+= V2.3.53 - 08.31.2016 =
+* NEW:     Added the ability to click on album galleries to open in Pro Lightbox
+* NEW:     Display a cart with dynamic total in menu
+* Changed: Mentions of Photocrati to Imagely
+* Fixed:   Images not responsive for all display types
+* Fixed:   Cannot save or delete pricelists using non-english languages
+* Fixed:   Long image descriptions being obscured by the Pro Lightbox sidebar
+* Fixed:   Ensure Pro albums show gallery descriptions on gallery-within-album pages
+* Fixed:   Ensure that Retina images fit within the same dimensions as non-retina images on Pro Film and Pro Album types
+* Fixed:   New pages not created in Ecommerce Options page
+
+= V2.3.48 - 08.01.2016 =
+* NEW:     Coupons and discount support
+* NEW:     Free items and $0 orders
+* NEW:     Gulp build system
+* NEW:     Added "Enable fullscreen" option to Pro Lightbox
+* NEW:     Added image thumbnail to lightbox sidebars (when browser width < 520px)
+* Changed: Increased size of Pro Lightbox sidebar
+* Changed: Pro Lightbox carousel no longer obscures the displayed image
+* Changed: Updated JustifiedGallery to 3.6.1
+* Fixed:   Display the tax on the thank you page
+* Fixed:   Dynamic ecommerce pages not being rendered correctly on home pages with no loop
+* Fixed:   Resolved all found PHP warnings/notices/deprecations and strict errors
+* Fixed:   Pro Mosaic spacing issue when margin option set to zero
+* Fixed:   Convert PayPal Express Checkout module to use curl and fsockopen directly instead of using WP HTTP classes
+* Fixed:   Display tax at PayPal Standard
+* Fixed:   PayPal IPNs not being processed correctly for PayPal Standard
+* Fixed:   PayPal Standard customer receipts have $0.00 order total
+
+= V2.3.45 - 04.26.2016 =
+- NEW:     A simple percentage tax option
+- Fixed:   Navigating to a new image in the Pro Lightbox sometimes using the prior images url when sharing to social media
+- Fixed:   Horizontal Filmstrip & Slideshow not displaying ecommerce triggers
+- Fixed:   Horizontal Filmstrip not displaying carousel thumbnails with Photocrati-theme
+- Fixed:   Display of existing orders totals, subtotals, and shipping amounts whose pricelist was edited post-purchase
+
+= V2.3.42 - 03.15.2016 =
+* Fixed:   Ensure that modules are compiled and that CSS/JS is minified
+
+= V2.3.41 - 02.29.2016 =
+* Fixed:   Pro Lightbox navigation when image protection is enabled
+
+= V2.3.40 - 02.25.2016 =
+* NEW:     Add-To-Cart and Proofing icons are added to Pro Captions
+* NEW:     Added filter "ngg_ecommerce_page_list"
+* NEW:     All Pro modules are now compiled before distribution
+* NEW:     Finnish translation (first Pro translation!)
+* NEW:     NextGen Pro Mosaic display type
+* NEW:     Pro Lightbox can be padded and toggled full-browser
+* NEW:     Pro Lightbox sets opacity through CSS class instead of inline style
+* Changed: "Lato" font is used for all parts of the ecommerce / checkout process now
+* Changed: All Pro templates now use "echo esc_attr()" instead of esc_attr_e() to avoid possible translation incompatibility
+* Changed: Digital Downloads page now hides the description column if the browser width is less than 400px
+* Changed: If the browser width is under 650px the cart & order-confirmation pages will place preview images and order description on their own rows rather than side-by-side
+* Changed: Pro Lightbox can now more efficiently initialize with large galleries
+* Changed: Pro Lightbox close-lightbox, toggle-sidebar, and toggle-carousel icons are much larger on touch devices
+* Changed: Pro Lightbox now defaults to the "white" style
+* Changed: Pro Lightbox now has its own routing code and does not rely on backbone.js. Closing the pro-lightbox no longer ends in a URL of "#"
+* Changed: Pro Lightbox sidebars are now 350px and not a variable width
+* Changed: Pro Thumbnail Grid now defaults to never displaying trigger icons
+* Changed: Removed Pro Lightbox option "touch transition effect": Galleria.js ignores this setting for touch devices if swipe is enabled.
+* Changed: Removed iframes from Pro Slideshow and Pro Horizontal Filmstrip, upgraded to Galleria 1.4.2
+* Changed: Several tweaks to the ecommerce checkout styling
+* Fixed:   Changing the orientation of Chrome on iOS will no longer result in more than one main-image being displayed at once
+* Fixed:   Comments module was generating a warning post WP 4.4
+* Fixed:   Picturefill module was not working correctly with images containing spaces in their URL
+* Fixed:   Pro Blog Gallery compatibility with TwentyFifteen theme (some attributes were not applying to the img element, our CSS needed a finer selector)
+* Fixed:   Pro Grid Album thumbnails appeared outside their container with IE-11
+* Fixed:   Pro Horizontal Filmstrip now handles mixed-height thumbnails in the carousel
+* Fixed:   Pro Lightbox comments were not linking to the origin URL correctly
+* Fixed:   Several changes were made to the Pro Lightbox to be more mobile (especially iOS 9) friendly
+* Fixed:   View Orders page compatibility with WordPress 4.4
+
+
+= V2.3.5 - 07.13.2015 =
+* Fixed:   Galleria and comments modules not updated during auto-update process
+
+= V2.3.0 - 06.22.2015 =
+* NEW:     Retina support for Pro display types
+* NEW:     Hover captions for Pro display types
+* NEW:     Breadcrumb support for Pro Albums
+* NEW:     Internationalization support
+* NEW:     Sharing images supports Twitter Card
+* NEW:     Added max height option for Pro Blog display type
+* Changed: NextGEN Pro Lightbox does not require transients
+* Changed: Significant performance improvement to NextGEN Pro Lightbox. Removed iframes.
+* Changed: Updated to the latest Stripe SDK
+* Changed: Default thumbnail dimensions for horizontal filmstrips are 120x90
+* Fixed:   jQuery explicitly marked as dependency for Masonry
+* Fixed:   Auto deactivation of NextGEN Pro when NextGEN Plus is activated
+* Fixed:   Various styling issues of NextGEN Pro Lightbox
+* Fixed:   Styling conflicts between Shopping Cart page and TwentyFifteen theme
+* Fixed:   CSS z-index issues with the Pro Lightbox
+* Fixed:   Restore scroll position after closing the Pro Lightbox in full-screen mode
+* Fixed:   Various styling improvements to the autogenerated ecommerce-related content
+* Fixed:   Display checkboxes in comment form regardless of theme
+* Fixed:   Display triggers for blog style galleries when images are a mix of landscape and portrait photos
+* Fixed:   Determine whether override image settings is enabled for blog style
+* Fixed:   Broken blog style images
+
+= V2.1.4 - 11.18.2014 =
+* Fixed:   Activating Plus doesn't deactivate Pro; fatal error
+* Fixed:   Fatal error when NextGEN Gallery is disabled
+
+= V2.1.1 - 11.17.2014 =
+* Fixed:   Fatal error when activating without NextGEN Gallery installed
+
+= V2.1 - 11.13.2014 =
+* NEW:     Added the ability to proof galleries
+* NEW:     Image protection feature to protect from theft
+* NEW:     Added Test Gateway to evaluate checkout procedure
+* NEW:     Added "Pay by Check" mechanism
+* NEW:     Added NGG_ALLOW_CROSS_ORIGIN_FRAMING constant for those that need it
+* NEW:     Added "%%file_list%%" placeholder for ecommerce-related e-mails
+* NEW:     Digital downloads are served from PHP for compatibility and security reasons
+* NEW:     Added "display cart" setting to Pro Lightbox to open sidebar automatically
+* NEW:     Ability to duplicate pricelists
+* Changed: When NextGEN Gallery 2.0.68 is installed, only enqueue static resources when needed
+* Changed: Don't enqueue scripts or styles unless we require them
+* Changed: Updated Stripe SDK to the latest version
+* Changed: Don't use SSLv3 when connecting to PayPal via cURL to avoid Poodle vulnerability
+* Changed: Default all pro display types ngg_triggers_display to 'always'
+* Fixed:   Forward-compatibility with NextGEN Gallery
+* Fixed:   Use NextGEN Gallery's version of FontAwesome
+* Fixed:   Problems with album routing
+* Fixed:   Dynamic ecommerce pages not using default is_singular page templates
+* Fixed:   Pro Lightbox not opening correctly on Firefox
+* Fixed:   Display of currency in wide variety of character sets
+* Fixed:   Ecommerce instructions should be the last item in the menu
+* Fixed:   Social sharing links of the Pro Lightbox pointed to the wrong image
+* Fixed:   Pro Lightbox performance improvements
+* Fixed:   Cart not clearing after successful checkout
+* Fixed:   Pricelists cannot be deleted, only trashed
+* Fixed:   Optimized queries related to pricelists
+* Fixed:   Use image filename as item id for PayPal Standard
+* Fixed:   Display of view licensing terms link in ecommerce sidebar
+* Fixed:   Reversed pro thumbnail grid hover effect to avoid image saturation
+* Fixed:   Correct calculation and display of order totals for international orders
+* Fixed:   Display image filename in cart
+* Fixed:   Alignment issues
+* Fixed:   Allow a shipping rate of $0
+* Fixed:   Show processing indicator when checkout button is clicked
+
+= V2.0 – 06.18.2014 =
+* NEW:     E-commerce functionality added to the Pro Lightbox
+* NEW:     Payment gateways for Stripe, PayPal Standard, and PayPal Express Checkout
+* NEW:     Forward compatibility with new lightbox manager implementation
+* Fixed:   Added notice to Roles tab about Change options capability and ecommerce
+* Fixed:   Use image filename as item number for PayPal Standard.
+* Fixed:   Masonary display type adjusted for responsiveness; no longer relies on dynamic thumbnails
+* Fixed:   Captions position issues with Horizontal Filmstrip and Slideshow display types
+
+= V1.0.17 - 04.24.2014 =
+* NEW:     NextGEN Pro will automatically deactivate if it's dependencies aren't met
+* NEW:     Compatibility fixes with WordPress 3.9
+* NEW:     Added an option to the Pro Lightbox to display captions automatically
+* NEW:     Added an option to the Pro Lightbox to open the comment/social sidebar automatically
+* NEW:     Renamed all constants to use NGG_ prefix
+* Changed: Removed double-tap capability for the Pro Lightbox in fullscreen mode
+* Changed: Adjusted the way setting parameters are passed to Galleria themes
+* Changed: Removed thumbnail_quality & thumbnail_watermark fields for all display types
+* Changed: Use FontAwesome library that is bundled with NextGEN Gallery
+* Changed: Removed obsolete CSS rules used for Jetpack compatibility
+* Changed: Removed 1px black border from images in Pro Film galleries
+* Changed: Removed backbone/underscore from Pro Lightbox scripts property
+* Changed: Use relative urls instead of absolute urls for Pro Lightbox resources
+* Fixed:   Various iOS compatibility issues
+* Fixed:   Fix size and positioning of images in Horizontal Filmstrip and Slideshow galleries
+* Fixed:   Positioning of captions for Horizontal Filmstrip and Slideshow galleries
+* Fixed:   Flickering between image transitions for Horizontal Filmstrip and Slideshow galleries
+* Fixed:   Image alignment and cropping settings for Horizontal Filmstrip and Slideshow galleries
+* Fixed:   Center Film galleries within their parent container. Remove any whitespace in the markup
+* Fixed:   Vertically-align images to the top of the image container for Grid Albums
+* Fixed:   Remove "crop" setting for Blog Style galleries
+* Fixed:   Styling of Pro List Albums
+* Fixed:   Routing conflicts for albums on the same page
+* Fixed:   Adjust position of comment toggle icon
+* Fixed:   Apply nl2br() to all gallery descriptions
+* Fixed:   Images aren't forced to be larger than their original dimensions in Blog Style galleries
+* Fixed:   Don't display PHP errors/warnings in JSON response for pre_comments AJAX action
+* Fixed:   Don't open Pro Lightbox for links that are to use ImageBrowser as the lightbox effect
+* Fixed:   Allow HTML in the Pro Lightbox for image titles & descriptions
+* Fixed:   Use original sized image when sharing an image via Facebook/OpenGraph
+* Fixed:   Provide detailed data in OpenGraph representation
+* Fixed:   OpenGraph should work with default and custom permalinks
+* Fixed:   Use correct value for Yes/No setting selections for Pro Lightbox
+* Fixed:   When opening the Pro Lightbox for a gallery using random images, display the correct image
+
+= V1.0.12 - 03.28.2014 =
+* NEW:     Added E-commerce functionality
+
+= V1.0.10 - 11.26.2013 =
+* NEW:     Pro Lightbox may be applied to non-NGG images
+* NEW:     Pro Lightbox appearance now configurable with two presets, "Light" and "Dark"
+* NEW:     Added Slideshow and Transition Speed settings for Pro Lightbox
+* NEW:     Added "faux fullscreen" mode for browsers that don't support native fullscreen
+* NEW:     Provide instructions after activation for enabling the Pro Lightbox
+* NEW:     Ability to choose display type for galleries within Pro Albums
+* NEW:     Grid albums are responsive
+* NEW:     Added NextGEN Gallery version detection for compatibility reasons
+* Changed: Auto-update modules shared across Photocrati products (NextGEN Pro + Photocrati Theme)
+* Fixed:   Addressed many performance concerns with Pro Lightbox
+* Fixed:   The ability to view galleries within albums that have numeric names
+* Fixed:   Generate thumbnails if they don't exist before trying to use them
+* Fixed:   Properly enqueue scripts/styles to avoid "did it wrong" errors from WordPress
+* Fixed:   Toggle-fullscreen button now toggles its icon-type correctly when users leave fullscreen
+* Fixed:   Slideshows/filmstrips jumping to top left corner when clicking on the image
+* Fixed:   Check existence of transient before rendering gallery
+* Fixed:   Don't apply Pro Lightbox to images that specify a non-existing target
+* Fixed:   Filmstrip captions cutting off tall images
+* Fixed:   Compatibility with third party plugins and themes that use FontAwesome
+* Fixed:   Custom CSS stylesheets are now applied to the Pro Lightbox
+* Fixed:   Pro Lightbox compatibility with Opera
+* Fixed:   Increase minimum screen size for displaying trigger buttons
+* Fixed:   Share original images with Pinterest
+* Fixed:   Lightbox conflicts with Photocrati Theme
+
+= V1.0.6 - 08.21.2013 =
+* Fixed:   Use settings class compatible with multisite
+* Fixed:   Fixed PHP notices for invalid index in wp-admin
+* Fixed:   Fixed invalid use of wp_register_script/wp_enqueue_script notices
+* Changed: Comments: return  in comment_post_redirect filter
+* Fixed:   Ensure that we don't check for updates until our check time has expired
+
+= V1.0.4 - 08.09.2013 =
+* NEW:     All Pro display types' styles can be customized by "Other Options -> Styles"
+* Changed: NextGEN Pro requires NextGEN Gallery 2.0.7 or later
+* Fixed:   Pro Slideshows and Horizontal Filmstrip are fully responsive
+* Fixed:   NextGEN Pro is loaded after NextGEN Gallery 2.0.x
+* Fixed:   Pro Lightbox CSS is compatible with many other themes
+* Fixed:   Incompatibility with WPMUDEV's Membership plugin
+* Fixed:   Fix autoupdate cache not being properly managed when the server would return 0 updates
+* Fixed:   Pro Album styling issues in some themes such as 2013
+
+= V1.0 - 07.30.2013 =
+* NEW:     Added Pro Lightbox, with social sharing and commenting functionality
+* NEW:     Added Pro Blog Style display type
+* NEW:     Added Pro Thumbnail Grid Style display type
+* NEW:     Added Pro List & Grid Album display types
+* NEW:     Added Pro Film display type
+* NEW:     Added Galleria Display Type Engine
+* NEW:     Added Pro Horizontal Filmstrip display type
+* NEW:     Added Pro Slideshow display type
+* NEW:     Added Pro Masonry display type
+* Changed: Since Beta #1, we're using a new Installer and Settings Manager implementation
+* Changed: Since Beta #1, we cache the final rendering output of display galleries
