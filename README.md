@@ -52,7 +52,7 @@ On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's Syst
 
 You can update the local database by using ```wpscan --update```
 
-Updating WPScan itself is either done via ```gem update wpscan``` or the packages manager (this is quite important for distributions such as in Kali Linux: ```apt-get update && apt-get upgrade```) depending how WPScan was (pre)installed
+Updating WPScan itself is either done via ```gem update wpscan``` or the packages manager (this is quite important for distributions such as in Kali Linux: ```apt-get update && apt-get upgrade```) depending on how WPScan was (pre)installed
 
 # Docker
 
