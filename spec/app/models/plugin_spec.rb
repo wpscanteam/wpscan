@@ -195,50 +195,108 @@ describe WPScan::Model::Plugin do
       end
 
       context 'when vulnerabilities' do
-        let(:slug)    { 'vulnerable-not-popular' }
-        let(:db_data) { vuln_api_data_for('plugins/vulnerable-not-popular') }
+        context 'when only fixed_in' do
+          let(:slug)    { 'vulnerable-not-popular' }
+          let(:db_data) { vuln_api_data_for('plugins/vulnerable-not-popular') }
 
-        let(:all_vulns) do
-          [
-            WPScan::Vulnerability.new(
-              'First Vuln <= 6.3.10 - LFI',
-              references: { wpvulndb: '1' },
-              type: 'LFI',
-              fixed_in: '6.3.10'
-            ),
-            WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: '2' })
-          ]
-        end
-
-        context 'when no plugin version' do
-          before { expect(plugin).to receive(:version).at_least(1).and_return(false) }
-
-          it 'returns all the vulnerabilities' do
-            @expected = all_vulns
-          end
-        end
-
-        context 'when plugin version' do
-          before do
-            expect(plugin)
-              .to receive(:version)
-              .at_least(1)
-              .and_return(WPScan::Model::Version.new(number))
+          let(:all_vulns) do
+            [
+              WPScan::Vulnerability.new(
+                'First Vuln <= 6.3.10 - LFI',
+                references: { wpvulndb: '1' },
+                type: 'LFI',
+                fixed_in: '6.3.10'
+              ),
+              WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: '2' })
+            ]
           end
 
-          context 'when < to a fixed_in' do
-            let(:number) { '5.0' }
+          context 'when no plugin version' do
+            before { expect(plugin).to receive(:version).at_least(1).and_return(false) }
 
-            it 'returns it' do
+            it 'returns all the vulnerabilities' do
               @expected = all_vulns
             end
           end
 
-          context 'when >= to a fixed_in' do
-            let(:number) { '6.3.10' }
+          context 'when plugin version' do
+            before do
+              expect(plugin)
+                .to receive(:version)
+                .at_least(1)
+                .and_return(WPScan::Model::Version.new(number))
+            end
 
-            it 'does not return it ' do
-              @expected = [all_vulns.last]
+            context 'when < to fixed_in' do
+              let(:number) { '5.0' }
+
+              it 'returns it' do
+                @expected = all_vulns
+              end
+            end
+
+            context 'when >= to fixed_in' do
+              let(:number) { '6.3.10' }
+
+              it 'does not return it ' do
+                @expected = [all_vulns.last]
+              end
+            end
+          end
+        end
+
+        context 'when introduced_in' do
+          let(:db_data) { vuln_api_data_for('plugins/vulnerable-introduced-in') }
+
+          let(:all_vulns) do
+            [
+              WPScan::Vulnerability.new(
+                'Introduced In 6.4',
+                fixed_in: '6.5',
+                introduced_in: '6.4',
+                references: { wpvulndb: '1' }
+              )
+            ]
+          end
+
+          context 'when no plugin version' do
+            before { expect(plugin).to receive(:version).at_least(1).and_return(false) }
+
+            it 'returns all the vulnerabilities' do
+              @expected = all_vulns
+            end
+          end
+
+          context 'when plugin version' do
+            before do
+              expect(plugin)
+                .to receive(:version)
+                .at_least(1)
+                .and_return(WPScan::Model::Version.new(number))
+            end
+
+            context 'when < to introduced_in' do
+              let(:number) { '5.0' }
+
+              it 'does not return it' do
+                @expected = []
+              end
+            end
+
+            context 'when >= to fixed_in' do
+              let(:number) { '6.5' }
+
+              it 'does not return it' do
+                @expected = []
+              end
+            end
+
+            context 'when >= to introduced_in' do
+              let(:number) { '6.4' }
+
+              it 'returns it' do
+                @expected = all_vulns
+              end
             end
           end
         end
