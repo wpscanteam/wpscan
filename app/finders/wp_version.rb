@@ -10,7 +10,7 @@ module WPScan
   module Finders
     # Specific Finders container to filter the version detected
     # and remove the one with low confidence to avoid false
-    # positive when there is not enought information to accurately
+    # positive when there is not enough information to accurately
     # determine it.
     class WpVersionFinders < UniqueFinders
       def filter_findings
