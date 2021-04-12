@@ -81697,24 +81697,27 @@ plugins:
     Readme:
       path: readme.txt
   themeisle-companion:
-    StyleComment:
-      class: BodyPattern
-      path: core/assets/css/orbit-fox-admin.css
-      pattern: !ruby/regexp /Version:\ (?<v>\d+\.[\.\d]+)/i
-      version: true
     QueryParameter:
       files:
       - obfx_modules/menu-icons/css/public.css
+      - obfx_modules/gutenberg-blocks/assets/fontawesome/css/all.min.css
+      - obfx_modules/gutenberg-blocks/assets/fontawesome/css/v4-shims.min.css
       version: true
     ChangeLog:
       class: BodyPattern
       path: CHANGELOG.md
-      pattern: !ruby/regexp /\#\#\# v?(?<v>\d+\.[\.\d]+) \- [\d\-\/]{8,}/i
+      pattern: !ruby/regexp /\#+ (?:\[Version (?<v>\d+\.[\.\d]+)\]|v?(?<v>\d+\.[\.\d]+)
+        \- [\d\-\/]{8,})/i
       version: true
     Readme:
       path:
       - readme.txt
       - readme.md
+    TranslationFile:
+      class: BodyPattern
+      path: languages/themeisle-companion.pot
+      pattern: !ruby/regexp '/Project\-Id\-Version: Orbit Fox Companion (?<v>\d+\.[\.\d]+)/i'
+      version: true
   themely-security:
     Readme:
       path: readme.txt

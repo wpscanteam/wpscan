@@ -44146,24 +44146,26 @@ plugins:
       - 'http://wp.lab/wp-content/plugins/themeid-caldera-form-to-slack/languages/caladea-slack.pot,
         Match: ''rsion: Theme.id''s Caldera Form to Slack 0.1.0'''
   themeisle-companion:
-    StyleComment:
-      number: 2.4.1
-      found_by: Style Comment (Aggressive Detection)
-      interesting_entries:
-      - 'http://wp.lab/wp-content/plugins/themeisle-companion/core/assets/css/orbit-fox-admin.css,
-        Match: ''Version: 2.4.1'''
     QueryParameter:
       number: 2.7.5
       found_by: Query Parameter (Passive Detection)
       interesting_entries:
       - http://wp.lab/wp-content/plugins/themeisle-companion/obfx_modules/menu-icons/css/public.css?ver=2.7.5
-      confidence: 10
+      - http://wp.lab/wp-content/plugins/themeisle-companion/obfx_modules/gutenberg-blocks/assets/fontawesome/css/all.min.css?ver=2.7.5
+      - http://wp.lab/wp-content/plugins/themeisle-companion/obfx_modules/gutenberg-blocks/assets/fontawesome/css/v4-shims.min.css?ver=2.7.5
+      confidence: 30
     ChangeLog:
-      number: 2.7.5
+      number: 2.10.4
       found_by: Change Log (Aggressive Detection)
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/themeisle-companion/CHANGELOG.md, Match:
-        ''### v2.7.5 - 2019-02-02'''
+        ''##### [Version 2.10.4]'''
+    TranslationFile:
+      number: 2.10.4
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/themeisle-companion/languages/themeisle-companion.pot,
+        Match: ''Project-Id-Version: Orbit Fox Companion 2.10.4'''
   themepacific-review-lite:
     TranslationFile:
       number: '1.1'
