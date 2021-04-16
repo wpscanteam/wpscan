@@ -1,0 +1,40 @@
+{
+  "name": "FourthEstate1/newswire-publsher-wordpress-plugin",
+  "description": "A base WordPress plugin library.",
+  "license": "MIT",
+  "version": "1.0",
+  "minimum-stability": "dev",
+  "type": "wordpress-plugin",
+  "homepage": "https://github.com/FourthEstate1/newswire-publsher-wordpress-plugin",
+  "authors": [
+    {
+      "name": "example",
+      "email": "example@example.com",
+      "homepage": "https://www.example.com/"
+    }
+  ],
+  "support": {
+    "issues": "https://example.com/issues",
+    "source": "https://github.com/FourthEstate1/newswire-publsher-wordpress-plugin"
+  },
+  "require": {
+    "php": ">=5.4.0",
+    "psr/container": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*@stable"
+  },
+  "autoload": {
+    "psr-4": {
+      "FourthEstate1\\newswire\\publsher\\wordpress\\plugin\\": "/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FourthEstate1\\newswire\\publsher\\wordpress\\plugin\\": "/"
+    }
+  },
+  "scripts": {
+    "test": "./vendor/bin/phpunit --coverage-html coverage"
+  }
+}
