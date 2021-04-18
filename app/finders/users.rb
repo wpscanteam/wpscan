@@ -11,6 +11,16 @@ require_relative 'users/yoast_seo_author_sitemap'
 
 module WPScan
   module Finders
+    # Specific Finders container to filter the usernames found
+    # and remove the ones matching ParsedCli.exclude_username if supplied
+    class UsersFinders < SameTypeFinders
+      def filter_findings
+        findings.delete_if { |user| ParsedCli.exclude_usernames.match?(user.username) } if ParsedCli.exclude_usernames
+
+        findings
+      end
+    end
+
     module Users
       # Users Finder
       class Base
@@ -27,6 +37,10 @@ module WPScan
             Users::YoastSeoAuthorSitemap.new(target) <<
             Users::AuthorIdBruteForcing.new(target) <<
             Users::LoginErrorMessages.new(target)
+        end
+
+        def finders
+          @finders ||= Finders::UsersFinders.new
         end
       end
     end

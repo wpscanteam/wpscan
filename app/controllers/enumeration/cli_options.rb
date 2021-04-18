@@ -170,6 +170,12 @@ module WPScan
             ['--users-detection MODE',
              'Use the supplied mode to enumerate Users, instead of the global (--detection-mode) mode.'],
             choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
+          ),
+          OptRegexp.new(
+            [
+              '--exclude-usernames REGEXP_OR_STRING',
+              'Exclude usernames matching the Regexp/string (case insensitive). Regexp delimiters are not required.'
+            ], options: Regexp::IGNORECASE
           )
         ]
       end

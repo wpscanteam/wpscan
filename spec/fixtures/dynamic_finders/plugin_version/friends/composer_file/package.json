@@ -1,0 +1,25 @@
+{
+	"name": "Friends",
+	"version": "1.5.4",
+	"private": true,
+	"description": "Blocks of the Friends Plugin for WordPress",
+	"homepage": "https://wpfriends.at/",
+	"repository": "git+https://github.com/akirk/friends.git",
+	"author": "Alex Kirk",
+	"license": "GPL-2.0-or-later",
+	"keywords": [],
+	"devDependencies": {
+		"@wordpress/scripts": "^14.0.0",
+		"lerna": "^3.20.2",
+		"spectre.css": "^0.5.9"
+	},
+	"scripts": {
+		"build": "lerna run build",
+		"lint:js": "lerna run lint:js",
+		"lint:pkg-json": "wp-scripts lint-pkg-json ./package.json ./blocks/*/package.json",
+		"format:js": "wp-scripts format-js",
+		"lint:js:fix": "npm run lint:js -- --fix",
+		"test": "wp-scripts test-unit-js",
+		"packages-update": "wp-scripts packages-update"
+	}
+}

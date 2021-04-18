@@ -52,7 +52,7 @@ On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's Syst
 
 You can update the local database by using ```wpscan --update```
 
-Updating WPScan itself is either done via ```gem update wpscan``` or the packages manager (this is quite important for distributions such as in Kali Linux: ```apt-get update && apt-get upgrade```) depending how WPScan was (pre)installed
+Updating WPScan itself is either done via ```gem update wpscan``` or the packages manager (this is quite important for distributions such as in Kali Linux: ```apt-get update && apt-get upgrade```) depending on how WPScan was (pre)installed
 
 # Docker
 
@@ -85,9 +85,19 @@ For more options, open a terminal and type ```wpscan --help``` (if you built wps
 
 The DB is located at ~/.wpscan/db
 
-## Vulnerability Database
+## Optional: WordPress Vulnerability Database API
 
-The WPScan CLI tool uses the [WPScan API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan](https://wpscan.com/register). Up to 50 API requests per day are given free of charge to registered users. Once the 50 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPScan](https://wpscan.com/).
+The WPScan CLI tool uses the [WordPress Vulnerability Database API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan.com](https://wpscan.com/register).
+
+Up to 25 API requests per day are given free of charge, that should be suitable to scan most WordPress websites at least once per day. When the daily 25 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPScan.com](https://wpscan.com/).
+
+#### The Free plan allows 25 API requests per day. View the different [available API plans](https://wpscan.com/api).
+
+### How many API requests do you need?
+
+- Our WordPress scanner makes one API request for the WordPress version, one request per installed plugin and one request per installed theme.
+- On average, a WordPress website has 22 installed plugins.
+- The Free plan should cover around 50% of all WordPress websites.
 
 ## Load CLI options from file/s
 

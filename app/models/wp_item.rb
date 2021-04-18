@@ -53,7 +53,9 @@ module WPScan
       #
       # @return [ Boolean ]
       def vulnerable_to?(vuln)
-        return true unless version && vuln && vuln.fixed_in && !vuln.fixed_in.empty?
+        return false if version && vuln&.introduced_in && version < vuln.introduced_in
+
+        return true unless version && vuln&.fixed_in && !vuln.fixed_in.empty?
 
         version < vuln.fixed_in
       end
