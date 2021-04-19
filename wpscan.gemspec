@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.require_paths         = ['lib']
 
   s.add_dependency 'cms_scanner', '~> 0.13.3'
-  s.add_dependency 'ethon', '< 0.13.0' # See https://github.com/typhoeus/ethon/issues/185
+  s.add_dependency 'ethon', '< 0.14.0' # See https://github.com/typhoeus/ethon/issues/185
 
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 1.0.0'
