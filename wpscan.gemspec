@@ -9,7 +9,6 @@ Gem::Specification.new do |s|
   s.platform              = Gem::Platform::RUBY
   s.required_ruby_version = '>= 2.5'
   s.authors               = ['WPScanTeam']
-  s.date                  = Time.now.utc.strftime('%Y-%m-%d')
   s.email                 = ['contact@wpscan.com']
   s.summary               = 'WPScan - WordPress Vulnerability Scanner'
   s.description           = 'WPScan is a black box WordPress vulnerability scanner.'
@@ -21,8 +20,7 @@ Gem::Specification.new do |s|
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.13.3'
-  s.add_dependency 'ethon', '< 0.13.0' # See https://github.com/typhoeus/ethon/issues/185
+  s.add_dependency 'cms_scanner', '~> 0.13.4'
 
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 1.0.0'
