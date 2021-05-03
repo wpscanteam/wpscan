@@ -39,8 +39,7 @@ module WPScan
         #
         # @return [ Hash ]
         def potential_urls(opts = {})
-          urls        = {}
-          domain_name = (PublicSuffix.domain(target.uri.host) || target.uri.host)[/(^[\w|-]+)/, 1]
+          urls = {}
 
           File.open(opts[:list]).each_with_index do |path, index|
             path.gsub!('{domain_name}', domain_name)
@@ -49,6 +48,14 @@ module WPScan
           end
 
           urls
+        end
+
+        def domain_name
+          @domain_name ||= if Resolv::AddressRegex.match?(target.uri.host)
+                             target.uri.host
+                           else
+                             (PublicSuffix.domain(target.uri.host) || target.uri.host)[/(^[\w|-]+)/, 1]
+                           end
         end
 
         def create_progress_bar(opts = {})

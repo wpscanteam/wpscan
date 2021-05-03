@@ -64,6 +64,14 @@ describe WPScan::Finders::DbExports::KnownLocations do
         expect(finder.potential_urls(opts).keys).to include "#{url}/dc-2.sql"
       end
     end
+
+    context 'when an IP address' do
+      let(:url) { 'http://192.168.1.12' }
+
+      it 'replaces {domain_name} by the IP address' do
+        expect(finder.potential_urls(opts).keys).to include "#{url}/192.168.1.12.sql"
+      end
+    end
   end
 
   describe '#aggressive' do
