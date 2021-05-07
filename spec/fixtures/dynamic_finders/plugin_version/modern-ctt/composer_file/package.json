@@ -1,0 +1,26 @@
+{
+	"name": "modern-click-to-tweet",
+	"version": "1.0.0",
+	"description": "Adds a beautiful (and customizable) Click to Tweet block to maximize content sharing on Twitter.",
+	"author": "vincentdubroeucq",
+	"license": "GPL-3.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format:js": "wp-scripts format-js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start",
+		"make-pot": "wp i18n make-pot . languages/modern-ctt.pot --exclude=src/*",
+		"make-json": "wp i18n make-json languages/ --no-purge",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^5.2.9",
+		"@wordpress/blocks": "^7.0.5",
+		"@wordpress/i18n": "^3.18.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^13.0.3"
+	}
+}
