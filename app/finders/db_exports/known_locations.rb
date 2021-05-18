@@ -40,11 +40,24 @@ module WPScan
         # @return [ Hash ]
         def potential_urls(opts = {})
           urls = {}
+          index = 0
 
-          File.open(opts[:list]).each_with_index do |path, index|
-            path.gsub!('{domain_name}', domain_name)
+          File.open(opts[:list]).each do |path|
+            path.chomp!
 
-            urls[target.url(path.chomp)] = index
+            if path.include?('{domain_name}')
+              urls[target.url(path.gsub('{domain_name}', domain_name))] = index
+
+              if domain_name != domain_name_with_sub
+                urls[target.url(path.gsub('{domain_name}', domain_name_with_sub))] = index + 1
+
+                index += 1
+              end
+            else
+              urls[target.url(path)] = index
+            end
+
+            index += 1
           end
 
           urls
@@ -56,6 +69,25 @@ module WPScan
                            else
                              (PublicSuffix.domain(target.uri.host) || target.uri.host)[/(^[\w|-]+)/, 1]
                            end
+        end
+
+        def domain_name_with_sub
+          @domain_name_with_sub ||=
+            if Resolv::AddressRegex.match?(target.uri.host)
+              target.uri.host
+            else
+              parsed = PublicSuffix.parse(target.uri.host)
+
+              if parsed.subdomain
+                parsed.subdomain.gsub(".#{parsed.tld}", '')
+              elsif parsed.domain
+                parsed.domain.gsub(".#{parsed.tld}", '')
+              else
+                target.uri.host
+              end
+            end
+        rescue PublicSuffix::DomainNotAllowed
+          @domain_name_with_sub = target.uri.host
         end
 
         def create_progress_bar(opts = {})
