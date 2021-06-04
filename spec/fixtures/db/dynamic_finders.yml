@@ -350,6 +350,14 @@ plugins:
   2bc-image-gallery:
     Readme:
       path: readme.txt
+  2checkout:
+    QueryParameter:
+      files:
+      - assets/css/front.css
+      - assets/js/front.js
+      version: true
+    Readme:
+      path: readme.txt
   2d-barcodes:
     Readme:
       path: readme.txt
@@ -525,6 +533,9 @@ plugins:
     Readme:
       path: readme.txt
   3d-webviewer-by-arty:
+    Readme:
+      path: README.txt
+  3d-xr-library:
     Readme:
       path: README.txt
   3dhubs:
@@ -839,6 +850,13 @@ plugins:
       path: languages/a-z-listing.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: A\-Z Listing (?<v>\d+\.[\.\d]+)/i'
       version: true
+  a11y-kit:
+    QueryParameter:
+      files:
+      - public/css/a11y-kit-public.css
+      version: true
+    Readme:
+      path: README.txt
   a2-optimized-wp:
     Readme:
       path: readme.txt
@@ -1162,6 +1180,9 @@ plugins:
   accept-disclaimer-overlayer:
     Readme:
       path: readme.txt
+  accept-donations-with-custom-amount:
+    Readme:
+      path: README.txt
   accept-qpay-payments-using-contact-form-7:
     TranslationFile:
       class: BodyPattern
@@ -1386,6 +1407,9 @@ plugins:
       version: true
     Readme:
       path: readme.txt
+  accordion-awesome:
+    Readme:
+      path: README.txt
   accordion-blocks:
     QueryParameter:
       files:
@@ -1878,6 +1902,11 @@ plugins:
   action-scheduler:
     Readme:
       path: readme.txt
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/
+      version: true
   activate-update-services:
     Readme:
       path: README.txt
@@ -1994,9 +2023,13 @@ plugins:
       - assets/js/select2.min.js
       - assets/js/slick.min.js
       - assets/js/activityhub.min.js
+      - assets/css/fieldday.min.css
+      - assets/js/fieldday.min.js
       version: true
     Readme:
-      path: README.txt
+      path:
+      - README.txt
+      - README.md
   activitysparks:
     Readme:
       path: readme.txt
@@ -2173,6 +2206,9 @@ plugins:
       path: CHANGELOG.txt
       pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/i
       version: true
+  adaptive-login-action:
+    Readme:
+      path: readme.txt
   adatosystems-friday-zmanim:
     Readme:
       path: readme.txt
@@ -4584,6 +4620,14 @@ plugins:
   affylite:
     Readme:
       path: readme.txt
+  afi-to-integrations:
+    Readme:
+      path: readme.txt
+    ChangeLog:
+      class: BodyPattern
+      path: changelog.txt
+      pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
+      version: true
   aforms-form-builder-for-price-calculator-cost-estimation:
     Readme:
       path: readme.txt
@@ -5686,6 +5730,20 @@ plugins:
   alpha-cache:
     Readme:
       path: readme.txt
+  alpha-google-map-for-elementor:
+    QueryParameter:
+      files:
+      - assets/css/alpha-map-widget.css
+      - assets/js/pa-maps-finder.js
+      - assets/js/alpha-map.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/alpha-google-map-for-elementor.pot
+      pattern: !ruby/regexp '/Version: Alpha Google Map For Elementor (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    Readme:
+      path: readme.txt
   alpha-testimonials:
     QueryParameter:
       files:
@@ -6068,6 +6126,9 @@ plugins:
       - public/css/ampnonampads-public.css
       - public/js/ampnonampads-public.js
       version: true
+  amp-plus:
+    Readme:
+      path: readme.txt
   amp-sidebar-chooser:
     Readme:
       path: readme.txt
@@ -6436,6 +6497,9 @@ plugins:
   anppopular-post:
     Readme:
       path: readme.txt
+  anrghg:
+    Readme:
+      path: readme.txt
   ansar-import:
     Readme:
       path: readme.txt
@@ -6570,6 +6634,11 @@ plugins:
       version: true
     Readme:
       path: readme.txt
+  anyday-woocommerce:
+    Readme:
+      path:
+      - readme.txt
+      - README.md
   anyfonttitle:
     Readme:
       path: readme.txt
@@ -8805,6 +8874,9 @@ plugins:
     Readme:
       path: README.txt
   autoglasscrm-quote-request:
+    Readme:
+      path: readme.txt
+  autohan:
     Readme:
       path: readme.txt
   autoin-jp:
@@ -11694,6 +11766,9 @@ plugins:
   better-recent-drafts:
     Readme:
       path: readme.txt
+  better-redirects-for-gravity-forms:
+    Readme:
+      path: README.txt
   better-reply:
     Readme:
       path: readme.txt
@@ -12385,6 +12460,14 @@ plugins:
   bitcoin-payments-by-chainside-net-for-woocommerce:
     Readme:
       path: readme.txt
+  bitform:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/bitform.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: BitForm (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    Readme:
+      path: readme.txt
   bitlet-plugin:
     Readme:
       path: README.txt
@@ -13025,6 +13108,9 @@ plugins:
   blog-introduction:
     Readme:
       path: readme.txt
+  blog-layout-design:
+    Readme:
+      path: README.txt
   blog-layouts:
     Readme:
       path: readme.txt
@@ -19155,6 +19241,14 @@ plugins:
       path:
       - README.md
       - README.txt
+  charts-blocks:
+    Readme:
+      path: readme.txt
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
   charts-ninja-graphs-and-charts:
     Readme:
       path: readme.txt
@@ -20546,7 +20640,14 @@ plugins:
       path: readme.txt
   clone-posts:
     Readme:
-      path: readme.txt
+      path:
+      - readme.txt
+      - README.txt
+    QueryParameter:
+      files:
+      - public/css/clone-posts-public.css
+      - public/js/clone-posts-public.js
+      version: true
   clone-replace:
     Readme:
       path: readme.txt
@@ -20689,10 +20790,16 @@ plugins:
   cm-ad-changer:
     Readme:
       path: readme.txt
+  cm-business-directory:
+    Readme:
+      path: readme.txt
   cm-curated-list-manager:
     Readme:
       path: readme.txt
   cm-email-blacklist:
+    Readme:
+      path: readme.txt
+  cm-faq:
     Readme:
       path: readme.txt
   cm-header-footer-script-loader:
@@ -25095,6 +25202,9 @@ plugins:
       version: true
     Readme:
       path: README.txt
+  ctc-social-sharing:
+    Readme:
+      path: readme.txt
   ctcl-image-gallery:
     Readme:
       path: readme.txt
@@ -27426,7 +27536,9 @@ plugins:
       pattern: !ruby/regexp '/roject\-Id\-Version: deAU API Plugin Pot v(?<v>\d+\.[\.\d]+)/i'
       version: true
     Readme:
-      path: readme.txt
+      path:
+      - readme.txt
+      - README.md
   debatemaster:
     Readme:
       path: readme.txt
@@ -28061,6 +28173,9 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^= (?<v>\d+\.[\.\d]+)/
       version: true
+  denglu1:
+    Readme:
+      path: readme.txt
   denovi:
     Readme:
       path: readme.txt
@@ -29660,6 +29775,11 @@ plugins:
   dn-footer-contacts:
     Readme:
       path: readme.txt
+    TranslationFile:
+      class: BodyPattern
+      path: languages/dn-footer-contacts-it_IT.po
+      pattern: !ruby/regexp '/Project\-Id\-Version: Shopping discounts v(?<v>\d+\.[\.\d]+)/i'
+      version: true
   dn-popup:
     Readme:
       path: readme.txt
@@ -31998,6 +32118,9 @@ plugins:
   easy-prayer:
     Readme:
       path: readme.txt
+  easy-price-calculator:
+    Readme:
+      path: readme.txt
   easy-pricing-table-manager:
     TranslationFile:
       class: BodyPattern
@@ -32780,6 +32903,9 @@ plugins:
       pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
   eco-agenda:
+    Readme:
+      path: readme.txt
+  ecomail:
     Readme:
       path: readme.txt
   ecommerce-addon:
@@ -37642,6 +37768,9 @@ plugins:
   feather-login-page:
     Readme:
       path: readme.txt
+  feature-box:
+    Readme:
+      path: readme.txt
   feature-box-addon-for-wpbakery-page-builder:
     Readme:
       path: readme.txt
@@ -39587,6 +39716,17 @@ plugins:
   flynsarmy-iframe-shortcode:
     Readme:
       path: readme.txt
+  flyout-menu-awesome:
+    QueryParameter:
+      files:
+      - public/css/flyout-menu-awesome-public.css
+      - public/js/modernizr-flyout-awesome.js
+      - public/js/classie.js
+      - public/js/wpmenujs.js
+      - public/js/flyout-menu-awesome-public.js
+      version: true
+    Readme:
+      path: README.txt
   flytedesk-digital:
     QueryParameter:
       files:
@@ -41826,6 +41966,9 @@ plugins:
   gamipress-memberpress-integration:
     Readme:
       path: readme.txt
+  gamipress-modern-events-calendar-integration:
+    Readme:
+      path: readme.txt
   gamipress-paid-memberships-pro-integration:
     Readme:
       path: readme.txt
@@ -42911,6 +43054,9 @@ plugins:
       - assets/pagecount.min.js
       version: true
   getshop-ecommerce:
+    Readme:
+      path: readme.txt
+  getsoapy:
     Readme:
       path: readme.txt
   getsocial:
@@ -44528,6 +44674,9 @@ plugins:
       version: true
     Readme:
       path: README.md
+  gosign-logo-slider-block:
+    Readme:
+      path: README.md
   gosign-masonry-post-block:
     ComposerFile:
       class: ConfigParser
@@ -44569,6 +44718,9 @@ plugins:
       path: package.json
       key: version
       version: true
+  gosign-readmore-toggle-text-block:
+    Readme:
+      path: README.md
   gosign-simple-teaser-block:
     ComposerFile:
       class: ConfigParser
@@ -46493,6 +46645,9 @@ plugins:
   headjs-loader:
     Readme:
       path: readme.txt
+  headless-single-sign-on:
+    Readme:
+      path: readme.txt
   headless-wp:
     Readme:
       path: README.txt
@@ -46557,6 +46712,13 @@ plugins:
     Readme:
       path: readme.txt
   hear-no-evil:
+    Readme:
+      path: readme.txt
+  hearken:
+    QueryParameter:
+      files:
+      - public/css/hearken-public.css
+      version: true
     Readme:
       path: readme.txt
   heart-this:
@@ -46925,6 +47087,9 @@ plugins:
   hhd-flatsome-vertical-menu:
     Readme:
       path: readme.txt
+  hi-fcm-firebase-cloud-messaging:
+    Readme:
+      path: readme.txt
   hicopy:
     Readme:
       path: readme.txt
@@ -47093,6 +47258,9 @@ plugins:
       path: langs/hide_login_logo-en_CA.po
       pattern: !ruby/regexp '/Project\-Id\-Version: Stronger Admin Bar v(?<v>\d+\.[\.\d]+)/i'
       version: true
+  hide-my-elementor:
+    Readme:
+      path: readme.txt
   hide-my-site:
     Readme:
       path: readme.txt
@@ -48899,6 +49067,9 @@ plugins:
   identity-plus:
     Readme:
       path: readme.txt
+  ideta-livechat-chatbot:
+    Readme:
+      path: README.txt
   idn-ajax-workaround:
     Readme:
       path: readme.txt
@@ -49719,6 +49890,9 @@ plugins:
   imandrod:
     Readme:
       path: readme.txt
+  imaq-core:
+    Readme:
+      path: readme.txt
   imasters-report:
     Readme:
       path: readme.txt
@@ -50099,6 +50273,13 @@ plugins:
       files:
       - assets/css/font-awesome.min.css
       - assets/css/ibwp-public.css
+      version: true
+    Readme:
+      path: readme.txt
+  inbox-forms:
+    QueryParameter:
+      files:
+      - assets/dist/js/inbox.js
       version: true
     Readme:
       path: readme.txt
@@ -51443,6 +51624,9 @@ plugins:
     Readme:
       path: readme.txt
   invoice-king-pro:
+    Readme:
+      path: readme.txt
+  invoice-payment-gateway-for-woocommerce:
     Readme:
       path: readme.txt
   invoice-system-for-woocommerce:
@@ -53773,6 +53957,9 @@ plugins:
       - assets/css/ksd-public.css
       - assets/js/ksd-public.js
       version: true
+  kapow-image-recommendation:
+    Readme:
+      path: README.txt
   karailievs-sitemap:
     Readme:
       path: readme.txt
@@ -54295,6 +54482,13 @@ plugins:
       - public/css/kiip-for-wordpress-public.css
       - public/js/kiip-for-wordpress-public-contained.js
       version: true
+  kiko-bot:
+    QueryParameter:
+      files:
+      - assets/css/app.css
+      version: true
+    Readme:
+      path: readme.txt
   kikushima-jobs:
     TranslationFile:
       class: BodyPattern
@@ -56279,6 +56473,9 @@ plugins:
   lh-copy-media-file:
     Readme:
       path: readme.txt
+  lh-css-dates-and-times:
+    Readme:
+      path: readme.txt
   lh-dequeue-buddypress:
     Readme:
       path: readme.txt
@@ -56306,6 +56503,9 @@ plugins:
     Readme:
       path: readme.txt
   lh-inclusive-private-pages:
+    Readme:
+      path: readme.txt
+  lh-log-sql-queries-to-file:
     Readme:
       path: readme.txt
   lh-logged-in-post-status:
@@ -57956,6 +58156,14 @@ plugins:
     Readme:
       path: readme.txt
   lockdown-wp-admin:
+    Readme:
+      path: readme.txt
+  locked-payment-methods-for-woocommerce:
+    TranslationFile:
+      class: BodyPattern
+      path: src/languages/locked-payment-methods-for-woocommerce.pot
+      pattern: !ruby/regexp /Locked Payment Methods for WooCommerce (?<v>\d+\.[\.\d]+)/i
+      version: true
     Readme:
       path: readme.txt
   lockerpress-wordpress-security:
@@ -60124,6 +60332,9 @@ plugins:
       files:
       - assets/js/marker-animation.min.js
       version: true
+  marker-io:
+    Readme:
+      path: readme.txt
   marketing-360-payments-for-gravity-forms:
     Readme:
       path: readme.txt
@@ -61897,6 +62108,9 @@ plugins:
       path: changelog.txt
       pattern: !ruby/regexp /^=+ (?<v>\d+\.[\.\d]+)(?!.*=+ \d+\.[\.\d]+)/mi
       version: true
+  moceanapi-abandoned-carts:
+    Readme:
+      path: readme.txt
   mockups:
     Readme:
       path: readme.txt
@@ -62064,6 +62278,11 @@ plugins:
       version: true
     Readme:
       path: readme.txt
+    QueryParameter:
+      files:
+      - public/css/mojito-shipping-public.css
+      - public/js/mojito-shipping-public.js
+      version: true
   mojito-sinpe:
     Readme:
       path: readme.txt
@@ -63614,6 +63833,21 @@ plugins:
   nav-menu-roles:
     Readme:
       path: readme.txt
+  navarak-code-highlighter:
+    QueryParameter:
+      files:
+      - public/css/navarak-code-highlighter-public.css
+      - public/css/highlightjs/darcula.css
+      - public/js/highlight.pack.js
+      - public/js/navarak-code-highlighter-public.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/navarak-code-highlighter-fa_IR.po
+      pattern: !ruby/regexp '/ct\-Id\-Version: Navarak Code Highlighter (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    Readme:
+      path: README.txt
   naver-map:
     QueryParameter:
       files:
@@ -64566,6 +64800,9 @@ plugins:
   no-gutenberg:
     Readme:
       path: readme.txt
+  no-js-social-sharing:
+    Readme:
+      path: readme.txt
   no-page-comment:
     Readme:
       path: readme.txt
@@ -64633,6 +64870,9 @@ plugins:
     Readme:
       path: readme.txt
   non-latin-attachments:
+    Readme:
+      path: readme.txt
+  noncensible:
     Readme:
       path: readme.txt
   nooz:
@@ -69960,7 +70200,11 @@ plugins:
       files:
       - inc/frontend/css/prwirepro-press_release_editor-frontend.css
       - inc/frontend/js/prwirepro-press_release_editor-frontend.js
+      - assets/css/pressreleaseeditor_main.css
+      - assets/js/pressreleaseeditor_main.js
       version: true
+    Readme:
+      path: readme.txt
   press-release-distribution:
     QueryParameter:
       files:
@@ -69998,7 +70242,11 @@ plugins:
       files:
       - inc/frontend/css/prwirepro-press_release_writer-frontend.css
       - inc/frontend/js/prwirepro-press_release_writer-frontend.js
+      - assets/css/prwireprowriter_main.css
+      - assets/js/prwireprowriter_main.js
       version: true
+    Readme:
+      path: readme.txt
   press-search:
     QueryParameter:
       files:
@@ -70381,6 +70629,21 @@ plugins:
   product-barcode-generator:
     Readme:
       path: README.txt
+  product-base-order-for-woocommerce:
+    QueryParameter:
+      files:
+      - assets/css/product-base-order-wc-style.css
+      - assets/vendors/data-table/jquery.dataTables.css
+      - assets/js/product-base-order-wc.js
+      - assets/vendors/data-table/jquery.dataTables.js
+      version: true
+    TranslationFile:
+      class: BodyPattern
+      path: languages/product-base-order-for-woocommerce.pot
+      pattern: !ruby/regexp '/ion: Product Base Order for WooCommerce (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    Readme:
+      path: readme.txt
   product-blocks:
     Readme:
       path: readme.txt
@@ -70594,6 +70857,9 @@ plugins:
     Readme:
       path: readme.txt
   product-videos-for-woocommerce:
+    Readme:
+      path: readme.txt
+  product-watcher:
     Readme:
       path: readme.txt
   productdyno:
@@ -72566,6 +72832,9 @@ plugins:
       - style/recently.css
       version: true
   recently-purchased-product-list-for-woocommerce:
+    Readme:
+      path: readme.txt
+  recently-purchased-products-for-woo:
     Readme:
       path: readme.txt
   recentnews-shortcode:
@@ -75061,6 +75330,15 @@ plugins:
   sanitize-db:
     Readme:
       path: readme.txt
+  sanremo-trails:
+    QueryParameter:
+      files:
+      - public/css/sanremo-trails-public.css
+      - style.css
+      - public/js/sanremo-trails-public.js
+      version: true
+    Readme:
+      path: README.txt
   santas-christmas-countdown:
     Readme:
       path: readme.txt
@@ -75465,6 +75743,9 @@ plugins:
   screenshot-to-media:
     Readme:
       path: readme.txt
+  scribable:
+    Readme:
+      path: README.md
   script-planner:
     Readme:
       path: readme.txt
@@ -76406,6 +76687,14 @@ plugins:
   seraphconsulting-monitor:
     Readme:
       path: readme.txt
+  seraphinite-accelerator:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/seraphinite-accelerator-admin.pot
+      pattern: !ruby/regexp '/ect\-Id\-Version: seraphinite\-accelerator (?<v>\d+\.[\.\d]+)/i'
+      version: true
+    Readme:
+      path: readme.txt
   serbian-dinar-exchange-rates:
     Readme:
       path: readme.txt
@@ -76623,6 +76912,9 @@ plugins:
   sg-checkout-location-picker:
     Readme:
       path: README.txt
+  sg-security:
+    Readme:
+      path: readme.txt
   sgs-social-sharing-buttons:
     Readme:
       path: readme.txt
@@ -76949,6 +77241,9 @@ plugins:
   shipment-tracker-for-woocommerce:
     Readme:
       path: README.txt
+  shipox-for-woocommerce:
+    Readme:
+      path: readme.txt
   shipped-order-in-woo:
     Readme:
       path: readme.txt
@@ -77330,6 +77625,9 @@ plugins:
       files:
       - ostlightbox/js/ostlightbox.js
       version: true
+  show-post-latest-by-category:
+    Readme:
+      path: readme.txt
   show-posts:
     QueryParameter:
       files:
@@ -79730,6 +80028,9 @@ plugins:
   smoothbook:
     Readme:
       path: readme.txt
+  smoove-abandoned-cart-trigger-for-woocommerce:
+    Readme:
+      path: readme.txt
   sms-for-woocommerce:
     QueryParameter:
       files:
@@ -80043,6 +80344,9 @@ plugins:
   social-media-posting-by-groost:
     Readme:
       path: readme.txt
+  social-media-publish:
+    Readme:
+      path: README.txt
   social-media-share-and-widget:
     Readme:
       path: readme.txt
@@ -80455,6 +80759,14 @@ plugins:
       path: languages/sophia-post-to-twitter.pot
       pattern: !ruby/regexp '/ct\-Id\-Version: Sophia Twitter Auto Post (?<v>\d+\.[\.\d]+)/i'
       version: true
+  sopro:
+    QueryParameter:
+      files:
+      - public/css/sopro-plugin-public.css
+      - public/js/sopro-plugin-public.js
+      version: true
+    Readme:
+      path: README.txt
   sorsawodigital-edd-bank-transfer:
     Readme:
       path: readme.txt
@@ -81460,6 +81772,14 @@ plugins:
   sticky-header-effects-for-elementor:
     Readme:
       path: readme.txt
+  sticky-header-on-scroll:
+    QueryParameter:
+      files:
+      - public/css/sticky-header-on-scroll-public.css
+      - public/js/sticky-header-on-scroll-public.js
+      version: true
+    Readme:
+      path: README.txt
   sticky-menu-or-anything-on-scroll:
     QueryParameter:
       files:
@@ -82227,6 +82547,14 @@ plugins:
       path: languages/support-hero.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: Support Hero (?<v>\d+\.[\.\d]+)/i'
       version: true
+  support-monitor:
+    ComposerFile:
+      class: ConfigParser
+      path: package.json
+      key: version
+      version: true
+    Readme:
+      path: README.md
   support-ribbons:
     Readme:
       path: readme.txt
@@ -82821,6 +83149,14 @@ plugins:
       pattern: !ruby/regexp '/d\-Version: Tabs Widget for Page Builder (?<v>\d+\.[\.\d]+)/i'
       version: true
   tabs-widget-popular-posts-and-latest-posts:
+    Readme:
+      path: readme.txt
+  tabs-with-posts:
+    QueryParameter:
+      files:
+      - assets/frontend/style.css
+      - assets/frontend/script.js
+      version: true
     Readme:
       path: readme.txt
   tabulate:
@@ -84417,6 +84753,14 @@ plugins:
       key: version
       version: true
   tiled-gallery-carousel-without-jetpack:
+    Readme:
+      path: readme.txt
+  tiles:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/tiles.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: Tiles (?<v>\d+\.[\.\d]+)/i'
+      version: true
     Readme:
       path: readme.txt
   tilt-cryptocurrency-payments:
@@ -88077,6 +88421,9 @@ plugins:
       version: true
     Readme:
       path: README.txt
+  very-good-collection-payment-gateway:
+    Readme:
+      path: README.md
   very-simple-contact-form:
     ChangeLog:
       class: BodyPattern
@@ -88232,6 +88579,9 @@ plugins:
   vicidial-call-me:
     Readme:
       path: README.txt
+  viddyoze:
+    Readme:
+      path: readme.md
   video-analytics-for-cloudflare-stream:
     Readme:
       path: readme.txt
@@ -89240,6 +89590,9 @@ plugins:
       path: languages/it_IT.pot
       pattern: !ruby/regexp '/"Project\-Id\-Version: WC Carta Docente (?<v>\d+\.[\.\d]+)/i'
       version: true
+  wc-cash-on-delivery-charges:
+    Readme:
+      path: readme.txt
   wc-cashapp:
     Readme:
       path: README.md
@@ -90458,6 +90811,9 @@ plugins:
   webp-simple:
     Readme:
       path: readme.txt
+  webp-svg-support:
+    Readme:
+      path: readme.txt
   webplus-gallery:
     Readme:
       path: readme.txt
@@ -91127,6 +91483,9 @@ plugins:
     Readme:
       path: readme.txt
   widget-music-chart:
+    Readme:
+      path: readme.txt
+  widget-navasan:
     Readme:
       path: readme.txt
   widget-options:
@@ -94331,6 +94690,9 @@ plugins:
       - assets/vendor/slick/slick-theme.css
       - assets/vendor/slick/slick.min.js
       - assets/js/main.js
+      - assets/css/core.min.css
+      - assets/css/slick.min.css
+      - assets/js/slick.min.js
       version: true
     Readme:
       path: readme.txt
@@ -102685,6 +103047,9 @@ plugins:
     Readme:
       path: readme.txt
   wzbaibaoxiang:
+    Readme:
+      path: readme.txt
+  wzm-json:
     Readme:
       path: readme.txt
   x-ai-calendar-embed:
