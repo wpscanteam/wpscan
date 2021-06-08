@@ -162,7 +162,7 @@ module WPScan
       #
       # @return [ Typhoeus::Response ]
       def head_and_get(path, codes = [200], params = {})
-        final_path = +@path_from_blog
+        final_path = @path_from_blog.dup # @path_from_blog is set in the plugin/theme
         final_path << path unless path.nil?
 
         blog.head_and_get(final_path, codes, params)
