@@ -35,7 +35,7 @@ describe WPScan::Finders::Passwords::WpLogin do
         context 'when multiple cookies set' do
           let(:headers) do
             "Set-Cookie: wordpress_test_cookie=WP+Cookie+check; path=/\r\n" \
-            'Set-Cookie: something=value; path=/'
+              'Set-Cookie: something=value; path=/'
           end
 
           it 'returns false' do
@@ -47,9 +47,9 @@ describe WPScan::Finders::Passwords::WpLogin do
       context 'when logged_in cookie set' do
         let(:headers) do
           "Set-Cookie: wordpress_test_cookie=WP+Cookie+check; path=/\r\r" \
-          "Set-Cookie: wordpress_xxx=yyy; path=/wp-content/plugins; httponly\r\n" \
-          "Set-Cookie: wordpress_xxx=yyy; path=/wp-admin; httponly\r\n" \
-          'Set-Cookie: wordpress_logged_in_xxx=yyy; path=/; httponly'
+            "Set-Cookie: wordpress_xxx=yyy; path=/wp-content/plugins; httponly\r\n" \
+            "Set-Cookie: wordpress_xxx=yyy; path=/wp-admin; httponly\r\n" \
+            'Set-Cookie: wordpress_logged_in_xxx=yyy; path=/; httponly'
         end
 
         it 'returns false' do
