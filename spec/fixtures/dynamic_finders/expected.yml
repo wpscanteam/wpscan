@@ -226,10 +226,18 @@ plugins:
     QueryParameter:
       number: 1.1.0
       found_by: Query Parameter (Passive Detection)
-      confidence: 20
+      confidence: 40
       interesting_entries:
       - http://wp.lab/wp-content/plugins/3-word-address-validation-field/public/css/jquery.w3w-autosuggest-plugin.min.css?ver=1.1.0
       - http://wp.lab/wp-content/plugins/3-word-address-validation-field/public/js/jquery.w3w-autosuggest-plugin.bundle.min.js?ver=1.1.0
+      - http://wp.lab/wp-content/plugins/3-word-address-validation-field/public/css/w3w-autosuggest-public.css?ver=1.1.0
+      - http://wp.lab/wp-content/plugins/3-word-address-validation-field/public/js/w3w-autosuggest-public.js?ver=1.1.0
+    ChangeLog:
+      number: 4.0.0
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/3-word-address-validation-field/CHANGELOG.txt,
+        Match: ''= 4.0.0'''
   300form:
     ChangeLog:
       number: 0.2.1a
@@ -3843,6 +3851,13 @@ plugins:
       interesting_entries:
       - http://wp.lab/wp-content/plugins/at-lazy-loader/at-lazy-loader.js?ver=1.0.0
       confidence: 10
+  athemes-blocks:
+    TranslationFile:
+      number: 1.0.1
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/athemes-blocks/languages/athemes-blocks.pot,
+        Match: ''"Project-Id-Version: aThemes Blocks 1.0.1'''
   atlas-specialist:
     QueryParameter:
       number: 1.1.9
@@ -7817,6 +7832,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/bulkpress-export/languages/bulkpress-export.pot,
         Match: ''"Project-Id-Version: BulkPress - Export 0.1'''
+  bulky-bulk-edit-products-for-woo:
+    ChangeLog:
+      number: 1.0.0
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/bulky-bulk-edit-products-for-woo/CHANGELOG.txt,
+        Match: ''/** 1.0.0 - 2021.07.23 **/'''
   bulletproof-security:
     ConfigComment:
       number: '2.9'
@@ -8214,6 +8236,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/campaign-roi-return-on-investment-calculator-v10/css/style.css?ver=1.0
       - http://wp.lab/wp-content/plugins/campaign-roi-return-on-investment-calculator-v10/js/organictabs.jquery.js?ver=1.0
       - http://wp.lab/wp-content/plugins/campaign-roi-return-on-investment-calculator-v10/js/vtip.js?ver=1.0
+  campay-shortcode-payment-gateway:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/campay-shortcode-payment-gateway/assets/css/campay.css?ver=1.0.0
+      confidence: 10
   campus-directory:
     MetaTag:
       number: 1.3.2
@@ -13150,6 +13179,15 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/demomentsomtres-woocommerce-minimum-purchase-message/languages/DeMomentSomTres-WC-minPurchaseMessage-ca.po,
         Match: ''Tres Woocommerce Free Shipping Message v0.1'''
+  demovox:
+    QueryParameter:
+      number: 2.5.1
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/demovox/public/css/demovox-public.min.css?ver=2.5.1
+      - http://wp.lab/wp-content/plugins/demovox/public/js/demovox-public.min.js?ver=2.5.1
+      - http://wp.lab/wp-content/plugins/demovox/public/js/demovox-public-pdf.min.js?ver=2.5.1
+      confidence: 30
   denade-translate:
     ChangeLog:
       number: 0.1.7
@@ -17927,6 +17965,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/filterize-gallery/js/jquery.filterizr.js?ver=1.0
       - http://wp.lab/wp-content/plugins/filterize-gallery/js/visuallightbox.min.js?ver=1.0
       - http://wp.lab/wp-content/plugins/filterize-gallery/js/vlbdata3.js?ver=1.0
+  fin-accounting-for-woocommerce:
+    ChangeLog:
+      number: 1.0.0
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/fin-accounting-for-woocommerce/changelog.md,
+        Match: ''## [1.0.0] - 2019-12-11'''
   final-tiles-grid-gallery-lite:
     QueryParameter:
       number: 3.3.27
@@ -26150,6 +26195,14 @@ plugins:
       - http://wp.lab/wp-content/plugins/light-weight-cookie-popup/css/ab-cookie-popup.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/light-weight-cookie-popup/js/ab-cookie-popup.min.js?ver=1.0.0
       confidence: 20
+  lightbox-content-images-wpshare247:
+    QueryParameter:
+      number: '1.0'
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/lightbox-content-images-wpshare247/assets/css/ws247_lcimages.css?ver=1.0
+      - http://wp.lab/wp-content/plugins/lightbox-content-images-wpshare247/assets/js/ws247_lcimages.js?ver=1.0
+      confidence: 20
   lightbox-photoswipe:
     QueryParameter:
       number: '1.7'
@@ -30216,6 +30269,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/mwb-cf7-integration-with-zoho-crm/languages/mwb-cf7-integration-with-zoho.pot,
         Match: ''sion: MWB CF7 Integration with ZOHO CRM 1.0.0'''
+  mwb-gf-integration-with-zoho-crm:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/mwb-gf-integration-with-zoho-crm/languages/mwb-gf-integration-with-zoho-crm.pot,
+        Match: ''rsion: MWB GF Integration with Zoho CRM 1.0.0'''
   mwb-multi-currency-switcher-for-woocommerce:
     TranslationFile:
       number: 1.0.1
@@ -36811,6 +36871,16 @@ plugins:
       interesting_entries:
       - http://wp.lab/wp-content/plugins/quotes-llama/quotes-llama.js?ver=0.7
       confidence: 10
+  qupra-network-finder:
+    QueryParameter:
+      number: 3.0.5
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/qupra-network-finder/public/css/nextpertise-network-finder-public.css?ver=3.0.5
+      - http://wp.lab/wp-content/plugins/qupra-network-finder/public/js/nextpertise-network-finder-public.js?ver=3.0.5
+      - http://wp.lab/wp-content/plugins/qupra-network-finder/public/js/templetify.js?ver=3.0.5
+      - http://wp.lab/wp-content/plugins/qupra-network-finder/public/js/search-result.js?ver=3.0.5
+      confidence: 40
   quran-live:
     QueryParameter:
       number: '1.0'
@@ -38623,6 +38693,18 @@ plugins:
       - http://wp.lab/wp-content/plugins/riotd-reddit-image-of-the-day/public/css/wp-riotd-public.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/riotd-reddit-image-of-the-day/public/js/wp-riotd-public.js?ver=1.0.0
       confidence: 20
+  rishi-companion:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/rishi-companion/languages/rishi-companion.pot,
+        Match: ''"Project-Id-Version: Rishi Companion 1.0.0'''
+    ChangeLog:
+      number: 1.0.0
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/rishi-companion/changelog.txt, Match: ''1.0.0'''
   risk-warning-bar:
     TranslationFile:
       number: '1.0'
@@ -39112,7 +39194,9 @@ plugins:
       - http://wp.lab/wp-content/plugins/saber-commerce//components/Payment/Methods/Stripe/script/client_v2.js?ver=1.2.0
       - http://wp.lab/wp-content/plugins/saber-commerce/components/Cart/js/Cart.js?ver=1.2.0
       - http://wp.lab/wp-content/plugins/saber-commerce/components/Product/js/Catalog.js?ver=1.2.0
-      confidence: 60
+      - http://wp.lab/wp-content/plugins/saber-commerce//components/Catalog/css/front-catalog.css?ver=1.2.0
+      - http://wp.lab/wp-content/plugins/saber-commerce/components/Portal/react/portal/build/index.js?ver=1.2.0
+      confidence: 80
   sac-digital-lite:
     QueryParameter:
       number: 1.0.0
@@ -42625,6 +42709,13 @@ plugins:
       interesting_entries:
       - http://wp.lab/wp-content/plugins/smart-visitor-tracker/assets/css/alerts.css?ver=1.0.0
       confidence: 10
+  smart-wishlist-for-more-convert:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/smart-wishlist-for-more-convert/languages/wc-wlfmc-wishlist.pot,
+        Match: ''ersion: Smart Wishlist For More Convert 1.0.0'''
   smartarget-contact-us:
     QueryParameter:
       number: 1.1.0
@@ -42883,6 +42974,15 @@ plugins:
       - http://wp.lab/wp-content/plugins/soccer-formation-ve/public/assets/css/public.css?ver=1.00
       - http://wp.lab/wp-content/plugins/soccer-formation-ve/public/assets/js/public.js?ver=1.00
       confidence: 20
+  soccer-live-scores:
+    QueryParameter:
+      number: '1.01'
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/soccer-live-scores/public/assets/css/general.css?ver=1.01
+      - http://wp.lab/wp-content/plugins/soccer-live-scores/public/assets/css/custom-1.css?ver=1.01
+      - http://wp.lab/wp-content/plugins/soccer-live-scores/public/assets/js/general.js?ver=1.01
+      confidence: 30
   social-booster:
     QueryParameter:
       number: 1.0.0
@@ -44544,6 +44644,14 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/suggestion-toolkit/languages/suggestion-toolkit.pot,
         Match: ''"Project-Id-Version: Suggestion Toolkit 4.0'''
+  suments-data-metacleaner-free:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/suments-data-metacleaner-free/public/css/suments-metacleaner-public.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/suments-data-metacleaner-free/public/js/plugin-name-public.js?ver=1.0.0
+      confidence: 20
   supapress:
     QueryParameter:
       number: 2.16.2
@@ -59408,6 +59516,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/wpc-composite-products/languages/wpc-composite-products.pot,
         Match: ''WPC Composite Products for WooCommerce 1.4.0'''
+  wpc-copy-billing-address:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/wpc-copy-billing-address/languages/wpc-copy-billing-address.pot,
+        Match: ''PC Copy Billing Address for WooCommerce 1.0.0'''
   wpc-countdown-timer:
     TranslationFile:
       number: 1.0.2
@@ -59508,6 +59623,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/wpc-share-cart/languages/wpc-share-cart.pot,
         Match: ''"Project-Id-Version: WPC Share Cart 1.0.0'''
+  wpc-shop-as-customer:
+    TranslationFile:
+      number: 1.0.1
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/wpc-shop-as-customer/languages/wpc-shop-as-customer.pot,
+        Match: ''WPC Shop as a Customer for WooCommerce 1.0.1'''
   wpc-show-single-variations:
     TranslationFile:
       number: 1.0.0
@@ -60541,6 +60663,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/wpxon-ajax-contact-form/languages/ajax-contact-form.pot,
         Match: ''"Project-Id-Version: Ajax Contact Form v1.0.1'''
+  wpzoom-elementor-addons:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/wpzoom-elementor-addons/languages/wpzoom-elementor-addons.pot,
+        Match: ''ect-Id-Version: WPZOOM Elementor Addons 1.0.0'''
   wrc-pricing-tables:
     QueryParameter:
       number: 2.2.2
@@ -61255,6 +61384,14 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/zakeke-interactive-product-designer/CHANGELOG.md,
         Match: ''#### 1.5.4 - March 13, 2019'''
+  zalo-official-live-chat:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/zalo-official-live-chat/public/css/nl-zalo-official-chat-public.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/zalo-official-live-chat/public/js/nl-zalo-official-chat-public.js?ver=1.0.0
+      confidence: 20
   zanto-country-detector:
     TranslationFile:
       number: '0.1'
