@@ -26,7 +26,7 @@ jobs:
           echo "DOCKER_TAG=${{ github.event.release.tag_name }}" >> $GITHUB_ENV
 
       - name: Check if DOCKER_TAG is set
-        if: env.DOCKER_TAG == ""
+        if: env.DOCKER_TAG == ''
         run: |
           echo DOCKER_TAG is not set!
           exit 1
