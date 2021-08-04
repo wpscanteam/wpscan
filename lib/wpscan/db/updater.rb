@@ -24,7 +24,9 @@ module WPScan
 
         FileUtils.mkdir_p(repo_directory.to_s) unless Dir.exist?(repo_directory.to_s)
 
-        raise "#{repo_directory} is not writable (uid: #{Process.uid}, gid: #{Process.gid})" unless repo_directory.writable?
+        unless repo_directory.writable?
+          raise "#{repo_directory} is not writable (uid: #{Process.uid}, gid: #{Process.gid})"
+        end
 
         delete_old_files
       end
