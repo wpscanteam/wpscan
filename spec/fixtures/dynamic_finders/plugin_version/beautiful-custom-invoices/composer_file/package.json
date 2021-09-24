@@ -1,0 +1,24 @@
+{
+  "name": "wordpress-invoices-plugin",
+  "version": "1.0.0",
+  "description": "Beautiful and easy  invoices for Wordpress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "clone": "git clone https://github.com/mokuappio/serverless-invoices.git",
+    "pull": "cd serverless-invoices && git pull",
+    "config": "copy vue.config.js serverless-invoices\\vue.config.js && copy app.config.js serverless-invoices\\src\\config\\app.config.js",
+    "build": "npm run config && cd serverless-invoices && npm i && npm run build",
+    "prepare-release": "mv serverless-invoices/node_modules ../node_modules_temp && cp -r . ../bci",
+    "clean-release": "rm -rf ../bci/.idea && rm -rf ../bci/.git && rm -rf ../bci/serverless-invoices/.git && mv ../node_modules_temp serverless-invoices/node_modules",
+    "compress-release": "mv ../bci beautiful-custom-invoices && tar -a -c -f beautiful-custom-invoices.zip beautiful-custom-invoices && rm -rf beautiful-custom-invoices",
+    "release": "npm run prepare-release && npm run clean-release && npm run compress-release"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/elevateou/wordpress-invoices-plugin.git"
+  },
+  "author": "Elevate OU",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/elevateou/wordpress-invoices-plugin#readme"
+}

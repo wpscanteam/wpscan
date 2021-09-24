@@ -1,0 +1,116 @@
+*** PayGate PayWeb for WooCommerce Changelog ***
+
+= 1.4.4 - 2021-08-31 =
+ * Add PayPal payment type.
+ * Move plugin to WordPress.org.
+
+= 1.4.3 - 2021-05-13 =
+ * Tested on WooCommerce 5.3 and Wordpress 5.7.
+ * Add SnapScan payment type.
+ * Remove legacy reference to 'paypopup'.
+ * Fix error messaging on cancelled and declined transactions.
+ * Use pending status for checksum failures.
+ * Add cron job for query function on orders older than 60 minutes.
+ * Fixed incorrect order note on transaction declined for Notify method.
+
+= 1.4.2 - 2021-01-18 =
+ * Tested on WooCommerce 4.9 and Wordpress 5.6.
+ * Fix an issue where PayVault did not work while Payment Type selection was active.
+ * Remove iFrame support.
+ * Add PayGate Plus logo option.
+ * Switch to SVG payment logo.
+ * Tweak order notes and default gateway title.
+ * Alternative WC notices handling.
+ * Add more information to logging when enabled.
+
+= 1.4.1 - 2020-09-18 =
+ * Add alternate cart handling if cart is not cleared upon successful transaction.
+ * Compatibility with WordPress 5.5.1.
+
+= 1.4.0 - 2020-08-03 =
+ * Tested with WooCommerce 4.3.1.
+ * Add payment types selection on checkout (SiD, eWallet etc.)
+ * Add custom order meta to payment reference.
+ * Improved error messaging.
+ * Fix an issue where the cart was not cleared on some configurations.
+ * Fix SQL syntax error in PayWeb query cron.
+ * Code quality improve and refactor.
+ * Other fixes and improvements.
+
+= 1.3.2 - 2020-07-09 =
+ * Tested with WooCommerce 4.3.0
+ * Fix session bug.
+ * Code quality improve.
+ * Improve query reliability.
+
+= 1.3.1 - 2020-06-12 =
+ * Compatible with WooCommerce 4.2.0 and WordPress 5.4.2.
+ * Minified style and scripts for improved performance.
+ * Fixed the 'pay' link from the order-pay page and account link.
+ * Add Order Transaction Query function under order menu.
+ * Add PayGate Query cron function for 'pending' orders PayGate orders.
+ * PayVault Bugfix for WooCommerce 4.2.0.
+
+= 1.3.0 - 2020-04-08 =
+ * WooCommerce 4.0 compatible.
+ * PHP7.3 compatible.
+ * Fixed bugs and improved card vaulting.
+ * Combine iFrame and Redirect implementations.
+ * Handle iFrame min-width issue for some payment methods that use QR codes.
+ * Fix SSL Verify which breaks on some servers.
+
+= 1.2.0 - 2019-05-29 =
+ * WordPress 5.2 Update - check for WP_Error object and handle accordingly.
+ * Test on WooCommerce 3.6.
+ * Fix overflow scroll for smaller iPhones.
+
+= 1.1.9 - 2019-01-10 =
+ * Wordpress 5 compatibility
+ * Add support for sequential order number plugins (get_order_number and get_id).
+ * Add support for plugin update icons and 'Tested Version'.
+
+= 1.1.8 - 2018-12-06 =
+ * Cater for abandoned carts and allow users to 'edit' cart on failed payment.
+ * Make cancelled transactions have an order status of 'cancelled'
+ * Use add_notice() for store notices
+
+= 1.1.7 - 2018-11-30 =
+ * Add auto-update feature
+ * Add check for terms and conditions on "pay_for_order" page.
+
+= 1.1.6 - 2018-10-24 =
+ * Use non-conflict jQuery.
+
+= 1.1.5 - 2018-10-13 =
+ * Apply alternative approach to JS click event.
+
+= 1.1.4 - 2018-08-07 =
+ * Backwards compatibility with older plugin settings.
+
+= 1.1.3 - 2018-05-16 =
+ * Add options to toggle redirect OR notify.
+ * Fix double stock reduction on SiD notify.
+ * Fix WP debug.log entry when NOTIFY method accessed directly.
+ * Fix notify url broken on some url rewrites to HTTPS.
+ * Fix redirect response sometimes not captured.
+ * Add WC 3.3 compatibility, better declined and cancel handling.
+ * Change versioning standard to be consistent with other plugins.
+
+= 1.1.1 - 2017-10-17 =
+ * Fixed WooCommerce compatibility issues and warning errors including order status on 'Thank You' page, order total and order billing email.
+ * Solved payment method error where post data failed on checkout.
+
+= 1.1.0 - 2017-03-01 =
+ * Added PayVault tokenization functionality and cleaned up class.
+
+= 1.0.3 - 2016-12-19 =
+ * Updated return method to better handle transaction status and messages.
+
+= 1.0.2 - 2015-11-10 =
+ * Updated plugin to update order status with the notify from PayGate and this update helps in making sure that correct pages are displayed based on transaction-status.
+
+= 1.0.1 - 2015-07-10 =
+ * Update notify function on return from PayGate to echo OK and get Order number.
+
+= 1.0.0 - 2015-03-17 =
+ * First Release.
