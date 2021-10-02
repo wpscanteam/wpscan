@@ -1,0 +1,70 @@
+{
+	"name": "piggly/integracao-erede-por-piggly",
+	"description": "Gateway de pagamento e-Rede para compras em crédito e débito na sua loja Woocommerce.",
+	"type": "wordpress-plugin",
+	"homepage": "https://github.com/piggly-dev/integracao-erede-por-piggly",
+	"license": "GPL-3.0-or-later",
+	"minimum-stability": "stable",
+	"prefer-stable": true,
+	"config": {
+	  "preferred-install": "dist",
+	  "sort-packages": true
+	},
+	"authors": [
+		{
+			"name": "Caique Araujo",
+			"email": "caique@piggly.com.br",
+			"homepage": "https://github.com/caiquearaujo",
+			"role": "Developer"
+		},
+		{
+			"name": "Piggly Lab",
+			"email": "dev@piggly.com.br",
+			"homepage": "https://github.com/piggly-dev",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Piggly\\WooERedeGateway\\": "src/"
+		},
+		"classmap": [
+			"libs"
+		]
+	},
+	"require": {
+		"php": ">=7.2",
+		"developersrede/erede-php": "^5.1",
+		"piggly/wordpress-starter-kit": "^1.0.6",
+		"monolog/monolog": "^2.3",
+		"ext-json": "*",
+		"ext-curl": "*"
+	},
+	"require-dev": {
+	  "roave/security-advisories": "dev-master",
+	  "php-stubs/woocommerce-stubs": "^5.6"
+	},
+	"scripts": {
+		"pre-install-cmd": "@create-libs-folder",
+		"pre-update-cmd": "@create-libs-folder",
+		"create-libs-folder": "npm run gulp composer:create_prefixed_folder",
+		"prefix-dependencies": [
+			"@composer --working-dir=php-scoper install",
+			"php-scoper/vendor/bin/php-scoper add-prefix --config=php-scoper/config.php --output-dir=./libs --force",
+			"npm run gulp composer:delete_prefixed_libraries",
+			"@composer dump-autoload --no-plugins"
+		],
+		"dev-composer-install": [
+			"@create-libs-folder",
+			"@composer install --prefer-dist --no-scripts",
+			"@prefix-dependencies"
+		],
+		"build": [
+			"@create-libs-folder",
+			"npm run gulp composer:delete_lock_and_vendor",
+			"composer install --no-ansi --no-dev --no-interaction --no-plugins --no-progress --no-scripts --optimize-autoloader",
+			"@prefix-dependencies"
+		]
+	},
+	"version": "1.0.0"
+}
