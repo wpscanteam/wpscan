@@ -24,6 +24,10 @@ module WPScan
 
         FileUtils.mkdir_p(repo_directory.to_s) unless Dir.exist?(repo_directory.to_s)
 
+        # When --no-update is passed, return to avoid raising an error if the directory is not writable
+        # Mainly there for Homebrew: https://github.com/wpscanteam/wpscan/pull/1455
+        return if ParsedCli.update == false
+
         unless repo_directory.writable?
           raise "#{repo_directory} is not writable (uid: #{Process.uid}, gid: #{Process.gid})"
         end
