@@ -59,7 +59,7 @@ module WPScan
         #
         # @return [ String, nil ] The best version number detected from the changelog section
         def from_changelog_section(body)
-          extracted_versions = body.scan(%r{=+\s+(?:v(?:ersion)?\s*)?([0-9.-]+)[ \ta-z0-9().\-/]*=+}i)
+          extracted_versions = body.scan(/=+\s+(?:v(?:ersion)?\s*)?([0-9.-]+)[^=]*=+[\r\n]/i)
 
           return if extracted_versions.nil? || extracted_versions.empty?
 
