@@ -30911,7 +30911,7 @@ plugins:
       - public/js/jquery-confirm.min.js
       - public/js/prebid-ads.js
       version: true
-      pattern: !ruby/regexp '/ver=(?<v>\d+)/i'
+      pattern: !ruby/regexp /ver=(?<v>\d+)/i
   dh-dashboard-quick-content-access:
     TranslationFile:
       class: BodyPattern
@@ -44013,6 +44013,12 @@ plugins:
   formcraft-recaptcha:
     Readme:
       path: readme.txt
+  formcraft3:
+    QueryParameter:
+      files:
+      - dist/formcraft-common.css
+      - dist/form.css
+      version: true
   formdesigner:
     Readme:
       path: readme.txt
@@ -55364,9 +55370,6 @@ plugins:
     Readme:
       path: readme.txt
   instagram-feed:
-    JavascriptVar:
-      xpath: //script[not(@src) and contains(., "sbiajaxurl")]
-      pattern: !ruby/regexp /var sbiajaxurl =/
     QueryParameter:
       files:
       - css/sb-instagram.min.css
