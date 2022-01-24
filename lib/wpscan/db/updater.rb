@@ -135,7 +135,7 @@ module WPScan
         res = Typhoeus.get(file_url, request_params)
         raise Error::Download, res if res.timed_out? || res.code != 200
 
-        File.open(file_path, 'wb') { |f| f.write(res.body) }
+        File.binwrite(file_path, res.body)
 
         local_file_checksum(filename)
       end
