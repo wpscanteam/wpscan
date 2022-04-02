@@ -1,0 +1,58 @@
+{
+  "name": "shoplic/payment-gateway",
+  "description": "NicePay, and NicePay billing payment gateways for WooCommerce.",
+  "type": "wordpress-plugin",
+  "minimum-stability": "stable",
+  "scripts": {
+    "daa": "@composer dump-autoload --classmap-authoritative --no-dev",
+    "make-pot": "@php -d xdebug.max_nesting_level=512 $(which wp) i18n make-pot . ./languages/shoplic-pg.pot --domain=shoplic-pg",
+    "make-json": "@php $(which wp) i18n make-json languages --no-purge",
+    "version": "@php bin/sync-version.php index.php",
+    "test": "vendor/bin/phpunit",
+    "make-zip": "@php bin/make-zip.php",
+    "post-create-project-cmd": [
+      "@php bin/prefix-change.php",
+      "@php bin/cleanup.php",
+      "@composer dump-autoload"
+    ]
+  },
+  "scripts-descriptions": {
+    "daa": "Run `composer dump-autoload --classmap-authoritative --no-dev`.",
+    "make-pot": "Create .pot file.",
+    "make-json": "Create .json translation files.",
+    "version": "Sync your plugin version string.",
+    "test": "Run phpunit."
+  },
+  "autoload": {
+    "files": [
+      "core/core-functions.php",
+      "includes/aliases.php",
+      "includes/functions-common.php",
+      "includes/functions-nicepay.php",
+      "includes/functions-nicepay-billing.php"
+    ],
+    "classmap": [
+      "core",
+      "includes"
+    ]
+  },
+  "require": {
+    "php": "^7.4",
+    "ext-json": "*",
+    "ext-zip": "*"
+  },
+  "version": "1.1.0",
+  "require-dev": {
+    "phpunit/phpunit": "^7",
+    "yoast/phpunit-polyfills": "^1.0",
+    "phpcompatibility/phpcompatibility-wp": "^2.1",
+    "wp-coding-standards/wpcs": "^2.3",
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+  },
+  "license": "GPL-2.0-or-later",
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

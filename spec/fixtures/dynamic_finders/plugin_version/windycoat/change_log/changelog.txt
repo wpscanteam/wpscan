@@ -1,0 +1,90 @@
+# Changelog
+All notable changes `WindyCoat` will be documented in this file.
+
+## [1.3.0] - 2022-03-23
+### Added:
+- 'wc_openweather_theme' Option (Basic vs Flat UI)
+- 'Basic' vs 'Flat' Individual Components
+-  New 'Flat UI' Design
+### Changed:
+- Footer Function to Component
+### Fixed:
+- '===' and instead saw '=='  eqeqeq error in build
+
+## [1.2.1] - 2022-03-16
+### Fixed:
+- `enqueue_wc_widget_js` implementation w/ plugin_dir_url versus "homepage" in package.json
+### Added:
+- Humidity Percentage 
+- hectoPascals Pressure
+
+## [1.2.0] - 2022-03-14
+### Changed:
+- `api_response_data` Date Comparison (for caching in environments such as WP Engine)
+
+## [1.1.1] - 2022-03-13
+### Fixed:
+- Hardcoded path's and URL structures across multiple functions
+
+## [1.1.0] - 2022-03-10
+### Fixed:
+- `wp_remote_get` / `wp_remote_retrieve_body` vs CURL
+- PHP Short Tags Removal
+### Changed:
+- `readme.txt` updates
+- `changelog.txt` updates
+### Added:
+- `esc_js` for JS variables
+- `esc_html` for HTML in Block
+- Dynamic `Carbon_Fields\URL` Plugin Path Support
+
+## [1.0.0] - 2022-03-08
+### Changed:
+- Final Cleanup & Prep for Plugin Review
+
+## [0.5.0] - 2022-03-01
+### Changed:
+- Moved Options under "Settings"
+### Added:
+- Misc Cleanup & Options
+### Removed:
+- `developer_tools` & `WC_DEBUG` Removed
+
+## [0.4.0] - 2022-03-01
+### Added:
+- `developer_tools` Function
+- `WC_DEBUG` Support (for testing multiple environments)
+- Carbon Fields Cleanup (Stylistic)
+- Carbon Fields New Fields & Organization of Output
+- `rest_api_init` name (current, hourly, daily) vs digit (1, 2, 3)
+- React based conditional for footer (logo/powered by notice)
+### Fixed:
+- `remote_openweather_get_data` Disable Data Storage if NULL
+- `api_response_data` echo vs return (better compatibility)
+- `enqueue_wc_widget_js` Removing Empty JS Enqueue
+
+## [0.3.0] - 2022-02-28
+### Added:
+- Basic Design/Layout for Weather
+- Date on "Current" Weather (API Response)
+- Powered By Option / Output
+- Basic Loading Conditional
+### Changed:
+- Minor Readme & Description/Tag Updates
+- Package.json CSS Monitoring
+
+## [0.2.0] - 2022-02-25
+### Added
+- `wc_openweather_unit` Admin Option
+- `wc_cache_hours` Admin Option
+- Scheduled CRON Jobs
+### Changed:
+- @Since Updates
+- `developer_tests` Removal
+
+## [0.1.0] - 2022-02-25
+### Added:
+ - OpenWeather API Hooks
+ - React Shortcode
+ - Basic Options & Settings
+ - API Routes & Data Storage

@@ -1,0 +1,2471 @@
+# Copyright (C) 2022 Giuseppe Foti
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: No unsafe-inline 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/no-unsafe-inline\n"
+"POT-Creation-Date: 2022-03-19 19:01:31+00:00\n"
+"PO-Revision-Date: 2022-03-19 20:01+0100\n"
+"Last-Translator: Giuseppe Foti <foti.giuseppe@gmail.com>\n"
+"Language-Team: \n"
+"Language: it_IT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
+"_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
+"esc_html_x:1,2c\n"
+"X-Poedit-Basepath: ..\n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Poedit 2.3.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: admin/class-no-unsafe-inline-admin.php:170
+msgid "Support"
+msgstr "Assistenza"
+
+#: admin/class-no-unsafe-inline-admin.php:177
+msgid "Leave a review"
+msgstr "Scrivi una recensione"
+
+#: admin/class-no-unsafe-inline-admin.php:192
+#: admin/class-no-unsafe-inline-admin.php:1870
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: admin/class-no-unsafe-inline-admin.php:193
+msgid "Documentation"
+msgstr "Documentazione"
+
+#: admin/class-no-unsafe-inline-admin.php:229
+msgid "Management of no-unsafe-inline settings"
+msgstr "Impostazioni di no-unsafe-inline"
+
+#: admin/class-no-unsafe-inline-admin.php:230
+msgid "CSP settings"
+msgstr "Impostazioni CSP"
+
+#: admin/class-no-unsafe-inline-admin.php:266
+msgid "External scripts per page"
+msgstr "Script esterni per pagina"
+
+#: admin/class-no-unsafe-inline-admin.php:277
+msgid "Inline scripts per page"
+msgstr "Script inline per pagina"
+
+#: admin/class-no-unsafe-inline-admin.php:288
+msgid "Events per page"
+msgstr "Eventi per pagina"
+
+#: admin/class-no-unsafe-inline-admin.php:317 src/Nunil_Admin_Help_Tabs.php:622
+msgid "Directives managed"
+msgstr "Direttive gestite"
+
+#. translators: %s is the CSP -src directive, as script-src.
+#: admin/class-no-unsafe-inline-admin.php:344 src/Nunil_Admin_Help_Tabs.php:237
+msgid "External source identification"
+msgstr "Identificazione fonti esterne"
+
+#: admin/class-no-unsafe-inline-admin.php:351
+msgid "External sources, base identification"
+msgstr "Fonti esterne, identificazione di base"
+
+#: admin/class-no-unsafe-inline-admin.php:360
+msgid "Use single hashes in directives:"
+msgstr "Utilizza singoli hash nelle direttive:"
+
+#: admin/class-no-unsafe-inline-admin.php:391
+msgid "Whenever is possible"
+msgstr "Sempre, quando è possibile"
+
+#: admin/class-no-unsafe-inline-admin.php:400 src/Nunil_Admin_Help_Tabs.php:689
+msgid "Select which hashes to use"
+msgstr "Scegli quali hash utilizzare"
+
+#: admin/class-no-unsafe-inline-admin.php:407
+#: admin/class-no-unsafe-inline-admin.php:1290
+#: admin/partials/class-no-unsafe-inline-external-list.php:377
+#: src/Nunil_Admin_Help_Tabs.php:744
+msgid "sha256"
+msgstr "sha256"
+
+#: admin/class-no-unsafe-inline-admin.php:415
+#: admin/class-no-unsafe-inline-admin.php:1297
+#: admin/partials/class-no-unsafe-inline-external-list.php:378
+#: src/Nunil_Admin_Help_Tabs.php:745
+msgid "sha384"
+msgstr "sha384"
+
+#: admin/class-no-unsafe-inline-admin.php:423
+#: admin/class-no-unsafe-inline-admin.php:1304
+#: admin/partials/class-no-unsafe-inline-external-list.php:379
+#: src/Nunil_Admin_Help_Tabs.php:746
+msgid "sha512"
+msgstr "sha512"
+
+#: admin/class-no-unsafe-inline-admin.php:432 src/Nunil_Admin_Help_Tabs.php:269
+#: src/Nunil_Admin_Help_Tabs.php:713
+msgid "Use Subresource Integrity"
+msgstr "Utilizza la Subresource Integrity"
+
+#: admin/class-no-unsafe-inline-admin.php:439
+msgid "SRI for <script>"
+msgstr "SRI per <script>"
+
+#: admin/class-no-unsafe-inline-admin.php:447
+msgid "SRI for <link>"
+msgstr "SRI per <link>"
+
+#: admin/class-no-unsafe-inline-admin.php:456
+#: admin/class-no-unsafe-inline-admin.php:463 src/Nunil_Admin_Help_Tabs.php:277
+#: src/Nunil_Admin_Help_Tabs.php:739
+msgid "Inline script mode"
+msgstr "Modalità script inline"
+
+#: admin/class-no-unsafe-inline-admin.php:472 src/Nunil_Admin_Help_Tabs.php:285
+msgid "Misc options"
+msgstr "Altre opzioni"
+
+#: admin/class-no-unsafe-inline-admin.php:479
+msgid "Use sctrict-dynamic in <script>"
+msgstr "Utilizza sctrict-dynamic in <script>"
+
+#: admin/class-no-unsafe-inline-admin.php:487
+msgid "Set upgrade-insecure-requests directive"
+msgstr "Imposta la direttiva upgrade-insecure-requests"
+
+#: admin/class-no-unsafe-inline-admin.php:495
+msgid "Enforce policy in admin"
+msgstr "Applica la policy nella console di amministrazione"
+
+#. translators: %s is unsafe-hashes link to w3.org site.
+#: admin/class-no-unsafe-inline-admin.php:504
+msgid "Use '%s' for JS event handlers attributes of HTML elements. (Say NO)"
+msgstr "Utilizza '%s' per gli attributi event degli elementi HTM. (Scegli NO)"
+
+#. translators: %1$s is setAttribute link, %2$s is jQuery htmlPrefilte link.
+#: admin/class-no-unsafe-inline-admin.php:514
+msgid "Fix the use of %1$s in 3th party libraries and override %2$s"
+msgstr ""
+"Correggi l'utilizzo di %1$s nelle librerie di terze parti e sovrascrivi %2$s"
+
+#: admin/class-no-unsafe-inline-admin.php:525
+msgid ""
+"Add to the database the scripts authorized by classification in a "
+"whitelisted cluster."
+msgstr ""
+"Aggiungi al database gli script autorizzati dalla classificazione in un "
+"cluster whitelisted."
+
+#: admin/class-no-unsafe-inline-admin.php:534
+msgid "Violations report options"
+msgstr "Opzioni report violazioni"
+
+#: admin/class-no-unsafe-inline-admin.php:541
+msgid "Report CSP violations to endpoints"
+msgstr "Invia le violazioni della CSP agli endpoint"
+
+#: admin/class-no-unsafe-inline-admin.php:549
+msgid "Group name"
+msgstr "Nome gruppo"
+
+#: admin/class-no-unsafe-inline-admin.php:557
+msgid "Max age"
+msgstr "Max age"
+
+#: admin/class-no-unsafe-inline-admin.php:565
+msgid "Endpoints"
+msgstr "Endpoint"
+
+#: admin/class-no-unsafe-inline-admin.php:574
+#: admin/class-no-unsafe-inline-admin.php:1876
+msgid "Logs"
+msgstr "Log"
+
+#: admin/class-no-unsafe-inline-admin.php:581
+msgid "Log driver"
+msgstr "Driver dei log"
+
+#: admin/class-no-unsafe-inline-admin.php:589
+msgid "Log level"
+msgstr "Livello dei log"
+
+#: admin/class-no-unsafe-inline-admin.php:598 src/Nunil_Admin_Help_Tabs.php:847
+msgid "Deactivation options"
+msgstr "Opzioni di disattivazione"
+
+#: admin/class-no-unsafe-inline-admin.php:605
+msgid "Remove tables"
+msgstr "Rimuovi tabelle"
+
+#: admin/class-no-unsafe-inline-admin.php:613
+msgid "Remove options"
+msgstr "Rimuovi opzioni"
+
+#: admin/class-no-unsafe-inline-admin.php:635
+msgid "No unsafe-inline tools"
+msgstr "Attrezzi di No unsafe-inline"
+
+#: admin/class-no-unsafe-inline-admin.php:642 src/Nunil_Admin_Help_Tabs.php:69
+msgid "Enable tag capture"
+msgstr "Abilita la cattura dei tag"
+
+#: admin/class-no-unsafe-inline-admin.php:650 src/Nunil_Admin_Help_Tabs.php:85
+msgid "Test current csp policy"
+msgstr "Testa la policy csp"
+
+#: admin/class-no-unsafe-inline-admin.php:658 src/Nunil_Admin_Help_Tabs.php:93
+msgid "Enable csp protection"
+msgstr "Abilita la protezione csp"
+
+#: admin/class-no-unsafe-inline-admin.php:683
+msgid "Base CSP rules"
+msgstr "Regole CSP di base"
+
+#. translators: %s is the CSP directive, like script-src.
+#: admin/class-no-unsafe-inline-admin.php:697
+msgid "Base rules for the %s directive."
+msgstr "Regola di base per la direttiva %s."
+
+#. translators: %s is the CSP directive, like script-src.
+#: admin/class-no-unsafe-inline-admin.php:705
+msgid "Base %s sources"
+msgstr "Origini di base per %s"
+
+#: admin/class-no-unsafe-inline-admin.php:970
+msgid "Select the CSP directives that you want to manage with this plugin."
+msgstr "Scegli le direttive CSP che vuoi gestire con questo plugin."
+
+#. translators: %s is a CSP directory link on w3.org specs for CSP3.
+#: admin/class-no-unsafe-inline-admin.php:996
+msgid "Enable managing of the %s directive."
+msgstr "Abilita la gestione della direttiva %s."
+
+#: admin/class-no-unsafe-inline-admin.php:1007
+msgid "Select how to identify external hosts."
+msgstr "Scegli come identificare gli host esterni."
+
+#: admin/class-no-unsafe-inline-admin.php:1026
+msgid "resource (eg. https://www.example.org/script.js)"
+msgstr "risorsa (es. https://www.example.org/script.js)"
+
+#: admin/class-no-unsafe-inline-admin.php:1033
+msgid "scheme-host (eg. https://www.example.org)"
+msgstr "schema-host (es. https://www.example.org)"
+
+#: admin/class-no-unsafe-inline-admin.php:1039
+msgid "host (eg. www.example.org)"
+msgstr "host (es. www.example.org)"
+
+#: admin/class-no-unsafe-inline-admin.php:1046
+msgid "domain (eg *.example.org)"
+msgstr "dominio (es *.example.org)"
+
+#: admin/class-no-unsafe-inline-admin.php:1059
+msgid ""
+"Select directives in which you want to use hashes in addition to base rules."
+msgstr ""
+"Seleziona le direttive in cui vuoi utilizzare gli hash oltre alle regole di "
+"base."
+
+#: admin/class-no-unsafe-inline-admin.php:1077
+msgid "Add hashes in script-src."
+msgstr "Aggiungi gli hash in script-src."
+
+#: admin/class-no-unsafe-inline-admin.php:1096
+msgid "Add hashes in style-src."
+msgstr "Aggiungi gli hash in style-src."
+
+#: admin/class-no-unsafe-inline-admin.php:1115
+msgid "Add hashes in img-src."
+msgstr "Aggiungi gli hash in img-src."
+
+#: admin/class-no-unsafe-inline-admin.php:1134
+msgid "Add hashes in all directives where possible."
+msgstr "Aggiungi gli hash in tutte le direttive, quando possibile."
+
+#: admin/class-no-unsafe-inline-admin.php:1145
+msgid "Select algos to be used in external resource identification"
+msgstr ""
+"Selezionare gli algoritimi da utilizzare nell'identificazione delle risorse "
+"esterne"
+
+#: admin/class-no-unsafe-inline-admin.php:1163
+msgid "Add sha256 in csp and integrity attribute."
+msgstr "Aggiungi un hash sha256 nella CSP e nell'attributo integrity."
+
+#: admin/class-no-unsafe-inline-admin.php:1182
+msgid "Add sha384 in csp and integrity attribute."
+msgstr "Aggiungi un hash sha384 nella CSP e nell'attributo integrity."
+
+#: admin/class-no-unsafe-inline-admin.php:1201
+msgid "Add sha512 in csp and integrity attribute."
+msgstr "Aggiungi un hash sha512 nella CSP e nell'attributo integrity."
+
+#. translators: Subresource Integrity link.
+#: admin/class-no-unsafe-inline-admin.php:1214
+msgid "Options to use %s"
+msgstr "Opzioni per utilizzare %s"
+
+#: admin/class-no-unsafe-inline-admin.php:1234
+msgid "Add integrity attribute to external resources loaded by <script> tag."
+msgstr ""
+"Aggiungi l'attributo integrity alle risorse esterne caricate da tag <script>."
+
+#: admin/class-no-unsafe-inline-admin.php:1253
+msgid "Add integrity attribute to external resources loaded by <link> tag."
+msgstr ""
+"Aggiungi l'attributo integrity alle risorse esterne caricate da tag <link>."
+
+#: admin/class-no-unsafe-inline-admin.php:1264
+msgid "Select how to identify whitelisted inline scripts."
+msgstr "Seleziona come identificare gli script inline autorizzati."
+
+#: admin/class-no-unsafe-inline-admin.php:1283
+#: src/Nunil_Admin_Help_Tabs.php:743
+msgid "nonce"
+msgstr "nonce"
+
+#: admin/class-no-unsafe-inline-admin.php:1317
+msgid "Misc options."
+msgstr "Opzioni varie."
+
+#. translators: strict-dynamic link.
+#: admin/class-no-unsafe-inline-admin.php:1336
+msgid "Add %s in script-src."
+msgstr "Aggiungi %s in script-src."
+
+#. translators: %1$s and %2$s are link to external websites.
+#: admin/class-no-unsafe-inline-admin.php:1338
+msgid "This is only partially supported in Mozilla/Firefox. Read %1$s and %2$s"
+msgstr "Il supporto in Mozilla/Firefox non è completo. Leggi %1$s e %2$s"
+
+#. translators: upgrade-insecure-requests link.
+#: admin/class-no-unsafe-inline-admin.php:1363
+msgid "Set the CSP directive: %s"
+msgstr "Imposta la direttiva CSP: %s"
+
+#: admin/class-no-unsafe-inline-admin.php:1384
+msgid "Enforce CSP policy when true === is_admin()."
+msgstr "Applica la policy CSP quando true === is_admin()."
+
+#: admin/class-no-unsafe-inline-admin.php:1405
+#: src/Nunil_Admin_Help_Tabs.php:785
+msgid ""
+"The 'unsafe-hashes' Content Security Policy (CSP) keyword allows the "
+"execution of inline scripts within a JavaScript event handler attribute of a "
+"HTML element. This is not safe and this plugin can handle event handlers "
+"HTML attributes without 'unsafe-hashes'."
+msgstr ""
+"La parola chiave (CSP) 'unsafe-hashes' consente l'esecuzione di script in "
+"linea all'interno di un attributo evento JavaScript di un elemento HTML. "
+"Questo non è sicuro e questo plugin può gestire gli attributi eventi degli "
+"elementi HTML senza impostare 'unsafe-hashes'."
+
+#: admin/class-no-unsafe-inline-admin.php:1426
+msgid ""
+"Global replacing Element.setAttribute() with Element.style.property = val "
+"and override jQuery htmlPrefilter() for CSP-safe applying of inline styles."
+msgstr ""
+"Sostituzione globale di Element.setAttribute() con Element.style.property = "
+"val e sovrascrittura di jQuery htmlPrefilter() per l'utilizzo sicuro di "
+"stili in linea."
+
+#: admin/class-no-unsafe-inline-admin.php:1447
+msgid "Add auto-authorized scripts in db."
+msgstr "Aggiungi gli script auto autorizzati nel database."
+
+#: admin/class-no-unsafe-inline-admin.php:1458
+msgid "Plugin logs"
+msgstr "Log del plugin"
+
+#: admin/class-no-unsafe-inline-admin.php:1512
+msgid "Violation reports options."
+msgstr "Opzioni per i report delle violazioni."
+
+#: admin/class-no-unsafe-inline-admin.php:1532
+msgid "Use report-to and report-uri."
+msgstr "Utilizza report-to e report-uri."
+
+#: admin/class-no-unsafe-inline-admin.php:1556
+msgid ""
+"Optional. If a group name is not specified, the endpoints' group is given "
+"the name of \"csp-endpoint\"."
+msgstr ""
+"Facoltativo. Se non è specificato il nome di un gruppo, al gruppo degli "
+"endpoint viene dato il nome di \"csp-endpoint\"."
+
+#: admin/class-no-unsafe-inline-admin.php:1580
+msgid ""
+"Required. A non-negative integer that defines the lifetime of the endpoint "
+"in seconds (how long the browser should use the endpoint and report errors "
+"to it). A value of \"0\" will cause the endpoint group to be removed from "
+"the user agent’s reporting cache."
+msgstr ""
+"Necessario. Un numero intero non negativo che definisce la durata "
+"dell'endpoint in secondi (per quanto tempo il browser deve utilizzare "
+"l'endpoint e segnalargli errori). Un valore di '0' causerà la rimozione del "
+"gruppo di endpoint dalla cache dello user agent."
+
+#: admin/class-no-unsafe-inline-admin.php:1605
+msgid "Add a new endpoint"
+msgstr "Aggiungi un nuovo endpoint"
+
+#: admin/class-no-unsafe-inline-admin.php:1608
+msgid ""
+"Required. An array of JSON objects that specify the actual URL of your "
+"report collector."
+msgstr ""
+"Richiesto. Un array di oggetti JSON che specifica l'URL effettivo dove "
+"vengono raccolti i report."
+
+#: admin/class-no-unsafe-inline-admin.php:1643
+msgid "Deactivation options."
+msgstr "Opzioni di disattivazione."
+
+#: admin/class-no-unsafe-inline-admin.php:1663
+msgid "Remove data tables from DB on single site plugin deactivation."
+msgstr ""
+"Rimuovere le tabelle dei dati dal database alla disattivazione del plugin "
+"dal singolo sito."
+
+#: admin/class-no-unsafe-inline-admin.php:1684
+msgid "Remove plugin options from DB on single site plugin deactivation."
+msgstr ""
+"Rimuovere le opzioni dal database alla disattivazione del plugin dal singolo "
+"sito."
+
+#: admin/class-no-unsafe-inline-admin.php:1698
+msgid "Manage plugin tools."
+msgstr "Gestisci gli strumenti del plugin."
+
+#: admin/class-no-unsafe-inline-admin.php:1718
+msgid "Enable tag capturing on this site."
+msgstr "Abilita la cattura dei tag su questo sito."
+
+#: admin/class-no-unsafe-inline-admin.php:1739
+msgid "Test policy with Content-Security-Policy-Report-Only."
+msgstr "Prova la politica con Content-Security-Policy-Report-Only."
+
+#: admin/class-no-unsafe-inline-admin.php:1760
+msgid "Enable CSP protection."
+msgstr "Abilita la protezione con la CSP."
+
+#: admin/class-no-unsafe-inline-admin.php:1774
+msgid ""
+"Input here the base sources allowed for each CSP -src directive and rules "
+"for document and navigation directives."
+msgstr ""
+"Inserisci qui le origine base consentite per ogni direttiva -src CSP e le "
+"regole per le direttive del documento e di navigazione."
+
+#: admin/class-no-unsafe-inline-admin.php:1776
+msgid ""
+"You can populate some of these fields by ticking the checkboxes in the table "
+"at the bottom of the page."
+msgstr ""
+"Puoi compilare alcuni di questi campi spuntando le caselle di controllo "
+"nella tabella in fondo alla pagina."
+
+#: admin/class-no-unsafe-inline-admin.php:1821
+msgid "No unsafe-inline Settings"
+msgstr "Impostazioni di No unsafe-inline"
+
+#. translators: %1$s is the opening a tag %2$s is the closing a tag.
+#: admin/class-no-unsafe-inline-admin.php:1827
+msgid "All the settings are described in the %1$sinline help%2$s."
+msgstr "Tutte le impostazioni sono descritte nell'%1$saiuto in linea%2$s."
+
+#: admin/class-no-unsafe-inline-admin.php:1843
+msgid "Tools"
+msgstr "Strumenti"
+
+#: admin/class-no-unsafe-inline-admin.php:1848
+msgid "Base rules"
+msgstr "Regole base"
+
+#: admin/class-no-unsafe-inline-admin.php:1853
+msgid "External whitelist"
+msgstr "Whitelist esterna"
+
+#: admin/class-no-unsafe-inline-admin.php:1858
+msgid "Inline whitelist"
+msgstr "Whitelist in linea"
+
+#: admin/class-no-unsafe-inline-admin.php:1864
+msgid "Events whitelist"
+msgstr "Whitelist eventi"
+
+#: admin/class-no-unsafe-inline-admin.php:1998
+msgid ""
+"You are using a logger that does not support the Log viewer (supported: "
+"Database)"
+msgstr ""
+"Stai utilizzando un logger che non supporta il visualizzatore di log "
+"(supportato: Database)"
+
+#: admin/class-no-unsafe-inline-admin.php:2043
+#: admin/class-no-unsafe-inline-admin.php:2072
+#: admin/class-no-unsafe-inline-admin.php:2124
+#: admin/class-no-unsafe-inline-admin.php:2352
+#: admin/partials/class-no-unsafe-inline-events-list.php:93
+#: admin/partials/class-no-unsafe-inline-events-list.php:107
+#: admin/partials/class-no-unsafe-inline-events-list.php:126
+#: admin/partials/class-no-unsafe-inline-events-list.php:145
+#: admin/partials/class-no-unsafe-inline-events-list.php:164
+#: admin/partials/class-no-unsafe-inline-external-list.php:92
+#: admin/partials/class-no-unsafe-inline-external-list.php:106
+#: admin/partials/class-no-unsafe-inline-external-list.php:125
+#: admin/partials/class-no-unsafe-inline-external-list.php:144
+#: admin/partials/class-no-unsafe-inline-external-list.php:163
+#: admin/partials/class-no-unsafe-inline-external-list.php:184
+#: admin/partials/class-no-unsafe-inline-inline-list.php:92
+#: admin/partials/class-no-unsafe-inline-inline-list.php:106
+#: admin/partials/class-no-unsafe-inline-inline-list.php:125
+#: admin/partials/class-no-unsafe-inline-inline-list.php:144
+#: admin/partials/class-no-unsafe-inline-inline-list.php:163
+msgid "Nope! Security check failed!"
+msgstr "No! Controllo di sicurezza non riuscito!"
+
+#: admin/class-no-unsafe-inline-admin.php:2082
+msgid "DELETE ALL SCRIPTS FROM DATABASE"
+msgstr "CANCELLA TUTTI GLI SCRIPT DAL DATABASE"
+
+#: admin/class-no-unsafe-inline-admin.php:2088
+msgid "succeded"
+msgstr "riuscito"
+
+#: admin/class-no-unsafe-inline-admin.php:2088
+msgid "FAILED"
+msgstr "FALLITO"
+
+#: admin/class-no-unsafe-inline-admin.php:2094
+msgid "cleaned up the database at the user's request"
+msgstr "ripulito il database su richiesta dell'utente"
+
+#: admin/class-no-unsafe-inline-admin.php:2129
+msgid "Pruning data from database"
+msgstr "Riduzione dei dati dal database"
+
+#: admin/class-no-unsafe-inline-admin.php:2133
+msgid "pruned the database at the user's request"
+msgstr "sfrondato il database su richiesta dell'utente"
+
+#: admin/class-no-unsafe-inline-admin.php:2191
+#: admin/class-no-unsafe-inline-admin.php:2200
+msgid "Type"
+msgstr "Tipo"
+
+#: admin/class-no-unsafe-inline-admin.php:2192
+#: admin/class-no-unsafe-inline-admin.php:2206
+#: admin/class-no-unsafe-inline-admin.php:2233
+#: admin/class-no-unsafe-inline-admin.php:2248
+#: admin/class-no-unsafe-inline-admin.php:2274
+#: admin/class-no-unsafe-inline-admin.php:2289
+#: admin/class-no-unsafe-inline-admin.php:2315
+#: admin/class-no-unsafe-inline-admin.php:2330
+msgid "Whitelist"
+msgstr "Whitelist"
+
+#: admin/class-no-unsafe-inline-admin.php:2193
+#: admin/class-no-unsafe-inline-admin.php:2207
+#: admin/class-no-unsafe-inline-admin.php:2234
+#: admin/class-no-unsafe-inline-admin.php:2249
+#: admin/class-no-unsafe-inline-admin.php:2275
+#: admin/class-no-unsafe-inline-admin.php:2290
+#: admin/class-no-unsafe-inline-admin.php:2316
+#: admin/class-no-unsafe-inline-admin.php:2331
+msgid "Num."
+msgstr "Num."
+
+#: admin/class-no-unsafe-inline-admin.php:2194
+#: admin/class-no-unsafe-inline-admin.php:2208
+msgid "Num. Clusters"
+msgstr "Num. di cluster"
+
+#: admin/class-no-unsafe-inline-admin.php:2202
+#: admin/class-no-unsafe-inline-admin.php:2244
+#: admin/class-no-unsafe-inline-admin.php:2285
+#: admin/class-no-unsafe-inline-admin.php:2326
+#: admin/partials/class-no-unsafe-inline-events-list.php:237
+#: admin/partials/class-no-unsafe-inline-external-list.php:316
+#: admin/partials/class-no-unsafe-inline-inline-list.php:233
+msgid "BL"
+msgstr "BL"
+
+#: admin/class-no-unsafe-inline-admin.php:2204
+#: admin/class-no-unsafe-inline-admin.php:2246
+#: admin/class-no-unsafe-inline-admin.php:2287
+#: admin/class-no-unsafe-inline-admin.php:2328
+#: admin/partials/class-no-unsafe-inline-events-list.php:242
+#: admin/partials/class-no-unsafe-inline-external-list.php:321
+#: admin/partials/class-no-unsafe-inline-inline-list.php:238
+msgid "WL"
+msgstr "WL"
+
+#: admin/class-no-unsafe-inline-admin.php:2230
+#: admin/class-no-unsafe-inline-admin.php:2240
+#: admin/class-no-unsafe-inline-admin.php:2271
+#: admin/class-no-unsafe-inline-admin.php:2281
+#: admin/partials/class-no-unsafe-inline-external-list.php:374
+#: admin/partials/class-no-unsafe-inline-inline-list.php:342
+msgid "Directive"
+msgstr "Direttiva"
+
+#: admin/class-no-unsafe-inline-admin.php:2231
+#: admin/class-no-unsafe-inline-admin.php:2241
+#: admin/class-no-unsafe-inline-admin.php:2272
+#: admin/class-no-unsafe-inline-admin.php:2282
+#: admin/class-no-unsafe-inline-admin.php:2312
+#: admin/class-no-unsafe-inline-admin.php:2322
+msgid "Tagname"
+msgstr "Nome tag"
+
+#: admin/class-no-unsafe-inline-admin.php:2232
+#: admin/class-no-unsafe-inline-admin.php:2242
+msgid "Nonceable"
+msgstr "Nonceable"
+
+#: admin/class-no-unsafe-inline-admin.php:2273
+#: admin/class-no-unsafe-inline-admin.php:2283
+#: admin/class-no-unsafe-inline-admin.php:2314
+#: admin/class-no-unsafe-inline-admin.php:2324
+#: admin/partials/class-no-unsafe-inline-events-list.php:353
+#: admin/partials/class-no-unsafe-inline-inline-list.php:344
+msgid "Cluster"
+msgstr "Cluster"
+
+#: admin/class-no-unsafe-inline-admin.php:2313
+#: admin/class-no-unsafe-inline-admin.php:2323
+msgid "Event Attribute"
+msgstr "Attributo evento"
+
+#: admin/partials/class-no-unsafe-inline-admin-logs-table.php:65
+msgid "Log entries"
+msgstr "Voci di registro"
+
+#: admin/partials/class-no-unsafe-inline-base-rule-list.php:94
+msgid "directive"
+msgstr "direttiva"
+
+#: admin/partials/class-no-unsafe-inline-base-rule-list.php:95
+msgid "source"
+msgstr "origine"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:67
+#: admin/partials/class-no-unsafe-inline-events-list.php:236
+#: admin/partials/class-no-unsafe-inline-events-list.php:355
+#: admin/partials/class-no-unsafe-inline-external-list.php:65
+#: admin/partials/class-no-unsafe-inline-external-list.php:315
+#: admin/partials/class-no-unsafe-inline-external-list.php:380
+#: admin/partials/class-no-unsafe-inline-inline-list.php:66
+#: admin/partials/class-no-unsafe-inline-inline-list.php:232
+#: admin/partials/class-no-unsafe-inline-inline-list.php:346
+msgid "WhiteList"
+msgstr "Whitelist"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:68
+#: admin/partials/class-no-unsafe-inline-events-list.php:241
+#: admin/partials/class-no-unsafe-inline-external-list.php:320
+#: admin/partials/class-no-unsafe-inline-inline-list.php:67
+#: admin/partials/class-no-unsafe-inline-inline-list.php:237
+msgid "BlackList"
+msgstr "Blacklist"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:69
+#: admin/partials/class-no-unsafe-inline-events-list.php:209
+#: admin/partials/class-no-unsafe-inline-external-list.php:68
+#: admin/partials/class-no-unsafe-inline-external-list.php:244
+#: admin/partials/class-no-unsafe-inline-inline-list.php:68
+#: admin/partials/class-no-unsafe-inline-inline-list.php:206
+#: src/Nunil_Admin_Help_Tabs.php:146 src/Nunil_Admin_Help_Tabs.php:178
+#: src/Nunil_Admin_Help_Tabs.php:210
+msgid "Delete"
+msgstr "Elimina"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:86
+#: admin/partials/class-no-unsafe-inline-external-list.php:85
+#: admin/partials/class-no-unsafe-inline-inline-list.php:85
+msgid "User is not allowed to perform this action"
+msgstr "L'utente non è autorizzato a eseguire questa azione"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:191
+#: admin/partials/class-no-unsafe-inline-inline-list.php:188
+msgid "View code"
+msgstr "Vedi il codice"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:271
+#: admin/partials/class-no-unsafe-inline-inline-list.php:266
+#: src/Nunil_Admin_Help_Tabs.php:164 src/Nunil_Admin_Help_Tabs.php:196
+msgid "Uncluster"
+msgstr "Separa"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:289
+#: admin/partials/class-no-unsafe-inline-inline-list.php:283
+msgid "View pages"
+msgstr "Vedi le pagine"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:349
+#: admin/partials/class-no-unsafe-inline-inline-list.php:341
+msgid "Script"
+msgstr "Script"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:350
+#: admin/partials/class-no-unsafe-inline-external-list.php:375
+#: admin/partials/class-no-unsafe-inline-inline-list.php:343
+msgid "TagName"
+msgstr "NomeTag"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:351
+msgid "TagId"
+msgstr "IdTag"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:352
+msgid "Event"
+msgstr "Evento"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:354
+#: admin/partials/class-no-unsafe-inline-inline-list.php:345
+msgid "Cl.'s Numerosity"
+msgstr "Numerosità del Cl"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:356
+#: admin/partials/class-no-unsafe-inline-inline-list.php:347
+msgid "Pages"
+msgstr "Pagine"
+
+#: admin/partials/class-no-unsafe-inline-events-list.php:357
+#: admin/partials/class-no-unsafe-inline-inline-list.php:348
+msgid "Last Seen"
+msgstr "Ultima visualizzazione"
+
+#: admin/partials/class-no-unsafe-inline-external-list.php:66
+#: admin/partials/class-no-unsafe-inline-external-list.php:229
+msgid "Hash"
+msgstr "Hash"
+
+#: admin/partials/class-no-unsafe-inline-external-list.php:67
+#: admin/partials/class-no-unsafe-inline-external-list.php:233
+msgid "Rehash"
+msgstr "Re-hash"
+
+#: admin/partials/class-no-unsafe-inline-external-list.php:376
+msgid "Resource"
+msgstr "Risorsa"
+
+#: admin/partials/no-unsafe-inline-events.php:19
+#: admin/partials/no-unsafe-inline-inline.php:19
+msgid "Search script"
+msgstr "Cerca nello script"
+
+#: admin/partials/no-unsafe-inline-external.php:19
+msgid "Search resource"
+msgstr "Cerca la risorsa"
+
+#: admin/partials/no-unsafe-inline-tools.php:16
+msgid "Trigger Clustering"
+msgstr "Attiva il clustering"
+
+#: admin/partials/no-unsafe-inline-tools.php:27
+msgid "Clustering scripts is important to machine learning."
+msgstr ""
+"Il clustering degli script è importante per l'apprendimento automatico."
+
+#: admin/partials/no-unsafe-inline-tools.php:29
+msgid "You should cluster your scripts when you stop capturing new ones."
+msgstr ""
+"Dovresti raggruppare i tuoi script quando smetti di acquisirne di nuovi."
+
+#: admin/partials/no-unsafe-inline-tools.php:40
+msgid "Prune database"
+msgstr "Sfronda il database"
+
+#: admin/partials/no-unsafe-inline-tools.php:51
+msgid "Prune scripts from the database."
+msgstr "Sfronda gli script dal database."
+
+#: admin/partials/no-unsafe-inline-tools.php:53
+msgid ""
+"This will delete orphaned entries in occurences and reduce scripts "
+"numerosity in clusters."
+msgstr ""
+"Verranno eliminate tutte le righe orfane nella tabella delle occorrenze e "
+"ridotta la numerosità degli script presenti nei cluster."
+
+#: admin/partials/no-unsafe-inline-tools.php:64
+msgid "Test Classifier"
+msgstr "Prova classificatore"
+
+#: admin/partials/no-unsafe-inline-tools.php:75
+msgid "Test the classifier."
+msgstr "Test Classifier."
+
+#: admin/partials/no-unsafe-inline-tools.php:77
+msgid "This is just a classifier test to check php-ml settings."
+msgstr ""
+"È solo un test per del classificatore per verificare le impostazioni di php-"
+"ml."
+
+#: admin/partials/no-unsafe-inline-tools.php:89
+#: src/Nunil_Admin_Help_Tabs.php:101
+msgid "Clean database"
+msgstr "Pulisci database"
+
+#: admin/partials/no-unsafe-inline-tools.php:100
+msgid "Clean all scripts from the database."
+msgstr "Rimuovi tutti gli script dal database."
+
+#: admin/partials/no-unsafe-inline-tools.php:102
+msgid "This will not clear your settings and base -src csp rules."
+msgstr "Non verranno rimosse le impostazioni e le regole base."
+
+#: admin/partials/no-unsafe-inline-tools.php:112
+msgid "Total DB Status"
+msgstr "Status DB complessivo"
+
+#: admin/partials/no-unsafe-inline-tools.php:113
+msgid "External scripts"
+msgstr "Script esterni"
+
+#: admin/partials/no-unsafe-inline-tools.php:114
+msgid "Inline scripts"
+msgstr "Script in linea"
+
+#: admin/partials/no-unsafe-inline-tools.php:115
+msgid "Events scripts"
+msgstr "Script negli eventi"
+
+#: admin/partials/no-unsafe-inline-tools.php:116
+msgid "Operations Report"
+msgstr "Resoconto operazioni"
+
+#: admin/partials/no-unsafe-inline-tools.php:140
+msgid "Operations performed in this section"
+msgstr "Operazioni effettuate in questa sessione"
+
+#: includes/class-no-unsafe-inline-activator.php:65
+msgid "no-unsafe-inline cannot be network activated on very big networks."
+msgstr "no-unsafe-inline non può essere attivato in rete su reti molto grandi."
+
+#. translators: %1$s is a php version; %2$s is a wp version.
+#: includes/class-no-unsafe-inline-activator.php:73
+msgid ""
+"no-unsafe-inline requires minimum php version %1$s and minimum WP version "
+"%2$s."
+msgstr ""
+"no-unsafe-inline richiede almeno la versione %1$s di PHP e almeno la "
+"versione %2$s di WP."
+
+#. translators: %1$s is the filename of the file that sent headers, %2$d is the
+#. line in filename where headers where sent.
+#: public/class-no-unsafe-inline-public.php:312
+#: public/class-no-unsafe-inline-public.php:326
+msgid "CSP headers not sent because headers were sent by %1$s at line %2$d"
+msgstr ""
+"Intestazioni CSP non inviate perché le intestazioni sono state inviate da "
+"%1$s alla riga %2$d"
+
+#: src/Nunil_Admin_Help_Tabs.php:61
+msgid "Overview"
+msgstr "Panoramica"
+
+#: src/Nunil_Admin_Help_Tabs.php:77
+msgid "Clustering"
+msgstr "Clustering"
+
+#: src/Nunil_Admin_Help_Tabs.php:112
+msgid "Base sources for CSP"
+msgstr "Origini base per la CSP"
+
+#: src/Nunil_Admin_Help_Tabs.php:123
+msgid "External scripts and styles"
+msgstr "Script e stili esterni"
+
+#: src/Nunil_Admin_Help_Tabs.php:131 src/Nunil_Admin_Help_Tabs.php:171
+#: src/Nunil_Admin_Help_Tabs.php:203
+msgid "Whitelist/Blacklist"
+msgstr "Whitelist/Blacklist"
+
+#: src/Nunil_Admin_Help_Tabs.php:139
+msgid "Hash/Rehash"
+msgstr "Hash/Rehash"
+
+#: src/Nunil_Admin_Help_Tabs.php:157
+msgid "Inline scripts and internal and inline styles"
+msgstr "Script in linea e stili interni e in linea"
+
+#: src/Nunil_Admin_Help_Tabs.php:189
+msgid "Event handlers"
+msgstr "Gestori di eventi"
+
+#: src/Nunil_Admin_Help_Tabs.php:221
+msgid "Plugin options"
+msgstr "Opzioni del plugin"
+
+#: src/Nunil_Admin_Help_Tabs.php:229
+msgid "CSP directives managed"
+msgstr "Direttive CSP gestite"
+
+#: src/Nunil_Admin_Help_Tabs.php:245
+msgid "External source base identification"
+msgstr "Identificazione base delle origini esterne"
+
+#: src/Nunil_Admin_Help_Tabs.php:253
+msgid "Single hashes for external resources"
+msgstr "Hash singoli per le risorse esterne"
+
+#: src/Nunil_Admin_Help_Tabs.php:261
+msgid "SHA algos for hashes."
+msgstr "Algoritmi SHA per gli hash."
+
+#: src/Nunil_Admin_Help_Tabs.php:293 src/Nunil_Admin_Help_Tabs.php:824
+msgid "Violations report"
+msgstr "Report delle violazioni"
+
+#: src/Nunil_Admin_Help_Tabs.php:301
+msgid "Plugin Logs"
+msgstr "Log del plugin"
+
+#: src/Nunil_Admin_Help_Tabs.php:309
+msgid "Deactivation"
+msgstr "Disattivazione"
+
+#: src/Nunil_Admin_Help_Tabs.php:331
+msgid "Welcome to the main page of the no-unsafe-inline plugin."
+msgstr "Benvenuto nella pagina principale del plugin no-unsafe-inline."
+
+#: src/Nunil_Admin_Help_Tabs.php:332
+msgid ""
+"This plugin helps you create a restrictive content security policy without "
+"having to use the 'unsafe-inline' keyword. To achieve this result, the "
+"plugin uses Machine Learning techniques that you can govern from this page."
+msgstr ""
+"Questo plug-in ti aiuta a creare una politica di sicurezza dei contenuti "
+"restrittiva senza dover utilizzare la parola chiave 'unsafe-inline'. Per "
+"ottenere questo risultato, il plugin utilizza tecniche di Machine Learning "
+"che puoi governare da questa pagina."
+
+#: src/Nunil_Admin_Help_Tabs.php:335
+msgid "The steps you are supposed to do are the following."
+msgstr "I passaggi che dovresti fare sono i seguenti."
+
+#: src/Nunil_Admin_Help_Tabs.php:338
+msgid ""
+"Activate the capture of the tags and use your site by visiting all the pages "
+"or making them visits from your users for a long time long period based on "
+"the use of your site (hours or days)."
+msgstr ""
+"Attiva la cattura dei tag e utilizza il tuo sito visitando tutte le pagine o "
+"facendole visitare dai tuoi utenti per un periodo molto lungo in base "
+"all'utilizzo del tuo sito (ore o giorni)."
+
+#: src/Nunil_Admin_Help_Tabs.php:339
+msgid "Perform the data clustering in the database."
+msgstr "Esegui il clustering dei dati nel database."
+
+#: src/Nunil_Admin_Help_Tabs.php:340
+msgid ""
+"Visit the page related to the base rules and include in the CSP directives "
+"the desired values ​​(help you with the table at the bottom of the page)."
+msgstr ""
+"Visita la pagina relativa alle regole di base e includi nelle direttive CSP "
+"i valori desiderati (aiutati con la tabella a fondo pagina)."
+
+#: src/Nunil_Admin_Help_Tabs.php:341
+msgid ""
+"Visit the pages related to external scripts, inline scripts and scripts "
+"invoked by event handlers and authorize the execution of all the legitimate "
+"scripts present on the pages of your site."
+msgstr ""
+"Visita le pagine relative agli script esterni, agli script in linea e agli "
+"script invocati dai gestori di eventi e autorizza l'esecuzione di tutti gli "
+"script legittimi presenti sulle pagine del tuo sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:342
+msgid ""
+"Leaving the tag capture active, activate the policy test (at this stage the "
+"plugin will generate some violations of the temporary policy used to record "
+"additional values to be included in the directives of your \"content "
+"security policy\")."
+msgstr ""
+"Lasciando attiva la cattura del tag, attiva il test della policy (in questa "
+"fase il plugin genererà alcune violazioni della policy temporanea utilizzata "
+"per registrare valori aggiuntivi da inserire nelle direttive della tua "
+"\"content security policy\")."
+
+#: src/Nunil_Admin_Help_Tabs.php:343
+msgid ""
+"After visiting again your site pages, disable the capture of the tags and "
+"repeat the previous steps 2, 3 and 4."
+msgstr ""
+"Dopo aver visitato nuovamente le pagine del tuo sito, disabilita "
+"l'acquisizione dei tag e ripeti i precedenti passaggi 2, 3 e 4."
+
+#: src/Nunil_Admin_Help_Tabs.php:344
+msgid "Enable site protection."
+msgstr "Abilita la protezione del sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:348
+msgid ""
+"N.B. When you update plugins or themes, if something doesn't work properly "
+"on your site pages, temporarily deactivate the protection and repeat steps 1 "
+"to 7."
+msgstr ""
+"NB Quando aggiorni plugin o temi, se qualcosa non funziona correttamente "
+"nelle pagine del tuo sito, disattiva temporaneamente la protezione e ripeti "
+"i passaggi da 1 a 7."
+
+#: src/Nunil_Admin_Help_Tabs.php:352
+msgid ""
+"By enabling the option to capture tags, the pages of your site will be "
+"processed before being sent to the browser and the scripts and style sheets "
+"contained in them are extracted from the pages."
+msgstr ""
+"Abilitando l'opzione di cattura dei tag, le pagine del tuo sito verranno "
+"elaborate prima di essere inviate al browser e gli script e i fogli di stile "
+"in esse contenuti vengono estratti dalle pagine."
+
+#: src/Nunil_Admin_Help_Tabs.php:355
+msgid ""
+"During this phase, the server will have to withstand a higher than normal "
+"workload and the use of the site may be slowed down."
+msgstr ""
+"Durante questa fase, il server dovrà sopportare un carico di lavoro "
+"superiore al normale e l'utilizzo del sito potrebbe risultare rallentato."
+
+#: src/Nunil_Admin_Help_Tabs.php:358
+msgid ""
+"Tag capture is necessary to take place over an extended period (hours or "
+"days, depending on how often your site is viewed) because some scripts are "
+"dynamically generated with time-related variables, and in order to instruct "
+"the classifier, you need to have a sufficient number of examples."
+msgstr ""
+"È necessario che L'acquisizione dei tag avvenga per un periodo prolungato "
+"(ore o giorni, a seconda della frequenza con cui il tuo sito viene "
+"visualizzato) perché alcuni script vengono generati dinamicamente con "
+"variabili relative al tempo e per istruire il classificatore, è necessario "
+"disporre di un numero sufficiente di esempi."
+
+#: src/Nunil_Admin_Help_Tabs.php:361
+msgid ""
+"It is also important that during this phase all the pages of the site are "
+"visited (even in the administration area, if you intend to protect this part "
+"of the site as well)."
+msgstr ""
+"È inoltre importante che durante questa fase vengano visitate tutte le "
+"pagine del sito (anche nell'area amministrazione, se si intende proteggere "
+"anche questa parte del sito)."
+
+#: src/Nunil_Admin_Help_Tabs.php:364
+msgid ""
+"Clustering is an operation used to classify the scripts extracted from your "
+"site into groups."
+msgstr ""
+"Il clustering è un'operazione utilizzata per classificare gli script "
+"estratti dal tuo sito in gruppi."
+
+#: src/Nunil_Admin_Help_Tabs.php:365
+msgid ""
+"This operation is done both for inline scripts and inline styles and for "
+"those contained in html tag event handlers (onclick, onmouseover, etc ...)"
+msgstr ""
+"Questa operazione viene eseguita sia per gli script in linea e gli stili in "
+"linea sia per quelli contenuti nei gestori di eventi di tag html (onclick, "
+"onmouseover, ecc...)"
+
+#: src/Nunil_Admin_Help_Tabs.php:368
+msgid "For more information on clustering you can visit these pages:"
+msgstr "Per ulteriori informazioni sul clustering puoi visitare queste pagine:"
+
+#. translators: %1$s is the link opening tag; %2$s is the link closing tag.
+#: src/Nunil_Admin_Help_Tabs.php:383
+msgid ""
+"no-unsafe-inline uses %1$sDBSCAN%2$s as a clustering algorithm performed on "
+"local-sensitive hashes."
+msgstr ""
+"no-unsafe-inline utilizza %1$sDBSCAN%2$s come algoritmo di clustering "
+"eseguito su hash a sensibilità locale."
+
+#. translators: %1$s is the link opening tag; %2$s is the link closing tag.
+#: src/Nunil_Admin_Help_Tabs.php:389
+msgid "The hashing algorithm used is %1$snilsimsa%2$s."
+msgstr "L'algoritmo di hashing utilizzato è %1$snilsimsa%2$s."
+
+#. translators: %1$s is the link opening tag; %2$s is the link closing tag.
+#: src/Nunil_Admin_Help_Tabs.php:395
+msgid "The distance measurement is %1$sHamming distance%2$s."
+msgstr "La misurazione della distanza è %1$sHamming distance%2$s."
+
+#: src/Nunil_Admin_Help_Tabs.php:401
+msgid "To cluster your data, click the \"Trigger Clustering\" button"
+msgstr "Per raggruppare i dati, fai clic sul pulsante 'Attiva clustering'"
+
+#: src/Nunil_Admin_Help_Tabs.php:404
+msgid ""
+"When clustering, all scripts and styles placed in a group containing a "
+"whitelisted script or style will automatically be marked as whitelisted."
+msgstr ""
+"Durante il clustering, tutti gli script e gli stili inseriti in un gruppo "
+"contenente uno script o uno stile whitelist verranno automaticamente "
+"contrassegnati come whitelist."
+
+#: src/Nunil_Admin_Help_Tabs.php:407
+msgid ""
+"The clustering procedure can consume a lot of computational resources on "
+"your server and can take several minutes."
+msgstr ""
+"La procedura di clustering può richiedere molte risorse di calcolo sul "
+"server e può richiedere diversi minuti."
+
+#: src/Nunil_Admin_Help_Tabs.php:410
+msgid ""
+"By enabling the \"Content Security Policy\" test you will be able to check "
+"your settings in the developer console of your browser."
+msgstr ""
+"Abilitando il test della «Content Security Policy» sarai in grado di "
+"controllare le tue impostazioni nella console per sviluppatori del tuo "
+"browser."
+
+#: src/Nunil_Admin_Help_Tabs.php:412
+msgid ""
+"In addition, during the test, additional information is captured in the "
+"database to help refine your \"Content Security Policy\"."
+msgstr ""
+"Inoltre, durante il test, vengono acquisite ulteriori informazioni nel "
+"database per perfezionare la «Content Security Policy»."
+
+#: src/Nunil_Admin_Help_Tabs.php:415
+msgid ""
+"By enabling the protection, your \"Content Security Policy\" will be used by "
+"WordPress in the pages of the site."
+msgstr ""
+"Abilitando la protezione, la tua «Content Security Policy» verrà utilizzata "
+"da WordPress nelle pagine del sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:418
+msgid ""
+"The \"Content Security Policy\" is sent via the HTTP headers and is defined "
+"according to the plugin settings (see the \"Settings\" tab)."
+msgstr ""
+"La «Content Security Policy» viene inviata tramite le intestazioni HTTP ed è "
+"definita in base alle impostazioni del plugin (vedere la scheda "
+"«Impostazioni»)."
+
+#: src/Nunil_Admin_Help_Tabs.php:421
+msgid ""
+"When the protection is enabled, if you have NOT set the option to use "
+"'unsafe-hash', the scripts launched by the events present in the tags are "
+"transferred to a script created when the page is generated and the styles "
+"present in the html tags transferred to a inline style sheet."
+msgstr ""
+"Quando la protezione è abilitata, se NON è stata impostata l'opzione per "
+"utilizzare 'unsafe-hash', gli script lanciati dagli eventi presenti nei tag "
+"vengono trasferiti in uno script creato quando viene generata la pagina e "
+"gli stili presenti nei tag html trasferiti in un foglio di stile in linea."
+
+#: src/Nunil_Admin_Help_Tabs.php:424
+msgid ""
+"Furthermore, with the option enabled, the dynamic scripts present in the "
+"page are compared with those present in the database and if the classifier "
+"recognizes them as classifiable in an authorized cluster, they are "
+"authorized in the sent policy and inserted into the database."
+msgstr ""
+"Inoltre, con l'opzione abilitata, gli script dinamici presenti nella pagina "
+"vengono confrontati con quelli presenti nel database e se il classificatore "
+"li riconosce come classificabili in un cluster autorizzato, vengono "
+"autorizzati nella policy inviata e inseriti nel database."
+
+#: src/Nunil_Admin_Help_Tabs.php:427
+msgid ""
+"If you have updated many plugins, changed themes, or upgraded your WordPress "
+"version, you may want to delete all data in the database and restart the "
+"capture process."
+msgstr ""
+"Se hai aggiornato molti plugin, cambiato temi o aggiornato la tua versione "
+"di WordPress, potresti voler eliminare tutti i dati nel database e riavviare "
+"il processo di acquisizione."
+
+#: src/Nunil_Admin_Help_Tabs.php:430
+msgid "The procedure will not:"
+msgstr "Questa procedura NON:"
+
+#: src/Nunil_Admin_Help_Tabs.php:431
+msgid "remove your options;"
+msgstr "rimuoverà le impostazioni;"
+
+#: src/Nunil_Admin_Help_Tabs.php:432
+msgid "delete the origins and keywords entered in the \"Base -src\" tab;"
+msgstr ""
+"cancellerà le origini e le parole chiave inserite nella scheda \"Regole base"
+"\";"
+
+#: src/Nunil_Admin_Help_Tabs.php:433
+msgid "delete plugin logs."
+msgstr "cancellerà i log del plugin."
+
+#: src/Nunil_Admin_Help_Tabs.php:437
+msgid ""
+"From this page you can add <host-source>, <scheme-source> and keywords that "
+"will be used in the CSP directives in all protected pages of your site."
+msgstr ""
+"Da questa pagina puoi aggiungere <host-source>, <scheme-source> e parole "
+"chiave che verranno utilizzate nelle direttive CSP in tutte le pagine "
+"protette del tuo sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:440
+msgid ""
+"Adding sources or keywords here is equivalent to inserting a CSP policy in "
+"the .htacces file or in the configuration file of your web server."
+msgstr ""
+"Aggiungere qui origini o parole chiave equivale a inserire una policy CSP "
+"nel file .htacces o nel file di configurazione del tuo web server."
+
+#: src/Nunil_Admin_Help_Tabs.php:443
+msgid ""
+"For each CSP directive there is a link to the \"Content Security Policy "
+"Level 3\" specification section which I invite you to consult if in doubt."
+msgstr ""
+"Per ciascuna direttiva CSP è presente un collegamento alla sezione delle "
+"specifiche «Content Security Policy Level 3» che ti invito a consultare in "
+"caso di dubbio."
+
+#: src/Nunil_Admin_Help_Tabs.php:446
+msgid ""
+"In the table at the bottom of the page you will find some suggested sources "
+"which, if included in your CSP policy, would authorize the execution of "
+"external scripts captured while viewing the pages of your site; selecting "
+"the records of the table, these sources will be respectively inserted and "
+"removed from the corresponding directives."
+msgstr ""
+"Nella tabella in fondo alla pagina troverai alcune origini suggerite che, se "
+"incluse nella tua policy CSP, autorizzerebbero l'esecuzione di script "
+"esterni catturati durante la visualizzazione delle pagine del tuo sito; "
+"selezionando i record della tabella, tali fonti verranno rispettivamente "
+"inserite e rimosse dalle corrispondenti direttive."
+
+#: src/Nunil_Admin_Help_Tabs.php:447
+msgid ""
+"The format of the sources is determined by the \"External hosts "
+"identification\" option which, however, does not limit the ability to "
+"manually insert elements in directives not listed in the table."
+msgstr ""
+"Il formato delle origini è determinato dall'opzione «Identificazione host "
+"esterni» che, tuttavia, non limita la possibilità di inserire manualmente "
+"elementi in direttive non riportate in tabella."
+
+#: src/Nunil_Admin_Help_Tabs.php:449
+msgid ""
+"Avoid adding unsafe directives like 'unsafe-hashes' and 'unsafe-inline'."
+msgstr ""
+"Evita di aggiungere direttive non sicure come 'unsafe-hashes' e 'unsafe-"
+"inline'."
+
+#: src/Nunil_Admin_Help_Tabs.php:450
+msgid ""
+"If some scripts on your site use the eval() function you will be prompted to "
+"insert 'unsafe-eval' in the table. This is not safe, but in order to get rid "
+"of this keyword without impacting the functionality of the site it is "
+"necessary to rewrite the code that uses this function."
+msgstr ""
+"Se alcuni script sul tuo sito utilizzano la funzione eval() ti verrà "
+"richiesto di inserire 'unsafe-eval' nella tabella. Questo non è sicuro, ma "
+"per sbarazzarsi di questa parola chiave senza influire sulla funzionalità "
+"del sito è necessario riscrivere il codice che utilizza questa funzione."
+
+#: src/Nunil_Admin_Help_Tabs.php:453
+msgid ""
+"Do not use the 'strict-dynamic' and 'report-sample' keywords which are "
+"directly managed by the plugin."
+msgstr ""
+"Non utilizzare le parole chiave 'strict-dynamic' e 'report-sample' che sono "
+"gestite direttamente dal plugin."
+
+#: src/Nunil_Admin_Help_Tabs.php:454
+msgid ""
+"Do not enter hashes for inline scripts and styles, which are managed "
+"directly by the plugin."
+msgstr ""
+"Non inserire hash per script e stili in linea, che sono gestiti direttamente "
+"dal plugin."
+
+#: src/Nunil_Admin_Help_Tabs.php:457
+msgid ""
+"We cannot detect every needed source for all active directives, so if you "
+"have known sources you need (for worker-src connect-src frame-ancestors "
+"etc..) please add them here manually."
+msgstr ""
+"Non siamo in grado di rilevare tutte le origini necessarie per tutte le "
+"direttive attive, quindi se ci sono origini note di cui hai bisogno (per "
+"worker-src connect-src frame-ancestors ecc.) aggiungile qui manualmente."
+
+#: src/Nunil_Admin_Help_Tabs.php:460
+msgid "Remember to save your settings before exiting this tab."
+msgstr "Ricorda di salvare le impostazioni prima di uscire da questa scheda."
+
+#: src/Nunil_Admin_Help_Tabs.php:463
+msgid ""
+"In the table on this page you can view all the scripts and styles inserted "
+"in your site as files external to the html page."
+msgstr ""
+"Nella tabella di questa pagina puoi visualizzare tutti gli script e gli "
+"stili inseriti nel tuo sito come file esterni alla pagina html."
+
+#: src/Nunil_Admin_Help_Tabs.php:466
+msgid ""
+"The table shows the CSP directive used to authorize the execution of the "
+"script or the insertion of the style, the html tag used for this purpose in "
+"your pages, the URI of the resource (including the query) with which it is "
+"inserted in yours pages, if and which SHA hashes have been calculated on the "
+"resource and if the resource is included in the whitelist of those "
+"authorized by you or not."
+msgstr ""
+"La tabella mostra la direttiva CSP utilizzata per autorizzare l'esecuzione "
+"dello script o l'inserimento dello stile, il tag html utilizzato a tale "
+"scopo nelle tue pagine, l'URI della risorsa (compresa la query) con cui "
+"viene inserito nelle pagine, se e quali hash SHA sono stati calcolati sulla "
+"risorsa e se la risorsa è inclusa nella whitelist di quelle da te "
+"autorizzate o no."
+
+#: src/Nunil_Admin_Help_Tabs.php:469
+msgid ""
+"To authorize external scripts (or styles) you must explicitly whitelist them "
+"(using the link present in each line in the corresponding column, or "
+"selecting the scripts and using the selection and the massive operations "
+"button)."
+msgstr ""
+"Per autorizzare script (o stili) esterni è necessario inserirli "
+"esplicitamente nella whitelist (utilizzando il link presente in ogni riga "
+"nella colonna corrispondente, oppure selezionando gli script e utilizzando "
+"il pulsante e la selezione per le azioni di gruppo)."
+
+#: src/Nunil_Admin_Help_Tabs.php:470 src/Nunil_Admin_Help_Tabs.php:559
+msgid ""
+"Scripts and styles already whitelisted can be excluded by using the "
+"corresponding link or massive action in the same way."
+msgstr ""
+"Gli script e gli stili già inseriti nella whitelist possono essere esclusi "
+"utilizzando il collegamento corrispondente o l'azione di gruppo allo stesso "
+"modo."
+
+#: src/Nunil_Admin_Help_Tabs.php:473
+msgid ""
+"If the options for using SRI are set, only the hashes of authorized scripts "
+"and styles will be dynamically inserted in your CSP policy."
+msgstr ""
+"Se sono impostate le opzioni per l'utilizzo di SRI, solo gli hash degli "
+"script e degli stili autorizzati verranno inseriti dinamicamente nella "
+"policy CSP."
+
+#: src/Nunil_Admin_Help_Tabs.php:476
+msgid ""
+"If the browser supports CSP3, the presence of the hashes will cause the "
+"browser to ignore the <host-source> entered in base-src (necessary for "
+"backwards compatibility with browsers that do not support CSP3)."
+msgstr ""
+"Se il browser supporta CSP3, la presenza degli hash farà sì che il browser "
+"ignori le <host-source> inserite nelle regole di base (necessario per la "
+"retrocompatibilità con i browser che non supportano CSP3)."
+
+#: src/Nunil_Admin_Help_Tabs.php:479
+msgid ""
+"Content Security Policy Level 3 requires browsers to use Subresource "
+"Integrity (SRI) for external styles and scripts."
+msgstr ""
+"Content Security Policy Level 3 richiede che i browser utilizzino "
+"Subresource Integrity (SRI) per stili e script esterni."
+
+#: src/Nunil_Admin_Help_Tabs.php:482
+msgid "From CSP3 Specs:"
+msgstr "Dalle specifiche CSP3:"
+
+#: src/Nunil_Admin_Help_Tabs.php:485
+msgid ""
+"In [CSP2], hash source expressions could only match inlined script, but now "
+"that Subresource Integrity [SRI] is widely deployed, we can expand the scope "
+"to enable externalized JavaScript as well."
+msgstr ""
+"Nella [CSP2], le espressioni di origine hash potevano corrispondere solo "
+"agli script in linea, ma ora che Subresource Integrity [SRI] è ampiamente "
+"distribuito, possiamo espanderne l'ambito per abilitare anche il JavaScript "
+"esternalizzato."
+
+#: src/Nunil_Admin_Help_Tabs.php:488
+msgid ""
+"If multiple sets of integrity metadata are specified for a script, the "
+"request will match a policy’s hash-sources if and only if each item in a "
+"script's integrity metadata matches the policy."
+msgstr ""
+"Se per uno script vengono specificati più set di metadati di integrità, la "
+"richiesta corrisponderà alle origini hash di un criterio se e solo se ogni "
+"elemento nei metadati di integrità di uno script corrisponde al criterio."
+
+#: src/Nunil_Admin_Help_Tabs.php:491
+msgid ""
+"When a script or external style is found and inserted into the database, the "
+"SHA hashes for this resource are calculated."
+msgstr ""
+"Quando uno script o uno stile esterno viene trovato e inserito nel database, "
+"vengono calcolati gli hash SHA per questa risorsa."
+
+#: src/Nunil_Admin_Help_Tabs.php:494
+msgid ""
+"In case the resource has been modified you can perform the hash calculation "
+"again."
+msgstr ""
+"Nel caso in cui la risorsa sia stata modificata, è possibile eseguire "
+"nuovamente il calcolo degli hash."
+
+#: src/Nunil_Admin_Help_Tabs.php:495
+msgid ""
+"If the hashes could not be calculated at the time the resource was "
+"discovered, you can use the link or massive action to calculate them."
+msgstr ""
+"Se non è stato possibile calcolare gli hash al momento dell'individuazione "
+"della risorsa, è possibile utilizzare il collegamento o l'azione di gruppo "
+"per calcolarli."
+
+#: src/Nunil_Admin_Help_Tabs.php:498
+msgid ""
+"You can delete an external resource from your database using the link in "
+"each row of the \"Resource\" column or the commands for bulk action."
+msgstr ""
+"È possibile eliminare una risorsa esterna dal database utilizzando il "
+"collegamento in ogni riga della colonna «Risorsa» o i comandi per l'azione "
+"di gruppo."
+
+#: src/Nunil_Admin_Help_Tabs.php:501
+msgid ""
+"In the table on this page, you can view all the inline scripts, internal "
+"styles and inline styles present in your site's pages."
+msgstr ""
+"Nella tabella su questa pagina, è possibile visualizzare tutti gli script in "
+"linea, gli stili interni e gli stili in linea presenti nelle pagine del tuo "
+"sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:505
+msgid ""
+"Inline styles are applied directly to an element in your HTML code. They use "
+"the style attribute, followed by regular CSS properties."
+msgstr ""
+"Gli stili in linea vengono applicati direttamente a un elemento nel codice "
+"HTML. Usano l'attributo style, seguito dalle normali proprietà CSS."
+
+#: src/Nunil_Admin_Help_Tabs.php:506
+msgid "For example:"
+msgstr "Ad esempio:"
+
+#: src/Nunil_Admin_Help_Tabs.php:512
+msgid ""
+"Rather than linking an external .css file, HTML files with an internal "
+"stylesheet include a set of rules in their head section. CSS rules are "
+"wrapped in <style> tags, like this:"
+msgstr ""
+"Invece di collegare un file .css esterno, i file HTML con un foglio di stile "
+"interno includono una serie di regole nella loro sezione principale. Le "
+"regole CSS sono racchiuse in tag <style> come questo:"
+
+#: src/Nunil_Admin_Help_Tabs.php:524
+msgid ""
+"In the \"Script\" column, you can see the script or style detected in the "
+"pages of your site."
+msgstr ""
+"Nella colonna «Script», puoi vedere lo script o lo stile rilevato nelle "
+"pagine del tuo sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:525
+msgid ""
+"By examining its contents, you can make certain it is a legitimate script or "
+"style and not code injected by an attacker when the capture option is on."
+msgstr ""
+"Esaminandone il contenuto, è possibile assicurarsi che si tratti di uno "
+"script o di uno stile legittimo e non di codice iniettato da un utente "
+"malintenzionato quando l'opzione di acquisizione è attiva."
+
+#: src/Nunil_Admin_Help_Tabs.php:528
+msgid ""
+"Inline styles are authorized by injecting in your pages an internal "
+"stylesheet created on the fly by the plugin and that only includes inline "
+"styles whitelisted through this tab."
+msgstr ""
+"Gli stili in linea sono autorizzati iniettando nelle tue pagine un foglio di "
+"stile interno creato al volo dal plugin e che include solo gli stili in "
+"linea inseriti nella whitelist attraverso questa scheda."
+
+#: src/Nunil_Admin_Help_Tabs.php:531
+msgid ""
+"The table shows the CSP directive used to authorize the execution of the "
+"script or the insertion of the style and the HTML tag used to insert the "
+"inline stuff."
+msgstr ""
+"La tabella mostra la direttiva CSP utilizzata per autorizzare l'esecuzione "
+"dello script o l'inserimento dello stile e del tag HTML utilizzato per "
+"inserire il codice in linea."
+
+#: src/Nunil_Admin_Help_Tabs.php:534
+msgid "Cluster:"
+msgstr "Cluster:"
+
+#: src/Nunil_Admin_Help_Tabs.php:536 src/Nunil_Admin_Help_Tabs.php:585
+msgid ""
+"The name of the cluster to which the script is assigned is displayed in the "
+"\"Cluster\" column."
+msgstr ""
+"Il nome del cluster a cui è assegnato lo script viene visualizzato nella "
+"colonna «Cluster»."
+
+#: src/Nunil_Admin_Help_Tabs.php:537
+msgid ""
+"This name is generated randomly when the database data is processed by the "
+"clustering procedure. The name is not important, but if the column shows "
+"'Unclustered' it means that the script or style has not been grouped with "
+"others like it."
+msgstr ""
+"Questo nome viene generato in modo casuale quando i dati del database "
+"vengono elaborati dalla procedura di clustering. Il nome non è importante, "
+"ma se la colonna mostra «Unclustered» significa che lo script o lo stile non "
+"è stato raggruppato con altri simili."
+
+#: src/Nunil_Admin_Help_Tabs.php:538 src/Nunil_Admin_Help_Tabs.php:587
+msgid "We aim to cluster together scripts generated by the same backend code."
+msgstr ""
+"Miriamo a raggruppare insieme gli script generati dallo stesso codice back-"
+"end."
+
+#: src/Nunil_Admin_Help_Tabs.php:539
+msgid ""
+"The \"Cl.'s Numerosity\" column indicates the number of elements grouped in "
+"the cluster (if the element does not belong to any cluster, this number is "
+"1)."
+msgstr ""
+"La colonna «Numerosità del Cl.» indica il numero di elementi raggruppati nel "
+"cluster (se l'elemento non appartiene ad alcun cluster, questo numero è 1)."
+
+#: src/Nunil_Admin_Help_Tabs.php:542 src/Nunil_Admin_Help_Tabs.php:591
+msgid ""
+"The \"Whitelist\" column indicates whether the execution of the script or "
+"cluster code is authorized (\"WL\") or not (\"BL\")."
+msgstr ""
+"La colonna «Whitelist» indica se l'esecuzione del codice dello script o del "
+"cluster è autorizzata («WL») o meno («BL»)."
+
+#: src/Nunil_Admin_Help_Tabs.php:545 src/Nunil_Admin_Help_Tabs.php:594
+msgid ""
+"The \"Pages\" column contains a list of the pages where the code (or codes "
+"in the cluster) was seen. The list is visible by opening the select drop-"
+"down."
+msgstr ""
+"La colonna «Pagine» contiene un elenco delle pagine in cui è stato "
+"visualizzato il codice (o i codici nel cluster). L'elenco è visibile aprendo "
+"il menu di selezione a tendina."
+
+#: src/Nunil_Admin_Help_Tabs.php:548 src/Nunil_Admin_Help_Tabs.php:597
+msgid ""
+"The \"Last seen\" column shows the date and time of the last time the code "
+"(or one of the codes in the cluster) was detected on the pages of your site."
+msgstr ""
+"La colonna 'Ultima visualizzazione' mostra la data e l'ora dell'ultima volta "
+"che il codice (o uno dei codici nel cluster) è stato rilevato nelle pagine "
+"del tuo sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:549 src/Nunil_Admin_Help_Tabs.php:598
+msgid ""
+"This information is useful for identifying obsolete code no longer present "
+"on your site (or never legitimately present)."
+msgstr ""
+"Queste informazioni sono utili per identificare codice obsoleto non più "
+"presente sul tuo sito (o mai stato legittimamente presente)."
+
+#: src/Nunil_Admin_Help_Tabs.php:552
+msgid ""
+"The \"Uncluster\" link under the cluster name (if any) in the \"Cluster\" "
+"column allows you to make ungrouped the codes that have been grouped by "
+"removing the cluster from the database."
+msgstr ""
+"Il collegamento «Separa» sotto il nome del cluster (se presente) nella "
+"colonna «Cluster» consente di separare i codici che sono stati raggruppati "
+"rimuovendo il cluster dal database."
+
+#: src/Nunil_Admin_Help_Tabs.php:555
+msgid ""
+"Clusters can only be produced by the clustering procedure, executable from "
+"the tools tab."
+msgstr ""
+"I cluster possono essere prodotti solo dalla procedura di clustering, "
+"eseguibile dalla scheda Strumenti."
+
+#: src/Nunil_Admin_Help_Tabs.php:558
+msgid ""
+"To authorize inline scripts or internal styles you must explicitly whitelist "
+"them (using the link present in each line in the corresponding column, or "
+"selecting the scripts and styles and using the selection and the bulk "
+"operations button)."
+msgstr ""
+"Per autorizzare gli script in linea o gli stili interni è necessario "
+"autorizzarli esplicitamente (utilizzando il collegamento presente in ogni "
+"riga della colonna corrispondente, oppure selezionando gli script e gli "
+"stili e utilizzando il pulsante e la selezione per le azioni di gruppo)."
+
+#: src/Nunil_Admin_Help_Tabs.php:562
+msgid ""
+"You can delete an inline script or internal style (or scripts and styles "
+"clustered together) from your database using the link in each row of the "
+"\"Script\" column or the commands for bulk action."
+msgstr ""
+"È possibile eliminare uno script in linea o uno stile interno (o script e "
+"stili raggruppati insieme) dal database utilizzando il collegamento in ogni "
+"riga della colonna «Script» o i comandi per l'azione di gruppo."
+
+#: src/Nunil_Admin_Help_Tabs.php:565
+msgid ""
+"Event handlers are scripts that are automatically executed when an event "
+"occurs."
+msgstr ""
+"I gestori eventi sono script che vengono eseguiti automaticamente quando si "
+"verifica un evento."
+
+#: src/Nunil_Admin_Help_Tabs.php:566
+msgid ""
+"Event handlers are embedded in documents as attributes of HTML tags to which "
+"you assign JavaScript code to execute."
+msgstr ""
+"I gestori eventi sono incorporati nei documenti come attributi dei tag HTML "
+"a cui assegnare il codice JavaScript da eseguire."
+
+#: src/Nunil_Admin_Help_Tabs.php:567
+msgid ""
+"In the \"Script\" column, you can see the script executed when the event "
+"occurs."
+msgstr ""
+"Nella colonna «Script», puoi vedere lo script eseguito quando si verifica "
+"l'evento."
+
+#: src/Nunil_Admin_Help_Tabs.php:568
+msgid ""
+"By examining its contents, you can make certain it is a legitimate script "
+"and not code injected by an attacker when the capture option is on."
+msgstr ""
+"Esaminandone il contenuto, è possibile assicurarsi che si tratti di uno "
+"script legittimo e non di codice iniettato da un utente malintenzionato "
+"quando l'opzione di acquisizione è attiva."
+
+#: src/Nunil_Admin_Help_Tabs.php:571
+msgid ""
+"Event handler scripts can be authorized either by using the 'unsafe-hashes' "
+"keyword (not recommended, which authorizes all event handlers scripts "
+"present, significantly reducing the level of protection offered) or by "
+"injecting in your pages an inline script created on the fly by the plugin "
+"and that only includes scripts whitelisted through this tab."
+msgstr ""
+"Gli script del gestore eventi possono essere autorizzati utilizzando la "
+"parola chiave 'unsafe-hashes' (scelta non consigliata, che autorizza tutti "
+"gli script dei gestori eventi presenti, riducendo significativamente il "
+"livello di protezione offerto) o iniettando nelle tue pagine uno script in "
+"linea creato al volo dal plugin e che include solo gli script autorizzati "
+"attraverso questa scheda."
+
+#: src/Nunil_Admin_Help_Tabs.php:574
+msgid ""
+"The authorization mode of the event handlers scripts can be chosen by "
+"selecting the appropriate option."
+msgstr ""
+"La modalità di autorizzazione degli script dei gestori eventi può essere "
+"scelta selezionando l'opzione appropriata."
+
+#: src/Nunil_Admin_Help_Tabs.php:578
+msgid "The table shows the HTML tag used to insert the inline stuff."
+msgstr ""
+"La tabella mostra il tag HTML utilizzato per inserire il codice in linea."
+
+#: src/Nunil_Admin_Help_Tabs.php:579
+msgid "Also, the table shows the 'id' attribute of the HTML tag (if any)."
+msgstr ""
+"Inoltre, la tabella mostra l'attributo «id» del tag HTML (se presente)."
+
+#: src/Nunil_Admin_Help_Tabs.php:581
+msgid ""
+"In the \"Event\" column is there the event tag attribute of the HTML tag."
+msgstr "Nella colonna «Evento» c'è l'attributo event tag del tag HTML."
+
+#: src/Nunil_Admin_Help_Tabs.php:583
+msgid "Clusters:"
+msgstr "Cluster:"
+
+#: src/Nunil_Admin_Help_Tabs.php:586
+msgid ""
+"This name is generated randomly when the database data is processed by the "
+"clustering procedure. The name is not important, but if the column shows "
+"'Unclustered' it means the script has not been grouped with other similar."
+msgstr ""
+"Questo nome viene generato in modo casuale quando i dati del database "
+"vengono elaborati dalla procedura di clustering. Il nome non è importante, "
+"ma se la colonna mostra «Unclustered» significa che lo script non è stato "
+"raggruppato con altri simili."
+
+#: src/Nunil_Admin_Help_Tabs.php:588
+msgid ""
+"The \"Cl.'s Numerosity\" column indicates the number of scripts grouped in "
+"the cluster (if the script does not belong to any cluster, this number is 1)."
+msgstr ""
+"La colonna «Numerosità dl Cl.» indica il numero di script raggruppati nel "
+"cluster (se lo script non appartiene ad alcun cluster, questo numero è 1)."
+
+#: src/Nunil_Admin_Help_Tabs.php:601
+msgid ""
+"The \"Uncluster\" link under the cluster name (if any) in the \"Cluster\" "
+"column allows you to make ungrouped the scripts that have been grouped by "
+"removing the cluster from the database."
+msgstr ""
+"Il collegamento «Separa» sotto il nome del cluster (se presente) nella "
+"colonna «Cluster» consente di separare gli script che sono stati raggruppati "
+"rimuovendo il cluster dal database."
+
+#: src/Nunil_Admin_Help_Tabs.php:604
+msgid ""
+"Clusters can only be produced by the clustering procedure executable from "
+"the tools tab."
+msgstr ""
+"I cluster possono essere prodotti solo dalla procedura di clustering, "
+"eseguibile dalla scheda Strumenti."
+
+#: src/Nunil_Admin_Help_Tabs.php:607
+msgid ""
+"To authorize inline event handlers scripts you must explicitly whitelist "
+"them (using the link present in each line in the corresponding column, or "
+"selecting the scripts and using the selection and the bulk operations "
+"button)."
+msgstr ""
+"Per autorizzare gli script dei gestori eventi in linea è necessario "
+"autorizzarli esplicitamente (utilizzando il collegamento presente in ogni "
+"riga della colonna corrispondente o selezionando gli scripte utilizzando il "
+"pulsante e la selezione per le azioni di gruppo)."
+
+#: src/Nunil_Admin_Help_Tabs.php:608
+msgid ""
+"Scripts already whitelisted can be excluded by using the corresponding link "
+"or massive action in the same way."
+msgstr ""
+"Gli script già inseriti nella whitelist possono essere esclusi utilizzando "
+"il collegamento corrispondente o l'azione di gruppo allo stesso modo."
+
+#: src/Nunil_Admin_Help_Tabs.php:611
+msgid ""
+"You can delete an event handler script (or scripts clustered together) from "
+"your database using the link in each row of the \"Script\" column or the "
+"commands for bulk action."
+msgstr ""
+"È possibile eliminare uno script dei gestori di eventi (o degli script "
+"raggruppati insieme) dal database utilizzando il collegamento in ogni riga "
+"della colonna «Script» o i comandi per l'azione di gruppo."
+
+#: src/Nunil_Admin_Help_Tabs.php:614
+msgid ""
+"From this page, you can set the main options that regulate the operation of "
+"the plugin."
+msgstr ""
+"Da questa pagina, è possibile impostare le principali opzioni che regolano "
+"il funzionamento del plugin."
+
+#: src/Nunil_Admin_Help_Tabs.php:617
+msgid ""
+"You can use the links contained on the page to check the specifications of "
+"the individual directives that the plugin can manage."
+msgstr ""
+"È possibile utilizzare i link contenuti nella pagina per verificare le "
+"specifiche delle singole direttive che il plugin può gestire."
+
+#: src/Nunil_Admin_Help_Tabs.php:620
+msgid "Every single option is documented in the additional help pages."
+msgstr "Ogni singola opzione è documentata nelle pagine di aiuto aggiuntive."
+
+#: src/Nunil_Admin_Help_Tabs.php:624
+msgid "Options name"
+msgstr "Nome opzione"
+
+#: src/Nunil_Admin_Help_Tabs.php:625
+msgid "Options values"
+msgstr "Valori opzione"
+
+#: src/Nunil_Admin_Help_Tabs.php:625 src/Nunil_Admin_Help_Tabs.php:665
+#: src/Nunil_Admin_Help_Tabs.php:669 src/Nunil_Admin_Help_Tabs.php:673
+#: src/Nunil_Admin_Help_Tabs.php:677 src/Nunil_Admin_Help_Tabs.php:692
+#: src/Nunil_Admin_Help_Tabs.php:696 src/Nunil_Admin_Help_Tabs.php:700
+#: src/Nunil_Admin_Help_Tabs.php:716 src/Nunil_Admin_Help_Tabs.php:720
+#: src/Nunil_Admin_Help_Tabs.php:758 src/Nunil_Admin_Help_Tabs.php:766
+#: src/Nunil_Admin_Help_Tabs.php:774 src/Nunil_Admin_Help_Tabs.php:782
+#: src/Nunil_Admin_Help_Tabs.php:790 src/Nunil_Admin_Help_Tabs.php:798
+#: src/Nunil_Admin_Help_Tabs.php:827 src/Nunil_Admin_Help_Tabs.php:850
+#: src/Nunil_Admin_Help_Tabs.php:854
+msgid "enabled"
+msgstr "abilitata"
+
+#: src/Nunil_Admin_Help_Tabs.php:625 src/Nunil_Admin_Help_Tabs.php:665
+#: src/Nunil_Admin_Help_Tabs.php:669 src/Nunil_Admin_Help_Tabs.php:673
+#: src/Nunil_Admin_Help_Tabs.php:677 src/Nunil_Admin_Help_Tabs.php:692
+#: src/Nunil_Admin_Help_Tabs.php:696 src/Nunil_Admin_Help_Tabs.php:700
+#: src/Nunil_Admin_Help_Tabs.php:716 src/Nunil_Admin_Help_Tabs.php:720
+#: src/Nunil_Admin_Help_Tabs.php:758 src/Nunil_Admin_Help_Tabs.php:766
+#: src/Nunil_Admin_Help_Tabs.php:774 src/Nunil_Admin_Help_Tabs.php:782
+#: src/Nunil_Admin_Help_Tabs.php:790 src/Nunil_Admin_Help_Tabs.php:798
+#: src/Nunil_Admin_Help_Tabs.php:827 src/Nunil_Admin_Help_Tabs.php:850
+#: src/Nunil_Admin_Help_Tabs.php:854
+msgid "disabled"
+msgstr "disabilitata"
+
+#: src/Nunil_Admin_Help_Tabs.php:628
+msgid ""
+"This version of the plugin can handle some: fetch directives, document "
+"directives, navigation directives, reporting directives and the \"upgrade-"
+"insecure-requests\" directive."
+msgstr ""
+"Questa versione del plugin può gestirne alcune: direttive fetch, direttive "
+"document, direttive di navigazione, direttive di reporting e la direttiva "
+"'upgrade-insecure-requests'."
+
+#: src/Nunil_Admin_Help_Tabs.php:631
+msgid "More directives could be added in future releases."
+msgstr "Altre direttive potrebbero essere aggiunte nelle versioni future."
+
+#: src/Nunil_Admin_Help_Tabs.php:634
+msgid ""
+"In the \"Managed Directives\" section, it is possible to enable or disable "
+"the single fetch directives, document directives and navigation directives "
+"that the plugin can set; if a directive is disabled, no value will be set in "
+"the \"Content Security Policy\" sent to the browsers, nor will it be "
+"possible to set a default value."
+msgstr ""
+"Nella sezione «Direttive gestite» è possibile abilitare o disabilitare le "
+"singole direttive fetch, le direttive document e le direttive di navigazione "
+"che il plugin può impostare; se una direttiva è disabilitata, non verrà "
+"impostato alcun valore nella «Content Security Policy» inviata ai browser, "
+"né sarà possibile impostare un valore predefinito."
+
+#. translators: %1$s and %2$s are opening and closing tag for a link in CSP3
+#. specs' page.
+#: src/Nunil_Admin_Help_Tabs.php:639
+msgid ""
+"Many directives' values consist of %1$ssource lists%2$s: sets of strings "
+"which identify content that can be fetched and potentially embedded or "
+"executed."
+msgstr ""
+"I valori di molte direttive sono costituiti da %1$ssource lists%2$s: insiemi "
+"di stringhe che identificano il contenuto che può essere recuperato e "
+"potenzialmente incorporato o eseguito."
+
+#: src/Nunil_Admin_Help_Tabs.php:645
+msgid ""
+"These settings manage how external sources will be included in your CSP."
+msgstr ""
+"Queste impostazioni gestiscono il modo in cui le origini esterne verranno "
+"incluse nella CSP."
+
+#: src/Nunil_Admin_Help_Tabs.php:647
+msgid "External sources, base identification."
+msgstr "Fonti esterne, identificazione di base."
+
+#: src/Nunil_Admin_Help_Tabs.php:649 src/Nunil_Admin_Help_Tabs.php:664
+#: src/Nunil_Admin_Help_Tabs.php:668 src/Nunil_Admin_Help_Tabs.php:672
+#: src/Nunil_Admin_Help_Tabs.php:676 src/Nunil_Admin_Help_Tabs.php:691
+#: src/Nunil_Admin_Help_Tabs.php:695 src/Nunil_Admin_Help_Tabs.php:699
+#: src/Nunil_Admin_Help_Tabs.php:715 src/Nunil_Admin_Help_Tabs.php:719
+#: src/Nunil_Admin_Help_Tabs.php:741 src/Nunil_Admin_Help_Tabs.php:757
+#: src/Nunil_Admin_Help_Tabs.php:765 src/Nunil_Admin_Help_Tabs.php:773
+#: src/Nunil_Admin_Help_Tabs.php:781 src/Nunil_Admin_Help_Tabs.php:789
+#: src/Nunil_Admin_Help_Tabs.php:797 src/Nunil_Admin_Help_Tabs.php:810
+#: src/Nunil_Admin_Help_Tabs.php:818 src/Nunil_Admin_Help_Tabs.php:826
+#: src/Nunil_Admin_Help_Tabs.php:849 src/Nunil_Admin_Help_Tabs.php:853
+msgid "Option name"
+msgstr "Nome opzione"
+
+#: src/Nunil_Admin_Help_Tabs.php:650 src/Nunil_Admin_Help_Tabs.php:665
+#: src/Nunil_Admin_Help_Tabs.php:669 src/Nunil_Admin_Help_Tabs.php:673
+#: src/Nunil_Admin_Help_Tabs.php:677 src/Nunil_Admin_Help_Tabs.php:692
+#: src/Nunil_Admin_Help_Tabs.php:696 src/Nunil_Admin_Help_Tabs.php:700
+#: src/Nunil_Admin_Help_Tabs.php:716 src/Nunil_Admin_Help_Tabs.php:720
+#: src/Nunil_Admin_Help_Tabs.php:742 src/Nunil_Admin_Help_Tabs.php:758
+#: src/Nunil_Admin_Help_Tabs.php:766 src/Nunil_Admin_Help_Tabs.php:774
+#: src/Nunil_Admin_Help_Tabs.php:782 src/Nunil_Admin_Help_Tabs.php:790
+#: src/Nunil_Admin_Help_Tabs.php:798 src/Nunil_Admin_Help_Tabs.php:811
+#: src/Nunil_Admin_Help_Tabs.php:819 src/Nunil_Admin_Help_Tabs.php:827
+#: src/Nunil_Admin_Help_Tabs.php:850 src/Nunil_Admin_Help_Tabs.php:854
+msgid "Option values"
+msgstr "Valori opzione"
+
+#: src/Nunil_Admin_Help_Tabs.php:651
+msgid "hostname"
+msgstr "hostname"
+
+#: src/Nunil_Admin_Help_Tabs.php:652
+msgid "scheme://hostname"
+msgstr "scheme://hostname"
+
+#: src/Nunil_Admin_Help_Tabs.php:653
+msgid "domain"
+msgstr "dominio"
+
+#: src/Nunil_Admin_Help_Tabs.php:654
+msgid "resource url"
+msgstr "url risorsa"
+
+#: src/Nunil_Admin_Help_Tabs.php:657
+msgid ""
+"With this option you can choose the scheme with which the sources, found in "
+"your pages, will be suggested to you in the \"Base rules\" tab."
+msgstr ""
+"Con questa opzione puoi scegliere lo schema con cui le origini, trovate "
+"nelle tue pagine, ti verranno suggerite nella scheda «Regole base»."
+
+#: src/Nunil_Admin_Help_Tabs.php:660
+msgid ""
+"This option does not prevent you from manually entering sources in, using a "
+"scheme other than the one selected."
+msgstr ""
+"Questa opzione non impedisce di immettere manualmente le origini utilizzando "
+"uno schema diverso da quello selezionato."
+
+#: src/Nunil_Admin_Help_Tabs.php:662
+msgid "Use single hashes in directives"
+msgstr "Utilizzare singoli hash nelle direttive"
+
+#: src/Nunil_Admin_Help_Tabs.php:680
+msgid ""
+"In addition to the traditional mode of identifying external resources "
+"allowed, provided by the CSP2 specifications, the CSP3 specifications allow "
+"you to indicate the hashes of some external resources to authorize them "
+"individually."
+msgstr ""
+"Oltre alla tradizionale modalità di identificazione delle risorse esterne "
+"autorizzate, prevista dalle specifiche CSP2, le specifiche CSP3 consentono "
+"di indicare gli hash di alcune risorse esterne per autorizzarle "
+"singolarmente."
+
+#: src/Nunil_Admin_Help_Tabs.php:683
+msgid ""
+"Based on the CSP3 specifications, the external resources identified by hash "
+"must also have an \"integrity\" attribute set. The integrity attribute is "
+"currently supported only for <script> and <link> tags."
+msgstr ""
+"In base alle specifiche CSP3, anche le risorse esterne identificate "
+"dall'hash devono avere un attributo «integrity» impostato. L'attributo "
+"integrity è attualmente supportato solo per i tag <script> and <link>."
+
+#: src/Nunil_Admin_Help_Tabs.php:684
+msgid ""
+"With these settings you can choose whether to enter sha hashes in the "
+"directives: script-src, style-src and img-src or for all the directives for "
+"which hashes have been registered in the database."
+msgstr ""
+"Con queste impostazioni è possibile scegliere se inserire hash SHA nelle "
+"direttive: script-src, style-src e img-src o per tutte le direttive per le "
+"quali gli hash sono stati registrati nel database."
+
+#: src/Nunil_Admin_Help_Tabs.php:687
+msgid ""
+"The plugin will dynamically add individual hashes in the CSP directives "
+"related to external resources in advance authorized by the \"External "
+"whitelist\" tab only in the individual pages of your site where these "
+"resources are used."
+msgstr ""
+"Il plugin aggiungerà dinamicamente singoli hash nelle direttive CSP relative "
+"a risorse esterne preventivamente autorizzate dalla scheda «Whitelist "
+"esterna» solo nelle singole pagine del tuo sito in cui vengono utilizzate "
+"queste risorse."
+
+#: src/Nunil_Admin_Help_Tabs.php:702
+msgid ""
+"These options allow you to choose which algorithms use for the calculation "
+"of the cryptographic hashes used for external resources."
+msgstr ""
+"Queste opzioni consentono di scegliere quali algoritmi utilizzare per il "
+"calcolo degli hash crittografici utilizzati per le risorse esterne."
+
+#: src/Nunil_Admin_Help_Tabs.php:705
+msgid ""
+"You have to select at least one if you are using the SRI and/or if you are "
+"using the identification of external resources with individual hashes."
+msgstr ""
+"È necessario selezionarne almeno uno se si utilizza l'SRI e/o se si utilizza "
+"l'identificazione di risorse esterne con singoli hash."
+
+#: src/Nunil_Admin_Help_Tabs.php:708
+msgid ""
+"If you use more algorithms, the hashes calculated with these latter will all "
+"be used (both as sources in CSP directives, and as like integrity metadata)."
+msgstr ""
+"Se si utilizzano altri algoritmi, gli hash calcolati con questi ultimi "
+"saranno tutti utilizzati (sia come origini nelle direttive CSP, sia come "
+"metadati di integrità)."
+
+#: src/Nunil_Admin_Help_Tabs.php:711
+msgid ""
+"Elements would be allowed to execute only if they contain integrity metadata "
+"that matches the policy."
+msgstr ""
+"Gli elementi possono essere eseguiti solo se contengono metadati di "
+"integrità che corrispondono alla policy."
+
+#: src/Nunil_Admin_Help_Tabs.php:722
+msgid ""
+"Subresource Integrity is a mechanism by which user agents may verify that a "
+"fetched resource has been delivered without unexpected manipulation."
+msgstr ""
+"L'integrità delle sottorisorse è un meccanismo mediante il quale i programmi "
+"utente possono verificare che una risorsa recuperata sia stata consegnata "
+"senza manipolazioni impreviste."
+
+#: src/Nunil_Admin_Help_Tabs.php:725
+msgid ""
+"In this way it is possible to block the loading or execution of a resource "
+"if its contents is different from the expected one."
+msgstr ""
+"In questo modo è possibile bloccare il caricamento o l'esecuzione di una "
+"risorsa se il suo contenuto è diverso da quello previsto."
+
+#: src/Nunil_Admin_Help_Tabs.php:728
+msgid ""
+"The specifications of the \"Subresource Integrity\" extend two HTML elements "
+"with an integrity attribute that contains a cryptographic hash of the "
+"resource representation that the author expects to load."
+msgstr ""
+"Le specifiche di «Subresource Integrity» estendono due elementi HTML con un "
+"attributo di integrità che contiene un hash crittografico della "
+"rappresentazione della risorsa che l'autore si aspetta di caricare."
+
+#: src/Nunil_Admin_Help_Tabs.php:729
+msgid ""
+"By adding the integrity assignment hash to the HTML element allows the user "
+"agent to verify that the data loaded by a certain URL correspond to the "
+"expected hash and, otherwise, block the execution."
+msgstr ""
+"L'aggiunta dell'hash di assegnazione dell'integrità all'elemento HTML "
+"consente allo user agent di verificare che i dati caricati da un determinato "
+"URL corrispondano all'hash previsto e, in caso contrario, di bloccarne "
+"l'esecuzione."
+
+#. translators: %s is the link to a paragraph in SRI specifications.
+#: src/Nunil_Admin_Help_Tabs.php:734
+msgid ""
+"Right now SRI specs (%s) states that \"a new integrity attribute is added to "
+"the list of content attributes for the link and script elements\""
+msgstr ""
+"Right now SRI specs (%s) states that \"a new integrity attribute is added to "
+"the list of content attributes for the link and script elements\""
+
+#: src/Nunil_Admin_Help_Tabs.php:737
+msgid ""
+"A Note in specs says: \"A future revision of this specification is likely to "
+"include integrity support for all possible subresources, i.e., a, audio, "
+"embed, iframe, img, link, object, script, source, track, and video elements."
+"\""
+msgstr ""
+"Una nota nelle specifiche dice: \"È probabile che una futura revisione di "
+"questa specifica includa il supporto dell'integrità per tutte le possibili "
+"sottorisorse, ad esempio a, audio, embed, iframe, img, link, object, script, "
+"source, track ed elementi video.\""
+
+#: src/Nunil_Admin_Help_Tabs.php:749
+msgid ""
+"With this option you can choose how inline contents, present in your pages "
+"and authorized in the \"Inline Whitelist\" tab, will be identified in your "
+"\"Content Security Policy\"."
+msgstr ""
+"Con questa opzione puoi scegliere come i contenuti in linea, presenti nelle "
+"tue pagine e autorizzati nella scheda «Whitelist in linea», verranno "
+"identificati nella tua «Content Security Policy»."
+
+#: src/Nunil_Admin_Help_Tabs.php:752
+msgid ""
+"You can choose to identify these contents through a cryptographic hash or by "
+"means of a nonce generated at each view."
+msgstr ""
+"Puoi scegliere di identificare questi contenuti tramite un hash "
+"crittografico o tramite un nonce generato ad ogni visualizzazione."
+
+#: src/Nunil_Admin_Help_Tabs.php:755
+msgid "Misc Options"
+msgstr "Altre opzioni"
+
+#: src/Nunil_Admin_Help_Tabs.php:761
+msgid "Choose here if to add 'strict-dynamic' in script-src or not."
+msgstr "Scegli qui se aggiungere 'strict-dynamic' in script-src o meno."
+
+#: src/Nunil_Admin_Help_Tabs.php:769
+msgid ""
+"Choose here if to add 'upgrade-insecure-requests' to your \"Content Security "
+"Policy\"; this will instruct a user agent to upgrade a priori insecure "
+"resource requests to secure transport before fetching them."
+msgstr ""
+"Scegli qui se aggiungere 'upgrade-insecure-requests' alla tua «Content "
+"Security Policy»; questo indicherà a uno user agent di aggiornare a priori "
+"le richieste di risorse non sicure per proteggere il trasporto prima di "
+"recuperarle."
+
+#: src/Nunil_Admin_Help_Tabs.php:777
+msgid ""
+"Choose here if to output \"Content Security Policy\"'s header in admin pages "
+"of your site."
+msgstr ""
+"Scegli qui se produrre l'intestazione «Content Security Policy» nelle pagine "
+"di amministrazione del tuo sito."
+
+#: src/Nunil_Admin_Help_Tabs.php:793
+msgid ""
+"By enabling this option, scripts will be injected into your pages to get "
+"around some uses of the SetAttribute() function in the scripts in your pages."
+msgstr ""
+"Abilitando questa opzione, degli script verranno iniettati nelle pagine per "
+"aggirare alcuni usi della funzione SetAttribute() negli script presenti "
+"nelle pagine."
+
+#: src/Nunil_Admin_Help_Tabs.php:801
+msgid ""
+"By enabling this option, the plugin will add to an authorized cluster of "
+"inline scripts or event handlers scripts, the new scripts detected on the "
+"page and authorized by the classification function."
+msgstr ""
+"Abilitando questa opzione, il plugin aggiungerà a un cluster autorizzato di "
+"script in linea o di script di gestori di eventi, i nuovi script rilevati "
+"nella pagina e autorizzati dalla funzione di classificazione."
+
+#: src/Nunil_Admin_Help_Tabs.php:802
+msgid ""
+"You may need to activate this option to avoid having to frequently enable "
+"the capturing phase as it is not possible to know the clusters' shape and to "
+"know a minimum needed numerosity of each cluster."
+msgstr ""
+"Potrebbe essere necessario attivare questa opzione per evitare di dover "
+"abilitare frequentemente la fase di acquisizione in quanto non è possibile "
+"conoscere la forma dei cluster e conoscere una numerosità minima necessaria "
+"di ciascun cluster."
+
+#: src/Nunil_Admin_Help_Tabs.php:805
+msgid ""
+"However, this option can present a potential security risk if an attacker "
+"may be able to obtain the authorization for some scripts by voluntarily "
+"forcing the shape of the cluster to which they are brought back by the "
+"classification function."
+msgstr ""
+"Tuttavia, questa opzione può rappresentare un potenziale rischio per la "
+"sicurezza se un utente malintenzionato può essere in grado di ottenere "
+"l'autorizzazione per alcuni script forzando volontariamente la forma del "
+"cluster in cui vengono riportati dalla funzione di classificazione."
+
+#: src/Nunil_Admin_Help_Tabs.php:808
+msgid "Log"
+msgstr "Log"
+
+#: src/Nunil_Admin_Help_Tabs.php:811
+msgid "Log to database"
+msgstr "Log nel database"
+
+#: src/Nunil_Admin_Help_Tabs.php:811
+msgid "PHP error_log()"
+msgstr "PHP error_log()"
+
+#: src/Nunil_Admin_Help_Tabs.php:814
+msgid ""
+"Choose here if to allow the plugin to write log messages to the database."
+msgstr ""
+"Scegli qui se consentire al plugin di scrivere messaggi di log nel database."
+
+#: src/Nunil_Admin_Help_Tabs.php:819
+msgid "Log level to record"
+msgstr "Livello dei log da registrare"
+
+#: src/Nunil_Admin_Help_Tabs.php:822
+msgid ""
+"Select logs level to record in the database or to report by error_log()."
+msgstr ""
+"Selezionare il livello dei log da registrare nel database o da segnalare per "
+"error_log()."
+
+#: src/Nunil_Admin_Help_Tabs.php:829
+msgid ""
+"In this section you can add endpoints where to report captured violation."
+msgstr ""
+"In questa sezione è possibile aggiungere endpoint a cui segnalare la "
+"violazione acquisita."
+
+#: src/Nunil_Admin_Help_Tabs.php:832
+msgid "The plugin will add both a report-uri and a report-to directive."
+msgstr ""
+"Il plugin aggiungerà sia una direttiva report-uri sia una direttiva report-"
+"to."
+
+#: src/Nunil_Admin_Help_Tabs.php:835
+msgid ""
+"If no group name will be specified, the plugin will use 'csp-endpoint' as a "
+"default one."
+msgstr ""
+"Se non verrà specificato alcun nome di gruppo, il plugin utilizzerà 'csp-"
+"endpoint' come nome predefinito."
+
+#. translators: %s is the link to a paragraph in CSP3 specifications.
+#: src/Nunil_Admin_Help_Tabs.php:840
+msgid "Read %s for info about reporting directives."
+msgstr "Leggi %s per informazioni sulle direttive di segnalazione."
+
+#: src/Nunil_Admin_Help_Tabs.php:845
+msgid "Remember to save options after you added or removed report urls."
+msgstr ""
+"Ricorda di salvare le opzioni dopo aver aggiunto o rimosso gli URL dei "
+"rapporti."
+
+#: src/Nunil_Admin_Help_Tabs.php:856
+msgid ""
+"If no option is selected, no data will be removed from the database upon "
+"plugin deactivation."
+msgstr ""
+"Se non viene selezionata alcuna opzione, nessun dato verrà rimosso dal "
+"database alla disattivazione del plugin."
+
+#: src/Nunil_Admin_Help_Tabs.php:859
+msgid ""
+"Here you can select if you want options or tables to be removed upon "
+"deactivation."
+msgstr ""
+"Qui puoi selezionare se desideri che le opzioni o le tabelle vengano rimosse "
+"alla disattivazione."
+
+#: src/Nunil_Admin_Help_Tabs.php:862
+msgid ""
+"These options will be honored only on single site activation. No data will "
+"be removed on network deactivation."
+msgstr ""
+"Queste opzioni saranno rispettate solo per l'attivazione su un singolo sito. "
+"Nessun dato verrà rimosso durante una disattivazione di rete."
+
+#: src/Nunil_Admin_Help_Tabs.php:880
+msgid "For more information:"
+msgstr "Per maggiori informazioni:"
+
+#: src/Nunil_Admin_Help_Tabs.php:881
+msgid "Plugin page on WordPress.org"
+msgstr "Pagina dei plugin su WordPress.org"
+
+#: src/Nunil_Admin_Help_Tabs.php:882
+msgid "Support forum"
+msgstr "Forum di aiuto"
+
+#: src/Nunil_Admin_Help_Tabs.php:883
+msgid "Code page on GitHub"
+msgstr "Pagina del codice su GitHub"
+
+#: src/Nunil_Admin_Help_Tabs.php:884
+msgid "Report issues"
+msgstr "Segnala problemi"
+
+#: src/Nunil_Classification.php:86
+msgid "TEST CLASSIFIER: "
+msgstr "TEST CLASSIFICATORE: "
+
+#: src/Nunil_Classification.php:87
+msgid "Start time DB GET: "
+msgstr "Orario di inizio DB GET: "
+
+#: src/Nunil_Classification.php:96
+msgid "End time DB GET: "
+msgstr "Orario di fine DB GET: "
+
+#: src/Nunil_Classification.php:97
+msgid "Tag: "
+msgstr "Tag: "
+
+#: src/Nunil_Classification.php:98
+msgid "Num of hashes: "
+msgstr "Numero di hash: "
+
+#: src/Nunil_Classification.php:101
+msgid "Execution time DB GET (sec): "
+msgstr "Tempo di esecuzione DB GET (secondi): "
+
+#: src/Nunil_Classification.php:104
+msgid "Start time Training: "
+msgstr "Orario di inizio training: "
+
+#: src/Nunil_Classification.php:111
+msgid "End time Training: "
+msgstr "Orario di fine training: "
+
+#: src/Nunil_Classification.php:114
+msgid "Execution time Training (sec): "
+msgstr "Tempo di esecuzione training (secondi): "
+
+#: src/Nunil_Classification.php:117
+msgid "Start time Classifying: "
+msgstr "Orario di inizio classificazione: "
+
+#: src/Nunil_Classification.php:127
+msgid "Expected:"
+msgstr "Atteso:"
+
+#: src/Nunil_Classification.php:128
+msgid "Returned:"
+msgstr "Restituito:"
+
+#: src/Nunil_Classification.php:134
+msgid "End time Classifying: "
+msgstr "Orario di fine classificazione: "
+
+#: src/Nunil_Classification.php:137
+msgid "Table is empty. No test performed."
+msgstr "La tabella è vuota. Nessun test eseguito."
+
+#: src/Nunil_Classification.php:141
+msgid "Execution time Global (sec): "
+msgstr "Tempo di esecuzione complessito (secondi): "
+
+#: src/Nunil_Clustering.php:179
+msgid "CLUSTERING DATABASE"
+msgstr "CLUSTERING DEL DATABASE"
+
+#: src/Nunil_Clustering.php:181
+msgid "Start time: "
+msgstr "Orario di avvio: "
+
+#. translators:: %s is the table internal name.
+#: src/Nunil_Clustering.php:196
+msgid "Clustering %s"
+msgstr "Individuazione cluster in %s"
+
+#: src/Nunil_Clustering.php:209
+msgid "Processed hashes: "
+msgstr "Hash processati: "
+
+#: src/Nunil_Clustering.php:211
+msgid "Clusters built: "
+msgstr "Cluster costruiti: "
+
+#: src/Nunil_Clustering.php:221
+msgid "End time: "
+msgstr "Orario di fine: "
+
+#: src/Nunil_Clustering.php:225
+msgid "Execution time of script (sec): "
+msgstr "Tempo di esecuzione dello script (secondi): "
+
+#. translators: %s is the path to mu-plugin dir.
+#: src/Nunil_Manage_Muplugin.php:61
+msgid "Error! The following directory could not be created: %s."
+msgstr "Errore! Impossibile creare la directory: %s."
+
+#. translators: %s is the path to mu-plugin dir.
+#: src/Nunil_Manage_Muplugin.php:66 src/Nunil_Manage_Muplugin.php:68
+msgid ""
+"Error in installing mu-plugin! The following directory could not be created: "
+"%s."
+msgstr ""
+"Errore nell'installazione del mu-plugin! La seguente directory non può "
+"essere creata: %s."
+
+#. translators: %1$s is the source directory;  %2$s is the dest directory.
+#: src/Nunil_Manage_Muplugin.php:71 src/Nunil_Manage_Muplugin.php:74
+#: src/Nunil_Manage_Muplugin.php:76
+msgid ""
+"Error! Could not copy the No unsafe-inline's mu-plugin from %1$s to %2$s."
+msgstr ""
+"Errore! Impossibile copiare il mu-plugin di No unsafe-inline da %1$s a %2$s."
+
+#. translators: %s is the path to mu-plugin dir.
+#: src/Nunil_Manage_Muplugin.php:81
+msgid "Error! Could not remove the No unsafe-inline's mu-plugin from %s."
+msgstr ""
+"Errore ! Impossibile eliminare il mu-plugin di No unsafe-inline da %s ."
+
+#. translators: %s is the path to mu-plugin dir.
+#: src/Nunil_Manage_Muplugin.php:84 src/Nunil_Manage_Muplugin.php:86
+msgid "Error ! Could not remove the No unsafe-inline's mu-plugin from %s."
+msgstr "Errore ! Impossibile eliminare il mu-plugin di No unsafe-inline da %s."
+
+#: src/Nunil_Prune_Db.php:44
+msgid "Starting deleting orphans in occurences table"
+msgstr "Inizio dell'eliminazione degli orfani nella tabella delle occorrenze"
+
+#. translators: %1$d is the number of lines deleted from occurences table; %2$s
+#. is the internal table name.
+#: src/Nunil_Prune_Db.php:59
+msgid ""
+"Deleted %1$d orphaned lines from occurences table linked to deleted entries "
+"in %2$s"
+msgstr ""
+"Eliminate %1$d righe orfane dalla tabella delle occorrenze collegate a voci "
+"eliminate in %2$s"
+
+#: src/Nunil_Prune_Db.php:81
+msgid "Starting pruning big clusters"
+msgstr "Inizio della sfoltitura di grossi cluster"
+
+#. translators: %s is the internal tablename.
+#: src/Nunil_Prune_Db.php:85
+msgid "Pruning big clusters in %s"
+msgstr "Sfoltitura grossi cluster in %s"
+
+#. translators: %1$d is the number of scripts deleted; %2$s is the clustername;
+#. %3$s is the internal table name.
+#: src/Nunil_Prune_Db.php:99 src/Nunil_Prune_Db.php:113
+msgid "Deleted %1$d scripts from cluster %2$s in %3$s table"
+msgstr "%1$d script eliminati dal cluster %2$s nella tabella %3$s"
+
+#. translators: %s is the clustername.
+#: src/Nunil_Prune_Db.php:126
+msgid "Pruned cluster %s"
+msgstr "Sfoltito il cluster %s"
+
+#. Plugin Name of the plugin/theme
+msgid "No unsafe-inline"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://github.com/MocioF/No-unsafe-inline"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This plugin helps you to build a CSP to avoid using 'unsafe-inline' in your ."
+"htaccess"
+msgstr ""
+"Questo plugin ti aiuta a costruire una CSP per evitare di usare 'unsafe-"
+"inline' nel tuo .htaccess"
+
+#. Author of the plugin/theme
+msgid "Giuseppe Foti"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://profiles.wordpress.org/mociofiletto/"
+msgstr ""
+
+#~ msgid "Yes"
+#~ msgstr "Sì"
+
+#~ msgid "No"
+#~ msgstr "No"
+
+#~ msgid ""
+#~ "The unsafe-hashes Content Security Policy (CSP) keyword allows the "
+#~ "execution of inline scripts within a JavaScript event handler attribute "
+#~ "of a HTML element. This is not safe and this plugin can handle event "
+#~ "handlers HTML attributes without 'unsafe-hashes'."
+#~ msgstr ""
+#~ "La parola chiave (CSP) unsafe-hashes consente l'esecuzione di script in "
+#~ "linea all'interno di un attributo evento JavaScript di un elemento HTML. "
+#~ "Questo non è sicuro e questo plugin può gestire gli attributi eventi "
+#~ "degli elementi HTML senza impostare 'unsafe-hashes'."
+
+#~ msgid "script-src"
+#~ msgstr "script-src"
+
+#~ msgid "style-src"
+#~ msgstr "style-src"
+
+#~ msgid "img-src"
+#~ msgstr "img-src"
+
+#~ msgid ""
+#~ " Scripts and styles already whitelisted can be excluded by using the "
+#~ "corresponding link or massive action in the same way."
+#~ msgstr ""
+#~ "Gli script e gli stili già inseriti nella whitelist possono essere "
+#~ "esclusi utilizzando il collegamento corrispondente o l'azione di gruppo "
+#~ "nello stesso modo."
