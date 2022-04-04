@@ -107699,16 +107699,12 @@ plugins:
       - assets/js/frontend/add-to-cart.min.js
       - assets/js/frontend/woocommerce.min.js
       - assets/js/frontend/cart-fragments.min.js
+      - assets/css/twenty-twenty-one.css
       version: true
     MetaGenerator:
       class: Xpath
       xpath: //meta[@name="generator"]/@content
       pattern: !ruby/regexp /WooCommerce (?<v>\d+\.[\.\d]+)/i
-      version: true
-    TranslationFile:
-      class: BodyPattern
-      path: i18n/languages/woocommerce.pot
-      pattern: !ruby/regexp /"Project\-Id\-Version:\ WooCommerce (?<v>\d+\.[\.\d]+)/i
       version: true
     JavascriptVarFromEnhancedEcommerce:
       class: JavascriptVar
