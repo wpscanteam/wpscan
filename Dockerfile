@@ -1,4 +1,4 @@
-FROM ruby:3.0.2-alpine AS builder
+FROM ruby:3.0-alpine AS builder
 LABEL maintainer="WPScan Team <contact@wpscan.com>"
 
 RUN echo "install: --no-document --no-post-install-message\nupdate: --no-document --no-post-install-message" > /etc/gemrc
@@ -19,7 +19,7 @@ RUN rake install --trace
 RUN chmod -R a+r /usr/local/bundle
 
 
-FROM ruby:3.0.2-alpine
+FROM ruby:3.0-alpine
 LABEL maintainer="WPScan Team <contact@wpscan.com>"
 LABEL org.opencontainers.image.source https://github.com/wpscanteam/wpscan
 
