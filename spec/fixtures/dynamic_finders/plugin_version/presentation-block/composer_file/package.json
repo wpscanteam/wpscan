@@ -1,0 +1,37 @@
+{
+  "name": "slide",
+  "version": "1.0.0",
+  "description": "A Slides & Presentations plugin",
+  "semistandard": {
+    "ignore": [
+      "index.js"
+    ]
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:js": "wp-scripts lint-js ./src/js",
+    "format:js": "wp-scripts format ./src/js",
+    "start": "parcel watch ./src/js/entry.js -d ./build/js/ --out-file ./build/js/index.js",
+    "build:index": "parcel build ./src/js/entry.js -d ./build/js/ --out-file ./build/js/index.js",
+    "build": "wp-scripts build ./src/js/speaker.js ./src/js/template.js --output-path=./build/js/ && npm run build:index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abstractwp/slide.git"
+  },
+  "keywords": [
+    "slide"
+  ],
+  "author": "Thong Dang",
+  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/abstractwp/slide/issues"
+  },
+  "homepage": "https://github.com/abstractwp/slide#readme",
+  "devDependencies": {
+    "@wordpress/scripts": "^23.2.0",
+    "parcel-bundler": "^1.12.4",
+    "prettier": "npm:wp-prettier@^2.2.1-beta-1",
+    "semistandard": "*"
+  }
+}
