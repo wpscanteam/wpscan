@@ -1,0 +1,42 @@
+{
+  "name": "splintr/woo-splintr-checkout",
+  "description": "Splintr Checkout - The Official WordPress Plugin for WooCommerce",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "license": "GPL-2.0-or-later",
+  "type": "wordpress-plugin",
+  "version": "0.2.3",
+  "authors": [
+    {
+      "name": "Splintr",
+      "homepage": "https://www.splintr.com/",
+      "email": "developers@splintr.com",
+      "role": "Company"
+    }
+  ],
+  "require": {
+    "php": ">=5.5",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "coenjacobs/mozart": "^0.7.0",
+    "phpunit/phpunit": "^6.5",
+    "johnpbloch/wordpress-core": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Splintr\\Wp\\Plugin\\SplintrCheckout\\": "src/",
+      "Splintr\\Wp\\Plugin\\SplintrCheckoutLib\\": "lib/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Splintr\\Wp\\Plugin\\SplintrCheckout\\": "tests/"
+    }
+  },
+  "config": {
+    "platform": {
+      "php": "7.3"
+    }
+  }
+}
