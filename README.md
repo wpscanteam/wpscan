@@ -134,7 +134,7 @@ The feature mentioned above is useful to keep the API Token in a config file and
 
 ```yml
 cli_options:
-  api_token: YOUR_API_TOKEN
+  api_token: 'YOUR_API_TOKEN'
 ```
 
 ## Load API Token From ENV (since v3.7.10)
