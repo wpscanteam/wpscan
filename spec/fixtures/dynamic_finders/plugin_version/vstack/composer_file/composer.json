@@ -1,0 +1,42 @@
+{
+    "autoload": {
+        "psr-4": {
+            "VSTACK\\": "src/"
+        }
+    },
+    "description": "A vStack plugin for WordPress",
+    "license": "BSD-3-Clause",
+    "name": "cloudflare/wordpress-plugin",
+    "type": "wordpress-plugin",
+    "require": {
+        "cloudflare/cf-ip-rewrite": "^1.0.0",
+        "cloudflare/cloudflare-plugin-backend": "2.5.0",
+        "symfony/polyfill-intl-idn": "*"
+    },
+    "require-dev": {
+        "symfony/yaml": "~2.6",
+        "johnkary/phpunit-speedtrap": "*",
+        "php-mock/php-mock-phpunit": "*",
+        "phpunit/phpunit": "*",
+        "squizlabs/php_codesniffer": "*",
+        "phpcompatibility/php-compatibility": "*",
+        "simplyadmire/composer-plugins": "*",
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
+        "phpdocumentor/reflection-docblock": "*"
+    },
+    "scripts": {
+        "format": "php vendor/bin/phpcs -d date.timezone=UTC --standard=phpcs.xml",
+        "test": "php vendor/bin/phpunit",
+        "clean-crash-test": "rm -f vendor/phpunit/php-code-coverage/tests/_files/Crash.php",
+        "remove-php-8-symfony-polyfill-bootstraps": "rm -f vendor/symfony/polyfill-ctype/bootstrap80.php vendor/symfony/polyfill-intl-idn/bootstrap80.php vendor/symfony/polyfill-intl-normalizer/bootstrap80.php"
+    },
+    "_comment": [
+        "php-compatibility-install comes from https://github.com/wimg/PHPCompatibility/issues/102#issuecomment-255778195"
+    ],
+    "version": "4.5.1",
+    "config": {
+        "platform": {
+            "php": "7.2"
+        }
+    }
+}

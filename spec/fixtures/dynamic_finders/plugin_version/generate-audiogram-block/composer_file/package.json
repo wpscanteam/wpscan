@@ -1,0 +1,26 @@
+{
+	"name": "generate-audiogram-block",
+	"version": "0.1.0",
+	"description": "Generate and customize audiograms in the block editor.",
+	"author": "firewatch",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@ffmpeg/core": "^0.9.0",
+		"@ffmpeg/ffmpeg": "^0.9.8",
+		"@wordpress/block-editor": "^6.2.0",
+		"@wordpress/blocks": "^10.0.0",
+		"@wordpress/i18n": "^4.2.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^17.0.0"
+	}
+}

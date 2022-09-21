@@ -125,14 +125,14 @@ module WPScan
           return @uri.to_s unless path
 
           if %r{wp-content/plugins}i.match?(path)
-            path = +path.gsub('wp-content/plugins', plugins_dir)
+            new_path = path.gsub('wp-content/plugins', plugins_dir)
           elsif /wp-content/i.match?(path)
-            path = +path.gsub('wp-content', content_dir)
+            new_path = path.gsub('wp-content', content_dir)
           elsif path[0] != '/' && sub_dir
-            path = "#{sub_dir}/#{path}"
+            new_path = "#{sub_dir}/#{path}"
           end
 
-          super(path)
+          super(new_path || path)
         end
       end
     end

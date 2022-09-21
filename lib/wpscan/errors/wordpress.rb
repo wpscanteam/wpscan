@@ -26,7 +26,7 @@ module WPScan
     class WpContentDirNotDetected < Standard
       def to_s
         'Unable to identify the wp-content dir, please supply it with --wp-content-dir,' \
-        ' use the --scope option or make sure the --url value given is the correct one'
+          ' use the --scope option or make sure the --url value given is the correct one'
       end
     end
 

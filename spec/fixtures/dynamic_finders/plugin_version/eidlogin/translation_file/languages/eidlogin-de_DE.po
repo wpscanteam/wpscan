@@ -1,0 +1,968 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: eID-Login 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/eid-login-"
+"wordpress\n"
+"POT-Creation-Date: 2021-08-04T10:30:03+02:00\n"
+"PO-Revision-Date: 2021-08-04 10:30+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de_DE\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"X-Domain: eidlogin\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. Plugin Name of the plugin
+msgid "eID-Login"
+msgstr "eID-Login"
+
+#. Plugin URI of the plugin
+msgid "https://eid.services/eidlogin/wordpress"
+msgstr "https://eid.services/eidlogin/wordpress"
+
+#. Description of the plugin
+msgid ""
+"The eID-Login plugin allows to use the German eID-card and similar "
+"electronic identity documents for <strong>secure and privacy-friendly login</"
+"strong> to WordPress. For this purpose, a so-called eID-Client, such as the "
+"AusweisApp2 or the Open eCard App and eID-Service are required. In the "
+"default configuration a suitable eID-Service is provided without any "
+"additional costs."
+msgstr ""
+"Mit dem eID-Login Plugin kann die Online-Ausweisfunktion (u.a. vom "
+"Personalausweis) für eine <strong>sichere und datenschutzfreundliche "
+"Anmeldung</strong> an WordPress verwendet werden. Hierfür wird auf dem "
+"System des Benutzers ein so genannter eID-Client, wie z.B. die AusweisApp2 "
+"oder die Open eCard App, und ein eID-Service benötigt. In der "
+"Standardkonfiguration steht ein geeigneter eID-Service kostenfrei zur "
+"Verfügung."
+
+#. Author of the plugin
+msgid "ecsec GmbH"
+msgstr "ecsec GmbH"
+
+#. Author URI of the plugin
+msgid "https://www.ecsec.de"
+msgstr "https://www.ecsec.de"
+
+#: admin/class-eidlogin-admin.php:199
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: admin/class-eidlogin-admin.php:211
+msgid "Settings › eID-Login"
+msgstr "Einstellungen › eID-Login"
+
+#: admin/class-eidlogin-rest.php:159
+msgid "The activation checkbox is missing."
+msgstr "Die Aktivierungs-Checkbox fehlt."
+
+#: admin/class-eidlogin-rest.php:163
+msgid "The EntityID of the Service Provider is missing."
+msgstr "Die EntityID des Service Providers fehlt."
+
+#: admin/class-eidlogin-rest.php:167
+msgid "The enforce encryption parameter is missing."
+msgstr "Der Parameter zur erzwungenen Verschlüsselung fehlt."
+
+#: admin/class-eidlogin-rest.php:171
+msgid "The EntityID of the Identity Provider is missing."
+msgstr "Die EntityID des Identity Providers fehlt."
+
+#: admin/class-eidlogin-rest.php:175
+msgid "Invalid Single Sign-On URL of the Identity Provider."
+msgstr "Ungültige Identity Provider Single Sign-On URL."
+
+#: admin/class-eidlogin-rest.php:179
+msgid "The Signature Certificate of the Identity Provider is missing."
+msgstr "Das Signatur-Zertifikat des Identity Providers fehlt."
+
+#: admin/class-eidlogin-rest.php:183
+msgid "The Encryption Certificate of the Identity Provider is missing."
+msgstr "Das Verschlüsselungszertifikat des Identity Providers fehlt."
+
+#: admin/class-eidlogin-rest.php:187
+msgid "The AuthnRequestExtension XML element is no valid XML."
+msgstr "Das AuthnRequestExtension XML-Element ist kein valides XML."
+
+#: admin/class-eidlogin-rest.php:191
+msgid "The value of the confirmation dialog is missing."
+msgstr "Der Wert aus dem Bestätigungsdialog fehlt."
+
+#: admin/class-eidlogin-rest.php:319
+msgid "Settings have been saved."
+msgstr "Die Einstellungen wurden gespeichert."
+
+#: admin/class-eidlogin-rest.php:327
+msgid "Settings have been reset."
+msgstr "Die Einstellungen wurden zurückgesetzt."
+
+#: admin/class-eidlogin-rest.php:413
+msgid "Certificate Rollover has been prepared."
+msgstr "Zertifikatswechsel erfolgreich vorbereitet."
+
+#: admin/class-eidlogin-rest.php:441
+msgid "Certificate Rollover has been executed."
+msgstr "Zertifikatswechsel erfolgreich durchgeführt."
+
+#: db/class-eidlogin-user.php:107
+msgid "Cannot save eID for the current user."
+msgstr "Die eID konnte für den aktuellen Benutzer nicht gespeichert werden."
+
+#. Translators: %s: the type of the certificate (signature or encryption)
+#: includes/class-eidlogin-certificates.php:262
+msgid "The %s of the Identity Provider could not be read."
+msgstr "Das %s des Identity Providers konnte nicht gelesen werden."
+
+#. Translators: %1$s The type of the certificate (signature or encryption) and %2$s the minimal valid key length
+#: includes/class-eidlogin-certificates.php:285
+msgid ""
+"The %1$s of the Identity Provider has an insufficient public key length. The "
+"minimal valid key length is %2$s."
+msgstr ""
+"Das %1$s des Identity Providers beinhaltet einen öffentlichen Schlüssel "
+"unzureichender Länge. Die minimal gültige Schlüssellänge ist %2$s."
+
+#: includes/class-eidlogin-helper.php:126
+msgid "Signature Certificate"
+msgstr "Signaturzertifikat"
+
+#: includes/class-eidlogin-helper.php:141
+msgid "Encryption Certificate"
+msgstr "Verschlüsselungszertifikat"
+
+#: includes/class-eidlogin-i18n.php:45
+msgid "Overview"
+msgstr "Überblick"
+
+#: includes/class-eidlogin-i18n.php:46
+msgid "Select IdP"
+msgstr "IdP wählen"
+
+#: includes/class-eidlogin-i18n.php:47
+msgid "Configure IdP"
+msgstr "IdP konfigurieren"
+
+#: includes/class-eidlogin-i18n.php:48
+msgid "Connect eID"
+msgstr "eID verknüpfen"
+
+#: includes/class-eidlogin-i18n.php:49
+msgid "Help"
+msgstr "Hilfe"
+
+#: includes/class-eidlogin-i18n.php:50
+msgid "Close"
+msgstr "Schließen"
+
+#: includes/class-eidlogin-i18n.php:51
+msgid "Back"
+msgstr "Zurück"
+
+#: includes/class-eidlogin-i18n.php:52
+msgid "Next"
+msgstr "Weiter"
+
+#: includes/class-eidlogin-i18n.php:55
+msgid "What is the eID-Login plugin?"
+msgstr "Was ist das eID-Login Plugin?"
+
+#: includes/class-eidlogin-i18n.php:56
+msgid ""
+"The eID-Login plugin enables users to login to WordPress using an <b>eID-"
+"Card</b>, i.e. the <a href=\"https://www.personalausweisportal.de/Webs/PA/EN/"
+"citizens/electronic-identification/electronic-identification-node.html\" "
+"target=\"_blank\">eID function</a> of the German Identity Card. For the "
+"connection of an eID to their WordPress account and the eID based login, "
+"users need an <b>eID-Client</b>, this means an application like AusweisApp2 "
+"or the Open e-Card App."
+msgstr ""
+"Das eID-Login Plugin ermöglicht Nutzern die Anmeldung an WordPress mit einer "
+"<b>eID-Karte</b> z.B. der <a href=\"https://www.personalausweisportal.de/"
+"Webs/PA/DE/buergerinnen-und-buerger/online-ausweisen/online-ausweisen-node."
+"html\" target=\"_blank\">Online-Ausweisfunktion</a> des Personalausweises. "
+"Für die Verknüpfung der eID mit dem Nutzerkonto bei WordPress, sowie für die "
+"Anmeldung mittels eID benötigen die Nutzer einen <b>eID-Client</b>, d.h. "
+"eine Anwendung wie z.B. die AusweisApp2 oder die Open e-Card App."
+
+#: includes/class-eidlogin-i18n.php:57
+msgid ""
+"By using the German eID card (or another eID) and the associated PIN code "
+"the eID-Login provides a secure alternative to the login using username and "
+"password."
+msgstr ""
+"Durch die Verwendung der Online-Ausweisfunktion des Personalausweises (bzw. "
+"einer anderen eID) und der zugehörigen selbstgewählten PIN stellt der eID-"
+"Login eine sicherere Alternative zur Anmeldung mit Benutzername und Passwort "
+"dar."
+
+#: includes/class-eidlogin-i18n.php:58
+msgid ""
+"<b>Important!</b> When using the eID-Login plugin in it`s default "
+"configuration, no personal data from the eID card will be read. Only the <a "
+"href=\"https://www.personalausweisportal.de/SharedDocs/faqs/Webs/PA/DE/"
+"Haeufige-Fragen/9_pseudonymfunktikon/pseudonymfunktion-liste.html\" target="
+"\"_blank\">pseudonym function</a> of the eID is being used. If any other "
+"data is being read, the user will be informed about it."
+msgstr ""
+"<b>Wichtig!</b> Bei der Verwendung des eID-Logins werden in der "
+"Standardkonfiguration keine persönlichen Daten aus dem Personalausweis "
+"ausgelesen. Stattdessen wird die <a href=\"https://www.personalausweisportal."
+"de/SharedDocs/faqs/Webs/PA/DE/Haeufige-Fragen/9_pseudonymfunktikon/"
+"pseudonymfunktion-liste.html\" target=\"_blank\">Pseudonymfunktion</a> des "
+"Ausweises verwendet. Werden davon abweichend weitere Daten ausgelesen, so "
+"wird der Benutzer darüber informiert."
+
+#: includes/class-eidlogin-i18n.php:59
+msgid "Setup with SkIDentity as Identity Provider"
+msgstr "Einrichtung mit SkIDentity als Identity Provider"
+
+#: includes/class-eidlogin-i18n.php:60
+msgid ""
+"The easiest way to setup the eID-Login plugin is by using the <a href="
+"\"https://skidentity.com/\" target=\"_blank\">SkIDentity Service</a> which "
+"has been preconfigured for ease of use. For the default setup, which means "
+"only using the pseudonym function, no costs incur. The only requirement is "
+"the <a href=\"https://sp.skidentity.de/\" target=\"_blank\">registration</a> "
+"at SkIDentity."
+msgstr ""
+"Die einfachste Art das eID-Login Plugin einzurichten ist die Verwendung des "
+"<a href=\"https://skidentity.de/\" target=\"_blank\">SkIDentity Service</"
+"a> , welcher bereits für die unkomplizierte Nutzung vorkonfiguriert ist. Für "
+"die Standardkonfiguration, bei der die Pseudonymfunktion bei der Anmeldung "
+"verwendet wird, fallen keine Kosten an. Einzige Voraussetzung ist die <a "
+"href=\"https://sp.skidentity.de/\" target=\"_blank\">Registrierung</a> bei "
+"SkIDentity."
+
+#: includes/class-eidlogin-i18n.php:61
+msgid "Setup with another Identity Provider"
+msgstr "Einrichtung mit einem anderen Identity Provider"
+
+#: includes/class-eidlogin-i18n.php:62
+msgid ""
+"For the eID-Login any Identity Provider using the SAML protocol for "
+"communication with WordPress can be used. Beyond that any service providing "
+"an eID-Server according to <a href=\"https://www.bsi.bund.de/DE/Themen/"
+"Unternehmen-und-Organisationen/Standards-und-Zertifizierung/Technische-"
+"Richtlinien/TR-nach-Thema-sortiert/tr03130/TR-03130_node.html\" target="
+"\"_blank\">BSI TR-03130</a> (also based on SAML) can be used."
+msgstr ""
+"Es können für den eID-Login alle Identity Provider angebunden werden, welche "
+"das SAML Protokoll nutzen, um mit WordPress zu kommunizieren. Darüber hinaus "
+"ist die Nutzung von Diensten möglich, die einen eID-Server gemäß <a href="
+"\"https://www.bsi.bund.de/DE/Themen/Unternehmen-und-Organisationen/Standards-"
+"und-Zertifizierung/Technische-Richtlinien/TR-nach-Thema-sortiert/tr03130/"
+"TR-03130_node.html\" target=\"_blank\">BSI TR-03130</a> zur Verfügung "
+"stellen, welcher auch auf SAML basiert."
+
+#: includes/class-eidlogin-i18n.php:63
+msgid "Technical background information"
+msgstr "Technischer Hintergrund"
+
+#: includes/class-eidlogin-i18n.php:64
+msgid ""
+"The eID-Login plugin uses the SAML protocol to let users login into "
+"WordPress via an external service (Identity Provider) using an eID."
+msgstr ""
+"Das eID-Login Plugin nutzt das SAML Protokoll, damit sich Benutzer Ihrer "
+"WordPress-Instanz über einen externen Dienst (Identity Provider) unter "
+"Nutzung der Online-Ausweisfunktion anmelden können."
+
+#: includes/class-eidlogin-i18n.php:65
+msgid "The SAML protocol defines two major and collaborating entities:"
+msgstr "Das SAML Protokoll definiert die folgenden beiden Entitäten:"
+
+#: includes/class-eidlogin-i18n.php:66
+msgid ""
+"<b>Service Provider (SP)</b>: An entity which provides any kind of service "
+"over the web. In the scope of the eID-Login plugin this is your WordPress "
+"instance, which contains a SAML Service Provider component."
+msgstr ""
+"<b>Service Provider (SP)</b>: Eine Entität, welche einen Dienst über das Web "
+"bereitstellt. Im Rahmen des eID-Login Plugins ist es Ihre WordPress-Instanz, "
+"welche eine SAML Service Provider Komponente enthält."
+
+#: includes/class-eidlogin-i18n.php:67
+msgid ""
+"<b>Identity Provider (IdP)</b>: An entity which authenticates the User and "
+"returns a corresponding assertion to the Service Provider. In the scope of "
+"the eID-Login plugin this can be any standard compliant SAML Identity "
+"Provider which supports eID-based authentication, for example the <a href="
+"\"https://skidentity.com/\" target=\"_blank\">SkIDentity Service</a>."
+msgstr ""
+"<b>Identity Provider (IdP)</b>: Eine Entität, welche den Benutzer "
+"authentifiziert und eine entsprechende Bestätigung (Assertion) an den "
+"Service Provider zurück gibt. Im Rahmen des eID-Login Plugins kann dies "
+"jeder zum SAML-Standard kompatible Identity Provider sein, welcher eID-"
+"basierte Authentisierung unterstützt, wie zum Beispiel der <a href=\"https://"
+"skidentity.de/\" target=\"_blank\">SkIDentity Service</a>."
+
+#: includes/class-eidlogin-i18n.php:68
+msgid "The eID-Login procedure comprises the following steps:"
+msgstr "Der eID-Login Prozess besteht aus folgenden Schritten:"
+
+#: includes/class-eidlogin-i18n.php:69
+msgid "The User initiates the login procedure at the Service Provider."
+msgstr "Der Benutzer initiert den Anmeldevorgang am Service Provider."
+
+#: includes/class-eidlogin-i18n.php:70
+msgid ""
+"The Service Provider creates a SAML authentication request (<AuthnRequest>) "
+"and sends it together with the User via redirect to the Identity Provider."
+msgstr ""
+"Der Service Provider erstellt eine SAML Authentisierungsanfrage "
+"(<AuthnRequest>) und sendet diese zusammen mit dem Benutzer über einen "
+"Redirect an den Identity Provider."
+
+#: includes/class-eidlogin-i18n.php:71
+msgid ""
+"The Identity Provider authenticates the User using her eID via an eID-Client."
+msgstr ""
+"Der Identity Provider authentifiziert den Benutzer über einen eID-Client "
+"unter Verwendung der eID."
+
+#: includes/class-eidlogin-i18n.php:72
+msgid ""
+"The Identity Provider returns the result of the authentication procedure to "
+"the Service Provider (<Response>)."
+msgstr ""
+"Der Identity Provider gibt das Ergebnis der Authentifizierung an den Service "
+"Provider zurück (<Response>)."
+
+#: includes/class-eidlogin-i18n.php:73
+msgid ""
+"The Service Provider validates the provided response and logs in the User in "
+"case of success."
+msgstr ""
+"Der Service Provider validiert das erhaltene Ergebnis und meldet im "
+"Erfolgsfall den Benutzer an."
+
+#: includes/class-eidlogin-i18n.php:76
+msgid ""
+"The eID-Login plugin offers an alternative way of login for the registered "
+"users of your WordPress instance, using their electronic identity (<b>eID</"
+"b>). For example the German eID can then be used for a secure login."
+msgstr ""
+"Das eID-Login Plugin ermöglicht eine alternative Anmeldung für registrierte "
+"Benutzer Ihrer WordPress-Instanz mittels einer elektronischen Identität "
+"(<b>eID</b>). Benutzer können sich dann z.B. mit der Online-Ausweisfunktion "
+"ihres Personalausweises auf sichere Weise anmelden."
+
+#: includes/class-eidlogin-i18n.php:77
+msgid "Setup of the eID-Login plugin consists of three steps:"
+msgstr "Die Einrichtung des eID-Login Plugins erfolgt in drei Schritten:"
+
+#: includes/class-eidlogin-i18n.php:78 includes/class-eidlogin-i18n.php:88
+msgid "Select Identity Provider"
+msgstr "Identity Provider wählen"
+
+#: includes/class-eidlogin-i18n.php:79
+msgid ""
+"For the usage of the eID-Login plugin a service which makes the eID "
+"accessible is needed. This service is called <b>Identity Provider</b> or in "
+"short <b>IdP</b>. You can choose to use the preconfigured <a target=\"_blank"
+"\" href=\"https://skidentity.com\">SkIDentity</a> service or select another "
+"service."
+msgstr ""
+"Für die Nutzung des eID-Login Plugins wird ein Dienst benötigt, der die eID "
+"zugänglich macht. Dieser wird als <b>Identity Provider</b> oder kurz <b>IdP</"
+"b> bezeichnet. Sie haben die Möglichkeit den <a target=\"_blank\" href="
+"\"https://skidentity.de\">SkIDentity</a> Dienst mit Voreinstellungen zu "
+"nutzen oder einen anderen Dienst zu wählen."
+
+#: includes/class-eidlogin-i18n.php:80
+msgid "Configuration at the Identity Provider"
+msgstr "Konfiguration am Identity Provider"
+
+#: includes/class-eidlogin-i18n.php:81
+msgid ""
+"At the Identity Provider your WordPress instance, which serves as <b>Service "
+"Provider</b>, must be registered. The process of registration depends on the "
+"respective Identity Provider. The information needed for registration is "
+"provided in step 2."
+msgstr ""
+"Beim Identity Provider muss Ihre WordPress-Instanz, die als <b>Service "
+"Provider</b> dient, eingetragen werden. Das exakte Vorgehen ist vom "
+"jeweiligen Anbieter abhängig. Die benötigten Informationen werden Ihnen in "
+"Schritt 2 bereitgestellt."
+
+#: includes/class-eidlogin-i18n.php:82
+msgid ""
+"In order to use a German eID (\"Personalausweis\") or another eID for the "
+"login at WordPress, the eID must be connected to an user account."
+msgstr ""
+"Um sich künftig mit dem Personalausweis oder einer anderen eID bei WordPress "
+"anmelden zu können, muss diese noch mit dem Nutzerkonto verknüpft werden."
+
+#: includes/class-eidlogin-i18n.php:83
+msgid ""
+"Please click on the (?) icon for help regarding the setup or more "
+"information."
+msgstr ""
+"Klicken Sie auf das (?) Icon für Hilfe bei der Einrichtung oder für weitere "
+"Informationen."
+
+#: includes/class-eidlogin-i18n.php:84
+msgid "Continue with SkIDentity"
+msgstr "Weiter mit SkIDentity"
+
+#: includes/class-eidlogin-i18n.php:85
+msgid "Continue with another IdP"
+msgstr "Weiter mit anderem IdP"
+
+#: includes/class-eidlogin-i18n.php:89
+msgid "Select an Identity Provider. It must support the SAML protocol."
+msgstr ""
+"Wählen Sie einen Identity Provider. Dieser muss das SAML-Protokoll "
+"unterstützen."
+
+#: includes/class-eidlogin-i18n.php:90
+msgid ""
+"Insert the Identity Providers Metadata URL in the respective form field and "
+"assign an Entity ID, which must be used for the configuration of the "
+"Identity Provider in the next step."
+msgstr ""
+"Tragen Sie dessen Metadaten URL in das entsprechende Feld ein und bestimmen "
+"Sie die EntityID, die Sie im nächsten Schritt bei Ihrem Identity Provider "
+"eintragen müssen."
+
+#: includes/class-eidlogin-i18n.php:91
+msgid "Identity Provider Metadata URL"
+msgstr "Identity Provider Metadaten URL"
+
+#: includes/class-eidlogin-i18n.php:92
+msgid ""
+"When inserting the Metadata URL, the values in the advanced settings will be "
+"updated. Alternatively the advanced settings can be inserted by hand."
+msgstr ""
+"Durch das Eintragen der Metadaten URL werden die Werte in den "
+"fortgeschrittenen Einstellungen aktualisiert. Alternativ können Sie die "
+"fortgeschrittenen Einstellungen von Hand anpassen."
+
+#: includes/class-eidlogin-i18n.php:93
+msgid "Service Provider EntityID"
+msgstr "Service Provider EntityID"
+
+#: includes/class-eidlogin-i18n.php:94
+msgid "Usually the domain of your WordPress instance is used."
+msgstr "Üblicherweise wird die Domain Ihrer WordPress-Instanz genutzt."
+
+#: includes/class-eidlogin-i18n.php:95 includes/class-eidlogin-i18n.php:132
+msgid ""
+"Enforce encryption of SAML assertions (Check only if the selected Identity "
+"Provider supports this feature!)"
+msgstr ""
+"Verschlüsselung von Authentifizierungsanworten erzwingen (Aktivieren Sie "
+"diese Option nur, wenn dies vom Identity Provider unterstützt wird!)"
+
+#: includes/class-eidlogin-i18n.php:96
+msgid "Edit Advanced Settings"
+msgstr "Fortgeschrittene Einstellungen bearbeiten"
+
+#: includes/class-eidlogin-i18n.php:99 admin/js/eidlogin-admin.js:67
+msgid "Advanced Settings"
+msgstr "Fortgeschrittene Einstellungen"
+
+#: includes/class-eidlogin-i18n.php:100 includes/class-eidlogin-i18n.php:136
+msgid ""
+"URL of the Identity Provider to which the SAML authentication request will "
+"be sent."
+msgstr ""
+"URL des Identity Provider zu welcher die SAML Authentisierungsanfrage "
+"gesendet wird."
+
+#: includes/class-eidlogin-i18n.php:101
+msgid "Signature Certificate of the Identity Provider"
+msgstr "Signatur-Zertifikat des Identity Provider"
+
+#: includes/class-eidlogin-i18n.php:102
+msgid "Certificate to validate the signature of the authentication response."
+msgstr ""
+"Zertifikat um die Signatur der Authentifizierungsantwort zu validieren."
+
+#: includes/class-eidlogin-i18n.php:103
+msgid "Encryption Certificate of the Identity Provider"
+msgstr "Verschlüsselungszertifikat des Identity Provider"
+
+#: includes/class-eidlogin-i18n.php:104
+msgid ""
+"Certificate to encrypt the authentication request. Omitting the element "
+"means that the SAML requests are not encrypted."
+msgstr ""
+"Zertifikat um die Authentisierungsanfrage zu verschlüsseln. Falls kein Wert "
+"eingetragen ist, so werden Anfragen nicht verschlüsselt."
+
+#: includes/class-eidlogin-i18n.php:105
+msgid "AuthnRequestExtension XML element"
+msgstr "AuthnRequestExtension XML Element"
+
+#: includes/class-eidlogin-i18n.php:106
+msgid ""
+"For a connection according to <a href=\"https://www.bsi.bund.de/SharedDocs/"
+"Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR03130/TR-03130_TR-eID-"
+"Server_Part1.pdf?__blob=publicationFile&v=1\" target=\"_blank\">BSI "
+"TR-03130</a>, the corresponding <AuthnRequestExtension> XML element must be "
+"inserted here."
+msgstr ""
+"Um eine Verbindung gemäß <a href=\"https://www.bsi.bund.de/SharedDocs/"
+"Downloads/DE/BSI/Publikationen/TechnischeRichtlinien/TR03130/TR-03130_TR-eID-"
+"Server_Part1.pdf?__blob=publicationFile&v=1\" target=\"_blank\">BSI "
+"TR-03130</a> zu nutzen, muss das entsprechende <AuthnRequestExtension> XML "
+"Element hier eingetragen werden."
+
+#: includes/class-eidlogin-i18n.php:109
+msgid ""
+"Now go to the selected Identity Provider and use the following data to "
+"register the Service Provider there:"
+msgstr ""
+"Gehen Sie jetzt zum ausgewählten Identity Provider und nutzen Sie die "
+"folgenden Daten, um den Service Provider dort einzutragen:"
+
+#: includes/class-eidlogin-i18n.php:110
+msgid ""
+"You have selected SkIDentity. Click the button to the right to go to "
+"SkIDentity."
+msgstr ""
+"Sie haben SkIDentity ausgewählt. Klicken Sie den Button rechts um zu "
+"SkIDentity zu gelangen."
+
+#: includes/class-eidlogin-i18n.php:111
+msgid "Open SkIDentity"
+msgstr "SkIDentity öffnen"
+
+#: includes/class-eidlogin-i18n.php:112
+msgid "The metadata as provided by the Service Provider at the URL"
+msgstr "Die Service Provider Metadaten, auch bereitgestellt unter"
+
+#: includes/class-eidlogin-i18n.php:115
+msgid ""
+"To use the eID-Login, the eID must be connected to the user account. For "
+"this you need an eID-Card, like the German eID, a suitable cardreader and an "
+"active eID-Client (for example <a href=\"https://www.openecard.org/en/"
+"download/pc/\" target=\"_blank\">Open eCard-App</a> or <a href=\"https://www."
+"ausweisapp.bund.de/ausweisapp2/\" target=\"_blank\">AusweisApp2</a>). After "
+"establishing the connection the eID-Login can be used with the button on the "
+"login page."
+msgstr ""
+"Um den eID-Login nutzen zu können, muss die eID mit dem Konto verknüpft "
+"werden. Dafür benötigt man eine eID-Karte, z.B. einen Personalausweis, einen "
+"geeigneten Kartenleser und einen gestarteten eID-Client (z.B. <a href="
+"\"https://www.openecard.org/en/download/pc/\" target=\"_blank\">Open eCard-"
+"App</a> oder <a href=\"https://www.ausweisapp.bund.de/ausweisapp2/\" target="
+"\"_blank\">AusweisApp2</a>). Nach der Verknüpfung kann der eID-Login mit dem "
+"entsprechenden Button auf der Anmeldeseite verwendet werden."
+
+#: includes/class-eidlogin-i18n.php:116
+msgid ""
+"You can connect your account with an eID now. This step is optional and can "
+"be done and reverted any time later in your personal settings under the "
+"security section."
+msgstr ""
+"Sie können Ihr Konto nun mit Ihrer eID verknüpfen. Dieser Schritt ist "
+"optional und kann jederzeit später im Bereich 'Sicherheit' der persönlichen "
+"'Einstellungen' erfolgen und rückgängig gemacht werden."
+
+#: includes/class-eidlogin-i18n.php:117
+msgid ""
+"<b>Please note</b>: After connecting the eID or finishing the wizard, this "
+"page will show a form for direct access to the eID-Login settings. To use "
+"the wizard again, reset the settings of the eID-Login plugin."
+msgstr ""
+"<b>Bitte beachten Sie</b>: Nach dem Erstellen der Verknüpfung oder dem "
+"Abschließen der Konfiguration wird auf dieser Seite ein Formular für den "
+"direkten Zugriff auf die eID-Login Konfiguration angezeigt. Um den Wizard "
+"erneut zu nutzen, setzen Sie die Einstellungen des eID-Login Plugins zurück."
+
+#: includes/class-eidlogin-i18n.php:118 saml/class-eidlogin-saml.php:726
+msgid "Create connection to eID"
+msgstr "Verknüpfung zu eID erstellen"
+
+#: includes/class-eidlogin-i18n.php:119
+msgid "Finish wizard"
+msgstr "Konfiguration abschließen"
+
+#: includes/class-eidlogin-i18n.php:122
+msgid ""
+"If the eID-Login is activated, the eID-Login button is shown and users can "
+"edit eID connections."
+msgstr ""
+"Ist der eID-Login aktiviert, so wird der eID-Login Button angezeigt und "
+"Benutzer können Ihre eID-Verknüpfung editieren."
+
+#: includes/class-eidlogin-i18n.php:123
+msgid "eID-Login is activated"
+msgstr "eID-Login ist aktiviert"
+
+#: includes/class-eidlogin-i18n.php:124
+msgid ""
+"Please Note: Required values in the following form are labeled with an *."
+msgstr "Bitte beachten Sie: Pflichtfelder sind mit einem * markiert."
+
+#: includes/class-eidlogin-i18n.php:126
+msgid "Service Provider Settings"
+msgstr "Service Provider Einstellungen"
+
+#: includes/class-eidlogin-i18n.php:127
+msgid ""
+"EntityID of the Service Provider as configured at the Identity Provider."
+msgstr ""
+"EntityID des Service Provider, wie beim Identity Provider konfiguriert."
+
+#: includes/class-eidlogin-i18n.php:128
+msgid ""
+"Assertion Consumer URL is determined by the domain of your Service Provider "
+"and cannot be changed. Use this value to configure the Service Provider at "
+"the Identity Provider."
+msgstr ""
+"Die Assertion Consumer URL ist bestimmt durch die Domain des Service "
+"Providers und kann nicht geändert werden. Nutzen Sie diesen Wert, um den "
+"Service Provider beim Identity Provider zu konfigurieren."
+
+#: includes/class-eidlogin-i18n.php:129
+msgid ""
+"SAML Metadata URL is determined by the domain of your Service Provider and "
+"cannot be changed. Use this value to configure the Service Provider at the "
+"Identity Provider."
+msgstr ""
+"Die SAML Metadaten URL ist bestimmt durch die Domain des Service Providers "
+"und kann nicht geändert werden. Nutzen Sie diesen Wert, um den Service "
+"Provider beim Identity Provider zu konfigurieren."
+
+#: includes/class-eidlogin-i18n.php:130
+msgid "SAML Metadata URL"
+msgstr "SAML Metadaten URL"
+
+#: includes/class-eidlogin-i18n.php:131
+msgid "Encrypted assertions"
+msgstr "Verschlüsselte Authentifizierungsantworten"
+
+#: includes/class-eidlogin-i18n.php:134
+msgid "Identity Provider Settings"
+msgstr "Identity Provider Einstellungen"
+
+#: includes/class-eidlogin-i18n.php:135
+msgid "EntityID of the Identity Provider"
+msgstr "EntityID des Identity Provider"
+
+#: includes/class-eidlogin-i18n.php:138
+msgid "Save Changes"
+msgstr "Änderungen speichern"
+
+#: includes/class-eidlogin-i18n.php:139
+msgid "Reset Settings"
+msgstr "Einstellungen zurücksetzen"
+
+#: includes/class-eidlogin-i18n.php:142
+msgid "SAML Certificate Rollover"
+msgstr "SAML Zertifikatswechsel"
+
+#. Translators: %s: the remaining days
+#: includes/class-eidlogin-i18n.php:144
+msgid ""
+"The active certificates expire in %s days. For a regular certificate "
+"rollover no action is required. The rollover will be done automatically. But "
+"you always have the option to do a manual rollover, if needed."
+msgstr ""
+"Die aktuellen Zertifikate laufen in %s Tagen ab. Für einen regulären "
+"Zertifikatswechsel ist kein Handeln erforderlich. Der Wechsel auf ein neues "
+"Zertifikat erfolgt automatisch. Sie haben aber jeder Zeit auch die "
+"Möglichkeit bei Bedarf einen manuellen Zertifikatswechsel durchzuführen."
+
+#: includes/class-eidlogin-i18n.php:146
+msgid "Current certificates"
+msgstr "Aktuelle Zertifikate"
+
+#: includes/class-eidlogin-i18n.php:147
+msgid "The currently active certificate ends with:"
+msgstr "Das aktuell verwendete Zertifikat endet mit:"
+
+#: includes/class-eidlogin-i18n.php:148
+msgid "The newly prepared certificate, which is not yet active, ends with:"
+msgstr ""
+"Das vorbereitetet Zertifikat, welches noch nicht aktiviert ist, endet mit:"
+
+#: includes/class-eidlogin-i18n.php:149
+msgid "Signature"
+msgstr "Signatur"
+
+#: includes/class-eidlogin-i18n.php:150
+msgid "Encryption"
+msgstr "Verschlüsselung"
+
+#: includes/class-eidlogin-i18n.php:151 admin/js/eidlogin-admin.js:616
+#: admin/js/eidlogin-admin.js:617
+msgid "No new certificate prepared yet."
+msgstr "Noch kein neues Zertifikat vorbereitet."
+
+#: includes/class-eidlogin-i18n.php:153
+msgid "Manual Certificate Rollover"
+msgstr "Manueller Zertifikatswechsel"
+
+#: includes/class-eidlogin-i18n.php:154
+msgid "Certificate Rollover Preparation"
+msgstr "Vorbereitung des Zertifikatswechsels"
+
+#: includes/class-eidlogin-i18n.php:155
+msgid ""
+"In a first step new certificates will be created, which will be in the state "
+"<i>prepared</i> but not activated."
+msgstr ""
+"In einem ersten Schritt werden neue Zertifikate erzeugt, welche den Status "
+"<i>vorbereitet</i>  haben, aber noch nicht aktiviert sind."
+
+#: includes/class-eidlogin-i18n.php:156
+msgid ""
+"After some time the Identity Provider should have noticed the presence of "
+"the new certificates or you must explicitly inform the Identity Provider "
+"about them. After this has happened the rollover can be executed."
+msgstr ""
+"Nach einiger Zeit sollte der Identity Provider die neuen Zertifikate erkannt "
+"und eingelesen haben, oder Sie müssen diese dort explizit konfigurieren. "
+"Danach kann der Zertifikatswechsel durchgeführt werden."
+
+#: includes/class-eidlogin-i18n.php:157
+msgid "Prepare Certificate Rollover"
+msgstr "Zertifikatswechsel vorbereiten"
+
+#: includes/class-eidlogin-i18n.php:159
+msgid "Activation of prepared certificates"
+msgstr "Aktivierung der vorbereiteten Zertifikate"
+
+#: includes/class-eidlogin-i18n.php:160
+msgid ""
+"The activation of the new certificates will happen automatically after some "
+"time, but can also be done by clicking the button below."
+msgstr ""
+"Die Aktivierung der vorbereiteten Zertifikate erfolgt nach einiger Zeit "
+"automatisch, kann aber auch durch Klick auf den untenstehenden Button sofort "
+"ausgeführt werden."
+
+#: includes/class-eidlogin-i18n.php:161
+msgid ""
+"CAUTION: Only do this step manually, if you have made sure that the prepared "
+"certificates have been successfully configured at the Identity Provider or "
+"there are other important reasons to change the certificates immediately."
+msgstr ""
+"ACHTUNG: Führen Sie diesen Schritt nur dann durch, wenn Sie sicher sind, "
+"dass die vorbereiteten Zertifikate erfolgreich beim Identity Provider "
+"konfiguriert wurden oder es andere wichtige Gründe für einen sofortigen "
+"Zertifikatswechsel gibt."
+
+#: includes/class-eidlogin-i18n.php:162
+msgid "Activate prepared certificates"
+msgstr "Vorbereitete Zertifikate aktivieren"
+
+#: includes/class-eidlogin-i18n.php:163
+msgid "The button is only active if the rollover has been prepared already!"
+msgstr ""
+"Dieser Knopf ist nur aktiv, wenn ein Zertifikatswechsel bereits vorbereitet "
+"wurde!"
+
+#: includes/class-eidlogin-i18n.php:166
+msgid "Change status"
+msgstr "Status ändern"
+
+#: includes/class-eidlogin-i18n.php:167
+msgid "Disable password"
+msgstr "Passwort deaktivieren"
+
+#: includes/class-eidlogin-i18n.php:168
+msgid ""
+"Disable password based login. This will be unset if you use the password "
+"recovery."
+msgstr ""
+"Anmelden mit Passwort deaktivieren. Diese Option wird zurückgesetzt, falls "
+"Sie Ihr Passwort zurücksetzen."
+
+#: includes/class-eidlogin-i18n.php:169
+msgid ""
+"After the deletion you will not be able to access your account via eID-"
+"Login. Are you sure?"
+msgstr ""
+"Nach dem Löschen können Sie sich nicht mehr über eID-Login an Ihrem Konto "
+"anmelden. Sind Sie sicher?"
+
+#: saml/class-eidlogin-saml.php:323
+msgid "Error while validating the SAML Response."
+msgstr "Validierung der SAML Response fehlgeschlagen."
+
+#: saml/class-eidlogin-saml.php:498
+msgid "Creation of eID connection aborted"
+msgstr "Erstellung der eID-Verknüpfung abgebrochen"
+
+#: saml/class-eidlogin-saml.php:512
+msgid ""
+"Creation of eID connection failed! Please ensure the used eID-Card is valid."
+msgstr ""
+"Erstellung der eID-Verknüpfung fehlgeschlagen! Bitte stellen Sie sicher, "
+"dass die genutzte eID-Karte gültig ist."
+
+#: saml/class-eidlogin-saml.php:596
+msgid "The eID is already connected to another account."
+msgstr "Diese eID ist schon mit einem anderen Konto verknüpft."
+
+#: saml/class-eidlogin-saml.php:642
+msgid ""
+"The SAML plugin is not configured properly. Please contact your "
+"administrator."
+msgstr ""
+"Die Konfiguration des SAML Plugins ist fehlerhaft. Bitte wenden Sie sich an "
+"den Administrator."
+
+#: saml/class-eidlogin-saml.php:645
+msgid "Login with eID failed! Please ensure the used eID-Card is valid."
+msgstr ""
+"Login mit eID ist fehlgeschlagen! Bitte stellen Sie sicher, dass die "
+"genutzte eID-Karte gültig ist."
+
+#: saml/class-eidlogin-saml.php:648
+msgid "eID-Login is not yet set up for your account."
+msgstr "eID-Login wurde für Ihr Konto noch nicht eingerichtet."
+
+#: saml/class-eidlogin-saml.php:651
+msgid "Log in with eID aborted."
+msgstr "Anmelden mit eID abgebrochen."
+
+#: saml/class-eidlogin-saml.php:654
+msgid "An unknown error occurred."
+msgstr "Ein unbekannter Fehler ist aufgetreten."
+
+#: saml/class-eidlogin-saml.php:676
+msgid "The eID-Login is not activated! Please contact the administrator!"
+msgstr ""
+"Der eID-Login ist nicht aktiviert! Bitte wenden Sie sich an den "
+"Administrator!"
+
+#: saml/class-eidlogin-saml.php:682 saml/class-eidlogin-saml.php:740
+msgid "Status"
+msgstr "Status"
+
+#: saml/class-eidlogin-saml.php:719
+msgid ""
+"Your account is currently connected to your eID. By default you can use "
+"Username and Password or eID to login. Activate the following option, to "
+"prevent the login by username and password and enhance the security of your "
+"account."
+msgstr ""
+"Ihr Konto ist derzeit mit Ihrer eID verknüpft. In der Grundeinstellung "
+"können Sie sich sowohl mit Nutzername und Passwort als auch mit Ihrer eID an "
+"ihrem Benutzerkonto anmelden. Aktivieren Sie die nachfolgende Option, um die "
+"Anmeldung mit Nutzername und Passwort zu verhindern und so die Sicherheit "
+"Ihres Kontos zu erhöhen."
+
+#: saml/class-eidlogin-saml.php:721
+msgid "Delete connection to eID"
+msgstr "eID-Verknüpfung löschen"
+
+#: saml/class-eidlogin-saml.php:724
+msgid ""
+"Your account is currently not connected to your eID. Create a connection to "
+"use your German eID (\"Personalausweis\") or another eID for the login to "
+"WordPress. More information can be found in the <a href=\"https://eid."
+"services/eidlogin/wordpress/userdocs?lang=en\" target=\"_blank\">FAQ</a>."
+msgstr ""
+"Ihr Konto ist derzeit nicht mit Ihrer eID verknüpft. Erstellen Sie eine "
+"Verknüpfung, um sich künftig auf sichere Weise mit ihrem Personalausweis "
+"oder einer anderen eID bei WordPress anzumelden. Weitere Informationen "
+"finden Sie in den <a href=\"https://eid.services/eidlogin/wordpress/userdocs?"
+"lang=en\" target=\"_blank\">FAQ</a>."
+
+#: saml/class-eidlogin-saml.php:882
+msgid ""
+"You can use your eID (for example your German identity card) to login to "
+"WordPress. Connect your eID to your account in the settings now."
+msgstr ""
+"Sie können Ihre eID (z.B. Ihren Personalausweis) für das Anmelden bei "
+"WordPress nutzen. Verknüpfen Sie jetzt in den Einstellungen Ihr Konto mit "
+"Ihrer eID."
+
+#: saml/class-eidlogin-saml.php:883
+msgid "Go to Settings"
+msgstr "Zu den Einstellungen"
+
+#: saml/class-eidlogin-saml.php:908
+msgid "Login with username and password is disabled. Please use the eID-Login."
+msgstr ""
+"Login mit Benutzername und Passwort ist deaktiviert. Bitte verwenden Sie den "
+"eID-Login."
+
+#: admin/js/eidlogin-admin.js:68
+msgid "Hide Advanced Settings"
+msgstr "Fortgeschrittene Einstellungen verbergen"
+
+#: admin/js/eidlogin-admin.js:69
+msgid "Show Service Provider Metadata"
+msgstr "Service Provider Metadaten anzeigen"
+
+#: admin/js/eidlogin-admin.js:70
+msgid "Hide Service Provider Metadata"
+msgstr "Service Provider Metadaten verbergen"
+
+#: admin/js/eidlogin-admin.js:374
+msgid ""
+"Please confirm that the Service Provider has been registered at the Identity "
+"Provider. Pressing the \"Next\" button will activate the eID-Login."
+msgstr ""
+"Bitte stellen Sie sicher, dass Sie den Service Provider beim Identity "
+"Provider eingetragen haben. Die eID-Login App wird mit dem Klick auf \"Weiter"
+"\" aktiviert."
+
+#: admin/js/eidlogin-admin.js:420
+msgid "Service Provider metadata could not be fetched"
+msgstr "Service Provider Metadaten konnten nicht geladen werden"
+
+#: admin/js/eidlogin-admin.js:474
+msgid ""
+"Changing the Identity Provider Settings will very likely make existing eID "
+"connections not work anymore, as they are bound to a specific Identity "
+"Provider! You maybe should make a backup of the settings before saving! Are "
+"you sure you want to save now?"
+msgstr ""
+"Änderungen an den Identity Provider Einstellungen führen mit hoher "
+"Wahrscheinlichkeit dazu, dass bestehende eID-Verknüpfungen nicht mehr "
+"genutzt werden können, da sie jeweils an einen bestimmten Identity Provider "
+"gebunden sind! Sie sollten ein Backup Ihrer Einstellungen machen, bevor Sie "
+"speichern! Sind Sie sicher, dass Sie jetzt speichern möchten?"
+
+#: admin/js/eidlogin-admin.js:480
+msgid "Should all existing eID connections be deleted?"
+msgstr "Sollen alle bestehenden eID-Verknüpfungen gelöscht werden?"
+
+#: admin/js/eidlogin-admin.js:502
+msgid ""
+"Reset of settings will also delete eID connections of all accounts. After "
+"this no account will be able to use the eID-Login anymore and all users must "
+"create a new eID connection! Are you sure?"
+msgstr ""
+"Das Zurücksetzen der Einstellungen wird auch die eID-Verknüpfungen aller "
+"Konten löschen. Danach wird kein Konto mehr über eID-Login zugänglich sein "
+"und jeder Benutzer muss eine neue eID-Verknüpfung erstellen. Sind Sie sicher?"
+
+#: admin/js/eidlogin-admin.js:549
+msgid ""
+"This will create new certificates which will be propagated in the Service "
+"Provider SAML Metadata. Are you sure?"
+msgstr ""
+"Dies wird neue Zertifikate erzeugen und über die Service Provider SAML "
+"Metadaten veröffentlichen. Sind Sie sicher?"
+
+#: admin/js/eidlogin-admin.js:555
+msgid ""
+"This will replace the already prepared certificates and replace them with a "
+"new ones which will be propagated in the Service Provider SAML Metadata. Are "
+"you sure?"
+msgstr ""
+"Dies wird die schon vorbereiteten Zertifikate aus den Service Provider SAML "
+"Metadaten entfernen und Sie durch neue Zertifikate ersetzen. Sind Sie sicher?"
+
+#: admin/js/eidlogin-admin.js:603
+msgid ""
+"This will remove the currently used certificates from the Service Provider "
+"SAML Metadata and activate the prepared certificates. Are you sure?"
+msgstr ""
+"Dies wird die derzeit genutzten Zertifikate aus den Service Provider SAML "
+"Metadaten entfernen und die vorbereiteten Zertifikate aktivieren. Sind Sie "
+"sicher?"

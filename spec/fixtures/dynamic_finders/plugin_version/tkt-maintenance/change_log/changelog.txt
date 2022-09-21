@@ -1,0 +1,31 @@
+= 2.0.3 =
+
+* [Changed] Removed options class completly as obsolete.
+* [Changed] Refactored code to be WPCS compliant.
+
+= 2.0.2 =
+
+* [Security] Updated Sanitize callbacks for register settings
+* [Changed]  Refactored get_options method of plugin
+* [Removed]  Removed set_options method as not used (non-breaking change even if removed, since access was private).
+
+
+= 2.0.0 =
+
+* Breaking change: Removed JS and CSS options. Previously saved CSS and JS won't work anymore.
+* BReaking change: Changed Classnames of HTML in plugin.
+* Using WP Enqueue functions instead of inline script.
+* Security: Escape all $variables that are echo'd.
+* Removed HTML Title tag as provided by WP already.
+* Removed inline style and added to CSS File instead.
+* Added viewport and charset langauge metatags, added language attributes to HTML tag
+
+= 1.0.10 =
+* Adjusted Readme Typos and Wordings
+* Remove empty, unused, or non-enqueued code and files + references
+* Best practice checking of user capability instead of user roles
+* Some CSS improvements
+* Remove instances of word "core" and replace with "main"
+
+= 1.0.0 =
+* Initial release.

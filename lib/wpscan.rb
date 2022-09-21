@@ -13,6 +13,7 @@ require 'uri'
 require 'time'
 require 'readline'
 require 'securerandom'
+require 'resolv'
 # Monkey Patches/Fixes/Override
 require 'wpscan/typhoeus/response' # Adds a from_vuln_api? method
 # Custom Libs

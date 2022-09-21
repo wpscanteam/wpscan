@@ -1,0 +1,34 @@
+{
+  "name": "inxpressapps/woocommerce",
+  "version": "3.2.3",
+  "description": "InXpress shipping rate provider for Woocommerce",
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "woocommerce",
+    "inxpress"
+  ],
+  "homepage": "https://www.inxpressapps.com/",
+  "type": "wordpress-plugin",
+  "license": "proprietary",
+  "authors": [
+    {
+      "email": "developers@inxpress.com",
+      "name": "InXpress"
+    }
+  ],
+  "scripts": {
+    "test": "phpcs wc-inxpress.php includes",
+    "fix": "phpcbf wc-inxpress.php includes"
+  },
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^7.3|^8.0",
+    "composer/installers": "~1.0"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "*",
+    "phpcompatibility/php-compatibility": "*",
+    "wp-coding-standards/wpcs": "^2.1.1"
+  }
+}

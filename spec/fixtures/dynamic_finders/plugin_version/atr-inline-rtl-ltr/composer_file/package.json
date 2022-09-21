@@ -1,0 +1,20 @@
+{
+	"name": "atr-inline-rtl-ltr",
+	"version": "1.0.1",
+	"description": "Wrap words (or sentences) in paragraph block with span element and change their direction from rtl to ltr and vice versa.",
+	"author": "Yehuda Tiram atarimtr.co.il",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts build",
+		"format": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts format",
+		"lint:css": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts lint-style",
+		"lint:js": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts lint-js",
+		"packages-update": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts packages-update",
+		"plugin-zip": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts plugin-zip",
+		"start": "SET NODE_OPTIONS=--openssl-legacy-provider &&  wp-scripts start"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^22.5.0"
+	}
+}

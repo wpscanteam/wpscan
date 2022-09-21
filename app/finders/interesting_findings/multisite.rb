@@ -13,7 +13,7 @@ module WPScan
 
           return unless [200, 302].include?(res.code)
           return if res.code == 302 && location&.include?('wp-login.php?action=register')
-          return unless res.code == 200 || res.code == 302 && location&.include?('wp-signup.php')
+          return unless res.code == 200 || (res.code == 302 && location&.include?('wp-signup.php'))
 
           target.multisite = true
 

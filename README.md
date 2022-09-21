@@ -15,6 +15,7 @@
 
 <p align="center">
   <a href="https://badge.fury.io/rb/wpscan" target="_blank"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
+  <a href="https://hub.docker.com/r/wpscanteam/wpscan/" target="_blank"><img src="https://img.shields.io/docker/pulls/wpscanteam/wpscan.svg"></a>
   <a href="https://github.com/wpscanteam/wpscan/actions?query=workflow%3ABuild" target="_blank"><img src="https://github.com/wpscanteam/wpscan/workflows/Build/badge.svg"></a>
   <a href="https://codeclimate.com/github/wpscanteam/wpscan" target="_blank"><img src="https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
 </p>
@@ -89,15 +90,12 @@ The DB is located at ~/.wpscan/db
 
 The WPScan CLI tool uses the [WordPress Vulnerability Database API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan.com](https://wpscan.com/register).
 
-Up to 25 API requests per day are given free of charge, that should be suitable to scan most WordPress websites at least once per day. When the daily 25 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data. Users can upgrade to paid API usage to increase their API limits within their user profile on [WPScan.com](https://wpscan.com/).
-
-#### The Free plan allows 25 API requests per day. View the different [available API plans](https://wpscan.com/api).
+Up to **75** API requests per day are given free of charge, that should be suitable to scan most WordPress websites at least once per day. When the daily 75 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data.
 
 ### How many API requests do you need?
 
 - Our WordPress scanner makes one API request for the WordPress version, one request per installed plugin and one request per installed theme.
 - On average, a WordPress website has 22 installed plugins.
-- The Free plan should cover around 50% of all WordPress websites.
 
 ## Load CLI options from file/s
 
@@ -136,7 +134,7 @@ The feature mentioned above is useful to keep the API Token in a config file and
 
 ```yml
 cli_options:
-  api_token: YOUR_API_TOKEN
+  api_token: 'YOUR_API_TOKEN'
 ```
 
 ## Load API Token From ENV (since v3.7.10)
