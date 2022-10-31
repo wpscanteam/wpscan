@@ -17,7 +17,8 @@ module WPScan
                           'Maximum number of passwords to send by request with XMLRPC multicall'],
                          default: 500),
           OptChoice.new(['--password-attack ATTACK',
-                         'Force the supplied attack to be used rather than automatically determining one. Multicall will only work against WP < 4.4'],
+                         'Force the supplied attack to be used rather than automatically determining one.',
+                         'Multicall will only work against WP < 4.4'],
                         choices: %w[wp-login xmlrpc xmlrpc-multicall],
                         normalize: %i[downcase underscore to_sym]),
           OptString.new(['--login-uri URI', 'The URI of the login page if different from /wp-login.php'])
