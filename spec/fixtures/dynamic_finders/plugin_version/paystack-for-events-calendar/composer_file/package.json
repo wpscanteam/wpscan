@@ -1,0 +1,52 @@
+{
+	"name": "tec-paystack",
+	"version": "1.0.3",
+	"description": "Paystack for The Events Calendar",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build-pot": "wp i18n make-pot . languages/tec-paystack.pot",
+		"build-mopo": "rm -R languages/tec-paystack-en_EN.mo && cp languages/tec-paystack.pot languages/tec-paystack-en_EN.po && wp i18n make-mo languages",
+		"translate-US": "cp languages/tec-paystack-en_EN.po languages/tec-paystack-en_US.po && cp languages/tec-paystack-en_EN.mo languages/tec-paystack-en_US.mo"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PaystackOSS/plugin-the-events-calendar"
+	},
+	"author": "Paystack",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PaystackOSS/plugin-the-events-calendarissues"
+	},
+	"homepage": "https://github.com/PaystackOSS/plugin-the-events-calendar#readme",
+	"devDependencies": {
+		"gulp": "^4.0.2",
+		"gulp-autoprefixer": "^8.0.0",
+		"gulp-gettext": "^0.3.0",
+		"gulp-jshint": "^2.1.0",
+		"gulp-plumber": "^1.2.1",
+		"gulp-rename": "^2.0.0",
+		"gulp-rtlcss": "^2.0.0",
+		"gulp-sass": "^5.0.0",
+		"gulp-sort": "^2.0.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-uglify": "^3.0.2",
+		"gulp-util": "^3.0.8",
+		"gulp-wp-pot": "^2.4.3",
+		"jshint": "^2.12.0"
+	},
+	"dependencies": {
+		"acorn": "^8.0.1",
+		"cgb-scripts": "^1.23.1",
+		"classnames": "^2.2.6",
+		"clean-css": ">=4.2.3",
+		"extend": "^3.0.2",
+		"fstream": ">=1.0.12",
+		"hoek": "^6.1.3",
+		"lodash": "^4.17.20",
+		"mem": "^9.0.0",
+		"minimist": "^1.2.5",
+		"npm": "^9.1.1",
+		"runtask": "^1.0.0",
+		"tar": ">=6.0.5"
+	}
+}
