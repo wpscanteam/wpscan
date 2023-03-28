@@ -1,0 +1,56 @@
+{
+	"name": "contact-form-7-blocks",
+	"version": "1.0.1",
+	"tested_up_to": "5.8",
+	"description": "",
+	"cssnano": {
+		"preset": [
+			"default",
+			{
+				"calc": false
+			}
+		]
+	},
+	"scripts": {
+		"bootstrap": "lerna bootstrap",
+		"wp-env": "wp-env",
+		"nuke": "lerna clean -y",
+		"lint-css": "wp-scripts lint-style '**/*.scss'",
+		"lint-css:fix": "npm run lint-css -- --fix",
+		"check-engines": "lerna run check-engines",
+		"check-licenses": "lerna run check-licenses",
+		"format": "lerna run format",
+		"lint-js": "wp-scripts lint-js",
+		"lint-js:fix": "npm run lint-js -- --fix",
+		"lint:md-js": "wp-scripts lint-md-js",
+		"lint:md-docs": "wp-scripts lint-md-docs",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"start": "wp-scripts start --config ./webpack.config.js",
+		"build": "wp-scripts build --config ./webpack.config.js",
+		"setup": "sudo chmod + ./.dev/bin/install-wp-tests.sh && ./.dev/bin/install-wp-tests.sh"
+	},
+	"author": "zafarKamal",
+	"license": "ISC",
+	"dependencies": {
+		"@automattic/isolated-block-editor": "^2.21.0",
+		"@wordpress/components": "^16.0.0",
+		"@wordpress/dom-ready": "^3.2.1",
+		"@wordpress/element": "^4.0.0",
+		"@wordpress/primitives": "^3.0.0",
+		"prop-types": "^15.7.2",
+		"webpack-fix-style-only-entries": "^0.6.1"
+	},
+	"devDependencies": {
+		"@wordpress/base-styles": "^4.12.0",
+		"@wordpress/eslint-plugin": "^9.1.1",
+		"@wordpress/icons": "^6.1.1",
+		"@wordpress/prettier-config": "^1.1.1",
+		"@wordpress/scripts": "19.1.0",
+		"csso-webpack-plugin": "^2.0.0-beta.3",
+		"ignore-emit-webpack-plugin": "^2.0.6",
+		"lerna": "^4.0.0",
+		"mini-css-extract-plugin": "2.5.3",
+		"prettier": "npm:wp-prettier@2.2.1-beta-1"
+	}
+}

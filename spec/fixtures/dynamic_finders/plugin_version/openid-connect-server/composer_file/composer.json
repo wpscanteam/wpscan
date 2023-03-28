@@ -1,0 +1,29 @@
+{
+  "version": "1.1.0",
+  "require": {
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "bshaffer/oauth2-server-php": "^1.12"
+  },
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+    "johnpbloch/wordpress": "^6.0",
+    "squizlabs/php_codesniffer": "^3.7",
+    "wp-coding-standards/wpcs": "^2.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "OpenIDConnectServer\\": "src/"
+    }
+  },
+  "scripts": {
+    "phpcs": "phpcs --standard=phpcs.xml"
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "johnpbloch/wordpress-core-installer": false,
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
