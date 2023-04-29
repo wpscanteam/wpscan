@@ -38,7 +38,17 @@ module WPScan
   include CMSScanner
 
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
-  DB_DIR  = Pathname.new(Dir.home).join('.wpscan', 'db')
+
+  # XDG support for DB_DIR
+  # If the legacy path exists, it will be used
+  # Otherwise, we'll use XDG_CACHE_HOME/wpscan/db or ~/.cache/wpscan/db if XDG_CACHE_HOME is not set
+  legacy_path = Pathname.new(Dir.home).join('.wpscan', 'db')
+  xdg_path = Pathname.new(ENV['XDG_CACHE_HOME'] || Pathname.new(Dir.home).join('.cache')).join('wpscan', 'db')
+  DB_DIR = if legacy_path.exist?
+             legacy_path
+           else
+             xdg_path
+           end
 
   Typhoeus.on_complete do |response|
     next if response.cached? || !response.from_vuln_api?
