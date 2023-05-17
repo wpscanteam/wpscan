@@ -73,7 +73,7 @@ module WPScan
       # @return [ Hash ] The params for Typhoeus::Request
       # @note Those params can't be overriden by CLI options
       def request_params
-        @request_params ||= Browser.instance.default_connect_request_params.merge(
+        @request_params ||= Browser.instance.default_request_params.merge(
           timeout: 600,
           connecttimeout: 300,
           accept_encoding: 'gzip, deflate',
