@@ -744,7 +744,8 @@ plugins:
       found_by: Query Parameter (Passive Detection)
       interesting_entries:
       - http://wp.lab/wp-content/plugins/accessibility-checker/build/accessibility-checker-app/css/main.css?ver=1.4.1
-      confidence: 10
+      - http://wp.lab/wp-content/plugins/accessibility-checker/build/css/app.css?ver=1.4.1
+      confidence: 20
   accessibility-help-button:
     QueryParameter:
       number: 1.0.0
@@ -2798,6 +2799,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/ai-preloader/public/css/ai-preloader-public.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/ai-preloader/public/js/ai-preloader-public.js?ver=1.0.0
       confidence: 20
+  ai-scribe:
+    TranslationFile:
+      number: '1.1'
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/ai-scribe/languages/aiscribe.pot, Match:
+        '': AI Scribe- Content Writer, OpenAI GPT 1.1'''
   aiaibot:
     QueryParameter:
       number: 1.0.3
@@ -3301,6 +3309,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/allow-webp-image/public/css/allow-webp-image-public.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/allow-webp-image/public/js/allow-webp-image-public.js?ver=1.0.0
       confidence: 20
+  allpay-payment-gateway:
+    TranslationFile:
+      number: 1.0.2
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/allpay-payment-gateway/languages/allpay-payment-gateway-ru_RU.po,
+        Match: ''ject-Id-Version: Allpay payment gateway 1.0.2'''
   allpost-contactform:
     QueryParameter:
       number: 1.1.6
@@ -3663,6 +3678,13 @@ plugins:
       found_by: Comment (Passive Detection)
       interesting_entries:
       - 'http://wp.lab/, Match: ''Ads on this site are served by Adning v1.5.1 -'''
+  ani-mate-animation-extension:
+    ComposerFile:
+      number: 1.0.1
+      found_by: Composer File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/ani-mate-animation-extension/package.json,
+        Match: ''1.0.1'''
   animate:
     QueryParameter:
       number: '0.5'
@@ -4639,6 +4661,14 @@ plugins:
       - http://wp.lab/wp-content/plugins/astratic/dist/blocks/spacer/style.editor.css?ver=1.1.2
       - http://wp.lab/wp-content/plugins/astratic/dist/blocks/spacer/script.js?ver=1.1.2
       confidence: 30
+  astro-booking-engine:
+    QueryParameter:
+      number: 1.0.2
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/astro-booking-engine/css/astro-booking-engine.css?ver=1.0.2
+      - http://wp.lab/wp-content/plugins/astro-booking-engine/js/astro-booking-engine.js?ver=1.0.2
+      confidence: 20
   astro-woocommerce-free-gift:
     QueryParameter:
       number: 1.0.1
@@ -5123,6 +5153,12 @@ plugins:
       - http://wp.lab/wp-content/plugins/autocomplete-wc-order-status/public/css/autocomplete-woocommerce-order-status-public.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/autocomplete-wc-order-status/public/js/autocomplete-woocommerce-order-status-public.js?ver=1.0.0
       confidence: 20
+    ChangeLog:
+      number: 1.2.0
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/autocomplete-wc-order-status/changelog.txt,
+        Match: ''= 1.2.0'''
   autocorrector-wp-camelcase:
     QueryParameter:
       number: 1.0.0
@@ -5553,6 +5589,14 @@ plugins:
       confidence: 10
       interesting_entries:
       - http://wp.lab/wp-content/plugins/awesome-twitter-feeds/assets/js/functions.js?ver=1.0
+  awesome-wp-author-bio:
+    QueryParameter:
+      number: 1.0.5.1
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/awesome-wp-author-bio/assets/js/responsive-tabs.js?ver=1.0.5.1
+      - http://wp.lab/wp-content/plugins/awesome-wp-author-bio/assets/js/awesome-wp-author-bio-frontend.js?ver=1.0.5.1
+      confidence: 20
   awesome-wp-slider:
     QueryParameter:
       number: 1.0.0
@@ -6643,6 +6687,14 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/bestprice-analytics-integration/changelog.txt,
         Match: ''= 1.0.1'''
+  bet-sport-free:
+    QueryParameter:
+      number: 1.0.0
+      found_by: Query Parameter (Passive Detection)
+      interesting_entries:
+      - http://wp.lab/wp-content/plugins/bet-sport-free/dist/public.css?ver=1.0.0
+      - http://wp.lab/wp-content/plugins/bet-sport-free/dist/public.js?ver=1.0.0
+      confidence: 20
   bethemesme:
     TranslationFile:
       number: 1.0.0
@@ -19701,6 +19753,13 @@ plugins:
       found_by: Meta Tag (Passive Detection)
       interesting_entries:
       - 'http://wp.lab/, Match: ''empty framework 2.6'''
+  enable-cors:
+    TranslationFile:
+      number: 1.1.6
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/enable-cors/languages/enable-cors.pot, Match:
+        ''"Project-Id-Version: Enable CORS 1.1.6'''
   enable-quantity-field-on-shop-page-for-woocommerce:
     QueryParameter:
       number: 1.0.0
@@ -36069,6 +36128,13 @@ plugins:
       - http://wp.lab/wp-content/plugins/mojoplug-slide-panel/style.css?ver=1.1.1
       - http://wp.lab/wp-content/plugins/mojoplug-slide-panel/public/js/mojo-sp-public.js?ver=1.1.1
       confidence: 30
+  mojuredfiscalization:
+    TranslationFile:
+      number: 1.0.0
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/mojuredfiscalization/languages/mojuredfiscalization.pot,
+        Match: ''roject-Id-Version: MojUredFiscalization 1.0.0'''
   molongui-authorship:
     Comment:
       number: 1.3.8
@@ -52304,6 +52370,12 @@ plugins:
       - http://wp.lab/wp-content/plugins/smartarget-social-contact-us/public/css/smartarget-whatsapp-public.css?ver=1.0.0
       - http://wp.lab/wp-content/plugins/smartarget-social-contact-us/public/js/smartarget-whatsapp-public.js?ver=1.0.0
       confidence: 20
+    ChangeLog:
+      number: '1.0'
+      found_by: Change Log (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/smartarget-social-contact-us/changelog.txt,
+        Match: ''version 1.0'''
   smartarget-social-sales:
     QueryParameter:
       number: 1.0.2
@@ -54667,6 +54739,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/stylish-price-list/changelog.txt, Match:
         ''= 5.3'''
+  sublimetheme-advanced-addons-for-elementor:
+    TranslationFile:
+      number: 1.0.1
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/sublimetheme-advanced-addons-for-elementor/languages/sublimetheme-advanced-addons-for-elementor.pot,
+        Match: ''meTheme - Advanced Addons for Elementor 1.0.1'''
   subme:
     ChangeLog:
       number: 2.0.2
@@ -56179,6 +56258,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/template-part-block/changelog.txt, Match:
         ''## [1.1.1]'''
+  template-share-for-elementor:
+    ComposerFile:
+      number: 1.0.0
+      found_by: Composer File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/template-share-for-elementor/package.json,
+        Match: ''1.0.0'''
   template-widget-for-beaver-builder:
     ChangeLog:
       number: 1.0.1
@@ -64210,6 +64296,13 @@ plugins:
       interesting_entries:
       - 'http://wp.lab/wp-content/plugins/woo-payumoney/changelog.txt, Match: ''version
         1.0'''
+  woo-pdf-invoice-builder:
+    TranslationFile:
+      number: 1.2.93
+      found_by: Translation File (Aggressive Detection)
+      interesting_entries:
+      - 'http://wp.lab/wp-content/plugins/woo-pdf-invoice-builder/languages/wooinvoicebuilder.pot,
+        Match: ''ersion: WooCommerce PDF Invoice Builder 1.2.93'''
   woo-phone-validator:
     ChangeLog:
       number: 1.0.1
