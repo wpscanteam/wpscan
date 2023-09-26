@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.name                  = 'wpscan'
   s.version               = WPScan::VERSION
   s.platform              = Gem::Platform::RUBY
-  s.required_ruby_version = '>= 2.5'
+  s.required_ruby_version = '>= 2.7'
   s.authors               = ['WPScanTeam']
   s.email                 = ['contact@wpscan.com']
   s.summary               = 'WPScan - WordPress Vulnerability Scanner'
