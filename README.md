@@ -38,7 +38,9 @@ When using a pentesting distubution (such as Kali Linux), it is recommended to i
 
 ### In macOSX via Homebrew
 
-`brew install wpscanteam/tap/wpscan`
+```shell
+brew install wpscanteam/tap/wpscan
+```
 
 ### From RubyGems
 
