@@ -31,6 +31,8 @@
   - The < 7.72 could result in `Stream error in the HTTP/2 framing layer` in some cases
 - RubyGems      - Recommended: latest
 - Nokogiri might require packages to be installed via your package manager depending on your OS, see https://nokogiri.org/tutorials/installing_nokogiri.html
+- gcc           - Recommended: latest
+- make          - Recommended: latest
 
 ### In a Pentesting distribution
 
