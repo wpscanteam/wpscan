@@ -7,6 +7,10 @@ module WPScan
       class KnownLocations < CMSScanner::Finders::Finder
         include CMSScanner::Finders::Finder::Enumerator
 
+        def valid_response_codes
+          @valid_response_codes ||= [200, 206].freeze
+        end
+
         SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE|ALTER) (?:TABLE|DATABASE)|INSERT INTO/.freeze
 
         # @param [ Hash ] opts
@@ -17,7 +21,7 @@ module WPScan
         def aggressive(opts = {})
           found = []
 
-          enumerate(potential_urls(opts), opts.merge(check_full_response: 200)) do |res|
+          enumerate(potential_urls(opts), opts.merge(check_full_response: valid_response_codes)) do |res|
             if res.effective_url.end_with?('.zip')
               next unless %r{\Aapplication/zip}i.match?(res.headers['Content-Type'])
             else
