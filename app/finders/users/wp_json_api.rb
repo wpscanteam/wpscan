@@ -47,10 +47,10 @@ module WPScan
           if json.is_a?(Enumerable)
             json.each do |user|
               found << Model::User.new(user['slug'],
-                                      id: user['id'],
-                                      found_by: found_by,
-                                      confidence: 100,
-                                      interesting_entries: [response.effective_url])
+                                       id: user['id'],
+                                       found_by: found_by,
+                                       confidence: 100,
+                                       interesting_entries: [response.effective_url])
             end
           end
 
