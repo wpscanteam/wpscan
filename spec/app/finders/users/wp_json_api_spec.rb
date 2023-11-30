@@ -25,6 +25,12 @@ describe WPScan::Finders::Users::WpJsonApi do
         its(:aggressive) { should eql([]) }
       end
 
+      context 'when a string response' do
+        let(:body) { '404' }
+
+        its(:aggressive) { should eql([]) }
+      end
+
       context 'when a JSON response' do
         context 'when unauthorised' do
           let(:body) { File.read(fixtures.join('401.json')) }
