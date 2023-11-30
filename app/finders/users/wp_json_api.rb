@@ -44,7 +44,7 @@ module WPScan
 
           json = JSON.parse(response.body)
 
-          if json.is_a? Enumerable
+          if json.is_a?(Enumerable)
             json.each do |user|
               found << Model::User.new(user['slug'],
                                       id: user['id'],

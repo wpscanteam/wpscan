@@ -13,9 +13,17 @@ describe WPScan::Finders::Users::OembedApi do
     end
 
     context 'when not a JSON response' do
-      let(:body) { '' }
+      context 'when empty' do
+        let(:body) { '' }
 
-      its(:aggressive) { should eql([]) }
+        its(:aggressive) { should eql([]) }
+      end
+
+      context 'when a string' do
+        let(:body) { '404' }
+
+        its(:aggressive) { should eql([]) }
+      end
     end
 
     context 'when a JSON response' do
