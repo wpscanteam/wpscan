@@ -74,6 +74,14 @@ docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u1-1
 
 ** replace u1-100 with a range of your choice.
 
+Instead of running the whole command everytime, we suggest aliasing it to something memorable:
+
+Append the following line to your ~/.bashrc file.
+
+```bash
+alias wpscan='docker run -it --rm wpscanteam/wpscan'
+```
+
 # Usage
 
 Full user documentation can be found here; https://github.com/wpscanteam/wpscan/wiki/WPScan-User-Documentation
