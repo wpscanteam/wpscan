@@ -14,7 +14,11 @@ on:
 jobs:
   images:
     runs-on: ubuntu-latest
-
+    permissions:
+      packages: write
+      actions: read
+      id-token: read
+      contents: read
     steps:
       - name: checkout sources
         uses: actions/checkout@v4
