@@ -1,11 +1,11 @@
-FROM ruby:3.0.2-alpine AS builder
+FROM ruby:3.2.4-alpine3.18 AS builder
 LABEL maintainer="WPScan Team <contact@wpscan.com>"
 
 RUN echo "install: --no-document --no-post-install-message\nupdate: --no-document --no-post-install-message" > /etc/gemrc
 
 COPY . /wpscan
 
-RUN apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
+RUN apk update && apk add --no-cache git libcurl ruby-dev libffi-dev make gcc musl-dev zlib-dev procps sqlite-dev && \
   bundle config force_ruby_platform true && \
   bundle config disable_version_check 'true' && \
   bundle config without "test development" && \
@@ -19,9 +19,9 @@ RUN rake install --trace
 RUN chmod -R a+r /usr/local/bundle
 
 
-FROM ruby:3.0.2-alpine
+FROM ruby:3.2.4-alpine3.18
 LABEL maintainer="WPScan Team <contact@wpscan.com>"
-LABEL org.opencontainers.image.source https://github.com/wpscanteam/wpscan
+LABEL org.opencontainers.image.source https://github.com/ngeorger/wpscan
 
 RUN adduser -h /wpscan -g WPScan -D wpscan
 
@@ -30,12 +30,12 @@ COPY --from=builder /usr/local/bundle /usr/local/bundle
 RUN chown -R wpscan:wpscan /wpscan
 
 # runtime dependencies
-RUN apk add --no-cache libcurl procps sqlite-libs
+RUN apk update && apk add --no-cache libcurl procps sqlite-libs
 
 WORKDIR /wpscan
 
 USER wpscan
 
-RUN /usr/local/bundle/bin/wpscan --update --verbose
+#RUN /usr/local/bundle/bin/wpscan --update --verbose
 
 ENTRYPOINT ["/usr/local/bundle/bin/wpscan"]
