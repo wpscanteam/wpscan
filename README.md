@@ -24,7 +24,7 @@
 
 ## Prerequisites
 
-- (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
+- (Optional but highly recommended: [rbenv](https://github.com/rbenv/rbenv))
 - Ruby >= 2.7 - Recommended: latest
 - Curl >= 7.72  - Recommended: latest
   - The 7.29 has a segfault
