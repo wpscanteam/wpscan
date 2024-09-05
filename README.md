@@ -25,7 +25,7 @@
 ## Prerequisites
 
 - (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
-- Ruby >= 2.7 - Recommended: latest
+- Ruby >= 3.0 - Recommended: latest
 - Curl >= 7.72  - Recommended: latest
   - The 7.29 has a segfault
   - The < 7.72 could result in `Stream error in the HTTP/2 framing layer` in some cases
