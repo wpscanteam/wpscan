@@ -22,6 +22,14 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'cms_scanner', '~> 0.14.3'
 
+  # Fixes
+  # - warning: ostruct was loaded from the standard library
+  # - warning: fiddle was loaded from the standard library
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.3')
+    s.add_dependency('ostruct', '~> 0.6')
+    s.add_dependency('fiddle', '~> 1.1')
+  end
+
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 1.0.0'
   s.add_development_dependency 'rake',                '~> 13.0'
