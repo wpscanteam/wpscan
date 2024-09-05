@@ -31,9 +31,11 @@ jobs:
       run: |
         bundle exec rubocop
 
+    # Specs which are not tagged as slow will run first to speed up the process in case of failure 
     - name: rspec
       run: |
-        bundle exec rspec
+        bundle exec rspec --tag ~slow
+        bundle exec rspec --tag slow
 
     - name: Coveralls
       uses: coverallsapp/github-action@master
