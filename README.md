@@ -34,7 +34,7 @@
 
 ### In a Pentesting distribution
 
-When using a pentesting distubution (such as Kali Linux), it is recommended to install/update wpscan via the package manager if available.
+When using a pentesting distribution (such as Kali Linux), it is recommended to install/update wpscan via the package manager if available.
 
 ### In macOSX via Homebrew
 
