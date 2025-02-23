@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.14.3'
+  s.add_dependency 'cms_scanner', '~> 0.15.0'
 
   # Fixes
   # - warning: ostruct was loaded from the standard library
