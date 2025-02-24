@@ -2,5 +2,5 @@
 
 # Version
 module WPScan
-  VERSION = '3.8.27'
+  VERSION = '3.8.28'
 end
