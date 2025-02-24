@@ -24,7 +24,7 @@ jobs:
       run: |
         gem install bundler
         bundle config force_ruby_platform true
-        bundle config path vendor/bundle
+        bundle config deployment true
         bundle install --jobs 4 --retry 3
 
     - name: rubocop
