@@ -1,0 +1,39 @@
+{
+    "name": "verdant-studio/forum-permissions-bbpress",
+    "description": "Restrict the forum permissions per user role",
+    "version": "1.0.1",
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "type": "wordpress-plugin",
+    "homepage": "https://verdant.studio",
+    "autoload": {
+        "psr-4": {
+            "ForumPermissionsBbpress\\": "src/"
+        }
+    },
+    "scripts": {
+        "phpcs": "./vendor/bin/phpcs"
+    },
+    "require": {
+        "php": ">=7.1",
+        "micropackage/requirements": "^1.0"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
+        "wp-coding-standards/wpcs": "*",
+        "automattic/phpcs-neutron-ruleset": "^3.3",
+        "phpcompatibility/phpcompatibility-wp": "^2.1"
+    },
+    "keywords": [
+        "wordpress",
+        "plugin",
+        "boilerplate",
+        "framework"
+    ],
+    "authors": [
+        {
+            "name": "Verdant Studio",
+            "homepage": "https://verdant.studio"
+        }
+    ]
+}

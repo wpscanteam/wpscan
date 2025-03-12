@@ -1,0 +1,71 @@
+{
+  "name": "krishna-suwal/http-requests-tracker",
+  "description": "An http requests tracker plugin",
+  "version": "0.1.0",
+  "homepage": "https://krishna-suwal.github.io/http-requests-tracker",
+  "license": "GPL-2.0-or-later",
+  "type": "wordpress-plugin",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "Krishna Suwal"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "includes/Helpers/Core.php",
+      "includes/Helpers/Conditional.php",
+      "includes/Helpers/Format.php",
+      "includes/Helpers/UrlSchemeHelpers.php"
+    ],
+    "psr-4": {
+      "HRT\\": "includes/"
+    }
+  },
+  "require": {
+    "league/container": "3.3",
+    "wa72/url": "^0.7.1",
+    "tareq1988/wp-eloquent": "dev-master"
+  },
+  "require-dev": {
+    "wp-coding-standards/wpcs": "2.3.0",
+    "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
+    "phpcompatibility/phpcompatibility-wp": "2.1.0",
+    "sirbrillig/phpcs-variable-analysis": "2.8",
+    "phpunit/phpunit": "5.*",
+    "wp-cli/wp-cli": "^2.4",
+    "wp-cli/i18n-command": "^2.2"
+  },
+  "scripts": {
+    "test:php:unit": [
+      "\"./vendor/bin/phpunit\""
+    ],
+    "test:php:unit:quick": [
+      "WP_TESTS_SKIP_INSTALL=1 \"./vendor/bin/phpunit\""
+    ],
+    "phpcs": [
+      "phpcs"
+    ],
+    "phpcs:strict": [
+      "phpcs --warning-severity=0 -s --ignore-annotations --extensions=php,html ."
+    ],
+    "phpcbf": [
+      "phpcbf"
+    ],
+    "makepot-audit": [
+      "wp i18n make-pot . --slug=hrt"
+    ],
+    "makepot": [
+      "\"vendor/bin/wp\" i18n make-pot . ./i18n/languages/hrt.pot --include=\"assets/js/build/hrt-backend.0.1.0.min.js,assets/js/build/hrt-backend.js,includes\""
+    ]
+  },
+  "extra": {
+    "scripts-description": {
+      "phpcs": "Analyze code against the WordPress coding standard with PHP_CodeSniffer",
+      "phpcbf": "Fix coding standards warnings/errors automattically with PHP Code Beautifier",
+      "makepot-audit": "Generate langauges/wp-plugin-starter.pot file and run audit",
+      "makepot": "Generate langauges/wp-plugin-starter.pot file"
+    }
+  }
+}

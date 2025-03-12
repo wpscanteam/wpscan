@@ -1,0 +1,28 @@
+{
+	"name": "vev",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Use the official Vev plugin to easily integrate your page or content and break free from the same old templates.",
+	"author": "Vev",
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"WordPress",
+		"block"
+	],
+	"homepage": "https://vev.design/",
+	"bugs": {
+		"url": "https://vev.design/"
+	},
+	"main": "build/index.js",
+	"devDependencies": {
+		"@wordpress/components": "^13.0.3",
+		"@wordpress/scripts": "^15.0.1"
+	},
+	"scripts": {
+		"build": "wp-scripts build ./scripts/index.js",
+		"format:js": "wp-scripts format-js ./scripts/index.js",
+		"lint:js": "wp-scripts lint-js ./scripts/index.js",
+		"packages-update": "wp-scripts packages-update",
+		"start": "wp-scripts start ./scripts/index.js"
+	}
+}

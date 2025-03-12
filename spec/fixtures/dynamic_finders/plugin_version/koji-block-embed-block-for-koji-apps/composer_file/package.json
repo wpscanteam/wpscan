@@ -1,0 +1,30 @@
+{
+  "name": "koji-embed-button",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "build:editor": "wp-scripts build",
+    "build:frontend": "wp-scripts build ./src/Frontend/index.js --output-path=build-frontend",
+    "build": "wp-scripts build && wp-scripts build ./src/Frontend/index.js --output-path=build-frontend",
+    "format:js": "wp-scripts format-js",
+    "lint:js": "wp-scripts lint-js",
+    "packages-update": "wp-scripts packages-update",
+    "start:editor": "wp-scripts start",
+    "start:frontend": "wp-scripts start ./src/Frontend/index.js --output-path=build-frontend"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@wordpress/block-editor": "8.2.0",
+    "@wordpress/blocks": "11.2.2",
+    "@wordpress/components": "^19.5.0",
+    "@wordpress/i18n": "4.3.1",
+    "@wordpress/scripts": "22.0.1"
+  },
+  "dependencies": {
+    "classnames": "^2.3.1",
+    "framer-motion": "^6.2.8",
+    "styled-components": "^5.3.3"
+  }
+}

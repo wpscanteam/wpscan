@@ -1,0 +1,38 @@
+{
+  "name": "financial-ratio-block",
+  "version": "1.0.1",
+  "description": "Example block scaffolded with Create Block tool.",
+  "author": "The WordPress Contributors",
+  "license": "GPL-2.0-or-later",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "wp-scripts build --webpack-copy-php",
+    "format": "wp-scripts format",
+    "lint": "wp-scripts lint-style && wp-scripts lint-js",
+    "lint:fix": "wp-scripts lint-style --fix && wp-scripts lint-js --fix",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip",
+    "start": "wp-scripts start --webpack-copy-php",
+    "env": "wp-env",
+    "audit": "npm audit --registry='https://registry.npmjs.org/'",
+    "audit:fix": "npm audit fix --registry='https://registry.npmjs.org/'",
+    "test:unit": "echo 'skipping, no tests configured yet'"
+  },
+  "devDependencies": {
+    "@wordpress/components": "^23.9.0",
+    "@wordpress/env": "^6.0.0",
+    "@wordpress/scripts": "^26.3.0",
+    "eslint": "^8.40.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2"
+  },
+  "dependencies": {
+    "@wordpress/blocks": "^12.10.0",
+    "@wordpress/element": "^5.10.0",
+    "mutation-observer": "^1.0.3",
+    "react": "^18.2.0"
+  }
+}

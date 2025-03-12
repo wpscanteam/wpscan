@@ -1,0 +1,320 @@
+== Changelog ==
+
+= 3.6.0 - 2022-02-27 =
+*   New - add new restriction module, to limit access to content based on login, role or user
+*   New - add option to select a page for login and logout redirects
+*   New - add option to remove the language switcher on the login page
+*   Enhancement - replace JavaScript functions with more modern ones
+*   Enhancement - keep plugins as the last tab
+*   Enhancement - tweak the login customizer (sandbox)
+*   Enhancement - update translations and POT file
+*   Fix - ensure WordPress default redirect does not take precedence over the defined rules
+*   Tweak - ensure compatibility with WooCommerce 6.3
+*   Tweak - ensure compatibility with WordPress 6.0
+*   Update - FS library
+
+= 3.5.2 - 2021-12-10 =
+*   Enhancement - tweak menu icon height and button style in options tabs
+*   Enhancement - add full support for mouseover and mouseout animations for the menu icon
+*   Enhancement - make use of `prefers-reduced-motion` for the menu icon for accessibility
+*   Enhancement - set cursor to pointer on tabs to indicate accessible links
+*   Enhancement - tighten up Modal settings for clarity
+*   Fix - ensure [login-form] outputs the login form correctly, respecting its place within the content
+*   Tweak - compatibility with WC 6.1
+*   Tweak - compatibility with WP 6.1
+*   Tweak - complete missing strings in plugin header
+
+= 3.5.1 - 2021-04-30 =
+*   New - add option to remove "Go to {site_name}" link from the login page
+*   New - add option to remove privacy link from the login page
+*   Enhancement - allow for up to 3 decimals for font size
+*   Enhancement - add custom blocks CSS setting
+*   Enhancement - slow down animation for the menu icon
+*   Enhancement - tweak tab icon alignment with tab title
+*   Enhancement - refactor detection logic for the installed plugins (plugins tab)
+*   Update - POT file and translations
+*   Update - CF library
+
+= 3.5.0 - 2021-04-26 =
+*   New - add custom login text for "login/logout link in menus"
+*   New - add custom logout text for "login/logout link in menus"
+*   New - add custom class for "login/logout link in menus"
+*   New - add native code editor for all of the "add X code" textareas, with suggestions and autocomplete
+*   Fix - correct missing variable references
+*   Enhancement - rearrange the order of the Blocks tab
+*   Enhancement - change menu icon from div background-image to real image tag
+*   Enhancement - add new color and animation to the menu icon
+*   Enhancement - improve spacing for tab icons
+*   Update - POT file and translations
+*   Update - CF library
+
+= 3.4.8 - 2021-04-18 =
+*   New - add login/logout button option for modal
+*   New - add link color, link hover and font size controls to "add login/logout link to menu" option
+*   New - add shortcode processing to Tweaks > Add code blocks
+*   New - add link to documentation in plugin's footer
+*   New - add introductory paragraph to the Redirects tab
+*   Fix - add missing spaces between class and id attributes in menu links
+*   Enhancement - ensure logo displays in interim login form (when you're logged out while being in the backend)
+*   Enhancement - refactor premium option display in dropdowns
+*   Enhancement - check that the modal's close button is not affected by some theme's border-bottom CSS
+*   Enhancement - rearrange the order of the Modal tab
+*   Enhancement - rearrange the order of the Blocks tab
+
+= 3.4.7 - 2021-04-12 =
+*   Fix - undefined constant
+*   Enhancement - adjust field size in login form
+*   Enhancement - ensure premium option only show in their plans
+
+= 3.4.5 - 2021-04-08 =
+*   Enhancement - add "Requires at least" and "Requires PHP" directives in the plugin header
+*   Enhancement - ensure options are accessible, with a transient and get_option as backup
+
+= 3.4.4 - 2021-04-01 =
+*   Enhancement - phase out the widget in favor of shortcodes
+*   Enhancement - add more directives to the sandboxed iframe
+*   Enhancement - ensure options are accessible, even without the transient
+*   Update - CF library
+
+= 3.4.3 - 2021-02-25 =
+*   Fix - add missing files
+*   Enhancement - add allow-scripts to the sandboxed iframe
+*   Update - CF library
+*   Update - FS library
+
+= 3.4.1 - 2021-01-24 =
+*   Fix - solve the double login issue when WordPress is installed in a subdirectory
+*   Fix - revert remove cookie path
+
+= 3.4 - 2021-01-24 =
+*   New - option to enable modal login so that code and styles are only loaded if the option is enabled.
+*   Enhancement - more translated strings
+*   Enhancement - ensure session expiration is not modified if the option is not selected
+*   Enhancement - prevent WP version overlapping in the footer on the plugin's option page
+*   Enhancement - align paragraphs with toggles
+*   Enhancement - ensure all alignments are consistent
+*   Fix - iframe URL now using home_url()
+*   Fix - remove cookie path to make sure redirections work when WordPress is installed in a subdirectory
+*   Update - more compliant translations and POT file
+
+= 3.3 - 2020-12-18 =
+*   New - add admin notice
+*   New - introduce new sliders style
+*   New - add better looking icons to the admin page, with dual colors
+*   New - introduce Modal tab with a brand-new modal login customizer
+*   Enhancement - Shop tab : add all EDD options first and then all WooCommerce options, for consistency
+*   Enhancement - add close icon to the modal login form instead of (close) link
+*   Performance - ensure the modal's close button does not trigger a page refresh, and only closes the modal
+*   Performance - replace the font file with standalone SVG icons (this shaved 3.7 MB off the plugin)
+*   Fix - correct WooCommerce submit hover CSS not set
+*   Update - translations and POT file
+
+= 3.2 - 2020-12-08 =
+*   New - option to set a custom login page
+*   New - nofollow and noindex option
+*   New - shortcode: embed a login form in your content
+*   New - shortcode: embed a modal login form
+*   New - brand-new WooCommerce login customizer
+*   Performance - unite functions under the same hook
+*   Enhancement - rename the "WooCommerce" tab to "Shop" as it now features Easy Digital Downloads (EDD) redirects
+*   Enhancement - reorganize the Blocks tab's content
+*   Enhancement - only check the Remember Me checkbox if it actually exists on the page
+*   Enhancement - Remember Me options are unified for WordPress, WooCommerce, and Easy Digital Downloads
+*   Enhancement - adjust select and number elements to be the same size as color controls
+*   Enhancement - improve logo height display to avoid the logo being cut off
+*   Enhancement - rename "prior page" to "previous page" for clarity and consistency
+*   Enhancement - add more space and reworded the plugin installed message
+*   Enhancement - add default value for the user session setting
+*   Enhancement - only display the rules message when needed
+*   Enhancement - additional URL escaping
+*   Enhancement - add missing classes to the Widgets tab paragraphs
+*   Remove - phased out WooCommerce password reset redirects
+*   Update - translations and POT file
+
+= 3.1 - 2020-11-08 =
+*   New - add options to customize the login submit button: background color/hover, border color/width/radius, text color/hover, button width, button alignment
+*   New - reorganize customizer options into more convenient and ordered blocks of content
+*   New - add more translatable strings
+*   New - add screenshots
+*   Fix - ensure login logo's height is displayed fully
+*   Fix - if no rules have been created, redirect login and logout to the homepage. Rules should be added in when you set up the plugin.
+*   Enhancement - place customizer preview on top of the options
+*   Enhancement - remove extra dot in admin footer message
+*   Enhancement - call admin footer at a later stage
+*   Enhancement - modify additional plugins detection logic
+*   Enhancement - update translation files
+*   Update - CF SDK
+
+= 3.0 - 2020-11-04 =
+*   New - major plugin rewrite, which brings a ton of new features to redirects
+*   New - add user redirects, role redirects, custom redirects or redirects to prior page
+*   New - add Navigation links color in the Login Customizer
+*   New - add Back to blog link color in the Login Customizer
+*   New - add Privacy page link color in the Login Customizer
+*   New - add option to check Remember Me checkbox by default on WooCommerce login page
+*   New - add option to hide Remember Me checkbox on WooCommerce login page
+*   New - show all options on the WooCommerce tab, instead of prompting to install WooCommerce only
+*   New - display message to add a menu first if none exists when setting the login/logout link to menus
+*   New - add custom cookie expiration time
+*   Performance - call CSS functions earlier, on `login_head` instead of `login_header`
+*   Performance - call UX options at a later stage to reduce the plugin's footprint
+*   Performance - add many performance improvements in the redirect functions, as well as solve some edge-cases
+*   Enhancement - deprecate row links function in favor of filters
+*   Enhancement - display our updated icon in the WP Admin sidebar
+*   Enhancement - ensure emojis are not intercepted by WP emoji functions on our settings page
+*   Enhancement - remove heredoc blocks throughout the plugin
+*   Enhancement - add missing CSS declarations
+*   Enhancement - improve CSS alignments in the backend
+*   Enhancement - adjust readme.txt
+*   Enhancement - add more translation strings.
+*   Enhancement - Update French translation.
+*   Update - Freemius SDK
+
+= 2.7.0 - 2020-08-08 =
+* New - add sandboxed iframe for the login customizer.
+* New - customizer CSS is now available in the free version.
+* New - when custom URLs options are selected, URLs are compulsory.
+* New - `/wp-admin` redirection requests are now bypassed.
+* New - add missing helper field descriptions.
+* New - add widget tab.
+* New - add security tab.
+* Update - remove apostrophes from field descriptions.
+* Update - correct typo in the custom logout redirect field label.
+* Update - correct typo in the logo's CSS declaration.
+* Update - reorganize tabs for consistency.
+* Update - consolidate CSS styles.
+* Update - default translation file.
+* Update - Carbon Fields SDK.
+* Update - Freemius SDK.
+* Dev - bumped minimum WP version to WordPress 4.6
+* Dev - bumped minimum WC version to WooCommerce 3.3
+* Dev - tested with WooCommerce 4.4
+* Dev - tested with WordPress 5.5
+* New - a brand-new Business plan that offers even more options:
+* New - add the option to set login redirects for specific users.
+* New - add WooCommerce password reset redirect option.
+* New - add a login widget.
+* New - add a login-logout shortcode, that can be used in articles or widgets.
+* New - add a login/logout link to any position in any of your menus.
+
+= 2.6.0 =
+* Feb 7th 2020
+* New: define background color and background image for the login page (Pro).
+* New: define background color and background image for the login form (Pro).
+* New: define label color for the login form labels (Pro).
+* New: the visibility of the Remember Me checkbox can now be toggled (Pro).
+* New: pro label for the options belonging to the Pro version.
+* Updated: default WooCommerce redirects added in. This solves a possible white screen in some configurations.
+* Updated: logo toggles have been moved down to the Extra Login section for consistency.
+* Updated: new style for the Upgrade button.
+* Updated: earlier action for the Remember Me option.
+* Updated: localization called later.
+* Updated: default translation file.
+* Updated: French translation.
+* Updated: Carbon Fields SDK.
+
+= 2.5.0 =
+* Jan 4th 2020
+* New: Performance improvements: multi-select options are now called with callable functions, which improves reactivity in the backend and only loads the dependencies on our plugin's option page.
+* New: plugin icon now displays on the update plugin page.
+* Updated: improved redirect to previous page logic to avoid redirect loops.
+* Updated: improved redirect logic when referer is empty (Pro).
+* Updated: plugin row links for Pro users.
+* Updated: Carbon Fields SDK.
+
+= 2.4.0 =
+* Jan 2nd 2020
+* New: Added localization and default POT file.
+* New: Updated all strings with our text-domain.
+* New: Added French translation.
+* New: Added WooCommerce support tags.
+* New: Added CSS style for the WooCommerce install message.
+* New: Added support and docs links to the plugins list page.
+* Updated: refactored CSS and JS files so that there is no more inline code.
+* Updated: removed duplicate function in favor of a namespace import.
+* Updated: Freemius SDK.
+
+= 2.3.0 =
+* Dec 9th 2019
+* New: fonts are now loaded locally.
+* New: new options in the login customizer.
+* Updated: CSS styles.
+* Updated: new set of icons.
+* Updated: login customizer tab.
+
+= 2.1.0 =
+* Dec 5th 2019
+* New: Settings link on the plugins list page.
+* New: Font Awesome icons have been replaced with Line Awesome icons.
+* Updated: readme description and links.
+
+= 2.0.1 =
+* Nov 29th 2019
+* New: added Pro activation logic when the free plugin is already installed
+* New: updated readme file
+
+= 2.0.0 =
+* Nov 17th 2019
+* Complete plugin rewrite for modularity and efficiency
+* New: brand-new settings page to configure your redirects
+* New: clean login and logout URLs (no explicit redirect set in the URL)
+* New: more options for login and logout redirects
+* New: more options to customize the login page
+
+= 1.9.2 =
+* Dec 15th 2015
+* Tweak: now using esc_url_raw() instead of esc_url() (thanks Bill Catherall for reporting)
+
+= 1.9.1 =
+* Dec 14th 2015
+* Tweak: set priority for login_redirect filter
+* Tweak: use add_query_arg() in custom logout function for consistency
+
+= 1.9 =
+* June 15th 2015
+* Fix for the "undefined variable" (thanks nina9702 for reporting)
+* Tweak: streamlined the referrer function
+
+= 1.8 =
+* April 24th 2015
+* Added: additional string escaping.
+
+= 1.7 =
+* April 21st 2015
+* Added: use of esc_url() to sanitize the output of add_query_arg() and improve security.
+* Added: additional logo sizes.
+* Confirmed compatibility with WordPress 4.2
+
+= 1.6 =
+* December 22nd 2014
+* Added : plugin logo.
+* Confirmed compatibility with WordPress 4.1
+
+= 1.5 =
+* May 30th 2014
+* Added : links to the login page are now cleaner (no args in URI, except for admin pages).
+* Added : new function so that logging out sends you back to the homepage.
+* Added : more inline documentation.
+* Added : plugin banner.
+* Changed : refactored and cleaned up code.
+* Changed : reference to wp-register.php changed to wp-signup.php
+* Confirmed compatibility with WordPress 3.9
+
+= 1.4.1 =
+* New check : attempt to redirect to the referring page even if $redirect_to wasn't explicitly set.
+
+= 1.3 =
+* Fixed a regression (thanks Sharonq for reporting).
+* Plugin partially rewritten.
+* New check with is_ssl().
+
+= 1.2 =
+* Fix for the login loop that occured when using the password recovery and when logging straight from the login page (thanks zkagen and salatfresser for reporting).
+* Ditch the use of HTTP_HOST for home_url().
+
+= 1.1 =
+* Added code to check if $redirect_to is set and make it take precedence.
+* Changed plugin URL to its [home page](http://www.skyminds.net/wordpress-plugins/sky-login-redirect/ "Sky Login Redirect Homepage").
+
+= 1.0 =
+* Initial release.

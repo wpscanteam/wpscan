@@ -12,7 +12,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
       allow(target).to receive(:sub_dir).and_return(false)
     end
 
-    it 'replaces {domain_name} by its value' do
+    it 'replaces {domain_name} by its values' do
       expect(finder.potential_urls(opts).keys).to eql %w[
         http://ex.lo/aa/ex.sql
         http://ex.lo/aa/wordpress.sql
@@ -27,8 +27,8 @@ describe WPScan::Finders::DbExports::KnownLocations do
       context "when #{sub_domain} sub-domain" do
         let(:url) { "https://#{sub_domain}.domain.tld" }
 
-        it 'replaces {domain_name} by its correct value' do
-          expect(finder.potential_urls(opts).keys).to include "#{url}/domain.sql"
+        it 'replaces {domain_name} by its correct values' do
+          expect(finder.potential_urls(opts).keys).to include "#{url}/domain.sql", "#{url}/#{sub_domain}.domain.sql"
         end
       end
     end
@@ -44,16 +44,22 @@ describe WPScan::Finders::DbExports::KnownLocations do
     context 'when multi-level tlds and sub-domain' do
       let(:url) { 'https://dev.something.com.tr' }
 
-      it 'replaces {domain_name} by its correct value' do
-        expect(finder.potential_urls(opts).keys).to include 'https://dev.something.com.tr/something.sql'
+      it 'replaces {domain_name} by its correct values' do
+        expect(finder.potential_urls(opts).keys).to include(
+          'https://dev.something.com.tr/something.sql',
+          'https://dev.something.com.tr/dev.something.sql'
+        )
       end
     end
 
     context 'when some weird stuff' do
       let(:url) { 'https://098f6bcd4621d373cade4e832627b4f6.aa-bb-ccc-dd.domain-test.com' }
 
-      it 'replaces {domain_name} by its correct value' do
-        expect(finder.potential_urls(opts).keys).to include "#{url}/domain-test.sql"
+      it 'replaces {domain_name} by its correct values' do
+        expect(finder.potential_urls(opts).keys).to include(
+          "#{url}/domain-test.sql",
+          "#{url}/098f6bcd4621d373cade4e832627b4f6.aa-bb-ccc-dd.domain-test.sql"
+        )
       end
     end
 
@@ -62,6 +68,14 @@ describe WPScan::Finders::DbExports::KnownLocations do
 
       it 'replaces {domain_name} by its correct value' do
         expect(finder.potential_urls(opts).keys).to include "#{url}/dc-2.sql"
+      end
+    end
+
+    context 'when an IP address' do
+      let(:url) { 'http://192.168.1.12' }
+
+      it 'replaces {domain_name} by the IP address' do
+        expect(finder.potential_urls(opts).keys).to include "#{url}/192.168.1.12.sql"
       end
     end
   end

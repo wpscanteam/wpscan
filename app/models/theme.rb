@@ -92,7 +92,7 @@ module WPScan
           tags: 'Tags',
           text_domain: 'Text Domain'
         }.each do |attribute, tag|
-          instance_variable_set(:"@#{attribute}", parse_style_tag(style_body, tag))
+          instance_variable_set(:"@#{attribute}", parse_style_tag(style_body, tag)&.force_encoding('UTF-8'))
         end
       end
 

@@ -1,0 +1,24 @@
+{
+	"name": "play-audio-once",
+	"version": "1.0.0",
+	"description": "",
+	"author": "threadi",
+	"license": "GPL-2.0-or-later",
+	"main": "attributes/index.js",
+	"scripts": {
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start src/index.js --output-path=attributes/",
+		"build": "wp-scripts build src/index.js --output-path=attributes/",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^20.0.2",
+		"npm-pack-zip": "^1.3.0"
+	},
+	"dependencies": {
+		"@wordpress/i18n": "^4.3.0",
+		"classnames": "^2.3.1"
+	}
+}

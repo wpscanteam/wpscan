@@ -1,0 +1,29 @@
+{
+	"name": "smart-admin-menu-filter",
+	"version": "1.0.1",
+	"description": "Advanced phonetic admin menu search and filter for WordPress",
+	"main": "index.js",
+	"browserify": {
+		"transform": [
+			"babelify"
+		]
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build:js": "esbuild assets/js/main.js --bundle --minify --sourcemap --outfile=dist/js/smart-admin-menu-filter.min.js",
+		"build:css": "node-sass --output-style compressed assets/scss/smart-admin-menu-filter.scss -o dist/styles && postcss -u autoprefixer --autoprefixer.browsers 'last 2 versions' -r dist/styles",
+		"build": "yarn run build:js && yarn run build:css"
+	},
+	"author": "Nathan Lampe <nlampe@gmail.com>",
+	"license": "GNU",
+	"dependencies": {
+		"double-metaphone": "^2.0.0"
+	},
+	"devDependencies": {
+		"autoprefixer": "^10.3.1",
+		"esbuild": "^0.12.19",
+		"postcss": "^8.3.6",
+		"postcss-cli": "^8.3.1",
+		"sass": "^1.38.1"
+	}
+}

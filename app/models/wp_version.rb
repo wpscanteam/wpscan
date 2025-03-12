@@ -25,6 +25,10 @@ module WPScan
 
         @all_numbers = []
 
+        DB::Version.metadata.each_key do |ver|
+          @all_numbers << ver
+        end
+
         DB::Fingerprints.wp_fingerprints.each_value do |fp|
           @all_numbers << fp.values
         end

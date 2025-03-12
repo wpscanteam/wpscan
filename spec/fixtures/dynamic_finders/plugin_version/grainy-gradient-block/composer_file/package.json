@@ -1,0 +1,31 @@
+{
+	"name": "grainy-gradient-block",
+	"version": "1.0.1",
+	"description": "",
+	"author": "Kelly Dwan",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build",
+		"format": "wp-scripts format src",
+		"lint:css": "wp-scripts lint-style src/**/*.scss",
+		"lint:js": "wp-scripts lint-js src",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "8.0.13",
+		"@wordpress/blocks": "11.1.5",
+		"@wordpress/components": "19.2.0",
+		"@wordpress/data": "6.1.5",
+		"@wordpress/element": "4.0.4",
+		"@wordpress/i18n": "4.2.4",
+		"@wordpress/primitives": "3.0.4"
+	},
+	"devDependencies": {
+		"@wordpress/eslint-plugin": "9.3.0",
+		"@wordpress/prettier-config": "1.1.1",
+		"@wordpress/scripts": "19.2.2"
+	},
+	"prettier": "@wordpress/prettier-config"
+}

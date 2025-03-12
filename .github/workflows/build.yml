@@ -9,14 +9,14 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7]
+        ruby: ['3.0', 3.1, 3.2, 3.3, 3.4]
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2.3.4
+      uses: actions/checkout@v4
 
     - name: Set up Ruby ${{ matrix.ruby }}
-      uses: actions/setup-ruby@v1
+      uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
 
@@ -31,8 +31,11 @@ jobs:
       run: |
         bundle exec rubocop
 
+    # Runs Specs which are not tagged as slow first to speed up the process in case of failure in those
+    # Then will run the full specs suite (and generate the final coverage report)
     - name: rspec
       run: |
+        bundle exec rspec --tag ~slow
         bundle exec rspec
 
     - name: Coveralls

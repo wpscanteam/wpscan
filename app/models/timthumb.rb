@@ -30,7 +30,7 @@ module WPScan
       def vulnerabilities
         vulns = []
 
-        vulns << rce_webshot_vuln if version == false || version > '1.35' && version < '2.8.14' && webshot_enabled?
+        vulns << rce_webshot_vuln if version == false || (version > '1.35' && version < '2.8.14' && webshot_enabled?)
         vulns << rce_132_vuln if version == false || version < '1.33'
 
         vulns

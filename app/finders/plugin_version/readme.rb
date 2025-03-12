@@ -59,13 +59,13 @@ module WPScan
         #
         # @return [ String, nil ] The best version number detected from the changelog section
         def from_changelog_section(body)
-          extracted_versions = body.scan(%r{=+\s+(?:v(?:ersion)?\s*)?([0-9.-]+)[ \ta-z0-9().\-/]*=+}i)
+          extracted_versions = body.scan(/^=+\s+(?:v(?:ersion)?\s*)?([0-9.-]+)[^=]*=+$/i)
 
           return if extracted_versions.nil? || extracted_versions.empty?
 
           extracted_versions.flatten!
           # must contain at least one number
-          extracted_versions = extracted_versions.select { |x| x =~ /[0-9]+/ }
+          extracted_versions = extracted_versions.grep(/[0-9]+/)
 
           sorted = extracted_versions.sort do |x, y|
             Gem::Version.new(x) <=> Gem::Version.new(y)

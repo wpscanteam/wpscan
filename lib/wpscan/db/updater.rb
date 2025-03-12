@@ -24,7 +24,13 @@ module WPScan
 
         FileUtils.mkdir_p(repo_directory.to_s) unless Dir.exist?(repo_directory.to_s)
 
-        raise "#{repo_directory} is not writable" unless repo_directory.writable?
+        # When --no-update is passed, return to avoid raising an error if the directory is not writable
+        # Mainly there for Homebrew: https://github.com/wpscanteam/wpscan/pull/1455
+        return if ParsedCli.update == false
+
+        unless repo_directory.writable?
+          raise "#{repo_directory} is not writable (uid: #{Process.uid}, gid: #{Process.gid})"
+        end
 
         delete_old_files
       end
@@ -67,7 +73,7 @@ module WPScan
       # @return [ Hash ] The params for Typhoeus::Request
       # @note Those params can't be overriden by CLI options
       def request_params
-        @request_params ||= Browser.instance.default_connect_request_params.merge(
+        @request_params ||= Browser.instance.default_request_params.merge(
           timeout: 600,
           connecttimeout: 300,
           accept_encoding: 'gzip, deflate',
@@ -129,7 +135,7 @@ module WPScan
         res = Typhoeus.get(file_url, request_params)
         raise Error::Download, res if res.timed_out? || res.code != 200
 
-        File.open(file_path, 'wb') { |f| f.write(res.body) }
+        File.binwrite(file_path, res.body)
 
         local_file_checksum(filename)
       end

@@ -1,0 +1,32 @@
+{
+	"name": "tiles-marquee-block",
+	"version": "0.1.0",
+	"description": "Add a marquee block to your website.",
+	"author": "Tiles",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "./bin/build-plugin-zip.sh",
+		"build:assets": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"start": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update",
+		"version": "replace-in-files --regex='Stable tag:        \\d+\\.\\d+\\.\\d+' --replacement='Stable tag:        '${npm_package_version}'' readme.txt && replace-in-files --regex='Version:           \\d+\\.\\d+\\.\\d+' --replacement='Version:           '${npm_package_version}'' *.php && git add ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/usetiles/tiles-marquee-block"
+	},
+	"dependencies": {
+		"@wordpress/block-editor": "^6.1.1",
+		"@wordpress/blocks": "^9.1.1",
+		"@wordpress/i18n": "^4.1.1",
+		"replace-in-files-cli": "^1.0.0"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^16.1.1",
+		"@wordpress/eslint-plugin": "^5.1.0"
+	}
+}

@@ -1,0 +1,49 @@
+= 2.2.0 =
+[Added] Added "Prospect" Email and Name to the Mail Body
+[Added] Filter to allow changing the "From" email
+[Added] Filter to allow changing the Subject of the mail sent (the "internal" subject, the "message" subject filter stays the same)
+[Added] Confirmation message to prospect when form is submitted
+[Added] Filter to stop Confirmation message to prospect from being sent
+[Added] Filter to change the Confirmation message content to prospect
+[Fixed] Do not send the email from the "Prospect" Email, instead, use the Blog Admin Email
+[Changed] Updated Readme with new filters
+[Changed] Refactored some code
+
+= 2.1.4 =
+[Changed] Updated Readme and added SonarCloud Scan
+
+= 2.1.3 =
+[Fixed] Error in the readme
+
+= 2.1.2 =
+[Fixed] Make sure HTML is not lost from IP Paragraph
+
+= 2.1.1 = 
+[Added] Readme Examples for Filters
+[Added] Comments to code 
+[Fixed] IP Address filter was not filtering the actual string
+[Fixed] Redirect in code was not using wp_safe_redirect
+[Fixed] Few form contents where not escaped/sanitized
+
+= 2.1.0 =
+[Added] Separated IP from message body so body can be filtered alone
+[Added] Readme.md file
+[Changed] Message body now uses wp_kses_post when filter is applied
+[Changed] Updated Readme
+
+= 2.0.1 =
+[Fixed] Error in the readme description for filter tkt_cntct_frm_message.
+
+= 2.0.0 =
+* [Removed] ShortCode attribute to change receiver email
+* [Added] ShortCode attribute to define Form ID
+* [Added] Several Filters and actions to control Form and Mail events/contents
+* [Fixed] When form is successfully submitted it now properly redirects to a location instead of replacing the form
+* [Fixed] All CSS Classes and IDs now use specific tkt- prefix.
+
+
+= 1.0.1 =
+* [Changed] Updated Readme
+
+= 1.0.0 =
+* Initial Release
