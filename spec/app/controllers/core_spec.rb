@@ -112,13 +112,13 @@ describe WPScan::Controller::Core do
           end
 
           context 'when a positive answer' do
-            before { expect(Readline).to receive(:readline).and_return('Yes').ordered }
+            before { expect(Readline).to receive(:readline).with('[?] Do you want to update now? [Y]es [N]o, default: [N] ', true).and_return('Yes').ordered }
 
             its(:update_db_required?) { should eql true }
           end
 
           context 'when a negative answer' do
-            before { expect(Readline).to receive(:readline).and_return('no').ordered }
+            before { expect(Readline).to receive(:readline).with('[?] Do you want to update now? [Y]es [N]o, default: [N] ', true).and_return('No').ordered }
 
             its(:update_db_required?) { should eql false }
           end
