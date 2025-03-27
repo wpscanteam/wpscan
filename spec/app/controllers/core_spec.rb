@@ -114,7 +114,7 @@ describe WPScan::Controller::Core do
 
           context 'when a positive answer' do
             before do
-              allow(STDIN).to receive(:gets).and_return("Yes\n")
+              allow($stdin).to receive(:gets).and_return("Yes\n")
             end
 
             its(:update_db_required?) { should eql true }
@@ -122,7 +122,7 @@ describe WPScan::Controller::Core do
 
           context 'when a negative answer' do
             before do
-              allow(STDIN).to receive(:gets).and_return("No\n")
+              allow($stdin).to receive(:gets).and_return("No\n")
             end
 
             its(:update_db_required?) { should eql false }

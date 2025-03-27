@@ -40,7 +40,7 @@ module WPScan
         print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
         $stdout.flush
 
-        response = STDIN.gets.to_s.strip
+        response = $stdin.gets.to_s.strip
 
         !!/^y/i.match?(response)
       end
