@@ -106,25 +106,19 @@ describe WPScan::Controller::Core do
 
         context 'when the db is outdated' do
           before do
-            allow(core).to receive(:user_interaction?).and_return(true)
             expect(core.local_db).to receive(:outdated?).ordered.and_return(true)
             expect(core.formatter).to receive(:output).with('@notice', hash_including(:msg), 'core').ordered
+            expect($stdout).to receive(:write).ordered # for the print()
           end
 
           context 'when a positive answer' do
-            before do
-              expect(Readline).to receive(:readline).with('[?] Do you want to update now? [Y]es [N]o, default: [N] ',
-                                                          true).and_return('Yes')
-            end
+            before { expect(Readline).to receive(:readline).and_return('Yes').ordered }
 
             its(:update_db_required?) { should eql true }
           end
 
           context 'when a negative answer' do
-            before do
-              expect(Readline).to receive(:readline).with('[?] Do you want to update now? [Y]es [N]o, default: [N] ',
-                                                          true).and_return('No')
-            end
+            before { expect(Readline).to receive(:readline).and_return('no').ordered }
 
             its(:update_db_required?) { should eql false }
           end
@@ -151,12 +145,12 @@ describe WPScan::Controller::Core do
     context 'when --update' do
       before do
         expect(core.formatter).to receive(:output)
-          .with('db_update_started', hash_including(verbose: nil), 'core').ordered
+                                    .with('db_update_started', hash_including(verbose: nil), 'core').ordered
 
         expect_any_instance_of(WPScan::DB::Updater).to receive(:update)
 
         expect(core.formatter).to receive(:output)
-          .with('db_update_finished', hash_including(verbose: nil), 'core').ordered
+                                    .with('db_update_finished', hash_including(verbose: nil), 'core').ordered
       end
 
       context 'when the --url is not supplied' do
@@ -200,8 +194,8 @@ describe WPScan::Controller::Core do
           stub_request(:any, target_url)
 
           expect(core.target).to receive(:homepage_res)
-            .at_least(1)
-            .and_return(Typhoeus::Response.new(effective_url: redirection, body: ''))
+                                   .at_least(1)
+                                   .and_return(Typhoeus::Response.new(effective_url: redirection, body: ''))
         end
 
         context 'to the wp-admin/install.php' do
@@ -209,7 +203,7 @@ describe WPScan::Controller::Core do
 
           it 'calls the formatter with the correct parameters and exit' do
             expect(core.formatter).to receive(:output)
-              .with('not_fully_configured', hash_including(url: redirection), 'core').ordered
+                                        .with('not_fully_configured', hash_including(url: redirection), 'core').ordered
 
             # TODO: Would be cool to be able to test the exit code
             expect { core.before_scan }.to raise_error(SystemExit)

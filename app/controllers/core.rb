@@ -37,7 +37,10 @@ module WPScan
         return false unless user_interaction? && local_db.outdated?
 
         output('@notice', msg: 'It seems like you have not updated the database for some time.')
-        response = Readline.readline('[?] Do you want to update now? [Y]es [N]o, default: [N] ', true)
+        print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
+        $stdout.flush
+
+        response = $stdin.gets.to_s.strip
 
         !!/^y/i.match?(response)
       end
