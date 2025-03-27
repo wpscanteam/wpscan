@@ -37,9 +37,9 @@ module WPScan
         return false unless user_interaction? && local_db.outdated?
 
         output('@notice', msg: 'It seems like you have not updated the database for some time.')
-        print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
+        response = Readline.readline('[?] Do you want to update now? [Y]es [N]o, default: [N] ', true)
 
-        /^y/i.match?(Readline.readline)
+        !!(/^y/i.match?(response))
       end
 
       def update_db
