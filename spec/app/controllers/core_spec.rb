@@ -106,15 +106,15 @@ describe WPScan::Controller::Core do
 
         context 'when the db is outdated' do
           before do
+            allow(core).to receive(:user_interaction?).and_return(true)
             expect(core.local_db).to receive(:outdated?).ordered.and_return(true)
             expect(core.formatter).to receive(:output).with('@notice', hash_including(:msg), 'core').ordered
-            expect($stdout).to receive(:write).ordered # for the print()
           end
 
           context 'when a positive answer' do
             before do
               expect(Readline).to receive(:readline).with('[?] Do you want to update now? [Y]es [N]o, default: [N] ',
-                                                          true).and_return('Yes').ordered
+                                                          true).and_return('Yes')
             end
 
             its(:update_db_required?) { should eql true }
@@ -123,7 +123,7 @@ describe WPScan::Controller::Core do
           context 'when a negative answer' do
             before do
               expect(Readline).to receive(:readline).with('[?] Do you want to update now? [Y]es [N]o, default: [N] ',
-                                                          true).and_return('No').ordered
+                                                          true).and_return('No')
             end
 
             its(:update_db_required?) { should eql false }
