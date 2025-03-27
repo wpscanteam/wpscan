@@ -38,13 +38,11 @@ module WPScan
 
         output('@notice', msg: 'It seems like you have not updated the database for some time.')
         print '[?] Do you want to update now? [Y]es [N]o, default: [N]'
-        # $stdout.flush
+        $stdout.flush
 
-        # response = $stdin.gets.to_s.strip
-        #
-        # !!/^y/i.match?(response)
+        response = $stdin.gets.to_s.strip
 
-        /^y/i.match?(Readline.readline)
+        !!/^y/i.match?(response)
       end
 
       def update_db
