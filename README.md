@@ -100,18 +100,18 @@ Up to **25** API requests per day are given free of charge, that should be suita
 
 ## Load CLI options from file/s
 
-WPScan can load all options (including the --url) from configuration files, the following locations are checked (order: first to last):
+WPScan can load all options (including the `--url`) from configuration files, the following locations are checked (order: first to last):
 
-- ~/.wpscan/scan.json
-- ~/.wpscan/scan.yml
-- pwd/.wpscan/scan.json
-- pwd/.wpscan/scan.yml
+- `~/.wpscan/scan.json`
+- `~/.wpscan/scan.yml`
+- `pwd/.wpscan/scan.json`
+- `pwd/.wpscan/scan.yml`
 
 If those files exist, options from the `cli_options` key will be loaded and overridden if found twice.
 
 e.g:
 
-~/.wpscan/scan.yml:
+`~/.wpscan/scan.yml`:
 
 ```yml
 cli_options:
@@ -119,7 +119,7 @@ cli_options:
   verbose: true
 ```
 
-pwd/.wpscan/scan.yml:
+`pwd/.wpscan/scan.yml`:
 
 ```yml
 cli_options:
@@ -128,6 +128,14 @@ cli_options:
 ```
 
 Running ```wpscan``` in the current directory (pwd), is the same as ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
+
+Other command line options can be added by using snake case convention. e.g:
+```yml
+cli_options:
+  user_agent: "Testing UA"
+  max_threads: 1
+  headers: "Custom-Header: aaaa; Another Header: bbb"
+```
 
 ## Save API Token in a file
 
