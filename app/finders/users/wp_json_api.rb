@@ -42,12 +42,16 @@ module WPScan
         def users_from_response(response)
           found = []
 
-          JSON.parse(response.body)&.each do |user|
-            found << Model::User.new(user['slug'],
-                                     id: user['id'],
-                                     found_by: found_by,
-                                     confidence: 100,
-                                     interesting_entries: [response.effective_url])
+          json = JSON.parse(response.body)
+
+          if json.is_a?(Enumerable)
+            json.each do |user|
+              found << Model::User.new(user['slug'],
+                                       id: user['id'],
+                                       found_by: found_by,
+                                       confidence: 100,
+                                       interesting_entries: [response.effective_url])
+            end
           end
 
           found
