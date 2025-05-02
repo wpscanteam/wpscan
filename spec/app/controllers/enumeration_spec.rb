@@ -29,7 +29,7 @@ describe WPScan::Controller::Enumeration do
         let(:type)           { t }
         let(:detection_mode) { :mixed }
 
-        context 'when vulnerable' do
+        context 'when vulnerable and mixed detection' do
           let(:cli_args) { "#{super()} -e v#{type[0]}" }
 
           it 'returns the expected string' do
@@ -37,7 +37,7 @@ describe WPScan::Controller::Enumeration do
           end
         end
 
-        context 'when all' do
+        context 'when all and passive detection' do
           let(:cli_args)       { "#{super()} -e a#{type[0]}" }
           let(:detection_mode) { :passive }
 
@@ -46,7 +46,7 @@ describe WPScan::Controller::Enumeration do
           end
         end
 
-        context 'when most popular' do
+        context 'when most popular and aggressive detection' do
           let(:cli_args)       { "#{super()} -e #{type[0]}" }
           let(:detection_mode) { :aggressive }
 
@@ -54,14 +54,6 @@ describe WPScan::Controller::Enumeration do
             @expected = "Enumerating Most Popular #{type.capitalize} (via Aggressive Methods)"
           end
         end
-      end
-    end
-  end
-
-  describe '#default_opts' do
-    context 'when no --enumerate' do
-      it 'contains the correct version_detection' do
-        expect(controller.default_opts('plugins')[:version_detection]).to include(mode: :mixed)
       end
     end
   end
@@ -104,17 +96,6 @@ describe WPScan::Controller::Enumeration do
 
   describe '#run' do
     context 'when no :enumerate' do
-      before do
-        expect(controller).to receive(:enum_plugins)
-        expect(controller).to receive(:enum_config_backups)
-
-        expect(WPScan::ParsedCli.plugins_detection).to eql :passive
-      end
-
-      it 'calls enum_plugins and enum_config_backups' do
-        controller.run
-      end
-
       context 'when --passwords supplied but no --username or --usernames' do
         let(:cli_args) { "#{super()} --passwords some-file.txt" }
 
