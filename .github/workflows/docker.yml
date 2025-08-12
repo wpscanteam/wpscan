@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: checkout sources
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set tag to latest
         if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'schedule'
