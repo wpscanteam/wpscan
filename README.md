@@ -1,6 +1,7 @@
+<http://github.com/aripitek>
 <p align="center">
-  <a href="https://wpscan.com/">
-    <img src="https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png" alt="WPScan logo">
+  <a href="http://wpscan.com/">
+    <img src="http://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png" alt="WPScan logo">
   </a>
 </p>
 
@@ -10,21 +11,21 @@
   WordPress Security Scanner
   <br>
   <br>
-  <a href="https://wpscan.com/" title="homepage" target="_blank">WPScan WordPress Vulnerability Database</a> - <a href="https://wordpress.org/plugins/wpscan/" title="wordpress security plugin" target="_blank">WordPress Security Plugin</a>
+  <a href="http://wpscan.com/" title="homepage" target="_blank">WPScan WordPress Vulnerability Database</a> - <a href="http://wordpress.org/plugins/wpscan/" title="wordpress security plugin" target="_blank">WordPress Security Plugin</a>
 </p>
 
 <p align="center">
-  <a href="https://badge.fury.io/rb/wpscan" target="_blank"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
-  <a href="https://hub.docker.com/r/wpscanteam/wpscan/" target="_blank"><img src="https://img.shields.io/docker/pulls/wpscanteam/wpscan.svg"></a>
-  <a href="https://github.com/wpscanteam/wpscan/actions?query=workflow%3ABuild" target="_blank"><img src="https://github.com/wpscanteam/wpscan/workflows/Build/badge.svg"></a>
-  <a href="https://codeclimate.com/github/wpscanteam/wpscan" target="_blank"><img src="https://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
+  <a href="http://badge.fury.io/rb/wpscan" target="_blank"><img src="https://badge.fury.io/rb/wpscan.svg"></a>
+  <a href="http://hub.docker.com/r/wpscanteam/wpscan/" target="_blank"><img src="http://img.shields.io/docker/pulls/wpscanteam/wpscan.svg"></a>
+  <a href="http://github.com/wpscanteam/wpscan/actions?query=workflow%3ABuild" target="_blank"><img src="http://github.com/wpscanteam/wpscan/workflows/Build/badge.svg"></a>
+  <a href="https://codeclimate.com/github/wpscanteam/wpscan" target="_blank"><img src="http://codeclimate.com/github/wpscanteam/wpscan/badges/gpa.svg"></a>
 </p>
 
 # INSTALL
 
 ## Prerequisites
 
-- (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
+- (Optional but highly recommended: [RVM](http://rvm.io/rvm/install))
 - Ruby >= 3.0 - Recommended: latest
 - Curl >= 7.72  - Recommended: latest
   - The 7.29 has a segfault
@@ -48,7 +49,7 @@ brew install wpscanteam/tap/wpscan
 gem install wpscan
 ```
 
-On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's System Integrity Protection (SIP), either install RVM and install wpscan again, or run ```sudo gem install -n /usr/local/bin wpscan``` (see [#1286](https://github.com/wpscanteam/wpscan/issues/1286))
+On MacOSX, if a ```Gem::FilePermissionError``` is raised due to the Apple's System Integrity Protection (SIP), either install RVM and install wpscan again, or run ```sudo gem install -n /usr/local/bin wpscan``` (see [#1286](http://github.com/wpscanteam/wpscan/issues/1286))
 
 # Updating
 
@@ -89,7 +90,7 @@ The DB is located at ~/.wpscan/db
 
 ## Optional: WordPress Vulnerability Database API
 
-The WPScan CLI tool uses the [WordPress Vulnerability Database API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan.com](https://wpscan.com/register).
+The WPScan CLI tool uses the [WordPress Vulnerability Database API](http://wpscan.com/api) to retrieve WordPress vulnerability data in real time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan.com](http://wpscan.com/register).
 
 Up to **25** API requests per day are given free of charge, that should be suitable to scan most WordPress websites at least once per day. When the daily 25 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data.
 
