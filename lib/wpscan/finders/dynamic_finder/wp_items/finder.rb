@@ -18,7 +18,7 @@ module WPScan
             # So far only the Plugins have dynamic finders so using DB:: DynamicFinders::Plugin
             # is ok. However, when Themes have some, will need to create other child classes for them
 
-            method = "passive_#{self.class.to_s.demodulize.underscore}_finder_configs".to_sym
+            method = :"passive_#{self.class.to_s.demodulize.underscore}_finder_configs"
 
             DB::DynamicFinders::Plugin.public_send(method)
           end
@@ -51,7 +51,7 @@ module WPScan
             # So far only the Plugins have dynamic finders so using DB:: DynamicFinders::Plugin
             # is ok. However, when Themes have some, will need to create other child classes for them
 
-            method = "aggressive_#{self.class.to_s.demodulize.underscore}_finder_configs".to_sym
+            method = :"aggressive_#{self.class.to_s.demodulize.underscore}_finder_configs"
 
             DB::DynamicFinders::Plugin.public_send(method)
           end

@@ -133,7 +133,7 @@ describe WPScan::Controller::Enumeration do
 
         it 'calls the correct enum methods' do
           %i[plugins themes timthumbs config_backups db_exports users medias].each do |option|
-            expect(controller).to receive("enum_#{option}".to_sym)
+            expect(controller).to receive(:"enum_#{option}")
           end
         end
       end
@@ -163,7 +163,7 @@ describe WPScan::Controller::Enumeration do
           let(:cli_args) { "#{super()} -e #{shortname}" }
 
           it "calls the ##{option}" do
-            expect(controller).to receive("enum_#{option}".to_sym)
+            expect(controller).to receive(:"enum_#{option}")
           end
         end
       end

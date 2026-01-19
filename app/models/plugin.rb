@@ -6,7 +6,7 @@ module WPScan
     class Plugin < WpItem
       # See WpItem
       def initialize(slug, blog, opts = {})
-        super(slug, blog, opts)
+        super
 
         # To be used by #head_and_get
         # If custom wp-content, it will be replaced by blog#url
@@ -38,7 +38,7 @@ module WPScan
 
       # @return [ Array<String> ]
       def potential_readme_filenames
-        @potential_readme_filenames ||= Array((DB::DynamicFinders::Plugin.df_data.dig(slug, 'Readme', 'path') || super))
+        @potential_readme_filenames ||= Array(DB::DynamicFinders::Plugin.df_data.dig(slug, 'Readme', 'path') || super)
       end
     end
   end

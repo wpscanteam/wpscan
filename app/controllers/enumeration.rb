@@ -14,7 +14,7 @@ module WPScan
         enum_themes  if enum_themes?(enum)
 
         %i[timthumbs config_backups db_exports medias].each do |key|
-          send("enum_#{key}".to_sym) if enum.key?(key)
+          send(:"enum_#{key}") if enum.key?(key)
         end
 
         enum_users if enum_users?(enum)

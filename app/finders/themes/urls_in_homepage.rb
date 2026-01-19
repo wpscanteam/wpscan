@@ -11,13 +11,9 @@ module WPScan
         #
         # @return [ Array<Theme> ]
         def passive(opts = {})
-          found = []
-
-          (items_from_links('themes') + items_from_codes('themes')).uniq.sort.each do |slug|
-            found << Model::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
+          (items_from_links('themes') + items_from_codes('themes')).uniq.sort.map do |slug|
+            Model::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
-
-          found
         end
 
         # @return [ Typhoeus::Response ]

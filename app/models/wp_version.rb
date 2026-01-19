@@ -9,7 +9,7 @@ module WPScan
       def initialize(number, opts = {})
         raise Error::InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
 
-        super(number, opts)
+        super
       end
 
       # @param [ String ] number
