@@ -1,13 +1,8 @@
 name: Build Docker Images
 
 on:
-  push:
-    branches:
-      - master
   release:
     types: [published]
-  schedule:
-    - cron: "0 7 * * *"
 
 jobs:
   images:
