@@ -32,11 +32,13 @@ jobs:
         bundle exec rubocop
 
     # Runs Specs which are not tagged as slow first to speed up the process in case of failure in those
-    # Then will run the full specs suite (and generate the final coverage report)
+    # The full specs suite (and final coverage report) only runs on pushes to master to keep PRs quick
     - name: rspec
-      run: |
-        bundle exec rspec --tag ~slow
-        bundle exec rspec
+      run: bundle exec rspec --tag ~slow
+
+    - name: rspec (full suite)
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: bundle exec rspec
 
     - name: Coveralls
       uses: coverallsapp/github-action@master
