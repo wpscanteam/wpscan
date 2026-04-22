@@ -22,7 +22,7 @@ module WPScan
       class Base < CMSScanner::Finders::InterestingFindings::Base
         # @param [ WPScan::Target ] target
         def initialize(target)
-          super(target)
+          super
 
           %w[
             Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog

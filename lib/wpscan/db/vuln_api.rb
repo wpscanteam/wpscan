@@ -26,7 +26,7 @@ module WPScan
         # Typhoeus.get is used rather than Browser.get to avoid merging irrelevant params from the CLI
         res = Typhoeus.get(uri.join(path), default_request_params.merge(params))
 
-        return {} if res.code == 404 || res.code == 429
+        return {} if [404, 429].include?(res.code)
         return JSON.parse(res.body) if NON_ERROR_CODES.include?(res.code)
 
         raise Error::HTTP, res
