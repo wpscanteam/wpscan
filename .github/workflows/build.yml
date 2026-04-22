@@ -47,8 +47,22 @@ jobs:
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: bundle exec rspec
 
-    - name: Coveralls
-      uses: coverallsapp/github-action@master
+    - name: Coveralls (parallel)
+      uses: coverallsapp/github-action@v2
       continue-on-error: true
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
+        flag-name: ruby-${{ matrix.ruby }}
+        parallel: true
+
+  finish:
+    needs: build
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Coveralls finished
+      uses: coverallsapp/github-action@v2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        parallel-finished: true
+        carryforward: "ruby-3.3,ruby-3.4,ruby-4.0"
