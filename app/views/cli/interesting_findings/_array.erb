@@ -1,0 +1,10 @@
+<% unless @a.empty? -%>
+<% if @a.size == 1 -%>
+ | <%= @s %>: <%= @a.first %>
+<% else -%>
+ | <%= @p %>:
+<% @a.each do |line| -%>
+ |  - <%= line %>
+<% end -%>
+<% end -%>
+<% end -%>

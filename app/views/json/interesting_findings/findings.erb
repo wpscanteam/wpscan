@@ -1,0 +1,24 @@
+"interesting_findings": [
+<% unless @findings.empty? -%>
+  <% last_index = @findings.size - 1 %>
+  <% @findings.each.with_index do |finding, index| -%>
+    {
+      "url": <%= finding.url.to_s.to_json %>,
+      "to_s": <%= finding.to_s.to_json %>,
+      "type": <%= finding.type.to_json %>,
+      "found_by": <%= finding.found_by.to_s.to_json %>,
+      "confidence": <%= finding.confidence.to_json %>,
+      "confirmed_by": {
+      <% unless (confirmed = finding.confirmed_by).empty? -%>
+      <% c_last_index = confirmed.size - 1 %>
+        <% confirmed.each.with_index do |c, i| -%>
+          <%= c.found_by.to_s.to_json %>: { "confidence": <%= c.confidence.to_json %> }<% unless i == c_last_index %>,<% end %>
+        <% end -%>
+      <% end -%>
+      },
+      "references": <%= finding.references.to_json %>,
+      "interesting_entries": <%= finding.interesting_entries.to_json %>
+    }<% unless index == last_index %>,<% end %>
+  <% end -%>
+<% end -%>
+],

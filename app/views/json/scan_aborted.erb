@@ -1,0 +1,5 @@
+"scan_aborted": <%= @reason.to_json %>,
+"target_url": <%= @url.to_json %>,
+<% if @verbose -%>
+"trace": <%= @trace.to_json %>,
+<% end %>

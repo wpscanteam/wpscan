@@ -1,0 +1,8 @@
+
+<%= info_icon %> Finished: <%= @stop_time.asctime %>
+<%= info_icon %> Requests Done: <%= @requests_done %>
+<%= info_icon %> Cached Requests: <%= @cached_requests %>
+<%= info_icon %> Data Sent: <%= @data_sent.bytes_to_human %>
+<%= info_icon %> Data Received: <%= @data_received.bytes_to_human %>
+<%= info_icon %> Memory used: <%= @used_memory.bytes_to_human %>
+<%= info_icon %> Elapsed time: <%= Time.at(@elapsed).utc.strftime('%H:%M:%S') %>

@@ -1,0 +1,23 @@
+<% unless @findings.empty? -%>
+Interesting Finding(s):
+<% @findings.each do |finding| -%>
+
+<%= info_icon %> <%= finding %>
+<%= render('_array', a: finding.interesting_entries, s: 'Interesting Entry', p: 'Interesting Entries') -%>
+ | Found By: <%= finding.found_by %>
+<% if finding.confidence > 0 -%>
+ | Confidence: <%= finding.confidence %>%
+<% end -%>
+<% unless (confirmed = finding.confirmed_by).empty? -%>
+<% if confirmed.size == 1 -%>
+ | Confirmed By: <%= confirmed.first.found_by %><% if confirmed.first.confidence > 0 %>, <%= confirmed.first.confidence %>% confidence<% end %>
+<% else -%>
+ | Confirmed By:
+<% confirmed.each do |c| -%>
+ |  - <%= c.found_by %><% if c.confidence > 0 %>, <%= c.confidence %>% confidence<% end %>
+<% end -%>
+<% end -%>
+<% end -%>
+<%= render('_array', a: finding.references_urls, s: 'Reference', p: 'References') -%>
+<% end -%>
+<% end %>
