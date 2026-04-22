@@ -70,12 +70,21 @@ module WPScan
       # @return [ Hash ]
       # @note Those params can not be overriden by CLI options
       def self.default_request_params
-        @default_request_params ||= Browser.instance.default_request_params.merge(
-          headers: {
-            'User-Agent' => Browser.instance.default_user_agent,
-            'Authorization' => "Token token=#{token}"
-          }
-        )
+        @default_request_params ||= begin
+          params = Browser.instance.default_request_params.merge(
+            headers: {
+              'User-Agent' => Browser.instance.default_user_agent,
+              'Authorization' => "Token token=#{token}"
+            }
+          )
+
+          if ParsedCli.proxy_target_only
+            params.delete(:proxy)
+            params.delete(:proxyuserpwd)
+          end
+
+          params
+        end
       end
     end
   end

@@ -73,13 +73,22 @@ module WPScan
       # @return [ Hash ] The params for Typhoeus::Request
       # @note Those params can't be overriden by CLI options
       def request_params
-        @request_params ||= Browser.instance.default_request_params.merge(
-          timeout: 600,
-          connecttimeout: 300,
-          accept_encoding: 'gzip, deflate',
-          cache_ttl: 0,
-          headers: { 'User-Agent' => Browser.instance.default_user_agent }
-        )
+        @request_params ||= begin
+          params = Browser.instance.default_request_params.merge(
+            timeout: 600,
+            connecttimeout: 300,
+            accept_encoding: 'gzip, deflate',
+            cache_ttl: 0,
+            headers: { 'User-Agent' => Browser.instance.default_user_agent }
+          )
+
+          if ParsedCli.proxy_target_only
+            params.delete(:proxy)
+            params.delete(:proxyuserpwd)
+          end
+
+          params
+        end
       end
 
       # @return [ String ] The raw file URL associated with the given filename
