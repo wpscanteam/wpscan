@@ -66,7 +66,7 @@ module WPScan
           # What about slugs such as js_composer which will be done as JsComposer, just like js-composer
           constant_name = classify_slug(slug)
 
-          unless version_finder_module.const_defined?(constant_name)
+          unless version_finder_module.const_defined?(constant_name, false)
             version_finder_module.const_set(constant_name, Module.new)
           end
 
@@ -92,7 +92,7 @@ module WPScan
 
             next unless allowed_classes.include?(klass.to_sym)
 
-            created << if mod.const_defined?(finder_class.to_sym)
+            created << if mod.const_defined?(finder_class.to_sym, false)
                          mod.const_get(finder_class.to_sym)
                        else
                          version_finder_super_class(klass).create_child_class(mod, finder_class.to_sym, config)
