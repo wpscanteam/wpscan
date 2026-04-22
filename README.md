@@ -24,13 +24,12 @@
 
 ## Prerequisites
 
-- (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
-- Ruby >= 2.5 - Recommended: latest
-  - Ruby 2.5.0 to 2.5.3 can cause an 'undefined symbol: rmpd_util_str_to_d' error in some systems, see [#1283](https://github.com/wpscanteam/wpscan/issues/1283)
-- Curl >= 7.72  - Recommended: latest
+- (Optional but highly recommended: [rbenv](https://github.com/rbenv/rbenv))
+- Ruby >= 3.3 - Recommended: latest stable
+- Curl >= 7.72 - Recommended: latest stable
   - The 7.29 has a segfault
   - The < 7.72 could result in `Stream error in the HTTP/2 framing layer` in some cases
-- RubyGems      - Recommended: latest
+- RubyGems - Recommended: latest stable
 - Nokogiri might require packages to be installed via your package manager depending on your OS, see https://nokogiri.org/tutorials/installing_nokogiri.html
 
 ### In a Pentesting distribution
@@ -39,7 +38,9 @@ When using a pentesting distribution (such as Kali Linux), it is recommended to 
 
 ### In macOSX via Homebrew
 
-`brew install wpscanteam/tap/wpscan`
+```shell
+brew install wpscanteam/tap/wpscan
+```
 
 ### From RubyGems
 
@@ -90,7 +91,7 @@ The DB is located at ~/.wpscan/db
 
 The WPScan CLI tool uses the [WordPress Vulnerability Database API](https://wpscan.com/api) to retrieve WordPress vulnerability data in real-time. For WPScan to retrieve the vulnerability data an API token must be supplied via the `--api-token` option, or via a configuration file, as discussed below. An API token can be obtained by registering an account on [WPScan.com](https://wpscan.com/register).
 
-Up to **75** API requests per day are given free of charge, which should be suitable to scan most WordPress websites at least once per day. When the daily 75 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data.
+Up to **25** API requests per day are given free of charge, that should be suitable to scan most WordPress websites at least once per day. When the daily 25 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data.
 
 ### How many API requests do you need?
 
@@ -99,18 +100,18 @@ Up to **75** API requests per day are given free of charge, which should be suit
 
 ## Load CLI options from file/s
 
-WPScan can load all options (including the --url) from configuration files, the following locations are checked (order: first to last):
+WPScan can load all options (including the `--url`) from configuration files, the following locations are checked (order: first to last):
 
-- ~/.wpscan/scan.json
-- ~/.wpscan/scan.yml
-- pwd/.wpscan/scan.json
-- pwd/.wpscan/scan.yml
+- `~/.wpscan/scan.json`
+- `~/.wpscan/scan.yml`
+- `pwd/.wpscan/scan.json`
+- `pwd/.wpscan/scan.yml`
 
 If those files exist, options from the `cli_options` key will be loaded and overridden if found twice.
 
 e.g:
 
-~/.wpscan/scan.yml:
+`~/.wpscan/scan.yml`:
 
 ```yml
 cli_options:
@@ -118,7 +119,7 @@ cli_options:
   verbose: true
 ```
 
-pwd/.wpscan/scan.yml:
+`pwd/.wpscan/scan.yml`:
 
 ```yml
 cli_options:
@@ -128,13 +129,21 @@ cli_options:
 
 Running ```wpscan``` in the current directory (pwd) is the same as ```wpscan -v --proxy socks5://127.0.0.1:9090 --url http://target.tld```
 
+Other command line options can be added by using snake case convention. e.g:
+```yml
+cli_options:
+  user_agent: "Testing UA"
+  max_threads: 1
+  headers: "Custom-Header: aaaa; Another Header: bbb"
+```
+
 ## Save API Token in a file
 
 The feature mentioned above is useful to keep the API Token in a config file and not have to supply it via the CLI each time. To do so, create the ~/.wpscan/scan.yml file containing the below:
 
 ```yml
 cli_options:
-  api_token: YOUR_API_TOKEN
+  api_token: 'YOUR_API_TOKEN'
 ```
 
 ## Load API Token From ENV (since v3.7.10)

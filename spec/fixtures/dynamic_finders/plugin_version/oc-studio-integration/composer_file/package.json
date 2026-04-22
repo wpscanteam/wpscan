@@ -1,0 +1,30 @@
+{
+	"name": "oc-studio-integration",
+	"version": "1.0.0",
+	"description": "Easily embed OC Studio widgets into your Wordpress site.",
+	"main": "build/index.js",
+	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/xapp-ai/oc-studio-integration"
+	},
+	"scripts": {
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"build": "wp-scripts build",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start",
+		"readme": "wp-readme-to-md"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "24.3.0",
+		"wp-readme-to-markdown": "1.0.1"
+	},
+	"dependencies": {
+		"@wordpress/icons": "9.10.0"
+	}
+}

@@ -1,0 +1,68 @@
+{
+  "name": "@depay/web3-woocommerce-depay-payments",
+  "moduleName": "WooCommerceDePayPayments",
+  "version": "1.15.6",
+  "description": "WooCommerce DePay plugin to accept Web3 payments directly into your wallet with on-the-fly conversion.",
+  "main": "./dist/umd/index.js",
+  "module": "./dist/esm/index.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c rollup.build.config.js",
+    "release": "git push && node release.js",
+    "update:version": "node update-version.js"
+  },
+  "repository": "git@github.com:DePayFi/web3-woocommerce-depay-payments.git",
+  "keywords": [
+    "WooCommerce",
+    "ecommerce",
+    "web3",
+    "payments",
+    "cryptocurrencies"
+  ],
+  "author": "depay.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DePayFi/web3-woocommerce-depay-payments/issues"
+  },
+  "homepage": "https://github.com/DePayFi/web3-woocommerce-depay-payments#readme",
+  "private": false,
+  "dependencies": {
+    "@depay/web3-blockchains": "^6.1.0",
+    "@depay/widgets": "^7.16.5"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-react": "^7.12.7",
+    "@depay/web3-constants": "^6.2.1",
+    "@rollup/plugin-commonjs": "^18.0.0",
+    "@rollup/plugin-node-resolve": "^11.2.1",
+    "@rollup/plugin-replace": "^2.4.2",
+    "@rollup/plugin-sucrase": "^3.1.0",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^7.15.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "open-file-explorer": "^1.0.2",
+    "prompt": "^1.3.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-test-renderer": "^18",
+    "react-testing-library": "^8.0.1",
+    "replace-in-file": "^6.3.5",
+    "rollup": "^2.34.2",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-serve": "^1.1.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "webpack": "^5.74.0"
+  }
+}

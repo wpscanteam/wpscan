@@ -37,8 +37,10 @@ module WPScan
         def target_urls(opts = {})
           urls = {}
 
-          File.open(opts[:list]).each_with_index do |path, index|
-            urls[target.url(path.chomp)] = index
+          File.open(opts[:list]) do |f|
+            f.each_with_index do |path, index|
+              urls[target.url(path.chomp)] = index
+            end
           end
 
           # Add potential timthumbs located in the main theme

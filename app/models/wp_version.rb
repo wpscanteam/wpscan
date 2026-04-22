@@ -9,7 +9,7 @@ module WPScan
       def initialize(number, opts = {})
         raise Error::InvalidWordPressVersion unless WpVersion.valid?(number.to_s)
 
-        super(number, opts)
+        super
       end
 
       # @param [ String ] number
@@ -24,6 +24,10 @@ module WPScan
         return @all_numbers if @all_numbers
 
         @all_numbers = []
+
+        DB::Version.metadata.each_key do |ver|
+          @all_numbers << ver
+        end
 
         DB::Fingerprints.wp_fingerprints.each_value do |fp|
           @all_numbers << fp.values

@@ -68,7 +68,7 @@ module WPScan
 
           username = display_name_from_body(res.body)
 
-          return username, 'Display Name', 50 if username
+          [username, 'Display Name', 50] if username
         end
 
         # @param [ String, Addressable::URI ] uri

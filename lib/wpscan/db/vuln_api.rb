@@ -26,7 +26,7 @@ module WPScan
         # Typhoeus.get is used rather than Browser.get to avoid merging irrelevant params from the CLI
         res = Typhoeus.get(uri.join(path), default_request_params.merge(params))
 
-        return {} if res.code == 404 || res.code == 429
+        return {} if [404, 429].include?(res.code)
         return JSON.parse(res.body) if NON_ERROR_CODES.include?(res.code)
 
         raise Error::HTTP, res
@@ -70,7 +70,7 @@ module WPScan
       # @return [ Hash ]
       # @note Those params can not be overriden by CLI options
       def self.default_request_params
-        @default_request_params ||= Browser.instance.default_connect_request_params.merge(
+        @default_request_params ||= Browser.instance.default_request_params.merge(
           headers: {
             'User-Agent' => Browser.instance.default_user_agent,
             'Authorization' => "Token token=#{token}"

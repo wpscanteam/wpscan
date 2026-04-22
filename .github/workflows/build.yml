@@ -1,6 +1,13 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
 
 jobs:
   build:
@@ -9,11 +16,11 @@ jobs:
 
     strategy:
       matrix:
-        ruby: [2.5, 2.6, 2.7, '3.0', 3.1]
+        ruby: [3.3, 3.4, 4.0]
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v6
 
     - name: Set up Ruby ${{ matrix.ruby }}
       uses: ruby/setup-ruby@v1
@@ -31,9 +38,14 @@ jobs:
       run: |
         bundle exec rubocop
 
+    # Runs Specs which are not tagged as slow first to speed up the process in case of failure in those
+    # The full specs suite (and final coverage report) only runs on pushes to master to keep PRs quick
     - name: rspec
-      run: |
-        bundle exec rspec
+      run: bundle exec rspec --tag ~slow
+
+    - name: rspec (full suite)
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      run: bundle exec rspec
 
     - name: Coveralls
       uses: coverallsapp/github-action@master

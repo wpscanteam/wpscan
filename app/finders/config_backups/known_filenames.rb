@@ -31,8 +31,10 @@ module WPScan
         def potential_urls(opts = {})
           urls = {}
 
-          File.open(opts[:list]).each_with_index do |file, index|
-            urls[target.url(file.chomp)] = index
+          File.open(opts[:list]) do |f|
+            f.each_with_index do |file, index|
+              urls[target.url(file.chomp)] = index
+            end
           end
 
           urls

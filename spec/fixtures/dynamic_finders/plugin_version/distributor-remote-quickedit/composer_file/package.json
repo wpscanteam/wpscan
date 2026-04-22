@@ -1,0 +1,19 @@
+{
+  "name": "carstenbach/distributor-remote-quickedit",
+  "version": "0.2.2",
+  "description": "Re-enable quickedit for distributed posts on the receiving site. This allows to make changes to the original post from the remote site.",
+  "license": "GPL-3.0-or-later",
+  "author": "Carsten Bach",
+  "repository": "carstingaxion/distributor-remote-quickedit",
+  "devDependencies": {
+    "@actions/github": "^2",
+    "replace-in-file": "^5",
+    "semver": "^7",
+    "version-bump-prompt": "^6.1.0"
+  },
+  "scripts": {
+    "bump:patch": "bump patch --commit 'Version %s.' distributor-remote-quickedit.php package.json readme.md",
+    "bump:minor": "bump minor --commit 'Version %s.' distributor-remote-quickedit.php package.json readme.md",
+    "bump:major": "bump major --commit 'Version %s.' distributor-remote-quickedit.php package.json readme.md"
+  }
+}

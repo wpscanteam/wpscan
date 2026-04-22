@@ -1,0 +1,47 @@
+1.9 (9th November 2023)
+- changed the default icon in the admin menu
+- added title and subheader for mobile explaining sorting
+
+1.8 (9th November 2023)
+- added mobile responsiveness for the main table
+
+1.7 (7th November 2023)
+- table increased to 100 most recent users' activity (from 10)
+- paginaton introduced
+- most visited page display increased to 10 (from 5)
+
+1.6 (1st November 2023)
+- sanitize function renamed to match the rest of the plugin functions
+
+1.5 (28th October 2023)
+- additional data sanitized and escaped, nonce added to clear all results button
+
+1.4 (25th October 2023)
+- additional data sanitized and escaped
+
+1.3 (16th October 2023)
+- Nonce added to the POST call to prevent unauthorised access.
+- prepare() added to database clear query to protect the code from SQL injection vulnerabilities.
+- detail about PayPal Donate button usage added to readme,txt
+- all necessary data sanitized, escaped, and validated
+- variables escaped when echo'd
+
+1.2 (9th October 2023)
+- All data being read from any of these PHP global variables $_POST / $_GET / $_REQUEST / $_COOKIE / $_SERVER / $_SESSION / $_FILES has been sanitized before storing it in another variable or doing something else with it.
+
+In this code, the following sanitization functions have been used:
+
+sanitize_text_field() for text fields.
+absint() for integers.
+esc_url_raw() for raw URLs.
+These sanitization functions ensure that the input data is safe to use and minimize the risk of security vulnerabilities.
+
+- Appropriate escaping functions (esc_html, esc_url_raw, sanitize_text_field) added to the variables that are being echoed or printed to ensure that the output is safe from XSS vulnerabilities.
+
+1.1 (27th July 2023)
+- Added top 5 most exited pages (with clickable links), Top 5 exited pages only include front-end pages and exclude admin-ajax.php, 'nonce', 'wp-json', and others not matching front-end permalinks.
+- Added line space and contact details under the main title. 
+- Added a 'Clear all results' button in case the table becomes bloated
+
+1.0 (24th July 2023)
+- Initial release

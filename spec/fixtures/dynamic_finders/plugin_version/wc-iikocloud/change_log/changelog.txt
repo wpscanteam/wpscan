@@ -1,0 +1,121 @@
+== Changelog ==
+
+= 2.4.7 =
+* NEW Asynchronous import for external menu.
+* IMPROVED Translated all logs.
+* IMPROVED Ability to import different dishes with the same name and different SKUs.
+* NEW Export option 'Turn off export'.
+* IMPROVED Compatibility check with WordPress 6.4 and WooCommerce 8.3.
+* NEW Add WooCommerce High Performance Order Storage (HPOS) support.
+* IMPROVED Nomenclature import.
+
+= 2.4.6 =
+* NEW External menus import.
+
+= 2.4.5 =
+* IMPROVED The iiko product ID can be changed while adding and editing the product.
+* IMPROVED The iiko product category ID can be changed while adding and editing the product category.
+* IMPROVED Import products tags from iiko is optional now.
+* IMPROVED Compatibility check with WordPress 6.3 and WooCommerce 8.0.
+
+= 2.4.4 =
+* FIXED guzzlehttp/psr7 CVE-2023-29197 Moderate severity.
+* IMPROVED Default iiko street during an export. Use an iiko street ID instead of the street name.
+
+= 2.4.3 =
+* IMPROVED Compatibility check with WordPress 6.2.
+
+= 2.4.2 =
+* NEW Added option 'Import only simple products'.
+
+= 2.4.1 =
+* NEW Added option 'Reverse groups import'.
+
+= 2.4.0 =
+* FIXED Translations on the plugin pages (in JS scripts).
+* IMPROVED Added button for save groups for auto import to WooCommerce.
+* IMPROVED Compatibility check with WordPress 6.1.
+
+= 2.3.9 =
+* IMPROVED Separation of premium functionality into a separate plugin.
+* NEW Add 'Delete old product category photo' option.
+
+= 2.3.8 =
+* FIXED Bonuses with online payment.
+* FIXED Imported streets info in the plugin's terminal.
+* FIXED Rename apiLogin field on API-key.
+* FIXED Async import.
+
+= 2.3.7 =
+* NEW Option 'Place all orders by current time'.
+
+= 2.3 =
+* NEW Bonuses (loyalty program).
+* NEW Option 'Skip import of unrequired group modifiers'.
+* NEW Ability to import groups and dishes from one organization and export orders to another one.
+* NEW 'Deliveries and Orders' export mode. This mode is customized with shipping methods.
+
+= 2.2 =
+* NEW Localization options.
+* NEW Export type option (order with tables reservation or delivery).
+* NEW Export action option (when an order will be exported).
+* NEW Import option allowed to remove all old product images.
+* NEW Guests field for checkout page.
+* NEW Table field for checkout page.
+* NEW 'Shipping cost as a product' option.
+* NEW 'Update stop list after import' option.
+* NEW Support of 'StopListUpdate' iiko webhook.
+* NEW Order of products when importing.
+* NEW Ability to import modifiers prices for products with a single modifiers group.
+* NEW KBZHU (energy, proteins, fat, carbohydrates).
+* IMPROVED Update a product when import if a product with the same iiko code exist.
+* IMPROVED Admin bar menu.
+
+= 2.1 =
+* NEW Support for several terminals and new shipping method witch is used terminals IDs for, so that customers can choose which terminal to send an order to.
+* NEW Support for importing the same dishes and products in different groups.
+* NEW Sale price import.
+* NEW Settings for nomenclature import. Import or not:
+    - products and categories descriptions,
+    - products and categories SEO titles and descriptions,
+    - products sale prices,
+    - enable reviews,
+    - hide all old products (set status 'Out of stock'),
+    - delete old products.
+
+= 2.0 =
+* NEW Email in plugin settings for error notifications.
+* NEW Support of several modifier groups (see the plugin's FAQ, the question 'Is WooCommerce variable product import supported?').
+* IMPROVED 'Complete Before' block interface.
+* NEW 'Complete before' type to order comment (on export).
+* NEW Admin bar menu.
+* NEW Filter 'wc_iikocloud_order_customer' for change customer data on export.
+* FIXED Groups tree on the plugin page.
+
+= 1.3.2 =
+* NEW Auto import of nomenclature using WP CRON.
+
+= 1.3.1 =
+* NEW Order checking from order list in admin panel.
+* IMPROVED Order export comment.
+* IMPROVED Logs.
+
+= 1.3.0 =
+* NEW The export of the order is sent once when the order is created.
+* NEW If the order is successfully exported, a corresponding notification is added to it.
+* NEW The ability to manually export an order from the admin panel.
+* NEW Filter to change the customer's phone number when exporting an order.
+* NEW "Complete before" field to indicate order time.
+* NEW Processing of address fields on the checkout page.
+* NEW New import settings.
+* IMPROVED The settings page is grouped into blocks by separate tabs.
+
+= 1.2.0 =
+* NEW Notifications to the administrator's mail in case of problems with exporting orders.
+
+= 1.1.0 =
+* NEW Support for WooCommerce and iiko payment methods.
+* IMPROVED Increased minimum PHP version to 7.2 (for compatibility with the nearest WooCommerce versions).
+
+= 1.0.0 =
+* The first version

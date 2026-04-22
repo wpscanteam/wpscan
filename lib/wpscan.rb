@@ -11,7 +11,6 @@ require 'addressable/uri'
 # Standard Lib
 require 'uri'
 require 'time'
-require 'readline'
 require 'securerandom'
 require 'resolv'
 # Monkey Patches/Fixes/Override

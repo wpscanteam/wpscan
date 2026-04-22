@@ -172,7 +172,7 @@ module WPScan
 
         if user_interaction?
           output('@info',
-                 msg: "Enumerating Medias #{enum_detection_message(opts[:mode])} "\
+                 msg: "Enumerating Medias #{enum_detection_message(opts[:mode])} " \
                       '(Permalink setting must be set to "Plain" for those to be detected)')
         end
 

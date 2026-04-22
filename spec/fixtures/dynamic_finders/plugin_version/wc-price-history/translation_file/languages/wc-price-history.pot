@@ -1,0 +1,208 @@
+# Copyright (C) 2023 Konrad Karpieszuk
+# This file is distributed under the same license as the WC Price History plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: WC Price History 1.7.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wc-price-history\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-02-19T17:13:01+01:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: wc-price-history\n"
+
+#. Plugin Name of the plugin
+msgid "WC Price History"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/kkarpieszuk/wc-price-history"
+msgstr ""
+
+#. Description of the plugin
+msgid "Track WooCommerce© Products prior prices history and display the lowest price in the last 30 days. This plugin allows your WC shop to be compliant with European Commission Directive 98/6/EC Article 6a which specifies price reduction announcement policy."
+msgstr ""
+
+#. Author of the plugin
+msgid "Konrad Karpieszuk"
+msgstr ""
+
+#. translators: %d product id, %s link to product edit screen.
+#: app/PriorPrice/HistoryStorage.php:71
+msgid "Product #%1$d is on sale but has no sale start date. Please edit this product and set starting date for sale: %2$s"
+msgstr ""
+
+#. translators: %1$s: opening link HTML tag, %2$s: closing link HTML tag, %3$s 5-star rating symbol, %4$s: smiling face with heart-shaped eyes. Polish translation: Gratulacje za dostosowanie swojego sklepu do prawa Unii Europejskiej Omnibus - wszystko bez wydawania ani grosza! Wyraź swoje uznanie dla WC Price History, pozostawiając pochwalny komentarz i ocenę 5 gwiazdek.
+#: app/PriorPrice/Marketing.php:82
+msgid "Congratulations on making your shop fully compliant with the Omnibus EU law - all without spending a dime! %1$sShow your appreciation for WC Price History by leaving a glowing review and a %3$s rating%2$s! %4$s."
+msgstr ""
+
+#. translators: Do not translate {price}, it is template slug!
+#: app/PriorPrice/SettingsData.php:47
+#: app/PriorPrice/SettingsPage.php:271
+msgid "30-day low: {price}"
+msgstr ""
+
+#. translators: %s - the lowest price in the last 30 days.
+#: app/PriorPrice/SettingsData.php:132
+msgid "30-day low: %s"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:33
+msgid "Settings"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:49
+#: app/PriorPrice/SettingsPage.php:50
+msgid "Price History"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:78
+msgid "Settings saved."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:83
+msgid "Price History Settings"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:93
+msgid "Display minimal price on/for:"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:104
+msgid "Single product page"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:114
+msgid "Related and upsell products on single product page"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:124
+msgid "Main shop page"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:134
+msgid "Product category page"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:144
+msgid "Product tag page"
+msgstr ""
+
+#. translators: %s: [wc_price_history id="3" show_currency="1"] shortcode tag.
+#: app/PriorPrice/SettingsPage.php:150
+msgid "...or you can display it anywhere with shortcode %s. Note that id and show_currency parameters are optional"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:156
+msgid "Display minimal price when:"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:168
+msgid "Always"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:179
+msgid "Only when product is On sale"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:183
+msgid "Omnibus: European Union Guidance requires displaying the minimal price if a product is on sale."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:189
+msgid "For products being on sale, count minimal price from:"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:200
+msgid "Current day"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:210
+msgid "Day before product went on sale (excludes promotional price)"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:220
+msgid "Day when product product went on sale (includes promotional price)"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:224
+msgid "Omnibus: European Union Guidance requires displaying the lowest price before the sale started."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:228
+msgid "Option \"Day when product went on sale\" works only for products with \"Sale price dates\" set on Edit product page (setting sale start date will be enough)."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:230
+msgid "If product does not have scheduled such date, minimal price will be counted from current day and this option will be ignored."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:234
+msgid "WooCommerce > Status > Logs"
+msgstr ""
+
+#. translators: %s: URL to WooCommerce logs page, do not translate wc-price-history, it is a slug
+#: app/PriorPrice/SettingsPage.php:236
+msgid "All products which does not have set sale start date will be logged in %s (look for error log with name starting from wc-price-history)."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:243
+msgid "Number of days to use when counting minimal price:"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:253
+msgid "days"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:256
+msgid "Omnibus: European Union Guidance requires displaying lowest price from the last 30 days."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:262
+msgid "Minimal price text:"
+msgstr ""
+
+#. translators: Do not translate {price} and {days}, those are template slugs!
+#: app/PriorPrice/SettingsPage.php:277
+msgid "Use placeholder {price} to display price and {days} to display number of days."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:283
+msgid "When displaying minimal price:"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:294
+msgid "Apply line-through on the price"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:298
+msgid "If checked, price will be displayed with line-through on it."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:309
+msgid "Read the EU legal acts:"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:311
+msgid "Guidance on the Price Indication Directive (2021)"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:314
+msgid "Support"
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:317
+msgid "If you have any questions, please contact me at plugin support forum."
+msgstr ""
+
+#: app/PriorPrice/SettingsPage.php:321
+msgid "Please rate the plugin! "
+msgstr ""
+
+#: plugin.php:25
+msgid "WooCommerce Price History plugin requires WooCommerce to be installed and active."
+msgstr ""

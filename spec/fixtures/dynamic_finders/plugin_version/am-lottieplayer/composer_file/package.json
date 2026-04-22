@@ -1,0 +1,64 @@
+{
+	"name": "am-lottieplayer",
+	"version": "1.0.3",
+	"description": "Lightweight, versatile and easy to use! Upload Lottie animations to WordPress and add them in Gutenberg or the Divi Builder.",
+	"author": {
+		"name": "Aarstein Media",
+		"email": "johan@aarstein.media",
+		"url": "https://www.aarstein.media",
+		"organization": "Aarstein Media"
+	},
+	"license": "GPL-2.0-or-later",
+	"keywords": [
+		"animation",
+		"gif",
+		"motion",
+		"motion graphics",
+		"vector",
+		"lottie",
+		"dotlottie",
+		"svg",
+		"canvas"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/johanaarstein/am-lottieplayer"
+	},
+	"bugs": {
+		"url": "https://github.com/johanaarstein/am-lottieplayer/issues",
+		"email": "johan@aarstein.media"
+	},
+	"files": [
+		"build",
+		"includes",
+		"scripts",
+		"styles",
+		"am-lottieplayer.php"
+	],
+	"main": "build/index.js",
+	"devDependencies": {
+		"@wordpress/scripts": "^25.0.0",
+		"classnames": "^2.3.2"
+	},
+	"scripts": {
+		"build": "wp-scripts build && npm run svn",
+		"check-engines": "wp-scripts check-engines",
+		"check-licenses": "wp-scripts check-licenses",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"lint:md:docs": "wp-scripts lint-md-docs",
+		"lint:pkg-json": "wp-scripts lint-pkg-json",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start",
+		"test:e2e": "wp-scripts test-e2e",
+		"test:unit": "wp-scripts test-unit-js",
+		"stash": "wp-scripts build && wp-scripts plugin-zip",
+		"svn": "cp -R ./build ./includes ./scripts ./styles ./svn/trunk && cp ./am-lottieplayer.php ./LICENSE ./package.json ./readme.txt ./svn/trunk"
+	},
+	"cde": {
+		"gettext": "am-lottieplayer",
+		"prefix": "am"
+	}
+}

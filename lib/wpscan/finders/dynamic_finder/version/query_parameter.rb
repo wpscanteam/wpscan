@@ -8,7 +8,7 @@ module WPScan
         class QueryParameter < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
-            @child_class_constants ||= super().merge(
+            @child_class_constants ||= super.merge(
               XPATH: nil, FILES: nil, PATTERN: /(?:v|ver|version)=(?<v>\d+\.[.\d]+)/i, CONFIDENCE_PER_OCCURENCE: 10
             )
           end
@@ -17,10 +17,8 @@ module WPScan
           # @param [ Hash ] opts
           # @return [ Array<Version>, nil ]
           def find(response, _opts = {})
-            found = []
-
-            scan_response(response).each do |version_number, occurences|
-              found << create_version(
+            found = scan_response(response).map do |version_number, occurences|
+              create_version(
                 version_number,
                 confidence: self.class::CONFIDENCE_PER_OCCURENCE * occurences.size,
                 interesting_entries: occurences
