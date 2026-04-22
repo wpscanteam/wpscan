@@ -213,7 +213,7 @@ Modification is permitted so long as it does not conflict with the Redistributio
 
 Any Contributions assume the Contributor grants the WPScan Team the unlimited, non-exclusive right to reuse, modify and relicense the Contributor's content.
 
-### 7. Supportupdates or maintenance. Support, updates, and maintenance 
+### 7. Support, updates, and maintenance 
 
 WPScan is provided under an AS-IS basis and without any support, updates, or maintenance. Support, updates and maintenance may be given according to the sole discretion of the WPScan Team.
 
