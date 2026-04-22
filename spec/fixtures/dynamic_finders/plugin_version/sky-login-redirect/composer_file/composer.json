@@ -1,0 +1,39 @@
+{
+    "name": "skyminds/sky-login-redirect",
+    "type": "wordpress-plugin",
+    "description": "WordPress and Woocommerce Login Redirects made easy",
+    "version": "3.7.4",
+    "license": "SaaS",
+    "authors": [
+        {
+            "name": "Utopique Plugins",
+            "email": "support@utopique.net"
+        }
+    ],
+    "require": {
+        "composer/installers": "^1.0",
+        "skyminds/zen-settings": "dev-master",
+        "freemius/wordpress-sdk": "dev-master",
+        "wp-cli/wp-config-transformer": "^1.3",
+        "collizo4sky/persist-admin-notices-dismissal": "^1.4",
+        "htmlburger/carbon-fields": "^3.1.7"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/skyminds/zen-settings"
+        }
+    ],
+    "extra": {
+        "installer-paths": {
+            "vendor/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    }
+}

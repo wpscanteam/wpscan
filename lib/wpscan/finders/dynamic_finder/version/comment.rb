@@ -9,7 +9,7 @@ module WPScan
         class Comment < Finders::DynamicFinder::Version::Xpath
           # @return [ Hash ]
           def self.child_class_constants
-            @child_class_constants ||= super().merge(PATTERN: nil, XPATH: '//comment()')
+            @child_class_constants ||= super.merge(PATTERN: nil, XPATH: '//comment()')
           end
         end
       end

@@ -8,7 +8,7 @@ module WPScan
         class HeaderPattern < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
-            @child_class_constants ||= super().merge(HEADER: nil, PATTERN: nil, CONFIDENCE: 60)
+            @child_class_constants ||= super.merge(HEADER: nil, PATTERN: nil, CONFIDENCE: 60)
           end
 
           # @param [ Typhoeus::Response ] response

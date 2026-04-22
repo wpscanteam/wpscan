@@ -18,7 +18,7 @@ module WPScan
       def before_scan
         return unless ParsedCli.api_token || ENV.key?(ENV_KEY)
 
-        DB::VulnApi.token = ParsedCli.api_token || ENV[ENV_KEY]
+        DB::VulnApi.token = ParsedCli.api_token || ENV.fetch(ENV_KEY, nil)
 
         api_status = DB::VulnApi.status
 

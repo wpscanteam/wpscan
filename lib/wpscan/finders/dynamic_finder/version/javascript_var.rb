@@ -8,7 +8,7 @@ module WPScan
         class JavascriptVar < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
-            @child_class_constants ||= super().merge(
+            @child_class_constants ||= super.merge(
               XPATH: '//script[not(@src)]', VERSION_KEY: nil,
               PATTERN: nil, CONFIDENCE: 60
             )

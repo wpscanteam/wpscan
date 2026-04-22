@@ -11,7 +11,7 @@ module WPScan
           @valid_response_codes ||= [200, 206].freeze
         end
 
-        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE|ALTER) (?:TABLE|DATABASE)|INSERT INTO/.freeze
+        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE|ALTER) (?:TABLE|DATABASE)|INSERT INTO/
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
@@ -46,22 +46,24 @@ module WPScan
           urls = {}
           index = 0
 
-          File.open(opts[:list]).each do |path|
-            path.chomp!
+          File.open(opts[:list]) do |f|
+            f.each do |path|
+              path.chomp!
 
-            if path.include?('{domain_name}')
-              urls[target.url(path.gsub('{domain_name}', domain_name))] = index
+              if path.include?('{domain_name}')
+                urls[target.url(path.gsub('{domain_name}', domain_name))] = index
 
-              if domain_name != domain_name_with_sub
-                urls[target.url(path.gsub('{domain_name}', domain_name_with_sub))] = index + 1
+                if domain_name != domain_name_with_sub
+                  urls[target.url(path.gsub('{domain_name}', domain_name_with_sub))] = index + 1
 
-                index += 1
+                  index += 1
+                end
+              else
+                urls[target.url(path)] = index
               end
-            else
-              urls[target.url(path)] = index
-            end
 
-            index += 1
+              index += 1
+            end
           end
 
           urls

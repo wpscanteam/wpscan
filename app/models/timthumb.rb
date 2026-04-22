@@ -12,7 +12,7 @@ module WPScan
       # @param [ Hash ] opts
       # @option opts [ Symbol ] :mode The mode to use to detect the version
       def initialize(url, opts = {})
-        super(url, opts)
+        super
 
         @version_detection_opts = opts[:version_detection] || {}
       end
@@ -63,7 +63,7 @@ module WPScan
       def webshot_enabled?
         res = Browser.get(url, params: { webshot: 1, src: "http://#{default_allowed_domains.sample}" })
 
-        !/WEBSHOT_ENABLED == true/.match?(res.body)
+        !res.body.include?('WEBSHOT_ENABLED == true')
       end
 
       # @return [ Array<String> ] The default allowed domains (between the 2.0 and 2.8.13)

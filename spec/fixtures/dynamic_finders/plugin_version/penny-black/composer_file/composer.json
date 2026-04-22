@@ -1,0 +1,37 @@
+{
+    "name": "pennyblack/woocommerce-pennyblack",
+    "type": "wordpress-plugin",
+    "description": "Woocommerce plugin to integrate Penny Black for transmitting orders and triggering personalise prints",
+    "version": "1.2.3",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Penny Black",
+            "email": "engineers@pennyblack.io"
+        }
+    ],
+    "require": {
+        "php": ">=7.4.0",
+        "guzzlehttp/guzzle": "^7.5",
+        "pennyblack/php-sdk": "^1.4.0"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:pennyblack-io/php-sdk.git"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "PennyBlackWoo\\": "src/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.0"
+        },
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "prepend-autoloader": false
+    }
+}
