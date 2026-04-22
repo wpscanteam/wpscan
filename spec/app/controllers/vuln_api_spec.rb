@@ -14,8 +14,8 @@ describe WPScan::Controller::VulnApi do
     its(:cli_options) { should_not be_empty }
     its(:cli_options) { should be_a Array }
 
-    it 'contains to correct options' do
-      expect(controller.cli_options.map(&:to_sym)).to eq %i[api_token]
+    it 'contains the correct options' do
+      expect(controller.cli_options.map(&:to_sym)).to eq %i[api_token proxy_target_only]
     end
   end
 

@@ -339,4 +339,62 @@ describe WPScan::DB::VulnApi do
       end
     end
   end
+
+  describe '#default_request_params' do
+    before do
+      WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
+      WPScan::Browser.instance.load_options(WPScan::ParsedCli.options.dup)
+      api.instance_variable_set(:@default_request_params, nil)
+    end
+
+    after do
+      # Reset the Browser instance state so the proxy/flags set here don't leak into other specs
+      WPScan::Browser.instance.proxy = nil
+      WPScan::Browser.instance.proxy_auth = nil
+    end
+
+    context 'when --proxy is set' do
+      let(:cli_args) { '--url http://ex.lo/ --proxy http://127.0.0.1:8080' }
+
+      it 'includes the proxy in the params' do
+        expect(api.default_request_params[:proxy]).to eql 'http://127.0.0.1:8080'
+      end
+    end
+
+    context 'when --proxy is set with --proxy-auth' do
+      let(:cli_args) { '--url http://ex.lo/ --proxy http://127.0.0.1:8080 --proxy-auth user:pass' }
+
+      it 'includes the proxy and proxyuserpwd in the params' do
+        expect(api.default_request_params[:proxy]).to eql 'http://127.0.0.1:8080'
+        expect(api.default_request_params[:proxyuserpwd]).to eql 'user:pass'
+      end
+    end
+
+    context 'when --proxy is set with --proxy-target-only' do
+      let(:cli_args) { '--url http://ex.lo/ --proxy http://127.0.0.1:8080 --proxy-target-only' }
+
+      it 'does not include the proxy in the params' do
+        expect(api.default_request_params).to_not have_key(:proxy)
+      end
+    end
+
+    context 'when --proxy and --proxy-auth are set with --proxy-target-only' do
+      let(:cli_args) do
+        '--url http://ex.lo/ --proxy http://127.0.0.1:8080 --proxy-auth user:pass --proxy-target-only'
+      end
+
+      it 'does not include the proxy or proxyuserpwd in the params' do
+        expect(api.default_request_params).to_not have_key(:proxy)
+        expect(api.default_request_params).to_not have_key(:proxyuserpwd)
+      end
+    end
+
+    context 'when only --proxy-target-only is set (no --proxy)' do
+      let(:cli_args) { '--url http://ex.lo/ --proxy-target-only' }
+
+      it 'still produces valid params without a proxy' do
+        expect(api.default_request_params).to_not have_key(:proxy)
+      end
+    end
+  end
 end

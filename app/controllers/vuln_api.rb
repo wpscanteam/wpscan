@@ -11,6 +11,12 @@ module WPScan
           OptString.new(
             ['--api-token TOKEN',
              'The WPScan API Token to display vulnerability data, available at https://wpscan.com/profile']
+          ),
+          OptBoolean.new(
+            ['--proxy-target-only',
+             'When used with --proxy, the proxy is only applied to requests made to the target, ' \
+             'not to requests made to the WPScan API or database repository (data.wpscan.org). ' \
+             'Has no effect unless --proxy is also set.']
           )
         ]
       end
