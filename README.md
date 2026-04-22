@@ -85,7 +85,18 @@ As a result, when using the ```--enumerate``` option, don't forget to set the ``
 
 For more options, open a terminal and type ```wpscan --help``` (if you built wpscan from the source, you should type the command outside of the git repo)
 
-The DB is located at ~/.wpscan/db
+## Database Location
+
+The database location follows the [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html):
+
+- **New installations**: `~/.cache/wpscan/db` (or `$XDG_CACHE_HOME/wpscan/db` if set)
+- **Existing installations**: `~/.wpscan/db` (legacy path, maintained for backward compatibility)
+
+To migrate an existing installation to the XDG path:
+
+```shell
+mv ~/.wpscan ~/.cache/wpscan
+```
 
 ## Optional: WordPress Vulnerability Database API
 

@@ -9,7 +9,7 @@ WPScan is a WordPress security scanner written in Ruby. It's built on top of the
 **Key characteristics:**
 - Ruby gem with CLI tool
 - Architecture based on Controllers, Finders, and Models (MVC-like pattern)
-- Uses local database (in `~/.wpscan/db`) that syncs with WPScan API
+- Uses local database (in `$XDG_CACHE_HOME/wpscan/db` or `~/.cache/wpscan/db`, or `~/.wpscan/db` for existing installations) that syncs with WPScan API
 - Built on top of CMSScanner framework (parent gem)
 - Supports WordPress-specific security scanning features
 
@@ -67,7 +67,8 @@ wpscan --url https://example.com
 # Update local database
 wpscan --update
 
-# The database is stored in ~/.wpscan/db
+# The database is stored in $XDG_CACHE_HOME/wpscan/db or ~/.cache/wpscan/db (new installations)
+# or ~/.wpscan/db (existing installations)
 ```
 
 ## Architecture
@@ -122,7 +123,7 @@ Domain objects representing WordPress components:
 - `VulnApi` - API client for vulnerability data
 - `DynamicFinders` - Auto-generated finders from database metadata
 - `Fingerprints` - Version detection fingerprints
-- Database stored in `~/.wpscan/db/` by default (overridden in specs to `spec/fixtures/db/`)
+- Database stored in `$XDG_CACHE_HOME/wpscan/db/` or `~/.cache/wpscan/db/` (new installations) or `~/.wpscan/db/` (existing installations) by default (overridden in specs to `spec/fixtures/db/`)
 
 ### Important Patterns
 
@@ -171,7 +172,7 @@ The codebase tracks API requests via `WPScan.api_requests` class variable to mon
 When using `wpscan` from source, run it outside the git repo to avoid load path conflicts.
 
 **Database Location:**
-Tests override `DB_DIR` to `spec/fixtures/db/`. Production uses `~/.wpscan/db`.
+Tests override `DB_DIR` to `spec/fixtures/db/`. Production uses `$XDG_CACHE_HOME/wpscan/db` or `~/.cache/wpscan/db` (new installations) or `~/.wpscan/db` (existing installations).
 
 **Port Normalization:**
 WebMock adapter has custom port normalization for Typhoeus (spec/spec_helper.rb:63-96) to handle default ports.
