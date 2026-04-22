@@ -11,10 +11,10 @@ module WPScan
       module WordPress
         include CMSScanner::Target::Platform::PHP
 
-        WORDPRESS_PATTERN        = %r{/(?:(?:wp-content/(?:themes|(?:mu-)?plugins|uploads))|wp-includes)/}i.freeze
-        WORDPRESS_HOSTED_PATTERN = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i.freeze
-        WP_JSON_OEMBED_PATTERN   = %r{/wp-json/oembed/}i.freeze
-        WP_ADMIN_AJAX_PATTERN    = %r{\\?/wp-admin\\?/admin-ajax\.php}i.freeze
+        WORDPRESS_PATTERN        = %r{/(?:(?:wp-content/(?:themes|(?:mu-)?plugins|uploads))|wp-includes)/}i
+        WORDPRESS_HOSTED_PATTERN = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i
+        WP_JSON_OEMBED_PATTERN   = %r{/wp-json/oembed/}i
+        WP_ADMIN_AJAX_PATTERN    = %r{\\?/wp-admin\\?/admin-ajax\.php}i
 
         # These methods are used in the associated interesting_findings finders
         # to keep the boolean state of the finding rather than re-check the whole thing again

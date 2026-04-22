@@ -11,15 +11,11 @@ module WPScan
         #
         # @return [ Array<Theme> ]
         def passive(opts = {})
-          found = []
-
           slugs = items_from_links('themes', uniq: false) + items_from_codes('themes', uniq: false)
 
-          slugs.each_with_object(Hash.new(0)) { |slug, counts| counts[slug] += 1 }.each do |slug, occurences|
-            found << Model::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 2 * occurences))
+          slugs.each_with_object(Hash.new(0)) { |slug, counts| counts[slug] += 1 }.map do |slug, occurences|
+            Model::Theme.new(slug, target, opts.merge(found_by: found_by, confidence: 2 * occurences))
           end
-
-          found
         end
 
         # @return [ Typhoeus::Response ]

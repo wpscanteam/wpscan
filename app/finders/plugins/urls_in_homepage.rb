@@ -12,13 +12,9 @@ module WPScan
         #
         # @return [ Array<Plugin> ]
         def passive(opts = {})
-          found = []
-
-          (items_from_links('plugins') + items_from_codes('plugins')).uniq.sort.each do |slug|
-            found << Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
+          (items_from_links('plugins') + items_from_codes('plugins')).uniq.sort.map do |slug|
+            Model::Plugin.new(slug, target, opts.merge(found_by: found_by, confidence: 80))
           end
-
-          found
         end
 
         # @return [ Typhoeus::Response ]

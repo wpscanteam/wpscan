@@ -11,11 +11,7 @@ module WPScan
 
         # @return [ Hash ]
         def self.all_df_data
-          @all_df_data ||= if Gem::Version.new(Psych::VERSION) >= Gem::Version.new('4.0.0')
-                             YAML.safe_load(File.read(df_file), permitted_classes: [Regexp])
-                           else
-                             YAML.safe_load(File.read(df_file), [Regexp])
-                           end
+          @all_df_data ||= YAML.safe_load_file(df_file, permitted_classes: [Regexp])
         end
 
         # @return [ Array<Symbol> ]

@@ -23,7 +23,7 @@ end
 
 # Dynamic Finders Helpers
 def df_expected_all
-  YAML.safe_load(File.read(DYNAMIC_FINDERS_FIXTURES.join('expected.yml')))
+  YAML.safe_load_file(DYNAMIC_FINDERS_FIXTURES.join('expected.yml'))
 end
 
 def df_tested_class_constant(type, finder_class, slug = nil)
@@ -100,6 +100,6 @@ SPECS                    = Pathname.new(__FILE__).dirname
 FIXTURES                 = SPECS.join('fixtures')
 FINDERS_FIXTURES         = FIXTURES.join('finders')
 DYNAMIC_FINDERS_FIXTURES = FIXTURES.join('dynamic_finders')
-ERROR_404_URL_PATTERN    = %r{/[a-z\d]{7}\.html$}.freeze
+ERROR_404_URL_PATTERN    = %r{/[a-z\d]{7}\.html$}
 
 redefine_constant(:DB_DIR, FIXTURES.join('db'))

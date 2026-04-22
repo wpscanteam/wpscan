@@ -11,7 +11,7 @@ module WPScan
           @valid_response_codes ||= [200, 206].freeze
         end
 
-        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE|ALTER) (?:TABLE|DATABASE)|INSERT INTO/.freeze
+        SQL_PATTERN = /(?:DROP|(?:UN)?LOCK|CREATE|ALTER) (?:TABLE|DATABASE)|INSERT INTO/
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list

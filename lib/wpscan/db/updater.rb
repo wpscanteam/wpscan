@@ -22,7 +22,7 @@ module WPScan
       def initialize(repo_directory)
         @repo_directory = Pathname.new(repo_directory).expand_path
 
-        FileUtils.mkdir_p(repo_directory.to_s) unless Dir.exist?(repo_directory.to_s)
+        FileUtils.mkdir_p(repo_directory.to_s)
 
         # When --no-update is passed, return to avoid raising an error if the directory is not writable
         # Mainly there for Homebrew: https://github.com/wpscanteam/wpscan/pull/1455

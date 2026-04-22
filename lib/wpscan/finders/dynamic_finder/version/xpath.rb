@@ -8,7 +8,7 @@ module WPScan
         class Xpath < Finders::DynamicFinder::Version::Finder
           # @return [ Hash ]
           def self.child_class_constants
-            @child_class_constants ||= super().merge(
+            @child_class_constants ||= super.merge(
               XPATH: nil, PATTERN: /\A(?<v>\d+\.[.\d]+)/, CONFIDENCE: 60
             )
           end
