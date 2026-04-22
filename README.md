@@ -25,11 +25,11 @@
 ## Prerequisites
 
 - (Optional but highly recommended: [RVM](https://rvm.io/rvm/install))
-- Ruby >= 3.0 - Recommended: latest
-- Curl >= 7.72  - Recommended: latest
+- Ruby >= 3.3 - Recommended: latest stable
+- Curl >= 7.72 - Recommended: latest stable
   - The 7.29 has a segfault
   - The < 7.72 could result in `Stream error in the HTTP/2 framing layer` in some cases
-- RubyGems      - Recommended: latest
+- RubyGems - Recommended: latest stable
 - Nokogiri might require packages to be installed via your package manager depending on your OS, see https://nokogiri.org/tutorials/installing_nokogiri.html
 
 ### In a Pentesting distribution
