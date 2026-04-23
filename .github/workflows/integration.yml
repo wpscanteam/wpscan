@@ -38,31 +38,20 @@ jobs:
           --admin_email=test@example.com \
           --skip-email
 
-    - name: Install vulnerable plugins with known CVEs
+    - name: Install vulnerable plugins and theme
       run: |
         cd wordpress-test
-        # Contact Form 7 5.3.2 - Has known XSS vulnerability (CVE-2020-35489)
+        # Install plugins with known CVEs
         ddev exec wp plugin install contact-form-7 --version=5.3.2 --activate --path=wordpress
-
-        # Elementor 3.1.3 - Has known authenticated stored XSS (multiple CVEs)
         ddev exec wp plugin install elementor --version=3.1.3 --activate --path=wordpress
-
-        # WooCommerce 4.6.1 - Has known SQL injection (CVE-2021-32789)
         ddev exec wp plugin install woocommerce --version=4.6.1 --activate --path=wordpress
-
-        # Yoast SEO 15.5 - Has known XSS vulnerability
         ddev exec wp plugin install wordpress-seo --version=15.5 --activate --path=wordpress
 
-    - name: Install vulnerable theme
-      run: |
-        cd wordpress-test
-        # Twenty Nineteen 1.8 has known vulnerabilities
+        # Install theme with known vulnerabilities
         ddev exec wp theme install twentynineteen --version=1.8 --activate --path=wordpress
 
     - name: Verify WordPress site is accessible
-      run: |
-        cd wordpress-test
-        curl -k -f https://wordpress-test.ddev.site || (ddev logs && exit 1)
+      run: curl -k -f https://wordpress-test.ddev.site
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
@@ -84,38 +73,30 @@ jobs:
       env:
         WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_API_TOKEN }}
       run: |
-        # Build WPScan command with optional API token
-        WPSCAN_CMD="bundle exec ruby -Ilib bin/wpscan \
+        # Verify API token is configured
+        if [ -z "${WPSCAN_API_TOKEN}" ]; then
+          echo "Error: WPSCAN_API_TOKEN secret is not configured"
+          exit 1
+        fi
+
+        # Run WPScan (exit code 5 = vulnerabilities found, which we expect)
+        set +e
+        bundle exec ruby -Ilib bin/wpscan \
           --url https://wordpress-test.ddev.site \
           --disable-tls-checks \
           --format json \
-          --output scan-results.json"
-
-        # Only add API token if it's set
-        if [ -n "${WPSCAN_API_TOKEN}" ]; then
-          echo "Using WPScan API token for vulnerability data"
-          WPSCAN_CMD="${WPSCAN_CMD} --api-token ${WPSCAN_API_TOKEN}"
-        else
-          echo "Warning: WPSCAN_API_TOKEN not set. Vulnerability data will be limited to local database only."
-        fi
-
-        # Run the scan
-        # Exit codes: 0=OK, 5=Vulnerabilities found (expected), others=error
-        set +e
-        eval $WPSCAN_CMD
+          --output scan-results.json \
+          --api-token "${WPSCAN_API_TOKEN}"
         EXIT_CODE=$?
         set -e
 
-        # Verify scan completed successfully
-        if [ "${EXIT_CODE}" -eq 5 ]; then
-          echo "✓ WPScan found vulnerabilities (exit code 5)"
-        elif [ "${EXIT_CODE}" -eq 0 ]; then
-          echo "✗ No vulnerabilities found - this is unexpected for our test"
+        # Verify we found vulnerabilities (exit code 5)
+        if [ "${EXIT_CODE}" -ne 5 ]; then
+          echo "✗ Expected exit code 5 (vulnerabilities found), got ${EXIT_CODE}"
           exit 1
-        else
-          echo "✗ WPScan failed with exit code ${EXIT_CODE}"
-          exit ${EXIT_CODE}
         fi
+
+        echo "✓ WPScan found vulnerabilities (exit code 5)"
 
     - name: Verify scan results
       run: |
@@ -127,9 +108,3 @@ jobs:
       with:
         name: integration-test-results
         path: scan-results.json
-
-    - name: Show DDEV logs on failure
-      if: failure()
-      run: |
-        cd wordpress-test
-        ddev logs
