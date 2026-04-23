@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'fiddle',               '~> 1.1'
 
   s.add_development_dependency 'bundler',             '>= 1.6'
-  s.add_development_dependency 'memory_profiler',     '~> 1.0.0'
+  s.add_development_dependency 'memory_profiler',     '~> 1.1.0'
   s.add_development_dependency 'rake',                '~> 13.0'
   s.add_development_dependency 'rspec',               '~> 3.13.0'
   s.add_development_dependency 'rspec-its',           '~> 2.0.0'
