@@ -115,6 +115,7 @@ FIXTURES_MODELS          = FIXTURES.join('models')
 FIXTURES_CONTROLLERS     = FIXTURES.join('controllers')
 FIXTURES_VIEWS           = FIXTURES.join('views')
 DYNAMIC_FINDERS_FIXTURES = FIXTURES.join('dynamic_finders')
+OPV_FIXTURES             = FIXTURES.join('opt_parse_validator')
 APP_VIEWS                = File.join(WPScan::APP_DIR, 'views')
 ERROR_404_URL_PATTERN    = %r{/[a-z\d]{7}\.html$}
 
