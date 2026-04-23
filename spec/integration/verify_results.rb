@@ -112,7 +112,7 @@ theme_data = results['main_theme']
 
 if theme_data.nil?
   failures << "Theme not detected (expected #{EXPECTED_THEME[:description]})"
-  puts "✗ Theme: NOT DETECTED"
+  puts '✗ Theme: NOT DETECTED'
 else
   detected_slug = theme_data['slug']
   detected_version = theme_data.dig('version', 'number')
@@ -121,7 +121,7 @@ else
     failures << "Expected theme #{EXPECTED_THEME[:slug]}, got #{detected_slug}"
     puts "✗ Theme: Wrong theme (expected #{EXPECTED_THEME[:slug]}, got #{detected_slug})"
   elsif detected_version.nil?
-    warnings << "Theme detected but version not identified"
+    warnings << 'Theme detected but version not identified'
     puts "⚠ #{detected_slug}: Detected but version unknown (expected #{EXPECTED_THEME[:version]})"
   elsif detected_version != EXPECTED_THEME[:version]
     failures << "Expected #{detected_slug} version #{EXPECTED_THEME[:version]}, got #{detected_version}"
@@ -143,14 +143,13 @@ if warnings.any?
   warnings.each { |w| puts "  ⚠ #{w}" }
 end
 
+puts
 if failures.any?
-  puts
   puts 'FAILED - Integration test failures:'
   failures.each { |f| puts "  ✗ #{f}" }
   puts
   exit 1
 else
-  puts
   puts '✓ All integration tests passed!'
   puts
   exit 0
