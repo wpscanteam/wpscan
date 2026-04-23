@@ -28,7 +28,7 @@ require 'xmlrpc/client'
 require 'wpscan/typhoeus/response' # Adds Response#html and from_vuln_api?
 require 'wpscan/typhoeus/hydra'    # https://github.com/typhoeus/typhoeus/issues/439
 require 'wpscan/public_suffix/domain' # Adds Domain#match
-require 'wpscan/numeric'           # Adds Numeric#bytes_to_human
+require 'wpscan/numeric' # Adds Numeric#bytes_to_human
 # Custom Libs
 require 'wpscan/scan'
 require 'wpscan/parsed_cli'

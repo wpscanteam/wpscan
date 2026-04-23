@@ -93,14 +93,9 @@ module WPScan
         template_vars(vars)
         @controller_name = controller_name if controller_name
 
-        # '-' is used to disable new lines when -%> is used
-        # See http://www.ruby-doc.org/stdlib-2.1.1/libdoc/erb/rdoc/ERB.html
-        # Since ruby 2.6, KVARGS are supported and passing argument is deprecated in ruby 3+
-        if ERB_SUPPORTS_KVARGS
-          ERB.new(File.read(view_path(tpl)), trim_mode: '-').result(binding)
-        else
-          ERB.new(File.read(view_path(tpl)), nil, '-').result(binding)
-        end
+        # '-' disables new lines when -%> is used.
+        # See http://www.ruby-doc.org/stdlib/libdoc/erb/rdoc/ERB.html
+        ERB.new(File.read(view_path(tpl)), trim_mode: '-').result(binding)
       end
 
       # @param [ Hash ] vars

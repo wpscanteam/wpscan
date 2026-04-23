@@ -70,7 +70,7 @@ module WPScan
             method: :post,
             body: ::XMLRPC::Create.new.methodCall(
               'system.multicall',
-              methods_and_params.collect { |m| { methodName: m[0], params: m[1..-1] } }
+              methods_and_params.collect { |m| { methodName: m[0], params: m[1..] } }
             )
           )
         )

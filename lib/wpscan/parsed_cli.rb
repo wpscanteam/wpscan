@@ -26,7 +26,7 @@ module WPScan
 
     # Unknown methods return nil — expected behaviour for option lookups.
     # rubocop:disable Style/MissingRespondToMissing
-    def self.method_missing(method_name, *_args, &_block)
+    def self.method_missing(method_name, *_args, &)
       super if method_name == :new
 
       options[method_name.to_sym]

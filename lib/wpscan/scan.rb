@@ -75,12 +75,11 @@ module WPScan
     # @return [ Integer ] The exit code related to the run_error
     def run_error_exit_code
       return WPScan::ExitCode::CLI_OPTION_ERROR if run_error.is_a?(OptParseValidator::Error) ||
-                                               run_error.is_a?(OptionParser::ParseError)
+                                                   run_error.is_a?(OptionParser::ParseError)
 
       return WPScan::ExitCode::INTERRUPTED if run_error.is_a?(Interrupt)
 
-      return WPScan::ExitCode::ERROR if run_error.is_a?(WPScan::Error::Standard) ||
-                                    run_error.is_a?(WPScan::Error::Standard)
+      return WPScan::ExitCode::ERROR if run_error.is_a?(WPScan::Error::Standard)
 
       WPScan::ExitCode::EXCEPTION
     end

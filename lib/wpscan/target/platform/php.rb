@@ -6,9 +6,9 @@ module WPScan
       # Some PHP specific implementation
       module PHP
         DEBUG_LOG_PATTERN = /(?:\[\d{2}-[a-zA-Z]{3}-\d{4}\s\d{2}:\d{2}:\d{2}\s[A-Z]{3}\]|
-                              PHP\s(?:Fatal|Warning|Strict|Error|Notice):)/x.freeze
-        FPD_PATTERN       = /Fatal error:.+? in (.+?) on/.freeze
-        ERROR_LOG_PATTERN = /PHP Fatal error/i.freeze
+                              PHP\s(?:Fatal|Warning|Strict|Error|Notice):)/x
+        FPD_PATTERN       = /Fatal error:.+? in (.+?) on/
+        ERROR_LOG_PATTERN = /PHP Fatal error/i
 
         # @param [ String ] path
         # @param [ Regexp ] pattern
@@ -20,7 +20,7 @@ module WPScan
           # which can be huge (~ 2Go)
           res = head_and_get(path, [200], get: params.merge(headers: { 'Range' => 'bytes=0-700' }))
 
-          res.body&.match?(pattern) ? true : false
+          res.body&.match?(pattern) || false
         end
 
         # @param [ String ] path

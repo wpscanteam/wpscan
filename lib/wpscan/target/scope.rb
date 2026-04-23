@@ -53,9 +53,9 @@ module WPScan
       domains = [uri.host + uri.path]
 
       domains += if scope.domains.empty?
-                   Array(scope.invalid_domains[1..-1])
+                   Array(scope.invalid_domains[1..])
                  else
-                   Array(scope.domains[1..-1]).map(&:to_s) + scope.invalid_domains
+                   Array(scope.domains[1..]).map(&:to_s) + scope.invalid_domains
                  end
 
       domains.map! { |d| Regexp.escape(d.delete_suffix('/')).gsub('\*', '.*').gsub('/', '\\\\\?/') }

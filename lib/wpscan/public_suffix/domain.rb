@@ -10,6 +10,7 @@ module PublicSuffix
 
     # @return [ Boolean ]
     #
+    # rubocop:disable Naming/PredicateMethod
     def match(pattern)
       pattern = PublicSuffix.parse(pattern) unless pattern.is_a?(PublicSuffix::Domain)
 
@@ -18,6 +19,7 @@ module PublicSuffix
 
       matching_pattern?(pattern)
     end
+    # rubocop:enable Naming/PredicateMethod
 
     protected
 
@@ -28,9 +30,9 @@ module PublicSuffix
 
       case pattern_trds.first
       when '*'
-        pattern_trds[1..-1] == domain_trds[1..-1]
+        pattern_trds[1..] == domain_trds[1..]
       when '**'
-        pa = pattern_trds[1..-1]
+        pa = pattern_trds[1..]
         pa_size = pa.size
 
         domain_trds[domain_trds.size - pa_size, pa_size] == pa

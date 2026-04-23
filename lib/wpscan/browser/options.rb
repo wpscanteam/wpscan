@@ -65,10 +65,12 @@ module WPScan
 
       # The user_agents_list is managed by the CLI options, with the default being
       # APP_DIR/user_agents.txt
-      File.open(user_agents_list).each do |line|
-        next if line == "\n" || line[0, 1] == '#'
+      File.open(user_agents_list) do |f|
+        f.each do |line|
+          next if line == "\n" || line[0, 1] == '#'
 
-        @user_agents << line.chomp
+          @user_agents << line.chomp
+        end
       end
 
       @user_agents
