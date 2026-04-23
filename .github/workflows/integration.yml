@@ -102,9 +102,21 @@ jobs:
         fi
 
         # Run the scan
-        eval $WPSCAN_CMD
+        # Exit codes: 0=OK, 1=CLI error, 2=Interrupted, 3=Exception, 4=Scan error, 5=Vulnerabilities found
+        eval $WPSCAN_CMD || EXIT_CODE=$?
+
+        if [ "${EXIT_CODE:-0}" -eq 5 ]; then
+          echo "✓ WPScan found vulnerabilities (exit code 5) - this is expected for our test!"
+        elif [ "${EXIT_CODE:-0}" -eq 0 ]; then
+          echo "⚠ Warning: WPScan completed but found no vulnerabilities (exit code 0)"
+          echo "This is unexpected - we installed vulnerable plugins/themes"
+        elif [ "${EXIT_CODE:-0}" -ne 0 ]; then
+          echo "✗ WPScan failed with exit code ${EXIT_CODE}"
+          exit ${EXIT_CODE}
+        fi
 
         # Show results for debugging
+        echo ""
         echo "=== Scan Results ==="
         cat scan-results.json | jq . || cat scan-results.json
 
