@@ -90,8 +90,9 @@ jobs:
           --disable-tls-checks \
           --format json \
           --output scan-results.json \
-          --enumerate vp,vt \
-          --plugins-detection aggressive"
+          --enumerate p,t \
+          --plugins-detection aggressive \
+          --exclude-content-based"
 
         # Only add API token if it's set
         if [ -n "${WPSCAN_API_TOKEN}" ]; then
