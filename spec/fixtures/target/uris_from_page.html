@@ -1,0 +1,25 @@
+<a href="http://e.org/f.txt">Link</a>
+Duplicates should be ignored
+<a href="http://e.org/f.txt">Link</a>
+<img src="http://e.org/f.txt" />
+
+<a href="mailto:mail@g.com">eMail me!</a>
+<a href="jaVaScript:alert(2)">Click me Fool !</a>
+
+Head and tail spaces should be removed
+<script src=" https://cdn.e.org/f2.js  "></script>
+
+<script src="/script/s.js"></script>
+
+<link rel="alternate" type="application/rss+xml" title="Spec" href="http://wp-lamp/feed.xml" />
+
+<a href="">Empty Link should be ignored</a>
+
+<img src="//g.com/img.jpg" width="" height="" alt="" />
+
+<a href="http://">no host, should be ignored</a>
+
+Don't parse that either
+<img src="data:image/jpeg;base64,/9j/4AAQ/" />
+
+<img class="fl-photo-img wp-image-608 size-full" src="data:image/png;base64,SNIPPED" alt="XXX" itemprop="image" height="10" width="100" data-src="//g.org/logo.png"
