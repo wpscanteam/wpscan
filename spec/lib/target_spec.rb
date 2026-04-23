@@ -73,6 +73,124 @@ describe WPScan::Target do
     end
   end
 
+  describe '#url_pattern' do
+    its(:url_pattern) { should eql %r{https?:\\?/\\?/ex\.lo\\?/}i }
+    its(:url_pattern) { should match 'https:\/\/ex.lo\/' }
+  end
+
+  describe '#comments_from_page' do
+    let(:fixtures) { FIXTURES.join('target') }
+    let(:fixture) { fixtures.join('comments.html') }
+    let(:page) { Typhoeus::Response.new(body: File.read(fixture)) }
+
+    context 'when the pattern does not match anything' do
+      it 'returns an empty array' do
+        expect(target.comments_from_page(/none/, page)).to eql([])
+      end
+    end
+
+    context 'when the pattern matches' do
+      let(:pattern) { /all in one seo pack/i }
+      let(:s1) { 'All in One SEO Pack 2.2.5.1 by Michael Torbert of Semper Fi Web Design' }
+      let(:s2) { '/all in one seo pack' }
+
+      context 'when no block given' do
+        it 'returns the expected matches' do
+          results = target.comments_from_page(pattern, page)
+
+          [s1, s2].each_with_index do |s, i|
+            expect(results[i].first).to eql s.match(pattern)
+            expect(results[i].last.to_s).to eql "<!-- #{s} -->"
+          end
+        end
+      end
+
+      context 'when block given' do
+        it 'yield the MatchData' do
+          expect { |b| target.comments_from_page(pattern, page, &b) }
+            .to yield_successive_args(
+              [MatchData, Nokogiri::XML::Comment],
+              [MatchData, Nokogiri::XML::Comment]
+            )
+        end
+      end
+    end
+
+    context 'when invalid byte sequence' do
+      let(:page) { Typhoeus::Response.new(body: "<!-- \xEB -->") }
+
+      it 'does not raise an error' do
+        expect { target.comments_from_page(/none/, page) }.to_not raise_error
+      end
+    end
+  end
+
+  describe '#javascripts_from_page' do
+    let(:fixtures) { FIXTURES.join('target') }
+    let(:fixture) { fixtures.join('javascripts.html') }
+    let(:page)    { Typhoeus::Response.new(body: File.read(fixture)) }
+
+    context 'when the pattern does not match anything' do
+      it 'returns an empty array' do
+        expect(target.javascripts_from_page(/none/, page)).to eql([])
+      end
+    end
+
+    context 'when the pattern matches' do
+      let(:pattern) { /_version =/i }
+      let(:s)       { "var _version = '1.2.4';" }
+
+      context 'when no block given' do
+        it 'returns the expected matches' do
+          results = target.javascripts_from_page(pattern, page)
+
+          expect(results[0].first).to eql s.match(pattern)
+          expect(results[0].last.text.to_s).to eql s
+        end
+      end
+
+      context 'when block given' do
+        it 'yield the MatchData' do
+          expect { |b| target.javascripts_from_page(pattern, page, &b) }
+            .to yield_successive_args(
+              [MatchData, Nokogiri::XML::Element]
+            )
+        end
+      end
+    end
+  end
+
+  describe '#uris_from_page' do
+    let(:fixtures) { FIXTURES.join('target') }
+    let(:page) { Typhoeus::Response.new(body: File.read(fixtures.join('uris_from_page.html'))) }
+    let(:url) { 'http://e.org' }
+
+    context 'when block given' do
+      it 'yield the url' do
+        expect { |b| target.uris_from_page(page, &b) }
+          .to yield_successive_args(
+            [Addressable::URI.parse('http://e.org/f.txt'), Nokogiri::XML::Element],
+            [Addressable::URI.parse('https://cdn.e.org/f2.js'), Nokogiri::XML::Element],
+            [Addressable::URI.parse('http://e.org/script/s.js'), Nokogiri::XML::Element],
+            [Addressable::URI.parse('http://wp-lamp/feed.xml'), Nokogiri::XML::Element],
+            [Addressable::URI.parse('http://g.com/img.jpg'), Nokogiri::XML::Element],
+            [Addressable::URI.parse('http://g.org/logo.png'), Nokogiri::XML::Element]
+          )
+      end
+    end
+
+    context 'when no block given' do
+      it 'returns the expected array' do
+        expect(target.uris_from_page(page)).to eql(
+          %w[
+            http://e.org/f.txt https://cdn.e.org/f2.js http://e.org/script/s.js
+            http://wp-lamp/feed.xml http://g.com/img.jpg http://g.org/logo.png
+          ].map { |u| Addressable::URI.parse(u) }
+        )
+      end
+    end
+  end
+
   describe '#vulnerable?' do
     context 'when all attributes are nil' do
       it { should_not be_vulnerable }
