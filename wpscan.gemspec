@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.require_paths         = ['lib']
 
   s.add_dependency 'activesupport',        '>= 7.1', '< 8.1'
-  s.add_dependency 'addressable',          '>= 2.5', '< 2.9'
+  s.add_dependency 'addressable',          '~> 2.9'
   s.add_dependency 'ethon',                '>= 0.14', '< 0.17'
   s.add_dependency 'get_process_mem',      '>= 0.2.5', '< 1.1.0'
   s.add_dependency 'nokogiri',             '~> 1.16'
