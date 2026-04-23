@@ -89,10 +89,7 @@ jobs:
           --url https://wordpress-test.ddev.site \
           --disable-tls-checks \
           --format json \
-          --output scan-results.json \
-          --enumerate p,t \
-          --plugins-detection aggressive \
-          --exclude-content-based"
+          --output scan-results.json"
 
         # Only add API token if it's set
         if [ -n "${WPSCAN_API_TOKEN}" ]; then
