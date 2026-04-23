@@ -1,0 +1,113 @@
+name: Integration Tests
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  integration-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v6
+
+    - name: Set up DDEV
+      uses: ddev/github-action-setup-ddev@v1
+
+    - name: Create WordPress test site
+      run: |
+        mkdir wordpress-test
+        cd wordpress-test
+        ddev config --project-type=wordpress --php-version=8.1 --docroot=wordpress
+        ddev start
+        ddev exec wp core download --path=wordpress
+        ddev exec wp core install \
+          --path=wordpress \
+          --url=https://wordpress-test.ddev.site \
+          --title="WPScan Integration Test" \
+          --admin_user=admin \
+          --admin_password=password \
+          --admin_email=test@example.com \
+          --skip-email
+
+    - name: Install vulnerable plugins with known CVEs
+      run: |
+        cd wordpress-test
+        # Contact Form 7 5.3.2 - Has known XSS vulnerability (CVE-2020-35489)
+        ddev exec wp plugin install contact-form-7 --version=5.3.2 --activate --path=wordpress
+
+        # Elementor 3.1.3 - Has known authenticated stored XSS (multiple CVEs)
+        ddev exec wp plugin install elementor --version=3.1.3 --activate --path=wordpress
+
+        # WooCommerce 4.6.1 - Has known SQL injection (CVE-2021-32789)
+        ddev exec wp plugin install woocommerce --version=4.6.1 --activate --path=wordpress
+
+        # Yoast SEO 15.5 - Has known XSS vulnerability
+        ddev exec wp plugin install wordpress-seo --version=15.5 --activate --path=wordpress
+
+    - name: Install vulnerable theme
+      run: |
+        cd wordpress-test
+        # Twenty Nineteen 1.8 has known vulnerabilities
+        ddev exec wp theme install twentynineteen --version=1.8 --activate --path=wordpress
+
+    - name: Verify WordPress site is accessible
+      run: |
+        cd wordpress-test
+        curl -k -f https://wordpress-test.ddev.site || (ddev logs && exit 1)
+
+    - name: Set up Ruby ${{ matrix.ruby || '3.3' }}
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby || '3.3' }}
+
+    - name: Install GEMs and build WPScan
+      run: |
+        gem install bundler
+        bundle config force_ruby_platform true
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3
+
+    - name: Update WPScan database
+      run: |
+        bundle exec ruby -Ilib bin/wpscan --update
+
+    - name: Run WPScan against test site
+      env:
+        WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_API_TOKEN }}
+      run: |
+        bundle exec ruby -Ilib bin/wpscan \
+          --url https://wordpress-test.ddev.site \
+          --disable-tls-checks \
+          --format json \
+          --output scan-results.json \
+          --enumerate vp,vt \
+          --plugins-detection aggressive \
+          --api-token "${WPSCAN_API_TOKEN}" || true
+
+        # Show results for debugging
+        echo "=== Scan Results ==="
+        cat scan-results.json | jq . || cat scan-results.json
+
+    - name: Verify scan results
+      run: |
+        bundle exec ruby spec/integration/verify_results.rb scan-results.json
+
+    - name: Upload scan results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-test-results
+        path: scan-results.json
+
+    - name: Show DDEV logs on failure
+      if: failure()
+      run: |
+        cd wordpress-test
+        ddev logs
