@@ -64,10 +64,10 @@ jobs:
         cd wordpress-test
         curl -k -f https://wordpress-test.ddev.site || (ddev logs && exit 1)
 
-    - name: Set up Ruby ${{ matrix.ruby || '3.3' }}
+    - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: ${{ matrix.ruby || '3.3' }}
+        ruby-version: '4.0'
 
     - name: Install GEMs and build WPScan
       run: |
