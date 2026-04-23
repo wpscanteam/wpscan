@@ -7,7 +7,7 @@ module WPScan
     module PluginVersion
       # Plugin Version Finder
       class Base
-        include CMSScanner::Finders::UniqueFinder
+        include WPScan::Finders::UniqueFinder
 
         # @param [ Model::Plugin ] plugin
         def initialize(plugin)

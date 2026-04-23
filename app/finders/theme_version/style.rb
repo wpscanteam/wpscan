@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module ThemeVersion
       # Theme Version Finder from the style.css file
-      class Style < CMSScanner::Finders::Finder
+      class Style < WPScan::Finders::Finder
         # @param [ Hash ] opts
         #
         # @return [ Version ]

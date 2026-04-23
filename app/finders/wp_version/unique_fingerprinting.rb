@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module WpVersion
       # Unique Fingerprinting Version Finder
-      class UniqueFingerprinting < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Fingerprinter
+      class UniqueFingerprinting < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Fingerprinter
 
         # @return [ WpVersion ]
         def aggressive(opts = {})

@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Password Attack Controller
-    class PasswordAttack < CMSScanner::Controller::Base
+    class PasswordAttack < WPScan::Controller::Base
       def cli_options
         [
           OptFilePath.new(
@@ -56,7 +56,7 @@ module WPScan
         end
       end
 
-      # @return [ CMSScanner::Finders::Finder ] The finder used to perform the attack
+      # @return [ WPScan::Finders::Finder ] The finder used to perform the attack
       def attacker
         @attacker ||= attacker_from_cli_options || attacker_from_automatic_detection
       end
@@ -66,7 +66,7 @@ module WPScan
         @xmlrpc ||= target.xmlrpc
       end
 
-      # @return [ CMSScanner::Finders::Finder ]
+      # @return [ WPScan::Finders::Finder ]
       def attacker_from_cli_options
         return unless ParsedCli.password_attack
 
@@ -99,7 +99,7 @@ module WPScan
         end
       end
 
-      # @return [ CMSScanner::Finders::Finder ]
+      # @return [ WPScan::Finders::Finder ]
       def attacker_from_automatic_detection
         if xmlrpc_get_users_blogs_enabled?
           wp_version = target.wp_version

@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module Medias
       # Medias Finder, see https://github.com/wpscanteam/wpscan/issues/172
-      class AttachmentBruteForcing < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+      class AttachmentBruteForcing < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Enumerator
 
         # @param [ Hash ] opts
         # @option opts [ Range ] :range Mandatory

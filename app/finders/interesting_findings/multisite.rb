@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Multisite checker
-      class Multisite < CMSScanner::Finders::Finder
+      class Multisite < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           url      = target.url('wp-signup.php')

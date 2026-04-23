@@ -6,8 +6,8 @@ module WPScan
       # Known Locations Timthumbs Finder
       # Note: A vulnerable version, 2.8.13 can be found here:
       # https://github.com/GabrielGil/TimThumb/blob/980c3d6a823477761570475e8b83d3e9fcd2d7ae/timthumb.php
-      class KnownLocations < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+      class KnownLocations < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Enumerator
 
         # @return [ Array<Integer> ]
         def valid_response_codes

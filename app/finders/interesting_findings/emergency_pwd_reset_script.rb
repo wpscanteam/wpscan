@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Emergency Password Reset Script finder
-      class EmergencyPwdResetScript < CMSScanner::Finders::Finder
+      class EmergencyPwdResetScript < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'emergency.php'

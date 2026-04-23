@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module DynamicFinder
       # To be used as a base when creating a dynamic finder
-      class Finder < CMSScanner::Finders::Finder
+      class Finder < WPScan::Finders::Finder
         # @param [ Array ] args
         def self.child_class_constant(*args)
           args.each do |arg|

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module MainTheme
       # From the CSS style in the homepage
-      class CssStyleInHomepage < CMSScanner::Finders::Finder
+      class CssStyleInHomepage < WPScan::Finders::Finder
         include Finders::WpItems::UrlsInPage # To have the item_code_pattern method available here
 
         def create_theme(slug, style_url, opts)

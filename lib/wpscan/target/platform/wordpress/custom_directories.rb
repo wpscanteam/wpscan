@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module WPScan
-  class Target < CMSScanner::Target
+  class Target
     module Platform
       # wp-content & plugins directory implementation
       module WordPress
@@ -16,7 +16,7 @@ module WPScan
         # @return [ String ] The wp-content directory
         def content_dir
           unless @content_dir
-            # scope_url_pattern is from CMSScanner::Target
+            # scope_url_pattern is from WPScan::Target
             pattern = %r{#{scope_url_pattern}([\w\s\-/]+?)\\?/(?:themes|plugins|uploads|cache)\\?/}i
 
             [homepage_res, error_404_res].each do |page_res|
@@ -103,7 +103,7 @@ module WPScan
         def sub_dir
           return @sub_dir unless @sub_dir.nil?
 
-          # url_pattern is from CMSScanner::Target
+          # url_pattern is from WPScan::Target
           pattern = %r{#{url_pattern}(.+?)/(?:xmlrpc\.php|wp-includes/)}i
           xpath = '(//@src|//@href|//@data-src)[contains(., "xmlrpc.php") or contains(., "wp-includes/")]'
 

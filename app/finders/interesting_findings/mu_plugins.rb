@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Must Use Plugins Directory checker
-      class MuPlugins < CMSScanner::Finders::Finder
+      class MuPlugins < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def passive(_opts = {})
           pattern = %r{#{target.content_dir}/mu-plugins/}i

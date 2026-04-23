@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Main Theme Controller
-    class MainTheme < CMSScanner::Controller::Base
+    class MainTheme < WPScan::Controller::Base
       def cli_options
         [
           OptChoice.new(

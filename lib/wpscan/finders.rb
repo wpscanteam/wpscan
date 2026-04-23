@@ -1,5 +1,16 @@
 # frozen_string_literal: true
 
+require 'wpscan/finders/finder'
+require 'wpscan/finders/finding'
+require 'wpscan/finders/findings'
+require 'wpscan/finders/base_finders'
+require 'wpscan/finders/independent_finders'
+require 'wpscan/finders/independent_finder'
+require 'wpscan/finders/unique_finders'
+require 'wpscan/finders/unique_finder'
+require 'wpscan/finders/same_type_finders'
+require 'wpscan/finders/same_type_finder'
+
 require 'wpscan/finders/finder/wp_version/smart_url_checker'
 
 require 'wpscan/finders/dynamic_finder/finder'
@@ -14,15 +25,3 @@ require 'wpscan/finders/dynamic_finder/version/query_parameter'
 require 'wpscan/finders/dynamic_finder/version/config_parser'
 require 'wpscan/finders/dynamic_finder/wp_item_version'
 require 'wpscan/finders/dynamic_finder/wp_version'
-
-module WPScan
-  # Custom Finders
-  module Finders
-    include CMSScanner::Finders
-
-    # Custom InterestingFindings
-    module InterestingFindings
-      include CMSScanner::Finders::InterestingFindings
-    end
-  end
-end

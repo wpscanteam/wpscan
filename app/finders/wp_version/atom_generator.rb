@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module WpVersion
       # Atom Generator Version Finder
-      class AtomGenerator < CMSScanner::Finders::Finder
+      class AtomGenerator < WPScan::Finders::Finder
         include Finder::WpVersion::SmartURLChecker
 
         def process_urls(urls, _opts = {})

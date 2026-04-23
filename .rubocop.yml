@@ -15,7 +15,7 @@ Lint/MissingSuper:
 Lint/UriEscapeUnescape:
   Enabled: false
 Metrics/AbcSize:
-  Max: 27
+  Max: 28
 Metrics/BlockLength:
   Exclude:
   - 'spec/**/*'
@@ -29,6 +29,10 @@ Metrics/MethodLength:
   Max: 20
   Exclude:
   - 'app/controllers/enumeration/cli_options.rb'
+  - 'app/controllers/core/cli_options.rb'
+Metrics/ParameterLists:
+  Max: 6
+  MaxOptionalParameters: 4
 Metrics/PerceivedComplexity:
   Max: 11
 Style/ClassVars:
@@ -37,6 +41,9 @@ Style/Documentation:
   Enabled: false
 Style/FormatStringToken:
   Enabled: false
+Style/MixinUsage:
+  Exclude:
+  - 'lib/wpscan/formatter.rb'
 Style/NumericPredicate:
   Exclude:
   - 'app/controllers/vuln_api.rb'

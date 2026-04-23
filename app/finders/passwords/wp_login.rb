@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module Passwords
       # Password attack against the wp-login.php
-      class WpLogin < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::BreadthFirstDictionaryAttack
+      class WpLogin < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::BreadthFirstDictionaryAttack
 
         def login_request(username, password)
           target.login_request(username, password)

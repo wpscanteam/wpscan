@@ -5,7 +5,7 @@ module WPScan
     module Users
       # Since WP 5.5, /wp-sitemap-users-1.xml is generated and contains
       # the usernames of accounts who made a post
-      class AuthorSitemap < CMSScanner::Finders::Finder
+      class AuthorSitemap < WPScan::Finders::Finder
         # @param [ Hash ] opts
         #
         # @return [ Array<User> ]

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module MainTheme
       # URLs In Homepage Finder
-      class UrlsInHomepage < CMSScanner::Finders::Finder
+      class UrlsInHomepage < WPScan::Finders::Finder
         include WpItems::UrlsInPage
 
         # @param [ Hash ] opts

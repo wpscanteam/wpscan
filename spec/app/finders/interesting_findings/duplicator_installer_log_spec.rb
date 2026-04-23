@@ -2,7 +2,7 @@
 
 describe WPScan::Finders::InterestingFindings::DuplicatorInstallerLog do
   subject(:finder) { described_class.new(target) }
-  let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
+  let(:target)     { WPScan::Target.new(url).extend(WPScan::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'duplicator_installer_log') }
   let(:filename)   { 'installer-log.txt' }

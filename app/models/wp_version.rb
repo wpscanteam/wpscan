@@ -3,7 +3,7 @@
 module WPScan
   module Model
     # WP Version
-    class WpVersion < CMSScanner::Model::Version
+    class WpVersion < WPScan::Model::Version
       include Vulnerable
 
       def initialize(number, opts = {})

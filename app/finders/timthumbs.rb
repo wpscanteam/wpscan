@@ -7,7 +7,7 @@ module WPScan
     module Timthumbs
       # Timthumbs Finder
       class Base
-        include CMSScanner::Finders::SameTypeFinder
+        include WPScan::Finders::SameTypeFinder
 
         # @param [ WPScan::Target ] target
         def initialize(target)

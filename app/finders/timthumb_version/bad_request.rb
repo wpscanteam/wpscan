@@ -5,7 +5,7 @@ module WPScan
     module TimthumbVersion
       # Timthumb Version Finder from the body of a bad request
       # See https://code.google.com/p/timthumb/source/browse/trunk/timthumb.php#435
-      class BadRequest < CMSScanner::Finders::Finder
+      class BadRequest < WPScan::Finders::Finder
         # @return [ Version ]
         def aggressive(_opts = {})
           return unless Browser.get(target.url).body =~ /(TimThumb version\s*: ([^<]+))/

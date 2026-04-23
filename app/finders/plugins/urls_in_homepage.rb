@@ -5,7 +5,7 @@ module WPScan
     module Plugins
       # URLs In Homepage Finder
       # Typically, the items detected from URLs like /wp-content/plugins/<slug>/
-      class UrlsInHomepage < CMSScanner::Finders::Finder
+      class UrlsInHomepage < WPScan::Finders::Finder
         include WpItems::UrlsInPage
 
         # @param [ Hash ] opts

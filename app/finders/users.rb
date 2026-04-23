@@ -24,7 +24,7 @@ module WPScan
     module Users
       # Users Finder
       class Base
-        include CMSScanner::Finders::SameTypeFinder
+        include WPScan::Finders::SameTypeFinder
 
         # @param [ WPScan::Target ] target
         def initialize(target)

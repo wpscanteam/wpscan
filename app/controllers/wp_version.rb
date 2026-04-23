@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Wp Version Controller
-    class WpVersion < CMSScanner::Controller::Base
+    class WpVersion < WPScan::Controller::Base
       def cli_options
         [
           OptBoolean.new(['--wp-version-all', 'Check all the version locations'], advanced: true),

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module WpVersion
       # Readme Version Finder
-      class Readme < CMSScanner::Finders::Finder
+      class Readme < WPScan::Finders::Finder
         # @return [ WpVersion ]
         def aggressive(_opts = {})
           readme_url = target.url('readme.html') # Maybe move this into the Target ?

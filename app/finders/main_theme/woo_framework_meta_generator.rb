@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module MainTheme
       # From the WooFramework meta generators
-      class WooFrameworkMetaGenerator < CMSScanner::Finders::Finder
+      class WooFrameworkMetaGenerator < WPScan::Finders::Finder
         THEME_PATTERN     = %r{<meta name="generator" content="([^\s"]+)\s?([^"]+)?"\s+/?>}
         FRAMEWORK_PATTERN = %r{<meta name="generator" content="WooFramework\s?([^"]+)?"\s+/?>}
         PATTERN           = /#{THEME_PATTERN}\s+#{FRAMEWORK_PATTERN}/i

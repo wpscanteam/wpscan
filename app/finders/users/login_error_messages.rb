@@ -10,7 +10,7 @@ module WPScan
       #   WP >= 3.1 - The password you entered for the username admin is incorrect.
       # Non existent username: Invalid username.
       #
-      class LoginErrorMessages < CMSScanner::Finders::Finder
+      class LoginErrorMessages < WPScan::Finders::Finder
         # @param [ Hash ] opts
         # @option opts [ String ] :list
         #

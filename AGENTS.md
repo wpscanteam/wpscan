@@ -4,13 +4,13 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Project Overview
 
-WPScan is a WordPress security scanner written in Ruby. It's built on top of the CMSScanner framework and provides WordPress-specific scanning capabilities including vulnerability detection, enumeration, and password attacks.
+WPScan is a WordPress security scanner written in Ruby. It provides WordPress-specific scanning capabilities including vulnerability detection, enumeration, and password attacks.
 
 **Key characteristics:**
 - Ruby gem with CLI tool
 - Architecture based on Controllers, Finders, and Models (MVC-like pattern)
 - Uses local database (in `$XDG_CACHE_HOME/wpscan/db` or `~/.cache/wpscan/db`, or `~/.wpscan/db` for existing installations) that syncs with WPScan API
-- Built on top of CMSScanner framework (parent gem)
+- Scanner framework lives in `lib/wpscan/` (Target, Browser, Controller::Base, Scan, Finders, Formatter, etc.) alongside the WordPress-specific code
 - Supports WordPress-specific security scanning features
 
 ## Development Commands
@@ -80,7 +80,7 @@ wpscan --update
 - Controllers are chained using `<<` operator and executed in order
 
 **Controllers (app/controllers/):**
-Controllers orchestrate the scanning process. The `Core` controller (app/controllers/core.rb) is implicitly handled by the CMSScanner framework via `WPScan::Scan.new` and runs before the explicitly chained controllers. The explicit chain in bin/wpscan executes in this order:
+Controllers orchestrate the scanning process. The `Core` controller (app/controllers/core.rb) is implicitly handled by the scanner framework via `WPScan::Scan.new` and runs before the explicitly chained controllers. The explicit chain in bin/wpscan executes in this order:
 1. `VulnApi` - API token setup for vulnerability data
 2. `CustomDirectories` - Custom wp-content/plugins directory detection
 3. `InterestingFindings` - Header analysis, robots.txt, readme files
@@ -127,11 +127,8 @@ Domain objects representing WordPress components:
 
 ### Important Patterns
 
-**CMSScanner Inheritance:**
-WPScan extends CMSScanner framework. Many base classes come from CMSScanner:
-- `WPScan::Target < CMSScanner::Target`
-- `WPScan::Controller::Core < CMSScanner::Controller::Core`
-- Uses CMSScanner's option parsing, browser, and output systems
+**Scanner framework:**
+The scanner framework lives under `WPScan::` alongside the WordPress-specific code. Core framework classes — `WPScan::Target`, `WPScan::Browser`, `WPScan::Controller::{Base,Core}`, `WPScan::ParsedCli`, `WPScan::Vulnerability`, `WPScan::Model::{InterestingFinding,XMLRPC}`, etc. — are single unified classes, not split across framework/WordPress layers. WordPress-specific behavior is mixed in via modules (e.g. `WPScan::Target::Platform::WordPress` is included into `WPScan::Target`). Option parsing delegates to the external `opt_parse_validator` gem.
 
 **Dynamic Finders:**
 Finders can be dynamically generated from database metadata (see `lib/wpscan/db/dynamic_finders/`). This allows version detection strategies to be data-driven.

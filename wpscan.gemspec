@@ -20,9 +20,19 @@ Gem::Specification.new do |s|
   s.executables           = ['wpscan']
   s.require_paths         = ['lib']
 
-  s.add_dependency 'cms_scanner', '~> 0.15.0'
-  s.add_dependency('ostruct', '~> 0.6')
-  s.add_dependency('fiddle', '~> 1.1')
+  s.add_dependency 'activesupport',        '>= 7.1', '< 8.1'
+  s.add_dependency 'ethon',                '>= 0.14', '< 0.17'
+  s.add_dependency 'get_process_mem',      '>= 0.2.5', '< 1.1.0'
+  s.add_dependency 'nokogiri',             '~> 1.16'
+  s.add_dependency 'opt_parse_validator',  '~> 1.10.1'
+  s.add_dependency 'public_suffix',        '>= 4.0.3', '< 6.1'
+  s.add_dependency 'ruby-progressbar',     '>= 1.10', '< 1.14'
+  s.add_dependency 'sys-proctable',        '>= 1.2.2', '< 1.4.0'
+  s.add_dependency 'typhoeus',             '>= 1.3', '< 1.5'
+  s.add_dependency 'xmlrpc',               '~> 0.3'
+  s.add_dependency 'yajl-ruby',            '~> 1.4.1'
+  s.add_dependency 'ostruct',              '~> 0.6'
+  s.add_dependency 'fiddle',               '~> 1.1'
 
   s.add_development_dependency 'bundler',             '>= 1.6'
   s.add_development_dependency 'memory_profiler',     '~> 1.0.0'

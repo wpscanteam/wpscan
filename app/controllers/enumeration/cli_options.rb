@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Enumeration CLI Options
-    class Enumeration < CMSScanner::Controller::Base
+    class Enumeration < WPScan::Controller::Base
       def cli_options
         cli_enum_choices + cli_plugins_opts + cli_themes_opts +
           cli_timthumbs_opts + cli_config_backups_opts + cli_db_exports_opts +

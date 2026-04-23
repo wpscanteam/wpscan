@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Enumeration Methods
-    class Enumeration < CMSScanner::Controller::Base
+    class Enumeration < WPScan::Controller::Base
       # @param [ String ] type (plugins or themes)
       # @param [ Symbol ] detection_mode
       #

@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Controller to handle the API token
-    class VulnApi < CMSScanner::Controller::Base
+    class VulnApi < WPScan::Controller::Base
       ENV_KEY = 'WPSCAN_API_TOKEN'
 
       def cli_options

@@ -58,7 +58,7 @@ def rspec_parsed_options(args)
 end
 
 # TODO: remove when https://github.com/bblimke/webmock/issues/552 fixed
-#       Also remove from CMSScanner
+#       Also remove from WPScan
 # rubocop:disable all
 module WebMock
   module HttpLibAdapters
