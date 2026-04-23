@@ -19,6 +19,8 @@ jobs:
 
     - name: Set up DDEV
       uses: ddev/github-action-setup-ddev@v1
+      with:
+        autostart: false
 
     - name: Create WordPress test site
       run: |
