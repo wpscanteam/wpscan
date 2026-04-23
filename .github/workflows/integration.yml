@@ -101,24 +101,39 @@ jobs:
           echo "Warning: WPSCAN_API_TOKEN not set. Vulnerability data will be limited to local database only."
         fi
 
-        # Run the scan
+        # Run the scan (capture both stdout/stderr for debugging)
         # Exit codes: 0=OK, 1=CLI error, 2=Interrupted, 3=Exception, 4=Scan error, 5=Vulnerabilities found
-        eval $WPSCAN_CMD || EXIT_CODE=$?
+        set +e  # Temporarily disable errexit to capture output
+        eval $WPSCAN_CMD 2>&1 | tee /tmp/wpscan-output.log
+        EXIT_CODE=$?
+        set -e  # Re-enable errexit
 
-        if [ "${EXIT_CODE:-0}" -eq 5 ]; then
-          echo "✓ WPScan found vulnerabilities (exit code 5) - this is expected for our test!"
-        elif [ "${EXIT_CODE:-0}" -eq 0 ]; then
-          echo "⚠ Warning: WPScan completed but found no vulnerabilities (exit code 0)"
-          echo "This is unexpected - we installed vulnerable plugins/themes"
-        elif [ "${EXIT_CODE:-0}" -ne 0 ]; then
-          echo "✗ WPScan failed with exit code ${EXIT_CODE}"
-          exit ${EXIT_CODE}
-        fi
+        echo ""
+        echo "WPScan exit code: ${EXIT_CODE}"
+        echo ""
 
         # Show results for debugging
-        echo ""
-        echo "=== Scan Results ==="
-        cat scan-results.json | jq . || cat scan-results.json
+        if [ -f scan-results.json ]; then
+          echo "=== Scan Results JSON ==="
+          cat scan-results.json | jq . || cat scan-results.json
+          echo ""
+        else
+          echo "⚠ Warning: scan-results.json was not created"
+        fi
+
+        # Check exit code and determine success/failure
+        if [ "${EXIT_CODE}" -eq 5 ]; then
+          echo "✓ WPScan found vulnerabilities (exit code 5) - this is expected for our test!"
+        elif [ "${EXIT_CODE}" -eq 0 ]; then
+          echo "⚠ Warning: WPScan completed but found no vulnerabilities (exit code 0)"
+          echo "This is unexpected - we installed vulnerable plugins/themes"
+        else
+          echo "✗ WPScan failed with exit code ${EXIT_CODE}"
+          echo ""
+          echo "=== WPScan Output ==="
+          cat /tmp/wpscan-output.log || echo "Could not read WPScan output"
+          exit ${EXIT_CODE}
+        fi
 
     - name: Verify scan results
       run: |
