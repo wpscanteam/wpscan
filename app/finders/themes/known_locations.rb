@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module Themes
       # Known Locations Themes Finder
-      class KnownLocations < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+      class KnownLocations < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Enumerator
 
         # @return [ Array<Integer> ]
         def valid_response_codes

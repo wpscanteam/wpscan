@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module Users
       # Author Posts
-      class AuthorPosts < CMSScanner::Finders::Finder
+      class AuthorPosts < WPScan::Finders::Finder
         # @param [ Hash ] opts
         #
         # @return [ Array<User> ]

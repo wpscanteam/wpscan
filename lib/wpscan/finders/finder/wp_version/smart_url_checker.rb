@@ -6,7 +6,7 @@ module WPScan
       module WpVersion
         # SmartURLChecker specific for the WP Version
         module SmartURLChecker
-          include CMSScanner::Finders::Finder::SmartURLChecker
+          include WPScan::Finders::Finder::SmartURLChecker
 
           def create_version(number, opts = {})
             Model::WpVersion.new(

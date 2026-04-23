@@ -23,7 +23,7 @@ module WPScan
     module WpVersion
       # Wp Version Finder
       class Base
-        include CMSScanner::Finders::UniqueFinder
+        include WPScan::Finders::UniqueFinder
 
         # @param [ WPScan::Target ] target
         def initialize(target)

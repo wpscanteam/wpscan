@@ -11,7 +11,7 @@ module WPScan
     module MainTheme
       # Main Theme Finder
       class Base
-        include CMSScanner::Finders::UniqueFinder
+        include WPScan::Finders::UniqueFinder
 
         # @param [ WPScan::Target ] target
         def initialize(target)

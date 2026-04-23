@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CMSScanner
+module WPScan
   module Formatter
     # Module used to output the rendered views into a buffer
     # and beautify it a the end of the scan

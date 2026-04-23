@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module WpVersion
       # RSS Generator Version Finder
-      class RSSGenerator < CMSScanner::Finders::Finder
+      class RSSGenerator < WPScan::Finders::Finder
         include Finder::WpVersion::SmartURLChecker
 
         def process_urls(urls, _opts = {})

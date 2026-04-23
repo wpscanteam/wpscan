@@ -3,7 +3,7 @@
 module WPScan
   module Controller
     # Controller to add the aliases in the CLI
-    class Aliases < CMSScanner::Controller::Base
+    class Aliases < WPScan::Controller::Base
       def cli_options
         [
           OptAlias.new(['--stealthy'],

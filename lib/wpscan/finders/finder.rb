@@ -46,7 +46,7 @@ module WPScan
 
       # @return [ Browser ]
       def browser
-        @browser ||= NS::Browser.instance
+        @browser ||= WPScan::Browser.instance
       end
 
       # @return [ Typhoeus::Hydra ]

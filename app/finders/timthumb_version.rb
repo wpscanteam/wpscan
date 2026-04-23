@@ -7,7 +7,7 @@ module WPScan
     module TimthumbVersion
       # Timthumb Version Finder
       class Base
-        include CMSScanner::Finders::UniqueFinder
+        include WPScan::Finders::UniqueFinder
 
         # @param [ Model::Timthumb ] target
         def initialize(target)

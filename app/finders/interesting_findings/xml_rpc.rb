@@ -23,7 +23,7 @@ module WPScan
 
           potential_urls << url
 
-          NS::Model::XMLRPC.new(url, confidence: 30, found_by: 'Headers (Passive Detection)')
+          WPScan::Model::XMLRPC.new(url, confidence: 30, found_by: 'Headers (Passive Detection)')
         end
 
         # @return [ XMLRPC ]
@@ -35,7 +35,7 @@ module WPScan
 
             potential_urls << url
 
-            return NS::Model::XMLRPC.new(url, confidence: 30, found_by: 'Link Tag (Passive Detection)')
+            return WPScan::Model::XMLRPC.new(url, confidence: 30, found_by: 'Link Tag (Passive Detection)')
           end
           nil
         end
@@ -47,11 +47,11 @@ module WPScan
           potential_urls.uniq.each do |potential_url|
             next unless target.in_scope?(potential_url)
 
-            res = NS::Browser.post(potential_url, body: Digest::MD5.hexdigest(rand(999_999).to_s[0..5]))
+            res = WPScan::Browser.post(potential_url, body: Digest::MD5.hexdigest(rand(999_999).to_s[0..5]))
 
             next unless /<methodResponse>/i.match?(res&.body)
 
-            return NS::Model::XMLRPC.new(potential_url, confidence: 100, found_by: DIRECT_ACCESS)
+            return WPScan::Model::XMLRPC.new(potential_url, confidence: 100, found_by: DIRECT_ACCESS)
           end
           nil
         end

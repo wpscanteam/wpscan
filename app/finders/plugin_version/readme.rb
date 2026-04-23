@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module PluginVersion
       # Plugin Version Finder from the readme.txt file
-      class Readme < CMSScanner::Finders::Finder
+      class Readme < WPScan::Finders::Finder
         # @return [ Version ]
         def aggressive(_opts = {})
           found_by_msg = 'Readme - %s (Aggressive Detection)'

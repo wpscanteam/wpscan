@@ -2,7 +2,7 @@
 
 describe WPScan::Finders::InterestingFindings::UploadSQLDump do
   subject(:finder) { described_class.new(target) }
-  let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
+  let(:target)     { WPScan::Target.new(url).extend(WPScan::Target::Server::Apache) }
   let(:url)        { 'http://ex.lo/' }
   let(:dump_url)   { "#{url}wp-content/uploads/dump.sql" }
   let(:fixtures)   { FINDERS_FIXTURES.join('interesting_findings', 'upload_sql_dump') }

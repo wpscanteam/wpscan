@@ -6,9 +6,9 @@ module WPScan
     attr_reader :run_error
 
     def initialize
-      NS.start_memory = GetProcessMem.new.bytes
+      WPScan.start_memory = GetProcessMem.new.bytes
 
-      controllers << NS::Controller::Core.new
+      controllers << WPScan::Controller::Core.new
 
       exit_hook
 
@@ -17,7 +17,7 @@ module WPScan
 
     # @return [ Controllers ]
     def controllers
-      @controllers ||= NS::Controllers.new
+      @controllers ||= WPScan::Controllers.new
     end
 
     def run
@@ -32,10 +32,10 @@ module WPScan
       output_params = {
         reason: e.is_a?(Interrupt) ? 'Canceled by User' : e.message,
         trace: e.backtrace,
-        verbose: NS::ParsedCli.verbose || run_error_exit_code == NS::ExitCode::EXCEPTION
+        verbose: WPScan::ParsedCli.verbose || run_error_exit_code == WPScan::ExitCode::EXCEPTION
       }
 
-      output_params[:url] = controllers.first.target.url if NS::ParsedCli.url
+      output_params[:url] = controllers.first.target.url if WPScan::ParsedCli.url
 
       formatter.output('@scan_aborted', output_params)
     ensure
@@ -66,23 +66,23 @@ module WPScan
         exit(run_error_exit_code) if run_error
 
         # The parsed_option[:url] must be checked to avoid raising erros when only -h/-v are given
-        exit(NS::ExitCode::VULNERABLE) if NS::ParsedCli.url && controllers.first.target.vulnerable?
-        exit(NS::ExitCode::OK)
+        exit(WPScan::ExitCode::VULNERABLE) if WPScan::ParsedCli.url && controllers.first.target.vulnerable?
+        exit(WPScan::ExitCode::OK)
       end
     end
     # :nocov:
 
     # @return [ Integer ] The exit code related to the run_error
     def run_error_exit_code
-      return NS::ExitCode::CLI_OPTION_ERROR if run_error.is_a?(OptParseValidator::Error) ||
+      return WPScan::ExitCode::CLI_OPTION_ERROR if run_error.is_a?(OptParseValidator::Error) ||
                                                run_error.is_a?(OptionParser::ParseError)
 
-      return NS::ExitCode::INTERRUPTED if run_error.is_a?(Interrupt)
+      return WPScan::ExitCode::INTERRUPTED if run_error.is_a?(Interrupt)
 
-      return NS::ExitCode::ERROR if run_error.is_a?(NS::Error::Standard) ||
+      return WPScan::ExitCode::ERROR if run_error.is_a?(WPScan::Error::Standard) ||
                                     run_error.is_a?(WPScan::Error::Standard)
 
-      NS::ExitCode::EXCEPTION
+      WPScan::ExitCode::EXCEPTION
     end
   end
 end

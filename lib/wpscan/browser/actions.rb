@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CMSScanner
+module WPScan
   class Browser
     # Browser Actions (get, post etc)
     module Actions
@@ -9,7 +9,7 @@ module CMSScanner
       #
       # @return [ Typhoeus::Request ]
       def forge_request(url, params = {})
-        NS::Browser.instance.forge_request(url, params)
+        WPScan::Browser.instance.forge_request(url, params)
       end
 
       # @param [ String ] url

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # BackupDB finder
-      class BackupDB < CMSScanner::Finders::Finder
+      class BackupDB < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'wp-content/backup-db/'

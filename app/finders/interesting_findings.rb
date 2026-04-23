@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'interesting_findings/headers'
+require_relative 'interesting_findings/robots_txt'
+require_relative 'interesting_findings/fantastico_fileslist'
+require_relative 'interesting_findings/search_replace_db_2'
+require_relative 'interesting_findings/xml_rpc'
 require_relative 'interesting_findings/readme'
 require_relative 'interesting_findings/wp_cron'
 require_relative 'interesting_findings/multisite'
@@ -18,18 +23,22 @@ require_relative 'interesting_findings/emergency_pwd_reset_script'
 module WPScan
   module Finders
     module InterestingFindings
-      # Interesting Files Finder
-      class Base < CMSScanner::Finders::InterestingFindings::Base
+      # Interesting Files Finder (base + WordPress-specific finders).
+      class Base
+        include IndependentFinder
+
         # @param [ WPScan::Target ] target
         def initialize(target)
-          super
+          %w[Headers RobotsTxt FantasticoFileslist SearchReplaceDB2 XMLRPC].each do |f|
+            finders << WPScan::Finders::InterestingFindings.const_get(f).new(target)
+          end
 
           %w[
             Readme DebugLog FullPathDisclosure BackupDB DuplicatorInstallerLog
             Multisite MuPlugins Registration UploadDirectoryListing TmmDbMigrate
             UploadSQLDump EmergencyPwdResetScript WPCron PHPDisabled
           ].each do |f|
-            finders << InterestingFindings.const_get(f).new(target)
+            finders << WPScan::Finders::InterestingFindings.const_get(f).new(target)
           end
         end
       end

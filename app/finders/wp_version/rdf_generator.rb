@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module WpVersion
       # RDF Generator Version Finder
-      class RDFGenerator < CMSScanner::Finders::Finder
+      class RDFGenerator < WPScan::Finders::Finder
         include Finder::WpVersion::SmartURLChecker
 
         def process_urls(urls, _opts = {})

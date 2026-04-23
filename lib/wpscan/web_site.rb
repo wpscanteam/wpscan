@@ -47,7 +47,7 @@ module WPScan
     # As webmock does not support redirects mocking, coverage is ignored
     # :nocov:
     def homepage_res
-      @homepage_res ||= NS::Browser.get_and_follow_location(url)
+      @homepage_res ||= WPScan::Browser.get_and_follow_location(url)
     end
     # :nocov:
 
@@ -58,7 +58,7 @@ module WPScan
 
     # @return [ Typhoeus::Response ]
     def error_404_res
-      @error_404_res ||= NS::Browser.get_and_follow_location(error_404_url)
+      @error_404_res ||= WPScan::Browser.get_and_follow_location(error_404_url)
     end
 
     # @return [ String ] The URL of an unlikely existant page
@@ -72,28 +72,28 @@ module WPScan
     #
     # @return [ Boolean ]
     def online?(path = nil)
-      NS::Browser.get(url(path)).code.nonzero? ? true : false
+      WPScan::Browser.get(url(path)).code.nonzero? ? true : false
     end
 
     # @param [ String ] path
     #
     # @return [ Boolean ]
     def http_auth?(path = nil)
-      NS::Browser.get(url(path)).code == 401
+      WPScan::Browser.get(url(path)).code == 401
     end
 
     # @param [ String ] path
     #
     # @return [ Boolean ]
     def access_forbidden?(path = nil)
-      NS::Browser.get(url(path)).code == 403
+      WPScan::Browser.get(url(path)).code == 403
     end
 
     # @param [ String ] path
     #
     # @return [ Boolean ]
     def proxy_auth?(path = nil)
-      NS::Browser.get(url(path)).code == 407
+      WPScan::Browser.get(url(path)).code == 407
     end
 
     # @param [ String ] url
@@ -105,9 +105,9 @@ module WPScan
     def redirection(url = nil)
       url ||= @uri.to_s
 
-      return unless [301, 302].include?(NS::Browser.get(url).code)
+      return unless [301, 302].include?(WPScan::Browser.get(url).code)
 
-      res = NS::Browser.get(url, followlocation: true, maxredirs: 10)
+      res = WPScan::Browser.get(url, followlocation: true, maxredirs: 10)
 
       res.effective_url == url ? nil : res.effective_url
     end
@@ -115,7 +115,7 @@ module WPScan
 
     # @return [ Hash ] The Typhoeus params to use to perform head requests
     def head_or_get_params
-      @head_or_get_params ||= if [0, 405, 501].include?(NS::Browser.head(homepage_url).code)
+      @head_or_get_params ||= if [0, 405, 501].include?(WPScan::Browser.head(homepage_url).code)
                                 { method: :get, maxfilesize: 1 }
                               else
                                 { method: :head }
@@ -137,9 +137,9 @@ module WPScan
       url_to_get  = url(path)
       head_params = (params[:head] || {}).merge(head_or_get_params)
 
-      head_res = NS::Browser.forge_request(url_to_get, head_params).run
+      head_res = WPScan::Browser.forge_request(url_to_get, head_params).run
 
-      codes.include?(head_res.code) ? NS::Browser.get(url_to_get, params[:get] || {}) : head_res
+      codes.include?(head_res.code) ? WPScan::Browser.get(url_to_get, params[:get] || {}) : head_res
     end
   end
 end

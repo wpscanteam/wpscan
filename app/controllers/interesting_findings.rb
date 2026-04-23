@@ -15,7 +15,7 @@ module WPScan
       end
 
       def run
-        mode = NS::ParsedCli.interesting_findings_detection || NS::ParsedCli.detection_mode
+        mode = WPScan::ParsedCli.interesting_findings_detection || WPScan::ParsedCli.detection_mode
         findings = target.interesting_findings(mode: mode)
 
         output('findings', findings: findings) unless findings.empty?

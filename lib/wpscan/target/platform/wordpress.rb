@@ -5,11 +5,11 @@
 end
 
 module WPScan
-  class Target < CMSScanner::Target
+  class Target
     module Platform
       # Some WordPress specific implementation
       module WordPress
-        include CMSScanner::Target::Platform::PHP
+        include WPScan::Target::Platform::PHP
 
         WORDPRESS_PATTERN        = %r{/(?:(?:wp-content/(?:themes|(?:mu-)?plugins|uploads))|wp-includes)/}i
         WORDPRESS_HOSTED_PATTERN = %r{https?://s\d\.wp\.com#{WORDPRESS_PATTERN}}i

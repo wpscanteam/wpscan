@@ -21,7 +21,7 @@ describe WPScan::Target do
     end
 
     context 'when interesting_findings' do
-      let(:interesting_findings) { ['aa', CMSScanner::Model::RobotsTxt.new(target.url)] }
+      let(:interesting_findings) { ['aa', WPScan::Model::RobotsTxt.new(target.url)] }
 
       context 'when no XMLRPC' do
         its(:xmlrpc) { should be_nil }

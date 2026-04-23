@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CMSScanner
+module WPScan
   class Target < WebSite
     module Server
       # Some Apche specific implementation

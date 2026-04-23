@@ -6,7 +6,7 @@ module WPScan
     class BaseFinders < Array
       # @return [ Findings ]
       def findings
-        @findings ||= NS::Finders::Findings.new
+        @findings ||= WPScan::Finders::Findings.new
       end
 
       # Should be implemented in child classes

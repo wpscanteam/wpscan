@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module Users
       # Author Id Brute Forcing
-      class AuthorIdBruteForcing < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+      class AuthorIdBruteForcing < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Enumerator
 
         # @return [ Array<Integer> ]
         def valid_response_codes

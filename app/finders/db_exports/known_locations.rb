@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module DbExports
       # DB Exports finder
-      class KnownLocations < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+      class KnownLocations < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Enumerator
 
         def valid_response_codes
           @valid_response_codes ||= [200, 206].freeze

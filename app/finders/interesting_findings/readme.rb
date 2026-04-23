@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Readme.html finder
-      class Readme < CMSScanner::Finders::Finder
+      class Readme < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           potential_files.each do |path|

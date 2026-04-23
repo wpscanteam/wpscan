@@ -4,7 +4,7 @@ module WPScan
   module Controller
     # Controller to ensure that the wp-content and wp-plugins
     # directories are found
-    class CustomDirectories < CMSScanner::Controller::Base
+    class CustomDirectories < WPScan::Controller::Base
       def cli_options
         [
           OptString.new(['--wp-content-dir DIR',

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Full Path Disclosure finder
-      class FullPathDisclosure < CMSScanner::Finders::Finder
+      class FullPathDisclosure < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path        = 'wp-includes/rss-functions.php'

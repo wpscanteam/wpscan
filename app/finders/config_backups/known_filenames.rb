@@ -4,8 +4,8 @@ module WPScan
   module Finders
     module ConfigBackups
       # Config Backup finder
-      class KnownFilenames < CMSScanner::Finders::Finder
-        include CMSScanner::Finders::Finder::Enumerator
+      class KnownFilenames < WPScan::Finders::Finder
+        include WPScan::Finders::Finder::Enumerator
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list

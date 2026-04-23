@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # UploadDirectoryListing finder
-      class UploadDirectoryListing < CMSScanner::Finders::Finder
+      class UploadDirectoryListing < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'wp-content/uploads/'

@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # wp-cron.php finder
-      class WPCron < CMSScanner::Finders::Finder
+      class WPCron < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           res = Browser.get(wp_cron_url)

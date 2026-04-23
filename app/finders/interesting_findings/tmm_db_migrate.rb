@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Tmm DB Migrate finder
-      class TmmDbMigrate < CMSScanner::Finders::Finder
+      class TmmDbMigrate < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'wp-content/uploads/tmm_db_migrate/tmm_db_migrate.zip'

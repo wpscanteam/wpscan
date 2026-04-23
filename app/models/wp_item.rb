@@ -6,8 +6,8 @@ module WPScan
     class WpItem
       include Vulnerable
       include Finders::Finding
-      include CMSScanner::Target::Platform::PHP
-      include CMSScanner::Target::Server::Generic
+      include WPScan::Target::Platform::PHP
+      include WPScan::Target::Server::Generic
 
       # Most common readme filenames, based on checking all public plugins and themes.
       READMES = %w[readme.txt README.txt README.md readme.md Readme.txt].freeze
@@ -148,7 +148,7 @@ module WPScan
         super
       end
 
-      # See CMSScanner::Target#head_and_get
+      # See WPScan::Target#head_and_get
       #
       # This is used by the error_log? above in the super()
       # to have the correct path (ie readme.txt checked from the plugin/theme location

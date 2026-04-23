@@ -11,7 +11,7 @@ module WPScan
 
           return unless /by interconnect/i.match?(target.head_and_get(path).body)
 
-          NS::Model::SearchReplaceDB2.new(target.url(path), confidence: 100, found_by: found_by)
+          WPScan::Model::SearchReplaceDB2.new(target.url(path), confidence: 100, found_by: found_by)
         end
       end
     end

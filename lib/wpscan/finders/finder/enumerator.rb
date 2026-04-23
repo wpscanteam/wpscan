@@ -57,7 +57,7 @@ module WPScan
           return head_res unless opts[:check_full_response] == true ||
                                  Array(opts[:check_full_response]).include?(head_res.code)
 
-          full_res = NS::Browser.get(head_res.effective_url, full_request_params)
+          full_res = WPScan::Browser.get(head_res.effective_url, full_request_params)
 
           return unless valid_response_codes.include?(full_res.code)
 

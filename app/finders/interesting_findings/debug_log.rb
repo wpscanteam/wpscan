@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # debug.log finder
-      class DebugLog < CMSScanner::Finders::Finder
+      class DebugLog < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'wp-content/debug.log'

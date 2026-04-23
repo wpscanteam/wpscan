@@ -24,9 +24,9 @@ module WPScan
       # @return [ Array<String> ] The list of the available formatters (except the Base one)
       # @note: the #load method above should then be used to create the associated formatter
       def availables
-        formatters = NS::Formatter.constants.select do |const|
-          name = NS::Formatter.const_get(const)
-          name.is_a?(Class) && name != NS::Formatter::Base
+        formatters = WPScan::Formatter.constants.select do |const|
+          name = WPScan::Formatter.const_get(const)
+          name.is_a?(Class) && name != WPScan::Formatter::Base
         end
 
         formatters.map { |sym| sym.to_s.underscore.dasherize }
@@ -52,8 +52,8 @@ module WPScan
       attr_reader :controller_name
 
       def initialize
-        # Can't put this at the top level of the class, due to the NS::
-        extend NS::Formatter::InstanceMethods
+        # Can't put this at the top level of the class, due to the WPScan::
+        extend WPScan::Formatter::InstanceMethods
       end
 
       # @return [ String ] The underscored name of the class
@@ -140,8 +140,8 @@ module WPScan
       # @return [ Array<String> ] The directories to look into for views
       def views_directories
         @views_directories ||= [
-          APP_DIR, NS::APP_DIR,
-          File.join(Dir.home, ".#{NS.app_name}"), File.join(Dir.pwd, ".#{NS.app_name}")
+          APP_DIR, WPScan::APP_DIR,
+          File.join(Dir.home, ".#{WPScan.app_name}"), File.join(Dir.pwd, ".#{WPScan.app_name}")
         ].uniq.reduce([]) { |acc, elem| acc << Pathname.new(elem).join('views').to_s }
       end
     end

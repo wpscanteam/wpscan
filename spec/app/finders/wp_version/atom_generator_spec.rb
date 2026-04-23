@@ -2,7 +2,7 @@
 
 describe WPScan::Finders::WpVersion::AtomGenerator do
   subject(:finder)   { described_class.new(target) }
-  let(:target)       { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
+  let(:target)       { WPScan::Target.new(url).extend(WPScan::Target::Server::Apache) }
   let(:url)          { 'http://ex.lo/' }
   let(:fixtures)     { FINDERS_FIXTURES.join('wp_version', 'atom_generator') }
   let(:atom_fixture) { File.read(fixtures.join('feed', 'atom')) }

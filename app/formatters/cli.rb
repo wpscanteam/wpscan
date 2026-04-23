@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CMSScanner
+module WPScan
   module Formatter
     # CLI Formatter
     class Cli < Base

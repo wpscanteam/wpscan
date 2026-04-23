@@ -219,7 +219,7 @@ describe WPScan::Controller::Core do
           let(:redirection) { 'http://g.com/' }
 
           it 'raises an error' do
-            expect { core.before_scan }.to raise_error(CMSScanner::Error::HTTPRedirect)
+            expect { core.before_scan }.to raise_error(WPScan::Error::HTTPRedirect)
           end
         end
 

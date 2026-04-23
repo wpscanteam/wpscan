@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-module CMSScanner
+module WPScan
   module Controller
     # CLI Options for the Core Controller
     class Core < Base
-      def cli_options
-        formats = NS::Formatter.availables
+      def base_cli_options
+        formats = WPScan::Formatter.availables
 
         [
           OptURL.new(['-u', '--url URL', 'The URL to scan'],

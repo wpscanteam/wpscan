@@ -2,7 +2,6 @@
 
 module WPScan
   module Model
-    include CMSScanner::Model
   end
 end
 

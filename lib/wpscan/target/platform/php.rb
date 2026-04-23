@@ -52,7 +52,7 @@ module WPScan
         #
         # @return [ Array<String> ] The FPD found, or an empty array if none
         def full_path_disclosure_entries(path = nil, params = {})
-          res = NS::Browser.get(url(path), params)
+          res = WPScan::Browser.get(url(path), params)
 
           res.body.scan(FPD_PATTERN).flatten
         end

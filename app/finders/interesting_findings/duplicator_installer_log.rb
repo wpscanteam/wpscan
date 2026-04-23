@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # DuplicatorInstallerLog finder
-      class DuplicatorInstallerLog < CMSScanner::Finders::Finder
+      class DuplicatorInstallerLog < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def aggressive(_opts = {})
           path = 'installer-log.txt'

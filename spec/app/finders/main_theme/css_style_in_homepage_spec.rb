@@ -2,7 +2,7 @@
 
 describe WPScan::Finders::MainTheme::CssStyleInHomepage do
   subject(:finder) { described_class.new(target) }
-  let(:target)     { WPScan::Target.new(url).extend(CMSScanner::Target::Server::Apache) }
+  let(:target)     { WPScan::Target.new(url).extend(WPScan::Target::Server::Apache) }
   let(:url)        { 'http://wp.lab/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('main_theme', 'css_style_in_homepage') }
 

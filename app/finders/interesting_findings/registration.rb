@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # Registration Enabled checker
-      class Registration < CMSScanner::Finders::Finder
+      class Registration < WPScan::Finders::Finder
         # @return [ InterestingFinding ]
         def passive(_opts = {})
           # Maybe check in the homepage if there is the registration url ?

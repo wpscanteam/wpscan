@@ -6,7 +6,7 @@ module WPScan
     class Headers < InterestingFinding
       # @return [ Hash ] The headers
       def entries
-        res = NS::Browser.get(url)
+        res = WPScan::Browser.get(url)
         return [] unless res&.headers
 
         res.headers

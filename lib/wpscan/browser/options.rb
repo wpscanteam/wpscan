@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module CMSScanner
+module WPScan
   # Options available in the Browser
   class Browser
     OPTIONS = %i[
@@ -27,7 +27,7 @@ module CMSScanner
 
     # @return [ String ]
     def default_user_agent
-      "#{NS} v#{NS::VERSION}"
+      "#{NS} v#{WPScan::VERSION}"
     end
 
     # @return [ Typhoeus::Hydra ]

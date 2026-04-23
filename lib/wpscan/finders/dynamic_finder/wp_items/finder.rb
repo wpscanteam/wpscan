@@ -11,7 +11,7 @@ module WPScan
         # Also used to factorise some code used between such finders.
         # The #process_response should be implemented in each child class, or the
         # #passive and #aggressive overriden
-        class Finder < CMSScanner::Finders::Finder
+        class Finder < WPScan::Finders::Finder
           # @return [ Hash ] The related dynamic finder passive configurations
           #                  for the current class (all its usefullness comes from child classes)
           def passive_configs

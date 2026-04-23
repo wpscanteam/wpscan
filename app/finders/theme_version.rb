@@ -8,7 +8,7 @@ module WPScan
     module ThemeVersion
       # Theme Version Finder
       class Base
-        include CMSScanner::Finders::UniqueFinder
+        include WPScan::Finders::UniqueFinder
 
         # @param [ Model::Theme ] theme
         def initialize(theme)

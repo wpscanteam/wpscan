@@ -4,7 +4,7 @@ module WPScan
   module Finders
     module InterestingFindings
       # UploadSQLDump finder
-      class UploadSQLDump < CMSScanner::Finders::Finder
+      class UploadSQLDump < WPScan::Finders::Finder
         SQL_PATTERN = /(?:DROP|CREATE|(?:UN)?LOCK) TABLE|INSERT INTO/
 
         # @return [ InterestingFinding ]

@@ -5,7 +5,7 @@ module WPScan
     module Passwords
       # Password attack against the XMLRPC interface with the multicall method
       # WP < 4.4 is vulnerable to such attack
-      class XMLRPCMulticall < CMSScanner::Finders::Finder
+      class XMLRPCMulticall < WPScan::Finders::Finder
         # @param [ Array<User> ] users
         # @param [ Array<String> ] passwords
         #

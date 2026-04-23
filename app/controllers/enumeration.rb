@@ -6,7 +6,7 @@ require_relative 'enumeration/enum_methods'
 module WPScan
   module Controller
     # Enumeration Controller
-    class Enumeration < CMSScanner::Controller::Base
+    class Enumeration < WPScan::Controller::Base
       def run
         enum = ParsedCli.enumerate || {}
 

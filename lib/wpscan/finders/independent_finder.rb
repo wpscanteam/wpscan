@@ -23,7 +23,7 @@ module WPScan
 
       # @return [ Array ]
       def finders
-        @finders ||= NS::Finders::IndependentFinders.new
+        @finders ||= WPScan::Finders::IndependentFinders.new
       end
     end
   end
