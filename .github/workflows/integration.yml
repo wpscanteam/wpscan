@@ -84,14 +84,25 @@ jobs:
       env:
         WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_API_TOKEN }}
       run: |
-        bundle exec ruby -Ilib bin/wpscan \
+        # Build WPScan command with optional API token
+        WPSCAN_CMD="bundle exec ruby -Ilib bin/wpscan \
           --url https://wordpress-test.ddev.site \
           --disable-tls-checks \
           --format json \
           --output scan-results.json \
           --enumerate vp,vt \
-          --plugins-detection aggressive \
-          --api-token "${WPSCAN_API_TOKEN}" || true
+          --plugins-detection aggressive"
+
+        # Only add API token if it's set
+        if [ -n "${WPSCAN_API_TOKEN}" ]; then
+          echo "Using WPScan API token for vulnerability data"
+          WPSCAN_CMD="${WPSCAN_CMD} --api-token ${WPSCAN_API_TOKEN}"
+        else
+          echo "Warning: WPSCAN_API_TOKEN not set. Vulnerability data will be limited to local database only."
+        fi
+
+        # Run the scan
+        eval $WPSCAN_CMD
 
         # Show results for debugging
         echo "=== Scan Results ==="
