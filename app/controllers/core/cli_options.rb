@@ -80,7 +80,10 @@ module WPScan
       def cli_browser_proxy_options
         [
           OptProxy.new(['--proxy protocol://IP:port',
-                        'Supported protocols depend on the cURL installed']),
+                        'Supported protocols depend on the cURL installed. ' \
+                        'Note: with socks5://, hostnames are resolved locally before being ' \
+                        'sent to the proxy; use socks5h:// to have the proxy resolve them ' \
+                        '(required for .onion addresses when proxying through Tor).']),
           OptCredentials.new(['--proxy-auth login:password'])
         ]
       end
