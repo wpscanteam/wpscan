@@ -13,7 +13,7 @@ RSpec.configure do |config|
   end
 
   # For --only-failures / --next-failure
-  config.example_status_persistence_file_path = '/tmp/rspec_examples.txt'
+  config.example_status_persistence_file_path = File.join(ENV['TMPDIR'] || '/tmp', 'rspec_examples.txt')
 end
 
 def redefine_constant(constant, value)
