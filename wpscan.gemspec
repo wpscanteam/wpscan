@@ -28,7 +28,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'public_suffix',        '>= 4.0.3', '< 7.1'
   s.add_dependency 'ruby-progressbar',     '>= 1.10', '< 1.14'
   s.add_dependency 'sys-proctable',        '>= 1.2.2', '< 1.4.0'
-  s.add_dependency 'typhoeus',             '>= 1.3', '< 1.5'
+  s.add_dependency 'typhoeus',             '>= 1.3', '< 1.7'
   s.add_dependency 'xmlrpc',               '~> 0.3'
   s.add_dependency 'yajl-ruby',            '~> 1.4.1'
   s.add_dependency 'ostruct',              '~> 0.6'
