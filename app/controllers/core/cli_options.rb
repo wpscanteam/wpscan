@@ -37,7 +37,12 @@ module WPScan
           OptBoolean.new(['--[no-]banner', 'Whether or not to display the banner'], default: true),
           OptPositiveInteger.new(['--max-scan-duration SECONDS',
                                   'Abort the scan if it exceeds the time provided in seconds'],
-                                 advanced: true)
+                                 advanced: true),
+          OptPositiveInteger.new(['--max-log-file-size MiB',
+                                  'Skip inspection of PHP log files (debug.log, error_log, ...) ' \
+                                  'when their advertised or transferred size exceeds this value, in MiB. ' \
+                                  'Guards against memory exhaustion on sites serving huge log files.'],
+                                 default: 20, advanced: true)
         ]
       end
 
