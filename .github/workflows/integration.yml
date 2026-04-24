@@ -13,6 +13,10 @@ jobs:
   integration-test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        ruby: [3.3, 3.4, 4.0]
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v6
@@ -49,10 +53,10 @@ jobs:
     - name: Verify WordPress site is accessible
       run: curl -k -f https://wordpress-test.ddev.site
 
-    - name: Set up Ruby
+    - name: Set up Ruby ${{ matrix.ruby }}
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '4.0'
+        ruby-version: ${{ matrix.ruby }}
 
     - name: Install GEMs and build WPScan
       run: |
@@ -102,5 +106,5 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v7
       with:
-        name: integration-test-results
+        name: integration-test-results-ruby-${{ matrix.ruby }}
         path: scan-results.json
