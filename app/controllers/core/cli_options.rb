@@ -51,7 +51,8 @@ module WPScan
                           exists: true,
                           advanced: true,
                           default: APP_DIR.join('user_agents.txt')),
-          OptCredentials.new(['--http-auth login:password']),
+          OptCredentials.new(['--http-auth login:password',
+                              'Basic HTTP authentication, beware that the $ character must be properly escaped.']),
           OptPositiveInteger.new(['-t', '--max-threads VALUE', 'The max threads to use'],
                                  default: 5),
           OptPositiveInteger.new(['--throttle MilliSeconds', 'Milliseconds to wait before doing another web request. ' \
