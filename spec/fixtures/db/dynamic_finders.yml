@@ -100057,6 +100057,12 @@ plugins:
   searchpro:
     Readme:
       path: readme.txt
+  searchwp:
+    TranslationFile:
+      class: BodyPattern
+      path: languages/searchwp.pot
+      pattern: !ruby/regexp '/"Project\-Id\-Version: SearchWP (?<v>\d+\.[\.\d]+)/i'
+      version: true
   searchwp-live-ajax-search:
     QueryParameter:
       files:
