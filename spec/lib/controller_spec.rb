@@ -15,9 +15,22 @@ describe WPScan::Controller do
   its(:option_parser)         { should be nil }
   its(:formatter)             { should be_a WPScan::Formatter::Cli }
   its(:user_interaction?)     { should be true }
-  its(:tmp_directory)         { should eql '/tmp/wpscan' }
   its(:target)                { should be_a WPScan::Target }
   its('target.scope.domains') { should eq [PublicSuffix.parse('example.com')] }
+
+  describe '#tmp_directory' do
+    context 'when TMPDIR is not set' do
+      before { stub_const('ENV', ENV.to_hash.tap { |e| e.delete('TMPDIR') }) }
+
+      its(:tmp_directory) { should eql '/tmp/wpscan' }
+    end
+
+    context 'when TMPDIR is set' do
+      before { stub_const('ENV', ENV.to_hash.merge('TMPDIR' => '/home/user/tmp')) }
+
+      its(:tmp_directory) { should eql '/home/user/tmp/wpscan' }
+    end
+  end
 
   context 'when output option' do
     let(:parsed_options) { super().merge(output: '/tmp/spec.txt') }
