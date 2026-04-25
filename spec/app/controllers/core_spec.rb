@@ -221,6 +221,51 @@ describe WPScan::Controller::Core do
           it 'raises an error' do
             expect { core.before_scan }.to raise_error(WPScan::Error::HTTPRedirect)
           end
+
+          context 'when --follow-redirect' do
+            let(:cli_args) { "#{super()} --follow-redirect" }
+
+            it 'updates the target URL and does not raise an error' do
+              expect(core).to receive(:load_server_module)
+              expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
+
+              expect { core.before_scan }.to_not raise_error
+              expect(core.target.url).to eq(redirection)
+            end
+          end
+        end
+
+        context 'to a different domain with different path' do
+          let(:redirection) { 'http://g.com/blog/' }
+
+          it 'raises an error without --follow-redirect' do
+            expect { core.before_scan }.to raise_error(WPScan::Error::HTTPRedirect)
+          end
+
+          context 'when --follow-redirect' do
+            let(:cli_args) { "#{super()} --follow-redirect" }
+
+            it 'updates the target URL and adds domain to scope' do
+              expect(core).to receive(:load_server_module)
+              expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
+
+              expect { core.before_scan }.to_not raise_error
+              expect(core.target.url).to eq(redirection)
+              expect(core.target.in_scope?('http://g.com/other')).to be true
+            end
+          end
+
+          context 'when both --follow-redirect and --ignore-main-redirect' do
+            let(:cli_args) { "#{super()} --follow-redirect --ignore-main-redirect" }
+
+            it 'follows the redirect (--follow-redirect takes precedence)' do
+              expect(core).to receive(:load_server_module)
+              expect(core.target).to receive(:wordpress?).with(:mixed).and_return(true)
+
+              expect { core.before_scan }.to_not raise_error
+              expect(core.target.url).to eq(redirection)
+            end
+          end
         end
 
         context 'to another path with the wp-admin/install.php in the query' do

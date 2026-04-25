@@ -33,6 +33,8 @@ module WPScan
           OptBoolean.new(['--version', 'Display the version and exit']),
           OptBoolean.new(['--ignore-main-redirect', 'Ignore the main redirect (if any) and scan the target url'],
                          advanced: true),
+          OptBoolean.new(['--follow-redirect', 'Automatically update the URL to the destination of the redirect'],
+                         advanced: true),
           OptBoolean.new(['-v', '--verbose', 'Verbose mode']),
           OptBoolean.new(['--[no-]banner', 'Whether or not to display the banner'], default: true),
           OptPositiveInteger.new(['--max-scan-duration SECONDS',

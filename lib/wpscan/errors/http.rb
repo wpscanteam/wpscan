@@ -96,7 +96,8 @@ module WPScan
       end
 
       def to_s
-        "The URL supplied redirects to #{redirect_uri}. Use the --ignore-main-redirect " \
+        "The URL supplied redirects to #{redirect_uri}. Use the --follow-redirect " \
+          'option to automatically scan the redirected URL, the --ignore-main-redirect ' \
           'option to ignore the redirection and scan the target, or change the --url option ' \
           'value to the redirected URL.'
       end
