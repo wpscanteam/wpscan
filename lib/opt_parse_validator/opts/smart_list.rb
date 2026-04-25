@@ -23,7 +23,7 @@ module OptParseValidator
     def validate(value)
       # Might be a better way to do this especially with a big file
       File.open(value) { |f| f.map(&:chomp) }
-    rescue Errno::ENOENT
+    rescue Errno::ENOENT, Errno::ENAMETOOLONG
       super
     end
   end
