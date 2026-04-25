@@ -64,5 +64,28 @@ describe OptParseValidator::OptSmartList do
         end
       end
     end
+
+    context 'when a very long comma-separated list' do
+      let(:long_list) do
+        'wordpress-seo,jetpack,contact-form-7,woocommerce,elementor,wordfence,wp-super-cache,' \
+          'wp-mail-smtp,duplicate-post,classic-editor,akismet,google-analytics-for-wordpress,' \
+          'all-in-one-seo-pack,really-simple-ssl,wpforms-lite,updraftplus,wp-optimize,smush,' \
+          'redirection,w3-total-cache,loginizer,limit-login-attempts-reloaded'
+      end
+
+      it 'should not raise Errno::ENAMETOOLONG' do
+        expect { opt.validate(long_list) }.not_to raise_error
+      end
+
+      it 'returns the expected array' do
+        expected = %w[
+          wordpress-seo jetpack contact-form-7 woocommerce elementor wordfence wp-super-cache
+          wp-mail-smtp duplicate-post classic-editor akismet google-analytics-for-wordpress
+          all-in-one-seo-pack really-simple-ssl wpforms-lite updraftplus wp-optimize smush
+          redirection w3-total-cache loginizer limit-login-attempts-reloaded
+        ]
+        expect(opt.validate(long_list)).to eql expected
+      end
+    end
   end
 end
