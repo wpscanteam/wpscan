@@ -81,12 +81,8 @@ module WPScan
         effective_url = target.homepage_res.effective_url # get and follow location of target.url
         effective_uri = Addressable::URI.parse(effective_url)
 
-        # http://a.com => https://a.com (or the opposite)
-        if !WPScan::ParsedCli.ignore_main_redirect && target.uri.domain == effective_uri.domain &&
-           target.uri.path == effective_uri.path && target.uri.scheme != effective_uri.scheme
-
-          target.url = effective_url
-        end
+        handle_scheme_redirect(effective_url, effective_uri)
+        handle_follow_redirect(effective_url, effective_uri)
 
         return if target.in_scope?(effective_url)
 
@@ -94,6 +90,30 @@ module WPScan
 
         # Sets homepage_res back to unfollowed response when ignore_main_redirect is used
         target.homepage_res = res
+      end
+
+      # Handles scheme-only redirects (http => https or vice versa)
+      #
+      # @param [ String ] effective_url
+      # @param [ Addressable::URI ] effective_uri
+      def handle_scheme_redirect(effective_url, effective_uri)
+        # http://a.com => https://a.com (or the opposite)
+        if !WPScan::ParsedCli.ignore_main_redirect && target.uri.domain == effective_uri.domain &&
+           target.uri.path == effective_uri.path && target.uri.scheme != effective_uri.scheme
+
+          target.url = effective_url
+        end
+      end
+
+      # Handles --follow-redirect option
+      #
+      # @param [ String ] effective_url
+      # @param [ Addressable::URI ] effective_uri
+      def handle_follow_redirect(effective_url, effective_uri)
+        return unless WPScan::ParsedCli.follow_redirect && target.url != effective_url
+
+        target.url = effective_url
+        target.scope << effective_uri.host
       end
 
       # @return [ DB::Updater ]

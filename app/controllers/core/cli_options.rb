@@ -31,7 +31,11 @@ module WPScan
           OptBoolean.new(['-h', '--help', 'Display the simple help and exit']),
           OptBoolean.new(['--hh', 'Display the full help and exit']),
           OptBoolean.new(['--version', 'Display the version and exit']),
-          OptBoolean.new(['--ignore-main-redirect', 'Ignore the main redirect (if any) and scan the target url'],
+          OptBoolean.new(['--ignore-main-redirect',
+                          'Ignore the main redirect (if any) and scan the target url. ' \
+                          'Has no effect if --follow-redirect is set.'],
+                         advanced: true),
+          OptBoolean.new(['--follow-redirect', 'Automatically update the URL to the destination of the redirect'],
                          advanced: true),
           OptBoolean.new(['-v', '--verbose', 'Verbose mode']),
           OptBoolean.new(['--[no-]banner', 'Whether or not to display the banner'], default: true),
