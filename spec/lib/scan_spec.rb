@@ -57,6 +57,22 @@ describe WPScan::Scan do
       end
     end
 
+    context 'when an error is raised while updating the database' do
+      it 'aborts with the @update_aborted view' do
+        expect(scanner.controllers.option_parser).to receive(:results).and_return({ url: target_url })
+
+        expect(scanner.controllers.first).to receive(:before_scan) do
+          scanner.controllers.first.instance_variable_set(:@updating_db, true)
+          raise 'connection failed'
+        end
+
+        expect(scanner.formatter).to receive(:output).with(
+          '@update_aborted',
+          { reason: 'connection failed', trace: anything, verbose: true, url: target_url }
+        )
+      end
+    end
+
     context 'when an Interrupt is raised during the scan' do
       it 'aborts the scan with the correct output' do
         expect(scanner.controllers.option_parser).to receive(:results).and_return({ url: target_url })

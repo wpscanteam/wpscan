@@ -143,10 +143,17 @@ module WPScan
       end
 
       def update_db
+        @updating_db = true
         output('db_update_started')
         output('db_update_finished', updated: local_db.update, verbose: ParsedCli.verbose)
+        @updating_db = false
 
         exit(0) unless ParsedCli.url
+      end
+
+      # @return [ Boolean ] Whether the DB update is currently in progress
+      def updating_db?
+        @updating_db
       end
 
       # Raises errors if the target is hosted on wordpress.com or is not running WordPress.
