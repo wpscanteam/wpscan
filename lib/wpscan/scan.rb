@@ -37,7 +37,7 @@ module WPScan
 
       output_params[:url] = controllers.first.target.url if WPScan::ParsedCli.url
 
-      formatter.output('@scan_aborted', output_params)
+      formatter.output(aborted_view, output_params)
     ensure
       formatter.beautify
     end
@@ -46,6 +46,12 @@ module WPScan
     # @See Formatter
     def formatter
       controllers.first.formatter
+    end
+
+    # @return [ String ] The global view to render when the run is aborted
+    def aborted_view
+      core = controllers.first
+      core.respond_to?(:updating_db?) && core.updating_db? ? '@update_aborted' : '@scan_aborted'
     end
 
     # @return [ Hash ]
