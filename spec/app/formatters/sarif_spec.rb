@@ -52,11 +52,17 @@ describe WPScan::Formatter::Sarif do
       rules = doc['runs'].first['tool']['driver']['rules']
       expect(rules.map { |r| r['id'] }).to include 'CVE-2024-12345'
 
+      rule = rules.find { |r| r['id'] == 'CVE-2024-12345' }
+      expect(rule['messageStrings']['default']['text']).to include 'Foo plugin XSS'
+      expect(rule['messageStrings']['default']['text']).to include '{0}'
+      expect(rule['messageStrings']['default']['text']).to include '{1}'
+
       result = doc['runs'].first['results'].first
       expect(result['ruleId']).to eq 'CVE-2024-12345'
       expect(result['level']).to eq 'error'
-      expect(result['message']['text']).to include 'Foo plugin XSS'
-      expect(result['message']['text']).to include 'fixed in 1.2.4'
+      expect(result['message']['text']).to be_nil
+      expect(result['message']['id']).to eq 'default'
+      expect(result['message']['arguments']).to eq ["Plugin 'foo' 1.2.3", 'fixed in 1.2.4']
 
       loc = result['locations'].first
       expect(loc['physicalLocation']['artifactLocation']['uri']).to eq 'https://target.example/wp-content/plugins/foo/'
@@ -71,6 +77,9 @@ describe WPScan::Formatter::Sarif do
             'url' => 'https://target.example/robots.txt',
             'to_s' => 'robots.txt found: ...',
             'type' => 'robots_txt',
+            'found_by' => 'Direct Access (Aggressive Detection)',
+            'confidence' => 100,
+            'interesting_entries' => ['Disallow: /wp-admin/'],
             'references' => {}
           }
         ]
@@ -82,6 +91,13 @@ describe WPScan::Formatter::Sarif do
       result = doc['runs'].first['results'].first
       expect(result['level']).to eq 'note'
       expect(result['ruleId']).to eq 'wpscan.interesting-finding.robots_txt'
+      expect(result['message']['id']).to eq 'default'
+      expect(result['message']['arguments']).to eq [
+        'robots.txt found: ...',
+        'Disallow: /wp-admin/',
+        'Direct Access (Aggressive Detection)',
+        '100'
+      ]
       expect(result['locations'].first['physicalLocation']['artifactLocation']['uri']).to eq 'https://target.example/robots.txt'
     end
 

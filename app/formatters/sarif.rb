@@ -144,13 +144,21 @@ module WPScan
       end
 
       def rule_for(vuln, rule_id)
+        title = vuln['title'].to_s
         {
           'id' => rule_id,
           'name' => rule_id.gsub(/[^A-Za-z0-9_]/, '_'),
-          'shortDescription' => { 'text' => vuln['title'].to_s },
-          'fullDescription' => { 'text' => vuln['title'].to_s },
+          'shortDescription' => { 'text' => title },
+          'fullDescription' => { 'text' => title },
           'helpUri' => help_uri_for(vuln),
           'defaultConfiguration' => { 'level' => level_for(vuln) },
+          'messageStrings' => {
+            # {0} = component label (e.g. "Plugin 'foo' 1.2.3"), {1} = fix status.
+            # Title is baked in here so the rule owns its phrasing and the result
+            # message stays small (SARIF2002). Dynamic args are single-quoted per
+            # SARIF2015 and the message terminates with a period per SARIF2001.
+            'default' => { 'text' => "'{0}': #{title} ('{1}')." }
+          },
           'properties' => rule_properties(vuln)
         }.compact
       end
@@ -159,7 +167,10 @@ module WPScan
         {
           'ruleId' => rule_id,
           'level' => level_for(vuln),
-          'message' => { 'text' => vuln_message(vuln, component) },
+          'message' => {
+            'id' => 'default',
+            'arguments' => [component_label(component), fix_status(vuln)]
+          },
           'locations' => [location_for(component[:url], logical_location(component))]
         }
       end
@@ -173,16 +184,32 @@ module WPScan
           # etc.) are emitted at `note` level so they don't drown out real vulnerabilities
           # in Code Scanning's UI — see GitHub's SARIF support guidance.
           'defaultConfiguration' => { 'level' => 'note' },
+          'messageStrings' => {
+            # {0} = finding header (to_s), {1} = interesting entries joined,
+            # {2} = found-by strategy, {3} = confidence percentage.
+            'default' => {
+              'text' => "'{0}' — entries: '{1}'; found by: '{2}'; confidence: '{3}'."
+            }
+          },
           'helpUri' => INFO_URI
         }
       end
 
       def interesting_finding_result(finding, rule_id)
         location = location_for(finding['url'], nil)
+        entries = Array(finding['interesting_entries']).join(' | ')
         {
           'ruleId' => rule_id,
           'level' => 'note',
-          'message' => { 'text' => finding['to_s'].to_s },
+          'message' => {
+            'id' => 'default',
+            'arguments' => [
+              finding['to_s'].to_s,
+              entries,
+              finding['found_by'].to_s,
+              finding['confidence'].to_s
+            ]
+          },
           'locations' => location ? [location] : []
         }
       end
@@ -229,14 +256,16 @@ module WPScan
         'error'
       end
 
-      def vuln_message(vuln, component)
-        prefix = case component[:kind]
-                 when 'core'   then "WordPress core #{component[:version]}"
-                 when 'theme'  then "Theme '#{component[:slug]}' #{component[:version]}"
-                 when 'plugin' then "Plugin '#{component[:slug]}' #{component[:version]}"
-                 end
-        suffix = vuln['fixed_in'] ? " (fixed in #{vuln['fixed_in']})" : ' (no fix available)'
-        "#{prefix}: #{vuln['title']}#{suffix}"
+      def component_label(component)
+        case component[:kind]
+        when 'core'   then "WordPress core #{component[:version]}"
+        when 'theme'  then "Theme '#{component[:slug]}' #{component[:version]}"
+        when 'plugin' then "Plugin '#{component[:slug]}' #{component[:version]}"
+        end
+      end
+
+      def fix_status(vuln)
+        vuln['fixed_in'] ? "fixed in #{vuln['fixed_in']}" : 'no fix available'
       end
 
       def help_uri_for(vuln)
