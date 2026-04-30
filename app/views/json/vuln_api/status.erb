@@ -2,6 +2,8 @@
 <% unless @status.empty? -%>
 <% if @status['http_error'] -%>
 "http_error": <%= @status['http_error'].to_s.to_json %>
+<% elsif @status['parse_error'] -%>
+"parse_error": "WPScan DB API returned an invalid response. Please check your network/proxy configuration or try again later."
 <% else -%>
 "plan": <%= @status['plan'].to_json %>,
 "requests_done_during_scan": <%= @api_requests.to_json %>,

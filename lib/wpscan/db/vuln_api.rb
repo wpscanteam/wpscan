@@ -41,6 +41,9 @@ module WPScan
         end
 
         { 'http_error' => e }
+      rescue JSON::ParserError => e
+        # API returned non-JSON response (HTML, plain text, etc.)
+        { 'parse_error' => e }
       end
 
       # @return [ Hash ]
