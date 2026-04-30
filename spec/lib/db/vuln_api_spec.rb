@@ -101,6 +101,28 @@ describe WPScan::DB::VulnApi do
             expect(api.get(path)).to eql({})
           end
         end
+
+        context 'when 200 with HTML body (browser check, proxy, etc.)' do
+          let(:code) { 200 }
+          let(:body) { '<!DOCTYPE html><html><body>Browser check</body></html>' }
+
+          it 'returns a hash with parse_error' do
+            result = api.get(path)
+            expect(result).to have_key('parse_error')
+            expect(result['parse_error']).to be_a(JSON::ParserError)
+          end
+        end
+
+        context 'when 403 with HTML body' do
+          let(:code) { 403 }
+          let(:body) { '<html><body>Forbidden</body></html>' }
+
+          it 'returns a hash with parse_error' do
+            result = api.get(path)
+            expect(result).to have_key('parse_error')
+            expect(result['parse_error']).to be_a(JSON::ParserError)
+          end
+        end
       end
 
       context 'when timeouts' do

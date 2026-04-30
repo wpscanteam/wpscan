@@ -1,6 +1,8 @@
 <% unless @status.empty? -%>
 <% if @status['http_error'] -%>
 <%= critical_icon %> WPScan DB API, <%= @status['http_error'].to_s %>
+<% elsif @status['parse_error'] -%>
+<%= critical_icon %> WPScan DB API returned an invalid response. Please check your network/proxy configuration or try again later.
 <% else -%>
 <%= info_icon %> WPScan DB API OK
  | Plan: <%= @status['plan'] %>
