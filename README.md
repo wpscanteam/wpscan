@@ -63,16 +63,28 @@ Pull the repo with ```docker pull wpscanteam/wpscan```
 Enumerating usernames
 
 ```shell
-docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u
+docker run -it --rm -v wpscan-db:/wpscan/.cache/wpscan/db wpscanteam/wpscan --url https://target.tld/ --enumerate u
 ```
 
 Enumerating a range of usernames
 
 ```shell
-docker run -it --rm wpscanteam/wpscan --url https://target.tld/ --enumerate u1-100
+docker run -it --rm -v wpscan-db:/wpscan/.cache/wpscan/db wpscanteam/wpscan --url https://target.tld/ --enumerate u1-100
 ```
 
 ** replace u1-100 with a range of your choice.
+
+## Persisting the local database
+
+The image ships with a copy of the local database baked in at build time. Because the example commands above use `--rm`, any database update performed during a run is discarded when the container exits, so the next run starts again from the (potentially stale) baked-in copy.
+
+Mounting a named volume at `/wpscan/.cache/wpscan/db` (the `wpscan` user's cache directory inside the container) keeps the database across runs, so `wpscan --update` only re-downloads files whose checksums actually changed and the 5-day staleness prompt behaves as it would for a local install:
+
+```shell
+docker run -it --rm -v wpscan-db:/wpscan/.cache/wpscan/db wpscanteam/wpscan --update
+```
+
+The named volume is created automatically on first use if it doesn't already exist.
 
 # Usage
 
