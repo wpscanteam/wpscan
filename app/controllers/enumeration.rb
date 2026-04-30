@@ -11,9 +11,9 @@ module WPScan
         enum = ParsedCli.enumerate || {}
 
         # Check if vulnerable plugin/theme enumeration is requested without an API token
-        if (enum[:vulnerable_plugins] || enum[:vulnerable_themes]) && DB::VulnApi.token.nil?
-          raise Error::ApiTokenRequiredForVulnerableEnumeration
-        end
+        return unless (enum[:vulnerable_plugins] || enum[:vulnerable_themes]) && DB::VulnApi.token.nil?
+
+        raise Error::ApiTokenRequiredForVulnerableEnumeration
       end
 
       def run
