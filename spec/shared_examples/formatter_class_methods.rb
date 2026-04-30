@@ -21,7 +21,7 @@ shared_examples WPScan::Formatter::ClassMethods do
 
   describe '#availables' do
     it 'returns the right list' do
-      expect(subject.availables).to match_array(%w[json cli-no-colour cli-no-color cli])
+      expect(subject.availables).to match_array(%w[json sarif cli-no-colour cli-no-color cli])
     end
   end
 end
