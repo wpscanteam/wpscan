@@ -7,6 +7,15 @@ module WPScan
   module Controller
     # Enumeration Controller
     class Enumeration < WPScan::Controller::Base
+      def before_scan
+        enum = ParsedCli.enumerate || {}
+
+        # Check if vulnerable plugin/theme enumeration is requested without an API token
+        if (enum[:vulnerable_plugins] || enum[:vulnerable_themes]) && DB::VulnApi.token.nil?
+          raise Error::ApiTokenRequiredForVulnerableEnumeration
+        end
+      end
+
       def run
         enum = ParsedCli.enumerate || {}
 
