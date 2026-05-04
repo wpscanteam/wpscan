@@ -104,6 +104,11 @@ The database location follows the [XDG Base Directory Specification](https://spe
 - **New installations**: `~/.cache/wpscan/db` (or `$XDG_CACHE_HOME/wpscan/db` if set)
 - **Existing installations**: `~/.wpscan/db` (legacy path, maintained for backward compatibility)
 
+Runtime files such as the default HTTP cache and cookie jar are stored under `$TMPDIR/wpscan` when
+`$TMPDIR` is set. Otherwise they use the same per-user XDG cache directory, for example
+`~/.cache/wpscan/cache` and `~/.cache/wpscan/cookie_jar.txt`. These defaults can be overridden
+with `--cache-dir` and `--cookie-jar`.
+
 To migrate an existing installation to the XDG path:
 
 ```shell
