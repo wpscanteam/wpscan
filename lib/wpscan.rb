@@ -87,6 +87,10 @@ module WPScan
       'wpscan'
     end
 
+    def user_cache_dir
+      Pathname.new(ENV['XDG_CACHE_HOME'] || Pathname.new(Dir.home).join('.cache')).join(app_name)
+    end
+
     def cached_requests
       @@cached_requests ||= 0
     end

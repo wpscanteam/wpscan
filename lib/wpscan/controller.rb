@@ -72,7 +72,9 @@ module WPScan
 
       # @return [ String ]
       def tmp_directory
-        File.join(ENV['TMPDIR'] || '/tmp', WPScan.app_name)
+        return Pathname.new(ENV['TMPDIR']).join(WPScan.app_name).to_s if ENV['TMPDIR']
+
+        WPScan.user_cache_dir.to_s
       end
 
       protected

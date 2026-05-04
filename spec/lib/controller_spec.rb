@@ -19,10 +19,29 @@ describe WPScan::Controller do
   its('target.scope.domains') { should eq [PublicSuffix.parse('example.com')] }
 
   describe '#tmp_directory' do
-    context 'when TMPDIR is not set' do
-      before { stub_const('ENV', ENV.to_hash.tap { |e| e.delete('TMPDIR') }) }
+    context 'when TMPDIR and XDG_CACHE_HOME are not set' do
+      before do
+        env = ENV.to_hash
+        env.delete('TMPDIR')
+        env.delete('XDG_CACHE_HOME')
 
-      its(:tmp_directory) { should eql '/tmp/wpscan' }
+        stub_const('ENV', env)
+        allow(Dir).to receive(:home).and_return('/home/user')
+      end
+
+      its(:tmp_directory) { should eql '/home/user/.cache/wpscan' }
+    end
+
+    context 'when TMPDIR is not set and XDG_CACHE_HOME is set' do
+      before do
+        env = ENV.to_hash
+        env.delete('TMPDIR')
+        env['XDG_CACHE_HOME'] = '/home/user/cache'
+
+        stub_const('ENV', env)
+      end
+
+      its(:tmp_directory) { should eql '/home/user/cache/wpscan' }
     end
 
     context 'when TMPDIR is set' do
