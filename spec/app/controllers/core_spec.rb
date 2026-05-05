@@ -338,4 +338,31 @@ describe WPScan::Controller::Core do
       end
     end
   end
+
+  describe '#run' do
+    before do
+      allow(WPScan).to receive(:command_line).and_return('--url http://ex.wordpress.com/')
+      allow(Socket).to receive(:gethostname).and_return('test-hostname')
+
+      # Mock the target to avoid HTTP requests
+      target = double('Target')
+      allow(target).to receive(:url).and_return(target_url)
+      allow(target).to receive(:ip).and_return('127.0.0.1')
+      allow(target).to receive(:homepage_url).and_return(target_url)
+      allow(core).to receive(:target).and_return(target)
+    end
+
+    it 'passes command_line and hostname to the output' do
+      expect(core.formatter).to receive(:output).with(
+        'started',
+        hash_including(
+          command_line: '--url http://ex.wordpress.com/',
+          hostname: 'test-hostname'
+        ),
+        'core'
+      )
+
+      core.run
+    end
+  end
 end
