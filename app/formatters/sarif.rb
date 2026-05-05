@@ -285,6 +285,8 @@ module WPScan
 
       def invocation(data)
         inv = { 'executionSuccessful' => true }
+        inv['commandLine'] = "wpscan #{data['command_line']}" if data['command_line']
+        inv['hostname'] = data['hostname'] if data['hostname']
         inv['startTimeUtc'] = to_iso8601(data['start_time']) if data['start_time']
         inv['endTimeUtc']   = to_iso8601(data['stop_time'])  if data['stop_time']
         inv
