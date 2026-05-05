@@ -232,7 +232,8 @@ describe WPScan::Model::Theme do
               'First Vuln',
               references: { wpvulndb: '1' },
               type: 'LFI',
-              fixed_in: '6.3.10'
+              fixed_in: '6.3.10',
+              poc: "<?php\n// Theme LFI exploit\ninclude($_GET['page']);\n?>"
             ),
             WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: '2' })
           ]

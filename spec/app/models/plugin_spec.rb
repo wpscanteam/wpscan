@@ -205,7 +205,8 @@ describe WPScan::Model::Plugin do
                 'First Vuln <= 6.3.10 - LFI',
                 references: { wpvulndb: '1' },
                 type: 'LFI',
-                fixed_in: '6.3.10'
+                fixed_in: '6.3.10',
+                poc: "#!/bin/bash\ncurl 'http://example.com/?file=../../../etc/passwd'"
               ),
               WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: '2' })
             ]
