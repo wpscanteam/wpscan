@@ -78,7 +78,8 @@ describe WPScan::Model::WpVersion do
               'WP 3.8.1 - Vuln 1',
               references: { wpvulndb: '1' },
               type: 'SQLI',
-              cvss: { score: '5.4', vector: 'VECTOR' }
+              cvss: { score: '5.4', vector: 'VECTOR' },
+              poc: "# Sample exploit code\nprint('exploit')"
             ),
             WPScan::Vulnerability.new(
               'WP 3.8.1 - Vuln 2',
