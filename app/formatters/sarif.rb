@@ -280,6 +280,7 @@ module WPScan
         props['cvss'] = vuln['cvss'] if vuln['cvss']
         props['references'] = vuln['references'] if vuln['references'] && !vuln['references'].empty?
         props['fixed_in'] = vuln['fixed_in'] if vuln['fixed_in']
+        props['poc'] = vuln['poc'] if vuln['poc']
         props.empty? ? nil : props
       end
 

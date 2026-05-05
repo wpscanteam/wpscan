@@ -23,6 +23,9 @@
     "cvss": <%= v.cvss.to_json %>,
     <% end -%>
     "fixed_in": <%= v.fixed_in.to_json %>,
+    <% if v.poc -%>
+    "poc": <%= v.poc.to_json %>,
+    <% end -%>
     "references": <%= v.references.to_json %>
   }<% unless index == last_index -%>,<% end -%>
   <% end -%>
