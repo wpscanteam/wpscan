@@ -41,9 +41,7 @@ module WPScan
         elsif arg.start_with?('--') && arg.include?('=')
           # Handle --arg=value format
           arg_name = arg.split('=').first
-          if sensitive_args.include?(arg_name)
-            masked_args[index] = "#{arg_name}=[REDACTED]"
-          end
+          masked_args[index] = "#{arg_name}=[REDACTED]" if sensitive_args.include?(arg_name)
         end
       end
 

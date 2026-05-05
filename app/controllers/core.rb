@@ -200,7 +200,7 @@ module WPScan
         @start_memory = WPScan.start_memory
 
         output('started', url: target.url, ip: target.ip, effective_url: target.homepage_url,
-                         command_line: WPScan.command_line, hostname: Socket.gethostname)
+                          command_line: WPScan.command_line, hostname: Socket.gethostname)
       end
 
       def after_scan

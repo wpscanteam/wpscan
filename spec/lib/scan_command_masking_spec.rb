@@ -10,37 +10,37 @@ describe WPScan::Scan do
     context 'when handling sensitive arguments' do
       it 'masks API token values' do
         stub_const('ARGV', ['--url', 'http://example.com', '--api-token', 'SECRET_TOKEN_123'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --api-token [REDACTED]')
       end
 
       it 'masks API token in equals format' do
         stub_const('ARGV', ['--url', 'http://example.com', '--api-token=SECRET_TOKEN_123'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --api-token=[REDACTED]')
       end
 
       it 'masks HTTP authentication credentials' do
         stub_const('ARGV', ['--url', 'http://example.com', '--http-auth', 'admin:password'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --http-auth [REDACTED]')
       end
 
       it 'masks proxy authentication credentials' do
         stub_const('ARGV', ['--url', 'http://example.com', '--proxy-auth', 'user:pass'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --proxy-auth [REDACTED]')
       end
 
       it 'masks cookie strings' do
         stub_const('ARGV', ['--url', 'http://example.com', '--cookie-string', 'session=abc123'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --cookie-string [REDACTED]')
       end
 
       it 'masks multiple sensitive arguments' do
         stub_const('ARGV', ['--url', 'http://example.com', '--api-token', 'TOKEN', '--http-auth', 'admin:pass'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --api-token [REDACTED] --http-auth [REDACTED]')
       end
     end
@@ -48,19 +48,19 @@ describe WPScan::Scan do
     context 'when handling file paths' do
       it 'does not mask password file paths' do
         stub_const('ARGV', ['--url', 'http://example.com', '--passwords', '/path/to/wordlist.txt'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --passwords /path/to/wordlist.txt')
       end
 
       it 'does not mask password file paths with -P flag' do
         stub_const('ARGV', ['--url', 'http://example.com', '-P', '/usr/share/wordlists/rockyou.txt'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com -P /usr/share/wordlists/rockyou.txt')
       end
 
       it 'does not mask cookie jar file paths' do
         stub_const('ARGV', ['--url', 'http://example.com', '--cookie-jar', '/tmp/cookies.txt'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --cookie-jar /tmp/cookies.txt')
       end
     end
@@ -68,13 +68,13 @@ describe WPScan::Scan do
     context 'when handling mixed arguments' do
       it 'correctly distinguishes between secrets and file paths' do
         stub_const('ARGV', [
-          '--url', 'http://example.com',
-          '--api-token', 'SECRET',
-          '--passwords', '/path/to/list.txt',
-          '--cookie-jar', '/tmp/cookies.txt',
-          '--http-auth', 'admin:pass'
-        ])
-        scan = described_class.new
+                     '--url', 'http://example.com',
+                     '--api-token', 'SECRET',
+                     '--passwords', '/path/to/list.txt',
+                     '--cookie-jar', '/tmp/cookies.txt',
+                     '--http-auth', 'admin:pass'
+                   ])
+        described_class.new
         expect(WPScan.command_line).to eq(
           '--url http://example.com --api-token [REDACTED] --passwords /path/to/list.txt ' \
           '--cookie-jar /tmp/cookies.txt --http-auth [REDACTED]'
@@ -85,7 +85,7 @@ describe WPScan::Scan do
     context 'when no sensitive arguments are present' do
       it 'returns the command line unchanged' do
         stub_const('ARGV', ['--url', 'http://example.com', '--force', '--no-update'])
-        scan = described_class.new
+        described_class.new
         expect(WPScan.command_line).to eq('--url http://example.com --force --no-update')
       end
     end
@@ -94,13 +94,13 @@ describe WPScan::Scan do
   describe 'command line capture' do
     it 'captures the command line arguments on initialization' do
       stub_const('ARGV', ['--url', 'http://example.com', '--force'])
-      scan = described_class.new
+      described_class.new
       expect(WPScan.command_line).to eq('--url http://example.com --force')
     end
 
     it 'stores command line in WPScan module' do
       stub_const('ARGV', ['--test', 'argument'])
-      scan = described_class.new
+      described_class.new
       expect(WPScan).to respond_to(:command_line)
       expect(WPScan.command_line).to be_a(String)
     end
