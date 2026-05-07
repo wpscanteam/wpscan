@@ -79,14 +79,18 @@ jobs:
           exit 1
         fi
 
-        # Run WPScan (exit code 5 = vulnerabilities found, which we expect)
+        # Run WPScan with explicit enumeration (exit code 5 = vulnerabilities found, which we expect)
+        # Note: Using passive detection to avoid false positives in test environment
         set +e
         bundle exec ruby -Ilib bin/wpscan \
           --url https://wordpress-test.ddev.site \
           --disable-tls-checks \
           --format json \
           --output scan-results.json \
-          --api-token "${WPSCAN_API_TOKEN}"
+          --api-token "${WPSCAN_API_TOKEN}" \
+          -e vp,vt \
+          --plugins-detection passive \
+          --themes-detection passive
         EXIT_CODE=$?
         set -e
 
