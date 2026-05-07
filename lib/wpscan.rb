@@ -192,25 +192,58 @@ module WPScan
       end
     end
 
+    # Get a specific warning message based on error types
+    def error_warning_message
+      return nil if total_requests.zero?
+
+      @@status_codes_mutex ||= Mutex.new
+      @@status_codes_mutex.synchronize do
+        failed_requests = status_codes[0] || 0
+        rate_limit_count = status_codes[429] || 0
+        server_errors = status_codes.select { |code, _| code >= 500 }.values.sum
+        client_errors = status_codes.select { |code, _count| code >= 400 && code < 500 && code != 404 }.values.sum
+
+        # Determine primary issue for more specific warning
+        # Only return a message if there are actually concerning errors
+        error_percentage = (client_errors + server_errors + failed_requests).to_f / total_requests
+
+        if failed_requests > 10 && failed_requests > (client_errors + server_errors)
+          'Too many failed requests (no response) could indicate network issues, WAF/IPS blocking, or an unavailable target'
+        elsif rate_limit_count > 10
+          'Rate limiting detected (429 responses). Consider using --throttle or reducing --max-threads'
+        elsif server_errors > 10
+          'Too many server errors (5xx). The target may be experiencing issues or blocking requests'
+        elsif failed_requests > 10
+          'Too many failed requests (no response) could indicate network issues, WAF/IPS blocking, or an unavailable target'
+        elsif error_percentage > 0.2
+          # Generic message for mixed error types
+          'Too many errors detected. This could indicate network issues, rate limiting, or security protection (e.g. WAF)'
+        end
+      end
+    end
+
     # Determine if warning should be shown for concerning error codes
     def concerning_error_codes?
       return false if total_requests.zero?
 
       @@status_codes_mutex ||= Mutex.new
       @@status_codes_mutex.synchronize do
-        # Count errors excluding 404s (which are expected during enumeration)
-        error_codes = status_codes.select { |code, _count| code >= 400 && code != 404 }
+        # Count errors including connection failures (0) but excluding 404s (which are expected during enumeration)
+        # Code 0 indicates failed requests with no HTTP response (timeouts, connection refused, etc.)
+        error_codes = status_codes.select { |code, _count| (code >= 400 && code != 404) || code.zero? }
         total_errors = error_codes.values.sum
+        failed_requests = status_codes[0] || 0
 
         # Warning conditions:
-        # 1. More than 20% of requests are errors (excluding 404)
+        # 1. More than 20% of requests are errors (including code 0, excluding 404)
         # 2. More than 10 rate limit (429) responses
         # 3. More than 10 server errors (500-599)
+        # 4. More than 10 failed requests (code 0)
         error_percentage = total_errors.to_f / total_requests
         rate_limit_count = status_codes[429] || 0
         server_errors = status_codes.select { |code, _| code >= 500 }.values.sum
 
-        error_percentage > 0.2 || rate_limit_count > 10 || server_errors > 10
+        error_percentage > 0.2 || rate_limit_count > 10 || server_errors > 10 || failed_requests > 10
       end
     end
   end

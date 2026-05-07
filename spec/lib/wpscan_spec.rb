@@ -148,6 +148,40 @@ describe WPScan do
           expect(WPScan.concerning_error_codes?).to be true
         end
       end
+
+      context 'when many failed requests (code 0)' do
+        before do
+          WPScan.set_status_code(200, 85)
+          WPScan.set_status_code(0, 15)  # 15 failed requests
+        end
+
+        it 'returns true' do
+          expect(WPScan.concerning_error_codes?).to be true
+        end
+      end
+
+      context 'when failed requests are below threshold' do
+        before do
+          WPScan.set_status_code(200, 92)
+          WPScan.set_status_code(0, 8)  # Only 8 failed requests
+        end
+
+        it 'returns false' do
+          expect(WPScan.concerning_error_codes?).to be false
+        end
+      end
+
+      context 'when more than 20% are failed requests (code 0)' do
+        before do
+          WPScan.set_status_code(200, 70)
+          WPScan.set_status_code(0, 25)  # 25% failed requests
+          WPScan.set_status_code(404, 5)  # Should still be excluded
+        end
+
+        it 'returns true' do
+          expect(WPScan.concerning_error_codes?).to be true
+        end
+      end
     end
   end
 end

@@ -5,7 +5,7 @@
 <%= info_icon %> Most response codes received: <%= @response_status_codes.map { |code, count| "#{code}: #{count}" }.join(', ') %>
 <% end -%>
 <% if @response_status_codes_warning -%>
-<%= warning_icon %> Too many 4xx and/or 5xx HTTP error codes could mean that some kind of protection is involved (e.g. WAF)
+<%= warning_icon %> <%= @response_status_codes_warning_message %>
 <% end -%>
 <%= info_icon %> Data Sent: <%= @data_sent.bytes_to_human %>
 <%= info_icon %> Data Received: <%= @data_received.bytes_to_human %>
