@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'core/cli_options'
+require 'socket'
 
 module WPScan
   module Controller
