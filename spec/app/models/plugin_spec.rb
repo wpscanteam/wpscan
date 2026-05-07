@@ -60,6 +60,12 @@ describe WPScan::Model::Plugin do
     end
   end
 
+  describe '#wordpress_org_api_url' do
+    its(:wordpress_org_api_url) do
+      should eql 'https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=spec'
+    end
+  end
+
   describe 'potential_readme_filenames' do
     context 'when not set in the DF file' do
       its(:potential_readme_filenames) { should eql described_class::READMES }

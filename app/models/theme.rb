@@ -42,6 +42,13 @@ module WPScan
         @version
       end
 
+      # @return [ String ]
+      def wordpress_org_api_url
+        encoded_slug = Addressable::URI.encode_component(slug, Addressable::URI::CharacterClasses::UNRESERVED)
+        'https://api.wordpress.org/themes/info/1.2/?action=theme_information' \
+          "&request[slug]=#{encoded_slug}&request[fields][active_installs]=1"
+      end
+
       # @return [ Theme ]
       def parent_theme
         return unless template
