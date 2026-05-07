@@ -212,8 +212,8 @@ module WPScan
                requests_done: WPScan.total_requests,
                data_sent: WPScan.total_data_sent,
                data_received: WPScan.total_data_received,
-               status_codes: WPScan.top_status_codes,
-               error_warning: WPScan.concerning_error_codes?)
+               response_status_codes: WPScan.top_status_codes,
+               response_status_codes_warning: WPScan.concerning_error_codes?)
       end
     end
   end

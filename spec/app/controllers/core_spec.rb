@@ -363,8 +363,8 @@ describe WPScan::Controller::Core do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            status_codes: { 200 => 80, 404 => 15, 500 => 5 },
-            error_warning: false
+            response_status_codes: { 200 => 80, 404 => 15, 500 => 5 },
+            response_status_codes_warning: false
           ),
           'core'
         )
@@ -380,12 +380,12 @@ describe WPScan::Controller::Core do
         WPScan.status_codes[500] = 20
       end
 
-      it 'sets error_warning to true' do
+      it 'sets response_status_codes_warning to true' do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            status_codes: { 200 => 50, 429 => 30, 500 => 20 },
-            error_warning: true
+            response_status_codes: { 200 => 50, 429 => 30, 500 => 20 },
+            response_status_codes_warning: true
           ),
           'core'
         )
@@ -400,12 +400,12 @@ describe WPScan::Controller::Core do
         WPScan.status_codes[404] = 50 # 404s should not trigger warnings
       end
 
-      it 'sets error_warning to false' do
+      it 'sets response_status_codes_warning to false' do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            status_codes: { 200 => 50, 404 => 50 },
-            error_warning: false
+            response_status_codes: { 200 => 50, 404 => 50 },
+            response_status_codes_warning: false
           ),
           'core'
         )
