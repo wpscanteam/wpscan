@@ -200,7 +200,7 @@ module WPScan
       # If the --enumerate is used, the default value is handled by the Option
       # However, when using --passwords alone, the default has to be set by the code below
       def enum_users_range
-        ParsedCli.enumerate[:users] || cli_enum_choices[0].choices[:u].validate(nil)
+        ParsedCli.enumerate&.dig(:users) || cli_enum_choices[0].choices[:u].validate(nil)
       end
     end
   end

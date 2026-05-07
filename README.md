@@ -90,7 +90,7 @@ The named volume is created automatically on first use if it doesn't already exi
 
 Full user documentation can be found here; https://github.com/wpscanteam/wpscan/wiki/WPScan-User-Documentation
 
-```wpscan --url blog.tld``` This will scan the blog using default options with a good compromise between speed and accuracy. For example, the plugins will be checked passively but their version with a mixed detection mode (passively + aggressively). Potential config backup files will also be checked, along with other interesting findings.
+```wpscan --url blog.tld``` This will scan the blog using default options with a good compromise between speed and accuracy. It performs version detection, theme detection, and interesting findings discovery. To enumerate plugins, themes, users, etc., use the `-e` option (e.g., `-e ap` for all plugins, `-e vp` for vulnerable plugins).
 
 If a more stealthy approach is required, then ```wpscan --stealthy --url blog.tld``` can be used.
 As a result, when using the ```--enumerate``` option, don't forget to set the ```--plugins-detection``` accordingly, as its default is 'passive'.

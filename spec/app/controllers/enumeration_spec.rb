@@ -147,14 +147,15 @@ describe WPScan::Controller::Enumeration do
 
   describe '#run' do
     context 'when no :enumerate' do
-      before do
-        expect(controller).to receive(:enum_plugins)
-        expect(controller).to receive(:enum_config_backups)
+      it 'does not call any enum methods' do
+        expect(controller).not_to receive(:enum_plugins)
+        expect(controller).not_to receive(:enum_themes)
+        expect(controller).not_to receive(:enum_config_backups)
+        expect(controller).not_to receive(:enum_timthumbs)
+        expect(controller).not_to receive(:enum_db_exports)
+        expect(controller).not_to receive(:enum_users)
+        expect(controller).not_to receive(:enum_medias)
 
-        expect(WPScan::ParsedCli.plugins_detection).to eql :passive
-      end
-
-      it 'calls enum_plugins and enum_config_backups' do
         controller.run
       end
 
