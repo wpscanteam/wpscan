@@ -150,6 +150,7 @@ module WPScan
 
     def command_line=(value)
       @@command_line = value
+    end
 
     # Tracking for HTTP status codes
     def status_codes
