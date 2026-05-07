@@ -15,7 +15,7 @@ module WPScan
         [
           OptMultiChoices.new(
             ['-e', '--enumerate [OPTS]', 'Enumeration Process',
-             'Note: --plugins-list overrides vp/ap/p; --themes-list overrides vt/at/t'
+             'Note: --plugins-list overrides vp/ap/p; --themes-list overrides vt/at/t.'],
             choices: {
               vp: OptBoolean.new(['--vulnerable-plugins']),
               ap: OptBoolean.new(['--all-plugins']),
