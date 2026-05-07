@@ -14,7 +14,8 @@ module WPScan
       def cli_enum_choices
         [
           OptMultiChoices.new(
-            ['-e', '--enumerate [OPTS]', 'Enumeration Process'],
+            ['-e', '--enumerate [OPTS]', 'Enumeration Process',
+             'Note: --plugins-list overrides vp/ap/p; --themes-list overrides vt/at/t.'],
             choices: {
               vp: OptBoolean.new(['--vulnerable-plugins']),
               ap: OptBoolean.new(['--all-plugins']),

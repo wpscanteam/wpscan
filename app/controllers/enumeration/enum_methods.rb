@@ -11,9 +11,10 @@ module WPScan
       def enum_message(type, detection_mode)
         return unless %w[plugins themes].include?(type)
 
-        details = if ParsedCli.enumerate[:"vulnerable_#{type}"]
+        enumerate = ParsedCli.enumerate || {}
+        details = if enumerate[:"vulnerable_#{type}"]
                     'Vulnerable'
-                  elsif ParsedCli.enumerate[:"all_#{type}"]
+                  elsif enumerate[:"all_#{type}"]
                     'All'
                   else
                     'Most Popular'
@@ -52,11 +53,37 @@ module WPScan
         }
       end
 
+      # Resolves collisions between --plugins-list/--themes-list and the
+      # corresponding --enumerate choices. The list options take precedence;
+      # colliding enumerate keys are removed from the supplied hash and a
+      # notice is emitted for each ignored choice.
+      #
+      # @param [ Hash ] enum The ParsedCli.enumerate hash (mutated in place)
+      def resolve_list_enumerate_collisions(enum)
+        {
+          plugins_list: %i[vulnerable_plugins all_plugins popular_plugins],
+          themes_list: %i[vulnerable_themes all_themes popular_themes]
+        }.each do |list_opt, enum_keys|
+          next unless ParsedCli.send(list_opt)
+
+          ignored = enum_keys.select { |k| enum.key?(k) }
+          next if ignored.empty?
+
+          ignored.each { |k| enum.delete(k) }
+
+          output(
+            '@notice',
+            msg: "--#{list_opt.to_s.tr('_', '-')} provided; " \
+                 "ignoring colliding --enumerate choice(s): #{ignored.join(', ')}"
+          )
+        end
+      end
+
       # @param [ Hash ] opts
       #
       # @return [ Boolean ] Wether or not to enumerate the plugins
       def enum_plugins?(opts)
-        opts[:popular_plugins] || opts[:all_plugins] || opts[:vulnerable_plugins]
+        ParsedCli.plugins_list || opts[:popular_plugins] || opts[:all_plugins] || opts[:vulnerable_plugins]
       end
 
       def enum_plugins
@@ -78,7 +105,7 @@ module WPScan
 
         plugins.each(&:version)
 
-        plugins.select!(&:vulnerable?) if ParsedCli.enumerate[:vulnerable_plugins]
+        plugins.select!(&:vulnerable?) if ParsedCli.enumerate&.dig(:vulnerable_plugins)
 
         output('plugins', plugins: plugins)
       end
@@ -103,7 +130,7 @@ module WPScan
       #
       # @return [ Boolean ] Wether or not to enumerate the themes
       def enum_themes?(opts)
-        opts[:popular_themes] || opts[:all_themes] || opts[:vulnerable_themes]
+        ParsedCli.themes_list || opts[:popular_themes] || opts[:all_themes] || opts[:vulnerable_themes]
       end
 
       def enum_themes
@@ -125,7 +152,7 @@ module WPScan
 
         themes.each(&:version)
 
-        themes.select!(&:vulnerable?) if ParsedCli.enumerate[:vulnerable_themes]
+        themes.select!(&:vulnerable?) if ParsedCli.enumerate&.dig(:vulnerable_themes)
 
         output('themes', themes: themes)
       end

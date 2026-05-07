@@ -19,6 +19,8 @@ module WPScan
       def run
         enum = ParsedCli.enumerate || {}
 
+        resolve_list_enumerate_collisions(enum)
+
         enum_plugins if enum_plugins?(enum)
         enum_themes  if enum_themes?(enum)
 
