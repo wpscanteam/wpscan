@@ -14,7 +14,10 @@ module WPScan
       def cli_enum_choices
         [
           OptMultiChoices.new(
-            ['-e', '--enumerate [OPTS]', 'Enumeration Process'],
+            ['-e', '--enumerate [OPTS]', 'Enumeration Process',
+             'Note: vp/ap/p are ignored if --plugins-list is provided, ' \
+             'and vt/at/t are ignored if --themes-list is provided. ' \
+             'A notice is printed when this happens.'],
             choices: {
               vp: OptBoolean.new(['--vulnerable-plugins']),
               ap: OptBoolean.new(['--all-plugins']),

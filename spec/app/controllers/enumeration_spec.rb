@@ -212,5 +212,51 @@ describe WPScan::Controller::Enumeration do
         end
       end
     end
+
+    context 'when --plugins-list is supplied without --enumerate' do
+      let(:cli_args) { "#{super()} --plugins-list a,b,c" }
+
+      it 'calls #enum_plugins' do
+        expect(controller).to receive(:enum_plugins)
+        expect(controller.formatter).not_to receive(:output).with('@notice', anything, anything)
+        controller.run
+      end
+    end
+
+    context 'when --themes-list is supplied without --enumerate' do
+      let(:cli_args) { "#{super()} --themes-list a,b,c" }
+
+      it 'calls #enum_themes' do
+        expect(controller).to receive(:enum_themes)
+        expect(controller.formatter).not_to receive(:output).with('@notice', anything, anything)
+        controller.run
+      end
+    end
+
+    %w[vp ap p].each do |choice|
+      context "when --plugins-list collides with --enumerate #{choice}" do
+        let(:cli_args) { "#{super()} -e #{choice} --plugins-list a,b,c" }
+
+        it 'emits a notice and still calls #enum_plugins' do
+          expect(controller.formatter).to receive(:output)
+            .with('@notice', hash_including(:msg), 'enumeration')
+          expect(controller).to receive(:enum_plugins)
+          controller.run
+        end
+      end
+    end
+
+    %w[vt at t].each do |choice|
+      context "when --themes-list collides with --enumerate #{choice}" do
+        let(:cli_args) { "#{super()} -e #{choice} --themes-list a,b,c" }
+
+        it 'emits a notice and still calls #enum_themes' do
+          expect(controller.formatter).to receive(:output)
+            .with('@notice', hash_including(:msg), 'enumeration')
+          expect(controller).to receive(:enum_themes)
+          controller.run
+        end
+      end
+    end
   end
 end
