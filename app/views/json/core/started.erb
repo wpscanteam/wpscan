@@ -1,6 +1,6 @@
 "start_time": <%= @start_time.to_i %>,
 "start_memory": <%= @start_memory.to_i %>,
-"command_line": wpscan <%= @command_line.to_s.to_json %>,
+"command_line": <%= "wpscan #{@command_line}".to_json %>,
 "hostname": <%= @hostname.to_s.to_json %>,
 "target_url": <%= @url.to_s.to_json %>,
 "target_ip": <%= @ip.to_s.to_json %>,
