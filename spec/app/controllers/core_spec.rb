@@ -444,7 +444,7 @@ describe WPScan::Controller::Core do
     context 'when many failed requests (code 0)' do
       before do
         WPScan.set_status_code(200, 80)
-        WPScan.set_status_code(0, 20)  # 20 failed requests
+        WPScan.set_status_code(0, 20) # 20 failed requests
       end
 
       it 'sets response_status_codes_warning to true with appropriate message' do
@@ -453,7 +453,8 @@ describe WPScan::Controller::Core do
           hash_including(
             response_status_codes: { 200 => 80, 0 => 20 },
             response_status_codes_warning: true,
-            response_status_codes_warning_message: 'Too many failed requests (no response) could indicate network issues, WAF/IPS blocking, or an unavailable target'
+            response_status_codes_warning_message: 'Too many failed requests (no response) could indicate ' \
+                                                   'network issues, WAF/IPS blocking, or an unavailable target'
           ),
           'core'
         )

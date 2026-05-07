@@ -48,10 +48,13 @@ require 'wpscan/vulnerability'
 require 'wpscan/progressbar_null_output'
 require 'wpscan/db'
 require 'wpscan/vulnerable'
+require 'wpscan/http_status_tracking'
 
 Encoding.default_external = Encoding::UTF_8
 
 module WPScan
+  extend HttpStatusTracking
+
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
 
   # Avoid memory leak when using Hydra, see https://github.com/typhoeus/typhoeus/issues/562
@@ -150,101 +153,6 @@ module WPScan
 
     def command_line=(value)
       @@command_line = value
-    end
-
-    # Tracking for HTTP status codes
-    def status_codes
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes ||= Hash.new(0)
-    end
-
-    # Reset status codes (mainly for testing)
-    def reset_status_codes
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes_mutex.synchronize do
-        @@status_codes = Hash.new(0)
-      end
-    end
-
-    # Thread-safe increment of status code count
-    def increment_status_code(code)
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes_mutex.synchronize do
-        status_codes[code] += 1
-      end
-    end
-
-    # Thread-safe set of status code count (mainly for testing)
-    def set_status_code(code, count)
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes_mutex.synchronize do
-        status_codes[code] = count
-      end
-    end
-
-    # Get top N status codes by frequency
-    def top_status_codes(limit = 5)
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes_mutex.synchronize do
-        return {} if status_codes.empty?
-
-        status_codes.sort_by { |_code, count| -count }.first(limit).to_h
-      end
-    end
-
-    # Get a specific warning message based on error types
-    def error_warning_message
-      return nil if total_requests.zero?
-
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes_mutex.synchronize do
-        failed_requests = status_codes[0] || 0
-        rate_limit_count = status_codes[429] || 0
-        server_errors = status_codes.select { |code, _| code >= 500 }.values.sum
-        client_errors = status_codes.select { |code, _count| code >= 400 && code < 500 && code != 404 }.values.sum
-
-        # Determine primary issue for more specific warning
-        # Only return a message if there are actually concerning errors
-        error_percentage = (client_errors + server_errors + failed_requests).to_f / total_requests
-
-        if failed_requests > 10 && failed_requests > (client_errors + server_errors)
-          'Too many failed requests (no response) could indicate network issues, WAF/IPS blocking, or an unavailable target'
-        elsif rate_limit_count > 10
-          'Rate limiting detected (429 responses). Consider using --throttle or reducing --max-threads'
-        elsif server_errors > 10
-          'Too many server errors (5xx). The target may be experiencing issues or blocking requests'
-        elsif failed_requests > 10
-          'Too many failed requests (no response) could indicate network issues, WAF/IPS blocking, or an unavailable target'
-        elsif error_percentage > 0.2
-          # Generic message for mixed error types
-          'Too many errors detected. This could indicate network issues, rate limiting, or security protection (e.g. WAF)'
-        end
-      end
-    end
-
-    # Determine if warning should be shown for concerning error codes
-    def concerning_error_codes?
-      return false if total_requests.zero?
-
-      @@status_codes_mutex ||= Mutex.new
-      @@status_codes_mutex.synchronize do
-        # Count errors including connection failures (0) but excluding 404s (which are expected during enumeration)
-        # Code 0 indicates failed requests with no HTTP response (timeouts, connection refused, etc.)
-        error_codes = status_codes.select { |code, _count| (code >= 400 && code != 404) || code.zero? }
-        total_errors = error_codes.values.sum
-        failed_requests = status_codes[0] || 0
-
-        # Warning conditions:
-        # 1. More than 20% of requests are errors (including code 0, excluding 404)
-        # 2. More than 10 rate limit (429) responses
-        # 3. More than 10 server errors (500-599)
-        # 4. More than 10 failed requests (code 0)
-        error_percentage = total_errors.to_f / total_requests
-        rate_limit_count = status_codes[429] || 0
-        server_errors = status_codes.select { |code, _| code >= 500 }.values.sum
-
-        error_percentage > 0.2 || rate_limit_count > 10 || server_errors > 10 || failed_requests > 10
-      end
     end
   end
 end
