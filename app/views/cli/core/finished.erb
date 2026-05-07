@@ -1,7 +1,12 @@
-
 <%= info_icon %> Finished: <%= @stop_time.asctime %>
 <%= info_icon %> Requests Done: <%= @requests_done %>
 <%= info_icon %> Cached Requests: <%= @cached_requests %>
+<% if @status_codes && !@status_codes.empty? -%>
+<%= info_icon %> Most response codes received: <%= @status_codes.map { |code, count| "#{code}: #{count}" }.join(', ') %>
+<% end -%>
+<% if @error_warning -%>
+<%= warning_icon %> Too many 4xx and/or 5xx HTTP error codes could mean that some kind of protection is involved (e.g. WAF)
+<% end -%>
 <%= info_icon %> Data Sent: <%= @data_sent.bytes_to_human %>
 <%= info_icon %> Data Received: <%= @data_received.bytes_to_human %>
 <%= info_icon %> Memory used: <%= @used_memory.bytes_to_human %>
