@@ -8,11 +8,44 @@ module WPScan
     def initialize
       WPScan.start_memory = GetProcessMem.new.bytes
 
+      # Capture the original command line arguments with sensitive data masked
+      WPScan.command_line = mask_sensitive_arguments(ARGV)
+
       controllers << WPScan::Controller::Core.new
 
       exit_hook
 
       yield self if block_given?
+    end
+
+    # Masks sensitive arguments in the command line to prevent exposing secrets
+    # @param [ Array<String> ] args The command line arguments
+    # @return [ String ] The sanitized command line string
+    def mask_sensitive_arguments(args)
+      # List of sensitive arguments that contain actual secrets (not file paths)
+      # File paths like --passwords and --cookie-jar are not masked as they're
+      # not secrets themselves, just references to files
+      sensitive_args = %w[
+        --api-token
+        --http-auth
+        --proxy-auth
+        --cookie-string
+      ]
+
+      masked_args = args.dup
+      args.each_with_index do |arg, index|
+        # Check if this argument is sensitive
+        if sensitive_args.include?(arg)
+          # Mask the next argument (the value)
+          masked_args[index + 1] = '[REDACTED]' if index + 1 < args.length
+        elsif arg.start_with?('--') && arg.include?('=')
+          # Handle --arg=value format
+          arg_name = arg.split('=').first
+          masked_args[index] = "#{arg_name}=[REDACTED]" if sensitive_args.include?(arg_name)
+        end
+      end
+
+      masked_args.join(' ')
     end
 
     # @return [ Controllers ]

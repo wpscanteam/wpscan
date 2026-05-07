@@ -280,11 +280,14 @@ module WPScan
         props['cvss'] = vuln['cvss'] if vuln['cvss']
         props['references'] = vuln['references'] if vuln['references'] && !vuln['references'].empty?
         props['fixed_in'] = vuln['fixed_in'] if vuln['fixed_in']
+        props['poc'] = vuln['poc'] if vuln['poc']
         props.empty? ? nil : props
       end
 
       def invocation(data)
         inv = { 'executionSuccessful' => true }
+        inv['commandLine'] = "wpscan #{data['command_line']}" if data['command_line']
+        inv['hostname'] = data['hostname'] if data['hostname']
         inv['startTimeUtc'] = to_iso8601(data['start_time']) if data['start_time']
         inv['endTimeUtc']   = to_iso8601(data['stop_time'])  if data['stop_time']
         inv

@@ -7,7 +7,7 @@ module WPScan
       def cli_options
         [
           OptAlias.new(['--stealthy'],
-                       alias_for: '--random-user-agent --detection-mode passive --plugins-version-detection passive')
+                       alias_for: '--random-user-agent --detection-mode passive')
         ]
       end
     end

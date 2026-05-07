@@ -143,6 +143,14 @@ module WPScan
       @@api_requests = value
     end
 
+    # Command line arguments used to start the scan
+    def command_line
+      @@command_line ||= ''
+    end
+
+    def command_line=(value)
+      @@command_line = value
+
     # Tracking for HTTP status codes
     def status_codes
       @@status_codes ||= Hash.new(0)

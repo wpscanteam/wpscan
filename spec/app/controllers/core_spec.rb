@@ -339,79 +339,104 @@ describe WPScan::Controller::Core do
     end
   end
 
-  describe '#after_scan' do
+  describe '#run' do
     before do
-      # Set up some test data
-      WPScan.reset_status_codes
-      WPScan.total_requests = 100
-      WPScan.cached_requests = 10
-      WPScan.total_data_sent = 1024
-      WPScan.total_data_received = 2048
+      allow(WPScan).to receive(:command_line).and_return('--url http://ex.wordpress.com/')
+      allow(Socket).to receive(:gethostname).and_return('test-hostname')
 
-      core.instance_variable_set(:@start_time, Time.now - 60)
-      core.instance_variable_set(:@start_memory, 0)
+      # Mock the target to avoid HTTP requests
+      target = double('Target')
+      allow(target).to receive(:url).and_return(target_url)
+      allow(target).to receive(:ip).and_return('127.0.0.1')
+      allow(target).to receive(:homepage_url).and_return(target_url)
+      allow(core).to receive(:target).and_return(target)
     end
 
-    context 'when status codes are tracked' do
+    it 'passes command_line and hostname to the output' do
+      expect(core.formatter).to receive(:output).with(
+        'started',
+        hash_including(
+          command_line: '--url http://ex.wordpress.com/',
+          hostname: 'test-hostname'
+        ),
+        'core'
+      )
+
+      core.run
+
+      describe '#after_scan' do
       before do
-        WPScan.status_codes[200] = 80
-        WPScan.status_codes[404] = 15
-        WPScan.status_codes[500] = 5
+        # Set up some test data
+        WPScan.reset_status_codes
+        WPScan.total_requests = 100
+        WPScan.cached_requests = 10
+        WPScan.total_data_sent = 1024
+        WPScan.total_data_received = 2048
+  
+        core.instance_variable_set(:@start_time, Time.now - 60)
+        core.instance_variable_set(:@start_memory, 0)
       end
-
-      it 'includes status codes in the output' do
-        expect(core.formatter).to receive(:output).with(
-          'finished',
-          hash_including(
-            response_status_codes: { 200 => 80, 404 => 15, 500 => 5 },
-            response_status_codes_warning: false
-          ),
-          'core'
-        )
-
-        core.after_scan
+  
+      context 'when status codes are tracked' do
+        before do
+          WPScan.status_codes[200] = 80
+          WPScan.status_codes[404] = 15
+          WPScan.status_codes[500] = 5
+        end
+  
+        it 'includes status codes in the output' do
+          expect(core.formatter).to receive(:output).with(
+            'finished',
+            hash_including(
+              response_status_codes: { 200 => 80, 404 => 15, 500 => 5 },
+              response_status_codes_warning: false
+            ),
+            'core'
+          )
+  
+          core.after_scan
+        end
       end
-    end
-
-    context 'when concerning error codes are detected' do
-      before do
-        WPScan.status_codes[200] = 50
-        WPScan.status_codes[429] = 30
-        WPScan.status_codes[500] = 20
+  
+      context 'when concerning error codes are detected' do
+        before do
+          WPScan.status_codes[200] = 50
+          WPScan.status_codes[429] = 30
+          WPScan.status_codes[500] = 20
+        end
+  
+        it 'sets response_status_codes_warning to true' do
+          expect(core.formatter).to receive(:output).with(
+            'finished',
+            hash_including(
+              response_status_codes: { 200 => 50, 429 => 30, 500 => 20 },
+              response_status_codes_warning: true
+            ),
+            'core'
+          )
+  
+          core.after_scan
+        end
       end
-
-      it 'sets response_status_codes_warning to true' do
-        expect(core.formatter).to receive(:output).with(
-          'finished',
-          hash_including(
-            response_status_codes: { 200 => 50, 429 => 30, 500 => 20 },
-            response_status_codes_warning: true
-          ),
-          'core'
-        )
-
-        core.after_scan
-      end
-    end
-
-    context 'when no concerning errors (404s are excluded)' do
-      before do
-        WPScan.status_codes[200] = 50
-        WPScan.status_codes[404] = 50 # 404s should not trigger warnings
-      end
-
-      it 'sets response_status_codes_warning to false' do
-        expect(core.formatter).to receive(:output).with(
-          'finished',
-          hash_including(
-            response_status_codes: { 200 => 50, 404 => 50 },
-            response_status_codes_warning: false
-          ),
-          'core'
-        )
-
-        core.after_scan
-      end
+  
+      context 'when no concerning errors (404s are excluded)' do
+        before do
+          WPScan.status_codes[200] = 50
+          WPScan.status_codes[404] = 50 # 404s should not trigger warnings
+        end
+  
+        it 'sets response_status_codes_warning to false' do
+          expect(core.formatter).to receive(:output).with(
+            'finished',
+            hash_including(
+              response_status_codes: { 200 => 50, 404 => 50 },
+              response_status_codes_warning: false
+            ),
+            'core'
+          )
+  
+          core.after_scan
+        end
     end
   end
 end

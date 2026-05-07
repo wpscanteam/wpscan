@@ -21,9 +21,8 @@ describe WPScan::Controller::Aliases do
   describe 'parsed_options' do
     context 'when no --stealthy supplied' do
       it 'contains the correct options' do
-        expect(WPScan::ParsedCli.options).to include(
-          detection_mode: :mixed, plugins_version_detection: :mixed
-        )
+        expect(WPScan::ParsedCli.options).to include(detection_mode: :mixed)
+        expect(WPScan::ParsedCli.options[:plugins_version_detection]).to be_nil
       end
     end
 
@@ -32,8 +31,9 @@ describe WPScan::Controller::Aliases do
 
       it 'contains the correct options' do
         expect(WPScan::ParsedCli.options).to include(
-          random_user_agent: true, detection_mode: :passive, plugins_version_detection: :passive
+          random_user_agent: true, detection_mode: :passive
         )
+        expect(WPScan::ParsedCli.options[:plugins_version_detection]).to be_nil
       end
     end
   end
