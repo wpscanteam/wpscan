@@ -47,13 +47,13 @@ jobs:
       run: bundle exec rspec
 
     - name: Set up DDEV
-      if: github.repository == 'wpscanteam/wpscan'
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       uses: ddev/github-action-setup-ddev@v1
       with:
         autostart: false
 
     - name: Set up WordPress test environment
-      if: github.repository == 'wpscanteam/wpscan'
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       run: |
         mkdir wordpress-test
         cd wordpress-test
@@ -83,11 +83,11 @@ jobs:
         curl -k -f -s -o /dev/null -w "✓ WordPress responding: HTTP %{http_code}\n" https://wordpress-test.ddev.site
 
     - name: Update WPScan database
-      if: github.repository == 'wpscanteam/wpscan'
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       run: bundle exec ruby -Ilib bin/wpscan --update
 
     - name: Run WPScan against test site
-      if: github.repository == 'wpscanteam/wpscan'
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       env:
         WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_API_TOKEN }}
       run: |
@@ -117,11 +117,11 @@ jobs:
         echo "✓ WPScan found vulnerabilities (exit code 5)"
 
     - name: Verify scan results
-      if: github.repository == 'wpscanteam/wpscan'
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       run: bundle exec ruby spec/integration/verify_results.rb scan-results.json
 
     - name: Upload scan results
-      if: github.repository == 'wpscanteam/wpscan' && always()
+      if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) && always()
       uses: actions/upload-artifact@v7
       with:
         name: integration-test-results-ruby-${{ matrix.ruby }}
