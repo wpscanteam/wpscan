@@ -381,9 +381,9 @@ describe WPScan::Controller::Core do
 
     context 'when status codes are tracked' do
       before do
-        WPScan.status_codes[200] = 80
-        WPScan.status_codes[404] = 15
-        WPScan.status_codes[500] = 5
+        WPScan.set_status_code(200, 80)
+        WPScan.set_status_code(404, 15)
+        WPScan.set_status_code(500, 5)
       end
 
       it 'includes status codes in the output' do
@@ -402,9 +402,9 @@ describe WPScan::Controller::Core do
 
     context 'when concerning error codes are detected' do
       before do
-        WPScan.status_codes[200] = 50
-        WPScan.status_codes[429] = 30
-        WPScan.status_codes[500] = 20
+        WPScan.set_status_code(200, 50)
+        WPScan.set_status_code(429, 30)
+        WPScan.set_status_code(500, 20)
       end
 
       it 'sets response_status_codes_warning to true' do
@@ -423,8 +423,8 @@ describe WPScan::Controller::Core do
 
     context 'when no concerning errors (404s are excluded)' do
       before do
-        WPScan.status_codes[200] = 50
-        WPScan.status_codes[404] = 50 # 404s should not trigger warnings
+        WPScan.set_status_code(200, 50)
+        WPScan.set_status_code(404, 50) # 404s should not trigger warnings
       end
 
       it 'sets response_status_codes_warning to false' do

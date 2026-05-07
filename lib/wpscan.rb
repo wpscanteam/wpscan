@@ -75,7 +75,7 @@ module WPScan
     self.total_data_received += response.size
 
     # Track HTTP status codes
-    status_codes[response.code] += 1
+    increment_status_code(response.code)
 
     self.api_requests += 1 if response.respond_to?(:from_vuln_api?) && response.from_vuln_api?
 
@@ -154,38 +154,64 @@ module WPScan
 
     # Tracking for HTTP status codes
     def status_codes
+      @@status_codes_mutex ||= Mutex.new
       @@status_codes ||= Hash.new(0)
     end
 
     # Reset status codes (mainly for testing)
     def reset_status_codes
-      @@status_codes = Hash.new(0)
+      @@status_codes_mutex ||= Mutex.new
+      @@status_codes_mutex.synchronize do
+        @@status_codes = Hash.new(0)
+      end
+    end
+
+    # Thread-safe increment of status code count
+    def increment_status_code(code)
+      @@status_codes_mutex ||= Mutex.new
+      @@status_codes_mutex.synchronize do
+        status_codes[code] += 1
+      end
+    end
+
+    # Thread-safe set of status code count (mainly for testing)
+    def set_status_code(code, count)
+      @@status_codes_mutex ||= Mutex.new
+      @@status_codes_mutex.synchronize do
+        status_codes[code] = count
+      end
     end
 
     # Get top N status codes by frequency
     def top_status_codes(limit = 5)
-      return {} if status_codes.empty?
+      @@status_codes_mutex ||= Mutex.new
+      @@status_codes_mutex.synchronize do
+        return {} if status_codes.empty?
 
-      status_codes.sort_by { |_code, count| -count }.first(limit).to_h
+        status_codes.sort_by { |_code, count| -count }.first(limit).to_h
+      end
     end
 
     # Determine if warning should be shown for concerning error codes
     def concerning_error_codes?
       return false if total_requests.zero?
 
-      # Count errors excluding 404s (which are expected during enumeration)
-      error_codes = status_codes.select { |code, _count| code >= 400 && code != 404 }
-      total_errors = error_codes.values.sum
+      @@status_codes_mutex ||= Mutex.new
+      @@status_codes_mutex.synchronize do
+        # Count errors excluding 404s (which are expected during enumeration)
+        error_codes = status_codes.select { |code, _count| code >= 400 && code != 404 }
+        total_errors = error_codes.values.sum
 
-      # Warning conditions:
-      # 1. More than 20% of requests are errors (excluding 404)
-      # 2. More than 10 rate limit (429) responses
-      # 3. More than 10 server errors (500-599)
-      error_percentage = total_errors.to_f / total_requests
-      rate_limit_count = status_codes[429] || 0
-      server_errors = status_codes.select { |code, _| code >= 500 }.values.sum
+        # Warning conditions:
+        # 1. More than 20% of requests are errors (excluding 404)
+        # 2. More than 10 rate limit (429) responses
+        # 3. More than 10 server errors (500-599)
+        error_percentage = total_errors.to_f / total_requests
+        rate_limit_count = status_codes[429] || 0
+        server_errors = status_codes.select { |code, _| code >= 500 }.values.sum
 
-      error_percentage > 0.2 || rate_limit_count > 10 || server_errors > 10
+        error_percentage > 0.2 || rate_limit_count > 10 || server_errors > 10
+      end
     end
   end
 end

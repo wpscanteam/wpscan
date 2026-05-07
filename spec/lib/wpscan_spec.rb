@@ -60,12 +60,12 @@ describe WPScan do
 
       context 'when status codes are recorded' do
         before do
-          WPScan.status_codes[200] = 100
-          WPScan.status_codes[404] = 50
-          WPScan.status_codes[500] = 30
-          WPScan.status_codes[301] = 20
-          WPScan.status_codes[429] = 10
-          WPScan.status_codes[403] = 5
+          WPScan.set_status_code(200, 100)
+          WPScan.set_status_code(404, 50)
+          WPScan.set_status_code(500, 30)
+          WPScan.set_status_code(301, 20)
+          WPScan.set_status_code(429, 10)
+          WPScan.set_status_code(403, 5)
         end
 
         it 'returns the top 5 status codes by default' do
@@ -93,9 +93,9 @@ describe WPScan do
 
       context 'when mostly successful requests' do
         before do
-          WPScan.status_codes[200] = 80
-          WPScan.status_codes[404] = 15
-          WPScan.status_codes[301] = 5
+          WPScan.set_status_code(200, 80)
+          WPScan.set_status_code(404, 15)
+          WPScan.set_status_code(301, 5)
         end
 
         it 'returns false' do
@@ -105,8 +105,8 @@ describe WPScan do
 
       context 'when many 404 errors (which are expected)' do
         before do
-          WPScan.status_codes[200] = 40
-          WPScan.status_codes[404] = 60
+          WPScan.set_status_code(200, 40)
+          WPScan.set_status_code(404, 60)
         end
 
         it 'returns false because 404s are excluded' do
@@ -116,9 +116,9 @@ describe WPScan do
 
       context 'when more than 20% errors (excluding 404)' do
         before do
-          WPScan.status_codes[200] = 70
-          WPScan.status_codes[500] = 25
-          WPScan.status_codes[404] = 5
+          WPScan.set_status_code(200, 70)
+          WPScan.set_status_code(500, 25)
+          WPScan.set_status_code(404, 5)
         end
 
         it 'returns true' do
@@ -128,8 +128,8 @@ describe WPScan do
 
       context 'when more than 10 rate limit errors' do
         before do
-          WPScan.status_codes[200] = 85
-          WPScan.status_codes[429] = 15
+          WPScan.set_status_code(200, 85)
+          WPScan.set_status_code(429, 15)
         end
 
         it 'returns true' do
@@ -139,9 +139,9 @@ describe WPScan do
 
       context 'when more than 10 server errors' do
         before do
-          WPScan.status_codes[200] = 85
-          WPScan.status_codes[500] = 8
-          WPScan.status_codes[502] = 4
+          WPScan.set_status_code(200, 85)
+          WPScan.set_status_code(500, 8)
+          WPScan.set_status_code(502, 4)
         end
 
         it 'returns true' do
