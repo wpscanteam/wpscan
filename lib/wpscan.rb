@@ -51,6 +51,8 @@ require 'wpscan/vulnerable'
 
 Encoding.default_external = Encoding::UTF_8
 
+# some random change for CI testing
+
 module WPScan
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
 
