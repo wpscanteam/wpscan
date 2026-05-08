@@ -48,10 +48,13 @@ require 'wpscan/vulnerability'
 require 'wpscan/progressbar_null_output'
 require 'wpscan/db'
 require 'wpscan/vulnerable'
+require 'wpscan/http_status_tracking'
 
 Encoding.default_external = Encoding::UTF_8
 
 module WPScan
+  extend HttpStatusTracking
+
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
 
   # Avoid memory leak when using Hydra, see https://github.com/typhoeus/typhoeus/issues/562
@@ -73,6 +76,9 @@ module WPScan
     self.total_requests += 1
     self.total_data_sent += response.request_size
     self.total_data_received += response.size
+
+    # Track HTTP status codes
+    increment_status_code(response.code)
 
     self.api_requests += 1 if response.respond_to?(:from_vuln_api?) && response.from_vuln_api?
 

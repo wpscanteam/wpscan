@@ -365,4 +365,135 @@ describe WPScan::Controller::Core do
       core.run
     end
   end
+
+  describe '#after_scan' do
+    before do
+      # Set up some test data
+      WPScan.reset_status_codes
+      WPScan.total_requests = 100
+      WPScan.cached_requests = 10
+      WPScan.total_data_sent = 1024
+      WPScan.total_data_received = 2048
+
+      core.instance_variable_set(:@start_time, Time.now - 60)
+      core.instance_variable_set(:@start_memory, 0)
+    end
+
+    context 'when status codes are tracked' do
+      before do
+        WPScan.set_status_code(200, 80)
+        WPScan.set_status_code(404, 15)
+        WPScan.set_status_code(500, 5)
+      end
+
+      it 'includes status codes in the output' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(
+            response_status_codes: { '200' => 80, '404' => 15, '500' => 5 },
+            response_status_codes_warning: false,
+            response_status_codes_warnings: []
+          ),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+
+    context 'when concerning error codes are detected' do
+      before do
+        WPScan.set_status_code(200, 50)
+        WPScan.set_status_code(429, 30)
+        WPScan.set_status_code(500, 20)
+      end
+
+      it 'sets response_status_codes_warning to true' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(
+            response_status_codes: { '200' => 50, '429' => 30, '500' => 20 },
+            response_status_codes_warning: true,
+            response_status_codes_warnings: include(
+              /Rate limiting detected/,
+              /Too many server errors/
+            )
+          ),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+
+    context 'when no concerning errors (404s are excluded)' do
+      before do
+        WPScan.set_status_code(200, 50)
+        WPScan.set_status_code(404, 50) # 404s should not trigger warnings
+      end
+
+      it 'sets response_status_codes_warning to false' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(
+            response_status_codes: { '200' => 50, '404' => 50 },
+            response_status_codes_warning: false,
+            response_status_codes_warnings: []
+          ),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+
+    context 'when many failed requests (code 0)' do
+      before do
+        WPScan.set_status_code(200, 80)
+        WPScan.set_status_code(0, 20) # 20 failed requests
+      end
+
+      it 'sets response_status_codes_warning to true with appropriate message' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(
+            response_status_codes: { '200' => 80, 'failed' => 20 },
+            response_status_codes_warning: true,
+            response_status_codes_warnings: ['Too many failed requests (no response) could indicate ' \
+                                             'network issues, WAF/IPS blocking, or an unavailable target']
+          ),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+
+    context 'when multiple error conditions exist' do
+      before do
+        WPScan.set_status_code(200, 50)
+        WPScan.set_status_code(429, 15)  # Rate limiting
+        WPScan.set_status_code(500, 20)  # Server errors
+        WPScan.set_status_code(0, 15)    # Failed requests
+      end
+
+      it 'returns all applicable warning messages' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(
+            response_status_codes: { '200' => 50, '429' => 15, '500' => 20, 'failed' => 15 },
+            response_status_codes_warning: true,
+            response_status_codes_warnings: include(
+              /Too many failed requests/,
+              /Rate limiting detected/,
+              /Too many server errors/
+            )
+          ),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+  end
 end
