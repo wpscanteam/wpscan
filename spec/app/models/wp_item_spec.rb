@@ -143,15 +143,22 @@ describe WPScan::Model::WpItem do
       before { allow(wp_item).to receive(:wordpress_org_api_url).and_return(api_url) }
 
       context 'on a successful response' do
-        before { stub_request(:get, api_url).to_return(status: 200, body: { 'active_installs' => 1234 }.to_json) }
+        before do
+          stub_request(:get, api_url).to_return(
+            status: 200,
+            body: { 'active_installs' => 1234, 'last_updated' => '2024-01-15 10:30am GMT' }.to_json
+          )
+        end
 
         it 'returns the active_installs value' do
           expect(wp_item.active_installs).to eql 1234
         end
 
-        it 'memoizes the result' do
+        it 'shares a single HTTP call with API-sourced last_updated' do
+          allow(wp_item).to receive(:metadata).and_return({})
           expect(WPScan::Browser).to receive(:get).once.and_call_original
-          2.times { wp_item.active_installs }
+          expect(wp_item.active_installs).to eql 1234
+          expect(wp_item.last_updated).to eql '2024-01-15 10:30am GMT'
         end
       end
 
@@ -176,6 +183,92 @@ describe WPScan::Model::WpItem do
 
         it 'returns nil' do
           expect(wp_item.active_installs).to be_nil
+        end
+      end
+    end
+  end
+
+  describe '#last_updated source precedence' do
+    before do
+      allow(wp_item).to receive(:metadata).and_return('last_updated' => '2020-01-01T00:00:00.000Z')
+      allow(wp_item).to receive(:wordpress_org_data).and_return(api_response)
+    end
+
+    context 'when wordpress.org returns a value' do
+      let(:api_response) { { 'last_updated' => '2026-04-14 12:01pm GMT' } }
+
+      it 'prefers the wordpress.org value over the DB metadata' do
+        expect(wp_item.last_updated).to eql '2026-04-14 12:01pm GMT'
+        expect(wp_item.last_updated_source).to eql 'WordPress.org'
+      end
+    end
+
+    context 'when wordpress.org has no value' do
+      let(:api_response) { {} }
+
+      it 'falls back to the DB metadata' do
+        expect(wp_item.last_updated).to eql '2020-01-01T00:00:00.000Z'
+        expect(wp_item.last_updated_source).to eql 'db'
+      end
+    end
+  end
+
+  describe '#last_updated_iso, #last_updated_display' do
+    before { allow(wp_item).to receive(:last_updated).and_return(value) }
+
+    context 'with an ISO 8601 string from the local DB' do
+      let(:value) { '2015-05-16T00:00:00.000Z' }
+
+      its(:last_updated_iso)     { should eql '2015-05-16T00:00:00Z' }
+      its(:last_updated_display) { should eql '2015-05-16 12:00am GMT' }
+    end
+
+    context 'with the wordpress.org API string' do
+      let(:value) { '2026-04-14 12:01pm GMT' }
+
+      its(:last_updated_iso)     { should eql '2026-04-14T12:01:00Z' }
+      its(:last_updated_display) { should eql '2026-04-14 12:01pm GMT' }
+    end
+
+    context 'when the value cannot be parsed' do
+      let(:value) { 'not a date' }
+
+      its(:last_updated_iso)     { should be_nil }
+      its(:last_updated_display) { should eql 'not a date' }
+    end
+
+    context 'when nil' do
+      let(:value) { nil }
+
+      its(:last_updated_iso)     { should be_nil }
+      its(:last_updated_display) { should be_nil }
+    end
+  end
+
+  describe '#last_updated_relative' do
+    let(:now) { Time.utc(2026, 5, 8, 12, 0, 0) }
+
+    before { allow(Time).to receive(:now).and_return(now) }
+
+    {
+      nil => nil,
+      '' => nil,
+      'not a date' => nil,
+      '2026-05-08 11:59:30 UTC' => 'just now',
+      '2026-05-08 11:55:00 UTC' => '5 minutes ago',
+      '2026-05-08 11:00:00 UTC' => '1 hour ago',
+      '2026-05-08 09:00:00 UTC' => '3 hours ago',
+      '2026-05-07 12:00:00 UTC' => '1 day ago',
+      '2026-05-01 12:00:00 UTC' => '7 days ago',
+      '2026-02-08 12:00:00 UTC' => '2 months ago',
+      '2024-05-08 12:00:00 UTC' => '2 years ago',
+      '2027-05-08 12:00:00 UTC' => 'in the future'
+    }.each do |input, expected|
+      context "when last_updated is #{input.inspect}" do
+        before { allow(wp_item).to receive(:last_updated).and_return(input) }
+
+        it "returns #{expected.inspect}" do
+          expect(wp_item.last_updated_relative).to eql expected
         end
       end
     end

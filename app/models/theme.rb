@@ -46,7 +46,7 @@ module WPScan
       def wordpress_org_api_url
         encoded_slug = Addressable::URI.encode_component(slug, Addressable::URI::CharacterClasses::UNRESERVED)
         'https://api.wordpress.org/themes/info/1.2/?action=theme_information' \
-          "&request[slug]=#{encoded_slug}&request[fields][active_installs]=1"
+          "&request[slug]=#{encoded_slug}&request[fields][active_installs]=1&request[fields][last_updated]=1"
       end
 
       # @return [ Theme ]

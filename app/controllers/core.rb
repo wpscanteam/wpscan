@@ -213,11 +213,16 @@ module WPScan
         @elapsed     = @stop_time - @start_time
         @used_memory = GetProcessMem.new.bytes - @start_memory
 
+        warnings = WPScan.error_warning_messages
+
         output('finished',
                cached_requests: WPScan.cached_requests,
                requests_done: WPScan.total_requests,
                data_sent: WPScan.total_data_sent,
-               data_received: WPScan.total_data_received)
+               data_received: WPScan.total_data_received,
+               response_status_codes: WPScan.format_status_codes(WPScan.top_status_codes),
+               response_status_codes_warning: warnings.any?,
+               response_status_codes_warnings: warnings)
       end
     end
   end
