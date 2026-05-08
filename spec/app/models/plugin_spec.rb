@@ -87,7 +87,10 @@ describe WPScan::Model::Plugin do
   end
 
   describe '#latest_version, #last_updated, #popular' do
-    before { allow(plugin).to receive(:db_data).and_return(db_data) }
+    before do
+      allow(plugin).to receive(:db_data).and_return(db_data)
+      allow(plugin).to receive(:wordpress_org_data).and_return({})
+    end
 
     context 'when no db_data and no metadata' do
       let(:slug)    { 'not-known' }
