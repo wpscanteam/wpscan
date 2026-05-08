@@ -13,6 +13,14 @@ WPScan is a WordPress security scanner written in Ruby. It provides WordPress-sp
 - Scanner framework lives in `lib/wpscan/` (Target, Browser, Controller::Base, Scan, Finders, Formatter, etc.) alongside the WordPress-specific code
 - Supports WordPress-specific security scanning features
 
+## Development Best Practices
+
+### Code Style
+- **Always run rubocop after making changes** to ensure code style compliance
+- Run `bundle exec rubocop -a` to auto-fix issues
+- For specific files: `bundle exec rubocop -a file1.rb file2.rb`
+- The project uses RuboCop for Ruby style enforcement
+
 ## Development Commands
 
 ### Setup
@@ -42,6 +50,10 @@ bundle exec rubocop
 
 # Auto-fix rubocop issues
 bundle exec rubocop -a
+
+# IMPORTANT: Always run rubocop after making code changes
+# Run on specific files being modified:
+bundle exec rubocop -a path/to/file1.rb path/to/file2.rb
 ```
 
 ### Building
