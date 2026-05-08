@@ -460,7 +460,7 @@ describe WPScan::Controller::Core do
             response_status_codes: { '200' => 80, 'failed' => 20 },
             response_status_codes_warning: true,
             response_status_codes_warnings: ['Too many failed requests (no response) could indicate ' \
-                                            'network issues, WAF/IPS blocking, or an unavailable target']
+                                             'network issues, WAF/IPS blocking, or an unavailable target']
           ),
           'core'
         )
