@@ -62,8 +62,9 @@ describe WPScan::Model::WpVersion do
         it 'returns the expected result' do
           @expected = [WPScan::Vulnerability.new(
             'WP 3.8 - Vuln 1',
-            references: { url: %w[url-4], wpvulndb: '3' },
-            type: 'AUTHBYPASS'
+            references: { url: %w[url-4], wpvulndb: '3099c1da-3750-4e63-8af9-929e773bbe57' },
+            type: 'AUTHBYPASS',
+            uuid: '3099c1da-3750-4e63-8af9-929e773bbe57'
           )]
         end
       end
