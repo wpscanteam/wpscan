@@ -390,8 +390,9 @@ describe WPScan::Controller::Core do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            response_status_codes: { 200 => 80, 404 => 15, 500 => 5 },
-            response_status_codes_warning: false
+            response_status_codes: { '200' => 80, '404' => 15, '500' => 5 },
+            response_status_codes_warning: false,
+            response_status_codes_warnings: []
           ),
           'core'
         )
@@ -411,8 +412,12 @@ describe WPScan::Controller::Core do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            response_status_codes: { 200 => 50, 429 => 30, 500 => 20 },
-            response_status_codes_warning: true
+            response_status_codes: { '200' => 50, '429' => 30, '500' => 20 },
+            response_status_codes_warning: true,
+            response_status_codes_warnings: include(
+              /Rate limiting detected/,
+              /Too many server errors/
+            )
           ),
           'core'
         )
@@ -431,8 +436,9 @@ describe WPScan::Controller::Core do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            response_status_codes: { 200 => 50, 404 => 50 },
-            response_status_codes_warning: false
+            response_status_codes: { '200' => 50, '404' => 50 },
+            response_status_codes_warning: false,
+            response_status_codes_warnings: []
           ),
           'core'
         )
@@ -451,10 +457,37 @@ describe WPScan::Controller::Core do
         expect(core.formatter).to receive(:output).with(
           'finished',
           hash_including(
-            response_status_codes: { 200 => 80, 0 => 20 },
+            response_status_codes: { '200' => 80, 'failed' => 20 },
             response_status_codes_warning: true,
-            response_status_codes_warning_message: 'Too many failed requests (no response) could indicate ' \
-                                                   'network issues, WAF/IPS blocking, or an unavailable target'
+            response_status_codes_warnings: ['Too many failed requests (no response) could indicate ' \
+                                            'network issues, WAF/IPS blocking, or an unavailable target']
+          ),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+
+    context 'when multiple error conditions exist' do
+      before do
+        WPScan.set_status_code(200, 50)
+        WPScan.set_status_code(429, 15)  # Rate limiting
+        WPScan.set_status_code(500, 20)  # Server errors
+        WPScan.set_status_code(0, 15)    # Failed requests
+      end
+
+      it 'returns all applicable warning messages' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(
+            response_status_codes: { '200' => 50, '429' => 15, '500' => 20, 'failed' => 15 },
+            response_status_codes_warning: true,
+            response_status_codes_warnings: include(
+              /Too many failed requests/,
+              /Rate limiting detected/,
+              /Too many server errors/
+            )
           ),
           'core'
         )

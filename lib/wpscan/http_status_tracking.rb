@@ -56,24 +56,50 @@ module WPScan
       end
     end
 
-    # Get a specific warning message based on error types
-    def error_warning_message
-      return nil if total_requests.zero?
+    # Format status codes for display (converts code 0 to "failed")
+    def format_status_codes(codes_hash)
+      codes_hash.map do |code, count|
+        label = code == 0 ? 'failed' : code.to_s
+        [label, count]
+      end.to_h
+    end
 
+    # Get all applicable warning messages based on error types
+    def error_warning_messages
+      return [] if total_requests.zero?
+
+      messages = []
       counts = error_counts
       error_percentage = (counts[:client_errors] + counts[:server_errors] + counts[:failed]).to_f / total_requests
 
+      # Check each condition independently and add to messages array
       if counts[:failed] > 10
-        'Too many failed requests (no response) could indicate network issues, ' \
-          'WAF/IPS blocking, or an unavailable target'
-      elsif counts[:rate_limit] > 10
-        'Rate limiting detected (429 responses). Consider using --throttle or reducing --max-threads'
-      elsif counts[:server_errors] > 10
-        'Too many server errors (5xx). The target may be experiencing issues or blocking requests'
-      elsif error_percentage > 0.2
-        'Too many errors detected. This could indicate network issues, rate limiting, ' \
-          'or security protection (e.g. WAF)'
+        messages << 'Too many failed requests (no response) could indicate network issues, ' \
+                    'WAF/IPS blocking, or an unavailable target'
       end
+
+      if counts[:rate_limit] > 10
+        messages << 'Rate limiting detected (429 responses). Consider using --throttle or reducing --max-threads'
+      end
+
+      if counts[:server_errors] > 10
+        messages << 'Too many server errors (5xx). The target may be experiencing issues or blocking requests'
+      end
+
+      # Check for other 4xx client errors (excluding 404 and 429 which are handled separately)
+      other_client_errors = counts[:client_errors] - counts[:rate_limit]
+      if other_client_errors > 10
+        messages << 'Too many client errors (4xx). This could indicate access restrictions, ' \
+                    'authentication issues, or WAF blocking'
+      end
+
+      # Only show generic high error rate if no specific issues identified
+      if error_percentage > 0.2 && messages.empty?
+        messages << 'Too many errors detected. This could indicate network issues, rate limiting, ' \
+                    'or security protection (e.g. WAF)'
+      end
+
+      messages
     end
 
     # Determine if warning should be shown for concerning error codes

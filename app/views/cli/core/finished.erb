@@ -2,10 +2,12 @@
 <%= info_icon %> Requests Done: <%= @requests_done %>
 <%= info_icon %> Cached Requests: <%= @cached_requests %>
 <% if @response_status_codes && !@response_status_codes.empty? -%>
-<%= info_icon %> Most response codes received: <%= @response_status_codes.map { |code, count| "#{code}: #{count}" }.join(', ') %>
+<%= info_icon %> Most response codes received: <%= @response_status_codes.map { |label, count| "#{label}: #{count}" }.join(', ') %>
 <% end -%>
-<% if @response_status_codes_warning -%>
-<%= warning_icon %> <%= @response_status_codes_warning_message %>
+<% if @response_status_codes_warnings && !@response_status_codes_warnings.empty? -%>
+<% @response_status_codes_warnings.each do |warning| -%>
+<%= warning_icon %> <%= warning %>
+<% end -%>
 <% end -%>
 <%= info_icon %> Data Sent: <%= @data_sent.bytes_to_human %>
 <%= info_icon %> Data Received: <%= @data_received.bytes_to_human %>

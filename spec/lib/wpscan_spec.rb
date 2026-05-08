@@ -183,5 +183,128 @@ describe WPScan do
         end
       end
     end
+
+    describe '.format_status_codes' do
+      context 'when codes include 0 (failed requests)' do
+        it 'converts code 0 to "failed" label' do
+          codes = { 200 => 100, 0 => 20, 404 => 10 }
+          formatted = WPScan.format_status_codes(codes)
+
+          expect(formatted).to eq({ '200' => 100, 'failed' => 20, '404' => 10 })
+        end
+      end
+
+      context 'when codes do not include 0' do
+        it 'converts all codes to string labels' do
+          codes = { 200 => 100, 404 => 50, 500 => 30 }
+          formatted = WPScan.format_status_codes(codes)
+
+          expect(formatted).to eq({ '200' => 100, '404' => 50, '500' => 30 })
+        end
+      end
+    end
+
+    describe '.error_warning_messages' do
+      before { WPScan.total_requests = 100 }
+
+      context 'when no requests made' do
+        before { WPScan.total_requests = 0 }
+
+        it 'returns empty array' do
+          expect(WPScan.error_warning_messages).to eq([])
+        end
+      end
+
+      context 'when no concerning errors' do
+        before do
+          WPScan.set_status_code(200, 90)
+          WPScan.set_status_code(404, 10)
+        end
+
+        it 'returns empty array' do
+          expect(WPScan.error_warning_messages).to eq([])
+        end
+      end
+
+      context 'when single error condition met' do
+        before do
+          WPScan.set_status_code(200, 85)
+          WPScan.set_status_code(429, 15)
+        end
+
+        it 'returns array with one warning message' do
+          messages = WPScan.error_warning_messages
+          expect(messages.count).to eq(1)
+          expect(messages.first).to match(/Rate limiting detected/)
+        end
+      end
+
+      context 'when multiple error conditions met' do
+        before do
+          WPScan.set_status_code(200, 50)
+          WPScan.set_status_code(429, 15)  # Rate limiting
+          WPScan.set_status_code(500, 20)  # Server errors
+          WPScan.set_status_code(0, 15)    # Failed requests
+        end
+
+        it 'returns array with all applicable warning messages' do
+          messages = WPScan.error_warning_messages
+          expect(messages.count).to eq(3)
+          expect(messages).to include(/Too many failed requests/)
+          expect(messages).to include(/Rate limiting detected/)
+          expect(messages).to include(/Too many server errors/)
+        end
+      end
+
+      context 'when many 403 forbidden errors' do
+        before do
+          WPScan.set_status_code(200, 50)
+          WPScan.set_status_code(403, 30)  # Many 403 Forbidden
+          WPScan.set_status_code(401, 20)  # Some 401 Unauthorized
+        end
+
+        it 'returns client error warning' do
+          messages = WPScan.error_warning_messages
+          expect(messages.count).to eq(1)
+          expect(messages.first).to match(/Too many client errors.*access restrictions/)
+        end
+      end
+
+      context 'when both failed requests and 403 errors (like real scan)' do
+        before do
+          # Simulating the user's real example
+          WPScan.total_requests = 2440
+          WPScan.set_status_code(200, 23)
+          WPScan.set_status_code(302, 1)
+          WPScan.set_status_code(403, 205)  # 403 Forbidden
+          WPScan.set_status_code(404, 846)  # 404s (excluded from warnings)
+          WPScan.set_status_code(0, 1365)   # Failed requests
+        end
+
+        it 'returns warnings for both conditions' do
+          messages = WPScan.error_warning_messages
+          expect(messages.count).to eq(2)
+          expect(messages).to include(/Too many failed requests/)
+          expect(messages).to include(/Too many client errors/)
+        end
+      end
+
+      context 'when high error rate but below specific thresholds' do
+        before do
+          WPScan.set_status_code(200, 78)
+          WPScan.set_status_code(400, 5)   # Client error
+          WPScan.set_status_code(403, 5)   # Client error (total client = 10, not > 10)
+          WPScan.set_status_code(500, 6)   # Server error (not > 10)
+          WPScan.set_status_code(0, 6)     # Failed requests (not > 10)
+          # Total errors = 10 + 6 + 6 = 22 out of 100 = 22% > 20%
+        end
+
+        it 'returns generic high error rate warning' do
+          messages = WPScan.error_warning_messages
+          expect(messages.count).to eq(1)
+          expect(messages.first).to match(/Too many errors detected/)
+        end
+      end
+    end
   end
 end
