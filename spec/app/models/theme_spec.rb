@@ -237,7 +237,8 @@ describe WPScan::Model::Theme do
               poc: "<?php\n// Theme LFI exploit\ninclude($_GET['page']);\n?>",
               uuid: 'b099c1da-3750-4e63-8af9-929e773bbe62'
             ),
-            WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: 'b199c1da-3750-4e63-8af9-929e773bbe63' }, uuid: 'b199c1da-3750-4e63-8af9-929e773bbe63')
+            WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: 'b199c1da-3750-4e63-8af9-929e773bbe63' },
+                                                     uuid: 'b199c1da-3750-4e63-8af9-929e773bbe63')
           ]
         end
 

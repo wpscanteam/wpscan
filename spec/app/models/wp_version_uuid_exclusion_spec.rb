@@ -50,7 +50,7 @@ describe 'UUID Exclusion for WP Version' do
     context 'with all UUIDs excluded' do
       before do
         WPScan::ParsedCli.options = {
-          exclude_vulns: ['c099c1da-3750-4e63-8af9-929e773bbe57', 'd099c1da-3750-4e63-8af9-929e773bbe58']
+          exclude_vulns: %w[c099c1da-3750-4e63-8af9-929e773bbe57 d099c1da-3750-4e63-8af9-929e773bbe58]
         }
       end
 
@@ -73,5 +73,4 @@ describe 'UUID Exclusion for WP Version' do
       end
     end
   end
-
 end

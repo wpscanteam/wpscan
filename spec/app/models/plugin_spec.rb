@@ -218,7 +218,9 @@ describe WPScan::Model::Plugin do
                 poc: "#!/bin/bash\ncurl 'http://example.com/?file=../../../etc/passwd'",
                 uuid: 'e099c1da-3750-4e63-8af9-929e773bbe59'
               ),
-              WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: 'f099c1da-3750-4e63-8af9-929e773bbe60' }, uuid: 'f099c1da-3750-4e63-8af9-929e773bbe60')
+              WPScan::Vulnerability.new('No Fixed In',
+                                        references: { wpvulndb: 'f099c1da-3750-4e63-8af9-929e773bbe60' },
+                                        uuid: 'f099c1da-3750-4e63-8af9-929e773bbe60')
             ]
           end
 
