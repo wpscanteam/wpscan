@@ -44,6 +44,28 @@ brew install wpscanteam/tap/wpscan
 
 ### From RubyGems
 
+WPScan depends on gems with native extensions (e.g. `yajl-ruby`, `nokogiri`, `ffi`), so a working C toolchain and Ruby development headers must be present before `gem install wpscan`. Without them, the install fails with errors like `Failed to build gem native extension` or `make: x86_64-linux-gnu-gcc: No such file or directory` (see [#1844](https://github.com/wpscanteam/wpscan/issues/1844)).
+
+- **Debian / Ubuntu**:
+  ```shell
+  sudo apt install build-essential ruby-dev
+  ```
+- **Fedora / RHEL / CentOS**:
+  ```shell
+  sudo dnf install @development-tools ruby-devel
+  ```
+- **Arch Linux**:
+  ```shell
+  sudo pacman -S base-devel ruby
+  ```
+- **Alpine**:
+  ```shell
+  sudo apk add build-base ruby-dev
+  ```
+- **macOS**: install the Xcode Command Line Tools (`xcode-select --install`).
+
+Then install the gem:
+
 ```shell
 gem install wpscan
 ```
