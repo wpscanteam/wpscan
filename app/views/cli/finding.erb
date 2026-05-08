@@ -18,7 +18,7 @@
 <% end -%>
 <% end -%>
 <% end -%>
-<% if @item.respond_to?(:vulnerabilities) && !(vulns = @item.vulnerabilities).empty? -%>
+<% if @item.respond_to?(:filtered_vulnerabilities) && !(vulns = @item.filtered_vulnerabilities).empty? -%>
 <% vulns_size = vulns.size -%>
  |
  | <%= critical_icon %> <%= vulns_size %> <%= vulns_size == 1 ? 'vulnerability' : 'vulnerabilities' %> identified:

@@ -230,12 +230,13 @@ describe WPScan::Model::Theme do
           [
             WPScan::Vulnerability.new(
               'First Vuln',
-              references: { wpvulndb: '1' },
+              references: { wpvulndb: 'b099c1da-3750-4e63-8af9-929e773bbe62' },
               type: 'LFI',
               fixed_in: '6.3.10',
-              poc: "<?php\n// Theme LFI exploit\ninclude($_GET['page']);\n?>"
+              poc: "<?php\n// Theme LFI exploit\ninclude($_GET['page']);\n?>",
+              uuid: 'b099c1da-3750-4e63-8af9-929e773bbe62'
             ),
-            WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: '2' })
+            WPScan::Vulnerability.new('No Fixed In', references: { wpvulndb: 'b199c1da-3750-4e63-8af9-929e773bbe63' }, uuid: 'b199c1da-3750-4e63-8af9-929e773bbe63')
           ]
         end
 

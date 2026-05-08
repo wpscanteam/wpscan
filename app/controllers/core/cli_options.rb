@@ -22,7 +22,10 @@ module WPScan
                         default: :mixed),
           OptArray.new(['--scope DOMAINS',
                         'Comma separated (sub-)domains to consider in scope. ',
-                        'Wildcard(s) allowed in the trd of valid domains, e.g: *.target.tld'], advanced: true)
+                        'Wildcard(s) allowed in the trd of valid domains, e.g: *.target.tld'], advanced: true),
+          OptArray.new(['--exclude-vulns UUIDs',
+                        'Comma separated list of vulnerability UUIDs to exclude. ',
+                        'Format: UUID (e.g: c099c1da-3750-4e63-8af9-929e773bbe57)'], advanced: true)
         ] + cli_browser_options
       end
 

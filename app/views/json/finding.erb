@@ -12,13 +12,16 @@
 <% end -%>
 <% end -%>
 }
-<% if @item.respond_to?(:vulnerabilities) -%>
+<% if @item.respond_to?(:filtered_vulnerabilities) -%>
 ,"vulnerabilities": [
-<% unless (vulns = @item.vulnerabilities).empty? -%>
+<% unless (vulns = @item.filtered_vulnerabilities).empty? -%>
   <% last_index = vulns.size - 1 -%>
   <% vulns.each_with_index do |v, index| -%>
   {
     "title": <%= v.title.to_json %>,
+    <% if v.uuid -%>
+    "uuid": <%= v.uuid.to_json %>,
+    <% end -%>
     <% if v.cvss -%>
     "cvss": <%= v.cvss.to_json %>,
     <% end -%>
