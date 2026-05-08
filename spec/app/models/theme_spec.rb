@@ -103,6 +103,7 @@ describe WPScan::Model::Theme do
     before do
       stub_request(:get, /.*\.css\z/)
       allow(theme).to receive(:db_data).and_return(db_data)
+      allow(theme).to receive(:wordpress_org_data).and_return({})
     end
 
     context 'when no db_data and no metadata' do
@@ -280,7 +281,7 @@ describe WPScan::Model::Theme do
 
     its(:wordpress_org_api_url) do
       should eql 'https://api.wordpress.org/themes/info/1.2/?action=theme_information' \
-                 '&request[slug]=spec&request[fields][active_installs]=1'
+                 '&request[slug]=spec&request[fields][active_installs]=1&request[fields][last_updated]=1'
     end
   end
 

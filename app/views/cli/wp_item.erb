@@ -3,10 +3,10 @@
  | Latest Version: <%= @wp_item.latest_version %><% if @wp_item.version %> (up to date)<% end %>
 <% end -%>
 <% if @wp_item.last_updated -%>
- | Last Updated: <%= @wp_item.last_updated %>
+ | Last Updated: <%= @wp_item.last_updated_display %><%= @wp_item.last_updated_cli_suffix %>
 <% end -%>
 <% if @wp_item.active_installs -%>
- | Active Installs: <%= ActiveSupport::NumberHelper.number_to_delimited(@wp_item.active_installs) %>
+ | Active Installs: <%= ActiveSupport::NumberHelper.number_to_delimited(@wp_item.active_installs) %> (per WordPress.org)
 <% end -%>
 <% if @wp_item.readme_url -%>
  | Readme: <%= @wp_item.readme_url %>

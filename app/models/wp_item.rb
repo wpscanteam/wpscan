@@ -71,43 +71,109 @@ module WPScan
         @popular ||= metadata['popular'] ? true : false
       end
 
-      # @return [ String ]
+      # @return [ String, nil ]
       def last_updated
-        @last_updated ||= metadata['last_updated']
+        resolve_last_updated unless defined?(@last_updated)
+        @last_updated
       end
 
-      # Number of active installs as reported by the wordpress.org API.
-      # See https://codex.wordpress.org/WordPress.org_API
+      # @return [ String, nil ] 'db', 'wordpress.org', or nil when last_updated is unknown
+      def last_updated_source
+        resolve_last_updated unless defined?(@last_updated_source)
+        @last_updated_source
+      end
+
+      # WordPress.org takes precedence over local DB metadata since the WPScan
+      # DB is not synced in real time and may be stale.
+      def resolve_last_updated
+        if (api_value = wordpress_org_data['last_updated'])
+          @last_updated        = api_value
+          @last_updated_source = 'WordPress.org'
+        elsif (db_value = metadata['last_updated'])
+          @last_updated        = db_value
+          @last_updated_source = 'db'
+        else
+          @last_updated        = nil
+          @last_updated_source = nil
+        end
+      end
+
+      # @return [ String, nil ] Human-friendly relative time hint for last_updated
+      #   (e.g. "3 months ago"). nil when last_updated cannot be parsed.
+      def last_updated_relative
+        @last_updated_relative ||= relative_time_for(last_updated)
+      end
+
+      # Parenthesized annotation appended to the CLI "Last Updated" line, e.g.
+      # " (3 months ago, per wordpress.org)". Empty string when there is nothing
+      # to annotate.
       #
-      # @return [ Integer, nil ] nil if the item is not on wordpress.org or the lookup fails
-      def active_installs
-        return @active_installs if defined?(@active_installs)
-
-        @active_installs = fetch_active_installs
+      # @return [ String ]
+      def last_updated_cli_suffix
+        parts = []
+        parts << last_updated_relative if last_updated_relative
+        parts << 'per WordPress.org' if last_updated_source == 'WordPress.org'
+        parts.empty? ? '' : " (#{parts.join(', ')})"
       end
 
-      # @return [ String, nil ] The wordpress.org API URL returning info for this item.
-      #   Subclasses override this; nil disables the lookup.
-      def wordpress_org_api_url
+      # ISO 8601 (UTC) representation of last_updated, used by the JSON output so
+      # downstream consumers always see a consistent format regardless of whether
+      # the value came from the local DB or the wordpress.org API.
+      #
+      # @return [ String, nil ]
+      def last_updated_iso
+        return @last_updated_iso if defined?(@last_updated_iso)
+
+        @last_updated_iso = parse_last_updated&.iso8601
+      end
+
+      # Friendly representation of last_updated, used in CLI output, matching the
+      # wordpress.org API style (e.g. "2026-04-14 12:01pm GMT"). Falls back to the
+      # raw string when the value cannot be parsed.
+      #
+      # @return [ String, nil ]
+      def last_updated_display
+        return @last_updated_display if defined?(@last_updated_display)
+
+        time = parse_last_updated
+        @last_updated_display = time ? time.strftime('%Y-%m-%d %-l:%M%P GMT') : last_updated
+      end
+
+      # @return [ Time, nil ] last_updated parsed as UTC Time, or nil
+      def parse_last_updated
+        value = last_updated
+        return nil if value.nil? || value.to_s.strip.empty?
+
+        Time.parse(value.to_s).utc
+      rescue ArgumentError, TypeError
         nil
       end
 
-      # Timeout (in seconds) for the wordpress.org API lookup. Kept low so a slow
-      # or unreachable wordpress.org does not noticeably stall the scan.
-      WORDPRESS_ORG_API_TIMEOUT = 5
+      # @param [ String, nil ] value A timestamp parseable by Time.parse
+      # @return [ String, nil ]
+      def relative_time_for(value)
+        return nil if value.nil? || value.to_s.strip.empty?
 
-      # @return [ Integer, nil ]
-      def fetch_active_installs
-        url = wordpress_org_api_url
-        return nil unless url
+        time  = Time.parse(value.to_s).utc
+        delta = Time.now.utc - time
+        return 'in the future' if delta.negative?
 
-        res = Browser.get(url, connecttimeout: WORDPRESS_ORG_API_TIMEOUT, timeout: WORDPRESS_ORG_API_TIMEOUT)
-        return nil unless res.code == 200
-
-        data = JSON.parse(res.body)
-        data.is_a?(Hash) ? data['active_installs'] : nil
-      rescue StandardError
+        seconds = delta.to_i
+        case seconds
+        when 0...60        then 'just now'
+        when 60...3600     then pluralize_unit(seconds / 60, 'minute')
+        when 3600...86_400 then pluralize_unit(seconds / 3600, 'hour')
+        when 86_400...2_592_000 then pluralize_unit(seconds / 86_400, 'day')
+        when 2_592_000...31_536_000 then pluralize_unit(seconds / 2_592_000, 'month')
+        else pluralize_unit(seconds / 31_536_000, 'year')
+        end
+      rescue ArgumentError, TypeError
         nil
+      end
+
+      # @return [ String ]
+      def pluralize_unit(count, unit)
+        "#{count} #{unit}#{'s' if count != 1} ago"
       end
 
       # @return [ Boolean ]
