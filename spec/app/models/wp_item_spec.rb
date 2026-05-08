@@ -128,4 +128,56 @@ describe WPScan::Model::WpItem do
   describe '#head_and_get' do
     xit
   end
+
+  describe '#active_installs' do
+    context 'when wordpress_org_api_url is nil' do
+      it 'returns nil and does not make a request' do
+        expect(WPScan::Browser).not_to receive(:get)
+        expect(wp_item.active_installs).to be_nil
+      end
+    end
+
+    context 'when wordpress_org_api_url is set' do
+      let(:api_url) { 'https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=test_item' }
+
+      before { allow(wp_item).to receive(:wordpress_org_api_url).and_return(api_url) }
+
+      context 'on a successful response' do
+        before { stub_request(:get, api_url).to_return(status: 200, body: { 'active_installs' => 1234 }.to_json) }
+
+        it 'returns the active_installs value' do
+          expect(wp_item.active_installs).to eql 1234
+        end
+
+        it 'memoizes the result' do
+          expect(WPScan::Browser).to receive(:get).once.and_call_original
+          2.times { wp_item.active_installs }
+        end
+      end
+
+      context 'on a non-200 response' do
+        before { stub_request(:get, api_url).to_return(status: 404, body: '') }
+
+        it 'returns nil' do
+          expect(wp_item.active_installs).to be_nil
+        end
+      end
+
+      context 'on invalid JSON' do
+        before { stub_request(:get, api_url).to_return(status: 200, body: 'not json') }
+
+        it 'returns nil' do
+          expect(wp_item.active_installs).to be_nil
+        end
+      end
+
+      context 'when active_installs key is absent' do
+        before { stub_request(:get, api_url).to_return(status: 200, body: '{}') }
+
+        it 'returns nil' do
+          expect(wp_item.active_installs).to be_nil
+        end
+      end
+    end
+  end
 end

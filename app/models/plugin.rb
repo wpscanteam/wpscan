@@ -36,6 +36,12 @@ module WPScan
         @version
       end
 
+      # @return [ String ]
+      def wordpress_org_api_url
+        encoded_slug = Addressable::URI.encode_component(slug, Addressable::URI::CharacterClasses::UNRESERVED)
+        "https://api.wordpress.org/plugins/info/1.2/?action=plugin_information&request[slug]=#{encoded_slug}"
+      end
+
       # @return [ Array<String> ]
       def potential_readme_filenames
         @potential_readme_filenames ||= Array(DB::DynamicFinders::Plugin.df_data.dig(slug, 'Readme', 'path') || super)

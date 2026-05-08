@@ -275,6 +275,15 @@ describe WPScan::Model::Theme do
     end
   end
 
+  describe '#wordpress_org_api_url' do
+    before { stub_request(:get, /.*\.css\z/).to_return(body: '') }
+
+    its(:wordpress_org_api_url) do
+      should eql 'https://api.wordpress.org/themes/info/1.2/?action=theme_information' \
+                 '&request[slug]=spec&request[fields][active_installs]=1'
+    end
+  end
+
   describe '#parent_theme' do
     before do
       stub_request(:get, blog.url('wp-content/themes/spec/style.css'))

@@ -76,6 +76,40 @@ module WPScan
         @last_updated ||= metadata['last_updated']
       end
 
+      # Number of active installs as reported by the wordpress.org API.
+      # See https://codex.wordpress.org/WordPress.org_API
+      #
+      # @return [ Integer, nil ] nil if the item is not on wordpress.org or the lookup fails
+      def active_installs
+        return @active_installs if defined?(@active_installs)
+
+        @active_installs = fetch_active_installs
+      end
+
+      # @return [ String, nil ] The wordpress.org API URL returning info for this item.
+      #   Subclasses override this; nil disables the lookup.
+      def wordpress_org_api_url
+        nil
+      end
+
+      # Timeout (in seconds) for the wordpress.org API lookup. Kept low so a slow
+      # or unreachable wordpress.org does not noticeably stall the scan.
+      WORDPRESS_ORG_API_TIMEOUT = 5
+
+      # @return [ Integer, nil ]
+      def fetch_active_installs
+        url = wordpress_org_api_url
+        return nil unless url
+
+        res = Browser.get(url, connecttimeout: WORDPRESS_ORG_API_TIMEOUT, timeout: WORDPRESS_ORG_API_TIMEOUT)
+        return nil unless res.code == 200
+
+        data = JSON.parse(res.body)
+        data.is_a?(Hash) ? data['active_installs'] : nil
+      rescue StandardError
+        nil
+      end
+
       # @return [ Boolean ]
       def outdated?
         @outdated ||= if version && latest_version
