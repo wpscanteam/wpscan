@@ -3,6 +3,7 @@
 require_relative 'themes/urls_in_homepage'
 require_relative 'themes/urls_in_404_page'
 require_relative 'themes/known_locations'
+require_relative 'themes/wp_json_api' # Authenticated, used by AuthenticatedInventory controller
 
 module WPScan
   module Finders

@@ -65,6 +65,13 @@ module WPScan
                           default: APP_DIR.join('user_agents.txt')),
           OptCredentials.new(['--http-auth login:password',
                               'Basic HTTP authentication, beware that the $ character must be properly escaped.']),
+          OptCredentials.new(['--wp-auth login:password',
+                              'WordPress admin credentials used to query the REST API for an authoritative ' \
+                              'inventory of installed plugins and themes (/wp-json/wp/v2/plugins and /themes). ' \
+                              'When provided, plugin/theme enumeration via -e is bypassed. ' \
+                              'The password MUST be a WordPress Application Password (WP >= 5.6, ' \
+                              'created at Users -> Profile -> Application Passwords). ' \
+                              'Real account passwords are rejected by WordPress core over Basic Auth.']),
           OptPositiveInteger.new(['-t', '--max-threads VALUE', 'The max threads to use'],
                                  default: 5),
           OptPositiveInteger.new(['--throttle MilliSeconds', 'Milliseconds to wait before doing another web request. ' \

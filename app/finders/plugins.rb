@@ -11,6 +11,7 @@ require_relative 'plugins/body_pattern'
 require_relative 'plugins/javascript_var'
 require_relative 'plugins/query_parameter'
 require_relative 'plugins/config_parser' # Not loaded below as not implemented
+require_relative 'plugins/wp_json_api'   # Authenticated, used by AuthenticatedInventory controller
 
 module WPScan
   module Finders
