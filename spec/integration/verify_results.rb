@@ -171,6 +171,15 @@ puts '-' * 80
   end
 end
 
+# Media enumeration (requires plain permalinks; the test env sets permalink_structure='')
+medias = (results['medias'] || {}).keys
+if medias.any?
+  puts "✓ medias: found #{medias.length} attachment(s)"
+else
+  failures << 'medias: no attachments detected (expected at least one from wp media import)'
+  puts '✗ medias: no attachments detected'
+end
+
 puts
 
 # Verify interesting findings the test environment is set up to expose.
@@ -179,7 +188,19 @@ puts
 puts 'Interesting Findings:'
 puts '-' * 80
 
-EXPECTED_FINDING_TYPES = %w[debug_log readme wp_cron].freeze
+EXPECTED_FINDING_TYPES = %w[
+  debug_log
+  readme
+  wp_cron
+  registration
+  mu_plugins
+  backup_db
+  duplicator_installer_log
+  emergency_pwd_reset_script
+  search_replace_db2
+  fantastico_fileslist
+  upload_sql_dump
+].freeze
 finding_types = (results['interesting_findings'] || []).map { |f| f['type'] }
 
 EXPECTED_FINDING_TYPES.each do |type|
