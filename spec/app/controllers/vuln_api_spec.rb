@@ -59,9 +59,9 @@ describe WPScan::Controller::VulnApi do
               )
           end
 
-          it 'raises an HTTP error' do
+          it 'raises an API connection error' do
             expect { controller.before_scan }
-              .to raise_error(WPScan::Error::HTTP, 'HTTP Error: mock-url (Timeout was reached)')
+              .to raise_error(WPScan::Error::ApiConnectionError, 'Unable to connect to the WPScan API: HTTP Error: mock-url (Timeout was reached). Please check https://status.wpscan.com/ for service status.')
           end
         end
 
