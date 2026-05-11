@@ -5,3 +5,6 @@
 "target_url": <%= @url.to_s.to_json %>,
 "target_ip": <%= @ip.to_s.to_json %>,
 "effective_url": <%= @effective_url.to_s.to_json %>,
+<% if WPScan::ParsedCli.exclude_vulns && !WPScan::ParsedCli.exclude_vulns.empty? -%>
+"excluded_vulnerabilities": <%= Array(WPScan::ParsedCli.exclude_vulns).to_json %>,
+<% end -%>
