@@ -134,6 +134,64 @@ else
 end
 
 puts
+
+# Verify user enumeration
+puts 'User Enumeration:'
+puts '-' * 80
+
+EXPECTED_USERS = %w[admin editor1 author1].freeze
+detected_users = (results['users'] || {}).keys
+
+EXPECTED_USERS.each do |username|
+  if detected_users.include?(username)
+    puts "✓ User detected: #{username}"
+  else
+    failures << "User '#{username}' not detected"
+    puts "✗ User: #{username} NOT DETECTED"
+  end
+end
+
+puts
+
+# Verify config backup, db export, and timthumb finders
+puts 'Config Backups / DB Exports / Timthumbs:'
+puts '-' * 80
+
+{
+  'config_backups' => 'wp-config.bak',
+  'db_exports' => 'backup.sql',
+  'timthumbs' => 'timthumb.php'
+}.each do |section, expected_filename|
+  entries = (results[section] || {}).keys
+  if entries.any? { |url| url.include?(expected_filename) }
+    puts "✓ #{section}: found entry matching '#{expected_filename}'"
+  else
+    failures << "#{section}: expected entry matching '#{expected_filename}', got #{entries.inspect}"
+    puts "✗ #{section}: no entry matching '#{expected_filename}' (found: #{entries.inspect})"
+  end
+end
+
+puts
+
+# Verify interesting findings the test environment is set up to expose.
+# Types are derived from the model class name via demodulize.underscore:
+# DebugLog -> debug_log, Readme -> readme, WPCron -> wp_cron.
+puts 'Interesting Findings:'
+puts '-' * 80
+
+EXPECTED_FINDING_TYPES = %w[debug_log readme wp_cron].freeze
+finding_types = (results['interesting_findings'] || []).map { |f| f['type'] }
+
+EXPECTED_FINDING_TYPES.each do |type|
+  if finding_types.include?(type)
+    puts "✓ Interesting finding: #{type}"
+  else
+    failures << "Interesting finding '#{type}' not reported"
+    puts "✗ Interesting finding: #{type} NOT REPORTED (got: #{finding_types.inspect})"
+  end
+end
+
+puts
 puts '=' * 80
 
 # Display summary

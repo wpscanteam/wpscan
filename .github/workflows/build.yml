@@ -79,6 +79,18 @@ jobs:
         ddev exec wp plugin install wordpress-seo --version=15.5 --activate --path=wordpress 2>/dev/null
         ddev exec wp theme install twentynineteen --version=1.8 --activate --path=wordpress 2>/dev/null
 
+        # Create additional non-admin users so WPScan's user enumeration has more than just `admin` to find
+        ddev exec wp user create editor1 editor1@example.com --role=editor --user_pass='editor-pass-123' --path=wordpress
+        ddev exec wp user create author1 author1@example.com --role=author --user_pass='author-pass-123' --path=wordpress
+
+        # Drop files that trigger WPScan's "interesting findings" / config-backup / db-export / timthumb finders.
+        # See issue #807: the test site should demo as many detection paths as is reasonable.
+        echo '<?php /* leaked wp-config backup */' > wordpress/wp-config.bak
+        echo '-- mysql dump' > wordpress/backup.sql
+        echo 'PHP Notice: simulated debug entry' > wordpress/wp-content/debug.log
+        # timthumb.php at the docroot — first probed location in db/timthumbs-v3.txt
+        echo '<?php /* timthumb */' > wordpress/timthumb.php
+
         # Verify site returns HTTP 200 (will exit non-zero on 4xx/5xx errors)
         curl -k -f -s -o /dev/null -w "✓ WordPress responding: HTTP %{http_code}\n" https://wordpress-test.ddev.site
 
@@ -106,7 +118,7 @@ jobs:
           --format json \
           --output scan-results.json \
           --api-token "${WPSCAN_API_TOKEN}" \
-          -e vp,vt \
+          -e vp,vt,u,cb,dbe,tt \
           --plugins-detection passive \
           --themes-detection passive
         EXIT_CODE=$?
