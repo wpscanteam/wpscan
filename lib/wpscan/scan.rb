@@ -30,6 +30,7 @@ module WPScan
         --http-auth
         --proxy-auth
         --cookie-string
+        --wp-auth
       ]
 
       masked_args = args.dup

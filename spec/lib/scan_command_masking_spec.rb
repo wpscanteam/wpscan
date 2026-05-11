@@ -38,6 +38,12 @@ describe WPScan::Scan do
         expect(WPScan.command_line).to eq('--url http://example.com --cookie-string [REDACTED]')
       end
 
+      it 'masks WordPress REST API credentials' do
+        stub_const('ARGV', ['--url', 'http://example.com', '--wp-auth', 'admin:xxxx xxxx xxxx xxxx xxxx xxxx'])
+        described_class.new
+        expect(WPScan.command_line).to eq('--url http://example.com --wp-auth [REDACTED]')
+      end
+
       it 'masks multiple sensitive arguments' do
         stub_const('ARGV', ['--url', 'http://example.com', '--api-token', 'TOKEN', '--http-auth', 'admin:pass'])
         described_class.new
