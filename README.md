@@ -200,6 +200,9 @@ cli_options:
 
 The API Token will be automatically loaded from the ENV variable `WPSCAN_API_TOKEN` if present. If the `--api-token` CLI option is also provided, the value from the CLI will be used.
 
+## API Service Status
+
+If you experience connection issues with the WPScan API, you can check the service status at https://status.wpscan.com/. When API connection errors occur, WPScan will include a link to the status page in the error message.
 
 ## Enumerating usernames
 

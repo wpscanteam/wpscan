@@ -30,7 +30,7 @@ module WPScan
 
         raise Error::InvalidApiToken if api_status['status'] == 'forbidden'
         raise Error::ApiLimitReached if api_status['requests_remaining'] == 0
-        raise api_status['http_error'] if api_status['http_error']
+        raise Error::ApiConnectionError, api_status['http_error'] if api_status['http_error']
       end
 
       def after_scan
