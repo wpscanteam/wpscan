@@ -55,7 +55,7 @@ module WPScan
         end
 
         def full_request_params
-          { followlocation: true }
+          { followlocation: true, maxredirs: 10 }
         end
 
         # @param [ Typhoeus::Response ] res

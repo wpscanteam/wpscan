@@ -9,7 +9,7 @@ module WPScan
     #
     # @return [ String ] The md5sum of the page
     def self.page_hash(page)
-      page = WPScan::Browser.get(page, followlocation: true) unless page.is_a?(Typhoeus::Response)
+      page = WPScan::Browser.get(page, followlocation: true, maxredirs: 10) unless page.is_a?(Typhoeus::Response)
 
       # Removes comments and script tags before computing the hash
       # to remove any potential cached stuff
