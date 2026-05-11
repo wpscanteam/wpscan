@@ -57,113 +57,13 @@ jobs:
       run: |
         mkdir wordpress-test
         cd wordpress-test
+        bash "${GITHUB_WORKSPACE}/spec/integration/setup_wp_test_env.sh"
 
-        # Configure and start DDEV
-        ddev config --project-type=wordpress --php-version=8.1 --docroot=wordpress
-        ddev start
-
-        # Install WordPress
-        ddev exec wp core download --path=wordpress
-        ddev exec wp core install \
-          --path=wordpress \
-          --url=https://wordpress-test.ddev.site \
-          --title="WPScan Integration Test" \
-          --admin_user=admin \
-          --admin_password=password \
-          --admin_email=test@example.com \
-          --skip-email
-
-        # Install vulnerable plugins and theme for testing
-        ddev exec wp plugin install contact-form-7 --version=5.3.2 --activate --path=wordpress 2>/dev/null
-        ddev exec wp plugin install woocommerce --version=4.6.1 --activate --path=wordpress 2>/dev/null
-        ddev exec wp plugin install wordpress-seo --version=15.5 --activate --path=wordpress 2>/dev/null
-        ddev exec wp theme install twentynineteen --version=1.8 --activate --path=wordpress 2>/dev/null
-
-        # Create additional non-admin users so WPScan's user enumeration has more than just `admin` to find
-        ddev exec wp user create editor1 editor1@example.com --role=editor --user_pass='editor-pass-123' --path=wordpress
-        ddev exec wp user create author1 author1@example.com --role=author --user_pass='author-pass-123' --path=wordpress
-
-        # Enable user registration so the Registration interesting-finding fires (wp-login.php?action=register)
-        ddev exec wp option update users_can_register 1 --path=wordpress
-
-        # Set permalink structure to "Plain" (?p=N) so media enumeration (-e m) can find attachments
-        # by iterating attachment IDs against the homepage. Per `wpscan --hh`: media detection requires plain permalinks.
-        ddev exec wp option update permalink_structure '' --path=wordpress
-
-        # Upload a tiny PNG as a media attachment so the medias enumerator has something to find.
-        printf '\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\rIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82' > test-image.png
-        ddev exec wp media import test-image.png --path=wordpress
-
-        # Drop files / dirs that trigger WPScan's "interesting findings" / config-backup / db-export /
-        # timthumb / upload-sql-dump / backup-db / mu-plugins / fantastico / search-replace-db /
-        # duplicator-installer / emergency-pwd-reset finders.
-        # Each path matches what the corresponding finder under app/finders/interesting_findings/ probes.
-        # See issue #807: the test site should demo as many detection paths as is reasonable.
-        # Content matters: each finder validates the response body, not just the path. Patterns used below
-        # mirror what the corresponding finder in app/finders/ expects (e.g. ConfigBackups requires
-        # /define/i + no <html, DbExports/UploadSQLDump require SQL DDL keywords, Timthumbs requires
-        # HTTP 400 + "no image specified", FantasticoFileslist requires a non-empty text/plain body).
-        echo "<?php define('DB_NAME','wordpress'); define('DB_USER','root');" > wordpress/wp-config.bak
-        echo 'CREATE TABLE foo (id INT); INSERT INTO foo VALUES (1);' > wordpress/backup.sql
-        echo 'PHP Notice: simulated debug entry' > wordpress/wp-content/debug.log
-        # Real timthumb.php returns HTTP 400 + "no image specified" when called without query args
-        echo '<?php http_response_code(400); echo "no image specified";' > wordpress/timthumb.php
-        echo 'duplicator installer log' > wordpress/installer-log.txt
-        echo '<?php echo "emergency password reset script";' > wordpress/emergency.php
-        echo '<?php exit; /* search replace db */' > wordpress/searchreplacedb2.php
-        echo 'fantastico fileslist' > wordpress/fantastico_fileslist.txt
-        mkdir -p wordpress/wp-content/uploads
-        echo 'CREATE TABLE bar (id INT); INSERT INTO bar VALUES (1);' > wordpress/wp-content/uploads/dump.sql
-        mkdir -p wordpress/wp-content/backup-db
-        echo 'backup-db dir' > wordpress/wp-content/backup-db/index.html
-        mkdir -p wordpress/wp-content/mu-plugins
-        echo '<?php /* mu-plugin */' > wordpress/wp-content/mu-plugins/test.php
-        echo 'mu-plugins dir' > wordpress/wp-content/mu-plugins/index.html
-
-        # Verify site returns HTTP 200 (will exit non-zero on 4xx/5xx errors)
-        curl -k -f -s -o /dev/null -w "✓ WordPress responding: HTTP %{http_code}\n" https://wordpress-test.ddev.site
-
-    - name: Update WPScan database
-      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
-      run: bundle exec ruby -Ilib bin/wpscan --update
-
-    - name: Run WPScan against test site
+    - name: Run WPScan against test site and verify results
       if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       env:
         WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_API_TOKEN }}
-      run: |
-        # Verify API token is configured
-        if [ -z "${WPSCAN_API_TOKEN}" ]; then
-          echo "Error: WPSCAN_API_TOKEN secret is not configured"
-          exit 1
-        fi
-
-        # Run WPScan with explicit enumeration (exit code 5 = vulnerabilities found, which we expect)
-        # Note: Using passive detection to avoid false positives in test environment
-        set +e
-        bundle exec ruby -Ilib bin/wpscan \
-          --url https://wordpress-test.ddev.site \
-          --disable-tls-checks \
-          --format json \
-          --output scan-results.json \
-          --api-token "${WPSCAN_API_TOKEN}" \
-          -e vp,vt,u,cb,dbe,tt,m1-5 \
-          --plugins-detection passive \
-          --themes-detection passive
-        EXIT_CODE=$?
-        set -e
-
-        # Verify we found vulnerabilities (exit code 5)
-        if [ "${EXIT_CODE}" -ne 5 ]; then
-          echo "✗ Expected exit code 5 (vulnerabilities found), got ${EXIT_CODE}"
-          exit 1
-        fi
-
-        echo "✓ WPScan found vulnerabilities (exit code 5)"
-
-    - name: Verify scan results
-      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
-      run: bundle exec ruby spec/integration/verify_results.rb scan-results.json
+      run: bash spec/integration/run_scan.sh
 
     - name: Upload scan results
       if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) && always()

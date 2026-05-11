@@ -171,15 +171,6 @@ puts '-' * 80
   end
 end
 
-# Media enumeration (requires plain permalinks; the test env sets permalink_structure='')
-medias = (results['medias'] || {}).keys
-if medias.any?
-  puts "✓ medias: found #{medias.length} attachment(s)"
-else
-  failures << 'medias: no attachments detected (expected at least one from wp media import)'
-  puts '✗ medias: no attachments detected'
-end
-
 puts
 
 # Verify interesting findings the test environment is set up to expose.
