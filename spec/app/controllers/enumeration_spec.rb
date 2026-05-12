@@ -176,7 +176,7 @@ describe WPScan::Controller::Enumeration do
         let(:cli_args) { "#{super()} -e" }
 
         it 'calls the correct enum methods' do
-          %i[plugins themes timthumbs config_backups db_exports users medias].each do |option|
+          %i[plugins themes timthumbs config_backups db_exports backup_folders users medias].each do |option|
             expect(controller).to receive(:"enum_#{option}")
           end
         end
