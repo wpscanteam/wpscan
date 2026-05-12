@@ -31,7 +31,18 @@ module WPScan
     # Used in the Updater
     class Download < HTTP
       def to_s
-        "Unable to get #{failure_details}"
+        msg = "Unable to get #{failure_details}"
+
+        if response.effective_url.to_s.include?('data.wpscan.org')
+          cf_ray = response.headers && response.headers['CF-Ray']
+          msg += "\nCloudflare Ray ID: #{cf_ray}" if cf_ray
+          msg += "\nIf this issue persists, you can:\n  " \
+                 "- Check our status page at https://status.wpscan.com/\n  " \
+                 "- Contact us via https://wpscan.com/contact/ (please include the Ray ID above if any)\n  " \
+                 '- Or open a GitHub issue at https://github.com/wpscanteam/wpscan/issues'
+        end
+
+        msg
       end
     end
 

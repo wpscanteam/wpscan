@@ -136,7 +136,8 @@ module WPScan
         FileUtils.rm(backup_file_path(filename))
       end
 
-      # @return [ String ] The checksum of the downloaded file
+      # @return [ Array(String, String) ] The checksum of the downloaded file and the
+      #                                    Cloudflare Ray ID of the response (or nil)
       def download(filename)
         file_path = local_file_path(filename)
         file_url  = remote_file_url(filename)
@@ -146,7 +147,7 @@ module WPScan
 
         File.binwrite(file_path, res.body)
 
-        local_file_checksum(filename)
+        [local_file_checksum(filename), res.headers && res.headers['CF-Ray']]
       end
 
       # @return [ Array<String> ] The filenames updated
@@ -160,9 +161,9 @@ module WPScan
           next if File.exist?(local_file_path(filename)) && db_checksum == local_file_checksum(filename)
 
           create_backup(filename)
-          dl_checksum = download(filename)
+          dl_checksum, cf_ray = download(filename)
 
-          raise Error::ChecksumsMismatch, filename unless dl_checksum == db_checksum
+          raise Error::ChecksumsMismatch.new(filename, cf_ray: cf_ray) unless dl_checksum == db_checksum
 
           updated << filename
         rescue StandardError => e

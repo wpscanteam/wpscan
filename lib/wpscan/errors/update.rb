@@ -10,14 +10,22 @@ module WPScan
     end
 
     class ChecksumsMismatch < Standard
-      attr_reader :db_file
+      attr_reader :db_file, :cf_ray
 
-      def initialize(db_file)
+      def initialize(db_file, cf_ray: nil)
         @db_file = db_file
+        @cf_ray  = cf_ray
+        super()
       end
 
       def to_s
-        "#{db_file}: checksums do not match. Please try again in a few minutes."
+        msg = "#{db_file}: checksums do not match. Please try again in a few minutes."
+        msg += "\nCloudflare Ray ID: #{cf_ray}" if cf_ray
+        msg += "\nIf this issue persists, you can:\n  " \
+               "- Check our status page at https://status.wpscan.com/\n  " \
+               "- Contact us via https://wpscan.com/contact/ (please include the Ray ID above if any)\n  " \
+               '- Or open a GitHub issue at https://github.com/wpscanteam/wpscan/issues'
+        msg
       end
     end
   end
