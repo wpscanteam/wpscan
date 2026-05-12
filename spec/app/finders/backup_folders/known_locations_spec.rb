@@ -33,7 +33,8 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
         stub_request(:head, "#{url}wp-content/backups-dup-pro/").to_return(status: 200)
         stub_request(:get, "#{url}wp-content/backups-dup-pro/").to_return(
           status: 200,
-          body: '<html><body><a href="backup.zip">backup.zip</a></body></html>'
+          body: '<html><body><h1>Index of /wp-content/backups-dup-pro/</h1>' \
+                '<a href="backup.zip">backup.zip</a></body></html>'
         )
 
         allow(target).to receive(:homepage_or_404?).and_return(false)
@@ -50,51 +51,53 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
         dup_pro = findings.first
         expect(dup_pro.url).to eq "#{url}wp-content/backups-dup-pro/"
         expect(dup_pro.confidence).to eq 100
-        expect(dup_pro.response_code).to eq 200
         expect(dup_pro.plugin_name).to eq 'Duplicator Pro'
         expect(dup_pro.interesting_entries).to eq ['backup.zip']
       end
     end
 
-    context 'when backup folders exist but are forbidden' do
+    context 'when backup folders exist but directory listing is disabled' do
       before do
-        # Stub specific folders to return 403
-        stub_request(:head, "#{url}wp-content/backup-db/").to_return(status: 403)
-        stub_request(:get, "#{url}wp-content/backup-db/").to_return(status: 403)
+        # Stub folder to return 200 but without directory listing
+        stub_request(:head, "#{url}wp-content/backup-db/").to_return(status: 200)
+        stub_request(:get, "#{url}wp-content/backup-db/").to_return(
+          status: 200,
+          body: '<html><body>Access forbidden</body></html>'
+        )
 
         allow(target).to receive(:homepage_or_404?).and_return(false)
       end
 
-      it 'returns backup folders with medium confidence' do
+      it 'does not report the folder' do
         findings = finder.aggressive(opts)
 
-        expect(findings).not_to be_empty
-
-        backup_db = findings.find { |f| f.url == "#{url}wp-content/backup-db/" }
-        expect(backup_db).not_to be_nil
-        expect(backup_db.confidence).to eq 70
-        expect(backup_db.response_code).to eq 403
-        expect(backup_db.plugin_name).to eq 'WP-DB-Backup'
-        expect(backup_db.interesting_entries).to eq []
+        expect(findings).to be_empty
       end
     end
 
-    context 'when multiple backup folders exist' do
+    context 'when multiple backup folders exist with directory listing' do
       before do
-        # Stub two folders - one 200, one 403
+        # Stub two folders with directory listing enabled
         stub_request(:head, "#{url}wp-content/updraft/").to_return(status: 200)
         stub_request(:get, "#{url}wp-content/updraft/").to_return(
           status: 200,
-          body: '<html><body>Directory listing</body></html>'
+          body: '<html><body><h1>Index of /wp-content/updraft/</h1></body></html>'
         )
 
-        stub_request(:head, "#{url}wp-content/uploads/backwpup/").to_return(status: 403)
-        stub_request(:get, "#{url}wp-content/uploads/backwpup/").to_return(status: 403)
+        stub_request(:head, "#{url}wp-content/uploads/backwpup/").to_return(status: 200)
+        stub_request(:get, "#{url}wp-content/uploads/backwpup/").to_return(
+          status: 200,
+          body: '<html><body><h1>Index of /wp-content/uploads/backwpup/</h1>' \
+                '<a href="backup.zip">backup.zip</a></body></html>'
+        )
 
         allow(target).to receive(:homepage_or_404?).and_return(false)
         allow(target).to receive(:directory_listing_entries)
           .with("#{url}wp-content/updraft/")
           .and_return([])
+        allow(target).to receive(:directory_listing_entries)
+          .with("#{url}wp-content/uploads/backwpup/")
+          .and_return(['backup.zip'])
       end
 
       it 'returns all detected backup folders' do
@@ -109,7 +112,7 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
 
         backwpup = findings.find { |f| f.url == "#{url}wp-content/uploads/backwpup/" }
         expect(backwpup).not_to be_nil
-        expect(backwpup.confidence).to eq 70
+        expect(backwpup.confidence).to eq 100
         expect(backwpup.plugin_name).to eq 'BackWPup'
       end
     end
@@ -123,11 +126,12 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
           stub_request(:head, url).to_return(status: 404)
         end
 
-        # Stub specific folder in custom content directory
+        # Stub specific folder in custom content directory with directory listing
         stub_request(:head, "#{url}custom-content/updraft/").to_return(status: 200)
         stub_request(:get, "#{url}custom-content/updraft/").to_return(
           status: 200,
-          body: '<html><body><a href="backup.zip">backup.zip</a></body></html>'
+          body: '<html><body><h1>Index of /custom-content/updraft/</h1>' \
+                '<a href="backup.zip">backup.zip</a></body></html>'
         )
 
         allow(target).to receive(:homepage_or_404?).and_return(false)

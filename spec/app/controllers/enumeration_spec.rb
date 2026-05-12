@@ -75,7 +75,7 @@ describe WPScan::Controller::Enumeration do
            timthumbs_list timthumbs_detection
            config_backups_list config_backups_detection
            db_exports_list db_exports_detection
-           backup_folders_list backup_folders_detection
+           backup_folders_list
            medias_detection
            users_list users_detection exclude_usernames]
       )

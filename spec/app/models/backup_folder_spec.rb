@@ -5,37 +5,25 @@ describe WPScan::Model::BackupFolder do
   let(:url)               { 'http://ex.lo/wp-content/backups-dup-pro/' }
   let(:opts)              { {} }
 
-  describe '#new' do
-    context 'when response_code is provided' do
-      let(:opts) { { response_code: 200 } }
-
-      it 'sets the response_code attribute' do
-        expect(backup_folder.response_code).to eq 200
-      end
-    end
-  end
-
   describe '#to_s' do
-    context 'when directory listing is enabled (200)' do
-      let(:opts) { { response_code: 200, interesting_entries: ['backup.zip'] } }
+    context 'when directory listing has entries' do
+      let(:opts) { { interesting_entries: ['backup.zip', 'backup2.zip'] } }
 
-      it 'includes directory listing message' do
-        expected = 'Backup folder found: http://ex.lo/wp-content/backups-dup-pro/ (Directory listing enabled!)'
+      it 'includes entry count' do
+        expected = 'Backup folder found: http://ex.lo/wp-content/backups-dup-pro/ (2 entries)'
         expect(backup_folder.to_s).to eq expected
       end
     end
 
-    context 'when access is forbidden (403)' do
-      let(:opts) { { response_code: 403 } }
+    context 'when directory listing is empty' do
+      let(:opts) { { interesting_entries: [] } }
 
-      it 'includes forbidden message' do
-        expected = 'Backup folder found: http://ex.lo/wp-content/backups-dup-pro/ ' \
-                   '(Access forbidden but folder exists)'
-        expect(backup_folder.to_s).to eq expected
+      it 'shows basic message' do
+        expect(backup_folder.to_s).to eq 'Backup folder found: http://ex.lo/wp-content/backups-dup-pro/'
       end
     end
 
-    context 'when no response code' do
+    context 'when no interesting_entries provided' do
       it 'shows basic message' do
         expect(backup_folder.to_s).to eq 'Backup folder found: http://ex.lo/wp-content/backups-dup-pro/'
       end
@@ -43,27 +31,25 @@ describe WPScan::Model::BackupFolder do
   end
 
   describe '#severity' do
-    context 'when directory listing is enabled with files' do
-      let(:opts) { { response_code: 200, interesting_entries: ['backup.zip'] } }
+    context 'when directory listing has files' do
+      let(:opts) { { interesting_entries: ['backup.zip'] } }
 
       it 'returns high severity' do
         expect(backup_folder.severity).to eq :high
       end
     end
 
-    context 'when directory listing is enabled but empty' do
-      let(:opts) { { response_code: 200, interesting_entries: [] } }
+    context 'when directory listing is empty' do
+      let(:opts) { { interesting_entries: [] } }
 
       it 'returns medium severity' do
         expect(backup_folder.severity).to eq :medium
       end
     end
 
-    context 'when folder exists but access is forbidden' do
-      let(:opts) { { response_code: 403 } }
-
-      it 'returns low severity' do
-        expect(backup_folder.severity).to eq :low
+    context 'when no interesting_entries provided' do
+      it 'returns medium severity' do
+        expect(backup_folder.severity).to eq :medium
       end
     end
   end
@@ -93,6 +79,30 @@ describe WPScan::Model::BackupFolder do
 
       it 'returns Unknown Backup Plugin' do
         expect(backup_folder.plugin_name).to eq 'Unknown Backup Plugin'
+      end
+    end
+  end
+
+  describe '#interesting_entries' do
+    context 'when there are many entries' do
+      let(:entries) { (1..25).map { |i| "file#{i}.zip" } }
+      let(:opts) { { interesting_entries: entries } }
+
+      it 'limits to MAX_ENTRIES_DISPLAY and adds summary' do
+        result = backup_folder.interesting_entries
+        expect(result.size).to eq 21 # 20 entries + 1 summary line
+        expect(result.first).to eq 'file1.zip'
+        expect(result[19]).to eq 'file20.zip'
+        expect(result.last).to eq '... and 5 more'
+      end
+    end
+
+    context 'when entries are within limit' do
+      let(:opts) { { interesting_entries: ['file1.zip', 'file2.zip'] } }
+
+      it 'returns all entries without summary' do
+        result = backup_folder.interesting_entries
+        expect(result).to eq ['file1.zip', 'file2.zip']
       end
     end
   end

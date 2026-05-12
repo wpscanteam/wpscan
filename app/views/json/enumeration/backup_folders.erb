@@ -5,13 +5,6 @@
   <%= backup_folder.url.to_json %>: {
     "plugin_name": <%= backup_folder.plugin_name.to_json %>,
     "severity": <%= backup_folder.severity.to_json %>,
-    "response_code": <%= backup_folder.response_code.to_json %>,
-    <% if backup_folder.interesting_entries && !backup_folder.interesting_entries.empty? -%>
-    "directory_listing_enabled": true,
-    "entries": <%= backup_folder.interesting_entries.to_json %>,
-    <% else -%>
-    "directory_listing_enabled": false,
-    <% end -%>
     <%= render('@finding', item: backup_folder) -%>
   }<% unless index == last_index -%>,<% end -%>
 <% end -%>

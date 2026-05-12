@@ -4,30 +4,35 @@ module WPScan
   module Model
     # BackupFolder
     class BackupFolder < InterestingFinding
-      attr_reader :response_code
-
-      # @param [ String ] url
-      # @param [ Hash ] opts
-      # @option opts [ Integer ] :response_code
-      def initialize(url, opts = {})
-        super
-        @response_code = opts[:response_code]
-      end
+      MAX_ENTRIES_DISPLAY = 5
 
       # @return [ String ]
       def to_s
         msg = "Backup folder found: #{url}"
-        msg += ' (Directory listing enabled!)' if response_code == 200 && interesting_entries&.any?
-        msg += ' (Access forbidden but folder exists)' if response_code == 403
+        if interesting_entries&.any?
+          total = @interesting_entries.size
+          msg += " (#{total} #{total == 1 ? 'entry' : 'entries'})"
+        end
         msg
       end
 
       # @return [ Symbol ]
       def severity
-        return :high if response_code == 200 && interesting_entries&.any?
-        return :medium if response_code == 200
+        return :high if interesting_entries&.any?
 
-        :low
+        :medium
+      end
+
+      # Limit displayed entries to avoid overwhelming output
+      # @return [ Array<String> ]
+      def interesting_entries
+        return [] unless @interesting_entries
+
+        entries = @interesting_entries.first(MAX_ENTRIES_DISPLAY)
+        if @interesting_entries.size > MAX_ENTRIES_DISPLAY
+          entries << "... and #{@interesting_entries.size - MAX_ENTRIES_DISPLAY} more"
+        end
+        entries
       end
 
       # @return [ String ]

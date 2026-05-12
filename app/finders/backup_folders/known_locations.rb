@@ -9,7 +9,7 @@ module WPScan
 
         # @return [ Array<Integer> ]
         def valid_response_codes
-          @valid_response_codes ||= [200, 403].freeze
+          @valid_response_codes ||= [200].freeze
         end
 
         # @param [ Hash ] opts
@@ -23,12 +23,14 @@ module WPScan
           enumerate(potential_urls(opts), opts.merge(check_full_response: valid_response_codes)) do |res|
             next if target.homepage_or_404?(res)
 
+            # Only report if directory listing is enabled (makes finding actionable)
+            next unless target.directory_listing?(res.request.url)
+
             found << Model::BackupFolder.new(
               res.request.url,
-              confidence: confidence_for(res.code),
+              confidence: 100, # Directory listing enabled - definite finding
               found_by: DIRECT_ACCESS,
-              interesting_entries: res.code == 200 ? target.directory_listing_entries(res.request.url) : [],
-              response_code: res.code
+              interesting_entries: target.directory_listing_entries(res.request.url)
             )
           end
 
@@ -57,21 +59,6 @@ module WPScan
 
         def create_progress_bar(opts = {})
           super(opts.merge(title: ' Checking Backup Folders -'))
-        end
-
-        private
-
-        # @param [ Integer ] code
-        # @return [ Integer ]
-        def confidence_for(code)
-          case code
-          when 200
-            100 # Directory listing enabled - definite finding
-          when 403
-            70  # Forbidden but exists - likely finding
-          else
-            50
-          end
         end
       end
     end

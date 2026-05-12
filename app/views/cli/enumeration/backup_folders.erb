@@ -9,15 +9,6 @@
 <% if backup_folder.plugin_name -%>
  Plugin: <%= backup_folder.plugin_name %>
 <% end -%>
-<% if backup_folder.interesting_entries && !backup_folder.interesting_entries.empty? -%>
- Directory listing enabled - <%= backup_folder.interesting_entries.size %> item(s) found:
-<% backup_folder.interesting_entries[0..4].each do |entry| -%>
-  | - <%= entry %>
-<% end -%>
-<% if backup_folder.interesting_entries.size > 5 -%>
-  | - ... and <%= backup_folder.interesting_entries.size - 5 %> more items
-<% end -%>
-<% end -%>
 <%= render('@finding', item: backup_folder) -%>
 <% end -%>
 <% end %>
