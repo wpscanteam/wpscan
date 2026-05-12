@@ -26,13 +26,14 @@ module WPScan
               tt: OptBoolean.new(['--timthumbs']),
               cb: OptBoolean.new(['--config-backups']),
               dbe: OptBoolean.new(['--db-exports']),
+              bf: OptBoolean.new(['--backup-folders']),
               u: OptIntegerRange.new(['--users', 'User IDs range. e.g: u1-5'], value_if_empty: '1-10'),
               m: OptIntegerRange.new(['--medias',
                                       'Media IDs range. e.g m1-15',
                                       'Note: Permalink setting must be set to "Plain" for those to be detected'],
                                      value_if_empty: '1-100')
             },
-            value_if_empty: 'vp,vt,tt,cb,dbe,u,m',
+            value_if_empty: 'vp,vt,tt,cb,dbe,bf,u,m',
             incompatible: [%i[vp ap p], %i[vt at t]]
           ),
           OptRegexp.new(

@@ -197,6 +197,13 @@ module WPScan
 
     # @param [ Hash ] opts
     #
+    # @return [ Array<BackupFolder> ]
+    def backup_folders(opts = {})
+      @backup_folders ||= Finders::BackupFolders::Base.find(self, opts)
+    end
+
+    # @param [ Hash ] opts
+    #
     # @return [ Array<Media> ]
     def medias(opts = {})
       @medias ||= Finders::Medias::Base.find(self, opts)

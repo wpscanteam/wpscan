@@ -36,7 +36,7 @@ module WPScan
         enum_plugins if enum_plugins?(enum)
         enum_themes  if enum_themes?(enum)
 
-        %i[timthumbs config_backups db_exports medias].each do |key|
+        %i[timthumbs config_backups db_exports backup_folders medias].each do |key|
           send(:"enum_#{key}") if enum.key?(key)
         end
 

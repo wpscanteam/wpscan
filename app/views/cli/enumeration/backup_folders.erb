@@ -1,0 +1,23 @@
+<% if @backup_folders.empty? -%>
+<%= notice_icon %> No Backup Folders Found.
+<% else -%>
+<%= notice_icon %> Backup Folder(s) Identified:
+<% @backup_folders.each do |backup_folder| -%>
+
+<% icon = backup_folder.severity == :high ? critical_icon : warning_icon -%>
+<%= icon %> <%= backup_folder %>
+<% if backup_folder.plugin_name -%>
+ Plugin: <%= backup_folder.plugin_name %>
+<% end -%>
+<% if backup_folder.interesting_entries && !backup_folder.interesting_entries.empty? -%>
+ Directory listing enabled - <%= backup_folder.interesting_entries.size %> item(s) found:
+<% backup_folder.interesting_entries[0..4].each do |entry| -%>
+  | - <%= entry %>
+<% end -%>
+<% if backup_folder.interesting_entries.size > 5 -%>
+  | - ... and <%= backup_folder.interesting_entries.size - 5 %> more items
+<% end -%>
+<% end -%>
+<%= render('@finding', item: backup_folder) -%>
+<% end -%>
+<% end %>

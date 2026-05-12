@@ -218,6 +218,13 @@ module WPScan
         output('db_exports', db_exports: target.db_exports(opts))
       end
 
+      def enum_backup_folders
+        opts = default_opts('backup_folders')
+
+        output('@info', msg: "Enumerating Backup Folders #{enum_detection_message(opts[:mode])}") if user_interaction?
+        output('backup_folders', backup_folders: target.backup_folders(opts))
+      end
+
       def enum_medias
         opts = default_opts('medias').merge(range: ParsedCli.enumerate[:medias])
 
