@@ -3,61 +3,63 @@
 module WPScan
   module Finders
     module BackupFolders
-      # Known Backup Folders Locations
+      # Backup Folders finder
       class KnownLocations < Finders::Finder
-        # List of known backup folder paths relative to content directory
-        # Starting with a minimal set of the most popular/verified plugins
-        # Additional paths can be added in follow-up PRs after validation
+        include WPScan::Finders::Finder::Enumerator
+
+        # @return [ Array<Integer> ]
+        def valid_response_codes
+          @valid_response_codes ||= [200, 403].freeze
+        end
+
+        # @param [ Hash ] opts
+        # @option opts [ String ] :list
+        # @option opts [ Boolean ] :show_progression
         #
-        # References:
-        # - Duplicator Pro: https://duplicator.com/ (Premium version)
-        # - Duplicator: https://wordpress.org/plugins/duplicator/ (1M+ installs)
-        # - UpdraftPlus: https://wordpress.org/plugins/updraftplus/ (3M+ installs)
-        # - WP-DB-Backup: https://wordpress.org/plugins/wp-db-backup/ (200K+ installs)
-        # - WP Database Backup: https://wordpress.org/plugins/wp-database-backup/ (100K+ installs)
-        # - BackWPup: https://wordpress.org/plugins/backwpup/ (700K+ installs)
-        KNOWN_PATHS = %w[
-          backups-dup-pro/
-          backups-dup-lite/
-          updraft/
-          backup-db/
-          uploads/db-backup/
-          uploads/backwpup/
-        ].freeze
-
-        # Valid response codes for backup folder detection
-        VALID_RESPONSE_CODES = [200, 403].freeze
-
         # @return [ Array<BackupFolder> ]
-        def aggressive(_opts = {})
-          content_base = target.content_dir || 'wp-content'
+        def aggressive(opts = {})
+          found = []
 
-          # Check all known locations with the detected content directory
-          found = KNOWN_PATHS.map do |path|
-            full_path = "#{content_base}/#{path}"
-            check_location(full_path)
+          enumerate(potential_urls(opts), opts.merge(check_full_response: valid_response_codes)) do |res|
+            next if target.homepage_or_404?(res)
+
+            found << Model::BackupFolder.new(
+              res.request.url,
+              confidence: confidence_for(res.code),
+              found_by: DIRECT_ACCESS,
+              interesting_entries: res.code == 200 ? target.directory_listing_entries(res.request.url) : [],
+              response_code: res.code
+            )
           end
 
-          found.compact
+          found
+        end
+
+        # @param [ Hash ] opts
+        # @option opts [ String ] :list Mandatory
+        #
+        # @return [ Hash ]
+        def potential_urls(opts = {})
+          urls = {}
+          content_base = target.content_dir || 'wp-content'
+
+          File.open(opts[:list]) do |f|
+            f.each_with_index do |line, index|
+              path = line.chomp.strip
+              next if path.empty? || path.start_with?('#')
+
+              urls[target.url("#{content_base}/#{path}")] = index
+            end
+          end
+
+          urls
+        end
+
+        def create_progress_bar(opts = {})
+          super(opts.merge(title: ' Checking Backup Folders -'))
         end
 
         private
-
-        # @param [ String ] path
-        # @return [ Model::BackupFolder, nil ]
-        def check_location(path)
-          res = target.head_and_get(path, VALID_RESPONSE_CODES)
-
-          return unless VALID_RESPONSE_CODES.include?(res.code) && !target.homepage_or_404?(res)
-
-          Model::BackupFolder.new(
-            target.url(path),
-            confidence: confidence_for(res.code),
-            found_by: DIRECT_ACCESS,
-            interesting_entries: res.code == 200 ? target.directory_listing_entries(path) : [],
-            response_code: res.code
-          )
-        end
 
         # @param [ Integer ] code
         # @return [ Integer ]

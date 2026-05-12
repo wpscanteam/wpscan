@@ -219,7 +219,7 @@ module WPScan
       end
 
       def enum_backup_folders
-        opts = default_opts('backup_folders')
+        opts = default_opts('backup_folders').merge(list: ParsedCli.backup_folders_list)
 
         output('@info', msg: "Enumerating Backup Folders #{enum_detection_message(opts[:mode])}") if user_interaction?
         output('backup_folders', backup_folders: target.backup_folders(opts))

@@ -8,7 +8,7 @@ module WPScan
       # /!\ Might want to also update the Enumeration#cli_options when some filenames are changed here
       FILES = %w[
         metadata.json wp_fingerprints.json
-        timthumbs-v3.txt config_backups.txt db_exports.txt
+        timthumbs-v3.txt config_backups.txt db_exports.txt backup_folders.txt
         dynamic_finders.yml LICENSE sponsor.txt
       ].freeze
 
