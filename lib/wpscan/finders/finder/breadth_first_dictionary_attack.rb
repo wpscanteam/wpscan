@@ -9,6 +9,7 @@ module WPScan
         # @param [ String ] wordlist_path
         # @param [ Hash ] opts
         # @option opts [ Boolean ] :show_progression
+        # @option opts [ Integer ] :wordlist_skip Number of passwords to skip from the beginning
         #
         # @yield [ WPScan::User ] When a valid combination is found
         #
@@ -20,17 +21,34 @@ module WPScan
         # rubocop:disable all
         def attack(users, wordlist_path, opts = {})
           wordlist = File.open(wordlist_path)
+          skip_count = opts[:wordlist_skip] || 0
 
-          create_progress_bar(total: users.size * wordlist.count, show_progression: opts[:show_progression])
+          # Calculate total, accounting for skipped passwords
+          total_passwords = wordlist.count
+          effective_passwords = [total_passwords - skip_count, 0].max
+
+          create_progress_bar(total: users.size * effective_passwords, show_progression: opts[:show_progression])
 
           queue_count         = 0
           # Keep the number of requests sent for each users
           # to be able to correctly update the progress when a password is found
           user_requests_count = {}
+          current_line = 0
 
           users.each { |u| user_requests_count[u.username] = 0 }
 
+          # Show skip progress if skipping
+          if skip_count > 0 && opts[:show_progression]
+            progress_bar.log("[INFO] Skipping first #{skip_count} password(s) from wordlist...")
+          end
+
           File.foreach(wordlist, chomp: true) do |password|
+            # Skip passwords if resuming
+            if current_line < skip_count
+              current_line += 1
+              next
+            end
+            current_line += 1
             remaining_users = users.select { |u| u.password.nil? }
 
             break if remaining_users.empty?
@@ -49,7 +67,7 @@ module WPScan
                   user.password = password
 
                   begin
-                    progress_bar.total -= wordlist.count - user_requests_count[user.username]
+                    progress_bar.total -= effective_passwords - user_requests_count[user.username]
                   rescue ProgressBar::InvalidProgressError
                   end
 

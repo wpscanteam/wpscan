@@ -21,14 +21,18 @@ module WPScan
                          'Multicall will only work against WP < 4.4'],
                         choices: %w[wp-login xmlrpc xmlrpc-multicall],
                         normalize: %i[downcase underscore to_sym]),
-          OptString.new(['--login-uri URI', 'The URI of the login page if different from /wp-login.php'])
+          OptString.new(['--login-uri URI', 'The URI of the login page if different from /wp-login.php']),
+          OptInteger.new(['--wordlist-skip N',
+                          'Skip the first N passwords in the wordlist (resume from line N+1)'],
+                         default: 0)
         ]
       end
 
       def attack_opts
         @attack_opts ||= {
           show_progression: user_interaction?,
-          multicall_max_passwords: ParsedCli.multicall_max_passwords
+          multicall_max_passwords: ParsedCli.multicall_max_passwords,
+          wordlist_skip: ParsedCli.wordlist_skip
         }
       end
 

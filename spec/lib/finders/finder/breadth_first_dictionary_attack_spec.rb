@@ -82,6 +82,48 @@ describe WPScan::Finders::Finder::BreadthFirstDictionaryAttack do
       end
     end
 
+    context 'when wordlist_skip is provided' do
+      context 'when skipping first password' do
+        before do
+          stub_request(:post, login_url)
+            .with(body: { username: 'admin', pwd: 'admin' })
+            .to_return(status: 302)
+        end
+
+        it 'skips the specified number of passwords and finds the valid one' do
+          expect { |block| finder.attack(users, wordlist_path, wordlist_skip: 1, &block) }
+            .to yield_with_args(WPScan::Model::User.new('admin', password: 'admin'))
+
+          # Verify that 'pwd' (first password) was not tried for any user
+          expect(a_request(:post, login_url).with(body: { username: 'admin', pwd: 'pwd' }))
+            .not_to have_been_made
+          expect(a_request(:post, login_url).with(body: { username: 'root', pwd: 'pwd' }))
+            .not_to have_been_made
+          expect(a_request(:post, login_url).with(body: { username: 'user', pwd: 'pwd' }))
+            .not_to have_been_made
+        end
+      end
+
+      context 'when skipping all passwords' do
+        it 'does not yield anything and makes no requests' do
+          expect { |block| finder.attack(users, wordlist_path, wordlist_skip: 3, &block) }
+            .not_to yield_control
+
+          # Verify no password attempts were made
+          expect(a_request(:post, login_url)).not_to have_been_made
+        end
+      end
+
+      context 'when skip count is larger than wordlist' do
+        it 'does not yield anything and makes no requests' do
+          expect { |block| finder.attack(users, wordlist_path, wordlist_skip: 100, &block) }
+            .not_to yield_control
+
+          expect(a_request(:post, login_url)).not_to have_been_made
+        end
+      end
+    end
+
     context 'when an error is present in a response' do
       before do
         if defined?(stub_params)
