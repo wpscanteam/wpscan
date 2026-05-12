@@ -24,6 +24,9 @@ module WPScan
           OptString.new(['--login-uri URI', 'The URI of the login page if different from /wp-login.php']),
           OptInteger.new(['--wordlist-skip N',
                           'Skip the first N passwords in the wordlist (resume from line N+1)'],
+                         default: 0),
+          OptInteger.new(['--max-retries N',
+                          'Maximum retry attempts for failed requests due to network/proxy errors'],
                          default: 0)
         ]
       end
@@ -32,7 +35,8 @@ module WPScan
         @attack_opts ||= {
           show_progression: user_interaction?,
           multicall_max_passwords: ParsedCli.multicall_max_passwords,
-          wordlist_skip: ParsedCli.wordlist_skip
+          wordlist_skip: ParsedCli.wordlist_skip,
+          max_retries: ParsedCli.max_retries
         }
       end
 

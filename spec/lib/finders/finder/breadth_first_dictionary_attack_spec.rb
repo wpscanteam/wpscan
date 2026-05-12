@@ -16,7 +16,8 @@ describe WPScan::Finders::Finder::BreadthFirstDictionaryAttack do
     end
 
     def errored_response?(response)
-      response.timed_out? || response.body.include?('Error:')
+      response.timed_out? || response.code.zero? ||
+        response.code.to_s.start_with?('5') || response.body.include?('Error:')
     end
   end
 
@@ -189,6 +190,98 @@ describe WPScan::Finders::Finder::BreadthFirstDictionaryAttack do
             expect(finder.progress_bar.log).to eql [
               "Error: Unknown response received Code: 200\nBody: Error: Something went wrong"
             ]
+          end
+        end
+      end
+    end
+
+    context 'when max_retries is provided' do
+      let(:users) { [WPScan::Model::User.new('admin')] }
+
+      context 'when request succeeds after retry' do
+        before do
+          # First attempt times out, second succeeds
+          stub_request(:post, login_url)
+            .with(body: { username: 'admin', pwd: 'pwd' })
+            .to_timeout
+            .then
+            .to_return(status: 302, headers: { 'Set-Cookie' => 'wordpress_logged_in_hash=valid' })
+        end
+
+        it 'retries and finds valid credentials' do
+          expect { |block| finder.attack(users, wordlist_path, max_retries: 2, show_progression: true, &block) }
+            .to yield_with_args(WPScan::Model::User.new('admin', password: 'pwd'))
+        end
+      end
+
+      context 'when max retries exhausted' do
+        before do
+          # All attempts timeout
+          stub_request(:post, login_url)
+            .with(body: { username: 'admin', pwd: 'pwd' })
+            .to_timeout
+        end
+
+        it 'exhausts retries and logs final error' do
+          finder.attack(users, wordlist_path, max_retries: 2)
+
+          # Final error should be logged
+          expect(finder.progress_bar.log).to eql(['Error: Request timed out.'])
+        end
+
+        it 'does not yield' do
+          expect { |block| finder.attack(users, wordlist_path, max_retries: 2, &block) }
+            .not_to yield_control
+        end
+      end
+
+      context 'when max_retries is 0 (default)' do
+        before do
+          stub_request(:post, login_url)
+            .with(body: { username: 'admin', pwd: 'pwd' })
+            .to_timeout
+        end
+
+        it 'does not retry' do
+          finder.attack(users, wordlist_path, max_retries: 0)
+
+          # Should only have error message, no retry messages
+          expect(finder.progress_bar.log).to eql(['Error: Request timed out.'])
+        end
+      end
+
+      context 'when different error types' do
+        let(:users) { [WPScan::Model::User.new('admin')] }
+
+        context 'connection error with retry' do
+          before do
+            # First attempt fails with connection error, second succeeds
+            stub_request(:post, login_url)
+              .with(body: { username: 'admin', pwd: 'pwd' })
+              .to_return(status: 0, body: '')
+              .then
+              .to_return(status: 302, headers: { 'Set-Cookie' => 'wordpress_logged_in_hash=valid' })
+          end
+
+          it 'retries and succeeds' do
+            expect { |block| finder.attack(users, wordlist_path, max_retries: 1, &block) }
+              .to yield_with_args(WPScan::Model::User.new('admin', password: 'pwd'))
+          end
+        end
+
+        context 'server error with retry' do
+          before do
+            # First attempt gets 500 error, second succeeds
+            stub_request(:post, login_url)
+              .with(body: { username: 'admin', pwd: 'pwd' })
+              .to_return(status: 500, body: 'Internal Server Error')
+              .then
+              .to_return(status: 302, headers: { 'Set-Cookie' => 'wordpress_logged_in_hash=valid' })
+          end
+
+          it 'retries and succeeds' do
+            expect { |block| finder.attack(users, wordlist_path, max_retries: 1, &block) }
+              .to yield_with_args(WPScan::Model::User.new('admin', password: 'pwd'))
           end
         end
       end

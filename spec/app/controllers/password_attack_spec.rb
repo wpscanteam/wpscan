@@ -34,7 +34,7 @@ describe WPScan::Controller::PasswordAttack do
 
     it 'contains to correct options' do
       expect(controller.cli_options.map(&:to_sym))
-        .to eq(%i[passwords usernames multicall_max_passwords password_attack login_uri wordlist_skip])
+        .to eq(%i[passwords usernames multicall_max_passwords password_attack login_uri wordlist_skip max_retries])
     end
   end
 
