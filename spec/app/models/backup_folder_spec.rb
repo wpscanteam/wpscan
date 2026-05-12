@@ -96,5 +96,4 @@ describe WPScan::Model::BackupFolder do
       end
     end
   end
-
 end
