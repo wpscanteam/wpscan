@@ -17,7 +17,7 @@ describe WPScan::Model::BackupFolder do
 
   describe '#to_s' do
     context 'when directory listing is enabled (200)' do
-      let(:opts) { { response_code: 200 } }
+      let(:opts) { { response_code: 200, interesting_entries: ['backup.zip'] } }
 
       it 'includes directory listing message' do
         expected = 'Backup folder found: http://ex.lo/wp-content/backups-dup-pro/ (Directory listing enabled!)'

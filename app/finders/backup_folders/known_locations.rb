@@ -5,7 +5,7 @@ module WPScan
     module BackupFolders
       # Known Backup Folders Locations
       class KnownLocations < Finders::Finder
-        # List of known backup folder locations from popular backup plugins
+        # List of known backup folder paths relative to content directory
         # Starting with a minimal set of the most popular/verified plugins
         # Additional paths can be added in follow-up PRs after validation
         #
@@ -16,13 +16,13 @@ module WPScan
         # - WP-DB-Backup: https://wordpress.org/plugins/wp-db-backup/ (200K+ installs)
         # - WP Database Backup: https://wordpress.org/plugins/wp-database-backup/ (100K+ installs)
         # - BackWPup: https://wordpress.org/plugins/backwpup/ (700K+ installs)
-        KNOWN_LOCATIONS = %w[
-          wp-content/backups-dup-pro/
-          wp-content/backups-dup-lite/
-          wp-content/updraft/
-          wp-content/backup-db/
-          wp-content/uploads/db-backup/
-          wp-content/uploads/backwpup/
+        KNOWN_PATHS = %w[
+          backups-dup-pro/
+          backups-dup-lite/
+          updraft/
+          backup-db/
+          uploads/db-backup/
+          uploads/backwpup/
         ].freeze
 
         # Valid response codes for backup folder detection
@@ -30,9 +30,12 @@ module WPScan
 
         # @return [ Array<BackupFolder> ]
         def aggressive(_opts = {})
-          # Check all known locations
-          found = KNOWN_LOCATIONS.map do |path|
-            check_location(path)
+          content_base = target.content_dir || 'wp-content'
+
+          # Check all known locations with the detected content directory
+          found = KNOWN_PATHS.map do |path|
+            full_path = "#{content_base}/#{path}"
+            check_location(full_path)
           end
 
           found.compact

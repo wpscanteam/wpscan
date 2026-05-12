@@ -6,6 +6,10 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
   let(:url)        { 'http://ex.lo/' }
 
   describe '#aggressive' do
+    before do
+      # Default to standard wp-content unless overridden
+      allow(target).to receive(:content_dir).and_return('wp-content')
+    end
     context 'when backup folders exist with directory listing' do
       it 'returns backup folders with high severity' do
         # Mock the target methods to avoid making real requests
@@ -88,9 +92,38 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
         backwpup = findings.find { |f| f&.url == "#{url}wp-content/uploads/backwpup/" }
 
         expect(backwpup).not_to be_nil
-        expect(backwpup.confidence).to eq 100  # 200 response = 100 confidence
+        expect(backwpup.confidence).to eq 100 # 200 response = 100 confidence
         expect(backwpup.plugin_name).to eq 'BackWPup'
         expect(backwpup.found_by).to eq 'Direct Access (Aggressive Detection)'
+      end
+    end
+
+    context 'when using custom content directory' do
+      it 'detects backup folders in custom content directory' do
+        # Mock custom content directory
+        allow(target).to receive(:content_dir).and_return('custom-content')
+
+        allow(target).to receive(:head_and_get).and_return(
+          double('Response', code: 404)
+        )
+
+        # Specific response for backup folder in custom content dir
+        allow(target).to receive(:head_and_get)
+          .with('custom-content/updraft/', anything)
+          .and_return(double('Response', code: 200))
+
+        allow(target).to receive(:homepage_or_404?).and_return(false)
+        allow(target).to receive(:directory_listing_entries).and_return(['backup.zip'])
+        allow(target).to receive(:url) do |path|
+          "#{url}#{path}"
+        end
+
+        findings = finder.aggressive
+        updraft = findings.find { |f| f&.url == "#{url}custom-content/updraft/" }
+
+        expect(updraft).not_to be_nil
+        expect(updraft.confidence).to eq 100
+        expect(updraft.plugin_name).to eq 'UpdraftPlus'
       end
     end
   end
