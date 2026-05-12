@@ -109,7 +109,7 @@ module WPScan
                 # Retry the request
                 retry_count[user.username][password] += 1
 
-                if opts[:show_progression]
+                if opts[:show_progression] && WPScan::ParsedCli.verbose?
                   progress_bar.log("[RETRY #{retry_count[user.username][password]}/#{max_retries}] #{user.username} / #{password}")
                 end
 
