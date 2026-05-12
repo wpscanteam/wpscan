@@ -10,7 +10,9 @@ module WPScan
       # @option opts [ Boolean ] :sort Wether or not to sort the findings
       #
       # @return [ Findings ]
-      def run(opts = {})
+      def run(opts = {}, &block)
+        findings.on_append = block if block
+
         symbols_from_mode(opts[:mode]).each do |symbol|
           each do |finder|
             run_finder(finder, symbol, opts)

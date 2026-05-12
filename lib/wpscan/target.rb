@@ -161,17 +161,21 @@ module WPScan
     end
 
     # @param [ Hash ] opts
+    # @yield [ Plugin ] Optional block called as each plugin is first
+    #                   discovered (used to stream findings).
     #
     # @return [ Array<Plugin> ]
-    def plugins(opts = {})
-      @plugins ||= Finders::Plugins::Base.find(self, opts)
+    def plugins(opts = {}, &)
+      @plugins ||= Finders::Plugins::Base.find(self, opts, &)
     end
 
     # @param [ Hash ] opts
+    # @yield [ Theme ] Optional block called as each theme is first
+    #                  discovered (used to stream findings).
     #
     # @return [ Array<Theme> ]
-    def themes(opts = {})
-      @themes ||= Finders::Themes::Base.find(self, opts)
+    def themes(opts = {}, &)
+      @themes ||= Finders::Themes::Base.find(self, opts, &)
     end
 
     # @param [ Hash ] opts
@@ -203,10 +207,12 @@ module WPScan
     end
 
     # @param [ Hash ] opts
+    # @yield [ User ] Optional block called as each user is first
+    #                 discovered (used to stream findings).
     #
     # @return [ Array<User> ]
-    def users(opts = {})
-      @users ||= Finders::Users::Base.find(self, opts)
+    def users(opts = {}, &)
+      @users ||= Finders::Users::Base.find(self, opts, &)
     end
   end
 end

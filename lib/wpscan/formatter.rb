@@ -66,6 +66,14 @@ module WPScan
         format == 'cli'
       end
 
+      # @return [ Boolean ]
+      # Whether this formatter can render findings incrementally as they
+      # arrive (cli, jsonl), or needs to receive the full result set first
+      # (json, sarif — they emit a single well-formed document at end-of-scan).
+      def streams?
+        false
+      end
+
       # @return [ String ] The underscored format to use as a base
       def base_format; end
 

@@ -16,6 +16,11 @@ module WPScan
           OptFilePath.new(['-o', '--output FILE', 'Output to FILE'], writable: true, exists: false),
           OptChoice.new(['-f', '--format FORMAT',
                          'Output results in the format supplied'], choices: formats),
+          OptBoolean.new(['--[no-]stream',
+                          'Emit enumeration findings (plugins/themes/users) as they are discovered, ' \
+                          'instead of waiting until each enumeration step completes. ' \
+                          'Has no effect on the json or sarif output formats, which always batch.'],
+                         default: true),
           OptChoice.new(['--detection-mode MODE'],
                         choices: %w[mixed passive aggressive],
                         normalize: :to_sym,

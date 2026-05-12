@@ -4,6 +4,10 @@ module WPScan
   module Formatter
     # CLI Formatter
     class Cli < Base
+      def streams?
+        true
+      end
+
       # @return [ String ]
       def info_icon
         green('[+]')

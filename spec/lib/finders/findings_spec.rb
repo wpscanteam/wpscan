@@ -35,4 +35,35 @@ describe WPScan::Finders::Findings do
       end
     end
   end
+
+  describe '#on_append' do
+    it 'fires the callback for each newly appended finding' do
+      seen = []
+      findings.on_append = ->(f) { seen << f }
+
+      findings << finding.new('one')
+      findings << finding.new('two')
+
+      expect(seen.map(&:r)).to eq(%w[one two])
+    end
+
+    it 'does not fire when a duplicate is merged into an existing finding' do
+      seen = []
+      findings.on_append = ->(f) { seen << f }
+
+      findings << finding.new('dup')
+      findings << finding.new('dup')
+
+      expect(seen.size).to eq(1)
+    end
+
+    it 'does not fire for nil values' do
+      seen = []
+      findings.on_append = ->(f) { seen << f }
+
+      findings << nil
+
+      expect(seen).to be_empty
+    end
+  end
 end

@@ -4,6 +4,14 @@ module WPScan
   module Controller
     # Enumeration Methods
     class Enumeration < WPScan::Controller::Base
+      # @return [ Boolean ] Whether enumeration findings should be streamed
+      #   as they are discovered rather than batched at end of step. Streaming
+      #   requires both a streaming-capable formatter (cli, cli_no_color, jsonl)
+      #   and the user not having opted out via --no-stream.
+      def stream_findings?
+        formatter.streams? && ParsedCli.stream != false
+      end
+
       # @param [ String ] type (plugins or themes)
       # @param [ Symbol ] detection_mode
       #
@@ -116,20 +124,11 @@ module WPScan
         )
 
         output('@info', msg: enum_message('plugins', opts[:mode])) if user_interaction?
-        # Enumerate the plugins & find their versions to avoid doing that when #version
-        # is called in the view
-        plugins = target.plugins(opts)
 
-        if user_interaction? && !plugins.empty?
-          output('@info',
-                 msg: "Checking Plugin Versions #{enum_detection_message(opts[:version_detection][:mode])}")
-        end
-
-        plugins.each(&:version)
-
-        plugins.select!(&:vulnerable?) if ParsedCli.enumerate&.dig(:vulnerable_plugins)
-
-        output('plugins', plugins: plugins)
+        enum_wp_items(
+          'plugin', target_method: :plugins, opts: opts,
+                    only_vulnerable: ParsedCli.enumerate&.dig(:vulnerable_plugins)
+        )
       end
 
       # @param [ Hash ] opts
@@ -165,20 +164,56 @@ module WPScan
         )
 
         output('@info', msg: enum_message('themes', opts[:mode])) if user_interaction?
-        # Enumerate the themes & find their versions to avoid doing that when #version
-        # is called in the view
-        themes = target.themes(opts)
 
-        if user_interaction? && !themes.empty?
-          output('@info',
-                 msg: "Checking Theme Versions #{enum_detection_message(opts[:version_detection][:mode])}")
+        enum_wp_items(
+          'theme', target_method: :themes, opts: opts,
+                   only_vulnerable: ParsedCli.enumerate&.dig(:vulnerable_themes)
+        )
+      end
+
+      # Shared plugins/themes enumeration body. Streams per-item output when
+      # the active formatter supports it (and --no-stream wasn't passed),
+      # otherwise batches the result and renders the plural view.
+      #
+      # @param [ String ] singular  'plugin' or 'theme' (view name)
+      # @param [ Symbol ] target_method  :plugins or :themes
+      # @param [ Hash ] opts  Options forwarded to the target call
+      # @param [ Boolean ] only_vulnerable  Filter to vulnerable items only
+      def enum_wp_items(singular, target_method:, opts:, only_vulnerable:)
+        stream = stream_findings?
+
+        items = target.send(target_method, opts) do |item|
+          stream_wp_item(item, singular: singular, only_vulnerable: only_vulnerable) if stream
         end
 
-        themes.each(&:version)
+        finalize_wp_items_output(items, singular: singular, opts: opts, stream: stream,
+                                        only_vulnerable: only_vulnerable)
+      end
 
-        themes.select!(&:vulnerable?) if ParsedCli.enumerate&.dig(:vulnerable_themes)
+      def finalize_wp_items_output(items, singular:, opts:, stream:, only_vulnerable:)
+        plural = "#{singular}s"
 
-        output('themes', themes: themes)
+        if !stream && user_interaction? && !items.empty?
+          mode_msg = enum_detection_message(opts[:version_detection][:mode])
+          output('@info', msg: "Checking #{singular.capitalize} Versions #{mode_msg}")
+        end
+
+        items.each(&:version) unless stream
+        items.select!(&:vulnerable?) if only_vulnerable
+
+        if stream
+          summary = items.empty? ? "No #{plural} Found." : "#{items.size} #{singular}(s) Identified."
+          output('@notice', msg: summary)
+        else
+          output(plural, plural.to_sym => items)
+        end
+      end
+
+      def stream_wp_item(item, singular:, only_vulnerable:)
+        item.version
+        return if only_vulnerable && !item.vulnerable?
+
+        output(singular, singular.to_sym => item)
       end
 
       # @param [ Hash ] opts
@@ -244,7 +279,22 @@ module WPScan
         )
 
         output('@info', msg: "Enumerating Users #{enum_detection_message(opts[:mode])}") if user_interaction?
-        output('users', users: target.users(opts))
+
+        stream = stream_findings?
+        exclude = ParsedCli.exclude_usernames
+
+        users = target.users(opts) do |user|
+          next unless stream
+          next if exclude&.match?(user.username)
+
+          output('user', user: user)
+        end || []
+
+        if stream
+          output('@notice', msg: users.empty? ? 'No Users Found.' : "#{users.size} user(s) Identified.")
+        else
+          output('users', users: users)
+        end
       end
 
       # @return [ Range ] The user ids range to enumerate

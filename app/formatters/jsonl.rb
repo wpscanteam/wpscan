@@ -11,6 +11,10 @@ module WPScan
         'json'
       end
 
+      def streams?
+        true
+      end
+
       def output(tpl, vars = {}, controller_name = nil)
         rendered = render(tpl, vars, controller_name)
                    .encode('UTF-8', invalid: :replace, undef: :replace)

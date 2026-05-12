@@ -4,8 +4,6 @@
 <% else -%>
 <%= notice_icon %> User(s) Identified:
 <% @users.each do |user| -%>
-
-<%= info_icon %> <%= user %>
-<%= render('@finding', item: user) -%>
+<%= render('user', user: user) -%>
 <% end -%>
 <% end %>

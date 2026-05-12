@@ -1,0 +1,5 @@
+"theme": {
+  <%= @theme.slug.to_json %>: {
+    <%= render('@theme', theme: @theme) -%>
+  }
+}

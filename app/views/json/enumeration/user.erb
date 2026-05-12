@@ -1,0 +1,6 @@
+"user": {
+  <%= @user.username.to_json %>: {
+    "id": <%= @user.id.to_json %>,
+    <%= render('@finding', item: @user) -%>
+  }
+}

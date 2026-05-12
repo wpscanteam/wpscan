@@ -145,6 +145,80 @@ describe WPScan::Controller::Enumeration do
     end
   end
 
+  describe 'streaming output (issue #952)' do
+    # Stub two plugin finds; the stubbed target#plugins yields them through
+    # the block (mirroring how findings reach the controller from the finder
+    # layer) and also returns the array so post-processing still works.
+    let(:plugin1) { instance_double(WPScan::Model::Plugin, version: nil, vulnerable?: false) }
+    let(:plugin2) { instance_double(WPScan::Model::Plugin, version: nil, vulnerable?: true) }
+
+    let(:cli_args) { "#{super()} -e ap" }
+
+    before do
+      # Formatter is memoized in a class variable; reset so each example
+      # picks up the formatter implied by its --format CLI arg.
+      WPScan::Controller::Base.reset
+      WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
+
+      allow(controller.target).to receive(:plugins) do |_opts, &block|
+        [plugin1, plugin2].each { |p| block&.call(p) }
+        [plugin1, plugin2]
+      end
+    end
+
+    context 'with a streaming formatter (cli)' do
+      it 'emits each plugin individually plus a summary notice' do
+        expect(controller.formatter).to receive(:output).with('@info', anything, 'enumeration').once
+        expect(controller.formatter).to receive(:output).with('plugin', hash_including(plugin: plugin1), 'enumeration')
+        expect(controller.formatter).to receive(:output).with('plugin', hash_including(plugin: plugin2), 'enumeration')
+        expect(controller.formatter).to receive(:output).with('@notice', hash_including(:msg), 'enumeration').once
+        expect(controller.formatter).not_to receive(:output).with('plugins', anything, anything)
+
+        controller.enum_plugins
+      end
+
+      context 'with -e vp (vulnerable_plugins) it streams only vulnerable findings' do
+        let(:cli_args) { "#{super().sub('-e ap', '-e vp')} --api-token x" }
+
+        before { allow(WPScan::DB::VulnApi).to receive(:token).and_return('x') }
+        after { WPScan::DB::VulnApi.token = nil }
+
+        it 'skips non-vulnerable plugins in the streamed output' do
+          expect(controller.formatter).to receive(:output).with('@info', anything, anything).once
+          expect(controller.formatter).not_to receive(:output).with('plugin', hash_including(plugin: plugin1), anything)
+          expect(controller.formatter).to receive(:output).with('plugin', hash_including(plugin: plugin2),
+                                                                'enumeration')
+          expect(controller.formatter).to receive(:output).with('@notice', hash_including(:msg), 'enumeration').once
+
+          controller.enum_plugins
+        end
+      end
+    end
+
+    context 'with --no-stream' do
+      let(:cli_args) { "#{super()} --no-stream" }
+
+      it 'falls back to the batched plural output' do
+        expect(controller.formatter).to receive(:output).with('@info', anything, 'enumeration').at_least(:once)
+        expect(controller.formatter).not_to receive(:output).with('plugin', anything, anything)
+        expect(controller.formatter).to receive(:output).with('plugins', hash_including(:plugins), 'enumeration').once
+
+        controller.enum_plugins
+      end
+    end
+
+    context 'with a non-streaming formatter (json)' do
+      let(:cli_args) { "#{super()} -f json" }
+
+      it 'uses the batched plural output regardless of --stream' do
+        expect(controller.formatter).not_to receive(:output).with('plugin', anything, anything)
+        expect(controller.formatter).to receive(:output).with('plugins', hash_including(:plugins), 'enumeration').once
+
+        controller.enum_plugins
+      end
+    end
+  end
+
   describe '#run' do
     context 'when no :enumerate' do
       it 'does not call any enum methods' do

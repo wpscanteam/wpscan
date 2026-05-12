@@ -8,17 +8,20 @@ module WPScan
 
       # See ActiveSupport::Concern
       module ClassMethods
-        def find(target, opts = {})
-          new(target).find(opts)
+        def find(target, opts = {}, &)
+          new(target).find(opts, &)
         end
       end
 
       # @param [ Hash ] opts
       # @option opts [ Symbol ] mode (:mixed, :passive, :aggressive)
+      # @yield [ Finding ] Optional block called for each finding the moment
+      #                   it is first appended to the result set (used to
+      #                   stream enumeration findings as they are discovered).
       #
       # @return [ Findings ]
-      def find(opts = {})
-        finders.run(opts)
+      def find(opts = {}, &)
+        finders.run(opts, &)
       end
 
       # @return [ Array ]
