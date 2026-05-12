@@ -3,7 +3,6 @@
 <% last_index = @backup_folders.size - 1 -%>
 <% @backup_folders.each_with_index do |backup_folder, index| -%>
   <%= backup_folder.url.to_json %>: {
-    "plugin_name": <%= backup_folder.plugin_name.to_json %>,
     "severity": <%= backup_folder.severity.to_json %>,
     <%= render('@finding', item: backup_folder) -%>
   }<% unless index == last_index -%>,<% end -%>

@@ -6,9 +6,6 @@
 
 <% icon = backup_folder.severity == :high ? critical_icon : warning_icon -%>
 <%= icon %> <%= backup_folder %>
-<% if backup_folder.plugin_name -%>
- Plugin: <%= backup_folder.plugin_name %>
-<% end -%>
 <%= render('@finding', item: backup_folder) -%>
 <% end -%>
 <% end %>

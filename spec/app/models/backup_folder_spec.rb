@@ -54,45 +54,16 @@ describe WPScan::Model::BackupFolder do
     end
   end
 
-  describe '#plugin_name' do
-    context 'when URL contains known plugin path' do
-      [
-        ['http://ex.lo/wp-content/backups-dup-pro/', 'Duplicator Pro'],
-        ['http://ex.lo/wp-content/backups-dup-lite/', 'Duplicator'],
-        ['http://ex.lo/wp-content/updraft/', 'UpdraftPlus'],
-        ['http://ex.lo/wp-content/backup-db/', 'WP-DB-Backup'],
-        ['http://ex.lo/wp-content/uploads/db-backup/', 'WP Database Backup'],
-        ['http://ex.lo/wp-content/uploads/backwpup/', 'BackWPup']
-      ].each do |test_url, expected_plugin|
-        context "for #{test_url}" do
-          let(:url) { test_url }
-
-          it "returns '#{expected_plugin}'" do
-            expect(backup_folder.plugin_name).to eq expected_plugin
-          end
-        end
-      end
-    end
-
-    context 'when URL does not match any known plugin' do
-      let(:url) { 'http://ex.lo/wp-content/unknown-backup/' }
-
-      it 'returns Unknown Backup Plugin' do
-        expect(backup_folder.plugin_name).to eq 'Unknown Backup Plugin'
-      end
-    end
-  end
-
   describe '#interesting_entries' do
     context 'when there are many entries' do
-      let(:entries) { (1..25).map { |i| "file#{i}.zip" } }
+      let(:entries) { (1..15).map { |i| "file#{i}.zip" } }
       let(:opts) { { interesting_entries: entries } }
 
       it 'limits to MAX_ENTRIES_DISPLAY and adds summary' do
         result = backup_folder.interesting_entries
-        expect(result.size).to eq 21 # 20 entries + 1 summary line
+        expect(result.size).to eq 11 # 10 entries + 1 summary line
         expect(result.first).to eq 'file1.zip'
-        expect(result[19]).to eq 'file20.zip'
+        expect(result[9]).to eq 'file10.zip'
         expect(result.last).to eq '... and 5 more'
       end
     end

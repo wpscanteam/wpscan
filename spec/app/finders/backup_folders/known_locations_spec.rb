@@ -51,7 +51,6 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
         dup_pro = findings.first
         expect(dup_pro.url).to eq "#{url}wp-content/backups-dup-pro/"
         expect(dup_pro.confidence).to eq 100
-        expect(dup_pro.plugin_name).to eq 'Duplicator Pro'
         expect(dup_pro.interesting_entries).to eq ['backup.zip']
       end
     end
@@ -108,12 +107,10 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
         updraft = findings.find { |f| f.url == "#{url}wp-content/updraft/" }
         expect(updraft).not_to be_nil
         expect(updraft.confidence).to eq 100
-        expect(updraft.plugin_name).to eq 'UpdraftPlus'
 
         backwpup = findings.find { |f| f.url == "#{url}wp-content/uploads/backwpup/" }
         expect(backwpup).not_to be_nil
         expect(backwpup.confidence).to eq 100
-        expect(backwpup.plugin_name).to eq 'BackWPup'
       end
     end
 
@@ -148,7 +145,6 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
         updraft = findings.first
         expect(updraft.url).to eq "#{url}custom-content/updraft/"
         expect(updraft.confidence).to eq 100
-        expect(updraft.plugin_name).to eq 'UpdraftPlus'
       end
     end
   end

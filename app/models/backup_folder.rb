@@ -4,7 +4,7 @@ module WPScan
   module Model
     # BackupFolder
     class BackupFolder < InterestingFinding
-      MAX_ENTRIES_DISPLAY = 5
+      MAX_ENTRIES_DISPLAY = 10
 
       # @return [ String ]
       def to_s
@@ -33,32 +33,6 @@ module WPScan
           entries << "... and #{@interesting_entries.size - MAX_ENTRIES_DISPLAY} more"
         end
         entries
-      end
-
-      # @return [ String ]
-      def plugin_name
-        @plugin_name ||= detect_plugin_from_path
-      end
-
-      # Plugin path patterns mapped to plugin names
-      # Minimal set - additional plugins can be added in follow-up PRs
-      PLUGIN_PATTERNS = {
-        /backups-dup-pro/i => 'Duplicator Pro',
-        /backups-dup-lite/i => 'Duplicator',
-        /updraft/i => 'UpdraftPlus',
-        %r{uploads/db-backup}i => 'WP Database Backup',
-        /backup-db/i => 'WP-DB-Backup',
-        %r{uploads/backwpup}i => 'BackWPup'
-      }.freeze
-
-      private
-
-      # @return [ String ]
-      def detect_plugin_from_path
-        PLUGIN_PATTERNS.each do |pattern, name|
-          return name if url.match?(pattern)
-        end
-        'Unknown Backup Plugin'
       end
     end
   end
