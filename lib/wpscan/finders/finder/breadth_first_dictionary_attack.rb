@@ -33,7 +33,6 @@ module WPScan
           # Keep the number of requests sent for each users
           # to be able to correctly update the progress when a password is found
           user_requests_count = {}
-          current_line = 0
 
           users.each { |u| user_requests_count[u.username] = 0 }
 
@@ -42,13 +41,7 @@ module WPScan
             progress_bar.log("[INFO] Skipping first #{skip_count} password(s) from wordlist...")
           end
 
-          File.foreach(wordlist, chomp: true) do |password|
-            # Skip passwords if resuming
-            if current_line < skip_count
-              current_line += 1
-              next
-            end
-            current_line += 1
+          File.foreach(wordlist, chomp: true).lazy.drop(skip_count).each do |password|
             remaining_users = users.select { |u| u.password.nil? }
 
             break if remaining_users.empty?
