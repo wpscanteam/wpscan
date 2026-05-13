@@ -101,10 +101,13 @@ module WPScan
               rescue ProgressBar::InvalidProgressError
               end
 
+              # Clean up retry history for this user to free memory
+              retry_count.delete(user.username)
+
               yield user if block_given?
             elsif errored_response?(res)
               # Error response - potentially retryable
-              if current_retry < max_retries
+              if current_retry < max_retries && user.password.nil?
                 # Retry the request
                 retry_count[user.username][password] += 1
 
@@ -117,10 +120,16 @@ module WPScan
                 # Max retries exhausted, log error and move on
                 output_error(res)
                 progress_bar.increment unless progress_bar.progress == progress_bar.total
+
+                # Clean up retry count for this password since we're done with it
+                retry_count[user.username]&.delete(password)
               end
             else
               # Invalid credentials (normal case) - just increment progress
               progress_bar.increment unless progress_bar.progress == progress_bar.total
+
+              # Clean up retry count for this password since we're done with it
+              retry_count[user.username]&.delete(password)
             end
           end
 
