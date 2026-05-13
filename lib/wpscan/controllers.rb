@@ -36,10 +36,24 @@ module WPScan
       self
     end
 
+    # Force the non-colored CLI formatter when ANSI escapes would be
+    # unwanted: writing to a file, piping to another process, or when the
+    # caller has set NO_COLOR (see https://no-color.org). Explicit
+    # --format choices are preserved.
+    def apply_no_colour_default
+      return if WPScan::ParsedCli.options[:format]
+
+      no_color = ENV.fetch('NO_COLOR', nil)
+      return unless WPScan::ParsedCli.output || !$stdout.tty? || (no_color && !no_color.empty?)
+
+      WPScan::ParsedCli.options[:format] = 'cli-no-colour'
+    end
+
     def run
       WPScan::ParsedCli.options = option_parser.results
       first.class.option_parser = option_parser # needed to output help on -h/--hh
 
+      apply_no_colour_default
       redirect_output_to_file(WPScan::ParsedCli.output) if WPScan::ParsedCli.output
 
       Timeout.timeout(WPScan::ParsedCli.max_scan_duration, WPScan::Error::MaxScanDurationReached) do

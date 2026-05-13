@@ -136,6 +136,65 @@ describe WPScan::Controllers do
     end
   end
 
+  describe '#apply_no_colour_default' do
+    let(:no_color) { nil }
+
+    before do
+      ENV['NO_COLOR'] = no_color
+      allow($stdout).to receive(:tty?).and_return(tty)
+    end
+
+    after { ENV.delete('NO_COLOR') }
+
+    let(:tty) { true }
+
+    def options_after(opts)
+      WPScan::ParsedCli.options = opts
+      controllers.send(:apply_no_colour_default)
+      WPScan::ParsedCli.options
+    end
+
+    context 'when --output is set' do
+      it 'forces cli-no-colour' do
+        expect(options_after(output: '/tmp/out.txt')[:format]).to eql 'cli-no-colour'
+      end
+
+      it 'preserves an explicit --format' do
+        expect(options_after(output: '/tmp/out.txt', format: 'json')[:format]).to eql 'json'
+      end
+    end
+
+    context 'when stdout is not a TTY' do
+      let(:tty) { false }
+
+      it 'forces cli-no-colour' do
+        expect(options_after({})[:format]).to eql 'cli-no-colour'
+      end
+    end
+
+    context 'when NO_COLOR is set' do
+      let(:no_color) { '1' }
+
+      it 'forces cli-no-colour' do
+        expect(options_after({})[:format]).to eql 'cli-no-colour'
+      end
+    end
+
+    context 'when NO_COLOR is set but empty' do
+      let(:no_color) { '' }
+
+      it 'does not change the format' do
+        expect(options_after({})[:format]).to be_nil
+      end
+    end
+
+    context 'when stdout is a TTY, no --output and no NO_COLOR' do
+      it 'does not change the format' do
+        expect(options_after({})[:format]).to be_nil
+      end
+    end
+  end
+
   describe '#register_config_files' do
     it 'register the correct files' do
       expect(File).to receive(:exist?).exactly(4).times.and_return(true)
