@@ -5,6 +5,131 @@ module WPScan
     class Finder
       # Module to provide an easy way to perform password attacks
       module BreadthFirstDictionaryAttack
+        # Tracks progress for password attack
+        class ProgressTracker
+          attr_reader :progress_bar
+
+          def initialize(progress_bar:, total_passwords:)
+            @progress_bar = progress_bar
+            @total_passwords = total_passwords
+            @user_requests_count = Hash.new(0)
+          end
+
+          def record_request(username)
+            @user_requests_count[username] += 1
+          end
+
+          def requests_for_user(username)
+            @user_requests_count[username]
+          end
+
+          def update_title(username, password, retry_count, max_retries)
+            retry_info = retry_count.positive? ? " (retry #{retry_count}/#{max_retries})" : ''
+            @progress_bar.title = "Trying #{username} / #{password}#{retry_info}"
+          end
+
+          def increment
+            @progress_bar.increment unless @progress_bar.progress == @progress_bar.total
+          end
+
+          def adjust_total_on_success(username)
+            @progress_bar.total -= @total_passwords - @user_requests_count[username]
+          rescue ProgressBar::InvalidProgressError
+            # Due to Typhoeus threads, progress bar might be in invalid state
+          end
+
+          def log(message)
+            @progress_bar.log(message)
+          end
+
+          def stop
+            @progress_bar.stop
+          end
+        end
+
+        # Configuration bundle for LoginAttempt
+        LoginConfig = Struct.new(:tracker, :request_builder, :credentials_validator,
+                                 :error_checker, :error_handler, :hydra, :opts,
+                                 keyword_init: true)
+
+        # Handles a single login attempt with retry support
+        class LoginAttempt
+          attr_reader :user, :password, :max_retries
+          attr_accessor :retry_count
+
+          def initialize(user:, password:, max_retries:, config:)
+            @user = user
+            @password = password
+            @max_retries = max_retries
+            @retry_count = 0
+            @config = config
+          end
+
+          def execute(&block)
+            request = @config.request_builder.call(@user.username, @password)
+            @config.tracker.record_request(@user.username)
+
+            request.on_complete do |response|
+              handle_response(response, &block)
+            end
+
+            @config.hydra.queue(request)
+          end
+
+          private
+
+          def handle_response(response, &)
+            @config.tracker.update_title(@user.username, @password, @retry_count, @max_retries)
+
+            if @config.credentials_validator.call(response)
+              handle_success(&)
+            elsif @config.error_checker.call(response)
+              handle_error(response, &)
+            else
+              handle_invalid_credentials
+            end
+          end
+
+          def handle_success
+            @config.tracker.increment
+            @user.password = @password
+            @config.tracker.adjust_total_on_success(@user.username)
+
+            yield @user if block_given?
+          end
+
+          def handle_error(response, &)
+            if should_retry?
+              retry_attempt(&)
+            else
+              finalize_failed_attempt(response)
+            end
+          end
+
+          def should_retry?
+            @retry_count < @max_retries && @user.password.nil?
+          end
+
+          def retry_attempt(&)
+            @retry_count += 1
+
+            if @config.opts[:show_progression] && WPScan::ParsedCli.verbose?
+              @config.tracker.log("[RETRY #{@retry_count}/#{@max_retries}] #{@user.username} / #{@password}")
+            end
+
+            execute(&)
+          end
+
+          def finalize_failed_attempt(response)
+            @config.error_handler.call(response)
+            @config.tracker.increment
+          end
+
+          def handle_invalid_credentials
+            @config.tracker.increment
+          end
+        end
+
         # @param [ Array<WPScan::Model::User> ] users
         # @param [ String ] wordlist_path
         # @param [ Hash ] opts
@@ -30,30 +155,23 @@ module WPScan
           effective_passwords = [total_passwords - skip_count, 0].max
 
           create_progress_bar(total: users.size * effective_passwords, show_progression: opts[:show_progression])
-
-          queue_count         = 0
-          # Keep the number of requests sent for each users
-          # to be able to correctly update the progress when a password is found
-          user_requests_count = {}
-          # Track retry attempts for each user/password combination
-          retry_count = Hash.new { |h, k| h[k] = Hash.new(0) }
-
-          users.each { |u| user_requests_count[u.username] = 0 }
+          tracker = ProgressTracker.new(progress_bar: progress_bar, total_passwords: effective_passwords)
+          config = create_login_config(tracker, opts)
 
           # Show skip progress if skipping
-          if skip_count > 0 && opts[:show_progression]
-            progress_bar.log("[INFO] Skipping first #{skip_count} password(s) from wordlist...")
+          if skip_count.positive? && opts[:show_progression]
+            tracker.log("[INFO] Skipping first #{skip_count} password(s) from wordlist...")
           end
+
+          queue_count = 0
 
           File.foreach(wordlist, chomp: true).lazy.drop(skip_count).each do |password|
             remaining_users = users.select { |u| u.password.nil? }
-
             break if remaining_users.empty?
 
             remaining_users.each do |user|
-              queue_login_request(user, password, user_requests_count, retry_count, max_retries, effective_passwords, opts) do |found_user|
-                yield found_user if block_given?
-              end
+              attempt = LoginAttempt.new(user: user, password: password, max_retries: max_retries, config: config)
+              attempt.execute { |found_user| yield found_user if block_given? }
               queue_count += 1
 
               if queue_count >= hydra.max_concurrency
@@ -64,78 +182,28 @@ module WPScan
           end
 
           hydra.run
-          progress_bar.stop
+          tracker.stop
         end
         # rubocop:enable all
 
-        # Queue a login request with retry support
+        # Create login configuration with all dependencies
         #
-        # @param [ WPScan::Model::User ] user
-        # @param [ String ] password
-        # @param [ Hash ] user_requests_count
-        # @param [ Hash ] retry_count
-        # @param [ Integer ] max_retries
-        # @param [ Integer ] effective_passwords Total passwords accounting for skip
+        # @param [ ProgressTracker ] tracker
         # @param [ Hash ] opts
         #
-        # rubocop:disable all
-        def queue_login_request(user, password, user_requests_count, retry_count, max_retries, effective_passwords, opts, &block)
-          request = login_request(user.username, password)
-
-          user_requests_count[user.username] += 1
-
-          request.on_complete do |res|
-            current_retry = retry_count[user.username][password]
-
-            progress_bar.title = "Trying #{user.username} / #{password}" +
-                                 (current_retry > 0 ? " (retry #{current_retry}/#{max_retries})" : "")
-
-            if valid_credentials?(res)
-              # Success - found valid credentials
-              progress_bar.increment unless progress_bar.progress == progress_bar.total
-
-              user.password = password
-
-              begin
-                progress_bar.total -= effective_passwords - user_requests_count[user.username]
-              rescue ProgressBar::InvalidProgressError
-              end
-
-              # Clean up retry history for this user to free memory
-              retry_count.delete(user.username)
-
-              yield user if block_given?
-            elsif errored_response?(res)
-              # Error response - potentially retryable
-              if current_retry < max_retries && user.password.nil?
-                # Retry the request
-                retry_count[user.username][password] += 1
-
-                if opts[:show_progression] && WPScan::ParsedCli.verbose?
-                  progress_bar.log("[RETRY #{retry_count[user.username][password]}/#{max_retries}] #{user.username} / #{password}")
-                end
-
-                queue_login_request(user, password, user_requests_count, retry_count, max_retries, effective_passwords, opts, &block)
-              else
-                # Max retries exhausted, log error and move on
-                output_error(res)
-                progress_bar.increment unless progress_bar.progress == progress_bar.total
-
-                # Clean up retry count for this password since we're done with it
-                retry_count[user.username]&.delete(password)
-              end
-            else
-              # Invalid credentials (normal case) - just increment progress
-              progress_bar.increment unless progress_bar.progress == progress_bar.total
-
-              # Clean up retry count for this password since we're done with it
-              retry_count[user.username]&.delete(password)
-            end
-          end
-
-          hydra.queue(request)
+        # @return [ LoginConfig ]
+        #
+        def create_login_config(tracker, opts)
+          LoginConfig.new(
+            tracker: tracker,
+            request_builder: method(:login_request).to_proc,
+            credentials_validator: method(:valid_credentials?).to_proc,
+            error_checker: method(:errored_response?).to_proc,
+            error_handler: method(:output_error).to_proc,
+            hydra: hydra,
+            opts: opts
+          )
         end
-        # rubocop:enable all
 
         # @param [ String ] username
         # param [ String ] password
