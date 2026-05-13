@@ -85,7 +85,6 @@ module WPScan
           user_requests_count[user.username] += 1
 
           request.on_complete do |res|
-            retry_key = "#{user.username}:#{password}"
             current_retry = retry_count[user.username][password]
 
             progress_bar.title = "Trying #{user.username} / #{password}" +
