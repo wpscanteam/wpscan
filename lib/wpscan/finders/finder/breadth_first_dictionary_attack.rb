@@ -99,6 +99,11 @@ module WPScan
           end
 
           def handle_error(response, &)
+            if @user.password
+              @config.tracker.increment
+              return
+            end
+
             if should_retry?
               retry_attempt(&)
             else
@@ -107,7 +112,7 @@ module WPScan
           end
 
           def should_retry?
-            @retry_count < @max_retries && @user.password.nil?
+            @retry_count < @max_retries
           end
 
           def retry_attempt(&)
