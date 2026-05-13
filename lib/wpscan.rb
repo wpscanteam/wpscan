@@ -65,8 +65,8 @@ module WPScan
   # XDG support for DB_DIR
   # If the legacy path exists, it will be used. Otherwise, we'll use
   # $XDG_CACHE_HOME/wpscan/db or ~/.cache/wpscan/db when XDG_CACHE_HOME is unset.
-  legacy_path = Pathname.new(Dir.home).join('.wpscan', 'db')
-  xdg_path = Pathname.new(ENV['XDG_CACHE_HOME'] || Pathname.new(Dir.home).join('.cache')).join('wpscan', 'db')
+  legacy_path = Pathname.new(Dir.home).join(".#{WPScan.app_name}", 'db')
+  xdg_path = Pathname.new(ENV['XDG_CACHE_HOME'] || Pathname.new(Dir.home).join('.cache')).join(WPScan.app_name, 'db')
   DB_DIR = legacy_path.exist? ? legacy_path : xdg_path
 
   Typhoeus.on_complete do |response|
