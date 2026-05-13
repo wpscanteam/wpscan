@@ -18,7 +18,7 @@ module WPScan
     def register_config_files
       # XDG support for config base directory
       ## XDG path
-      [ENV['XDG_CONFIG_HOME', Pathname.new(Dir.home).join('.config')], ].each do |dir|
+      [ENV['XDG_CONFIG_HOME', Pathname.new(Dir.home).join('.config')]].each do |dir|
         option_parser.config_files.class.supported_extensions.each do |ext|
           option_parser.config_files << Pathname.new(dir).join(WPScan.app_name, "scan.#{ext}").to_s
         end
