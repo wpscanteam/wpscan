@@ -152,6 +152,10 @@ Up to **25** API requests per day are given free of charge, that should be suita
 
 WPScan can load all options (including the `--url`) from configuration files, the following locations are checked (order: first to last):
 
+- `$XDG_CONFIG_HOME/wpscan/scan.json`
+- `$XDG_CONFIG_HOME/wpscan/scan.yml`
+- `~/.config/wpscan/scan.json`
+- `~/.config/wpscan/scan.yml`
 - `~/.wpscan/scan.json`
 - `~/.wpscan/scan.yml`
 - `pwd/.wpscan/scan.json`
@@ -161,7 +165,7 @@ If those files exist, options from the `cli_options` key will be loaded and over
 
 e.g:
 
-`~/.wpscan/scan.yml`:
+`~/.config/wpscan/scan.yml`:
 
 ```yml
 cli_options:
@@ -189,7 +193,7 @@ cli_options:
 
 ## Save API Token in a file
 
-The feature mentioned above is useful to keep the API Token in a config file and not have to supply it via the CLI each time. To do so, create the ~/.wpscan/scan.yml file containing the below:
+The feature mentioned above is useful to keep the API Token in a config file and not have to supply it via the CLI each time. To do so, create the ~/.config/wpscan/scan.yml file containing the below:
 
 ```yml
 cli_options:
