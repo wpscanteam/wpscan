@@ -233,9 +233,9 @@ module WPScan
       end
 
       def enum_timthumbs
-        opts = default_opts('timthumbs').merge(list: ParsedCli.timthumbs_list)
+        opts = { list: ParsedCli.timthumbs_list, show_progression: user_interaction? }
 
-        output('@info', msg: "Enumerating Timthumbs #{enum_detection_message(opts[:mode])}") if user_interaction?
+        output('@info', msg: 'Enumerating Timthumbs') if user_interaction?
         output('timthumbs', timthumbs: target.timthumbs(opts))
       end
 

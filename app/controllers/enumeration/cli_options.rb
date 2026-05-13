@@ -109,11 +109,6 @@ module WPScan
           OptFilePath.new(
             ['--timthumbs-list FILE-PATH', 'List of timthumbs\' location to use'],
             exists: true, default: DB_DIR.join('timthumbs-v3.txt').to_s, advanced: true
-          ),
-          OptChoice.new(
-            ['--timthumbs-detection MODE',
-             'Use the supplied mode to enumerate Timthumbs, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end
