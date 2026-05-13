@@ -67,7 +67,7 @@ module WPScan
 
           def execute(&block)
             request = @config.request_builder.call(@user.username, @password)
-            @config.tracker.record_request(@user.username)
+            @config.tracker.record_request(@user.username) if @retry_count.zero?
 
             request.on_complete do |response|
               handle_response(response, &block)
