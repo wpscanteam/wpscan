@@ -14,22 +14,28 @@ module WPScan
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
+        # @option opts [ Findings ] :found Shared findings collection; see
+        #   {Plugins::KnownLocations#aggressive} for the streaming rationale.
         #
         # @return [ Array<Theme> ]
         def aggressive(opts = {})
-          found = []
+          shared = opts[:found]
+          local  = shared ? nil : []
+          count  = 0
 
           enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |res, slug|
             finding_opts = opts.merge(found_by: found_by,
                                       confidence: 80,
                                       interesting_entries: ["#{res.effective_url}, status: #{res.code}"])
 
-            found << Model::Theme.new(slug, target, finding_opts)
+            theme = Model::Theme.new(slug, target, finding_opts)
+            (shared || local) << theme
+            count += 1
 
-            raise Error::ThemesThresholdReached if opts[:threshold].positive? && found.size >= opts[:threshold]
+            raise Error::ThemesThresholdReached if opts[:threshold].positive? && count >= opts[:threshold]
           end
 
-          found
+          local || []
         end
 
         # @param [ Hash ] opts

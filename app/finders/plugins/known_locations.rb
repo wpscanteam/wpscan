@@ -14,22 +14,32 @@ module WPScan
 
         # @param [ Hash ] opts
         # @option opts [ String ] :list
+        # @option opts [ Findings ] :found Shared findings collection passed by
+        #   BaseFinders#run_finder. We append directly into it as each plugin
+        #   is detected so that Findings#on_append fires during the hydra run,
+        #   enabling streaming output. Falls back to a local array when called
+        #   outside the framework (e.g. directly from specs).
         #
-        # @return [ Array<Plugin> ]
+        # @return [ Array<Plugin> ] Items appended this call (empty when
+        #   already streamed into opts[:found] to avoid double-appending).
         def aggressive(opts = {})
-          found = []
+          shared = opts[:found]
+          local  = shared ? nil : []
+          count  = 0
 
           enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |res, slug|
             finding_opts = opts.merge(found_by: found_by,
                                       confidence: 80,
                                       interesting_entries: ["#{res.effective_url}, status: #{res.code}"])
 
-            found << Model::Plugin.new(slug, target, finding_opts)
+            plugin = Model::Plugin.new(slug, target, finding_opts)
+            (shared || local) << plugin
+            count += 1
 
-            raise Error::PluginsThresholdReached if opts[:threshold].positive? && found.size >= opts[:threshold]
+            raise Error::PluginsThresholdReached if opts[:threshold].positive? && count >= opts[:threshold]
           end
 
-          found
+          local || []
         end
 
         # @param [ Hash ] opts

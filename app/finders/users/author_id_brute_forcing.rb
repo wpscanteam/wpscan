@@ -14,10 +14,13 @@ module WPScan
 
         # @param [ Hash ] opts
         # @option opts [ Range ] :range Mandatory
+        # @option opts [ Findings ] :found Shared findings collection; see
+        #   {Plugins::KnownLocations#aggressive} for the streaming rationale.
         #
         # @return [ Array<User> ]
         def aggressive(opts = {})
-          found = []
+          shared       = opts[:found]
+          local        = shared ? nil : []
           found_by_msg = 'Author Id Brute Forcing - %s (Aggressive Detection)'
 
           enumerate(target_urls(opts), opts.merge(check_full_response: true)) do |res, id|
@@ -25,15 +28,16 @@ module WPScan
 
             next unless username
 
-            found << Model::User.new(
+            user = Model::User.new(
               username,
               id: id,
               found_by: format(found_by_msg, found_by),
               confidence: confidence
             )
+            (shared || local) << user
           end
 
-          found
+          local || []
         end
 
         # @param [ Hash ] opts
