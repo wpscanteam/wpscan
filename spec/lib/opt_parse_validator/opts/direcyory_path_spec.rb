@@ -10,7 +10,7 @@ describe OptParseValidator::OptDirectoryPath do
   describe '#validate' do
     context 'when it is a directory' do
       it 'returns the path' do
-        expect(opt.validate(dir_path)).to eql dir_path
+        expect(opt.validate(dir_path)).to eql Pathname.new(dir_path)
       end
     end
 
@@ -33,7 +33,7 @@ describe OptParseValidator::OptDirectoryPath do
       let(:dir_path) { OPV_FIXTURES.join('dir_path').to_s }
 
       it 'creates it' do
-        expect(opt.validate(dir_path)).to eql dir_path
+        expect(opt.validate(dir_path)).to eql Pathname.new(dir_path)
         expect(Dir.exist?(dir_path)).to eql true
 
         FileUtils.remove_dir(dir_path)
