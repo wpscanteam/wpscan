@@ -143,10 +143,15 @@ describe WPScan::Controllers do
       expected = []
       option_parser = controllers.option_parser
 
-      [Dir.home, Dir.pwd].each do |dir|
-        option_parser.config_files.class.supported_extensions.each do |ext|
-          expected << File.join(dir, '.wpscan', "scan.#{ext}")
-        end
+      xdg = ENV.fetch('XDG_CONFIG_HOME', nil)
+      xdg = Pathname.new(Dir.home).join('.config') if xdg.nil? || xdg.empty?
+      app = WPScan.app_name
+
+      dirs = [[xdg, app], [Dir.home, ".#{app}"], [Dir.pwd, ".#{app}"]]
+      exts = option_parser.config_files.class.supported_extensions
+
+      dirs.product(exts).each do |(dir, sub), ext|
+        expected << Pathname.new(dir).join(sub, "scan.#{ext}").to_s
       end
 
       expect(option_parser.config_files.map(&:path)).to eql expected
