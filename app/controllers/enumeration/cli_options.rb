@@ -119,11 +119,6 @@ module WPScan
           OptFilePath.new(
             ['--config-backups-list FILE-PATH', 'List of config backups\' filenames to use'],
             exists: true, default: DB_DIR.join('config_backups.txt').to_s, advanced: true
-          ),
-          OptChoice.new(
-            ['--config-backups-detection MODE',
-             'Use the supplied mode to enumerate Config Backups, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end

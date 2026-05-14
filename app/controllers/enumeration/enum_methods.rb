@@ -240,9 +240,9 @@ module WPScan
       end
 
       def enum_config_backups
-        opts = default_opts('config_backups').merge(list: ParsedCli.config_backups_list)
+        opts = { list: ParsedCli.config_backups_list, show_progression: user_interaction? }
 
-        output('@info', msg: "Enumerating Config Backups #{enum_detection_message(opts[:mode])}") if user_interaction?
+        output('@info', msg: 'Enumerating Config Backups') if user_interaction?
         output('config_backups', config_backups: target.config_backups(opts))
       end
 
