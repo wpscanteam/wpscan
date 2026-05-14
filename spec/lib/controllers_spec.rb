@@ -140,7 +140,6 @@ describe WPScan::Controllers do
     it 'register the correct files' do
       expect(File).to receive(:exist?).exactly(4).times.and_return(true)
 
-      expected = []
       option_parser = controllers.option_parser
 
       xdg = ENV.fetch('XDG_CONFIG_HOME', nil)
@@ -150,8 +149,8 @@ describe WPScan::Controllers do
       dirs = [[xdg, app], [Dir.home, ".#{app}"], [Dir.pwd, ".#{app}"]]
       exts = option_parser.config_files.class.supported_extensions
 
-      dirs.product(exts).each do |(dir, sub), ext|
-        expected << Pathname.new(dir).join(sub, "scan.#{ext}").to_s
+      expected = dirs.product(exts).map do |(dir, sub), ext|
+        Pathname.new(dir).join(sub, "scan.#{ext}").to_s
       end
 
       expect(option_parser.config_files.map(&:path)).to eql expected
