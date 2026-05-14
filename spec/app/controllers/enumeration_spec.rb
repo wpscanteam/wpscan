@@ -76,7 +76,6 @@ describe WPScan::Controller::Enumeration do
            config_backups_list
            db_exports_list
            backup_folders_list
-           medias_detection
            users_list users_detection exclude_usernames]
       )
     end

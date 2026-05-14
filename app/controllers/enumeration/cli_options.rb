@@ -145,13 +145,7 @@ module WPScan
 
       # @return [ Array<OptParseValidator::OptBase> ]
       def cli_medias_opts
-        [
-          OptChoice.new(
-            ['--medias-detection MODE',
-             'Use the supplied mode to enumerate Medias, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
-          )
-        ]
+        []
       end
 
       # @return [ Array<OptParseValidator::OptBase> ]
