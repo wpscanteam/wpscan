@@ -247,9 +247,9 @@ module WPScan
       end
 
       def enum_db_exports
-        opts = default_opts('db_exports').merge(list: ParsedCli.db_exports_list)
+        opts = { list: ParsedCli.db_exports_list, show_progression: user_interaction? }
 
-        output('@info', msg: "Enumerating DB Exports #{enum_detection_message(opts[:mode])}") if user_interaction?
+        output('@info', msg: 'Enumerating DB Exports') if user_interaction?
         output('db_exports', db_exports: target.db_exports(opts))
       end
 

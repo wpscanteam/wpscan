@@ -129,11 +129,6 @@ module WPScan
           OptFilePath.new(
             ['--db-exports-list FILE-PATH', 'List of DB exports\' paths to use'],
             exists: true, default: DB_DIR.join('db_exports.txt').to_s, advanced: true
-          ),
-          OptChoice.new(
-            ['--db-exports-detection MODE',
-             'Use the supplied mode to enumerate DB Exports, instead of the global (--detection-mode) mode.'],
-            choices: %w[mixed passive aggressive], normalize: :to_sym, advanced: true
           )
         ]
       end

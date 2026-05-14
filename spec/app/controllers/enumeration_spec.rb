@@ -74,7 +74,7 @@ describe WPScan::Controller::Enumeration do
            themes_list themes_detection themes_version_all themes_version_detection themes_threshold
            timthumbs_list
            config_backups_list
-           db_exports_list db_exports_detection
+           db_exports_list
            backup_folders_list
            medias_detection
            users_list users_detection exclude_usernames]
