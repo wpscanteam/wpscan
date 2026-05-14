@@ -19,7 +19,7 @@ module OptParseValidator
 
     # @param [ String ] value
     #
-    # @return [ String ]
+    # @return [ Pathname ]
     def validate(value)
       path = Pathname.new(value)
 
@@ -28,7 +28,7 @@ module OptParseValidator
         send(method, path) if respond_to?(method) && attrs[key]
       end
 
-      path.to_s
+      path
     end
 
     def allowed_attrs
