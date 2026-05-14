@@ -54,6 +54,15 @@ require 'wpscan/http_status_tracking'
 Encoding.default_external = Encoding::UTF_8
 
 module WPScan
+  class << self
+    # The lowercase name of the scanner.
+    # Mainly used in directory paths like the default cookie-jar file and
+    # path to load the cli options from files.
+    def app_name
+      'wpscan'
+    end
+  end
+
   extend HttpStatusTracking
 
   APP_DIR = Pathname.new(__FILE__).dirname.join('..', 'app').expand_path
@@ -87,13 +96,6 @@ module WPScan
   end
 
   class << self
-    # The lowercase name of the scanner.
-    # Mainly used in directory paths like the default cookie-jar file and
-    # path to load the cli options from files.
-    def app_name
-      'wpscan'
-    end
-
     def user_cache_dir
       Pathname.new(ENV['XDG_CACHE_HOME'] || Pathname.new(Dir.home).join('.cache')).join(app_name)
     end
