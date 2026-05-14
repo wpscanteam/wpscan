@@ -138,7 +138,7 @@ describe WPScan::Controllers do
 
   describe '#register_config_files' do
     it 'register the correct files' do
-      expect(File).to receive(:exist?).exactly(4).times.and_return(true)
+      expect(File).to receive(:exist?).exactly(6).times.and_return(true)
 
       option_parser = controllers.option_parser
 
