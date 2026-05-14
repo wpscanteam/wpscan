@@ -16,18 +16,17 @@ module WPScan
 
     # Registers the potential option-file paths with the option_parser.
     def register_config_files
-      # XDG support for config base directory
-      ## XDG path
-      [ENV['XDG_CONFIG_HOME'],  Pathname.new(Dir.home).join('.config')].each do |dir|
-        option_parser.config_files.class.supported_extensions.each do |ext|
-          option_parser.config_files << Pathname.new(dir).join(WPScan.app_name, "scan.#{ext}").to_s
-        end
-      end
-      ## legacy path + working directory
-      [Dir.home, Dir.pwd].each do |dir|
-        option_parser.config_files.class.supported_extensions.each do |ext|
-          option_parser.config_files << Pathname.new(dir).join(".#{WPScan.app_name}", "scan.#{ext}").to_s
-        end
+      # XDG Base Directory support for configuration
+      # https://specifications.freedesktop.org/basedir/latest/
+      xdg = ENV.fetch('XDG_CONFIG_HOME', nil)
+      xdg = Pathname.new(Dir.home).join('.config') if xdg.nil? || xdg.empty?
+      app = WPScan.app_name
+
+      dirs = [[xdg, app], [Dir.home, ".#{app}"], [Dir.pwd, ".#{app}"]]
+      exts = option_parser.config_files.class.supported_extensions
+
+      dirs.product(exts).each do |(dir, sub), ext|
+        option_parser.config_files << Pathname.new(dir).join(sub, "scan.#{ext}").to_s
       end
     end
 
