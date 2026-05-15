@@ -14,7 +14,14 @@ shared_examples 'App::Views::Enumeration::DbExports' do
     end
 
     context 'when files found' do
-      xit
+      let(:db1) { db_export.new("#{target_url}database.sql", found_by: 'Direct Access (Aggressive Detection)') }
+      let(:db2) { db_export.new("#{target_url}db_backup.sql.gz", found_by: 'Direct Access (Aggressive Detection)') }
+      let(:db_exports) { [db1, db2] }
+      let(:expected_view) { File.join(view, 'db_exports') }
+
+      it 'outputs the expected string' do
+        @tpl_vars = tpl_vars.merge(db_exports: db_exports)
+      end
     end
   end
 end
