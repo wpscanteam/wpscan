@@ -568,13 +568,50 @@ describe WPScan::Controller::Core do
 
         # Expected: removes url, expect_saml, cookie_string, banner
         # Preserves: some_flag, another_flag
-        command = "wpscan --url #{target_url} --cookie-string '#{mock_cookie_string}' --no-banner " \
-                  '--some-flag=value --another-flag'
+        command = [
+          'wpscan',
+          '--url', target_url,
+          '--cookie-string', mock_cookie_string,
+          '--no-banner',
+          '--some-flag=value',
+          '--another-flag'
+        ]
 
         # Mock successful rescan (exit code 0)
         # Note: We need to mock $CHILD_STATUS which gets set by system()
-        expect(Kernel).to receive(:system).with(command) do
+        expect(Kernel).to receive(:system).with(*command) do
           # Simulate successful command execution by forking a process that exits with 0
+          pid = Process.fork { exit WPScan::ExitCode::OK }
+          Process.wait(pid)
+          true
+        end
+
+        expect { core.handle_saml_authentication(effective_uri) }.to raise_error(SystemExit) do |error|
+          expect(error.status).to eq(WPScan::ExitCode::OK)
+        end
+      end
+
+      it 'properly escapes cookie strings with shell metacharacters' do
+        # Test cookie string with potential shell injection characters
+        dangerous_cookie = "session=abc'; echo 'pwned' > /tmp/hacked; '"
+        allow(WPScan::BrowserAuthenticator)
+          .to receive(:authenticate)
+          .with(effective_uri.to_s)
+          .and_return(dangerous_cookie)
+
+        original_argv = ['--url', target_url, '--expect-saml']
+        allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+        # The command array should pass the dangerous cookie as a separate argument
+        # This prevents shell injection because system() with array form doesn't invoke shell
+        command = [
+          'wpscan',
+          '--url', target_url,
+          '--cookie-string', dangerous_cookie,
+          '--no-banner'
+        ]
+
+        expect(Kernel).to receive(:system).with(*command) do
           pid = Process.fork { exit WPScan::ExitCode::OK }
           Process.wait(pid)
           true

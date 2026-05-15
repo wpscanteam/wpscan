@@ -3,6 +3,7 @@
 require_relative 'core/cli_options'
 require 'socket'
 require 'English'
+require 'shellwords'
 
 module WPScan
   module Controller
@@ -123,8 +124,14 @@ module WPScan
 
         # Restart the scan with the cookies set and pass in the original options filtered
         filtered_opts = build_filtered_options
-        command = "wpscan --url #{target_url} --cookie-string '#{cookie_string}' --no-banner #{filtered_opts}"
-        Kernel.system(command)
+        command = [
+          'wpscan',
+          '--url', target_url,
+          '--cookie-string', cookie_string,
+          '--no-banner',
+          *Shellwords.split(filtered_opts)
+        ]
+        Kernel.system(*command)
 
         # Check if the rescan succeeded (exit code 0 = OK, 5 = VULNERABLE are both acceptable)
         # Any other exit code indicates a real failure
