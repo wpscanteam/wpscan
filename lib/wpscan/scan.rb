@@ -8,6 +8,9 @@ module WPScan
     def initialize
       WPScan.start_memory = GetProcessMem.new.bytes
 
+      # Capture the original unmasked ARGV before option parsing consumes it
+      WPScan.original_argv = ARGV.dup
+
       # Capture the original command line arguments with sensitive data masked
       WPScan.command_line = mask_sensitive_arguments(ARGV)
 

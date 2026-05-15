@@ -156,6 +156,15 @@ module WPScan
     def command_line=(value)
       @@command_line = value
     end
+
+    # Original unmasked command line arguments (ARGV) before option parsing
+    def original_argv
+      @@original_argv ||= []
+    end
+
+    def original_argv=(value)
+      @@original_argv = value
+    end
   end
 end
 
