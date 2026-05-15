@@ -1,0 +1,25 @@
+name: Qlty
+
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  smells:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Install Qlty CLI
+        uses: qltysh/qlty-action/install@v2
+
+      - name: Run qlty smells
+        run: qlty smells --all --no-formatters
