@@ -20,6 +20,8 @@ describe 'App::Views' do
         WPScan::ParsedCli.options = parsed_options
         # Resets the formatter to ensure the correct one is loaded
         controller.class.class_variable_set(:@@formatter, nil)
+        # Stub tty? to return false for consistent output across environments
+        allow($stdout).to receive(:tty?).and_return(false)
       end
 
       after do
