@@ -41,7 +41,34 @@ shared_examples WPScan::Finders::Finding do
   end
 
   describe '#parse_finding_options' do
-    xit
+    it 'sets the finding options from the provided hash' do
+      opts = {
+        confidence: 80,
+        confirmed_by: ['Confirmed By Test'],
+        found_by: 'Found By Test',
+        interesting_entries: ['Entry 1', 'Entry 2'],
+        references: { cve: ['2021-1234'], wpvulndb: ['9999'] }
+      }
+
+      subject.parse_finding_options(opts)
+
+      expect(subject.confidence).to eq 80
+      expect(subject.confirmed_by).to eq ['Confirmed By Test']
+      expect(subject.found_by).to eq 'Found By Test'
+      expect(subject.interesting_entries).to eq ['Entry 1', 'Entry 2']
+      expect(subject.references).to eq(cve: ['2021-1234'], wpvulndb: ['9999'])
+    end
+
+    it 'does not set options that are not provided' do
+      subject.parse_finding_options(confidence: 50)
+
+      expect(subject.confidence).to eq 50
+      expect(subject.found_by).to be_nil
+    end
+
+    it 'ignores unknown options' do
+      expect { subject.parse_finding_options(unknown_option: 'test') }.not_to raise_error
+    end
   end
 
   describe '#eql?' do
