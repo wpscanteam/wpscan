@@ -25,6 +25,19 @@ describe WPScan::Finders::Plugins::UrlsInHomepage do
       expect(finder.target).to receive(:content_dir).at_least(1).and_return('wp-content')
     end
 
-    xit
+    it 'returns plugins detected from links and code in the homepage' do
+      plugins = finder.passive
+
+      expected_slugs = (1..5).map { |i| "dl-#{i}" } + (1..6).map { |i| "dc-#{i}" }
+
+      expect(plugins.size).to eq 11
+      expect(plugins.map(&:slug).sort).to eq expected_slugs.sort
+
+      plugins.each do |plugin|
+        expect(plugin).to be_a WPScan::Model::Plugin
+        expect(plugin.confidence).to eq 80
+        expect(plugin.found_by).to match(/Urls In Homepage/)
+      end
+    end
   end
 end
