@@ -4,9 +4,9 @@ module WPScan
   module DB
     module DynamicFinders
       class Base
-        # @return [ String ]
+        # @return [ Pathname ]
         def self.df_file
-          @df_file ||= DB_DIR.join('dynamic_finders.yml').to_s
+          @df_file ||= DB_DIR.join('dynamic_finders.yml')
         end
 
         # @return [ Hash ]

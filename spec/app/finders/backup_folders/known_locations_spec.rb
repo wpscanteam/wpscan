@@ -4,7 +4,7 @@ describe WPScan::Finders::BackupFolders::KnownLocations do
   subject(:finder) { described_class.new(target) }
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
-  let(:opts)       { { list: WPScan::DB_DIR.join('backup_folders.txt').to_s } }
+  let(:opts)       { { list: WPScan::DB_DIR.join('backup_folders.txt') } }
 
   describe '#aggressive' do
     before do

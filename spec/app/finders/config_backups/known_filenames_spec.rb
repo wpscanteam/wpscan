@@ -5,7 +5,7 @@ describe WPScan::Finders::ConfigBackups::KnownFilenames do
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('config_backups') }
-  let(:opts)       { { list: WPScan::DB_DIR.join('config_backups.txt').to_s } }
+  let(:opts)       { { list: WPScan::DB_DIR.join('config_backups.txt') } }
 
   describe '#aggressive' do
     before do

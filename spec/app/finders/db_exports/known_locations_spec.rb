@@ -5,7 +5,7 @@ describe WPScan::Finders::DbExports::KnownLocations do
   let(:target)     { WPScan::Target.new(url) }
   let(:url)        { 'http://ex.lo/aa/' }
   let(:fixtures)   { FINDERS_FIXTURES.join('db_exports') }
-  let(:opts)       { { list: WPScan::DB_DIR.join('db_exports.txt').to_s } }
+  let(:opts)       { { list: WPScan::DB_DIR.join('db_exports.txt') } }
 
   describe '#potential_urls' do
     before do

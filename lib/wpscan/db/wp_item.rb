@@ -16,9 +16,9 @@ module WPScan
         @metadata ||= read_json_file(metadata_file)
       end
 
-      # @return [ String ]
+      # @return [ Pathname ]
       def self.metadata_file
-        @metadata_file ||= DB_DIR.join('metadata.json').to_s
+        @metadata_file ||= DB_DIR.join('metadata.json')
       end
     end
   end
