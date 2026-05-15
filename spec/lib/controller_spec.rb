@@ -29,7 +29,7 @@ describe WPScan::Controller do
         allow(Dir).to receive(:home).and_return('/home/user')
       end
 
-      its(:tmp_directory) { should eql '/home/user/.cache/wpscan' }
+      its(:tmp_directory) { should eql Pathname.new('/home/user/.cache/wpscan') }
     end
 
     context 'when TMPDIR is not set and XDG_CACHE_HOME is set' do
@@ -41,13 +41,13 @@ describe WPScan::Controller do
         stub_const('ENV', env)
       end
 
-      its(:tmp_directory) { should eql '/home/user/cache/wpscan' }
+      its(:tmp_directory) { should eql Pathname.new('/home/user/cache/wpscan') }
     end
 
     context 'when TMPDIR is set' do
       before { stub_const('ENV', ENV.to_hash.merge('TMPDIR' => '/home/user/tmp')) }
 
-      its(:tmp_directory) { should eql '/home/user/tmp/wpscan' }
+      its(:tmp_directory) { should eql Pathname.new('/home/user/tmp/wpscan') }
     end
   end
 

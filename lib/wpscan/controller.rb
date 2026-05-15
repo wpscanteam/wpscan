@@ -70,11 +70,11 @@ module WPScan
         formatter.user_interaction? && !WPScan::ParsedCli.output
       end
 
-      # @return [ String ]
+      # @return [ Pathname ]
       def tmp_directory
-        return Pathname.new(ENV['TMPDIR']).join(WPScan.app_name).to_s if ENV['TMPDIR']
+        return Pathname.new(ENV['TMPDIR']).join(WPScan.app_name) if ENV['TMPDIR']
 
-        WPScan.user_cache_dir.to_s
+        WPScan.user_cache_dir
       end
 
       protected
