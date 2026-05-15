@@ -568,7 +568,8 @@ describe WPScan::Controller::Core do
 
         # Expected: removes url, expect_saml, cookie_string, banner
         # Preserves: some_flag, another_flag
-        command = "wpscan --url #{target_url} --cookie-string '#{mock_cookie_string}' --no-banner --some-flag=value --another-flag"
+        command = "wpscan --url #{target_url} --cookie-string '#{mock_cookie_string}' --no-banner " \
+                  '--some-flag=value --another-flag'
 
         # Mock successful rescan (exit code 0)
         # Note: We need to mock $CHILD_STATUS which gets set by system()
@@ -583,7 +584,6 @@ describe WPScan::Controller::Core do
           expect(error.status).to eq(WPScan::ExitCode::OK)
         end
       end
-
     end
   end
 end
