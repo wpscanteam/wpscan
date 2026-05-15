@@ -20,10 +20,10 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v6
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
 
     - name: Set up Ruby ${{ matrix.ruby }}
-      uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@6aaa311d81eba98ae12eaffbcb63296ace0efcde # v1
       with:
         ruby-version: ${{ matrix.ruby }}
         bundler-cache: true
@@ -48,7 +48,7 @@ jobs:
 
     - name: Set up DDEV
       if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
-      uses: ddev/github-action-setup-ddev@v1
+      uses: ddev/github-action-setup-ddev@fdf2f5c97943bae638f31df6df86f1defa6210c0 # v1
       with:
         autostart: false
 
@@ -67,14 +67,14 @@ jobs:
 
     - name: Upload scan results
       if: (github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false) && always()
-      uses: actions/upload-artifact@v7
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
       with:
         name: integration-test-results-ruby-${{ matrix.ruby }}
         path: scan-results.json
 
     # Coverage reporting
     - name: Coveralls (parallel)
-      uses: coverallsapp/github-action@v2
+      uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2
       continue-on-error: true
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -87,7 +87,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Coveralls finished
-      uses: coverallsapp/github-action@v2
+      uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         parallel-finished: true
