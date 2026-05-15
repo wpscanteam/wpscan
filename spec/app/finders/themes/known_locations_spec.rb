@@ -13,13 +13,21 @@ describe WPScan::Finders::Themes::KnownLocations do
       stub_request(:get, url).to_return(status: 200, body: '')
       stub_request(:head, url).to_return(status: 200)
       allow(target).to receive(:content_dir).and_return('wp-content')
+      allow(target).to receive(:plugins_dir).and_return('wp-content/plugins')
       allow(target).to receive(:themes_dir).and_return('wp-content/themes')
+      allow(target).to receive(:main_theme).and_return(nil)
       expect(target).to receive(:homepage_or_404?).at_least(:once).and_return(false)
 
+      # Catch-all stubs for any plugin/theme URLs from previous tests
+      stub_request(:any, %r{http://ex\.lo/wp-content/plugins/}).to_return(status: 404)
+      stub_request(:any, %r{http://ex\.lo/wp-content/themes/}).to_return(status: 404)
+
+      # Specific theme URL mocks and stubs for this test
       allow(target).to receive(:theme_url).with('theme1').and_return("#{url}wp-content/themes/theme1/")
       allow(target).to receive(:theme_url).with('theme2').and_return("#{url}wp-content/themes/theme2/")
       allow(target).to receive(:theme_url).with('theme3').and_return("#{url}wp-content/themes/theme3/")
 
+      # These specific stubs override the catch-all above
       stub_request(:head, "#{url}wp-content/themes/theme1/").to_return(status: 200)
       stub_request(:get, "#{url}wp-content/themes/theme1/").to_return(status: 200, body: '')
       stub_request(:get, "#{url}wp-content/themes/theme1/style.css").to_return(status: 200, body: '')

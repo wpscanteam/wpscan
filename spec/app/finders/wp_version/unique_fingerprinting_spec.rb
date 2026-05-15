@@ -20,9 +20,17 @@ describe WPScan::Finders::WpVersion::UniqueFingerprinting do
       allow(target).to receive(:sub_dir).and_return(false)
       allow(target).to receive(:head_or_get_params).and_return(method: :head)
       allow(target).to receive(:homepage_or_404?).and_return(false)
+      allow(target).to receive(:content_dir).and_return('wp-content')
+      allow(target).to receive(:plugins_dir).and_return('wp-content/plugins')
+      allow(target).to receive(:themes_dir).and_return('wp-content/themes')
+      allow(target).to receive(:main_theme).and_return(nil)
 
       stub_request(:get, url).to_return(status: 200, body: '')
       stub_request(:head, url).to_return(status: 200)
+
+      # Catch-all stubs for any plugin/theme URLs from previous tests
+      stub_request(:any, %r{http://ex\.lo/wp-content/plugins/}).to_return(status: 404)
+      stub_request(:any, %r{http://ex\.lo/wp-content/themes/}).to_return(status: 404)
     end
 
     context 'when no matches' do
