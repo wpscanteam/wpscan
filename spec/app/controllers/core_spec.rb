@@ -556,16 +556,34 @@ describe WPScan::Controller::Core do
       end
 
       it 'authenticates and restarts scan with cookies and filters original options' do
-        original_options = '--some-flag value --another-flag --expect-saml --cookie-string old_value --no-banner'
-        stub_const('ARGV', original_options.split)
-        filtered_options = original_options.split.reject do |arg|
-          arg.start_with?('--expect-saml', '--cookie-string', '--no-banner')
-        end.join(' ')
-        command = "wpscan --url #{target_url} --cookie-string '#{mock_cookie_string}' --no-banner #{filtered_options}"
+        # Mock original_argv with actual command line arguments
+        original_argv = [
+          '--url', target_url,
+          '--some-flag=value',
+          '--another-flag',
+          '--expect-saml',
+          '--cookie-string', 'old_value'
+        ]
+        allow(WPScan).to receive(:original_argv).and_return(original_argv)
 
-        expect(Kernel).to receive(:system).with(command).and_return(true)
-        expect { core.handle_saml_authentication(effective_uri) }.to raise_error(SystemExit)
+        # Expected: removes url, expect_saml, cookie_string, banner
+        # Preserves: some_flag, another_flag
+        command = "wpscan --url #{target_url} --cookie-string '#{mock_cookie_string}' --no-banner --some-flag=value --another-flag"
+
+        # Mock successful rescan (exit code 0)
+        # Note: We need to mock $CHILD_STATUS which gets set by system()
+        expect(Kernel).to receive(:system).with(command) do
+          # Simulate successful command execution by forking a process that exits with 0
+          pid = Process.fork { exit WPScan::ExitCode::OK }
+          Process.wait(pid)
+          true
+        end
+
+        expect { core.handle_saml_authentication(effective_uri) }.to raise_error(SystemExit) do |error|
+          expect(error.status).to eq(WPScan::ExitCode::OK)
+        end
       end
+
     end
   end
 end

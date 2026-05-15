@@ -2,6 +2,7 @@
 
 require_relative 'core/cli_options'
 require 'socket'
+require 'English'
 
 module WPScan
   module Controller
@@ -120,16 +121,48 @@ module WPScan
 
         target_url = target.url # Needed for overriding in tests
 
-        # Filter out --expect-saml, --cookie-string, and --no-banner flags from the original options
-        filtered_options = ARGV.reject do |arg|
-          arg.start_with?('--expect-saml', '--cookie-string', '--no-banner')
-        end.join(' ')
-
         # Restart the scan with the cookies set and pass in the original options filtered
-        command = "wpscan --url #{target_url} --cookie-string '#{cookie_string}' --no-banner #{filtered_options}"
-        raise Error::AuthenticatedRescanFailure, command unless Kernel.system(command)
+        filtered_opts = build_filtered_options
+        command = "wpscan --url #{target_url} --cookie-string '#{cookie_string}' --no-banner #{filtered_opts}"
+        Kernel.system(command)
 
-        exit(WPScan::ExitCode::OK)
+        # Check if the rescan succeeded (exit code 0 = OK, 5 = VULNERABLE are both acceptable)
+        # Any other exit code indicates a real failure
+        exit_status = $CHILD_STATUS.exitstatus
+        acceptable_exit_codes = [WPScan::ExitCode::OK, WPScan::ExitCode::VULNERABLE]
+        raise Error::AuthenticatedRescanFailure, command unless acceptable_exit_codes.include?(exit_status)
+
+        exit(exit_status)
+      end
+
+      # Builds filtered command-line options from original ARGV, excluding flags that will be re-added
+      # Uses original unmasked ARGV captured before option parsing to preserve only user-provided options
+      #
+      # @return [ String ] Filtered options as a space-separated string
+      def build_filtered_options
+        options = []
+        excluded_flags = %w[--url --cookie-string --expect-saml --banner --no-banner]
+        flags_with_values = %w[--url --cookie-string]
+        skip_next = false
+
+        WPScan.original_argv.each do |arg|
+          # Skip if this is a value that follows an excluded flag
+          if skip_next
+            skip_next = false
+            next
+          end
+
+          # Check if this argument is an excluded flag
+          if excluded_flags.any? { |flag| arg == flag || arg.start_with?("#{flag}=") }
+            # If it's in --flag value format (not --flag=value), skip the next arg too
+            skip_next = true if flags_with_values.include?(arg)
+            next
+          end
+
+          options << arg
+        end
+
+        options.join(' ')
       end
 
       # Checks for redirects; an out-of-scope redirect raises Error::HTTPRedirect.
