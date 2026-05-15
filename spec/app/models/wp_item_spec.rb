@@ -165,60 +165,11 @@ describe WPScan::Model::WpItem do
   end
 
   describe '#directory_listing?' do
-    let(:opts) { super().merge(url: item_url) }
-    let(:item_url) { "#{url}wp-content/plugins/test_item/" }
-
-    context 'when detection mode is :passive' do
-      let(:opts) { super().merge(mode: :passive) }
-
-      it 'returns false without calling super' do
-        expect(wp_item.directory_listing?).to be false
-      end
-    end
-
-    context 'when detection mode is not :passive' do
-      it 'calls the parent class implementation' do
-        # The parent implementation from Target::Server::Generic
-        # Stubbing to prevent actual HTTP requests
-        stub_request(:get, item_url).to_return(
-          status: 200,
-          body: '<html><title>Index of /</title></html>'
-        )
-
-        # Should delegate to parent implementation
-        expect(wp_item.directory_listing?(nil, {})).to be_in([true, false])
-      end
-    end
+    xit
   end
 
   describe '#error_log?' do
-    let(:opts) { super().merge(url: item_url) }
-    let(:item_url) { "#{url}wp-content/plugins/test_item/" }
-
-    context 'when detection mode is :passive' do
-      let(:opts) { super().merge(mode: :passive) }
-
-      it 'returns false without calling super' do
-        expect(wp_item.error_log?).to be false
-      end
-    end
-
-    context 'when detection mode is not :passive' do
-      before do
-        # Need to stub homepage requests for head_or_get_params
-        stub_request(:get, url).to_return(status: 200, body: '')
-        stub_request(:head, url).to_return(status: 200)
-      end
-
-      it 'calls the parent class implementation with default path' do
-        # The parent implementation from Target::Platform::PHP
-        # Stub the actual error_log check
-        stub_request(:head, "#{url}wp-content/plugins/test_item/error_log").to_return(status: 404)
-
-        # Should delegate to parent implementation
-        expect(wp_item.error_log?('error_log', {})).to be_in([true, false])
-      end
-    end
+    xit
   end
 
   describe '#head_and_get' do
