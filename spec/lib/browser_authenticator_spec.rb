@@ -59,11 +59,11 @@ describe WPScan::BrowserAuthenticator do
     context 'when stdin is not a TTY' do
       before { allow($stdin).to receive(:tty?).and_return(false) }
 
-      it 'raises BrowserFailed without launching a browser' do
+      it 'raises BrowserFailed with a TTY-specific message and does not launch a browser' do
         expect(Ferrum::Browser).not_to receive(:new)
 
         expect { described_class.authenticate(login_url) }
-          .to raise_error(WPScan::Error::BrowserFailed)
+          .to raise_error(WPScan::Error::BrowserFailed, /stdin is not a TTY/)
       end
     end
 
@@ -76,23 +76,43 @@ describe WPScan::BrowserAuthenticator do
       end
     end
 
-    context 'when the browser raises Ferrum::BrowserError' do
-      before { allow(browser).to receive(:goto).and_raise(Ferrum::BrowserError.new('msg' => 'boom')) }
+    context 'when Chrome / Chromium is not installed' do
+      before do
+        allow(Ferrum::Browser).to receive(:new).and_raise(Ferrum::BinaryNotFoundError, 'Could not find an executable')
+      end
 
-      it 'raises BrowserFailed and still quits the browser' do
+      it 'raises BrowserFailed with guidance to install Chrome/Chromium' do
+        expect { described_class.authenticate(login_url) }
+          .to raise_error(WPScan::Error::BrowserFailed, /Chrome or Chromium.*Could not find an executable/m)
+      end
+    end
+
+    context 'when Ferrum reports an empty binary path' do
+      before { allow(Ferrum::Browser).to receive(:new).and_raise(Ferrum::EmptyPathError) }
+
+      it 'raises BrowserFailed with the Chrome guidance' do
+        expect { described_class.authenticate(login_url) }
+          .to raise_error(WPScan::Error::BrowserFailed, /Chrome or Chromium/)
+      end
+    end
+
+    context 'when the browser raises Ferrum::BrowserError' do
+      before { allow(browser).to receive(:goto).and_raise(Ferrum::BrowserError.new('message' => 'boom')) }
+
+      it 'raises BrowserFailed surfacing the underlying error and still quits the browser' do
         expect(browser).to receive(:quit)
 
         expect { described_class.authenticate(login_url) }
-          .to raise_error(WPScan::Error::BrowserFailed)
+          .to raise_error(WPScan::Error::BrowserFailed, /Ferrum::BrowserError.*boom/)
       end
     end
 
     context 'when the browser raises Ferrum::DeadBrowserError' do
       before { allow(browser).to receive(:current_url).and_raise(Ferrum::DeadBrowserError) }
 
-      it 'raises BrowserFailed' do
+      it 'raises BrowserFailed surfacing the dead-browser cause' do
         expect { described_class.authenticate(login_url) }
-          .to raise_error(WPScan::Error::BrowserFailed)
+          .to raise_error(WPScan::Error::BrowserFailed, /Ferrum::DeadBrowserError/)
       end
     end
 

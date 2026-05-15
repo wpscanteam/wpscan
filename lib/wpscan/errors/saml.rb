@@ -4,23 +4,24 @@ module WPScan
   module Error
     # SAML Authentication Required Error
     class SAMLAuthenticationRequired < Standard
-      def to_s
-        'SAML authentication is required to access this resource, consider using --expect-saml.'
+      def initialize(message = 'SAML authentication is required to access this resource, consider using --expect-saml.')
+        super
       end
     end
 
     # SAML Authentication Failed Error
     class SAMLAuthenticationFailed < Standard
-      def to_s
-        'SAML authentication is required to access this resource. ' \
-          'Please ensure correct authentication credentials.'
+      def initialize(message = 'SAML authentication is required to access this resource. ' \
+                               'Please ensure correct authentication credentials.')
+        super
       end
     end
 
-    # Ferrum Browser Error
+    # Ferrum Browser Error. Callers should pass a context-specific message
+    # (missing Chrome binary, non-interactive terminal, browser closed mid-auth, ...).
     class BrowserFailed < Standard
-      def to_s
-        'The browser was closed or failed before authentication could be completed.'
+      def initialize(message = 'The browser was closed or failed before SAML authentication could be completed.')
+        super
       end
     end
   end
