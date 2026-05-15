@@ -58,6 +58,53 @@ describe WPScan::Finders::InterestingFindings::MuPlugins do
   end
 
   describe '#aggressive' do
-    xit
+    let(:mu_plugins_url) { 'http://ex.lo/wp-content/mu-plugins/' }
+
+    before do
+      stub_request(:get, mu_plugins_url).to_return(status: status_code)
+    end
+
+    context 'when directory returns 404' do
+      let(:status_code) { 404 }
+
+      it 'returns nil' do
+        expect(finder.aggressive).to be nil
+      end
+    end
+
+    context 'when directory returns 200 but is homepage/404' do
+      let(:status_code) { 200 }
+
+      before do
+        expect(target).to receive(:homepage_or_404?).and_return(true)
+      end
+
+      it 'returns nil' do
+        expect(finder.aggressive).to be nil
+      end
+    end
+
+    [200, 401, 403].each do |code|
+      context "when directory returns #{code}" do
+        let(:status_code) { code }
+
+        before do
+          expect(target).to receive(:homepage_or_404?).and_return(false)
+        end
+
+        it 'returns MuPlugins finding' do
+          result = finder.aggressive
+
+          expect(result).to be_a WPScan::Model::MuPlugins
+          expect(result.url).to eq mu_plugins_url
+          expect(result.confidence).to eq 80
+          expect(result.found_by).to eq 'Direct Access (Aggressive Detection)'
+        end
+
+        it 'sets target.mu_plugins to true' do
+          expect { finder.aggressive }.to change { target.mu_plugins }.from(nil).to(true)
+        end
+      end
+    end
   end
 end
