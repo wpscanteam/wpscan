@@ -196,8 +196,8 @@ WebMock adapter has custom port normalization for Typhoeus (spec/spec_helper.rb:
 
 **Configuration Files:**
 WPScan loads options from (in order):
-1. `$XDG_CONFIG_HOME/wpscan/scan.json` or `$XDG_CONFIG_HOME/wpscan/scan.yml`
-2. `~/.config/wpscan/scan.json` or `~/.config/wpscan/scan.yml`
+1. `$XDG_CONFIG_HOME/wpscan/scan.json` or `$XDG_CONFIG_HOME/wpscan/scan.yml` (if `XDG_CONFIG_HOME` is set)
+2. `~/.config/wpscan/scan.json` or `~/.config/wpscan/scan.yml` (if `XDG_CONFIG_HOME` is not set)
 3. `~/.wpscan/scan.json` or `~/.wpscan/scan.yml`
 4. `pwd/.wpscan/scan.json` or `pwd/.wpscan/scan.yml`
 

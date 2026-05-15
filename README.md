@@ -152,10 +152,10 @@ Up to **25** API requests per day are given free of charge, that should be suita
 
 WPScan can load all options (including the `--url`) from configuration files, the following locations are checked (order: first to last):
 
-- `$XDG_CONFIG_HOME/wpscan/scan.json`
-- `$XDG_CONFIG_HOME/wpscan/scan.yml`
-- `~/.config/wpscan/scan.json`
-- `~/.config/wpscan/scan.yml`
+- `$XDG_CONFIG_HOME/wpscan/scan.json` (if `XDG_CONFIG_HOME` is set)
+- `$XDG_CONFIG_HOME/wpscan/scan.yml` (if `XDG_CONFIG_HOME` is set)
+- `~/.config/wpscan/scan.json` (if `XDG_CONFIG_HOME` is not set)
+- `~/.config/wpscan/scan.yml` (if `XDG_CONFIG_HOME` is not set)
 - `~/.wpscan/scan.json`
 - `~/.wpscan/scan.yml`
 - `pwd/.wpscan/scan.json`
