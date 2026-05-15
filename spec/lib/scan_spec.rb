@@ -121,6 +121,8 @@ describe WPScan::Scan do
   end
 
   describe '#exit_hook' do
-    xit
+    # Cannot test: method explicitly returns early when RSpec is defined to avoid interfering
+    # with RSpec's exit code handling. See method comment referencing rspec/rspec-core#410
+    xit 'sets up at_exit hook for exit codes'
   end
 end
