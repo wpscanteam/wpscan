@@ -56,6 +56,13 @@ module WPScan
       @homepage_url ||= homepage_res.effective_url
     end
 
+    # Discards the cached homepage response and URL so the next access refetches.
+    # Used after mutating cookies/auth state mid-scan.
+    def reset_homepage_cache!
+      @homepage_res = nil
+      @homepage_url = nil
+    end
+
     # @return [ Typhoeus::Response ]
     def error_404_res
       @error_404_res ||= WPScan::Browser.get_and_follow_location(error_404_url)

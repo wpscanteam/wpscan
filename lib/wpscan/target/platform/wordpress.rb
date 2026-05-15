@@ -87,8 +87,7 @@ module WPScan
             # Force recheck of the homepage when retying wordpress?
             # No need to clear the cache, as the request (which will contain the cookies)
             # will be different
-            @homepage_res = nil
-            @homepage_url = nil
+            reset_homepage_cache!
 
             break
           end

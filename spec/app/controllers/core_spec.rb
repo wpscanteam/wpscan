@@ -576,6 +576,11 @@ describe WPScan::Controller::Core do
         expect(core.target.instance_variable_get(:@homepage_url)).to be_nil
       end
 
+      it 'delegates cache reset to Target#reset_homepage_cache!' do
+        expect(core.target).to receive(:reset_homepage_cache!)
+        core.handle_saml_authentication(effective_uri)
+      end
+
       it 'appends to an existing cookie string rather than replacing it' do
         browser.cookie_string = 'existing=cookie'
 

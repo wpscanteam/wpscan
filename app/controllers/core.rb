@@ -112,8 +112,7 @@ module WPScan
         browser.cookie_string = [browser.cookie_string, new_cookies].compact.reject(&:empty?).join('; ')
 
         # Discard the pre-auth homepage so subsequent finders refetch with the new cookies.
-        target.homepage_res = nil
-        target.instance_variable_set(:@homepage_url, nil)
+        target.reset_homepage_cache!
 
         @saml_authenticated = true
       end
