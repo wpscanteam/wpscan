@@ -83,7 +83,24 @@ module WPScan
       def saml_request?(effective_uri)
         return false unless effective_uri
 
-        effective_uri.to_s.match?(/[?&]SAMLRequest/i)
+        # Check the final effective URI for SAMLRequest
+        return true if effective_uri.to_s.match?(/[?&]SAMLRequest/i)
+
+        # Check the redirect chain for SAMLRequest in Location headers
+        # This catches SAML flows that redirect through intermediate pages
+        # Only check if homepage_res has already been loaded (avoid triggering HTTP request)
+        if target.instance_variable_defined?(:@homepage_res) && target.instance_variable_get(:@homepage_res)
+          target.homepage_res.redirections&.each do |redirect_response|
+            headers = redirect_response.response_headers
+            next unless headers
+
+            # Extract Location header and check for SAMLRequest
+            location = headers[/^Location:\s*(.+?)$/mi, 1]
+            return true if location&.match?(/SAMLRequest/i)
+          end
+        end
+
+        false
       end
 
       # Handle redirect if the target contains 'SAMLRequest', indicating a need for SAML authentication.
