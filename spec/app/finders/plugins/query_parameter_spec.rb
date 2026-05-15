@@ -11,6 +11,6 @@ describe WPScan::Finders::Plugins::QueryParameter do
   end
 
   describe '#aggressive' do
-    xit
+    its(:aggressive) { should be nil }
   end
 end
