@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://wpscan.com/">
-    <img src="https://raw.githubusercontent.com/wpscanteam/wpscan/gh-pages/images/wpscan_logo.png" alt="WPScan logo">
+    <img src="https://raw.githubusercontent.com/wpscanteam/wpscan/5af15af5e7d67ee7c6e5e4ebcf75c1dfabfa123b/images/wpscan_logo.png" alt="WPScan logo">
   </a>
 </p>
 
