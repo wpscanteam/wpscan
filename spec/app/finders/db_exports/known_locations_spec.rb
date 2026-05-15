@@ -97,7 +97,29 @@ describe WPScan::Finders::DbExports::KnownLocations do
     end
 
     context 'when a zip returns a 200' do
-      xit
+      let(:zip_file) { 'backup/ex.zip' }
+
+      before do
+        stub_request(:head, "#{url}#{zip_file}").to_return(status: 200)
+
+        stub_request(:get, "#{url}#{zip_file}")
+          .with(headers: { 'Range' => 'bytes=0-3000' })
+          .to_return(headers: { 'Content-Type' => 'application/zip' })
+
+        expect(target).to receive(:homepage_or_404?).once.and_return(false)
+      end
+
+      it 'returns the expected Array<DbExport>' do
+        expected = [
+          WPScan::Model::DbExport.new(
+            "#{url}#{zip_file}",
+            confidence: 100,
+            found_by: described_class::DIRECT_ACCESS
+          )
+        ]
+
+        expect(finder.aggressive(opts)).to eql expected
+      end
     end
 
     context 'when some files exist' do
