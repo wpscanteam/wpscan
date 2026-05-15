@@ -24,11 +24,7 @@ module WPScan
 
       raise WPScan::Error::SAMLAuthenticationFailed if cookies.nil? || cookies.empty?
 
-      # Format the cookies into a string
-      cookies.map do |_cookie_name, cookie_object|
-        cookie_attributes = cookie_object.instance_variable_get(:@attributes)
-        "#{cookie_attributes['name']}=#{cookie_attributes['value']}"
-      end.join('; ')
+      cookies.map { |_name, cookie| "#{cookie.name}=#{cookie.value}" }.join('; ')
     end
   end
 end

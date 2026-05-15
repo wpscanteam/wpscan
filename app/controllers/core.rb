@@ -2,8 +2,6 @@
 
 require_relative 'core/cli_options'
 require 'socket'
-require 'English'
-require 'shellwords'
 
 module WPScan
   module Controller
@@ -77,100 +75,47 @@ module WPScan
         handle_redirection(res)
       end
 
-      # Checks if the effective_uri contains a SAMLRequest
+      # Checks whether the response or its redirect chain contains a SAMLRequest,
+      # indicating that the target requires SAML authentication.
       #
-      # @param [ Addressable::URI ] effective_uri
+      # @param [ Addressable::URI ] effective_uri  Final URL after following redirects
+      # @param [ Typhoeus::Response ] homepage_res Response whose redirect chain to inspect
       #
       # @return [ Boolean ]
-      def saml_request?(effective_uri)
+      def saml_request?(effective_uri, homepage_res = nil)
         return false unless effective_uri
 
-        # Check the final effective URI for SAMLRequest
         return true if effective_uri.to_s.match?(/[?&]SAMLRequest/i)
 
-        # Check the redirect chain for SAMLRequest in Location headers
-        # This catches SAML flows that redirect through intermediate pages
-        # Only check if homepage_res has already been loaded (avoid triggering HTTP request)
-        if target.instance_variable_defined?(:@homepage_res) && target.instance_variable_get(:@homepage_res)
-          target.homepage_res.redirections&.each do |redirect_response|
-            headers = redirect_response.response_headers
-            next unless headers
-
-            # Extract Location header and check for SAMLRequest
-            location = headers[/^Location:\s*(.+?)$/mi, 1]
-            return true if location&.match?(/SAMLRequest/i)
-          end
+        # SAML flows often bounce through intermediate pages before the IdP;
+        # walk the redirect chain to catch a SAMLRequest in any Location header.
+        !!homepage_res&.redirections&.any? do |redirect_response|
+          location = redirect_response.response_headers&.[](/^Location:\s*(.+?)$/mi, 1)
+          location&.match?(/SAMLRequest/i)
         end
-
-        false
       end
 
-      # Handle redirect if the target contains 'SAMLRequest', indicating a need for SAML authentication.
+      # Drives an interactive SAML login via a headless browser, injects the
+      # resulting session cookies into the shared Browser, and clears the target's
+      # cached homepage so the rest of the scan runs against the authenticated session.
       #
-      # @param [ Addressable::URI ] effective_uri
-      # @raise [ Error::SAMLAuthenticationRequired ] If the effective_uri contains 'SAMLRequest'
+      # @param [ Addressable::URI ] effective_uri  URL that triggered the SAML redirect
       #
       # @return [ Void ]
       def handle_saml_authentication(effective_uri)
-        # If we ended up here, the cookie_string is set, and no --expect-saml flag was included
         raise Error::SAMLAuthenticationFailed if WPScan::ParsedCli.cookie_string && !WPScan::ParsedCli.expect_saml
-        # If we ended up here but no --expect-saml flag was included
         raise Error::SAMLAuthenticationRequired unless WPScan::ParsedCli.expect_saml
 
-        # Authenticate using the ferrum browser
-        cookie_string = BrowserAuthenticator.authenticate(effective_uri.to_s)
+        new_cookies = BrowserAuthenticator.authenticate(effective_uri.to_s)
 
-        target_url = target.url # Needed for overriding in tests
+        browser = WPScan::Browser.instance
+        browser.cookie_string = [browser.cookie_string, new_cookies].compact.reject(&:empty?).join('; ')
 
-        # Restart the scan with the cookies set and pass in the original options filtered
-        filtered_opts = build_filtered_options
-        command = [
-          'wpscan',
-          '--url', target_url,
-          '--cookie-string', cookie_string,
-          '--no-banner',
-          *Shellwords.split(filtered_opts)
-        ]
-        Kernel.system(*command)
+        # Discard the pre-auth homepage so subsequent finders refetch with the new cookies.
+        target.homepage_res = nil
+        target.instance_variable_set(:@homepage_url, nil)
 
-        # Check if the rescan succeeded (exit code 0 = OK, 5 = VULNERABLE are both acceptable)
-        # Any other exit code indicates a real failure
-        exit_status = $CHILD_STATUS.exitstatus
-        acceptable_exit_codes = [WPScan::ExitCode::OK, WPScan::ExitCode::VULNERABLE]
-        raise Error::AuthenticatedRescanFailure, command unless acceptable_exit_codes.include?(exit_status)
-
-        exit(exit_status)
-      end
-
-      # Builds filtered command-line options from original ARGV, excluding flags that will be re-added
-      # Uses original unmasked ARGV captured before option parsing to preserve only user-provided options
-      #
-      # @return [ String ] Filtered options as a space-separated string
-      def build_filtered_options
-        options = []
-        excluded_flags = %w[--url --cookie-string --expect-saml --banner --no-banner]
-        flags_with_values = %w[--url --cookie-string]
-
-        i = 0
-        while i < WPScan.original_argv.length
-          arg = WPScan.original_argv[i]
-
-          # Handle --flag=value format
-          if arg.include?('=')
-            flag = arg.split('=', 2).first
-            options << arg unless excluded_flags.include?(flag)
-            i += 1
-          # Handle --flag value format (flag has a separate value argument)
-          elsif excluded_flags.include?(arg)
-            # Skip the flag and its value (if it has one)
-            i += flags_with_values.include?(arg) ? 2 : 1
-          else
-            options << arg
-            i += 1
-          end
-        end
-
-        options.join(' ')
+        @saml_authenticated = true
       end
 
       # Checks for redirects; an out-of-scope redirect raises Error::HTTPRedirect.
@@ -179,14 +124,19 @@ module WPScan
       def handle_redirection(res)
         effective_url = target.homepage_res.effective_url # get and follow location of target.url
         effective_uri = Addressable::URI.parse(effective_url)
+        is_saml = saml_request?(effective_uri, target.homepage_res)
 
-        # Check for SAML and handle if present
-        if WPScan::ParsedCli.expect_saml && !saml_request?(effective_uri)
+        if WPScan::ParsedCli.expect_saml && !is_saml && !@saml_authenticated
           puts 'SAML authentication was expected but not required.'
           puts # New line to serve as buffer before the scan results start
         end
 
-        handle_saml_authentication(effective_uri) if saml_request?(effective_uri)
+        if is_saml
+          raise Error::SAMLAuthenticationFailed if @saml_authenticated
+
+          handle_saml_authentication(effective_uri)
+          return check_target_availability
+        end
 
         handle_scheme_redirect(effective_url, effective_uri)
         handle_follow_redirect(effective_url, effective_uri)

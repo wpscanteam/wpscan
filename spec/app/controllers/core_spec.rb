@@ -517,15 +517,27 @@ describe WPScan::Controller::Core do
         expect(core.saml_request?(nil)).to be false
       end
     end
+
+    context 'when the redirect chain contains a SAMLRequest Location header' do
+      it 'returns true' do
+        uri = Addressable::URI.parse('http://idp.example.com/login')
+        redirect = instance_double(
+          Typhoeus::Response,
+          response_headers: "HTTP/1.1 302 Found\r\nLocation: http://idp.example.com/sso?SAMLRequest=abc\r\n"
+        )
+        homepage_res = instance_double(Typhoeus::Response, redirections: [redirect])
+
+        expect(core.saml_request?(uri, homepage_res)).to be true
+      end
+    end
   end
 
   describe '#handle_saml_authentication' do
-    let(:target_url) { 'http://example.com' }
-    let(:effective_uri) { Addressable::URI.parse('http://example.com/?SAMLRequest=value') }
+    let(:effective_uri)      { Addressable::URI.parse('http://example.com/?SAMLRequest=value') }
     let(:mock_cookie_string) { 'session_id=abc123; auth_token=xyz789' }
+    let(:browser)            { WPScan::Browser.instance }
 
     before do
-      allow(core).to receive_message_chain(:target, :url).and_return(target_url)
       allow(WPScan::BrowserAuthenticator)
         .to receive(:authenticate)
         .with(effective_uri.to_s)
@@ -549,156 +561,34 @@ describe WPScan::Controller::Core do
       end
     end
 
-    context 'when SAMLRequest is present and --expect-saml is set' do
-      before do
-        allow(WPScan::ParsedCli).to receive(:expect_saml).and_return(true)
-        allow(Kernel).to receive(:system).and_return(true)
+    context 'when --expect-saml is set' do
+      before { allow(WPScan::ParsedCli).to receive(:expect_saml).and_return(true) }
+
+      it 'injects the new cookies into the shared browser and clears cached homepage state' do
+        browser.cookie_string = nil
+        core.target.homepage_res = instance_double(Typhoeus::Response)
+        core.target.instance_variable_set(:@homepage_url, 'http://example.com/cached')
+
+        core.handle_saml_authentication(effective_uri)
+
+        expect(browser.cookie_string).to eq(mock_cookie_string)
+        expect(core.target.instance_variable_get(:@homepage_res)).to be_nil
+        expect(core.target.instance_variable_get(:@homepage_url)).to be_nil
       end
 
-      it 'authenticates and restarts scan with cookies and filters original options' do
-        # Mock original_argv with actual command line arguments
-        original_argv = [
-          '--url', target_url,
-          '--some-flag=value',
-          '--another-flag',
-          '--expect-saml',
-          '--cookie-string', 'old_value'
-        ]
-        allow(WPScan).to receive(:original_argv).and_return(original_argv)
+      it 'appends to an existing cookie string rather than replacing it' do
+        browser.cookie_string = 'existing=cookie'
 
-        # Expected: removes url, expect_saml, cookie_string, banner
-        # Preserves: some_flag, another_flag
-        command = [
-          'wpscan',
-          '--url', target_url,
-          '--cookie-string', mock_cookie_string,
-          '--no-banner',
-          '--some-flag=value',
-          '--another-flag'
-        ]
+        core.handle_saml_authentication(effective_uri)
 
-        # Mock successful rescan (exit code 0)
-        # Note: We need to mock $CHILD_STATUS which gets set by system()
-        expect(Kernel).to receive(:system).with(*command) do
-          # Simulate successful command execution by forking a process that exits with 0
-          pid = Process.fork { exit WPScan::ExitCode::OK }
-          Process.wait(pid)
-          true
-        end
-
-        expect { core.handle_saml_authentication(effective_uri) }.to raise_error(SystemExit) do |error|
-          expect(error.status).to eq(WPScan::ExitCode::OK)
-        end
+        expect(browser.cookie_string).to eq("existing=cookie; #{mock_cookie_string}")
       end
 
-      it 'properly escapes cookie strings with shell metacharacters' do
-        # Test cookie string with potential shell injection characters
-        dangerous_cookie = "session=abc'; echo 'pwned' > /tmp/hacked; '"
-        allow(WPScan::BrowserAuthenticator)
-          .to receive(:authenticate)
-          .with(effective_uri.to_s)
-          .and_return(dangerous_cookie)
+      it 'marks the controller as SAML-authenticated' do
+        core.handle_saml_authentication(effective_uri)
 
-        original_argv = ['--url', target_url, '--expect-saml']
-        allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-        # The command array should pass the dangerous cookie as a separate argument
-        # This prevents shell injection because system() with array form doesn't invoke shell
-        command = [
-          'wpscan',
-          '--url', target_url,
-          '--cookie-string', dangerous_cookie,
-          '--no-banner'
-        ]
-
-        expect(Kernel).to receive(:system).with(*command) do
-          pid = Process.fork { exit WPScan::ExitCode::OK }
-          Process.wait(pid)
-          true
-        end
-
-        expect { core.handle_saml_authentication(effective_uri) }.to raise_error(SystemExit) do |error|
-          expect(error.status).to eq(WPScan::ExitCode::OK)
-        end
+        expect(core.instance_variable_get(:@saml_authenticated)).to be true
       end
-    end
-  end
-
-  describe '#build_filtered_options' do
-    it 'filters out excluded flags in --flag value format' do
-      original_argv = [
-        '--url', 'http://example.com',
-        '--some-flag', 'value',
-        '--expect-saml',
-        '--cookie-string', 'session=abc'
-      ]
-      allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-      result = core.send(:build_filtered_options)
-      expect(result).to eq('--some-flag value')
-    end
-
-    it 'filters out excluded flags in --flag=value format' do
-      original_argv = [
-        '--url=http://example.com',
-        '--some-flag=value',
-        '--expect-saml',
-        '--cookie-string=session=abc'
-      ]
-      allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-      result = core.send(:build_filtered_options)
-      expect(result).to eq('--some-flag=value')
-    end
-
-    it 'handles mixed flag formats' do
-      original_argv = [
-        '--url', 'http://example.com',
-        '--some-flag=value',
-        '--another-flag',
-        '--expect-saml',
-        '--cookie-string', 'session=abc',
-        '--no-banner'
-      ]
-      allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-      result = core.send(:build_filtered_options)
-      expect(result).to eq('--some-flag=value --another-flag')
-    end
-
-    it 'handles excluded flag at the end without value' do
-      original_argv = [
-        '--some-flag', 'value',
-        '--expect-saml'
-      ]
-      allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-      result = core.send(:build_filtered_options)
-      expect(result).to eq('--some-flag value')
-    end
-
-    it 'handles flag with value that looks like excluded flag' do
-      # Edge case: a flag's value contains text that matches an excluded flag
-      original_argv = [
-        '--some-flag', '--url-in-the-value',
-        '--another-flag', 'http://example.com/cookie-string'
-      ]
-      allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-      result = core.send(:build_filtered_options)
-      expect(result).to eq('--some-flag --url-in-the-value --another-flag http://example.com/cookie-string')
-    end
-
-    it 'returns empty string when all flags are excluded' do
-      original_argv = [
-        '--url', 'http://example.com',
-        '--expect-saml',
-        '--cookie-string', 'session=abc'
-      ]
-      allow(WPScan).to receive(:original_argv).and_return(original_argv)
-
-      result = core.send(:build_filtered_options)
-      expect(result).to eq('')
     end
   end
 end

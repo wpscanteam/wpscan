@@ -21,22 +21,6 @@ module WPScan
       # :nocov:
     end
 
-    # SAML Authentication Failed Error
-    class AuthenticatedRescanFailure < Standard
-      attr_reader :command
-
-      # @param [ String ] url
-      def initialize(wpscan_command)
-        @command = wpscan_command
-      end
-
-      # :nocov:
-      def to_s
-        "Following authentication, the system failed to execute follow-up command: #{command}"
-      end
-      # :nocov:
-    end
-
     # Ferrum Browser Error
     class BrowserFailed < Standard
       # :nocov:
