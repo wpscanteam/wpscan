@@ -33,6 +33,7 @@ module WPScan
 
       def before_scan
         @last_update = local_db.last_update
+        @saml_authenticated = false
 
         maybe_output_banner_help_and_version
 
@@ -90,8 +91,7 @@ module WPScan
         # SAML flows often bounce through intermediate pages before the IdP;
         # walk the redirect chain to catch a SAMLRequest in any Location header.
         !!homepage_res&.redirections&.any? do |redirect_response|
-          location = redirect_response.response_headers&.[](/^Location:\s*(.+?)$/mi, 1)
-          location&.match?(/SAMLRequest/i)
+          redirect_response.headers['Location']&.match?(/SAMLRequest/i)
         end
       end
 

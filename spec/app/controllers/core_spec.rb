@@ -521,8 +521,7 @@ describe WPScan::Controller::Core do
     context 'when the redirect chain contains a SAMLRequest Location header' do
       it 'returns true' do
         uri = Addressable::URI.parse('http://idp.example.com/login')
-        redirect = instance_double(
-          Typhoeus::Response,
+        redirect = Typhoeus::Response.new(
           response_headers: "HTTP/1.1 302 Found\r\nLocation: http://idp.example.com/sso?SAMLRequest=abc\r\n"
         )
         homepage_res = instance_double(Typhoeus::Response, redirections: [redirect])
