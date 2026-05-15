@@ -623,4 +623,82 @@ describe WPScan::Controller::Core do
       end
     end
   end
+
+  describe '#build_filtered_options' do
+    it 'filters out excluded flags in --flag value format' do
+      original_argv = [
+        '--url', 'http://example.com',
+        '--some-flag', 'value',
+        '--expect-saml',
+        '--cookie-string', 'session=abc'
+      ]
+      allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+      result = core.send(:build_filtered_options)
+      expect(result).to eq('--some-flag value')
+    end
+
+    it 'filters out excluded flags in --flag=value format' do
+      original_argv = [
+        '--url=http://example.com',
+        '--some-flag=value',
+        '--expect-saml',
+        '--cookie-string=session=abc'
+      ]
+      allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+      result = core.send(:build_filtered_options)
+      expect(result).to eq('--some-flag=value')
+    end
+
+    it 'handles mixed flag formats' do
+      original_argv = [
+        '--url', 'http://example.com',
+        '--some-flag=value',
+        '--another-flag',
+        '--expect-saml',
+        '--cookie-string', 'session=abc',
+        '--no-banner'
+      ]
+      allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+      result = core.send(:build_filtered_options)
+      expect(result).to eq('--some-flag=value --another-flag')
+    end
+
+    it 'handles excluded flag at the end without value' do
+      original_argv = [
+        '--some-flag', 'value',
+        '--expect-saml'
+      ]
+      allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+      result = core.send(:build_filtered_options)
+      expect(result).to eq('--some-flag value')
+    end
+
+    it 'handles flag with value that looks like excluded flag' do
+      # Edge case: a flag's value contains text that matches an excluded flag
+      original_argv = [
+        '--some-flag', '--url-in-the-value',
+        '--another-flag', 'http://example.com/cookie-string'
+      ]
+      allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+      result = core.send(:build_filtered_options)
+      expect(result).to eq('--some-flag --url-in-the-value --another-flag http://example.com/cookie-string')
+    end
+
+    it 'returns empty string when all flags are excluded' do
+      original_argv = [
+        '--url', 'http://example.com',
+        '--expect-saml',
+        '--cookie-string', 'session=abc'
+      ]
+      allow(WPScan).to receive(:original_argv).and_return(original_argv)
+
+      result = core.send(:build_filtered_options)
+      expect(result).to eq('')
+    end
+  end
 end

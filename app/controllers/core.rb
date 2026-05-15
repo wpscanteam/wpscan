@@ -150,23 +150,24 @@ module WPScan
         options = []
         excluded_flags = %w[--url --cookie-string --expect-saml --banner --no-banner]
         flags_with_values = %w[--url --cookie-string]
-        skip_next = false
 
-        WPScan.original_argv.each do |arg|
-          # Skip if this is a value that follows an excluded flag
-          if skip_next
-            skip_next = false
-            next
+        i = 0
+        while i < WPScan.original_argv.length
+          arg = WPScan.original_argv[i]
+
+          # Handle --flag=value format
+          if arg.include?('=')
+            flag = arg.split('=', 2).first
+            options << arg unless excluded_flags.include?(flag)
+            i += 1
+          # Handle --flag value format (flag has a separate value argument)
+          elsif excluded_flags.include?(arg)
+            # Skip the flag and its value (if it has one)
+            i += flags_with_values.include?(arg) ? 2 : 1
+          else
+            options << arg
+            i += 1
           end
-
-          # Check if this argument is an excluded flag
-          if excluded_flags.any? { |flag| arg == flag || arg.start_with?("#{flag}=") }
-            # If it's in --flag value format (not --flag=value), skip the next arg too
-            skip_next = true if flags_with_values.include?(arg)
-            next
-          end
-
-          options << arg
         end
 
         options.join(' ')
