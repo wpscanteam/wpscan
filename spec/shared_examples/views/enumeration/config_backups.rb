@@ -15,7 +15,9 @@ shared_examples 'App::Views::Enumeration::ConfigBackups' do
 
     context 'when backups found' do
       let(:cb1) { config_backup.new("#{target_url}wp-config.php~", found_by: 'Direct Access (Aggressive Detection)') }
-      let(:cb2) { config_backup.new("#{target_url}wp-config.php.bak", found_by: 'Direct Access (Aggressive Detection)') }
+      let(:cb2) do
+        config_backup.new("#{target_url}wp-config.php.bak", found_by: 'Direct Access (Aggressive Detection)')
+      end
       let(:config_backups) { [cb1, cb2] }
       let(:expected_view) { File.join(view, 'config_backups') }
 
