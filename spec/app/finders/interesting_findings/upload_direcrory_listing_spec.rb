@@ -8,6 +8,36 @@ describe WPScan::Finders::InterestingFindings::UploadDirectoryListing do
   let(:wp_content) { 'wp-content' }
 
   describe '#aggressive' do
-    xit
+    let(:uploads_url) { 'http://ex.lo/wp-content/uploads/' }
+
+    before do
+      allow(target).to receive(:sub_dir).and_return(false)
+      allow(target).to receive(:content_dir).and_return(wp_content)
+    end
+
+    context 'when directory listing is disabled' do
+      before do
+        expect(target).to receive(:directory_listing?).with('wp-content/uploads/').and_return(false)
+      end
+
+      it 'returns nil' do
+        expect(finder.aggressive).to be nil
+      end
+    end
+
+    context 'when directory listing is enabled' do
+      before do
+        expect(target).to receive(:directory_listing?).with('wp-content/uploads/').and_return(true)
+      end
+
+      it 'returns UploadDirectoryListing finding' do
+        result = finder.aggressive
+
+        expect(result).to be_a WPScan::Model::UploadDirectoryListing
+        expect(result.url).to eq uploads_url
+        expect(result.confidence).to eq 100
+        expect(result.found_by).to eq 'Direct Access (Aggressive Detection)'
+      end
+    end
   end
 end
