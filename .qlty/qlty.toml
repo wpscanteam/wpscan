@@ -1,0 +1,10 @@
+config_version = "0"
+
+# spec/fixtures/ contains sample files from third-party WordPress plugins/themes
+# used as test inputs (e.g. parsing a plugin's package.json to detect its version).
+# These files are never installed or executed — dependency-scanner alerts on them
+# are noise.
+[[ignore]]
+file_patterns = [
+  "spec/fixtures/**",
+]
