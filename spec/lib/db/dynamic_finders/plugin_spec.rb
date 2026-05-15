@@ -41,7 +41,54 @@ describe WPScan::DB::DynamicFinders::Plugin do
   end
 
   describe '.maybe_create_module' do
-    xit
+    let(:slug) { 'test-plugin' }
+    let(:module_name) { :TestPlugin }
+
+    after do
+      # Clean up created modules after each test
+      if WPScan::Finders::PluginVersion.const_defined?(module_name, false)
+        WPScan::Finders::PluginVersion.send(:remove_const, module_name)
+      end
+    end
+
+    context 'when the module does not exist' do
+      it 'creates and returns a new module' do
+        expect(WPScan::Finders::PluginVersion.const_defined?(module_name, false)).to be false
+
+        result = subject.maybe_create_module(slug)
+
+        expect(result).to be_a Module
+        expect(WPScan::Finders::PluginVersion.const_defined?(module_name, false)).to be true
+        expect(WPScan::Finders::PluginVersion.const_get(module_name)).to eq result
+      end
+    end
+
+    context 'when the module already exists' do
+      before do
+        WPScan::Finders::PluginVersion.const_set(module_name, Module.new)
+      end
+
+      it 'returns the existing module without creating a new one' do
+        existing_module = WPScan::Finders::PluginVersion.const_get(module_name)
+
+        result = subject.maybe_create_module(slug)
+
+        expect(result).to eq existing_module
+        expect(result).to be_a Module
+      end
+    end
+
+    context 'when the slug contains special characters' do
+      let(:slug) { '123-test-plugin' }
+      let(:module_name) { :D_123TestPlugin }
+
+      it 'classifies the slug correctly and creates the module' do
+        result = subject.maybe_create_module(slug)
+
+        expect(result).to be_a Module
+        expect(WPScan::Finders::PluginVersion.const_defined?(module_name, false)).to be true
+      end
+    end
   end
 
   describe '.create_versions_finders' do
