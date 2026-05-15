@@ -18,7 +18,6 @@ describe WPScan::Finders::WpVersion::UniqueFingerprinting do
     before do
       allow(WPScan::DB::Fingerprints).to receive(:wp_unique_fingerprints).and_return(fingerprints)
       allow(target).to receive(:sub_dir).and_return(false)
-      allow(target).to receive(:head_or_get_params).and_return(method: :head)
       allow(target).to receive(:homepage_or_404?).and_return(false)
       allow(target).to receive(:content_dir).and_return('wp-content')
       allow(target).to receive(:plugins_dir).and_return('wp-content/plugins')

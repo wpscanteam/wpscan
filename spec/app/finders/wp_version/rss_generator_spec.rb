@@ -31,7 +31,7 @@ describe WPScan::Finders::WpVersion::RSSGenerator do
             confidence: 80,
             found_by: 'Rss Generator (Aggressive Detection)',
             interesting_entries: [
-              '#{target.url(\'feed/\')}, <generator>https://wordpress.org/?v=4.0</generator>'
+              "#{target.url('feed/')}, <generator>https://wordpress.org/?v=4.0</generator>"
             ]
           )
         ]
