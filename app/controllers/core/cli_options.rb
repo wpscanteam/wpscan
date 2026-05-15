@@ -108,8 +108,7 @@ module WPScan
                         'Note: with socks5://, hostnames are resolved locally before being ' \
                         'sent to the proxy; use socks5h:// to have the proxy resolve them ' \
                         '(required for .onion addresses when proxying through Tor).']),
-          OptCredentials.new(['--proxy-auth login:password']),
-          OptBoolean.new(['--expect-saml', 'Expect SAML authentication to be required'], advanced: true)
+          OptCredentials.new(['--proxy-auth login:password'])
         ]
       end
 
@@ -123,7 +122,13 @@ module WPScan
                           writable: true,
                           readable: true,
                           create: true,
-                          default: File.join(tmp_directory, 'cookie_jar.txt'))
+                          default: File.join(tmp_directory, 'cookie_jar.txt')),
+          OptBoolean.new(['--expect-saml',
+                          'Expect SAML authentication to be required. ' \
+                          'When the target redirects to a SAML IdP, an interactive browser ' \
+                          'is launched for login and the resulting session cookies are reused ' \
+                          'for the rest of the scan.'],
+                         advanced: true)
         ]
       end
 
