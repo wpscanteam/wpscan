@@ -108,7 +108,8 @@ module WPScan
                         'Note: with socks5://, hostnames are resolved locally before being ' \
                         'sent to the proxy; use socks5h:// to have the proxy resolve them ' \
                         '(required for .onion addresses when proxying through Tor).']),
-          OptCredentials.new(['--proxy-auth login:password'])
+          OptCredentials.new(['--proxy-auth login:password']),
+          OptBoolean.new(['--expect-saml', 'Expect SAML authentication to be required'], advanced: true)
         ]
       end
 

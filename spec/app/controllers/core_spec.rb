@@ -496,4 +496,76 @@ describe WPScan::Controller::Core do
       end
     end
   end
+
+  describe '#saml_request?' do
+    context 'when URI contains SAMLRequest' do
+      it 'returns true' do
+        uri = Addressable::URI.parse('http://example.com/?SAMLRequest=value')
+        expect(core.saml_request?(uri)).to be true
+      end
+    end
+
+    context 'when URI does not contain SAMLRequest' do
+      it 'returns false' do
+        uri = Addressable::URI.parse('http://example.com/')
+        expect(core.saml_request?(uri)).to be false
+      end
+    end
+
+    context 'when URI is nil' do
+      it 'returns false' do
+        expect(core.saml_request?(nil)).to be false
+      end
+    end
+  end
+
+  describe '#handle_saml_authentication' do
+    let(:target_url) { 'http://example.com' }
+    let(:effective_uri) { Addressable::URI.parse('http://example.com/?SAMLRequest=value') }
+    let(:mock_cookie_string) { 'session_id=abc123; auth_token=xyz789' }
+
+    before do
+      allow(core).to receive_message_chain(:target, :url).and_return(target_url)
+      allow(WPScan::BrowserAuthenticator)
+        .to receive(:authenticate)
+        .with(effective_uri.to_s)
+        .and_return(mock_cookie_string)
+      allow(WPScan::ParsedCli).to receive(:expect_saml).and_return(false)
+      allow(WPScan::ParsedCli).to receive(:cookie_string).and_return(nil)
+    end
+
+    context 'when SAMLRequest is present and --expect-saml is not set' do
+      it 'raises SAMLAuthenticationRequired error' do
+        expect { core.handle_saml_authentication(effective_uri) }
+          .to raise_error(WPScan::Error::SAMLAuthenticationRequired)
+      end
+    end
+
+    context 'when cookie_string is set but --expect-saml is not' do
+      it 'raises SAMLAuthenticationFailed error' do
+        allow(WPScan::ParsedCli).to receive(:cookie_string).and_return('existing=cookie')
+        expect { core.handle_saml_authentication(effective_uri) }
+          .to raise_error(WPScan::Error::SAMLAuthenticationFailed)
+      end
+    end
+
+    context 'when SAMLRequest is present and --expect-saml is set' do
+      before do
+        allow(WPScan::ParsedCli).to receive(:expect_saml).and_return(true)
+        allow(Kernel).to receive(:system).and_return(true)
+      end
+
+      it 'authenticates and restarts scan with cookies and filters original options' do
+        original_options = '--some-flag value --another-flag --expect-saml --cookie-string old_value --no-banner'
+        stub_const('ARGV', original_options.split)
+        filtered_options = original_options.split.reject do |arg|
+          arg.start_with?('--expect-saml', '--cookie-string', '--no-banner')
+        end.join(' ')
+        command = "wpscan --url #{target_url} --cookie-string '#{mock_cookie_string}' --no-banner #{filtered_options}"
+
+        expect(Kernel).to receive(:system).with(command).and_return(true)
+        expect { core.handle_saml_authentication(effective_uri) }.to raise_error(SystemExit)
+      end
+    end
+  end
 end

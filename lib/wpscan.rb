@@ -50,6 +50,7 @@ require 'wpscan/progressbar_null_output'
 require 'wpscan/db'
 require 'wpscan/vulnerable'
 require 'wpscan/http_status_tracking'
+require 'wpscan/browser_authenticator'
 
 Encoding.default_external = Encoding::UTF_8
 
