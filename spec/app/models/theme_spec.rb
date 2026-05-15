@@ -331,7 +331,63 @@ describe WPScan::Model::Theme do
   end
 
   describe '#parent_themes' do
-    xit
+    before do
+      stub_request(:get, blog.url('wp-content/themes/spec/style.css'))
+        .to_return(body: File.read(fixtures.join('child_style.css')))
+    end
+
+    context 'when no parent theme' do
+      let(:main_theme) { 'style.css' }
+
+      before do
+        stub_request(:get, blog.url('wp-content/themes/spec/style.css'))
+          .to_return(body: File.read(fixtures.join(main_theme)))
+      end
+
+      it 'returns an empty array' do
+        expect(theme.parent_themes).to eql []
+      end
+    end
+
+    context 'when has parent themes' do
+      let(:parent_url) { blog.url('wp-content/themes/twentyfourteen/custom.css') }
+      let(:grandparent_url) { blog.url('wp-content/themes/twentythirteen/base.css') }
+
+      before do
+        # Parent theme with its own parent
+        stub_request(:get, parent_url)
+          .to_return(body: <<~CSS)
+            /*
+             Theme Name: Parent
+             Template: twentythirteen
+            */
+            @import url("../twentythirteen/base.css");
+          CSS
+
+        # Grandparent theme (no further parent)
+        stub_request(:get, grandparent_url)
+          .to_return(body: <<~CSS)
+            /*
+             Theme Name: Grandparent
+            */
+          CSS
+      end
+
+      it 'returns the chain of parent themes' do
+        parents = theme.parent_themes
+
+        expect(parents.size).to eq 2
+        expect(parents[0].slug).to eq 'twentyfourteen'
+        expect(parents[1].slug).to eq 'twentythirteen'
+      end
+
+      it 'respects the depth parameter' do
+        parents = theme.parent_themes(1)
+
+        expect(parents.size).to eq 1
+        expect(parents[0].slug).to eq 'twentyfourteen'
+      end
+    end
   end
 
   describe '#==' do
