@@ -44,7 +44,37 @@ shared_examples WPScan::References do
     end
 
     context 'when references provided as array' do
-      xit
+      let(:references) do
+        {
+          cve: %w[11 22],
+          wpvulndb: %w[12 23]
+        }
+      end
+
+      its(:cves)     { should eql %w[11 22] }
+      its(:cve_urls) do
+        should eql %w[
+          https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-11
+          https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-22
+        ]
+      end
+
+      its(:wpvulndb_ids)  { should eql %w[12 23] }
+      its(:wpvulndb_urls) do
+        should eql %w[
+          https://wpscan.com/vulnerability/12
+          https://wpscan.com/vulnerability/23
+        ]
+      end
+
+      its(:references_urls) do
+        should eql [
+          'https://wpscan.com/vulnerability/12',
+          'https://wpscan.com/vulnerability/23',
+          'https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-11',
+          'https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-22'
+        ]
+      end
     end
   end
 end
