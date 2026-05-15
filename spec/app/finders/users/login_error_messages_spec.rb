@@ -9,7 +9,9 @@ describe WPScan::Finders::Users::LoginErrorMessages do
   describe '#aggressive' do
     let(:opts) { { found: [], list: %w[admin editor invalid] } }
     let(:valid_error_body) do
-      '<html><body><div id="login_error">The password you entered for the username admin is incorrect.</div></body></html>'
+      '<html><body><div id="login_error">' \
+        'The password you entered for the username admin is incorrect.' \
+        '</div></body></html>'
     end
     let(:invalid_error_body) { '<html><body><div id="login_error">Invalid username.</div></body></html>' }
     let(:no_error_body) { '<html><body></body></html>' }
