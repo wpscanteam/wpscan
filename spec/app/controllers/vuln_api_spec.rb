@@ -5,6 +5,15 @@ describe WPScan::Controller::VulnApi do
   let(:target_url)     { 'http://ex.lo/' }
   let(:cli_args)       { "--url #{target_url}" }
 
+  around do |example|
+    original_api_token = ENV.fetch(described_class::ENV_KEY, nil)
+
+    ENV.delete(described_class::ENV_KEY)
+    example.run
+  ensure
+    original_api_token ? ENV[described_class::ENV_KEY] = original_api_token : ENV.delete(described_class::ENV_KEY)
+  end
+
   before do
     WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
     WPScan::DB::VulnApi.instance_variable_set(:@default_request_params, nil)
