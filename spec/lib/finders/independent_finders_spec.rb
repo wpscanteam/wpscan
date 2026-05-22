@@ -16,11 +16,14 @@ describe WPScan::Finders::IndependentFinders do
         finding.new('spotted', found_by: 'No Aggressive Result (Passive Detection)', confidence: 10)
       ]
     end
+    let(:extra_finders) { [] }
 
     before do
       finders <<
         WPScan::Finders::Independent::DummyFinder.new(target) <<
         WPScan::Finders::Independent::NoAggressiveResult.new(target)
+
+      extra_finders.each { |finder| finders << finder }
     end
 
     describe 'method calls order' do
@@ -92,7 +95,19 @@ describe WPScan::Finders::IndependentFinders do
       end
 
       context 'when multiple results returned' do
-        xit
+        let(:mode) { :passive }
+        let(:extra_finders) { [WPScan::Finders::Independent::MultipleResults.new(target)] }
+
+        it 'returns all results' do
+          expect(@found).to match_array(
+            (
+              expected_passive + [
+                finding.new('first', found_by: 'Multiple Results (Passive Detection)'),
+                finding.new('second', found_by: 'Multiple Results (Passive Detection)')
+              ]
+            ).map { |f| eql(f) }
+          )
+        end
       end
     end
   end

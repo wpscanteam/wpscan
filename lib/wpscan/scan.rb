@@ -97,10 +97,9 @@ module WPScan
     # depending on the findings / errors
     # :nocov:
     def exit_hook
-      # Avoid hooking the exit when rspec is running, otherwise it will always return 0
-      # and Travis won't detect failed builds. Couldn't find a better way, even though
-      # some people managed to https://github.com/rspec/rspec-core/pull/410
-      return if defined?(RSpec)
+      # Avoid registering this hook when the RSpec suite is running, otherwise it
+      # can override RSpec's exit status and hide failed builds.
+      return if rspec_running?
 
       at_exit do
         exit(run_error_exit_code) if run_error
@@ -111,6 +110,10 @@ module WPScan
       end
     end
     # :nocov:
+
+    def rspec_running?
+      defined?(RSpec)
+    end
 
     # @return [ Integer ] The exit code related to the run_error
     def run_error_exit_code

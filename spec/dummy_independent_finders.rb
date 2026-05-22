@@ -23,6 +23,16 @@ module WPScan
           DummyFinding.new('spotted', confidence: 10, found_by: found_by)
         end
       end
+
+      # Finder returning more than one result
+      class MultipleResults < Finder
+        def passive(_opts = {})
+          [
+            DummyFinding.new('first', found_by: found_by),
+            DummyFinding.new('second', found_by: found_by)
+          ]
+        end
+      end
     end
   end
 end
