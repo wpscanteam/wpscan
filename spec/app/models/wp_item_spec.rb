@@ -165,11 +165,68 @@ describe WPScan::Model::WpItem do
   end
 
   describe '#directory_listing?' do
-    xit
+    let(:opts) { super().merge(url: item_url) }
+    let(:item_url) { "#{url}wp-content/plugins/test_item/" }
+
+    context 'when detection mode is :passive' do
+      let(:opts) { super().merge(mode: :passive) }
+
+      it 'returns false without making requests' do
+        expect(WPScan::Browser).not_to receive(:get)
+        expect(wp_item.directory_listing?).to be false
+      end
+    end
+
+    context 'when detection mode is not :passive' do
+      it 'returns true when the item URL has a directory listing' do
+        stub_request(:get, "#{item_url}assets/")
+          .to_return(status: 200, body: '<h1>Index of /assets/</h1>')
+
+        expect(wp_item.directory_listing?('assets/')).to be true
+      end
+
+      it 'returns false when the item URL does not have a directory listing' do
+        stub_request(:get, "#{item_url}assets/").to_return(status: 404)
+
+        expect(wp_item.directory_listing?('assets/')).to be false
+      end
+    end
   end
 
   describe '#error_log?' do
-    xit
+    let(:opts) { super().merge(url: item_url) }
+    let(:item_url) { "#{url}wp-content/plugins/test_item/" }
+
+    context 'when detection mode is :passive' do
+      let(:opts) { super().merge(mode: :passive) }
+
+      it 'returns false without checking for a log file' do
+        expect(wp_item).not_to receive(:log_file?)
+        expect(wp_item.error_log?).to be false
+      end
+    end
+
+    context 'when detection mode is not :passive' do
+      before { allow(blog).to receive(:head_or_get_params).and_return(method: :head) }
+
+      it 'returns true when the item error log matches the PHP error log pattern' do
+        stub_request(:head, "#{item_url}custom_error_log").to_return(status: 200)
+        stub_request(:get, "#{item_url}custom_error_log")
+          .with(headers: { 'Range' => 'bytes=0-700' })
+          .to_return(status: 200, body: 'PHP Fatal error: Uncaught Error')
+
+        expect(wp_item.error_log?('custom_error_log')).to be true
+      end
+
+      it 'returns false when the item error log does not match the PHP error log pattern' do
+        stub_request(:head, "#{item_url}custom_error_log").to_return(status: 200)
+        stub_request(:get, "#{item_url}custom_error_log")
+          .with(headers: { 'Range' => 'bytes=0-700' })
+          .to_return(status: 200, body: 'plain text')
+
+        expect(wp_item.error_log?('custom_error_log')).to be false
+      end
+    end
   end
 
   describe '#head_and_get' do

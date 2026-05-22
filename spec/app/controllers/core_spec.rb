@@ -25,6 +25,12 @@ describe WPScan::Controller::Core do
   end
 
   describe '#load_server_module' do
+    before do
+      wp_item_class = WPScan::Model::WpItem
+
+      stub_const('WPScan::Model::WpItem', Class.new(wp_item_class))
+    end
+
     after do
       expect(core.target).to receive(:server).and_return(@stubbed_server)
       expect(core.load_server_module).to eql @expected
