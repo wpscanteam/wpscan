@@ -12,7 +12,7 @@ module WPScan
 
       # @return [ Addressable::URI ]
       def self.uri
-        @uri ||= Addressable::URI.parse('https://wpscan.com/api/v3/')
+        @uri ||= Addressable::URI.parse('https://wpscan.com/api/v4/')
       end
 
       # @param [ String ] path
@@ -21,7 +21,11 @@ module WPScan
       # @return [ Hash ]
       def self.get(path, params = {})
         return {} unless token
-        return {} if path.end_with?('/latest') # Remove this when api/v4 is up
+        # Guard against a slug or WordPress version equal to the literal
+        # string "latest": such a value would map to the
+        # /{plugins,themes,wordpresses,all}/latest list endpoints, which
+        # return a payload the per-entity parser below cannot handle.
+        return {} if path.end_with?('/latest')
 
         # Typhoeus.get is used rather than Browser.get to avoid merging irrelevant params from the CLI
         res = Typhoeus.get(uri.join(path), default_request_params.merge(params))
