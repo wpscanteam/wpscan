@@ -42,7 +42,7 @@ module WPScan
           'Timthumb <= 1.32 Remote Code Execution',
           references: { exploitdb: ['17602'] },
           type: 'RCE',
-          fixed_in: '1.33'
+          affected_versions: [{ fixed_in: '1.33' }]
         )
       end
 
@@ -55,7 +55,7 @@ module WPScan
             cve: '2014-4663'
           },
           type: 'RCE',
-          fixed_in: '2.8.14'
+          affected_versions: [{ fixed_in: '2.8.14' }]
         )
       end
 

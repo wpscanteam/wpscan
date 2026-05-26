@@ -34,7 +34,7 @@ describe WPScan::Formatter::Sarif do
             'vulnerabilities' => [
               {
                 'title' => 'Foo plugin XSS',
-                'fixed_in' => '1.2.4',
+                'affected_versions' => [{ 'fixed_in' => '1.2.4', 'introduced_in' => nil }],
                 'cvss' => { 'score' => '7.5', 'vector' => 'AV:N/AC:L/Au:N/C:P/I:P/A:P' },
                 'references' => { 'cve' => ['2024-12345'], 'wpvulndb' => ['abc'] }
               }

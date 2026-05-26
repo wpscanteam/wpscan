@@ -233,7 +233,7 @@ describe WPScan::Model::Theme do
               'First Vuln',
               references: { wpvulndb: 'b099c1da-3750-4e63-8af9-929e773bbe62' },
               type: 'LFI',
-              fixed_in: '6.3.10',
+              affected_versions: [{ fixed_in: '6.3.10' }],
               poc: "<?php\n// Theme LFI exploit\ninclude($_GET['page']);\n?>",
               uuid: 'b099c1da-3750-4e63-8af9-929e773bbe62'
             ),

@@ -214,7 +214,7 @@ describe WPScan::Model::Plugin do
                 'First Vuln <= 6.3.10 - LFI',
                 references: { wpvulndb: 'e099c1da-3750-4e63-8af9-929e773bbe59' },
                 type: 'LFI',
-                fixed_in: '6.3.10',
+                affected_versions: [{ fixed_in: '6.3.10' }],
                 poc: "#!/bin/bash\ncurl 'http://example.com/?file=../../../etc/passwd'",
                 uuid: 'e099c1da-3750-4e63-8af9-929e773bbe59'
               ),
@@ -265,8 +265,7 @@ describe WPScan::Model::Plugin do
             [
               WPScan::Vulnerability.new(
                 'Introduced In 6.4',
-                fixed_in: '6.5',
-                introduced_in: '6.4',
+                affected_versions: [{ fixed_in: '6.5', introduced_in: '6.4' }],
                 references: { wpvulndb: 'a099c1da-3750-4e63-8af9-929e773bbe61' },
                 uuid: 'a099c1da-3750-4e63-8af9-929e773bbe61'
               )

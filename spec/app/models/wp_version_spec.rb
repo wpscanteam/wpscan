@@ -87,7 +87,7 @@ describe WPScan::Model::WpVersion do
               'WP 3.8.1 - Vuln 2',
               references: { url: %w[url-2 url-3], cve: %w[2014-0166],
                             wpvulndb: 'd099c1da-3750-4e63-8af9-929e773bbe58' },
-              fixed_in: '3.8.2',
+              affected_versions: [{ fixed_in: '3.8.2' }],
               uuid: 'd099c1da-3750-4e63-8af9-929e773bbe58'
             )
           ]

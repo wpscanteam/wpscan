@@ -25,7 +25,7 @@
     <% if v.cvss -%>
     "cvss": <%= v.cvss.to_json %>,
     <% end -%>
-    "fixed_in": <%= v.fixed_in.to_json %>,
+    "affected_versions": <%= v.affected_versions.to_json %>,
     <% if v.poc -%>
     "poc": <%= v.poc.to_json %>,
     <% end -%>

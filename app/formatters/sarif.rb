@@ -265,7 +265,16 @@ module WPScan
       end
 
       def fix_status(vuln)
-        vuln['fixed_in'] ? "fixed in #{vuln['fixed_in']}" : 'no fix available'
+        fixes = fixed_in_versions(vuln)
+        fixes.empty? ? 'no fix available' : "fixed in #{fixes.join(', ')}"
+      end
+
+      # Collects every `fixed_in` value from the v4 affected_versions array,
+      # preserving order. Returns an empty array when no range provides a fix.
+      #
+      # @return [ Array<String> ]
+      def fixed_in_versions(vuln)
+        Array(vuln['affected_versions']).filter_map { |range| range['fixed_in'] }
       end
 
       def help_uri_for(vuln)
@@ -279,7 +288,7 @@ module WPScan
         props = {}
         props['cvss'] = vuln['cvss'] if vuln['cvss']
         props['references'] = vuln['references'] if vuln['references'] && !vuln['references'].empty?
-        props['fixed_in'] = vuln['fixed_in'] if vuln['fixed_in']
+        props['affected_versions'] = vuln['affected_versions'] if vuln['affected_versions']&.any?
         props['poc'] = vuln['poc'] if vuln['poc']
         props.empty? ? nil : props
       end
