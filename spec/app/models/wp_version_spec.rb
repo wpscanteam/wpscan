@@ -38,6 +38,17 @@ describe WPScan::Model::WpVersion do
     end
   end
 
+  # Comparing against a version not in the local DB must not raise.
+  describe '#<=> with an out-of-database version' do
+    subject(:version) { described_class.new('4.0') }
+
+    it 'compares without raising' do
+      expect { version < '99.99' }.not_to raise_error
+      expect(version < '99.99').to be true
+      expect(version > '99.99').to be false
+    end
+  end
+
   describe '#vulnerabilities' do
     subject(:version) { described_class.new(number) }
     before { allow(version).to receive(:db_data).and_return(db_data) }
