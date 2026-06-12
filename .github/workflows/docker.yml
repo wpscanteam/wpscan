@@ -12,23 +12,28 @@ jobs:
       - name: checkout sources
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
-      - name: Set tag to latest
-        if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'schedule'
+      - name: Check release tag is set
+        if: github.event.release.tag_name == ''
         run: |
-          echo "DOCKER_TAG=latest" >> $GITHUB_ENV
+          echo "release tag_name is empty!"
+          exit 1
 
-      - name: Set tag to release name
-        if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags/')
+      - name: Set tags to release name and latest
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
-          echo "DOCKER_TAG=$RELEASE_TAG_NAME" >> "$GITHUB_ENV"
-
-      - name: Check if DOCKER_TAG is set
-        if: env.DOCKER_TAG == ''
-        run: |
-          echo DOCKER_TAG is not set!
-          exit 1
+          DELIMITER="EOF_$(openssl rand -hex 16)"
+          {
+            echo "DOCKER_TAGS<<$DELIMITER"
+            echo "wpscanteam/wpscan:$RELEASE_TAG_NAME"
+            # Only move the "latest" tag for stable releases, so it stays on the
+            # most recent real release and is never pointed at a prerelease.
+            if [ "$IS_PRERELEASE" != "true" ]; then
+              echo "wpscanteam/wpscan:latest"
+            fi
+            echo "$DELIMITER"
+          } >> "$GITHUB_ENV"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@06116385d9baf250c9f4dcb4858b16962ea869c3 # v4
@@ -50,4 +55,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: wpscanteam/wpscan:${{ env.DOCKER_TAG }}
+          tags: ${{ env.DOCKER_TAGS }}
