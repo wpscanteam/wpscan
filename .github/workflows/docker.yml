@@ -21,12 +21,17 @@ jobs:
       - name: Set tags to release name and latest
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
+          IS_PRERELEASE: ${{ github.event.release.prerelease }}
         run: |
           DELIMITER="EOF_$(openssl rand -hex 16)"
           {
             echo "DOCKER_TAGS<<$DELIMITER"
             echo "wpscanteam/wpscan:$RELEASE_TAG_NAME"
-            echo "wpscanteam/wpscan:latest"
+            # Only move the "latest" tag for stable releases, so it stays on the
+            # most recent real release and is never pointed at a prerelease.
+            if [ "$IS_PRERELEASE" != "true" ]; then
+              echo "wpscanteam/wpscan:latest"
+            fi
             echo "$DELIMITER"
           } >> "$GITHUB_ENV"
 
