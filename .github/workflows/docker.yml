@@ -15,19 +15,24 @@ jobs:
       - name: Set tag to latest
         if: (github.event_name == 'push' && github.ref == 'refs/heads/master') || github.event_name == 'schedule'
         run: |
-          echo "DOCKER_TAG=latest" >> $GITHUB_ENV
+          echo "DOCKER_TAGS=wpscanteam/wpscan:latest" >> "$GITHUB_ENV"
 
-      - name: Set tag to release name
+      - name: Set tags to release name and latest
         if: github.event_name == 'release' && startsWith(github.ref, 'refs/tags/')
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
-          echo "DOCKER_TAG=$RELEASE_TAG_NAME" >> "$GITHUB_ENV"
+          {
+            echo "DOCKER_TAGS<<EOF"
+            echo "wpscanteam/wpscan:$RELEASE_TAG_NAME"
+            echo "wpscanteam/wpscan:latest"
+            echo "EOF"
+          } >> "$GITHUB_ENV"
 
-      - name: Check if DOCKER_TAG is set
-        if: env.DOCKER_TAG == ''
+      - name: Check if DOCKER_TAGS is set
+        if: env.DOCKER_TAGS == ''
         run: |
-          echo DOCKER_TAG is not set!
+          echo DOCKER_TAGS is not set!
           exit 1
 
       - name: Set up QEMU
@@ -50,4 +55,4 @@ jobs:
         with:
           platforms: linux/amd64,linux/arm/v7,linux/arm64
           push: true
-          tags: wpscanteam/wpscan:${{ env.DOCKER_TAG }}
+          tags: ${{ env.DOCKER_TAGS }}
