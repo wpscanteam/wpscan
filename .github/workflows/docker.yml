@@ -12,22 +12,23 @@ jobs:
       - name: checkout sources
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
 
+      - name: Check release tag is set
+        if: github.event.release.tag_name == ''
+        run: |
+          echo "release tag_name is empty!"
+          exit 1
+
       - name: Set tags to release name and latest
         env:
           RELEASE_TAG_NAME: ${{ github.event.release.tag_name }}
         run: |
+          DELIMITER="EOF_$(openssl rand -hex 16)"
           {
-            echo "DOCKER_TAGS<<EOF"
+            echo "DOCKER_TAGS<<$DELIMITER"
             echo "wpscanteam/wpscan:$RELEASE_TAG_NAME"
             echo "wpscanteam/wpscan:latest"
-            echo "EOF"
+            echo "$DELIMITER"
           } >> "$GITHUB_ENV"
-
-      - name: Check if DOCKER_TAGS is set
-        if: env.DOCKER_TAGS == ''
-        run: |
-          echo DOCKER_TAGS is not set!
-          exit 1
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@06116385d9baf250c9f4dcb4858b16962ea869c3 # v4
