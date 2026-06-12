@@ -34,7 +34,7 @@ module WPScan
 
       # @param [ Version, String ] other
       def <=>(other)
-        other = self.class.new(other) unless other.is_a?(self.class) # handle potential '.1' version
+        other = Version.new(other) unless other.is_a?(Version) # handle potential '.1' version
 
         Gem::Version.new(number) <=> Gem::Version.new(other.number)
       rescue ArgumentError

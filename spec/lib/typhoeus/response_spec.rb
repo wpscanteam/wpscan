@@ -31,10 +31,10 @@ describe Typhoeus::Response do
   describe '#from_vuln_api?' do
     context 'when a response from the Vuln API' do
       %w[
-        https://wpscan.com/api/v3/plugins/wpscan
-        https://wpscan.com/api/v3/plugins/status-test
-        https://wpscan.com/api/v3/themes/test
-        https://wpscan.com/api/v3/plugins/test/v3/status
+        https://wpscan.com/api/v4/plugins/wpscan
+        https://wpscan.com/api/v4/plugins/status-test
+        https://wpscan.com/api/v4/themes/test
+        https://wpscan.com/api/v4/plugins/test/v4/status
       ].each do |response_url|
         it "returnse false for #{response_url}" do
           expect(described_class.new(return_code: 200, effective_url: response_url).from_vuln_api?).to be true
@@ -47,7 +47,7 @@ describe Typhoeus::Response do
         https://wpscan.com/something
         http://wp.lab/
         https://wp.lab/status
-        https://wpscan.com/api/v3/status
+        https://wpscan.com/api/v4/status
       ].each do |response_url|
         it "returns false for #{response_url}" do
           expect(described_class.new(return_code: 200, effective_url: response_url).from_vuln_api?).to be false

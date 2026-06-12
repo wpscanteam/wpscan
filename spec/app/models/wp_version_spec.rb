@@ -38,6 +38,17 @@ describe WPScan::Model::WpVersion do
     end
   end
 
+  # Comparing against a version not in the local DB must not raise.
+  describe '#<=> with an out-of-database version' do
+    subject(:version) { described_class.new('4.0') }
+
+    it 'compares without raising' do
+      expect { version < '99.99' }.not_to raise_error
+      expect(version < '99.99').to be true
+      expect(version > '99.99').to be false
+    end
+  end
+
   describe '#vulnerabilities' do
     subject(:version) { described_class.new(number) }
     before { allow(version).to receive(:db_data).and_return(db_data) }
@@ -87,7 +98,7 @@ describe WPScan::Model::WpVersion do
               'WP 3.8.1 - Vuln 2',
               references: { url: %w[url-2 url-3], cve: %w[2014-0166],
                             wpvulndb: 'd099c1da-3750-4e63-8af9-929e773bbe58' },
-              fixed_in: '3.8.2',
+              affected_versions: [{ fixed_in: '3.8.2' }],
               uuid: 'd099c1da-3750-4e63-8af9-929e773bbe58'
             )
           ]

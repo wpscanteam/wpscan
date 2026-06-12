@@ -58,7 +58,9 @@ module WPScan
         @vulnerabilities = []
 
         Array(db_data['vulnerabilities']).each do |json_vuln|
-          @vulnerabilities << Vulnerability.load_from_json(json_vuln)
+          vulnerability = Vulnerability.load_from_json(json_vuln)
+          vulnerability.detected_version = self
+          @vulnerabilities << vulnerability
         end
 
         @vulnerabilities

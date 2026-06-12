@@ -214,7 +214,7 @@ describe WPScan::Model::Plugin do
                 'First Vuln <= 6.3.10 - LFI',
                 references: { wpvulndb: 'e099c1da-3750-4e63-8af9-929e773bbe59' },
                 type: 'LFI',
-                fixed_in: '6.3.10',
+                affected_versions: [{ fixed_in: '6.3.10' }],
                 poc: "#!/bin/bash\ncurl 'http://example.com/?file=../../../etc/passwd'",
                 uuid: 'e099c1da-3750-4e63-8af9-929e773bbe59'
               ),
@@ -258,6 +258,63 @@ describe WPScan::Model::Plugin do
           end
         end
 
+        context 'when multiple backported ranges' do
+          let(:slug)    { 'vulnerable-multi-range' }
+          let(:db_data) { vuln_api_data_for('plugins/vulnerable-multi-range') }
+
+          let(:multi_range_vuln) do
+            WPScan::Vulnerability.new(
+              'Multi-range backport (10.5.x / 10.4.x / 5.4.x)',
+              references: { wpvulndb: '11111111-2222-3333-4444-555555555555' },
+              affected_versions: [
+                { fixed_in: '10.5.3', introduced_in: '10.5.0' },
+                { fixed_in: '10.4.4', introduced_in: '10.4.0' },
+                { fixed_in: '5.4.4',  introduced_in: '5.4.0' }
+              ],
+              uuid: '11111111-2222-3333-4444-555555555555'
+            )
+          end
+
+          before do
+            expect(plugin)
+              .to receive(:version)
+              .at_least(1)
+              .and_return(WPScan::Model::Version.new(number))
+          end
+
+          context 'when the version is only covered by the oldest range' do
+            let(:number) { '5.4.2' }
+
+            it 'still flags the vulnerability' do
+              @expected = [multi_range_vuln]
+            end
+          end
+
+          context 'when the version is covered by the middle range' do
+            let(:number) { '10.4.2' }
+
+            it 'flags the vulnerability' do
+              @expected = [multi_range_vuln]
+            end
+          end
+
+          context 'when the version is past every fixed_in' do
+            let(:number) { '11.0.0' }
+
+            it 'does not flag the vulnerability' do
+              @expected = []
+            end
+          end
+
+          context 'when the version is below every introduced_in' do
+            let(:number) { '4.0.0' }
+
+            it 'does not flag the vulnerability' do
+              @expected = []
+            end
+          end
+        end
+
         context 'when introduced_in' do
           let(:db_data) { vuln_api_data_for('plugins/vulnerable-introduced-in') }
 
@@ -265,8 +322,7 @@ describe WPScan::Model::Plugin do
             [
               WPScan::Vulnerability.new(
                 'Introduced In 6.4',
-                fixed_in: '6.5',
-                introduced_in: '6.4',
+                affected_versions: [{ fixed_in: '6.5', introduced_in: '6.4' }],
                 references: { wpvulndb: 'a099c1da-3750-4e63-8af9-929e773bbe61' },
                 uuid: 'a099c1da-3750-4e63-8af9-929e773bbe61'
               )

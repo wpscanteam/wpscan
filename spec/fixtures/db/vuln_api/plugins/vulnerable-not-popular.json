@@ -4,15 +4,18 @@
   "popular": false,
   "vulnerabilities" : [
     {
-      "title" : "First Vuln \u003c= 6.3.10 - LFI",
-      "fixed_in" : "6.3.10",
+      "title" : "First Vuln <= 6.3.10 - LFI",
       "id" : "e099c1da-3750-4e63-8af9-929e773bbe59",
       "vuln_type": "LFI",
+      "affected_versions": [
+        { "fixed_in": "6.3.10", "introduced_in": null }
+      ],
       "poc": "#!/bin/bash\ncurl 'http://example.com/?file=../../../etc/passwd'"
     },
     {
       "title": "No Fixed In",
-      "id" : "f099c1da-3750-4e63-8af9-929e773bbe60"
+      "id" : "f099c1da-3750-4e63-8af9-929e773bbe60",
+      "affected_versions": []
     }
   ]
 }

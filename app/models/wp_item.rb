@@ -41,23 +41,25 @@ module WPScan
 
         Array(db_data['vulnerabilities']).each do |json_vuln|
           vulnerability = Vulnerability.load_from_json(json_vuln)
+          vulnerability.detected_version = version || nil
           @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
         end
 
         @vulnerabilities
       end
 
-      # Checks if the wp_item is vulnerable to a specific vulnerability
+      # Checks if the wp_item is vulnerable to a specific vulnerability.
+      # A vuln with multiple backported ranges matches when any single range
+      # covers the detected version.
       #
       # @param [ Vulnerability ] vuln Vulnerability to check the item against
       #
       # @return [ Boolean ]
       def vulnerable_to?(vuln)
-        return false if version && vuln&.introduced_in && version < vuln.introduced_in
+        return true unless version
+        return true if vuln.nil?
 
-        return true unless version && vuln&.fixed_in && !vuln.fixed_in.empty?
-
-        version < vuln.fixed_in
+        vuln.affects?(version)
       end
 
       # @return [ String ]
