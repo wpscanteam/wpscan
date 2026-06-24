@@ -21,7 +21,7 @@ module WPScan
 
             slug = Regexp.last_match[1]&.strip
 
-            found << slug unless slug&.empty?
+            found << slug unless slug && slug.empty?
           end
 
           uniq ? found.uniq.sort : found.sort
