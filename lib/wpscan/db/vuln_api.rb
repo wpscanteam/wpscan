@@ -1,18 +1,51 @@
 # frozen_string_literal: true
 
+require 'zlib'
+
 module WPScan
   module DB
     # WPVulnDB API
     class VulnApi
       NON_ERROR_CODES = [200, 403].freeze
 
+      # Local (enterprise) vulnerability DB dumps, read instead of the API when local_db is set.
+      # Downloaded to DB_DIR by DB::Updater when --enterprise-db-token is supplied.
+      ENTERPRISE_DB_FILES = {
+        plugins: 'plugins.json.gz',
+        themes: 'themes.json.gz',
+        wordpresses: 'wordpresses.json.gz'
+      }.freeze
+
       class << self
-        attr_accessor :token
+        # local_db switches vuln lookups from the API to the local dumps above
+        attr_accessor :token, :local_db
       end
 
       # @return [ Addressable::URI ]
       def self.uri
         @uri ||= Addressable::URI.parse('https://wpscan.com/api/v4/')
+      end
+
+      # @param [ String ] filename The gzipped JSON dump located in DB_DIR
+      #
+      # @return [ Hash ] The parsed content of the dump
+      def self.load_db(filename)
+        JSON.parse(Zlib::GzipReader.open(DB_DIR.join(filename).to_s, &:read))
+      end
+
+      # @return [ Hash ]
+      def self.plugins_db
+        @plugins_db ||= load_db(ENTERPRISE_DB_FILES[:plugins])
+      end
+
+      # @return [ Hash ]
+      def self.themes_db
+        @themes_db ||= load_db(ENTERPRISE_DB_FILES[:themes])
+      end
+
+      # @return [ Hash ]
+      def self.wordpresses_db
+        @wordpresses_db ||= load_db(ENTERPRISE_DB_FILES[:wordpresses])
       end
 
       # @param [ String ] path
@@ -52,21 +85,30 @@ module WPScan
 
       # @return [ Hash ]
       def self.plugin_data(slug)
+        return plugins_db&.dig(slug) || {} if local_db
+
         get("plugins/#{slug}")&.dig(slug) || {}
       end
 
       # @return [ Hash ]
       def self.theme_data(slug)
+        return themes_db&.dig(slug) || {} if local_db
+
         get("themes/#{slug}")&.dig(slug) || {}
       end
 
       # @return [ Hash ]
       def self.wordpress_data(version_number)
+        # The dump is keyed by the dotted version; only the API URL strips the dots.
+        return wordpresses_db&.dig(version_number) || {} if local_db
+
         get("wordpresses/#{version_number.tr('.', '')}")&.dig(version_number) || {}
       end
 
       # @return [ Hash ]
       def self.status
+        return { 'plan' => 'enterprise', 'requests_remaining' => 'Unlimited', 'success' => true } if local_db
+
         json = get('status', params: { version: WPScan::VERSION }, cache_ttl: 0)
 
         json['requests_remaining'] = 'Unlimited' if json['requests_remaining'] == -1

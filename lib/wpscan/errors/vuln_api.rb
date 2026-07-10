@@ -40,5 +40,29 @@ module WPScan
           'Please check https://status.wpscan.com/ for service status.'
       end
     end
+
+    # Error raised when both --api-token and --enterprise-db-token are supplied
+    class ConflictingApiTokens < Standard
+      def to_s
+        '--api-token and --enterprise-db-token are mutually exclusive, please provide only one ' \
+          '(this also applies to the WPSCAN_API_TOKEN and WPSCAN_ENTERPRISE_DB_TOKEN environment variables).'
+      end
+    end
+
+    # Error raised when --enterprise-db-token is set but a local DB dump is missing
+    class MissingEnterpriseDatabaseFile < Standard
+      attr_reader :files
+
+      def initialize(files = [])
+        @files = Array(files)
+        super()
+      end
+
+      def to_s
+        "Missing enterprise database dump(s): #{files.join(', ')}. " \
+          'Run without --no-update so they can be downloaded from enterprise-data.wpscan.org, ' \
+          'and check that your --enterprise-db-token is valid.'
+      end
+    end
   end
 end

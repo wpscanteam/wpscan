@@ -6,17 +6,26 @@ describe WPScan::Controller::VulnApi do
   let(:cli_args)       { "--url #{target_url}" }
 
   around do |example|
-    original_api_token = ENV.fetch(described_class::ENV_KEY, nil)
+    original_api_token        = ENV.fetch(described_class::ENV_KEY, nil)
+    original_enterprise_token = ENV.fetch(described_class::ENTERPRISE_ENV_KEY, nil)
 
     ENV.delete(described_class::ENV_KEY)
+    ENV.delete(described_class::ENTERPRISE_ENV_KEY)
     example.run
   ensure
     original_api_token ? ENV[described_class::ENV_KEY] = original_api_token : ENV.delete(described_class::ENV_KEY)
+    if original_enterprise_token
+      ENV[described_class::ENTERPRISE_ENV_KEY] = original_enterprise_token
+    else
+      ENV.delete(described_class::ENTERPRISE_ENV_KEY)
+    end
   end
 
   before do
     WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
     WPScan::DB::VulnApi.instance_variable_set(:@default_request_params, nil)
+    WPScan::DB::VulnApi.token = nil
+    WPScan::DB::VulnApi.local_db = nil
   end
 
   describe '#cli_options' do
@@ -24,7 +33,7 @@ describe WPScan::Controller::VulnApi do
     its(:cli_options) { should be_a Array }
 
     it 'contains the correct options' do
-      expect(controller.cli_options.map(&:to_sym)).to eq %i[api_token proxy_target_only]
+      expect(controller.cli_options.map(&:to_sym)).to eq %i[api_token enterprise_db_token proxy_target_only]
     end
   end
 
@@ -121,6 +130,47 @@ describe WPScan::Controller::VulnApi do
         expect { controller.before_scan }.to_not raise_error
 
         expect(WPScan::DB::VulnApi.token).to eql 'token-from-env'
+      end
+    end
+
+    context 'when --enterprise-db-token given' do
+      let(:cli_args) { "#{super()} --enterprise-db-token ent-token" }
+
+      context 'when the local DB dumps are present' do
+        before { allow(File).to receive(:exist?).and_return(true) }
+
+        it 'enables local DB mode without querying the API' do
+          expect(WPScan::DB::VulnApi).to_not receive(:status)
+
+          expect { controller.before_scan }.to_not raise_error
+
+          expect(WPScan::DB::VulnApi.local_db).to be true
+          expect(WPScan::DB::VulnApi.token).to be nil
+        end
+      end
+
+      context 'when a local DB dump is missing' do
+        before { allow(File).to receive(:exist?).and_return(false) }
+
+        it 'raises a MissingEnterpriseDatabaseFile error' do
+          expect { controller.before_scan }.to raise_error(WPScan::Error::MissingEnterpriseDatabaseFile)
+        end
+      end
+
+      context 'when --api-token is also given' do
+        let(:cli_args) { "#{super()} --api-token token" }
+
+        it 'raises a ConflictingApiTokens error' do
+          expect { controller.before_scan }.to raise_error(WPScan::Error::ConflictingApiTokens)
+        end
+      end
+
+      context 'when WPSCAN_API_TOKEN is also set in the ENV' do
+        before { ENV[described_class::ENV_KEY] = 'token-from-env' }
+
+        it 'raises a ConflictingApiTokens error' do
+          expect { controller.before_scan }.to raise_error(WPScan::Error::ConflictingApiTokens)
+        end
       end
     end
   end

@@ -13,6 +13,9 @@ describe WPScan::DB::VulnApi do
   before do
     # Reset the default_request_params
     api.instance_variable_set(:@default_request_params, nil)
+    # Reset the enterprise local-DB state
+    api.local_db = nil
+    %i[@plugins_db @themes_db @wordpresses_db].each { |ivar| api.instance_variable_set(ivar, nil) }
   end
 
   describe '#uri' do
@@ -416,6 +419,71 @@ describe WPScan::DB::VulnApi do
 
       it 'still produces valid params without a proxy' do
         expect(api.default_request_params).to_not have_key(:proxy)
+      end
+    end
+  end
+
+  describe 'local DB (enterprise) mode' do
+    describe '#load_db' do
+      it 'parses a gzipped JSON dump from DB_DIR' do
+        Dir.mktmpdir do |dir|
+          path = File.join(dir, 'plugins.json.gz')
+          Zlib::GzipWriter.open(path) { |gz| gz.write({ 'akismet' => { 'vulnerabilities' => [] } }.to_json) }
+
+          stub_const('WPScan::DB_DIR', Pathname.new(dir))
+
+          expect(api.load_db('plugins.json.gz')).to eq('akismet' => { 'vulnerabilities' => [] })
+        end
+      end
+    end
+
+    context 'when local_db is enabled' do
+      before { api.local_db = true }
+
+      describe '#plugin_data' do
+        before { allow(api).to receive(:plugins_db).and_return('akismet' => { 'p' => 'aa' }) }
+
+        it 'reads from the local dump without querying the API' do
+          expect(Typhoeus).to_not receive(:get)
+
+          expect(api.plugin_data('akismet')).to eq('p' => 'aa')
+        end
+
+        it 'returns an empty hash for an unknown slug' do
+          expect(api.plugin_data('unknown')).to eq({})
+        end
+      end
+
+      describe '#theme_data' do
+        before { allow(api).to receive(:themes_db).and_return('twentyten' => { 't' => 'aa' }) }
+
+        it 'reads from the local dump' do
+          expect(api.theme_data('twentyten')).to eq('t' => 'aa')
+        end
+
+        it 'returns an empty hash for an unknown slug' do
+          expect(api.theme_data('unknown')).to eq({})
+        end
+      end
+
+      describe '#wordpress_data' do
+        before { allow(api).to receive(:wordpresses_db).and_return('6.1.1' => { 'w' => 'aa' }) }
+
+        it 'reads from the local dump keyed by the dotted version' do
+          expect(api.wordpress_data('6.1.1')).to eq('w' => 'aa')
+        end
+
+        it 'returns an empty hash for an unknown version' do
+          expect(api.wordpress_data('1.2.3')).to eq({})
+        end
+      end
+
+      describe '#status' do
+        it 'returns a hardcoded enterprise/unlimited status' do
+          expect(api.status).to eq(
+            'plan' => 'enterprise', 'requests_remaining' => 'Unlimited', 'success' => true
+          )
+        end
       end
     end
   end

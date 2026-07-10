@@ -4,13 +4,22 @@ module WPScan
   module Controller
     # Controller to handle the API token
     class VulnApi < WPScan::Controller::Base
-      ENV_KEY = 'WPSCAN_API_TOKEN'
+      ENV_KEY            = 'WPSCAN_API_TOKEN'
+      ENTERPRISE_ENV_KEY = 'WPSCAN_ENTERPRISE_DB_TOKEN'
 
       def cli_options
         [
           OptString.new(
             ['--api-token TOKEN',
              'The WPScan API Token to display vulnerability data, available at https://wpscan.com/profile']
+          ),
+          OptString.new(
+            ['--enterprise-db-token TOKEN',
+             'Use a local enterprise vulnerability database dump instead of the WPScan API. The ' \
+             'plugins/themes/wordpresses dumps are downloaded from enterprise-data.wpscan.org using ' \
+             'this token during the database update, then read locally (no per-request API calls or ' \
+             "limits). Mutually exclusive with --api-token. Can also be set via the #{ENTERPRISE_ENV_KEY} " \
+             'environment variable.']
           ),
           OptBoolean.new(
             ['--proxy-target-only',
@@ -22,7 +31,11 @@ module WPScan
       end
 
       def before_scan
-        return unless ParsedCli.api_token || ENV.key?(ENV_KEY)
+        raise Error::ConflictingApiTokens if enterprise_db_token && api_token_present?
+
+        return setup_enterprise_db if enterprise_db_token
+
+        return unless api_token_present?
 
         DB::VulnApi.token = ParsedCli.api_token || ENV.fetch(ENV_KEY, nil)
 
@@ -35,6 +48,28 @@ module WPScan
 
       def after_scan
         output('status', status: DB::VulnApi.status, api_requests: WPScan.api_requests)
+      end
+
+      private
+
+      # @return [ String, nil ] The enterprise DB token (CLI or ENV). Must match DB::Updater's resolution.
+      def enterprise_db_token
+        ParsedCli.enterprise_db_token || ENV.fetch(ENTERPRISE_ENV_KEY, nil)
+      end
+
+      # @return [ Boolean ] Whether an API token was supplied via --api-token or the ENV var
+      def api_token_present?
+        !ParsedCli.api_token.nil? || ENV.key?(ENV_KEY)
+      end
+
+      # Switches DB::VulnApi to local-dump mode and ensures the dumps are present. Core's DB
+      # update normally downloads them before this controller runs (VulnApi is chained after Core).
+      def setup_enterprise_db
+        DB::VulnApi.local_db = true
+
+        missing = DB::VulnApi::ENTERPRISE_DB_FILES.values.reject { |file| File.exist?(DB_DIR.join(file)) }
+
+        raise Error::MissingEnterpriseDatabaseFile, missing unless missing.empty?
       end
     end
   end
