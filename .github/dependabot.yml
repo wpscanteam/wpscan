@@ -9,9 +9,22 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    # Wait 7 days after a release before opening an update PR
+    cooldown:
+      default-days: 7
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       # Check for updates to GitHub Actions every weekday
       interval: "daily"
+    # Wait 7 days after a release before opening an update PR
+    cooldown:
+      default-days: 7
+    # Only open PRs for new major versions to cut the noise from the
+    # frequent minor/patch bumps
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - "version-update:semver-minor"
+          - "version-update:semver-patch"
