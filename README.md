@@ -209,7 +209,7 @@ The API Token will be automatically loaded from the ENV variable `WPSCAN_API_TOK
 
 ## Enterprise Local Database (opt-in)
 
-Enterprise customers can scan using a **local vulnerability database dump** instead of the online API, which removes per-request API calls and daily request limits. Supply the enterprise token via the `--enterprise-db-token TOKEN` option:
+Enterprise customers can scan using a **local vulnerability database dump** instead of the online API, if they prefer to do so for privacy. Supply the enterprise token via the `--enterprise-db-token TOKEN` option:
 
 ```bash
 wpscan --url https://example.com --enterprise-db-token YOUR_ENTERPRISE_DB_TOKEN
@@ -218,7 +218,7 @@ wpscan --url https://example.com --enterprise-db-token YOUR_ENTERPRISE_DB_TOKEN
 When this option is used:
 
 - During the normal database update, WPScan additionally downloads `plugins.json.gz`, `themes.json.gz` and `wordpresses.json.gz` from `enterprise-data.wpscan.org` (authenticated with the token). As with the rest of the database, these are only re-downloaded when they change.
-- Plugin, theme and WordPress vulnerability data is then read from those local dumps — no requests are made to the WPScan API.
+- Plugin, theme and WordPress vulnerability data is then read from those local dumps; no requests are made to the WPScan API.
 
 The token can also be provided via the `WPSCAN_ENTERPRISE_DB_TOKEN` environment variable, or the `enterprise_db_token` key in a configuration file (see [Load CLI options from file/s](#load-cli-options-from-files)):
 
