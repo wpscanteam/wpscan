@@ -17,9 +17,9 @@ module WPScan
             ['--enterprise-db-token TOKEN',
              'Use a local enterprise vulnerability database dump instead of the WPScan API. The ' \
              'plugins/themes/wordpresses dumps are downloaded from enterprise-data.wpscan.org using ' \
-             'this token during the database update, then read locally (no per-request API calls or ' \
-             "limits). Mutually exclusive with --api-token. Can also be set via the #{ENTERPRISE_ENV_KEY} " \
-             'environment variable.']
+             'this token during the database update, then read locally (no per-finding API calls). Mutually ' \
+             "exclusive with --api-token. Can also be set via the #{ENTERPRISE_ENV_KEY} environment variable."],
+            { advanced: true }
           ),
           OptBoolean.new(
             ['--proxy-target-only',
@@ -31,13 +31,13 @@ module WPScan
       end
 
       def before_scan
-        raise Error::ConflictingApiTokens if enterprise_db_token && api_token_present?
+        raise Error::ConflictingApiTokens if enterprise_db_token && api_token
 
         return setup_enterprise_db if enterprise_db_token
 
-        return unless api_token_present?
+        return unless api_token
 
-        DB::VulnApi.token = ParsedCli.api_token || ENV.fetch(ENV_KEY, nil)
+        DB::VulnApi.token = api_token
 
         api_status = DB::VulnApi.status
 
@@ -57,9 +57,9 @@ module WPScan
         ParsedCli.enterprise_db_token || ENV.fetch(ENTERPRISE_ENV_KEY, nil)
       end
 
-      # @return [ Boolean ] Whether an API token was supplied via --api-token or the ENV var
-      def api_token_present?
-        !ParsedCli.api_token.nil? || ENV.key?(ENV_KEY)
+      # @return [ String, nil ] The API token (CLI or ENV var)
+      def api_token
+        ParsedCli.api_token || ENV.fetch(ENV_KEY, nil)
       end
 
       # Switches DB::VulnApi to local-dump mode and ensures the dumps are present. Core's DB
