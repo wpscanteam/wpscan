@@ -39,7 +39,7 @@ module WPScan
 
         @vulnerabilities = []
 
-        Array(db_data['vulnerabilities']).each do |json_vuln|
+        Vulnerability.sort_json(db_data['vulnerabilities']).each do |json_vuln|
           vulnerability = Vulnerability.load_from_json(json_vuln)
           vulnerability.detected_version = version || nil
           @vulnerabilities << vulnerability if vulnerable_to?(vulnerability)
