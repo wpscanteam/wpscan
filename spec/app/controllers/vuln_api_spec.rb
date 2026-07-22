@@ -5,21 +5,7 @@ describe WPScan::Controller::VulnApi do
   let(:target_url)     { 'http://ex.lo/' }
   let(:cli_args)       { "--url #{target_url}" }
 
-  around do |example|
-    original_api_token        = ENV.fetch(described_class::ENV_KEY, nil)
-    original_enterprise_token = ENV.fetch(described_class::ENTERPRISE_ENV_KEY, nil)
-
-    ENV.delete(described_class::ENV_KEY)
-    ENV.delete(described_class::ENTERPRISE_ENV_KEY)
-    example.run
-  ensure
-    original_api_token ? ENV[described_class::ENV_KEY] = original_api_token : ENV.delete(described_class::ENV_KEY)
-    if original_enterprise_token
-      ENV[described_class::ENTERPRISE_ENV_KEY] = original_enterprise_token
-    else
-      ENV.delete(described_class::ENTERPRISE_ENV_KEY)
-    end
-  end
+  include_context 'with cleared API token ENV'
 
   before do
     WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
@@ -34,6 +20,49 @@ describe WPScan::Controller::VulnApi do
 
     it 'contains the correct options' do
       expect(controller.cli_options.map(&:to_sym)).to eq %i[api_token enterprise_db_token proxy_target_only]
+    end
+  end
+
+  describe '.validate_api_tokens!' do
+    context 'when no token is supplied' do
+      it 'does not raise an error' do
+        expect { described_class.validate_api_tokens! }.to_not raise_error
+      end
+    end
+
+    context 'when only --api-token is supplied' do
+      let(:cli_args) { "#{super()} --api-token token" }
+
+      it 'does not raise an error' do
+        expect { described_class.validate_api_tokens! }.to_not raise_error
+      end
+    end
+
+    context 'when only --enterprise-db-token is supplied' do
+      let(:cli_args) { "#{super()} --enterprise-db-token ent-token" }
+
+      it 'does not raise an error' do
+        expect { described_class.validate_api_tokens! }.to_not raise_error
+      end
+    end
+
+    context 'when both tokens are supplied via the CLI' do
+      let(:cli_args) { "#{super()} --api-token token --enterprise-db-token ent-token" }
+
+      it 'raises a ConflictingApiTokens error' do
+        expect { described_class.validate_api_tokens! }.to raise_error(WPScan::Error::ConflictingApiTokens)
+      end
+    end
+
+    context 'when both tokens are supplied via the ENV' do
+      before do
+        ENV[described_class::ENV_KEY]            = 'token-from-env'
+        ENV[described_class::ENTERPRISE_ENV_KEY] = 'ent-token-from-env'
+      end
+
+      it 'raises a ConflictingApiTokens error' do
+        expect { described_class.validate_api_tokens! }.to raise_error(WPScan::Error::ConflictingApiTokens)
+      end
     end
   end
 

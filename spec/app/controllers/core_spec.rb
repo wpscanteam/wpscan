@@ -5,6 +5,8 @@ describe WPScan::Controller::Core do
   let(:target_url)     { 'http://ex.lo/' }
   let(:cli_args)       { "--url #{target_url}" }
 
+  include_context 'with cleared API token ENV'
+
   before do
     described_class.reset
     WPScan::ParsedCli.options = rspec_parsed_options(cli_args)
@@ -341,6 +343,58 @@ describe WPScan::Controller::Core do
             expect { core.before_scan }.to_not raise_error
           end
         end
+      end
+    end
+  end
+
+  describe '#before_scan, when conflicting API tokens are supplied' do
+    let(:cli_args) { "--url #{target_url} --api-token token --enterprise-db-token ent-token" }
+
+    before do
+      expect(core.formatter).to receive(:output).with('banner', hash_including(verbose: nil), 'core')
+    end
+
+    it 'raises a ConflictingApiTokens error before the DB update' do
+      expect(core).to_not receive(:update_db_required?)
+      expect(core).to_not receive(:update_db)
+
+      expect { core.before_scan }.to raise_error(WPScan::Error::ConflictingApiTokens)
+    end
+
+    context 'when --update without --url (DB update only run)' do
+      let(:cli_args) { '--update --api-token token --enterprise-db-token ent-token' }
+
+      it 'raises a ConflictingApiTokens error instead of updating the DB' do
+        expect(core).to_not receive(:update_db)
+
+        expect { core.before_scan }.to raise_error(WPScan::Error::ConflictingApiTokens)
+      end
+    end
+
+    context 'when the tokens come from the ENV' do
+      let(:cli_args) { "--url #{target_url}" }
+
+      before do
+        ENV[WPScan::Controller::VulnApi::ENV_KEY]            = 'token-from-env'
+        ENV[WPScan::Controller::VulnApi::ENTERPRISE_ENV_KEY] = 'ent-token-from-env'
+      end
+
+      it 'raises a ConflictingApiTokens error before the DB update' do
+        expect(core).to_not receive(:update_db_required?)
+
+        expect { core.before_scan }.to raise_error(WPScan::Error::ConflictingApiTokens)
+      end
+    end
+
+    context 'when --help is also supplied' do
+      let(:cli_args) { "--help --url #{target_url} --api-token token --enterprise-db-token ent-token" }
+
+      before { allow(core).to receive(:option_parser).and_return(OptParseValidator::OptParser.new) }
+
+      it 'outputs the help and exits before the tokens validation' do
+        expect(core.formatter).to receive(:output).with('help', hash_including(simple: true), 'core')
+
+        expect { core.before_scan }.to raise_error(SystemExit)
       end
     end
   end
