@@ -11,9 +11,9 @@ if ENV['GITHUB_ACTION']
   SimpleCov.formatter = SimpleCov::Formatter::LcovFormatter
 end
 
-SimpleCov.start do
+SimpleCov.configure do
   enable_coverage :branch # Only supported for Ruby >= 2.5
 
-  add_filter '/spec/'
-  add_filter 'helper'
+  skip '/spec/'
+  skip 'helper'
 end

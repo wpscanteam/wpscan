@@ -96,7 +96,7 @@ module WPScan
 
     # Hook to be able to have an exit code returned
     # depending on the findings / errors
-    # :nocov:
+    # simplecov:disable
     def exit_hook
       # Avoid registering this hook when the RSpec suite is running, otherwise it
       # can override RSpec's exit status and hide failed builds.
@@ -110,7 +110,7 @@ module WPScan
         exit(WPScan::ExitCode::OK)
       end
     end
-    # :nocov:
+    # simplecov:enable
 
     def rspec_running?
       defined?(RSpec)

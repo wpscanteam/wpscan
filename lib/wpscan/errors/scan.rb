@@ -4,11 +4,11 @@ module WPScan
   module Error
     # Used instead of the Timeout::Error
     class MaxScanDurationReached < Standard
-      # :nocov:
+      # simplecov:disable
       def to_s
         'Max Scan Duration Reached'
       end
-      # :nocov:
+      # simplecov:enable
     end
   end
 end

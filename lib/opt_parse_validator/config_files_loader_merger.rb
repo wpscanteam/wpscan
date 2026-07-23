@@ -4,7 +4,7 @@ require_relative 'config_files_loader_merger/base'
 require_relative 'config_files_loader_merger/json'
 require_relative 'config_files_loader_merger/yml'
 
-# :nocov:
+# simplecov:disable
 # @param [ String ] path The path of the file to load
 def yaml_safe_load(path)
   if Gem::Version.new(Psych::VERSION) >= Gem::Version.new('3.1.0.pre1') # Ruby 2.6
@@ -13,7 +13,7 @@ def yaml_safe_load(path)
     YAML.safe_load_file(path, [Regexp]) || {}
   end
 end
-# :nocov:
+# simplecov:enable
 
 module OptParseValidator
   # Options Files container

@@ -61,20 +61,20 @@ module WPScan
 
     # HTTP Authentication Required Error
     class HTTPAuthRequired < Standard
-      # :nocov:
+      # simplecov:disable
       def to_s
         'HTTP authentication required (or was invalid), please provide it with --http-auth'
       end
-      # :nocov:
+      # simplecov:enable
     end
 
     # Proxy Authentication Required Error
     class ProxyAuthRequired < Standard
-      # :nocov:
+      # simplecov:disable
       def to_s
         'Proxy authentication required (or was invalid), please provide it with --proxy-auth'
       end
-      # :nocov:
+      # simplecov:enable
     end
 
     # Access Forbidden Error

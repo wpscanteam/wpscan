@@ -45,11 +45,11 @@ module WPScan
     # @return [ Typhoeus::Response ]
     #
     # As webmock does not support redirects mocking, coverage is ignored
-    # :nocov:
+    # simplecov:disable
     def homepage_res
       @homepage_res ||= WPScan::Browser.get_and_follow_location(url)
     end
-    # :nocov:
+    # simplecov:enable
 
     # @return [ String ]
     def homepage_url
@@ -108,7 +108,7 @@ module WPScan
     # @return [ String ] The redirection url or nil
     #
     # As webmock does not support redirects mocking, coverage is ignored
-    # :nocov:
+    # simplecov:disable
     def redirection(url = nil)
       url ||= @uri.to_s
 
@@ -118,7 +118,7 @@ module WPScan
 
       res.effective_url == url ? nil : res.effective_url
     end
-    # :nocov:
+    # simplecov:enable
 
     # @return [ Hash ] The Typhoeus params to use to perform head requests
     def head_or_get_params
