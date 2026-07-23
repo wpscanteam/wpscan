@@ -144,6 +144,8 @@ The WPScan CLI tool uses the [WordPress Vulnerability Database API](https://wpsc
 
 Up to **25** API requests per day are given free of charge, that should be suitable to scan most WordPress websites at least once per day. When the daily 25 API requests are exhausted, WPScan will continue to work as normal but without any vulnerability data.
 
+Enterprise customers can alternatively scan against a local database dump with no request limits — see [Enterprise Local Database (opt-in)](#enterprise-local-database-opt-in).
+
 ### How many API requests do you need?
 
 - Our WordPress scanner makes one API request for the WordPress version, one request per installed plugin, and one request per the installed theme.
@@ -204,6 +206,28 @@ cli_options:
 ## Load API Token From ENV (since v3.7.10)
 
 The API Token will be automatically loaded from the ENV variable `WPSCAN_API_TOKEN` if present. If the `--api-token` CLI option is also provided, the value from the CLI will be used.
+
+## Enterprise Local Database (opt-in)
+
+Enterprise customers can scan using a **local vulnerability database dump** instead of the online API, if they prefer to do so for privacy. Supply the enterprise token via the `--enterprise-db-token TOKEN` option:
+
+```bash
+wpscan --url https://example.com --enterprise-db-token YOUR_ENTERPRISE_DB_TOKEN
+```
+
+When this option is used:
+
+- During the normal database update, WPScan additionally downloads `plugins.json.gz`, `themes.json.gz` and `wordpresses.json.gz` from `enterprise-data.wpscan.org` (authenticated with the token). As with the rest of the database, these are only re-downloaded when they change.
+- Plugin, theme and WordPress vulnerability data is then read from those local dumps; no requests are made to the WPScan API.
+
+The token can also be provided via the `WPSCAN_ENTERPRISE_DB_TOKEN` environment variable, or the `enterprise_db_token` key in a configuration file (see [Load CLI options from file/s](#load-cli-options-from-files)):
+
+```yml
+cli_options:
+  enterprise_db_token: 'YOUR_ENTERPRISE_DB_TOKEN'
+```
+
+`--enterprise-db-token` and `--api-token` are mutually exclusive; supplying both (including via their respective environment variables) results in an error.
 
 ## API Service Status
 

@@ -17,6 +17,13 @@ module WPScan
         wordpresses.json plugins.json themes.json
       ].freeze
 
+      # Enterprise vulnerability DB dumps, downloaded (in addition to FILES) only when an
+      # --enterprise-db-token is supplied, from ENTERPRISE_HOST using the X-DB-JSON-AUTH header.
+      ENTERPRISE_FILES = %w[wordpresses.json.gz plugins.json.gz themes.json.gz].freeze
+
+      ENTERPRISE_HOST = 'enterprise-data.wpscan.org'
+      DEFAULT_HOST    = 'data.wpscan.org'
+
       attr_reader :repo_directory
 
       def initialize(repo_directory)
@@ -43,6 +50,24 @@ module WPScan
         end
       end
 
+      # @return [ String, nil ] The enterprise DB token. Resolved exactly like Controller::VulnApi
+      #                         does; the two must stay in sync or the dumps won't be downloaded.
+      def enterprise_db_token
+        ParsedCli.enterprise_db_token || ENV.fetch('WPSCAN_ENTERPRISE_DB_TOKEN', nil)
+      end
+
+      # @return [ Array<String> ] The files to keep in sync (plus the enterprise dumps when a token is set)
+      def files
+        return FILES + ENTERPRISE_FILES if enterprise_db_token
+
+        FILES
+      end
+
+      # @return [ Boolean ] Whether the file is an enterprise dump (fetched from ENTERPRISE_HOST with auth)
+      def enterprise_file?(filename)
+        !enterprise_db_token.nil? && ENTERPRISE_FILES.include?(filename)
+      end
+
       # @return [ Time, nil ]
       def last_update
         Time.parse(File.read(last_update_file))
@@ -64,7 +89,7 @@ module WPScan
 
       # @return [ Boolean ]
       def missing_files?
-        FILES.each do |file|
+        files.each do |file|
           return true unless File.exist?(repo_directory.join(file))
         end
         false
@@ -72,35 +97,44 @@ module WPScan
 
       # @return [ Hash ] The params for Typhoeus::Request
       # @note Those params can't be overriden by CLI options
-      def request_params
-        @request_params ||= begin
-          params = Browser.instance.default_request_params.merge(
-            timeout: 600,
-            connecttimeout: 300,
-            accept_encoding: 'gzip, deflate',
-            cache_ttl: 0,
-            headers: { 'User-Agent' => Browser.instance.default_user_agent }
-          )
+      def request_params(filename = nil)
+        params = Browser.instance.default_request_params.merge(
+          timeout: 600,
+          connecttimeout: 300,
+          accept_encoding: 'gzip, deflate',
+          cache_ttl: 0,
+          headers: { 'User-Agent' => Browser.instance.default_user_agent }
+        )
 
-          if ParsedCli.proxy_target_only
-            params.delete(:proxy)
-            params.delete(:proxyuserpwd)
-          end
-
-          params
+        if enterprise_file?(filename)
+          params[:headers]['X-DB-JSON-AUTH'] = enterprise_db_token
+          # The dumps are pre-gzipped static objects. If we advertise Accept-Encoding: gzip and the
+          # host responds with Content-Encoding: gzip, libcurl transparently decompresses at the
+          # transfer layer, so res.body would be plain JSON written into a *.json.gz file, breaking
+          # both Zlib::GzipReader and the SHA512 checksum (computed over the raw .gz).
+          params.delete(:accept_encoding)
         end
+
+        if ParsedCli.proxy_target_only
+          params.delete(:proxy)
+          params.delete(:proxyuserpwd)
+        end
+
+        params
       end
 
       # @return [ String ] The raw file URL associated with the given filename
       def remote_file_url(filename)
-        "https://data.wpscan.org/#{filename}"
+        host = enterprise_file?(filename) ? ENTERPRISE_HOST : DEFAULT_HOST
+
+        "https://#{host}/#{filename}"
       end
 
       # @return [ String ] The checksum of the associated remote filename
       def remote_file_checksum(filename)
         url = "#{remote_file_url(filename)}.sha512"
 
-        res = Typhoeus.get(url, request_params)
+        res = Typhoeus.get(url, request_params(filename))
         raise Error::Download, res if res.timed_out? || res.code != 200
 
         res.body.chomp
@@ -142,7 +176,7 @@ module WPScan
         file_path = local_file_path(filename)
         file_url  = remote_file_url(filename)
 
-        res = Typhoeus.get(file_url, request_params)
+        res = Typhoeus.get(file_url, request_params(filename))
         raise Error::Download, res if res.timed_out? || res.code != 200
 
         File.binwrite(file_path, res.body)
@@ -154,7 +188,7 @@ module WPScan
       def update
         updated = []
 
-        FILES.each do |filename|
+        files.each do |filename|
           db_checksum = remote_file_checksum(filename)
 
           # Checking if the file needs to be updated

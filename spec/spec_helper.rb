@@ -5,6 +5,7 @@ $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 require 'simplecov' # More config is defined in ./.simplecov
 require 'rspec/its'
 require 'webmock/rspec'
+require 'tmpdir'
 
 # See http://betterspecs.org/
 RSpec.configure do |config|
@@ -14,6 +15,16 @@ RSpec.configure do |config|
 
   # For --only-failures / --next-failure
   config.example_status_persistence_file_path = File.join(ENV['TMPDIR'] || '/tmp', 'rspec_examples.txt')
+
+  # Prevent the VulnApi global state (token, enterprise local-DB mode and its memoized dumps)
+  # from leaking between examples/files. Examples that need a token set it in their own before.
+  config.before do
+    WPScan::DB::VulnApi.token = nil
+    WPScan::DB::VulnApi.local_db = nil
+    %i[@plugins_db @themes_db @wordpresses_db].each do |ivar|
+      WPScan::DB::VulnApi.instance_variable_set(ivar, nil)
+    end
+  end
 end
 
 def redefine_constant(constant, value)

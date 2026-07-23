@@ -27,6 +27,7 @@ module WPScan
       # not secrets themselves, just references to files
       sensitive_args = %w[
         --api-token
+        --enterprise-db-token
         --http-auth
         --proxy-auth
         --cookie-string

@@ -14,8 +14,10 @@ module WPScan
         # requirement for `vp`/`vt` is irrelevant in that case.
         return if ParsedCli.wp_auth
 
-        # Check if vulnerable plugin/theme enumeration is requested without an API token
-        return unless (enum[:vulnerable_plugins] || enum[:vulnerable_themes]) && DB::VulnApi.token.nil?
+        # Check if vulnerable plugin/theme enumeration is requested without an API token.
+        # The local enterprise DB dump (--enterprise-db-token) provides the same data without a token.
+        return unless (enum[:vulnerable_plugins] || enum[:vulnerable_themes]) &&
+                      DB::VulnApi.token.nil? && !DB::VulnApi.local_db
 
         raise Error::ApiTokenRequiredForVulnerableEnumeration
       end

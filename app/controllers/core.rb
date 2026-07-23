@@ -37,6 +37,12 @@ module WPScan
 
         maybe_output_banner_help_and_version
 
+        # Fail fast on conflicting API tokens, before the DB update (which would download the
+        # enterprise DB dumps) and before any request is sent to the target. Done here rather
+        # than only in VulnApi#before_scan (which runs after this controller) so that the
+        # conflict also aborts DB-update-only runs (--update without --url).
+        VulnApi.validate_api_tokens!
+
         update_db if update_db_required?
         setup_cache
         check_target_availability
