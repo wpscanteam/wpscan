@@ -3,7 +3,7 @@
 module WPScan
   module DB
     # Class used to perform DB updates
-    # :nocov:
+    # simplecov:disable
     class Updater
       # /!\ Might want to also update the Enumeration#cli_options when some filenames are changed here
       FILES = %w[
@@ -213,5 +213,5 @@ module WPScan
       end
     end
   end
-  # :nocov:
+  # simplecov:enable
 end

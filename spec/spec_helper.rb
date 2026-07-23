@@ -2,7 +2,8 @@
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 
-require 'simplecov' # More config is defined in ./.simplecov
+require 'simplecov' # Configuration is defined in ./.simplecov
+SimpleCov.start
 require 'rspec/its'
 require 'webmock/rspec'
 require 'tmpdir'
