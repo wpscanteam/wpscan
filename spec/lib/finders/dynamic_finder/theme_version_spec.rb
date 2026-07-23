@@ -16,15 +16,25 @@
 
 expected_all = df_expected_all['themes']
 
+# Almost all of these generated specs are tagged as slow and only run in the full suite
+# on master. To keep the coverage reporting of PRs (which run with --tag ~slow) stable,
+# the first finder of each combination of super class / path / version_key is not tagged,
+# so that every underlying finder code path is executed at least once on PRs.
+# See https://github.com/wpscanteam/wpscan/pull/2070
+not_tagged_as_slow = Set.new
+
 WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, configs|
   WPScan::DB::DynamicFinders::Theme.create_versions_finders(slug)
 
   configs.each do |finder_class, config|
     finder_super_class = config['class'] || finder_class
 
+    combo    = [finder_super_class, config.key?('path'), config.key?('version_key')]
+    metadata = not_tagged_as_slow.add?(combo) ? {} : { slow: true }
+
     # The QueryParameter specs are slow given the huge fixture file
     # If someone find a fix for that, please share!
-    describe df_tested_class_constant('ThemeVersion', finder_class, slug), slow: true do
+    describe df_tested_class_constant('ThemeVersion', finder_class, slug), metadata do
       subject(:finder) { described_class.new(theme) }
       let(:theme)      { WPScan::Model::Theme.new(slug, target) }
       let(:target)     { WPScan::Target.new('http://wp.lab/') }
@@ -45,7 +55,7 @@ WPScan::DB::DynamicFinders::Theme.versions_finders_configs.each do |slug, config
         stub_request(:get, target.url("wp-content/themes/#{slug}/style.css"))
       end
 
-      describe '#passive', slow: true do
+      describe '#passive' do
         before do
           if defined?(stubbed_homepage_res)
             stub_request(:get, target.url).to_return(stubbed_homepage_res)
