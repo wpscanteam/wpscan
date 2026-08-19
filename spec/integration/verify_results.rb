@@ -62,6 +62,31 @@ end
 
 puts
 
+# Verify the scan ran under the API plan we expect, when EXPECTED_PLAN is set.
+# CI scans the same site twice, once on the free plan and once on the enterprise one, so
+# that plan specific API regressions are caught; without this check, pointing both runs at
+# the same token would silently drop the free plan coverage.
+expected_plan = ENV.fetch('EXPECTED_PLAN', '').strip
+
+unless expected_plan.empty?
+  puts 'API Plan:'
+  puts '-' * 80
+
+  detected_plan = results.dig('vuln_api', 'plan')
+
+  if detected_plan.nil?
+    failures << "API plan not reported in the scan output (expected '#{expected_plan}')"
+    puts "✗ Plan: NOT REPORTED (expected '#{expected_plan}')"
+  elsif detected_plan != expected_plan
+    failures << "Expected the '#{expected_plan}' plan, got '#{detected_plan}'"
+    puts "✗ Plan: '#{detected_plan}' (expected '#{expected_plan}')"
+  else
+    puts "✓ Plan: #{detected_plan}"
+  end
+
+  puts
+end
+
 # Verify plugins were detected
 puts 'Plugin Detection & Vulnerability Check:'
 puts '-' * 80

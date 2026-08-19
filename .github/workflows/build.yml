@@ -59,10 +59,22 @@ jobs:
         cd wordpress-test
         bash "${GITHUB_WORKSPACE}/spec/integration/setup_wp_test_env.sh"
 
-    - name: Run WPScan against test site and verify results
+    - name: Run WPScan against test site with the enterprise API token and verify results
       if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
       env:
         WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_API_TOKEN }}
+        EXPECTED_PLAN: enterprise
+      run: bash spec/integration/run_scan.sh
+
+    # Scans the same site again on a free plan token. The free and paid plans take different
+    # paths through the API's access checks, and a regression in the free one went unnoticed
+    # here until users reported it (https://github.com/wpscanteam/wpscan/issues/2079).
+    - name: Run WPScan against test site with a free API token and verify results
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.fork == false
+      env:
+        WPSCAN_API_TOKEN: ${{ secrets.WPSCAN_FREE_API_TOKEN }}
+        EXPECTED_PLAN: free
+        OUTPUT_FILE: free-scan-results.json
       run: bash spec/integration/run_scan.sh
 
     - name: Upload scan results
@@ -70,7 +82,9 @@ jobs:
       uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
       with:
         name: integration-test-results-ruby-${{ matrix.ruby }}
-        path: scan-results.json
+        path: |
+          scan-results.json
+          free-scan-results.json
 
     # Coverage reporting
     - name: Coveralls (parallel)
