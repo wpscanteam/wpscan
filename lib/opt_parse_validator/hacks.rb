@@ -8,12 +8,11 @@ class OptionParser
     class << self
       alias original_candidate candidate
 
-      # rubocop:disable Style/OptionalBooleanParameter
+      # rubocop:disable-next Style/OptionalBooleanParameter
       def candidate(key, icase = false, pat = nil, &)
         # Maybe also do this for -v/--version ?
         key == 'h' ? original_candidate('help', icase, pat, &) : []
       end
-      # rubocop:enable Style/OptionalBooleanParameter
     end
   end
 end

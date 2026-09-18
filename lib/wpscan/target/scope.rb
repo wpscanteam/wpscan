@@ -46,7 +46,7 @@ module WPScan
     #
     # @return [ Regexp ] The pattern related to the target url and in scope domains,
     #                    it also matches escaped /, such as in JSON JS data: http:\/\/t.com\/
-    # rubocop:disable Metrics/AbcSize
+    # rubocop:disable-next Metrics/AbcSize
     def scope_url_pattern
       return @scope_url_pattern if @scope_url_pattern
 
@@ -64,7 +64,6 @@ module WPScan
 
       @scope_url_pattern = %r{https?:\\?/\\?/(?:#{domains.join('|')})\\?/?}i
     end
-    # rubocop:enable Metrics/AbcSize
 
     # Scope Implementation
     class Scope
