@@ -72,9 +72,8 @@ module WPScan
       end
     ensure
       # The rescue prevents unfinished requests from raising, which would stop reverse_each from running.
-      # rubocop:disable Style/RescueModifier
+      # rubocop:disable-next Style/RescueModifier
       WPScan::Browser.instance.hydra.abort rescue nil
-      # rubocop:enable Style/RescueModifier
 
       # Reverse order: app/controllers/core#after_scan finishes the output and must be last.
       # Guarantees stats are output even on error. after_scan runs only if scan was actually running

@@ -10,7 +10,7 @@ module PublicSuffix
 
     # @return [ Boolean ]
     #
-    # rubocop:disable Naming/PredicateMethod
+    # rubocop:disable-next Naming/PredicateMethod
     def match(pattern)
       pattern = PublicSuffix.parse(pattern) unless pattern.is_a?(PublicSuffix::Domain)
 
@@ -19,7 +19,6 @@ module PublicSuffix
 
       matching_pattern?(pattern)
     end
-    # rubocop:enable Naming/PredicateMethod
 
     protected
 
