@@ -11,6 +11,7 @@ module WPScan
       disable_tls_checks
       headers
       http_auth
+      max_response_size
       max_threads
       proxy
       proxy_auth

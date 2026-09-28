@@ -27,6 +27,7 @@ require 'xmlrpc/client'
 # Monkey Patches/Fixes
 require 'wpscan/typhoeus/response' # Adds Response#html and from_vuln_api?
 require 'wpscan/typhoeus/hydra'    # https://github.com/typhoeus/typhoeus/issues/439
+require 'wpscan/typhoeus/response_size_cap' # Adds Request#max_response_size
 require 'wpscan/public_suffix/domain' # Adds Domain#match
 require 'wpscan/numeric' # Adds Numeric#bytes_to_human
 # Custom Libs

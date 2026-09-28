@@ -19,6 +19,20 @@ describe WPScan::Browser do
     it 'returns a Typhoeus::Request' do
       expect(browser.forge_request('http://example.com')).to be_a Typhoeus::Request
     end
+
+    context 'when no max_response_size' do
+      it 'does not cap the response' do
+        expect(browser.forge_request('http://example.com').max_response_size).to eql 0
+      end
+    end
+
+    context 'when max_response_size' do
+      let(:options) { { max_response_size: 16 } }
+
+      it 'caps the response, in bytes' do
+        expect(browser.forge_request('http://example.com').max_response_size).to eql 16 * 1024 * 1024
+      end
+    end
   end
 
   describe '#default_request_params' do

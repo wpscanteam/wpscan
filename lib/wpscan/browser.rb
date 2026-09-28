@@ -37,7 +37,12 @@ module WPScan
     #
     # @return [ Typhoeus::Request ]
     def forge_request(url, params = {})
-      Typhoeus::Request.new(url, request_params(params))
+      request = Typhoeus::Request.new(url, request_params(params))
+      # Detection reads the head of a document rather than its tail, so the cap is well above
+      # anything a finder needs. See WPScan::ResponseSizeCap
+      request.max_response_size = max_response_size.to_i * 1024 * 1024
+
+      request
     end
 
     # @return [ Hash ] The request params used to connect to the target as well as other systems (e.g. API).

@@ -87,7 +87,12 @@ module WPScan
                                  default: 30),
           OptBoolean.new(['--disable-tls-checks',
                           'Disables SSL/TLS certificate verification, and downgrade to TLS1.0+ ' \
-                          '(requires cURL 7.66 for the latter)'])
+                          '(requires cURL 7.66 for the latter)']),
+          OptPositiveInteger.new(['--max-response-size MiB',
+                                  'Stop reading any response once it exceeds this size, in MiB. ' \
+                                  'Guards against memory exhaustion on targets serving very large ' \
+                                  'or endless responses. At most 2047, as a 2 GiB body cannot be parsed.'],
+                                 default: 16, max: 2047, advanced: true)
         ] + cli_browser_proxy_options + cli_browser_cookies_options + cli_browser_cache_options
       end
 
