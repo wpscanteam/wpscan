@@ -87,6 +87,18 @@ describe WPScan::ResponseSizeCap do
       expect(cache.cached_body.bytesize).to be >= max
     end
 
+    it 'does not serve the truncated body to a request with a higher cap' do
+      cache = Class.new do
+        def initialize = @store = {}
+        def get(request) = @store[request.hash]
+        def set(request, response) = @store[request.hash] = response
+      end.new
+
+      run_request(max, cache: cache)
+
+      expect(run_request(body_size * 2, cache: cache).body.bytesize).to eql body_size
+    end
+
     it 'leaves a request which streams its own body alone' do
       streamed = +''
 

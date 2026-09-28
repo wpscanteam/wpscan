@@ -91,8 +91,8 @@ module WPScan
           OptPositiveInteger.new(['--max-response-size MiB',
                                   'Stop reading any response once it exceeds this size, in MiB. ' \
                                   'Guards against memory exhaustion on targets serving very large ' \
-                                  'or endless responses. 0 disables the cap.'],
-                                 default: 16, advanced: true)
+                                  'or endless responses. At most 2047, as a 2 GiB body cannot be parsed.'],
+                                 default: 16, max: 2047, advanced: true)
         ] + cli_browser_proxy_options + cli_browser_cookies_options + cli_browser_cache_options
       end
 

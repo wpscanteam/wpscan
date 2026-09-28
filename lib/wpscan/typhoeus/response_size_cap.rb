@@ -16,6 +16,14 @@ module WPScan
     # Adds the per request cap, in bytes. nil or 0 disables it.
     module Request
       attr_accessor :max_response_size
+
+      # A capped response may be truncated, so it must not be served from the cache to a request
+      # allowing a larger one. Uncapped requests keep the stock key.
+      def cache_key
+        max_size = max_response_size.to_i
+
+        max_size.zero? ? super : "#{super}-max_response_size:#{max_size}"
+      end
     end
 
     # Installs the cap when the easy is built, i.e. after any on_body a caller has added.
@@ -35,5 +43,5 @@ module WPScan
   end
 end
 
-Typhoeus::Request.include(WPScan::ResponseSizeCap::Request)
+Typhoeus::Request.prepend(WPScan::ResponseSizeCap::Request)
 Typhoeus::EasyFactory.prepend(WPScan::ResponseSizeCap::EasyFactory)
