@@ -96,10 +96,15 @@ module WPScan
       def components(data)
         list = []
         list << core_component(data) if data['version']
-        list << theme_component(data['main_theme']) if data['main_theme']
-        (data['themes'] || {}).each_value { |theme| list << theme_component(theme) }
+        list.concat(theme_components(data))
         (data['plugins'] || {}).each { |slug, plugin| list << plugin_component(slug, plugin) }
         list
+      end
+
+      def theme_components(data)
+        themes = [data['main_theme'], *(data['themes'] || {}).values].compact
+        themes.concat(themes.flat_map { |theme| Array(theme['parents']) })
+        themes.map { |theme| theme_component(theme) }.uniq
       end
 
       def core_component(data)
