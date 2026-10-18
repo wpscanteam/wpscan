@@ -48,6 +48,9 @@ describe WPScan::Formatter::Sarif do
 
       expect(doc['version']).to eq '2.1.0'
       expect(doc['runs'].first['tool']['driver']['name']).to eq 'WPScan'
+      invocation = doc['runs'].first['invocations'].first
+      expect(invocation['executionSuccessful']).to be true
+      expect(invocation).not_to have_key('toolExecutionNotifications')
 
       rules = doc['runs'].first['tool']['driver']['rules']
       expect(rules.map { |r| r['id'] }).to include 'CVE-2024-12345'
@@ -99,6 +102,20 @@ describe WPScan::Formatter::Sarif do
         '100'
       ]
       expect(result['locations'].first['physicalLocation']['artifactLocation']['uri']).to eq 'https://target.example/robots.txt'
+    end
+
+    %w[scan_aborted update_aborted].each do |failure_key|
+      it "reports #{failure_key} as an unsuccessful invocation with a diagnostic" do
+        fill_buffer(failure_key => 'Local fixture failure')
+
+        run = JSON.parse(capture_stdout { formatter.beautify })['runs'].first
+        invocation = run['invocations'].first
+
+        expect(invocation['executionSuccessful']).to be false
+        expect(invocation['toolExecutionNotifications']).to include(
+          'level' => 'error', 'message' => { 'text' => 'Local fixture failure' }
+        )
+      end
     end
 
     it 'maps cvss score to level' do
