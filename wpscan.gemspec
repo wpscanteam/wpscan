@@ -42,5 +42,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'simplecov',           '~> 1.3.0'
   s.add_development_dependency 'simplecov-lcov',      '~> 0.9.0'
   s.add_development_dependency 'stackprof',           '~> 0.2.12'
-  s.add_development_dependency 'webmock',             '~> 3.26.2'
+  s.add_development_dependency 'webmock',             '~> 3.34.0'
 end
