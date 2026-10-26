@@ -155,7 +155,7 @@ describe WPScan::Finders::Finder::BreadthFirstDictionaryAttack do
 
         it 'logs to correct message' do
           expect(finder.progress_bar.log).to eql [
-            'Error: No response from remote server. WAF/IPS? ()'
+            'Error: No response from remote server. WAF/IPS? (No error)'
           ]
         end
       end
