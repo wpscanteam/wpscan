@@ -285,7 +285,13 @@ module WPScan
       end
 
       def invocation(data)
-        inv = { 'executionSuccessful' => true }
+        failure = data['scan_aborted'] || data['update_aborted']
+        inv = { 'executionSuccessful' => failure.nil? }
+        if failure
+          inv['toolExecutionNotifications'] = [
+            { 'level' => 'error', 'message' => { 'text' => failure.to_s } }
+          ]
+        end
         inv['commandLine'] = "wpscan #{data['command_line']}" if data['command_line']
         inv['hostname'] = data['hostname'] if data['hostname']
         inv['startTimeUtc'] = to_iso8601(data['start_time']) if data['start_time']
