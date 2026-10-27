@@ -28,3 +28,11 @@ updates:
         update-types:
           - "version-update:semver-minor"
           - "version-update:semver-patch"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    # Wait 7 days after a release before opening an update PR
+    cooldown:
+      default-days: 7
