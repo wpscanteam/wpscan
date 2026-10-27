@@ -104,6 +104,43 @@ describe WPScan::Formatter::Sarif do
       expect(result['locations'].first['physicalLocation']['artifactLocation']['uri']).to eq 'https://target.example/robots.txt'
     end
 
+    [false, true].each do |also_enumerated|
+      it "includes a vulnerable parent theme once (also enumerated: #{also_enumerated})" do
+        parent = {
+          'slug' => 'parent', 'location' => 'https://target.example/wp-content/themes/parent/',
+          'vulnerabilities' => [{ 'title' => 'Parent advisory', 'references' => { 'wpvulndb' => ['parent-id'] } }]
+        }
+        data = { 'main_theme' => { 'slug' => 'child', 'parents' => [parent] } }
+        data['themes'] = { 'parent' => parent } if also_enumerated
+        fill_buffer(data)
+
+        run = JSON.parse(capture_stdout { formatter.beautify })['runs'].first
+
+        expect(run['results'].map { |result| result['ruleId'] }).to eq ['WPVULNDB-parent-id']
+        location = run['results'].first['locations'].first
+        expect(location['logicalLocations'].first['name']).to eq 'parent'
+      end
+    end
+
+    it 'preserves differing findings when a parent theme is also enumerated' do
+      parent = {
+        'slug' => 'parent', 'location' => 'https://target.example/wp-content/themes/parent/',
+        'vulnerabilities' => [{ 'title' => 'Parent advisory', 'references' => { 'wpvulndb' => ['parent-id'] } }]
+      }
+      enumerated = parent.merge(
+        'vulnerabilities' => [{ 'title' => 'Other advisory', 'references' => { 'wpvulndb' => ['other-id'] } }]
+      )
+      fill_buffer(
+        'main_theme' => { 'slug' => 'child', 'parents' => [parent] }, 'themes' => { 'parent' => enumerated }
+      )
+
+      run = JSON.parse(capture_stdout { formatter.beautify })['runs'].first
+
+      expect(run['results'].map { |result| result['ruleId'] }).to contain_exactly(
+        'WPVULNDB-parent-id', 'WPVULNDB-other-id'
+      )
+    end
+
     %w[scan_aborted update_aborted].each do |failure_key|
       it "reports #{failure_key} as an unsuccessful invocation with a diagnostic" do
         fill_buffer(failure_key => 'Local fixture failure')
