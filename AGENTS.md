@@ -183,9 +183,6 @@ When using `wpscan` from source, run it outside the git repo to avoid load path 
 **Database Location:**
 Tests override `DB_DIR` to `spec/fixtures/db/`. Production uses `$XDG_CACHE_HOME/wpscan/db` or `~/.cache/wpscan/db` (new installations) or `~/.wpscan/db` (existing installations).
 
-**Port Normalization:**
-WebMock adapter has custom port normalization for Typhoeus (spec/spec_helper.rb:63-96) to handle default ports.
-
 ## API Integration
 
 **WPScan API:**

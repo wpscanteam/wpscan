@@ -53,7 +53,7 @@ describe WPScan::Finders::Users::WpJsonApi do
             expect(user.id).to eql 1
             expect(user.username).to eql 'admin'
             expect(user.confidence).to eql 100
-            expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/wp/v2/users/?page=1&per_page=100']
+            expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/wp/v2/users/?per_page=100&page=1']
           end
         end
 
@@ -92,14 +92,14 @@ describe WPScan::Finders::Users::WpJsonApi do
         expect(user.id).to eql 1
         expect(user.username).to eql 'admin'
         expect(user.confidence).to eql 100
-        expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/wp/v2/users/?page=1&per_page=100']
+        expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/wp/v2/users/?per_page=100&page=1']
 
         user = users.second
 
         expect(user.id).to eql 20
         expect(user.username).to eql 'user'
         expect(user.confidence).to eql 100
-        expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/wp/v2/users/?page=2&per_page=100']
+        expect(user.interesting_entries).to eql ['http://wp.lab/wp-json/wp/v2/users/?per_page=100&page=2']
       end
     end
   end

@@ -37,10 +37,10 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rake',                '~> 13.0'
   s.add_development_dependency 'rspec',               '~> 3.13.0'
   s.add_development_dependency 'rspec-its',           '~> 2.0.0'
-  s.add_development_dependency 'rubocop',             '~> 1.91.0'
+  s.add_development_dependency 'rubocop',             '~> 1.92.0'
   s.add_development_dependency 'rubocop-performance', '~> 1.26'
   s.add_development_dependency 'simplecov',           '~> 1.3.0'
   s.add_development_dependency 'simplecov-lcov',      '~> 0.9.0'
   s.add_development_dependency 'stackprof',           '~> 0.2.12'
-  s.add_development_dependency 'webmock',             '~> 3.26.2'
+  s.add_development_dependency 'webmock',             '~> 3.34.0'
 end
