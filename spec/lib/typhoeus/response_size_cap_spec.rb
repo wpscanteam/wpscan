@@ -54,9 +54,26 @@ describe WPScan::ResponseSizeCap do
     end
   end
 
+  around do |example|
+    Dir.mktmpdir do |dir|
+      @truncation_log = File.join(dir, 'truncated.txt')
+      example.run
+    ensure
+      ENV.delete('WPSCAN_TRUNCATION_LOG')
+    end
+  end
+
   context 'when the body is under the cap' do
     it 'reads the whole body' do
       expect(run_request(body_size * 2).body.bytesize).to eql body_size
+    end
+
+    it 'does not create the truncation log' do
+      ENV['WPSCAN_TRUNCATION_LOG'] = @truncation_log
+
+      run_request(body_size * 2)
+
+      expect(File.exist?(@truncation_log)).to be false
     end
   end
 
@@ -69,6 +86,14 @@ describe WPScan::ResponseSizeCap do
       expect(response.code).to eql 200
       expect(response.body.bytesize).to be >= max
       expect(response.body.bytesize).to be < body_size
+    end
+
+    it 'appends the URL to the file named by WPSCAN_TRUNCATION_LOG' do
+      ENV['WPSCAN_TRUNCATION_LOG'] = @truncation_log
+
+      2.times { run_request(max) }
+
+      expect(File.read(@truncation_log)).to eql "#{url}\n" * 2
     end
 
     it 'caches the truncated body rather than an empty one' do
