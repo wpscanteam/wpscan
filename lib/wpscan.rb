@@ -143,6 +143,15 @@ module WPScan
       @@start_memory = value
     end
 
+    # URLs of the responses cut short by --max-response-size, see WPScan::ResponseSizeCap
+    def truncated_responses
+      @@truncated_responses ||= []
+    end
+
+    def truncated_responses=(value)
+      @@truncated_responses = value
+    end
+
     def api_requests
       @@api_requests ||= 0
     end

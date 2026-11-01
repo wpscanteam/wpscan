@@ -486,6 +486,21 @@ describe WPScan::Controller::Core do
       end
     end
 
+    context 'when responses were truncated' do
+      before { WPScan.truncated_responses = %w[http://ex.lo/ http://ex.lo/feed/ http://ex.lo/] }
+      after  { WPScan.truncated_responses = [] }
+
+      it 'outputs each truncated URL once' do
+        expect(core.formatter).to receive(:output).with(
+          'finished',
+          hash_including(truncated_responses: %w[http://ex.lo/ http://ex.lo/feed/]),
+          'core'
+        )
+
+        core.after_scan
+      end
+    end
+
     context 'when no concerning errors (404s are excluded)' do
       before do
         WPScan.set_status_code(200, 50)

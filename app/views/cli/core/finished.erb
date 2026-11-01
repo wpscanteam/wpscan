@@ -9,6 +9,14 @@
 <%= warning_icon %> <%= warning %>
 <% end -%>
 <% end -%>
+<% unless Array(@truncated_responses).empty? -%>
+<%= warning_icon %> <%= @truncated_responses.size %> response(s) truncated by --max-response-size, findings based on them may be incomplete<%= @verbose ? ':' : '. Use --verbose to list them' %>
+<% if @verbose -%>
+<% @truncated_responses.each do |url| -%>
+ | <%= url %>
+<% end -%>
+<% end -%>
+<% end -%>
 <%= info_icon %> Data Sent: <%= @data_sent.bytes_to_human %>
 <%= info_icon %> Data Received: <%= @data_received.bytes_to_human %>
 <%= info_icon %> Memory used: <%= @used_memory.bytes_to_human %>

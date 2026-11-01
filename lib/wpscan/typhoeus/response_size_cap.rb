@@ -38,19 +38,10 @@ module WPScan
         easy.on_body do |_chunk, easy_handle|
           next :unyielded if easy_handle.response_body.bytesize < max_size
 
-          ResponseSizeCap.record_truncation(easy_handle.url)
+          WPScan.truncated_responses << easy_handle.url
           :abort
         end
       end
-    end
-
-    # A finding made from a truncated body may be incomplete, so a caller wrapping wpscan can ask for
-    # the truncated URLs, one per line, in the file named by WPSCAN_TRUNCATION_LOG.
-    def self.record_truncation(url)
-      path = ENV.fetch('WPSCAN_TRUNCATION_LOG', nil)
-      return unless path
-
-      File.write(path, "#{url}\n", mode: 'a')
     end
   end
 end

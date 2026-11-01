@@ -31,10 +31,14 @@ describe WPScan::ResponseSizeCap do
     client.close
   end
 
-  before { WebMock.disable_net_connect!(allow_localhost: true) }
+  before do
+    WebMock.disable_net_connect!(allow_localhost: true)
+    WPScan.truncated_responses = []
+  end
 
   after do
     WebMock.disable_net_connect!
+    WPScan.truncated_responses = []
     server.close
     server_thread.join
   end
@@ -54,26 +58,10 @@ describe WPScan::ResponseSizeCap do
     end
   end
 
-  around do |example|
-    Dir.mktmpdir do |dir|
-      @truncation_log = File.join(dir, 'truncated.txt')
-      example.run
-    ensure
-      ENV.delete('WPSCAN_TRUNCATION_LOG')
-    end
-  end
-
   context 'when the body is under the cap' do
-    it 'reads the whole body' do
+    it 'reads the whole body, without recording it as truncated' do
       expect(run_request(body_size * 2).body.bytesize).to eql body_size
-    end
-
-    it 'does not create the truncation log' do
-      ENV['WPSCAN_TRUNCATION_LOG'] = @truncation_log
-
-      run_request(body_size * 2)
-
-      expect(File.exist?(@truncation_log)).to be false
+      expect(WPScan.truncated_responses).to be_empty
     end
   end
 
@@ -88,12 +76,10 @@ describe WPScan::ResponseSizeCap do
       expect(response.body.bytesize).to be < body_size
     end
 
-    it 'appends the URL to the file named by WPSCAN_TRUNCATION_LOG' do
-      ENV['WPSCAN_TRUNCATION_LOG'] = @truncation_log
-
+    it 'records the URL of each truncated response' do
       2.times { run_request(max) }
 
-      expect(File.read(@truncation_log)).to eql "#{url}\n" * 2
+      expect(WPScan.truncated_responses).to eql [url, url]
     end
 
     it 'caches the truncated body rather than an empty one' do
