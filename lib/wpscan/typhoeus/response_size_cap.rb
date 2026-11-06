@@ -38,7 +38,7 @@ module WPScan
         easy.on_body do |_chunk, easy_handle|
           next :unyielded if easy_handle.response_body.bytesize < max_size
 
-          WPScan.truncated_responses << easy_handle.url
+          WPScan.truncated_responses << easy_handle.effective_url
           :abort
         end
       end

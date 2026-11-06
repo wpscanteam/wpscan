@@ -13,15 +13,19 @@ describe WPScan::ResponseSizeCap do
     Thread.new do
       loop do
         client = server.accept
-        serve_chunked(client)
+        serve(client)
       rescue IOError
         break
       end
     end
   end
 
-  def serve_chunked(client)
-    client.readpartial(4096)
+  def serve(client)
+    if client.readpartial(4096).start_with?('GET /redirect ')
+      client.write("HTTP/1.1 302 Found\r\nLocation: #{url}\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
+      return
+    end
+
     client.write("HTTP/1.1 200 OK\r\nTransfer-Encoding: chunked\r\nConnection: close\r\n\r\n")
     (body_size / chunk.bytesize).times { client.write("#{chunk.bytesize.to_s(16)}\r\n#{chunk}\r\n") }
     client.write("0\r\n\r\n")
@@ -43,8 +47,8 @@ describe WPScan::ResponseSizeCap do
     server_thread.join
   end
 
-  def run_request(max_response_size, **params)
-    request = Typhoeus::Request.new(url, params)
+  def run_request(max_response_size, request_url = url, **params)
+    request = Typhoeus::Request.new(request_url, params)
     request.max_response_size = max_response_size
     yield request if block_given?
     request.run
@@ -80,6 +84,12 @@ describe WPScan::ResponseSizeCap do
       2.times { run_request(max) }
 
       expect(WPScan.truncated_responses).to eql [url, url]
+    end
+
+    it 'records the URL the body came from, after redirects' do
+      run_request(max, "#{url}redirect", followlocation: true)
+
+      expect(WPScan.truncated_responses).to eql [url]
     end
 
     it 'caches the truncated body rather than an empty one' do
