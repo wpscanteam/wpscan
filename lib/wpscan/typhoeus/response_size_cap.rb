@@ -36,7 +36,10 @@ module WPScan
         return if max_size.zero? || request.streaming?
 
         easy.on_body do |_chunk, easy_handle|
-          easy_handle.response_body.bytesize >= max_size ? :abort : :unyielded
+          next :unyielded if easy_handle.response_body.bytesize < max_size
+
+          WPScan.truncated_responses << easy_handle.effective_url
+          :abort
         end
       end
     end

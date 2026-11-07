@@ -283,7 +283,8 @@ module WPScan
                data_received: WPScan.total_data_received,
                response_status_codes: WPScan.format_status_codes(WPScan.top_status_codes),
                response_status_codes_warning: warnings.any?,
-               response_status_codes_warnings: warnings)
+               response_status_codes_warnings: warnings,
+               truncated_responses: WPScan.truncated_responses.uniq)
       end
     end
   end
