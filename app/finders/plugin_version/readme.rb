@@ -59,7 +59,10 @@ module WPScan
         #
         # @return [ String, nil ] The best version number detected from the changelog section
         def from_changelog_section(body)
-          extracted_versions = body.scan(/^=+\s+(?:v(?:ersion)?\s*)?([0-9.-]+)[^=]*=+$/i)
+          # The first character is restricted so a heading such as '= rc1 =' is not read as a
+          # version, the rest allows letters like the stable tag does, otherwise a heading such
+          # as '= 2.0.0-beta1 =' only matches up to the hyphen and '2.0.0-' can't be compared.
+          extracted_versions = body.scan(/^=+\s+(?:v(?:ersion)?\s*)?([0-9.-][0-9a-z.-]*)[^=]*=+$/i)
 
           return if extracted_versions.nil? || extracted_versions.empty?
 
