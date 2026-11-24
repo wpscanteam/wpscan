@@ -18,10 +18,10 @@ Gem::Specification.new do |s|
   s.require_paths         = ['lib']
 
   s.add_dependency 'activesupport',        '>= 7.1', '< 8.2'
-  s.add_dependency 'addressable',          '~> 2.9'
+  s.add_dependency 'addressable',          '~> 2.9', '>= 2.9.1'
   s.add_dependency 'ethon',                '>= 0.14', '< 0.20'
   s.add_dependency 'get_process_mem',      '>= 0.2.5', '< 1.1.0'
-  s.add_dependency 'nokogiri',             '~> 1.16'
+  s.add_dependency 'nokogiri',             '~> 1.19', '>= 1.19.5'
   s.add_dependency 'public_suffix',        '>= 4.0.3', '< 7.1'
   s.add_dependency 'ruby-progressbar',     '>= 1.10', '< 1.14'
   s.add_dependency 'sys-proctable',        '>= 1.2.2', '< 1.4.0'
