@@ -34,4 +34,19 @@ describe WPScan::Finders::PluginVersion::Base do
       end
     end
   end
+
+  describe 'when a plugin slug creates a module named after a top-level constant' do
+    before { allow(target).to receive(:content_dir).and_return('wp-content') }
+
+    after do
+      namespace = WPScan::Finders::PluginVersion
+      namespace.send(:remove_const, :DB) if namespace.const_defined?(:DB, false)
+    end
+
+    it 'does not raise when another plugin version finder is created' do
+      described_class.new(WPScan::Model::Plugin.new('DB', target))
+
+      expect { described_class.new(WPScan::Model::Plugin.new('spec', target)) }.to_not raise_error
+    end
+  end
 end
