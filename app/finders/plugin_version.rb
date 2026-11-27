@@ -20,7 +20,7 @@ module WPScan
         #
         # @param [ Model::Plugin ] plugin
         def create_and_load_dynamic_versions_finders(plugin)
-          DB::DynamicFinders::Plugin.create_versions_finders(plugin.slug).each do |finder|
+          WPScan::DB::DynamicFinders::Plugin.create_versions_finders(plugin.slug).each do |finder|
             finders << finder.new(plugin)
           end
         end
